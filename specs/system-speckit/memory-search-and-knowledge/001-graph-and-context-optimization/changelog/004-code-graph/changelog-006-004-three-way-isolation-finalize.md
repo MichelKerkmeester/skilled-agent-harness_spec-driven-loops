@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/004-three-way-isolation-finalize` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation`
-
 ### Summary
 
 Two system skills (system-code-graph and system-skill-advisor) each carried production imports that pointed directly into system-spec-kit. Deleting system-spec-kit broke both. The goal was full isolation so operators could remove system-spec-kit without consequences.
@@ -75,3 +72,6 @@ Six commit phases (040-A through 040-E plus a follow-on) shipped the fix. system
 - Resolve pre-existing tsc baseline errors in both skills (code-graph exit 2, skill-advisor exit 1 from TS5101 baseUrl deprecation). These pre-date 040 and are out of scope here.
 - Audit source-level `.d.ts` files in both skills to determine whether they are consumed externally. If unused, remove them.
 - Roll 040 contributions into a v1.0.3.0 changelog via the parallel agent owning version bumps.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/004-three-way-isolation-finalize` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation`

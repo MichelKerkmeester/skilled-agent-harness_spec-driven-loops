@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/008-sk-deep-cli-runtime-execution`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
-
 ### Summary
 
 `sk-deep-research` and `sk-deep-review` previously hardcoded `model: opus` at YAML dispatch and forbade CLI-in-a-loop execution. Operators had no way to route an iteration through an external CLI executor without abandoning skill-owned state, convergence detection, reducer exclusivity.
@@ -79,3 +76,6 @@ Two sub-phases shipped together on 2026-04-18. The first (001-executor-feature, 
 
 - Downstream R1-R12 remediation findings from the 30-iteration deep-research dogfood pass landed in `../002-cli-executor-remediation/` (ex-020). Verify that pass is fully closed.
 - `cli-copilot` still requires `--allow-all-tools` with no narrower CLI permission surface available. Track whether the Copilot CLI gains a scoped permission flag in a future release.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/008-sk-deep-cli-runtime-execution`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

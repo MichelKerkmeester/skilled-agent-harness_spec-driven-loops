@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/008-fix-audit-drift-findings` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`
-
 ### Summary
 
 Packets 042-044 left four `FIXME(sa-*)` markers in stress tests. One marker indicated a real product bug: `syncDerivedMetadata` was non-idempotent because prior derived state was merged back into the trigger/keyword bucket pipeline on every resync. `graph-metadata.json` was also included as a provenance dependency, causing the file's own hash to change on each write. The other three markers reflected a test misread (sa-004), a catalog count mismatch (sa-036) or a design-ceiling versus CI-gate wording ambiguity (sa-037).
@@ -76,3 +73,6 @@ All four `FIXME(sa-*)` markers are gone. The full stress suite passes 56/56 file
 
 - Five pre-existing unit test failures (manual-testing-playbook content drift, advisor-corpus-parity file-content drift, advisor-graph-health workspace-state counts, plugin-bridge degraded health) were confirmed unrelated to this packet via `git stash`. They are tracked separately and should be addressed in a dedicated cleanup packet.
 - Run `validate.sh --strict` for the final packet state and commit the result to close out the 045 packet checklist.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/008-fix-audit-drift-findings` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`

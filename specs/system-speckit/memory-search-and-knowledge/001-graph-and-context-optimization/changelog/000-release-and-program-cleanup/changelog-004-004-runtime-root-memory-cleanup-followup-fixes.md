@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-08
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program`
-
 ### Summary
 
 After the packet 096 singular-to-plural path-residue rename, three follow-on issues remained in the runtime. The `findAdvisorWorkspaceRoot` function used a bare `.opencode/skills` sentinel that any caller could accidentally satisfy by writing into a wrong-cwd directory, which caused the resolver to return the wrong workspace root and perpetuate the problem. The `memory_health` console reported 50 mismatched IDs that prior `autoRepair` runs never fixed. The indexed-continuity database carried 2,751 deprecated-tier records, roughly 33% of its total size.
@@ -76,3 +73,6 @@ All three were addressed. The resolver sentinel was tightened to the canonical a
 - Restart the MCP child process to load the new `dist/` sentinel. Until restarted, the running server has the old bare-sentinel module in memory.
 - Run a `VACUUM` on the indexed-continuity database after the auto-checkpoint is no longer needed for rollback. The checkpoint snapshot (84 MB) is inflating the reported database size.
 - Update singular-path test fixtures in the advisor test suite to plural paths. The 37 pre-existing failures from packet 096 remain until a dedicated fixture-sweep packet lands.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program`

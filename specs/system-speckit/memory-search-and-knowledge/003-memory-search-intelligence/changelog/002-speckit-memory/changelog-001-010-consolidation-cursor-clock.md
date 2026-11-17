@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/010-consolidation-cursor-clock` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 This phase is a planning-only packet for the longest Memory consolidation chain. It scopes receipts, a per-item consolidation cursor, a clock driver, crash-safety hardening and two quality candidates. All implementation candidates remain pending, with sequencing and open decisions recorded in the child docs.
@@ -48,3 +45,6 @@ _No production file-level detail recorded._
 - Capture the baseline consolidation update suite before flipping any receipt behavior.
 - Keep crash-safety work ordered ahead of quality scoring.
 - Run typecheck and focused consolidation tests after each implemented candidate.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/010-consolidation-cursor-clock` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

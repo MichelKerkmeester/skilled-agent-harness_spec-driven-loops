@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/001-anti-convergence-floor` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`
-
 ### Summary
 
 Added minIterations(3)+convergenceMode to deep_research_config.json plus a min-iteration STOP guard in deep_research_auto.yaml (gated; default maxIterations behavior and convergence parity preserved). Runtime tests incl. parity pass.
@@ -55,3 +52,6 @@ Added minIterations(3)+convergenceMode to deep_research_config.json plus a min-i
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/001-anti-convergence-floor` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research` (Level unknown)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`
-
 ### Summary
 
 Packet 020 found a class of bug: ADR-013/014 migrated the canonical spec-memory embedder to nomic-embed-text-v1.5, but 5 inline defaults in TypeScript code stayed pointing at pre-ADR models (4 × BAAI + 1 × jina). When the resolution chain's primary steps (env var → DB → cascade probe) didn't resolve, the runtime fell through to those stale strings and crashed. Triggered the 2026-05-23 production incident.
@@ -45,3 +42,6 @@ _No file-level detail recorded._
 ### Follow-Ups
 
 - None recorded.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research` (Level unknown)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

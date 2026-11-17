@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/007-sk-code-asset-router-alignment` (Level 2)
-> Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`
-
 ### Summary
 
 Phase 7 made `sk-code` authoring assets conform to the `sk-doc` asset template and aligned smart-router prose with canonical loading-level language. The change is structural conformance only. It does not change routing behavior, `STACK_FOLDERS` keys or Iron Law wording.
@@ -74,3 +71,6 @@ Phase 7 made `sk-code` authoring assets conform to the `sk-doc` asset template a
 - CHK-042 says README update was not required because the sk-code README was unaffected by this conformance pass.
 - The sk-code-review references-to-assets reclassification was deferred to a separate dedicated packet because its coupling spans changelogs, playbook source-anchors and runtime mirrors.
 - The reclassification table and coupling map are recorded in the approved plan.
+
+> Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/007-sk-code-asset-router-alignment` (Level 2)
+> Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/003-true-citation-ledger` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`
-
 ### Summary
 
 This phase benchmarked `SPECKIT_TRUE_CITATION_EMITTER` against the 024 ledger-density prerequisite on the live corpus, read-only, then implemented two refinements behind the flag and re-benchmarked. The firing trigger now threads the validated `effectiveSessionId` into the `search_shown` write, and the reference key now anchors on the memory title the assistant echoes rather than the bare integer id. The anchor-aware detector lifts real-transcript reference coverage from 7.24 percent to 15.79 percent and suppresses 9 prose-count false positives. The verdict is REFINE: the design is now sound and the signal separation is trustworthy, but the live ledger density a reranker could consume is still zero because the 1711 existing `search_shown` rows are all null-session and predate the firing-trigger fix.
@@ -64,3 +61,6 @@ This phase benchmarked `SPECKIT_TRUE_CITATION_EMITTER` against the 024 ledger-de
 - A re-run of the 024 PREREQ-A density check against the accumulated ledger is the gate for any future GRADUATE decision.
 - The handler firing-trigger still records a null session when the caller runs session-less. Lifting that residual gap requires the MCP client to supply a session on every search, which is outside this phase's two-file scope.
 - The 024 PREREQ-B corpus-geometry prerequisite is not measured here. That question is carried by the 024 research separately.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/003-true-citation-ledger` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

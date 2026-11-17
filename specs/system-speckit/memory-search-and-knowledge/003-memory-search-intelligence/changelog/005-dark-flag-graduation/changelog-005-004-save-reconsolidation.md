@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/004-save-reconsolidation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`
-
 ### Summary
 
 This phase benchmarked `SPECKIT_RECONSOLIDATION_ENABLED`, the opt-in gate that lets the save flow run the destructive `reconsolidate()` path which merges near-duplicate memories at cosine 0.88 and deprecates older rows at cosine 0.75. Measured against the production `determineAction` band and `mergeContent` line-union over a read-only backup of the live 17605-row corpus, merge precision on the production same-folder scope is 0.017: for every genuine duplicate the band merges it also merges 56 distinct documents. No threshold rescues the path because the nomic embedder compresses distinct same-folder documents to a p99 of 0.954, deep inside the merge band, while true duplicates sit at cosine 1.000. The safety machinery is sound, all twelve gate and write checks pass, but it gates a cosine band that cannot separate duplicates from distinct documents. Verdict: CUT.
@@ -57,3 +54,6 @@ This phase benchmarked `SPECKIT_RECONSOLIDATION_ENABLED`, the opt-in gate that l
 - A deterministic content-hash exact-duplicate merge path is the recommended safe replacement for the cosine-band path this benchmark cuts. Building it is a separate follow-up driven after the verdict lands.
 - The assistive reconsolidation shadow path `SPECKIT_ASSISTIVE_RECONSOLIDATION` is already graduated and advisory-only and already captures the non-destructive redundancy-flagging value. No re-measurement is needed.
 - The separation numbers are measured on one corpus snapshot under the `nomic-embed-text-v1.5` embedder. A different embedder with more spread between near-identical and merely-related documents could be re-evaluated but the CUT verdict holds for the shipped embedder.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/004-save-reconsolidation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

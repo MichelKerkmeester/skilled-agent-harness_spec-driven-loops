@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/005-intent-signals-and-skill-relationships` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph`
-
 ### Summary
 
 The skill advisor's `graph_causal` lane (0.13 weight) and part of the `derived_generated` lane (0.12 weight) had no skill-side structured signal to traverse. Across all 17 active skills, three metadata fields were universally absent: `derived.intent_signals`, `manual.depends_on`, `manual.related_to`. The lane scored entirely from causal edges in the spec-doc memory graph and auto-derived phrases rather than from authoritatively stated skill intent and relationship data.
@@ -82,3 +79,6 @@ The `graph_causal` lane now produces non-zero raw scores on fixture prompts. A `
 
 - Recheck the typecheck failure in `skill_advisor/tests/scorer/lane-weight-sweep.vitest.ts` once sibling lane-weight sweep work lands to confirm whether the TS2554 error is resolved by that packet.
 - Consider re-running the seeded sweep after the sibling 007 harder-corpus sweep completes to measure cumulative `graph_causal` lift from both packets combined.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/005-intent-signals-and-skill-relationships` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph`

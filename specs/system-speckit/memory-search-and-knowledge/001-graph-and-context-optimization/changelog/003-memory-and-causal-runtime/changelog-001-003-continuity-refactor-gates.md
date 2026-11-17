@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
-
 ### Summary
 
 The root packet for the continuity-refactor lane had stale folder references, an overly broad parent framing inherited from a prior reorganization and no authoritative coordination surface for the six active gates. Former follow-on work had already been promoted into sibling top-level phases 007 through 010, but the root docs still implied that work lived here.
@@ -71,3 +68,6 @@ Gate A removed template and recovery blockers. Gate B advanced the schema from v
 
 - Some root research and handover documents still use older phase-018 narrative language as historical context. These were left unchanged where the references are not structural folder-path truth.
 - Existing root research and review artifacts may need a follow-up normalization pass if stricter packet-integrity cleanup is required.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

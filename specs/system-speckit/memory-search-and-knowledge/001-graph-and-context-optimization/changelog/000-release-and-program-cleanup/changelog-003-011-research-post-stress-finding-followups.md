@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-04-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/011-research-post-stress-finding-followups`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 Four v1.0.2 stress-test follow-ups (cli-copilot `/memory:save` Gate 3 bypass, code-graph fast-fail not testable in the harness, file-watcher debounce gap, unused CocoIndex fork telemetry fields) were tagged but lacked actionable proposals. A 10-iteration `/deep:start-research-loop:auto` loop with cli-codex (gpt-5.5, high reasoning, fast service tier) produced a concrete patch proposal for each follow-up including evidence, root-cause hypothesis, fix candidates, recommended approach, estimated scope, falsifiable success criteria. Two architectural seams (authority token vs recovered context, specialist telemetry vs composed retrieval ranking) were named for downstream scoping. A parallel 10-iteration deep-review loop then audited the integrated 012-015 implementation as a cohesive unit, surfacing 0 P0 / 2 P1 / 7 P2 cross-cutting findings and recommending three follow-on remediation packets.
@@ -72,3 +69,6 @@ Four v1.0.2 stress-test follow-ups (cli-copilot `/memory:save` Gate 3 bypass, co
 - Implement the `getGraphReadinessSnapshot()` non-mutating helper proposed in Q-P2: threads the `full_scan` vs `selective_reindex` distinction from `ensure-ready.ts` through the `code_graph_status` response so operators see actionable readiness states. Estimated scope is 100-180 LOC across one helper and the status handler.
 - Implement the CocoIndex seed-fidelity passthrough proposed in Q-OPP: additive metadata passthrough of `raw_score`, `path_class`, `rankingSignals`, `dedupedAliases`, `uniqueResultCount` through `code_graph_context` with zero score or ordering changes. Estimated scope is 150-250 LOC across four schema and handler files.
 - Address the 2 P1 and 7 P2 cross-cutting findings from the review loop. The review-report recommends three remediation packets: Packet A (degraded-readiness envelope parity, P1 required), Packet B (cli-copilot dispatch test parity, P2), Packet C (catalog and playbook degraded alignment, P2).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/011-research-post-stress-finding-followups`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

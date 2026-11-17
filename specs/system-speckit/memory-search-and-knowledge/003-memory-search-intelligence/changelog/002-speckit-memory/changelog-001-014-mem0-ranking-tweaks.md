@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/014-mem0-ranking-tweaks` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 This phase moved from planning to partial implementation. Declarative regex entity extraction shipped always-on with parity coverage and the entity-cardinality penalty shipped behind a default-off flag on the graph degree channel. The content-hash reprocessing trigger closed as no-transfer because changed content already re-enters the save and indexing path. BM25 calibration, lemmatization, cascade extraction, write-time memory linking and entity vector boost remain pending behind benchmark, dependency or schema gates.
@@ -50,3 +47,6 @@ _Detailed file-level changes live in the phase spec and tasks._
 - Capture the reindexed recall baseline before promoting any ranking tweak.
 - Resolve the lemmatizer dependency before touching FTS tokenization.
 - Keep entity-store boost deferred until an entity vector index exists.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/014-mem0-ranking-tweaks` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-11
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/007-metadata-rename-reconciliation` (Level recorded in phase evidence)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality`
-> Historical alias: `008-metadata-rename-reconciliation`
-
 ### Summary
 
 This migration index makes the shipped phase discoverable at its final packet-local path without rewriting its historical identity. The allowed implementation evidence records: This packet was implemented across three resume dispatches, then closed in this final dispatch with requested test reruns and documentation reconciliation.
@@ -49,3 +45,7 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 ### Follow-Ups
 
 - None in the allowed evidence set.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/007-metadata-rename-reconciliation` (Level recorded in phase evidence)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality`
+> Historical alias: `008-metadata-rename-reconciliation`

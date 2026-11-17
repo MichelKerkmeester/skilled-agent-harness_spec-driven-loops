@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-applied-source-and-doc-fixes` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit`
-
 ### Summary
 
 31 of 38 audit findings fixed on the cg-remediation branch via cli-opencode gpt-5.5-fast --variant high in an isolated worktree. Typecheck clean; full suite shows zero regressions vs the pre-existing BUG-06 WIP baseline.
@@ -62,3 +59,6 @@ _No file-level detail recorded._
 
 - Not merged. Lives on branch cg-remediation; operator merges when BUG-04/BUG-06 WIP settles.
 - Baseline not green. The repo's own BUG-06 WIP fails 24 tests independently of this work.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-applied-source-and-doc-fixes` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 The Memory search path now has a deterministic retrieval-class axis. The shipped slice classifies each query once, carries that class beside the existing route metadata and lets SingleHop and MultiHop queries diverge safely at the graph-preservation seam. It also wires default-off per-class retrieval profiles into the pre-fusion ranking path, so profile weights can change channel contribution without changing flags-off behavior. Recall-shape work and graph-context extension remain pending.
@@ -56,3 +53,6 @@ _No file-level detail recorded in the generated changelog._
 - Finish the recall-shape extension only after a termination property test exists.
 - Exercise the remaining flag-state matrix before promotion.
 - Keep the routing class, intent and complexity axes explicit in future tests.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/008-naming-guard-classifier-and-validate-rule` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`
-
 ### Summary
 
 This packet is opened, not implemented. The plan below describes the intended deliverable and its acceptance bar; this section will be rewritten with the active voice once the work lands.
@@ -57,3 +54,6 @@ This packet is opened, not implemented. The plan below describes the intended de
 - Wire the rule into both the Node orchestrator and shell fallback so `validate.sh` does not silently skip it.
 - Companion fix required: `create.sh` placeholders at lines 588 and 1111 contain uppercase `PROVIDE-DESCRIPTIVE-SLUG` that would block a strict phase-child rule until lowercased.
 - Detection is retroactive, not preventive: a mis-located folder still gets created and is only surfaced on the next validation pass.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/008-naming-guard-classifier-and-validate-rule` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`

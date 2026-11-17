@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/007-bridge-liveness-reap` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The IPC bridge previously connected to a socket whenever its file existed, with no check that the daemon behind it was actually alive. A SIGKILL'd or OOM-wedged daemon left a stale socket on disk. The bridge connected to nothing, served no MCP traffic. A manual reconnect was required. Because libuv accepts connections even when the Node.js event loop is blocked, a raw accept-success could not distinguish a healthy daemon from a wedged one.
@@ -78,3 +75,6 @@ Phase 007 ended this failure mode. Before bridging, `probeDaemon` now opens a th
 - Verify no duplicate spawn under a slow-probe concurrent race once a live test harness is available (REQ-003/004 are covered by adversarial review and bootstrap-lock analysis but not by a live concurrent test).
 - Evaluate the `socketReadyAt` readiness marker (REQ-007) in a future phase. The probe's reply timeout already degrades slow cold starts gracefully so this is not blocking.
 - Monitor for respawn-lock pid-reuse edge case: the 60-second age backstop plus bootstrap-lock serialization bounds the window but a reused pid within that window remains theoretically possible.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/007-bridge-liveness-reap` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

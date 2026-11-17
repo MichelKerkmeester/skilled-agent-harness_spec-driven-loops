@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`
-
 ### Summary
 
 The manual-testing playbook gained ten executable scenarios for release-hardening coverage, including default-off flags, provenance, retrieval observability, and stale-exclusion/tool-ownership behavior. Existing CLI-front-door scenarios were not duplicated because IDs 427-438 already cover those surfaces.
@@ -53,3 +50,6 @@ The manual-testing playbook gained ten executable scenarios for release-hardenin
 ### Follow-Ups
 
 - New scenarios were authored and structurally checked; later model-execution phases own running them end to end.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

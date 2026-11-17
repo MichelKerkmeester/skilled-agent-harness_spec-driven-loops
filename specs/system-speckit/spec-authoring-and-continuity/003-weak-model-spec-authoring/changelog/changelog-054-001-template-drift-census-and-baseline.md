@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-24
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline` (Level 3)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 Phase 001 produced the verified defect ledger and the first authoring baseline that phases 002 to 009 consume. That first baseline was three Level 2 runs on DeepSeek V4.1 Flash, and a Level 3 rebaseline on cli-devin swe-2-max later replaced it.
@@ -54,3 +51,6 @@ Phase 001 produced the verified defect ledger and the first authoring baseline t
 - Three runs detect only large effects, so later phases report a minimum and a maximum instead of a significance claim.
 - 45 review findings are recorded, not applied. They need owner-phase decisions or exact replacement text.
 - The Level 2 DeepSeek baseline is history. The packet compares against the Level 3 cli-devin swe-2-max baseline.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline` (Level 3)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

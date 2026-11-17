@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-09
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli`
-
 ### Summary
 
 The skill-advisor hardening phase shipped parity, job-semantics, orphan-reaping, and dual-client regression suites plus the env-gated tri-daemon spawn drill that serves as the program gate. The parity fixture runs real `python3` local scorer against the native path confirming 10/10 identical top recommendations. The orphan-reaping suite exercises the real launcher via killed parent, removed worktree, and warm adoption scenarios. The tri-daemon drill verified all three CLIs auto-spawning simultaneously with per-launcher single-owner, respawn-lock serialization, divergent SIGTERM reap, and zero orphans. Drill PASSED.
@@ -67,3 +64,6 @@ The skill-advisor hardening phase shipped parity, job-semantics, orphan-reaping,
 ### Follow-Ups
 
 - Multi-runtime transport-down drill remains open in `003-runtime-integration`
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli`

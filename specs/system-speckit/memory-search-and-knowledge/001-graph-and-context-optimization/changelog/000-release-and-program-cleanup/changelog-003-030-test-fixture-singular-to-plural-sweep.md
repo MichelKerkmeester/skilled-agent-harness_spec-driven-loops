@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-09
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/030-test-fixture-singular-to-plural-sweep` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 Packet 096 renamed production paths from singular `.opencode/skill/` to plural `.opencode/skills/` per the official opencode.ai documentation, but 7 advisor-test fixtures continued using the old singular form. That mismatch caused 37 advisor-suite failures because the production resolver's strict sentinel (`SKILL.md`) looked for the plural path and found nothing in the fixture temporary directory.
@@ -67,3 +64,6 @@ None.
 ### Follow-Ups
 
 - Investigate the 4 residual advisor-suite failures: alias canonicalization in `scorer/native-scorer.vitest.ts`, Python-TS parity in `parity/python-ts-parity.vitest.ts`, Python compat harness wiring in the two `compat/` tests. Track under the skill-advisor backlog.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/030-test-fixture-singular-to-plural-sweep` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

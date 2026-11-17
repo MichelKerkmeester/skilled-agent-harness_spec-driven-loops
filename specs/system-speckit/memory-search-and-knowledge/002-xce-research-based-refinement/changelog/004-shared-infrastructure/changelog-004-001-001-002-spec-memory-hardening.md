@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-09
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli`
-
 ### Summary
 
 The spec-memory CLI hardening phase shipped four Vitest suites that regression-lock the critical safety contracts of the dual-stack deployment. The suites cover dual-spawn hardening (with and without reelection), dual-client MCP and CLI concurrency against one daemon, lifecycle cleanup and transparent recycle behavior, and 37-tool parity with CLI help output. Exit-69 recovery help text was added to `spec-memory-cli.ts`. Host daemons stayed untouched throughout.
@@ -62,3 +59,6 @@ The spec-memory CLI hardening phase shipped four Vitest suites that regression-l
 ### Follow-Ups
 
 - Full end-to-end multi-runtime transport-down behavior is intentionally deferred to `003-runtime-integration`
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli`

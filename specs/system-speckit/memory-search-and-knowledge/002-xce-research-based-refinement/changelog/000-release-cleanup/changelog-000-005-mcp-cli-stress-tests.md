@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/005-mcp-cli-stress-tests` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`
-
 ### Summary
 
 Sandboxed stress coverage was added for release-cleanup surfaces. The suite covers repeated schema v34-through-v37 upgrades, gated flag behavior, the three CLI front doors, and daemon-free warm-only probes while preserving the existing stress harness isolation model.
@@ -57,3 +54,6 @@ Sandboxed stress coverage was added for release-cleanup surfaces. The suite cove
 ### Follow-Ups
 
 - Broader live-daemon transport drills remain separate from this sandboxed stress scope.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/005-mcp-cli-stress-tests` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

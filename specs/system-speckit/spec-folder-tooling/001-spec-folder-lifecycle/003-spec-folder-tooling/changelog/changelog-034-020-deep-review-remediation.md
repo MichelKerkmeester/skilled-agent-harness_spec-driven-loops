@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-10
 
-> Spec folder: `specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation` (Level 2)
-> Parent packet: `specs/system-speckit/034-spec-folder-tooling`
-
 ### Summary
 
 The deep review of phases 016 to 019 returned CONDITIONAL with 0 P0, 9 P1 and 2 P2 findings after deduplication. Each finding has a fix pushed as `bb2006123f`, a test or check that shows it, and an acceptance row. The rows and their evidence are in acceptance-criteria.md, and the lane tasks are in tasks.md.
@@ -121,3 +118,6 @@ The deep review of phases 016 to 019 returned CONDITIONAL with 0 P0, 9 P1 and 2 
 - SL-005-006 (runtime test execution) is closed for the touched suites only. The full CLI suite is the orchestrator's.
 - SL-007 (individual lane transform edge cases) is covered for the transforms that changed. A review of every transform is not claimed.
 - SL-007-009 (spec-code traceability) and SL-007-010 (checklist evidence) stay open. The spec puts them out of scope, and no lane addresses them. Deep-review iterations 8 to 10 exercised both rows, but the reducer keeps them open because no later row closes them by id (review/review-report.md section 9).
+
+> Spec folder: `specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation` (Level 2)
+> Parent packet: `specs/system-speckit/034-spec-folder-tooling`

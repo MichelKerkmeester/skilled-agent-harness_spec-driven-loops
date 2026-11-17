@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/001-model-registration` (Level 1)
-> Parent packet: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support`
-
 ### Summary
 
 Kimi K2.7 Code became a first-class small model rather than a live provider slug that only worked by memory. The registry, prompt-craft profile, model aliases and `cli-opencode` surfaces now point users to `kimi-for-coding/k2p7`, while the older `kimi-k2.6` entry stays historical so existing references do not break. The phase closed by proving the provider is authenticated, the slug is live, the JSON parses, the card-sync guard passes and a real dispatch returns `pong`.
@@ -72,3 +69,6 @@ Kimi K2.7 Code became a first-class small model rather than a live provider slug
 - Best prompt framework was unverified at phase close. RCAF was recorded as the default at `default-unverified` status, with the empirical winner deferred to phase `002-framework-bakeoff` and fold-in deferred to `003-promote-results`.
 - `--variant high` effect was unmeasured. The CLI accepted the variant at exit 0, but whether it improves output quality stayed benchmark-unverified and accepted-unverified until the bakeoff.
 - The smoke test was a liveness check, not a quality check. The `pong` dispatch proved the slug dispatches and bills correctly, but said nothing about coding-task quality.
+
+> Spec folder: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/001-model-registration` (Level 1)
+> Parent packet: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support`

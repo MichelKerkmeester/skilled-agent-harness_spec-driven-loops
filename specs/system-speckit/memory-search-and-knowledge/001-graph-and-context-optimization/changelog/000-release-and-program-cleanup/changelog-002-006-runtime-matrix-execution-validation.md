@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`
-
 ### Summary
 
 Packet 030 designed a full v1.0.4 feature-by-executor matrix but did not execute it. No runner infrastructure existed to cover all 98 cells and external CLI dispatch was blocked in the Codex execution environment. This packet read the packet 030 matrix design and the packet 013 Section 6 scope, froze all 14 features across seven executor columns before aggregation, then ran every available focused local runner with a 5-minute timeout. Per-cell JSONL evidence was captured for all 98 cells. A findings report was produced with a signed-off matrix, aggregate pass/fail/blocked/runner-missing counts. Scoped remediation tickets were opened for F11 hook drift, F12 validator timeout, F13 missing stress-cycle runner. Blocked external CLI surfaces received separate tickets. The terminal state is CONDITIONAL because runner and external CLI coverage remains incomplete.
@@ -78,3 +75,6 @@ Packet 030 designed a full v1.0.4 feature-by-executor matrix but did not execute
 - Fix Copilot hook wiring mismatch found in F11 (Ticket 038).
 - Resolve F12 combined validator runner timeout within the 5-minute cell budget (Ticket 039).
 - Re-run blocked and runner-missing cells once adapters and dispatch are available to produce a v1.0.4 aggregate comparable to prior baselines.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`

@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine/004-advisor-hook-surface-integration` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine`
-
 ### Summary
 
 Skill advisor only fired when an AI explicitly invoked it in a shell command, leaving Codex, Gemini, and Copilot runtimes without proactive routing. This phase shipped a cross-runtime hook surface. Each UserPromptSubmit event in all four runtimes now runs buildSkillAdvisorBrief which returns a typed AdvisorHookResult rendered as hookSpecificOutput.additionalContext or wrapper-preamble fallback. The brief emits a sanitized top-1 skill recommendation with freshness, confidence, and uncertainty fields. A fail-open contract returns an empty object on any error, so hook failures never block the runtime. The phase achieved 200/200 corpus parity, 4-runtime parity across 5 fixtures, cache-hit p95 of 0.016 ms, and a 66.7% replay hit rate.
@@ -111,3 +108,6 @@ Skill advisor only fired when an AI explicitly invoked it in a shell command, le
 - Interactive smoke tests deferred for all 4 runtimes, CLI smoke tests with simulated stdin are in place but real interactive session smoke is pending
 - Pre-existing test failures (transcript-planner-export.vitest.ts, deep-loop/prompt-pack.vitest.ts) need follow-up in their respective packets 015 and deep-loop, confirmed unrelated to Phase 020 via stash-test
 - Smart-router context-load efficacy measurement (do advisor briefs actually reduce context load for AI assistants) queued as a separate phase with OpenCode plugin architecture research using the working code-graph OpenCode plugin as reference
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine/004-advisor-hook-surface-integration` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine`

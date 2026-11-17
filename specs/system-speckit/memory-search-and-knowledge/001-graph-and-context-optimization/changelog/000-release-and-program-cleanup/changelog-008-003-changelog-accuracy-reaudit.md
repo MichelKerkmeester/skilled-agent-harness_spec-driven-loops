@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit` (Level unknown)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup`
-
 ### Summary
 
 After seven new leaf changelogs were authored in the 003-memory-and-causal-runtime track (packets 020 through 026), there was no independent check that each changelog accurately reflects its referenced spec folder (file lists, verification numbers, commit hashes, Level, and the spec-folder path).
@@ -44,3 +41,6 @@ _No file-level detail recorded._
 ### Follow-Ups
 
 - Historical drift in the 13 sidecar-reaper changelogs (Cohort B) is out of scope for this phase; deferred to that track for cleanup.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit` (Level unknown)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup`

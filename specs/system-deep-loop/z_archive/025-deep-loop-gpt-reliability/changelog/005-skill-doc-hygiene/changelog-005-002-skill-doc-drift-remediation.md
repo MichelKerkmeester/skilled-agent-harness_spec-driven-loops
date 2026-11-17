@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/002-skill-doc-drift-remediation` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 Patched all 6 confirmed drift clusters from phase 014. A dedicated Cluster 6 investigation found orchestrate's `@deep-review` row is load-bearing, so `cli-opencode/SKILL.md`'s internal self-contradiction was fixed instead of touching `orchestrate.md`. A follow-up 10-iteration dual-model review (GPT-5.5-fast + GLM-5.2-max, 5/5) confirmed 2 more real residuals, both fixed.
@@ -63,3 +60,6 @@ Patched all 6 confirmed drift clusters from phase 014. A dedicated Cluster 6 inv
 ### Follow-Ups
 
 - `agent_delegation.md`'s routing-matrix table contradiction (GPT's partially-miscited finding) flagged as genuinely real but pre-existing and out of this phase's scope — not fixed here.
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/002-skill-doc-drift-remediation` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

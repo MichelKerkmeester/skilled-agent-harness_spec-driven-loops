@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/005-memory-retention-policy-sweep` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`
-
 ### Summary
 
 The memory index supported a `delete_after` retention boundary on every governed ingest row, but no code path ever consumed it. Rows past their retention date accumulated indefinitely. Session cleanup targeted session-state tables only. `memory_bulk_delete` filtered by tier, spec folder, date. None of these paths consumed the `delete_after` boundary.
@@ -80,3 +77,6 @@ A new retention sweep was built end-to-end. A shared sweep core selects expired 
 
 - Run the full Vitest suite once packet constraints allow to confirm no cross-handler regressions.
 - Verify that `SPECKIT_RETENTION_SWEEP` is reflected in the operator runbook for production deployments.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/005-memory-retention-policy-sweep` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`

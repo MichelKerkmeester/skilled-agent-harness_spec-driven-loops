@@ -9,7 +9,7 @@ trigger_phrases:
   - "annotated changelog sample"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Changelog Worked Examples
@@ -52,8 +52,6 @@ contextType: "general"
 
 `/create:changelog` now writes a hub's changelog where the hub keeps it. A hub such as `sk-doc` holds one link per mode plus `parent` and no entry of its own, so the workflow used to find no version there and would have written beside the links.
 
-> Spec folder: `specs/sk-doc/document-standards/003-changelog-system/003-skilled-release-changelog/003-adjacent-alignment`
-
 &nbsp;
 
 ## What's New at a Glance
@@ -66,6 +64,10 @@ contextType: "general"
 ## Upgrade
 
 No migration required.
+
+&nbsp;
+
+> Spec folder: `specs/sk-doc/document-standards/003-changelog-system/003-skilled-release-changelog/003-adjacent-alignment`
 ```
 
 **Annotations**:
@@ -74,6 +76,7 @@ No migration required.
 - Each glance bullet adds something the summary did not say: where a mode's change lands, and where the next version comes from.
 - The source also recorded two new playbook scenarios, a README and command-doc catch-up and a note that identity phrases keep the skill's name. None of them changes what a user of the workflow sees, so the entry leaves them in the spec packet.
 - An `&nbsp;` line sits before each H2, the glance section and the Upgrade line alike.
+- The spec-folder line closes the entry, after one more `&nbsp;` line, so the reader meets the change first.
 - The Upgrade line is only the action. The published entry added a sentence that repeated the first bullet, and the lean version drops it.
 
 ---

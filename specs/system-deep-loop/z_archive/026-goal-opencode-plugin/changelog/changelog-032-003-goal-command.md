@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/003-goal-command` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
-
 ### Summary
 
 The passive goal feature now has a root command. /goal is a thin router that selects one plugin tool call, and the tools own session resolution, state mutation, status rendering, and the exact injection preview.
@@ -61,3 +58,6 @@ The passive goal feature now has a root command. /goal is a thin router that sel
 ### Follow-Ups
 
 - Command behavior depends on plugin tools being available. The markdown router intentionally has no fallback path to read or edit goal state directly.
+
+> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/003-goal-command` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`

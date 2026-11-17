@@ -2,8 +2,6 @@
 
 This phase implemented six retrieval-quality fixes across the `memory_context` and `memory_search` handlers, then received a structural doc-alignment pass on 2026-04-02. The code changes are in place, but the phase packet still marks fresh restart and cache-sensitive reruns as pending, so this changelog records the shipped implementation work without claiming final rerun closure.
 
-> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/010-search-retrieval-quality-fixes/` (Level 2)
-
 ---
 
 ## Search (6)
@@ -110,3 +108,5 @@ No dedicated test files were added in this phase. Verification in the packet is 
 No migration required.
 
 Search now keeps intent and fallback behavior more safely through the retrieval path. The phase packet still expects a fresh-restart verification pass before it can claim fully closed rerun evidence.
+
+> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/010-search-retrieval-quality-fixes/` (Level 2)

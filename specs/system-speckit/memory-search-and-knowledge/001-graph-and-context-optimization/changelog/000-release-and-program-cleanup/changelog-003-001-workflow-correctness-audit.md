@@ -18,9 +18,6 @@ contextType: "review"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/001-workflow-correctness-audit` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`
-
 ### Summary
 
 The canonical command surface was audited for release readiness before the seven `/spec_kit:*` and `/memory:*` commands were treated as safe operator paths. The risk was command-contract drift: markdown can promise confirmation gates while backing tools silently accept mutation calls that bypass those gates.
@@ -71,3 +68,6 @@ The packet is release-blocking until P0-001 is remediated. No source files were 
 - Require `confirm:true` for all `memory_delete` mutations, including single-record `id` deletion. Update the handler at `memory-crud-delete.ts` and the `/memory:manage delete` command call site to pass the confirmation field. Add tests that reject `id`-only delete calls.
 - Audit and remove user-approval waits from all auto-mode SpecKit YAML variants. Convert closeout prompts to non-blocking status output or deterministic defaults.
 - Create YAML asset contracts for `/memory:save`, `/memory:search` and `/memory:manage`. Alternatively document memory commands as markdown-only and add a validator that checks inline workflows for required bindings and destructive gates.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/001-workflow-correctness-audit` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`

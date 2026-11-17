@@ -19,8 +19,6 @@ contextType: "implementation"
 
 ## 2026-06-03
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/006-doctor-install-alignment` (Level 2)
-
 ### Summary
 
 The `/doctor` command router, its per-target assets and the three subsystem install guides drifted from shipped reality (~148 audited misalignments across DB paths, mutation classes, tool counts, command syntax, launch instructions and embedding architecture). A five-cluster disjoint parallel sweep across 25 files corrected all misalignments, with adversarial verification plus two orchestrator fix-ups (install-README Ollama-default framing and a confirmed `mcp-doctor.sh` inverted-logic bug). Final re-grep across the doctor surface and install README returned clean. `opencode.json` is valid JSON and `mcp-doctor.sh` passes `bash -n`.
@@ -101,3 +99,5 @@ The `/doctor` command router, its per-target assets and the three subsystem inst
 
 - **Apply/rebuild paths for doctor routes**: the four subsystem doctor routes were downgraded to `read-only` to match current `doctor.sh` reality. The overstated `mutates` routes formerly promised apply/rebuild behavior that does not exist. Implementing these paths is separate feature work, intentionally out of scope for this alignment packet.
 - **Launcher `.cjs` UTF-8 fix deploy**: the install-guide wording now documents the front-proxy launcher correctly, but the launcher `.cjs` deploy itself remains a separate, user-gated action tracked outside this packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/006-doctor-install-alignment` (Level 2)

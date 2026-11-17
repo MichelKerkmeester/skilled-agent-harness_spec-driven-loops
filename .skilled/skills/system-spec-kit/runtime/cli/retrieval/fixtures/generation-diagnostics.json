@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6914,
-    "ok": 19632,
+    "ok": 19650,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28173,
+  "documentsScanned": 28191,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "2eb6fe6de9a1ce42aa6a20a2b15ffc0c8e0d6013c5eb2707ec9dbedfadaca814",
+  "manifestHash": "2a9d7c2b9d2227efc6120625cd79c75425eabebce84002c224c2f05178832844",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44912,
+      "ok": 44938,
       "prose-sentence": 22,
       "single-token": 150,
       "stop-word-only": 1,
@@ -54825,6 +54825,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/model-rosters/z_archive",
       "reason": "excluded directory"
     },
@@ -59837,6 +59841,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/document-standards/007-changelog-spec-folder-at-bottom/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/document-standards/z_archive",
       "reason": "excluded directory"
     },
@@ -61590,6 +61598,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/scratch",
       "reason": "excluded directory"
     },
     {

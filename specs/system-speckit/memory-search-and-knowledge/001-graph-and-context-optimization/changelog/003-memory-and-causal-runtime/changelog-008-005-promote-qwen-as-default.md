@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-20
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`
-
 ### Summary
 
 Phases 001 through 003 of arc 008 shipped a working Qwen3-Reranker-0.6B cross-encoder sidecar for spec-memory, but both the source default (`cross-encoder/ms-marco-MiniLM-L-6-v2`) and the runtime flag (`SPECKIT_CROSS_ENCODER=false`) were held pending a benchmark. Phase 004 ran that benchmark and returned a HOLD verdict: hit-rate delta was only +0.4 pp, MRR delta was +0.004 and p95 latency ballooned to +9832.7 ms on CPU, far exceeding the +400 ms promotion ceiling.
@@ -65,3 +62,6 @@ None.
 
 - Tune CPU-to-MPS device selection for the Qwen3-Reranker-0.6B model before attempting a future promotion benchmark. Phase 004 made this a hard prerequisite.
 - Track CocoIndex sidecar deduplication separately. CocoIndex still loads its own Qwen in-process rather than routing to the shared sidecar.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`

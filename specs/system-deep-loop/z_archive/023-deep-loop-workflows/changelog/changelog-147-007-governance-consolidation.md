@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/007-governance-consolidation` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`
-
 ### Summary
 
 This phase did not build new consolidation behavior. It resolved a governance divergence by recording the decision and bringing the phase docs back in line with shipped reality. The value was honesty: the packet state, the governance record and the actual implementation stopped disagreeing.
@@ -54,3 +51,6 @@ This phase did not build new consolidation behavior. It resolved a governance di
 - CHK-011 Changes follow existing project conventions.
 - CHK-020 Hub-level `feature_catalog` exists with five mode partitions and one merged root index.
 - CHK-021 Hub-level `manual_testing_playbook` exists with five mode partitions and one merged root index.
+
+> Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/007-governance-consolidation` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`

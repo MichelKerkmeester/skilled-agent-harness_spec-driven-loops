@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands` (Level 2, Phase Parent)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation`
-
 ### Summary
 
 The create command family completed the router/presentation split. Presentation assets under the create command assets tree own Phase 0 display, auto setup, consolidated startup prompts, setup dashboards, and completion result templates.
@@ -54,3 +51,6 @@ The create command family completed the router/presentation split. Presentation 
 ### Follow-Ups
 
 - No live command invocation or cross-model runtime rendering was performed because the scope targeted static command architecture.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands` (Level 2, Phase Parent)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation`

@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-07-04
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/005-trigger-phrase-quality-and-matcher-guards/` (Level 2)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`
-
 ### Summary
 
 `memory_match_triggers` stops surfacing noise. Legacy rows stored word-soup phrases that matched almost anything and the matcher ranked them on single-token hits. A batched, resumable, checkpoint-gated migration regenerated 48 legacy rows through the quality extractor. The matcher now applies a stopword, minimum-length and IDF guard to single-token matches and dedupes phrases per memory. The phrase cache is keyed on path and mtime instead of re-reading the whole corpus every 60 seconds. Trigger writes merge extracted phrases with user-authored ones instead of clobbering them. A gated migration deduped the constitutional rows from 30 to 19 distinct. Shipped in `9d5d5380aa`.
@@ -61,3 +58,6 @@ contextType: "implementation"
 
 - Matcher-side effects need the daemon running this code.
 - Rollback is `context-index.sqlite.pre-005-trigger-quality-20260703`.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/005-trigger-phrase-quality-and-matcher-guards/` (Level 2)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

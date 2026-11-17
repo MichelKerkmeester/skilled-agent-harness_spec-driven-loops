@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/027-launcher-concurrency-spawn-and-bridge-investigation` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`
-
 ### Summary
 
 Read-only deep-research packet investigating two root causes in the spec-kit launcher-coordination layer, both surfaced by the owner's heavy concurrent-session workflow. Canonical research output lives in research/research.md; this spec.md records the investigation ask, scope, and open questions.
@@ -43,3 +40,6 @@ _No file-level detail recorded._
 ### Follow-Ups
 
 - Actual code fixes for T1 and T2 are deferred to a follow-up phase implementing the unified design-conformance fix plan from research/research.md.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/027-launcher-concurrency-spawn-and-bridge-investigation` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

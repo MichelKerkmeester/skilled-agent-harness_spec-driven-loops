@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/002-hf-model-server` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server`
-
 ### Summary
 
 A pure-Node CommonJS local HTTP and Unix domain socket embedding model server was built at .opencode/bin/hf-model-server.cjs. It wraps @huggingface/transformers and ports the existing HfLocalProvider.getModel() load logic with MPS to CPU device fallback, 120 second load timeout, and q8 dtype resolution. The server binds its listener before model load completes so GET /api/health returns loading state during cold start and ready state after. POST /api/embed awaits the in-flight load and returns embeddings with runtime-derived dimension. Default socket is at dbDir/hf-embed.sock with a tcp fallback. The server is not yet wired into any provider or launcher, phases 003 and 004 handle client integration and supervision.
@@ -58,3 +55,6 @@ A pure-Node CommonJS local HTTP and Unix domain socket embedding model server wa
 - Server is standalone and not yet wired into any provider or launcher, phase 003 adds the HTTP client and phase 004 adds launcher supervision.
 - Live model load not exercised, tests use mock load with no real 274MB model or 15-30s cold start, live verification deferred to phase 004 supervision.
 - Single-resident-model constraint means requests for a different model than loaded return 404, multi-model residency is out of scope by design.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/002-hf-model-server` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server`

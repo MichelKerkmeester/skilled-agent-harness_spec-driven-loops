@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 system-code-graph's 7 reference docs now carry exactly the canonical frontmatter contract, so all of them are valid routing signal for the advisor doc harvest. Six docs needed only the missing importance_tier/contextType pair; launcher_lease.md had no detailed block at all and received net-new trigger phrases derived from its lease mechanism.
@@ -57,3 +54,6 @@ system-code-graph's 7 reference docs now carry exactly the canonical frontmatter
 ### Follow-Ups
 
 - Live-daemon verification is campaign-level. The running advisor daemon predates the launcher allowlist fix, so matchedDocs cannot be observed live until every advisor-attached session cycles and a fresh session respawns it.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

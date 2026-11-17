@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/005-deep-ai-council` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 deep-ai-council's 18 reference and asset docs now carry exactly the canonical frontmatter contract, making the campaign's largest doc set so far fully valid routing signal for the advisor doc harvest. The phase exercised every drift class at once: enum normalization, missing-field backfill, net-new authoring, tier judgment, and phrase hygiene.
@@ -65,4 +62,5 @@ deep-ai-council's 18 reference and asset docs now carry exactly the canonical fr
 | `assets/{deep_ai_council_dashboard,deep_ai_council_strategy}.md` | Modified | Added tier normal + contextType planning |
 | `assets/prompt_pack_round.md` | Modified | Net-new canonical frontmatter block authored |
 
-
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/005-deep-ai-council` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

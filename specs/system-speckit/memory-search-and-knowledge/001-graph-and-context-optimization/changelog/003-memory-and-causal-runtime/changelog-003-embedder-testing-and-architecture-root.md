@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-05-26
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture` (Phase Parent)
-
 ### Summary
 
 This top-level phase parent groups 9 child phase groups spanning 2026-05-16 to 2026-05-26. Each child group is its own phase parent with a rollup and per-phase changelogs. The Included Phases table below links to each child group rollup.
@@ -60,3 +58,5 @@ This top-level phase parent groups 9 child phase groups spanning 2026-05-16 to 2
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture` (Phase Parent)

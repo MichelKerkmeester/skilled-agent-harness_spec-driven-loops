@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`
-
 ### Summary
 
 The mk-spec-memory embedding pipeline had accumulated a backlog of approximately 17,000 rows that would not drain to 0 failed/0 pending. A 10-iteration deep-research loop (cli-codex gpt-5.5 xhigh) determined the root cause was compound: the embedder_set and reindex completion path never committed `memory_index.embedding_status` after writing vectors. `enforceRetentionLimits()` parked clean pending rows as failed before the drain could reach them. The persistent daemon's retry-interval and batch-size env values were overridden at the call site on every start, making tuned env vars ineffective.
@@ -85,3 +82,6 @@ After the fixes, a fresh daemon drained the retry queue at batch 100 per 5 secon
 - `memory_embedding_reconcile()` remains a proposed maintenance tool and is not yet an available MCP handler. A follow-on packet should implement it as a guarded dry-run/apply tool.
 - 22 genuine embedding failures remain in the store: 11 null-content rows and 11 provider-error rows from the flap era. These are not retention-scoped and were not addressed in this packet.
 - Live DB counts drifted across snapshots during the investigation. The operator runbook requires live preflight counts before any apply-mode reconcile run.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-09-27
 
-> Spec folder: `specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe` (Level 2)
-> Parent packet: `specs/sk-doc/060-create-goal-mode`
-
 ### Summary
 
 A parent goal sent in chat now carries only its directive. This packet's own parent dropped from 3,995 to 2,944 durable characters without losing a decision, a binding row or a criterion.
@@ -82,3 +79,6 @@ A parent goal sent in chat now carries only its directive. This packet's own par
 - Hermes caps a prompt section below the brief's bound. The cap is 4,000 characters and the core bounds a brief at 4,800. The longest of the 308 goals in specs/ renders 2,558, so none is cut.
 - A new Pi session reads the brief twice on its first turn. The session-start restore and the first turn's injection both carry it, as HEAD did and the goal hooks README documents.
 - The rename-tooling test needs a quiet checkout. It hashes the whole checkout and fails when anything writes to it during its run. It passes in an isolated clone, and other sessions write to the shared one.
+
+> Spec folder: `specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe` (Level 2)
+> Parent packet: `specs/sk-doc/060-create-goal-mode`

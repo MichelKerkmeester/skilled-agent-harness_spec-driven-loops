@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`
-
 ### Summary
 
 The public root `README.md` was rewritten as the release capstone. It now describes the current AI-assistant framework, Spec Kit workflow, memory system, MCP-to-CLI dual-stack, Code Graph, Skill Advisor, checked-in skills, commands, agents, install path, configuration files, and next-document pointers. The pass removed stale counts and stale external-provider claims.
@@ -53,3 +50,6 @@ The public root `README.md` was rewritten as the release capstone. It now descri
 ### Follow-Ups
 
 - Monitor README drift as shipped surfaces evolve.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

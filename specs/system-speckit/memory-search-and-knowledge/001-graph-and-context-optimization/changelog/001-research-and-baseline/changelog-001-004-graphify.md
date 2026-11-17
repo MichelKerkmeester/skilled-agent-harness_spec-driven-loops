@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-04-08
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/004-graphify` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline`
-
 ### Summary
 
 Public had no evidence-backed translation layer to decide which patterns from the graphify external Python skill were worth adopting into Code Graph MCP, CocoIndex, Spec Kit Memory, hooks or validation surfaces. The codebase already had 442.9K graph nodes but lacked community-clustered graphs, evidence-tagged provenance, multimodal artifact extraction and a PreToolUse hook that redirects raw Grep toward the structural index.
@@ -71,3 +68,6 @@ None. Research-only phase.
 - Resolve codex parallel-job API contention before running multi-wave deep-research loops with concurrent dispatches. The iteration 2 starvation incident proved sequential dispatch is the safe pattern. Log any `engine_switch` events when fallback to claude-opus-direct is needed.
 - Verify the `mixed-corpus` worked example by running graphify against it directly. K26 documents that `external/worked/mixed-corpus/GRAPH_REPORT.md` does not show the multimodal evidence its README claims. K26 should be cited as evidence of release-discipline drift rather than proof that graphify cannot process mixed corpora at small sizes.
 - Measure real Claude tokenization counts for K1 using Anthropic's `count_tokens` API on the same corpus. The 71.5x token-reduction verdict relies on graphify's own `_estimate_tokens` heuristic (4 chars per token). Cite the three load-bearing assumptions explicitly rather than presenting 71.5x as a verified number.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/004-graphify` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop` (Level unknown)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator`
-
 ### Summary
 
 > Spec: ./spec.md | Date: 2026-06-08 | Status: Complete & verified
@@ -49,3 +46,6 @@ _No file-level detail recorded._
 ### Follow-Ups
 
 - Git commit/push — deferred to operator (assistant git policy is read-only)
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop` (Level unknown)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator`

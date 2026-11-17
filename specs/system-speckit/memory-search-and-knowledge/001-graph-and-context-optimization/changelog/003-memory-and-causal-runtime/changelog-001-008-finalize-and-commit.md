@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-12
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/008-finalize-and-commit` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 The 014 migration touched approximately 12 source files and 60 spec-doc files across eight prior sub-phases. Without a consolidation step, those changes would ship as a noisy multi-commit chunk that was harder to review and harder to roll back. The terminal packet addressed this by running the validation cascade across all nine 014 child packets and the parent, then authoring the bundled conventional commit message and a post-merge verification checklist that the user could open days or weeks after the merge.
@@ -63,3 +60,6 @@ The commit message captured the full Setup A profile (EmbeddingGemma 768-dim hf-
 - Rotate the three secrets (Voyage API key, HF read token, GitHub PAT) that appeared in the session transcript before the repo goes public.
 - Confirm 009 ships the cocoindex IPC fix so the post-merge cocoindex query step in the checklist passes.
 - Address the valid P1s from the deep-review: dtype not in EmbeddingProfile or DB filename creates a silent fp32/q4 mix risk. The Voyage egress guard fires after auto-resolution rather than before. The tcpdump script uses `-i any` which may need `-i pktap` on macOS.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/008-finalize-and-commit` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

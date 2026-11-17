@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/002-tool-coverage-audit`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit`
-
 ### Summary
 
 Before this audit the playbook had no systematic record of which mk-spec-memory MCP tools were exercised by existing scenarios and which had zero coverage. All 42 tools were cross-referenced against the pre-expansion playbook scenario set. Each tool received a coverage gap class from the set: `well-covered`, `uncovered`, `embedder-tools-need-new-scenarios`. The resulting CSV gives the playbook authoring pipeline a stable regenerable baseline for targeting new scenarios at the right gaps.
@@ -58,3 +55,6 @@ Thirty-eight of the 42 tools were classified as well-covered. Four council graph
 
 - Author new playbook scenarios for the 4 uncovered council graph tools (`council_graph_query`, `council_graph_status`, `council_graph_upsert`, `council_graph_convergence`).
 - Author new playbook scenarios for the 3 embedder tools (`embedder_list`, `embedder_set`, `embedder_status`).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/002-tool-coverage-audit`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/011-embeddinggemma-unification` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 Setup A ended in a split-model state: Spec Kit Memory used EmbeddingGemma ONNX while CocoIndex still carried an older heavier code-side model. That split kept committed source defaults, runtime config comments and packet docs pointing at inconsistent models. Any new clone would inherit a broken story unless an operator manually aligned both surfaces.
@@ -66,3 +63,6 @@ This phase unified both embedding surfaces on EmbeddingGemma-300m. The memory si
 
 - Investigate document-side prompt support in the CocoIndex indexing path. The current asymmetry costs an estimated 5 to 10 points of recall on code queries. Addressing this is likely scoped to the `027/001-cocoindex-complete-fork` packet.
 - Evaluate q8 quantization as the post-012 memory default for EmbeddingGemma ONNX to reduce RAM footprint while preserving 768-dim parity.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/011-embeddinggemma-unification` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

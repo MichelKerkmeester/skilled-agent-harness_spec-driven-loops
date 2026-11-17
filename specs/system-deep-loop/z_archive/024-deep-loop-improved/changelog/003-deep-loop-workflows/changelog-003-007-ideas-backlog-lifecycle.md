@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/007-ideas-backlog-lifecycle` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`
-
 ### Summary
 
 observed/promoted/rejected idea events: leaf emits observed-only, the reducer promotes after a minIdeaObservations threshold (reduce-state.cjs + protocol/state docs + yaml + agent). Reduce-state tests pass; hygiene/drift clean.
@@ -58,3 +55,6 @@ observed/promoted/rejected idea events: leaf emits observed-only, the reducer pr
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/007-ideas-backlog-lifecycle` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`

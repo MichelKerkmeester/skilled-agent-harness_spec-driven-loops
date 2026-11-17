@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`
-
 ### Summary
 
 `memory_causal_stats` relation coverage advertised an autonomous causal relation backfill and pointed callers at `memory_health({ autoRepair: true, confirmed: true })`. The packet artifacts verified that `relation-coverage.ts` is a pure reporter, autoRepair does not balance relation types and `lastBackfillAt` is always null.
@@ -63,3 +60,6 @@ This packet changed the reporter contract to say the backfill job is not impleme
 
 - Deploy with the front-proxy recycle hardening packet and verify `memory_causal_stats` shows the honest hint.
 - Build the actual semantic relation-inference backfill in a separate packet if the caused and contradicts targets should rise automatically.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

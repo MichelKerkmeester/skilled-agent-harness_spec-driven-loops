@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-16
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/004-doc-drift-alignment` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes`
-
 ### Summary
 
 The authored docs for the `system-code-graph` skill had drifted from the live runtime across four dimensions. Three different tool counts circulated across the skill files (10 in five authored surfaces, 12 in `graph-metadata.json`), while `mcp_server/tool-schemas.ts` registered exactly 11. The `graph-metadata.json` file still declared a `co-resident` topology with `mk-spec-memory` as host, which predated the packet-014 server extraction and the v1.0.3.0 three-way isolation. The `SKILL.md` continuity pointer was 14 days stale. The version string read `1.0.0.0` while the newest changelog was at `v1.0.3.0`.
@@ -71,3 +68,6 @@ None.
 
 - The `mcp_server_topology` field is free-form with no schema enum. Future drift back to `co-resident` would not be caught by validation. A follow-up packet should add an enum constraint to the graph-metadata schema.
 - Runtime `package.json` version stays at `1.0.0`. If skill-doc version and runtime package version need to converge, a separate packet should decide the convention.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/004-doc-drift-alignment` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes`

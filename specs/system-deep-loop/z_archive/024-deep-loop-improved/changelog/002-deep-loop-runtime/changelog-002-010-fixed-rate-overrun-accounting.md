@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/010-fixed-rate-overrun-accounting` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`
-
 ### Summary
 
 Added fixed-rate overrun accounting to fanout-run.cjs (process.hrtime slot timing -> skippedCount + slotDurationMs persisted; no catch-up dispatch, per single-flight) plus optional yaml schema fields. 25 tests pass; typecheck green.
@@ -55,3 +52,6 @@ Added fixed-rate overrun accounting to fanout-run.cjs (process.hrtime slot timin
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/010-fixed-rate-overrun-accounting` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`

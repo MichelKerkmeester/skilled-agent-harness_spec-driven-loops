@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-06
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/006-readiness-hooks-advisor-polish` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`
-
 ### Summary
 
 The Phase 012 deep research left 12 P1 findings unresolved after the P0 remediation work. Blocked-read payloads gave operators no scope or parse diagnostics. The advisor rebuild predicate only triggered on one bad axis and silently passed when the other was bad. Startup live-publication skipped artifact assertion. Hook READMEs for Copilot and Gemini diverged from actual output. CocoIndex MCP output used snake_case fields that the context handler did not accept. Scope fingerprints omitted glob dimensions, so glob-narrowed graphs could silently replace full-scope graphs.
@@ -97,3 +94,6 @@ The focused regression set and the full code-graph suite passed. The TypeScript 
 - Triage the pre-existing `skill_advisor/tests/` parity and python-compat failures in a separate cleanup packet. These are outside the changed advisor rebuild predicate and were present before this packet shipped.
 - Restore the deleted Copilot hook tree in a separate workspace cleanup. The Copilot README was corrected for F-012 but the wider deleted hook files are out of scope here.
 - Confirm glob-aware fingerprint v3 behavior against a real persisted v2 store once the dirty-workspace deletions are repaired.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/006-readiness-hooks-advisor-polish` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

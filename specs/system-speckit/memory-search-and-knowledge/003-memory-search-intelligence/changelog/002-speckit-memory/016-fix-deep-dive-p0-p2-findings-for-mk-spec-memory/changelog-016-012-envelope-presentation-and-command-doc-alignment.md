@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-07-04
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/012-envelope-presentation-and-command-doc-alignment/` (Level 2)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`
-
 ### Summary
 
 The `memory_search` envelope was 17.6KB for five results. Every telemetry block was emitted twice, once camelCase and once snake_case. The token budget was enforced before the graph, routing and envelope data were attached, so `meta.tokenCount` described a payload that no longer existed. This phase emits exactly one casing per block. It moves budget enforcement to after attach so `tokenCount` reflects the final payload. It compacts metadata before result rows when over budget. A pagination cursor tenant leak was closed. The two command trees had about 18 claims drifted from code and those were re-aligned, including the tool count from 39 to 41. A new byte-parity validate rule now fails on drift between the trees. The live 5-result envelope under 6KB target is a daemon-side capture pending, the structural reductions are unit-verified. Shipped in `f064e40582`.
@@ -62,3 +59,6 @@ The `memory_search` envelope was 17.6KB for five results. Every telemetry block 
 
 - The live envelope byte count is daemon-side. Run the live capture after the daemon leases restart.
 - Code effects apply on the next daemon-lease restart.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/012-envelope-presentation-and-command-doc-alignment/` (Level 2)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

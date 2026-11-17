@@ -13,9 +13,6 @@ contextType: "implementation"
 
 ## 2026-04-26
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook`
-
 ### Summary
 
 The design fixture for the parent stress-test playbook. Locks corpus version v1.0.0 with 9 scenarios across 3 features (Search/Query/Intelligence) by 3 prompt-types (Simple/Vague/Specific). Five of the nine scenarios cross-reference known 005 defect REQ IDs so a sweep against the live runtime serves as both a quality test and a regression check. The 5-dimension 0-2 rubric balances measurability (correctness, tool selection, latency, token efficiency, hallucination) with inter-rater reliability. The dispatch matrix codifies invocation contracts as concrete shell invocations with concurrency guards, idempotent run-folder layout, and reproducibility via meta.json captures.
@@ -69,3 +66,6 @@ The design fixture for the parent stress-test playbook. Locks corpus version v1.
 - Consider extending cli-copilot to rotate models (gpt-5.4 vs claude-opus-4.6 vs gemini-3.1) for model-class comparison in v2
 - Add a deterministic fallback prompt for Q1 when the structural code graph index is sparse (Q1/cli-opencode took 4 minutes on the first sweep falling back to grep)
 - Cap S2 result count to make scoring tractable for the Vague-class scenario
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook`

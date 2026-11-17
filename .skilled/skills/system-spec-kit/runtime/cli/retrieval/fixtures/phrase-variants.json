@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2eb6fe6de9a1ce42aa6a20a2b15ffc0c8e0d6013c5eb2707ec9dbedfadaca814",
+  "manifestHash": "2a9d7c2b9d2227efc6120625cd79c75425eabebce84002c224c2f05178832844",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8288,6 +8288,9 @@
     "add gpt 6 1 terra to cli codex": [
       "add gpt 6 1 terra to cli codex"
     ],
+    "add hy4 flash free to the cli opencode": [
+      "add hy4 flash free to the cli opencode"
+    ],
     "add iconic rule": [
       "add iconic rule"
     ],
@@ -14449,6 +14452,24 @@
     "barter overlay mechanics research": [
       "barter overlay mechanics research"
     ],
+    "barter overlay upstream handover": [
+      "barter overlay upstream handover"
+    ],
+    "barter overlay upstream intake": [
+      "barter overlay upstream intake"
+    ],
+    "barter overlay upstream intake goal": [
+      "barter overlay upstream intake goal"
+    ],
+    "barter overlay upstream intake implementation summary": [
+      "barter overlay upstream intake implementation summary"
+    ],
+    "barter overlay upstream intake plan": [
+      "barter overlay upstream intake plan"
+    ],
+    "barter overlay upstream intake tasks": [
+      "barter overlay upstream intake tasks"
+    ],
     "barter parity": [
       "barter parity"
     ],
@@ -18099,6 +18120,24 @@
     ],
     "changelog spacing tasks": [
       "changelog spacing tasks"
+    ],
+    "changelog spec folder at bottom": [
+      "changelog spec folder at bottom"
+    ],
+    "changelog spec folder at bottom acceptance criteria": [
+      "changelog spec folder at bottom acceptance criteria"
+    ],
+    "changelog spec folder at bottom goal": [
+      "changelog spec folder at bottom goal"
+    ],
+    "changelog spec folder at bottom implementation summary": [
+      "changelog spec folder at bottom implementation summary"
+    ],
+    "changelog spec folder at bottom plan": [
+      "changelog spec folder at bottom plan"
+    ],
+    "changelog spec folder at bottom tasks": [
+      "changelog spec folder at bottom tasks"
     ],
     "changelog stale counts": [
       "changelog stale counts"
@@ -61058,6 +61097,21 @@
     "hvr workflow references": [
       "hvr workflow references"
     ],
+    "hy4 flash free opencode roster": [
+      "hy4 flash free opencode roster"
+    ],
+    "hy4 flash free opencode roster goal": [
+      "hy4 flash free opencode roster goal"
+    ],
+    "hy4 flash free opencode roster implementation summary": [
+      "hy4 flash free opencode roster implementation summary"
+    ],
+    "hy4 flash free opencode roster plan": [
+      "hy4 flash free opencode roster plan"
+    ],
+    "hy4 flash free opencode roster tasks": [
+      "hy4 flash free opencode roster tasks"
+    ],
     "hybrid boost rrf scaling": [
       "hybrid boost RRF scaling"
     ],
@@ -70144,6 +70198,9 @@
     "mcp tooling 1 9 9 0": [
       "mcp-tooling 1.9.9.0"
     ],
+    "mcp tooling bare health keyword": [
+      "mcp-tooling bare health keyword"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -74994,6 +75051,9 @@
     ],
     "move task": [
       "move task"
+    ],
+    "move the changelog spec folder blockquote from under": [
+      "move the changelog spec folder blockquote from under"
     ],
     "move worktrees out of checkout": [
       "move worktrees out of checkout"
@@ -80288,6 +80348,9 @@
     "overlay guard test": [
       "overlay guard test"
     ],
+    "overlay legacy cleanup message": [
+      "overlay legacy cleanup message"
+    ],
     "overlay lock takeover": [
       "overlay lock takeover"
     ],
@@ -83375,6 +83438,9 @@
     ],
     "phase 15 archive current location and ignored files": [
       "phase 15 archive current location and ignored files"
+    ],
+    "phase 15 barter overlay upstream intake": [
+      "phase 15 barter overlay upstream intake"
     ],
     "phase 15 cli claude code": [
       "phase 15 cli claude code"
@@ -96746,6 +96812,9 @@
     ],
     "repin live run failed after stage passed": [
       "repin live run failed after stage passed"
+    ],
+    "repin missing upstream links": [
+      "repin missing upstream links"
     ],
     "repin plan": [
       "repin plan"
@@ -111022,6 +111091,9 @@
     "sk create changelog 1 5 3 0": [
       "sk-create-changelog 1.5.3.0"
     ],
+    "sk create changelog 1 5 4 0": [
+      "sk-create-changelog 1.5.4.0"
+    ],
     "sk create changelog concise default": [
       "sk-create-changelog concise default"
     ],
@@ -111138,6 +111210,9 @@
     ],
     "sk create changelog v1 5 3 0": [
       "sk-create-changelog v1.5.3.0"
+    ],
+    "sk create changelog v1 5 4 0": [
+      "sk-create-changelog v1.5.4.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"
@@ -118616,6 +118691,9 @@
     ],
     "spec folder level contract": [
       "spec folder level contract"
+    ],
+    "spec folder line at the end": [
+      "spec folder line at the end"
     ],
     "spec folder literal naming ai derived slugs": [
       "spec folder literal naming ai-derived slugs"

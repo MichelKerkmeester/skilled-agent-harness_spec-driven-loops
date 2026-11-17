@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/001-indexer-surface-investigation` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion`
-
 ### Summary
 
 Before any Ollama or BGE embedder promotion could be scoped, the team needed to know which consumer systems actually retrieve from which indexer. That mapping was absent. CocoIndex, mk-spec-memory, Code Graph, Skill Advisor and every major agent were inspected against their MCP server lists, tool-use tables and YAML workflow configs.
@@ -65,3 +62,6 @@ None. Research-only phase.
 - Re-check the active CocoIndex embedder with `ccc` status before judging BGE promotion results in 003. The local global profile currently overrides the repo default.
 - Include Skill Advisor as a distinct text-embedding surface when surveying text embedders in 004. Its registry already names `jina-embeddings-v3` and is not connected to mk-spec-memory.
 - Treat the research table as a snapshot of 2026-05-18. Any agent or command definition that changed after that date should be re-verified before acting on the scope guidance.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/001-indexer-surface-investigation` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion`

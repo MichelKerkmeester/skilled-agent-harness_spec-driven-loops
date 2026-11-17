@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-memory-causal-trust-display` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance`
-
 ### Summary
 
 Memory search results exposed `confidence` and `trace.graphContribution` but gave callers no unified surface to judge the freshness or lineage trust of a specific memory claim. The existing causal-edge schema already stored `strength`, `extracted_at`, `last_accessed` plus a weight-history table, so all the data existed. The display did not.
@@ -76,3 +73,6 @@ Ship commit: `a25b3bad` (2026-04-25), Wave-3 verification commit: `d4a53288` (20
 - Re-attest playbook DQI by running the same validator on `203-memory-causal-trust-display.md`.
 - Unskip the 3 SQL-mock tests in `tests/memory/trust-badges.test.ts` once T-E remediation (R-007-13 DI override or real-DB fixture) lands.
 - Fix template-section conformance warnings in `spec.md`, `plan.md`, `tasks.md` plus `checklist.md` to bring strict packet validation to exit 0.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-memory-causal-trust-display` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance`

@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/001-atomic-state-serialize-diff` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`
-
 ### Summary
 
 Added writeStateIfChangedAtomic(): serializes and compares against a per-path cache, skipping the fsync+rename when unchanged; writeStateAtomic retained for guaranteed writes. 4/4 hermetic unit tests pass.
@@ -54,3 +51,6 @@ Added writeStateIfChangedAtomic(): serializes and compares against a per-path ca
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/001-atomic-state-serialize-diff` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`

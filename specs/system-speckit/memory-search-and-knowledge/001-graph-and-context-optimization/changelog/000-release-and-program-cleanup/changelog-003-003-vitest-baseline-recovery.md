@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-08
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/003-vitest-baseline-recovery` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 After Unit A shipped, a full-repo vitest run exposed 198 failures across 166 files. This directly contradicted the v3.4.1.0 release note claiming "11,606 passed, 0 net regressions." All sampled failures sat across five subsystems: `skill_advisor/tests/scorer/`, `tests/hooks/`, `tests/scaffold/`, `tests/alignment/`, `tests/code-graph/`. Each was entirely outside Unit A's surface.
@@ -72,3 +69,6 @@ Note: Stop conditions were not met at packet close. 196 failures remain. The 152
 - Apply `it.skip` with `// REASON: <env requirement>` to the remaining 28 environmental failures once the missing daemons or generated fixtures are available.
 - Run `bash validate.sh 003-vitest-baseline-recovery --strict` after follow-up packet closes to confirm exit 0 as the final gate.
 - Add a `pnpm test:baseline-guard` script (REQ-008, deferred) to prevent silent regression count growth in future packets.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/003-vitest-baseline-recovery` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

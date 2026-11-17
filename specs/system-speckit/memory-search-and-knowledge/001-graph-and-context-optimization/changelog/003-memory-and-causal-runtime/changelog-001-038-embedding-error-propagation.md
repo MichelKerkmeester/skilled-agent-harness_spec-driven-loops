@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/038-embedding-error-propagation`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 The shared embedding facade caught real provider failures, incremented the circuit-breaker count and returned null. This made the retry-manager provider-error path unreachable, so rows whose provider actually threw "Input is longer than the context size" were stored with the misleading failure reason "Embedding generation returned null". The single embedding wrappers now rethrow after circuit-breaker accounting, so callers that track error classes receive the real provider exception. Batch embedding retains its null-per-item semantics because batch callers use null as a degraded-but-continuing signal. Four call sites that legitimately degrade received explicit fallback wrappers to preserve their behavior after the rethrow change.
@@ -67,3 +64,6 @@ The shared embedding facade caught real provider failures, incremented the circu
 - Stage and commit the working-tree changes once `.git/index.lock` EPERM is resolved in the host environment.
 - Coordinate landing of 038 together with 037 and 039 as a single deployment unit. 038 surfaces failures. 039 prevents token-budget overflows. 037 reproduces and fixes the llama.cpp API contract.
 - After 037, 038 and 039 land, verify that save-heavy query-intelligence playbook scenarios no longer trip the circuit breaker.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/038-embedding-error-propagation`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

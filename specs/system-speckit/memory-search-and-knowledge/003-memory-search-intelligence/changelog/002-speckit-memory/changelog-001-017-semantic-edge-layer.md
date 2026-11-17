@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 This phase shipped the semantic-edge substrate and a shadow retrieval primitive behind default-off flags. The v41 migration adds fact text and a dedicated edge-relationship vector store, edge embedding is wired into the consolidation cycle and the synchronous insert path stays unchanged. The dedup-merge and invalidation-discovery consumers stay pending behind benchmark and safety gates. Commit `478bebf387` carried the lib code with focused tests.
@@ -57,3 +54,6 @@ _No fixes recorded._
 - Build the additive schema and edge vector store before any consumer.
 - Prove false-merge safety and recall lift after the reindex gate.
 - Keep synchronous insert behavior unchanged.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

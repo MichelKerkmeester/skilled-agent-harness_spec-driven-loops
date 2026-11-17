@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 Converted `ai-council.md` from `mode: all` to `mode: subagent` (Task-dispatch only) per explicit operator instruction overriding research's unanimous 6/6 "keep mode: all" finding, verified via 4 live `opencode` CLI smoke dispatches and 2 redirected documentation callers.
@@ -60,3 +57,6 @@ Converted `ai-council.md` from `mode: all` to `mode: subagent` (Task-dispatch on
 - Orchestrate live-test was not observed to full completion — only the load-bearing part was confirmed.
 - `markdown.md`'s own `mode: all` remains untouched — a natural follow-up if cross-runtime consistency is the driving rationale; not yet raised by the operator.
 - Accepted residual risk of an undiscovered caller depending on direct reachability.
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

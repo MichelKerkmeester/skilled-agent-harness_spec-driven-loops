@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/016-remediate-residue-tail` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`
-
 ### Summary
 
 Prior sweeps for CocoIndex / rerank-sidecar / ccc deprecation residue had been silently producing false-negatives. The `-g '!...'` exclude globs built in an unquoted shell variable were mangled by zsh history-expansion and glob-no-match, causing `rg` under `2>/dev/null` to emit zero results even when matches existed. Switching to inline single-quoted excludes and per-token greps exposed the true picture: all residue was essentially closed except two live-doc dead-path references.
@@ -60,3 +57,6 @@ The two remaining items were fixed. The `deep-loop-runtime/lib/deep-loop/README.
 
 - Decide whether the in-process cross-encoder (`cross-encoder.ts`, `SPECKIT_CROSS_ENCODER`) is dormant-dead or conditionally-live. That is a rerank-pipeline dead-code question outside this deprecation-residue scope and warrants a dedicated review if desired.
 - Resolve the `sidecar-client.ts:170` JSDoc that references the deleted `ensure-rerank-sidecar.cjs`. It was deferred because the cross-encoder subsystem is actively evolving under the 027-xce arc and the allowlist entry remains live. An operator should decide the correct edit once the arc stabilises.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/016-remediate-residue-tail` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`

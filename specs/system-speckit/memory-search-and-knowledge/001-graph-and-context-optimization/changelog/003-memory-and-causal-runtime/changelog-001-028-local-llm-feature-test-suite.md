@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 The 014-local-embeddings-setup-a phase shipped a major rewrite of the local embedding stack (cascade resolution, profile-keyed SQLite filenames, auto-migration between hf-local and llama-cpp plus Apple Silicon Metal acceleration) but left no single test artifact to validate its behavior. Without a feature-test suite, regressions in cascade fallback, provider resolution, token-aware chunking or the auto-migration path could land silently and only surface as production failures.
@@ -74,3 +71,6 @@ During the post-014 remediation stream, 9 functional vitest groups and 4 perform
 - Complete the 10-group functional coverage in `029-local-llm-feature-test-suite-completion/`, adding groups for cascade resolution, auto-migration, cross-platform behavior, embedding shape validation plus native-module detection.
 - Add the migration-throughput performance benchmark that was removed when the llama-cpp surface was purged.
 - Validate the remaining performance benches under the nomic-only default stack once `029` work lands.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

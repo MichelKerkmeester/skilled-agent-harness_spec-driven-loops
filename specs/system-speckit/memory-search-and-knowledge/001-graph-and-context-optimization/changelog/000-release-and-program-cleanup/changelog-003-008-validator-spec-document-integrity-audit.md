@@ -18,9 +18,6 @@ contextType: "review"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/008-validator-spec-document-integrity-audit` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`
-
 ### Summary
 
 The spec validator is a release gate for system-spec-kit packets. Before the 026 release program could promote it as trustworthy, the phase-parent detectors needed a parity check and strict mode needed adversarial probing for false negatives and false positives.
@@ -75,3 +72,6 @@ Review report: `008-validator-spec-document-integrity-audit/review-report.md`
 - Plan and execute validator remediation for P0-002: restrict `SPEC_DOC_INTEGRITY` to explicit Markdown links and declared metadata references rather than every backticked prose token.
 - Plan and execute validator remediation for P0-003: add an allowed-extra-header registry keyed by `contextType` so research packets with documented custom sections pass strict mode.
 - Decide release posture for `SPECKIT_VALIDATE_LINKS`: the P1 finding recommends keeping it default-off until the link scanner excludes unrelated skill docs.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/008-validator-spec-document-integrity-audit` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`

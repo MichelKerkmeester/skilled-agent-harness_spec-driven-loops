@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/006-mode-d-ai-council-identity-fix` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 Replaced the self-classification "Mode D" gate in all 7 surviving `/deep:*` command files with an evidence-based dispatch-context check (defaults to proceed, not block), and corrected the ai-council route-proof identity so `orchestrate-topic.cjs`/`deep_ai-council_auto.yaml` agree with `mode-registry.json` (`mode: ai-council` / `target_agent: ai-council`, not `council`/`deep-ai-council`).
@@ -60,3 +57,6 @@ Replaced the self-classification "Mode D" gate in all 7 surviving `/deep:*` comm
 - No test asserts the exact corrected literal values — a regression could recur silently.
 - The dispatch-context check is still prose, not code — it can't be made fully deterministic.
 - `.opencode/commands/prompt.md` has the identical pre-fix pattern but is outside this phase's declared scope — flagged as a discovered-but-unfixed instance for a future phase.
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/006-mode-d-ai-council-identity-fix` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

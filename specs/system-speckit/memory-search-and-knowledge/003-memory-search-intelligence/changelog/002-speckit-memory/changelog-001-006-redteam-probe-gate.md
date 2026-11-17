@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 The MCP-server security lane now has a named red-team probe gate. The gate exercises poisoned recall, query-only injection and wrapper breakout cases from deterministic fixtures, then reports failures at the broken seam. The phase also sanitizes namespace-denial audit persistence so stored denial records do not keep verbatim prompt or query text. The sibling prompt-pack probe remains pending outside the Memory MCP server scope.
@@ -60,3 +57,6 @@ The MCP-server security lane now has a named red-team probe gate. The gate exerc
 - Add the deep-loop prompt-pack render probe in the sibling runtime.
 - Document the new named security lane in the security test README.
 - Keep probe scratch files under the packet scratch area and clean them before closeout.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

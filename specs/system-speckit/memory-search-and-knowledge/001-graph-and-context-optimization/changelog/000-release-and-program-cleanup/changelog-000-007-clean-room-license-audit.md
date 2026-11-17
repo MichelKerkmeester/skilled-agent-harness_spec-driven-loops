@@ -18,9 +18,6 @@ contextType: "review"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/007-clean-room-license-audit` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup`
-
 ### Summary
 
 The clean-room license audit packet (007) required a P0 governance gate: read the upstream external project LICENSE, record a verbatim quote, classify each in-scope adaptation pattern. The gate also required articulating a fail-closed rule before any code sub-phases could begin. A 7-iteration deep review found that the ADR quoted the canonical PolyForm Noncommercial 1.0.0 text from the PolyForm Project website rather than the actual file, which omits the real Required Notice line. The review verdict is BLOCKED. Sub-phases 002 through 005 cannot safely be unblocked until the ADR is corrected with the actual LICENSE contents and strict validation passes.
@@ -62,3 +59,6 @@ Replace the ADR verbatim LICENSE quote with the actual `external/LICENSE` text, 
 Reset the packet status to blocked or conditional until `validate.sh --strict` passes and the checklist evidence matches the corrected ADR.
 Normalize the phase numbering label (`010` vs `012`) in all visible titles, branch references, trigger phrases before handing this packet to downstream agents.
 Record an explicit approved exception with owner and date if strict validation cannot be fixed before downstream unblocking.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/007-clean-room-license-audit` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup`

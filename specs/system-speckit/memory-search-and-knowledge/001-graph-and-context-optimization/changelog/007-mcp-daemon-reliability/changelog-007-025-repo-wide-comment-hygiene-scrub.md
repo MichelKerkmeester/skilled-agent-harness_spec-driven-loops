@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/025-repo-wide-comment-hygiene-scrub` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The live codebase is now clean of perishable comment labels. After packet 024 made the hygiene checker stricter, a repo-wide run found about ninety more labels hiding in code comments across the skills, bin, and plugin trees. Three gpt-5.5 agents cleared them in parallel.
@@ -58,3 +55,6 @@ The live codebase is now clean of perishable comment labels. After packet 024 ma
 - Excluded scopes still carry labels. Archived specs, scratch, fixtures, and the packet-local specs/ scripts are intentionally not scrubbed. They are frozen or throwaway.
 - F-notation stays review-owned. The checker does not flag F\d+, so genuine F finding labels rely on review.
 - No git pre-commit wiring yet. The checker runs through the PostToolUse hook. Wiring it into git pre-commit can land now that the live tree is clean, as a small follow-on, if blocking other sessions is acceptable.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/025-repo-wide-comment-hygiene-scrub` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

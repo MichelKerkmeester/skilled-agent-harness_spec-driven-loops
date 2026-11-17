@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`
-
 ### Summary
 
 The 18-pair code-retrieval benchmark fixture had never been peer-reviewed for expected-path correctness. A May 18 instrumented bench surfaced probe 10 as a candidate for path-class bias: the fixture pointed at a generated `.js` dist artifact, while the reranker preferred the tracked `.ts` source that owns the structured JSON parsing and graph-metadata refresh logic.
@@ -62,3 +59,6 @@ None. Research-only phase.
 - Apply the probe 10 path correction to the canonical baseline fixture at `../002-baseline-fixture/evidence/code-retrieval-fixture.json` in a follow-on commit.
 - Clarify probe 18 query intent before changing its expected path. If the target is "only changed files" incremental accounting, update the query and path together in a dedicated patch.
 - Review side findings from the audit: probes 7 and 14 have stale `expected_symbol` values even though their source paths are correct. A fixture maintenance pass should update those symbols.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

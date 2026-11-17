@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-30
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/005-resource-leaks-silent-errors` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`
-
 ### Summary
 
 The skill-graph daemon and the file-system watcher each had quiet bleed-points that only surfaced after long uptime. Deleted skills kept their chokidar watch handles, file-hash cache entries plus pending reindex slots alive for the daemon's full lifetime. The diagnostics array grew one entry per event indefinitely. A burst of file events could fill an unbounded pending-slot queue and leak Promises that never settled when the watcher shut down. On the silent-error side, a corrupt SQLite advisor database was indistinguishable from a clean first-run read. A malformed `graph-metadata.json` silently dropped all derived key-file watch targets with no operator signal.
@@ -84,3 +81,6 @@ Five surgical edits closed all five findings. The watcher now computes additions
 - Confirm active reindex tasks are not aborted on close, as this is intentionally deferred per user directive. In-flight tasks are awaited via `Promise.allSettled`.
 - Consider routing aggregate counters through the existing `publishSkillGraphGeneration` pipeline when cross-process visibility is needed (currently in-process only).
 - Consider replacing the `console.warn` signal for `filesystem-fallback` with a structured diagnostics field on `AdvisorProjection` to avoid log scraping.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/005-resource-leaks-silent-errors` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/012-hybrid-search-scope-then-limit` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 The BM25 lane of hybrid search truncated to the caller's limit before it resolved the spec-folder and deprecated-tier filters. A scoped query whose top-limit raw hits were mostly out of scope could therefore return fewer in-scope results than actually existed, or none. The lane now resolves scope first: it over-fetches the candidate set up to the document count when a scope or database filter is in play, resolves the per-candidate metadata in batches that stay under the SQLite bound-parameter limit, applies the spec-folder and tier filters, and only then truncates to the caller's limit. A scoped search with no database to resolve against returns empty early rather than over-fetching pointlessly.
@@ -54,3 +51,6 @@ The BM25 lane of hybrid search truncated to the caller's limit before it resolve
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/012-hybrid-search-scope-then-limit` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/016-iterative-agentic-recall` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 The gate-zero half of the agentic recall packet is built. A bounded loop governor and default-off agentic recall flag now exist, with deterministic tests proving step caps, cost ceilings, forced final answers, ACL failure, tool failure and flag-off disablement. Router wiring remains pending because it requires a public mode-enum change and a live LLM provider. Benchmark promotion remains pending because no real latency, cost or determinism numbers exist yet.
@@ -58,3 +55,6 @@ The gate-zero half of the agentic recall packet is built. A bounded loop governo
 - Wire the agentic route only with a public mode enum change and a live LLM provider.
 - Run a seeded benchmark before any promotion decision.
 - Keep the flag default-off until latency, cost and determinism data support promotion.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/016-iterative-agentic-recall` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

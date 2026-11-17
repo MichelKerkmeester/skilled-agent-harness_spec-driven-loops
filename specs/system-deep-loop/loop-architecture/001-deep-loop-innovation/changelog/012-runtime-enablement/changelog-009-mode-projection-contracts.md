@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-24
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/009-mode-projection-contracts` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`
-
 ### Summary
 
 Extended the projection library from one pilot contract to full mode-owned coverage. Six ledger-fold projection surface contracts were built and proven against real consumers; three surfaces proved not ledger folds were honestly reclassified to `retain-legacy-input` rather than fabricated.
@@ -29,3 +26,6 @@ Extended the projection library from one pilot contract to full mode-owned cover
 ### Status
 
 Complete. Seven mode-owned surfaces covered including the pre-existing `research-state` pilot; coverage checker at zero mode-owned gaps.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/009-mode-projection-contracts` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`

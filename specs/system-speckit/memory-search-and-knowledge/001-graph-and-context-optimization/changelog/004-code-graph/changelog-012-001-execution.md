@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-05
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 The Phase 012 campaign needed a first-pass execution to measure whether code-graph, hook, advisor, Gate 3, and runtime-integration surfaces were useful in day-to-day engineering tasks. The execution packet ran sandbox-based trials across five surface categories.
@@ -68,3 +65,6 @@ Key signals from the synthesis:
 - **Copilot runtime payload transport.** Deferred to Phase 012/002 native rerun.
 - **Stale skill-graph cache in advisor.** Deferred to Phase 012/002 native rerun.
 - **Gate 3 false positives on read-only prompts.** Deferred to Phase 012/003 deep-research sweep.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

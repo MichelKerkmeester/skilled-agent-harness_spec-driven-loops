@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/003-cli-reference-and-skill-docs` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux`
-
 ### Summary
 
 A canonical daemon CLI reference now covers the three CLI shims. The system-spec-kit, system-code-graph, and system-skill-advisor SKILL files link to it and carry concise recovery invocations, exit taxonomy, and format warnings for agents that read SKILL.md first.
@@ -58,3 +55,6 @@ A canonical daemon CLI reference now covers the three CLI shims. The system-spec
 ### Follow-Ups
 
 - None identified in the source implementation summary.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/003-cli-reference-and-skill-docs` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux`

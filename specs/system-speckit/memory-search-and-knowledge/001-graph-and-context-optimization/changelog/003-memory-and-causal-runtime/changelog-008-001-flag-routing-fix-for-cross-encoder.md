@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-20
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`
-
 ### Summary
 
 Stage 3 reranker dispatch in `stage3-rerank.ts` evaluated `isLocalRerankerEnabled()` before the cross-encoder gate. When `RERANKER_LOCAL=true` was set alongside `SPECKIT_CROSS_ENCODER=true`, the no-op local-reranker shim won and the HTTP cross-encoder path was never reached. All searches fell back to positional scoring with `requestQuality: 'weak'`.
@@ -66,3 +63,6 @@ The fix swapped the gate order so `isCrossEncoderEnabled()` is checked first. A 
 - Remove `local-reranker.ts` in a follow-on cleanup packet once the sidecar is the sole active path and the import can be dropped from all test files.
 - Phase 002 (`002-system-rerank-sidecar-skill`) must ship to make `SPECKIT_CROSS_ENCODER=true` observable beyond positional fallback. Nothing answers at `localhost:8765` until the sidecar is running.
 - Verify that no downstream consumer of `WEIGHT_RERANKER` or `hasRerankerSignal` in `confidence-scoring.ts` assumed the no-op shim's behavior after this precedence change.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`

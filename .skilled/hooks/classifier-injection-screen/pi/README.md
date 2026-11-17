@@ -1,5 +1,5 @@
 ---
-title: "Pi Injection Screen: fetch_content Tool Result Adapter"
+title: "Pi Injection Screen: tool_result Adapter"
 description: "Pi extension that screens fetch_content results and appends one advisory text block to the tool result when a section reads as instructions aimed at an AI agent."
 trigger_phrases:
   - "pi injection screen"
@@ -8,45 +8,46 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# Pi Injection Screen: fetch_content Tool Result Adapter
+# Pi Injection Screen: tool_result Adapter
 
 ---
 
 ## 1. OVERVIEW
 
-`.skilled/hooks/classifier-injection-screen/pi/` holds the Pi extension for the injection screen concern. Pi ships no built-in fetch tool, so the `pi-web-access` package registers `fetch_content`. That tool returns a content block array. The extension listens at `tool_result` and appends one advisory text block when the screen flags.
+`.skilled/hooks/classifier-injection-screen/pi/` holds the Pi adapter for the injection screen concern. It runs at `tool_result` and screens the text a `fetch_content` call returned. A flagged page gains one advisory text block on the tool result, so the warning sits beside the fetched text. The fetch always completes.
 
-The default export is a factory that takes the Pi `ExtensionAPI`. Pi loads it through `.pi/extensions/classifier-injection-screen.ts`, a one-line file that re-exports the factory. Pi's registration is the `injection-screen` entry in `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json`, which names the extension file `classifier-injection-screen.ts`.
+The `fetch_content` tool comes from the `pi-web-access` package, which `.pi/settings.json` lists in `packages`. Pi loads this adapter through `.pi/extensions/classifier-injection-screen.ts`, a one-line file that re-exports the factory. Pi picks up every `*.ts` entry in that folder without a settings entry, as the [extensions README](../../../../.pi/extensions/README.md) records. The `pi` block of the `injection-screen` record in `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` names the same file.
+
+The factory calls `isHookEnabled('injection-screen')` before it registers a handler, so a session with the concern off never reaches the handler. The concern switch is `SYSTEM_INJECTION_SCREEN_DISABLED`. The call goes through `hook-flags.mjs` to `hook-flags.cjs`, so `SYSTEM_HOOKS_DISABLED` is the master switch here.
+
+Inside the handler the adapter reads `event.toolName` first and returns unless the name is `fetch_content`. It then passes `fetchedText(event.content)` to `screenAdvisory`. Every path that finds nothing to add returns `undefined`. The tool result keeps the content it had. That covers a non-fetch tool, a blank page, `JEV_FEATURE_INJECTION_SCREEN=0`, a `jev` CLI that is not ready, a page with no flagged section and a thrown screen.
 
 ---
 
-## 2. FILES
+## 2. DIRECTORY TREE
 
 | File | Responsibility |
 |---|---|
-| `classifier-injection-screen.ts` | The extension. It checks the kill switch, screens a `fetch_content` result and appends one advisory text block. |
-| `classifier-injection-screen.test.ts` | The `vitest` suite. It stubs the `ExtensionAPI` and the screen, so no test reaches a backend. |
-
-The factory returns before it registers a handler when `SYSTEM_INJECTION_SCREEN_DISABLED=1` is set. The master switch `SYSTEM_HOOKS_DISABLED=1` turns the hook off the same way. A tool name other than `fetch_content` returns `undefined` and leaves the result untouched. A blank advisory returns `undefined` too, so the fetched blocks reach the model unchanged. A thrown screen error returns `undefined`, because a screen bug must never alter the fetch.
-
-The handler passes the fetched text to `screenAdvisory` and appends what comes back. A flagged result returns the event content with one advisory text block appended. The suite imports the factory with a stub `ExtensionAPI` and a stubbed screen. It covers the advisory append, a non-fetch result, the kill switch and a thrown screen. No test reaches a backend or a live `jev` install.
+| `classifier-injection-screen.ts` | The adapter. It checks the concern switch and appends the advisory block to a `fetch_content` result. |
+| `classifier-injection-screen.test.ts` | The `vitest` suite. It drives the factory with a stub `ExtensionAPI` and a stub screen. |
 
 ---
 
 ## 3. VALIDATION
 
-Run this command from the repository root to exercise the suite.
+The suite stubs the screen, so no case reaches a backend or a live `jev` install.
 
 ```bash
 .skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.test.ts
 ```
 
-Expected result: every case passes and the command exits 0.
+Expected result: every test passes and the command exits 0.
 
 ---
 
 ## 4. RELATED
 
-- [`../README.md`](../README.md): the injection screen concern, its decision rule and its switches.
-- [`../lib/classifier-injection-advisory.mjs`](../lib/classifier-injection-advisory.mjs): the shared `fetchedText` and `screenAdvisory` core that the extension imports.
-- [`../../shared/hook-flags.mjs`](../../shared/hook-flags.mjs): the kill-switch resolver that the extension calls before it registers.
+- [Injection screen README](../README.md): the concern and the switches that turn it off.
+- [Shared advisory core](../lib/classifier-injection-advisory.mjs): the `fetchedText` and `screenAdvisory` functions this adapter calls.
+- [Shared switch resolver](../../shared/hook-flags.mjs): the `isHookEnabled` facade the factory calls before it registers.
+- [Pi extension entry](../../../../.pi/extensions/classifier-injection-screen.ts): the one-line file that re-exports this adapter.

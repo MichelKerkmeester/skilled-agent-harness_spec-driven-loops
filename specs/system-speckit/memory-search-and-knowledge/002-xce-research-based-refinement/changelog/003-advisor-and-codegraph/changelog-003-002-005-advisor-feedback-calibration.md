@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`
-
 ### Summary
 
 The advisor can now turn `advisor_validate` accepted/corrected/ignored outcomes into reviewable calibration reports without changing recommendations. The lane is default-off, shadow-only, and explicitly advisory.
@@ -60,3 +57,6 @@ The advisor can now turn `advisor_validate` accepted/corrected/ignored outcomes 
 ### Follow-Ups
 
 - Any promotion requires future held-out validation and a separate change.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`

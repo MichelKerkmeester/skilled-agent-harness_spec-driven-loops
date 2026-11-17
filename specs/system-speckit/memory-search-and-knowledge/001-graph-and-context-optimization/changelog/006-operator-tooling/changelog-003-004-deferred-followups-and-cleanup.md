@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-26
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/004-deferred-followups-and-cleanup` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment`
-
 ### Summary
 
 Three deferred follow-ups from the 015 phase had accumulated debt in the skill advisor and its test suite. The advisor scorer in `fusion.ts` carried 9 bonus branches gated on the pre-116 ids `sk-deep-research` and `sk-deep-review`. The advisor emits the canonical `deep-research` and `deep-review` forms, so those branches never fired. Four deep-* skills had `graph-metadata.json` files pointing at reference docs that the 116 reorganization had moved into subdirectories, causing `advisor-graph-health` to fail. Two contract-parity test suites were dormant because their fixture gates pointed at pre-116 flat paths.
@@ -88,3 +85,6 @@ Five work streams were executed via cli-codex (gpt-5.5, high effort, fast reason
 
 - Verify whether `socket-server.ts` carries a genuine stale CocoIndex reference (Stream E attempted an edit there but was reverted. A separate source-review pass is needed to confirm).
 - Confirm whether `install_guides/MCP - CocoIndex Code.md` and the `changelog/{mcp-coco-index,sk-ai-council}` entries should be removed as a separate cleanup packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/004-deferred-followups-and-cleanup` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment`

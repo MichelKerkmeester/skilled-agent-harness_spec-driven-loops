@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-26
 
-> Spec folder: `specs/sk-code/015-quality-agnostic-gate/001-honest-checker` (Level 2)
-> Parent packet: `specs/sk-code/015-quality-agnostic-gate`
-
 ### Summary
 
 Steps 1 to 4 of plan.md are built, and the Phase 3 verification tasks have run. The baseline at T043 first passed the ADR-010 file limit. The coordinator's ruling, recorded as the ADR-010 amendment, counts only the delta outside specs/, so this pass cleared those lines and left the packet artifacts as debt.
@@ -101,3 +98,6 @@ Steps 1 to 4 of plan.md are built, and the Phase 3 verification tasks have run. 
 - The ceiling report still reads YAML block scalar text as comments. It takes extensions and comment tokens from the table but tracks no block scalar, multi-line string or docstring state, so a # ceiling: line inside a block scalar is listed. The report never gates, so the gap adds a report line and blocks nothing.
 - A string statement in the middle of a Python body is data. Only a docstring in a place Python or its tools read one counts as comment text, so a triple-quoted string used as a block comment after other code is not checked.
 - The CI failure path has no live run. The ADR-010 amendment accepts actionlint and a local run of the step's script in its place.
+
+> Spec folder: `specs/sk-code/015-quality-agnostic-gate/001-honest-checker` (Level 2)
+> Parent packet: `specs/sk-code/015-quality-agnostic-gate`

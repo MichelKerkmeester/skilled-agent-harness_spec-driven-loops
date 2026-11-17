@@ -8,8 +8,6 @@
 
 Fixed 5 issues discovered during the Phase 009 self-test and promoted 6 candidate improvements from that test into the canonical agent file. Added a configurable plateau window setting to close the observation about plateau detector behavior.
 
-> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/010-sk-improve-agent-self-test-fixes/`
-
 ---
 
 ## Bug Fixes (5)
@@ -85,3 +83,5 @@ Fixed 5 issues discovered during the Phase 009 self-test and promoted 6 candidat
 ## Upgrade
 
 No migration required. The `plateauWindow` config field defaults to 3, matching the previous hardcoded behavior.
+
+> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/010-sk-improve-agent-self-test-fixes/`

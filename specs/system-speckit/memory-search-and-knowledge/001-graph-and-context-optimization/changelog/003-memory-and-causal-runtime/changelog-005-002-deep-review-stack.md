@@ -18,9 +18,6 @@ contextType: "review"
 
 ## 2026-05-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/002-deep-review-stack` (Review-only)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality`
-
 ### Summary
 
 The 016-019 packets landed the pluggable embedder architecture, retrieval-rescue layer, CocoIndex jina-code swap, MPS auto-detect, registered_embedders registry and associated handlers in a short window. All had unit-level coverage but no adversarial deep review had been run across the integrated surface.
@@ -68,3 +65,6 @@ A 20-iteration cli-devin SWE 1.6 deep-review cycle validated the full 016-019 st
 - Treat the CONDITIONAL primary verdict as adjudicated review input for any cleanup dispatches, not as shipped fixes.
 - The P0-D dead-code observability advisory from the remediation re-review (observability counter never increments) remains open for a follow-on observability packet.
 - Stage2-fusion.ts is approaching god-module size at 1478 LOC (P1 finding from iter 20). Refactor is deferred to a future packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/002-deep-review-stack` (Review-only)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality`

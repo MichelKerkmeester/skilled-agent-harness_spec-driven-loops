@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-05-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation` (Level <!-- SPECKIT_LEVEL: phase-parent -->, Phase Parent)
-
 ### Summary
 
 This phase parent groups 16 child phases spanning 2026-05-22 to 2026-05-24. Each child phase shipped independently and carries its own changelog with full detail. The Included Phases table below is the authoritative child inventory. Read each child changelog for the per-phase summary, verification, and files changed.
@@ -67,3 +65,5 @@ This phase parent groups 16 child phases spanning 2026-05-22 to 2026-05-24. Each
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation` (Level <!-- SPECKIT_LEVEL: phase-parent -->, Phase Parent)

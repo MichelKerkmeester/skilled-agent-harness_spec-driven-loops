@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/001-extraction-design-and-adr` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 The skill advisor was buried five levels deep inside `system-spec-kit` with no formal extraction plan. Before any file moves could happen, the architectural shape and three unresolved operator questions needed to be locked so child phases could execute without relitigating the design.
@@ -65,3 +62,6 @@ No advisor source was touched. No skill metadata, tests, runtime configs, nor la
 - Survey is point-in-time. Track any new consumer additions that land before child 002-006 execute.
 - ADR may need amendment if a later child phase discovers a blocker. Scaffold an amendment packet rather than rewriting ADR-001 in place.
 - Re-score ADR-001 alternatives after seeing actual migration friction in child 003-005.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/001-extraction-design-and-adr` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

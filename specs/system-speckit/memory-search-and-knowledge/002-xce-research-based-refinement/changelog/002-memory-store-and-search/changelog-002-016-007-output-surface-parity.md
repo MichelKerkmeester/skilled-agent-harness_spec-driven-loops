@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/007-output-surface-parity` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 The same result rendered differently across models, so the output was not comparable. One model showed `confidence 0.36` for a row while another showed `similarity 0.68` for the same row. This phase makes the contract mandate one score, one scale and one name on every surface. The sole ranking metric is `similarity`, on a 0 to 1 scale at two decimals, and a percentage-scaled value is divided by one hundred before it is emitted. `confidence` as a metric name and any percentage score are banned in rendered output. The five core slots (query echo, similarity, id, title and the STATUS footer carrying RESULTS and INTENT) are named mandatory for every result on every surface. A surface-parity clause makes the core field set and the scale mandatory regardless of how the command was invoked, whether `--command` dispatch, a direct prompt or natural conversation, so two surfaces return comparable diffable rows for the same result. `requestQuality` and `citationPolicy` are promoted to named optional trailing fields so their presence or absence is unambiguous rather than left to model latitude. Constitutional rows stay out of the scored block. This phase builds on the structural arg-handling layer from the prior phase and leaves it untouched. A short COSTAR register note frames the contract as objective-first for an automated pipeline, which is the shared register weak models tolerate best, without imposing a single global prompt framework.
@@ -52,3 +49,6 @@ The same result rendered differently across models, so the output was not compar
 ### Follow-Ups
 
 - The live cross-model A/B (DeepSeek, Kimi and MiMo render-consistency under the new contract) is the documented follow-up and cannot be run from the implementing session.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/007-output-surface-parity` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

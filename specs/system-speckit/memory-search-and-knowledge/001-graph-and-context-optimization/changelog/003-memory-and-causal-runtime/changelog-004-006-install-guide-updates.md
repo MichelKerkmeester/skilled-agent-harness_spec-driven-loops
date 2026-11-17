@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-05-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/006-install-guide-updates` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`
-
 ### Summary
 
 This phase is a pre-implementation scaffold for new-user CocoIndex embedder choice docs. It plans a "Choosing an embedder" section in the install guide, a short README pointer and a swap runbook covering model env vars, daemon restart behavior and first-use download caveats.
@@ -66,3 +63,6 @@ The packet is blocked on the declarative registry phase. No install guide or REA
 - Add the "Choosing an embedder" section to `.opencode/skills/mcp-coco-index/INSTALL_GUIDE.md`.
 - Add the README embedder-choice pointer after the install guide section exists.
 - Run link-check, read-through and strict packet validation after documentation lands.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/006-install-guide-updates` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

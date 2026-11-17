@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/010-remove-memory-coco-integration` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`
-
 ### Summary
 
 The 001 research pass characterized memory's CocoIndex coupling as a narrow opt-in rerank sidecar. That characterization was wrong. Memory carried a live, first-class CocoIndex integration woven through its hot paths: a daemon-probe library, a cocoindex-path utility (`isCocoIndexAvailable`, `getCocoIndexBinaryPath`), a cocoindex-calibration overfetch telemetry module, `cocoIndexAvailable` threaded through `context-server.ts`, `session-snapshot.ts`, `memory-surface.ts`, both session-prime hooks plus `code-graph-boundary.ts`, a `cocoIndex` hint in `compact-inject.ts`, plus a coco-keyed `"vector channel unavailable, lexical-only"` warning in `memory-search.ts`. Memory's real search is an embedder-backed hybrid channel (`vector-index.ts` plus `hybrid-search.ts`). The coco coupling was vestigial post-fetch telemetry only and did not affect search results.
@@ -79,3 +76,6 @@ This phase deleted three coco source modules plus three dedicated test files, th
 
 - Add a correctly keyed vector-availability warning tied to the embedder channel rather than the removed coco daemon. The coco-keyed warning was removed but no replacement was added (out of scope per spec).
 - Record `implementation-summary.md` for this packet. The packet shipped but has no continuity document.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/010-remove-memory-coco-integration` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`

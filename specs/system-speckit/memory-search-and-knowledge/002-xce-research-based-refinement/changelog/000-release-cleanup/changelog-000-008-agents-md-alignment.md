@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`
-
 ### Summary
 
 Root `AGENTS.md` was reconciled to shipped governance reality without changing the Four Laws or any Gate text. The update added current pointers for schema v37, opt-in feature flags, daemon-backed CLI front doors, and advisory constitutional memory rules.
@@ -59,3 +56,6 @@ Root `AGENTS.md` was reconciled to shipped governance reality without changing t
 ### Follow-Ups
 
 - None for this child phase.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

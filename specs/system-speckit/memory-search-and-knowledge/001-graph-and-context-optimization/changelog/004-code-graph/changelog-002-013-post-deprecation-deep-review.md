@@ -18,9 +18,6 @@ contextType: "review"
 
 ## 2026-05-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/013-post-deprecation-deep-review` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`
-
 ### Summary
 
 The 014 CocoIndex/rerank deprecation was declared complete, but repeated grep refinements during the session kept surfacing more residue (`cocoindex` to `ccc` to `ccc_*`) and a pre-review sweep confirmed four additional misses. The executor had demonstrable pattern and scope blind spots, including the `.gemini/`, `.codex/` scopes and the `ccc` CLI token. An independent, systematic deep-review was needed before closing the deprecation.
@@ -73,3 +70,6 @@ None. Review-only phase.
 - Remediate F007 (P1): update or qualify the 014 phase-map completion claim after WS-1 and WS-2 land.
 - Remediate P2 batch (F002/F004/F005/F006): regenerate `database/skill-graph.json`, remove `.gitignore:123` stale entry, collapse `embedder_pluggability.md` dead ccc columns, remove `doctor_deep-loop.yaml:97` coco glob.
 - Reconcile the external devin profile: `devin mcp list` shows a broken `spec_kit_memory` path and duplicate memory registrations in `~/.config/devin/`. Run `devin mcp remove spec_kit_memory` to resolve this.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/013-post-deprecation-deep-review` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`

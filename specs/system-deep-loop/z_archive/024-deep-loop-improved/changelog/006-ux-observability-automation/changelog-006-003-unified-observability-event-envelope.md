@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation/003-unified-observability-event-envelope` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation`
-
 ### Summary
 
 New observability-events.cjs (normalizeObservabilityEvent/appendObservabilityEvent) with the 5 emitters (fanout-run, convergence, status, council round-state, research yaml) routed through it. Additive; parity + envelope tests 20/20; drift clean.
@@ -60,3 +57,6 @@ New observability-events.cjs (normalizeObservabilityEvent/appendObservabilityEve
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation/003-unified-observability-event-envelope` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation`

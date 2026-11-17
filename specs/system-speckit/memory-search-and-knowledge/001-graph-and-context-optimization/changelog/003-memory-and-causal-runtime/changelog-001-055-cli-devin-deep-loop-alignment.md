@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/055-cli-devin-deep-loop-alignment` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 Packets 056 and 058 dispatched roughly 40 cli-devin SWE-1.6 iterations through custom orchestration because the deep-research and deep-review commands did not list cli-devin in their executor enums, the two LEAF agents had no SWE-1.6 iter contract and no agent-config JSON recipes existed to lock model and tool surface declaratively.
@@ -87,3 +84,6 @@ Six files were modified and six new files were created across five execution pha
 - Verify the `<repo-root>` substitution in both YAML `if_cli_devin:` branches is stable across machines where `$PWD` differs from the original authoring path.
 - Update `cli-opencode` deep-loop references if a parallel alignment packet is planned for that executor.
 - Resync agent-config JSON recipes if a future devin CLI version changes accepted schema keys or tightens validation.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/055-cli-devin-deep-loop-alignment` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

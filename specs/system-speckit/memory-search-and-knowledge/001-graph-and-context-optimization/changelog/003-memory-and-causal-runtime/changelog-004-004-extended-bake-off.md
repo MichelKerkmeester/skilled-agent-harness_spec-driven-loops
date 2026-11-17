@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`
-
 ### Summary
 
 The 018/003 bake-off had ended in a three-way tie at 9/18 = 38.9% with two candidates (nomic-CodeRankEmbed and bge-code-v1) crashing mid-bench due to daemon loss. This packet re-ran the benchmark with all four candidates against the same 18-pair fixture, with the 016/011 retrieval stack defaults nominally flipped on (hybrid FTS5+vector RRF, cross-encoder rerank with BGE-reranker-v2-m3).
@@ -76,3 +73,6 @@ A same-evening erratum invalidated the "hybrid+rerank ON" framing. The pipx-inst
 - Tighten `run-extended-bake-off-with-hybrid-rerank.sh` pre-pull check to inspect exit code and grep full output for `AssertionError|ImportError|FileNotFoundError` rather than only the last log line.
 - Restore CocoIndex daemon to jina-code baseline by running `pkill -KILL -f "ccc " && rm -f .cocoindex_code/lock.mdb && ccc reset --force && ccc index`.
 - Manually verify the 5 universal-ceiling probes (1, 6, 11, 12, 15) for correct expected paths in the fixture.
+
+> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-04-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`
-
 ### Summary
 
 Sub-packets 001 through 011 changed runtime hook contracts, advisor delivery, plugin-loader semantics, Copilot wrapper schema, Codex startup parity, and Claude prompt-time hook registration. The shipped behavior diverged from what the checked-in documentation still described. Ten parallel `cli-codex` impact-analysis agents audited every referenced path and flagged 13 files for update (10 HIGH, 3 MED). This phase updated all 13 files to match the shipped behavior, with a post-05 Codex reconciliation rule embedded in every agent prompt to ensure no doc still said "Codex has no lifecycle hook."
@@ -77,3 +74,6 @@ Sub-packets 001 through 011 changed runtime hook contracts, advisor delivery, pl
 ### Follow-Ups
 
 - If `SPECKIT_CODEX_HOOK_TIMEOUT_MS` turns out to be internal-only after operator survey, consider moving it to a deprecated section or prefixing with "(internal)".
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

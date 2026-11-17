@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-04-08
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/005-claudest` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline`
-
 ### Summary
 
 Public's memory and search stack lacked an evidence-grounded survey of how the Claudest `claude-memory` plugin implements probe-driven FTS cascade, Stop-time precomputed context summaries, and auditor/discoverer consolidation. Without that survey, any port of those patterns risked importing wrong assumptions or missing load-bearing implementation details.
@@ -69,3 +66,6 @@ None. Research-only phase.
 - Satisfy Brief B entry conditions before opening the normalized analytics packet: `024/003` must persist `transcript_path` into `HookState`, populate `speckitSessionId`, carry parsed cache token fields, and emit turn-level `lastTranscriptOffset` rather than session-level only.
 - Address reducer and analyst section collision: the reducer sometimes overwrites analyst-owned KEY QUESTIONS and ANSWERED QUESTIONS sections in `strategy.md` when JSONL records use abbreviated question texts. A workaround is to re-add Q1 to Q18 summaries after each reducer run.
 - Index the generation-2 continuation memory artifact: the latest save was written under a write-only policy and is not yet indexed in the memory MCP. A follow-on save with `generate-context.js` and rich JSON would make Section 19 findings retrievable via `memory_search`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/005-claudest` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline`

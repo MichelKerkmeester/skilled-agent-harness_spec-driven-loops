@@ -12,9 +12,9 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/002-result-envelopes-and-resume-salvage` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration`
-
 ### Summary
 
 This phase planned typed per-leaf result envelopes and ledger-fold resume/salvage that preserve completed work, recover partial evidence, and never re-run a durably completed leaf after an interrupted fan-out. Per its implementation summary, the phase delivered additive-dark result pairing, verified-ledger resume, recovery gating, and provenance-preserving salvage for durable fan-out. Status is complete.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/002-result-envelopes-and-resume-salvage` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration`

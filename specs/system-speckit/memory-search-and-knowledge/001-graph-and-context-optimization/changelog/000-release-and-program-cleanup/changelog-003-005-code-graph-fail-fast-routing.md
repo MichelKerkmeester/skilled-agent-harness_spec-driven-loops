@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/005-code-graph-fail-fast-routing` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 A stress-test run (packet 006) recorded 249.8 seconds spent on a single `code_graph_query` call because the structural code graph was empty. The read path correctly blocked the query, but the caller had no machine-readable instruction telling it to run `code_graph_scan` first. It fell through to multi-minute `rg` grep loops instead. The existing `requiredAction:"code_graph_scan"` hint in blocked payloads was too soft for autonomous callers.
@@ -77,3 +74,6 @@ A naming collision between "Code Graph" (structural index) and the memory causal
 
 - Implement caller-side enforcement so CLI runtimes honor `fallbackDecision.nextTool` automatically. This packet adds the routing field only. Callers still need their own contract.
 - Confirm whether `fallbackDecision` should also appear in autoprime and startup surfaces. The current scope is query and context only. The 007 §12 open question tracks this.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/005-code-graph-fail-fast-routing` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

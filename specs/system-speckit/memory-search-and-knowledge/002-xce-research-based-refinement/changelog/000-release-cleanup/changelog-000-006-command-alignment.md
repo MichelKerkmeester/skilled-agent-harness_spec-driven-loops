@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/006-command-alignment` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`
-
 ### Summary
 
 Command docs were aligned to shipped 027 runtime reality without restructuring commands or changing behavior. The pass covered memory, speckit, and doctor command docs, while explicitly deferring the structural router/presentation split to the later 011 phase.
@@ -57,3 +54,6 @@ Command docs were aligned to shipped 027 runtime reality without restructuring c
 ### Follow-Ups
 
 - The structural command router/presentation split was intentionally deferred to the 004/002 command-presentation workflow separation phases.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/006-command-alignment` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-09
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli`
-
 ### Summary
 
 The spec-memory runtime integration wired warm-only CLI fallback into the Claude and Codex prompt-time hook paths and shipped an OpenCode plugin bridge over the CLI/IPC transport. The prompt-time path probes the socket first, fails open in under 1ms when the socket is absent, and never cold-spawns from a prompt-time context. The OpenCode bridge avoids in-process database imports. MCP registrations were left untouched to maintain the dual-stack window.
@@ -73,3 +70,6 @@ The spec-memory runtime integration wired warm-only CLI fallback into the Claude
 
 - REQ-005 dual-stack observation window remains in progress by design
 - Final program-level multi-runtime transport-down drill tracked outside this phase
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli`

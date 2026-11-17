@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-12
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/005-q4-quantization` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 `HfLocalProvider` hardcoded `dtype: 'fp32'` in the `@huggingface/transformers` `pipeline()` call, forcing the largest ONNX model variant (~620MB RAM) even though the HF cache from the earlier snapshot-download phase already contained quantized variants. Operators had no way to select a smaller variant without modifying source code.
@@ -72,3 +69,6 @@ A `resolveDtype()` helper and `HF_EMBEDDINGS_DTYPE` env var were added to `hf-lo
 - Update `.env.example` with a documented commented-out `HF_EMBEDDINGS_DTYPE=q4` line once the recall benchmark validates the q4 path.
 - Decide whether the sqlite filename-key should include a dtype suffix so fp32 and q4 vector stores can coexist without a forced reindex on dtype flip.
 - Investigate q4 cold-load latency on sustained-load macOS thermal conditions, as ARMv8 NEON quantization metadata initialization may throttle under heavy batch workloads.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/005-q4-quantization` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

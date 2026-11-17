@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/005-expected-daemon-classifier-and-process-sweep` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`
-
 ### Summary
 
 Broad kill commands in the memory-leak surface could either miss detached helpers or terminate legitimate warm services. No safe, inventory-first cleanup surface existed for classifying daemons, sidecars, browser tooling and CLI leftovers before issuing any termination signal.
@@ -75,3 +72,6 @@ Phase 005 delivered `process-sweep.ts` with `planSweep(inventory, options)` that
 - Live inventory can be empty in restricted sandboxes when process enumeration is denied. The deterministic fixture and unit tests cover policy behavior in that case.
 - No destructive apply command exists. Phase 014 B6 removed the old `apply --confirmed <token>` alias. A future signal-sending command needs a separate operator policy packet and a new command name.
 - Sidecar ownership is classified and preserved here. Phase 008 owns the port ledger, health payload, stale exact-PID sidecar cleanup and reuse policy.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/005-expected-daemon-classifier-and-process-sweep` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

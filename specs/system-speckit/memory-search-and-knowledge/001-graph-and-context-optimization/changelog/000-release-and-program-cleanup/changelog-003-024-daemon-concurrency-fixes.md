@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/024-daemon-concurrency-fixes` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 The skill-advisor daemon had four concurrency holes that let its persisted state diverge from reality under realistic interleavings. Timer-driven flushes could race each other, leaving two `processSkill()` calls running concurrently for the same skill. Shutdown could publish the terminal `unavailable` generation first and then have a queued reindex overwrite it with `live`. The generation lock could be deleted by a previous holder whose reclamation token no longer matched the current owner. Cache listeners could observe events in reverse generation order.
@@ -77,3 +74,6 @@ All four holes are now closed with localized fixes that keep the public daemon c
 - Audit `indexSkillMetadata(skillsRoot)` for same-skill concurrent reindex idempotency. Also flagged in iteration-001 and deferred.
 - The lock format is forward-compatible but not backward-compatible. Old binaries reading the new `pid:acquiredAt:token` format treat missing tokens as un-owned and reclaim eagerly. Rolling upgrades are safe. Rolling downgrades lose token-ownership protection until both sides match.
 - The `sa-003b` mutex test parks reindex callbacks via `setTimeout` to reproduce the JS-level race shape. It does not directly stress SQLite. A combined watcher-plus-lease-plus-SQLite race test remains a larger follow-on.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/024-daemon-concurrency-fixes` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

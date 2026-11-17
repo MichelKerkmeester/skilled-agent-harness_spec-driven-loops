@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux`
-
 ### Summary
 
 The three daemon CLI shims now use content-hash freshness checks so mtime-only source touches no longer trigger false stale-dist failures. Plugin status surfaces stale dist as an actionable classified state, and a daemon-free offline smoke command verifies the three CLI surfaces at 37/8/9 commands.
@@ -57,3 +54,6 @@ The three daemon CLI shims now use content-hash freshness checks so mtime-only s
 ### Follow-Ups
 
 - Broad alignment verifier still reported unrelated existing issues outside this sub-phase scope.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux`

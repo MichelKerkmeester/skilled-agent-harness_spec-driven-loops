@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-16
 
-> Spec folder: `specs/sk-git/033-git-setup-customization/007-review-remediation` (Level 1)
-> Parent packet: `specs/sk-git/033-git-setup-customization`
-
 ### Summary
 
 The documented sk-git release check passes again, at 4,990 words against the 5,000 limit. Every doc the review named clears the voice-rule hard-blocker scan, and the setup battery no longer reports PASS for a probe it never ran, a hook git would skip, or an adapter that only mentions its handler.
@@ -79,3 +76,6 @@ The documented sk-git release check passes again, at 4,990 words against the 5,0
 - The adapter check is a pattern match, not a parser. An unused object that binds the event to a function, or a .on('tool_call', fn) on an object other than the Pi extension API, still reads as registered. The code comment states this.
 - Adjacent defects, recorded and not fixed. .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs has no test and belongs to the 035 packet. The header that sync-skills-hermes.cjs writes into all 68 Hermes mirrors carries two semicolons, so .hermes/skills/sk-git/SKILL.md shows 2 HVR hard blockers that this phase cannot fix without editing the generator.
 - sk-create-command disagrees with itself on gate placement. SKILL.md Step 7 and references/argument-hints-and-modes.md:49 say the gate comes immediately after the frontmatter, and assets/command-router-template.md shows it after the H1. The template comment should say "immediately after the frontmatter, before the H1", to match Step 7.
+
+> Spec folder: `specs/sk-git/033-git-setup-customization/007-review-remediation` (Level 1)
+> Parent packet: `specs/sk-git/033-git-setup-customization`

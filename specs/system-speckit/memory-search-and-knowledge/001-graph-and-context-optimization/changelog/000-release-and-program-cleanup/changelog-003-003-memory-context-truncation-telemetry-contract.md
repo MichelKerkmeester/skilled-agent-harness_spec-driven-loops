@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/003-memory-context-truncation-telemetry-contract` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 The 005 post-remediation verification showed that `memory_context` was reporting `actualTokens=65` against a `budgetTokens=3500` budget (1.9% utilization) while simultaneously returning an empty `count:0, results:[]` payload. The root cause was a soft contract: `actualTokens` was measured after fallback, leaving no way to distinguish the original overflow size from the returned size. An empty fallback path produced no named signal.
@@ -76,3 +73,6 @@ Three hard telemetry fields were added to `meta.tokenBudgetEnforcement` in `enfo
 - Restart the MCP-owning client daemon to make the patched `dist/handlers/memory-context.js` take effect in a live runtime. Packet 013 owns the canonical rebuild and restart protocol.
 - Verify the 005 Probe B repro (`actualTokens=65 / budgetTokens=3500`) returns `count > 0` in `data.content[0].text` after the daemon restart.
 - Consider extending `droppedAllResultsReason` with `parse_failed` and `no_survivor_fits` values if those degraded paths are encountered in follow-on stress runs.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/003-memory-context-truncation-telemetry-contract` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

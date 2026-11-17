@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/009-system-hardening` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
-
 ### Summary
 
 After the 2026-04-18 026-train consolidation, six high-leverage investigation items remained unaddressed: a delta-review of 015 findings, Q4 NFKC robustness, description.json regen strategy, Gate 3 and skill-advisor routing accuracy, template-validator joint audit plus canonical-save pipeline invariants. All six items carried concrete risk: the `save_lineage` field was silently dropped on every canonical save, packets 007 through 010 had no root `spec.md` plus both HARD-block classifiers had no offline accuracy baseline.
@@ -107,3 +104,6 @@ A research-first umbrella packet (019-system-hardening) coordinated the full wav
 - Resolve pre-existing baseline test failures unrelated to this umbrella (`handler-memory-save`, `transaction-manager-recovery`, `startup-brief` suites) as a separate packet.
 - Calibrate advisor accuracy beyond 60.0 percent once the broader corpus labeling from packet 005 routing-accuracy converges.
 - Evaluate Tier 2 candidates (DR-2 runtime-matrix review, DR-3 018 adversarial, SSK-DR-2 boundary audit) against current system state to determine if any qualify for promotion.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/009-system-hardening` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

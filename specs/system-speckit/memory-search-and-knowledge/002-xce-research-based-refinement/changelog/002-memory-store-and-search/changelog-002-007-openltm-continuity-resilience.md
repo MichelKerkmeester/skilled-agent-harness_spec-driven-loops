@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/007-openltm-continuity-resilience` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 This phase adapted the highest-fit OpenLTM session-resilience surfaces to fit our markdown-native continuity ladder rather than OpenLTM's DB-derived projection model. Three surfaces shipped together: a bounded startup restore panel that states explicit restored and omitted counts instead of dumping unbounded results, an opt-in authored PreCompact snapshot that refreshes `handover.md` and `_memory.continuity` before context compaction without minting memory rows or mutating the index, and a goal/decision/progress/gotcha facet taxonomy that organizes continuity summaries into a scannable shape. The implementation stayed entirely inside the approved continuity/bootstrap/hook scope. Schema v37 is unchanged and the feature is disabled by default. `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT=1` is the opt-in flag and its operator documentation was intentionally deferred out of this phase at user direction.
@@ -67,3 +64,6 @@ This phase adapted the highest-fit OpenLTM session-resilience surfaces to fit ou
 
 - `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT=1` needs an `ENV_REFERENCE.md` entry; deferred out of this phase at user direction.
 - The alignment drift verifier reported three out-of-scope files (`canonical-fingerprint.ts`, `memo.ts`, `deploy-mcp.sh`) missing required headers; this phase did not touch them under the concurrency rule and they are not regressions from this work.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/007-openltm-continuity-resilience` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

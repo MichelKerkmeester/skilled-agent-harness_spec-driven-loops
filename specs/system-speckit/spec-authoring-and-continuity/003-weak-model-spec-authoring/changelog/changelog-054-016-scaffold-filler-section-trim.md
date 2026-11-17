@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-26
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim` (Level 2)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 Phase 016 removed the sample rows that weak models kept as filler. In 12 graded packets the sign-off role table survived 9 times, the pre-deployment rows 8 times, the "Phase 1.5" diagram and the service edge cases 6 times each, and "Tests passing (if applicable)" 4 times. Each section got one decision: remove it, or replace its sample with tokens. Fix Completeness became optional, the card's plan shape now matches the template, and both decision-record pointers hold when the file does not exist. The strict and six-rule censuses over 4,757 folders matched their baselines exactly.
@@ -64,3 +61,6 @@ Phase 016 removed the sample rows that weak models kept as filler. In 12 graded 
 ### Follow-Ups
 
 - None recorded.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim` (Level 2)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

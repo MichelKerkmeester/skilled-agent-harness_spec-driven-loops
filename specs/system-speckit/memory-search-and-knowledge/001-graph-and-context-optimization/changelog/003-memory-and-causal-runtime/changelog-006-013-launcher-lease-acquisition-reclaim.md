@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-05-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/013-launcher-lease-acquisition-reclaim` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`
-
 ### Summary
 
 This phase created the Level 1 scaffold for acquisition-time stale-lease reclaim. The artifacts correct the phase 011 framing: the existing read-path dead-PID probe was already present, while the remaining gap is an atomic acquisition-time reclaim when two launchers race on the same stale `skill_graph_daemon_lease` row. No source implementation shipped in this phase.
@@ -60,3 +57,6 @@ This phase created the Level 1 scaffold for acquisition-time stale-lease reclaim
 
 - Implement atomic acquisition-time stale lease reclaim in `acquireSkillGraphLease()`.
 - Add the two-launcher stale-row regression and preserve the existing live-owner and EPERM protections.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/013-launcher-lease-acquisition-reclaim` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

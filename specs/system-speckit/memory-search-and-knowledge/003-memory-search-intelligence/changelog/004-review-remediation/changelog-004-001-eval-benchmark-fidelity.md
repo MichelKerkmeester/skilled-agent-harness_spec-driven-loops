@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-20
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation/001-eval-benchmark-fidelity` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation`
-
 ### Summary
 
 This phase fixed two measurement-fidelity defects in the per-flag retrieval benchmark driver and re-ran criterion-4 so the flip decision rests on the right data. The per-flag pass no longer forces every channel active and the channel sweep no longer reports an unablatable trigger row. The corrected re-run supersedes the prior measurement and earns no default-off flip. Default-off remains correct.
@@ -49,3 +46,6 @@ This phase fixed two measurement-fidelity defects in the per-flag retrieval benc
 ### Follow-Ups
 - P1-3 left a production seam not a closed gate. The trigger lane still cannot be ablated through public options because the production guard was out of scope.
 - Any future benchmark re-run must re-confirm vector-lane health against a live embedder and DB before trusting the deltas.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation/001-eval-benchmark-fidelity` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation`

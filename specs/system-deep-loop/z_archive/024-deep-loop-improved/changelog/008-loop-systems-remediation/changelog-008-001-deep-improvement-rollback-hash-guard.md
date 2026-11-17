@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation`
-
 ### Summary
 
 Rollback now checks the accepted-state hashes before it restores the pre-acceptance backup. It allows the legitimate states the workflow can be in, before ship and after ship, while refusing to overwrite a target that has drifted to unrelated content.
@@ -64,3 +61,6 @@ Rollback now checks the accepted-state hashes before it restores the pre-accepta
 
 - Verified by the deep-improvement suite. The rollback hash-guard regression runs in that suite, which passes (405 tests).
 - Legacy rollback without acceptance file remains unguarded. This preserves the existing explicit-argument CLI behavior and keeps the accepted-state remediation scope narrow.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation`

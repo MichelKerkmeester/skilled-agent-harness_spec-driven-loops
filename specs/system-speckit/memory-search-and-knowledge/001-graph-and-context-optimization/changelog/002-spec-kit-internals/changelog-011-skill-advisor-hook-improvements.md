@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-04-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`
-
 ### Summary
 
 Packet 014 delivered the implementation follow-through for the packet-02 research bundle. OpenCode now uses one explicit threshold contract across plugin defaults, native bridge routing, fallback routing, and operator-facing bridge metadata. Codex prompt submission and prompt-wrapper now share the same builder, timeout, threshold, and durable-diagnostics contract. Public MCP handlers expose `workspaceRoot` and threshold semantics. Hook diagnostics now persist to bounded JSONL sinks.
@@ -77,3 +74,6 @@ Packet 014 delivered the implementation follow-through for the packet-02 researc
 
 - Global package build still blocked by unrelated pre-existing TypeScript errors.
 - Workspace reports stale advisor freshness during direct hook/bridge smokes.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

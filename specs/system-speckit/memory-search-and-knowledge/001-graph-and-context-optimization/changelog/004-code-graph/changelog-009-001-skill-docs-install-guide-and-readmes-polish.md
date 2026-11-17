@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-16
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent`
-
 ### Summary
 
 The system-code-graph skill docs had accumulated drift and HVR (high-value readability) violations since packet 028 closed. SKILL.md lacked a "why structural indexing matters" primer, a glossary and situational triggers. ARCHITECTURE.md referenced a stale launcher file (`mk-spec-memory-launcher.cjs` instead of `mk-code-index-launcher.cjs`). INSTALL_GUIDE.md showed an outdated version number and tool count. Em dashes were present across 11 authored docs.
@@ -88,3 +85,6 @@ All 10 priority findings from research were addressed in a four-batch dependency
 
 - Measure HVR score per doc using `validate_document.py` across all 11 in-scope files. Child 003 owns this pass.
 - Fix the 3 broken import paths in `mcp_server/plugin_bridges/README.md` by updating the bridge source to point at current module locations. Out of scope for child 001.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent`

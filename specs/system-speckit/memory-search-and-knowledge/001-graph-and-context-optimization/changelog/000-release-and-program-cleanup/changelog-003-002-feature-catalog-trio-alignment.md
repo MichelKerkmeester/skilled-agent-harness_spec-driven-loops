@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/002-feature-catalog-trio-alignment` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass`
-
 ### Summary
 
 Packets 031-036 shipped new MCP tools, hook diagnostics, CLI matrix runners. Freshness contracts changed too. The feature catalogs for system-spec-kit and skill_advisor had not been updated. Operators reading the catalogs would see a stale tool count of 51. They would miss the retention sweep, CLI matrix adapter runners, Codex freshness smoke check. The advisor rebuild surface was absent.
@@ -73,3 +70,6 @@ This doc-only packet refreshed all three catalogs without touching runtime code.
 ### Follow-Ups
 
 - No standalone code_graph feature catalog exists. The discovery gap is documented in `discovery-notes.md` and the existing system-spec-kit code-graph entry was updated in place. A future packet should create a dedicated `system-code-graph` feature catalog when the standalone catalog surface is established.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/002-feature-catalog-trio-alignment` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass`

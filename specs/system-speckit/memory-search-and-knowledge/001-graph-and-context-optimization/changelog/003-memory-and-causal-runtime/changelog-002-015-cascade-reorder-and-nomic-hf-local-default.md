@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`
-
 ### Summary
 
 The mk-spec-memory embedder cascade previously preferred cloud APIs over local ones. A user with `VOYAGE_API_KEY` set silently got Voyage even when Ollama was running locally. The hf-local fallback used `BAAI/bge-base-en-v1.5` rather than the nomic model that ADR-013 had already established as the Ollama default.
@@ -81,3 +78,6 @@ A two-line code change in `auto-select.ts` and a one-line regex flip in the matc
 - Run `vitest run mcp_server/tests/embedder-auto-selection.vitest.ts` in a TTY-attached environment or under Node 22 LTS to confirm the regex change passes without the SIGSEGV environmental flake.
 - Sweep deprecated `MEMORY_AUTO_MIGRATE_HF_TO_LLAMA` references across approximately 3 to 5 files as a small follow-on packet. The variable references the 007 auto-migration path that was removed but the env key still appears in the README.
 - Existing daemons with persisted `vec_metadata.active_embedder_*` rows are not affected by ADR-014. Operators who want to migrate a persisted Voyage or OpenAI install to Ollama must clear `vec_metadata` or use the `embedder_set` MCP tool and rebuild the index. Consider adding a migration note to the operator runbook.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

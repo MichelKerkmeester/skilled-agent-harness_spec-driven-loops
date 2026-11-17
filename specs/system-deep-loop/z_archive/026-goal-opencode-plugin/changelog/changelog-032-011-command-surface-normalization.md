@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/011-command-surface-normalization` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
-> Commits: `815eb035b3` fix(mk-goal): normalize command filename + close 2 config-contract gaps; `e2426731fd` fix(mk-goal): close 2 config-contract gaps + fix command doc/metadata; `2086c70c42` fix(032-goal-opencode-plugin): amend command name to goal_opencode.md
-
 ### Summary
 
 The `/goal` command file had been renamed twice in two days with no doc sweep either time. This phase picked one final name, backed by deep-research's confirmed no-built-in-collision finding, closed nine stale referencing surfaces in one pass, fixed two smaller config-contract gaps, then was amended same-day when the operator overrode the chosen filename in favor of the one a concurrent session had independently converged on.
@@ -65,3 +61,7 @@ The `/goal` command file had been renamed twice in two days with no doc sweep ei
 
 - A fifth rename is architecturally still possible; nothing in this phase code-level guards against it, only the operator's standing 2026-07-01 decision and this phase's existing procedure.
 - Historical narrative in this phase's own docs and the constitutional memory file intentionally keeps past filenames in past tense; a literal repo-wide grep for retired names is not expected to return zero hits, only zero hits as a *current* filename claim.
+
+> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/011-command-surface-normalization` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
+> Commits: `815eb035b3` fix(mk-goal): normalize command filename + close 2 config-contract gaps; `e2426731fd` fix(mk-goal): close 2 config-contract gaps + fix command doc/metadata; `2086c70c42` fix(032-goal-opencode-plugin): amend command name to goal_opencode.md

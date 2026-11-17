@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/007-governance-alignment`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation`
-
 ### Summary
 
 Ten governance drift findings are resolved across sk-doc, sk-code and constitutional docs. Spec frontmatter guidance now validates required Spec Kit frontmatter instead of telling agents to remove it, command-section requirements match the live validator registry, filename standards allow packet-local hyphenated docs, comment hygiene detection and enforcement docs match the constitutional rule, semantic code-search fallback guidance routes to Grep and Glob and the alignment verifier no longer false-positives on Python scripts shipped with `.sh` extensions while treating header and shebang gaps as errors.
@@ -72,3 +69,6 @@ Ten governance drift findings are resolved across sk-doc, sk-code and constituti
 
 - The spec-path hygiene pattern may miss numeric-only spec folders such as `specs/042/`. The constitutional examples all use hyphenated names, so that edge case stayed out of scope.
 - The doc now references `.github/workflows/comment-hygiene.yml`. The implementation summary notes the file's existence was not verified in-session and came from audit evidence.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/007-governance-alignment`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation`

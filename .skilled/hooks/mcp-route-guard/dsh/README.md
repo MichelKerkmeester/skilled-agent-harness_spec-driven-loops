@@ -1,5 +1,5 @@
 ---
-title: "MCP Route Guard: DSH tools/pre-execute Adapter"
+title: "DSH MCP Route Guard: tools/pre-execute Adapter"
 description: "DSH adapter that gates native MCP calls on the shared route-guard core, denies a warn because DSH has no advisory channel, and enforces the Code Mode mount allowlist."
 trigger_phrases:
   - "dsh mcp route guard"
@@ -8,53 +8,60 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# MCP Route Guard: DSH tools/pre-execute Adapter
+# DSH MCP Route Guard: tools/pre-execute Adapter
 
 ---
 
 ## 1. OVERVIEW
 
-`dsh/` holds the DSH adapter for the MCP route guard. DSH loads it through `.dsh/plugins/repo-guards/adapters/mcp-route-guard.mjs`, a relative link to this file. The bundle calls `registerMcpRouteGuard`, which registers the handler on `tools/pre-execute`.
+`.skilled/hooks/mcp-route-guard/dsh/` holds the DSH adapter for the MCP route guard. It runs at `tools/pre-execute` and puts every `mcp__*` call through the shared core in `.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs`.
 
-The adapter applies the shared core to every `mcp__*` call. It adds a mount rule the other runtimes do not have. The `code_mode` server exposes only `call_tool_chain`, `list_tools`, `search_tools` and `tool_info`.
+DSH registers the adapter in `.dsh/plugins/repo-guards/index.mjs`. That bundle imports it through the `mcp-route-guard.mjs` link under `.dsh/plugins/repo-guards/adapters/`. Its `apply()` calls `registerMcpRouteGuard(ctx, options.mcpRouteGuard)`. The adapter registers the handler with `ctx.on('tools/pre-execute', ...)`, the event name written in the adapter itself.
 
-A warn from the core becomes a deny reason, because DSH has no advisory channel. The adapter fails closed. A core throw logs a warning and denies the call.
+`registerMcpRouteGuard` reads the concern switch first. It calls `isHookEnabled('mcp-route-guard')` from `.skilled/hooks/shared/hook-flags.mjs`, which resolves through the shared `hook-flags.cjs`. The concern switch is `MCP_ROUTE_GUARD_DISABLED`. `SYSTEM_HOOKS_DISABLED` is the master switch. When the concern is off, the function returns and registers no handler.
+
+Inside the handler, the adapter reads `exec.name` before it calls the core. A name that is not a string or does not start with `mcp__` goes to `next()` at once.
+
+The adapter adds a mount rule the other runtimes do not have. A `code_mode` tool outside the allowlist is denied. The reason names the tool and the four tools the mount exposes: `call_tool_chain`, `list_tools`, `search_tools` and `tool_info`.
+
+A `warn` verdict from the core becomes `{kind: 'deny', reason}`. The adapter joins the core warnings into the reason, because DSH pre-execute has no advisory channel.
+
+`MCP_ROUTE_GUARD_DISABLED` also silences the mount allowlist. The handler tests `isTruthy(env[core.DISABLED_ENV])` before the allowlist rule runs, so one switch turns off the whole guard.
+
+A throw from the core logs through `ctx.logger.warn` and denies the call with a reason that says it could not evaluate the tool. A logging failure cannot change that decision. The module exports `ERROR_POLICY = 'fail-closed'`.
+
+The adapter resolves the checkout from its own path, four levels above this folder. A DSH session that runs in another directory still reads the checkout's `.utcp_config.json`.
 
 ---
 
-## 2. FILES
+## 2. DIRECTORY TREE
+
+The folder is flat. It holds the README and one adapter.
 
 | File | Responsibility |
 |---|---|
-| `mcp-route-guard.mjs` | Registers the `tools/pre-execute` handler and applies the core plus the mount allowlist. |
-
-`registerMcpRouteGuard` returns at once when the `mcp-route-guard` concern is off, so no handler is registered. A call whose name is not a string or does not start with `mcp__` goes straight to `next()`.
-
-For a native call, the handler runs `evaluateNativeMcpCall()` on `exec.name`. The core reads the Code Mode manifest, `.utcp_config.json`, from the checkout. The adapter takes that checkout from its own location, four levels above the `dsh/` folder, which is the repository root.
-
-A `code_mode` tool outside the allowlist is denied with a reason that names the tool and the four exposed tools. A `warn` verdict becomes `{kind: 'deny', reason}`, with the core's warnings joined as the reason.
-
-`MCP_ROUTE_GUARD_DISABLED` silences the allowlist rule too, so the core's kill switch covers the whole guard. The module exports `ERROR_POLICY = 'fail-closed'`.
-
-A throw from the core logs a warning through `ctx.logger.warn` and denies the call with a `could not evaluate` reason. A logging failure cannot change that decision.
+| `mcp-route-guard.mjs` | The `tools/pre-execute` adapter. It reads the concern switch and evaluates `mcp__*` names on the shared core. It applies the Code Mode allowlist and denies on a warning or a core throw. |
 
 ---
 
 ## 3. VALIDATION
 
-Run from the repository root.
+Run the suite from the repository root.
 
 ```bash
 node --test .skilled/hooks/mcp-route-guard/tests/dsh-mcp-route-guard.test.mjs
 ```
 
-Expected result: every test passes.
+Expected result: every test passes. The runner reports `fail 0` and exits 0.
+
+The suite drives this adapter with a stub plugin context. It covers the mount allowlist, the core kill switch, the fail-closed throw policy and the deny-reason parity with the Pi extension.
 
 ---
 
 ## 4. RELATED
 
-- [`../README.md`](../README.md): the concern README with the policy table and the per-runtime matrix.
+- [`../README.md`](../README.md): the concern README with the policy table and the runtime matrix.
 - [`../lib/mcp-route-guard.cjs`](../lib/mcp-route-guard.cjs): the shared core this adapter calls.
-- [`../../shared/hook-flags.mjs`](../../shared/hook-flags.mjs): the ESM kill-switch resolver.
-- [`../../../../.dsh/plugins/repo-guards/README.md`](../../../../.dsh/plugins/repo-guards/README.md): the bundle that loads this adapter.
+- [`../tests/dsh-mcp-route-guard.test.mjs`](../tests/dsh-mcp-route-guard.test.mjs): the suite that drives this adapter.
+- [`../../shared/hook-flags.mjs`](../../shared/hook-flags.mjs): the ESM switch resolver the adapter imports.
+- [`../../../../.dsh/plugins/repo-guards/index.mjs`](../../../../.dsh/plugins/repo-guards/index.mjs): the bundle that registers the adapter.

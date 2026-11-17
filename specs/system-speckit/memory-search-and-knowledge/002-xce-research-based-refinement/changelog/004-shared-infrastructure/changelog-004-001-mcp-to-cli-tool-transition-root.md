@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition` (Phase Parent)
-
 ### Summary
 
 This phase delivered dual-stack CLI front-doors over all three MCP daemons in the system-spec-kit infrastructure layer: mk-spec-memory (37 tools), mk-code-index (8 tools), and mk-skill-advisor (9 tools). Each daemon gained a research phase confirming GO with zero feature loss, a CLI core phase shipping a manifest-backed IPC client with auto-spawn, a hardening phase locking critical safety contracts in Vitest, and a runtime integration phase wiring warm-only fallback into Claude and Codex prompt-time hooks. The tri-daemon spawn drill — which exercises all three launchers auto-spawning simultaneously with per-launcher single-owner, respawn-lock serialization, and zero orphans — passed as the program gate. A final doc-alignment sweep (phase 004) closed all eight doc groups across all three systems, verified SC-001 and SC-002, and executed the 028 CLI stress scenarios (434-438) with all passing.
@@ -100,3 +98,5 @@ See per-lane root changelogs and per-leaf changelogs for full file tables:
 - Dual-stack observation windows remain open across all three systems by design; MCP registrations stay untouched during this window
 - Final program-level multi-runtime transport-down drill remains as tracked follow-on work
 - Three out-of-028-scope defects reported not fixed: `.claude/agents/` frontmatter grant mismatch for `mk-spec-memory`; `launcher_lease.md` §1 wording vs `bridgeOrReportLeaseHeld()` behavior; typo "spec docss" in `speckit/implement.md`
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition` (Phase Parent)

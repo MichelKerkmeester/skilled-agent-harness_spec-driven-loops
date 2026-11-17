@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-06
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli`
-
 ### Summary
 
 A single cli-codex lane (gpt-5.5 high, 10 forced iterations) delivered a GO verdict for the skill-advisor CLI transition. All 9 tools from `TOOL_DEFINITIONS` can be exposed with zero feature loss. The research reconciled `skill_advisor.py` as a legacy facade with 10/10 measured scorer parity rather than superseding it, measured the one-shot native bridge at 824.8ms (mandating warm-only prompt-time hooks), root-caused the orphan-launcher class, and produced D1-D8 design deltas across 3 medium implementation packets.
@@ -57,3 +54,6 @@ A single cli-codex lane (gpt-5.5 high, 10 forced iterations) delivered a GO verd
 
 - `advisor_rebuild` / `skill_graph_scan` wall-time under mutation not measured (read-only lane) — left to implementation packet
 - Live orphan recount blocked by sandbox; six-orphan precedent stands as recorded incident evidence
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli`

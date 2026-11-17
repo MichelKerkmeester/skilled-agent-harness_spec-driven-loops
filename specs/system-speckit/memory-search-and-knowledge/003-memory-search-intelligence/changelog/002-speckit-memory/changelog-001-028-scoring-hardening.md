@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 This phase landed five recommendations in the real scoring sources, four as default-off behavioral flags and one as documentation. It surfaced a grounding signal in the envelope behind `SPECKIT_GROUNDING_SIGNAL_V1`, subtracted a measured corpus noise-floor before banding behind `SPECKIT_NOISE_FLOOR_SUBTRACTION_V1`, added a `cite_with_caveat` tier behind `SPECKIT_CITE_WITH_CAVEAT_V1`, bridged the Stage 4 evidence-gap signal into the verdict behind `SPECKIT_EVIDENCE_GAP_VERDICT_V1`, and documented the calibration re-fit as a proven non-fix. With every flag OFF the band, the envelope and the citation policy reproduce the shipped output. The typed sources were compiled to dist by `npm run build`, the vitest is 16/16 and no regression hit 248 touched-suite cases.
@@ -63,3 +60,6 @@ This phase landed five recommendations in the real scoring sources, four as defa
 - The noise-floor, cite-with-caveat and evidence-gap flags have since GRADUATED to default-on against the off-corpus fixtures.
 - The grounding-signal flag was purely informational and has since been DELETED.
 - The corpus noise-floor is measured against a single embedder, a second embedder needs its own measured entry before it subtracts, and wiring the live active-embedder identity into the verdict call was deferred to graduation.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

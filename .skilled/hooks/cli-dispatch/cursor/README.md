@@ -1,5 +1,5 @@
 ---
-title: "Cursor Dispatch Hooks: Shell Preflight and Multiplexed Proxy"
+title: "Cursor Dispatch: preToolUse and postToolUse Adapters"
 description: "Cursor adapters that translate its Shell preToolUse payload to the Claude preflight and multiplex postToolUse between the dispatch audit and post-edit quality."
 trigger_phrases:
   - "cursor dispatch preflight"
@@ -8,34 +8,36 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# Cursor Dispatch Hooks: Shell Preflight and Multiplexed Proxy
+# Cursor Dispatch: preToolUse and postToolUse Adapters
 
 ---
 
 ## 1. OVERVIEW
 
-`.skilled/hooks/cli-dispatch/cursor/` holds the two Cursor adapters for the dispatch concern. Cursor has no native hard-rule engine, so each adapter translates one event. The `preToolUse` adapter shapes a Claude `Bash` payload and spawns the Claude preflight. It then translates the returned envelope into Cursor's own permission envelope.
+`.skilled/hooks/cli-dispatch/cursor/` holds the Cursor adapters for the dispatch concern. Cursor reaches these checks through command hooks, so each event gets an adapter of its own. `preToolUse` carries the preflight that refuses a dispatch which breaks a blocking hard rule. `postToolUse` carries a proxy that records a completed shell dispatch and runs the post-edit quality checks after a write.
 
-The `postToolUse` entry is a shared multiplexed proxy for two concerns. A `Shell` call reaches the dispatch audit, and a `Write` call reaches the post-edit-quality concern.
+`.cursor/hooks.json` registers the preflight under `preToolUse` with the `Shell` matcher and a 10-second timeout. It registers the proxy under `postToolUse` by its real path, `.skilled/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs`, with a 10-second timeout. Nothing loads through the link in this folder, so the link is for browsing only. When an adapter is missing or `node` fails, each entry prints a drift line on stderr and an allow envelope whose `agent_message` asks for a rebuild. A preflight deny exits 2, which trips the same fallback: the entry prints the deny, then the drift line and the allow envelope, and exits 0. Which envelope Cursor acts on is unconfirmed.
 
-`.cursor/hooks.json` registers the preflight under `preToolUse` with the `Shell` matcher and a 10-second timeout. It registers the proxy under `postToolUse` by its real path under `system-spec-kit`. This folder's link is for browsing only, because nothing loads through it.
+The preflight checks the `dispatch-guard` switch before it reads stdin. A disabled concern returns `{permission: 'allow'}` at once. It then reads the command from `tool_input.command`, falls back to `payload.command` and approves when neither holds a string. It takes the project directory from `workspace_roots[0]` or from `process.cwd()`, renames the tool to `Bash` and spawns `.skilled/hooks/cli-dispatch/claude/dispatch-preflight-lint.mjs` with a 5-second timeout.
 
-Claude, Codex, Devin and Cursor register a command-hook preflight, while DSH, OpenCode, Vibe and Pi enforce in-process. Only Cursor registers the proxy, and Pi registers its own `post-edit-quality.ts` and `dispatch-audit.ts` instead.
+A deny from the child becomes `{permission: 'deny'}` with the reason in `user_message` and `agent_message`. The adapter then exits 2. An `additionalContext` becomes `{permission: 'allow', agent_message}`. Any other child reply becomes a plain allow.
+
+The proxy parses stdin before it looks at the tool name. A `Write` call checks the `post-edit-quality` switch and spawns `.skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs` with an 8-second timeout, then passes the child's raw stdout back as `agent_message`. That stdout is the Claude adapter's `hookSpecificOutput` JSON envelope, so the findings reach Cursor wrapped in that JSON text. A `Shell` call checks the `dispatch` switch, parses the stringified `tool_output` and spawns `.skilled/hooks/cli-dispatch/claude/dispatch-audit-posttooluse.mjs` with the same timeout. It discards that reply and returns a plain allow.
+
+Both adapters call `isHookEnabled` from the shared resolver, so `SYSTEM_HOOKS_DISABLED=1` is the master switch. Every failure ends in an allow: a stdin parse error, a spawn error, a timeout, non-JSON child output in the preflight or a thrown error. The proxy writes one `post-tool-use:` line to stderr when `main` throws, then allows.
 
 ---
 
-## 2. FILES
+## 2. DIRECTORY TREE
+
+The folder is flat, so the table names every file beside this README.
 
 | File | Responsibility |
 |---|---|
-| `dispatch-preflight-lint.mjs` | The `preToolUse` shim. It spawns the Claude preflight and translates the reply. |
-| `post-tool-use.mjs` | A link to the shared `postToolUse` proxy. |
+| `dispatch-preflight-lint.mjs` | The `preToolUse` adapter. It checks the `dispatch-guard` switch, spawns the Claude preflight and translates the reply into Cursor's permission envelope. |
+| `post-tool-use.mjs` | A symlink to `../../../skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs`. The real file multiplexes `postToolUse` between the dispatch audit and the post-edit quality checks. |
 
-The preflight reads `dispatch-guard` through `isHookEnabled` and approves at once when that concern is off. It renames the tool to `Bash` and spawns `.skilled/hooks/cli-dispatch/claude/dispatch-preflight-lint.mjs` with a 5-second timeout. A deny returns `{permission: 'deny'}` with the agent and user messages, then exits 2. A warn returns `{permission: 'allow', agent_message}` and carries the advisory text. A spawn or parse error approves the call.
-
-`post-tool-use.mjs` is a link to `../../../skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs`, which multiplexes `postToolUse`. A `Shell` call normalizes to `Bash` and parses the stringified `tool_output`. It then spawns the Claude audit adapter. A `Write` call spawns the post-edit-quality adapter. Each branch fails open. A spawn or parse error on one branch never affects the tool call. It leaves the other branch untouched. A failure in `main` writes one `post-tool-use:` line to stderr and then approves.
-
-`SYSTEM_DISPATCH_DISABLED` silences the preflight and the audit branch. `SK_CODE_POST_EDIT_QUALITY_DISABLED` silences the post-edit branch alone.
+The proxy reads `tool_name` and approves at once for a name it does not handle. A `Shell` payload keeps the command in `tool_input.command` and the response in `tool_output` as a JSON string with `output` and `exitCode`. The proxy parses that string, so a malformed value still reaches the audit with no stdout and no exit code.
 
 ---
 
@@ -44,16 +46,16 @@ The preflight reads `dispatch-guard` through `isHookEnabled` and approves at onc
 Run from the repository root.
 
 ```bash
-node --test .skilled/hooks/shared/hook-stdin-deadline.test.mjs
 node --test .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs
 ```
 
-The first suite holds the Cursor preflight to its stdin deadline. It also pins the normal payload. The second asserts that every runtime with a preflight adapter has it registered.
+Expected result: every test passes, with `fail 0` in the summary. One case holds this folder to its registration. It checks that `dispatch-preflight-lint.mjs` exists and that the `dispatch-preflight-lint` binding for Cursor in the hook registry points at it.
 
 ---
 
 ## 4. RELATED
 
-- [`../README.md`](../README.md): the dispatch concern, the shared cores and the full rule list.
+- [`../README.md`](../README.md): the dispatch concern, the shared cores and the switch index.
 - [`../claude/dispatch-preflight-lint.mjs`](../claude/dispatch-preflight-lint.mjs): the Claude preflight this adapter spawns.
-- [`../../../skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs`](../../../skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs): the real proxy this folder links to.
+- [`../claude/dispatch-audit-posttooluse.mjs`](../claude/dispatch-audit-posttooluse.mjs): the audit the proxy spawns on a shell call.
+- [`../../../skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs`](../../../skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs): the real proxy the link points at.

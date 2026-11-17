@@ -12,9 +12,9 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/005-devin-allowlist-prune-and-deepseek` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity`
-
 ### Summary
 
 After the additive parity packet, three gaps remained: nine curated-out aliases (`adaptive`, `opus`, `sonnet`, `claude`, `haiku`, `gpt`, `gemini`, `codex`, `swe-1-6`) were still dispatchable via devin fan-out; the catalog-featured DeepSeek family had no id in the devin allowlist at all, so a `deepseek-v4-pro` dispatch was hard-rejected; and the duplicated CJS allowlist in `fanout-run.cjs` could silently drift from the TS source. This phase makes the enforced devin dispatch surface exactly the curated four-family scope (GLM-5.2, SWE-1.7, Grok 4.5, DeepSeek) and converts mirror drift from a silent risk into a test failure via a parity guard. The spec records its status as Complete.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/005-devin-allowlist-prune-and-deepseek` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity`

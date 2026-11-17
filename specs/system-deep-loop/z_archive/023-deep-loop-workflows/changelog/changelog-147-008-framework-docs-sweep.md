@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/008-framework-docs-sweep` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`
-
 ### Summary
 
 This phase updated the framework documentation so the docs named the shipped architecture. The old model had five public `deep-*` loop skills. The new model has one `deep-loop-workflows` hub with modes plus the frozen MCP-free `deep-loop-runtime` backend, and the merged skill received a version stamp.
@@ -55,3 +52,6 @@ This phase updated the framework documentation so the docs named the shipped arc
 - CHK-011 Changes follow existing project conventions.
 - CHK-020 Phase 007 dependency preflight is green.
 - CHK-021 `deep-loop-workflows` `mode-registry.json` is the terminology source.
+
+> Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/008-framework-docs-sweep` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`

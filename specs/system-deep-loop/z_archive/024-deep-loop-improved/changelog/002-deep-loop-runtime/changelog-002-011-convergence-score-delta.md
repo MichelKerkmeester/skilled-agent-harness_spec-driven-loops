@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/011-convergence-score-delta` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`
-
 ### Summary
 
 Added a convergence score-delta signal to convergence.cjs declared against the shared profile schema; updated the parity goldens for the intended new behavior and added a unit test. Both pass; typecheck green.
@@ -55,3 +52,6 @@ Added a convergence score-delta signal to convergence.cjs declared against the s
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/011-convergence-score-delta` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`

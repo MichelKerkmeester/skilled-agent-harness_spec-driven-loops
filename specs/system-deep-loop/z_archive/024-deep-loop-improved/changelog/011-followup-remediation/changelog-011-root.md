@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-02
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation` (Level 2)
-
 ### Summary
 
 Phase 011 closes the 4 deferred follow-ups phase 009's own changelog named: 2 active review findings from a prior codex deep-review lineage, scaffold-content authoring debt across phases 002-007, the `validate.sh` dual-path registry-bridge gap, and (not yet started) the sliding-window convergence mode. Children 001-006 are Complete; child 007 (sliding-window convergence) remains pending. Closing child 006 required tracing a stale-dist bug in `validate.sh` itself back to its root cause and, once fixed, discovering the fix's true blast radius was repo-wide rather than packet-scoped — that work was spun out into its own packet (`system-speckit/030-validate-sh-dist-freshness-and-repo-remediation`) rather than absorbed into this phase, to keep this phase's own scope from ballooning past "close packet 030's follow-ups."
@@ -92,3 +90,5 @@ Phase 009's changelog explicitly deferred these 4 items rather than declaring th
 
 - Child 007 (sliding-window convergence mode, per ADR-001 in `009-research-backlog-remediation/009-convergence-design-and-hardening/decision-record.md`) has not started.
 - `system-speckit/030-validate-sh-dist-freshness-and-repo-remediation`'s bucket-3 report (54 folders across 17 packets, mostly `ai-systems/*`, that predate the current template-compliance contract) recommends extending `SPECKIT_GENERATED_METADATA_GRANDFATHER` into a general template-compliance grandfather mechanism — a policy decision still open, not implemented.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation` (Level 2)

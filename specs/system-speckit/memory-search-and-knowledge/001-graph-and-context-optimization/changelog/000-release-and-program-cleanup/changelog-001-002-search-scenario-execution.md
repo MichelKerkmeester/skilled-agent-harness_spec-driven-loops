@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/002-search-scenario-execution` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook`
-
 ### Summary
 
 The 001 design packet defined the corpus, rubric and dispatch matrix but produced no signal without an execution harness. This sub-phase scaffolded the four-stage run contract (pre-flight, dispatch loop, manual scoring, findings aggregation) and then executed the full sweep.
@@ -77,3 +74,6 @@ None. Research-only phase.
 - Re-run the sweep after 005 Cluster 1-3 P0 fixes go live in the running daemon (dist rebuild plus daemon restart). The current sweep measured the pre-fix runtime.
 - Calibrate Latency thresholds based on the observed distribution. Under v1.0.0, zero cells scored above 0 on Latency. v1.0.1 recalibration addresses this gap.
 - Expand to N=3 per cell if signal proves noisy across multiple sweeps, per parent REQ-009.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/002-search-scenario-execution` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook`

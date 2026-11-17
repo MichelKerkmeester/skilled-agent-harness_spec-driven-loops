@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`
-
 ### Summary
 
 The 019 combined deep-review (cli-devin plus cli-codex, 19 iterations) returned a FAIL verdict with nine P1 findings and 31 P2 findings across the mcp-coco-index retrieval pipeline. The defects covered a stale fresh-install default that bypassed nomic promotion, rollback docs that named wrong env-var prefixes, unbounded Jina max-doc-chars parsing that could crash on malformed env, an index-failure path that silently returned `success=True`, a smoke harness that unconditionally overwrote the embedder env, overpowering hybrid boosts that swamped empirical RRF calibration. Operator docs still described hybrid and rerank as default-off.
@@ -91,3 +88,6 @@ All nine P1 findings were fixed in commit `d4ca904a54` and all 31 P2 findings we
 - RRF lock evidence is bge-code-v1 scoped. Future embedders or rerankers need a replay sweep before claiming embedder-agnostic optimality.
 - Sequential-thinking MCP was unavailable throughout this packet. Five-point preflight thoughts were recorded inline per batch as a fallback.
 - Query expansion RCA is derived from existing rerank-score trace evidence, not a fresh controlled experiment. A fresh experiment is appropriate if opt-in default changes.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

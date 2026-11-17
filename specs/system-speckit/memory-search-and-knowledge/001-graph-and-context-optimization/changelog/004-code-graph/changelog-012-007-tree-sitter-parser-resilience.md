@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-06
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 Broad-scope scans (your code plus framework folders) crashed on roughly **17.5 percent of files** in production. The error was always `RuntimeError: memory access out of bounds`. Skills-only scope was clean. Nobody knew the mechanism.
@@ -89,3 +86,6 @@ Five commits: `540f9329b` (packet scaffold), `671dbfe27` (7-iteration deep resea
 - **R-2 grammar rebuild (deferred to Phase 3 epic).** The permanent fix is to rebuild `tree-sitter-bash.wasm` with `external_scanner_reset` exported, or to co-bump `web-tree-sitter@0.26.x` together with all four vendored grammars rebuilt against it. Iter 4 of the research proved that bumping `web-tree-sitter` alone hard-rejects the existing `tree-sitter-wasms@0.1.13` artifacts with `Error: need dylink section`. This is infrastructure work, not a one-line fix.
 - **T022 manual playbook scenario.** A "broad-scope scan with skip-list verification" scenario for `manual_testing_playbook/02--manual-scan-verify-status/` is filed as a follow-up. The implementation is verified end-to-end via the live driver, so the playbook is documentation rather than a blocker.
 - **Test-isolation hardening.** The `__resetParserHealth` export was added in commit `08a6ec18b` after the audit caught the gap. Vitest cases that previously relied on `vi.resetModules()` for module-isolation can now call the explicit reset.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

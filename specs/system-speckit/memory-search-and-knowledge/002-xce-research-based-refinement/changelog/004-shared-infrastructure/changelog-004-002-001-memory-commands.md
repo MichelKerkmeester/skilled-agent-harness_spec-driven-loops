@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands` (Level 2, Phase Parent)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation`
-
 ### Summary
 
 The memory command family completed the router/presentation split across its four nested aspect phases: inventory/extract, author presentation Markdown, router rewire, and verify/UX. The visible UX change centers on `/memory:search`, which now starts with one open-ended retrieval question and uses compact grouped result displays.
@@ -56,3 +53,6 @@ The memory command family completed the router/presentation split across its fou
 ### Follow-Ups
 
 - Cross-model runtime execution was represented by static contract checks in this pass; no external model dispatch was run.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands` (Level 2, Phase Parent)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation`

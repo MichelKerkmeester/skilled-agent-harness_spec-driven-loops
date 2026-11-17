@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-11
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/025-git-hooks-reinstall-and-guard` (Level recorded in phase evidence)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory`
-> Historical alias: `018-git-hooks-reinstall-and-guard`
-
 ### Summary
 
 This migration index makes the shipped phase discoverable at its final packet-local path without rewriting its historical identity. The allowed implementation evidence records: Status: COMPLETE. All three requirements shipped and verified.
@@ -49,3 +45,7 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 ### Follow-Ups
 
 - None in the allowed evidence set.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/025-git-hooks-reinstall-and-guard` (Level recorded in phase evidence)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory`
+> Historical alias: `018-git-hooks-reinstall-and-guard`

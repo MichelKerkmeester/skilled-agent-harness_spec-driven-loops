@@ -18,9 +18,6 @@ contextType: "review"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/002-memory-data-integrity-audit` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`
-
 ### Summary
 
 Before this audit, no severity-classified assessment existed for memory subsystem data integrity. Operators had no release-gating evidence on whether `memory_health` health reporting, retention sweep behavior or embedding cache behavior was trustworthy enough to claim release readiness.
@@ -70,3 +67,6 @@ Three P1 gaps block a clean release-readiness claim. First, `memory_health` can 
 - Remediate P1-002: replace the single-connection retention race fixture with a real multi-writer concurrent test to prove save/sweep interleaving safety.
 - Remediate P1-003: define and enforce an embedding-cache invalidation step inside the governed retention delete path so cached embeddings for deleted rows are cleared.
 - Remediate P2-001: add a BM25 index cleanup call to the memory delete path or document the accepted staleness window for operators.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/002-memory-data-integrity-audit` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`

@@ -13,9 +13,6 @@ contextType: "implementation"
 
 ## 2026-08-07
 
-> Spec folder: `specs/system-speckit/032-relocate-specs-folder/004-code-graph-index-flag-deprecation` (Level 2)
-> Parent packet: `specs/system-speckit/032-relocate-specs-folder`
-
 ### Summary
 
 A self-contained cleanup discovered mid-flight during phase 003's `scripts/` cleanup, not the relocation itself: `setup-maintainer-filters.sh`, a git clean/smudge filter that kept five `SPECKIT_CODE_GRAPH_INDEX_*` flags `"true"` locally while committing `"false"`, was dead infrastructure — none of its four target config files had carried those keys in a while. Landed in commit `386ee7dc97`.
@@ -33,3 +30,6 @@ A self-contained cleanup discovered mid-flight during phase 003's `scripts/` cle
 
 - `tsc --noEmit` 0 errors; `index-scope.vitest.ts` 8/8 unchanged; repo-wide grep for `SPECKIT_CODE_GRAPH_INDEX` returns empty outside historical spec docs.
 - `ci-skill-root-metadata.cjs` fleet check: 11/11 at the time this phase closed. A later independent review (2026-08-08) re-ran it and found 10/11 — `system-skill-advisor`'s `leaf-aliases.json` had gone stale against `leaf-manifest.json`'s projection, a deliberate scope-lock decision this phase's own `tasks.md` already documented, not a new regression.
+
+> Spec folder: `specs/system-speckit/032-relocate-specs-folder/004-code-graph-index-flag-deprecation` (Level 2)
+> Parent packet: `specs/system-speckit/032-relocate-specs-folder`

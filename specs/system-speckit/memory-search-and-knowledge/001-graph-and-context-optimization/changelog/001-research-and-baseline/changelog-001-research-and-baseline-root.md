@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-04-12
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline` (Level 3, Phase Parent)
-
 ### Summary
 
 This phase parent groups 6 child phases spanning 2026-04-06 to 2026-04-12. Each child phase shipped independently and carries its own changelog with full detail. The Included Phases table below is the authoritative child inventory. Read each child changelog for the per-phase summary, verification, and files changed.
@@ -57,3 +55,5 @@ This phase parent groups 6 child phases spanning 2026-04-06 to 2026-04-12. Each 
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline` (Level 3, Phase Parent)

@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 Packet 026 recorded 79 unresolved sk-code violations after the README coverage sweep. This packet closed its assigned ledger slice by adding or normalizing sk-code MODULE: header blocks across 78 TypeScript source files without introducing use strict directives or changing imports or logic. Surgical annotation-only edits avoided unrelated verifier warnings and kept unrelated dirty files unstaged.
@@ -60,3 +57,6 @@ Packet 026 recorded 79 unresolved sk-code violations after the README coverage s
 - budget-allocator.ts under system-spec-kit/mcp_server/lib/context no longer exists on main and is recorded as not applicable.
 - Memory vitest has an existing stale-test baseline failure unrelated to header or type edits, it is named rather than hidden.
 - Additional alignment warnings outside packet 026 remain out of scope for this dispatch.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

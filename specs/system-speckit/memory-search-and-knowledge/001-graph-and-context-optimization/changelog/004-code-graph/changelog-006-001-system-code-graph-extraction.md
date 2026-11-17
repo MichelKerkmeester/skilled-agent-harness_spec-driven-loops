@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/001-system-code-graph-extraction` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation`
-
 ### Summary
 
 The code-graph subsystem (108 files, 12 MCP tools, a 53 MB live SQLite index) was buried 5 levels deep inside `system-spec-kit`. That made it hard to discover as a first-class skill, reason about its scope independently or iterate on its public surface without touching the broader spec-kit package.
@@ -85,3 +82,6 @@ All 6 phases shipped on main. A 4-iteration deep review surfaced 1 P0 claim mism
 - Run post-restart smoke tests (§7.1 of handover.md) to confirm all 10 code-graph tools are accessible under the new MCP namespace.
 - Flesh out `system-code-graph/SKILL.md` smart routing block and references section. Both are currently minimal placeholders from the Phase 002 scaffold.
 - Consider a thin Level 1 packet to record the operational MCP-restart outcome (`lsof` before/after, log output, post-cleanup file listing).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/001-system-code-graph-extraction` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation`

@@ -8,8 +8,6 @@ contextType: "implementation"
 ---
 # Changelog Rollup — Track 002: Memory Store and Search
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search` (Phase Parent)
-
 Top rollup for the `002-memory-store-and-search/` themed track. Each row links to a phase changelog (or that phase's own rollup). The chronological view lives in `../../timeline.md`; the old-to-new path bridge in `../../context-index.md`.
 
 ## Included Phases
@@ -37,3 +35,5 @@ Top rollup for the `002-memory-store-and-search/` themed track. Each row links t
 | `002-memory-store-and-search/018` maintenance grace daemon survives re-election | [changelog-002-018-maintenance-grace-daemon-survives-reelection.md](./changelog-002-018-maintenance-grace-daemon-survives-reelection.md) |
 | `002-memory-store-and-search/019` maintenance grace background embedding | [changelog-002-019-maintenance-grace-background-embedding.md](./changelog-002-019-maintenance-grace-background-embedding.md) |
 | `002-memory-store-and-search/020` cooperative heavy phases | [changelog-002-020-cooperative-heavy-phases.md](./changelog-002-020-cooperative-heavy-phases.md) |
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search` (Phase Parent)

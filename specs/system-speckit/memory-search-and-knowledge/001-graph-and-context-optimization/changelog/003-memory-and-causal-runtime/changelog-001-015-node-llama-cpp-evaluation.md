@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/015-node-llama-cpp-evaluation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 The Memory MCP local embedding path defaulted to `hf-local` backed by ONNX EmbeddingGemma q8. Prior cocoindex evaluation had been rejected after measurement. The open question was whether a Node-native `node-llama-cpp` provider could improve single-query latency and RSS without corrupting vector-index compatibility with the existing `hf-local` index.
@@ -84,3 +81,6 @@ Benchmark results were decisive on latency: llama-cpp p50 query latency was 6.45
 - Consider comparing search-ranking overlap rather than raw embedding cosine to determine whether the ranking order is functionally equivalent even when cosine similarity falls below the hard gate.
 - Metal GPU path initialized with warnings (`ggml_metal_library_init_from_source: error compiling source`) and tensor API was disabled on this host. A follow-up should test Metal initialization on a supported environment to confirm whether GPU acceleration is available.
 - Wire `powermetrics` into the benchmark harness with a sudo-optional path so peak watts are captured when the runner has elevated privileges.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/015-node-llama-cpp-evaluation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

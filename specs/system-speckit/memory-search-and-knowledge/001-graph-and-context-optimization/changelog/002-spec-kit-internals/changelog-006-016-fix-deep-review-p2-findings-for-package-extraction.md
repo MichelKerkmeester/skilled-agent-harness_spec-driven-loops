@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/016-fix-deep-review-p2-findings-for-package-extraction` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 The deep-review of the skill advisor rename (015) left nine P2 advisories and D2b flagged two shared seams for extraction or acceptance. This cleanup packet refreshed the stale parent phase metadata, introduced a mk-prefixed database environment variable as the preferred override, added automated rename-invariant tests and fixed outdated validation paths in the package documentation. The two shared utility seams were documented as accepted-as-is pending a future dedicated extraction packet.
@@ -60,3 +57,6 @@ The deep-review of the skill advisor rename (015) left nine P2 advisories and D2
 ### Follow-Ups
 - Runtime database files remain dirty in the worktree. They were already dirty at session start and are intentionally excluded from the commit.
 - Shared seam extraction is deferred. The two seams are documented as accepted-as-is. Moving source into a shared package remains a separate future change.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/016-fix-deep-review-p2-findings-for-package-extraction` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

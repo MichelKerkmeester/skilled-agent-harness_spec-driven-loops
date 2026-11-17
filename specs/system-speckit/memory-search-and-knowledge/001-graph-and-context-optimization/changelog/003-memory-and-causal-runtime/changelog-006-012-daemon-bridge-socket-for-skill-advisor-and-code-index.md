@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-20
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/012-daemon-bridge-socket-for-skill-advisor-and-code-index` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`
-
 ### Summary
 
 Packet 010 introduced the multi-client stdio-to-socket bridge but shipped daemon-side binding only for `mk-spec-memory`. The skill-advisor and code-index daemons got launcher-side bridge code but no daemon socket to attach to. When a secondary launcher spawned and found a live lease, it would call `maybeBridgeLeaseHolder()`, find no socket file, write `LEASE_HELD_BY:<pid> (no-bridge-socket)` to stdout. The process then exited. The OpenCode plugin's MCP client tried to parse that string as JSON-RPC. Parsing failed. The plugin reported `SYSTEM_SKILL_ADVISOR_UNAVAILABLE` after 145ms.
@@ -74,3 +71,6 @@ This packet mirrors the `mk-spec-memory` daemon-side bridge socket pattern into 
 - Raise the OpenCode plugin's `DEFAULT_BRIDGE_TIMEOUT_MS` beyond 1000ms so a full MCP handshake can complete through the bridge socket under load. Tracked as proposed follow-on `013-plugin-bridge-timeout-tune`.
 - Add SQLite-table-level dead-PID reclaim for `skill_graph_daemon_lease`. The bridge fix does not address stale rows pointing at exited processes. The file-lease-level `kill(pid, 0)` probe blocks false-alive reads, but the table rows still accumulate. Tracked as a separate follow-on per packet 011 REQ-006.
 - Consolidate `socket-server.ts` from 3 workspace copies into a single shared source. D-001 documents the rationale for the copy approach. A future packet could introduce a shared library once the build-system cost is justified.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/012-daemon-bridge-socket-for-skill-advisor-and-code-index` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

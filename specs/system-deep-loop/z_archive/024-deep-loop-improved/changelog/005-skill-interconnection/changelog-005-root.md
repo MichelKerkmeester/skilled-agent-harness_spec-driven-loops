@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/005-skill-interconnection` (Level 2)
-
 ### Summary
 
 Phase 006 shipped advisor routing projection from the workflow mode registry. It generated alias projection with drift protection and published resolved `workflowMode` values in advisor responses so callers can see the chosen route.
@@ -63,3 +61,5 @@ _No file-level detail recorded._
 ### Follow-Ups
 
 - None recorded.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/005-skill-interconnection` (Level 2)

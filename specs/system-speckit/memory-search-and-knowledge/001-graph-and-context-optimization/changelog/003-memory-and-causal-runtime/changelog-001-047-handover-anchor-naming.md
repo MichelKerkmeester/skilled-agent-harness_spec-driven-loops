@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/047-handover-anchor-naming`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 The `handover_state` router targeted `session-log`, an anchor that does not exist in the handover template or any live handover document. Every routed save to a handover file hit a missing-anchor planner blocker before the save logic could even evaluate the content. A second blocker appeared after the anchor was corrected: the structural validator rejected `append-section` into `session-notes` when existing notes contained tables. A V-rule early return also fabricated an empty `template-contract` blocker that hid the real diagnostic.
@@ -74,3 +71,6 @@ All three issues were fixed together. The router now targets `session-notes`, th
 
 - Resolve the 014 handover V8 quality advisory. The dry-run `would_pass:false` persists because the existing 014 handover document is cross-spec-heavy. The live planner route is blocker-free and targets `session-notes`. The V8 advisory is a separate cross-spec-content concern.
 - Fix the unrelated fault-injection dimension mismatch in the handler-memory-save test suite. The failure stems from `EMBEDDING_DIM` fixture drift and is not connected to the handover router change.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/047-handover-anchor-naming`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

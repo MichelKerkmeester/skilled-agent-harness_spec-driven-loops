@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/005-fix-opencode-plugin-loader-bridge` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`
-
 ### Summary
 
 OpenCode 1.3.17 crashed immediately on TUI launch in every directory that resolved `.opencode/plugins/` from this repo. The bun TUI worker printed a JSON error envelope: `TypeError: null is not an object (evaluating 'plugin2.auth')`. OpenCode was entirely non-functional until this was fixed.
@@ -95,3 +92,6 @@ Two later phases extended the fix. Phase 4 remapped the skill-advisor plugin fro
 - Confirm that two bridge helper files (`spec-kit-skill-advisor-bridge.mjs` and `spec-kit-compact-code-graph-bridge.mjs`) were staged correctly as delete/add pairs after the `git mv` sandbox denial prevented atomic rename commits.
 - Regenerate memory embeddings for this packet after an embedding provider becomes available. The `generate-context.js` run exited 0 but embedding-provider calls failed. Entries are BM25/FTS-searchable but not vector-searchable.
 - Review the module-global state design in the skill-advisor plugin. The current single-module cache and status object is adequate for one OpenCode session but may cause state leaks in multi-instance scenarios.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/005-fix-opencode-plugin-loader-bridge` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

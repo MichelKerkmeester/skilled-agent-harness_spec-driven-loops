@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/006-dark-flag-validation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`
-
 ### Summary
 
 This phase validated each 005-dark-flag-graduation GRADUATE winner against the full range of plausible real-world scenarios beyond the labeled benchmark set. A four-iteration deep research pass triangulated implementation code (9 source files), benchmark evidence (7 files across 5 clusters) and retrieval/graph/routing theory to produce per-cluster confidence assessments. A single-pass deep review then confirmed byte-identity when flags are off for all five clusters. All 69 tests across 12 suites passed with zero regressions. Verdict: PASS. Four clusters confirmed graduate-ready. One cluster (true-citation ledger) retains its REFINE status pending live traffic density.
@@ -60,3 +57,6 @@ Nothing. No defects were introduced or corrected in production paths.
 - Bitemporal reads consumer wiring is not confirmed end-to-end. The review recommends re-classifying bitemporal reads as REFINE before final production graduation decision. **Update: the writer wiring landed in the 011 graduation follow-ups (`007-graduation-follow-ups/001-codegraph-defaults-bitemporal`) — `code-graph-db.ts` now writes `valid_at`/`invalid_at` on the `replaceEdges` path behind `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS`.**
 - Three unset production tunables (degree-cap default 0, heartbeat cadence 0, lag ceiling 0) need defined values before flip.
 - Token-budget truncation at the MCP response-serialization boundary for multihop tail-appended rows (P1-001) warrants a follow-up `appendExempt` flag on the response serializer.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/006-dark-flag-validation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

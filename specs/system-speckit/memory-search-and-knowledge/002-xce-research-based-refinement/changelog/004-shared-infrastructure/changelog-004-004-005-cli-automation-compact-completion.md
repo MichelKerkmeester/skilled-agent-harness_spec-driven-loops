@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/005-cli-automation-compact-completion` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux`
-
 ### Summary
 
 The three daemon CLIs gained automation-friendly command discovery and generated shell completion. Full `list-tools --format json` still returns schemas for 37/8/9 tools, while compact and names-only modes provide smaller payloads for scripts and humans.
@@ -59,3 +56,6 @@ The three daemon CLIs gained automation-friendly command discovery and generated
 ### Follow-Ups
 
 - system-spec-kit alignment drift still reported two unrelated out-of-scope files in the source summary.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/005-cli-automation-compact-completion` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux`

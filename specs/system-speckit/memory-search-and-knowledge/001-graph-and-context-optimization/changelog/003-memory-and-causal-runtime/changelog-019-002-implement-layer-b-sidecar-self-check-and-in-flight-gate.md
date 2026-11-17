@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/002-implement-layer-b-sidecar-self-check-and-in-flight-gate` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper`
-
 ### Summary
 
 The rerank FastAPI sidecar had no background owner-liveness self-check, no app-level in-flight request gate, no idle timeout backstop plus no process-lifecycle telemetry. Sidecar processes could linger indefinitely after their registered owners disappeared, accumulating until the host ran out of resources.
@@ -73,3 +70,6 @@ Layer B owner self-check, Layer A idle backstop, a shared `InFlightGate` plus st
 ## Later Update (2026-06-04)
 
 The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits b8a866de2f, c99f990897 and ada2c51ee8. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/002-implement-layer-b-sidecar-self-check-and-in-flight-gate` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper`

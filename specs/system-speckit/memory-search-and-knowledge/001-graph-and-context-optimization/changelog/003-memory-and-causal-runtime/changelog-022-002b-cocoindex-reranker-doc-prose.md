@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/002b-cocoindex-reranker-doc-prose`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`
-
 ### Summary
 
 CocoIndex reranker documentation still described `BAAI/bge-reranker-v2-m3` after the canonical default moved to `Qwen/Qwen3-Reranker-0.6B`, which packet 021 flagged as 4 P0 doc-drift findings. Three docs were resynced to the Qwen3 default with size corrected from about 2.3 GB to about 1.1 GB. Verification also surfaced a separate problem, the docs claimed the daemon log shows a positive reranker load trace, which was never accurate. The prose now describes silent-success load semantics where warnings appear only on failure paths.
@@ -57,3 +54,6 @@ CocoIndex reranker documentation still described `BAAI/bge-reranker-v2-m3` after
 ### Follow-Ups
 
 - If a future CocoIndex version adds explicit reranker load tracing, the docs would need a forward-looking update. That would be a new change, not drift remediation
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/002b-cocoindex-reranker-doc-prose`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

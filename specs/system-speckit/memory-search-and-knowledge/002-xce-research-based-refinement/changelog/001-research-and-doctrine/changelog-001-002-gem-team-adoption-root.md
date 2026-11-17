@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption` (Phase Parent)
-
 ### Summary
 
 This phase introduced a typed advisory agent I/O contract across three sequential waves. Wave 1 created the shared contract reference and propagated optional dispatch headers and result envelopes to all five core agents across three runtime mirrors. Wave 2 added predicate-scoped pre-execution and handoff gates to prevent unnecessary ceremony on small changes while carrying typed context for debug-to-implementation crossings. Wave 3 extended the contract with planner-emitted reviewer-focus hints and implementation-time spec-drift recommendations. All changes are additive and advisory; existing markdown agent bodies and Logic-Sync authority are unchanged.
@@ -73,3 +71,5 @@ This phase introduced a typed advisory agent I/O contract across three sequentia
 - Direct `sk-code/SKILL.md`, debug-delegation template and scaffold-script surfaces are flagged for a future scope-approved pass.
 - No runtime parser or validator enforces the contract; enforcement is a follow-on concern.
 - `ThinContinuityRecord` schema work deferred beyond this phase.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption` (Phase Parent)

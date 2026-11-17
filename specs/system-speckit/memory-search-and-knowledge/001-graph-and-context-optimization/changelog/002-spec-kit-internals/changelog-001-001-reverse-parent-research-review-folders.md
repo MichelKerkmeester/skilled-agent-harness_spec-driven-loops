@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix`
-
 ### Summary
 
 The deep-loop artifact placement policy introduced during `007-deep-review-remediation/006-integrity-parity-closure` had routed child-phase research and review packets under ancestor root folders, breaking local ownership and scattering child history away from the owning phase. Reducers, prompts, docs plus tests were forced to coordinate through a parent root instead of the actual target spec.
@@ -76,3 +73,6 @@ A heuristic migration script discovered and moved 86 misplaced child-owned packe
 
 - Direct Node assertions replaced vitest for this packet. The workspace could not load `vitest/config` from the system-spec-kit config path, so executable verification used inline Node assertions instead of the committed `*.vitest.ts` files. A follow-up should wire the resolver tests into the standard vitest suite once the config path is resolved.
 - Migration reporting lives outside the repo. The applied and post-scan JSON reports were captured in `/tmp/` paths for verification but were not committed as packet artifacts. Consider committing the final migration summary as a packet artifact for audit permanence.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix`

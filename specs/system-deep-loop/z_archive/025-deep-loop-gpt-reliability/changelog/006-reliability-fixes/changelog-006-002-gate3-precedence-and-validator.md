@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-03
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes/002-gate3-precedence-and-validator` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 Status: Planned. This child is the P0 reliability fix for GPT's repeated Gate-3 autonomous-command halt: add an autonomous-precedence bridge only when a spec folder is validly bound, and ship a concrete `validateSpecFolderBinding()` that the satisfaction rule calls instead of trusting caller-provided booleans.
@@ -51,3 +48,6 @@ Status: Planned. This child is the P0 reliability fix for GPT's repeated Gate-3 
 
 - Execute after `006-001` provides the rollout foundation.
 - Keep the validator load-bearing: autonomous satisfaction must depend on the predicate result, not on a caller label.
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes/002-gate3-precedence-and-validator` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

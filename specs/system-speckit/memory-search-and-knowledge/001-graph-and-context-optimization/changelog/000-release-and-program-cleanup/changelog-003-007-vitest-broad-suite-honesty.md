@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/007-vitest-broad-suite-honesty` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 Packet 026's implementation summary claimed "all Vitest green" across the broad suite. The 011 deep-review reproduced broad-suite hangs and flagged this as F-005. A progressive Vitest investigation ran subgroup commands with bounded timeouts to identify every failing or hanging file. Each file was classified as pre-existing, environment-sensitive or 026-touched-but-not-026-induced. No 026-induced failure was confirmed, so no surgical test or runtime fix was applied. The 026 implementation summary was corrected to scope the green assertion to the targeted readiness subset with the broad-suite timeout named explicitly.
@@ -65,3 +62,6 @@ Packet 026's implementation summary claimed "all Vitest green" across the broad 
 
 - The full broad Vitest suite remains red or stuck. This packet documents the state without repairing pre-existing or environment-sensitive failures. A separate test-infrastructure packet should address the progressive-validation hang.
 - The two 026-touched files (`context-server.vitest.ts` and `modularization.vitest.ts`) fail assertions outside the readiness-removal diff. Fixing them would exceed this packet's scope and should be tracked as dedicated follow-up work.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/007-vitest-broad-suite-honesty` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

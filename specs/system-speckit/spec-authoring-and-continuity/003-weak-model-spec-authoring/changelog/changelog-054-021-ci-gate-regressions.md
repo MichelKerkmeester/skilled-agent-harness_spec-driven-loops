@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-26
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions` (Level 2)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 Phase 021 clears two CI gates that failed on main after packet 054 landed, both found by the completeness critic of a local alignment audit run over `ac2be31ec6..HEAD`. Changed-packet validation graded 104 benchmark-result packets kept under phase 011's `scratch/` folder and blocked on 81 of them; it now skips any `scratch/` path segment, as the validator's own discovery does. The divergence ratchet saw `/deep:research :auto` prompts route to spec-kit, because the intent signal `draft auto-repair` gave spec-kit the token `auto`; the signal is now `spec docs`. The phase also fixes the run's in-range P1 and P2 findings, and system-spec-kit is now 2.12.2.0.
@@ -60,3 +57,6 @@ Phase 021 clears two CI gates that failed on main after packet 054 landed, both 
 
 - The live advisor still ranks spec-kit just above deep-loop for rr-iter3-168 (0.5744 against 0.5665), and prompts that name only Draft auto-repair no longer reach spec-kit. A scorer change that ignores `:auto` mode flags would fix both.
 - 244 lint problems remain in `runtime/`; they predate 054 and no CI step runs that lint.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions` (Level 2)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

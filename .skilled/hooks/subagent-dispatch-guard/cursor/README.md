@@ -1,5 +1,5 @@
 ---
-title: "Task Dispatch Hooks: Cursor Adapter"
+title: "Cursor Task Dispatch Guard: preToolUse Adapter"
 description: "Cursor preToolUse adapter that delegates the dispatch decision to the Claude guard and translates its envelope."
 trigger_phrases:
   - "cursor task dispatch guard"
@@ -8,53 +8,51 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# Task Dispatch Hooks: Cursor Adapter
+# Cursor Task Dispatch Guard: preToolUse Adapter
 
 ---
 
 ## 1. OVERVIEW
 
-`cursor/` holds the Cursor adapter for the Task Dispatch concern. Cursor runs it from a `preToolUse` entry with the matcher `Task` in `.cursor/hooks.json`. That entry allows 10 seconds. It sits beside the unmatched Spec Gate entry, which covers every tool call.
+`.skilled/hooks/subagent-dispatch-guard/cursor/` holds the Cursor adapter for the Task Dispatch concern. It runs at `preToolUse` on a `Task` call and carries no policy of its own. It builds a payload and spawns the Claude guard. It then translates the reply into Cursor's permission envelope.
 
-The adapter holds no policy of its own. It builds a payload from the Cursor event and spawns `../claude/task-dispatch-guard.cjs` by repository-relative path. It then translates the returned `hookSpecificOutput` into Cursor's permission envelope.
+Cursor registers the adapter in `.cursor/hooks.json` as a second entry in the `preToolUse` array, with `"matcher": "Task"` and a 10-second timeout. The entry wraps the command in a drift fallback. When the adapter file is missing or `node` fails, the fallback prints an `mk-hook-drift` line on stderr and writes an allow envelope on stdout with `mkHookDrift` set, so the call proceeds. A deny exits 2, which trips the same fallback: the registered command prints the deny, then the drift line and the allow envelope, and exits 0. Which envelope Cursor acts on is unconfirmed.
 
-Claude, Devin, DSH, OpenCode, Pi and Vibe run the same guard through their own adapters.
+The concern key is `task-dispatch`, and its switch is `SYSTEM_TASK_DISPATCH_DISABLED`. The adapter checks that switch before it reads stdin, so a disabled concern returns `{"permission":"allow"}` at once. The check goes through `isHookEnabled` in `.skilled/hooks/shared/hook-flags.mjs`, so `SYSTEM_HOOKS_DISABLED=1` is the master switch.
+
+A `Task` call builds a fresh payload. `tool_input` and `session_id` pass through unchanged. `cwd` comes from `workspace_roots[0]` and falls back to the process directory. The child runs through `process.execPath` with a 5-second timeout and a 1 MiB stdio cap. A timeout sends `SIGKILL` and leaves no output, which approves the call.
+
+A deny from the child becomes `permission: deny`, with the reason in `user_message` and `agent_message`. The adapter then exits 2. Warning text becomes `permission: allow` with the text in `agent_message`.
+
+Every failure ends the same way: `{"permission":"allow"}` on stdout and exit 0. That covers a payload that is not JSON, a tool name other than `Task`, a spawn error, non-JSON child output and an internal throw. A fault in this adapter costs a dispatch check, not the dispatch.
 
 ---
 
-## 2. FILES
+## 2. DIRECTORY TREE
+
+The folder is flat. The table names every entry except this README.
 
 | File | Responsibility |
 |---|---|
-| `task-dispatch-guard.mjs` | The Cursor `preToolUse` adapter. It reads the event, spawns the Claude adapter and translates the reply into Cursor's permission envelope. |
-
-The adapter checks the `task-dispatch` switch first, so a disabled switch returns `permission: allow` at once. It then parses stdin, so a payload that is not JSON returns the same envelope. A `tool_name` other than `Task` also returns `permission: allow` before any child runs.
-
-For a `Task` call it builds a fresh payload. `tool_input` and `session_id` pass through unchanged. `cwd` comes from `workspace_roots[0]` and falls back to the process directory.
-
-It spawns the Claude adapter through `process.execPath`. The child gets a 5 s timeout and a 1 MiB stdio cap. It runs in the project directory with the parent environment. A timeout kills the child with `SIGKILL` and leaves no output, so the adapter approves. A spawn error approves the same way.
-
-A deny becomes `permission: deny` with `user_message` and `agent_message` set to the reason. The adapter then exits 2. A warn becomes `permission: allow` with the advisory in `agent_message`. Any other reply, including non-JSON output, returns a bare `permission: allow`.
-
-Every throw inside the adapter ends in that same bare allow. A bug here never blocks a correctly scoped dispatch.
+| `task-dispatch-guard.mjs` | The adapter. It checks the `task-dispatch` switch and builds the child payload. It then translates the reply. |
 
 ---
 
 ## 3. VALIDATION
 
-Run from the repository root.
+Run the smoke from the repository root. It sends a `Task` dispatch whose declared mode conflicts with the target, so the child returns a deny and the adapter translates it.
 
 ```bash
-printf '%s' '{"tool_name":"Read"}' | node .skilled/hooks/subagent-dispatch-guard/cursor/task-dispatch-guard.mjs
+printf '%s' '{"tool_name":"Task","tool_input":{"subagent_type":"deep-review","prompt":"mode=research do the thing"}}' | SYSTEM_DEEP_LOOP_GUARD_REJECT=1 node .skilled/hooks/subagent-dispatch-guard/cursor/task-dispatch-guard.mjs
 ```
 
-Expected result: `{"permission":"allow"}` and exit 0. A tool name other than `Task` returns before the child runs.
+Expected result: one JSON line with `"permission":"deny"` and the `Deep Route mode mismatch` reason in `user_message` and `agent_message`, then exit status 2.
 
 ---
 
 ## 4. RELATED
 
-- [`../README.md`](../README.md): the Task Dispatch concern, its runtime table and its switches.
+- [`../README.md`](../README.md): the concern folder, with the runtime table and the switch list.
 - [`../claude/task-dispatch-guard.cjs`](../claude/task-dispatch-guard.cjs): the Claude adapter this file spawns.
-- [`../lib/subagent-dispatch-guard.cjs`](../lib/subagent-dispatch-guard.cjs): the shared policy core behind the child.
+- [`../lib/subagent-dispatch-guard.cjs`](../lib/subagent-dispatch-guard.cjs): the shared policy core behind that child.
 - [`../../../../.cursor/hooks.json`](../../../../.cursor/hooks.json): the Cursor registration file.

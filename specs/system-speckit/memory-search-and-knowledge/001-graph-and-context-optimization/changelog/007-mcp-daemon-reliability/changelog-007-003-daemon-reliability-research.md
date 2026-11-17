@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-05-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/003-daemon-reliability-research` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The mk-spec-memory and mk_code_index MCP daemons were dying and disconnecting throughout sessions, forcing constant manual `/mcp` reconnects. The failures were not one bug but four independent defects.
@@ -64,3 +61,6 @@ None. Research-only phase.
 - Implement F3: replace `existsSync` bridge check with a liveness probe that reaps stale sockets and respawns on a dead socket (`launcher-ipc-bridge.cjs`)
 - Implement F4: build to a temp directory and use atomic rename to replace `dist/`, eliminating rebuild-while-running crashes
 - Confirm RC-5 (IPC per-connection leak) with a reconnect-churn RSS trace before investing in F5. The adversarial pass refuted the original claim but a trace would close the question definitively.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/003-daemon-reliability-research` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

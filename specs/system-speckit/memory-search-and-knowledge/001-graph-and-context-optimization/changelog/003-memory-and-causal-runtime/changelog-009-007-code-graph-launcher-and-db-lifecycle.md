@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/007-code-graph-launcher-and-db-lifecycle` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`
-
 ### Summary
 
 The code-index audit identified two related lifecycle hazards: the launcher had no per-effective-DB ownership gate, meaning a second launcher could contend for the same SQLite graph DB directory concurrently. Shutdown paths also had no proof that `closeDb()` actually ran before the process exited.
@@ -80,3 +77,6 @@ Phase 007 introduced canonical DB directory identity via `resolveCanonicalDbDir(
 - The launcher carries a CommonJS owner-lease implementation rather than importing the TypeScript helper directly, because the launcher must run before build and bootstrap can be assumed. A follow-on pass could align this once build assumptions stabilize.
 - Read-path friction item 16 was deferred and remains out of scope for this phase. Track in a read-path or final regression packet.
 - Broader `system-code-graph` suite triage for the 31 pre-existing failures is handled separately in `011-system-code-graph-suite-triage`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/007-code-graph-launcher-and-db-lifecycle` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

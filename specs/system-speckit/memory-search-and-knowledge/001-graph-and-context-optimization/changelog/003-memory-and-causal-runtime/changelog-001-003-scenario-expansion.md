@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/003-scenario-expansion` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit`
-
 ### Summary
 
 The mk-spec-memory manual testing playbook had no coverage for session bootstrap, session resume, session health, retention sweep dry-run, eval ablation edge cases, embedder list/set/status tooling. Governance tools introduced in 016/003 were also uncovered. The cat-24 quality scenarios had stale example displays and a threshold mismatch.
@@ -89,3 +86,6 @@ The mk-spec-memory manual testing playbook had no coverage for session bootstrap
 - Update scenario 06/027 to remove the `scope` parameter or add a scoped handler to the `memory_causal_stats` contract.
 - Update scenario 07/028 to remove the dataset selector or add a handler-supported empty-fixture path.
 - Update scenario 17/278 to use an allowed memory-root path or document the policy rejection as the expected outcome.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/003-scenario-expansion` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit`

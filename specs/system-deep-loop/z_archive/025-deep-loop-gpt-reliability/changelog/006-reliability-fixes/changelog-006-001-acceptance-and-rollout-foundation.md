@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-03
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes/001-acceptance-and-rollout-foundation` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 Status: Planned. This child defines the acceptance-harness and rollout prerequisites for the reliability-fixes track: fix behavior-benchmark measurement gaps, remove path-token leakage from vague-ask prompts, add instrumentation, define multi-sample acceptance, add one non-GPT executor leg, and build a per-command feature-flag fallback.
@@ -51,3 +48,6 @@ Status: Planned. This child defines the acceptance-harness and rollout prerequis
 
 - Execute this child first before the rest of track 006.
 - Publish the corrected behavior-benchmark baseline before claiming any downstream cell flip.
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes/001-acceptance-and-rollout-foundation` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

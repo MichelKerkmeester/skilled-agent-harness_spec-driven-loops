@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-04-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`
-
 ### Summary
 
 Cross-runtime proactive skill-advisor hook surface. Each `UserPromptSubmit` event in Claude, Gemini, Copilot, and Codex runs `buildSkillAdvisorBrief(prompt, {runtime})` which returns a typed `AdvisorHookResult` rendered to the model as additional context. Brief emits a sanitized skill recommendation with freshness/confidence/uncertainty fields. Fail-open contract returns `{}` on any error. Delivery spanned three research waves plus 8 implementation children plus an integration gauntlet, all executed in approximately 6 hours of autonomous orchestration.
@@ -67,3 +64,6 @@ Cross-runtime proactive skill-advisor hook surface. Each `UserPromptSubmit` even
 
 - Copilot current-turn semantics differ from Claude/Gemini/Codex (writes to custom instructions, read on next prompt).
 - Level 3 checklist remains pending.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 3)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`
-
 ### Summary
 
 CocoIndex's hybrid fusion had inherited RRF defaults (`k=60`, `vec_weight=0.7`, `fts_weight=0.7`) that were never empirically validated against the corrected pipeline from packets 013-016. A sweep harness and deterministic analyzer were built and run across a 7-cell neighborhood of the default config. All seven cells produced identical hit rate (12/18) on the corrected 18-probe fixture under bge-code-v1, confirming that the six missed probes fail at the recall stage and are not recoverable by RRF re-weighting. The latency-optimum cell `(K=60, V=0.9, F=0.5)` was selected by the deterministic picker and locked as new production defaults in `config.py`, delivering a 2.8 percent p95 latency improvement at identical recall. ADR-020 documents the sweep grid, the finding, the rollback path plus guidance for future re-sweeps when the embedder or corpus changes.
@@ -73,3 +70,6 @@ CocoIndex's hybrid fusion had inherited RRF defaults (`k=60`, `vec_weight=0.7`, 
 - Re-run the sweep harness when a new embedder or reranker is promoted to production. The harness supports arbitrary grids via the three JSON-list env vars.
 - ADR-020 rollback path uses `COCOINDEX_HYBRID_VECTOR_WEIGHT=0.7 COCOINDEX_HYBRID_FTS5_WEIGHT=0.7` env overrides to revert to pre-017 defaults without a code change.
 - The six consistently missed probes (5, 10, 12, 13, 14, 18) fail at the recall stage. Improving hit rate beyond 12/18 under bge-code-v1 requires a better candidate set, not RRF re-weighting. Track as input to a future embedder or chunking packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/012-adapter-resident-memory-benchmark` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`
-
 ### Summary
 
 Arc 009 phase 008 shipped adapter close idempotence and a fallback RSS gate but kept severity at P2 (default) because growth had not yet been measured. Remediation-map item #13 explicitly deferred escalation pending benchmark evidence. Without measurement, a real resident-memory leak could hide in P2 noise indefinitely.
@@ -72,3 +69,6 @@ Live RSS runs were blocked by the sandbox: `ps` is denied so the process-memory 
 - Run both benchmark scripts on the operator machine to collect live RSS slope numbers and make a final P2 hold or P1 escalation decision.
 - If live runs confirm growth above 10 MB per 50 iterations, open a follow-on packet for the underlying adapter memory leak.
 - Restore or relocate the benchmark scripts if the mcp-coco-index skill is reconstituted under a new path.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/012-adapter-resident-memory-benchmark` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

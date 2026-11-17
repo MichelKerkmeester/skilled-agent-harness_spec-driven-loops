@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The shared daemon can now be configured to outlive its owning session. Phase 017 made the owner exit cleanly, but the daemon still died with it because shutdownLauncherForSignal explicitly kills the context-server child. This packet lands the flag-gated, default-off foundation for the "complete" RC-2 fix: when enabled, the owner spawns the daemon detached and, on shutdown, releases it for a live secondary to bridge to instead of killing it. It ships dormant — default-off is byte-identical to phase 017 — because the full benefit needs a multi-session runtime-validation pass this session cannot do.
@@ -60,3 +57,6 @@ The shared daemon can now be configured to outlive its owning session. Phase 017
 - Foundation, not live hardening. The flag is default-off; the benefit (daemon survives owner exit) only materializes once a runtime-validation pass enables it. Default behavior matches the prior phase.
 - Secondary ownership adoption is unproven, with a split-brain mechanism identified. After release, a secondary can bridge to the surviving daemon's socket, but full re-election of recycle ownership is not yet validated. Cross-validation pinned the exact blocker: the released daemon lease still records the exiting launcher's pid, so an adopter that liveness-checks the lease pid sees a dead pid, treats the lease as stale, and spawns a second daemon. Before the flag can be enabled, the release must rewrite the lease into an explicit released/ownerless state and the adopter must adopt rather than respawn.
 - Terminal death relies on the orphan sweeper. A released daemon reparents to pid 1; until ownership adoption and idle-death are validated, the orphan sweeper bounds any released-daemon leak.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

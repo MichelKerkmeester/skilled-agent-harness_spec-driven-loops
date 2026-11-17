@@ -8,8 +8,6 @@
 
 Transformed the sk-improve-agent evaluation from structural keyword-checking (~15-20% coverage) to a 5-dimension integration-aware scoring framework. Added two new scripts (integration scanner, dynamic profile generator), refactored three existing scripts for dimensional scoring, executed a repo-wide rename from `sk-recursive-agent` to `sk-improve-agent`, and rewrote all documentation and command surfaces to match the new capabilities.
 
-> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/008-sk-recursive-agent-holistic-evaluation/`
-
 ---
 
 ## New Features (4)
@@ -122,3 +120,5 @@ Transformed the sk-improve-agent evaluation from structural keyword-checking (~1
 ## Upgrade
 
 No migration required. The rename was atomic and verified with zero stale references. Legacy `--profile` scoring mode remains backward compatible.
+
+> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/008-sk-recursive-agent-holistic-evaluation/`

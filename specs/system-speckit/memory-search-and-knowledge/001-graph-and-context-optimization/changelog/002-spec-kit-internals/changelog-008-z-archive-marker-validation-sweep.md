@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-05-02
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`
-
 ### Summary
 
 Phase 008 swept the `z_archive/` directories for SPECKIT_LEVEL and SPECKIT_TEMPLATE_SOURCE markers after the greenfield template migration. Archive folders contain historical spec-folder snapshots that are no longer actively maintained but must remain readable. The sweep confirmed that all archive markers reference valid historical template paths and fall under the ADR-005 indefinite support policy: their SPECKIT_TEMPLATE_SOURCE markers remain descriptive provenance, and the validator does not enforce marker presence or current-path resolution on archived folders.
@@ -55,3 +52,6 @@ Two commits: `a5f06d201a`, `7beb807694`.
 ### Follow-Ups
 
 - None. The template-levels track is complete through this sweep.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels` (Level 3)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

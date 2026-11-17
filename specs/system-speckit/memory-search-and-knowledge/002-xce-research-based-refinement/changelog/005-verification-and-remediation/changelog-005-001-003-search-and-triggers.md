@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/003-search-and-triggers` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation`
-
 ### Summary
 
 The search and triggers lane closed all recorded backlog entries. The source summary records the same verify-first process used by the other lanes: Fable adjudication, gpt-5.5-fast implementation of confirmed code findings, direct doc fixes by the orchestrator, and independent re-verification.
@@ -53,3 +50,6 @@ The search and triggers lane closed all recorded backlog entries. The source sum
 ### Follow-Ups
 
 - Waived P2 entries are recorded with reasons.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/003-search-and-triggers` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation`

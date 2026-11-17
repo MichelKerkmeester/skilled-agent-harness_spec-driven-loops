@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-09
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli`
-
 ### Summary
 
 The code-index runtime integration wired warm-only CLI fallback into Claude and Codex prompt-submit hooks and REPAIRED the mk-code-graph bridge: the previous in-process dist/DB import approach (reverted in 026/008 as a direct-DB dual-writer hazard) was replaced with the CLI route. The plugin now synthesizes its transport contract from the status payload. Maintenance tools are blocked at prompt time. MCP registrations stayed untouched.
@@ -65,3 +62,6 @@ The code-index runtime integration wired warm-only CLI fallback into Claude and 
 
 - Dual-stack observation window remains open by design
 - Final program-level multi-runtime transport-down drill tracked outside this phase
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli`

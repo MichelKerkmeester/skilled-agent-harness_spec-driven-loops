@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-11
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/014-automatic-drift-self-healing` (Level recorded in phase evidence)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory`
-> Historical alias: `011-automatic-drift-self-healing`
-
 ### Summary
 
 This migration index makes the shipped phase discoverable at its final packet-local path without rewriting its historical identity. The allowed implementation evidence records: Implemented a default-off capability flag, SPECKIT_QUERY_TIME_EXISTENCE_FILTER, for the hot memory_search path. When enabled, final top-k rows whose backing file_path no longer exists are filtered from the response and added to a config-table suspect queue. The query path does not delete rows; deletion is deferred until a later scan confirms the absence.
@@ -49,3 +45,7 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 ### Follow-Ups
 
 - Evidence gap: tasks.md records 42 of 43 checklist items checked. This index does not upgrade completion status.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/014-automatic-drift-self-healing` (Level recorded in phase evidence)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory`
+> Historical alias: `011-automatic-drift-self-healing`

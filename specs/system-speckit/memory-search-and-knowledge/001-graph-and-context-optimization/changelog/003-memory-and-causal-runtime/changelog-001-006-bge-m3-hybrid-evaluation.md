@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-12
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/006-bge-m3-hybrid-evaluation` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 No ground-truth measurement existed for retrieval quality against this codebase. EmbeddingGemma-300m was selected for cocoindex in phase 002 based on published benchmark scores, without measuring actual MRR on local code. bge-m3 offers hybrid retrieval (dense vectors, sparse lexical scores, colbert multi-vector via Reciprocal Rank Fusion) that can improve recall on lexical-heavy code queries, but the sqlite-vec schema would need a multi-column redesign to support it.
@@ -65,3 +62,6 @@ None.
 - Run EmbeddingGemma-300m baseline, bge-m3 dense, then bge-m3 hybrid, recording results to `scratch/results-*.json`.
 - Record ship or don't-ship decision in implementation-summary based on whether hybrid beats baseline by 5pp MRR@10.
 - Packet may be incomplete. Verify execution results before publishing as shipped.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/006-bge-m3-hybrid-evaluation` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

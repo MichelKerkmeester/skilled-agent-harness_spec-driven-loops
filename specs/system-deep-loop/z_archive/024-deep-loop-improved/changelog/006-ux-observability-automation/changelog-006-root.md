@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation` (Level 2)
-
 ### Summary
 
 Phase 007 shipped operator-facing loop controls and visibility: dashboard trends, telemetry heartbeat lifecycle, normalized observability events, run-now control, per-iteration memory refresh and dry-run boundaries. It made long runs easier to inspect, nudge and rehearse without changing the core loop behavior.
@@ -68,3 +66,5 @@ _No file-level detail recorded._
 ### Follow-Ups
 
 - None recorded.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation` (Level 2)

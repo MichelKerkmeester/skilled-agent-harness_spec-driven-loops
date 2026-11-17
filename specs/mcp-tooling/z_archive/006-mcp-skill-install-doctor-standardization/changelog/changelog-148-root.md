@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/mcp-tooling/006-mcp-skill-install-doctor-standardization` (Level 2)
-
 ### Summary
 
 The `mcp-*` skills now meet users at the same install and diagnostic line. Each skill ships an `INSTALL_GUIDE.md`, a verify-only `install.sh` where needed and a read-only `doctor.sh`, while `/doctor:mcp` recognizes the shared CLI diagnostic class. The packet also promotes `mcp-figma` to `1.0.0.0`, adds the missing `mcp-open-design` pointer doc and connects the design skills through both documentation and the skill graph.
@@ -82,3 +80,5 @@ The `mcp-*` skills now meet users at the same install and diagnostic line. Each 
 - The new scripts were not executed against a live app. `bash -n` and host fact-checking confirm syntax and CLI facts, but `install.sh` and `doctor.sh` for open-design, chrome-devtools and click-up were not run end to end against a running desktop app or browser. They are read-only or verify-only by design.
 - `mcp-open-design/SKILL.md` is 3 words over the recommended 3000. The cross-reference addition pushed it to 3003 words. This is a soft `package_skill` warning, not a failure.
 - Pre-existing em dashes remain in untouched files. `mcp-click-up/scripts/install.sh` and two unrelated lines of `doctor_mcp_install.yaml` carry em dashes from earlier work. They were left under scope lock because this packet did not author those lines.
+
+> Spec folder: `.opencode/specs/mcp-tooling/006-mcp-skill-install-doctor-standardization` (Level 2)

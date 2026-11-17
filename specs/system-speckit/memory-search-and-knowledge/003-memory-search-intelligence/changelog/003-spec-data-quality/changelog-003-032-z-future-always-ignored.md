@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/032-z-future-always-ignored` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 A scoped fix to the graph-metadata backfill generator so its tree walk unconditionally skips the `z_future` staging area. The walk previously pruned `z_future` only under the `--active-only` flag, so a default run descended into the staging tree and the parser threw `Spec folder is not under a supported specs root` at the refresh site. The fix adds `z_future` to the walk exclusion set, corrects the header comment, and rebuilds the dist. Only `z_future` becomes unconditional, `z_archive` is deliberately left included by default and skippable via `--active-only`.
@@ -50,3 +47,6 @@ A scoped fix to the graph-metadata backfill generator so its tree walk unconditi
 
 - Add a `z_future`-exclusion case to `.opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts`, which covers `z_archive` inclusion but has no `z_future`-exclusion test.
 - Check whether other generators that walk the specs tree share the same default-enters-`z_future` shape and need the same guard.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/032-z-future-always-ignored` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

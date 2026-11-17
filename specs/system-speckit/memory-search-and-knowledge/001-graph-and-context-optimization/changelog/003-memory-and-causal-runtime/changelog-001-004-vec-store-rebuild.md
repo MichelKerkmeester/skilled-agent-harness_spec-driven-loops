@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-12
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/004-vec-store-rebuild` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 After the 003 config rollout, both the memory vec store and the CocoIndex sqlite held data from pre-Setup-A models: Voyage 1024-dim in memory and MiniLM 384-dim in code search. Both stores needed a clean rebuild under EmbeddingGemma-300m-ONNX (768-dim) so hybrid memory search returned vector-grade similarity scores and the code index matched the new model identity.
@@ -75,3 +72,6 @@ The CocoIndex side was prepped: the stale 2.0GB MiniLM `target_sqlite.db` was de
 - Resolve CocoIndex `msgspec.DecodeError` on `SearchRequest` frames while the daemon is mid-index. Tracked under 009-cocoindex-ipc-fix.
 - Sweep all `.opencode/skills/*/mcp_server/` venvs to confirm none point cross-repo after the Barter editable-install drift was found in this phase.
 - Investigate slow CocoIndex indexing rate. At roughly 10 rows per second the full repo takes hours rather than minutes. Daemon runs on Metal but shows only 5-9% CPU during indexing.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/004-vec-store-rebuild` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/003-generic-query-deep-routing` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 A two or three word generic query carries real intent but little lexical anchor, so it was classified `simple` and routed to the smallest retrieval and budget path, which is the worst path for a query that needs recall help. This phase teaches the classifier to recognize that shape and escalate it. A query of two or three terms with no strong anchor token and a stop-word ratio at or above one half is now escalated from `simple` to `complex` with low confidence, so it earns the wider retrieval path instead of the narrow one. The expander gained semantic, retrieval, agent, skill and council synonym groups so those generic topics expand into the vocabulary the corpus actually uses. And the recovery payload now populates its suggested queries from the expansion variants, so a weak result set comes back with concrete better queries to try rather than a bare disambiguation prompt.
@@ -58,3 +55,6 @@ A two or three word generic query carries real intent but little lexical anchor,
 ### Follow-Ups
 
 - The synonym groups are seeded for the topics that surfaced in the research. Broader coverage should be driven by real low-recall query logs rather than hand-authored ahead of evidence.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/003-generic-query-deep-routing` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

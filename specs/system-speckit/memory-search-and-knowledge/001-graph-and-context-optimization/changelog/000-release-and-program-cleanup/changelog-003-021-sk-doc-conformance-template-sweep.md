@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 Most sk-doc-governed surfaces across the tree had drifted from the canonical format that sk-doc itself defines. An audit by 7 parallel cli-codex agents found that 14 of 15 manual_testing_playbook directories, 5 of 7 feature catalogs plus 25 of 33 system-spec-kit references had structural drift. The templates folder also carried legacy artifacts: a `sharded/` multi-file spec format, a hyphen-cased `stress-test/` directory plus an inconsistently cased `level3plus-govern/` addendum.
@@ -83,3 +80,6 @@ A four-tier bounded-wave sweep used deterministic sed/awk for mechanical relabel
 - Run `memory_search` smoke tests for renamed paths to confirm advisor recommendations still resolve correctly post-sweep.
 - Open a follow-on packet to fix the sk-doc validator `missing_toc` classifier quirk that misclassifies per-feature catalog snippets as readme type. This affects the entire repo, not just this sweep.
 - Refresh the `mcp-click-up/manual_testing_playbook/` CLU-001..CLU-012 scenarios when the mcp-click-up parent skill directory is restored to the tree.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/020-code-index-reconnecting-proxy` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 A code-index client no longer dies when its daemon's owner does. mk-spec-memory already survived a recycle or owner change transparently through a reconnecting session proxy; mk-code-index did not — it bridged through a raw socket, so an owner death surfaced as a hard Connection closed. Now mk-code-index fronts its daemon with the same proxy, so the client reattaches to the respawned backend and replays in-flight read queries. This was the worst of the deferred failure modes (the code-graph daemon had no reconnect at all).
@@ -61,3 +58,6 @@ A code-index client no longer dies when its daemon's owner does. mk-spec-memory 
 - Runtime-unverified this session. The new wiring activates on a fresh launcher, so the transparent reattach is confirmed by unit tests and the shared proxy's existing coverage, not by live observation yet.
 - Replay set is conservative. Only known read-only code-graph tools replay; any new code-index tool defaults to non-replayable until explicitly added.
 - Inherits the proxy's known gaps. The secondary-index replay caveat documented for mk-spec-memory does not apply to code-graph reads, but any future idempotency gaps in the shared proxy affect both servers.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/020-code-index-reconnecting-proxy` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

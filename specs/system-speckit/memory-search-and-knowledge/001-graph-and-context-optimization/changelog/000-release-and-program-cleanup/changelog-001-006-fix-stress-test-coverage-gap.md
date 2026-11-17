@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-30
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/006-fix-stress-test-coverage-gap` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness`
-
 ### Summary
 
 After the 042 audit identified 54 total stress coverage gaps and packet 043 closed the 10 highest-priority ones, 36 P1 and P2 gaps remained: 6 features with thin direct coverage and 30 features with bounded but untested runtime surface. The stress backlog represented the final release-readiness risk for `code_graph` and `skill_advisor`.
@@ -87,3 +84,6 @@ The stress suite grew from 38 files and 94 tests to 56 files and 159 tests, all 
 - Reconcile the catalog claim that sa-036 covers 52 cases against the checked-in regression fixture which has 51 cases. A docs packet can resolve the catalog-fixture drift without changing the test.
 - The FIXME-tagged loose assertion in sa-011 (`syncDerivedMetadata` idempotence) requires a product change to sharpen. Track in a follow-on product packet.
 - Perform a flake-soak run if CI reports intermittent failures. A single clean run was accepted. Repeated runs were deferred.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/006-fix-stress-test-coverage-gap` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness`

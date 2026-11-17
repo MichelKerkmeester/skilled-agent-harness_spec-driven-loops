@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`
-
 ### Summary
 
 CocoIndex indexes every project file under four runtime mirror prefixes (.opencode/, .codex/, .gemini/, .claude/). Before this packet, all four copies competed for slots in the rerank candidate window, polluting up to 75% of rerank slots in the worst case and degrading top-5 diversity for the user. The existing `_dedup_and_rank_hybrid_rows()` in query.py did not span mirror prefixes before the rerank cut.
@@ -76,3 +73,6 @@ The 18-probe corrected bench (three lanes) showed hit rate unchanged at 14/18 ac
 - Rerank-score JSONL files were empty in the retained bench run. Mirror-collapse behavior is demonstrated by targeted integration tests rather than rerank-score rows. A future bench run with a live daemon should confirm the rerank-score reduction.
 - Sequential-thinking MCP did not execute successfully across five attempts. The five calls are recorded as attempted. Future invocations should verify whether the tool is available in the active runtime context before depending on it.
 - Probes 1, 5, 12 and 15 remain genuine failures after mirror dedup. These are code-pipeline issues (chunking quality, query expansion) that packet 015 and 016 address.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

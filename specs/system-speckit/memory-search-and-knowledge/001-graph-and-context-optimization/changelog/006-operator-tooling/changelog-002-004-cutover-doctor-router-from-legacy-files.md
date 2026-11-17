@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/004-cutover-doctor-router-from-legacy-files` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator`
-
 ### Summary
 
 After Phase 1 shipped the new `/doctor` router additively, the repository held an intentional temporary overlap: 9 old per-target `.md` files in `.opencode/commands/doctor/` and matching `.toml` mirrors in `.gemini/commands/doctor/` lived alongside the new 3-file surface. The 23 manual playbook scenario files and 28 sandbox shell scripts still used old invocation forms such as `/doctor:memory` and `/doctor:mcp_debug`.
@@ -87,3 +84,6 @@ The shipped end state is `.opencode/commands/doctor/speckit.md` (argv-positional
 
 - Monitor advisor routing quality after reindex to confirm stale command descriptions are no longer surfaced.
 - Verify `.claude/commands/doctor/` auto-sync parity after any future git operations that touch `.opencode/commands/doctor/`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/004-cutover-doctor-router-from-legacy-files` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator`

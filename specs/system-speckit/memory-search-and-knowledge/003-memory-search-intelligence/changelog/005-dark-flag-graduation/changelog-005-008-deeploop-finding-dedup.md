@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/008-deeploop-finding-dedup` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`
-
 ### Summary
 
 This phase benchmarked three default-off deep-loop fan-out capabilities on the production merge and pool path: the near-duplicate finding dedup `SPECKIT_FANOUT_NEAR_DUP_DEDUP`, the lag-ceiling gauge, and the progress-heartbeat gauge. A labeled multi-worker fan-out finding set (17 source records across research and review lineages grounded in the real registry shape) was driven through the production `mergeResearchRegistries` and `mergeReviewRegistries` exports off vs on. The dedup collapsed every labeled near-duplicate restatement with pooled precision 1.0 and distinct-finding recall 1.0, removed 7 of 17 records as noise, kept the strongest severity on review collapse, and was byte-identical when off. The lag-ceiling fired exactly one warning when on and zero when off. The progress-heartbeat fired 43 steady records over a 2s run at a 0.05s cadence when on and zero when off. Verdict: GRADUATE for all three. No production default was flipped. The graduation flip is a separate evidence-gated decision this phase recommends but does not enact.
@@ -52,3 +49,6 @@ This phase benchmarked three default-off deep-loop fan-out capabilities on the p
 - The operator-facing default cadence for the progress-heartbeat is not yet picked. A production flip should tune the cadence to the typical lineage runtime so the signal is informative without being chatty.
 - The lag-ceiling threshold that best separates a healthy slow lineage from a stuck one is a configuration question the benchmark does not settle and depends on the deployment's lineage timeout budget.
 - The graduation flip for all three capabilities is a separate evidence-gated decision to be driven after the full suite verdicts land.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/008-deeploop-finding-dedup` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

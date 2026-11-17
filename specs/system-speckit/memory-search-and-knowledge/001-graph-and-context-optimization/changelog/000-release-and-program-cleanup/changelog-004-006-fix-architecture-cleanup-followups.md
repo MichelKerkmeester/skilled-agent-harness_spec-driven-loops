@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/006-fix-architecture-cleanup-followups` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`
-
 ### Summary
 
 The 046 deep-research audit flagged 15 P2 architectural violations split across three groups. Eight boundary-discipline failures let modules import across subsystem lines. Three dependency-graph cycles forced value-level circular imports via shared types. Four schema-duplication findings left hand-written union literals free to drift from their guards and Zod schemas. All 15 findings were closed in one commit via surgical refactors that extracted neutral seam modules, broke cycles by lifting shared types into dedicated files, removed a dead export. Every affected union type now derives from a canonical `typeof TUPLE[number]` definition. No public API surface changed at any call site.
@@ -106,3 +103,6 @@ The 046 deep-research audit flagged 15 P2 architectural violations split across 
 - Complete F-018-D3-04 for the full 60+-tool MCP contract surface. The partial fix covers `advisor_recommend` and `advisor_validate`. A full pass requires introducing `zod-to-json-schema` and refactoring `validateToolArgs` to read schemas centrally.
 - Remove `runWithBusyRetry` from its dual location. The neutral seam at `skill_advisor/lib/utils/busy-retry.ts` re-exports the watcher's copy. A future packet can consolidate to a single source once existing watcher test imports are updated.
 - Investigate `gate-d-benchmark-memory-search` p95 latency flake in CI if it persists beyond the current machine. The flake is environmental but should be tracked to confirm it does not appear in CI.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/006-fix-architecture-cleanup-followups` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

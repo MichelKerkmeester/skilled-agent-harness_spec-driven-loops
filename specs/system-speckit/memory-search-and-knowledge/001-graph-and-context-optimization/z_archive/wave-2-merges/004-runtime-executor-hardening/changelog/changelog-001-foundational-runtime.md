@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening`
-
 ### Summary
 
 A 50-iteration foundational deep-research pass (Phase 016) and a 7-iteration deep-review scored **CONDITIONAL** with 10 P1 + 18 P2 findings. A subsequent 7-iteration segment-2 deep-research extended the inventory to 27 consolidated tasks across 5 clusters (A scope normalization, B canonical-save surface, C ASCII sanitization, D code-graph sibling asymmetry, E Copilot observability). The dominant finding was **H-56-1**: the default `/memory:save` canonical-save path was a structural metadata-freshness no-op because `workflow.ts:1259` hardcoded `const ctxFileWritten = false`, making the 70-LOC description.json update block unreachable.
@@ -113,3 +110,6 @@ Phase 017 shipped 25 commits across 4 waves (A/B/C/D) closing all 27 tasks. The 
 - **T-SRS-BND-01 canary rollout**: Default is strict mode. `MCP_SESSION_RESUME_AUTH_MODE=permissive` has not been canary-verified.
 - **description.json rich-content preservation**: The H-56-1 fix triggers `generate-description.js` auto-regen that overwrites hand-authored rich content. Follow-up needed to preserve non-autogen fields.
 - **pre-existing `qualityFlags` bug**: `handler-memory-save.vitest.ts:3174` TypeError orthogonal to Phase 017 scope.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening`

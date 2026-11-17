@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/028-deep-review-research-skill-contract-fixes` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 Two contract violations in the deep-review and deep-research skill output were identified and fixed. First, `resolveArtifactRoot` always placed child-phase artifacts under a `{phaseSlug}-pt-01/` wrapper even on first run, producing unnecessary nesting when the parent `review/` or `research/` directory was empty. Second, the synthesis step in all four deep-loop YAML files never staged the iteration audit trail (state.jsonl, strategy file, findings-registry, deltas/, iterations/), so operators who committed only the synthesis report would silently drop the rest. Both bugs were fixed by updating the resolver to return flat on first run and adding a `step_stage_artifact_dir` step to all four YAML files.
@@ -74,3 +71,6 @@ Two contract violations in the deep-review and deep-research skill output were i
 - Existing `pt-01` folders created by previous reviews remain in place. The flat-first convention applies only to new runs. Both shapes are valid at lookup time.
 - The `git add {artifact_dir}` step runs unconditionally. Operators can run `git restore --staged {path}` to unstage any files they do not want in the commit.
 - Historical missing-iteration folders (for example `001-post-program-doc-and-state-cleanup-pt-01/` from commit `6a8095907`) are not migrated. New runs benefit from the fix.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/028-deep-review-research-skill-contract-fixes` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

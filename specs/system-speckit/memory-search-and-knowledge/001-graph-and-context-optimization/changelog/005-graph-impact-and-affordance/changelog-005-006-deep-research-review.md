@@ -18,9 +18,6 @@ contextType: "review"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/006-deep-research-review` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance`
-
 ### Summary
 
 Phase 006 and the 006/007 remediation pass claimed broad closure across the graph-impact and affordance work, but the shipped code, tests and playbook coverage had not been independently audited. A 10-iteration deep-research loop (cli-codex gpt-5.5 high fast, fresh context per iteration) checked every sub-phase from 006/001 through 006/006, all 33 claimed 006/007 closures and the 011 playbook coverage follow-up.
@@ -71,3 +68,6 @@ The loop reached convergence 0.93 at iteration 10 and produced 0 P0 regressions,
 - Implement remediation for D1 plus 8 P2 findings in downstream packet `006/008-closure-integrity-and-pathfix-remediation`.
 - Address the 4 P2 adversarial-coverage gaps in downstream packet `006/009-test-rig-adversarial-coverage`.
 - Resolve deferred findings D2, D3, D6, D18 and adapted finding D11 in the appropriate downstream remediation packets.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/006-deep-research-review` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance`

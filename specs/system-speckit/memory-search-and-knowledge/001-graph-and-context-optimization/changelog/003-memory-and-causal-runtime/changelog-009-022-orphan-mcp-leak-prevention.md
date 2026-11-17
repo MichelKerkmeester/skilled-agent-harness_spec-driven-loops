@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`
-
 ### Summary
 
 Repeated orphan MCP helper stacks under Codex.app and stale Claude Code launcher children were accumulating gigabytes of RAM during normal workstation use. The only mitigation was an unsafe manual process sweep. This packet converted that manual cleanup into three layers of reviewable automation: a dry-run-first process sweeper, a session-scoped Claude Stop cleanup script chained into the existing hook, plus server-side idle self-exit in Spec Kit Memory, Skill Advisor, plus Code Graph MCP servers.
@@ -88,3 +85,6 @@ All three layers are versioned in the repo. LaunchAgent activation and home-leve
 - Exercise Claude Stop cleanup by ending a live Claude Code session to confirm the hook runs end-to-end beyond the schema parity check.
 - Restore or regenerate the plist file (currently deleted from the repo) before attempting LaunchAgent activation.
 - Monitor dry-run output timing: process age is time-sensitive, so a fresh dry-run run early in a long session will capture freshest-young-MCP preserve logging that a late-session run misses.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

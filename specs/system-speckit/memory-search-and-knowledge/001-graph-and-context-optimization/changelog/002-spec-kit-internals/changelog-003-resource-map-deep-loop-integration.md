@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-26
 
-> Spec folder: `system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration` (Level 2)
-> Parent packet: `system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix`
-
 ### Summary
 
 Before this phase, autonomous deep-loop runs produced rich evidence across 5 to 15 iterations, but the output surface was split between iteration markdown files and narrative synthesis docs. Reviewers still had no flat, scannable view of "what did this loop actually touch." Running the path audit manually after every loop was repetitive.
@@ -88,3 +85,6 @@ Commits: `083f74c814` (test playbooks), `79ea13374c` (bulk WIP commit).
 ### Follow-Ups
 
 - T035 strict validator was deferred due to pre-existing packet-doc integrity drift in spec.md/plan.md plus an uncited line in research/research.md. These issues are outside the packet's implementation scope and do not block the feature.
+
+> Spec folder: `system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration` (Level 2)
+> Parent packet: `system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix`

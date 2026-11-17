@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/002-retroactive-automation/013-retrieval-feedback-edge` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Nothing is built yet. This phase is a PLANNED scaffold. The spec, plan, tasks, and checklist describe the intended impression-signal feedback edge, and no code is written. The detector module, the seam capture, and the refinement_queue table do not exist yet.
@@ -51,3 +48,6 @@ Nothing is built yet. This phase is a PLANNED scaffold. The spec, plan, tasks, a
 - Build this retroactive automation per plan.md on the shared safe-fix engine in `026-shared-safe-fix-engine`.
 - Acting on a below-floor edge is C2-gated and requires the prod-mode completeRecall@3/@5/@8 proof from `015-prodmode-recall-gate`, which does not exist yet. `DEFAULT_MIN_RESULTS = 3` is a never-cut-below-3 minimum not a cap, so a below-floor doc is one the cliff or token-budget stage trimmed above the minimum, not one the floor capped. The edge-a recall-gap action is suggest-only and the edge-b below-floor row is advisory only.
 - CI stays report-only. Safe-class fixes apply only under an operator-local flag and are never auto-committed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/002-retroactive-automation/013-retrieval-feedback-edge` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

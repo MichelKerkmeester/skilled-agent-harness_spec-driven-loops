@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/005-fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode`
-
 ### Summary
 
 Arc 010/001 had recorded 68 P2 cleanup findings across embedder module surfaces. The findings mixed safe static cleanup with behavior-changing hardening requests that required separate hardening packets. A surgical sweep was needed to close non-behavioral P2s without touching runtime policy, public response shapes or security posture.
@@ -76,3 +73,6 @@ Arc 010/001 had recorded 68 P2 cleanup findings across embedder module surfaces.
 ## Later Update (2026-06-04)
 
 The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits b8a866de2f, c99f990897 and ada2c51ee8. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/005-fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/014-gold-query-battery-repair` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 The Code Graph gold-query battery now matches the extracted system-code-graph and system-skill-advisor source layout. Verification also exposed and fixed a runtime recovery bug: a persisted failed gold-query baseline blocked the verifier's own outline probes, preventing recovery. The fix adds an internal verifier-only bypass while preserving public code_graph_query fail-closed behavior.
@@ -71,3 +68,6 @@ The Code Graph gold-query battery now matches the extracted system-code-graph an
 - Docs can make the graph stale again. Final documentation edits may require a follow-up incremental code_graph_scan before structural reads are fresh.
 - Known parse warnings remain. Existing shell parser skip-list warnings are unrelated to this repair and remain non-blocking.
 - Deep-context packet remains limited evidence. The prior recovery packet was native-only and is not treated as a completed deep-context loop.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/014-gold-query-battery-repair` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/042-cocoindex-ipc-observability` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 Packet 035 surfaced daemon-log evidence that the MCP host times out before CocoIndex finishes work, then the daemon later logs that the client disconnected before the response could be sent. The remaining gap was observability: no request correlation, no stage timings, no serialized response byte counts. Gated msgspec payload metadata on decode failure was also absent.
@@ -75,3 +72,6 @@ This phase wires request-scoped correlation IDs through the FastMCP wrapper, dae
 - Daemon-side timeout wraps direct `_dispatch` work. Streaming iterator lifetimes, such as index progress or search waiting for active indexing, are still primarily bounded by the MCP wrapper timeout when reached through FastMCP search.
 - `COCOINDEX_CODE_IPC_DEBUG=true` can log payload prefixes. Operators should enable it only for short diagnostic runs and turn it off afterward.
 - A follow-on packet should decide whether to default `refresh_index` to false, whether to split refresh from search, whether to do both. Use the new observability data as evidence for that decision.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/042-cocoindex-ipc-observability` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-30
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/006-stress-coverage-audit-and-run` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test`
-
 ### Summary
 
 Before this packet there was no written, auditable answer to the question: which of the 54 documented `code_graph` and `skill_advisor` features are stress-covered, which require stress coverage, which have a genuine gap? Release-readiness work inside the 000-release-and-program-cleanup track could not advance past 005-stress-test without that answer.
@@ -76,3 +73,6 @@ Two `cli-codex` dispatches bracketed one `npm run stress` execution. Synthesis r
 - Open packet `007-fix-stress-test-coverage-gap-followup` to close the 10 P0 gaps: 1 `code_graph` deep-loop convergence feature plus 9 `skill_advisor` Daemon and Freshness paths (watcher, lease, generation cache, anti-stuffing).
 - Add `--reporter=verbose` to the `npm run stress` invocation so future runs capture per-file timing alongside the total duration.
 - Add a known-issues section to `stress_test/README.md` to establish an explicit baseline for flakes and skips so future audit comparisons have a reference.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/006-stress-coverage-audit-and-run` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test`

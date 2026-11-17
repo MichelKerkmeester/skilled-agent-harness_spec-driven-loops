@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-infra-investigation-findings` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn`
-
 ### Summary
 
 Two live-infra issues were root-caused. The memory-DB write failures are resolved and MCP-verified this session (clean daemon restart; the prior FTS5 rebuild held — memory_health reports HEALTHY with 0 constraint errors); the graph-churn code fix remains deferred (documented below).
@@ -56,3 +53,6 @@ _No file-level detail recorded._
 - Re-verify memory-DB repair through MCP on next daemon boot; if corruption recurs it points to the abrupt-kill trigger rather than this FTS5 rebuild.
 - Apply the graph-churn code fix (scope-to-folder, idempotency, archive-exclude, and a real test) in a stable session; re-derive from the agent draft at /tmp rather than trusting it blindly.
 - Scope every commit with explicit pathspecs until the graph-churn fix lands, since the daemon continues rewriting graph-metadata.json on save.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-infra-investigation-findings` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn`

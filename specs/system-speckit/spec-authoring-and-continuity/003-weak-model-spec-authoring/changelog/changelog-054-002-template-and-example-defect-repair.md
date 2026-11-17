@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-24
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair` (Level 3)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 A model that copies a system-spec-kit example or follows the authoring checklist no longer meets a broken line. The 18 example descriptions are whole sentences, the checklist names a packet that exists, the style guide says table in both places, the dead `templates/.hashes` file is gone and every ledger row owned by this phase is fixed.
@@ -60,3 +57,6 @@ A model that copies a system-spec-kit example or follows the authoring checklist
 
 - The suite needs more than its default time bound on a loaded machine. Later runs set `SPECKIT_TEST_RUN_TIMEOUT_MS=1800000`.
 - The suite comparison reads summary lines only, so a differing line needs a read of the failing tests.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair` (Level 3)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

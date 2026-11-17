@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/006-command-contract-structural` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 Weak models (Kimi always, MiMo intermittently) dropped the query and asked the startup question, because the contract made ask-when-empty the first and most salient instruction and required the model to actively negate an empty-guard to do its job. This phase fixes it structurally rather than by re-wording. A deterministic shell header at the top of `search.md` computes and emits `ARGS_PRESENT=true|false` and a properly joined `QUERY` before the model reads any policy, so the query is resolved by the shell rather than inferred by the model. The contract is then salience-inverted: the retrieval and execute path comes first, and the startup-question section is gated behind an explicit `ONLY IF ARGS_PRESENT=false` guard, so a populated query never reaches the ask path. An imperative no-ask guard binds execution to the resolved query: when `ARGS_PRESENT=true` the model must execute retrieval on `QUERY` and must not ask the startup question. The header also joins argv itself so the query is one string rather than word-split by `"$@"`. The bare-to-ask behavior is preserved, just gated correctly. The output field set and scoring scale were left untouched, since the next phase owns those.
@@ -56,3 +53,6 @@ Weak models (Kimi always, MiMo intermittently) dropped the query and asked the s
 ### Follow-Ups
 
 - The live confirmation (an A/B `--command` run on Kimi and MiMo measuring execute-rate under the new structure) is the documented follow-up and cannot be run from the implementing session.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/006-command-contract-structural` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

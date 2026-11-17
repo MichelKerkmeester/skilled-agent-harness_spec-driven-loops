@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/004-hook-and-doc-fixes` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`
-
 ### Summary
 
 The Devin SessionStart hook in `.devin/hooks.v1.json` registered a non-existent artifact path, so the hook never fired during agent sessions. Four playbook scenario docs had drifted from runtime reality: an incorrect tool count (11 instead of 8), a stale `verify` sub-check referencing a nonexistent `rating` field, a mismatched scenario index label. Outdated YAML line ranges also needed correction.
@@ -68,3 +65,6 @@ The hook registration was corrected to point at `.opencode/skills/system-spec-ki
 ### Follow-Ups
 
 - Resolve the ownership-doc discrepancy: `deferred_decisions.md` and four `mcp_server/hooks/<runtime>/README.md` deprecation notices still cite the non-existent `system-code-graph/dist/system-spec-kit/...` artifact path. A follow-on packet should either build the hook to that path or correct those docs to match the system-spec-kit ownership that is now in production.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/004-hook-and-doc-fixes` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`

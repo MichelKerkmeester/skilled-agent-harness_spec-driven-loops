@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/010-security-and-correctness-fixes` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
-> Commit: `9fe9685db6` fix(mk-goal): land phase 010 security + correctness fixes
-
 ### Summary
 
 The shipped `/goal` plugin closed all five P1 security and correctness defects a 15-iteration deep review found in the conditional-verdict audit: unredacted verifier exceptions, a bypassable prompt-injection sanitizer, an injection block that could exceed its own character cap, a stale-verifier race that could let continuation act on a replaced goal, and a missing RICCE metadata field phase 007 already required.
@@ -61,3 +57,7 @@ The shipped `/goal` plugin closed all five P1 security and correctness defects a
 ### Follow-Ups
 
 - None recorded. All five findings closed with reproduced, pasted evidence rather than cited from a prior run.
+
+> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/010-security-and-correctness-fixes` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
+> Commit: `9fe9685db6` fix(mk-goal): land phase 010 security + correctness fixes

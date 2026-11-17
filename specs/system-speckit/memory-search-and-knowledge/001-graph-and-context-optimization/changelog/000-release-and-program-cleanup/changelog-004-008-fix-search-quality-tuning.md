@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/008-fix-search-quality-tuning` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`
-
 ### Summary
 
 The search-quality subsystem had five orthogonal tuning gaps that the deep-research loop (packet 046, §11 C1) had flagged but left unresolved. The harness only reported precision@3 and recall@3, making it impossible to distinguish a top-1 hit from a top-3 hit. The conditional rerank gate hard-floored at four candidates, blocking three-candidate cases that had genuine ambiguity signals. The cross-encoder declared a per-provider `maxDocuments` cap but never enforced it, so providers silently received oversized payloads. The CocoIndex calibrator detected high duplicate density and logged a recommendation but never raised the live overfetch multiplier. The learned Stage 2 combiner ran in shadow mode indefinitely despite stable quality deltas.
@@ -81,3 +78,6 @@ Five surgical product-code fixes shipped together in commit `f4a1ec92f41`. NDCG@
 - Raise the learned-blend default above 0.0 once stress-quality deltas trend stable across a broader query corpus.
 - Wire NDCG@3 threshold assertions into specific W-tests once per-fixture targets are established from production data.
 - Consider a paginated rerank pattern for `cross-encoder.ts` for users with candidate sets wider than the provider maxDocuments window.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/008-fix-search-quality-tuning` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/005-graph-impact-and-affordance`
-
 ### Summary
 
 Phase 007 integrated the review remediation pass across six task groups, T-A through T-F. It wired `detect_changes` as a callable MCP tool, synced real verification evidence, exposed `minConfidence`, kept public affordance input deferred, hardened sanitizer and parser boundaries, fixed trust-badge tests and cleaned docs. The implementation summary records 33 closure claims and distinguishes code fixes from doc-only sync. The later deep-research review found five closure-integrity gaps, so this phase is substantial but not the final word.
@@ -73,3 +70,6 @@ Phase 007 integrated the review remediation pass across six task groups, T-A thr
 
 - 008 research later identified P1 D1 and selected P2 issues for downstream packets.
 - Some historical tasks and checklist state still read stale compared with the implementation summary.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/005-graph-impact-and-affordance`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/004-novel-research/023-novel-typed-relation-kg` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Nothing is built yet. This phase holds the Level-2 doc set and the design, and it waits on implementation. The notes below describe the planned build so a future session can pick it up without re-deriving scope.
@@ -51,3 +48,6 @@ Nothing is built yet. This phase holds the Level-2 doc set and the design, and i
 
 - Build this capability per plan.md as a report-only or additive seam that never mutates an authored document body.
 - It bypasses the 3-result truncation floor by construction, so it earns its keep on a non-retrieval metric of its own.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/004-novel-research/023-novel-typed-relation-kg` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

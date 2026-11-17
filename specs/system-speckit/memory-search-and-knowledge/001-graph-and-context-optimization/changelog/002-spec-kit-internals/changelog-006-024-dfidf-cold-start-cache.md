@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/024-dfidf-cold-start-cache` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 The advisor corpus DF/IDF module computed document frequencies and IDF values from the provided corpus every time without any persisted cache. This phase adds an explicit cache API keyed by graph-metadata source mtimes so unchanged cold-start corpus stats can be reused. Callers that continue to use `computeCorpusStats()` still compute directly by design.
@@ -53,3 +50,6 @@ The advisor corpus DF/IDF module computed document frequencies and IDF values fr
 ### Follow-Ups
 
 - The cache API is explicit, callers that keep using `computeCorpusStats()` continue to compute directly by design.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/024-dfidf-cold-start-cache` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

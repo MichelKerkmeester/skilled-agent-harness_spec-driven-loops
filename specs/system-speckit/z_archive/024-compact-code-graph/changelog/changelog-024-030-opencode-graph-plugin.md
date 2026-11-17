@@ -8,8 +8,6 @@
 
 Packet 030 turned the late packet-024 startup and structural-recovery work into a real runtime extension instead of leaving it as research and follow-up notes. The result is a transport-oriented OpenCode plugin surface, a shared payload/provenance contract, a graph-operations hardening layer, freshness-aware startup parity across the repo-managed CLIs, bounded inline selective reindex on structural read paths, and the final repo-local Copilot startup-hook wiring fix.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin/`
-
 ---
 
 ## New Features (4)
@@ -89,3 +87,5 @@ Packet 030 turned the late packet-024 startup and structural-recovery work into 
 ## Upgrade
 
 No migration is required. Packet 030 is additive: it extends packet-024 startup, recovery, and graph-readiness surfaces without replacing the existing memory or graph backends.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin/`

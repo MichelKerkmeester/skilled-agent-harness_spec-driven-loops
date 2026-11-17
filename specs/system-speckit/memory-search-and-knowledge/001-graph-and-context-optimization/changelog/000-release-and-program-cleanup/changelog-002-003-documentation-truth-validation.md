@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/003-documentation-truth-validation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`
-
 ### Summary
 
 Several operator-facing docs described automation more broadly than the implementation supported. The 013 supplemental research identified five high-leverage Tier A issues: the shared hook reference mentioned a stale Claude-style Copilot wrapper that Copilot does not use. Codex docs blurred example templates with live user-runtime registration paths. The CCC command home and architecture handler paths were stale. Validation docs used "automatic" wording where the real gate requires explicitly running `validate.sh --strict`.
@@ -72,3 +69,6 @@ This phase applied documentation-only fixes across seven files. Each automation 
 
 - Runtime automation behavior remains unchanged by design. Packets 032-035 must decide implementation changes for watcher, retention, half-auto upgrades plus matrix execution.
 - Existing working-tree changes outside this packet were left untouched.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/003-documentation-truth-validation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`

@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-20
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`
-
 ### Summary
 
 After phase 001 unblocked routing to the HTTP cross-encoder path in `cross-encoder.ts`, nothing was answering at `localhost:8765/rerank`. spec-memory fell back to positional scores and both MCPs carried their own copy of Qwen3-Reranker-0.6B at 1.5 GB each.
@@ -80,3 +77,6 @@ All four pytest cases passed. install.sh exited 0. The smoke run confirmed apple
 - Run phase 004 A/B benchmark before promoting the sidecar as the default cross-encoder path in spec-memory.
 - Consider adding `POST /rerank/batch` for batching multiple query/document pairs in one HTTP call once phase 004 benchmark establishes per-request latency characteristics.
 - Verify `pyproject.toml` dep versions remain aligned with cocoindex after any upstream torch or sentence-transformers updates.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`

@@ -18,8 +18,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/023-semantic-relation-inference` (Level 3)
-
 ### Summary
 
 Packet 021 built the bounded relation-inference backfill with two deterministic collectors (spec-document chains plus lineage `caused` links) and explicitly deferred the similarity `supports` and `contradicts` signals as best-effort extensions. Both signals already existed in the DB (`memory_index.related_memories` cached cosine neighbours, `memory_lineage.superseded_by_memory_id`) but neither was promoted into the causal graph.
@@ -70,3 +68,5 @@ None. Additive opt-in collectors. The existing default `memory_causal_stats({ ba
 - Broader `supports`/`contradicts` coverage is still limited. The similarity collector is only as fresh as the cached `related_memories` column, and `contradicts` covers only recorded supersession pairs. Other contradictions still require explicit `memory_causal_link`.
 - Deep review (`review/review-report.md`) confirmed SEC-001: the opt-in `contradicts` collector can silently invalidate the `caused` edge on the same reciprocal lineage pair (and pre-existing valid edges). Until the remediation in packet 026 lands, do NOT enable `contradicts` in a non-dry run.
 - Both collectors remain OPT-IN. They do not run for default `memory_causal_stats({ backfill })` callers until the flags are passed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/023-semantic-relation-inference` (Level 3)

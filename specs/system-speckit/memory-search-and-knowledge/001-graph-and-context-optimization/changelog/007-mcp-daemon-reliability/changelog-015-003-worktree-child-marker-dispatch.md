@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`
-
 ### Summary
 
 The worktree-session wrapper (packet 035) detects orchestrated children by the `AI_SESSION_CHILD=1` environment variable, but the dispatcher skills that spawn those children never told callers to set it. Both the cli-codex and cli-opencode skills now include an ALWAYS rule requiring the marker to be set on dispatch. This ensures orchestrated sub-sessions share the parent worktree instead of wrongly allocating their own.
@@ -56,3 +53,6 @@ The worktree-session wrapper (packet 035) detects orchestrated children by the `
 - Three remaining cli-* skills (cli-claude-code, cli-gemini, cli-devin) do not yet carry the dispatch rule. They are lower-traffic paths for this workflow. Propagate the rule to them if they become primary dispatchers.
 - The rule is advisory only. The wrapper structural backstop (`git --git-common-dir`) serves as a safety net when a dispatcher omits the variable. This closes the documentation gap but not the enforcement gap.
 - Operator-machine wiring (launch aliases, SessionStart guard-hook entries) remains out of scope as an environment-specific operator step.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`

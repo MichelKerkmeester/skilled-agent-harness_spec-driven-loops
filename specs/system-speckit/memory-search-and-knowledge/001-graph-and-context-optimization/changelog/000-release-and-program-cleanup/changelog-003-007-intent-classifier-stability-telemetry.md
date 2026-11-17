@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/007-intent-classifier-stability-telemetry` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 The `memory_context` response contained two dissonant intent fields: `meta.intent` (task-intent classification) and `data.queryIntentRouting` (backend routing channel). Neither carried an explicit `classificationKind` label. No normalized schema connected them. Paraphrase variants of the same query produced unstable task-intent labels. No corpus asserted stability across CLI styles.
@@ -73,3 +70,6 @@ The live `memory_context` probe confirmed `emitIntentTelemetry()` runs in the de
 
 - Monitor paraphrase heuristic accuracy in production. Sorted-token grouping may miss semantic equivalences that embedding-based clustering would catch.
 - Restart the MCP-owning client after each dist rebuild to ensure live probes reflect the deployed binary rather than a stale child process.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/007-intent-classifier-stability-telemetry` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

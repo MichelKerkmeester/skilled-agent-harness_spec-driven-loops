@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/004-shell-python-daemon` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation`
-
 ### Summary
 
 This phase finished the playbook run by delegating compat, auto-update-daemon, auto-indexing, lifecycle-routing, scorer-fusion and python-compat waves to CLI executors and running operator-H5 scenarios locally. The headline: the whole 46-scenario run is complete, and it surfaced real defects rather than a clean pass. Release is NOT READY due to a corpus-accuracy regression (corroborated across three independent harnesses) and two python-suite failures (PC-004, PC-005).
@@ -64,3 +61,6 @@ This phase finished the playbook run by delegating compat, auto-update-daemon, a
 - 13 SKIPs are infrastructure-gated. AU (5), OP (3), AI-004/005, LC-002/004/005 all need a disposable repo copy with an active daemon watcher and fault injection, not stood up this session. The daemon healthy path is verified in phase 002, recovery paths are not.
 - Findings are recorded but not fixed. The accuracy regression, PC-005 doc gap (missing --dataset flag), semantic_shadow drift (live weight 0.05 vs scenario assumption of shadow-only), and bridge native-route failure are all out of scope and flagged for a follow-on remediation packet.
 - Working-tree graph-metadata churn (~1296 files) from routine context-server daemon activity during the session. These are timestamp bumps, not source edits, and were left untouched to avoid reverting 1296 files.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/004-shell-python-daemon` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation`

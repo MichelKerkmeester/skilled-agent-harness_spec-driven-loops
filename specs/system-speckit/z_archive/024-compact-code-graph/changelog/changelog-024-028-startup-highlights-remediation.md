@@ -8,8 +8,6 @@
 
 The startup brief already surfaced structural highlights, but the signal quality was not good enough to trust. Duplicate entries, vendored code, and the wrong ranking heuristic wasted startup budget on noise. This phase repaired all three P1 findings from the 2026-04-02 deep review and turned the highlights section into something that actually orients the AI instead of distracting it.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/028-startup-highlights-remediation/`
-
 ---
 
 ## Bug Fixes (3)
@@ -76,3 +74,5 @@ The startup brief already surfaced structural highlights, but the signal quality
 ## Upgrade
 
 No migration required. The behavior change is intentionally narrow: startup highlights stay enabled, but now only after the query was cleaned up enough to meet the review quality bar.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/028-startup-highlights-remediation/`

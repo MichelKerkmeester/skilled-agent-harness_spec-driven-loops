@@ -8,8 +8,6 @@
 
 Claude Code sessions already had a stronger startup path than the other runtimes when this phase landed. The remaining runtimes still needed an MCP-level fallback so they did not start completely cold whenever hooks or startup transport were unavailable. This phase introduced that fallback priming layer and added a health monitor; later packet phases then refined the public story toward `session_bootstrap()`, runtime-specific startup surfaces, and freshness-aware startup summaries.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/018-non-hook-auto-priming/`
-
 ---
 
 ## New Features (3 items)
@@ -87,3 +85,5 @@ Claude Code sessions already had a stronger startup path than the other runtimes
 No migration required. Auto-priming activates automatically on the next MCP server restart. The `session_health` tool is immediately available to all connected runtimes.
 
 **3 items deferred to future phases (all P2):** sessionPrimed flag retry-on-failure (F045), CocoIndex path hardcoding (F046), and dual timestamp state consolidation (F047).
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/018-non-hook-auto-priming/`

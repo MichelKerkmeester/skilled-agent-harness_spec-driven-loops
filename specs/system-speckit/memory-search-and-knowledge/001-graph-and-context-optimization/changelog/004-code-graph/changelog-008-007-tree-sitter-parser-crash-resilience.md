@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-06
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/007-tree-sitter-parser-crash-resilience` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`
-
 ### Summary
 
 Broad-scope `code_graph_scan` (agents, commands, specs, plugins all enabled) was crashing on roughly 17.5% of candidate files with `RuntimeError: memory access out of bounds`. The root cause was a missing `external_scanner_reset` export in the vendored `tree-sitter-bash.wasm`. The `web-tree-sitter` loader silently substituted a proxy stub, which threw a `TypeError` on certain bash content. Each throw leaked corruption into the WASM module's shared linear memory. After about 80 cumulative throws the corruption cascaded to every language. Seven deep-research iterations converged on this mechanism at 0.95 confidence.
@@ -81,3 +78,6 @@ Phase 2 delivered a SQLite skip-list seeded with 70 production bash files known 
 - R-2 grammar rebuild is deferred to Phase 3. The permanent fix requires rebuilding `tree-sitter-bash.wasm` with `external_scanner_reset` exported, co-bumped with `web-tree-sitter@0.26.x`. Iter 4 of the research proved that bumping `web-tree-sitter` alone rejects the existing vendored WASM artifacts with `Error: need dylink section`.
 - Add a manual playbook scenario for broad-scope scan with skip-list verification to `manual_testing_playbook/02--manual-scan-verify-status/`. The implementation is live-verified so this is documentation, not a blocker.
 - Quarterly operator workflow: inspect `parser_skip_list` rows where `source='runtime'`, confirm the upstream bash WASM bug is fixed, then manually `DELETE` entries that are safe to re-attempt.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/007-tree-sitter-parser-crash-resilience` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

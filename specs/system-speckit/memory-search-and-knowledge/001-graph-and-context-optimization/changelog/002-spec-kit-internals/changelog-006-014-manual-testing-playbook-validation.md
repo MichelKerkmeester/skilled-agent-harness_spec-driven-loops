@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/014-manual-testing-playbook-validation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 The manual testing packet validated 42 end-to-end Skill Advisor scenarios through OpenCode native MCP (Model Context Protocol) tools. It recorded 27 PASS, 0 FAIL and 15 INCONCLUSIVE outcomes with an 83.3 percent P0+P1 pass rate. The close-out repaired plugin bridge test fixtures that left a stale shared generation marker and normalized all packet documentation to Level 2 strict validator compliance.
@@ -59,3 +56,6 @@ The manual testing packet validated 42 end-to-end Skill Advisor scenarios throug
 
 - Daemon lifecycle, Python shim and environment-manipulation scenarios remain INCONCLUSIVE because the OpenCode MCP surface cannot safely force those runtime states.
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/014-manual-testing-playbook-validation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

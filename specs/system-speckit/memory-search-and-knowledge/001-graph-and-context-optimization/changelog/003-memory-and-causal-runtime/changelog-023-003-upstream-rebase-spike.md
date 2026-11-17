@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots`
-
 ### Summary
 
 The local `cocoindex-code` fork was approximately 30 releases behind upstream `v0.2.33`. Upstream shipped embedder parameter APIs (`indexing_params/query_params`) in `v0.2.29`, deliberately removed the per-side `dimensions` knob in `v0.2.30`. Svelte/Vue default include patterns arrived in `v0.2.32`. Without a concrete delta map, downstream 023A packets risked duplicating upstream API work or hardening incompatible abstractions.
@@ -74,3 +71,6 @@ The local `cocoindex-code` fork was approximately 30 releases behind upstream `v
 - Import upstream `embedder_params.py` and `embedder_defaults.py` into the local fork in Phase B before any custom prompt-policy surface work lands in 023A1.
 - Commit the three source-file changes (`pyproject.toml`, `settings.py`, `test_settings_patterns.py`) once the git metadata sandbox restriction is lifted.
 - Verify that any future per-side embedder parameter work in 023A1 routes through the upstream `indexing_params/query_params` API rather than introducing a parallel prompt-policy schema.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots`

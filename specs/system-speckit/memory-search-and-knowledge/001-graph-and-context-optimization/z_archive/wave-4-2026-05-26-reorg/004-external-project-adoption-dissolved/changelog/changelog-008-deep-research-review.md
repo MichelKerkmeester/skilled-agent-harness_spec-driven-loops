@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-04-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/005-graph-impact-and-affordance`
-
 ### Summary
 
 Phase 008 documented an already-completed deep-research review. The loop ran 10 iterations with cli-codex gpt-5.5 high fast and converged at 0.93. It audited phases 001-006, the 007 remediation pass and the 011 playbook coverage follow-up. The final inventory recorded 0 P0, 1 P1 and 17 distinct P2 findings, with two follow-up packets recommended.
@@ -65,3 +62,6 @@ Phase 008 documented an already-completed deep-research review. The loop ran 10 
 
 - Recommended downstream packet: `006/008-closure-integrity-and-pathfix-remediation`.
 - Recommended downstream packet: `006/009-test-rig-adversarial-coverage`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/005-graph-impact-and-affordance`

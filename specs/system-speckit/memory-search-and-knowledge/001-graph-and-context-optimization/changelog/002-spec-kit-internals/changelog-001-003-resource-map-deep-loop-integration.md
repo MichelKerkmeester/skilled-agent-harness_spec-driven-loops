@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix`
-
 ### Summary
 
 Autonomous deep-loop runs produced rich per-iteration evidence but offered no flat, scannable view of what the loop actually touched. Reviewers had to replay iteration markdown files or the narrative synthesis to assess blast radius and coverage. The phase-002 resource-map template was available but unfilled.
@@ -95,3 +92,6 @@ The reducers for both deep-loop skills gained an explicit `--emit-resource-map` 
 - Run `validate.sh --strict` clean pass on this packet after fixing pre-existing packet-doc integrity drift in `spec.md` plus `plan.md` plus the uncited line in `research/research.md`.
 - Investigate aligning `mcp_server/vitest.config.ts` to discover `mcp_server/scripts/tests/**` directly so the T030 command works without an explicit `--root .` override.
 - Consider adding interim per-iteration emission behind an `emit_interim: true` flag (P2 defer from spec REQ-011).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix`

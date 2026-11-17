@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands` (Level 2, Phase Parent)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation`
-
 ### Summary
 
 The speckit command family completed the same four-aspect presentation extraction as memory commands. Routers remain thin, presentation assets own startup/dashboard/result displays, and workflow YAML behavior remains the execution source.
@@ -54,3 +51,6 @@ The speckit command family completed the same four-aspect presentation extractio
 ### Follow-Ups
 
 - Cross-model live rendering was not executed; this phase verified static command/presentation contracts.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands` (Level 2, Phase Parent)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation`

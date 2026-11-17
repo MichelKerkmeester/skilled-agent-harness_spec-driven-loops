@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/002-runtime-backend-promotions` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`
-
 ### Summary
 
 This phase moved shared deep-loop plumbing into `deep-loop-runtime` without changing the public surface. The old entrypoints stayed byte-compatible shims, which let later phases consolidate names and routing without also moving backend contracts. The runtime became the stable backend before the user-facing hub changed.
@@ -53,3 +50,6 @@ This phase moved shared deep-loop plumbing into `deep-loop-runtime` without chan
 - CHK-011 Changes follow existing project conventions.
 - CHK-020 Phase-001 baseline manifest and runtime-ownership ADR are present before edits.
 - CHK-021 `deep-loop-runtime` contains promoted runtime-capabilities, artifact-root, loop-lock CLI and lifecycle-taxonomy contracts.
+
+> Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/002-runtime-backend-promotions` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`

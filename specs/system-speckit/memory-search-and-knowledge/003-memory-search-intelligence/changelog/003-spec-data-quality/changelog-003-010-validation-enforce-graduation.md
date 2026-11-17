@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-11
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/010-validation-enforce-graduation` (Level recorded in phase evidence)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality`
-> Historical alias: `019-validation-enforce-graduation`
-
 ### Summary
 
 This migration index makes the shipped phase discoverable at its final packet-local path without rewriting its historical identity. The allowed implementation evidence records: All 3 phases (SPECKIT_STATUS_CROSS_DOC_ENFORCE, SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE, SPECKIT_CHILD_DRIFT_ENFORCE) are COMPLETE, each graduated from advisory to enforcing-by-default with a zero-violation (or individually-documented-residual) tree-wide census recorded before its flip.
@@ -49,3 +45,7 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 ### Follow-Ups
 
 - None in the allowed evidence set.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/010-validation-enforce-graduation` (Level recorded in phase evidence)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality`
+> Historical alias: `019-validation-enforce-graduation`

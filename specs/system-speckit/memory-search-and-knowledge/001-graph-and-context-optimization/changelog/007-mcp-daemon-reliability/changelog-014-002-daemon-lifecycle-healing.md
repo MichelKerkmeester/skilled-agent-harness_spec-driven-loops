@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/002-daemon-lifecycle-healing` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn`
-
 ### Summary
 
 The recurring SQLITE_CONSTRAINT_PRIMARYKEY write failure now heals itself. The 032 deep-research loop traced it to one production root cause (SQ4): the mk-spec-memory launcher could respawn over an unresponsive incumbent daemon without verifying the database closed cleanly, leaving the FTS5 shadow divergent so the next write aborted. Three fixes close it.
@@ -62,3 +59,6 @@ The recurring SQLITE_CONSTRAINT_PRIMARYKEY write failure now heals itself. The 0
 - Live two-launcher integration is not exercised end-to-end; F2's decision logic and marker resolution are unit-tested but the live respawn path is covered at syntax and behavior level only.
 - The durable systemic fix (worktree-per-session isolation) removes the concurrent-launcher contention that triggers this root cause; it is intentionally deferred.
 - launcher-watchdog.vitest.ts > isRespawnLockStale fails on HEAD independently of this change and is not addressed here.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/002-daemon-lifecycle-healing` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn`

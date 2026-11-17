@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/document-standards/007-changelog-spec-folder-at-bottom",
+  "spec_folder": "sk-doc/document-standards/007-changelog-spec-folder-at-bottom",
+  "parent_id": "sk-doc/document-standards",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "changelog spec folder at bottom",
+      "move the changelog spec folder blockquote from under",
+      "changelog spec folder at bottom plan",
+      "changelog spec folder at bottom tasks",
+      "changelog spec folder at bottom acceptance criteria",
+      "changelog spec folder at bottom goal",
+      "changelog spec folder at bottom implementation summary"
+    ],
+    "key_topics": [
+      "changelog",
+      "spec",
+      "folder",
+      "bottom",
+      "move",
+      "blockquote",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md",
+      "scratch/move_spec_block.py",
+      "scratch/changelog-files.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "worked-examples.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md",
+        "source": "derived"
+      },
+      {
+        "name": "move_spec_block.py",
+        "kind": "file",
+        "path": "scratch/move_spec_block.py",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-files.txt",
+        "kind": "file",
+        "path": "scratch/changelog-files.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flash Free",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The changelog template puts the `> Spec folder:` blockquote directly under the summary",
+    "created_at": "2026-11-17T08:22:22Z",
+    "last_save_at": "2026-11-17T08:41:35.334Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fb32bb4e55c2d1c977cee2ddd0c5810f7a54b62911cb0f84ef80b506413482b2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7f59c609fa59d3c42e32e9e87200b3bd34106ca479162f0cb5ae8775a8624af6",
+      "plan.md": "4458c2b52608762bc03ba5d02355a64e6bfec038bdaf3cc8fbaa08dfda7f792e",
+      "tasks.md": "1d28086193842959ce121c37b4e990d86b8564dc67939690d9123b4a932ee278",
+      "implementation-summary.md": "a11ea6a43b4bdad509069333c93902579e452a42b4faad159c29e3dcf4bc9b96"
+    },
+    "last_active_at": null
+  }
+}

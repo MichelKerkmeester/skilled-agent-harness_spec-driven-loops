@@ -14,9 +14,6 @@ contextType: "documentation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/007-reference-template-alignment` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation`
-
 ### Summary
 
 The system-skill-advisor reference set was flat, kebab-case, and only partially aligned with the sk-doc reference template. This phase converted the flat root folder into a domain-organized reference library. Canonical references moved into focused subfolders with numbered H2 structure. Existing old-path links were preserved through compatibility stubs. The smart router and active docs now prefer canonical paths instead of old root references.
@@ -53,3 +50,6 @@ The system-skill-advisor reference set was flat, kebab-case, and only partially 
 ### Follow-Ups
 
 - Dirty worktree present. The repository already contains unrelated system-skill-advisor runtime and generated-file changes. This packet avoids reverting or modifying those unrelated changes.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/007-reference-template-alignment` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation`

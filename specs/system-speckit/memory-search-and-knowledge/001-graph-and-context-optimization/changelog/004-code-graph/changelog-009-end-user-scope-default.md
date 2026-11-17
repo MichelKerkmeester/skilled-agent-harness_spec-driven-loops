@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-05-02
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 Before this phase, running a default scan against any repo using this template indexed **everything**: your code, plus the framework's own skills, agents, commands, specs, and plugins. If you searched for a function name, results were polluted with framework internals, and end users had no clean way to filter them out.
@@ -63,3 +60,6 @@ Commits: `79e97aec9` (initial), `03d873276` (FIX-009-v2: 1 P0 + 3 P1 + 3 P2), `c
 
 - Phase 011 builds on this scope foundation by adding granular per-folder controls (for example "include skills but exclude .opencode/skills/system-spec-kit").
 - Phase 012/005 hardened scope changes against accidental data loss by adding a fingerprint-based guard on the scan path.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

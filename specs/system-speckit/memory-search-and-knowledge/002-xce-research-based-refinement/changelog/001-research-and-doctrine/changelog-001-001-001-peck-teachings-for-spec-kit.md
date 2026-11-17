@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-05
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`
-
 ### Summary
 
 Five deep-research iterations mapped the external `gytis-ivaskevicius/peck` repo against system-spec-kit. The deliverable is `peck-teachings-analysis.md`, a decision-ready report that separates four philosophy-neutral mechanisms worth borrowing (T1-T4) from peck's minimalist philosophy, which would gut spec-kit if imported wholesale. Every claim cites a verified peck file and line plus a resolving spec-kit path. An anti-teachings section names what to reject. No spec-kit code, template, or validation rule was modified.
@@ -60,3 +57,6 @@ Five deep-research iterations mapped the external `gytis-ivaskevicius/peck` repo
 
 - Effort and risk estimates are qualitative. Per-teaching spec folders would size each one if adoption is pursued.
 - T1's `AC_COVERAGE` rule needs a warn-only rollout and per-level opt-in before it can safely gate completion. Adopted in leaf 007.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`

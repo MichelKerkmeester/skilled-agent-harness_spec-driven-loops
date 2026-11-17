@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/004-newer-text-embedders-survey` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion`
-
 ### Summary
 
 The mk-spec-memory text-embedder default, `jina-embeddings-v3 + rescue layer` (ADR-012, May 2026), needed a post-launch candidate refresh to confirm no stronger local option had shipped since selection. The packet ran a research-only HuggingFace crawl across nine named labs with hard filters applied: text-tuned, Apple Silicon compatible, under 1 GB loaded, paraphrase or hard-negative training evidence present.
@@ -68,3 +65,6 @@ None. Research-only phase.
 - MTEB comparability is imperfect. Several cards report retrieval-only or multimodal metrics rather than full MTEB English averages.
 - Jina GGUF remains operationally ambiguous. It may be promising, but it requires a non-upstream Jina llama.cpp fork today.
 - Revisit if IBM publishes a direct MTEB English average or paraphrase/STS recall result that beats jina-v3. Also revisit if Jina releases a clean upstream path for v5 text-matching under 1 GB on Apple Silicon.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/004-newer-text-embedders-survey` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion`

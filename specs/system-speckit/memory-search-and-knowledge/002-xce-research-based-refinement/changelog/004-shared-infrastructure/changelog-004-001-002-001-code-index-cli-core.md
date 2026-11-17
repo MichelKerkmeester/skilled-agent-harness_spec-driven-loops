@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-09
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli`
-
 ### Summary
 
 The code-index CLI core shipped as a manifest-backed CLI layer over the existing daemon contract. The CLI exposes exactly 8 commands from `CODE_GRAPH_TOOL_SCHEMAS` with `validateToolArgs()` parity, preserves `status:blocked` payloads in all output formats, maps exits to 0/1/64/69/75, supports IPC auto-spawn, and guards stale dist output with a dev override flag. No daemon or launcher files were changed.
@@ -59,3 +56,6 @@ The code-index CLI core shipped as a manifest-backed CLI layer over the existing
 ### Follow-Ups
 
 - Broader end-to-end transition verification remains in later program phases
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/009-byte-bounded-embedding-cache` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`
-
 ### Summary
 
 The persistent `embedding_cache` table was keyed only by content hash, model and dimensions with a global row-count cap. Embeddings accumulated across inactive profiles with no byte ceiling. Document vectors and search-query vectors shared the same cache rows without discrimination.
@@ -78,3 +75,6 @@ Health telemetry in full `memory_health` reports switched from rough byte estima
 
 - Legacy unscoped lookups remain ambiguous when multiple profiles share the same content, model and dimension tuple. Callers outside the scoped save and search paths should migrate to the explicit options when convenient.
 - Embedding cache rows are recomputable from source text. A rollback that needs a clean cache can truncate `embedding_cache` and let the next run repopulate.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/009-byte-bounded-embedding-cache` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

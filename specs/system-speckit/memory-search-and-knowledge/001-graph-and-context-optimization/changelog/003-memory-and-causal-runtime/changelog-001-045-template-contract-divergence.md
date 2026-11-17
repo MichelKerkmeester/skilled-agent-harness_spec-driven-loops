@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/045-template-contract-divergence`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 During the 2026-05-14 substrate repair wave, canonical V2.2 spec documents were passing `validate.sh --strict` but failing `memory_save` dry-runs with `missing_blank_line_after_frontmatter` and six `missing_section` violations. The rejected sections were generated-memory wrapper sections, not V2.2 spec-doc anchors, revealing a cross-consumer contract divergence. The patch extended the existing `shouldBypassTemplateContract()` predicate to recognize canonical spec-doc document types and skip the wrapper enforcement when `specDocHealth.pass` is true and sufficiency passes. The fix restores agreement between the two validators without weakening generated-memory template enforcement for non-spec files.
@@ -65,3 +62,6 @@ During the 2026-05-14 substrate repair wave, canonical V2.2 spec documents were 
 - Dry-run still labels accepted canonical spec docs as manual-fallback. That label is existing behavior from the absence of generated-memory markers. It is non-blocking for healthy spec docs after this fix.
 - The dry-run was verified through the local handler rather than the live MCP tool because `memory_save` was not exposed in the authoring Codex session. The handler and the MCP tool share the same implementation path and response envelope.
 - No build artifact was produced. Typecheck and Vitest passed without a dist rebuild due to prior local context dist write-permission constraints.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/045-template-contract-divergence`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

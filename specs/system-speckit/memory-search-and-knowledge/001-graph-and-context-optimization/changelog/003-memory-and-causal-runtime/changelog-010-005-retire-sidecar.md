@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/005-retire-sidecar` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server`
-
 ### Summary
 
 The dead sidecar execution path was removed. After hf-local became an HTTP client (phase 003) supervised by the launcher (004), the in-process sidecar apparatus was redundant lifecycle machinery. The execution router was collapsed so every provider (ollama, hf-local, and the cloud cascade of voyage and OpenAI) resolves through one direct factory-backed adapter path. SPECKIT_EMBEDDER_EXECUTION is now an accepted-but-ignored one-release no-op so existing operator configs do not break.
@@ -65,3 +62,6 @@ The dead sidecar execution path was removed. After hf-local became an HTTP clien
 - SPECKIT_EMBEDDER_EXECUTION is still parsed as an accepted-but-ignored no-op for one release and the environment variable should be removed entirely in a follow-up.
 - The collapsed router path is covered by focused vitest with mock transports but has not been exercised end-to-end through a live daemon and model server.
 - The sentence-transformers backend description in types.ts mentions a Python sidecar concept (an unimplemented backend kind) which is unrelated to the deleted hf-local sidecar files and was left unchanged.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/005-retire-sidecar` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server`

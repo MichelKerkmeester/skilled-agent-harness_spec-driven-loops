@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence` (Level 2)
-
 ### Summary
 
 > Phase-parent note: This spec.md is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below. <!-- /ANCHOR:problem -->
@@ -57,6 +55,8 @@ _No file-level detail recorded._
 - None recorded.
 
 ---
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence` (Level 2)
 
 ## 2026-06-29
 
@@ -103,8 +103,6 @@ The 016 deep-dive remediation program shipped. Thirteen phases fixed the P0 thro
 
 ## 2026-07-05
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment` (Phase Parent)
-
 ### Summary
 
 The 006 surface-alignment remediation converted the audit record into a closed documentation and process arc. The initial surface-alignment audit identified documentation-vs-implementation drift, the Fable review narrowed the record to citation-backed issues, phases 011 and 012 delivered the code-graph and stress/SKILL.md audits, the paired 011 and 012 fix phases shipped the documentation corrections, phase 013 shipped the inert-novelty detector warning for flat-high `newInfoRatio`, and phase 014 shipped recorded-failure closure through cap reconciliation, a constitutional route and a RED/GREEN surfacer.
@@ -147,9 +145,9 @@ The 006 surface-alignment remediation converted the audit record into a closed d
 
 ---
 
-## 2026-07-11
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment` (Phase Parent)
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence` (Phase Parent)
+## 2026-07-11
 
 ### Summary
 
@@ -217,3 +215,6 @@ The former top-level `016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory` chang
 ### Follow-Ups
 
 - Strict packet validation may still report packet-wide issues outside this changelog-only write boundary. See `scratch/task-7c-changelog.md` for the exact outcome.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence` (Phase Parent)
+

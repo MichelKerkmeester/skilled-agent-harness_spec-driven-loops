@@ -8,8 +8,6 @@
 
 When an AI session runs long and the context window fills up, Claude compacts the conversation to free space. Previously, that compaction only preserved memories -- it had no awareness of which code files were actively being worked on or what the codebase structure looked like. This phase replaces the Memory-only compaction with a three-source merge pipeline that combines constitutional memory, structural code graph context, and semantic code search results. A new session working-set tracker remembers which files and symbols were touched during the conversation, so when compaction fires, the system knows what matters most and allocates its limited 4000-token budget across all three sources using guaranteed minimums, overflow redistribution, and a deterministic trim order that protects the most critical context.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/011-compaction-working-set/`
-
 ---
 
 ## Architecture (3 changes)
@@ -134,3 +132,5 @@ When an AI session runs long and the context window fills up, Claude compacts th
 ## Upgrade
 
 No migration required. The new pipeline is backward-compatible -- if Code Graph and CocoIndex are not configured, the system falls back to Memory-only behavior automatically.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/011-compaction-working-set/`

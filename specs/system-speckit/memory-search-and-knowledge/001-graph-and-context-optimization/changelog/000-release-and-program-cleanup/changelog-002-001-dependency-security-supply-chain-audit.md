@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-05-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`
-
 ### Summary
 
 The 2026-05-15 TanStack Mini Shai-Hulud disclosure (42 official npm packages, 84 malicious versions, dead-man's-switch payload that triggers `rm -rf ~/` on token revocation, 518M reported infections) required a comprehensive security sweep of the Public repo and host environment before any remediation could safely proceed. No prior audit record existed. Several attack surfaces (MCP server binaries, shell startup files, LaunchAgents, credential files, CI/CD pipelines) had never been formally inspected.
@@ -67,3 +64,6 @@ None. Research-only phase.
 - Open a follow-on packet for active remediation of OPERATOR-PENDING items: macOS firewall enable and FontBase network exposure (commands provided in `research/review-report.md` section 8.5).
 - Conduct a transitive dependency audit for external MCP server binaries beyond the declared configs in `.utcp_config.json` as part of supply-chain hardening.
 - Add SBOM and SLSA provenance checks as a follow-on supply-chain hardening packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`

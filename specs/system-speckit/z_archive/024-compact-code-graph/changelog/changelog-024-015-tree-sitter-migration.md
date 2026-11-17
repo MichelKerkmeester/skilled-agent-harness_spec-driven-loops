@@ -10,8 +10,6 @@ The structural indexer -- the component that reads source code files and builds 
 
 This phase lays the foundation for tree-sitter WASM parsing -- a proper code parser that understands syntax at roughly 99% accuracy -- by introducing an adapter interface that lets the system swap between regex and tree-sitter at runtime. While tree-sitter itself ships later (Phase 017), this phase delivers immediate value: three new relationship types, four previously missing symbol kinds, and cleanup of dead code paths and broken configuration options.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/015-tree-sitter-migration/`
-
 ---
 
 ## Architecture (2 changes)
@@ -112,3 +110,5 @@ This phase lays the foundation for tree-sitter WASM parsing -- a proper code par
 ## Upgrade
 
 No migration required.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/015-tree-sitter-migration/`

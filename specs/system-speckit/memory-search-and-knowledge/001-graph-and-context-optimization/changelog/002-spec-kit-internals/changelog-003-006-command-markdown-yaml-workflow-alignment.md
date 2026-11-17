@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/006-command-markdown-yaml-workflow-alignment` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`
-
 ### Summary
 
 The command-facing SpecKit surface now matches the current validation and template-level system. Eighteen command assets were audited, stale references to deleted phase addendum files were removed from YAML workflows, validation exit semantics were corrected, and current behavior notes were added where they affect command execution. This matters because users and AI runtimes receive accurate, parseable, and verification-backed instructions.
@@ -76,3 +73,6 @@ The command-facing SpecKit surface now matches the current validation and templa
 
 - Batch inline renderer mention omitted intentionally. It is internal and no in-scope command or YAML workflow had a natural behavior-facing place for it.
 - No runtime-manifest exemptions recorded. The banned-vocabulary grep returned zero command-scope hits, so there were no YAML runtime manifest terms to classify.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/006-command-markdown-yaml-workflow-alignment` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

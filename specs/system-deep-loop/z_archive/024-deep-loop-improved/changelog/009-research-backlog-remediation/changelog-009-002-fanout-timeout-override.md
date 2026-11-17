@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/002-fanout-timeout-override` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`
-
 ### Summary
 
 The per-lineage fan-out timeout ceiling was hardcoded at four hours with no operator escape hatch. An optional `--lineage-timeout-hours` override now replaces the ceiling constant while leaving the computed formula and default behavior unchanged.
@@ -53,3 +50,6 @@ The per-lineage fan-out timeout ceiling was hardcoded at four hours with no oper
 ### Follow-Ups
 
 - None. The change is fully additive and does not require a follow-up.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/002-fanout-timeout-override` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`

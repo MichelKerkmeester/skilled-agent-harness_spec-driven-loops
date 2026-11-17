@@ -18,9 +18,6 @@ contextType: "review"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/010-upgrade-safety-operability-audit` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`
-
 ### Summary
 
 Recent release-readiness work moved stress tests, extended DB migration coverage, refreshed install docs. Before sign-off, the install, doctor, migration, environment-default, backwards-compatibility surfaces needed a read-only operability audit to surface drift before it reached operators.
@@ -74,3 +71,6 @@ Three P1 gaps need remediation before the upgrade path is called ready. Node ins
 - Replace stale feature-flag default notes outside ENV_REFERENCE so they match source-code defaults for `SPECKIT_EXTENDED_TELEMETRY` plus `SPECKIT_ADAPTIVE_FUSION`.
 - Add explicit security context clarifying that permissive checked-in runtime configs (e.g. `.codex/config.toml`) are local developer profiles, not general install defaults.
 - Obtain or create a named old-DB fixture representing the 026/005-era schema to strengthen upgrade path evidence beyond test-derived migration coverage.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/010-upgrade-safety-operability-audit` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`

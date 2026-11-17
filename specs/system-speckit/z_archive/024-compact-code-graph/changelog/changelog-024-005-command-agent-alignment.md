@@ -8,8 +8,6 @@
 
 This phase aligned the command and agent surfaces with the hook-aware recovery model. Resume commands now request the compact brief format, memory-save flows avoid obvious double-save collisions, and agent definitions describe compaction recovery in the same language the runtime actually uses.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/005-command-agent-alignment/`
-
 ---
 
 ## Commands (2)
@@ -52,3 +50,5 @@ This phase aligned the command and agent surfaces with the hook-aware recovery m
 ## Upgrade
 
 No migration required. Duplicate-save protection is time-window based and still intentionally lightweight.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/005-command-agent-alignment/`

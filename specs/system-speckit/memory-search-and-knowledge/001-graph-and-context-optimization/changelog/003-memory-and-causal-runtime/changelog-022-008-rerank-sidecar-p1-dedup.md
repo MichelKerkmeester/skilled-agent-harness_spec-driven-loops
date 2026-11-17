@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/008-rerank-sidecar-p1-dedup`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`
-
 ### Summary
 
 Four P1 audit findings from packet 021 flagged that port `8765`, model name `Qwen/Qwen3-Reranker-0.6B`, revision hash `e61197ed45024b0ed8a2d74b80b4d909f1255473` were duplicated as inline literals across four launcher surfaces. Any change to one literal without updating the others would cause a silent runtime mismatch between launchers.
@@ -69,3 +66,6 @@ A new canonical Python module `sidecar_defaults.py` was created with `DEFAULT_PO
 
 - Add a pytest or vitest invariant test asserting that Python `DEFAULT_PORT`, `DEFAULT_MODEL_NAME`, `DEFAULT_MODEL_REVISION` equal the inline literals in `start.sh` and `ensure-rerank-sidecar.cjs`. Deferred from this phase.
 - `use-model.sh:32` and `use-model.sh:41` retain the literal model name in help-text examples. This is instructional content and is not a runtime drift risk. Confirmed out of scope.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/008-rerank-sidecar-p1-dedup`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

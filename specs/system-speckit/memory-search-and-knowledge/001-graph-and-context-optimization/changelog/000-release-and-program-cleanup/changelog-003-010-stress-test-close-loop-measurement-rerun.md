@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/010-stress-test-close-loop-measurement-rerun` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 Eight remediation packets (003-009) had shipped source patches and rebuilt `dist/` to address regressions surfaced by the v1.0.1 stress-test sweep, but no measurement existed to confirm the fixes reached the runtime paths exercised by the rubric. The v1.0.1 baseline had one catastrophic cell: I2/cli-opencode scored 1/10 with four fabricated file paths and two fabricated spec packet identifiers.
@@ -79,3 +76,6 @@ The v1.0.2 rerun dispatched all 30 cells (9 scenarios, 3 base CLIs, 3 ablation c
 - Address cli-copilot I1/memory:save contract bypass. In v1.0.2 copilot still mutated a spec folder without Gate 3 authorization (2/8, up from 1/8). Tighten the planner-first default at the copilot CLI entry point so `/memory:save` without a stated target prompts for the spec folder rather than auto-selecting from bootstrap context.
 - Tighten code-graph file-watcher debounce or add a freshness self-check to `code_graph_status`. Pre-flight detected 4-hour staleness that required a manual `code_graph_scan` recovery.
 - Run a higher-N variance pass (N=5) on the load-bearing I2/cli-opencode cell to confirm SC-003 closure is not a single-trial artifact (REQ-018 future work).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/010-stress-test-close-loop-measurement-rerun` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

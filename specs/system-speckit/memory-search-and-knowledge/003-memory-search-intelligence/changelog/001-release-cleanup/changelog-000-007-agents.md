@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/007-agents` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`
-
 ### Summary
 
 The agent definition cleanup ran across the OpenCode, Claude and Codex agent mirrors. Discovery found 39 in-scope files: 12 agent definitions plus one README in each runtime. The three README files were rewritten to match the live 12-agent set and the correct runtime packaging. Two Claude path-convention lines were localized to `.claude/agents/*.md`. Agent bodies were verified accurate and left unchanged.
@@ -62,3 +59,6 @@ The agent definition cleanup ran across the OpenCode, Claude and Codex agent mir
 
 - Leave agent bodies alone unless a future verification pass finds a concrete stale claim.
 - Treat corpus-wide voice restyling as separate work because this phase only rewrote confirmed stale prose.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/007-agents` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`

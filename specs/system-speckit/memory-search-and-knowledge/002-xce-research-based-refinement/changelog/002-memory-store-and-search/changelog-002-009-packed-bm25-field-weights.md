@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/009-packed-bm25-field-weights` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 The lexical fallback that backs search when the vector lane is unavailable was carrying a memory-hungry posting representation and had lost its per-field weighting. This phase replaced it with a packed in-memory BM25 engine: typed-array postings instead of object-per-token structures, and restored BM25F field weighting so a hit in a document title or trigger phrase ranks above the same term buried in body text. Ranking quality was held to the baseline gates: the packed engine meets or beats the legacy engine on the oracle metrics (MRR, NDCG, recall, hit rate), and intentionally differs from legacy where the restored title and trigger weighting is the point of the phase; byte-identical parity holds within the packed engine itself (warmed versus direct). The realistic-corpus re-validation then exposed a warmup RSS spike well over budget, which was carried as a finding and closed in phase 017.
@@ -58,3 +55,6 @@ The lexical fallback that backs search when the vector lane is unavailable was c
 ### Follow-Ups
 
 - REQ-001 (warmup RSS under the 150MB budget) was unmet at this phase and was closed in phase 017 (bm25-warmup-churn-reduction) on the original process-RSS metric.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/009-packed-bm25-field-weights` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

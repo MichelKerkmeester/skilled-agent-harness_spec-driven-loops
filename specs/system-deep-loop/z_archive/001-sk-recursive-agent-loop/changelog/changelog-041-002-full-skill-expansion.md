@@ -8,8 +8,6 @@
 
 Expanded the evaluator from single-target scoring to a multi-target benchmark runner with profile-based scoring, fixture catalogs, and cross-target reducer reporting. This phase made the skill capable of evaluating agents beyond handover.
 
-> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/`
-
 ---
 
 ## New Features (3)
@@ -50,3 +48,5 @@ Expanded the evaluator from single-target scoring to a multi-target benchmark ru
 ## Upgrade
 
 No migration required.
+
+> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/`

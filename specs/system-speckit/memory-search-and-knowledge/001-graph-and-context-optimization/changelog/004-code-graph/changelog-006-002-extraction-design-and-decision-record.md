@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/002-extraction-design-and-decision-record` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation`
-
 ### Summary
 
 The code-graph subsystem (111 source files, 12 MCP tools, 7 SQLite tables, a 55+ MB live index) had no locked architectural plan for its extraction into a first-class `system-code-graph` skill. Eight decisions covering database ownership, MCP server topology, tool-id stability, cross-subsystem import direction, plugin bridge disposition, phase decomposition plus risk handling were all unresolved. Without these decisions, subsequent implementation children could not scaffold safely.
@@ -69,3 +66,6 @@ None. Research-only phase.
 
 - ADR-001 Q3 (MCP topology) is superseded by ADR-002 in 014/007. Verify downstream children reference the updated topology decision before executing child 004 rewire work.
 - Child 005 doc-migration judgment on the 33+30 category-22 docs split between code-graph core and shared context and hooks should be re-evaluated against the actual file list at migration time.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/002-extraction-design-and-decision-record` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation`

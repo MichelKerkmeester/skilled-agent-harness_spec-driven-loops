@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-05
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`
-
 ### Summary
 
 This review-only slice audited feature-catalog-to-code traceability and manual-testing-playbook coverage for the system-spec-kit catalog and playbook surfaces. The merged verdict was CONDITIONAL with 10 open findings: 9 P1 and 1 P2. Top findings covered overstated feature annotation coverage, MCP tool-count drift, stale scenario counts, broken playbook-to-catalog links, malformed validation instructions, stale local-LLM implementation paths and stale cleanup claims.
@@ -63,3 +60,6 @@ None (review-only packet).
 - Align catalog annotation coverage language with measured partial coverage.
 - Reconcile MCP tool counts, scenario counts, playbook links and stale implementation paths.
 - Add link integrity and coverage checks so future catalog or playbook drift is caught by validation.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`

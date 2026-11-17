@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers`
-
 ### Summary
 
 This leaf added `feedback-retention-reducer.ts` and `edge-tier-basement.ts`. The retention reducer issues `delete`, `extend`, and `protect` decisions from aggregated feedback summaries under a three-gate safety model: the master `SPECKIT_FEEDBACK_RETENTION_LEARNING` flag must be on, the mode must be `active`, and the caller must supply shadow-evaluation evidence before any retention row is mutated. Shadow mode writes `feedback_retention_learning` audit rows to the existing `governance_audit` table without touching retention state. Dry-run mode returns decisions without any writes. Auto-derived edges are excluded from the edge floor helper.
@@ -60,3 +57,6 @@ This leaf added `feedback-retention-reducer.ts` and `edge-tier-basement.ts`. The
 
 - Active retention changes require external shadow-evaluation evidence to be supplied by callers; this gate has no automated bypass path.
 - Shadow audits should be reviewed before considering any transition to active mode in production.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers`

@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-02
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/003-mcp-front-proxy` (Level 3, base implementation)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation`
-
 ### Summary
 
 Shipped and deployed the MCP front-proxy (item "E", Phases 1-5). The daemon RSS-recycled under load via `process.exit(0)`, which exited the launcher OpenCode spawned as the MCP command — severing the client stdio pipe with no transparent reconnect (observed live as `mk_*` servers dropping + launcher pid churn). This makes the launcher stay alive as a **frame-aware reconnecting proxy** that owns the client MCP session, and recycles the daemon **child in place**, so an RSS recycle mid-request no longer breaks the client. In-flight read and idempotent-write requests are replayed across the recycle; in-flight non-idempotent writes get a single retryable error instead of a double-apply or a dead pipe.
@@ -58,3 +55,6 @@ Shipped and deployed the MCP front-proxy (item "E", Phases 1-5). The daemon RSS-
 ### Follow-Ups
 
 - The reconnect-transparency follow-ups (#1 protocol-drift fail-closed re-handshake, #2 multi-client transparency for 2nd+ sessions) shipped separately — see `changelog-013-003-front-proxy-reconnect-hardening.md`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/003-mcp-front-proxy` (Level 3, base implementation)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation`

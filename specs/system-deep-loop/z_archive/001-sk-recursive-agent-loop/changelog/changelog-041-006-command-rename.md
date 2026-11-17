@@ -8,8 +8,6 @@
 
 Renamed the command entrypoint to `/speckit:recursive-agent` (later renamed again in Phase 008 to `/deep:start-agent-improvement-loop`). Updated canonical command markdown, YAML workflow assets, wrapper TOMLs, and runtime docs to the new command path.
 
-> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/006-sk-recursive-agent-command-rename/`
-
 ---
 
 ## Changed (1)
@@ -39,3 +37,5 @@ Renamed the command entrypoint to `/speckit:recursive-agent` (later renamed agai
 ## Upgrade
 
 No migration required. This rename was superseded by Phase 008's rename to `/deep:start-agent-improvement-loop`.
+
+> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/006-sk-recursive-agent-command-rename/`

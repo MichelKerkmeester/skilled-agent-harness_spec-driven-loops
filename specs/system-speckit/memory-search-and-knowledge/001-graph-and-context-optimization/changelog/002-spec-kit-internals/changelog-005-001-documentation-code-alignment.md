@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/001-documentation-code-alignment` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation`
-
 ### Summary
 
 Phase 020 shipped the skill-advisor hook surface but the skill-advisor package documentation still described the direct command-line interface (CLI) flow as primary. The Phase 020 TypeScript code had not been audited against project coding standards. This phase updated all four package documents to reflect hook-first invocation and completed a full audit of 18 Phase 020 TypeScript files with nine minor remediations applied in place.
@@ -68,3 +65,6 @@ Phase 020 shipped the skill-advisor hook surface but the skill-advisor package d
 
 ### Follow-Ups
 - Interactive runtime smoke testing remains manual. The playbook describes the Claude, Gemini, Copilot, and Codex smoke procedure, but this pass verified automated Phase 020 suites rather than launching each interactive runtime.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/001-documentation-code-alignment` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation`

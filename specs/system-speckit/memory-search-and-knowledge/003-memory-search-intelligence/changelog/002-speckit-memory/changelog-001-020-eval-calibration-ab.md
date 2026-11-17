@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 This phase shipped observe-only confidence calibration and shipped-lever A/B utilities. The calibration fitter gains a real eval caller through the ablation harness, a three-way held-out shadow returns a promote-or-wait decision without flipping flags and the lever A/B emits measured S5 and S3 descriptors. Both candidates stay pending promotion until 019 supplies held-out ECE and golden-set delta evidence. Default behavior stays byte-identical because no flag default was flipped. Commit `508af65780` carried the utilities with a 232-line passing test.
@@ -56,3 +53,6 @@ _No fixes recorded._
 - Confirm the eval-harness ECE lane before harvesting calibration labels.
 - Measure the shipped levers with evaluation mode configured so the reorder actually runs.
 - Promote calibration only on held-out ECE improvement over identity.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

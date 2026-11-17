@@ -16,8 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-05
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation` (Level 2)
-
 ### Summary
 
 This phase parent groups seven file-disjoint remediation phases for the packet-012 audit. The work closed the fan-out accounting P0, hardened governed retrieval and causal paths, refreshed memory write invalidation, realigned MCP contracts, fixed status derivation, corrected catalog and playbook drift and brought governance docs plus enforcement tools back into sync. Central verification later rebuilt dist, ran typecheck and targeted suites, fixed one test-fixture gap in the job queue suite and classified unrelated failures as pre-existing or infrastructure debt.
@@ -75,3 +73,5 @@ This phase parent groups seven file-disjoint remediation phases for the packet-0
 
 - Recycle the relevant MCP daemon so rebuilt dist and runtime behavior are active where applicable.
 - Pre-existing advisor, feature-flag, deferred-suite, dead-code and macOS EINVAL failures are handled by the follow-on 014 remediation packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation` (Level 2)

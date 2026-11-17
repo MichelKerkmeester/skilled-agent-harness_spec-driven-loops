@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/009-memory-search-citation-response-policy` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 The `memory_search` tool returned weak-retrieval results inside a standard success envelope with no binding claim-authority signal. When the 006/I2 cli-opencode query received `requestQuality:"weak"` and `recovery.recommendedAction:"ask_user"` with an empty `suggestedQueries` list, the model treated the success envelope as license to cite and filled the gap with invented file paths and spec folder references.
@@ -76,3 +73,6 @@ The 007 research isolated the root cause: weak retrieval was advisory, not contr
 - Run the 006/I2 weak-quality live repro after the next MCP daemon restart to confirm the `do_not_cite_results` branch fires in production.
 - Add caller-side enforcement in CLI runtimes to honor `noCanonicalPathClaims` and emit `safeResponse` instead of hallucinating paths.
 - Consider a server-side `WARN` log line when `responsePolicy` fires, to support analytics on how often weak-quality retrieval triggers the refusal contract.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/009-memory-search-citation-response-policy` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

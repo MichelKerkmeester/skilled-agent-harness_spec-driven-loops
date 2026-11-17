@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/001-identify-and-close-3-remaining-deferred-p2` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2`
-
 ### Summary
 
 The original packet assumption was that 65 of 68 P2 findings had been closed across arcs 017/005 and 020/001-006, leaving 3 remaining. A full checklist sweep across every child packet of arcs 016 through 020 found the actual state was 67 closed and 1 deferred, not 65 and 3. The three originally guessed findings (F103, F104, F106-F108) had each been closed in earlier arcs.
@@ -67,3 +64,6 @@ All 68 P2 findings are now closed. Combined with 39 P1 and 3 P0 closures, the co
 ### Follow-Ups
 
 - Proceed to arc 021/002 for sk-code alignment work, which was deferred pending P2 closure confirmation.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/001-identify-and-close-3-remaining-deferred-p2` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-08
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
-
 ### Summary
 
 Phase 005 had audited memory search and deferred 13 P1/P2 defects across four clusters: causal-stats emitted only 3 of 6 required relation types with no health degradation on missed targets, memory-context leaked stale degraded hints on cold-start sessions, folder discovery auto-bound on weak token matches without a similarity gate. The query router had no fallback when retrieval quality was flagged as a gap.
@@ -94,3 +91,6 @@ All 13 requirements closed in a single cli-codex dispatch (21 minutes). The caus
 - Resolve repo-wide Vitest baseline failures before claiming full-suite green. Pre-existing failures in advisor, hook, scaffold, alignment plus code-graph fixtures are tracked in sibling packet 026/000/003-vitest-baseline-recovery.
 - The `pnpm tsc --noEmit` wrapper is unavailable in `mcp_server/node_modules/.bin`. Add a package.json script or symlink so the standard invocation works without the absolute compiler path.
 - CocoIndex daemon probe uses filesystem liveness checks (PID, log, lock, socket) with a 30-second TTL. It cannot verify process arguments or environment values. A future packet could strengthen the probe if live HTTP healthcheck becomes available.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

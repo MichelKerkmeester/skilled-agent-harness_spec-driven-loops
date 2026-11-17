@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/037-drift-gate-synopsis-extractor` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Shipped a generated-metadata drift gate and one shared synopsis extractor that both the `description` and `causal_summary` fields derive from. The extractor uses one precedence over one source doc so the two fields can no longer diverge. The gate re-derives the stored fields, reports drift, never writes the folder, and skips the re-derive when a persisted `source_doc_hashes` freshness key still matches. Both behaviors shipped behind the default-OFF `SPECKIT_GENERATED_METADATA_DRIFT_GATE` flag and a grandfather report mode so a flag-off derive stays byte-identical.
@@ -70,3 +67,6 @@ Shipped a generated-metadata drift gate and one shared synopsis extractor that b
 ### Follow-Ups
 
 - The phase shipped default-OFF and deferred the scoped migration and the hard flip. `SPECKIT_GENERATED_METADATA_DRIFT_GATE` later GRADUATED to default-ON after the phase 039 migration was re-run with the flag set, which wrote `source_doc_hashes` tree-wide and gave the gate the freshness baseline it enforces against. Drift now fails strict.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/037-drift-gate-synopsis-extractor` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

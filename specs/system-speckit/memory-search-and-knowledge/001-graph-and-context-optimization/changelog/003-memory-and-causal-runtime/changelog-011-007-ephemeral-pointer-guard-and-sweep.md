@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/007-ephemeral-pointer-guard-and-sweep` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`
-
 ### Summary
 
 An earlier hand-coded grep pass (packet 006) had caught roughly 10 percent of ephemeral-artifact pointers in code comments. A purpose-built guard revealed the true debt was 274 violations across 116 files. This packet delivered a standalone comment guard and a comprehensive sweep that brought the whole system-spec-kit and bin tree to zero violations: 261 comment-only fixes across 119 files with zero dist/ drift.
@@ -62,3 +59,6 @@ An earlier hand-coded grep pass (packet 006) had caught roughly 10 percent of ep
 - The guard is not yet wired into CI or pre-commit. It runs on demand. Wiring it into `verify_alignment_drift.py` or a pre-commit hook is proposed in the guard header and deferred to a follow-on decision.
 - `SPRINT N` labels are flagged as spec-folder references. They were fixed in this sweep where they appeared, but reasonable people could treat bare sprint labels as durable rather than ephemeral.
 - The scope was limited to `system-spec-kit` and `bin`. Other code surfaces (webflow, motion_dev) were not swept.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/007-ephemeral-pointer-guard-and-sweep` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`

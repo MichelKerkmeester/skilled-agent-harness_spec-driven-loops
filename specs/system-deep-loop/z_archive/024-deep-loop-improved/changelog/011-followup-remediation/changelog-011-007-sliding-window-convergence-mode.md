@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-02
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/007-sliding-window-convergence-mode` (Level 3)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation`
-
 ### Summary
 
 Implemented the parent packet ADR's opt-in `convergenceMode: "sliding-window"` fix for denominator drag: long loops previously measured novelty against their entire accumulated history, so late discoveries became statistically invisible and loops stopped early. The new mode measures novelty against the last N iterations (validated `slidingWindowSize`, default 5, early iterations clamped to full history), records both the windowed and full-history ratio in telemetry for rollout comparison, and leaves `default`/`off` behavior byte-identical. Implemented by a GPT-5.5-fast xhigh dispatch against orchestrator-authored Level 3 docs and independently verified by the orchestrator.
@@ -54,3 +51,6 @@ Implemented the parent packet ADR's opt-in `convergenceMode: "sliding-window"` f
 
 - Two pre-existing deep-loop-runtime suite failures (`dependency-seams.vitest.ts`, `executor-provenance-mismatch.vitest.ts`) predate this child and remain unowned repo debt.
 - Telemetry comparison data from the first sliding-window rollout cycle should inform whether the mode ever becomes a recommended default (parent ADR keeps it opt-in until then).
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/007-sliding-window-convergence-mode` (Level 3)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation`

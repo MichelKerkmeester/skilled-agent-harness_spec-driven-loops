@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/007-cross-skill-enhancement-edge-propagation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph`
-
 ### Summary
 
 When a new skill ships, other skills' `edges.enhances[]` lists had no mechanism to auto-update. Operators had to manually backfill the same pattern repeatedly (twice in one day for a prior release). This packet ships an MCP tool and a `lib/cross-skill-edges/` module that detects missing inbound enhances edges across all skills with composite scoring, surfaces candidates with provenance and confidence, and optionally writes idempotent patches into source `graph-metadata.json` files with auto-marker fields for future audits.
@@ -70,3 +67,6 @@ When a new skill ships, other skills' `edges.enhances[]` lists had no mechanism 
 - No daemon-event-triggered auto-apply. Detection stays strictly on-demand for now.
 - No semantic or embedding-based detection. Deterministic rule matching only.
 - No continuous integration or pre-commit hook integration. Tool is operator-invoked.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/007-cross-skill-enhancement-edge-propagation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph`

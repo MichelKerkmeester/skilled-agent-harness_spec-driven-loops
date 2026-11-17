@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/020-embedder-default-drift-fix` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`
-
 ### Summary
 
 ADR-013 and ADR-014 migrated the canonical spec-memory embedder to `nomic-ai/nomic-embed-text-v1.5` via the registry MANIFESTS array, but 5 hardcoded string constants survived across `shared/embeddings.ts`, `hf-local.ts`, `ollama.ts`, `factory.ts` and `sidecar-worker.ts`. The `ollama.ts` constant held `jina-embeddings-v3`, a pre-ADR-013 bake-off winner that the operator overrode. When the resolution chain fell through to these stale fallbacks the runtime instantiated models the registry did not recognize, triggering circuit-breaker flapping and contributing to 1978 failed records, 786 null-embedding errors and 754 stuck-pending items in the 2026-05-23 incident.
@@ -74,3 +71,6 @@ A `getCanonicalFallback(provider: CanonicalProvider)` helper was added to `share
 - The MANIFESTS array order is now load-bearing. Re-ordering changes the return value of `getCanonicalFallback('ollama')` and `getCanonicalFallback('hf-local')`. Any re-order must update the invariant test to reflect the new operator decision.
 - Cloud providers' canonical strings still live as inline constants inside `CLOUD_CANONICAL` (two entries). If a third cloud provider arrives or these models change canonical, the table needs a manual update.
 - Audit other subsystems (CocoIndex, skill-advisor, code-graph, rerank-sidecar) for similar hardcoded-default patterns. That sweep is deferred to a follow-on deep-research packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/020-embedder-default-drift-fix` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

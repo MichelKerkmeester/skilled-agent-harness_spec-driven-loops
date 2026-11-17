@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/001-advisor-validate-alias-matching` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation`
-
 ### Summary
 
 The advisor_validate gold matching logic compared recommended skill IDs against corpus expected labels using strict equality, causing 53 of 193 rows labelled with legacy skill IDs (sk-deep-research, sk-deep-review) to fail against the live graph IDs. The reported accuracy dropped to 50.78% full-corpus and 42.5% holdout. Gold matching now resolves both sides through `skillMatchesAlias` from the alias groups before comparison, restoring the metric to 74.09% full-corpus and 65.0% holdout with no scorer change.
@@ -52,3 +49,6 @@ The advisor_validate gold matching logic compared recommended skill IDs against 
 
 - Eight drifted rows still fail after alias normalization, a prompt-quality vs scorer triage item, not an alias defect.
 - Alias-awareness in skill_advisor_regression.py and evaluateRegressionCases shipped later in phase 007.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/001-advisor-validate-alias-matching` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation`

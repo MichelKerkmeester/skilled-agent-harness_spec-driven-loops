@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/012-copilot-target-authority-gate-helper` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 The v1.0.2 stress-test rerun caught cli-copilot autonomously selecting and mutating `009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/graph-metadata.json` without operator authorization. The root cause was a target-authority failure: `deep_start-research-loop_auto.yaml` and `deep_start-review-loop_auto.yaml` passed rendered prompts directly to `copilot --allow-all-tools --no-ask-user` with no schema to distinguish the workflow-approved write target from recovered context (memory hits, bootstrap folders, graph `last_active_child_id`). The model treated any plausible folder name in the prompt body as a valid mutation target.
@@ -75,3 +72,6 @@ This packet closes the bypass at the executor-config layer. A `buildCopilotPromp
 - Port `buildCopilotPromptArg` into `deep_start-research-loop_confirm.yaml` and `deep_start-review-loop_confirm.yaml` for symmetry. These paths require operator confirmation per dispatch and do not exhibit the v1.0.2 pathology, so this is operator preference rather than a P0.
 - Run a live cli-copilot dispatch on the next deep-research or deep-review run. Confirm the `## TARGET AUTHORITY` preamble appears in the rendered iteration prompt and zero unauthorized folder mutations occur.
 - If any consumer imports `executor-config` from a compiled `dist/` artifact, run `tsc -b` to rebuild parity. The YAML uses `--experimental-strip-types` to load TS directly, so the rebuild is not strictly required for the helper to take effect.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/012-copilot-target-authority-gate-helper` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

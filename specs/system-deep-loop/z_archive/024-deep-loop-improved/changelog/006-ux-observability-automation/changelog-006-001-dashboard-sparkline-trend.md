@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation/001-dashboard-sparkline-trend` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation`
-
 ### Summary
 
 Added renderSparkline(history, opts) + a '## 5. TREND' dashboard section (newInfoRatio + score sparklines) + a trend_flatline advisory event in reduce-state.cjs (purely additive). Unit tests pass.
@@ -54,3 +51,6 @@ Added renderSparkline(history, opts) + a '## 5. TREND' dashboard section (newInf
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation/001-dashboard-sparkline-trend` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Nothing has shipped yet. This phase is PLANNED and scaffolded only. The spec, plan, tasks, and checklist are authored and the three build seams are described, but no code change has landed and no acceptance criterion has been verified.
@@ -51,3 +48,6 @@ Nothing has shipped yet. This phase is PLANNED and scaffolded only. The spec, pl
 
 - Build this on-write gate per plan.md. The A1, B1 and B2 surfaces share the safe-fix engine in `026-shared-safe-fix-engine`, so build that first.
 - Land it default-off and warn first, then flip to error only after the corpus backfill reads zero, per the migration sequence in `028-governance-rollout`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

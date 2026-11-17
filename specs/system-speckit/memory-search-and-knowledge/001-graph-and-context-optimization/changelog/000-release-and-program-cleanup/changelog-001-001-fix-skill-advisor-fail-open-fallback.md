@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-skill-advisor-fail-open-fallback` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness`
-
 ### Summary
 
 The 008/008 deep review surfaced three release-blocking gaps in the skill-advisor runtime. `advisor_recommend` did not fail open when freshness was unavailable, so a broken or unreachable graph could still return authoritative-looking recommendations. `skill_graph_scan` had no caller-authority check, meaning any MCP caller could trigger a mutable reindex and publish a new generation. Active review invariants lacked failing-before regression tests, so regressions would pass silently.
@@ -103,3 +100,6 @@ The full closure covers 18/18 source findings (3 P1 and 15 P2). Typecheck, build
 ### Follow-Ups
 
 None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-skill-advisor-fail-open-fallback` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness`

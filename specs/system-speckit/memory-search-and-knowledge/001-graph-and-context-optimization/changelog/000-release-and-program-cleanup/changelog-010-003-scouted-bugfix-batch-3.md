@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-06-03
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train`
-
 ### Summary
 
 The third batch of the scouted bugfix train processed a fresh 20 targets from the second deep-research scout (batches 1 and 2 covered the first 25). Twenty parallel `gpt-5.5-fast` confirm deep-dives classified each headline (7 CONFIRMED, 9 partial-but-real, 4 REFUTED) before any edit was made. The 4 refuted targets (gemini-compact's `sanitizeRecoveredPayload` is already called internally, plus 3 code-graph regex `lastIndex` claims where the while-exec loop resets correctly) were left untouched. One partial (`scoreVerdictProgression` in the AI council) was excluded from auto-fix because its proposed change alters stop-policy, a product decision requiring deliberate sign-off. The remaining 12 confirmed and partial targets were fixed by 12 parallel implement-and-test agents across 23 disjoint files (sources + added regression tests), fixing only the REAL part of each partial. Every diff was reviewed by the orchestrator. Comment-hygiene is clean, and `npm run build` and `node --check` pass.
@@ -94,3 +91,6 @@ The third batch of the scouted bugfix train processed a fresh 20 targets from th
 - Deploy: recycle the mk-spec-memory daemon after commit so the `memory-search.ts` + `vector-index-mutations.ts` fixes take effect. The launcher `.cjs` (TOCTOU fix) deploys on the next launcher restart. Install scripts, agent docs, stress tests and the devin hook (`session-start.ts`) require no forced deploy.
 - Council `scoreVerdictProgression` partial: flagged for deliberate product-decision sign-off before a fix can ship. The partial is real but its proposed change alters stop-policy, not a scout-driven defect patch.
 - A fourth scouted bugfix batch may be warranted if a third scout surfaces additional high-risk targets in previously-uncovered subsystems.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train`

@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/007-hard-intent-corpus-resweep` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`
-
 ### Summary
 
 The original 24-prompt intent corpus was lexical-saturated and showed zero routing variance across all semantic weight levels. A harder corpus was needed to test whether the cosine lane could help when prompts describe intent without using the target skill's keywords. A new 22-prompt harder corpus covering 11 skills was authored alongside a second seeded sweep over the combined set. Results confirmed partial saturation only: the harder set is materially harder but semantic weights from 0.00 to 0.30 still produced no routing lift, reinforcing the recommendation to stay at weight 0.05.
@@ -57,3 +54,6 @@ The original 24-prompt intent corpus was lexical-saturated and showed zero routi
 - Authored vs real telemetry: harder prompts are still synthetic and real user distributions may differ
 - Fixed lane registry: this packet does not change weights and a downstream packet would act if a clear winner emerges
 - Provider variance: cosine vectors depend on the active embedding model and results are bound to the current Gemma config
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/007-hard-intent-corpus-resweep` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`

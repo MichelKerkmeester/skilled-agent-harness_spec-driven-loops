@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/008-tree-sitter-parser-crash-resilience` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`
-
 ### Summary
 
 The broad-scope code_graph_scan now completes cleanly across 9,300+ files. The bash B1 cascade that previously corrupted parser memory after about 80 throws no longer fires. Parser-error rate dropped from about 17.5% to 0.72%, a >24x improvement.
@@ -78,3 +75,6 @@ The broad-scope code_graph_scan now completes cleanly across 9,300+ files. The b
 - R-2 grammar rebuild deferred: web-tree-sitter 0.26.x rejects current vendored WASM artifacts; requires co-bumped grammar rebuild infrastructure.
 - Self-heal stays disabled by design; operator workflow is quarterly manual review of runtime skip-list rows.
 - Quarantine sentinel clears only through MCP server restart; no programmatic clear endpoint exists.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/008-tree-sitter-parser-crash-resilience` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

@@ -48,7 +48,7 @@ Frozen choices. Changing one is an amendment.
 | D1 | Each file follows its template's section model, keeps `---` before every numbered H2 and carries no emoji in a heading. |
 | D2 | A session that did not write a README checks every path, command and count in it against the code before it is committed. |
 | D3 | Out of scope: the root README and root guides, `local-webflow`, code-folder READMEs outside `.skilled/hooks/`, and any change to the templates, the validator or the voice scanner. README versions and changelogs are never edited by hand. |
-| D4 | Writers and reviewers run one README per session: DeepSeek V4.1 Flash at max through cli-opencode until its daily cap ran out in phase 002, then GPT-6 Luna at max on the fast tier through cli-codex. The main session reruns every check itself before it trusts a result. |
+| D4 | Writers and reviewers run one README per session: DeepSeek V4.1 Flash at max through cli-opencode until its daily cap ran out in phase 002, then GPT-6 Luna at max on the fast tier through cli-codex until its usage limit stopped phase 004, then DeepSeek V4.1 Flash Max through cli-devin until its daily quota ran out, then DeepSeek V4.1 Flash at max through cli-opencode on OpenCode Go. The main session reruns every check before it trusts a result. |
 | D5 | Phases run in order. Each phase is committed, merged with origin/main and pushed under sk-git before the next one starts, and the operator's own uncommitted files are never staged. |
 
 <!-- /ANCHOR:directive -->

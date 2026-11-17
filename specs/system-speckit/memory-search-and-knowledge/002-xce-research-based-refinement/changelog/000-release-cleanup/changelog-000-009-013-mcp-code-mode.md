@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/013-mcp-code-mode` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 mcp-code-mode's 7 reference and asset docs now carry exactly the canonical frontmatter contract, so the skill's Code Mode guidance (naming pattern, UTCP config, workflow patterns, templates) is valid routing signal for the advisor doc harvest. Unlike the pilot, this was pure net-new authoring: every doc carried title+description only, so all trigger phrases were composed fresh from each body.
@@ -56,3 +53,6 @@ mcp-code-mode's 7 reference and asset docs now carry exactly the canonical front
 
 - Live-daemon matchedDocs verification is deferred until every advisor-attached session ends and a fresh session respawns the daemon with the doc-trigger flag enabled.
 - Local-mode advisor confidence is moderate (0.62) on bare trigger phrases; full-sentence prompts with intent tokens raise the score above the 0.8 routing bar.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/013-mcp-code-mode` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

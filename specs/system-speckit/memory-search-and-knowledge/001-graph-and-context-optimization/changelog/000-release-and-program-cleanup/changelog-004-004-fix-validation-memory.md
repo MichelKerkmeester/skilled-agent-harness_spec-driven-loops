@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/004-fix-validation-memory` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`
-
 ### Summary
 
 Packet 046 deep research surfaced thirteen loose-typing, generic-parse plus false-positive bugs across the advisor, memory plus spec-validation subsystems. Advisor input paths flowed through `resolve()` without realpath canonicalization or allowlist bounding. Corpus and regression JSONL rows were parsed with bare `JSON.parse` and no per-row schema. The memory parser hand-rolled `description.json` parsing instead of reusing the existing schema. The causal-link extractor only matched the camelCase token even though the rest of the ecosystem accepted both casings. Four shell rules used by `validate.sh` mishandled markdown-aware constructs.
@@ -99,3 +96,6 @@ Thirteen surgical fixes close all findings. Each fix is the smallest change that
 - Migrate `extractCausalLinks` in `memory-parser.ts` from a regex block matcher to a proper YAML library when the full parser rewrite is scoped (deferred per F-008-B3-01 research note).
 - Extend the workspace-root allowlist beyond repo root and `os.tmpdir()` if caller environments outside both prefixes are identified in a future audit.
 - Tighten `CheckpointSnapshotSchema` to validate referential consistency between edge rows and memory ids at restore time, not only row shape.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/004-fix-validation-memory` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

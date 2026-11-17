@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`
-
 ### Summary
 
 You can now run `/doctor:skill-advisor` to interactively analyze every skill in your repo, propose optimized advisor scoring (TOKEN_BOOSTS, PHRASE_BOOSTS, derived triggers, CATEGORY_HINTS), apply approved changes, re-index the skill graph, and validate against the 220-test advisor suite. Before this packet, the only way to tune advisor routing was to hand-edit `explicit.ts`, `lexical.ts`, and per-skill `graph-metadata.json` files, then remember to rebuild dist plus run the test suite. The new command collapses that workflow into one invocation and gives non-internal users a path through the AI-first install guide.
@@ -97,3 +94,6 @@ Implementation commit: `62640cb8b`. Pt-02 re-review verdict PASS.
 - Confidence threshold fixed at 0.40. No flag to relax for development without editing the YAML directly.
 - Per-run rollback script auto-invoke is on build/edit failure only. Test-failure rollback is offered at the post_phase_4 gate (option B) in confirm mode but not auto-executed. Intentional: a regressed test may still be a desirable proposal that needs targeted investigation.
 - Command was later moved from `/spec_kit:skill-advisor` to `/doctor:skill-advisor` in commit `40d3d1b3c`. The migration is reflected in the current command path, older docs that still cite the `spec_kit` namespace are stale.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

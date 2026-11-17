@@ -18,9 +18,6 @@ contextType: "review"
 
 ## 2026-05-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/001-skill-mds-audit` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment`
-
 ### Summary
 
 After the 016-019 work flipped embedding defaults from EmbeddingGemma to jina-embeddings-v3 (mk-spec-memory) and jina-embeddings-v2-base-code (CocoIndex), skill documentation still claimed gemma as the active default. An Explore agent (Sonnet) swept all skill SKILL.md, README.md, references plus assets files against an explicit severity rubric, producing a 14-row audit CSV with 1 P0, 7 P1, 5 P2 plus 1 intentional-historical-skip finding. The P0 (CocoIndex SKILL.md default claim breaking new-user setup) and three clear-P1 fixes were applied inline in commit `bb1b3d907d`. Four deferred P1s covering legacy cascade-ordering in mk-spec-memory shared docs were logged to `evidence/remediation-tracker.md` pending architecture verification, as the audit agent had recommended jina-v3 inside llama-cpp which conflicted with the actual Ollama HTTP delivery path.
@@ -63,3 +60,6 @@ None. Review-only phase.
 - Revisit the four deferred P1 cascade-ordering findings after packet 022 (skill-advisor embedder parity) ships. If the legacy cascade is retired, the documented cascade in `mcp_server/README.md` and `shared/embeddings/providers/README.md` becomes moot. Otherwise rewrite with an agent that has read both the 016 pluggable architecture and the current cascade state.
 - Apply the five deferred P2 clarifications in `system-spec-kit/README.md` and `system-spec-kit/shared/README.md` to distinguish primary-default from fallback-cascade tiers.
 - Consider adding a lint rule that flags new occurrences of `embeddinggemma-300m` outside `changelog/` and `z_archive/` to prevent similar documentation rot on future embedder flips.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/001-skill-mds-audit` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment`

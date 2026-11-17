@@ -16,8 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph` (Level 2, Phase Parent)
-
 ### Summary
 
 The 027 epic hardened the spec-memory subsystem first. This phase parent carries those same patterns across into the other two daemons — skill-advisor and code-graph — so the whole system shares the observability, provenance, lexical-ranking, and traversal improvements rather than leaving them in one subsystem. The advisor side adopted five: prompt-safe `why_recommended` attribution with semantic-lane health diagnostics, a source-provenance guard for automated skill-graph edge writes, the packed BM25 lexical engine, BFS consolidation of its graph walks, and shadow-only feedback calibration from `advisor_validate` outcomes. The code-graph side adopted four: a bounded default-off tombstone audit, BFS consolidation of transitive-traversal and blast-radius walks behind one local helper, `why_included` attribution, and a BM25 symbol resolver. Results-affecting additions ship default-off or shadow-first.
@@ -63,3 +61,5 @@ This rollup is the authoritative child inventory for 003/002, which is the reloc
 ### Follow-Ups
 
 - Advisor doc-trigger harvest live adoption is operator-gated (fresh advisor session required to load the allowlist fix and index the harvested triggers).
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph` (Level 2, Phase Parent)

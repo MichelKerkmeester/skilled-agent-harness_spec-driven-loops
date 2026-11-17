@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening` (Level 3)
-
 ### Summary
 
 This phase parent groups the CLI executor and hardening work under one thematic map: CLI adapter stress and playbooks, executor wiring and fan-out parity, write-containment hardening, deep-alignment integrity, trustworthy state records, residual finding closeouts, and cli-devin executor repair. Each child owns its own scope, plan, and verification; this parent tracks only the shared theme, and each child is delivered and verified independently.
@@ -29,3 +27,5 @@ This phase parent groups the CLI executor and hardening work under one thematic 
 | `005-trustworthy-state-records` | Stamps deep-loop state records with the time they were appended and stops failing a completed lineage over the event name it chose. |
 | `006-residual-finding-closeouts` | A single planned home to plan, execute, and record evidence for three small deferred residuals from landed siblings 022 / 025 / 028. |
 | `007-cli-devin-executor-repair` | Repairs the cli-devin deep-loop executor adapter so cli-devin lineages run again on the installed devin CLI. |
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening` (Level 3)

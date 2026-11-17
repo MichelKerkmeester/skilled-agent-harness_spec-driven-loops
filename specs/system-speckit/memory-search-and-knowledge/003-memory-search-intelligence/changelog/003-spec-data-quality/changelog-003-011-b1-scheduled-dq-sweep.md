@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/002-retroactive-automation/011-scheduled-dq-sweep` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Nothing is built yet. This phase is scaffolded only. The spec, plan, tasks, and checklist are authored and the work is PLANNED. The build is gated on 026-shared-safe-fix-engine landing the engine, the detector registry, and the frozen fixClass allow-list.
@@ -51,3 +48,6 @@ Nothing is built yet. This phase is scaffolded only. The spec, plan, tasks, and 
 
 - Build this retroactive automation per plan.md on the shared safe-fix engine in `026-shared-safe-fix-engine`.
 - CI stays report-only. Safe-class fixes apply only under an operator-local flag and are never auto-committed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/002-retroactive-automation/011-scheduled-dq-sweep` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

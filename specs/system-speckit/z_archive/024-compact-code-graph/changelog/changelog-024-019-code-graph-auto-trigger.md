@@ -8,8 +8,6 @@
 
 The code graph originally required a manual `code_graph_scan` command before queries were trustworthy. This phase introduced the shared `ensureCodeGraphReady()` helper so read paths could detect empty, stale, and fresh graph states before answering. Later packet work refined that behavior: small stale sets can repair inline through bounded `selective_reindex`, while empty or broadly stale states now stay explicit and report `full_scan` readiness instead of pretending every query can auto-heal itself.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/019-code-graph-auto-trigger/`
-
 ---
 
 ## New Features (3)
@@ -81,3 +79,5 @@ The code graph originally required a manual `code_graph_scan` command before que
 ## Upgrade
 
 No migration required.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/019-code-graph-auto-trigger/`

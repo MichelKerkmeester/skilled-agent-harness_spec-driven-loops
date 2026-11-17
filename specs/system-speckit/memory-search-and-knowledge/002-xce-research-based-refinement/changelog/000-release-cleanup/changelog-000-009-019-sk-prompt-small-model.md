@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-models` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 All 14 sk-prompt-models reference and asset docs now carry exactly the canonical frontmatter contract, turning the per-model prompt-craft hub into valid routing signal for the advisor doc harvest. This was the campaign's first full net-new authoring phase: no doc carried the detailed block at baseline, and the seven model profiles had no description at all.
@@ -56,3 +53,6 @@ All 14 sk-prompt-models reference and asset docs now carry exactly the canonical
 
 - Live-daemon verification is campaign-level. The running advisor daemon predates the launcher allowlist fix, so matchedDocs cannot be observed live until every advisor-attached session cycles and a fresh session respawns it.
 - Profile status and last_benchmarked no longer live in profile frontmatter. These fields now exist only in the `_index.md` table and `model-profiles.json`; scripts reading profile frontmatter for status must switch to those sources.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-models` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/007-fix-topology-build-boundary` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`
-
 ### Summary
 
 Six P2 findings from the packet 046 deep-research investigation (D4 phase-topology, D5 build/dist boundary) left topology drift, a stale cache-signature path plus orphaned dist artifacts that the existing tooling could not detect. The implement-workflow YAML documented only a two-level path pattern even though the runtime parser supports arbitrary depth. Large phase parents had no programmatic size check. The OpenCode plugin hashed a kebab-case dist path that never existed on disk, so cache invalidation never reacted to compat-module changes. The source/dist alignment checker covered only two subtrees, letting orphans in the remaining runtime-critical directories pass silently.
@@ -83,3 +80,6 @@ Six surgical edits landed in a single commit on 2026-05-01. A `phase_path_gramma
 - Delete the three remaining D5-03 sibling dist orphans (`corpus.js`, `measurement-fixtures.js`, `metrics.js`) once the follow-on dist-cleanup packet is scoped.
 - Migrate the MJS plugin bridge to TypeScript when a build-step decision for that single file is made in a future packet.
 - Confirm `validate.sh --strict` exits 0 on this packet during final commit.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/007-fix-topology-build-boundary` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

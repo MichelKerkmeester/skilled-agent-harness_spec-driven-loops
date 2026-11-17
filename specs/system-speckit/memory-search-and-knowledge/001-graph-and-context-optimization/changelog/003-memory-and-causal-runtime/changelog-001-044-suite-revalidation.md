@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/044-suite-revalidation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 Packets 037 through 041 repaired the worker, error propagation, chunking, V8 validation plus CocoIndex IPC layers after the 032/002 baseline recorded 2 PASS / 2 PARTIAL / 11 FAIL across scenarios 401-415. A fresh runner was authored to re-execute the same 15 scenarios through `codex exec` child processes and produce a TSV-backed comparison.
@@ -71,3 +68,6 @@ The architectural root cause was identified: each `codex exec` child spawns its 
 - Rerun the full 15-scenario suite from a main-agent direct execution context where the shared MCP daemon eliminates the Metal-context race.
 - Investigate single-daemon-shared codex execution so child processes can connect to an existing `spec-kit-memory` daemon rather than spawning their own.
 - Confirm whether the 032/002 baseline figures (2 PASS / 2 PARTIAL / 11 FAIL) are also inflated by the same nested-daemon race before treating the post-wave comparison as a quality signal.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/044-suite-revalidation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

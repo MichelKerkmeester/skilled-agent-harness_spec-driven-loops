@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/002-ceiling-comment-convention` (Level 1)
-> Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`
-
 ### Summary
 
 Phase 2 documented a small escape hatch for intentional simplification. The `ceiling:` convention gives authors a neutral way to record a durable why when a simpler implementation is deliberately chosen. The matching review note is narrow: it can downgrade P2 KISS or YAGNI pressure, and it never weakens security or correctness review.
@@ -64,3 +61,6 @@ Phase 2 documented a small escape hatch for intentional simplification. The `cei
 - Documentation only. The convention is described, while reviewer and author adoption remains behavioral.
 - No checker changed by design.
 - Not committed. Changes sat in the working tree on branch `028-mcp-to-cli-tool-transition`.
+
+> Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/002-ceiling-comment-convention` (Level 1)
+> Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`

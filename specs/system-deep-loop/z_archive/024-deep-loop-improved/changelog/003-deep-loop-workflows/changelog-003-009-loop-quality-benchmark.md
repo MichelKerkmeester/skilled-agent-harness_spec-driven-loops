@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/009-loop-quality-benchmark` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`
-
 ### Summary
 
 Emit outcomeScoreDelta + fixtureDeltas[] helped/hurt plus a delta promotion gate across run-benchmark.cjs / shared reduce-state.cjs / promote-candidate.cjs. 388 deep-improvement tests pass; hygiene/drift clean.
@@ -58,3 +55,6 @@ Emit outcomeScoreDelta + fixtureDeltas[] helped/hurt plus a delta promotion gate
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/009-loop-quality-benchmark` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`

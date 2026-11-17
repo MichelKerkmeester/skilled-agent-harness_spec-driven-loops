@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge` (Level 2)
-
 ### Summary
 
 This phase defines the five compatibility, shadow-parity, in-flight-state, and rollback child contracts that make the dark deep-loop substrate provably safe for a later authority cutover without moving authority in this phase. Upcasters and dual-read/single-write adapters keep both generations readable while writing only the dark ledger, legacy projections preserve existing readers, the shadow-parity harness compares legacy and dark results on the same sealed inputs, in-flight states receive an explicit upcast/pin/fork/migrate/block disposition, and rollback drills prove reversibility within the phase-004 rollback window. Per the group parent phase map, this phase is in progress; four of the five children report delivered implementations, while the shadow-parity harness remains planned.
@@ -27,3 +25,5 @@ This phase defines the five compatibility, shadow-parity, in-flight-state, and r
 | `003-shadow-parity-harness` | Plan the fail-closed harness that runs legacy and dark paths on identical sealed inputs, compares verified replay fingerprints and projected bytes, and emits the parity certificate required before phase-014 cutover. |
 | `004-inflight-state-classification` | Implement a total, fail-closed classification of every frozen phase-003 in-flight state row into upcast, pin, fork, migrate, or block before any phase-014 authority cutover. |
 | `005-rollback-drills` | Plan executable, mode-scoped rollback drills that simulate a test-lane authority flip, detect a controlled regression, restore legacy authority within the rollback window, and prove state integrity. |
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge` (Level 2)

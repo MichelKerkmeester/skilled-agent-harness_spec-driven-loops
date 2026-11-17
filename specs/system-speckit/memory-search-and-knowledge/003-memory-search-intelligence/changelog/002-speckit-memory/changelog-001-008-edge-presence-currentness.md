@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 This phase shipped the C3-A edge-presence currentness candidate behind the default-off `SPECKIT_EDGE_PRESENCE_CURRENTNESS` flag, alongside a sequenced Level-3 plan for the four remaining candidates. The read-side currentness reconciliation lands in `temporal-edges.ts` `getValidEdges` with its schema migration, and recall stays byte-identical while the flag is off. The four remaining currentness and temporal-recall candidates stay pending schema, benchmark and shared-infra evidence. Commit `8cc41ae155` carried the slice with a 241-line passing test.
@@ -52,3 +49,6 @@ _No fixes recorded._
 - Land the bi-temporal substrate before building the currentness readers.
 - Keep current-mode recall byte-identical until a consumer is enabled.
 - Implement the read-side edge-presence filter with focused temporal tests.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

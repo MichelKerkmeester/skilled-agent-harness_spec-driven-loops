@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-03
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis/002-gpt-reliability-research` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 Completed the moved-in GPT reliability research campaign: 15/15 productive GPT-5.5-fast xhigh iterations, 44 orchestrator-verified findings, a ranked P0/P1/P2 synthesis, and a dependency-ordered implementation handoff. The campaign concluded that the repo's executor contracts are Claude-shaped: Claude follows intent where GPT follows contract letter.
@@ -61,3 +58,6 @@ Completed the moved-in GPT reliability research campaign: 15/15 productive GPT-5
 - Implement the synthesis packages in dependency order, starting with the P0 Gate-3 package.
 - Re-run the relevant behavior-benchmark cells after each package with primary and secondary cause adjudication.
 - Treat `--variant xhigh` forwarding as accepted-unverified unless a later executor check proves it.
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis/002-gpt-reliability-research` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

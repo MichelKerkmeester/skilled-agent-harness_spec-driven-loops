@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-05-06
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 Live testing in phase 012/001 surfaced two ways the populated index could lose all its data without warning. Both were P0 (must-fix) findings.
@@ -63,3 +60,6 @@ Plus a documentation pass that purged em-dashes from the code-graph README. Comm
 
 - Phase 012/005 broadened the zero-node guard to a full scope-fingerprint guard, closing the sneakier case where a scope mismatch could shrink an index without producing zero nodes.
 - Phase 012/006 wired the blocked-scan metadata into `lastFailedScan` so operators can see why a scan was rejected.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-doc/document-standards/007-changelog-spec-folder-at-bottom",
+  "description": "Move the changelog spec-folder blockquote from under the summary to the end of the entry in the template and in every existing changelog",
+  "keywords": [
+    "move",
+    "changelog",
+    "spec-folder",
+    "blockquote",
+    "summary",
+    "end",
+    "entry",
+    "template",
+    "every",
+    "existing"
+  ],
+  "lastUpdated": "2026-11-17T08:22:22.169Z",
+  "specId": "007",
+  "folderSlug": "changelog-spec-folder-at-bottom",
+  "parentChain": [
+    "sk-doc",
+    "document-standards"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

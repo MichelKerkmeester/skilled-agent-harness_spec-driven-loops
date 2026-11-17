@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-24
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`
-
 ### Summary
 
 Built and ran the frozen-SHA whole-system gate against the real finalized system. It returns a literal PASS: all seven checks pass with none not-run — authority-state reads eight modes on `new_authoritative_final` from stored records, and reader-contracts reads all eight cleanly through their real consumers.
@@ -29,3 +26,6 @@ Built and ran the frozen-SHA whole-system gate against the real finalized system
 ### Status
 
 Complete. The gate is the blocking verifier receipt for the enabled runtime; verdict PASS with proven negative controls on tree-clean, candidate-frozen, runtime-suite, and reader-contracts.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`

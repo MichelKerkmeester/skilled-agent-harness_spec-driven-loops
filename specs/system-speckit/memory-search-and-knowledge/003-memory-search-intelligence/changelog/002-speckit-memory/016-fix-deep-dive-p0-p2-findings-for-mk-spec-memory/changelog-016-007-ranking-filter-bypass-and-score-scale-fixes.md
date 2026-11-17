@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-07-04
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/007-ranking-filter-bypass-and-score-scale-fixes/` (Level 3)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`
-
 ### Summary
 
 Rows can no longer sneak into ranking through a side door and scores are on one scale. Trigger-lane promoted rows and rescue-injected rows used to be appended after the gate battery, so they skipped the tenant, tier, context and quality checks every other row passes. Both now hard-gate on scope and carry the residual soft penalties. The mixed score scales are unified so a real semantic match cannot be outranked by a rescue or surrogate row. Wiring the eval baseline also exposed a circular-import temporal-dead-zone bug in `db-state.ts` that would have crashed the daemon on its next restart. That was fixed too. Shipped in `c9036ede84`.
@@ -55,3 +52,6 @@ Rows can no longer sneak into ranking through a side door and scores are on one 
 
 - The eval-parity before and after numbers are a daemon-side capture because the harness needs the live index.
 - Ranking effects apply on the next daemon-lease restart, which now also carries the crash fix.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/007-ranking-filter-bypass-and-score-scale-fixes/` (Level 3)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

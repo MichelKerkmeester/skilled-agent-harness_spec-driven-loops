@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/028-generated-js-declaration-alignment` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 The packet 026 README coverage audit recorded unresolved sk-code violations across generated JavaScript, ESM, CJS, and declaration files. This phase closed the assigned ledger slice by applying surgical header and strict-mode annotation edits without tool renames, subsystem topology changes, or unrelated file modifications. All 28 assigned audit findings were resolved, with zero failures and zero silent skips.
@@ -61,3 +58,6 @@ The packet 026 README coverage audit recorded unresolved sk-code violations acro
 - A full generated-output rebuild was deferred because the audited files are mixed first-party assets and sidecar emitted stubs. Surgical sync avoided broader distribution churn.
 - The memory vitest stale-test baseline failure should be addressed in a separate packet. It is unrelated to this phase.
 - Additional alignment warnings outside the packet 026 audit remain out of scope for this dispatch.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/028-generated-js-declaration-alignment` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

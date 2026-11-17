@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/005-vestigial-embedding-readiness-gate-removal` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 The `handleMemorySearch` handler in `mcp_server/handlers/memory-search.ts` contained a readiness gate at lines 927-932 that polled a module-level boolean (`embeddingModelReady`) for up to 30 seconds before proceeding. After the T016-T019 lazy-loading migration, the embedding model self-initializes on first use and the flag is always flipped to `true` by `context-server.ts` at server bootstrap. In production the gate was dead code. In any direct in-process caller (vitest harnesses, packet-local stress runners, the v1.0.3 live-handler probe) the flag was never set, so the gate invariably timed out with `Embedding model not ready after 30s timeout. Try again later.`
@@ -59,3 +56,6 @@ None.
 - `db-state.ts` still exports `isEmbeddingModelReady`, `setEmbeddingModelReady`, `waitForEmbeddingModel`. `context-server.ts` still calls them. Those are no-ops in lazy-loading runtime but remain as vestigial scaffold. A follow-up Level 1 packet can complete the full deprecation.
 - Test mocks in 8 vitest files still set the readiness functions to `() => true`. These are now unnecessary noise but do not break anything. Removal is mechanical and belongs in the same follow-up that retires the `db-state.ts` exports.
 - The "user cancelled MCP tool call" symptom seen in the v1.0.3 stress test was an MCP transport-layer cancellation from the orchestrator (Codex client), not a server-side bug. It was not caused by or addressed by this gate removal.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/005-vestigial-embedding-readiness-gate-removal` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

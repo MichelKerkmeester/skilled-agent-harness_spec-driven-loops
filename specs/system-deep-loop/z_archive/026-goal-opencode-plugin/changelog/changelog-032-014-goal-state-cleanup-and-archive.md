@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
-> Commit: `870da2e9e5` feat(mk-goal): archive-then-prune goal state, sweep orphaned sessions
-
 ### Summary
 
 This phase did not originate from either the security/correctness or documentation-staleness audits; it was opened mid-session after the operator flagged that goal-state files had no cleanup path at all. Goal state files no longer accumulate indefinitely in the active `.goal-state/` directory: session teardown now archives then prunes, and a throttled sweep on session creation recovers state orphaned by crashed sessions.
@@ -55,3 +51,7 @@ This phase did not originate from either the security/correctness or documentati
 ### Follow-Ups
 
 - Archive-then-prune and sweep helpers stay private (not exposed on `__test`) to keep the export-contract test's fixed 15-key surface stable; lifecycle tests verify the behavior through real plugin events instead of direct helper calls.
+
+> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
+> Commit: `870da2e9e5` feat(mk-goal): archive-then-prune goal state, sweep orphaned sessions

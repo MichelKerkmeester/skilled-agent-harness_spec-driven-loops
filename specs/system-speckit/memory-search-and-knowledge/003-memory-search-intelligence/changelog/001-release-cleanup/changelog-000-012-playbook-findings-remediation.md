@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`
-
 ### Summary
 
 The daemon-skills playbook validation (packet 011) plus the core memory-search re-run surfaced about twenty-two real product findings across the four subsystems. This phase remediated them. gpt-5.5-fast high fixed the findings in eight clusters A through H in an isolated worktree, each cluster verified by a vitest blast-radius sweep plus typecheck plus mutation checks on the risky fixes plus comment hygiene plus alignment drift, then committed one cluster per commit. Six isolation and harness artifacts were excluded as not bugs. The fixes are verified per cluster and live on branch wt/0008-findings-remediation pending a full-suite run and merge.
@@ -74,3 +71,6 @@ The daemon-skills playbook validation (packet 011) plus the core memory-search r
 
 - Run the full suite on branch wt/0008-findings-remediation and merge. The code is verified per cluster.
 - The advisor warm-latency gate question is surfaced honestly rather than closed, since E5 F5 made the bench fail loudly but left the latency unchanged and unfaked.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`

@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-11
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment/006-presentation-layer-fixes` (Level recorded in phase evidence)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment`
-> Historical alias: `006-presentation-layer-fixes`
-
 ### Summary
 
 This migration index makes the shipped phase discoverable at its final packet-local path without rewriting its historical identity. The allowed implementation evidence records: Implemented the planned presentation-layer fixes without changing ranking, retrieval scoring, embeddings, or database schema:
@@ -49,3 +45,7 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 ### Follow-Ups
 
 - None in the allowed evidence set.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment/006-presentation-layer-fixes` (Level recorded in phase evidence)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment`
+> Historical alias: `006-presentation-layer-fixes`

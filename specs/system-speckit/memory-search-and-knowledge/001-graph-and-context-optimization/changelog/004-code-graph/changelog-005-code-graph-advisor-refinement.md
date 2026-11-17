@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 The skill advisor and its code-graph integration had accumulated technical debt across multiple earlier packets. The advisor could return stale recommendations when the skill graph was not rebuilt after skill changes. The daemon that feeds live advisor queries was unreliable. The shim that bridges code-graph results into the advisor pipeline had edge cases that dropped results silently. Confidence scores were not calibrated against actual outcomes.
@@ -83,3 +80,6 @@ All 35 findings were closed. The advisor's daemon now starts reliably. The shim 
 ### Follow-Ups
 
 - **Auto-promotion semantics test.** The retained-memory auto-promotion semantics test was excluded from the inventory in PR-3. A follow-up should add coverage for auto-promotion from normal to important tier.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

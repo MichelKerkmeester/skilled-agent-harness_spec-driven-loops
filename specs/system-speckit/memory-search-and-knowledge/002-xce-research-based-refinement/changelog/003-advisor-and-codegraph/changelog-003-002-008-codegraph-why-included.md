@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`
-
 ### Summary
 
 Code graph callers can now opt into concrete edge-chain breadcrumbs explaining why a file or context section was included. Breadcrumbs are debug-only and remain hidden from default compact payloads unless `includeTrace` is true.
@@ -57,3 +54,6 @@ Code graph callers can now opt into concrete edge-chain breadcrumbs explaining w
 ### Follow-Ups
 
 - Public query schema exposure was outside this phase's approved write list.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`

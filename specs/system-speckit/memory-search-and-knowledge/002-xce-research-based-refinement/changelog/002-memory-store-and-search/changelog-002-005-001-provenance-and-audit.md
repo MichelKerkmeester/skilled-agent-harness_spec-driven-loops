@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/001-provenance-and-audit` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening`
-
 ### Summary
 
 This leaf advances the vector-index schema from v34 to v35 and makes write-ingress the enforcement point for memory provenance. Every new record now carries a server-derived `source_kind`. Automated writes that would overwrite protected manual or constitutional fields are stopped at pre-mutation time rather than after the fact. Repeated automated mutations are deduplicated in the audit ledger by a deterministic SHA-256 event key. An advisory constitutional rule records the automated-writers-never-overwrite-manual constraint in the constitutional loader.
@@ -67,3 +64,6 @@ This leaf advances the vector-index schema from v34 to v35 and makes write-ingre
 - Automated callers introduced in later phases must inject `__provenanceContext` so they are classified as non-human and governed by the guard.
 - Startup drift repair re-runs the backfill each boot: convergent and protection-only, but a candidate for optimization later.
 - Audit event key does not hash the mutated value: a follow-up could distinguish identical reasons that carry different values.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/001-provenance-and-audit` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening`

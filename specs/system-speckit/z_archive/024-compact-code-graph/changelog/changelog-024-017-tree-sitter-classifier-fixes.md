@@ -8,8 +8,6 @@
 
 A 10-iteration external review uncovered 15 bugs in the tree-sitter WASM parser and the query-intent classifier -- two modules added during the v2 remediation. The parser silently dropped imports, double-counted decorated Python definitions, misclassified class expressions, and could be permanently disabled by a single failed startup. The classifier routed structural questions ("Where is this function defined?") to the wrong search path and gave overconfident answers from thin evidence. This phase fixed 12 of those 15 bugs, making code structure analysis more accurate and search routing more reliable.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/017-tree-sitter-classifier-fixes/`
-
 ---
 
 ## What Changed
@@ -167,3 +165,5 @@ Three items were deferred to future phases:
 ## Upgrade
 
 No migration required.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/017-tree-sitter-classifier-fixes/`

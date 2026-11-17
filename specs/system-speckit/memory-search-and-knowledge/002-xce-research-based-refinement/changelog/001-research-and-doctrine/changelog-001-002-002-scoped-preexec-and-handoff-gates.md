@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption`
-
 ### Summary
 
 Wave 2 activated the handoff and pre-execution groups in the shared advisory contract and planted three narrow predicate-scoped gates in `@orchestrate`. Gate A fires only when a debug diagnosis crosses to implementation. Gate B fires only for API/schema/integration change classes. Gate C fires only for medium or high complexity work. Low-effort, docs-only and typo fixes are untouched. `@debug` now emits typed handoff fields when the crossing exists. `@code` validates only diagnosis-based handoffs and returns `BLOCKED/LOW_CONFIDENCE` when required fields are missing; ordinary envelope-less work remains valid. The `sk-code` SKILL, debug-delegation template and scaffold script were read and flagged as out of approved write scope; the predicates are carried by the contract and orchestrator instead.
@@ -69,3 +66,6 @@ Wave 2 activated the handoff and pre-execution groups in the shared advisory con
 
 - Direct `sk-code/SKILL.md`, debug-delegation template and scaffold-script edits are flagged for a future scope-approved pass.
 - Gates remain optional/advisory with no runtime validator enforcement.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption`

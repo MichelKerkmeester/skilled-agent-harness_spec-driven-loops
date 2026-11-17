@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals` (Phase Parent)
-
 ### Summary
 
 This top-level phase parent groups 6 child phase groups spanning 2026-05-02 to 2026-06-01. Each child group is its own phase parent with a rollup and per-phase changelogs. The Included Phases table below links to each child group.
@@ -57,3 +55,5 @@ This top-level phase parent groups 6 child phase groups spanning 2026-05-02 to 2
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals` (Phase Parent)

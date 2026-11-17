@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/001-fix-mcp-stress-cycle-doc-observability` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test`
-
 ### Summary
 
 The 011 MCP runtime stress-remediation deep review finished with a PASS verdict but left six P2 advisories open. The parent resource map was stale and did not cover all 18 child packets. Convergence wording in the post-stress research synthesis overstated monotonic decay. The handover doc still pointed to the original owner instead of the downstream 012-018 packets. The feature-catalog and testing-playbook audits had drifted from live system state. Navigation across the 18-packet cycle was flat with no phase grouping. The 83.8% verdict math was buried in narrative with no machine-readable form.
@@ -70,3 +67,6 @@ This cleanup applied six targeted documentation fixes, one for each P2 advisory,
 
 - Resolve the parent validator debt in packets 002-018 where `EVIDENCE_MARKER_LINT` ENOENT failures inflate the recursive exit code. Each child packet requires its own remediation pass.
 - Confirm that the `findings-rubric.json` schema remains stable as later stress-test packets add scoring dimensions.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/001-fix-mcp-stress-cycle-doc-observability` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test`

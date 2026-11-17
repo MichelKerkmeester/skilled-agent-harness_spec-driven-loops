@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/007-acceptance-coverage-gate` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`
-
 ### Summary
 
 Implemented the approved source-pass subset of the acceptance-criteria coverage gate (peck T1, deferred since the 001 analysis leaf). The `AC_COVERAGE` rule counts `covered / total >= floor(total * SPECKIT_AC_COVERAGE_FLOOR)` (default 0.9), treats zero ACs as a no-op, accepts `Manual-infeasible` escape hatches only when they include rationale text, clamps out-of-range floor values, and reports malformed `file:line` citations in advisory details. The rule is gated by `SPECKIT_AC_COVERAGE=true` and registered at INFO severity so no existing spec folder changes validation outcome. Deep-review surfaces `ac_coverage_signal` as an advisory synthesis signal for lifecycle-active Level 2+ folders.
@@ -72,3 +69,6 @@ Implemented the approved source-pass subset of the acceptance-criteria coverage 
 - The active v3 validator orchestrator does not dispatch newly registered shell rules from `validator-registry.json`. Changing that requires validator harness code outside the approved write paths.
 - Shared manifest-template normalization (`spec.md.tmpl`, `checklist.md.tmpl`) remains deferred because those files were outside the approved write scope.
 - ERROR promotion remains deferred. The shipped rule is default-off INFO, and `SPECKIT_AC_COVERAGE_ENFORCE` is documented as reserved.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/007-acceptance-coverage-gate` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`

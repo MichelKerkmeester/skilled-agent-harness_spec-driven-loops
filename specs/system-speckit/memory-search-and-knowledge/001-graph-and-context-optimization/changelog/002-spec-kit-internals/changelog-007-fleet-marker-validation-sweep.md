@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-02
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`
-
 ### Summary
 
 Phase 007 swept all spec folders in the repository for SPECKIT_LEVEL and SPECKIT_TEMPLATE_SOURCE markers that referenced deleted template directories (`level_1/`, `level_2/`, `level_3/`, `level_3+/`, `core/`, `addendum/`) or stale composition paths. After the greenfield migration (phases 003-004), these markers pointed to paths that no longer exist on disk. The sweep corrected markers where needed and confirmed that `spec-kit-docs.json` now serves as the single source of truth for template resolution, while existing SPECKIT_TEMPLATE_SOURCE markers remain valid as descriptive provenance per ADR-005.
@@ -59,3 +56,6 @@ Two commits: `30024e3bed`, `79e97aec92`.
 ### Follow-Ups
 
 - **Phase 008 (z_archive marker sweep).** Validate and clean archive markers in `z_archive/` directories.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels` (Level 3)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

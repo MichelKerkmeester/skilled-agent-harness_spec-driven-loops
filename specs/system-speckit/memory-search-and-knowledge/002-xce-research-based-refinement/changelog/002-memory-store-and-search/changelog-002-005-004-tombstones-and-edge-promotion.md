@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening`
-
 ### Summary
 
 This leaf preserves existing hard-delete behavior by default while shipping the tombstone infrastructure at schema v37 behind an explicit opt-in. The independent review found the original premise was wrong: memory delete was already a hard delete through `vectorIndex.deleteMemory`, not a soft-delete rewriter. Because recall surfaces do not yet filter `deleted_at IS NULL`, tombstones cannot be enabled safely by default. With `SPECKIT_SOFT_DELETE_TOMBSTONES` off, all delete and retention-sweep paths are byte-identical to before this leaf. With the flag on, deletes write `COALESCE(deleted_at, now)` to preserve the first timestamp, and the retention sweep targets the purgeable partition.
@@ -70,3 +67,6 @@ This leaf preserves existing hard-delete behavior by default while shipping the 
 - `SPECKIT_SOFT_DELETE_TOMBSTONES` must remain off until a follow-up adds `deleted_at IS NULL` filtering to every recall surface: search, list, get, context, and triggers.
 - Cache invalidation for tombstoned rows and tombstone-on-expiry reaping semantics must be decided before operators enable the flag.
 - Causal graph callers that do not want similarity-derived support edges should pass `similarity:false`; entity and co-occurrence remain recall evidence only.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening`

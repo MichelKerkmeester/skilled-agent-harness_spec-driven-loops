@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-26
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/003-code-graph-workspace-root-fix` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 The `/mcp` panel reported `Failed to reconnect to mk_code_index: -32000`. The generic JSON-RPC error code masked the real cause: the code-graph server was crashing before the launcher's bridge could connect. Investigation found two independent startup crashes stacked on top of each other.
@@ -74,3 +71,6 @@ Fix 2 corrected IPC socket validation. Once Fix 1 unblocked startup, `resolveIpc
 - The `/mcp` panel may still show the stale `-32000` error until the next reconnect or session restart. The server self-heals on reconnect.
 - A pre-existing mismatch between `config.ts` `defaultDir` fallback (`mcp_server/database`) and the documented canonical DB dir is already flagged in-code for a separate system-code-graph follow-up.
 - The on-path `.opencode` anchor assumes no `.opencode` segment nests on the module's own path. A deeper marker such as `.git` was considered and deferred.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/003-code-graph-workspace-root-fix` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph`

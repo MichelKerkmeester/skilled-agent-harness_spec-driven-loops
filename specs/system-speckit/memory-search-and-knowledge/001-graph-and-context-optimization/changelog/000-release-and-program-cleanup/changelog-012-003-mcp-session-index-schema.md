@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`
-
 ### Summary
 
 This review-only packet audited MCP session lifecycle, indexing, ingest, embedder management, `context-server.ts` and tool schema parity. The merged verdict was CONDITIONAL. The registry recorded 4 open finding entries: 2 P1 and 2 P2. The main theme was contract drift where governed ingest metadata is accepted and validated, then dropped before indexing. Secondary findings covered hidden governed fields in public tool definitions and stale operator playbook or catalog call shapes.
@@ -59,3 +56,6 @@ This review-only packet audited MCP session lifecycle, indexing, ingest, embedde
 - Preserve governed ingest metadata through scan and async ingest paths.
 - Expose or remove governed ingest fields consistently across public schemas and runtime validators.
 - Refresh operator playbook and catalog examples to match current MCP call shapes.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`

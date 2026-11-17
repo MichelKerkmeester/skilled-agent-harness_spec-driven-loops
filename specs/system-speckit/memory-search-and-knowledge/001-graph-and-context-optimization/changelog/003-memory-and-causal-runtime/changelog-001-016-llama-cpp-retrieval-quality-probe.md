@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/016-llama-cpp-retrieval-quality-probe` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 Packet 015 confirmed llama-cpp was 2.4x faster than hf-local but showed a cosine parity miss (mean 0.9677 against a 0.995 target). That parity gap compared raw vectors, not retrieval behavior. The open question was whether the miss was large enough to change actual Memory MCP search rankings for real operator queries.
@@ -75,3 +72,6 @@ A packet-local probe script sampled 200 active documents from the Memory MCP sql
 - The 700-character cap is below normal document chunk size. A future probe could test higher caps once a llama-cpp model with a larger embedding context is available.
 - If the default flips to llama-cpp, the migration packet should force a one-time full re-index of the Memory MCP sqlite store before comparing production rankings.
 - Results cover one random sample. Re-running with a different seed would confirm stability of the EQUIVALENT verdict before shipping the default flip.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/016-llama-cpp-retrieval-quality-probe` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

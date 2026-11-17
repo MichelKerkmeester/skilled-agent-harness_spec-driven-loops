@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/004-deep-loop-locks-state-and-recovery` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`
-
 ### Summary
 
 Advisory locks in the deep-loop runtime carried no PID, no TTL, no heartbeat metadata. A killed run left a stale lock that blocked the next run indefinitely. JSONL state files were rewritten in full on each append, making partial-write corruption unrecoverable. Interrupted runs could lose provenance or trigger duplicate dispatches with no detection path.
@@ -83,3 +80,6 @@ Both active writers were wired to the new helpers. `executor-audit.ts` appends i
 - Add a heartbeat timer to the command runner. `loop-lock.ts` exposes `refreshLoopLock` but does not schedule the interval. Each workflow runtime must wire its own cadence.
 - Rename `config.executor.type` to `config.executor.kind` in the deep-research and deep-review YAML assets. This phase normalized persisted audit records only. The YAML runtime config field still uses `type` as its branch selector.
 - Evaluate migrating `ai-council` CommonJS persistence helpers to the shared TypeScript helper modules. The new helpers define the semantics. Council-specific adoption is a smaller follow-up if the parent arc requires it.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/004-deep-loop-locks-state-and-recovery` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

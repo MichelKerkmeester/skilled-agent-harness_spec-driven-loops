@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-22
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/007-effect-enablement` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`
-
 ### Summary
 
 Wired a fail-closed effect producer at the live `fanout-run.cjs` launcher seam. Executor dispatch now routes through the audited effect gateway: durable intent before spawn, confirmation after — into the per-lineage effect ledger the cutover certificate reads.
@@ -29,3 +26,6 @@ Wired a fail-closed effect producer at the live `fanout-run.cjs` launcher seam. 
 ### Status
 
 Complete. 112 tests green across effect-recording and launcher suites; effect recording fails closed by operator ratification.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/007-effect-enablement` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`

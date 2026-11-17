@@ -1,5 +1,5 @@
 ---
-title: "Post-Edit Quality: Pi tool_result Extension"
+title: "Pi Post-Edit Quality: tool_result Adapter"
 description: "Pi extension that runs the shared checker router after an edit or write and appends findings and the staleness banner to the tool result."
 trigger_phrases:
   - "pi post edit quality"
@@ -8,36 +8,53 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# Post-Edit Quality: Pi tool_result Extension
+# Pi Post-Edit Quality: tool_result Adapter
 
 ---
 
 ## 1. OVERVIEW
 
-`pi/` holds the real Pi extension for post-edit quality. Pi discovers it through the one-line entry file `.pi/extensions/post-edit-quality.ts`, which re-exports it. The extension loads from this folder, so its imports are relative to this folder.
+`.skilled/hooks/post-edit-quality/pi/` holds the Pi adapter for the post-edit quality concern. It runs at `tool_result` and appends checker findings and the staleness banner to an `edit` or `write` result. The result carries that text as one more part in its content.
 
-The extension listens on `tool_result` and handles `edit` and `write` results only. It resolves `event.input.path` against `ctx.cwd` and runs `../lib/post-edit-router.cjs`. Findings come back as `{type: 'text', text}` content on the tool result, so the model sees them.
+Pi has no JSON hook registration. It scans `.pi/extensions/` for one-line re-export entries. The entry for this adapter is `.pi/extensions/post-edit-quality.ts`. That file holds a single re-export statement that points back into this folder, with no event name of its own. The event is registered in the adapter, which calls `pi.on('tool_result', ...)` when Pi loads it.
+
+The handler reads `event.toolName` first and returns at once unless the value is `edit` or `write`. It then reads `event.input.path` and returns unless that is a non-empty string. It resolves the path against `ctx.cwd` and returns when the file is not on disk.
+
+On a match it imports `../lib/post-edit-router.cjs`. `resolveDispatch()` picks the checker entries. `runChecks()` runs them under `CLAUDE_HOOK_BUDGET_MS`. That call caps each checker at `CLAUDE_CHECKER_TIMEOUT_MS` and stops once less than `CLAUDE_MIN_CHECKER_MS` is left. `runDistStalenessCheck()` runs afterward with the same checker timeout.
+
+Each finding is written as its `[label]` line and the checker output. Findings are separated by a blank line. The banner follows them. The handler appends the joined text as one text part and returns the new content. A clean edit adds nothing.
+
+The adapter checks `isHookEnabled('post-edit-quality')` before it registers the handler, so the concern switch `SK_CODE_POST_EDIT_QUALITY_DISABLED` keeps the handler from registering. `SYSTEM_HOOKS_DISABLED` is the master switch. `../../shared/hook-flags.mjs` passes the call to the shared `hook-flags.cjs` resolver, which reads both.
+
+Every failure ends the same way. A missing path, a missing file, an import error or a core throw returns `undefined` and adds nothing to the tool result. A missing checker is the one exception: it appends a `quality-notice` that names the missing path.
 
 ---
 
-## 2. FILES
+## 2. DIRECTORY TREE
 
 | File | Responsibility |
 |---|---|
-| `post-edit-quality.ts` | The Pi `tool_result` extension that appends router findings to an edit or write result. |
+| `post-edit-quality.ts` | The Pi `tool_result` adapter. It filters each result on the tool name and the edited path, then calls the shared router and appends what comes back. |
 
-The extension registers one handler on `tool_result` and filters on the tool name. It returns early unless that name is `edit` or `write`. It also returns early when `event.input.path` is missing or not a string. A path that does not exist on disk returns early too.
-
-On a match it calls `resolveDispatch()`, `runChecks()` and `runDistStalenessCheck()` from the router. `runChecks()` runs under the shared budget and the checker timeout. When anything was found, it returns the original content plus one text part.
-
-A missing path, an import error or a core error returns `undefined`. The tool result then stays exactly as it was before.
-
-The extension returns early when the `post-edit-quality` concern is off. The `SK_CODE_POST_EDIT_QUALITY_DISABLED=1` switch turns that concern off before the handler registers.
+The folder is flat. `post-edit-quality.ts` is the only entry beside this README. Pi reaches it through the entry file named in OVERVIEW.
 
 ---
 
-## 3. RELATED
+## 3. VALIDATION
 
-- [`../README.md`](../README.md): the concern README with the dispatch table and the per-runtime matrix.
-- [`../lib/post-edit-router.cjs`](../lib/post-edit-router.cjs): the shared router this extension imports.
+Run the command from the repository root.
+
+```bash
+(cd .skilled/skills/system-spec-kit && npx vitest run --project root runtime/tests/hook-adapter-path-parity.vitest.ts)
+```
+
+Expected result: the parity suite passes and exits 0. It scans `.pi/extensions/` for one-line re-export entries, resolves each target and asserts that the target file exists on disk, so a missing or renamed adapter fails here.
+
+---
+
+## 4. RELATED
+
+- [`../README.md`](../README.md): the concern README, with the runtime coverage table.
+- [`../lib/post-edit-router.cjs`](../lib/post-edit-router.cjs): the shared router this adapter imports.
+- [`../../shared/hook-flags.mjs`](../../shared/hook-flags.mjs): the switch facade over the resolver the adapter calls.
 - [`../../../../.pi/extensions/post-edit-quality.ts`](../../../../.pi/extensions/post-edit-quality.ts): the one-line entry file Pi discovers.

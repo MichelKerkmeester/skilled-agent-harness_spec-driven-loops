@@ -8,8 +8,6 @@
 
 This phase gave compacted Claude Code sessions a real memory handoff instead of a full reset. It precomputes a compaction brief before compression, caches it safely, and restores it on the next compact-triggered session start so the AI keeps its active spec-folder context, relevant memories, and recent working signals inside the 4,000-token recovery budget.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/001-precompact-hook/`
-
 ---
 
 ## New Features (3)
@@ -67,3 +65,5 @@ This phase gave compacted Claude Code sessions a real memory handoff instead of 
 ## Upgrade
 
 No migration required.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/001-precompact-hook/`

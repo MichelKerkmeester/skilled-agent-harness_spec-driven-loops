@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine/001-memory-search-routing-tuning` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine`
-
 ### Summary
 
 Three parallel sub-tracks shipped addressing all aspects of search-pipeline and routing accuracy. The 19 leaf sub-phases across all tracks are complete. See Sub-phase summaries below for per-track detail.
@@ -54,3 +51,6 @@ backfill-graph-metadata.js 541 packets refreshed PASS
 
 The continuity fixture is synthetic. Future retuning should use real-query evidence.
 applyLengthPenalty remains a compatibility term. Future schema changes may allow clean removal.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine/001-memory-search-routing-tuning` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine`

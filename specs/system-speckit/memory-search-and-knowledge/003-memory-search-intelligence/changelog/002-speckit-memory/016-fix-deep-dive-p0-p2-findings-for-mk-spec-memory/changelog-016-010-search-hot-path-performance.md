@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-07-04
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/010-search-hot-path-performance/` (Level 2)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`
-
 ### Summary
 
 The `memory_search` hot path had twelve measured hot spots and this phase batches, caches or gates each one without changing what search returns. The rescue layer stopped issuing a `SELECT *` per candidate. Hydration is now one parameterized `id IN (...)` fetch chunked below the SQLite variable limit. Its full-table `LIKE` backfill is FTS-routed when the input is safe. Graph adjacency, the community table and the intent classifier's query embedding are cached per search. The response envelope is serialized once at emission instead of round-tripped through `JSON.parse` and `JSON.stringify` at every transform. Two properties were proven: rank parity through a full-pipeline golden-order fixture and FTS token-equivalence against the substring `LIKE` it replaces. The live p50 under 800ms target is a daemon-side capture pending a restart, not measured in the isolated worktree. Shipped in `51b63d8bcb`.
@@ -56,3 +53,6 @@ The `memory_search` hot path had twelve measured hot spots and this phase batche
 
 - The headline p50 under 800ms target is not yet measured. Run the fixed-query harness after the daemon leases restart with this code. Mechanism-level baselines are recorded in `scratch/mechanism-baseline-2026-07-04.md`.
 - Code effects apply on the next daemon-lease restart.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/010-search-hot-path-performance/` (Level 2)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

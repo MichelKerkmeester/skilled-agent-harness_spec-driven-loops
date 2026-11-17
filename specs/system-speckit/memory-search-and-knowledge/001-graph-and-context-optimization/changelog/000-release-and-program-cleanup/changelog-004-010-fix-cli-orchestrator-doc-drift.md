@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/010-fix-cli-orchestrator-doc-drift` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`
-
 ### Summary
 
 Six CLI orchestrator skills had accumulated documentation drift that made their dispatch contracts contradictory. The `cli-opencode` skill claimed subagents were not directly invokable while its own reference table showed direct invocations. The `cli-copilot` effort-flag prose did not match the live CLI example. Prompt templates across `cli-codex`, `cli-claude-code` and `cli-gemini` omitted required model and effort pins and embedded write-side flags without approval gating.
@@ -75,3 +72,6 @@ Six surgical doc edits, one per finding F-007-B2-01 through F-007-B2-06, resolve
 - Confirm `cli-copilot/SKILL.md` existence and apply F-007-B2-03 effort-flag reconciliation if the file exists under a different path.
 - Run `validate.sh --strict` on this packet and confirm exit 0 after the `cli-copilot` question is resolved.
 - Wave master `npm run stress` run to confirm no post-edit regression against the 163-test baseline.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/010-fix-cli-orchestrator-doc-drift` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

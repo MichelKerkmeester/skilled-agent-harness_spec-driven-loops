@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-30
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration` (Level 1, research)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 Captured the GPT deep-agent mis-routing problem as a spec packet and, via a 6-iteration deep-research loop answering 10/10 key questions, decomposed the fix into five child implementation phases (002-006), with host-hard-identity (FIX-5) explicitly parked pending a future trigger.
@@ -55,3 +52,6 @@ Captured the GPT deep-agent mis-routing problem as a spec packet and, via a 6-it
 - `convergence.cjs` better-sqlite3 `NODE_MODULE_VERSION` mismatch needs an npm rebuild.
 - Plan child phase 002 (route-proof validation) first, closing the FIX-5 false-negative (F27).
 - **Doc-drift note**: this phase's own `implementation-summary.md` metadata still records Draft/0% completion, while the packet root `spec.md` phase table marks it "Complete (research)" based on the real 6-iteration/10-KQ output — the child doc was evidently never refreshed after the research finished. Recorded here for transparency rather than silently overwritten by this changelog pass.
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration` (Level 1, research)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/029-local-llm-feature-test-suite-completion` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 Phase 028 had promised a comprehensive local-LLM feature test suite covering 10 functional groups and 4 performance benchmarks, but none of those tests shipped with 028. The local embedding runtime's correctness claims (cascade resolution, provider fallback ordering, profile DB filename contracts, offline degradation) were backed only by prose. This packet created the full suite in one commit, tied to the concurrent post-014 embedding stack canonicalization that established the 4-tier cascade.
@@ -74,3 +71,6 @@ The suite shipped with 43 tests passing and 3 skipped (platform-specific). All 1
 - Re-implement or replace the removed llama-cpp-specific test groups for any provider the embedding runtime still routes to.
 - Confirm the performance benchmark baselines are checked in and current after the nomic default and HTTP model-server rewrites.
 - Update the packet implementation-summary to reflect the shipped state rather than the original pre-implementation scaffold text.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/029-local-llm-feature-test-suite-completion` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

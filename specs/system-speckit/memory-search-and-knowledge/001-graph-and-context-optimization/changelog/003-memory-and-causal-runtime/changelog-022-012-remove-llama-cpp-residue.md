@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/012-remove-llama-cpp-residue`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`
-
 ### Summary
 
 Arc 016 phases 003/006/007 had already removed llama-cpp from all runtime code paths (factory, profile, auto-select, providers, types). However 11 live files outside those runtime paths still contained residue: historical comments documenting the prior purge, install-guide sections listing llama-cpp as a supported provider, a dead `NODE_LLAMA_CPP_GPU` env var setter in a repair script, two test-fixture strings, doctor-command examples, an embedder architecture table column, plus two manual-testing-playbook scenario files using `llama-cpp.ts` as the example subject path.
@@ -80,3 +77,6 @@ None.
 - All hits in `z_archive/`, `/scratch/`, `iteration-*.md`, plus old commit history are intentionally preserved as historical record. No action needed.
 - Confirm whether `node-llama-cpp` still appears as a dependency in `package.json` or `package-lock.json`. A separate dep-prune pass would be needed to fully remove it. Verify that no transitive consumer remains before pruning.
 - Confirm whether any runtime code still respects `MEMORY_AUTO_MIGRATE_HF_TO_LLAMA`. The env var was removed from documentation only. Arc 018 was expected to be the last consumer. No action expected but confirm before closing.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/012-remove-llama-cpp-residue`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

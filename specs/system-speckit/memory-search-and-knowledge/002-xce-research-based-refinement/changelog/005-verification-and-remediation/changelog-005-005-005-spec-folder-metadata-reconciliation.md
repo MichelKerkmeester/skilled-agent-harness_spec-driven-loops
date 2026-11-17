@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-16
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation`
-
 ### Summary
 
 This sub-phase reconciled all eight spec-folder control-metadata findings. Each was confirmed real against the live tree before editing (none refuted). description.json omissions were patched surgically with no subtree regeneration, and phase-parent pointers were corrected to the genuinely latest-active child while preserving each file's existing id convention.
@@ -62,3 +59,6 @@ This sub-phase reconciled all eight spec-folder control-metadata findings. Each 
 
 - T005 fixed only the stale pointer value. The generator-side ancestor-walk recommendation is production code outside this sub-phase scope, so the root pointer can drift again on a non-walking batch save.
 - The `ln_id` versus `last_active_child_id` field-name inconsistency between the newer schema and these live files was left as-is (edits preserved the field the live validator uses).
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation`

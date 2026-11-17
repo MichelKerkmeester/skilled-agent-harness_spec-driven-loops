@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`
-
 ### Summary
 
 Automated advisor edge propagation now records where edge writes came from and refuses to replace manually maintained provenance. Automated propagation stamps `source_kind: "automated"`; trusted-maintainer server writes can intentionally update protected fields and stamp `source_kind: "trusted"`.
@@ -59,3 +56,6 @@ Automated advisor edge propagation now records where edge writes came from and r
 ### Follow-Ups
 
 - Full-suite settings parity failures remained out of scope in the source summary.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`

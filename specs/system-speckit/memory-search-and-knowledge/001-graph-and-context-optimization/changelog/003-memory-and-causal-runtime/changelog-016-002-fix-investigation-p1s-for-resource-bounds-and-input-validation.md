@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/002-fix-investigation-p1s-for-resource-bounds-and-input-validation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle`
-
 ### Summary
 
 Four P1 security findings (F48, F85, F86, F87) from the arc-010 deep-research investigation left the sidecar subsystem with predictable request IDs plus unbounded health payload accumulation and embed input arrays. Commit `e6658798ed` replaced the sequential request-ID counter in `sidecar-client.ts` with a cryptographically random 32-bit integer. It added a 64KB accumulation cap to the health payload handler in `ensure-rerank-sidecar.cjs` then enforced a 500-item input cap with a typed `SidecarClientError` in `SidecarClient.embed()`. F87 was verified closed by phase 001's F47 fix which already added the matching worker-side cap. Five new tests across two suites confirm all four contracts.
@@ -70,3 +67,6 @@ Four P1 security findings (F48, F85, F86, F87) from the arc-010 deep-research in
 - Re-enable the two skipped F85 tests in `ensure-rerank-sidecar.vitest.ts` once localhost mock infrastructure supports `req.destroy()` interception.
 - Verify Python parity for the health body cap: `ensure_rerank_sidecar.py` uses an 8KB cap. Decide whether JS and Python caps should align or whether the divergence is documented and acceptable.
 - Consider making `MAX_EMBED_INPUTS` configurable via environment variable if batch-document embedding is added to the embedder API.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/002-fix-investigation-p1s-for-resource-bounds-and-input-validation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle`

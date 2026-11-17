@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/001-fairness-audit` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit`
-
 ### Summary
 
 The manual testing playbook had grown to over 340 scenarios with no systematic record of which contained stale exact-ID ground truth, aspirational pass thresholds or orphaned memory-index dependencies. Without that inventory any expansion effort would blindly inherit unfair or unreproducible assertions and the expansion pass could not trust its baseline.
@@ -63,3 +60,6 @@ The fairness audit phase produced `evidence/playbook-fairness-audit.csv`, a 345-
 
 - Use `evidence/playbook-fairness-audit.csv` as source material for follow-on playbook expansion dispatches.
 - Regenerate the artifact after any bulk playbook scenario changes via `node ../evidence/generate-playbook-quality-audit.js`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/001-fairness-audit` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit`

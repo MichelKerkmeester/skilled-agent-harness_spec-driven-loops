@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 This phase shipped the default-off safe core for procedural reliability and left every candidate promotion benchmark-gated. The outcome and correction mirror, an f64 Beta reliability primitive and a procedural recall fold all landed behind their flags with deterministic tests, while default recall stays byte-identical with both flags off. The four candidates stay pending until a benefit benchmark proves the reliability fold out-earns the existing access and confirmation signals. Commit `508af65780` carried the lib code with focused tests.
@@ -58,3 +55,6 @@ This phase shipped the default-off safe core for procedural reliability and left
 - Build the execution-success outcome emitter so the reliability counter can accrue.
 - Run one benefit micro-benchmark before any promotion decision.
 - Decide the bad-pattern host and the skill-induction build before promoting the sibling candidates.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

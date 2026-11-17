@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-12
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/007-presentation-asset-format` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation`
-
 ### Summary
 
 All 24 command presentation assets were renamed from `.md` to `.txt` so they remain co-located with their command families but are no longer discovered as slash commands. The display content stayed byte-identical; only extensions and references changed.
@@ -55,3 +52,6 @@ All 24 command presentation assets were renamed from `.md` to `.txt` so they rem
 ### Follow-Ups
 
 - Loader registration behavior takes full effect in a fresh session because the loader caches at session start.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/007-presentation-asset-format` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation`

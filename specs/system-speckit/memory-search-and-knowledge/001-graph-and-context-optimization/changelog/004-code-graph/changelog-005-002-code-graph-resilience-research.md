@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/002-code-graph-resilience-research` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor`
-
 ### Summary
 
 The `/doctor:code-graph` Phase B (apply mode) needed four authoritative inputs before it could safely auto-fix issues: a verification battery to prove fixes worked, a staleness model to know when the graph was fresh enough for diagnostics, a recovery playbook to guide operator actions. Exclude-rule confidence tiers were also required to calibrate bloat-directory detection. Without these, the doctor command lacked a principled answer to "when is the code-graph index trustworthy and how do we recover when it is not."
@@ -76,3 +73,6 @@ A 7-iteration deep-research loop using the cli-copilot executor (gpt-5.5, reason
 - Fix resolver failure modes in a follow-on scanner-uplift packet. Iteration 6 documented path aliases, dynamic imports, type-only imports, re-export barrels as trust limitations. Default-import aliasing was also enumerated. Closing those gaps was deferred to a separate packet.
 - Expose edge-weight tuning via `IndexerConfig`. Edge weights are compile-time constants in the indexer producer. Drift detection signals are documented but per-edge-class weights have no runtime knob.
 - Re-tune staleness age boundaries after 6 or more months of doctor apply-mode telemetry. The 8-hour and 24-hour thresholds are derived from Sourcegraph and ctags external evidence, not from this codebase's measured working-tree velocity.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/002-code-graph-resilience-research` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor`

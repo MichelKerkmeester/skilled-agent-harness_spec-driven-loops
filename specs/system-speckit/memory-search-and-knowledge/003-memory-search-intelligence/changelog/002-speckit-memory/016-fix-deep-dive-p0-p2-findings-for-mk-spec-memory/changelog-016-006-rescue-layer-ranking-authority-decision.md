@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-07-04
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/006-rescue-layer-ranking-authority-decision/` (Level 3)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`
-
 ### Summary
 
 The benchmark can finally measure the real system. Eval reporting and ablation used to run a legacy `hybridSearch` path, so any ranking conclusion came from a composition the daemon never runs. Eval and ablation now execute the production `executePipeline` with the real channels, co-activation and render-floor truncation. This parity harness is the prerequisite that unblocks phases 007 and 008. The retrieval-rescue score rewrite became a selectable mode behind `SPECKIT_RETRIEVAL_RESCUE_MODE` so the ranking authority can be A/B/C benchmarked instead of argued. The ADR-002 authority decision was deferred by the operator because the current numbers are confounded by sparse vectors and stale eval ground truth. Shipped in `a41fb67ca3`.
@@ -54,3 +51,6 @@ The benchmark can finally measure the real system. Eval reporting and ablation u
 
 - ADR-002 rescue authority stays Proposed and the rescue mode stays overwrite. Re-benchmark once the phase-004 vector reconcile has run daemon-side and the eval ground truth is refreshed.
 - Harness effects apply when the daemon restarts with the new dist.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/006-rescue-layer-ranking-authority-decision/` (Level 3)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

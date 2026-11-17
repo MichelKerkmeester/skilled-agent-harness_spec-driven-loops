@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/018-matrix-runner-snake-case-rename` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 The CLI matrix runner folder used kebab-case while adjacent MCP server directories (`skill_advisor`, `code_graph`, `stress_test`) use snake_case. That naming mismatch left imports, test files, docs, feature catalog entries and prior packet evidence pointing at an outlier path.
@@ -70,3 +67,6 @@ The runtime directory moved to `.opencode/skills/system-spec-kit/mcp_server/matr
 ### Follow-Ups
 
 - Stage the filesystem move and all edited files outside the restricted sandbox session so the rename is reflected in the git index.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/018-matrix-runner-snake-case-rename` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

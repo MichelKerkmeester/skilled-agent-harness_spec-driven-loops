@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 The cocoindex embedding path on macOS routed all inference through PyTorch and Metal Performance Shaders, leaving Apple's Neural Engine unreachable. On Windows without CUDA, the backend was CPU-only, stranding discrete GPUs. The premise of this phase was that ONNX Runtime with platform-native execution-provider selection could close both gaps.
@@ -86,3 +83,6 @@ None.
 - Evaluate whether a native Core ML conversion via `coremltools` could achieve higher Neural Engine utilization for the Gemma 300m architecture on Apple Silicon.
 - Add cross-platform CI runners for DirectML/CUDA/OpenVINO parity verification when a suitable ONNX export is identified.
 - Consider re-evaluating ONNX Runtime for non-Gemma model exports where the exported graph is better suited to the CoreML EP.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

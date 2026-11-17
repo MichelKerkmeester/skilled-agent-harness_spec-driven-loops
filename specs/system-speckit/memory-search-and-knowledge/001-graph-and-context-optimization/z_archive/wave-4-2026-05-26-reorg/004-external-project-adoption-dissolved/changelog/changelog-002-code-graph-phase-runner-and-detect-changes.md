@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/005-graph-impact-and-affordance`
-
 ### Summary
 
 Phase 002 built the Code Graph foundation for changed-impact analysis. `indexFiles()` now runs through a typed phase runner with explicit dependencies and failure attribution. A custom unified-diff parser and read-only `detect_changes` handler map fresh diff hunks to indexed symbols. The handler blocks on stale graph readiness instead of returning false-safe empty impact.
@@ -68,3 +65,6 @@ Phase 002 built the Code Graph foundation for changed-impact analysis. `indexFil
 
 - Historical strict validator debt remains template-section style, not missing content.
 - 008 research later found a mixed-header diff path bypass for downstream remediation.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/005-graph-impact-and-affordance`

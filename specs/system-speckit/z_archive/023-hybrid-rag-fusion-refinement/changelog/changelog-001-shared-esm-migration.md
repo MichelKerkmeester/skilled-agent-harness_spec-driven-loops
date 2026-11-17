@@ -2,8 +2,6 @@
 
 This phase matters because later ESM (the modern JavaScript module system) work depended on one shared package following one clear loading contract from source to runtime. Phase 1 established the package-local ESM baseline for shared. Added package metadata, switched build to real TypeScript output, moved the compiler to NodeNext (TypeScript's Node-aware module mode), and rewrote 48 relative import and export paths to explicit `.js` specifiers. In total, 20 files changed.
 
-> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/001-shared-esm-migration` (Level 1)
-
 ---
 
 ## Architecture (7)
@@ -97,3 +95,5 @@ No user-facing documentation files shipped as part of the phase itself. This cha
 No migration required.
 
 This phase changes the internal loading contract of `@spec-kit/shared` so later migration phases can build on a stable package baseline. Users do not need to change commands or configuration for this phase alone.
+
+> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/001-shared-esm-migration` (Level 1)

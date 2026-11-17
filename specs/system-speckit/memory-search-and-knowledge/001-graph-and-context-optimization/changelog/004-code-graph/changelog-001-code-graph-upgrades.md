@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-09
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 The code-graph index had no way to trace which detector produced each edge. Call-graph queries (`calls_from`, `calls_to`) returned wrong results when symbol names collided across files. Edge metadata was bare. Operators had no breadcrumbs to find files with the most unresolved symbols. The regression test floor was absent.
@@ -78,3 +75,6 @@ Lanes A and B shipped together. Lane C (hot-file breadcrumbs) shipped next. Lane
 
 - **T014 lexical fallback (deferred).** When tree-sitter fails to parse a file, a lexical regex fallback could recover some symbols. Deferred because the failure rate was under 1 percent and the cost of a regex parser for 10+ languages exceeded the benefit.
 - **T015 cluster/export (deferred).** Grouping edges by export cluster was deferred because the export data was not yet visible in the graph schema. A later packet will add the export cluster column.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 3)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

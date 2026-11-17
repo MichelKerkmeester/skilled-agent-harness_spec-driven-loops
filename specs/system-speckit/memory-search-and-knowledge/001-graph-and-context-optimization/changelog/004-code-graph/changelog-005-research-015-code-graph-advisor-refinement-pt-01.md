@@ -17,9 +17,6 @@ contextType: "research"
 
 ## 2026-04-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Research-only)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 A 20-iteration deep-research investigation examined the intersection of the code-graph and the skill advisor. The investigation asked: after the Phase 001-004 code-graph upgrades and the skill-advisor self-contained package migration, what refinement work remains at the boundary between the two systems?
@@ -63,3 +60,6 @@ The investigation ran for the full 20-iteration budget. The `newInfoRatio` traje
 
 - **35 findings flow into Phase 005 implementation.** The 35 findings were clustered into 5 fix-up batches (B1-B5) plus the F35 calibration bench. All were addressed by the Phase 005 implementation.
 - **Unconverged surface area.** The investigation stopped at the 20-iteration cap with `newInfoRatio` above 0.55. Additional surface area may remain at deeper integration layers.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Research-only)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

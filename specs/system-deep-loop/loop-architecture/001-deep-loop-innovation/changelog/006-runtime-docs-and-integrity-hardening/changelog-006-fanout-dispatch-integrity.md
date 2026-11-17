@@ -12,9 +12,9 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity` (Level 3)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening`
-
 ### Summary
 
 This phase made fan-out fulfillment evidence-derived and dispatch containment enforced: a lineage is fulfilled only when its per-mode artifact contract is satisfied, iteration counts derive from actual iteration files rather than self-reports, invocation provenance survives to the worker and into the audit, containment runs for every dispatch kind, and the observability sink persists only allowlisted fields. 10 of 12 scoped findings landed on `skilled/v4.0.0.0` (as `de9ce00df4` plus the uniform-containment and write-containment data-loss safety fix as `0947953081`). The argv fan-out dispatch rewrite (`F-016-01`) and the filtered Codex environment (`F-016-06`) were attempted and deferred. Status is complete with those residual items open.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity` (Level 3)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening`

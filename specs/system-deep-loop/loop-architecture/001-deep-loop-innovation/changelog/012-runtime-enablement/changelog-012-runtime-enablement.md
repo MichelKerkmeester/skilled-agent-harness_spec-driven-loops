@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-24
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement` (Phase Parent)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation`
-
 ### Summary
 
 This phase turns on the dark deep-loop substrate: it builds the append gateway and per-event projection the modes lacked, migrates write protocols onto that boundary, flips authority serially across all eight modes, retires direct-append writers, wires fail-closed effect recording, and reaches a literal whole-system gate PASS on the finalized runtime. All eleven phase children are complete; the epic awaits only the operator ff-merge gate.
@@ -36,3 +33,6 @@ This phase turns on the dark deep-loop substrate: it builds the append gateway a
 ### Status
 
 Complete. All eight modes read `new_authoritative_final` from stored records; the whole-system gate passes; legacy writers are retired and guarded. Pending only the operator ff-merge gate.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement` (Phase Parent)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation`

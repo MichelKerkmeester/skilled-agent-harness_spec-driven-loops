@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/008-doc-truth-and-test-fidelity` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation`
-
 ### Summary
 
 The doc-truth and test-fidelity lane closed the largest P2 slice, covering remaining doc-truth stragglers, benchmark/test fidelity, and port fake findings.
@@ -53,3 +50,6 @@ The doc-truth and test-fidelity lane closed the largest P2 slice, covering remai
 ### Follow-Ups
 
 - Waived P2 entries are recorded with reasons.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/008-doc-truth-and-test-fidelity` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation`

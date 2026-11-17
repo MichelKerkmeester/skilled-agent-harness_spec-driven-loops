@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/002-injection-plugin` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
-
 ### Summary
 
 Active goals now reach the assistant as passive system context. The plugin reads the current session goal, renders a sanitized [active_goal] block, and appends it through OpenCode's system transform without making chat depend on state persistence.
@@ -57,3 +54,6 @@ Active goals now reach the assistant as passive system context. The plugin reads
 ### Follow-Ups
 
 - Passive steering only. The injection block tells the assistant about the active goal, but this phase does not continue work automatically.
+
+> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/002-injection-plugin` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite` (Level 3+)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
-
 ### Summary
 
 `/memory:save` was mutating on every invocation even though v3.4.0.0 docs claimed the `[spec]/memory/*.md` artifact family was already retired. A 7-iteration audit produced 25 active findings (9 P0, 9 P1, 7 P2) proving the runtime was half-migrated. A 20-iteration relevance research classified 15 save-flow subsystems and concluded that four earned their cost on the default path (canonical atomic writer, routed record identity, content-router core, thin continuity validation) while four did not (Tier 3 routing, quality-loop auto-fix, reconsolidation-on-save, post-insert enrichment).
@@ -92,3 +89,6 @@ The implementation shipped 43 of 43 tasks under v3.4.1.0. `/memory:save` is now 
 - `hybrid` mode remains reserved. `SPECKIT_SAVE_PLANNER_MODE=hybrid` is accepted but behaves like `plan-only`. A future packet may define mixed-flow behavior.
 - Historical `[spec]/memory/` cleanup has a dry-run path. Apply mode remains deferred with operator-gated reopen criteria.
 - The four env flags are documented as orthogonal. A formal test suite validates no cascade behavior between them.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite` (Level 3+)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

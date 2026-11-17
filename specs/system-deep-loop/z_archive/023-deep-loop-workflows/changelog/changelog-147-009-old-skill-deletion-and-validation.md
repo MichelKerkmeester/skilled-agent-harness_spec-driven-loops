@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/009-old-skill-deletion-and-validation` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`
-
 ### Summary
 
 Packet-156 deep review found the missing guard in phase 009. The headline B1 gate said `/doctor deep-loop` must probe the council graph, `council-graph.sqlite`, not only the deep-loop coverage graph, but that probe had not shipped even though destructive deletion of the five old skills had. This slice added the missing probe and reconciled the checklist to what was genuinely verified.
@@ -69,3 +66,6 @@ Packet-156 deep review found the missing guard in phase 009. The headline B1 gat
 - CHK-021 Phase 008 handoff is green before deletion.
 - CHK-065 Full phase-001 parity rerun is byte-identical for all five modes and seven commands.
 - CHK-030 No secrets introduced.
+
+> Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/009-old-skill-deletion-and-validation` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`

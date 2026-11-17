@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-08-07
 
-> Spec folder: `specs/system-speckit/032-relocate-specs-folder/003-migration-execution` (Level 3)
-> Parent packet: `specs/system-speckit/032-relocate-specs-folder`
-
 ### Summary
 
 Executed the 11-step runbook phase 002 designed. The canonical spec-kit tree moved from `.opencode/specs/` to `specs/` at repo root; `.opencode/specs` is now a relative symlink (`.opencode/specs -> ../specs`). Landed the atomic flip plus the required `.gitignore` rebase in one commit (`416ef56527`, 49,891 renames), then propagated the direction change across the registry, CI, docs, and the Memory MCP index.
@@ -41,3 +38,6 @@ Executed the 11-step runbook phase 002 designed. The canonical spec-kit tree mov
 ### Notes
 
 A live concurrent session pushed real commits to this same branch mid-run; resolved via rebase with no data loss. Two later independent reviews (2026-08-08) found and fixed a genuine data-quality bug this step's own doc claims had missed: `check-no-spec-imports.cjs`'s durable no-spec-import guard only checked the legacy alias, and `memory-drift-marker.sh`'s `git diff-tree` pathspec matched only the symlink blob, never the real tree — see phase 005's changelog.
+
+> Spec folder: `specs/system-speckit/032-relocate-specs-folder/003-migration-execution` (Level 3)
+> Parent packet: `specs/system-speckit/032-relocate-specs-folder`

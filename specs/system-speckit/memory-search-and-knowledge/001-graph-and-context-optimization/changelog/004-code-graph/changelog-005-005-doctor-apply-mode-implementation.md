@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-08
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/005-doctor-apply-mode-implementation` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor`
-
 ### Summary
 
 Phase A of `/doctor:code-graph` shipped diagnostic-only workflows in an earlier packet. Operators could see what was wrong with the code graph but had no automated path to fix it. Manual recovery required walking three documented procedures against a degraded graph without any verification gate.
@@ -79,3 +76,6 @@ Phase B wired the four prerequisite artifacts from the resilience research packe
 - Recovery report markdown is not produced in this release. The apply pipeline writes JSONL audit events only. A markdown report surface can be added in a follow-on packet if operators need a human-readable recovery summary.
 - Prune-excludes operates via `excludeGlobs` on the live scanner and is not config-persistent. A persistent scanner config schema was deferred to avoid introducing a new configuration surface in this packet.
 - Forensic SQLite `.recover` salvage is not shell-executed. CG-RP-001 preserves forensic copies and rebuilds from source with typed APIs. Manual `.recover --ignore-freelist` salvage remains a manual operator step when the typed rebuild path is insufficient.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/005-doctor-apply-mode-implementation` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor`

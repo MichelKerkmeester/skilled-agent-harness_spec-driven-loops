@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-30
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/005-fix-remaining-priority-findings` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness`
-
 ### Summary
 
 After packet 046 closed the release-blocking P0s, 24 P1 findings and 15 P2 findings remained. They spanned docs, command contracts, validator output, memory consistency, schema governance, deep-loop validation, plus operability. This packet applied 23 of those 24 P1 items plus 8 P2 items using conservative, source-cited remediation. The four largest engineering changes tightened MCP argument validation before pre-dispatch, extended `memory_health` to report row-count consistency, documented memory command contracts, then added missing Skill Graph and coverage-graph catalog entries. A per-finding outcome ledger in `remediation-log.md`, a Tier gamma conservative-defaults record in `decision-record.md`, plus a deferred P2 ledger in `deferred-p2.md` give operators a complete audit trail. One P1 (normal-shell live hook tests) was deferred as operator-only because the sandbox cannot produce live CLI verdicts.
@@ -103,3 +100,6 @@ After packet 046 closed the release-blocking P0s, 24 P1 findings and 15 P2 findi
 - Normal-shell hook verdicts for finding 045/005-P1-1 remain operator-only. Operators should run `npm run hook-tests` from a non-sandboxed shell to complete this item.
 - BM25 hardening, scoped link validation, plus protected local runtime config edits were deferred in `deferred-p2.md` because they require a design call or larger code changes.
 - The deep-review audited-wrapper port is partial. Failure reason taxonomy and schema validation were aligned but the full wrapper replacement exceeds the safe scope of this packet and needs a follow-up.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/005-fix-remaining-priority-findings` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness`

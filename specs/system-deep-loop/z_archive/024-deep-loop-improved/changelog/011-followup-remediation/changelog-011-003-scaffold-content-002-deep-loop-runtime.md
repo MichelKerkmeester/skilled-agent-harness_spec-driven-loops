@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/003-scaffold-content-002-deep-loop-runtime` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation`
-
 ### Summary
 
 All 18 leaf children of `002-deep-loop-runtime` had genuinely-authored `spec.md` files sitting next to unmodified template placeholder `plan.md`/`tasks.md` bodies and scaffold-signature frontmatter (`title` containing `[template:`, `packet_pointer` starting `scaffold/`, `last_updated_by: "template-author"`). Every leaf's `plan.md`/`tasks.md` was rewritten with real content grounded in that leaf's own `spec.md`.
@@ -48,3 +45,6 @@ All 18 leaf children of `002-deep-loop-runtime` had genuinely-authored `spec.md`
 ### Follow-Ups
 
 - The uniform frontmatter defect this child produced was fixed here directly, and children 004/005's dispatch prompts were hardened with the exact pitfall list so it did not recur.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/003-scaffold-content-002-deep-loop-runtime` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation`

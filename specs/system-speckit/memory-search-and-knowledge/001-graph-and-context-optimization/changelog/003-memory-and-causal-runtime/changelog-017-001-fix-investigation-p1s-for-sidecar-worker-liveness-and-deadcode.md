@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/001-fix-investigation-p1s-for-sidecar-worker-liveness-and-deadcode` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode`
-
 ### Summary
 
 Seven P1 findings in `sidecar-worker.ts` from arc 010/001 deep-research were open: incorrect parent-liveness detection (F14), a cached rejected provider promise that never self-evicted (F95), pre-parse failure responses silently emitting `id=0` (F94), a dead model-name fallback chain (F5), inconsistent error format across module boundaries (F30) plus two helper-consolidation findings (F19, F26). Correctness risks in F14, F94 plus F95 required new fixture tests alongside the edits.
@@ -65,3 +62,6 @@ All seven findings were closed with targeted edits to `sidecar-worker.ts`. Paren
 
 - F95 in `execution-router.ts` remains open because this packet owns only the `sidecar-worker.ts` surface. A follow-on packet covering the execution-router surface should close it.
 - Scope intentionally excludes `sidecar-client.ts`, `execution-router.ts`, `ensure-rerank-sidecar.cjs`, reindex, registry, schema plus index files per the phase boundary defined in the parent spec.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/001-fix-investigation-p1s-for-sidecar-worker-liveness-and-deadcode` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode`

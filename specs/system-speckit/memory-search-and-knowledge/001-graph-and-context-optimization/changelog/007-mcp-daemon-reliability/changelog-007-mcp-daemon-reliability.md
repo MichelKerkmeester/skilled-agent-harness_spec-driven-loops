@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-05-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 This parent packet consolidates MCP daemon reliability work: socket-dir startup robustness, daemon-failure root-cause research plus hardened roadmap, build-safety, and embedding-provider memory or supervision or bridge fixes that keep mk-spec-memory and mk_code_index healthy and self-recovering.
 
@@ -63,3 +60,6 @@ This parent packet consolidates MCP daemon reliability work: socket-dir startup 
 
 ### Follow-Ups
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

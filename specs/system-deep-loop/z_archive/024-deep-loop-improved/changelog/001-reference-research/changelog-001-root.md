@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/001-reference-research` (Level 1)
-
 ### Summary
 
 Phase 001 shipped the research backlog that drove the packet. It separated runtime and workflow substrate work by dependency order, then sequenced loop hardening, convergence governance, observability, test isolation and remediation.
@@ -57,3 +55,5 @@ _No file-level detail recorded._
 ### Follow-Ups
 
 - None recorded.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/001-reference-research` (Level 1)

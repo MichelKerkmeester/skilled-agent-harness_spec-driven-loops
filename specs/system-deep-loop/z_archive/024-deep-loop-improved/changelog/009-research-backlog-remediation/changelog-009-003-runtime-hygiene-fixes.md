@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/003-runtime-hygiene-fixes` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`
-
 ### Summary
 
 Ephemeral finding-id markers were left inside HTML comments across command and skill source files, a salvage placeholder filename used non-padded iteration numbers and a suspected codex zero-finding registry bug was traced to its real root cause instead of assumed.
@@ -56,3 +53,6 @@ Ephemeral finding-id markers were left inside HTML comments across command and s
 ### Follow-Ups
 
 - None. All P0 items closed with independent verification.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/003-runtime-hygiene-fixes` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`

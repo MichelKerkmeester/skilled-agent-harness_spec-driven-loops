@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin` (Level 1)
-
 ### Summary
 
 Packet 032 shipped a passive goal layer for OpenCode with durable per-session state, sanitized context injection and a thin `/goal` command router, then extended it through prompt-quality enhancement and system-spec-kit integration. A dual deep-research/deep-review audit found a conditional verdict against the shipped state; five remediation phases closed every P1 finding, normalized the twice-renamed command surface, backfilled real integration-seam regression tests, wired a dormant status enum to a real provider-usage detector, and added goal-state archival so `.goal-state/` stops growing unboundedly. Phase 009 (a `/speckit:*` goal-prompt-offer integration) remains in progress, owned by a separate concurrent session, and is intentionally excluded from this rollup.
@@ -80,3 +78,5 @@ _No packet-level file-level detail recorded. See each phase's own changelog for 
 
 - Phase 009 remains in progress under a separate session; this packet's rollup will need a further update once that phase lands.
 - `.opencode/plugins/tests/` (renamed from `__tests__` after the doc-staleness audit) is shared with `mk-deep-loop-guard`'s test suite, owned by a different packet; any future rename of this shared directory needs the same repo-wide sweep this session ran.
+
+> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin` (Level 1)

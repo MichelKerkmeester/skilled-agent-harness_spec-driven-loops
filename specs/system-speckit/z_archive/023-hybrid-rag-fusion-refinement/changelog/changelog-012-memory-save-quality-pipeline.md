@@ -2,8 +2,6 @@
 
 This phase implemented the structured-save quality remediation work for the memory pipeline, then received a structural doc-alignment pass on 2026-04-02. The code changes are in place across the existing save pipeline, but the phase packet still leaves fresh runtime score evidence and final validator capture open, so these notes describe implemented behavior without claiming full rerun closure.
 
-> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/012-memory-save-quality-pipeline` (Level 3)
-
 ---
 
 ## Saving Memories (4)
@@ -117,3 +115,5 @@ No new test files were recorded in the implementation summary for this phase. Th
 No migration required.
 
 Structured saves now pass through a better normalization, synthesis, and quality path. The phase packet still expects fresh runtime evidence before it can claim final rerun closure.
+
+> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/012-memory-save-quality-pipeline` (Level 3)

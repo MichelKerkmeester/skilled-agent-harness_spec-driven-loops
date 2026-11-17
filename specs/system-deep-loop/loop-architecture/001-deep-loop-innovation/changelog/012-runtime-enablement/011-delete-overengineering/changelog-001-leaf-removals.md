@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-24
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/001-leaf-removals` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering`
-
 ### Summary
 
 Wave 1 of the over-engineering removal program deleted three independent zero-caller leaves (F5, F6, F8) with no live-loop adjacency. Barrel re-exports and test references were severed before each file deletion so the typechecker never observed a dangling import.
@@ -30,3 +27,6 @@ Wave 1 of the over-engineering removal program deleted three independent zero-ca
 ### Status
 
 Complete. Typecheck held at 57 baseline errors (0 new `TS2307`); authority 8/8 `new_authoritative_final`; suite failing set unchanged by name.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/001-leaf-removals` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering`

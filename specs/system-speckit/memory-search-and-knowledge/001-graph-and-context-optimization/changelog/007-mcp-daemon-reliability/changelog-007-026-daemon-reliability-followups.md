@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The four follow-ups from the anti-disconnection investigation are closed, and re-election now has a real live test it never had.
@@ -60,3 +57,6 @@ The four follow-ups from the anti-disconnection investigation are closed, and re
 - The integration test validates the decision and OS mechanics, not lease bookkeeping or true adoption. It exercises the real release-vs-kill decision plus detached-spawn, unref, SIGTERM, and reparent. The launcher's lease-file release bookkeeping and a secondary actually adopting the released daemon remain covered by the unit suite and a deliberate multi-session check.
 - The plist hardcodes this machine's repo root and home. launchd needs absolute paths, so an operator on a different machine edits the two paths flagged in the header before installing.
 - Re-election stays machine-local under test. The flag is set in gitignored .env.local and is not a committed default; promotion waits for live multi-session validation.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

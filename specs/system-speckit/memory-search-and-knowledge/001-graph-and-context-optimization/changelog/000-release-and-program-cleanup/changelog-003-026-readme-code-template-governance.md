@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-02
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/026-readme-code-template-governance` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 The two `sk-doc` README documentation templates, `readme_template.md` and `readme_code_template.md`, had no architecture zone diagram, no package topology section, no control-flow example. The code template also contained ASCII diagram patterns that did not match the sk-doc Unicode box drawing style. Eighteen code-folder README files across the `system-spec-kit` MCP server tree contained HVR violations and lowercase-v diagram blockers.
@@ -79,3 +76,6 @@ Task 5 expanded `readme_template.md` for skill and project README alignment. It 
 - The flowchart validator centered-connector limitation is documented as non-blocking. A future pass may address the extracted-block validator to handle centered connectors without counting indentation as nesting depth.
 - `templates/scratch/README.md` remains the only recorded exception: skipped by template-path rule and DQI 64 from `extract_structure`. A decision on this file is deferred to a future cleanup pass.
 - Some batch agents reported `verify_alignment_drift.py` or markdownlint as validator alternatives. A final global review pass should confirm consistent tooling across the full README surface.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/026-readme-code-template-governance` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

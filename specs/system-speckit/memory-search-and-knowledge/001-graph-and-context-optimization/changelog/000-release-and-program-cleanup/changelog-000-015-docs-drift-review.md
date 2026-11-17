@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-05
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/015-docs-drift-review` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup`
-
 ### Summary
 
 This read-only packet reviewed user-facing docs against the shipped changes from packets 013 through 016 and the v3.5.0.0 release on `origin/main` HEAD `ce22801ff5`. The verdict is CONDITIONAL PASS. The report records 21 consolidated findings: 1 P0, 8 P1 and 12 P2. No reviewed documentation was edited. The strongest findings are doc-internal tool-count contradictions and single-manifest embedder registry drift, while roughly 45 raw candidates were rejected as false positives after code verification.
@@ -65,3 +62,6 @@ This read-only packet reviewed user-facing docs against the shipped changes from
 - Triage the 1 P0, 8 P1 and 12 P2 findings into a focused docs-remediation packet.
 - Confirm the low-confidence P2 items before changing them.
 - Keep skill `references/**` and `assets/**` review scope separate because this packet only covered README and SKILL surfaces for skills.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/015-docs-drift-review` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup`

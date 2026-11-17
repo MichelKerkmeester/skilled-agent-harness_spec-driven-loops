@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/003-codex-native-startup-advisor-hooks` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`
-
 ### Summary
 
 Codex CLI sessions did not receive the startup repository context or skill advisor brief that Claude Code sessions received. The root cause was confirmed: Codex natively supports the hook transport via `~/.codex/hooks.json`, but no Spec Kit Memory hook command was registered. Only the Superset `notify.sh` notification script was wired.
@@ -80,3 +77,6 @@ This phase ported the Claude reference implementation to a new `hooks/codex/` ad
 - Codex marks `codex_hooks` as under development in `codex features list`. Future Codex releases may change the hook contract and require re-running the stdin/stdout/timeout smoke checks.
 - Memory indexing is partially degraded. `generate-context.js` exited 0 and refreshed metadata, but semantic indexing hit `E_LINEAGE` and `candidate_changed` failures for several packet docs. Strict spec validation remains clean.
 - CocoIndex timed out during implementation. Future operators using this packet as a reference for hook authoring may want to wait for CocoIndex stability before relying on semantic search here.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/003-codex-native-startup-advisor-hooks` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

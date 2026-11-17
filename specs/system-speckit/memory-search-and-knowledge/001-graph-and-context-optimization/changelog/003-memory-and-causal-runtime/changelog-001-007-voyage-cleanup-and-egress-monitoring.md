@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-12
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/007-voyage-cleanup-and-egress-monitoring` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 After the Phase 003 and 004 local-embeddings migration, the spec-kit-memory database directory retained two stale files: a 322MB Voyage 1024-dim sqlite from before hf-local became the active provider plus a 141MB generic-filename `context-index.sqlite` from before filename-keying landed. Both were dead data that slowed down the question "is Voyage still being called?" Both were removed, reclaiming 463MB.
@@ -74,3 +71,6 @@ On top of the cleanup, `factory.ts` gained a `warnIfVoyageDriftDetected()` helpe
 - Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh` on this packet once T014 is resolved to confirm strict validate exits 0.
 - User runs `bash scratch/tcpdump-verify.sh` for 24h post-merge to confirm zero packets to `api.voyageai.com`.
 - The egress guard logs but does not enforce. If a stricter policy becomes desirable in a later phase, upgrade from warn to throw and add a bypass env var.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/007-voyage-cleanup-and-egress-monitoring` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

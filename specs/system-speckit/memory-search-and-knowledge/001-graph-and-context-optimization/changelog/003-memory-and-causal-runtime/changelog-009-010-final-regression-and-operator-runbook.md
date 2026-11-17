@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/010-final-regression-and-operator-runbook` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`
-
 ### Summary
 
 Nine preceding phases fixed memory and process lifecycle issues across deep-loop dispatch guards, process sweep, CocoIndex, Code Graph launcher, rerank sidecar plus memory runtime retention. No single record proved all fixes held together end-to-end. Operators also had no document showing which processes were safe to terminate versus which required a machine reboot.
@@ -80,3 +77,6 @@ Process-memory harness captured before and after snapshots around a representati
 - Live sidecar integration tests remain blocked by localhost bind denial in the sandbox. The passing gate uses the package venv with Python 3.11 for CocoIndex tests.
 - The Code Graph broad suite has documented pre-existing failures outside launcher/DB lifecycle scope. These were not fixed in phase 010 and are out of scope for the arc.
 - Apple Silicon wired/compressed/swap pressure cannot be resolved through project-daemon cleanup when no project-owned daemon evidence exists. The runbook documents reboot-only handling as the operator path.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/010-final-regression-and-operator-runbook` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

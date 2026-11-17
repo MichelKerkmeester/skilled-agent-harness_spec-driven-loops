@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Benchmarked the 041 `SPECKIT_DETERMINISTIC_RANKING` flag against the real corpus to decide whether it can graduate to default-on. A read-only in-process harness embedded each of the twelve benchmark queries once and drove the production `executePipeline` six times per query, three flag-off and three flag-on, so only ranking varied across the 72 cells. Flag-ON ranking is perfectly reproducible at determinism 1.0, but removing the wall-clock recency inputs diverges materially from the current default on 5 of 12 queries, mean top-K overlap 0.69 and Kendall tau 0.73. Recency is load-bearing on real-match queries and the corpus carries no ground-truth that the deterministic order is better, so the verdict is STAY DEFAULT-OFF and keep the flag as an opt-in reproducibility tool. This phase ships measured data and a verdict, not code.
@@ -53,3 +50,6 @@ Benchmarked the 041 `SPECKIT_DETERMINISTIC_RANKING` flag against the real corpus
 - Per the stay-off verdict and the operator directive to remove benchmark-rejected stay-off flag code, the `SPECKIT_DETERMINISTIC_RANKING` flag and its gated branches were removed, reverting to the default recency-on ranking. The always-on trigger id tie-break that shipped alongside it was kept as the pure-win part.
 - Revisiting deterministic ranking later would be a fresh implementation gated on a labeled-relevance benchmark showing it does not lose relevant results, not just a reproducibility argument.
 - The flag code is being removed in a subsequent change per the STAY DEFAULT-OFF verdict, since no measured win justifies carrying it. The opt-in reproducibility use is recorded so the deletion is a considered call rather than a loss of capability.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

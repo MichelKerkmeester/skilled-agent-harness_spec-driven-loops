@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-02
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation` (Level 2)
-> Parent packet: `system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix`
-
 ### Summary
 
 Before this phase, reviewers had no quick way to answer "what files did this packet touch" without reading `implementation-summary.md` end to end or diffing git. A prior one-off artifact (005/path-references-audit) proved the value of a flat categorized path ledger but was never promoted into a reusable template.
@@ -77,3 +74,6 @@ Commits: `30024e3bed` (fleet marker + validation), `083f74c814` (test playbooks)
 ### Follow-Ups
 
 - None. The template is discoverable, optional, and ready for Phase 003 deep-loop integration.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation` (Level 2)
+> Parent packet: `system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix`

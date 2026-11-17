@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/008-mcp-daemon-rebuild-protocol` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 After the 005 packet claimed its Cluster 1-3 P0 fixes had landed, post-remediation live probes revealed the defects were still present. Research in 007 ruled out a missing dist rebuild because the compiled output already carried fresh timestamps. The actual cause was that the MCP-owning client (OpenCode / Codex / Claude Code) had never been restarted, so the running daemon process continued executing old code. This is the phantom-fix failure mode: source patched, dist compiled, but the live tool still reflects the previous build.
@@ -63,3 +60,6 @@ None.
 
 - Consider adding an automated `dist-freshness-check.sh` script in Phase D once the manual protocol has been validated across multiple packets.
 - Evaluate adding a `validate.sh` rule that detects heuristically when MCP source was modified and requires a citation to this protocol before the packet can pass.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/008-mcp-daemon-rebuild-protocol` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

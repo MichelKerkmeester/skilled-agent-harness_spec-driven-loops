@@ -59,8 +59,8 @@ Template-driven rewrite with independent review, one README per session.
 
 ### Key Components
 - **Template** (`.skilled/skills/sk-doc/sk-create-readme/assets/hook-readme-template.md`): its section 5 runtime folder scaffold: OVERVIEW, DIRECTORY TREE, VALIDATION and RELATED. A flat runtime folder keeps the DIRECTORY TREE heading and may hold the file table alone, naming every file other than the README.
-- **Writer sessions**: DeepSeek V4.1 Flash at max through cli-opencode, one README per session, started by `$S/dispatch.sh`. Each reads its sources, rewrites only its README and runs the per-file checks.
-- **Reviewer sessions**: the same model through `$S/review.sh`, never the session that wrote the file. Each checks every path, command, count and list against the sources read-only and returns findings.
+- **Writer sessions**: GPT-6 Luna at max on the fast tier through cli-codex for the canary. When the codex usage limit stopped the first wave, the operator switched to DeepSeek V4.1 Flash Max (`deepseek-v4-1-flash-1017-max`) through cli-devin in `dangerous` permission mode. When devin's daily quota ran out after three waves, the operator switched to DeepSeek V4.1 Flash at max through cli-opencode on the OpenCode Go route (`opencode-go/deepseek-v4.1-flash#max`). One README per session, started by `$S/run.sh` and driven in waves by `$S/drive.sh`. Each reads its sources, rewrites only its README and runs the per-file checks.
+- **Reviewer sessions**: the same executor through `$S/run.sh`, never the session that wrote the file, told to write nothing. The main session compares `git status` with its snapshot after each wave. Each reviewer checks every path, command, count and list against the sources and returns findings.
 - **Main session**: confirms each finding against the code before applying it, reruns every check itself and owns the commit.
 - **Scratchpad checks**: `baseline.sh` (validator, voice scan and emoji heading count per file), `h2model.py` (H2 list against the template), `readme_links.py` (outbound links plus anchored links into the files) and the enumeration list `r004.txt`, all under `$S`, which is `/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/256db329-443e-4697-8e43-b3b7f7c74ec6/scratchpad`.
 
@@ -74,13 +74,13 @@ Expected: 47 lines. Rerun it at implement time, because other sessions keep movi
 Each writer reads its sources and the template, then writes the README. Its reviewer reads the same sources and the new README and returns findings. The main session applies confirmed findings, reruns every check and records the before and after numbers.
 
 ### Waves
-One canary writer runs first on the shortest file, `mcp-route-guard/pi/README.md` (37 lines). The other 46 run in waves of up to ten sessions, because each file is short. Reviewers start as soon as their file's writer returns.
+One canary writer runs first on the shortest file, `mcp-route-guard/pi/README.md` (37 lines). The other 46 run in waves of four writers. The first three waves overlapped each wave's reviewers with the next wave's writers. That ran eight devin sessions, twice the four the operator approved, and hit devin's request rate limit. From wave 3 on, each wave's reviewers run after its writers, so no more than four sessions run at once. A wave that hits the provider's usage limit waits for the reset and re-dispatches only the sessions the limit stopped.
 
 ### Writer Brief Constraints
 - Follow the runtime folder scaffold: an H1 of the form `[Runtime] [Concern Name]: [Event] Adapter`, no tagline, `---` before each numbered ALL-CAPS H2, and the four sections OVERVIEW, DIRECTORY TREE, VALIDATION and RELATED. A flat folder keeps the DIRECTORY TREE heading and holds a file table naming every file other than the README.
-- OVERVIEW names the event, the file that registers the adapter, what the adapter reads first, the concern switch with `SYSTEM_HOOKS_DISABLED` as the master switch, and how every failure ends.
-- VALIDATION is kept only when a test or smoke command exists for the adapter. Run it from the repository root and state its result.
-- Keep frontmatter `title`, `description` and `trigger_phrases` unless a value is wrong, and leave `version` alone, because the pre-commit gate raises it.
+- OVERVIEW names the event, the file that registers the adapter, what the adapter reads first, the switch the adapter checks and how every failure ends. It calls `SYSTEM_HOOKS_DISABLED` the master switch only when the adapter's code path reaches the shared hook-flags resolver.
+- Every file keeps VALIDATION, as goal D2 requires. The command is the adapter's own test, else a test that drives this adapter, else a stdin smoke run of the adapter file, else the registration check: `hook-wiring-check.cjs --root .` for Claude, Codex, Cursor and Devin, and the `hook-adapter-path-parity` suite for Pi. Run it from the repository root and state its result.
+- The frontmatter `title` matches the H1. Keep `description` and `trigger_phrases` unless a value is wrong, and leave `version` alone, because the pre-commit gate raises it.
 - Keep exact commands, paths, flags and file names where a reader acts on them, and state each command's expected output.
 - Link text in prose is plain words, wording is provider agnostic and the AI Council gets no emphasis.
 - Edit only the assigned README and run no git command.
@@ -127,7 +127,8 @@ Setup rebuilds the file list, records the baseline and confirms every check pass
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | `python3`, `node`, `npx vitest` and `rg` | Internal | Green | No check can run |
-| `opencode` with the DeepSeek V4.1 Flash route | External | Green | The writers run as Claude subagents instead, recorded as a deviation from D4 |
+| `codex` with the GPT-6 Luna route on the fast tier | External | Limit reached | The operator switched the drive to devin with DeepSeek V4.1 Flash Max |
+| `devin` with `deepseek-v4-1-flash-1017-max` | External | Green | A usage-limit hit pauses the drive until the reset. A second hit in a row, or a reset hours away, stops it for an operator decision |
 <!-- /ANCHOR:dependencies -->
 
 ---

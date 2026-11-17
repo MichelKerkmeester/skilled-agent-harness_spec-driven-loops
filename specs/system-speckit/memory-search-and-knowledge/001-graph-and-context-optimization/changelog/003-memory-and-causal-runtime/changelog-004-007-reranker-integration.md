@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/007-reranker-integration`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`
-
 ### Summary
 
 CocoIndex hybrid retrieval had no cross-encoder reranking step after RRF fusion, which left result ordering dependent solely on BM25 plus vector score fusion without any semantic re-scoring pass. A deep-research investigation converged on `Alibaba-NLP/gte-multilingual-reranker-base` (Apache-2.0, 306M parameters) as the first-pick model with K=20 top candidates and an opt-in rollout gate.
@@ -77,3 +74,6 @@ Default-on promotion remains gated on an 18-pair fixture: p95 added latency unde
 - Run the 18-pair fixture quality gate before promoting `COCOINDEX_RERANK` to default-on: require at least two additional top-3 hits versus the non-reranked baseline.
 - Run the p95 latency gate before default-on promotion: reranker-added latency must stay under 500ms.
 - Consider adding a live integration test that loads the actual GTE model once per CI run rather than relying solely on mocked fallback paths.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/007-reranker-integration`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/004-novel-research/022-novel-context-budget-assembler` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Nothing is built yet. This phase is scaffolded and PLANNED. The notes below describe the intended change so the build has a fixed target. No module, no seam edit and no test exists at this point.
@@ -49,3 +46,6 @@ Nothing is built yet. This phase is scaffolded and PLANNED. The notes below desc
 
 - Build this capability per plan.md as a report-only or additive seam that never mutates an authored document body.
 - It bypasses the 3-result truncation floor by construction, so it earns its keep on a non-retrieval metric of its own.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/004-novel-research/022-novel-context-budget-assembler` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

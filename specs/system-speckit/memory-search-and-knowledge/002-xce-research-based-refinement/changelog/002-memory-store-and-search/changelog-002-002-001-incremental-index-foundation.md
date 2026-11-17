@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle`
-
 ### Summary
 
 The memory store can now represent canonical input memo records, dependency edges, and durable chunk metadata without changing any handler scan behavior. The foundation adds three new library modules and a `planMemoizedIndexing()` planning API to `incremental-index.ts` so future phases can know what changed before parsing or embedding. The schema advances to v31 via an additive migration that is safe to apply on existing databases.
@@ -70,3 +67,6 @@ The memory store can now represent canonical input memo records, dependency edge
 ### Follow-Ups
 
 - Handler scan behavior is intentionally unchanged. The `planMemoizedIndexing()` API is ready for the follow-on integration phase when scan behavior will call it.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle`

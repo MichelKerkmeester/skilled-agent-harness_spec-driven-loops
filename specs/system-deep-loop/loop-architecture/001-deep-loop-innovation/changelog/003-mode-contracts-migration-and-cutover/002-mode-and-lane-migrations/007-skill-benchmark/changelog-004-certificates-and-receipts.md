@@ -12,9 +12,9 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/004-certificates-and-receipts` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark`
-
 ### Summary
 
 This phase planned the Skill Benchmark certificates and receipts over the deep-improvement-common backbone: attest paired skill scenarios, scoring evidence, replay inputs, validity domains, and transition outcomes while leaving shared services single-sourced and independently verifiable offline. Per its implementation summary, the phase authored additive-dark Skill Benchmark run certificates, transition receipts, offline verification, deferred plain-digest closure enforcement, and shared common-service delegation. Status is implemented.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/004-certificates-and-receipts` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark`

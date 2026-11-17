@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-04-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`
-
 ### Summary
 
 A single-pass deep review of the 007 skill-advisor hook surface found 2 P1 findings and 1 P2. The subprocess timeout concern from earlier reviews is closed because the OpenCode plugin now sends SIGTERM, escalates to SIGKILL, and resolves on close. The release risk is contract-level: Copilot's adapter computes an advisor brief for the current prompt but writes it into custom instructions that Copilot reads on the next prompt. That does not satisfy the same-current-turn semantics promised by the packet.
@@ -53,3 +50,6 @@ None - review-only phase.
 - Define and test Copilot current-turn vs next-turn contract.
 - Update stale release/checklist evidence.
 - Add a real or replayed Copilot host contract fixture.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

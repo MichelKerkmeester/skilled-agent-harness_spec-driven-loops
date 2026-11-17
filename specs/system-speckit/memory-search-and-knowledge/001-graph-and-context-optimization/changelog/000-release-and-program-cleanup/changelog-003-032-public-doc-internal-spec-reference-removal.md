@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/032-public-doc-internal-spec-reference-removal` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 Public-facing docs, command assets, setup guides, skill references, feature catalogs and manual testing playbooks contained direct links to this repository's internal spec packet folders. External users cannot resolve those paths, so the references produced dead links and exposed development history in place of stable user-facing contracts.
@@ -66,3 +63,6 @@ A scoped `rg` pass identified every concrete `.opencode/specs/...`, `specs/syste
 
 - Some internal historical notes in skill docs still use generic "packet" language. No private spec folder links remain in those notes. A future pass could normalize the language if needed.
 - Test fixtures intentionally retain internal-looking paths. These are parser fixtures and runtime validation data, not public docs. They are out of scope for this cleanup.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/032-public-doc-internal-spec-reference-removal` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

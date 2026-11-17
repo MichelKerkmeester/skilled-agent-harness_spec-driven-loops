@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/013-evergreen-doc-packet-id-removal` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 Evergreen runtime docs across sk-doc, system-spec-kit, cli-opencode were carrying mutable packet and phase number references. Those references rot when packet folders are renumbered, archived, consolidated, even though the runtime behavior they describe stays current. There was no rule telling authors to avoid them.
@@ -65,3 +62,6 @@ A canonical rule file was created under `sk-doc/references/global/` defining the
 ### Follow-Ups
 
 - Sweep older evergreen docs in generated feature catalog and playbook surfaces that still contain historical phase or packet labels. The audit documents these as deferred because broad generated-corpus rewrites need their own dedicated cleanup pass.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/013-evergreen-doc-packet-id-removal` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

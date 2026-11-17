@@ -8,8 +8,6 @@
 
 Wording-only cleanup pass across all skill surfaces. Harmonized terminology in skill docs, runtime mirrors, wrapper prompts, and active packet documentation. Historical research and memory artifacts were renamed to match current wording.
 
-> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/007-sk-recursive-agent-wording-alignment/`
-
 ---
 
 ## Changed (1)
@@ -34,3 +32,5 @@ Wording-only changes across skill docs, runtime mirrors, wrapper prompts, and pa
 ## Upgrade
 
 No migration required.
+
+> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/007-sk-recursive-agent-wording-alignment/`

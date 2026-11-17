@@ -8,8 +8,6 @@
 
 Updated the skill advisor routing tables and root README to make Phase 008+ capabilities discoverable. Added intent boosters, phrase intent boosters, and command bridges so the advisor correctly routes queries about 5-dimension evaluation, dynamic profiling, and integration scanning to sk-improve-agent. Bumped the skill version to 1.0.0.0.
 
-> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/011-sk-improve-agent-advisor-readme-sync/`
-
 ---
 
 ## Changed (4)
@@ -68,3 +66,5 @@ Updated the skill advisor routing tables and root README to make Phase 008+ capa
 ## Upgrade
 
 No migration required.
+
+> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/011-sk-improve-agent-advisor-readme-sync/`

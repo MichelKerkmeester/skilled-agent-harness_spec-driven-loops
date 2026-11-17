@@ -2,8 +2,6 @@
 
 This release matters because it turns the last uncertain parts of the ESM (the modern JavaScript module system) migration into something people can trust. It closes the remaining failures, replaces placeholder coverage with real verification, and finishes the remediation sweep for the server and script packages with aligned guidance for manual checks.
 
-> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/005-test-and-scenario-remediation/` (Level 1)
-
 ---
 
 ## Bug Fixes (8)
@@ -142,3 +140,5 @@ This documentation update matters because release evidence is only trustworthy w
 No migration required.
 
 Runtime behavior for users does not require a rollout step. The practical change is that this phase now closes with verified test coverage, aligned manual guidance, and no known limitations.
+
+> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/005-test-and-scenario-remediation/` (Level 1)

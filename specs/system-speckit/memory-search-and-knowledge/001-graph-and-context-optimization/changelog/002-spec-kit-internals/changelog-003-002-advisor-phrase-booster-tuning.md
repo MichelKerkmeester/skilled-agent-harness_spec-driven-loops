@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine`
-
 ### Summary
 
 The skill advisor ship quality routing engine had 36 multi-word keys in its INTENT_BOOSTERS dictionary that the tokenizer silently split into single tokens before lookup, making every one of them a dead entry. These entries were migrated to PHRASE_INTENT_BOOSTERS which matches substrings against the raw prompt. The headline fix: "5-dimension agent scoring" was misrouting to sk-improve-prompt at 0.77 confidence and now routes correctly to sk-improve-agent at 0.95.
@@ -63,3 +60,6 @@ The skill advisor ship quality routing engine had 36 multi-word keys in its INTE
 
 - Benchmark harness p95 latency measurement was deferred. The change is data-only with no scoring logic modifications so latency impact is unlikely to exceed 5 percent. Re-measure only if a downstream user reports perceived slowdown.
 - The Barter repository skill advisor is out of sync with these Public-canonical changes. Barter has independent drift that needs a separate migration pass applying the same pattern.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine`

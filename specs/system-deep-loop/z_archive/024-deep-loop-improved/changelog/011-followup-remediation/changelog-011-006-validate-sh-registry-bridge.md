@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-02
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/006-validate-sh-registry-bridge` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation`
-
 ### Summary
 
 The default `validate.sh` path never ran registry-backed shell rules. A self-healing bridge function now runs every eligible registry rule automatically, deriving its skip-set live from the orchestrator's own native-check results rather than a hardcoded allowlist. Verifying this fix clean required first closing `001-reference-research`'s own scaffold markers (outside the original leaf-only scope of children 003-005) and, separately, discovering and fixing a two-week-stale compiled validation orchestrator -- the true root cause behind why the intended fix's blast radius was repo-wide rather than packet-scoped. The repo-wide dist-freshness infrastructure and remediation work shipped as its own packet, `system-speckit/030-validate-sh-dist-freshness-and-repo-remediation`, not folded into this child.
@@ -59,3 +56,6 @@ The default `validate.sh` path never ran registry-backed shell rules. A self-hea
 - Repo-wide dist-freshness enforcement (shared checker, `validate.sh` hard backstop, Claude Code hook, OpenCode plugin) and the 41-packet remediation sweep it exposed shipped separately as `system-speckit/030-validate-sh-dist-freshness-and-repo-remediation` -- see that packet's own changelog.
 - No vitest suite exercises `validateFolder()`'s dual-path branch logic directly; coverage relies on the bash-level `test-validation-extended.sh` fixtures. Confirmed again as GPT-F006 (P2) by the 2026-07-02 10-iteration deep-review.
 - The registry bridge filters out `strict_only` rules unconditionally (orchestrator.ts, the `strict_only !== true` filter), so a `--strict` run through the Node path never executes strict-only shell rules the shell path would run. Confirmed as GPT-F003 (P1) by the same deep-review. A second parity gap found while closing GPT-F002: the native `validateFileExists` requires `implementation-summary.md` unconditionally for Level 1 while the shell rule exempts folders whose tasks show no started work, so a genuinely Not Started scaffold (011 child 007) fails FILE_EXISTS under the Node path. The bundled fix is the one-line strict-aware filter, the started-work exemption in `validateFileExists`, and the vitest coverage above, deferred as one change because it requires a shared-dist rebuild and a concurrent session holds live uncommitted work in the same mcp_server package. Closing condition: apply all three, rebuild dist, and re-run `test-validation-extended.sh` once the tree is quiet. Until then, 011 child 007 carries exactly one known FILE_EXISTS error that reflects this validator gap, not a defect in the scaffold.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/006-validate-sh-registry-bridge` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation`

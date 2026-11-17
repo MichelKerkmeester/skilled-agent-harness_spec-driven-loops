@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-26
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure` (Level 2)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 Phase 018 measured packet 054 again on fair terms. The old benchmark task was the templates' own worked example, the brief forced Level 3, and no per-packet grade was kept. This phase rescored the 23 uncontaminated old packets with deterministic checks, then reran the speed loop on a task no template names, at the helper's level, with a leak gate, a paired output-token verdict and one blind Opus medium grade per packet. Over 8 rounds and 29 valid packets, now054 beat pre054 on the blind total in all 8 rounds. The tree after phases 015 to 017 scored highest, 25.5 of 30, but its leads are INCONCLUSIVE. The only REAL speed result is upkeep output tokens, refined against main-no054, fewer in 5 of 5 pairs, and every seconds verdict is INCONCLUSIVE.
@@ -60,3 +57,6 @@ Phase 018 measured packet 054 again on fair terms. The old benchmark task was th
 ### Follow-Ups
 
 - None recorded.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure` (Level 2)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

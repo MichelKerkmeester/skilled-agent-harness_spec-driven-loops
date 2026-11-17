@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-03
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/005-broader-excludes-and-granular-skills` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan`
-
 ### Summary
 
 Packet 009 excluded `.opencode/skills/**` from default code-graph scans. Four adjacent internal-heavy folders (agents, commands, specs, plugins) remained in scope by default, inflating scans with framework internals that operators rarely need. The `includeSkills` argument was also all-or-nothing, which made targeted skill graph work expensive when only one or two `sk-*` folders were relevant.
@@ -95,3 +92,6 @@ Four follow-on bugs discovered during end-to-end verification were also resolved
 
 - Per-folder tracked-file counts are not split out. The status `excludedTrackedFiles` field is preserved but separate counters for agents, commands, specs plus plugins were deferred.
 - When a function name exists in both a test fixture and production code, the cross-file resolver conservatively skips the rewrite. Queries on ambiguous duplicate names require using `symbolId` directly.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/005-broader-excludes-and-granular-skills` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan`

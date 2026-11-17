@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-26
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes` (Level 1)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 Phase 019 fixes the two follow-ups the 054 closeout named. The goal-file manifest check ran `git ls-files` with fsmonitor on, and in this checkout that call hung for 853 s in a full CLI suite run, so `recursive-child-manifest` was the one failing test. Both of the script's git calls now turn fsmonitor off, and the test passes. The speed loop dropped main-no054 for rounds 3 to 5 of its main run, because one author step ran vitest inside the sandbox and the loop only rebuilt dirty sandboxes when a run started. It now rebuilds a dirty sandbox before each later round and keeps the rebuild only when its snapshot head matches the head the run started with.
@@ -56,3 +53,6 @@ Phase 019 fixes the two follow-ups the 054 closeout named. The goal-file manifes
 - The leak check on a rebuild applies only when the task has a terms file, as the start-of-run gate does, because the quiet task always records `NA`.
 - No real speed-loop run rebuilt a sandbox, since a real run dispatches paid model runs; the harness covers the decision paths.
 - One P2 stays open: a failed `prepare.sh` can leave a half-built directory that the sandbox map never names.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes` (Level 1)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

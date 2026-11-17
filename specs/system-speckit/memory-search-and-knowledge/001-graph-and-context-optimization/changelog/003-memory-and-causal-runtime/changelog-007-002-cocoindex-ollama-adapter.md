@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion`
-
 ### Summary
 
 CocoIndex's embedder registry was sbert-only. A comment in `config.py` claimed non-sbert prefixes routed via LiteLLM, but the path was unverified. No Ollama manifests existed. `_is_registered_embedder()` silently fell back to the default for any unrecognized prefix. Operators running Ollama had no supported local path into CocoIndex indexing.
@@ -83,3 +80,6 @@ A worktree end-to-end run at commit `d850fcd97` indexed 4 files and returned top
 
 - Benchmark `ollama/nomic-embed-text` against code-tuned sbert defaults on the 18-pair fixture before recommending it as a production replacement. The model is text-tuned and GGUF-quantized. Quality delta versus FP16 sbert defaults is unconfirmed.
 - Add a second Ollama manifest entry (`ollama/mxbai-embed-large`) to confirm the one-line MANIFESTS pattern generalizes.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion`

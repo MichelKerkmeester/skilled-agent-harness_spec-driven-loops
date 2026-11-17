@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/031-cocoindex-local-voyage-embeddings-gate` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 The CocoIndex `ccc run-daemon` (PID 74669) had run for over 2 days consuming 2.1 GB RSS because its per-user config still pointed at `provider: sentence-transformers`, loading a local PyTorch model despite `VOYAGE_API_KEY` being set. An indexer crash-loop on a missing `.workflow-lock` file had simultaneously grown the rotated daemon log to 7.3 GB.
@@ -83,3 +80,6 @@ The daemon was killed and its stale runtime files removed. The per-user config a
 - Document the `COCOINDEX_SKIP_LOCAL_EMBEDDINGS=1` opt-out env var in `INSTALL_GUIDE.md`. Deferred because the default install path is unchanged for other users. Add in a follow-on doc packet if Voyage-only adoption grows.
 - Fix the indexer crash-loop on a missing `.workflow-lock` file in a separate packet. The `RotatingFileHandler` caps future log growth but the underlying crash path in the fork's path-walker remains.
 - Evaluate updating `settings.py:112-118` `default_user_settings()` to emit `provider: litellm` as the default if Voyage becomes the canonical default across machines.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/031-cocoindex-local-voyage-embeddings-gate` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

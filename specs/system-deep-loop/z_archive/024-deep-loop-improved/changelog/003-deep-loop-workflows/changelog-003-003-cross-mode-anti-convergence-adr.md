@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/003-cross-mode-anti-convergence-adr` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`
-
 ### Summary
 
 antiConvergence block across the 4 mode configs (council=minRounds), stopPolicy:fail-closed in 3 per-mode runtime_capabilities, contract enforcement in runtime-capabilities.cjs, and a convergenceMode-locked invariant group in the optimizer manifest. Parity 45/45 + typecheck green; reconciled with the 003/001 floor.
@@ -64,3 +61,6 @@ antiConvergence block across the 4 mode configs (council=minRounds), stopPolicy:
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/003-cross-mode-anti-convergence-adr` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`

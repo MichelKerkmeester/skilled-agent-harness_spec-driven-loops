@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-26
 
-> Spec folder: `specs/sk-code/015-quality-agnostic-gate/002-builtin-runner` (Level 2)
-> Parent packet: `specs/sk-code/015-quality-agnostic-gate`
-
 ### Summary
 
 The quality gate now runs as one command in any repository. `quality-gate.cjs` reads a change, runs the checks it can prove, prints one verdict and writes no file. A Go repository with a spec label in a comment reads `BLOCKED` with surface `unknown`, and this repository's own checker file reads `NO_BLOCKER_FOUND` with the SKILLED surface resolved.
@@ -58,3 +55,6 @@ The quality gate now runs as one command in any repository. `quality-gate.cjs` r
 ### Follow-Ups
 
 - A repository config that names its own checks came in the next phase.
+
+> Spec folder: `specs/sk-code/015-quality-agnostic-gate/002-builtin-runner` (Level 2)
+> Parent packet: `specs/sk-code/015-quality-agnostic-gate`

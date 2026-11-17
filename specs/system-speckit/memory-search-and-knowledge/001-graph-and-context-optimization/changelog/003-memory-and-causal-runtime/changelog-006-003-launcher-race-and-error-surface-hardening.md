@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/003-launcher-race-and-error-surface-hardening`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`
-
 ### Summary
 
 The 006 and 007 packets shipped working lease enforcement on the happy path, but a 3-reviewer audit surfaced 9 P1 correctness gaps. The lease guard did not handle EPERM (different uid), leaving the signal check to silently bypass protection. The EACCES catch in `skill-graph-db.ts` missed `SqliteError(code='SQLITE_READONLY')`, making the DELETE-mode fallback dead code for the case it claimed to cover. The spec-memory SIGTERM handler cleared the lease on a fixed 5s timer rather than waiting for child exit, risking WAL corruption. Two launchers lacked a re-probe after writing the lease file, leaving a check-and-write race unguarded.
@@ -81,3 +78,6 @@ All 9 findings closed in one focused pass. Fifteen tests now pass across the thr
 - Run a 24-hour zero-zombie soak across all 6 runtime configs to validate the new launchers under wall-clock conditions. Deferred to operator. Not blocked by this packet.
 - Add a chmod-tempdir test asserting the `journal_mode = DELETE` fallback fires when `SqliteError(code='SQLITE_READONLY')` is thrown. The broadened predicate is wired but the fallback branch has no regression coverage.
 - Investigate the `checkSqliteIntegrity` `busy_timeout` gap. The quick-check path still runs with a 0ms `busy_timeout`, so a transient lock during an integrity probe can still false-positive into a `.corrupt` rename.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/003-launcher-race-and-error-surface-hardening`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

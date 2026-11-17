@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-27
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/024-typed-command-ambiguity` (Level 2)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 A typed /deep:research :auto prompt now routes to system-deep-loop with no ambiguity flag, and the flag as a whole stops firing on noise: 78 of 261 labelled prompts are flagged instead of 110, with the same 202 correct top skills and no top skill changed.
@@ -75,3 +72,6 @@ A typed /deep:research :auto prompt now routes to system-deep-loop with no ambig
 - The Python fallback re-derives the flag the old way. When the advisor falls back to skill_advisor.py, the brief has no scorer verdict and clusters by the plain 0.05 rule. Port the floor rule to the twin if that path matters.
 - A related uncertainty bump keeps the floor noise. fusion.ts adds 0.04 uncertainty when adjacent candidates' confidences are within 0.05, which floored skills still trigger.
 - cli-classifier replay baselines will move. They build clusters from ambiguousWith; refresh them on their next run.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/024-typed-command-ambiguity` (Level 2)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

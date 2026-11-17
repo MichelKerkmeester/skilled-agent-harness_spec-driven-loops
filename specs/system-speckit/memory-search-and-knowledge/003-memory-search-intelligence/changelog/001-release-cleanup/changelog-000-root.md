@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup` (Level 2)
-
 ### Summary
 
 This rollup reflects the executed state of the release-cleanup children. The first nine phases ran against their documentation surfaces and committed factual-drift fixes, seven of them fully complete and two, 003 and 006, complete for their owned scope with a documented subset deferred to a concurrent session that holds those files. Three later phases then closed the validation arc, the research-only coverage audit 010, the daemon-skills playbook validation 011 and the playbook-findings remediation 012 that landed on the 028 review-branch mainline. The root table links every child changelog and records each executed phase.
@@ -70,3 +68,5 @@ This rollup reflects the executed state of the release-cleanup children. The fir
 ### Follow-Ups
 
 - Hand the deferred 003 and 006 subsets back to the concurrent session that owns those files.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup` (Level 2)

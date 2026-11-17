@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/018-fix-followup-p2-findings-for-package-extraction` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 The review identified 28 P2 findings across architecture, correctness, robustness, testing, security, performance, documentation, compatibility, and maintainability. This packet fixed 18 findings in code and config, classified 3 as not applicable against the current state, and named 7 follow-on packets for findings that exceed the surgical limit of this dispatch.
@@ -67,3 +64,6 @@ The review identified 28 P2 findings across architecture, correctness, robustnes
 - 021-subprocess-env-whitelist: S-MERGED.
 - 022-dfidf-cold-start-cache: P-002.
 - 023-parent-doc-drift-refresh: D-001 and D-002.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/018-fix-followup-p2-findings-for-package-extraction` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

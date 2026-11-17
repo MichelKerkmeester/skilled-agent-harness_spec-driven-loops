@@ -20,8 +20,6 @@ contextType: "implementation"
 
 ## 2026-06-03
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy` (Level 2)
-
 ### Summary
 
 Documentation drift had accumulated across the user-facing command READMEs and the `system-spec-kit` references/assets: stale paths, wrong MCP entrypoints, outdated tool-API signatures, and validation-reference statements that no longer matched the live validator registry. A 3-stage parallel workflow ran 10 gpt-5.5-fast read-only audits (159 raw findings), then 10 adversarial verifiers that re-checked every finding against the real filesystem (144 confirmed, 13 rejected — almost entirely the gitignored-`dist` false-positive class), then 10 partitioned edit agents applied the 144 confirmed fixes: 142 fixes across 61 documentation files, 0 skipped, grepClean. Five dominant drift themes were remediated; four highest-risk content clusters were spot-verified clean against live source.
@@ -75,3 +73,5 @@ Total: **61 documentation files** (READMEs + system-spec-kit references/assets).
 
 - The ~250 nested architecture/test-dir README stubs were deliberately excluded from this audit; any drift in those is out of scope and could be addressed in a future targeted pass.
 - Confirmed-findings detail (`AUDIT-REPORT.md` + `confirmed.json`) lives under `/tmp/readme-research/` — these are ephemeral and not committed. Re-run the audit stage if a fresh evidence trail is needed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy` (Level 2)

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/013-code-graph-degraded-stress-cell` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 The v1.0.2 stress run left packet 005 (code-graph fast-fail) with a NEUTRAL verdict because pre-flight recovery restored the live graph to a healthy state before each Q1 cell ran. The `fallbackDecision` routing in `code_graph_query` had passing mocked unit tests but no integration coverage against a real degraded graph. This packet adds one deterministic vitest that forces the graph into three engineered states using the existing `initDb(tmpdir)` isolation seam. It calls `handleCodeGraphQuery` end-to-end and asserts the expected `fallbackDecision` branch for each state. A sha256 live-DB byte-equality guard asserted in `afterAll` proves the production graph is untouched. Zero production code was modified.
@@ -61,3 +58,6 @@ The v1.0.2 stress run left packet 005 (code-graph fast-fail) with a NEUTRAL verd
 
 - Bucket B uses a synthetic `vi.spyOn(getDb)` throw rather than a real DB-locked condition. Real-world DB-locked situations such as multi-process contention or OOM during `prepare()` may surface different error shapes. If new readiness-failure modes emerge in production, add them as additional buckets.
 - A future v1.0.3 packet should re-run the full stress harness with this new cell baked in to confirm the PROVEN verdict is stable across multiple trials.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/013-code-graph-degraded-stress-cell` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

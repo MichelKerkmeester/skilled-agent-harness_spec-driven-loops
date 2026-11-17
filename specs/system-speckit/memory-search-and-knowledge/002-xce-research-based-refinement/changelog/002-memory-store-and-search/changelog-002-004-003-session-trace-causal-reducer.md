@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers`
-
 ### Summary
 
 This leaf added `session-trace-causal-reducer.ts`, a deferred-only causal reducer that selects up to five prior sources from same-session feedback traces (preferring same-query matches) and inserts them as weak `auto-session` edges through the existing `insertEdge` function. The reducer runs only when `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` is enabled. A dry-run mode returns candidates and skip reasons without writing any edges. MCP and CLI wiring are explicitly out of scope for this phase.
@@ -58,3 +55,6 @@ This leaf added `session-trace-causal-reducer.ts`, a deferred-only causal reduce
 
 - Live MCP and CLI wiring for the reducer is deferred to a later phase.
 - The reducer is available as an exported TypeScript maintenance function until explicit wiring is scoped.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers`

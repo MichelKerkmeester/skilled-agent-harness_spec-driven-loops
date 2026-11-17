@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode mistral deepseek glm route"
 importance_tier: normal
 contextType: implementation
-version: 1.4.20.0
+version: 1.4.21.0
 ---
 
 # cli-opencode Providers, Models & Invocation
@@ -71,7 +71,7 @@ GPT-6 via the `openai` provider: three personas (sol/luna/terra) × two speed ti
 
 ### opencode-go
 
-opencode-go gateway (subsidized "2x usage" rate). It fronts the DeepSeek, GLM, and Qwen families, and its flash route is `opencode-go/deepseek-v4.1-flash` (the direct DeepSeek API provider was retired). It is no longer the mode default: `llmgateway/deepseek-v4.1-flash-1017` is, on both versions. Confirm live slugs via `opencode models opencode-go` on the OpenCode 1 fallback.
+opencode-go gateway (subsidized "2x usage" rate). It fronts the DeepSeek, GLM, Qwen and Hy4 families, and its flash route is `opencode-go/deepseek-v4.1-flash` (the direct DeepSeek API provider was retired). It is no longer the mode default: `llmgateway/deepseek-v4.1-flash-1017` is, on both versions. Confirm live slugs via `opencode models opencode-go` on the OpenCode 1 fallback.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
@@ -79,6 +79,7 @@ opencode-go gateway (subsidized "2x usage" rate). It fronts the DeepSeek, GLM, a
 | `opencode-go/glm-5.3` | no | Z.AI GLM 5.3 via the Go gateway, list-verified in `opencode models opencode-go` on OpenCode 1 on 2026-08-14 (not dispatch-tested). opencode-go also fronts `glm-5.1`/`glm-5.2`, out of this catalog's curated scope |
 | `opencode-go/glm-5.3-flash` | no | Z.AI GLM-5.3-Flash via the Go gateway, a reasoning model whose ladder here is `low`/`high`/**`max`** (this route has **no `xhigh`**), on OpenCode 2 dispatched as `-m opencode-go/glm-5.3-flash#max` and on the OpenCode 1 fallback pinned to `--variant max` by policy. Ladder re-verified in `opencode models opencode-go --verbose` on OpenCode 1 on 2026-09-04 (OpenCode 2 lists no `opencode-go` provider) |
 | `opencode-go/qwen3.8-max` | no | Qwen 3.8 Max via the Go gateway. A live `opencode run --model opencode-go/qwen3.8-max` turn completed 2026-08-07 |
+| `opencode-go/hy4-flash-free` | no | Hy4 Flash Free via the Go gateway. It is a reasoning model that takes images as well as text, with a 1M context and 65K output, and the catalog prices it at $0 per token. It has two thinking levels and no others: **`none`** (thinking off) and **`high`**. On the OpenCode 1 fallback pass `--variant none` or `--variant high`. On OpenCode 2 the equivalent is `-m opencode-go/hy4-flash-free#high`, which needs its own opencode-go login (`opencode providers login opencode-go`). Pi does not list this id, so it is an OpenCode route only. The gateway also lists `hy4`, `hy4-preview` and `hy3`, which are outside this roster. **Dispatch-verified 2026-11-17** on OpenCode 1.19.4: a one-turn `opencode run` replied `OK` at each level |
 
 ### llmgateway
 

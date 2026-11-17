@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows` (Level 2)
-
 ### Summary
 
 Phase 004 shipped workflow governance improvements across convergence policy, question provenance, rejected-idea suppression, idea lifecycle, coverage seeding, improvement promotion and fanout shape. It made loops more explicit about stop logic, provenance, repeated observations, accepted versus shipped candidates and future wave planning while preserving current defaults where required.
@@ -73,3 +71,5 @@ _No file-level detail recorded._
 ### Follow-Ups
 
 - None recorded.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows` (Level 2)

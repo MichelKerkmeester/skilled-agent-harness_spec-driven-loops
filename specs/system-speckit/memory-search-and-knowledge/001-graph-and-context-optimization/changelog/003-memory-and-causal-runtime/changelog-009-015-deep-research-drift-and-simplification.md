@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/015-deep-research-drift-and-simplification` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`
-
 ### Summary
 
 The system-spec-kit MCP sidecar surface had grown quickly across TypeScript client and worker code, a Node ensure helper and supporting embedder lifecycle logic. Recent churn raised the risk that dead paths, duplicated abstractions, stale assumptions, local-service security gaps and unnecessary complexity were hiding in code on a critical retrieval path.
@@ -64,3 +61,6 @@ None. Research-only phase.
 
 - Plan targeted remediation packets from the P0 and P1 findings in `research/findings-registry.json`.
 - Cluster related findings by root cause before assigning to individual fix packets to avoid duplicated work across angles.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/015-deep-research-drift-and-simplification` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

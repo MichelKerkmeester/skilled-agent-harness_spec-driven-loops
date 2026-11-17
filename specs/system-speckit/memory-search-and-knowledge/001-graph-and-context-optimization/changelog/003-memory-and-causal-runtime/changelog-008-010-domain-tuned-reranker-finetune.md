@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-05-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/010-domain-tuned-reranker-finetune` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`
-
 ### Summary
 
 This phase is a scaffold for the most expensive remaining rerank-sidecar hypothesis: fine-tuning a small cross-encoder on spec-memory's own structured markdown corpus. It exists because prior off-the-shelf reranker benchmarks either missed latency gates, crashed on memory pressure or regressed hit rate against the positional fallback.
@@ -66,3 +63,6 @@ Execution is deferred. The packet says not to run the fine-tune unless cheaper r
 - If the supersession is reversed, confirm packet 008 and 009 verdicts before generating training data.
 - Keep training data and model artifacts reproducible and out of the repo unless a later packet changes that policy.
 - Record a PROMOTE or HOLD verdict with benchmark evidence before changing rerank defaults.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/010-domain-tuned-reranker-finetune` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`

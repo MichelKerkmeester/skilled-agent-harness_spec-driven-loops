@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/003-current-state-discipline` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`
-
 ### Summary
 
 Adopted peck's T4 teaching by registering `CURRENT_STATE_DISCIPLINE` as a new INFO-severity advisory rule. The rule scans `implementation-summary.md` for migration-history narrative and skips fenced code plus HTML comments to reduce false positives. The existing phase-parent rule is untouched. Decision records, changelogs, and context indexes are outside the targeted scan surface.
@@ -59,3 +56,6 @@ Adopted peck's T4 teaching by registering `CURRENT_STATE_DISCIPLINE` as a new IN
 ### Follow-Ups
 
 - Wave 1 scans `implementation-summary.md` only. Ordinary `spec.md` files are deferred for a later rollout.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/003-current-state-discipline` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`

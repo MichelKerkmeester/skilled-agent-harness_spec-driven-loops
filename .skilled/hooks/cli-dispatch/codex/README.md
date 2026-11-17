@@ -1,5 +1,5 @@
 ---
-title: "Codex Dispatch Hooks: Preflight Lint, Audit and Shell-Tool Tests"
+title: "Codex Dispatch: PreToolUse and PostToolUse Adapters"
 description: "Codex CLI PreToolUse and PostToolUse adapters for CLI dispatch, plus a vitest suite that holds both to the old exec and new Bash tool shapes."
 trigger_phrases:
   - "codex dispatch preflight"
@@ -8,35 +8,31 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# Codex Dispatch Hooks: Preflight Lint, Audit and Shell-Tool Tests
+# Codex Dispatch: PreToolUse and PostToolUse Adapters
 
 ---
 
 ## 1. OVERVIEW
 
-`.skilled/hooks/cli-dispatch/codex/` holds the Codex CLI pair for the dispatch concern. Codex names its shell tool `exec` up to 0.15x and `Bash` from 0.160. The newer PostToolUse response is one string instead of `{stdout, stderr}`. Both adapters accept either name and either response shape.
+`.skilled/hooks/cli-dispatch/codex/` holds the Codex adapters for the dispatch concern. `dispatch-preflight-lint.mjs` runs at `PreToolUse` and checks every dispatch in a command against the hard rules of the skill it targets, then denies a `block` violation. `dispatch-audit-posttooluse.mjs` runs at `PostToolUse` and appends one JSONL line for a completed call that matches a dispatch shape.
 
-Codex loads them from the `PreToolUse` and `PostToolUse` matcher groups in `.codex/hooks.json`. Each group matches `exec|Bash` and gives the adapter 5 seconds. No other runtime registers this pair, so Codex is the only host.
+Codex registers both in `.codex/hooks.json`. Each event has a matcher group for `exec|Bash` with a 5-second timeout. The matcher names both tools because Codex called its shell tool `exec` up to 0.15x and `Bash` from 0.160. The later PostToolUse payload returns the output as one string instead of `{stdout, stderr}`. Both adapters accept either tool name. The audit also accepts either response shape. The command wrapper prints a drift notice and an `additionalContext` message if an adapter cannot run at all.
 
-The preflight reads the project dir from `payload.cwd` or `CODEX_PROJECT_DIR`. The audit tags every record with `runtime: 'codex'` and appends one JSONL line.
+Both adapters check their switch before they read anything, then parse the stdin payload. They return at once on a tool name that is not the Codex shell. An empty command or a payload that will not parse also exits without output. The preflight takes the project directory from `payload.cwd`. When that field is absent it uses `CODEX_PROJECT_DIR`. If neither is set it uses the process working directory. It then calls `evaluateDispatch` with the command and the `.skilled/skills` root under that directory.
+
+The preflight checks the `dispatch-guard` concern, whose switch is `SYSTEM_DISPATCH_GUARD_DISABLED`. The audit checks the `dispatch` concern, whose switch is `CLI_DISPATCH_AUDIT_DISABLED`. It reads that variable a second time through `isAuditDisabled` in the audit core. `SYSTEM_HOOKS_DISABLED` is the master switch, because both adapters reach the shared resolver in `.skilled/hooks/shared/hook-flags.mjs`. The audit appends to `.skilled/logs/cli-dispatch-audit.log` under the repository root.
+
+Every failure ends the same way. A parse error or an internal exception exits 0 with no output. For the preflight that means Codex keeps its normal permission flow and the call goes ahead. The audit leaves the completed call untouched, because it never writes a permission decision.
 
 ---
 
-## 2. FILES
+## 2. DIRECTORY TREE
 
 | File | Responsibility |
 |---|---|
 | `dispatch-preflight-lint.mjs` | The `PreToolUse` adapter. It denies a `block` violation and advises on a `warn` one. |
-| `dispatch-audit-posttooluse.mjs` | The `PostToolUse` adapter. It records each dispatch and never decides permission. |
-| `codex-shell-tool.test.mjs` | The `vitest` suite. It runs both adapters under both tool names and both response shapes. |
-
-`dispatch-preflight-lint.mjs` exits at once on a tool that is not the Codex shell. It also exits on an empty command and on a payload it cannot parse. Otherwise it calls `evaluateDispatch` with the command and the skills root.
-
-A command with no dispatch shape returns no violation, so the hook approves. A `block` violation returns the same `permissionDecision: 'deny'` envelope Claude uses, with the rule reason. A `warn` violation returns `additionalContext` and leaves the permission flow alone. Any internal error approves silently, so the hook never blocks.
-
-`dispatch-audit-posttooluse.mjs` calls `recordDispatch` with the command, output, session and call ids. It tags the record `runtime: 'codex'` and writes no permission decision. A missing payload, a parse error or an audit failure exits 0 with no output. It also exits early when `CLI_DISPATCH_AUDIT_DISABLED` is `1`.
-
-`codex-shell-tool.test.mjs` puts a stub `opencode` first on `PATH` that reports a v1 version. The stub keeps the lint on the OpenCode 1 rule set on a machine with OpenCode 2. The suite also checks that a non-shell tool and a heredoc-only command are ignored.
+| `dispatch-audit-posttooluse.mjs` | The `PostToolUse` adapter. It records each dispatch and never sets a permission decision. |
+| `codex-shell-tool.test.mjs` | The `vitest` suite. It runs both adapters under both tool names, and the audit under both response shapes. |
 
 ---
 
@@ -48,13 +44,15 @@ Run from the repository root.
 .skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/cli-dispatch/codex/codex-shell-tool.test.mjs
 ```
 
-Expected result: every test passes. `node --test` cannot run the file, because it is a `vitest` suite.
+Expected result: every test passes and the command exits 0. `node --test` cannot run the file, because it is a `vitest` suite.
 
 ---
 
 ## 4. RELATED
 
-- [`../README.md`](../README.md): the dispatch concern, the shared cores and the full rule list.
-- [`../lib/dispatch-rule-checks.mjs`](../lib/dispatch-rule-checks.mjs): the hard-rule engine the preflight calls.
+- [`../README.md`](../README.md): the dispatch concern and the shared cores.
+- [`../lib/dispatch-rule-checks.mjs`](../lib/dispatch-rule-checks.mjs): the hard-rule core the preflight calls.
 - [`../lib/dispatch-audit.mjs`](../lib/dispatch-audit.mjs): the audit core the post-tool adapter calls.
-- [`../claude/README.md`](../claude/README.md): the Claude sibling pair.
+- [`../../shared/README.md`](../../shared/README.md): the switch resolver both adapters call.
+- [`../claude/README.md`](../claude/README.md): the Claude sibling adapters.
+- [`../../../../.codex/hooks.json`](../../../../.codex/hooks.json): the file that registers both adapters.

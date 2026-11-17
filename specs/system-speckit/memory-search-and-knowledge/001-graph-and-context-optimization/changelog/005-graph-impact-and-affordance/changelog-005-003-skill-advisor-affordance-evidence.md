@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/003-skill-advisor-affordance-evidence` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance`
-
 ### Summary
 
 Skill Advisor's compiler allowlist was limited to five entity kinds and could not consume affordance hints from tools or resources. Free-form descriptions from those sources posed a prompt-stuffing risk if passed directly into scoring. An allowlist normalizer was added that strips privacy-sensitive text and extracts only structured fields before forwarding evidence to the existing `derived_generated` and `graph_causal` lanes. The change improves candidate recall for tool-aware routing without widening the graph schema or leaking raw matched phrases in recommendation payloads.
@@ -83,3 +80,6 @@ Full `vitest run skill_advisor/tests/` recorded 6 unrelated failures from `.clau
 
 - The full Skill Advisor test directory is not green in this checkout. The 6 failing files are outside this packet's scope. Address `.claude/settings.local.json` repo-root drift and the missing `mcp-code-mode/graph-metadata.json` package reference in a dedicated health-fix pass.
 - Affordance evidence is intentionally weak by design. It improves candidate recall but does not override explicit author trigger signals. Consider a follow-on benchmark to measure the actual recall delta across a broader routing fixture corpus.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/003-skill-advisor-affordance-evidence` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance`

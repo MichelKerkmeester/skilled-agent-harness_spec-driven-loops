@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-16
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/003-code-graph-robustness` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation`
-
 ### Summary
 
 This sub-phase fixed all 8 P2 robustness and traceability findings in the code-graph MCP engine. Each was confirmed against current code (none refuted) and fixed minimally with regression tests. Source changes span four files. The two correctness-neutral items (a dead ternary and an unreachable branch) are maintainability hardening, covered by existing tests and typecheck.
@@ -61,3 +58,6 @@ This sub-phase fixed all 8 P2 robustness and traceability findings in the code-g
 ### Follow-Ups
 
 - The shared parent review registry still shows these 8 findings without a remediation-status field. It was deliberately not mutated (shared by six concurrent sibling phases); per-finding status lives in this sub-phase and folds in at the parent.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/003-code-graph-robustness` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation`

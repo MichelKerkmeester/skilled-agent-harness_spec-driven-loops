@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-24
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/002-legacy-compat-converters` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering`
-
 ### Summary
 
 Wave 2 removed the seven per-mode `legacy-compatibility.ts` converters (F1, ~2,506 production LOC) that classified and upcast pre-ledger JSONL rows during migration. Four modules cross-called each other's compat functions, so all seven were deleted as one set. The eighth sibling — `deep-research-ledger-schema` — and `tests/helpers/legacy-real-log.ts` remain because `append-mode-event.cjs` still calls the deep-research upcaster.
@@ -30,3 +27,6 @@ Wave 2 removed the seven per-mode `legacy-compatibility.ts` converters (F1, ~2,5
 ### Status
 
 Complete. Typecheck held at 57 baseline errors (0 new `TS2307`); authority 8/8 `new_authoritative_final`; suite failing set unchanged by name; zero residue on all 14 removed symbols.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/002-legacy-compat-converters` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering`

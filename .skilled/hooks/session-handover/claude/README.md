@@ -1,5 +1,5 @@
 ---
-title: "Session Handover: Claude Adapters"
+title: "Claude Session Handover: PostToolUse, PreToolUse, SessionStart, Stop and UserPromptSubmit Adapters"
 description: "Claude Code adapters that nudge near the context threshold, arm the relaunch record at Stop, point a compacted session at its note and guard sub-agent commands."
 trigger_phrases:
   - "claude session handover"
@@ -8,58 +8,64 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# Session Handover: Claude Adapters
+# Claude Session Handover: PostToolUse, PreToolUse, SessionStart, Stop and UserPromptSubmit Adapters
 
 ---
 
 ## 1. OVERVIEW
 
-`claude/` holds the Claude Code adapters that drive session handover. `.claude/settings.json` registers every adapter here against a Claude Code event.
+`claude/` holds the four Claude Code adapters for the session handover concern. The nudge measures transcript fill and asks for a hand-off near the threshold. The Stop arm turns a prepared record into an armed one and starts the process that ends the session. The compact pointer sends a compacted session back to its note. The guard refuses a hand-over lifecycle command from a sub-agent and holds a question dialog while the record can still arm.
 
-| Adapter | Event | Matcher |
+`.claude/settings.json` registers all four. `handover-context-nudge.mjs` runs at `UserPromptSubmit` and again at `PostToolUse`, each with an empty matcher and a 5 second timeout. `handover-compact-pointer.mjs` runs at `SessionStart` with a 5 second timeout. `handover-stop-arm.mjs` runs at `Stop` with a 10 second timeout and `"async": true`. `handover-subagent-guard.mjs` runs twice at `PreToolUse`, once under the `Bash` matcher and once under `AskUserQuestion`, each with a 5 second timeout.
+
+Every registration carries the same drift fallback. When the adapter is missing or `node` fails, it prints `mk-hook-drift host=claude event=<Event> adapter=<file>` on stderr and one JSON line that tells Claude to rebuild the runtime. A checkout with no `.skilled/hooks` tree exits 0 before either runs.
+
+Each adapter checks its switch before it reads stdin. The compact pointer is the exception: only the master and kill switches stop it before stdin, so with the enable switch off it still reads the payload and delivers the claim for a session started on the goal command. Each adapter parses the payload with `readStdin` and `parseJsonFailOpen` from `.skilled/hooks/shared/hook-adapter-shared.cjs`. All four reach the shared resolver in `.skilled/hooks/shared/hook-flags.mjs`, so `SYSTEM_HOOKS_DISABLED` is the master switch for this folder. The concern key is `session-handover`. Its kill switch is `SYSTEM_SESSION_HANDOVER_DISABLED` and its enable switch is `SYSTEM_SESSION_HANDOVER_ENABLED`. Claude is the one runtime where the concern runs with no switch set, so the default here is on.
+
+Every quiet path exits 0 with no output. A thrown error reaches `main().catch(done)` and exits 0 as well. Errors go to the relaunch log, not the terminal. The Stop arm is the one adapter that prints on a failure. Its single `systemMessage` line names the cause and the next step.
+
+---
+
+## 2. DIRECTORY TREE
+
+The folder is flat, so this table names every entry beside the README.
+
+| File | Event | Responsibility |
 |---|---|---|
-| `handover-context-nudge.mjs` | `UserPromptSubmit`, `PostToolUse` | None |
-| `handover-compact-pointer.mjs` | `SessionStart` | None |
-| `handover-stop-arm.mjs` | `Stop` | None |
-| `handover-subagent-guard.mjs` | `PreToolUse` | `Bash`, `AskUserQuestion` |
+| `handover-compact-pointer.mjs` | `SessionStart` | Resets the nudge level after a compaction and points the session at its open note. It also delivers the claim for a receiver started on the goal command. |
+| `handover-context-nudge.mjs` | `UserPromptSubmit`, `PostToolUse` | Withdraws a deferred or armed record when the operator types a prompt. Above the threshold it emits the handoff text. |
+| `handover-stop-arm.mjs` | `Stop` | Arms this session's pending record and spawns `.skilled/hooks/session-handover/lib/killer.cjs` with the transcript path. |
+| `handover-subagent-guard.mjs` | `PreToolUse` | Denies a lifecycle command from a sub-agent and holds a question dialog while the record can arm. |
 
-The nudge measures transcript fill and emits a handoff request near the threshold. At Stop an adapter arms the session's record and starts the detached killer.
-
-A runtime started from a `skilled-loop` session's shell inherits the loop variables. The nudge, the Stop arm and the compact pointer's start claim drop those variables before they act. A nested runtime then acts as a session outside the loop.
+It holds no test file. The suites live in `../tests/`, and the folder has no subfolder or symlink.
 
 ---
 
-## 2. FILES
+## 3. VALIDATION
 
-| File | Responsibility |
-|---|---|
-| `handover-compact-pointer.mjs` | Points a compacted session at its open note and claims a goal-command receiver's note. |
-| `handover-context-nudge.mjs` | Measures transcript fill, emits the handoff request and withdraws a prepared note. |
-| `handover-stop-arm.mjs` | Arms this session's pending record and spawns the detached killer. |
-| `handover-subagent-guard.mjs` | Denies lifecycle commands from a sub-agent and holds a question dialog. |
+Run the commands from the repository root.
 
-`handover-compact-pointer.mjs` handles the `SessionStart` event on two sources, `compact` and `startup`. A `source: compact` payload resets the nudge level and points the session at its note. A withdrawn hand-over gets a stale-note notice instead of the claim. A `startup` payload claims a goal-command receiver's note from the claim seed.
+```bash
+env -u AI_SESSION_CHILD -u SKILLED_LOOP_CLAIM_SEED node --test .skilled/hooks/session-handover/tests/claude-adapters.test.cjs
+```
 
-A fork compaction or a missing transcript is logged and the hook exits. A failed state write is logged and the hook carries on. A prepared hop already owns the note, so the pointer claims nothing. The master switch and the concern kill switch silence the whole hook. An enable switch still leaves the start claim in place.
+Expected result: every test passes, the summary reports `fail 0` and the command exits 0. The suite runs the nudge and the pointer as child processes and imports the Stop arm.
 
-`handover-context-nudge.mjs` serves both of its events under the event name the payload carries. It skips a payload that carries an `agent_id`, because a sub-agent reports its parent's session. It answers a seed prompt with the claim instructions for that note.
+The test sandbox strips the relaunch switches it reads, but a dispatched worker shell also carries `AI_SESSION_CHILD`, and a Claude session that `skilled-loop` started on the goal command carries the loop's claim seed. The command clears both, so such a shell gives the same result as a plain one.
 
-A prompt the operator typed withdraws a deferred or armed record. The session then receives the withdrawn notice on that same event. A `<task-notification>` prompt never counts as the operator carrying on. An unknown context window stays quiet and logs the skip once per session.
+```bash
+node --test .skilled/hooks/session-handover/tests/subagent-guard.test.cjs
+```
 
-A usage error is logged and the hook exits quietly. A withdraw error is logged and the fill check goes on as if nothing was withdrawn. A state write error is logged and the nudge still goes out.
-
-`handover-stop-arm.mjs` arms this session's pending record and spawns `../lib/killer.cjs` with the transcript path. Three failures each print a notice that names the cause. A Stop whose payload carries no transcript path is one. A Stop that resolves no target pid below the loop is another. An arm that throws before the record is armed is the third. Each notice says the next prompt withdraws the hop and a later Stop tries again.
-
-A spawn failure logs `stop-arm-error` with stage `spawn` and leaves the record armed. The next Stop starts a killer for that record again. Live background tasks defer the hop until the first Stop after they finish. The notice names the task count and the `cancel` command to run.
-
-`handover-subagent-guard.mjs` answers `PreToolUse` for the two tools `Bash` and `AskUserQuestion`. It denies a `session-handover.cjs` `claim`, `complete`, `keep`, `prepare`, `cancel`, `consume` or `hand-over` call from sub-agents. A sub-agent reports the parent's session id, so the call reaches the parent's note.
-
-It also denies a question dialog while this session's record can still be armed. That means a pending record or an armed record with no live killer. Only Stop arms the record and an open dialog keeps the turn from ending. The denial names the note and the `cancel` command to run. Every other call is allowed and so is a dialog when no record can arm.
+Expected result: every test passes and the command exits 0. These cases drive the guard.
 
 ---
 
-## 3. RELATED
+## 4. RELATED
 
-- [`../README.md`](../README.md): the concern README with the runtime matrix and the handoff protocol.
-- [`../lib/killer.cjs`](../lib/killer.cjs): the detached process that `handover-stop-arm.mjs` starts once the record is armed.
-- [`../../../../.claude/settings.json`](../../../../.claude/settings.json): the hook registration for every adapter in this folder.
+- [the session handover README](../README.md): the concern overview with its runtime matrix and switch table.
+- [the nudge core](../lib/nudge.cjs): the threshold rule and the message text these adapters share.
+- [the relaunch core](../lib/relaunch-core.cjs): record state and the nested-loop drop.
+- [the killer](../lib/killer.cjs): the detached process the Stop arm starts.
+- [the Claude hook registration](../../../../.claude/settings.json): the entry for every adapter here.
+- [the Claude adapter suite](../tests/claude-adapters.test.cjs): the cases for the adapters in this folder.

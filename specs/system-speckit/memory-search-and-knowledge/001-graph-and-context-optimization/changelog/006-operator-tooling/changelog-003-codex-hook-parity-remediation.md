@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-04-22
 
-> Spec folder: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/003-codex-native-startup-advisor-hooks` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`
-
 ### Summary
 
 Codex CLI sessions previously returned no startup context and no advisor brief. This phase implemented Outcome A (full native hook parity) because Codex natively supports the hook transport through `hookSpecificOutput.additionalContext`. The new Codex hook adapters parse JSON stdin, emit JSON stdout, and fail open with `{}` on errors. Live config preserves existing Superset notification entries alongside the new Spec Kit commands.
@@ -69,3 +66,6 @@ Codex CLI sessions previously returned no startup context and no advisor brief. 
 ### Follow-Ups
 
 - Codex hooks are still under development (`codex features list` reports `codex_hooks` as under development). Future releases may require contract re-verification.
+
+> Spec folder: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/003-codex-native-startup-advisor-hooks` (Level 3)
+> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli` (Phase Parent)
-
 ### Summary
 
 The skill-advisor CLI lane delivered a complete dual-stack CLI front-door over the mk-skill-advisor daemon. The research measured the one-shot native bridge at 824.8ms, mandating warm-only prompt-time hooks, and reconciled `skill_advisor.py` as a legacy facade rather than superseding it. The CLI core shipped with byte-identical schemas and a trusted-mutation gate for graph-mutating commands. Hardening included the program gate: the env-gated tri-daemon spawn drill passed with per-launcher single-owner, respawn-lock serialization, divergent SIGTERM reap, and zero orphans. Runtime integration shipped warm-only fallback at 0.8ms fail-open and 120-198ms warm, with Gate-2 facade-vs-CLI guidance added to the skill and README.
@@ -70,3 +68,5 @@ See per-phase changelogs for full file tables.
 ### Follow-Ups
 
 - Final multi-runtime transport-down drill tracked as program-level verification
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli` (Phase Parent)

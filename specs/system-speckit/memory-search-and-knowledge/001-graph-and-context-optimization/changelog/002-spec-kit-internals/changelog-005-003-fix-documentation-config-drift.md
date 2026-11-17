@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/003-fix-documentation-config-drift` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation`
-
 ### Summary
 
 Three drift issues that surfaced during a routine analysis pass on system-skill-advisor are now resolved. The TS5103 build failure, a one-character fix, is unblocked and the tool-count narrative of "8 public + 1 internal trusted-caller" (9 total) reads identically across SKILL.md, ARCHITECTURE.md, README.md, and opencode.json.
@@ -56,3 +53,6 @@ Three drift issues that surfaced during a routine analysis pass on system-skill-
 ### Follow-Ups
 - Embeddings module resolution regression in `lib/shared/embeddings/` symlink path needs investigation, owned by follow-on packet 040 per spec §3 Out of Scope.
 - Regression fixture reconciliation remains on the future-work list.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/003-fix-documentation-config-drift` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation`

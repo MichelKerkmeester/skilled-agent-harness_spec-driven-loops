@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-05-06
 
-> Spec folder: `specs/skilled-agent-orchestration/089-multi-ai-council-persistence` (Level 3)
-
 ### Summary
 
 All 4 runtimes verified to have §16 CALLER PERSISTENCE PROTOCOL + §17 SUMMARY in identical normalized form.
@@ -67,3 +65,5 @@ _No file-level detail recorded._
 - Run bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet-089> --strict (exit 0)
 - Generate nested changelog via nested-changelog.js
 - Run /memory:save via generate-context.js
+
+> Spec folder: `specs/skilled-agent-orchestration/089-multi-ai-council-persistence` (Level 3)

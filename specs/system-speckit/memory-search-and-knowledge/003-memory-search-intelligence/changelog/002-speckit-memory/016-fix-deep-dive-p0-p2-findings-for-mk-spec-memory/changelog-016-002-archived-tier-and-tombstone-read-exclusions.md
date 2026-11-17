@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-07-04
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/002-archived-tier-and-tombstone-read-exclusions/` (Level 3)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`
-
 ### Summary
 
 Non-active memory rows no longer leak into search. Read exclusion used to differ in every channel, so deprecated, archived and soft-deleted rows re-entered results through whichever channel forgot to exclude them. There is now one shared active-row predicate and all eleven read channels call it. The `archived` tier is real end to end. The live `memory_index` CHECK constraint only permitted six tiers, so a migration rebuilt the table with an archived-inclusive CHECK while preserving all 41 indexes, the three FTS5 sync triggers and every row id. A data pass then marked 6,090 z_archive rows archived and demoted their inflated tiers. Shipped in `91b9cbb7b5`.
@@ -61,3 +58,6 @@ Non-active memory rows no longer leak into search. Read exclusion used to differ
 
 - Search-level archived exclusion takes effect on daemon restart, the same deploy pattern as phase 001.
 - Rollback of the tier data is via the audit trail. A full revert restores `context-index.sqlite.pre-002-archived-rebuild-20260703`.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/002-archived-tier-and-tombstone-read-exclusions/` (Level 3)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

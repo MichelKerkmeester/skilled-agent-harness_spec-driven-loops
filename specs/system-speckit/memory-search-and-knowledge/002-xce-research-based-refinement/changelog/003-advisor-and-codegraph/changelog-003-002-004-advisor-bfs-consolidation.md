@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`
-
 ### Summary
 
 The advisor skill graph now uses one local BFS helper for `transitive_path` and `subgraph` traversal. Public response shapes and ordering stay the same, while the helper owns depth caps, visited-set behavior, path matching, and truncation metadata.
@@ -58,3 +55,6 @@ The advisor skill graph now uses one local BFS helper for `transitive_path` and 
 ### Follow-Ups
 
 - None identified in the source implementation summary.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8e5f0c0cfa951852887cc5857d28fc3588ad14b6f295942ee2bcc5320b3c9e5d",
+  "corpusHash": "1ee5055b54c1d2cc5f8ead845da573d11e8be5e093172fd4d942ca337892feac",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28173,
+  "includedPathCount": 28191,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6776,6 +6776,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.1.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.2.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.3.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.4.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
@@ -10122,6 +10123,11 @@
     "specs/cli-external-orchestration/model-rosters/006-remove-llmgateway-luna-route/plan.md",
     "specs/cli-external-orchestration/model-rosters/006-remove-llmgateway-luna-route/spec.md",
     "specs/cli-external-orchestration/model-rosters/006-remove-llmgateway-luna-route/tasks.md",
+    "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/goal.md",
+    "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/implementation-summary.md",
+    "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/plan.md",
+    "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/spec.md",
+    "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/tasks.md",
     "specs/cli-external-orchestration/opencode-platform/001-layer-3-own-paths-baseline/implementation-summary.md",
     "specs/cli-external-orchestration/opencode-platform/001-layer-3-own-paths-baseline/plan.md",
     "specs/cli-external-orchestration/opencode-platform/001-layer-3-own-paths-baseline/spec.md",
@@ -16339,6 +16345,12 @@
     "specs/sk-doc/document-standards/006-readme-template-conformance/decision-record.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/goal.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/spec.md",
+    "specs/sk-doc/document-standards/007-changelog-spec-folder-at-bottom/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/007-changelog-spec-folder-at-bottom/goal.md",
+    "specs/sk-doc/document-standards/007-changelog-spec-folder-at-bottom/implementation-summary.md",
+    "specs/sk-doc/document-standards/007-changelog-spec-folder-at-bottom/plan.md",
+    "specs/sk-doc/document-standards/007-changelog-spec-folder-at-bottom/spec.md",
+    "specs/sk-doc/document-standards/007-changelog-spec-folder-at-bottom/tasks.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/001-transport-and-baseline/acceptance-criteria.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/001-transport-and-baseline/goal.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/001-transport-and-baseline/implementation-summary.md",
@@ -19581,6 +19593,12 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/goal.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/handover-from-barter-032.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/research.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/spec.md",
     "specs/system-skilled-doctor/002-symlink-first-link/implementation-summary.md",
@@ -28205,7 +28223,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "2eb6fe6de9a1ce42aa6a20a2b15ffc0c8e0d6013c5eb2707ec9dbedfadaca814",
+  "manifestHash": "2a9d7c2b9d2227efc6120625cd79c75425eabebce84002c224c2f05178832844",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30109,6 +30127,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/model-rosters/006-remove-llmgateway-luna-route/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/scratch",
       "reason": "excluded directory"
     },
     {
@@ -35124,6 +35146,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/document-standards/007-changelog-spec-folder-at-bottom/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/document-standards/z_archive",
       "reason": "excluded directory"
     },
@@ -36877,6 +36903,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/scratch",
       "reason": "excluded directory"
     },
     {

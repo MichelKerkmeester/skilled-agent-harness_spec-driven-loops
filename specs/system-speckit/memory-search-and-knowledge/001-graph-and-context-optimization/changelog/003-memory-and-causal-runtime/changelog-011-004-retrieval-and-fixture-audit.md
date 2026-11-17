@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/004-retrieval-and-fixture-audit` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc`
-
 ### Summary
 
 Phase 1 (OFF baseline) and Phase 2 (bge-reranker-v2-m3) both produced identical retrieval metrics to three significant figures on the 50-probe benchmark fixture (hit-rate@5 0.12, NDCG@10 0.11, recall@5 0.12). An AI Council (gpt-5.5 xhigh fast, 4 seats, 3-1 vote) inserted this audit as a hard gate before Phase 3 fine-tune, on the basis that identical OFF-vs-bge numbers are decision-invalidating: a reranker can only reorder candidates it receives.
@@ -75,3 +72,6 @@ None.
 - Rebuild the 50-probe benchmark fixture before any future branch decision. The valid subset of 34 probes is sufficient for the RETRIEVAL_WORK verdict but too small for high-confidence Phase 3 target selection.
 - Run handler-path parity outside a sandboxed executor to confirm whether direct-handler-replay and canonical daemon IPC produce identical top-20 results for the 5 sample probes.
 - Launch a retrieval pipeline audit arc (FTS5 tokenization, vector lane N and index configuration, RRF weight tuning, chunking strategy) as the next concrete step. The candidate coverage evidence confirms retrieval as the binding constraint.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/004-retrieval-and-fixture-audit` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc`

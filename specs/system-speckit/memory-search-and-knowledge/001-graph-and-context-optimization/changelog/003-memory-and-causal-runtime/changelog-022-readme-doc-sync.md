@@ -18,8 +18,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/022-readme-doc-sync` (Level 1)
-
 ### Summary
 
 `handlers/save/README.md` predated packet 017's shipped behavior. It still described post-insert enrichment as "optional" and as a step that ran inline during the save. In the live code, enrichment is default-on and runs async/deferred by default: the save returns immediately with `enrichmentStatus: deferred` (reason `async-background`), and a bounded background scheduler runs the steps after commit. A reader of the README would have formed the wrong mental model of when graph and entity data becomes available.
@@ -60,3 +58,5 @@ None. Docs-only sync.
 
 - The unlisted `enrichment-state.ts` file is still not documented in this README. That gap is intentionally out of scope here and remains a candidate for a future doc-sync.
 - No code or test changes. This packet only re-aligns documentation with already-shipped behavior (packet 017).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/022-readme-doc-sync` (Level 1)

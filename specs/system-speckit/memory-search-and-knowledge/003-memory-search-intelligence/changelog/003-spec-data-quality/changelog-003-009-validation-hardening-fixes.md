@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-11
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/009-validation-hardening-fixes` (Level recorded in phase evidence)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality`
-> Historical alias: `015-validation-hardening-fixes`
-
 ### Summary
 
 This migration index makes the shipped phase discoverable at its final packet-local path without rewriting its historical identity. The allowed implementation evidence records: All six requirements (REQ-001 through REQ-006) implemented and verified against real evidence, not just against the fixture set the plan named.
@@ -49,3 +45,7 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 ### Follow-Ups
 
 - Evidence gap: tasks.md records 31 of 32 checklist items checked. This index does not upgrade completion status.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/009-validation-hardening-fixes` (Level recorded in phase evidence)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality`
+> Historical alias: `015-validation-hardening-fixes`

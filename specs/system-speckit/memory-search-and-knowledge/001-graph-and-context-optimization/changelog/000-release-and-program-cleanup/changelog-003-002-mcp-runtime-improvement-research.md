@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-04-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/002-mcp-runtime-improvement-research` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 Two prior packets, 005 (memory search runtime bugs catalog) and 006 (cross-AI search intelligence stress-test), surfaced a coherent set of MCP runtime defects across the memory layer, CocoIndex, code graph, causal graph plus intent classifier. Source patches for several P0 defects were claimed as landed, yet live MCP probes continued to show pre-fix behavior, implying phantom fix conditions where compiled output was correct but the running daemon had not been restarted.
@@ -69,3 +66,6 @@ The canonical synthesis in `research/research.md` (RESEARCH-007) confirmed that 
 - Verify CocoIndex source file locations before implementing packet 009. Iterations cited `cocoindex_code/*.py`, but those files were not confirmed as repo-local tracked sources during synthesis.
 - Implement Phase C remediation in the order specified by the synthesis: memory response contracts first (packet 008), CocoIndex dedup and reranking second (packet 009), code graph fallback decision third (packet 010), causal graph relation diagnostics fourth (packet 011) plus intent classifier stability fifth (packet 012).
 - Run live MCP tool probes after each Phase C implementation to close the phantom-fix gap identified in Q1. Source diff, targeted tests, `npm run build`, daemon restart plus live probe are all required before a fix can be claimed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/002-mcp-runtime-improvement-research` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

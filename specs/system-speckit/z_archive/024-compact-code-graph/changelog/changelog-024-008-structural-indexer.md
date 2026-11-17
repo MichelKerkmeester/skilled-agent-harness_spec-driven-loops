@@ -8,8 +8,6 @@
 
 This phase added the structural code indexer that gives the packet its second retrieval channel. The system can now parse JS, TS, Python, and Shell source into a code graph, emit symbols and edges, and track freshness so the graph can support real structural questions instead of only semantic similarity.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/008-structural-indexer/`
-
 ---
 
 ## New Features (3)
@@ -58,3 +56,5 @@ This phase added the structural code indexer that gives the packet its second re
 ## Upgrade
 
 No migration required. Regex fallback remains less precise than tree-sitter and is intentionally retained as a backup path.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/008-structural-indexer/`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/015-sk-code-review` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 sk-code-review's 10 reference docs now carry exactly the canonical frontmatter contract, turning the stack-agnostic review baseline into valid routing signal for the advisor doc harvest. Unlike the pilot, every detailed block here is net-new: 9 docs carried title+description only and pr_state_dedup.md carried no frontmatter at all, so trigger phrases, tiers, and contextTypes were authored fresh from each doc's body.
@@ -60,3 +57,6 @@ sk-code-review's 10 reference docs now carry exactly the canonical frontmatter c
 ### Follow-Ups
 
 - Live-daemon matchedDocs verification is deferred until every advisor-attached session ends and a fresh session respawns the daemon with the doc-trigger flag enabled.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/015-sk-code-review` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

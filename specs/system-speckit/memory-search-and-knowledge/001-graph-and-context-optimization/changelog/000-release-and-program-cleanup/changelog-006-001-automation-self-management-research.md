@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/001-automation-self-management-research` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research`
-
 ### Summary
 
 Multiple subsystems in the AI assistant framework were documented as auto-managing, yet no grounded audit had traced each claim to an actual runtime trigger. The skill advisor, code graph, system-spec-kit spec-doc workflow, memory database plus hook runtimes each carried "auto" language in docs and READMEs that had never been verified against file:line evidence.
@@ -72,3 +69,6 @@ The loop converged with a recorded `newInfoRatio` sequence and stop reason. Runt
 - Apply the Planning Packet from `research/research-report.md` to seed a downstream remediation phase that implements fixes for documented-but-absent automation gaps.
 - Wire empirical hook smoke tests for the runtimes confirmed as unwired in RQ5. This packet used documentation and code-trace evidence only.
 - Evaluate whether the 4-class taxonomy (auto, half, manual, aspirational) should be promoted to a shared reference so future research packets use consistent classification labels.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/001-automation-self-management-research` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research`

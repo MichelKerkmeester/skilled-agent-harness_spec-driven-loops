@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/003-search-scenario-execution` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook`
-
 ### Summary
 
 The execution scaffold for the parent stress-test playbook: pre-flight contract, dispatch loop architecture, output capture schema, manual scoring workflow, and findings aggregation format. Actual dispatch runs are deferred to a dedicated execution session — this packet defines the contract for that session.
@@ -64,3 +61,6 @@ The execution scaffold for the parent stress-test playbook: pre-flight contract,
 - Run scenario S1 (Search-Simple) × cli-codex
 - [P] Run S1 × cli-copilot
 - [P] Run S1 × cli-opencode
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/003-search-scenario-execution` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook`

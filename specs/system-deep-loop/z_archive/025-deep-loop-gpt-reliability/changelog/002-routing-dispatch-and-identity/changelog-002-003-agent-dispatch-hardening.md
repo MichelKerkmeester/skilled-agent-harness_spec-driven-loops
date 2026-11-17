@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/003-agent-dispatch-hardening` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 Created OpenCode/Claude DEEP primary router mirrors (`deep.md`) and added a registry-backed "Deep Route:" dispatch field to both orchestrators, giving GPT an explicit, single-dispatch route instead of prose negotiation.
@@ -56,3 +53,6 @@ Created OpenCode/Claude DEEP primary router mirrors (`deep.md`) and added a regi
 
 - No hard runtime identity yet — this is prompt-identity hardening, not host-enforced identity; phase 006 (FIX-5/host hard identity) stays parked unless GPT smoke testing triggers it.
 - Codex mirror out of scope (TOML-location doc contradiction, tracked separately).
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/003-agent-dispatch-hardening` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

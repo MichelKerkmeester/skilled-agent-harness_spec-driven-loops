@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research` (Level 1, research)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 Two-round, six-lineage deep-research investigation (GLM-5.2, GPT-5.5-fast, Claude Sonnet 5, Claude Opus 4.8) answered all 9 key questions, self-corrected a wrong round-1 claim about the ai-council route-proof validator via independent 2-vs-1 convergence, and produced the recommended phase 008-012 breakdown.
@@ -59,3 +56,6 @@ Two-round, six-lineage deep-research investigation (GLM-5.2, GPT-5.5-fast, Claud
 - Stdout-salvage recovery needed for most GPT/Opus iterations — a runtime robustness gap worth investigating separately.
 - Mode-D magnitude confirmed-in-mechanism but not measured across all modes/models — deferred to phase 012's benchmark.
 - The entire phase 008-012 chain depends on the external-shell precondition, not yet confirmed at time of writing.
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research` (Level 1, research)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

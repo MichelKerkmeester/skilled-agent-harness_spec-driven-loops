@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/015-root-readme-refresh` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 The root README carried stale counts from earlier commits. It contained one evergreen-doc violation linking a packet-local folder from narrative content. The MCP tool count was wrong. The CocoIndex section pointed at a real packet path. Several recent capabilities were also missing from the feature surface.
@@ -65,3 +62,6 @@ Updated sections: count table, MCP FAQ, Code Mode table, agent network intro, co
 ### Follow-Ups
 
 - The `advisor-tool-schemas.ts` file holds Zod input/output schemas. It is not the canonical count source on its own. The four public MCP advisor descriptors live in `skill_advisor/tools/*.ts` and are imported into `TOOL_DEFINITIONS`. Any future count update should count `TOOL_DEFINITIONS` entries directly.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/015-root-readme-refresh` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

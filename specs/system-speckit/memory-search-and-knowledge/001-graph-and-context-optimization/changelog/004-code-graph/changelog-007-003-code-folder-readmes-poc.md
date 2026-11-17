@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/003-code-folder-readmes-poc` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes`
-
 ### Summary
 
 Three code folders under `.opencode/skills/system-code-graph/mcp_server/` shipped without a README, which degraded the smart router's ability to surface the right docs and removed the quick orientation map contributors need when landing in the folder. A two-pass pipeline resolved the gap: cli-devin (SWE 1.6) ran Pass 1 to gather per-folder context bundles, then cli-opencode (deepseek-v4-pro, variant high) ran Pass 2 to author the three READMEs from those bundles using the sk-doc CODE template. A Sonnet review pass caught and patched P0 hallucinations in 2 of 3 bundles before the READMEs were considered final. All three READMEs passed `validate_document.py --type readme` exit 0 and the strict-validate gate. Phase A validated the full pipeline shape for the larger Phases B, C and D that follow.
@@ -67,3 +64,6 @@ Three code folders under `.opencode/skills/system-code-graph/mcp_server/` shippe
 
 - Apply the lesson learned here (cli-devin SWE 1.6 bundles need grep-verification of internal_imports and validation_commands before use) to the Pass 1 prompt for Phase B (008/024) and Phase C (014/054).
 - Track HVR score numeric values for all 3 READMEs once `validate_document.py --json` is confirmed available in the Phase B scope.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/003-code-folder-readmes-poc` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The substrate stress harness allowed a recycled PID to mask a genuine daemon crash as a tolerated SKIP. It also silently kept stale TSV evidence when the canonical file was EPERM-locked. It permitted a clean-env run to trigger a maintainer-mode INDEX scan that rewrote `graph-metadata.json` across the entire tree. The deep-research validation in this packet's `research/` surfaced all three risks.
@@ -76,3 +73,6 @@ All three fixes landed in `run-substrate-stress-harness.mjs`. A new pure-logic v
 - Start-time check depends on `ps` availability. When `ps` is absent, `liveOwnerForService` falls back to liveness-only, meaning the recycled-PID guard is inactive on those platforms.
 - Linux start-time detection uses `ps -o lstart=`. The `/proc` field-22 path was evaluated and not needed.
 - Mem-side clean-env (the 410-run full run) still requires stopping the operator memory daemon. The hermetic lever isolates only the code-index DB because `mk-spec-memory`'s lease path is not env-relocatable. The code-index clean-env path is fully verified.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

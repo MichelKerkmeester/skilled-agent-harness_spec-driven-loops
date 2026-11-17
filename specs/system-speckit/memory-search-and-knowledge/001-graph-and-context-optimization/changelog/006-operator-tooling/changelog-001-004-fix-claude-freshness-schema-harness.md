@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/004-fix-claude-freshness-schema-harness` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`
-
 ### Summary
 
 End-to-end Claude Code hook testing surfaced three defects. The skill-advisor freshness contract was broken: `skill-graph-generation.json` reported `state: "live"` but every advisor probe returned `freshness: "stale"` with `SOURCE_NEWER_THAN_SKILL_GRAPH` because `sourceSignature` was persisted as null after every scan. The `.claude/settings.local.json` hook blocks mixed Copilot-schema fields (`bash`, `timeoutSec`) with Claude-canonical schema inside nested hook groups, causing three `UserPromptSubmit` hooks to fire per event instead of two. No documented multi-turn harness existed for skill-advisor testing, forcing operators to pay full cache-creation cost (~$0.17) on every fresh `claude -p` invocation.
@@ -76,3 +73,6 @@ All three defects were remediated in a single focused pass. The scanner now comp
 
 - Resolve AS-003 hook count parity: the user-global `$HOME/.claude/settings.json` SUPERSET hook adds a third `UserPromptSubmit` invocation that cannot be removed from project scope. Confirm final expected hook count once the global settings are reviewed by the user.
 - Resolve AS-004 live Claude session verification: the sandbox is unauthenticated. Run the stream-json harness fixture in an authenticated environment to confirm advisor prompts complete and `total_cost_usd` stays within budget.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/004-fix-claude-freshness-schema-harness` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

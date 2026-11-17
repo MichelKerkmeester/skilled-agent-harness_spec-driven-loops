@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/009-cascade-thresholds-env-driven` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`
-
 ### Summary
 
 Three cascade-probe timing constants in `auto-select.ts` (lines 96-98) were hardcoded inline literals. Operators had no way to tune the probe timeout, lock-staleness window or sleep interval without modifying source code.
@@ -60,3 +57,6 @@ The phase replaced all three `const DEFAULT_*_MS = NNNN` declarations with `pars
 
 - Update `ENV_REFERENCE.md` to document `SPECKIT_CASCADE_PROBE_TIMEOUT_MS`, `SPECKIT_CASCADE_LOCK_STALE_MS` and `SPECKIT_CASCADE_SLEEP_MS` alongside the `SPECKIT_ADVISOR_*` vars from phase 004b at arc convergence.
 - Consolidate `parsePositiveInt` with the similar helper at `subprocess.ts:69` to remove the duplication.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/009-cascade-thresholds-env-driven` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/018-llama-cpp-auto-migration` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 Memory MCP startup previously only warned when a populated hf-local sqlite existed while the active profile pointed at the llama-cpp store. That left operators with a manual migration step and a stale source sqlite that was rediscovered on every restart.
@@ -81,3 +78,6 @@ This packet is superseded. The live local-first path is now Ollama to hf-local N
 - The success test injects a fixture migration runner instead of running llama-cpp inference to keep the destructive path deterministic and fast. A live integration test remains unexercised.
 - The implementation contract referenced `mcp_server/src/context-server.ts`. The actual repo source is `mcp_server/context-server.ts`. Future spec authors should verify entrypoint paths before authoring.
 - This packet is superseded by the Ollama to hf-local Nomic cascade work. The auto-migration contract should be evaluated against the new default provider path if a similar gate is ever needed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/018-llama-cpp-auto-migration` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

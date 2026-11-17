@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-04
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/002-deep-loop-router-deprecation` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 Deprecated the dead `deep-loop` primary router agent after compiled command contracts and direct `/deep:*` leaf dispatch made the router hop vestigial. The phase deleted the runtime mirror agent files and reworded orchestrate's boundary lines to preserve direct leaf dispatch without naming a removed agent.
@@ -55,3 +52,6 @@ Deprecated the dead `deep-loop` primary router agent after compiled command cont
 
 - Historical spec artifacts still name the router as point-in-time records and were intentionally left alone.
 - The broader 14-agent pointer rewrite and AGENTS.md thinning remain separate follow-ups.
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/002-deep-loop-router-deprecation` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

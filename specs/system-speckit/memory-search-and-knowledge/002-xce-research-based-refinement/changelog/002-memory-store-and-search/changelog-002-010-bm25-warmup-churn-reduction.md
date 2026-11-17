@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/010-bm25-warmup-churn-reduction` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 Phase 002/009's packed BM25 engine warmed a realistic 10,245-document, 69.2MB corpus with a peak warmup RSS spike of ~687MB (686.8MB committed-gate measurement; phase 014 re-validation evidence), far over the 150MB budget that REQ-001 specifies. A prior pass had already cut that to roughly 244MB by replacing char-by-char token concatenation with range-scanning plus token interning and reusing per-document term-frequency scratch. This phase took it the rest of the way to a 136.5MB peak-sampled spike — under budget — by replacing the mutable-to-six-array finalization with no-copy chunked packed postings, and by storing field term frequencies as `Uint8Array` promoting to `Uint16Array` to `Uint32Array`, doc ids as `Uint16Array` promoting to `Uint32Array`, and per-document term ids sized to their range, so the mutable build and the packed structures never co-exist at full width. Ranking output is byte-identical: scores, ordering, and field weights are unchanged. This closes 002/009's REQ-001 on the original process-RSS metric, with no metric amendment and no external-dependency fallback.
@@ -54,3 +51,6 @@ Phase 002/009's packed BM25 engine warmed a realistic 10,245-document, 69.2MB co
 ### Follow-Ups
 
 - None. REQ-001 is closed on the original metric.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/010-bm25-warmup-churn-reduction` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

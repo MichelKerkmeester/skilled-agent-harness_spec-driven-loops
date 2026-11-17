@@ -18,9 +18,6 @@ contextType: "review"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/007-deep-loop-workflow-integrity-audit`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`
-
 ### Summary
 
 The release-readiness program needed a truth check for the deep-loop workflow layer before shipping. This audit examined deep-loop TypeScript helpers, deep-review plus deep-research YAML control flows, reducer lineage, JSONL state-log schema, post-dispatch validation plus prompt-pack rendering through direct file reads and targeted regex checks. Audited runtime files were not modified.
@@ -66,3 +63,6 @@ The final report issued verdict FAIL with one P0 and two P1 active findings. The
 - Apply P1-001 fix: port the audited executor wrapper from deep-research auto into deep-review auto and confirm. Align failure-reason enumerations with the shared post-dispatch validator.
 - Apply P1-002 fix: update review prompt-pack JSON examples to match `state_format.md` required fields. Extend `validateIterationOutputs` with per-field type checking.
 - Fix stale `coverage-graph.ts` path in release-readiness target lists to point at live code-graph handlers.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/007-deep-loop-workflow-integrity-audit`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`

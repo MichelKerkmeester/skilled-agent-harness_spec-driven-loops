@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-30
 
-> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/007-sk-prompt-goal-enhancement` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
-
 ### Summary
 
 The goal plugin now turns raw `/goal set` input into a deterministic sk-prompt-style `goalPrompt` under 4000 characters. The raw objective remains available for status and auditability, while injection uses the enhanced prompt to steer the model with role, method, success criteria and stop conditions.
@@ -63,3 +60,6 @@ The goal plugin now turns raw `/goal set` input into a deterministic sk-prompt-s
 ### Follow-Ups
 
 - Restart OpenCode before relying on the updated auto-loaded plugin in a new session.
+
+> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/007-sk-prompt-goal-enhancement` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`

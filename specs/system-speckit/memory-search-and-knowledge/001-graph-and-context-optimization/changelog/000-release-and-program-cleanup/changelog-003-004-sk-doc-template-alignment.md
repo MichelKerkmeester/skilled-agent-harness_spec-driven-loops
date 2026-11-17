@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/004-sk-doc-template-alignment` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass`
-
 ### Summary
 
 Packets 031 through 036 changed operator documentation, runtime references and matrix-runner README files without a subsequent sk-doc template pass. README TOC anchors had drifted, reference frontmatter was missing or incomplete and section anchors were unbalanced. Later quality packets depended on these files being aligned before building on them.
@@ -77,3 +74,6 @@ A targeted audit of 63 active files produced 40 PASS results, 7 FIX_APPLIED entr
 
 - Raw prompt-template assets under `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/` remain non-README-shaped. A future pass that can distinguish asset files from README pages could apply narrower fixes without changing prompt payloads.
 - `AGENTS.md` remains a governance template. README-only TOC and overview rules do not apply cleanly to it. Address drift in a dedicated governance-doc alignment packet if needed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/004-sk-doc-template-alignment` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass`

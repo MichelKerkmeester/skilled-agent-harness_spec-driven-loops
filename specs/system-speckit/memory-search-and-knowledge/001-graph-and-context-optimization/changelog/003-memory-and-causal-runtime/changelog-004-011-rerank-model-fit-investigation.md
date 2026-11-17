@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`
-
 ### Summary
 
 The May 18 instrumented bench revealed that `BAAI/bge-reranker-v2-m3` consistently demoted production implementations below tests and reference documents on four probes (3, 10, 14, 18). The failure pattern traced to the cross-encoder scoring `(query, content)` while ignoring candidate path-role metadata, rewarding lexical-cue density over semantic role.
@@ -72,3 +69,6 @@ Phase 2 ran a full-18-probe bench across three lanes: baseline BGE, BGE with pat
 - Open a custom reranker adapter packet to add causal-LM scoring, chat-template support, explicit warmup plus error surfacing for mxbai and Qwen3.
 - Continue probe 1 and probe 12 investigation in the fixture audit packet (012) to determine whether those are genuine reranker failures or additional fixture-truth issues.
 - Verify `cocoindex_code/rerankers_jina_v3.py` and `tests/test_rerankers_jina_v3.py` are deleted because jina-v3 tied the baseline without improvement.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

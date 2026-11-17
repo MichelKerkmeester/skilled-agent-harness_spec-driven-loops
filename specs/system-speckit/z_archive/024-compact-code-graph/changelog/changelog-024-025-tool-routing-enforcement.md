@@ -8,8 +8,6 @@
 
 AI assistants across all CLI runtimes (Claude Code, Codex, Copilot, Gemini) consistently defaulted to Grep and Glob for code search even when CocoIndex (semantic search) and Code Graph (structural queries) were available and better suited. The root cause was a passive enforcement model: instruction files said "MUST use CocoIndex" but this competed with the AI's built-in preference for familiar tools, and the AI won every time. This phase added active enforcement at five layers -- MCP server instructions, session priming, tool response hints, instruction files, and agent definitions -- so that every CLI runtime receives routing rules at the point where tool selection decisions actually happen. 28 of 30 tasks completed; 2 deferred. This is the final phase (25 of 25) in the compact-code-graph specification.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/025-tool-routing-enforcement/`
-
 ---
 
 ## Architecture (2)
@@ -162,3 +160,5 @@ Four updates to instruction files and agent definitions that serve as the final 
 ## Upgrade
 
 No migration required. All changes are additive enforcement layers. Existing tool behavior is unchanged -- the enforcement only guides the AI's tool selection, it does not block or modify any tool calls.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/025-tool-routing-enforcement/`

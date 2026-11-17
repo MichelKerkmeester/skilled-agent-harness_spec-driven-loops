@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-deferred-wip-overlapping-findings` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit`
-
 ### Summary
 
 7 audit findings deferred during remediation: each either overlaps the operator's active BUG-04/BUG-06 WIP or needs deeper design than a fast-agent pass produced. Reverted from the branch; remain open as documented findings.
@@ -46,3 +43,6 @@ _No file-level detail recorded._
 
 - Re-implement the 7 deferred findings after BUG-04/BUG-06 WIP settles; the branch cg-remediation holds the recorded outcomes and can be re-applied against a clean tree.
 - The repo baseline is not green: BUG-06 WIP fails 24 tests independently of this work, so zero-regression verification requires a settled baseline first.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-deferred-wip-overlapping-findings` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit`

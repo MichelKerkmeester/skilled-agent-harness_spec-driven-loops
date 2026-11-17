@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/004-cli-fallback-envelope-and-bridge` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux`
-
 ### Summary
 
 Hook helpers now emit a shared warm-fallback envelope shape with `{ status, reason, exitCode, retryable }`, while preserving existing payload fields. The spec-memory plugin bridge now rejects prompt-time mutation tool requests before warm probing.
@@ -59,3 +56,6 @@ Hook helpers now emit a shared warm-fallback envelope shape with `{ status, reas
 ### Follow-Ups
 
 - A settings-driven invocation parity suite remained red in the source checkout because `.claude/settings.local.json` lacks the expected hooks block; that is out of this phase scope.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/004-cli-fallback-envelope-and-bridge` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux`

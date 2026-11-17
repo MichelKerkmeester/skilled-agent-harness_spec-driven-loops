@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`
-
 ### Summary
 
 Code graph cleanup can now retain bounded deletion lineage when `SPECKIT_CODE_GRAPH_TOMBSTONES=true`. The default path stays unchanged: with the flag unset, no tombstone table is created and no tombstone rows are written.
@@ -58,3 +55,6 @@ Code graph cleanup can now retain bounded deletion lineage when `SPECKIT_CODE_GR
 ### Follow-Ups
 
 - Tombstones are audit-only and bounded; they do not restore deleted nodes or edges.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/007-readiness-hooks-advisor-polish` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`
-
 ### Summary
 
 Phase 006 implements the remaining P1 clusters from the real-world usefulness research packet. The code changes are scoped to code graph readiness/query/context/verify, advisor rebuild/startup publication, and the glob-aware scope policy. Documentation-only findings update the Copilot, Gemini, and CocoIndex references.
@@ -73,3 +70,6 @@ Phase 006 implements the remaining P1 clusters from the real-world usefulness re
 - Advisor test suite still fails broad parity and python-compat expectations outside the changed advisor rebuild predicate.
 - Broad tests/ suite still fails across unrelated dirty-worktree areas; scoped query fallback and structural scan regressions now pass.
 - Copilot README was restored/updated for F-012, but the wider deleted Copilot hook tree remains a separate workspace issue.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/007-readiness-hooks-advisor-polish` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

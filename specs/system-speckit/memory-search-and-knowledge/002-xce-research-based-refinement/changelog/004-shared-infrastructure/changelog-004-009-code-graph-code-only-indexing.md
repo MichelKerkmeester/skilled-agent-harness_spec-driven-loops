@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/009-code-graph-code-only-indexing` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 The code graph's default include globs pulled in markdown, so prose docs were walked and stored as `language='doc'` nodes that no consumer queries. `**/*.md` was removed from `defaultIncludeGlobs`, so the graph now indexes code (ts, tsx, js, py, sh and friends) and structured config (json, yaml, toml, which still register as `language='doc'`) and skips prose, including the framework's own `SKILL.md`, agent, command and spec markdown and external users' READMEs. Maintainer-only indexing of the framework's skills and plugins was made selectable. `SPECKIT_CODE_GRAPH_MAINTAINER_MODE` is the only `.env.local` knob that beats the committed `INDEX_*=false`, because the launcher force-assigns it while config otherwise wins over file. A pure exported `resolveMaintainerModeCategories` maps `true` to all five categories for back-compat and a comma subset such as `skills,plugins` to exactly that subset, with anything else resolving to none, and the launcher then force-sets only the resolved categories. The gitignored `.env.local` carries the maintainer's `skills,plugins` choice, so external repo users index only their own code while the maintainer also indexes the framework's skills and plugins. A combined five-iteration deep review of this change and `008` (executor `cli-opencode openai/gpt-5.5-fast --variant xhigh`) returned a CONDITIONAL verdict and surfaced eight findings, all verified real against source and all remediated. The cross-consumer risk was cleared directly: nothing queries the code graph's `language='doc'` rows, and the skill-advisor doc-triggers harvest reads `.md` files directly rather than through the graph.
@@ -87,3 +84,6 @@ Post-review remediation of the combined `008` + `009` deep review (commit `ee11e
 
 - The change activates when the code-index daemon next loads the new launcher and dist (next session). A one-time full `code_graph_scan` then drops the existing `.md` `'doc'` rows from the live graph.
 - The default-scope change affects external users too: their own `.md` files stop being graphed. This is intended (the graph models code, not docs), and a caller can still re-add markdown for a specific scan via `includeGlobs`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/009-code-graph-code-only-indexing` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

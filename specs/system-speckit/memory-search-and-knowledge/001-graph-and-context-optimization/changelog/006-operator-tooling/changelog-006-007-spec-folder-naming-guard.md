@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`
-
 ### Summary
 
 This is a research/design packet, not an implementation. It delivers a feasibility study and a recommended design for a cross-runtime spec-folder naming guard, prompted by the operator hitting the 028-026-program-research mis-location defect. No guard code, hook, or script was written or modified. The deliverable is the documented analysis (research.md) plus the canonical spec docs.
@@ -61,3 +58,6 @@ This is a research/design packet, not an implementation. It delivers a feasibili
 - No prompt-time or pre-write hook can catch folders created by hand outside tracked tools; only `validate.sh` catches those retroactively.
 - Mis-location detection is high-confidence for embedded sibling numbers but heuristic for generic slugs; false positives are possible.
 - Gemini has no checked-in project hook, so it receives no pre-write enforcement even under the recommended design.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/026-shared-safe-fix-engine` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Nothing is built yet. This phase is scaffolded only. The spec, plan, tasks and checklist are authored and the work is PLANNED. The engine is the foundation the program builds first, right after the Stage-0 census, so the front doors A1, B1 and B2 wait on it.
@@ -50,3 +47,6 @@ Nothing is built yet. This phase is scaffolded only. The spec, plan, tasks and c
 ### Follow-Ups
 
 - Build per plan.md. This phase is foundational and the dependents sequenced behind it are listed in `028-governance-rollout`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/026-shared-safe-fix-engine` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

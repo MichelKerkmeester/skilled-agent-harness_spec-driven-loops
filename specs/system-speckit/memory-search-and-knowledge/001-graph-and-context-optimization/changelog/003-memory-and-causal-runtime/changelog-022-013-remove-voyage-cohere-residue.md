@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/013-remove-voyage-cohere-residue` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`
-
 ### Summary
 
 Two separate gates in the cross-encoder pipeline were auto-routing reranking calls to Voyage or Cohere cloud APIs whenever the corresponding API key was present in the environment. Because Voyage and Cohere each sell both embedding and reranking services under the same key, an operator who set `VOYAGE_API_KEY` purely for embeddings would unknowingly send every query to `api.voyageai.com/v1/rerank`. The local sidecar (`Qwen/Qwen3-Reranker-0.6B`) was already the production reranker. The cloud paths were silent footguns.
@@ -78,3 +75,6 @@ None.
 - Operators who set `VOYAGE_API_KEY` for embeddings and relied on implicit reranking activation need to add `SPECKIT_CROSS_ENCODER=true` and `RERANKER_LOCAL=true` explicitly.
 - `Z_SCORE_THRESHOLD` in `evidence-gap-detector.ts` remains at 1.3. That floor was tuned for the no-reranker-available baseline. With `RERANKER_LOCAL=true` always available the threshold could potentially rise back to 1.5. Out of scope for this packet.
 - If a cloud reranker is ever reintroduced the correct pattern is an explicit `RERANKER_PROVIDER=voyage|cohere|local` env var rather than API-key-gated auto-resolution.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/013-remove-voyage-cohere-residue` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

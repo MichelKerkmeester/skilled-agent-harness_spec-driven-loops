@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/003-skill-references-assets-and-skillmd` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`
-
 ### Summary
 
 This child phase executed (commit 2229a24c7e). Fourteen skill `SKILL.md`, reference and asset docs were aligned to current shipped state, fixing factual drift across stale references, counts and paths. Every committed corrected path was verified to resolve. The deep-research and deep-loop-workflows skill docs stay deferred to the concurrent session that owns them.
@@ -54,3 +51,6 @@ This child phase executed (commit 2229a24c7e). Fourteen skill `SKILL.md`, refere
 ### Follow-Ups
 
 - Hand the deferred deep-research and deep-loop-workflows skill docs back to the concurrent session that owns them.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/003-skill-references-assets-and-skillmd` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`

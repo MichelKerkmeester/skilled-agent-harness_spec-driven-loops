@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/005-completion-supervisor` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
-
 ### Summary
 
 The goal plugin now has a conservative supervisor path for automatic completion. On session.idle, it evaluates the last redacted evidence, stores the verifier result, and completes the goal only when the verdict is exactly met.
@@ -59,3 +56,6 @@ The goal plugin now has a conservative supervisor path for automatic completion.
 ### Follow-Ups
 
 - Production verifier wiring is still deferred. Tests use an injected verifier function; the continuation phase should decide the actual model/prompt integration.
+
+> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/005-completion-supervisor` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
