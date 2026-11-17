@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The vendoring project keeps overlays for Skilled files that are wrong upstream: a stale hub list, two template sentences, an example script that misses the env names `.env.example` declares, and a bare `health` keyword that routes backend health checks to Obsidian",
     "created_at": "2026-11-17T08:23:07Z",
-    "last_save_at": "2026-11-17T11:51:50.485Z",
+    "last_save_at": "2026-11-17T12:09:23.140Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:57d0abc4f4a32cca619008a5a26b1338508e9aa96f3537a0c625945513b79d34",
+    "source_fingerprint": "sha256:856d7bea48369ae0aacf4596780aeac00150a780251ab92b40684287fad10d3b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aae6433db94439cb4f060b5c7b1c70bb965a189967649a114e06a06d41e7008e",
+      "spec.md": "4b54dc6bd5f83166f5a80e1558f0d8d9dad9e05d61ca390287e9c4d8b31f75a1",
       "plan.md": "dfff9c90dcdb85ae56fb22470394a35f46d8f1ba9ac06f6d3bee9955666693d4",
       "tasks.md": "0ed0f76c9c9d9b817aa530e44bc19fbdf8278ab8dba398e4a4423b6afd9e8622",
-      "implementation-summary.md": "f0b6ce4d8c8e973fd7ce87f800ac52537855092e344456ebeff865ee8515223a"
+      "implementation-summary.md": "77e12bbae767aebed05bfcaad3d1acb94b5e146412a0c5413b724f17b752a26e"
     },
     "last_active_at": null
   }
