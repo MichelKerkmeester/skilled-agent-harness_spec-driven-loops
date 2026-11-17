@@ -123,12 +123,6 @@
         "source": "derived"
       },
       {
-        "name": "Devin",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
         "name": "its",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -139,23 +133,29 @@
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 009 made the v4.1.0.0 layout the default for new changelogs: short bullets under short paragraphs, a linked glance table, alert boxes, folded detail and one source line per paragraph",
     "created_at": "2026-11-17T18:12:58Z",
-    "last_save_at": "2026-11-17T19:54:10.414Z",
+    "last_save_at": "2026-11-17T22:18:42.384Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:0fc9dd6014b3c708fc9d74c5c53809a56e095b10001a688d49f123376cefe7f8",
+    "source_fingerprint": "sha256:f54caa311ef0cc99482c0e3cf05d8fa636081a0e90c7d3fa7f2dadfb72832eb2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3ad12240867b1354278124a8d297d1116282fa5d582f689c99315108a78cbaff"
+      "spec.md": "e96a5b82d7da2462d93e8bdf03d2e80641911a3f0099fac7fe613c80b138a77f"
     },
-    "last_active_child_id": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot",
-    "last_active_at": "2026-11-17T19:53:55.660Z"
+    "last_active_child_id": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line",
+    "last_active_at": "2026-11-17T22:18:39.115Z"
   }
 }

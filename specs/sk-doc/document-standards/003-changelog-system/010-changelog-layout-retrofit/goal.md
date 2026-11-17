@@ -42,7 +42,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Only free models write: Hy4 Flash Free at high thinking through cli-opencode, with Devin's free `glm-5-2` as the only fallback |
+| D1 | Hy4 Flash Free at high thinking through cli-opencode writes whenever it is available. When it is limited or fails, GLM 5.3 Flash at high through cli-opencode on the opencode-go provider writes instead. The fact check runs on another family than the draft's writer: GLM 5.3 Flash at high on opencode-go for a Hy4 draft and Hy4 Flash Free for a GLM draft. No DeepSeek model writes or checks |
 | D2 | A rewrite keeps every fact of its source and adds none. The fact lock and the shape check gate every draft, and a failed draft is restored |
 | D3 | Only release bodies change. No tag moves and no release is deleted |
 | D4 | The 1,652 packet-local changelogs under `specs/` stay as they are |

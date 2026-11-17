@@ -31,7 +31,7 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the list (`../scratch/lists/002.txt`). Verify: `wc -l < ../scratch/lists/002.txt` prints 62.
+- [x] T001 Confirm the list (`../scratch/lists/002.txt`). Verify: `wc -l < ../scratch/lists/002.txt` prints 62.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -39,8 +39,8 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Run the driver on the list (`../scratch/rewrite-driver.cjs`). Verify: the run summary counts 62 files.
-- [ ] T003 Rerun the restored files once (`../scratch/rewrite-driver.cjs --retry-failed`). Verify: the state file shows each file in `pass`, `unchanged` or a recorded failure.
+- [x] T002 Run the driver on the list (`../scratch/rewrite-driver.cjs`). Verify: the run summary counts 62 files.
+- [x] T003 Rerun the restored files once (`../scratch/rewrite-driver.cjs --retry-failed`). Verify: the state file shows each file in `pass`, `unchanged` or a recorded failure.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -48,8 +48,8 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T004 Recheck the files on disk (`../scratch/wave-verify.cjs ../scratch/lists/002.txt`). Verify: it prints 0 failures.
-- [ ] T005 Validate the phase (`002-skilled-release-line/`). Verify: `validate.sh --strict` prints `RESULT: PASSED`.
+- [x] T004 Recheck the files on disk (`../scratch/wave-verify.cjs ../scratch/lists/002.txt`). Verify: it prints 0 failures.
+- [x] T005 Validate the phase (`002-skilled-release-line/`). Verify: `validate.sh --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -57,9 +57,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

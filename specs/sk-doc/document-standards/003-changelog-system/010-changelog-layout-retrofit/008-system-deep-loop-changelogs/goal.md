@@ -42,7 +42,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The writer is Hy4 Flash Free at high thinking through cli-opencode, with Devin's free `glm-5-2` as the only fallback. No paid model writes |
+| D1 | Hy4 Flash Free at high thinking through cli-opencode writes whenever it is available. When it is limited or fails, GLM 5.3 Flash at high on the opencode-go provider writes instead. A free model from another family checks the facts |
 | D2 | A draft lands only after the fact lock, the shape check and the voice scan pass. Anything else is restored from the saved original |
 | D3 | No fact or section the original did not record is added |
 

@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The 216 cli-external-orchestration changelogs were written before the v4.1.0.0 layout",
     "created_at": "2026-11-17T18:13:02Z",
-    "last_save_at": "2026-11-17T18:17:26.212Z",
+    "last_save_at": "2026-11-17T22:18:54.729Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,10 +199,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fefabd2af304fcd40a1eaa7afaa7838b849a97a084c56d3eb2b7ea8d440e3b7b",
+    "source_fingerprint": "sha256:e465828294cb1062076344c026157062e0f0646abd56738de2db0ccc485f4a9b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "48afa12c4b7be57914969ca80865484b4e06243b308ad1c599413119d575ecfb",
+      "spec.md": "66ea0bf57a24efe89b1025bcb54d0b82bd524c1165c0ec10a8bb2db50f79891d",
       "plan.md": "06e89c91be815260633674d4c4a7453e9b1d9ea6322668bcf57d2a6806d36cc1",
       "tasks.md": "5e6921bd60585335b528ce357832e02631a18c57bca2a847bd2157db98d422e6",
       "implementation-summary.md": "5be8647dde57cfb1efdb10ea4b0bc3120862c6c038ae6561a9cee5d867804741"
