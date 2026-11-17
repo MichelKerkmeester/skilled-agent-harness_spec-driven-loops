@@ -12,15 +12,15 @@ _memory:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration"
     last_updated_at: "2026-11-17T22:00:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Redispatch skip clause in both YAMLs; four suites pass 115; contracts regenerated"
-    next_safe_action: "Merge after 006, then playbook and changelog"
+    recent_action: "Redispatch skip clause in both YAMLs; four suites pass 115; contracts regenerated; playbook DLR-063 and changelog v2.1.5.0 written at integration"
+    next_safe_action: "Live walk of DLR-063 where verify returns executor_missing on a landed iteration; then the full runtime suite at the merge gate"
     blockers:
-      - "Playbook and changelog commands require the @markdown agent"
+      - "A live run is needed where verify returns executor_missing on a landed iteration (DLR-063 walk)"
     key_files:
       - ".skilled/commands/deep/assets/deep-research.yaml"
       - ".skilled/commands/deep/assets/deep-review.yaml"
       - ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts"
-    completion_pct: 85
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +37,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 013-no-redispatch-landed-iteration |
-| **Completed** | 2026-11-17, code and tests. The full-suite rerun, the playbook scenario and the changelog entry wait for the merge (see Known Limitations) |
+| **Completed** | 2026-11-17, code and tests. The full-suite rerun waits for the merge gate. The changelog entry was written at integration, and the playbook walk waits for a live run (see Known Limitations) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -104,7 +104,7 @@ Ten one-change DeepSeek V4.1 Flash dispatches on the Mistral Vibe lane (`deepsee
 ## Known Limitations
 
 1. **Full runtime suite (T006).** Not rerun in this worktree. It runs in the integration merge gate.
-2. **Playbook scenario (T011) and changelog entry (T012).** Both commands require the `@markdown` agent, and they are written in the integration worktree after this phase merges.
+2. **Playbook scenario (T011) and changelog entry (T012).** Both were written at integration: DLR-063 and `changelog/v2.1.5.0.md`. The playbook walk is partly done. It ran the suites and the rule text, not a live dispatch, so T011 stays blocked.
 3. **The rule is prose.** The orchestrator model reads the redispatch rule, so the tests pin its wording, not its behavior.
 4. **Compiled contracts.** Phases 002 and 012 also edit both YAMLs, so the contracts are regenerated after each merge rather than merged by hand.
 <!-- /ANCHOR:limitations -->

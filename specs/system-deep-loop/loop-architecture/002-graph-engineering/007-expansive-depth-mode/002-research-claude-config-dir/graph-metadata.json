@@ -46,7 +46,10 @@
       ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/dispatch-iteration.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts"
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/executor/research-claude-config-dir.md",
+      "scratch/walk-DLR-064.txt",
+      ".skilled/skills/system-deep-loop/changelog/v2.1.6.0.md"
     ],
     "entities": [
       {
@@ -122,6 +125,24 @@
         "source": "derived"
       },
       {
+        "name": "research-claude-config-dir.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/executor/research-claude-config-dir.md",
+        "source": "derived"
+      },
+      {
+        "name": "walk-DLR-064.txt",
+        "kind": "file",
+        "path": "scratch/walk-DLR-064.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v2.1.6.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/changelog/v2.1.6.0.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -174,29 +195,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Other",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A single-executor deep-research run on `cli-claude-code` silently drops a configured `config.executor.configDir`, and an explicit `--claude-config-dir` makes `dispatch-iteration.cjs` raise a UsageError, because the flag is accepted only for `--loop-type review`",
     "created_at": "2026-11-17T14:34:21Z",
-    "last_save_at": "2026-11-17T20:45:59.790Z",
+    "last_save_at": "2026-11-17T21:21:08.883Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1793512b482550fdad4f3f9d438fe4b5c2ef8f1f61d72a9464738578c86631d5",
+    "source_fingerprint": "sha256:7b0b147b757b4fe6ab086e8f4c4d198535ec9fab5e5ba61c2bf10e07ff7c6609",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b4b10388e6881c0e759dff2bc02cf068158beb64999005a3ccac171226aa6e6f",
       "plan.md": "0adb0cf51221ad96e07dd62412bad13af9fdb62f5ad9d9b7a8fd749c420ccaf8",
-      "tasks.md": "32f968f821dba78212ce4a79b57de47d4ad783235cbf302db28f0b9406d87145",
-      "implementation-summary.md": "28902d1a7faf15aace81efddb9781870625a6e19150a25f45c3a4202571568f1"
+      "tasks.md": "813f39ea6a2307f4103b35015aeca2a4f31d1753849587542f44e13f352e7aaa",
+      "implementation-summary.md": "b29b09edf77eaee536015eae94dc071b10a6dec087fb1176adfd46b29550e93d"
     },
     "last_active_at": null
   }

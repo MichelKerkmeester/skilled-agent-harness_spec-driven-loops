@@ -65,8 +65,8 @@ contextType: "general"
 - [x] T016 Add the REQ-010 consumer cases: single-key-question resolution, `sourcesQueried` in the source list, and the dashboard `focusTrack` and `findingsCount` columns (`R/tests/unit/deep-research-reduce-state.vitest.ts`). Verify: `cd R && npx vitest run tests/unit/deep-research-reduce-state.vitest.ts` passes with the three cases listed. Done: three reducer consumer cases pass (36 in the suite before the source edits).
 - [x] T017 Rerun the T002 suites and compare with the baseline (`R/tests/`). Verify: `cd R && npx vitest run SUITES` exits 0 and the pass count rose only by the new cases. Done: 10 files, 252 passed, exit 0 (baseline 237 plus 15 new).
 - [x] T018 Replay this packet's generation-2 deltas through `verify-iteration` and the convergence guard (`../research/deltas/`). Verify: the count of iterations that now fail either check is written in `goal.md` section 4. Done: `verify` passes 5 of 5; `focusAlignment` fails 4 of 5, recorded in `goal.md` §4 and `implementation-summary.md`.
-- [B] T019 Write the changelog entry announcing both checks on every research run and naming the REQ-010 reducer consumers (`.skilled/skills/system-deep-loop/changelog/`). Verify: `rg -n 'focusAlignment' .skilled/skills/system-deep-loop/changelog/` prints the new entry. Blocked: written by @markdown in integration after merge.
-- [B] T020 Write one playbook scenario for the newly live checks through `/create:manual-testing-playbook system-deep-loop update --path .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook` (category `iteration-execution-and-state-discipline/`). Verify: `rg -l "focusAlignment" .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook` lists the new scenario. Blocked: written by @markdown in integration after merge.
+- [x] T019 Write the changelog entry announcing both checks on every research run and naming the REQ-010 reducer consumers (`.skilled/skills/system-deep-loop/changelog/`). Verify: `rg -n 'focusAlignment' .skilled/skills/system-deep-loop/changelog/` prints nothing, because the entry sits in the deep-research folder. Deviation: the brief names `.skilled/skills/system-deep-loop/deep-research/changelog/`, so the entry is written there, and the same grep against that folder prints the entry. Done: `.skilled/skills/system-deep-loop/deep-research/changelog/v1.15.17.0.md`.
+- [x] T020 Write one playbook scenario for the newly live checks through `/create:manual-testing-playbook system-deep-loop update --path .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook` (category `iteration-execution-and-state-discipline/`). Verify: `rg -l "focusAlignment" .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook` lists the new scenario. Done: DR-067 at `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/focus-alignment-and-findings-gate-read-leaf-fields.md`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -74,9 +74,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] The T017 rerun matches the baseline plus the new cases
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] The T017 rerun matches the baseline plus the new cases
 <!-- /ANCHOR:completion -->
 
 ---

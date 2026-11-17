@@ -44,6 +44,7 @@
       "decision-record.md",
       "implementation-summary.md",
       ".skilled/commands/deep/assets/deep-research.yaml",
+      "changelog/v2.1.4.0.md",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
       ".skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs",
       ".skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts",
@@ -52,6 +53,8 @@
       ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
       ".skilled/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/council/multi-seat-dispatch.vitest.ts",
+      ".skilled/skills/system-deep-loop/changelog/v2.1.4.0.md",
+      ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/divergent-council-quorum-retry.md",
       ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
       ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md"
     ],
@@ -96,6 +99,12 @@
         "name": "deep-research.yaml",
         "kind": "config",
         "path": ".skilled/commands/deep/assets/deep-research.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "v2.1.4.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.1.4.0.md",
         "source": "derived"
       },
       {
@@ -147,6 +156,12 @@
         "source": "derived"
       },
       {
+        "name": "divergent-council-quorum-retry.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/divergent-council-quorum-retry.md",
+        "source": "derived"
+      },
+      {
         "name": "convergence.md",
         "kind": "doc",
         "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
@@ -187,23 +202,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The divergent pivot (`runtime/lib/deep-loop/divergent-pivot.ts`) has three hygiene gaps",
     "created_at": "2026-11-17T14:35:15Z",
-    "last_save_at": "2026-11-17T20:27:16.753Z",
+    "last_save_at": "2026-11-17T21:17:07.983Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +217,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d175c5b40ade06a05d6c64a182ce1f8013390715d70f0e4ff178c20d6fdd53cf",
+    "source_fingerprint": "sha256:45aec6671b99197b4b685bee57f7fdc96dcc4f1d47fd611e36650145912edd7e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ebf1c332d43131eef03139ebd81136e7cb490998348725184f12d27e5f221d8e",
       "plan.md": "cdea7d0802265a334ec5cf678db5d761b7d38b2bfe5f8535dcd25f42c62356b7",
-      "tasks.md": "b271ba875655228802037e329eec491969e190515ddca2fe428eabb7cde9965d",
+      "tasks.md": "a09883675fd606eb19b820e57638bcbded02198250a58ed83b2d69fe87b34d32",
       "decision-record.md": "e3f10adb8b27592acb914b0618007de803b94a16e164a341653fce13fd85caaa",
-      "implementation-summary.md": "73fb574e9e6792210cd2decd0cbe707b25c4c616ebeda17ae00d0d93b9c414c3"
+      "implementation-summary.md": "223966775e34b58f5630c66bcfadc42a8365ef15897d5306e54cacdf8e8c9f0f"
     },
     "last_active_at": null
   }

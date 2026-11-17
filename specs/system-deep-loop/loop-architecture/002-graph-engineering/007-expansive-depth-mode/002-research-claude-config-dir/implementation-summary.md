@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Forward the Claude config dir on single-executor research cli-claude-code dispatch"
-description: "A cli-claude-code research dispatch now accepts an optional --claude-config-dir, validates it before the prompt read and runs Claude under it, and the research workflow forwards config.executor.configDir. The playbook scenario and changelog entry wait for the @markdown pass in integration."
+description: "A cli-claude-code research dispatch now accepts an optional --claude-config-dir, validates it before the prompt read and runs Claude under it, and the research workflow forwards config.executor.configDir. The playbook scenario and changelog entry were written at integration, and the live walk stays blocked by the Claude ancestry guard."
 trigger_phrases:
   - "research claude config dir implementation summary"
 importance_tier: "normal"
@@ -10,9 +10,10 @@ _memory:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/002-research-claude-config-dir"
     last_updated_at: "2026-11-17T23:59:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Research config-dir path built and verified"
-    next_safe_action: "Merge into integration; @markdown writes T013 and T014"
-    blockers: []
+    recent_action: "Research config-dir path built and verified; playbook DLR-064 and changelog v2.1.6.0 written at integration"
+    next_safe_action: "Run the live walk of DLR-064 from a shell outside Claude Code, then the full runtime suite at the merge gate"
+    blockers:
+      - "Live walk of DLR-064 needs a shell outside Claude Code (Claude ancestry guard)"
     key_files:
       - ".skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs"
       - ".skilled/commands/deep/assets/deep-research.yaml"
@@ -20,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "wave-2-002-research-claude-config-dir"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-research-claude-config-dir |
-| **Completed** | Implementation done 2026-11-17 on branch `worktrees/465-ed-002-research-claude-config-dir`. T013 and T014 wait for the @markdown pass after merge, and T009's full-suite half runs at the merge gate |
+| **Completed** | Implementation done 2026-11-17 on branch `worktrees/465-ed-002-research-claude-config-dir`. T014 was written at integration, T013's live walk is blocked by the Claude ancestry guard, and T009's full-suite half runs at the merge gate |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -99,6 +100,6 @@ The tests went in first and failed for the expected reasons. Each implementation
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Playbook scenario and changelog entry are not written yet.** T013 and T014 need the @markdown agent and run in the integration worktree after merge.
+1. **Playbook scenario and changelog entry.** The changelog is written as `changelog/v2.1.6.0.md`. The playbook scenario DLR-064 is written and indexed. Its live walk is blocked: a live `cli-claude-code` dispatch is refused inside a Claude session by the Claude ancestry guard.
 2. **An inherited `CLAUDE_CONFIG_DIR` still reaches a research run that names no dir.** Stripping it would change every default research run, so it stays out of scope (goal log, open question).
 <!-- /ANCHOR:limitations -->

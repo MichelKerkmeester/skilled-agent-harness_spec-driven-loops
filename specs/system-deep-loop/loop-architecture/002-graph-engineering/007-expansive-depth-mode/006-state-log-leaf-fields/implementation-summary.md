@@ -10,15 +10,14 @@ _memory:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields"
     last_updated_at: "2026-11-17T21:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Upcast, schema, type and projection widened; focusAlignment scoped; ten suites pass 252"
-    next_safe_action: "Merge into integration, then write the changelog entry and playbook scenario as @markdown"
-    blockers:
-      - "Changelog entry and playbook scenario are written by @markdown in integration after merge"
+    recent_action: "Upcast, schema, type and projection widened; focusAlignment scoped; ten suites pass 252; playbook DR-067 and deep-research changelog 1.15.17.0 written at integration"
+    next_safe_action: "None for this phase; the full runtime suite runs at the integration merge gate"
+    blockers: []
     key_files:
       - ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts"
       - ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts"
       - ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs"
-    completion_pct: 85
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +35,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-state-log-leaf-fields |
-| **Completed** | 2026-11-17, code and tests; the changelog entry and playbook scenario follow at merge (see Known Limitations) |
+| **Completed** | 2026-11-17, code and tests; the changelog entry and playbook scenario were added at integration (see Known Limitations) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -105,7 +104,7 @@ Thirteen one-change DeepSeek V4.1 Flash dispatches on the Pi lane. Six test brie
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Changelog entry (T019) and playbook scenario (T020)** need the `@markdown` agent, so they are written in the integration worktree after this phase merges.
+1. **Changelog entry (T019) and playbook scenario (T020)** were written at integration: `deep-research/changelog/v1.15.17.0.md` and DR-067. The changelog sits in the deep-research folder, as the brief directed, so T019's `changelog/` verify path does not list it.
 2. **The generation-2 replay fails `focusAlignment` on 4 of 5 iterations.** This packet's own five research deltas were replayed as projected state rows through `verify` and `evaluateResearchQualityGuards`. `verify` passes all five, so the findings gate and route proof hold. `focusAlignment` fails iterations 2 to 5:
    - Iterations 2, 3 and 5 answered a question their own `keyQuestions` did not list. Iteration 2 listed the questions still open and answered Q3.
    - Iteration 4 wrote its key question as the bare id `Q6`, which cannot match the answered text even with the prefix removed.

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Divergent pivot hygiene: seat cap scope, dead minRemainingIterations guard, one council retry"
-description: "The pivot seat cap now bounds one council attempt at 3 seat outputs, the dead remaining-iterations guard is gone, and a first-attempt quorum failure reopens the pivot once as attempt 2. Code, tests, workflows, references and contracts are done; the changelog, playbook and catalog pages wait for the @markdown pass in integration."
+description: "The pivot seat cap now bounds one council attempt at 3 seat outputs, the dead remaining-iterations guard is gone, and a first-attempt quorum failure reopens the pivot once as attempt 2. Code, tests, workflows, references and contracts are done; the changelog, playbook and catalog pages were written at integration."
 trigger_phrases:
   - "pivot hygiene implementation summary"
 importance_tier: "normal"
@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene"
     last_updated_at: "2026-11-17T23:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Built and verified the seat cap, retry, seat scoping, YAML re-entry and contracts"
-    next_safe_action: "Merge into integration; @markdown writes T014, T015 and T018"
+    recent_action: "Built and verified the seat cap, retry, seat scoping, YAML re-entry and contracts; playbook DLR-062, changelog v2.1.4.0 and the catalog pages written at integration"
+    next_safe_action: "None for this phase; the full runtime suite runs at the integration merge gate"
     packet_purpose: "Purpose: The seat cap has the scope the operator chose, the dead guard no longer pretends to protect anything, and a transient council quorum failure gets exactly one retry inside the seat budget."
     blockers: []
     key_files:
@@ -27,7 +27,7 @@ _memory:
       savedAt: "2026-11-17T16:56:43Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 85
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 012-pivot-hygiene |
-| **Completed** | Implementation done 2026-11-17 on branch `worktrees/464-ed-012-pivot-hygiene`. T014, T015 and T018 wait for the @markdown pass after merge |
+| **Completed** | Implementation done 2026-11-17 on branch `worktrees/464-ed-012-pivot-hygiene`. T014, T015 and T018 were written at integration |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -111,7 +111,7 @@ Each implementation task went to DeepSeek V4.1 Flash on the OpenCode Go lane as 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Changelog, playbook and catalog pages are not written yet.** T014, T015 and T018 need the @markdown agent and run in the integration worktree after merge.
+1. **Changelog, playbook and catalog pages are written.** T014 is `changelog/v2.1.4.0.md`, T015 is DLR-062 and T018 is the two divergent catalog pages, all written at integration.
 2. **The seat prompts do not name the attempt.** Attempt 2 dispatches the same three seat prompts; only the paths, event ids and `dispatchContext.round` differ.
 <!-- /ANCHOR:limitations -->
 

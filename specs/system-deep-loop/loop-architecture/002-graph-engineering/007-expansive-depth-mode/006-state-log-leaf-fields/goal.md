@@ -62,7 +62,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `deep-research-projections-contract.vitest.ts` asserts these ten keys on a projected research `iteration` row: `target_agent`, `agent_definition_loaded`, `resolved_route`, `findingsCount`, `keyQuestions`, `noveltyJustification`, `focusTrack`, `edgeCase`, `toolsUsed`, `sourcesQueried`.
 - [x] `rg -n '"keyQuestions"' .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` prints the record-shape line, and `check-contract-drift.vitest.ts` passes after the research contract is regenerated.
 - [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/append-mode-event-cli.vitest.ts tests/unit/append-mode-event-legacy-seam.vitest.ts tests/unit/check-projection-coverage.vitest.ts tests/unit/deep-research-projections-contract.vitest.ts tests/unit/deep-research-ledger-schema.vitest.ts tests/unit/verify-iteration.vitest.ts tests/unit/deep-research-reduce-state.vitest.ts tests/unit/prompt-pack.vitest.ts tests/unit/check-contract-drift.vitest.ts tests/integration/convergence-script.vitest.ts` exits 0, with a pass count equal to the baseline in this goal's log plus the new cases.
-- [ ] `rg -l "focusAlignment" .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook` lists a scenario written by `/create:manual-testing-playbook`.
+- [x] `rg -l "focusAlignment" .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook` lists a scenario written by `/create:manual-testing-playbook`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -85,6 +85,7 @@ and findings belong here.
 | Baseline (T002) | Done | 2026-11-17 on integration tip `c898b3ad9a3`: the ten REQ-006 suites, 237 passed, exit 0 |
 | Implementation | Done (code and tests) | Ten suites 252 passed (baseline plus 15 new). Nine new cases failed before any source edit. Criteria 1-6 met. Criterion 7 (playbook) and the changelog entry are written by @markdown in integration after merge |
 | Generation-2 replay (T018) | Recorded | Five deltas replayed as projected rows: `verify` passes 5 of 5. `focusAlignment` fails 4 of 5 (iterations 2-5): three answered a question absent from their own `keyQuestions`, and one wrote the bare id `Q6` as its key question |
+| Playbook and changelog | Done | DR-067 scenario and `deep-research/changelog/v1.15.17.0.md` (deep-research 1.15.17.0, with the `SKILL.md` version carrier). The facts check reports 0 errors and the playbook validator reports 0 violations. Criterion 7 is met |
 
 ### Deviations and findings
 

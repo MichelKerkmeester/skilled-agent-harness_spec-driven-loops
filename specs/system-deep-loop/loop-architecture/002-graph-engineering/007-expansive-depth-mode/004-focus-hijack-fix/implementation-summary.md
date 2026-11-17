@@ -12,15 +12,14 @@ _memory:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix"
     last_updated_at: "2026-11-17T21:00:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Focus chain fixed on both loops; three suites pass 68 with every new case shown failing first"
-    next_safe_action: "Merge into integration, then write the playbook scenarios and changelog entry as @markdown"
-    blockers:
-      - "Playbook scenarios and changelog entry are written by @markdown in integration after merge"
+    recent_action: "Focus chain fixed on both loops; playbook scenarios DR-066 and DRV-073 and changelog v2.1.3.0 written at integration"
+    next_safe_action: "None for this phase; the full runtime suite runs at the integration merge gate"
+    blockers: []
     key_files:
       - ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs"
       - ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs"
       - ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
-    completion_pct: 85
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-focus-hijack-fix |
-| **Completed** | 2026-11-17, code and tests; the playbook scenarios and changelog entry follow at merge (see Known Limitations) |
+| **Completed** | 2026-11-17, code and tests; the playbook scenarios and changelog entry were added at integration (see Known Limitations) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -107,7 +106,7 @@ Seven one-change DeepSeek V4.1 Flash dispatches on the Pi lane: three test brief
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Playbook scenarios (T011) and changelog entry (T012)** need the `@markdown` agent, so they are written in the integration worktree after this phase merges.
+1. **Playbook scenarios (T011) and changelog entry (T012)** were written at integration: DR-066 and DRV-073 in the playbooks, and `changelog/v2.1.3.0.md`.
 2. **Imperative items without a question mark** are no longer carried forward, for example `Investigate the review twin`. Such an item still reaches Next Focus as the leaf's `## Recommended Next Focus`, and a continuity case pins the rule.
 3. **Full runtime suite** runs once at merge in the integration worktree, not here.
 <!-- /ANCHOR:limitations -->

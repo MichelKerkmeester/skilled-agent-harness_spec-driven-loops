@@ -60,11 +60,11 @@ contextType: "general"
 
 - [x] T012 Add the retry case: attempt 2 dispatches three seats under the same seat ids, and its event ids and seat files do not collide with attempt 1 (`R/tests/integration/divergent-pivot.vitest.ts`). Verify: the case passes. `tests/council/multi-seat-dispatch.vitest.ts` is not edited, because the workflow, not `dispatchCouncilSeats`, drives the pivot's seats. Done 2026-11-17 with T007: the retry case asserts six distinct seat event ids (attempt 2 prefixed `attempt-2:`), both attempts' seat files, `attempt: 2` in the config, and a replayed finalize; the step-API case "reopens a quorum-failed pivot as attempt 2 through prepare, record and finalize" also passes. 32 passed across the three suites, typecheck 0.
 - [x] T013 Typecheck the runtime (`R/tsconfig.json`). Verify: `cd .skilled/skills/system-deep-loop/runtime && npm run typecheck` exits 0. Done 2026-11-17: `npm run typecheck` exit 0.
-- [B] T014 Write the changelog entry stating that `maxCouncilSeatOutputs` now means 3 per council attempt, that a quorum failure gets one retry, and that the worst-case run cost is 18 (`.skilled/skills/system-deep-loop/changelog/`). Verify: `rg -l 'maxCouncilSeatOutputs' .skilled/skills/system-deep-loop/changelog` lists the new entry. Blocked: Written by @markdown in the integration worktree after merge (the command needs the @markdown agent).
-- [B] T015 Write the manual testing playbook scenario for a divergent run whose first council attempt fails quorum and whose retry completes, through `/create:manual-testing-playbook system-deep-loop update --path .skilled/skills/system-deep-loop/runtime/manual-testing-playbook` (`.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/`). Verify: `rg -l 'retry' .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council` lists the new scenario. Blocked: Written by @markdown in the integration worktree after merge (the command needs the @markdown agent).
+- [x] T014 Write the changelog entry stating that `maxCouncilSeatOutputs` now means 3 per council attempt, that a quorum failure gets one retry, and that the worst-case run cost is 18 (`.skilled/skills/system-deep-loop/changelog/`). Verify: `rg -l 'maxCouncilSeatOutputs' .skilled/skills/system-deep-loop/changelog` lists the new entry. Done: `.skilled/skills/system-deep-loop/changelog/v2.1.4.0.md`.
+- [x] T015 Write the manual testing playbook scenario for a divergent run whose first council attempt fails quorum and whose retry completes, through `/create:manual-testing-playbook system-deep-loop update --path .skilled/skills/system-deep-loop/runtime/manual-testing-playbook` (`.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/`). Verify: `rg -l 'retry' .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council` lists the new scenario. Done: DLR-062 at `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/divergent-council-quorum-retry.md`.
 - [x] T016 Rerun the T002 suites and compare with the baseline (`R/tests/`). Verify: the same command exits 0 and the pass count rose only by the new cases. Done 2026-11-17: the T002 suites plus `divergent-pivot-seat-scope.vitest.ts` pass 6 files, 61 tests: 50 baseline + 9 new cases in the T002 files + 2 seat-scope cases, nothing else moved.
 - [x] T017 Update the two convergence references for the one-time retry (`.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`, `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`), per `../scratch/cross-phase-handoff.md` §3 "Every other phase". Verify: `grep -n "attempt 2\|or six when\|attempt-2 folder"` prints the new lines in both files. Done 2026-11-17 (Go dispatch).
-- [B] T018 Update the two `divergent-convergence-mode.md` feature-catalog pages (`deep-research/feature-catalog/convergence/`, `deep-review/feature-catalog/severity-system/`), which say "exactly three native seats in one round", through `/create:feature-catalog`. Verify: each page names the one-time quorum retry. Blocked: written by @markdown in the integration worktree after merge.
+- [x] T018 Update the two `divergent-convergence-mode.md` feature-catalog pages (`deep-research/feature-catalog/convergence/`, `deep-review/feature-catalog/severity-system/`), which say "exactly three native seats in one round", through `/create:feature-catalog`. Verify: each page names the one-time quorum retry. Done: both pages, `.skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md` and `.skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -72,8 +72,8 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
 - [x] The T016 rerun matches the baseline plus the new cases
 <!-- /ANCHOR:completion -->
 

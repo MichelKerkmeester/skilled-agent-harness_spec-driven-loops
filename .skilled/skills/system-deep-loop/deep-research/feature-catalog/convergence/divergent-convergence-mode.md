@@ -6,7 +6,7 @@ trigger_phrases:
   - "research pivot council"
   - "composite_converged pivot"
   - "all_questions_answered pivot"
-version: 1.14.1.0
+version: 1.14.2.0
 ---
 
 # Divergent convergence mode
@@ -19,7 +19,7 @@ version: 1.14.1.0
 
 ## 2. HOW IT WORKS
 
-The workflow admits the exact reasons `composite_converged` and `all_questions_answered`. A successful pivot selects a new focus from persisted adjacent questions, contradiction or verification gaps, missing source classes, alternate evidence methods, and independent finding checks. The shared adapter runs exactly three native seats in one round, persists the transaction under `<artifactRoot>/divergent/pivots/<pivotId>/council/**`, restores the selected focus, and continues the loop.
+The workflow admits the exact reasons `composite_converged` and `all_questions_answered`. A successful pivot selects a new focus from persisted adjacent questions, contradiction or verification gaps, missing source classes, alternate evidence methods, and independent finding checks. The shared adapter runs three native seats in one round. A first-attempt quorum miss gets a one-time quorum retry of the same three seats, so one pivot uses at most six seat outputs. The adapter persists the transaction under `<artifactRoot>/divergent/pivots/<pivotId>/council/**`, restores the selected focus, and continues the loop.
 
 `maxIterationsReached`, `blockedStop`, `stuckRecovery`, `minIterationsNotReached`, `error`, `manualStop`, `userPaused` and `maxDurationReached` do not pivot. A pivot failure follows the existing synthesis path.
 

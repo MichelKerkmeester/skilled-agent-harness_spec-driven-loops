@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.14.5.0
+version: 1.14.6.0
 ---
 
 # deep-research: Manual Testing Playbook
@@ -27,7 +27,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 63 deterministic scenarios across 9 categories validating the current `deep-research` skill surface, including 6 CP-* command-flow stress tests. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 65 deterministic scenarios across 9 categories validating the current `deep-research` skill surface, including 6 CP-* command-flow stress tests. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -212,7 +212,7 @@ Expected signals: strategy.md has a "## 4. Non-Goals" section (may be empty but 
 
 ## 9. ITERATION EXECUTION AND STATE DISCIPLINE
 
-This category covers 13 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 15 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DR-007 | Iteration reads state before research
 
@@ -382,6 +382,32 @@ Expected signals: `renderSparkline()` exists, dashboard output includes `## 5. T
 
 #### Test Execution
 > **Feature File:** [DR-060](../manual-testing-playbook/iteration-execution-and-state-discipline/dashboard-sparkline-trend.md)
+
+### DR-066 | Next Focus ignores answered free text
+
+#### Description
+Verify that deep-research Next Focus and its carried-forward open-question list skip status sentences and answered questions, and read the latest leaf's Recommended Next Focus.
+
+#### Scenario Contract
+Prompt summary: Check that deep-research picks its next focus from open machine questions and the latest leaf's Recommended Next Focus, and not from a status sentence or an answered question. Return a PASS or FAIL verdict with the reason.
+
+Expected signals: A status sentence listed under Questions Remaining is dropped from the carried-forward open questions, an answered question is not carried forward, and an unresolved leaf Recommended Next Focus becomes Next Focus while a machine question is open.
+
+#### Test Execution
+> **Feature File:** [DR-066](../manual-testing-playbook/iteration-execution-and-state-discipline/next-focus-ignores-answered-free-text.md)
+
+### DR-067 | focusAlignment and the findings gate read leaf fields
+
+#### Description
+Verify that the deep-research findings gate and the focusAlignment guard run on the leaf fields the state log keeps on every research run.
+
+#### Scenario Contract
+Prompt summary: Check that deep-research runs the findings gate and the focusAlignment guard on the fields each leaf writes, on every default research run. Return a PASS or FAIL verdict with the reason.
+
+Expected signals: A projected row that claims findings with nothing enumerated returns `findings_not_enumerated`. `focusAlignment` fails on an off-focus latest record and passes after a later aligned iteration. The projection carries the ten leaf keys.
+
+#### Test Execution
+> **Feature File:** [DR-067](../manual-testing-playbook/iteration-execution-and-state-discipline/focus-alignment-and-findings-gate-read-leaf-fields.md)
 
 ---
 

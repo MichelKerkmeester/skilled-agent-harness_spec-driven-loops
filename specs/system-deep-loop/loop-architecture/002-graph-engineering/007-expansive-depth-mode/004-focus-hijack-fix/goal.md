@@ -61,7 +61,7 @@ Frozen choices. Changing one is an amendment.
 - [x] A `deep-review-state-reducer` case with `correctness` uncovered and a free-text leaf `nextFocus` that names no dimension resolves both the strategy `11. NEXT FOCUS` section and the dashboard Next Focus to a value naming `correctness`.
 - [x] A `continuity-thread` case with zero open machine questions and a leaf recommendation returns the terminal sentinel.
 - [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/deep-research-reduce-state.vitest.ts tests/unit/continuity-thread.vitest.ts tests/unit/deep-review-state-reducer.vitest.ts` exits 0 with no existing case removed.
-- [ ] Through `/create:manual-testing-playbook`, `rg -il "status sentence" .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook` and `rg -il "first uncovered" .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook` each list a scenario; both print nothing before this phase.
+- [x] Through `/create:manual-testing-playbook`, `rg -il "status sentence" .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook` and `rg -il "first uncovered" .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook` each list a scenario; both print nothing before this phase.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,6 +80,7 @@ and findings belong here.
 |------|-------|----------|
 | Phase spec authored | Done | `spec.md`, `plan.md`, `tasks.md` written 2026-11-17 |
 | Implementation | Done (code and tests) | 2026-11-17 in worktree 462. The three suites pass 68 (baseline 57); the 7 P0 cases failed before any source edit (`scratch/baseline.txt`). Criteria 1-5 met. Criterion 6 (playbook) and the changelog entry are written by @markdown in integration after merge |
+| Playbook and changelog | Done | DR-066 and DRV-073 scenarios, and `changelog/v2.1.3.0.md` with the version carriers at 2.1.3.0. The facts check reports 0 errors and both playbook validators report 0 violations. Criterion 6 is met |
 
 ### Deviations and findings
 

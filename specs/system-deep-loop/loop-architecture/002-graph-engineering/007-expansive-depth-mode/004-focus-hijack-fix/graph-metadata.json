@@ -51,7 +51,11 @@
       ".skilled/skills/system-deep-loop/runtime/tests/unit/continuity-thread.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts",
-      "scratch/baseline.txt"
+      "scratch/baseline.txt",
+      "changelog/v2.1.3.0.md",
+      ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/next-focus-ignores-answered-free-text.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/review-next-focus-first-uncovered-dimension.md",
+      ".skilled/skills/system-deep-loop/changelog/v2.1.3.0.md"
     ],
     "entities": [
       {
@@ -127,6 +131,24 @@
         "source": "derived"
       },
       {
+        "name": "v2.1.3.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.1.3.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "next-focus-ignores-answered-free-text.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/next-focus-ignores-answered-free-text.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-next-focus-first-uncovered-dimension.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/review-next-focus-first-uncovered-dimension.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -179,29 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Ordered",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "On research runs, a leaf's free text under `## Questions Remaining` becomes a carried-forward question, and `deriveNextFocusFromContinuity` returns the latest one ahead of every machine question, so an iteration's status sentence can become the next focus verbatim (defect D5, parent `research/research.md` §13 and §14)",
     "created_at": "2026-11-17T14:43:29.301Z",
-    "last_save_at": "2026-11-17T19:58:35.912Z",
+    "last_save_at": "2026-11-17T21:10:18.072Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:37df960d2476a5332c3079649976e192730b1bdc382fcbcfc2011bdd41a29f9b",
+    "source_fingerprint": "sha256:f9914e8433f566574fe400d3067a0974e7a25edfb9200ec431eb664bbc5be064",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "078640c5c19f80fbe22a25f8a0ac722057bd1c81040e8e98d019b9906e90ec00",
       "plan.md": "f4eda21c88069900c5258544433ee83934111bf3c4fc47dfb82450d40a61f7c8",
-      "tasks.md": "d21eb37c16d53aa07a6fc8f43f0fbf89a5ef9f3d8bc8e3fdab93216d3e0857cc",
+      "tasks.md": "d8a33702dc87781a986fa74c1251138ddb7ed2f68b2d293bc83099ccb0baa605",
       "decision-record.md": "959a4e28667d159c84e3ef254789b0f9f7bafe94e7134d394ac2a293ed944ed2",
-      "implementation-summary.md": "285c4ddfcc63f6287d01f8463361a24692d44be9dd3a5c3a3f06331544e9f4fc"
+      "implementation-summary.md": "2ae1ecb93da9d00c83e6b28393707eea1deb05bd1d30eeb132e3a7b5ba09a943"
     },
     "last_active_child_id": null,
     "last_active_at": null

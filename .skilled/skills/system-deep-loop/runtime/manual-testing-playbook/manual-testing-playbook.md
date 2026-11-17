@@ -1,7 +1,7 @@
 ---
 title: "runtime/: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the runtime/ skill."
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # runtime/: Manual Testing Playbook
@@ -36,7 +36,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 53 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
+This playbook provides 56 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file, except DLR-062 to DLR-064, which have no catalog entry yet with objective, prompt, execution steps, source anchors, and verdict criteria.
 
 ### REALISTIC TEST MODEL
 
@@ -109,7 +109,7 @@ Release is cleared only when all 51 scenarios are `PASS` or documented `SKIP` wi
 
 ## 6. EXECUTOR
 
-This category covers 4 scenarios while the linked feature files remain the canonical execution contract.
+This category covers 6 scenarios while the linked feature files remain the canonical execution contract.
 
 ### DLR-001 | Executor config
 
@@ -164,6 +164,34 @@ Expected signals: Route trace metadata, preflight validation errors, cycle detec
 
 #### Test Execution
 > **Feature File:** [DLR-044](../manual-testing-playbook/executor/fallback-router-typed-reroute.md)
+
+### DLR-063 | Landed iteration skips the redispatch
+
+#### Description
+
+Verifies that a research or review iteration which already landed is not dispatched a second time when its verify check fails with `executor_missing`, `findings_not_enumerated` or `ledger_backing_missing`.
+
+#### Scenario Contract
+Prompt: `Check that a deep-research or deep-review iteration which already landed is not dispatched a second time when its verify check fails with executor_missing, findings_not_enumerated or ledger_backing_missing. Return a PASS or FAIL verdict with the reason.`
+
+Expected signals: The verify suite pins each reason to the landed artifacts. Both `redispatch_once` rules carry the same skip clause, and every other failure still gets one redispatch.
+
+#### Test Execution
+> **Feature File:** [DLR-063](../manual-testing-playbook/executor/landed-iteration-skips-redispatch.md)
+
+### DLR-064 | Research honors the configured Claude config dir
+
+#### Description
+
+Verifies that a deep-research iteration on `cli-claude-code` runs Claude under the configured config dir and records that dir in its audit.
+
+#### Scenario Contract
+Prompt: `Check that a deep-research iteration on cli-claude-code runs Claude under the configured config dir and records that dir in its audit. Return a PASS or FAIL verdict with the reason.`
+
+Expected signals: Outside a Claude session, the research config-dir cases pass. Inside one, the audit suite's research case still shows the dir reaching the audit record and the child.
+
+#### Test Execution
+> **Feature File:** [DLR-064](../manual-testing-playbook/executor/research-claude-config-dir.md)
 
 ---
 
@@ -616,6 +644,20 @@ Runs seat executors in parallel for one council round; preserves seat result ord
 #### Test Execution
 > **Feature File:** [DLR-018](../manual-testing-playbook/council/multi-seat-dispatch.md)
 
+### DLR-062 | Divergent council quorum retry
+
+#### Description
+
+Verifies that a divergent pivot council gets three seats per attempt and one retry after a first-attempt quorum miss, and that a second miss stays terminal.
+
+#### Scenario Contract
+Prompt: `Check that a divergent pivot whose first council attempt misses quorum gets exactly one retry, and that a second miss fails closed. Return a PASS or FAIL verdict with the reason.`
+
+Expected signals: The retry case and the fail-closed second-miss case pass. The finalize output is retryable after a first-attempt quorum miss, and the seat budget is three per attempt.
+
+#### Test Execution
+> **Feature File:** [DLR-062](../manual-testing-playbook/council/divergent-council-quorum-retry.md)
+
 ---
 
 ## 14. FAN-OUT
@@ -952,3 +994,6 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 | DLR-059 | [F059 Fan-out pair replay](../feature-catalog/fanout/fanout-pair-replay.md) | [fanout/fanout-pair-replay.md](../manual-testing-playbook/fanout/fanout-pair-replay.md) |
 | DLR-060 | [F004 Prompt pack](../feature-catalog/prompt-rendering/prompt-pack.md) | [prompt-rendering/research-prompt-pack-contract.md](../manual-testing-playbook/prompt-rendering/research-prompt-pack-contract.md) |
 | DLR-061 | [F013 Coverage graph signals](../feature-catalog/coverage-graph/coverage-graph-signals.md) | [coverage-graph/source-quality-class-derivation.md](../manual-testing-playbook/coverage-graph/source-quality-class-derivation.md) |
+| DLR-062 | No dedicated catalog entry | [council/divergent-council-quorum-retry.md](../manual-testing-playbook/council/divergent-council-quorum-retry.md) |
+| DLR-063 | No dedicated catalog entry | [executor/landed-iteration-skips-redispatch.md](../manual-testing-playbook/executor/landed-iteration-skips-redispatch.md) |
+| DLR-064 | No dedicated catalog entry | [executor/research-claude-config-dir.md](../manual-testing-playbook/executor/research-claude-config-dir.md) |

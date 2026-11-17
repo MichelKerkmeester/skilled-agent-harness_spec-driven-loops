@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.11.3.0
+version: 1.11.4.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -28,7 +28,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 59 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (42 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063), and §17 covers fan-out dispatch (5 scenarios under DRV-064..067 and DRV-071). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 60 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (42 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063), and §17 covers fan-out dispatch (5 scenarios under DRV-064..067 and DRV-071). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -242,7 +242,7 @@ Expected signals: The scope discovery step has resolution rules for each target 
 
 ## 9. ITERATION EXECUTION AND STATE DISCIPLINE
 
-This category covers 8 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 9 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DRV-008 | Review iteration reads state before review
 
@@ -347,6 +347,19 @@ Expected signals: `graphEvents` referenced as iteration-record input for graph-a
 
 #### Test Execution
 > **Feature File:** [DRV-015](../manual-testing-playbook/iteration-execution-and-state-discipline/graph-events-review.md)
+
+### DRV-073 | Review Next Focus names the first uncovered dimension
+
+#### Description
+Verify that deep-review Next Focus, in the strategy and in the dashboard, names the first uncovered required dimension when the latest leaf's free text names no dimension.
+
+#### Scenario Contract
+Prompt: `Check that deep-review Next Focus names the first uncovered dimension when the latest leaf's free text names no dimension, in the strategy file and in the dashboard. Return a PASS or FAIL verdict with the reason.`
+
+Expected signals: The review reducer case for the first uncovered dimension passes, and one base pick feeds both the strategy `11. NEXT FOCUS` block and the dashboard Next Focus.
+
+#### Test Execution
+> **Feature File:** [DRV-073](../manual-testing-playbook/iteration-execution-and-state-discipline/review-next-focus-first-uncovered-dimension.md)
 
 ---
 

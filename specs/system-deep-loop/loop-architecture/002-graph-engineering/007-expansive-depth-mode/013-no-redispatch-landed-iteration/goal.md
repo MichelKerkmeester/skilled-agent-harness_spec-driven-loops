@@ -58,7 +58,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/verify-iteration.vitest.ts tests/unit/loop-counters-derivation.vitest.ts tests/unit/deep-research-reduce-state.vitest.ts tests/unit/deep-review-state-reducer.vitest.ts` exits 0 with the new cases.
 - [x] The YAML assertion in `verify-iteration.vitest.ts` fails against the pre-change YAMLs.
 - [x] `node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs` exits 0.
-- [ ] The `runtime/manual-testing-playbook` index lists a no-redispatch scenario written by `/create:manual-testing-playbook`.
+- [x] The `runtime/manual-testing-playbook` index lists a no-redispatch scenario written by `/create:manual-testing-playbook`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,6 +80,7 @@ and findings belong here.
 | Implementation | Done | `fd802c23af4` (skip clause in both rules plus the verify-iteration cases) and `f58d2e58872` (command notes, landed-then-error fixtures, both contracts regenerated). The four suites pass 115. The grep prints `deep-research.yaml:1683` and `deep-review.yaml:1772`. `check-contract-drift.cjs` prints `OK commands=2` |
 | Fail before | Done | The YAML assertion printed `2 failed \| 43 passed` against the pre-change YAMLs |
 | Playbook and changelog | Pending | Written by `@markdown` in the integration worktree after merge (T011, T012) |
+| Playbook and changelog | Partly done | DLR-063 scenario, `changelog/v2.1.5.0.md` (system-deep-loop 2.1.5.0), and the walk record in `scratch/walk-DLR-063.txt`. The walk ran the suites and the rule text, not a live dispatch. The full runtime suite stays at the merge gate |
 
 ### Deviations and findings
 

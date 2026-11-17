@@ -1,0 +1,11 @@
+# Walk of DLR-063, run from the integration worktree; each command with its exit status
+$ npx vitest run verify-iteration.vitest  (exit 0)
+ Test Files  1 passed (1)
+      Tests  48 passed (48)
+$ npx vitest run loop-counters-derivation.vitest  (exit 0)
+ Test Files  1 passed (1)
+      Tests  17 passed (17)
+$ rg skip clause (both workflows)
+.skilled/commands/deep/assets/deep-review.yaml:1782:            redispatch_once: "On the FIRST failure of the mechanical
+.skilled/commands/deep/assets/deep-research.yaml:1698:            redispatch_once: "On the FIRST failure of the mechanic
+rg exit=0

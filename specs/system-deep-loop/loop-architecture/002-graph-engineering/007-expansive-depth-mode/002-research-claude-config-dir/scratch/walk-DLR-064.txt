@@ -1,0 +1,15 @@
+# Walk of DLR-064, run from the integration worktree; each command with its exit status
+$ npx vitest run dispatch-iteration.vitest  (exit 0)
+ Test Files  1 passed (1)
+      Tests  8 passed | 2 skipped (10)
+$ npx vitest run executor-audit-cli-branch-receipts.test  (exit 0)
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+# Live step: not run. The session runs inside Claude Code, so the Claude ancestry guard skips the live cases (see dispatch-iteration.vitest skipIf underClaudeAncestry).
+$ rg flag
+44:    + ' --timeout-seconds <n> [--claude-config-dir <dir>] [--spec-folder <dir>]';
+132:  'claude-config-dir',
+217:    throw new UsageError("missing required flag '--claude-config-dir'");
+$ rg render slot
+1596:            node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-claude-code
+1601:            optional_claude_config_dir_flag: |

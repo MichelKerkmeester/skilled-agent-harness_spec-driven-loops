@@ -58,7 +58,7 @@ Frozen choices. Changing one is an amendment.
 - [x] The new research config-dir case in `dispatch-iteration.vitest.ts` fails against the pre-change `dispatch-iteration.cjs`.
 - [x] `grep -n "claude-config-dir" .skilled/commands/deep/assets/deep-research.yaml` prints the `if_cli_claude_code` command line.
 - [x] `node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs --command deep/research` exits 0.
-- [ ] The `runtime/manual-testing-playbook` index lists a research config-dir scenario written by `/create:manual-testing-playbook`.
+- [x] The `runtime/manual-testing-playbook` index lists a research config-dir scenario written by `/create:manual-testing-playbook`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -78,6 +78,7 @@ and findings belong here.
 | Phase spec authored | Done | `spec.md`, `plan.md`, `tasks.md` written 2026-11-17; implementation not started |
 | Baseline (T001) | Done | 2026-11-17 on integration tip `c898b3ad9a3`: the three suites 3 files, 23 passed. Full suite: the integration gate on that tip (3136 passed, 9 skipped, 1 load-sensitive `fanout-pool` failure that passes alone) |
 | Implementation | Done | 2026-11-17, branch `worktrees/465-ed-002-research-claude-config-dir`: commits `510e0906284` (script and tests) and the YAML/contract commit. Three suites 27 passed + 2 skipped in-session, all 10 dispatch cases pass detached; criteria 1-4 checked. Criterion 5 (playbook) waits for @markdown in integration |
+| Playbook and changelog | Partly done | DLR-064 scenario and `changelog/v2.1.6.0.md` (system-deep-loop 2.1.6.0). The suite half of the walk ran (`scratch/walk-DLR-064.txt`). The live walk is blocked by the Claude ancestry guard, so T013 stays blocked |
 
 ### Deviations and findings
 

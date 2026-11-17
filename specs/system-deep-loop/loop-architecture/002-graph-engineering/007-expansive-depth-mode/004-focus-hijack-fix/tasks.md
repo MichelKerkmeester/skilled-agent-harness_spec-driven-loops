@@ -57,8 +57,8 @@ contextType: "general"
 - [x] T008 Run the three suites from the final state (`RT/tests/unit/`). Verify: `cd RT && npx vitest run SUITES` exits 0 and the pass count is the baseline plus the new cases. Done: 3 files, 68 passed, exit 0 (baseline 57 plus 11 new cases).
 - [x] T009 Confirm pivot and blocked-stop cases are unchanged (`RT/tests/unit/deep-research-reduce-state.vitest.ts`, `deep-review-state-reducer.vitest.ts`). Verify: `git diff --stat` on those two files shows only added lines. Done: `git diff` on both reducer suites shows 0 removed lines.
 - [x] T010 Write the default-focus change into the phase changelog note, naming both the Next Focus change and the filtered carried-forward list (`implementation-summary.md`). Verify: `rg -n "default" implementation-summary.md` prints the line that states Next Focus and the carried-forward list change on normal runs. Done: `implementation-summary.md` states the default-path change to Next Focus and the carried-forward list.
-- [B] T011 Write one playbook scenario per loop for the focus change through `/create:manual-testing-playbook system-deep-loop update --path .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook`, then again with `--path .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook` (category `iteration-execution-and-state-discipline/` in both). Verify: `rg -il "status sentence" .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook` and `rg -il "first uncovered" .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook` each list the new scenario; both print nothing before this phase. Blocked: written by @markdown in integration after merge.
-- [B] T012 Write the changelog entry for the default-path focus change through `/create:changelog`, naming the Next Focus change and the filtered carried-forward list (`.skilled/skills/system-deep-loop/changelog/`). Verify: `rg -n "carried-forward" .skilled/skills/system-deep-loop/changelog/` prints the new entry. Blocked: written by @markdown in integration after merge.
+- [x] T011 Write one playbook scenario per loop for the focus change through `/create:manual-testing-playbook system-deep-loop update --path .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook`, then again with `--path .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook` (category `iteration-execution-and-state-discipline/` in both). Verify: `rg -il "status sentence" .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook` and `rg -il "first uncovered" .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook` each list the new scenario; both print nothing before this phase. Done: DR-066 at `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/next-focus-ignores-answered-free-text.md` and DRV-073 at `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/review-next-focus-first-uncovered-dimension.md`, both indexed in their root playbooks.
+- [x] T012 Write the changelog entry for the default-path focus change through `/create:changelog`, naming the Next Focus change and the filtered carried-forward list (`.skilled/skills/system-deep-loop/changelog/`). Verify: `rg -n "carried-forward" .skilled/skills/system-deep-loop/changelog/` prints the new entry. Done: `.skilled/skills/system-deep-loop/changelog/v2.1.3.0.md`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -66,10 +66,10 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] The three suites exit 0 with the P0 cases red before and green after
-- [ ] Both playbook scenarios exist
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] The three suites exit 0 with the P0 cases red before and green after
+- [x] Both playbook scenarios exist
 <!-- /ANCHOR:completion -->
 
 ---
