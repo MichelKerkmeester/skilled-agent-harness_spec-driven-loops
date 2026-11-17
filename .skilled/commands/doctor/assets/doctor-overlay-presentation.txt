@@ -85,7 +85,7 @@ in-sync=[n] overlay-edited=[n] live-edited=[n] both-changed=[n] upstream-moved=[
 MISS     [one line per check that failed, when any did]
 STALE    root-file [path]: [the engine's line about the pin, one per stale root file]
 LAYOUT   [overlay]: [field] [from] belongs at [to]; run [the engine command] apply --relayout
-NOTE     [one line per note: a check the run skipped, or a value no record covers]
+NOTE     [one line per note: a check the run skipped, a value no record covers, or unowned upstream paths missing from the tree]
 AUDIT    [kind] [path], with --audit only
 audit=[n], with --audit only
 checked=[n] ok=[n] miss=[n]
@@ -113,7 +113,7 @@ The engine prints four more kinds of line after the counts, and the report tells
 |------|----------------|---------------|--------|
 | `STALE` | An upstream file named in a `repin.rootFiles` overlay changed since that overlay was pinned | A re-pin never copies a root file, so between re-pins this comparison is the only place the drift shows. It needs the checkout `pin.checkout` names with the pinned commit fetched. Without one the check does not run, and a `NOTE` line says it was skipped. Rebase the overlay onto the new upstream bytes, then set its `pinnedSha256` to theirs | fails the status |
 | `LAYOUT` | An overlay source sits off the layout path its destination maps to, such as a copy kept under `<overlay folder>/.skilled/skills/...` | The copy still applies, so the tree is not broken and nothing is lost. `/doctor:overlay apply --relayout` moves it to the same path with the leading dot dropped and points the manifest there | does not fail the status |
-| `NOTE` | The state file is schema version 1, a check was skipped because no checkout at the pin could be read, an operation keeps no record (`setKeyOnItem`, `insertObjectKeys`, a `set` through an array index), or an in-sync json-entry destination differs from its entry set applied to the pinned copy (`cross-check`) | Each line names its own fix. A `cross-check` line on a file a `regenerate` step writes means the step does not list that file in its `outputs` | does not fail the status |
+| `NOTE` | The state file is schema version 1, a check was skipped because no checkout at the pin could be read, an operation keeps no record (`setKeyOnItem`, `insertObjectKeys`, a `set` through an array index), an in-sync json-entry destination differs from its entry set applied to the pinned copy (`cross-check`), or unowned upstream paths at the pin are missing from the tree | Each line names its own fix. A `cross-check` line on a file a `regenerate` step writes means the step does not list that file in its `outputs` | does not fail the status |
 | `AUDIT` | Only with `--audit`. A vendored path that no overlay owns and no `generated` glob matches is `differs` from upstream at the pin, `missing` from the tree while upstream has it, or `extra` in the tree while upstream never had it | Nothing else reports a path like this, so the drift would otherwise go unseen until a re-pin or a strict write refused it | fails the status |
 
 `AUDIT    skipped: no upstream checkout at the pin` means the comparison could not run on this machine, because the manifest names no checkout that holds the pinned commit. Show it as printed and treat the audit as not run rather than as clean.
@@ -564,7 +564,7 @@ What each engine exit means for `Changed:`:
 | A `cannot-apply` line | The engine cannot apply a json-entry overlay's entry set to a file nobody edited. Do what the line's `fix:` text says to the entry set or the destination, then rerun `/doctor:overlay status` |
 | An `upstream-moved` line | A re-pin changed a file an overlay owns. Rebase the overlay source onto the new upstream bytes, then rerun `/doctor:overlay status` |
 | `regeneration failed` after an apply | The overlays landed and were recorded, but a generator failed. Read the failed step's output, fix it, then rerun `/doctor:overlay apply`. The rerun runs the regenerate steps again even when every destination is already in sync |
-| A `NOTE` line in a status report | Nothing failed. Do what the line says: run `apply` once for a version 1 state file, name or fetch the checkout for a skipped check, remove a value by hand when you drop an operation that keeps no record, or add a file a `regenerate` step writes to that step's `outputs` |
+| A `NOTE` line in a status report | Nothing failed. Do what the line says: run `apply` once for a version 1 state file, name or fetch the checkout for a skipped check, remove a value by hand when you drop an operation that keeps no record, add a file a `regenerate` step writes to that step's `outputs`, or restore missing upstream paths from the pinned commit |
 | The apply question was answered no | Nothing was written. Rerun `/doctor:overlay apply` when the report is acceptable |
 | A re-pin stage lists `blocked` overlays | Rebase each one onto the new upstream file, then rerun `/doctor:overlay repin --upstream <dir> --to <commit>` |
 | A re-pin refuses on an unowned file | The named file holds an edit made in place. Move it into an overlay or upstream, then rerun |

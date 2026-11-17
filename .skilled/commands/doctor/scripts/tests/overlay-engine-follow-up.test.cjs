@@ -1633,3 +1633,44 @@ test('status --audit skips the audit when the checkout lacks the pinned commit',
   assert.deepEqual(auditLines(audited.stdout), [AUDIT_SKIP_LINE], audited.output);
   assert.match(audited.stdout, /^audit=0$/m);
 });
+
+// A re-pin copies only the paths upstream changed, so an upstream path the tree
+// lost before it keeps missing through every later re-pin. Plain status lists
+// such paths as one note, without the cost of the full audit and without
+// failing the run.
+
+const MISSING_NOTE = /^NOTE {5}1 unowned upstream path at the pin is missing from the tree: \.skilled\/skills\/hub\/link; restore it from the pinned commit, and run status --audit for the full drift report$/m;
+
+test('plain status notes an unowned upstream path the tree lacks and still passes', (t) => {
+  const fixture = createAuditFixture(t);
+
+  const plain = fixture.run(['status']);
+  assert.equal(plain.code, 0, plain.output);
+  assert.match(plain.stdout, MISSING_NOTE);
+  assert.match(plain.stdout, /^RESULT: PASSED$/m);
+  // A differing or extra path is the audit's to report, so the note names only the missing one.
+  assert.doesNotMatch(plain.stdout, /b\.md|stray\.md/);
+
+  const json = JSON.parse(fixture.run(['status', '--json']).stdout);
+  assert.ok(json.notes.some((note) => note.startsWith('1 unowned upstream path at the pin is missing from the tree: ')),
+    JSON.stringify(json.notes));
+});
+
+test('status --audit lists the missing path once, as an AUDIT line and not as a note', (t) => {
+  const fixture = createAuditFixture(t);
+
+  const audited = fixture.run(['status', '--audit']);
+  assert.match(audited.stdout, /^AUDIT {4}missing \.skilled\/skills\/hub\/link$/m);
+  assert.doesNotMatch(audited.stdout, /^NOTE .*missing from the tree/m);
+});
+
+test('plain status prints no missing-path note when the pinned checkout cannot be read', (t) => {
+  for (const kind of ['no-repository', 'no-commit']) {
+    const fixture = createUnreadablePinFixture(t, kind);
+    fs.rmSync(path.join(fixture.tree, '.skilled/skills/hub/a.md'));
+
+    const plain = fixture.run(['status']);
+    assert.equal(plain.code, 0, plain.output);
+    assert.doesNotMatch(plain.stdout, /missing from the tree/, kind);
+  }
+});
