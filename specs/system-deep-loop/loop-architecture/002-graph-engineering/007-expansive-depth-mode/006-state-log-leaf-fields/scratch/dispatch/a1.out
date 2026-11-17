@@ -1,0 +1,32 @@
+**Changed path**
+`.skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts` (only file I touched; `deep-research-projections-contract.vitest.ts` was already modified by a sibling worker in this shared worktree, and `specs/.../scratch/dispatch/` is pre-existing untracked state).
+
+**New cases**
+- FAIL: `runs the findings gate on a findingsCount that arrives through the gateway` — `ok` came back `true`, because the projection drops `findingsCount`.
+- FAIL: `passes route proof from the projected state row itself` — `ok` is `true` but it warns `route proof for iteration 1 came from deltas/iter-001.jsonl; the deep-research-state.jsonl projection carries no leaf dispatch fields`, because the projection drops `target_agent`/`agent_definition_loaded`/`resolved_route`.
+- PASS: `keeps a passing verdict when findings are enumerated and answered questions sit in the key questions` (gate skipped today since the count never arrives).
+
+All 41 pre-existing cases pass (42 passed = 41 old + the one new passing case).
+
+**CHECK:** `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/verify-iteration.vitest.ts` — exit code **1** (as expected: the two new cases fail on today's code). Last 20 lines:
+
+```
++ Received:
+"route proof for iteration 1 came from deltas/iter-001.jsonl; the deep-research-state.jsonl projection carries no leaf dispatch fields"
+
+ ❯ tests/unit/verify-iteration.vitest.ts:1023:46
+    1021|     const r = verify('research', artifactDir, 1);
+    1022|     expect(r.ok).toBe(true);
+    1023|     expect((r.warnings ?? []).join(' ')).not.toMatch(/came from deltas…
+       |                                              ^
+    1024|   });
+    1025|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 42 passed (44)
+   Start at  21:03:54
+   Duration  3.95s (transform 59ms, setup 53ms, import 38ms, tests 3.74s, environment 0ms)
+```

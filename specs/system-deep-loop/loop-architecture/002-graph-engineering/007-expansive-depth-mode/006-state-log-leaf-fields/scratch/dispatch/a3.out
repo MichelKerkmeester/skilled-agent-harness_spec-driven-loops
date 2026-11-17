@@ -1,0 +1,26 @@
+**Changed path**
+`.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` (+68, only file I touched; the other modified files in `git status` belong to sibling dispatches)
+
+**New cases — all three pass (33 pre-existing still pass, 36/36 total)**
+- `resolves the single key question an iteration row names` — pass
+- `counts sourcesQueried from the iteration row among the run sources` — pass
+- `shows the row focusTrack and findingsCount in the dashboard` — pass
+
+**Two deviations, both forced by what the reducer actually does**
+1. Case 2 asserts the sources consumer honestly. `sourcesQueried` on a state-log iteration row reaches only `buildCoverageBySources` (`reduce-state.cjs:1981`) → `registry.metrics.coverageBySources` and the dashboard trend line `- coverageBySources: {"code":1}` (`:3033`). The reducer reports a category histogram, never raw paths — probed directly: a row with `sourcesQueried: ['src/stop.ts:12']` yields `{"code":1}`, and no surface anywhere contains `src/stop.ts:12`. So the assertion is `toEqual({ code: 1 })` plus the dashboard line, with a WHY comment; a `.toContain('src/stop.ts:12')` assertion would fail today for a reason outside the ten dropped fields, which contradicts EXPECTED.
+2. Case 2's name says `counts` rather than `lists`, to match what is asserted.
+
+Also added one line to the test-local `metrics` return type (`coverageBySources: Record<string, number>`) since the case reads it.
+
+**CHECK last 20 lines, exit code 0**
+```
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/463-ed-006-state-log-leaf-fields/.skilled/skills/system-deep-loop/runtime
+
+
+ Test Files  1 passed (1)
+      Tests  36 passed (36)
+   Start at  21:06:47
+   Duration  12.35s (transform 30ms, setup 21ms, import 29ms, tests 12.23s, environment 0ms)
+
+EXIT: 0
+```

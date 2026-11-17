@@ -1,0 +1,39 @@
+**Changed path:** `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts` (+36 lines, no other file touched by me)
+
+**New cases:**
+- `accepts an iteration_completed event carrying the leaf fields` — **FAILS** on today's code (`EnvelopeValidationError: Payload validator rejected the event`): `isData` in `lib/deep-research-ledger-schema/deep-research-ledger-schema.ts` requires exact fields for the stem and lists none of the ten leaf fields.
+- `still rejects an unlisted iteration_completed data field` — **PASSES** (same event plus `surpriseField: 'x'` is refused).
+- All 59 pre-existing cases pass.
+
+**CHECK** (`cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/deep-research-ledger-schema.vitest.ts`), exit code **1**:
+
+```
+ ✓ tests/unit/deep-research-ledger-schema.vitest.ts (58 tests) 9979ms
+     × accepts an iteration_completed event carrying the leaf fields 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |parallel| tests/unit/deep-research-ledger-schema.vitest.ts > deep-research typed ledger schema > accepts an iteration_completed event carrying the leaf fields
+AssertionError: expected [Function] to not throw an error but 'EnvelopeValidationError: Payload vali…' was thrown
+
+- Expected:
+undefined
+
++ Received:
+"EnvelopeValidationError: Payload validator rejected the event"
+
+ ❯ tests/unit/deep-research-ledger-schema.vitest.ts:1119:23
+    1117|       ...input,
+    1118|       data: data as DeepResearchPayloadMap['deep_research.iteration_co…
+    1119|     }, registry)).not.toThrow();
+       |                       ^
+    1120|   });
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 59 passed (60)
+   Start at  21:06:49
+   Duration  14.16s (transform 219ms, setup 25ms, import 253ms, tests 13.80s, environment 0ms)
+```
+
+Exit code from the run: `1` (the designed case-1 failure only).

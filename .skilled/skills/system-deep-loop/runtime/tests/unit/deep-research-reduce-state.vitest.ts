@@ -73,6 +73,7 @@ const {
         iterationsCompleted: number;
         openQuestions: number;
         resolvedQuestions: number;
+        coverageBySources: Record<string, number>;
       };
       keyQuestions?: Array<{
         id: string;
@@ -1560,6 +1561,73 @@ describe('deep-research reduce-state delta iteration merge', () => {
     expect(resourceMap).toContain('src/a.ts');
     const totalReferences = Number(/Total references\*\*: (\d+)/.exec(resourceMap)?.[1] ?? '0');
     expect(totalReferences).toBeGreaterThan(0);
+  });
+});
+
+describe('deep-research reduce-state state-log iteration rows', () => {
+  it('resolves the single key question an iteration row names', () => {
+    const specFolder = makeTempSpec();
+    writeStrategyWithQuestions(specFolder, [
+      '- [ ] Which file owns the stop?',
+      '- [ ] Which file writes the ledger?',
+    ]);
+    writeState(specFolder, `${JSON.stringify({
+      type: 'iteration',
+      iteration: 1,
+      run: 1,
+      status: 'complete',
+      newInfoRatio: 0.5,
+      ruledOut: [],
+      keyQuestions: ['Which file owns the stop?'],
+      answeredQuestions: ['Which file owns the stop?'],
+      timestamp: '2026-06-28T00:00:00.000Z',
+    })}\n`);
+
+    const result = reduceResearchState(specFolder, { write: false });
+
+    expect(result.strategy).toContain('- [x] Which file owns the stop?');
+    expect(result.registry.metrics?.resolvedQuestions).toBe(1);
+  });
+
+  it('counts sourcesQueried from the iteration row among the run sources', () => {
+    const specFolder = makeTempSpec();
+    writeState(specFolder, `${JSON.stringify({
+      type: 'iteration',
+      iteration: 1,
+      run: 1,
+      status: 'complete',
+      newInfoRatio: 0.5,
+      ruledOut: [],
+      sourcesQueried: ['src/stop.ts:12'],
+      timestamp: '2026-06-28T00:00:00.000Z',
+    })}\n`);
+
+    const result = reduceResearchState(specFolder, { write: false });
+
+    // The reducer reports a row's sourcesQueried as a category histogram, so the
+    // row is what puts a colon-bearing path in the code bucket.
+    expect(result.registry.metrics?.coverageBySources).toEqual({ code: 1 });
+    expect(result.dashboard).toContain('- coverageBySources: {"code":1}');
+  });
+
+  it('shows the row focusTrack and findingsCount in the dashboard', () => {
+    const specFolder = makeTempSpec();
+    writeState(specFolder, `${JSON.stringify({
+      type: 'iteration',
+      iteration: 1,
+      run: 1,
+      status: 'complete',
+      focus: 'stop path',
+      newInfoRatio: 0.5,
+      ruledOut: [],
+      focusTrack: 'stop-path',
+      findingsCount: 4,
+      timestamp: '2026-06-28T00:00:00.000Z',
+    })}\n`);
+
+    const result = reduceResearchState(specFolder, { write: false });
+
+    expect(result.dashboard).toContain('| 1 | stop path | stop-path | 0.50 | 4 | complete |');
   });
 });
 

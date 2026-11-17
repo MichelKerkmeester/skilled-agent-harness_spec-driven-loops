@@ -292,4 +292,70 @@ describe('append-mode-event legacy deep-research upcast seam', () => {
     expect((result.json.receipt as Record<string, unknown>).eventType)
       .toBe('deep-research.ledger.run-extended');
   });
+
+  it('carries the leaf dispatch, gate and telemetry fields of a legacy iteration row through the gateway', () => {
+    const runDir = createTempDir('iteration-leaf');
+    const authorityRoot = createTempDir('iteration-leaf-auth');
+    const env = { DEEP_LOOP_AUTHORITY_ROOT: authorityRoot };
+
+    expect(runCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, canonicalRunInitializedEvent())],
+      env,
+    ).exitCode).toBe(0);
+
+    // The research leaf writes one flat row per iteration, naming the same run,
+    // session and lineage the run-open event scoped so the upcaster admits it as
+    // that run's iteration completion. Dispatch, gate and telemetry fields the
+    // leaf records are what the state log is read back for.
+    const leafIteration = {
+      type: 'iteration',
+      iteration: 1,
+      runId: 'run-canonical-001',
+      sessionId: 'run-canonical-001',
+      lineageId: 'lineage-canonical-001',
+      mode: 'research',
+      target_agent: 'deep-research',
+      agent_definition_loaded: true,
+      resolved_route: 'Resolved route: mode=research target_agent=deep-research',
+      run: 1,
+      status: 'complete',
+      focus: 'trace a leaf iteration record through the append gateway',
+      findingsCount: 3,
+      newInfoRatio: 0.5,
+      noveltyJustification: 'The row names the dispatch target and the sources it queried.',
+      keyQuestions: ['does the gateway keep the leaf iteration fields'],
+      answeredQuestions: ['does the gateway keep the leaf iteration fields'],
+      ruledOut: [],
+      focusTrack: 'legacy state-log projection',
+      edgeCase: 'none',
+      toolsUsed: ['Read'],
+      sourcesQueried: ['src/file.ts:42'],
+    };
+
+    const appended = runCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, leafIteration)],
+      env,
+    );
+    expect(appended.exitCode, appended.stderr + appended.rawStdout).toBe(0);
+
+    const stateLog = readFileSync(join(runDir, 'research', 'deep-research-state.jsonl'), 'utf8')
+      .split('\n')
+      .filter(Boolean)
+      .map((line) => JSON.parse(line));
+    const row = stateLog.find((entry) => entry.type === 'iteration');
+    expect(row, appended.stderr + appended.rawStdout).toBeDefined();
+    expect(row).toMatchObject({
+      iteration: 1,
+      target_agent: 'deep-research',
+      agent_definition_loaded: true,
+      resolved_route: 'Resolved route: mode=research target_agent=deep-research',
+      findingsCount: 3,
+      noveltyJustification: 'The row names the dispatch target and the sources it queried.',
+      keyQuestions: ['does the gateway keep the leaf iteration fields'],
+      focusTrack: 'legacy state-log projection',
+      edgeCase: 'none',
+      toolsUsed: ['Read'],
+      sourcesQueried: ['src/file.ts:42'],
+    });
+  });
 });

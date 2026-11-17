@@ -1,0 +1,32 @@
+**CHANGED PATH**
+`.skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-legacy-seam.vitest.ts` (only file I edited; the other modified/untracked entries in `git status` were already dirty before this task — I touched none of them)
+
+**NEW CASE**
+- FAIL — `carries the leaf dispatch, gate and telemetry fields of a legacy iteration row through the gateway` — fails for exactly the intended reason: the gateway append returns exit 0 (`expect(appended.exitCode, …).toBe(0)` passes) and the projected `type: 'iteration'` row is found, then all ten keys are reported missing: `target_agent`, `agent_definition_loaded`, `resolved_route`, `findingsCount`, `keyQuestions`, `noveltyJustification`, `focusTrack`, `edgeCase`, `toolsUsed`, `sourcesQueried` (only `iteration: 1` matched).
+
+**PRE-EXISTING CASES** — all 6 PASS (including the legacy config upcast, the refusal, the canonical stem, the non-research mode, `run_extended`, and the legacy extended upcast).
+
+**CHECK OUTPUT (last 20 lines) + exit code**
+```
+-     "Read",
+-   ],
+  }
+
+ ❯ tests/unit/append-mode-event-legacy-seam.vitest.ts:347:17
+    345|     const row = stateLog.find((entry) => entry.type === 'iteration');
+    346|     expect(row, appended.stderr + appended.rawStdout).toBeDefined();
+    347|     expect(row).toMatchObject({
+       |                 ^
+    348|       iteration: 1,
+    349|       target_agent: 'deep-research',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 passed (7)
+   Start at  21:06:42
+   Duration  3.97s (transform 19ms, setup 22ms, import 7ms, tests 3.86s, environment 0ms)
+
+EXIT:1
+```
