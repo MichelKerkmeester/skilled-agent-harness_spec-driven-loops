@@ -1305,6 +1305,7 @@ workflow:
                   - pivot_id: "pivotId from the prepare result"
                   - pivot_paths_json: "paths from the prepare result as JSON"
                   - pivot_resumed: "resumed from the prepare result"
+                  - pivot_attempt: "attempt from the prepare result: 1, or 2 when the pivot was reopened after a retryable quorum failure"
                   - pivot_missing_seat_ids: "missingSeats ids from a pending result"
                   - pivot_seat_json: "For the current seat_id, its mandate object from missingSeats"
                   - pivot_seat_prompt: "For the current seat_id, seatPrompts[seat_id]"
@@ -1315,6 +1316,7 @@ workflow:
                 action: "Natively dispatch one read-only review direction-selection seat"
                 for_each: "seat_id in [seat-001, seat-002, seat-003], in that order. Run this step and then step_record_pivot_seat for one seat before the next seat starts. Seat roles: seat-001 analytical, seat-002 critical, seat-003 pragmatic."
                 skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain seat_id"
+                attempt_scope: "Dispatch the seats of pivot_attempt only. Attempt 2 reuses the seat ids seat-001 to seat-003 and the same seat prompts; pivot_paths_json and dispatchContext.round name attempt 2, so step_record_pivot_seat writes attempt-2 events and files."
                 dry_run_boundary: "dispatch"
                 capture_timing: true
                 if_native:
@@ -1349,6 +1351,14 @@ workflow:
                 working_directory: "{repo_root}"
                 outputs:
                   - pivot_finalize_json: "The complete parsed final result"
+                  - pivot_finalize_retryable: "retryable from the finalize result when it is true, else false"
+
+              step_retry_divergent_pivot_once:
+                action: "Reopen the pivot once as attempt 2 when finalize reports a retryable council quorum failure"
+                skip_when: "pivot_prepare_status != 'pending' or pivot_finalize_retryable != true or pivot_attempt == 2"
+                retryable: "Only a first-attempt quorum failure is retryable. Re-enter step_prepare_divergent_pivot with the same arguments; it returns status pending with attempt 2 and three missing seats, and the dispatch, record and finalize steps run again for that attempt."
+                return_to: step_prepare_divergent_pivot
+                fail_closed: "A second quorum failure is terminal: finalize returns status failed without retryable, this step is skipped, and the branch fails closed through the existing if_failed log line. A council agreement failure is never retryable."
 
               step_resolve_divergent_pivot_result:
                 action: "Use prepare's terminal result on resume/short-circuit, otherwise use finalize's result"

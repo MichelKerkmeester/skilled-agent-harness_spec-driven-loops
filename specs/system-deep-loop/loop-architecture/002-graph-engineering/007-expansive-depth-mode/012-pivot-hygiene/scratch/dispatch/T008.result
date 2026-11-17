@@ -1,0 +1,3 @@
+rc=0 secs=286
+main-new:  M .skilled/hooks/shared/session-readers/README.md;
+wt-new:  M .skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs; M .skilled/skills/system-deep-loop/runtime/tests/unit/divergent-pivot-cli.vitest.ts;?? specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/scratch/dispatch/T008.out.jsonl;

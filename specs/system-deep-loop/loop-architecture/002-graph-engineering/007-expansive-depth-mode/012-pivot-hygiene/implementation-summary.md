@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Divergent pivot hygiene: seat cap scope, dead minRemainingIterations guard, one council retry"
-description: "Implementation has not started. Only the setup task T001 is done: the operator chose on 2026-11-17 to cap council seat outputs at 3 per council attempt, with at most one retry per pivot."
+description: "The pivot seat cap now bounds one council attempt at 3 seat outputs, the dead remaining-iterations guard is gone, and a first-attempt quorum failure reopens the pivot once as attempt 2. Code, tests, workflows, references and contracts are done; the changelog, playbook and catalog pages wait for the @markdown pass in integration."
 trigger_phrases:
   - "pivot hygiene implementation summary"
 importance_tier: "normal"
@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene"
-    last_updated_at: "2026-11-17T16:56:43Z"
-    last_updated_by: "generate-context"
-    recent_action: "13 build phases authored; decisions recorded"
-    next_safe_action: "Plan and build 001-completed-run-extension"
+    last_updated_at: "2026-11-17T23:30:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Built and verified the seat cap, retry, seat scoping, YAML re-entry and contracts"
+    next_safe_action: "Merge into integration; @markdown writes T014, T015 and T018"
     packet_purpose: "Purpose: The seat cap has the scope the operator chose, the dead guard no longer pretends to protect anything, and a transient council quorum failure gets exactly one retry inside the seat budget."
     blockers: []
     key_files:
@@ -27,7 +27,7 @@ _memory:
       savedAt: "2026-11-17T16:56:43Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 0
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -45,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 012-pivot-hygiene |
-| **Completed** | Not complete. Setup task T001 done 2026-11-17 |
+| **Completed** | Implementation done 2026-11-17 on branch `worktrees/464-ed-012-pivot-hygiene`. T014, T015 and T018 wait for the @markdown pass after merge |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -54,14 +54,21 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-No runtime code has changed yet. The operator decided ADR-001 on 2026-11-17 in two steps (OD-001 and OD-002), and that decision is recorded in `decision-record.md`, which unblocks the implementation tasks in `tasks.md`.
+A divergent pivot's council now has the seat budget the operator chose. `maxCouncilSeatOutputs` defaults to 3 and bounds one council attempt. The check runs only when an attempt opens, so a later pivot is never refused because an earlier one used seats, and a resumed attempt holding two seat returns is not refused either. The unreachable `minRemainingIterations` comparison is gone, while the field still loads from configs and persisted limits.
+
+A first-attempt quorum failure (a seat that does not return, or a report that does not parse) is no longer terminal. Finalize writes a `pivot_attempt_failed` event instead of `pivot_failed` and returns `retryable: true`. Prepare then reopens the same pivot as attempt 2, which has its own seat event ids (`<pivotId>:attempt-2:pivot_seat_returned:<seat>`), its own `council/attempt-2/` seat and deliberation files, and `attempt: 2` in the persisted config. A second quorum miss, or three valid seats that disagree, stays terminal. Attempt 1 keeps every id, path and config byte it had, so pivots written before this change still load.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `decision-record.md` | Modified | ADR-001 Accepted with the operator's choices and two Operator Decisions rows |
-| `plan.md`, `tasks.md`, `spec.md` | Modified | The rejected option's branch removed, the retry given its own 3 seats; T001 marked done |
+| `runtime/lib/deep-loop/divergent-pivot.ts` | Modified | Per-attempt cap, dead guard removed, attempt identity, one-time retry, `runDivergentPivot` loops at most twice |
+| `deep-research/scripts/divergent-research-pivot.ts`, `deep-review/scripts/divergent-review-pivot.ts` | Modified | Count seat outputs only for the pivot about to be prepared and its current attempt |
+| `runtime/scripts/divergent-pivot.cjs` | Modified | Header documents the retry contract; no code change was needed |
+| `.skilled/commands/deep/assets/deep-research.yaml`, `deep-review.yaml` | Modified | `pivot_attempt` and `pivot_finalize_retryable` outputs and `step_retry_divergent_pivot_once` |
+| `deep-research/references/convergence/convergence.md`, `deep-review/references/convergence/convergence.md` | Modified | Describe the retry and the 6-seat ceiling per pivot |
+| `compiled/deep-research.contract.markdown`, `compiled/deep-review.contract.markdown` | Regenerated | Source digests follow the YAML and reference edits |
+| `runtime/tests/integration/divergent-pivot.vitest.ts`, `runtime/tests/unit/divergent-pivot-cli.vitest.ts`, `runtime/tests/unit/divergent-pivot-seat-scope.vitest.ts` (new) | Modified, created | Cases for every requirement |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -69,7 +76,7 @@ No runtime code has changed yet. The operator decided ADR-001 on 2026-11-17 in t
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The decision was recorded in the spec documents only. No code was written, and nothing was committed.
+Each implementation task went to DeepSeek V4.1 Flash on the OpenCode Go lane as one brief (`scratch/dispatch/`). The orchestrator read every diff and reran each check itself. Commits on the phase branch: `c06f0f06831` (cap, guard, attempt identity), `df76ba090ef` (retry), `d775beb7e75` (seat scoping, CLI contract) and the final docs and workflow commit.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -80,6 +87,8 @@ The decision was recorded in the spec documents only. No code was written, and n
 | Decision | Why |
 |----------|-----|
 | Cap council seat outputs per pivot, 3 per council attempt, with at most one retry per pivot on a quorum failure, so one pivot uses at most 6; `maxPivots: 3` still caps the run. "Council" is divergent mode's internal three-seat vote in `runtime/lib/deep-loop/divergent-pivot.ts`, not the deprecated ai-council mode. | A failed or resumed pivot no longer shrinks later pivots, and the retry fits because it gets its own 3 seats. The run ceiling rises from 9 to 18 seat outputs. A lifetime cap shared across pivots was rejected. |
+| A resumed prepare reuses the persisted `usageAtStart` and `limits` | Found while building T004: a caller-reported count that changed after the pivot opened made the `pivot_started` replay and `persistConfig` throw a conflict. An opened pivot's inputs are frozen, so resume reads them back. |
+| Attempt 1 writes no `attempt` key and keeps today's ids and paths | Configs and events written before this change must keep replaying byte for byte. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -90,7 +99,11 @@ The decision was recorded in the spec documents only. No code was written, and n
 | Check | Result |
 |-------|--------|
 | `rg -n 'Accepted' decision-record.md` | Prints the ADR-001 status line |
-| Runtime suites | Not run yet; T002 captures the baseline |
+| T002 suites plus `divergent-pivot-seat-scope.vitest.ts` | 6 files, 61 passed (baseline 50 + 11 new cases) |
+| `npm run typecheck` in the runtime | Exit 0 |
+| YAML-reading suites (`stop-policy-yaml-parity`, `lifecycle-taxonomy-yaml-parity`, `workflow-session-id-parity` and 8 more) | 11 + 5 files pass |
+| `check-contract-drift.cjs` | `OK commands=2` |
+| Full runtime suite | Not run in the phase worktree; the orchestrator runs it at merge |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -98,7 +111,8 @@ The decision was recorded in the spec documents only. No code was written, and n
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No runtime change yet.** `divergent-pivot.ts`, both pivot scripts and both YAMLs are untouched until T003 to T011 land.
+1. **Changelog, playbook and catalog pages are not written yet.** T014, T015 and T018 need the @markdown agent and run in the integration worktree after merge.
+2. **The seat prompts do not name the attempt.** Attempt 2 dispatches the same three seat prompts; only the paths, event ids and `dispatchContext.round` differ.
 <!-- /ANCHOR:limitations -->
 
 ---

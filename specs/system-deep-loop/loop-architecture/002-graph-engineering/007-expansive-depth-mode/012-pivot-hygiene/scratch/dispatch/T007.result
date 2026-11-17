@@ -1,0 +1,3 @@
+rc=0 secs=407
+main-new: 
+wt-new:  M .skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts; M .skilled/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts;?? specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/scratch/dispatch/T007.out.jsonl;

@@ -15,6 +15,10 @@
 // Only prepare is mode-owned: it derives its input from the research or the
 // review state and renders that mode's seat prompts. record-seat and finalize
 // act on the persisted transaction alone, so neither takes a loop type.
+//
+// A first-attempt quorum failure is not terminal: finalize prints it with
+// retryable true, and the workflow calls prepare once more, which reopens the
+// same pivot as attempt 2 with three missing seats. Nothing retries a second time.
 
 'use strict';
 
