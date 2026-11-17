@@ -62,7 +62,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
-      "sha256": "7840a5e706061b1f8c522c01b7d84c305aa012fb0aa2f6ece232b0b71b366b1e",
+      "sha256": "2065ca554cf16408fa46631c2f1bd6c765f6aab14be190e7f2076b44ad04aac8",
       "section": "full"
     },
     {

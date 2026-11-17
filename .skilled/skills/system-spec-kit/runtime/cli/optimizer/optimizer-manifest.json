@@ -108,6 +108,11 @@
       "contract": "anti-convergence contract"
     },
     {
+      "name": "antiConvergence.depthMode",
+      "reason": "Depth mode selects whether the run grows its own question frontier and must not be optimizer-tuned.",
+      "contract": "anti-convergence contract"
+    },
+    {
       "name": "convergenceMode",
       "reason": "Legacy convergence mode selects stop semantics and must not be optimizer-tuned.",
       "contract": "anti-convergence contract"
@@ -120,7 +125,7 @@
       "description": "Reject anti-convergence candidates before scoring when the floor exceeds the hard iteration cap.",
       "products": ["deep-research", "deep-review"],
       "rejectBeforeScoring": true,
-      "lockedFields": ["antiConvergence.convergenceMode", "convergenceMode"],
+      "lockedFields": ["antiConvergence.convergenceMode", "convergenceMode", "antiConvergence.depthMode"],
       "conditionalTunableFields": [
         {
           "name": "minIterations",

@@ -125,6 +125,17 @@ describe('optimizer manifest anti-convergence contract', () => {
     expect(group.lockedFields).toEqual(expect.arrayContaining(['convergenceMode', 'antiConvergence.convergenceMode']));
   });
 
+  it('keeps depth mode locked out of the tunable field registry', () => {
+    const manifest = readManifest();
+    const tunableNames = manifest.tunableFields.map((field) => field.name);
+    const lockedNames = manifest.lockedFields.map((field) => field.name);
+    const group = antiConvergenceGroup(manifest);
+
+    expect(tunableNames).not.toContain('antiConvergence.depthMode');
+    expect(lockedNames).toContain('antiConvergence.depthMode');
+    expect(group.lockedFields).toContain('antiConvergence.depthMode');
+  });
+
   it('declares the iteration-floor invariant as a pre-scoring rejection gate', () => {
     const group = antiConvergenceGroup(readManifest());
 

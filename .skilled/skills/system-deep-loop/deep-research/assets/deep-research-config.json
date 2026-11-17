@@ -5,7 +5,14 @@
   "antiConvergence": {
     "minIterations": 3,
     "convergenceMode": "default",
+    "depthMode": "default",
     "stopPolicy": "fail-closed"
+  },
+  "expansiveDepth": {
+    "maxDepth": 3,
+    "maxChildrenPerNode": 6,
+    "budgetSplit": { "depth1": 0.5, "depth2": 0.35, "depth3": 0.15 },
+    "maxFrontierNodes": null
   },
   "stuckThreshold": 3,
   "maxDurationMinutes": 120,
@@ -77,7 +84,7 @@
     "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
     "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
     "tunableFields": ["convergenceThreshold", "stuckThreshold", "maxIterations"],
-    "lockedFields": ["lineage", "reducer", "fileProtection", "sessionId", "status", "antiConvergence.convergenceMode", "antiConvergence.stopPolicy"],
+    "lockedFields": ["lineage", "reducer", "fileProtection", "sessionId", "status", "antiConvergence.convergenceMode", "antiConvergence.depthMode", "antiConvergence.stopPolicy"],
     "promotionMode": "advisory-only"
   }
 }
