@@ -755,6 +755,33 @@ function buildLineageExecutors(lineageData) {
  * Deduplicates by findingId; cross-model attribution via lineage labels.
  * Returns the merged registry object.
  */
+const FRONTIER_STATUSES = ['open', 'active', 'answered', 'blocked', 'exhausted', 'abstained', 'pruned'];
+
+// Lineages number the nodes they admit locally, so a node keeps its lineage
+// label beside its id. The partition guard reads the depth-1 split the fan-out
+// runner recorded: a node dealt to a lineage that no lineage reports was lost,
+// and the guard names it instead of letting the merged frontier look complete.
+function mergeResearchFrontier(lineageData, frontierPartition) {
+  const nodes = [];
+  for (const { label, registry } of [...lineageData].sort((left, right) => compareText(left.label, right.label))) {
+    const lineageNodes = Array.isArray(registry?.frontier?.nodes) ? registry.frontier.nodes : [];
+    for (const node of lineageNodes) nodes.push({ ...node, lineage: label });
+  }
+  nodes.sort((left, right) => compareText(left.lineage, right.lineage) || compareText(left.nodeId, right.nodeId));
+  const stats = { total: nodes.length };
+  for (const status of FRONTIER_STATUSES) stats[status] = nodes.filter((node) => node.status === status).length;
+  const reported = new Set(nodes.map((node) => node.nodeId));
+  const expected = frontierPartition && typeof frontierPartition === 'object'
+    ? Object.values(frontierPartition).flatMap((ids) => (Array.isArray(ids) ? ids : []))
+    : [];
+  const missing = [...new Set(expected.filter((id) => !reported.has(id)))].sort(compareText);
+  return {
+    nodes,
+    stats,
+    ...(expected.length > 0 ? { partitionGuard: { passed: missing.length === 0, missing } } : {}),
+  };
+}
+
 function mergeResearchRegistries(lineageData, options = {}) {
   const mergeOptions = resolveMergeOptions(options);
   const findingById = mergeOptions.enableNearDuplicateDedup ? createFindingBucketIndex() : new Map();
@@ -830,6 +857,8 @@ function mergeResearchRegistries(lineageData, options = {}) {
         lineageData.length
       : 0;
 
+  const hasFrontier = lineageData.some(({ registry }) => registry && registry.frontier && Array.isArray(registry.frontier.nodes));
+
   return {
     mergedFrom: lineageData.map(({ label }) => label).sort(),
     lineageExecutors: buildLineageExecutors(lineageData),
@@ -854,6 +883,7 @@ function mergeResearchRegistries(lineageData, options = {}) {
       coverageBySources: {},
     },
     ...(schemaWarnings.length > 0 ? { schema_mismatch: schemaWarnings } : {}),
+    ...(hasFrontier ? { frontier: mergeResearchFrontier(lineageData, options.frontierPartition) } : {}),
   };
 }
 
@@ -1684,7 +1714,10 @@ async function main() {
   if (loopType === 'review') {
     mergedRegistry = mergeReviewRegistries(lineagesWithRegistry, resolveMergeOptions(args));
   } else {
-    mergedRegistry = mergeResearchRegistries(lineagesWithRegistry, resolveMergeOptions(args));
+    mergedRegistry = mergeResearchRegistries(lineagesWithRegistry, {
+      ...resolveMergeOptions(args),
+      frontierPartition: orchestrationSummary.frontier_partition ?? null,
+    });
   }
 
   // Write merged registry to base artifact dir (replacing single-executor path).
@@ -1709,6 +1742,10 @@ async function main() {
   assertSafeOutputPath(artifactRoot, attributionPath, 'fan-out attribution');
   writeTextAtomic(attributionPath, buildAttributionMd(lineageData, loopType, { refusedLineages: refusedProvenance }));
 
+  if (mergedRegistry.frontier?.partitionGuard && !mergedRegistry.frontier.partitionGuard.passed) {
+    process.stderr.write(`${JSON.stringify({ warning: 'frontier_partition_guard_failed', missing: mergedRegistry.frontier.partitionGuard.missing })}\n`);
+  }
+
   jsonOut({
     status: 'ok',
     loop_type: loopType,
@@ -1722,12 +1759,15 @@ async function main() {
     ...(reconstructionWarnings.length > 0 ? { reconstruction_warnings: reconstructionWarnings } : {}),
     ...(loopType === 'review'
       ? { merged_verdict: mergedRegistry.mergedVerdict, active_p0: mergedRegistry.activeP0, active_p1: mergedRegistry.activeP1, active_p2: mergedRegistry.activeP2, search_debt: mergedRegistry.searchDebt.length, failed_required_gate_ids: mergedRegistry.failedRequiredGateIds }
-      : { key_findings: mergedRegistry.keyFindings?.length ?? 0 }),
+      : {
+        key_findings: mergedRegistry.keyFindings?.length ?? 0,
+        ...(mergedRegistry.frontier?.partitionGuard ? { frontier_partition_guard: mergedRegistry.frontier.partitionGuard } : {}),
+      }),
   });
 }
 
 // Exports for unit testing
-module.exports = { mergeResearchRegistries, mergeReviewRegistries, buildAttributionMd, reconstructReviewRegistryFromState, reconstructResearchRegistryFromState, normalizeRegistrySchema };
+module.exports = { mergeResearchRegistries, mergeResearchFrontier, mergeReviewRegistries, buildAttributionMd, reconstructReviewRegistryFromState, reconstructResearchRegistryFromState, normalizeRegistrySchema };
 
 if (require.main === module) {
   main().catch((err) => {
