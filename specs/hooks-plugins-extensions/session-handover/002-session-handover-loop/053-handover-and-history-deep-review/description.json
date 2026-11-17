@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review",
+  "description": "Phase 53: handover-and-history-deep-review",
+  "keywords": [
+    "phase",
+    "handover-and-history-deep-review"
+  ],
+  "lastUpdated": "2026-11-17T07:10:34.997Z",
+  "specId": "053",
+  "folderSlug": "handover-and-history-deep-review",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-11-26_08-10__manual-context-save.md"
+  ]
+}
