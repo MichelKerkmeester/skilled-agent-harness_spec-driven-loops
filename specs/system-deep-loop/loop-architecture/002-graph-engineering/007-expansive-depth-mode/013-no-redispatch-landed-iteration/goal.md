@@ -90,4 +90,5 @@ and findings belong here.
 | Open questions 2026-11-17 | Both `spec.md` §7 questions took their recommended defaults (`decision-record.md` OD-002): the route-proof redispatch is unchanged, and the still-fails error row keeps superseding the landed record. |
 | Vibe child cannot run tests | The repository's Vibe hooks deny `node` and `vitest` inside the child, so each brief asked for the edit only, and the orchestrator ran every check. |
 | Plan review amendments 2026-11-17 | Applied the Fable 5.2 plan review: shared literal clause because the two rules differ today; `command_note` lines updated; `stop-policy-yaml-parity` dropped from the test plan; a landed-plus-error-row fixture pins the still-fails consequence; test commands run from `runtime/`; both contracts regenerated; the playbook scenario goes through `/create:manual-testing-playbook`. |
+| 2026-11-17 23:1x | DLR-063 walked live, PASS (T011 ticked): a landed iteration failing with `executor_missing` was not dispatched again (receipts unchanged at 10), and `delta_file_missing` still redispatches. |
 <!-- /ANCHOR:log -->
