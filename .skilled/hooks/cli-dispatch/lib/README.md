@@ -14,59 +14,152 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`.skilled/hooks/cli-dispatch/lib/` holds the runtime-neutral cores for the dispatch concern in this tree. The rule engine reads a `hard-rules.json` sidecar beside a dispatch skill's `SKILL.md`. It evaluates each declared check against a composed command before that command spawns. The audit core recognizes a dispatch shape, scrubs the command and appends one audit line. The version resolver answers which OpenCode family a binary runs.
+`.skilled/hooks/cli-dispatch/lib/` holds the shared cores that the runtime adapters in this concern call. The rule engine reads a `hard-rules.json` sidecar beside a dispatch skill's `SKILL.md` and grades a composed command before anything runs. The audit core recognizes a finished dispatch and appends one redacted JSONL line. The version resolver answers which OpenCode family a binary runs, because a sidecar rule can declare that it applies to one family alone.
 
-The Claude, Codex, Devin, Pi, DSH and OpenCode adapters import these cores. Cursor's preflight spawns the Claude preflight, so it reaches them through that. Vibe's plugin calls `evaluateDispatch` from the rule engine before a bash call runs. The parent README holds each runtime's registration and its event.
+Current state:
 
-No core needs an external package or a daemon, so enforcement survives a skill advisor outage. None of the three cores writes to stdout or stderr. Each core fails open at its own boundary, so a bug cannot block a dispatch. The DSH preflight is the one adapter that denies when the shared core throws.
+- Every preflight in this concern uses the rule engine.
+- Cursor reaches the engine through the Claude preflight it spawns.
+- The audit adapters use the audit core. Vibe runs preflight only.
+- No core writes to stdout or stderr.
+
+Failures stay local. A rule check that throws counts as satisfied. A version probe that fails returns `unknown`. An audit write that cannot happen returns `false`. The DSH preflight is the exception in this tree, because it denies when the shared rule check throws.
 
 ---
 
-## 2. FILES
+## 2. PACKAGE TOPOLOGY
+
+```text
+dispatch-rule-checks.mjs ───▶ dispatch-audit.mjs
+          │
+          └───────────────▶ opencode-version.mjs
+```
+
+The arrow points one way. `dispatch-audit.mjs` and `opencode-version.mjs` import nothing from this folder, so either one loads on its own. The rule engine needs both. The audit core answers which packet governs a dispatch, and the version resolver decides which rules apply to a binary.
+
+The test files sit outside that order. Each one imports all three modules so it can build a fixture from the real cores. A core never imports a test.
+
+---
+
+## 3. FILES
 
 | File | Responsibility |
 |---|---|
-| `dispatch-rule-checks.mjs` | The hard-rule engine. |
-| `dispatch-rule-checks.test.mjs` | The `node --test` suite. |
-| `dispatch-audit.mjs` | The audit core. |
-| `dispatch-audit.test.mjs` | The `vitest` suite. |
-| `opencode-version-corpus.json` | Version-output samples for the resolver test. |
-| `opencode-version.mjs` | The OpenCode version resolver. |
+| `dispatch-rule-checks.mjs` | Reads the rule sidecars and grades a command against them. |
+| `dispatch-audit.mjs` | Recognizes a dispatch and writes one redacted JSONL line per call. |
+| `opencode-version.mjs` | Resolves an OpenCode binary to a supported family or `unknown`. |
+| `dispatch-rule-checks.test.mjs` | `node --test` suite for the rule engine. |
+| `dispatch-audit.test.mjs` | `vitest` suite for the audit core. |
+| `opencode-version-corpus.json` | Version-output samples the rule engine suite parses. |
 
-`dispatch-rule-checks.mjs` exports `readHardRules`, `evaluate`, `evaluateDispatch`, `CHECKS` and `KNOWN_CHECKS`. `CHECKS` holds the 40 check functions that a sidecar rule names. `evaluate` maps `block` and `error` severity to a deny and every other severity to a warning. An unknown check id is skipped and a throwing check counts as satisfied.
-
-`dispatch-rule-checks.test.mjs` is the `node --test` suite for the rule engine. It covers rule loading, every check family, chain evaluation, the dispatch shapes and the OpenCode version resolver.
-
-`dispatch-audit.mjs` exports `DISPATCH_SHAPES`, `inspectDispatch`, `resolveDispatchPackets`, `resolveDispatchCommands`, `buildAuditLine`, `appendAuditLog` and `recordDispatch`. It scrubs secrets, truncates fields and appends a size-rotated JSONL line. Every exported function resolves without throwing past its own boundary.
-
-`dispatch-audit.test.mjs` is the `vitest` suite for the audit core. It covers dispatch recognition, the scrub and truncate pipeline, the rotated append and the kill switch. Run it with the pinned `.skilled/node_modules/.bin/vitest`, because `npx vitest` resolves a different copy.
-
-`opencode-version-corpus.json` holds version outputs and the family each one should resolve to, including `v1`, `v2` and `unknown` forms.
-
-`opencode-version.mjs` exports `resolveOpencodeVersionSync` and `SUPPORTED_FAMILIES`. It probes the first `opencode` on `PATH`, parses its version and caches the family as `v1` or `v2`. It returns `unknown` when the probe fails or the output holds no supported version.
+The test files cover one core each. The corpus file holds sample version output for the suite to parse.
 
 ---
 
-## 3. VALIDATION
+## 4. BOUNDARIES AND FLOW
 
-Run both suites from the repository root.
+| Boundary | Rule |
+|---|---|
+| Imports | Node builtins, plus the sibling cores the rule engine needs. Nothing from `node_modules`. |
+| Ownership | A rule about a dispatch belongs in a skill's sidecar. The code that reads it belongs here. |
+| Output | No stdout and no stderr. The audit path reports through its return value. |
+| Failure | A throwing check counts as satisfied. A failed write returns `false`. |
+
+The grade is a list. `evaluate` returns only the rules that failed. A rule with `block` or `error` severity keeps that weight so the adapter can deny. Every other severity becomes a warning. An unknown check id is skipped, so a typo in a sidecar loses its rule without an error. The rule engine suite is what catches that.
+
+`recordDispatch` checks the kill switch first. With `CLI_DISPATCH_AUDIT_DISABLED` set to `1`, it returns `false` before it reads the command.
+
+Main flow for one finished call:
+
+```text
+╭──────────────────────────────────────────╮
+│ adapter after a Bash call                │
+╰──────────────────────────────────────────╯
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ recordDispatch                           │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ isAuditDisabled                          │
+│ switch set to 1 → stop                   │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ matchDispatchShape                       │
+│ no dispatch shape → stop                 │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ extractDispatchMeta                      │
+│ model, target, duration, exit code       │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ buildAuditLine                           │
+│ scrub secrets, cap the command at 500    │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ appendAuditLog                           │
+│ rotate at 512 KB, append owner-only      │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+╭──────────────────────────────────────────╮
+│ true when written, false otherwise       │
+╰──────────────────────────────────────────╯
+```
+
+---
+
+## 5. ENTRYPOINTS
+
+| Entrypoint | Type | Purpose |
+|---|---|---|
+| `evaluateDispatch(command, skillsRoot, options)` | Function | Grades each dispatch in a chain against the rules of the packet that governs it and returns only the packets with violations. |
+| `evaluate(command, rules, options)` | Function | Grades one command against one rule array and returns only the violated rules. |
+| `readHardRules(skillMdPath)` | Function | Reads `hard-rules.json` beside a `SKILL.md`. Returns an empty array on any read or shape error. |
+| `recordDispatch(params)` | Function | Runs the audit pipeline for one finished call. |
+| `buildAuditLine(record)` | Function | Formats one JSONL line without writing it. Returns null when the record cannot be built. |
+| `appendAuditLog(logPath, line)` | Function | Writes one line and rotates the log first when it has reached the cap. |
+| `resolveOpencodeVersionSync(binary)` | Function | Runs the binary with `--version` and returns its family. |
+
+`CHECKS` holds the 40 check functions that a sidecar rule names by id. `KNOWN_CHECKS` is the key list. A sidecar rule with an id outside that list does nothing, and the rule engine suite fails on it.
+
+---
+
+## 6. VALIDATION
+
+Run the first command from the repository root.
 
 ```bash
 node --test .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs
 ```
 
-Expected result: every test passes and the runner exits 0.
+Expected result: `pass 64` with `fail 0`. The runner exits 0.
+
+Run the second command from the repository root.
 
 ```bash
-.skilled/node_modules/.bin/vitest run .skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs
+cd .skilled/hooks/cli-dispatch/lib && ../../../node_modules/.bin/vitest run dispatch-audit.test.mjs
 ```
 
-Expected result: every test passes and the runner exits 0.
+Expected result: `Test Files  1 passed (1)` and `Tests  133 passed (133)`. The runner exits 0.
+
+The rule engine suite also reads every `cli-*` sidecar and fails when a rule names a check id that `CHECKS` does not hold.
 
 ---
 
-## 4. RELATED
+## 7. RELATED
 
-- [`../README.md`](../README.md): the dispatch concern, the rule list and the runtime delivery table.
-- [`../claude/README.md`](../claude/README.md): the Claude adapters that call these cores.
-- [`../tests/dsh-dispatch.test.mjs`](../tests/dsh-dispatch.test.mjs): the DSH adapter tests that compare against these cores.
+- [The dispatch concern](../README.md) holds runtime registration and the kill switches.
+- [The Claude adapters](../claude/README.md) call these cores from preflight and post-tool hooks.
+- [The DSH adapter tests](../tests/dsh-dispatch.test.mjs) compare the DSH wrappers with the shared cores.
+- [The hooks library](../../README.md) lists the hook folders and their switches.

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Each runtime folder has a README for a person setting it up and a `SYNC.md` that records what is generated, linked or authored and how drift is caught",
     "created_at": "2026-11-16T15:20:17Z",
-    "last_save_at": "2026-11-17T17:09:08.203Z",
+    "last_save_at": "2026-11-17T17:13:57.383Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47865a5e9da77f4d62785d3f83b6957dfd5677b0a322624c6ed7fe17523f61fc",
+    "source_fingerprint": "sha256:5ea98f5e2797875484b20d0314f46c67db8f04386d37436709416ddd710c9a10",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "653ef532b7051200165342cbb61122a082733cb44ac33c5320566601aff2f7a0",
       "plan.md": "e31d5debcccaff17933fe742b32915ed2e0a7c74b0a0ce1f2ba246ec9991fcba",
-      "tasks.md": "9de9dc2ed480177ee84cc32685f29d52db1aab91b7f92b8a78944d00731a181d",
+      "tasks.md": "7fc02f768ff7ef3027814608909b9134562ec8283b0bb0bb69341511f005634e",
       "implementation-summary.md": "83fbbc4fc1f9b77a692899a822ffd27d25efb34482f51ec37db2ab547de4c923"
     },
     "last_active_at": null

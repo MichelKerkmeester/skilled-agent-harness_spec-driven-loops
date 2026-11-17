@@ -14,9 +14,11 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`tests/` holds the DSH suite for the injection screen concern. The suite imports the real shared core and the real adapter. It drives the adapter through the shared DSH plugin test helpers. It runs a parity case and a throw case against the real adapter. Together they confirm that the adapter and the shared library agree. They also confirm that the adapter's declared error policy holds.
+`tests/` holds the DSH suite for the classifier injection screen. Both cases register the real adapter. The parity case also runs the real shared core. The shared test helpers build the fake plugin context. The suite fires the `tools/post-execute` handler from it and reads the accepted result and the recorded log lines.
 
-This folder holds no runtime adapter, only the suite that exercises one. The per-runtime suites sit beside their adapters, in `claude/`, `devin/` and `pi/`. The `.dsh/plugins/repo-guards/` bundle registers the DSH adapter on `tools/post-execute` at load time. This suite is the only place that handler runs under test.
+The suite covers both sides of the adapter's contract. One case checks that a fetched result with no text passes through with no advisory attached. The other checks that a throwing core leaves the result accepted and logs one warning. Neither case reaches the Jev gate, because the parity case returns before the gate check and the throw case replaces the core. The suite runs without `jev` on PATH.
+
+This folder holds no runtime code. A runtime that keeps its suite beside its adapter does so in the adapter's folder. The DSH adapter folder holds no test, so its suite lives here.
 
 ---
 
@@ -26,9 +28,9 @@ This folder holds no runtime adapter, only the suite that exercises one. The per
 |---|---|
 | `dsh-classifier-injection-screen.test.mjs` | The `node --test` suite for the DSH adapter. |
 
-The parity case screens a fetched result that carries no text. `fetchedText([])` returns null, so `screenAdvisory` returns null for that input. The adapter then leaves the accepted result alone, with no `additionalContexts`.
+The parity case asks the core for the text in an empty block array, then for a verdict on that text. The verdict must be null. The case registers the adapter with the same core and with a notice factory that calls `assert.fail` if it ever runs. The adapter's fail-open catch would swallow that call, so the case rests on its two checks of the returned result. It fires the handler with a `web_fetch` call and an empty content array. The handler returns the accepted result with no `additionalContexts`, so the adapter adds nothing when there is nothing to screen.
 
-The throw case first asserts that `ERROR_POLICY` equals `fail-open`. It then stubs a core whose `screenAdvisory` throws on every call. The adapter catches the throw and returns the accepted result unchanged. The throw reaches `ctx.logger.warn` once, which the suite asserts as a single log line.
+The throw case reads `ERROR_POLICY` from the adapter and asserts `fail-open`. It then registers the adapter with a stub core whose `screenAdvisory` throws. The tool name is `mcp__sample__lookup`, so the case fails if the adapter stops screening MCP results. The handler returns the accepted result and records one `ctx.logger.warn` line.
 
 ---
 
@@ -40,14 +42,14 @@ Run from the repository root.
 node --test .skilled/hooks/classifier-injection-screen/tests/
 ```
 
-Expected result: both cases pass and the run reports no failures.
+Expected result: `pass 2` and `fail 0`, with exit status 0.
 
 ---
 
 ## 4. RELATED
 
-- [`../README.md`](../README.md): the injection screen concern, its decision rule and its switches.
-- [`../dsh/classifier-injection-screen.mjs`](../dsh/classifier-injection-screen.mjs): the adapter under test.
-- [`../lib/classifier-injection-advisory.mjs`](../lib/classifier-injection-advisory.mjs): the shared core the parity case compares against.
-- [`../../shared/tests/`](../../shared/tests/): the shared DSH plugin test helpers that build the plugin context and handlers.
-- [`../../../../.dsh/plugins/repo-guards/README.md`](../../../../.dsh/plugins/repo-guards/README.md): the DSH plugin bundle that registers the adapter.
+- [The injection screen concern](../README.md): its decision rule and its switches.
+- [The DSH adapter](../dsh/classifier-injection-screen.mjs): the handler under test.
+- [The shared core](../lib/classifier-injection-advisory.mjs): the text extraction and gate checks behind the adapter.
+- [The shared DSH test helpers](../../shared/tests/README.md): the fake plugin context and result helpers the suite imports from `dsh-plugin-harness.mjs`.
+- [The repo-guards bundle](../../../../.dsh/plugins/repo-guards/README.md): the DSH plugin that registers the adapter.

@@ -59,7 +59,7 @@ contextType: "general"
 - [x] T010 Rerun the link check and every consumer test (`plan.md` affected surfaces). Verify: `readme_links.py` prints `0 problems`, `check-markdown-links.cjs` prints `0 broken` and each consumer prints its pass line. Evidence: `0 problems` over 157 links, `15212 links checked, 0 broken`, and `opencode-compat-layout.test.cjs` `pass 21`.
 - [B] T011 Run the sk-doc suite (`run-script-tests.sh`). Verify: it exits 0. Blocked: `bash .skilled/skills/sk-doc/scripts/tests/run-script-tests.sh` exits 1 with `FAIL test_check_changelog_shape.py`, the same changelog failure that blocks phase 005 and outside this phase. 57 other tests pass.
 - [ ] T012 Record before and after numbers and close the packet docs (`implementation-summary.md`). Verify: `validate.sh --strict` on this folder prints `RESULT: PASSED`.
-- [ ] T013 Commit, merge origin/main and push under sk-git (`git log -1`). Verify: `git rev-parse HEAD origin/main` prints the same hash twice.
+- [x] T013 Commit, merge origin/main and push under sk-git (`git log -1`). Verify: `git rev-parse HEAD origin/main` prints the same hash twice. Evidence: commit `599674d9365` was merged with origin/main and pushed as `1a01cbe94c3`, and `git rev-parse HEAD origin/main` printed `1a01cbe94c3` twice.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -154,7 +154,7 @@ A blocked task is marked `[B]` with the failing command and its output beside it
 ## File Organization
 
 - [x] CHK-050 [P1] Temp files live in the scratchpad, never in the repository. Evidence: `git status` shows no untracked file from this phase
-- [ ] CHK-051 [P1] `git status --short` after the commit shows only paths this program does not own
+- [x] CHK-051 [P1] `git status --short` after the commit shows only paths this program does not own. Evidence: `git status --short` over the eight 006 runtime folders and this packet prints nothing
 <!-- /ANCHOR:file-org -->
 
 ---
