@@ -276,7 +276,9 @@ function renderArtifacts(variant: Variant): Record<Artifact, string> {
     'dashboard.md': normalize(reduced.dashboard, specFolder),
     'next-focus.txt': normalize(nextFocus, specFolder),
     'prompt-pack.md': normalize(promptPack, specFolder),
-    'lineage-prompt.txt': withoutExpansiveOnlyPersona(lineagePrompt),
+    // The lineage prompt resolves its write surface against the working directory,
+    // so that prefix is tokenized and the baseline holds in any checkout.
+    'lineage-prompt.txt': withoutExpansiveOnlyPersona(lineagePrompt.split(process.cwd()).join('<CWD>')),
     'stop-decision-config.json': `${JSON.stringify(decisionInput.config, null, 2)}\n`,
   };
 }

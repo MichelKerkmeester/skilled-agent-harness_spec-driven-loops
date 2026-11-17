@@ -2076,6 +2076,21 @@ describe('deep-research reduce-state expansive frontier', () => {
     expect(frontier.budget?.depth1.allotted).toBe(5);
   });
 
+  // A leaf may reword its focus line, so a visit counts wherever the node marker
+  // appears in it, not only when the focus starts with the dispatched line.
+  it('counts a visit when the leaf rewords the focus around the node marker', () => {
+    const specFolder = expansiveSpec();
+    writeNodes(specFolder, twoOpen());
+    const reworded = (n: number) => `Iteration ${n}: Frontier node F-1-001 (depth 1) on admission ownership`;
+    writeState(specFolder, stateOf([1, 2, 3, 4, 5].map((n) => iterationRow(n, reworded(n)))));
+
+    const { registry } = reduceResearchState(specFolder, { write: false });
+    const spent = frontierOf(registry).nodes.find((entry) => entry.nodeId === 'F-1-001');
+
+    expect(spent?.status).toBe('exhausted');
+    expect(spent?.reason).toBe('budget');
+  });
+
   it('renders the frontier metrics on an expansive dashboard only', () => {
     const expansiveFolder = expansiveSpec();
     writeNodes(expansiveFolder, twoOpen());

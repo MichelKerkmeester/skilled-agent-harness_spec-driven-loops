@@ -381,6 +381,7 @@ function renderFrontierBlock({ artifactDir, focus }) {
   const lines = [
     'FRONTIER (expansive depth)',
     `Current node: ${nodeId} at depth ${depth} of ${caps.maxDepth}, scope ${scope}.`,
+    `Copy the Focus Area line exactly into this iteration record's "focus", so the run can tell which node this iteration worked.`,
   ];
 
   if (depth >= caps.maxDepth) {

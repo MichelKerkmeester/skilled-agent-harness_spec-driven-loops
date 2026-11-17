@@ -616,7 +616,7 @@ command; bind artifact_dir directly to the override value.
 
 Run phase_init, phase_main_loop (to legal convergence OR config.maxIterations, whichever comes first), and phase_synthesis.
 Write EVERY file you create or modify inside .opencode/specs/system-speckit/999-golden/research/lineages/alpha and nowhere else — that directory is
-your entire write surface. Its absolute path is /Users/michelkerkmeester/worktrees/public/467-ed-010-research-frontier-mode/.skilled/skills/system-deep-loop/runtime/.opencode/specs/system-speckit/999-golden/research/lineages/alpha; the
+your entire write surface. Its absolute path is <CWD>/.opencode/specs/system-speckit/999-golden/research/lineages/alpha; the
 relative form is resolved from the repository root, so a path that drops the leading
 directories (for example one starting with review/ or research/) lands OUTSIDE the lineage and
 fails it. You may read anywhere, but do NOT modify, create, or delete any file

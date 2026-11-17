@@ -541,6 +541,7 @@ describe('frontier block', () => {
 
     expect(block.startsWith('\n\nFRONTIER (expansive depth)\nCurrent node: F-1-001 at depth 1 of 3')).toBe(true);
     expect(block).toContain('up to 2 `frontier_proposal` rows');
+    expect(block).toContain(`Copy the Focus Area line exactly into this iteration record's "focus"`);
   });
 
   it('returns an empty block when the focus names no node', () => {

@@ -2465,10 +2465,13 @@ function buildFrontierProjection(frontierInput, keyedQuestions) {
 // The frontier focus names the node and never repeats its question text: a
 // question resolves when an iteration's focus equals its text, so echoing the
 // text would close a node just by visiting it.
+// The leaf writes its own focus line and may reword it, so the node marker counts
+// wherever it appears; the id must end there, so F-1-001 never matches F-1-0010.
 function frontierNodeVisits(nodeId, iterationRecords) {
-  const prefix = `Frontier node ${nodeId} `;
+  const escaped = String(nodeId).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const marker = new RegExp(`(?:^|[^\\w-])Frontier node ${escaped}(?![\\w-])`);
   return (Array.isArray(iterationRecords) ? iterationRecords : [])
-    .filter((record) => typeof record?.focus === 'string' && record.focus.startsWith(prefix))
+    .filter((record) => typeof record?.focus === 'string' && marker.test(record.focus))
     .length;
 }
 
