@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-07-04
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/011-daemon-freshness-and-health-truthfulness/` (Level 2)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`
-
 ### Summary
 
 The dist-freshness checker no longer deadlocks. A successful build now pre-warms the per-entry source-hash cache, so the next freshness check short-circuits to fresh instead of falling through to an mtime comparison that could never write the cache. This removed the false-stale state that blocked the compiled validator and the memory CLI for a whole working session. `spec-memory.cjs` now exempts `--help`, `--version` and `completion` from the freshness gate. The health exclusion-audit queries `content_text` instead of the nonexistent `content` column, so the silent-risk diagnostic can fire again. Shipped in `40b26e3d9c`.
@@ -56,3 +53,6 @@ The dist-freshness checker no longer deadlocks. A successful build now pre-warms
 ### Follow-Ups
 
 - The exhaustive dist by argv by cache matrix and the hostile-env variant are approved deferrals, low-risk since the core deadlock is regression-covered.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/011-daemon-freshness-and-health-truthfulness/` (Level 2)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

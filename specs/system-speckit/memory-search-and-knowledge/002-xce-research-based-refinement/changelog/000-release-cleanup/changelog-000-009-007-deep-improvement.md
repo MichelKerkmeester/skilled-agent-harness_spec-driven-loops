@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/007-deep-improvement` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 All 22 deep-improvement reference and asset docs (18 references + 4 non-README assets) now carry exactly the canonical frontmatter contract. This is the largest phase of the campaign so far and the first to exercise every drift state at once: enum fixes, partial-block completion, net-new phrase authoring, and a doc with no frontmatter at all.
@@ -58,3 +55,6 @@ All 22 deep-improvement reference and asset docs (18 references + 4 non-README a
 
 - Live-daemon `matchedDocs` verification is deferred to a later campaign-level session cycle; the running advisor daemon predates the launcher allowlist fix and cannot observe doc triggers until restarted.
 - Several deep-improvement skill files carry unrelated uncommitted body changes from another active session. Rollback must revert frontmatter hunks per file rather than checking out whole files.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/007-deep-improvement` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

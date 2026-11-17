@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-20
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence`
-
 ### Summary
 
 This milestone is the TRACK B new-feature arc that ran after the flag-resolution reckoning closed. The deleted-10 teachings were read as a research input and produced four candidate features. eval-v2 was built first as the measurability gate, because the old harness had hidden the deleted features behind eval-saturation and a new candidate measured on it would repeat that mistake. eval-v2 was built and kept on its own merit. Three features were then built default-off, benchmarked in prod mode and taken through a fresh-Opus hold decision. None earned a flip. The arc ran research to eval-v2 to build to benchmark to a fresh-Opus hold, and it surfaced the append-not-displace truncation finding that explains why a tail-additive feature reads as zero at prod K by construction. The full method lives in `008-new-feature-research-build/`.
@@ -58,3 +55,6 @@ This milestone is the TRACK B new-feature arc that ran after the flag-resolution
 - Run the multihop truncation-exemption probe on the causal_chain class with displacement accounting to settle whether a tail-additive feature can flip at prod K.
 - Fix the true-citation-emitter positive label with content-attribution so its clean shadow can be scored.
 - Retire the lane-champion-backfill candidate, redundant with RRF.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence`

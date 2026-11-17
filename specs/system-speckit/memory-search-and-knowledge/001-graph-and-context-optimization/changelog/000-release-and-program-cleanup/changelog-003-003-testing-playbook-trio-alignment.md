@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-30
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/003-testing-playbook-trio-alignment` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass`
-
 ### Summary
 
 Packets 031-036 shipped or corrected operator-visible surfaces, but the reusable manual testing playbooks had no copy-pasteable validation entries for the new handlers and runners. The gap affected retention enforcement, Skill Advisor rebuild separation, CLI matrix adapters, code-graph read-path repair and packet 035 code-graph cell evidence.
@@ -75,3 +72,6 @@ Six scenario files were added across three playbook surfaces: system-spec-kit, s
 - Confirm packet 035 F5-F8 evidence log and JSONL paths resolve to existing files.
 - Verify all root playbook links added for IDs 278-282 point to existing files on disk.
 - Add `279-advisor-status-rebuild-separation.md` and `advisor-status-rebuild-separation.md` when the skill_advisor nested playbook surface is confirmed stable and the paths are verified to exist.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/003-testing-playbook-trio-alignment` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass`

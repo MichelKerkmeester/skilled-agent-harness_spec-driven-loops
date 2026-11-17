@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-05-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/008-embedder-provider-auto-resolution` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`
-
 ### Summary
 
 `EMBEDDINGS_PROVIDER=auto` was documented to cascade `ollama` first yet reliably resolved to `hf-local` at daemon startup on every host where ollama was active and healthy. Embed calls failed. The retry queue flapped. Operators were forced to apply a non-portable `EMBEDDINGS_PROVIDER=ollama` pin as a stopgap.
@@ -64,3 +61,6 @@ None. Research-only phase.
 - Honor `active_embedder_provider` generically and build the shard path from provider/model/dim at `factory.ts:385`.
 - Add a regression test simulating a daemon PATH without `sqlite3`.
 - Revert the interim `EMBEDDINGS_PROVIDER=ollama` config pin to `auto` only after the fix lands and verifies.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/008-embedder-provider-auto-resolution` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

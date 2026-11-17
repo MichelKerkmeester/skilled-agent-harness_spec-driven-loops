@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/002-cross-launcher-lease-propagation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`
-
 ### Summary
 
 The `mk-code-index` and `mk-spec-memory` launchers had no guard against concurrent starts. An audit found `mk_code_index` running 3 concurrent daemon processes and `mk-spec-memory` running 4. Neither launcher refused to start when a live sibling was already active. Both relied on WAL and busy-timeout to absorb the SQLite contention, masking the symptom while leaving a latent corruption window open.
@@ -79,3 +76,6 @@ The 006 launcher-boundary PID-file lease pattern shipped for skill-advisor was p
 
 - Run the 24-hour zombie soak after restarting all MCP-using runtimes to confirm at most 3 launcher PIDs are alive across all connected clients.
 - Mark the soak evidence in `checklist.md` with the timestamp and `ps aux` output once complete.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/002-cross-launcher-lease-propagation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

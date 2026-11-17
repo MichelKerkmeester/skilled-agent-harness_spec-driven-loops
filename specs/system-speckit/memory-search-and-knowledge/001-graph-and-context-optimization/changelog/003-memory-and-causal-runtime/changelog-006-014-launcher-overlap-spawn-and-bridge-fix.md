@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/014-launcher-overlap-spawn-and-bridge-fix` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`
-
 ### Summary
 
 This phase shipped two focused launcher-concurrency fixes. The launcher liveness probe now carries `X-Speckit-Probe: liveness`. The model-server demand listener treats that marked probe as non-spawning. The code-index and skill-advisor IPC bridge copies also gained ENOENT-safe reclaim during `EADDRINUSE` recovery, so a benign concurrent-primary socket race no longer aborts the bind.
@@ -68,3 +65,6 @@ This phase shipped two focused launcher-concurrency fixes. The launcher liveness
 - Confirm bridge serving after `/mcp` reconnect or a fresh launcher session.
 - Level spec-memory's older socket-server copy up to the same hardened race-safe contract.
 - Consolidate the three `socket-server.ts` copies behind a shared module.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/014-launcher-overlap-spawn-and-bridge-fix` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

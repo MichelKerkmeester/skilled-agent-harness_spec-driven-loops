@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-04-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity`
-
 ### Summary
 
 A tier-2 code review of the Copilot hook parity implementation validated the Outcome B (file-based custom instructions) approach and surfaced findings on merge-marker behavior, workspace-scoped ignore logic, and the Superset notification routing chain. Review findings were incorporated into the parent implementation and informed the follow-on phases for schema fix and writer wiring.
@@ -43,3 +40,6 @@ None. Review-only phase.
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity`

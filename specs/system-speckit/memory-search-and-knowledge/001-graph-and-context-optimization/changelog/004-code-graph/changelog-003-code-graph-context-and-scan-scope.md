@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-04-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 Three problems shipped together with two absorbed sub-phases:
@@ -87,3 +84,6 @@ Implementation reached 85 percent completion. The full vitest suite pass was par
 
 - **T-19 full vitest suite (blocked).** The full vitest suite run was blocked by `copilot-hook-wiring.vitest.ts` failure out of scope for this packet. A follow-up packet should verify the full suite after that unrelated test is fixed.
 - **Operator-driven full-scan recovery rerun.** After the stale-gate bug fix, the operator-driven scan should be rerun to confirm the full 1,425-file count (currently 33 files due to the stale-gate regression). This is filed as a Phase 012 live-verification item.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

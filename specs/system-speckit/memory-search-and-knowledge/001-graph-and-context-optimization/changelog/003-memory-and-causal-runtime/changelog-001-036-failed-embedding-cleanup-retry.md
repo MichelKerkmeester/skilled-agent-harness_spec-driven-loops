@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/036-failed-embedding-cleanup-retry` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 After packets 037, 038 and 039 restored llama-cpp embedding-worker health and error propagation, the active SQLite profile (`context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite`) still carried historical rows that had not embedded before the fix. Packet 036 ran the existing `repair-failed-embeddings.mjs` script first in dry-run mode then live to determine whether any `embedding_status='failed'` rows remained.
@@ -68,3 +65,6 @@ Baseline inspection found no explicit `failed` rows at the start: the database h
 
 - Pending and retry rows (741 pending, 18 retry at baseline) remain outside the `repair-failed-embeddings.mjs` selection predicate. A follow-on packet targeting the retry-manager backlog should drain those rows separately.
 - Monitor whether `failed` rows re-accumulate after normal embedding operations resume, since the prior high count (214 at the earlier Wave 1 run) suggests the worker was failing silently before the 037/039 fixes.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/036-failed-embedding-cleanup-retry` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

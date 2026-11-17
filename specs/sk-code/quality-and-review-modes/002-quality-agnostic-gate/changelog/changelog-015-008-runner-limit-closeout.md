@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-26
 
-> Spec folder: `specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout` (Level 2)
-> Parent packet: `specs/sk-code/015-quality-agnostic-gate`
-
 ### Summary
 
 The phase's changes sit on branch head f1732e4d95 as one uncommitted change set. A read-only review then read that tree and raised four findings. A second read-only review confirmed four more, and the review fix rounds below record each fix with the verification that proves it. spec.md section 3 lists the files, and tasks.md records each task with its evidence.
@@ -74,3 +71,6 @@ The phase's changes sit on branch head f1732e4d95 as one uncommitted change set.
 - The commit is the conductor's. The implementation, both review fix rounds and the release work sit on branch head f1732e4d95 as an uncommitted change set, and the conductor owns the commit. Every task row is closed in tasks.md, and the strict validator printed RESULT: PASSED.
 - The ignored watch depends on one measurement. Task T023 repeats the ignored listing at both bounds on the landed tree. If the bounded cost exceeds the phase's 50 millisecond budget there, the target-repository boundary stands and runner-contract.md states that instead, as ADR-004 records.
 - The timing number is machine specific. The machine and the HEAD are recorded beside the five lines, and the measurement phase runs the same command, so a change reads as a delta rather than as a claim.
+
+> Spec folder: `specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout` (Level 2)
+> Parent packet: `specs/sk-code/015-quality-agnostic-gate`

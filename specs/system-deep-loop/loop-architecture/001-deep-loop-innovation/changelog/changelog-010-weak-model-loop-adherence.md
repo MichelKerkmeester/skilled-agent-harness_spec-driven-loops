@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-16
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/010-weak-model-loop-adherence` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation`
-
 ### Summary
 
 Closed the weak-model observation-only write-boundary gap that caused DeepSeek Flash lineages to fail write-containment. The shared fan-out lineage prompt now explicitly forbids mutating repo tooling (`generate-context.js`, `validate.sh`, `git` write operations) and confines writes to the lineage artifact directory. The directive was mirrored into the small-model dispatch rules, a regression test asserts the hardened wording for research and review on both cli-opencode and cli-pi, and a live two-executor fan-out review proved DeepSeek completes with zero out-of-scope reverts while strong-model runs stayed unchanged.
@@ -31,3 +28,6 @@ Closed the weak-model observation-only write-boundary gap that caused DeepSeek F
 ### Status
 
 Complete. Prompt-hardening shipped; hard pre-write jail not adopted.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/010-weak-model-loop-adherence` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation`

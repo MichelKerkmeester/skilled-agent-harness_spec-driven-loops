@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-09-26
 
-> Spec folder: `specs/sk-doc/060-create-goal-mode/011-cross-surface-references` (Level 2)
-> Parent packet: `specs/sk-doc/060-create-goal-mode`
-
 ### Summary
 
 A reader who opens the root README, the sk-doc hub README, the @markdown agent or the sk-doc feature catalog now finds sk-create-goal and /create:goal next to the other create modes, and every count reads fifteen modes across fourteen packets. The skill advisor's command-bridge projection carries /create:goal and its freshness check passes again. The create command's asset tests and the advisor's command census both count the goal command. The changelog link and the command files already matched their siblings, so they were checked and left as they were.
@@ -61,3 +58,6 @@ _No file-level detail recorded._
 - The advisor's divergence ratchet still fails on rr-iter3-093. It comes from the live skill graph, not from this phase, and needs a ledger entry or a scorer fix from the advisor's owner.
 - The root README's CREATE section still omits other existing commands and names /create:testing-playbook, which is not the current command.
 - The trigger index was not regenerated. The next regeneration from a clean tree picks up this phase's phrases.
+
+> Spec folder: `specs/sk-doc/060-create-goal-mode/011-cross-surface-references` (Level 2)
+> Parent packet: `specs/sk-doc/060-create-goal-mode`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/003-fix-skill-advisor-quality` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`
-
 ### Summary
 
 The skill-advisor surface had eight orthogonal quality gaps that the deep-research loop had flagged but not yet closed. The Codex hook timeout path emitted a bespoke fallback string instead of routing through the shared formatter, causing format drift whenever the shared output changed. The OpenCode bridge surfaced a model-visible disabled-state message that no other runtime emits. The Codex, Claude, Copilot plus Gemini runtimes all fail open silently. Graph-causal conflict scores were dropped at lane emit so suppressive evidence from `conflicts_with` edges never reached fusion. The SQLite projection assigned the same array reference to both `derivedTriggers` and `derivedKeywords`, effectively double-counting derived signals. The fusion task-intent confidence floor let token-stuffed prompts pass as soon as any score fragment crossed the threshold. Ambiguity computation looked only at the top two confidence values and ignored the ranking score and any third-or-deeper tied candidates. And regression fixture row 26 expected `sk-code-review` for "review and update this" despite the prompt carrying a clear write-verb signal.
@@ -83,3 +80,6 @@ Eight surgical fixes landed in a single commit (`fix(026/049/003)`) without dist
 - Extend the review-plus-write disambiguation rule to cover synonym pairs like "audit and tweak" or "look at and adjust" once the corpus shows recurring misroutes on those forms.
 - Consider extending ambiguity clustering to sub-threshold candidates within the margin if a use case emerges for showing near-passing alternatives.
 - Graph-causal negative-score propagation is intentionally bounded to direct conflict edges only. The BFS queue still enqueues only signed > 0 neighbors. Revisit if a use case emerges for deep conflict chain propagation.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/003-fix-skill-advisor-quality` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

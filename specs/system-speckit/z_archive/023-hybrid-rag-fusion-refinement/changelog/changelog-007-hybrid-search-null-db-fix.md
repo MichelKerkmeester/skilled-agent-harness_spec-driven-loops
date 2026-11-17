@@ -2,8 +2,6 @@
 
 Phase 007 restored hybrid search so saved context can be found again, then tightened the ranking and monitoring needed to keep those results trustworthy. Two silent filters were individually discarding every search result despite a healthy 999-memory database. Once both were removed, queries returned real matches again from both the semantic-similarity and exact-word-matching channels. A follow-up research and review pass then addressed the remaining gaps in ranking accuracy, candidate recall, result diversity and pipeline observability.
 
-> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/007-hybrid-search-null-db-fix/` (Level 2)
-
 ---
 
 ## Bug Fixes (3)
@@ -168,3 +166,5 @@ No documentation files were modified in this phase.
 No migration required.
 
 If a deployment intentionally relies on access-scope enforcement for multi-tenant isolation, enable it explicitly in the environment. Deployments that did not set this flag were already affected by the original breakage and will return to expected behavior after the fix.
+
+> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/007-hybrid-search-null-db-fix/` (Level 2)

@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-04-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`
-
 ### Summary
 
 Running `opencode` in any directory under this repo terminated the TUI with `TypeError: null is not an object (evaluating 'plugin2.auth')`. Root cause: the installed OpenCode 1.3.17 scanner uses a flat `{plugin,plugins}/*.{ts,js}` glob and its legacy plugin-function loader path invoked the named `parseTransportPlan` export, which returned `null` when called with a plugin context object instead of a string. The null hook later crashed at `plugin2.auth`. The fix had two parts: harden `parseTransportPlan` to return `{}` for non-string input, and move the three helper modules out of `.opencode/plugins/` so they cannot become plugin candidates. Phase 4 subsequently remapped the skill-advisor plugin from ignored Claude-Code-style hook names to OpenCode-recognized `event` and `experimental.chat.system.transform` hooks. Phase 5 added status-readiness accuracy and defensive output guards.
@@ -87,3 +84,6 @@ Running `opencode` in any directory under this repo terminated the TUI with `Typ
 
 - Module-global state refactor (P2): still deferred. Per-instance closure or WeakMap for multi-instance races.
 - In-flight bridge dedup (P2): still deferred.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 3)
+> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

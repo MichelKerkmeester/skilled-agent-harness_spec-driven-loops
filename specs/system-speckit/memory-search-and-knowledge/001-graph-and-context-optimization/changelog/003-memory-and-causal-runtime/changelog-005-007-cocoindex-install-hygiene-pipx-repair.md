@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-05-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/007-cocoindex-install-hygiene-pipx-repair` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality`
-
 ### Summary
 
 This phase splits the unresolved CocoIndex pipx repair out of the completed install-hygiene diagnosis. The predecessor found that the `ccc` executable was stale and non-editable, while the local MCP venv already pointed at editable source.
@@ -66,3 +63,6 @@ No pipx repair was performed in this scaffold. The packet blocks future implemen
 - Run the editable pipx repair only after logs, venv writes and entry-point updates are permitted.
 - Verify `direct_url.json`, `ccc --version` and the missing module imports before changing docs or benchmarks.
 - Record repair evidence in the packet summary, then run strict packet validation.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/007-cocoindex-install-hygiene-pipx-repair` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality`

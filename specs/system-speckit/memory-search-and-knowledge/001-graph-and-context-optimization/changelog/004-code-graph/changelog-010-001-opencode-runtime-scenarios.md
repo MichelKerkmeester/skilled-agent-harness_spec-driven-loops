@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`
-
 ### Summary
 
 The code-graph MCP tools (`mk_code_index` scan, query, verify, status, context, detect_changes) are not registered in the Claude Code runtime, so 15 of 22 playbook scenarios could not be run from the orchestrating agent directly. A dispatch harness using `cli-opencode` with `deepseek/deepseek-v4-pro` was built to run those 15 scenarios inside the full OpenCode MCP runtime and capture per-scenario evidence.
@@ -77,3 +74,6 @@ Two additional findings were logged: F-RUNTIME-1 (scope-safety, `code_graph_scan
 - Investigate tree-sitter parser quarantine trigger threshold and whether quarantine should auto-recover. Scenarios 002, 005, 022 and 024 must be re-run after parser recovery is confirmed.
 - Update the playbook's scenario 011 verify sub-check to remove the stale `rating` field expectation (F-011-1).
 - Confirm that disposable workspaces live under the repo root (gitignored `tmp/`) rather than under `/tmp`. Update any playbook docs that imply `/tmp` is safe (F-RUNTIME-1).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`

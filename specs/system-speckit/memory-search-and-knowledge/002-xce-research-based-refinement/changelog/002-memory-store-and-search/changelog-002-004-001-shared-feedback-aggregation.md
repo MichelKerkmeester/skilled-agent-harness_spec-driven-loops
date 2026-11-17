@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers`
-
 ### Summary
 
 This leaf extended the existing `aggregateEvents` function in `batch-learning.ts` rather than creating a separate aggregator module. The function now emits `queryCount`, `firstSeen`, `lastSeen`, and `weightedHitCount` alongside the pre-existing `weightedScore` and `computedBoost` fields on each per-memory signal. The aggregator is read-only and flagless. Downstream consumer reducers (causal and retention) consume these new fields without requiring any additional ledger reads.
@@ -52,3 +49,6 @@ This leaf extended the existing `aggregateEvents` function in `batch-learning.ts
 ### Follow-Ups
 
 - Consumer reducers (causal and retention) depend on these fields and were delivered in 003 and 004 respectively.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers`

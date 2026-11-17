@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`
-
 ### Summary
 
 The `worktree-guard.sh` backstop script from packet 035 was wired into a live hook chain for the first time. It is now the second step in the Claude `SessionStart` hook chain, running after `session-prime.js`. The guard detects when a top-level session is running on the shared `main` checkout instead of an isolated worktree and prints a one-line stderr warning. It is non-fatal (always exits 0) and stays silent for isolated worktrees, orchestrated children (`AI_SESSION_CHILD=1`), and when `SPECKIT_WORKTREE_GUARD=off`.
@@ -54,3 +51,6 @@ The `worktree-guard.sh` backstop script from packet 035 was wired into a live ho
 - Gemini SessionStart, OpenCode event startup, and Codex hooks.json do not yet run the guard. They are deferred, the guard contract is documented centrally in `bin/README` and can be wired into each when it is the active surface.
 - The guard only WARNS, it cannot relocate an already-started session into a worktree. True isolation still requires the launch alias (`worktree-session.sh`), which is operator-machine and environment-specific and out of scope here.
 - `.claude/settings.local.json` is tracked in this repo. Operators who maintain a divergent local copy must merge the SessionStart change manually.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`

@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/002-request-quality-aggregation` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 A search that returned one strong, clearly-best memory was reading `weak` and earning `do_not_cite`, dragged down by a weaker tail. The `assessRequestQuality` verdict gated `good` on `topScore >= 0.7 AND qualityRatio >= 0.6`, where the ratio was computed over the whole result set. That coupling had two bad effects. A strong top hit sitting above a mediocre tail failed the ratio test even though the top was citable on its own. And pulling more candidates for recall mechanically lowered the ratio, so the recall improvement fought the quality verdict. This phase splits the verdict into a top-dominant rule and a margin-aware rule, and caps the quality ratio at the head so recall expansion stops depressing it. A top score at or above 0.8 now reads `good` regardless of the tail. A top at or above 0.7 reads `good` when the quality ratio holds OR the top margin (the absolute-relevance gap between the first and second result) is at least 0.15. The margin reuses the existing cosine-calibrated score that `topScore` already reads, so the two are on one scale.
@@ -53,3 +50,6 @@ A search that returned one strong, clearly-best memory was reading `weak` and ea
 ### Follow-Ups
 
 - The aggregation thresholds (0.8 top-dominant, 0.15 margin) are reasoned from the observed score distribution, not yet tuned against a labeled set. The labeled-set follow-up tracked under phase `004` would let these be fit rather than chosen.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/002-request-quality-aggregation` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

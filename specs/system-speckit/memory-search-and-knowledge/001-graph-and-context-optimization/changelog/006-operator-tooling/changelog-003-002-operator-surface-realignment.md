@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-26
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/002-operator-surface-realignment` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment`
-
 ### Summary
 
 The system-spec-kit install guide, setup scripts and /doctor command surface had drifted to describe infrastructure that no longer existed. INSTALL_GUIDE.md still advertised cross-encoder reranking and pointed code-graph DB rows at a stale path. The route-validate.sh F2 tool-subset gate was silently skipped because ROUTER_FILE pointed at a deleted file. The /doctor menu listed a "Debug Code Graph (semantic search daemon)" option that referenced the removed CocoIndex daemon.
@@ -72,3 +69,6 @@ The INSTALL_GUIDE.md was updated to replace the cross-encoder description with S
 
 - Verify the `.claude` mirror stays in sync with `.opencode` doctor changes when future /doctor updates ship.
 - Confirm `test-council-matrix.sh` passes in CI after the `deep-ai-council` rename correction.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/002-operator-surface-realignment` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment`

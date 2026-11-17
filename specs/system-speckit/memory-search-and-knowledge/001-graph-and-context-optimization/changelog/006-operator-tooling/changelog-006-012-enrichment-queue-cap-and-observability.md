@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/012-enrichment-queue-cap-and-observability` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`
-
 ### Summary
 
 010 capped enrichment concurrency and 011 fenced it at shutdown. This packet closes the 010 deep-review's P2 backlog so the scheduler is bounded, fault-tolerant, and observable.
@@ -59,3 +56,6 @@ contextType: "implementation"
 - Queue cap and hint thresholds (`MAX_QUEUED_ENRICHMENTS=2000`, hint backlog>500) are fixed heuristics; make them env-tunable if a workload profile needs different bounds.
 - Dedicated flood-to-drop unit test: coverage is the regression suite + `memory_health`-edge test + reasoning; a deterministic harness for the drop path is a possible future addition.
 - Backlog recovery still relies on `memory_index_scan` / backfill; a dedicated enrichment-backfill tool was not added.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/012-enrichment-queue-cap-and-observability` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`

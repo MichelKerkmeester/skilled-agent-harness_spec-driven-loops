@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-30
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/007-runtime-command-agent-alignment-audit` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`
-
 ### Summary
 
 Command and agent runtime docs across OpenCode, Claude and Gemini had drifted from the current tool surface after graph, hook, matrix and schema changes landed in earlier packets. References to stale Node floor versions, removed tool names, outdated hook wording and pre-migration advisor and memory tool names were scattered across doctor commands, memory commands, deep-loop YAML assets and agent definition files.
@@ -78,3 +75,6 @@ All editable runtimes were audited and corrected. Doctor command docs now cite t
 ### Follow-Ups
 
 - Apply Codex TOML agent fixes outside the sandbox. Files `.codex/agents/context.toml`, `.codex/agents/deep-research.toml`, `.codex/agents/orchestrate.toml` and `.codex/agents/write.toml` still need the documented path and hook wording corrections that were blocked here by sandbox EPERM policy.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/007-runtime-command-agent-alignment-audit` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/005-stress-test-folder-migration` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass`
-
 ### Summary
 
 Stress-test coverage for the MCP server lived inside `mcp_server/tests/`, mixed in with the default unit and integration suite. This made it difficult to distinguish explicit stress, load and matrix-cell validation from the fast normal suite. Operators had no clear command to run stress coverage in isolation.
@@ -74,3 +71,6 @@ The stress suite ran cleanly at 2 files, 7 tests passed. The TypeScript build ex
 
 - Verify the default test suite (`npm test`) once pre-existing failures in `copilot-hook-wiring`, `plugin-bridge`, `handler-memory-save` and related suites are resolved in a separate remediation packet.
 - Confirm `code-graph-degraded-sweep.vitest.ts` still runs cleanly after any future code-graph refactors touch its dependencies.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/005-stress-test-folder-migration` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass`

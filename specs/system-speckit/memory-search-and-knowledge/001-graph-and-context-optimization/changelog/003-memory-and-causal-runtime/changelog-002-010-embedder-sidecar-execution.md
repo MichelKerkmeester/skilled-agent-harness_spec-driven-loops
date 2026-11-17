@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/010-embedder-sidecar-execution` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`
-
 ### Summary
 
 The `hf-local` embedder loaded Transformers.js model state directly into the MCP daemon. That kept daemon RSS elevated after local embedding use while Ollama, Voyage and OpenAI already kept model memory outside the process. Deep-research-005 iteration 010 Finding 5 recommended process isolation for local in-process backends.
@@ -75,3 +72,6 @@ Three new modules shipped a JSONL stdio sidecar layer. `sidecar-client.ts` imple
 
 - First local embedding after idle pays spawn and model load. `SPECKIT_EMBEDDER_EXECUTION=direct` is available for debugging or latency-sensitive local sessions.
 - Future local providers such as `sentence-transformers` and `llama-cpp` need concrete provider implementations before the router policy reaches them. The sidecar path is already reserved for both.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/010-embedder-sidecar-execution` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

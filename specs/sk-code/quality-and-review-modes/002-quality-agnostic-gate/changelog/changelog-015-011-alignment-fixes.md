@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-27
 
-> Spec folder: `specs/sk-code/015-quality-agnostic-gate/011-alignment-fixes` (Level 2)
-> Parent packet: `specs/sk-code/015-quality-agnostic-gate`
-
 ### Summary
 
 The alignment audit left routing and documentation faults open, and this phase fixes each one at its cause. A typed `/doctor:ci toggle` now reaches the toggle and not the report, and "run the quality gate and tell me which checks fail" gets a recommendation instead of abstaining. A request to cut CI cost reaches the CI surface, a failing CI pipeline reaches it too, and a git release that names a tag reaches sk-git. A flowchart of CI stages, a heatmap of CI minutes or a blog post about CI costs no longer lands on the CI surface.
@@ -66,3 +63,6 @@ The alignment audit left routing and documentation faults open, and this phase f
 - A prompt that names git, such as a git tag naming guide for a photo library, still reaches sk-git through the existing `git` boost.
 - Some release phrasings, such as "cut v4.2.0 and push the tag" or "cut a new release of the package", find no skill or reach sk-doc, because none pairs a release action with a tag in the anchored form.
 - A pure report request, such as "report which GitHub Actions workflows are enabled", still holds the read-only floor.
+
+> Spec folder: `specs/sk-code/015-quality-agnostic-gate/011-alignment-fixes` (Level 2)
+> Parent packet: `specs/sk-code/015-quality-agnostic-gate`

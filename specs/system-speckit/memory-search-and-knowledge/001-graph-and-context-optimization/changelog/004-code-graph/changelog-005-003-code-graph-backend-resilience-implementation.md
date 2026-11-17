@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/003-code-graph-backend-resilience-implementation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor`
-
 ### Summary
 
 The code-graph backend had five concrete resilience gaps identified in the upstream research packet. `isFileStale()` relied on mtime alone and missed edits that preserved timestamps. The resolver did not capture import kind or path aliases so cross-file edges were incomplete. Edge weights were hard-coded with no operator override path. Self-healing operations left no observable trail in `ReadyResult`. The gold-query battery in `assets/code-graph-gold-queries.json` had no runtime to execute against.
@@ -95,3 +92,6 @@ Build passed after every task. Three test files needed a post-run fix-up. Target
 - Implement gold battery v2 schema dispatch. The verifier loads v1 entries and warns on v2 `probe` fields without acting. v2 dispatch deferred until the asset migrates.
 - Parallelize `code_graph_verify` probe execution. The 28-query battery runs serially. Parallelization is straightforward and deferred.
 - Automate drift baseline rotation. Operators currently set a baseline manually by passing `persistBaseline:true` on a canonical scan. Automatic aging or rotation is not yet implemented.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/003-code-graph-backend-resilience-implementation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor`

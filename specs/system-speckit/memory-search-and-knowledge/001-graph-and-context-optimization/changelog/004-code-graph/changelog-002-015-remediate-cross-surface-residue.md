@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/015-remediate-cross-surface-residue` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`
-
 ### Summary
 
 The 014 CocoIndex and rerank-sidecar deprecation deleted the code artifacts but left residue across non-code-graph surfaces. The 013 deep-review identified six of them: `.gemini/GEMINI.md` still routed Gemini to the deleted `mcp__cocoindex_code__search` (P0). `/memory:manage` declared a `ccc` subcommand plus a CCC MODE section calling removed tools. The advisor runtime graph had stale rerank refs. `.gitignore` still excluded `.cocoindex_code/`. The embedder sidecar env allowlist held a dead `RERANK_` prefix. The session-start playbook asserted a Code Graph status via a `.venv/bin/ccc` binary the hook no longer checks. A seventh surface surfaced mid-work: the RM-8 process-classification harness still carried daemon-kill rules for CocoIndex and rerank daemons that can no longer spawn.
@@ -73,3 +70,6 @@ None.
 
 - Three borderline residue candidates were observed but not fixed here: the `deep-loop-runtime/lib/deep-loop/README.md` "Rerank sidecar" line, the `system-spec-kit/manual_testing_playbook.md` "CCC stubs/trio" naming, the `sidecar-client.ts:170` cross-encoder comment. All three are tracked for a future pass. None is a live coupling.
 - The gitignored `database/skill-graph.json` sync is local-only. It self-heals on the next compile or daemon restart. The committed source in `scripts/` is clean.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/015-remediate-cross-surface-residue` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`

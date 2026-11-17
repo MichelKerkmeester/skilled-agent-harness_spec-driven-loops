@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers` (Level 2, Phase Parent)
-
 ### Summary
 
 This phase parent groups 4 child phases shipped on 2026-06-10. Each child shipped independently and carries its own changelog with full verification detail. The overarching theme is default-off, shadow-first reducer safety: the shared aggregator adds per-memory aggregate fields with no behavioral side effects; the causal reducer emits weak auto-session edges only in deferred maintenance mode; the retention reducer requires the master flag, active mode enum, and shadow-evaluation evidence before touching any retention row. The integration closeout confirmed all three reducers behave independently and corrected a stale ENV_REFERENCE default. Note: leaf 002 does not exist in this phase.
@@ -55,3 +53,5 @@ This phase parent groups 4 child phases shipped on 2026-06-10. Each child shippe
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers` (Level 2, Phase Parent)

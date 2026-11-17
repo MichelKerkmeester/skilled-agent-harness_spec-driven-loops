@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/003-native-deferred-trial-rerun` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`
-
 ### Summary
 
 This packet turns the native rerun into a durable verdict update. The important change is not more paperwork; it is that code graph moved from sandbox-useful to native overhead because the real MCP path exposed scope drift, zero-node persistence, and parser crash failure modes.
@@ -69,3 +66,6 @@ This packet turns the native rerun into a durable verdict update. The important 
 - Plugin/runtime integration remains unmeasured. This packet does not replace a live authenticated cli-gemini, Claude Code, or OpenCode campaign.
 - Compaction recovery quality is partial. The hook-cache formatting appeared, but relevance scoring still needs a controlled trigger.
 - Parser crash file:line details depend on the native trial transcript. The packet preserves the crash class and count; exact file:line citations should be expanded from the native raw run when fixing structural-indexer.ts.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/003-native-deferred-trial-rerun` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

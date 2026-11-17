@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation/003-model-benchmark-reducer-ledger` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation`
-
 ### Summary
 
 Autonomous model-benchmark runs now pass the improvement state log explicitly when invoking loop-host.cjs. That makes run-benchmark.cjs append the benchmark_run row the reducer needs, even though benchmark outputs live under .opencode/skills/sk-prompt-models/benchmarks/{run_label} instead of {spec_folder}/improvement.
@@ -61,3 +58,6 @@ Autonomous model-benchmark runs now pass the improvement state log explicitly wh
 
 - Targeted Vitest suites did not run. The environment had no installed Vitest binary, and network access blocked npx from downloading one. Direct Node runtime verification covered the affected command path.
 - Confirm-mode parity remains unmodified. The confirm workflow appears to have similar command text, but this phase was scope-locked to the autonomous workflow file named in the request.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation/003-model-benchmark-reducer-ledger` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation`

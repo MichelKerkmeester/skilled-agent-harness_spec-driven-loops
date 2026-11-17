@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/003-storage-adapter-ports` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 The storage layer talked to better-sqlite3 directly from many call sites, which made the persistence boundary hard to fake in tests and hard to move later. This phase introduced a five-port adapter seam over that layer — VectorStore, LexicalSearch, GraphTraversal, Maintenance, and ContentionPolicy — and routed the existing call sites through the ports across five slices. No caller-visible behavior changed: the same queries run against the same database with the same results. The value is testability today, where a fake port can stand in for the real database, and room to move the persistence layer later without rewriting every consumer. A coupling grep tracks residual direct-to-sqlite usage and trends it down toward the ports, but it is a manual inventory rather than an enforced gate, and the residual is intentionally not zero: the hybrid lexical query path, the BM25 side-index maintenance calls, and the vector-shard lifecycle pragmas stay coupled by design and are recorded as documented exceptions.
@@ -60,3 +57,6 @@ The storage layer talked to better-sqlite3 directly from many call sites, which 
 
 - The seam is groundwork. A future move of the persistence layer can target the ports without touching consumers.
 - The residual direct-sqlite exceptions (hybrid lexical, BM25 side-index, vector lifecycle) remain by design. Turning the coupling grep into an enforced gate, once those idioms are portable, is future work.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/003-storage-adapter-ports` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

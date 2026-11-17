@@ -16,8 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux` (Level 2, Phase Parent)
-
 ### Summary
 
 The dual-stack CLI front doors that 004/001 shipped over the spec-memory, code-index, and skill-advisor daemons worked, but the operator experience around them had rough edges. This phase parent polished that surface across five children: it fixed the freshness gate and added an offline smoke check, gave each command real per-command help with aliases and clear errors, consolidated the daemon CLI reference and the skill docs into one consistent story, hardened the fallback envelope and the bridge environment allowlist, and added compact machine-readable output plus shell completion. The CLI tool surface stays at full parity with the daemons (spec-memory 37, code-index 8, skill-advisor 9).
@@ -59,3 +57,5 @@ This rollup is the authoritative child inventory for 004/004. The five children 
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux` (Level 2, Phase Parent)

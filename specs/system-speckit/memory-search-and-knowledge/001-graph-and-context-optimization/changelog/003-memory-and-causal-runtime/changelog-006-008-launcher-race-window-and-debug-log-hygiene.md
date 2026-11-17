@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/008-launcher-race-window-and-debug-log-hygiene` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`
-
 ### Summary
 
 The skill-advisor launcher had two P2 hygiene findings from the 007 deep-review. The PID guard write and its reprobe sat outside the `if (lockHeld)` block, creating an apparent race window that reviewers had to mentally trace to confirm was benign. Four log sites emitted full error stacks, exception messages and the resolved DB path to stderr unconditionally, leaking implementation detail in operator-visible deployments.
@@ -61,3 +58,6 @@ Both findings were closed in a single-file edit to `.opencode/bin/mk-skill-advis
 - No new automated test was added. The 21-test launcher suite covers lock and lease behavior. The 008 edits are behavior-equivalent and no new test would catch a regression that the existing suite does not already catch.
 - Reviewers may still flag the `if (lockHeld)` gate as defensive coding given that `acquireBootstrapLock()` always returns true under current semantics. Removing the gate is intentionally out of scope to preserve safety against future changes to `acquireBootstrapLock()`.
 - A fresh deep-review on 008 could surface new P2 or P3 hygiene items. Addressing those is deferred to a future packet if the operator requests it.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/008-launcher-race-window-and-debug-log-hygiene` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/027-reelection-default-on-rollout` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 Daemon re-election is now on by default for every user, not just on the one machine that had it in a gitignored file. A disposing session releases the shared daemon for another live session to adopt instead of killing it, so concurrent sessions keep their MCP transport.
@@ -60,3 +57,6 @@ Daemon re-election is now on by default for every user, not just on the one mach
 - Multi-session secondary adoption is still under live observation. The release-vs-kill decision and OS semantics are tested; a real owner-disposal-then-adoption across two live sessions is not a CI test, because a real launcher cannot be spawned without touching the shared lease and DB.
 - Activation needs a fresh session. A launcher reads the config flag at startup, so a daemon already running keeps the old behavior until the next session spawns it.
 - Orphan-sweep stays opt-in. Faster cleanup of an unadopted daemon needs SPECKIT_STOP_HOOK_ORPHAN_SWEEP; the idle timeout is the default bound.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/027-reelection-default-on-rollout` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

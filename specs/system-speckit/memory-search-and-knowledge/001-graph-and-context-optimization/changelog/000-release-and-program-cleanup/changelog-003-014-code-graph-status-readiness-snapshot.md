@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/014-code-graph-status-readiness-snapshot`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 The v1.0.2 stress test surfaced a 4-hour staleness drift on the live code graph. The root cause was not the watcher but the status handler: `code_graph_status` collapsed readiness-action to `"none"` unconditionally, even though `ensure-ready.ts` already distinguished fresh / selective-reindex / full-scan states internally. Operators had no way to learn whether a graph was stale without invoking the mutating `code_graph_scan` tool.
@@ -72,3 +69,6 @@ A read-only `getGraphReadinessSnapshot()` helper was added to `ensure-ready.ts`,
 - Run `validate.sh --strict` on the packet folder and record the result before final sign-off.
 - Restart the MCP daemon and run a live `code_graph_status` probe to confirm the rebuilt `dist` loads the new helper (per packet 008 protocol).
 - Consider surfacing the readiness snapshot in other handlers (query, scan, context) if operators report value after the status change lands.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/014-code-graph-status-readiness-snapshot`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

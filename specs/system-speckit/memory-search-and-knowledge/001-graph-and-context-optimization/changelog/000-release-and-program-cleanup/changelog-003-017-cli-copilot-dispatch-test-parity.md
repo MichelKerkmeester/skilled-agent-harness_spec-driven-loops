@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/017-cli-copilot-dispatch-test-parity` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 The 011 deep-review surfaced F-004 [P2]: the cli-copilot branch of `cli-matrix.vitest.ts` still asserted the legacy `resolveCopilotPromptArg` command-string form (`-p "$(cat ...)"` and `Read the instructions in @path`) while packet 012 had already moved the production dispatch onto `buildCopilotPromptArg`, which returns a typed `{ argv, promptBody, promptFileBody?, enforcedPlanOnly }` struct and writes `built.promptFileBody` to disk before invoking copilot. The test passed only because `resolveCopilotPromptArg` remained exported as a compatibility shim. A future refactor of the helper's argv layout, preamble emission or `promptFileBody` discriminator would silently break the dispatch contract without failing the test.
@@ -67,3 +64,6 @@ This packet rewrote the cli-copilot section of `cli-matrix.vitest.ts` to exercis
 - Run live cli-copilot dispatch verification on the next deep-research or deep-review run that exercises cli-copilot. Confirm the `## TARGET AUTHORITY` preamble appears in the rendered iteration prompt and zero unauthorized folder mutations occur. Tracked as a P2 item in `checklist.md` (same item deferred from packet 012).
 - Ship sibling packet 016 (Degraded-readiness envelope parity, P1) to satisfy the 011 deep-review CONDITIONAL to PASS conversion. This packet is independent but required for the verdict flip.
 - Ship sibling packet 018 (Feature catalog and playbook degraded alignment, P2) to close findings F-005 and F-007. Tracked at the 011 phase-parent level.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/017-cli-copilot-dispatch-test-parity` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

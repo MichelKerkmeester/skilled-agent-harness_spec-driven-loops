@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/001-governance-retention-decouple` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups`
-
 ### Summary
 
 Callers passing `retentionPolicy: "ephemeral"` to `memory_save` were silently rejected by governed-ingest validation because ephemeral retention shared the same trigger path as full audit governance. Any caller wanting temporary retention without audit fields received an E085 governance rejection with no clear recovery.
@@ -66,3 +63,6 @@ ADR-002 Option A was implemented in `scope-governance.ts`: ephemeral retention i
 
 - Investigate `memory_search` lexical-only fallback for when the local llama-cpp embedding provider cannot initialize the Metal backend.
 - Run `npm run build` once the build pipeline constraint is lifted to replace the direct dist patch with a compiled output.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/001-governance-retention-decouple` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups`

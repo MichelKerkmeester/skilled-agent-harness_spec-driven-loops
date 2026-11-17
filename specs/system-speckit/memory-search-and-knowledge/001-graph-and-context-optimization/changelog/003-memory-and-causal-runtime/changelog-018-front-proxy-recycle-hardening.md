@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/018-front-proxy-recycle-hardening` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`
-
 ### Summary
 
 This packet hardened three launcher and daemon recycle failure paths that could leave new sessions stuck at `connecting...` or kill the shared daemon. The session proxy cold-start wait is now bounded to 30 attempts by default with an environment override. Unbridgeable lease-held secondary sessions now emit a retryable JSON-RPC error instead of only plaintext diagnostics. Daemon lazy-init failures now throw to the caller and keep the shared daemon alive for retry.
@@ -70,3 +67,6 @@ Implementation and tests are complete in the packet artifacts. Deploy and post-d
 - Commit and deploy through the supervised launcher restart plus daemon recycle path.
 - Verify a new session connects and `memory_health` returns after deployment.
 - Defect (c), owner socket-path storage for rare worktree environment divergence, remains deferred because it touches lease schema.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/018-front-proxy-recycle-hardening` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

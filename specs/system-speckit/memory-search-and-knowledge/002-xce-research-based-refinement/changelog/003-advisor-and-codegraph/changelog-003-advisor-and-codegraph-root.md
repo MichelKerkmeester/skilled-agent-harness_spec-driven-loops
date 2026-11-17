@@ -8,8 +8,6 @@ contextType: "implementation"
 ---
 # Changelog Rollup — Track 003: Advisor and Code Graph
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph` (Phase Parent)
-
 Top rollup for the `003-advisor-and-codegraph/` themed track. Each row links to a phase changelog (or that phase's own rollup). The chronological view lives in `../../timeline.md`; the old-to-new path bridge in `../../context-index.md`.
 
 ## Included Phases
@@ -21,3 +19,5 @@ Top rollup for the `003-advisor-and-codegraph/` themed track. Each row links to 
 | `003-advisor-and-codegraph/003` skill advisor cross session reconnect | [changelog-003-003-skill-advisor-cross-session-reconnect.md](./changelog-003-003-skill-advisor-cross-session-reconnect.md) |
 | `003-advisor-and-codegraph/004` skill advisor suite repair | [changelog-003-004-skill-advisor-suite-repair.md](./changelog-003-004-skill-advisor-suite-repair.md) |
 | `003-advisor-and-codegraph/005` advisor state spec-folder leak | [changelog-003-005-advisor-state-spec-folder-leak.md](./changelog-003-005-advisor-state-spec-folder-leak.md) |
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph` (Phase Parent)

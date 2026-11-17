@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/016-degraded-readiness-envelope-parity` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 A 10-iteration cli-codex deep-review of the 012-015 integrated implementation returned a CONDITIONAL verdict with two P1 findings. `code_graph_context` (F-001) fell through to `buildContext()` on a readiness probe crash and returned a generic error envelope that dropped every structured readiness field operators rely on. `code_graph_status` (F-003) read `graphDb.getStats()` before `getGraphReadinessSnapshot()`, so a locked or corrupted DB caused the snapshot helper to never run and silenced the action-level readiness signal that packet 014 had introduced.
@@ -80,3 +77,6 @@ This packet closed both P1 findings alongside three P2 items (F-002, F-008, F-00
 - Run a live `code_graph_status` and `code_graph_context` probe under induced DB lock after daemon restart to confirm the rebuilt `dist` loaded. Deferred per packet 008 dependency.
 - Update catalog and playbook docs to note that `fallbackDecision` is now emitted by `context` as well as `query`. Deferred to Packet C (018).
 - Callers that switch on `requiredAction` must add an arm for `'rg'` alongside the existing `'code_graph_scan'` arm. No shipped caller is known to rely exclusively on the old value.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/016-degraded-readiness-envelope-parity` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

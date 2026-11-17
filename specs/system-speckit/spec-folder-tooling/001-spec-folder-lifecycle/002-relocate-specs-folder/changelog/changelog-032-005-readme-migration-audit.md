@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-08-07 to 2026-08-08
 
-> Spec folder: `specs/system-speckit/032-relocate-specs-folder/005-readme-migration-audit` (Level 1)
-> Parent packet: `specs/system-speckit/032-relocate-specs-folder`
-
 ### Summary
 
 Three passes. First: a dual-executor `/deep:review` (deepseek-flash completed all 10 iterations; glm-high never spawned a process, root-caused to a confirmed silent-failure gap in the shared fan-out runtime, out of scope here) found 20 places still describing the pre-flip topology, including two real functional gaps. Second: an independent read-only review (gpt-5.6-sol, max effort) audited the whole packet's own completion claims against real repo state and found 12 more issues — 6 in this phase's own documentation, 6 in wider tooling the migration had surfaced but nobody had followed up on. Third: a 3-way parallel fix swarm (gpt-5.6-luna, max effort, cli-codex + cli-opencode + cli-pi) resolved all 12, with two dispatched fixes independently re-verified and corrected before landing.
@@ -48,3 +45,6 @@ Three passes. First: a dual-executor `/deep:review` (deepseek-flash completed al
 ### Notes
 
 An operator instruction misread mid-session led to a broken `git stash push`/`pop` sequence that briefly pulled in an unrelated stash meant for a different branch (`system-deep-loop/0129-036-remediation-execution`); caught immediately via diff-line-count matching, cleanly discarded with zero data loss (the original stash was never consumed). A second, similar conflict during a later rebase resolved the same way — both were the concurrent session's own superseded pre-commit drafts, already landed by their own subsequent commits.
+
+> Spec folder: `specs/system-speckit/032-relocate-specs-folder/005-readme-migration-audit` (Level 1)
+> Parent packet: `specs/system-speckit/032-relocate-specs-folder`

@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-07-11
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment` (Level unknown)
-
 ### Summary
 
 Remediate the documentation-vs-implementation drift the surface-alignment audit surfaced across the system-speckit skill ecosystem. The audit's verdict: the code and runtime are largely current with recent specs, but the documentation surfaces (feature catalogs, manual-testing playbooks, READMEs, benchmark indexes) and the validation tooling meant to catch that drift trail behind. This packet turns the ~18 distinct, citation-verified misalignments plus the coverage gaps and process fixes into shippable phase children.
@@ -52,3 +50,5 @@ _No file-level detail recorded._
 ### Follow-Ups
 
 - None recorded.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment` (Level unknown)

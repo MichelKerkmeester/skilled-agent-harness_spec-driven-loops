@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption`
-
 ### Summary
 
 Wave 3 extended the shared advisory contract with two new optional fields. A planner-provided `reviewer_focus` hint lets `@orchestrate` steer review attention without changing P0/P1/P2 thresholds or replacing evidence-based finding logic. A `spec_drift` block with an `update_recommended` flag lets `@code` record observed divergence from the spec in its return envelope; drift routes to `handover.md` and contradictions still halt via Logic-Sync. A companion `self_assessed_quality` field avoids a name collision with the existing `/memory:save` `quality_score`. Both `/memory:save` and `generate-context.ts` now document the optional JSON keys while remaining open-object and absence-tolerant. All three core agents (`@orchestrate`, `@review`, `@code`) were updated in all three runtime mirrors with matching advisory wording.
@@ -73,3 +70,6 @@ Wave 3 extended the shared advisory contract with two new optional fields. A pla
 
 - `reviewer_focus` and `spec_drift` are advisory only; no runtime enforcement was added.
 - `_memory.continuity` schema is unchanged at Level 1; `ThinContinuityRecord` schema work is deferred.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption`

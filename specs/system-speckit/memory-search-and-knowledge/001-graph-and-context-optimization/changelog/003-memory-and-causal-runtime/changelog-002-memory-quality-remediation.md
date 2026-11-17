@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-04-08
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
-
 ### Summary
 
 Eight distinct JSON-mode memory defects (D1-D8) across content shaping, metadata consistency, lineage capture, git provenance, and template structure were remediated across five child phases. A 10-iteration deep-research session produced the remediation matrix. A 7-iteration deep-review surfaced 22 findings (13 P1, 9 P2), all of which landed across 4 targeted workstreams.
@@ -82,3 +79,6 @@ Four workstream commits: `bc7754ef0` (parent rollup normalization), `93c415203` 
 - **PR-10 apply mode** remains deferred (dry-run-only in this packet).
 - **PR-11 lock hardening** deferred with documented reopen triggers.
 - **Parent strict validation** blocked by out-of-scope packet-root files.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

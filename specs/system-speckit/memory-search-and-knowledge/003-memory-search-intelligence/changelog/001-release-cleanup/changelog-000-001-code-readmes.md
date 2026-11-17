@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/001-code-readmes` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`
-
 ### Summary
 
 This child phase executed (commit 1455cf6062). The per-directory code README sweep aligned 12 READMEs to current shipped state, fixing factual drift across stale references, counts, renamed or removed files and broken paths. No README was added or deleted and every corrected path was verified to resolve.
@@ -55,3 +52,6 @@ This child phase executed (commit 1455cf6062). The per-directory code README swe
 ### Follow-Ups
 
 - None. The code README cleanup is complete and strict validation is green.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/001-code-readmes` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`

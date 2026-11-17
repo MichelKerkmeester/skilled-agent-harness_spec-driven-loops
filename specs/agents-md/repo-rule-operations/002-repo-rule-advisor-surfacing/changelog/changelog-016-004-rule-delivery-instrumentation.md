@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-04
 
-> Spec folder: `specs/agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation` (Level 2)
-> Parent packet: `specs/agents/016-repo-rule-advisor-surfacing`
-
 ### Summary
 
 One command now tells you, for Claude Code and Codex, how often a session needed a repo rule and did not have it. Before this, the only numbers came from an untested script that counted Read calls in Claude Code alone.
@@ -69,3 +66,6 @@ One command now tells you, for Claude Code and Codex, how often a session needed
 - Shell writes are invisible. A Codex write through sed -i or a redirect is not counted, only apply_patch.
 - Pattern detection. Requested tables are a keyword heuristic, and the document bucket rarely fires.
 - Two runtimes. Devin, Cursor, Pi and OpenCode have no adapter yet.
+
+> Spec folder: `specs/agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation` (Level 2)
+> Parent packet: `specs/agents/016-repo-rule-advisor-surfacing`

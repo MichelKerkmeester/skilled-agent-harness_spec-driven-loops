@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/002-causal-edge-tombstones` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle`
-
 ### Summary
 
 Active causal-edge deletion now leaves an audit trail before the active row disappears. `lib/causal/sweep.ts` centralizes read-before-delete behavior: it snapshots matching active edges, writes tombstones with a monotonic lifecycle generation per source/target/relation, hard-deletes by active edge id, and clears graph caches after durable deletes. Every active production delete path was updated to route through this helper, including single memory delete, folder and tier bulk delete, stale index cleanup, manual unlink, health orphan repair, CLI cleanup, vector-index mutation cleanup, checkpoint scoped restore cleanup, and correction undo cleanup. Health reporting gained orphan edge samples and tombstone counts. The active `causal_edges` table stays simple for graph reads while `causal_edge_tombstones` preserves compact restore metadata for later recovery.
@@ -82,3 +79,6 @@ Active causal-edge deletion now leaves an audit trail before the active row disa
 
 - Historical active edges have no tombstone history for deletes that happened before v32. Audit begins at the first post-migration delete.
 - Two pre-existing module-header defects in `canonical-fingerprint.ts` and `memo.ts` remain and are outside this phase's scope.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/002-causal-edge-tombstones` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle`

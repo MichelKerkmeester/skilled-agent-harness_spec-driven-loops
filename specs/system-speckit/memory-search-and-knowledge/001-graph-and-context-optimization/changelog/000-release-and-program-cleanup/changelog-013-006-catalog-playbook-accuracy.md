@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/006-catalog-playbook-accuracy`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation`
-
 ### Summary
 
 Ten verified accuracy defects in the feature catalog and manual testing playbook were corrected. The pass fixed overstated annotation coverage, stale tool and scenario counts, broken scenario-to-catalog links, garbled contract text, stale implementation paths, stale scenario ranges and stale MCP call shapes. The work was documentation-only except for one test assertion changed from 36 to 37 to match the real `TOOL_DEFINITIONS` length.
@@ -76,3 +73,6 @@ Ten verified accuracy defects in the feature catalog and manual testing playbook
 
 - After the residual phase-label instances are removed from `tool-schemas.ts` and `context-server.ts`, the qualified catalog wording can be tightened again.
 - The changed `review-fixes.vitest.ts` assertion was marked for central test execution.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/006-catalog-playbook-accuracy`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation`

@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-04-08
 
-> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/001-cache-warning-hooks` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
-
 ### Summary
 
 Packet 002 was originally framed as a six-phase cache-warning rollout with SessionStart estimator and UserPromptSubmit behavior. Canonical research proved that framing was too aggressive. Warning consumers are later in the continuity lane. The defensible near-term work is a bounded producer-side metadata patch plus replay-safe verification.
@@ -73,3 +70,6 @@ Commits outside the spec-folder path range (under `mcp_server/`). Packet-level r
 - **Analytics reader packet.** The normalized reader for hook metadata remains deferred. This phase intentionally stops at the producer boundary.
 - **Cached-summary consumer.** SessionStart cached-summary fast path is deferred. Startup authority stays with session_bootstrap() and memory resume.
 - **Direct warning surface.** UserPromptSubmit and .claude/settings.local.json mutations remain follow-on work.
+
+> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/001-cache-warning-hooks` (Level 3)
+> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

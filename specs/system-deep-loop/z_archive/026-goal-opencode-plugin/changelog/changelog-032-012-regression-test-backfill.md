@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/012-regression-test-backfill` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
-> Commit: `37eaaad0a1` test(mk-goal): backfill regression coverage for real integration seams
-
 ### Summary
 
 The mk-goal regression suite now exercises the plugin through the same public hooks OpenCode uses (passive system transform, lifecycle `event()` dispatch, continuation from `session.idle`, factory-registered tools, and the default export test seam) rather than only helper-level internals, and pins the corrected phase 010/011 behavior instead of the pre-fix behavior.
@@ -60,3 +56,7 @@ The mk-goal regression suite now exercises the plugin through the same public ho
 ### Follow-Ups
 
 - None recorded. An out-of-scope phase 004 graph-metadata drift the phase's own scan surfaced was fixed separately, outside this phase's write boundary, after this phase's own verification pass completed.
+
+> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/012-regression-test-backfill` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
+> Commit: `37eaaad0a1` test(mk-goal): backfill regression coverage for real integration seams

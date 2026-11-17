@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-06-03
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/005-scouted-bugfix-batch-5` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train`
-
 ### Summary
 
 The fifth batch of the scouted bugfix train closed out the verify-first round-3 tail. Four targets originally classified as unconfirmed were re-examined by a gpt-5.5-fast confirm pass and all four were confirmed against the real code. One of the four — the cli-devin phantom "dangerous" permission rows — had already shipped via parallel `130/014` cli-doc work, so it was deduped and left untouched. The remaining 3 confirmed defects were fixed by implement-and-test agents on disjoint file sets: the D4-R grader system prompt emitting `"dim_id": "D4R"` (no hyphen) while the harness strict-equals `'D4-R'`, silently capping confidence at 0.3 and injecting a mismatch annotation on every real D4-R grade (invisible in tests because the mock path injects the caller-supplied dimId → prompt changed to `"dim_id": "D4-R"`); handover freshness in `parseHandoverSignal()` only trying `last_updated` / `last_updated_at` top-level so `updated:` (top-level) and `last_updated_at:` under `_memory.continuity:` fell through to the unreliable mtime fallback (single frontmatter extraction + `updated` alias + continuity-block fallback; 11/11 tests); and `updatePhaseParentPointer`, the highest-frequency graph-metadata mutation path, reading via plain `JSON.parse` and writing via `atomicWriteJson` with NO schema validation, silently accepting malformed timestamps / empty `last_active_child_id` (parse with `graphMetadataSchema` Zod before mutating; typed `GraphMetadata` value). Every fix ships with a regression test; affected TS typechecks clean.
@@ -66,3 +63,6 @@ The fifth batch of the scouted bugfix train closed out the verify-first round-3 
 - Deploy: recycle the mk-spec-memory daemon after commit so the `resume-ladder.ts` and `generate-context.ts` fixes take effect in the running daemon. The grader prompt (`system-grader-task-outcome.md`) is read at benchmark dispatch time; no daemon recycle needed.
 - The cli-devin phantom "dangerous" permission rows target stays out-of-scope here — already shipped via parallel `130/014` cli-doc work.
 - vitest segfaults on Node v25 in this env; the phase-parent-pointer test runs green via `tsx` (known environment issue, not a fix problem).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/005-scouted-bugfix-batch-5` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train`

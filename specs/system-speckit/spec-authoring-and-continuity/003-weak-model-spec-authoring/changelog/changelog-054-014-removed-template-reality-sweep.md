@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-26
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep` (Level 2)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 Phase 014 swept the tree after the 2.11.0.0 release. One audit found 19 stale lines plus 3 nearby gaps that still offered the deleted before-after, roadmap or resource-map add-on. A second audit found 12 docs that contradicted the shipped code: 9 from the release and 3 older ones that called decision-record required at Level 3. Five briefs fixed them all, and a fresh review found nine follow-ups, which were fixed too. The /speckit workflows keep their own per-step strict gate.
@@ -60,3 +57,6 @@ Phase 014 swept the tree after the 2.11.0.0 release. One audit found 19 stale li
 ### Follow-Ups
 
 - None recorded.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep` (Level 2)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

@@ -18,9 +18,6 @@ contextType: "review"
 
 ## 2026-05-13
 
-> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/023-post-remediation-re-review` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 After 022's 5-batch remediation addressed the hf-local default residue introduced before the llama-cpp cascade flip, a 10-iteration confirmatory re-review ran against the same scope as 021 to determine whether the FAIL verdict had flipped to PASS. The review used cli-codex gpt-5.5 at reasoning=high across three dimensions: correctness, traceability, maintainability.
@@ -65,3 +62,6 @@ The cycle found 0 P0 findings. 55 P1 findings and 21 P2 advisories remained as c
 - Address 55 P1 findings grouped by remediation batch: fix `resolveActiveProfileProvider()` and provider-keyed DB callers first, then align doc mirrors, doctor assets, playbooks, package-lock as follow-on batches.
 - Regenerate the package-lock after ONNX removal to eliminate the two P1 `onnxruntime-common` entries.
 - Refresh 017 packet `description.json` and `graph-metadata.json` to match the accepted ship state where llama-cpp became the no-cloud-key auto default.
+
+> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/023-post-remediation-re-review` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

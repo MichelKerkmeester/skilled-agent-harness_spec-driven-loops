@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/007-bitemporal-window` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 The phase delivered the schema-migration foundation for bi-temporal Memory causal and lineage data. Schema version 38 adds an additive four-timestamp window to causal edges and fills the missing transaction-time columns on memory lineage, with explicit up, backfill and down helpers. Current readers keep using the legacy open-edge predicate and transaction-time recall stays default-off. Event-time invalidation and chronology-driven behavior remain deferred consumers.
@@ -54,3 +51,6 @@ _Detailed file-level changes live in the phase implementation summary._
 - Implement event-time invalidation as the next writer-side consumer.
 - Add chronology-driven invalidation only for conflicting relation pairs.
 - Keep transaction-time recall behind its default-off flag until benchmark evidence exists.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/007-bitemporal-window` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

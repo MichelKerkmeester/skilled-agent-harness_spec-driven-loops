@@ -18,8 +18,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/024-launcher-lease-integration-test` (Level 2)
-
 ### Summary
 
 The spawned-launcher lease integration suite (`tests/launcher-lease.vitest.ts`) sat behind `describe.skip` with the note "known launcher process lifecycle flake." The skip label was a misdiagnosis: the suite failed 100% of the time, not intermittently. The fixture copied `mk-spec-memory-launcher.cjs` into each temp workspace but not its `lib/` tree, so every spawned launcher crashed with `Cannot find module './lib/model-server-supervision.cjs'` before it could write a lease, surfacing downstream as a `waitForLeasePid` timeout that looked like a process race.
@@ -59,3 +57,5 @@ This packet un-skipped the suite, fixed the real root cause (copy the whole `lib
 ### Follow-Ups
 
 - Stub daemon, not the real context-server. The socketPath bridge test binds a minimal JSON-RPC echo socket rather than booting the full `context-server.js`. That is sufficient to exercise the launcher lease plus bridge prefer-stored-path logic (what packet 020 changed). It does not exercise real daemon request handling.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/024-launcher-lease-integration-test` (Level 2)

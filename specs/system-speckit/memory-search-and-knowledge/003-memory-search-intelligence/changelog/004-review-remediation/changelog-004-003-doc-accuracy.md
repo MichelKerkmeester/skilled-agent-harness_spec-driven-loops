@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-20
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation/003-doc-accuracy` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation`
-
 ### Summary
 
 This phase executed the parent-dispatched doc-accuracy fixes against committed code. The P1-6 Memory rollup mislabel is corrected and the timeline, before-vs-after and benchmark-status staleness cluster is reconciled to the landed work. Default-off gating no longer reads as no-code-shipped. Three scaffold items overlap phase 004 or a concurrent session and were deferred.
@@ -50,3 +47,6 @@ This phase executed the parent-dispatched doc-accuracy fixes against committed c
 ### Follow-Ups
 - Three cluster items were deferred and route to phase 004 P2 triage. `changelog-028-root.md` verification population, `000-release-cleanup/spec.md` phase-map and zero-hash fingerprint, and the `ENV_REFERENCE.md` 17-flag inventory which is owned by a concurrent session.
 - No commit was made. The edits are staged in the working tree only and committing is the dispatcher's decision.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation/003-doc-accuracy` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation`

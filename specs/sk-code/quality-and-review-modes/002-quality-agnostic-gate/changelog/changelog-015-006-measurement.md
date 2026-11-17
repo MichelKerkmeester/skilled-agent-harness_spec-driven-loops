@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-26
 
-> Spec folder: `specs/sk-code/015-quality-agnostic-gate/006-measurement` (Level 2)
-> Parent packet: `specs/sk-code/015-quality-agnostic-gate`
-
 ### Summary
 
 The phase measured the gate phases 001 to 005 build, and every number it records comes from a run against a fixture in a temporary repository. Seven quality-gate scenarios replay the gate on a seeded change, a false-positive set, an unknown language, a CI target, a surface outside the hub, an absent required tool and an envelope round trip. Three compiled-routing canaries prove the routing prompts the design names. One measurement record holds the catch rate, the false positives, the timing, the intent recall, the read-only invariant and the transcript scan. One seven-file report folder is rendered from that record rather than written by hand.
@@ -76,3 +73,6 @@ The phase measured the gate phases 001 to 005 build, and every number it records
 - Seven legacy report folders do not reproduce from their records, and they did not before this phase. Four sit under the hub, .skilled/skills/sk-code/benchmark/reports/2026-06-01--after--router, .skilled/skills/sk-code/benchmark/reports/2026-06-01--full--router, .skilled/skills/sk-code/benchmark/reports/2026-06-02--d4r-live--live and .skilled/skills/sk-code/benchmark/reports/baseline, and three under the mode packets, .skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--router-mode-a--router, .skilled/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--live-mode-b--live and .skilled/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--router-mode-a--router. Each differs from a render of its record in its generated Markdown, and .skilled/skills/sk-code/benchmark/reports/compiled-routing holds no machine record at all. A --check over those folders fails exactly as it did before the renderer gained its measures section, so this is a known pre-existing condition rather than a regression. Workaround: none in this phase. A repair is a new change under whichever packet owns the archived reports.
 - The operator read and the operator confirmation stay open. All seven transcripts are saved in full under evidence/transcripts/, so the read can happen at program end. The seven operator decisions in decision-record.md carry Accepted, pending operator confirmation at program end and wait for the same moment.
 - Intent recall carries no target, by design. The record sets targeted to false and the corpus row leaves met as null, because four prompts are too few to tune against (ADR-007). The rendered report states the result with no target rather than inventing one.
+
+> Spec folder: `specs/sk-code/015-quality-agnostic-gate/006-measurement` (Level 2)
+> Parent packet: `specs/sk-code/015-quality-agnostic-gate`

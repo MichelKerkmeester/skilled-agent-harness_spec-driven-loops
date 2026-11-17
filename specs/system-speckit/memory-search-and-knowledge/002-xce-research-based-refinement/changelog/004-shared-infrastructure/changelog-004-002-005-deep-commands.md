@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/005-deep-commands` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation`
-
 ### Summary
 
 The presentation/router split was extended to the deep command family. Six mode-based deep commands became thin routers plus `deep_<command>_presentation.*` assets, while their `_auto.yaml` and `_confirm.yaml` workflow assets remained byte-identical.
@@ -59,3 +56,6 @@ The presentation/router split was extended to the deep command family. Six mode-
 ### Follow-Ups
 
 - Two non-mode deep commands were verified as already thin and remained out of split scope.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/005-deep-commands` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation`

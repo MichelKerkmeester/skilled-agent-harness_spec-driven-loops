@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/002-stress-test-pattern-documentation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test`
-
 ### Summary
 
 The stress test cycle format had been authored ad-hoc three times (v1.0.1 baseline, v1.0.2 rerun, v1.0.3 wiring run) with no shared reference. Each new cycle required operators to reverse-engineer the scoring matrix, rubric scale, verdict ladder and sidecar shape from prior packets. This phase captured that emerged format as first-class infrastructure by authoring three artifacts: a feature catalog entry (the conceptual reference), a manual testing playbook (the operational guide) and a JSON schema template bundle (the findings sidecar contract). Future stress cycle authors can now run an end-to-end cycle from the playbook alone without reading a prior packet.
@@ -69,3 +66,6 @@ The stress test cycle format had been authored ad-hoc three times (v1.0.1 baseli
 - No runtime automation was added. This phase documents the manual stress cycle pattern and template bundle only. A separate packet would be needed to document the automated harness at `mcp_server/stress_test/search-quality/`.
 - The sk-doc skill file was not updated. The optional cross-link from the sk-doc skill listing was deferred because the approved write authority did not include sk-doc skill internals.
 - The template is a v1 contract. Future cycles can extend dimensions or weighting by bumping the schema version and documenting why.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/002-stress-test-pattern-documentation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test`

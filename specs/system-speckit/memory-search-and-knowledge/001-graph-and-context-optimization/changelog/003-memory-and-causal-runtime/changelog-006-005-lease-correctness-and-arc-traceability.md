@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/005-lease-correctness-and-arc-traceability` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`
-
 ### Summary
 
 The four-phase MCP launcher concurrency arc shipped with a CONDITIONAL deep-review verdict: no P0s, but 13 P1 findings across documentation drift, missing test evidence plus real correctness gaps. The highest-risk issue was lease ownership following workspace paths instead of the resolved SQLite database directory, which allowed two workspaces sharing a DB-dir override to bypass the single-writer boundary.
@@ -84,3 +81,6 @@ All 13 P1 findings were closed in one remediation packet. The launcher lease bou
 
 - Confirm the three pre-existing full-suite vitest failures (`skill-graph-diagnostic-redaction`, `lane-weight-sweep`, `manual-testing-playbook`) are tracked in their owning packets and closed there.
 - Verify manual smoke of duplicate-launch behavior when no active MCP daemon session is running to complement the subprocess vitest coverage.
+
+> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/005-lease-correctness-and-arc-traceability` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

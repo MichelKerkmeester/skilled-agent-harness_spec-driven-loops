@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/014-idempotency-flag-on-correctness` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 The memory idempotency feature (`SPECKIT_MEMORY_IDEMPOTENCY`, default OFF) had correctness gaps that would surface only with the flag on, so they had to be fixed before any future enablement. Replay now returns the original stored response verbatim — the prior `replayed: true` marker is gone, so a replayed call is indistinguishable from the first call, which is the point of idempotency. Receipts are immutable first-writes: the store uses `ON CONFLICT(receipt_key) DO NOTHING` and reports whether it won the write. The receipt-write guard no longer leaves behind a receipt that would block a legitimate retry. And when two concurrent first-writes race, the loser looks up the winner's receipt and replays the winner's response instead of diverging. All of this stays gated behind the default-off flag, which remains off pending a dist rebuild and a deliberate enablement decision.
@@ -59,3 +56,6 @@ The memory idempotency feature (`SPECKIT_MEMORY_IDEMPOTENCY`, default OFF) had c
 ### Follow-Ups
 
 - Enablement gating (force-retry-conflict handling, receipt TTL) is the remaining work before the flag can be turned on.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/014-idempotency-flag-on-correctness` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

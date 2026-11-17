@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The mk-spec-memory launcher had no RSS ceiling and no supervised recovery. The embedding model's native memory (held in a forked sidecar grandchild under the default auto policy) grew unchecked until the OS OOM-killed the process. Nothing restarted it. Recovery required a manual MCP reconnect.
@@ -67,3 +64,6 @@ This phase added a periodic process-tree RSS monitor that rolls up memory across
 - Run SC-001 and SC-002 against a live daemon to observe a real ceiling-breach recycle and crash-loop behavior (headless tests use injectable runners and mocked signals).
 - Add a unit test for the `recycleViaGracefulSelfExit` mechanism and the `launcherShutdownInProgress` no-respawn guard, which are code-reviewed correct but exercised only on the default-off path.
 - Document the give-up reap pid-reuse residual: the before-death snapshot is at most one monitor tick old and the alive-gate bounds but does not fully eliminate reaping a reused pid.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

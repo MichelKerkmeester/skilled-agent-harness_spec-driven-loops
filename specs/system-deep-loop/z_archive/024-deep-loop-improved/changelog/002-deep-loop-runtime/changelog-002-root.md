@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime` (Level 2)
-
 ### Summary
 
 Phase 003 shipped runtime hardening for unattended loops across state writes, locks, waits, JSONL repair, fanout timing, convergence signals, fallback routing and judge behavior. It added safer atomic and deferred writes, abortable sleep, lifecycle guards, lock-held merge, crash-resume wait checkpoints, richer convergence evidence and hardened LLM verdict handling.
@@ -80,3 +78,5 @@ _No file-level detail recorded._
 ### Follow-Ups
 
 - None recorded.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime` (Level 2)

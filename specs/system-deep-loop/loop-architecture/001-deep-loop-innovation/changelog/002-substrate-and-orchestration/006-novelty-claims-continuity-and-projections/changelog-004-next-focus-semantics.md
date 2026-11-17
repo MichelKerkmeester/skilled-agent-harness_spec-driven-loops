@@ -12,9 +12,9 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/004-next-focus-semantics` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections`
-
 ### Summary
 
 This phase defined typed, deterministic next-focus semantics that rank coverage gaps, open contradictions, and under-covered semantic communities from ledger-derived novelty signals, then record the selected region and complete decision basis for replay. Per its implementation summary, the phase delivered verified pivot-compatible next-focus derivation, deterministic scoring, ledger replay, and dark comparison. Status is complete.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/004-next-focus-semantics` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections`

@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-02
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/003-mcp-front-proxy` (Level 3, follow-ups)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation`
-
 ### Summary
 
 Shipped and **deployed** the two reconnect-transparency follow-ups of the merged MCP front-proxy work, designed in a 5-iteration deep-research pass and adversarially reviewed (3-lens Opus, no P0/P1). **#1 protocol-drift**: the launcher's internal re-handshake matched only the initialize-reply id, so a mid-session backend build-swap could silently serve a different negotiated protocol version. **#2 multi-client**: only the lease-holder (primary) session reconnected transparently across a daemon recycle; 2nd+ sessions used the raw bridge and severed. These are launcher `.cjs` changes (loaded at launcher start, no dist build), deployed by restarting the launcher — verified live when a concurrent session's launcher reconnected through the new bridge.
@@ -57,3 +54,6 @@ Shipped and **deployed** the two reconnect-transparency follow-ups of the merged
 ### Follow-Ups
 
 - The daemon still RSS-recycles at ~1 GB (memory-pressure design, unchanged); recycles are now transparent rather than visible drops. The two P2 review observations (versionless-handshake enforcement, just-died-daemon exit-code parity) remain deferred and non-blocking.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/003-mcp-front-proxy` (Level 3, follow-ups)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation`

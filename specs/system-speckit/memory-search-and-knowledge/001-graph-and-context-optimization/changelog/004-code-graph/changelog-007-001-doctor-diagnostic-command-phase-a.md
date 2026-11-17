@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/001-doctor-diagnostic-command-phase-a` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes`
-
 ### Summary
 
 Code-graph operators had no dedicated diagnostic surface. When the index went stale or accumulated bloat from `node_modules/`, `dist/`, generated artifacts, the only path was to manually inspect `code_graph_status`, eyeball `detect_changes`, then grep for bloat directories. There was no equivalent to `/doctor:skill-advisor` for the graph index.
@@ -73,3 +70,6 @@ Phase A ships a diagnostic-only `/doctor:code-graph` command that covers the ful
 - Surface `fresh`, `soft-stale`, plus `hard-stale` classification tiers in the Phase A diagnostic report by consuming the staleness threshold model defined in the research packet's `assets/staleness-model.md`.
 - Smoke-test the MCP tool fallback paths (git status and glob comparison) against a real degraded state where `code_graph_status` or `detect_changes` are unavailable.
 - Measure the install guide DQI baseline and record the score in the packet checklist.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/001-doctor-diagnostic-command-phase-a` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes`

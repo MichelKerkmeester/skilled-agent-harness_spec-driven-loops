@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 system-skill-advisor's 15 reference docs now carry exactly the canonical frontmatter contract. This skill owns both the checker and the doc-harvest consumer, so its own references are the largest single slice of the campaign and the one where drift would be most embarrassing: before this phase every doc lacked contextType, 8 lacked importance_tier, the hook operator contract had no trigger phrases at all, and five docs sat at important tier without meeting the contract's formal-contract criterion.
@@ -61,3 +58,6 @@ system-skill-advisor's 15 reference docs now carry exactly the canonical frontma
 
 - Live-daemon verification is campaign-level. The running advisor daemon predates the launcher allowlist fix, so matchedDocs cannot be observed live until every advisor-attached session cycles and a fresh session respawns it.
 - The five tier demotions are judgment calls. If a downstream consumer weighted on the old `important` values, restore the prior tiers via git history and re-run the coverage check.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

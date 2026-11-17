@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-05
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 The Phase 012/001 sandbox campaign deferred several usefulness cells that could not be verified in a sandbox environment. These cells required live MCP server access, native runtime hooks, or file-system access that the sandbox blocked.
@@ -77,3 +74,6 @@ The final usefulness verdict: code-graph downgraded to OVERHEAD until the tree-s
 ### Follow-Ups
 
 - **Code-graph OVERHEAD verdict restoration.** The code-graph is downgraded pending the tree-sitter parser crash fix. Phase 012/007 will address this. The verdict should be re-evaluated after the 012/007 fix lands.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

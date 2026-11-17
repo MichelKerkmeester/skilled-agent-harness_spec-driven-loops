@@ -16,8 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation` (Level 2, Phase Parent)
-
 ### Summary
 
 Five command families — memory, speckit, create, doctor, and deep — had their workflow routing tangled with their Markdown presentation contracts in the same command docs. This phase parent split the two concerns across five children, one per family, so routing logic and presentation contracts each live where they belong and can change independently. The refactor is behavior-preserving: command behavior and rendered output are unchanged. This is the structural groundwork that the 004/001 CLI transition and the 004/004 CLI-UX work both lean on. The deep family shipped last (epic close): its six mode-based commands already owned `_auto`/`_confirm` workflow YAMLs, so its child extracted the presentation contracts, thinned the routers from 429-573 lines down to 106-160, and aligned the sk-doc command-creation standard to document the split as the canonical pattern.
@@ -59,3 +57,5 @@ This rollup is the authoritative child inventory for 004/002. The five children 
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation` (Level 2, Phase Parent)

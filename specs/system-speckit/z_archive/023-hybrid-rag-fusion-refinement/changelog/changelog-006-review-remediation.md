@@ -4,8 +4,6 @@ This release matters because it turns the final ESM (the modern JavaScript modul
 
 The work focused on what a user or maintainer actually feels: command-line tools start the right way, saves fail safely when protection is missing, search-related hot paths do less unnecessary work, and the written project record now matches what shipped.
 
-> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/006-review-remediation/` (Level 2)
-
 ---
 
 ## Bug Fixes (5)
@@ -221,3 +219,5 @@ Three targeted regression test files were added, and the final verification conf
 No migration is required for users already on Node `20.11.0` or later.
 
 If a local environment still uses an older Node 20 release, upgrade to `20.11.0` or newer before rebuilding. No schema changes were introduced.
+
+> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/006-review-remediation/` (Level 2)

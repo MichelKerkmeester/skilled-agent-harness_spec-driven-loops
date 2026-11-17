@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-04-15
 
-> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite` (Level 3+)
-> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
-
 ### Summary
 
 This was the largest phase in the track. A 7-iteration audit exposed that the runtime still created, wrote, indexed, and read [spec]/memory/*.md even though v3.4.0.0 docs claimed that surface was retired. 25 active findings (9 P0, 9 P1, 7 P2) proved a half-migrated system.
@@ -96,3 +93,6 @@ Implementation spanned M1-M10 milestones. Deep-review commit set closed all 9 fi
 - **Hybrid mode remains reserved.** SPECKIT_SAVE_PLANNER_MODE=hybrid is accepted but behaves like plan-only. A future packet may define mixed-flow behavior.
 - **Historical memory-file cleanup.** PR-10 historical-migration dry-run exists. Apply mode remains deferred with operator-gated reopen criteria.
 - **Feature-flag orthogonality tests.** The four env flags are documented as orthogonal. A formal test suite validates no cascade behavior.
+
+> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite` (Level 3+)
+> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/002-bge-v2-m3-trial` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc`
-
 ### Summary
 
 The spec-memory rerank arc had already ruled out two off-the-shelf cross-encoders: Qwen3-Reranker-0.6B timed out on CPU plus OOM'd on MPS at 50-doc batches. ms-marco-MiniLM-L-6-v2 regressed 6 hits below the OFF baseline. The hypothesis for Phase 2 was that a stronger generalist model, BAAI/bge-reranker-v2-m3 (568M parameters, Apache-2.0, multilingual diverse-text training), would close the gap without fine-tuning.
@@ -69,3 +66,6 @@ All three failure classes are wide failures, not close calls. No source patch wa
 - Investigate the sidecar post-run health timeout before running Phase 3. A model that hangs the sidecar after a 50-probe batch is a lifecycle risk for production use.
 - Confirm whether the 16 stale `gold_memory_ids` in the current `memory_index` would materially affect recall scores if refreshed. The fixture was authored against an earlier index snapshot.
 - Phase 3 (fine-tune) uses bge-v2-m3 as the model to beat. The HOLD outcome establishes 0.12 hit-rate@5 and 10591 ms p95 as the off-the-shelf ceiling for this corpus.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/002-bge-v2-m3-trial` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/035-idempotent-writes-cache-upsert` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Shipped the description-side idempotent writes and a targeted global-cache upsert behind the default-OFF `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` flag. A content fingerprint that excludes the volatile `lastUpdated` stamp drives a per-folder no-op skip and an aggregate-cache content gate so a write whose only delta is the timestamp is skipped. A new `upsertDescriptionCacheEntry` replaces only the target row instead of rebuilding the whole tree. The canonical-save escape hatch still bumps `lastUpdated` on demand. Vitest green at 9 cases. The flag later GRADUATED to default-ON.
@@ -58,3 +55,6 @@ Shipped the description-side idempotent writes and a targeted global-cache upser
 - `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` GRADUATED to default-ON after a scoped migration restamped the legacy wall-clock files.
 - Live callers that currently rebuild were not yet rewired to prefer `upsertDescriptionCacheEntry` at ship time, that routing was part of graduation.
 - A dedicated would-rewrite grandfather reporter was folded into the graduation follow-on rather than built here.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/035-idempotent-writes-cache-upsert` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

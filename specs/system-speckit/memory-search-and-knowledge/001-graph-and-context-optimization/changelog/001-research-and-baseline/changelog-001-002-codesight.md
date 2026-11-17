@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-04-12
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline`
-
 ### Summary
 
 The `Code_Environment/Public` stack lacked an evidence-grounded basis for adopting patterns from the codesight external CLI. Without a source-level audit, any port risked importing the wrong patterns alongside the tool's known bugs and unsupported marketing claims.
@@ -71,3 +68,6 @@ None. Research-only phase.
 - Add tRPC contract enrichment to any port of `enrichRouteContracts`. The current implementation is regex-only and strongly biased toward Hono. tRPC has zero contract enrichment despite having AST route detection.
 - Fix Go AST labeling before adopting the Go detector pattern. The current `extract-go.ts` uses brace-tracking with regex but labels its output `confidence: "ast"`, which misrepresents the evidence type.
 - Supersede the lowest-quality saved memory with a new sanctioned save if retrieval quality becomes a problem. The newest snapshot carries a `has_topical_mismatch` flag and was intentionally left unmodified per memory-save rules.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline`

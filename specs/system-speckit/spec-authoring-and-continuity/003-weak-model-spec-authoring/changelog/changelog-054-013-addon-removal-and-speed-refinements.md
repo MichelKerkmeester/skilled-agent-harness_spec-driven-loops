@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-26
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements` (Level 2)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 Phase 013 dropped the before-after, roadmap and resource-map add-on templates and built the six refinements the speed-loop analysis ranked. The card now runs one quiet validate, fixes every failing rule per round and stops after three rounds; the validator's repair hint leads with the command that fixes the packet; and the spec and acceptance-criteria templates say how ids are numbered. The deep loops still write their own resource map. No existing packet changed verdict, and the work ships as system-spec-kit v2.11.0.0.
@@ -68,3 +65,6 @@ Phase 013 dropped the before-after, roadmap and resource-map add-on templates an
 ### Follow-Ups
 
 - None recorded.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements` (Level 2)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

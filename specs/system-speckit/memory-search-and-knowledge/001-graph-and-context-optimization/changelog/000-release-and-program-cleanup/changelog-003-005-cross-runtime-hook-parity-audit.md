@@ -18,9 +18,6 @@ contextType: "review"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/005-cross-runtime-hook-parity-audit` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`
-
 ### Summary
 
 The release-readiness program needed a runtime-by-runtime truth check for Spec Kit hook delivery. Prior remediation had clarified the hook contract, but release confidence still depended on whether Claude, Codex, Copilot, Gemini, OpenCode each produce the documented signal, expose actionable fallback paths, avoid silent feature loss when an operator switches runtimes.
@@ -72,3 +69,6 @@ One P0 finding was surfaced: the checked-in Copilot live hook wrapper does not i
 - Open a remediation packet to fix the P0 Copilot live wrapper gap before any release gating that includes Copilot as a supported runtime.
 - Collect normal-shell live CLI verdicts for all five runtimes outside the sandbox to close the P1 evidence gap.
 - Document the Copilot fallback path in the hook contract so the gap cannot silently recur after remediation.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/005-cross-runtime-hook-parity-audit` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`

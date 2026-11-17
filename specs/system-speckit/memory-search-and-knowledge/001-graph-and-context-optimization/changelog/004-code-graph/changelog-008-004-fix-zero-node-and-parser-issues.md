@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-06
 
-> Spec folder: `026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/004-fix-zero-node-and-parser-issues` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`
-
 ### Summary
 
 Real-world usefulness testing surfaced two P0 data-loss paths in the code-graph persistence layer. A full scan that returned zero nodes could prune and replace a populated graph, leaving operators with an empty index. A runtime parse error during file indexing could overwrite the file's last good structural data with empty error state, making previously queryable nodes and edges disappear silently.
@@ -86,3 +83,6 @@ Shipped in commit `f7a3fbdf` (feat(012/004): code-graph P0+P1 remediation) and `
 
 - Address six alignment warnings in pre-existing `mcp_server/lib/*` files that `verify_alignment_drift.py` flagged as missing module headers. These files were not modified in this packet and the warnings are outside the fix scope.
 - Replace last-record failed-scan persistence with a bounded history table if operators need to review a sequence of consecutive scan failures rather than only the latest.
+
+> Spec folder: `026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/004-fix-zero-node-and-parser-issues` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

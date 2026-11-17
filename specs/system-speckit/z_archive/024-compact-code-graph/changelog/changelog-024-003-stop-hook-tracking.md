@@ -8,8 +8,6 @@
 
 This phase added the missing end-of-session bookkeeping for Claude hook flows. Session stop now parses transcript JSONL, records token estimates, updates hook-state metrics, and attempts a best-effort context save so long-running sessions can be measured and resumed with less guesswork.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/003-stop-hook-tracking/`
-
 ---
 
 ## New Features (3)
@@ -67,3 +65,5 @@ This phase added the missing end-of-session bookkeeping for Claude hook flows. S
 ## Upgrade
 
 No migration required.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/003-stop-hook-tracking/`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 This phase shipped a pre-rendered verdict fragment, a conditionally-mandatory render-slot contract and a deterministic post-render fidelity check, all behind the default-off `SPECKIT_ENVELOPE_FIDELITY_V1` flag. The formatter emits a new additive `data.envelopeRender` string built from the same `requestQuality` label and `citationPolicy` pair the tool already ships, so a weak model pastes the two verdict lines verbatim rather than dropping them. With the flag off the response shape is byte-for-byte the shipped behavior. The vitest is 12/12 green and the typecheck is clean.
@@ -60,3 +57,6 @@ This phase shipped a pre-rendered verdict fragment, a conditionally-mandatory re
 
 - The default-on flip of the render mandate is a follow-on gated on a clean grandfather report over a captured render corpus. The flag has since GRADUATED to default-on after a fixture benchmark.
 - This phase enforces render fidelity for a correct verdict and does not touch the off-corpus false-relevance defect, which is a separate phase.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

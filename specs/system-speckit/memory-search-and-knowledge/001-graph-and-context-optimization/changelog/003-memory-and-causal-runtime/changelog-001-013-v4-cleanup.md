@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/013-v4-cleanup` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 The v4 deep-review cycle surfaced one remaining startup path where the Voyage auto-shadow warning fired after provider resolution rather than before it, leaving a window where the wrong provider could silently activate. The health response had no visibility into the hf-local dtype. Programmatic callers had no way to pass dtype at construction time. The CocoIndex `SearchResult.rankingSignals` field used a bare mutable list default, a Python shared-state hazard. Documentation for the 012 state and Setup A q8 filename examples was stale.
@@ -75,3 +72,6 @@ Six findings were closed in a single commit. The startup guard in `getStartupEmb
 
 - Apply the `.codex/config.toml` note patch from `scratch/codex-config-patch.md` manually when outside the sandbox TCC guard.
 - GitHub PAT rotation remains a user-managed manual action outside the scope of this packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/013-v4-cleanup` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

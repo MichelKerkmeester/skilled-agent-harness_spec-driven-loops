@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-24
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`
-
 ### Summary
 
 Ran the closeout claim sweep and reconciled epic documentation against the finalized runtime. The sweep found the shared root cause blocking downstream phases — no production writer ever persisted `cutover_ready` — before the operator chose the registry-direct flip path that `010` then finalized.
@@ -29,3 +26,6 @@ Ran the closeout claim sweep and reconciled epic documentation against the final
 ### Status
 
 Complete. Closeout reconciled against the finalized runtime; the operator-chosen registry-direct flip executed and was finalized by `010`, and the whole-system gate passes.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`

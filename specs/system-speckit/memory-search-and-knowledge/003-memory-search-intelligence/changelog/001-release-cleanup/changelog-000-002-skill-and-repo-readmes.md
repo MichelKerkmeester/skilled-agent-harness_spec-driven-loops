@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/002-skill-and-repo-readmes` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`
-
 ### Summary
 
 This child phase executed (commit ed06dcdc21). The skill READMEs and the root repository README were aligned to current shipped state, fixing factual drift across stale references, counts and paths while preserving each document's deliberate house structure. No README was added or deleted and every corrected path was verified to resolve.
@@ -56,3 +53,6 @@ This child phase executed (commit ed06dcdc21). The skill READMEs and the root re
 ### Follow-Ups
 
 - None. The skill and repo README cleanup is complete and strict validation is green.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/002-skill-and-repo-readmes` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`

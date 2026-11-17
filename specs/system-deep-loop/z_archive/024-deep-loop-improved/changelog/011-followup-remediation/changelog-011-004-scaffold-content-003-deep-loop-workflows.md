@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/004-scaffold-content-003-deep-loop-workflows` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation`
-
 ### Summary
 
 Same scaffold-content debt as child 003, scoped to `003-deep-loop-workflows`'s 12 leaf children. The dispatch prompt was hardened with the exact 3 frontmatter pitfalls found in child 003, and this child shipped with 0 manual fixes needed afterward.
@@ -47,3 +44,6 @@ Same scaffold-content debt as child 003, scoped to `003-deep-loop-workflows`'s 1
 ### Follow-Ups
 
 - None. Confirms the improved dispatch-prompt pattern (explicit pitfall list + self-verification requirement) works.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/004-scaffold-content-003-deep-loop-workflows` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation`

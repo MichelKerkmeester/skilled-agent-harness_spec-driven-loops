@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004b-skill-advisor-interface-and-env-vars`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`
-
 ### Summary
 
 This is the follow-on to 004a, shipping waves 2 to 4 of the phase 004 plan. The skill-advisor scorer gained typed RoutingCalibration slots in place of inline calibration literals, env-var-aware helpers that resolve thresholds and calibration at call-time, and an externalized prompt-policy JSON so the linguistic sets and fire/no-fire thresholds are configurable without code edits. Delivered through a cli-opencode plus deepseek-v4-pro atomic three-wave dispatch with HALT-on-failure per wave and a final bundle gate.
@@ -65,3 +62,6 @@ This is the follow-on to 004a, shipping waves 2 to 4 of the phase 004 plan. The 
 
 - `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` was skipped because `lane-registry.ts` has no env-var extension point, deferred to a structural follow-on
 - The `ENV_REFERENCE.md` update for the 9 new env vars was deferred to arc convergence
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004b-skill-advisor-interface-and-env-vars`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

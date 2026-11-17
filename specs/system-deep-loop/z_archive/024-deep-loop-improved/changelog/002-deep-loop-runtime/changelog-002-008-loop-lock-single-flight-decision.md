@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/008-loop-lock-single-flight-decision` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`
-
 ### Summary
 
 Added single-flight acquisition decision logic to loop-lock.ts per the phase scope (collapse concurrent acquire attempts for the same lock to one in-flight request). Tests pass; typecheck green.
@@ -54,3 +51,6 @@ Added single-flight acquisition decision logic to loop-lock.ts per the phase sco
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/008-loop-lock-single-flight-decision` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`

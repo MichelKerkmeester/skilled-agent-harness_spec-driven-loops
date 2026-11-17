@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation/006-review-record-packet-type` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation`
-
 ### Summary
 
 This phase added an additive marker-gated review packet type to the feature-spec validator. A spec.md carrying `<!-- SPECKIT_LEVEL: review -->` enters a review path that requires only spec.md and `review/review-report.md` and waives plan, tasks, checklist, implementation-summary and decision-record. The marker is the sole entry into the path, so every existing Level 1, Level 2, Level 3 and phase folder is byte-unaffected. The change spans both validator surfaces and the templates, ships four tests plus two fixtures, and the 009-dark-flag-validation packet was marked a review record and now validates clean at exit 0.
@@ -54,3 +51,6 @@ This phase added an additive marker-gated review packet type to the feature-spec
 ### Follow-Ups
 - Mark the remaining lean deep-review packets as review records. Only the 009 packet was marked here to demonstrate the path, so other lean review packets still carry their retrofitted docs until marked.
 - The 011 and 012 packets stay Level 1 by intent, they document feature work rather than review records.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation/006-review-record-packet-type` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation`

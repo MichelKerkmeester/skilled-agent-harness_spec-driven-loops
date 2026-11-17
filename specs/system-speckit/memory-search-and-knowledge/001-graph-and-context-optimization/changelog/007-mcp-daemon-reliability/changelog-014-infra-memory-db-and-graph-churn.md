@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-30
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn`
-
 ### Summary
 Two live-infra issues degraded the spec-memory subsystem. Memory writes failed due to DB corruption from unclean shutdown. Graph-metadata churn buried real changes in working-tree noise and forced wide manual git scoping on every commit.
 
@@ -48,3 +45,6 @@ Two live-infra issues degraded the spec-memory subsystem. Memory writes failed d
 
 ### Follow-Ups
 - Graph-churn code fix deferred (agent idempotency draft builds + passes 41 tests but effectiveness unverified)
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn`

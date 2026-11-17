@@ -8,8 +8,6 @@
 
 Aligned the skill package documentation with sk-doc template structure. SKILL.md, README, command docs, agent definition, and all reference assets were brought into conformance with the standard layout and verified by package validation.
 
-> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/003-sk-recursive-agent-doc-alignment/`
-
 ---
 
 ## Documentation (1)
@@ -39,3 +37,5 @@ Aligned the skill package documentation with sk-doc template structure. SKILL.md
 ## Upgrade
 
 No migration required.
+
+> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/003-sk-recursive-agent-doc-alignment/`

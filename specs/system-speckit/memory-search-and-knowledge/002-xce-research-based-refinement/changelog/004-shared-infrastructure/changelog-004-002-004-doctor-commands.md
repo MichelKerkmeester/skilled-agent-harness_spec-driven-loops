@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands` (Level 2, Phase Parent)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation`
-
 ### Summary
 
 The doctor command family completed router/presentation separation across the four nested aspects. Presentation assets now own `/doctor`, `/doctor:mcp`, and `/doctor:update` startup prompts, route setup, MCP assessment, update-health dashboards, final reports, restart guidance, failures, and rollback displays.
@@ -55,3 +52,6 @@ The doctor command family completed router/presentation separation across the fo
 ### Follow-Ups
 
 - No live doctor maintenance workflow was executed; verification targeted command architecture and references.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands` (Level 2, Phase Parent)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation`

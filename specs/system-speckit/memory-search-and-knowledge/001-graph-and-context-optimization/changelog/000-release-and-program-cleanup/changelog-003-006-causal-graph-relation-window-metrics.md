@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/006-causal-graph-relation-window-metrics` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 The `memory_causal_stats` handler had three separate problems that together hid relation-skew from operators. First, the `by_relation` map silently dropped relation types with a zero count, so a supersedes-only burst looked like a healthy distribution. Second, `health:"healthy"` could co-exist with `meetsTarget:false`, making the top-level health signal unreliable. Third, no per-relation per-window cap existed, so a prediction-error reconsolidation path could produce hundreds of supersedes edges in 15 minutes with no throttle.
@@ -80,3 +77,6 @@ Five new behaviors shipped. The `by_relation` map now zero-fills all six valid r
 - Fix the out-of-scope `handlers/memory-context.ts` TS2741 type error so `npm run build` exits cleanly. This is tracked in a separate packet.
 - Run a live burst probe against the cap fixture in a running MCP daemon session to confirm the 100-edge throttle fires in practice.
 - Evaluate whether the 80% dominance and 50-edge minimum thresholds need tuning based on production telemetry after the first rollout.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/006-causal-graph-relation-window-metrics` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

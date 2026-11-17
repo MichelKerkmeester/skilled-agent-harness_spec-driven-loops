@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/029-substrate-sandbox-cleanup` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 The substrate stress harness wrote its evidence and scratch into `_sandbox/24--local-llm-query-intelligence/` at the repository root and never cleaned it, so every run left the folder behind. The summary TSV is a harness-to-test contract that `substrate-runner-harness.vitest.ts` reads after the harness subprocess exits, so the cleanup cannot live in the harness `finally` without deleting the TSV before the test reads it. This phase added a fail-safe cleanup that removes the throwaway hermetic code-graph DB on every run, a `--clean` flag that drops the whole sandbox for standalone runs and a test `afterAll` that clears the sandbox once the suite has read the TSV. No memory or code-graph behavior changed.
@@ -48,3 +45,6 @@ The substrate stress harness wrote its evidence and scratch into `_sandbox/24--l
 ### Follow-Ups
 
 - A standalone manual run leaves the evidence in place unless `--clean` is passed, by design, so an operator can inspect the summary TSV after a manual run.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/029-substrate-sandbox-cleanup` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

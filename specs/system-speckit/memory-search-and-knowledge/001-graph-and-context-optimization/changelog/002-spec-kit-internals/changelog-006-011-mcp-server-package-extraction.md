@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/011-mcp-server-package-extraction` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 The skill graph DB/query library lived inside `system-spec-kit/mcp_server/lib/skill-graph/` while `system_skill_advisor` exposed the public `skill_graph_*` tools. That split created a dual-writer risk where memory startup initialized and watched the skill graph while the advisor owned the tool surface.
@@ -90,3 +87,6 @@ The advisor is now the sole runtime owner of skill graph code and lifecycle. Mem
 - No OpenCode hook file exists in this checkout. The verified hook set is Claude, Codex, and Gemini. A future checkout with the OpenCode hook directory should verify that import resolves correctly.
 - Memory full-suite baseline remains red at core. The stale 011 fixture was fixed, but unrelated failures covering Copilot dist hooks, code-graph extraction leftovers, vector dimension mismatch, and workflow vocabulary invariance remain outside 011 scope.
 - `lib/utils/sqlite-integrity.ts` re-exports advisor freshness integrity and `lib/utils/skill-label-sanitizer.ts` re-exports advisor render sanitization. Both are candidates for future neutral `@spec-kit/shared` extraction in a dedicated follow-up packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/011-mcp-server-package-extraction` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

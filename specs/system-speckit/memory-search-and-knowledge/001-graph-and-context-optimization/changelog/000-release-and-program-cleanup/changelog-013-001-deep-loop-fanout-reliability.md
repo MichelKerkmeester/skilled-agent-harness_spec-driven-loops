@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/001-deep-loop-fanout-reliability`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation`
-
 ### Summary
 
 The deep-loop fan-out runner now reports lineage failures truthfully. CLI non-zero exits and timeouts throw from the worker after salvage, so the pool records rejected lineages and the process exits non-zero. Lineages run with real async concurrency, per-lineage iteration caps reach the loop prompt, Codex dispatch no longer emits the out-of-enum `service_tier=default` and documentation plus comment hygiene were brought back in line with the shipped runtime.
@@ -62,3 +59,6 @@ The deep-loop fan-out runner now reports lineage failures truthfully. CLI non-ze
 ### Follow-Ups
 
 - A path-scoped workspace-write sandbox for review lineages would be stronger than prompt-enforced write boundaries, but the CLIs do not expose that boundary today.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/001-deep-loop-fanout-reliability`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation`

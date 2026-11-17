@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/002-convergence-profile-unification-adr` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`
-
 ### Summary
 
 Defined a shared convergence-profile schema (threshold/weight/role/direction/normalizer) plus schema comment blocks across the three convergence implementations (additive, no behavior change), pinned current traces with a parity test (14/14 pass), and recorded the ADR rejecting a single universal convergence formula.
@@ -56,3 +53,6 @@ Defined a shared convergence-profile schema (threshold/weight/role/direction/nor
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/002-convergence-profile-unification-adr` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`

@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/009-convergence-design-and-hardening` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`
-
 ### Summary
 
 A sliding-window convergence mode was evaluated against generation-2 evidence that full-history denominator drag is mathematically real and deferred to a follow-up phase rather than built now. Two hardening items already existed and were confirmed and tested, and two genuinely new hardening items, stall alerting and a per-lineage cost cap, were built.
@@ -54,3 +51,6 @@ A sliding-window convergence mode was evaluated against generation-2 evidence th
 
 - The sliding-window convergence mode is a documented follow-up, not shipped in this phase, matching the packet's own explicit scope boundary.
 - The per-lineage budget cap measures configured cost units rather than real measured per-lineage token consumption, since the runtime does not currently track that telemetry.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/009-convergence-design-and-hardening` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`

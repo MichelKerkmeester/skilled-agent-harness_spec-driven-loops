@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/001-nomic-only-consolidation` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server`
-
 ### Summary
 
 Local embedding menus listed eight stale models across registries, dimension maps, provider code, and user documentation. This phase stripped them all back to a single default, nomic-ai/nomic-embed-text-v1.5. Unlisted models set by a user still work because the code derives the dimension from the runtime vector length instead of hard-failing. Cloud provider entries for voyage and openai were left unchanged.
@@ -74,3 +71,6 @@ Local embedding menus listed eight stale models across registries, dimension map
 - Live re-embed was not performed here. Switching the default does not re-embed an existing corpus. Vectors stay valid because the default was already nomic (768). A genuine model change would require a reindex, documented in ENV_REFERENCE.
 - Unlisted-model runtime-dim is verified headlessly with mocked vector length. A live unlisted model on a running daemon is the natural follow-up check.
 - Phases 002 through 006, the hf-local HTTP model-server work, remain spec-only and deferred.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/001-nomic-only-consolidation` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server`

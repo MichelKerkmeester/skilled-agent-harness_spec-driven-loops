@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-04-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening` (Level 2, review-only)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening`
-
 ### Summary
 
 A 7-iteration autonomous deep-review of Phase 016/017 remediation covered 27 `fix(016)` commits that landed 4 P0 composites (A HookState overhaul, B transactional reconsolidation, C graph-metadata laundering, D TOCTOU cleanup), 7 structural refactors, 13 medium refactors, 21 quick wins, and 34 test migrations. The review cycled through 4 primary dimensions (correctness, security, traceability, maintainability) plus cross-reference cluster consolidation and a recovery sweep. It converged at iteration 6 with `newFindingsRatio 0.0923 < 0.10`. No P0 override fired. All 4 P0 composites were re-verified at iteration 5 with genuine attack chains.
@@ -68,3 +65,6 @@ None - review-only phase.
 - **Phase 017 remediation charter**: All 10 P1 + 18 P2 findings assigned to 27 remediation tasks across 4 waves (A/B/C/D) in the 001-foundational-runtime spec.
 - **Segment-2 deep-research**: A 7-iteration deep-research pass (iterations 51-57) extended the inventory by 14 new findings (9 P1, 5 P2), confirming 3 compound hypotheses and ruling out P0 escalation.
 - **Deep-review pt-02**: A follow-up 10-iteration review of Phase 017 remediation itself (the code that closed these findings).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening` (Level 2, review-only)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening`

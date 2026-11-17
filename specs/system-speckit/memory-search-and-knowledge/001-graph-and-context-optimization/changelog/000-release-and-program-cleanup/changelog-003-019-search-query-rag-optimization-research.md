@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-04-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/019-search-query-rag-optimization-research` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 The v1.0.2 stress rerun confirmed 83.8% remediation progress, but the next optimization frontier was cross-system search quality rather than single-cell closure. Six surfaces (memory search, query intelligence, RAG fusion, CocoIndex, code graph, skill advisor) each exposed useful signals with no unified optimization plan spanning them.
@@ -71,3 +68,6 @@ A 10-iteration deep-research loop ran against those surfaces using static source
 - Add a shared query corpus covering v1.0.1 and v1.0.2 stress cells plus ambiguous and paraphrase queries before changing any ranking behavior.
 - Wire advisor trustState and CocoIndex seed telemetry into a composed answer-level provenance object once Phase D measurement is in place.
 - Promote advisor learned weights to online use only after offline corpus comparison shows false-positive rate and ambiguous-route quality improve.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/019-search-query-rag-optimization-research` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-09
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli` (Phase Parent)
-
 ### Summary
 
 The spec-memory CLI lane delivered a complete dual-stack CLI front-door over the mk-spec-memory daemon. Four successive deep-research runs produced a decision-grade GO verdict with zero unresolved risks. The CLI core shipped as a thin IPC client generating 37 subcommands at runtime from `TOOL_DEFINITIONS`. Hardening locked dual-spawn, dual-client, lifecycle, and parity contracts. Runtime integration wired warm-only fallback into Claude and Codex hooks and shipped an OpenCode plugin bridge with no in-process DB imports.
@@ -69,3 +67,5 @@ See per-phase changelogs for full file tables.
 
 - REQ-005 dual-stack observation window remains in progress by design
 - Final program-level multi-runtime transport-down drill tracked at program level
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli` (Phase Parent)

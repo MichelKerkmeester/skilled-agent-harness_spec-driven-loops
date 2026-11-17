@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-24
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate` (Level 3)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 An unfilled template hint now fails strict validation once a new packet leaves Draft, and only warns while it is Draft. Older packets keep the verdict they had.
@@ -61,3 +58,6 @@ An unfilled template hint now fails strict validation once a new packet leaves D
 - The post-edit scanner misses a hint inside a fenced block and a token with a colon. This phase records both and fixes neither.
 - `upgrade-level.sh` copies tokens into older docs, so a v2.2 doc that gains a template section then holds tokens that error.
 - `README.md` and the template mapping asset still say `[PLACEHOLDER]` and are left to the documentation phase.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate` (Level 3)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

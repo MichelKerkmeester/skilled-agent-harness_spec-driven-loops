@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-10
 
-> Spec folder: `specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment` (Level 2)
-> Parent packet: `specs/system-speckit/034-spec-folder-tooling`
-
 ### Summary
 
 The spec-folder tooling epic shipped commands and checks that the docs did not yet describe. This phase brings the playbooks, feature catalogs, READMEs, doctor docs and release changelogs in line with that code, so an operator or tester who reads a doc gets what the tool does now. A docs audit found 26 such gaps, and each one is fixed or checked in its file.
@@ -69,3 +66,6 @@ _No file-level detail recorded._
 - The Gate 3 parity test covers twelve files and does not cover speckit-implement.yaml, worked-examples.md or trigger-config.md. Confirmed in the test's file list.
 - The CLI test suite creates temporary folders in the real specs/ root. Reported by the review, not rerun.
 - Two documentation gaps and one broken path. The spec README omits the completedAt manifest field that upgrade-legacy.mjs:494 writes. retrieval/lib/README.md line 23 names ../retrofit-convention.mjs, which does not exist. The file is runtime/cli/ops/retrofit-convention.mjs. The link checker reads markdown links only, so it does not catch a code-span path.
+
+> Spec folder: `specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment` (Level 2)
+> Parent packet: `specs/system-speckit/034-spec-folder-tooling`

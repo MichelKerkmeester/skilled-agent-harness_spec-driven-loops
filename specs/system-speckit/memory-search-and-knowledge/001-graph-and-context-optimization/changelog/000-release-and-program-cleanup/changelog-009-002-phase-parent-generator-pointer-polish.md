@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/002-phase-parent-generator-pointer-polish` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation`
-
 ### Summary
 
 Before this phase, `/spec_kit:resume` on a phase parent always walked the filesystem to list children. `create.sh --phase` scaffolded the parent with a full level-N template plus a phase-parent addendum, leaving vestigial heavy docs behind. There was no automated check to warn a reviewer when a phase-parent `spec.md` slipped into merge or migration narrative.
@@ -92,3 +89,6 @@ All 18 tasks passed. Four vitest fixtures cover the pointer-write, child bubble-
 - `PHASE_PARENT_CONTENT` validator is heuristic. Token scan catches common drift but will not flag novel narrative phrasings that fall outside the literal token list. Reviewer judgment remains the primary line of defense.
 - `check-anchors.sh`, `check-section-counts.sh` and `check-template-headers.sh` still expect the full Level-2 anchor set on a lean parent. This produces non-blocking errors. A follow-on should extend the phase-parent branch to those three rules.
 - No follow-on packet yet for soft deprecation of legacy heavy docs at phase parents. Tolerant policy preserves them. A future packet could introduce an opt-in `migrate-phase-parent.sh` once the lean policy stabilizes.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/002-phase-parent-generator-pointer-polish` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation`

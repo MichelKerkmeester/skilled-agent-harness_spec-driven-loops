@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/006-launchers-and-cli` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation`
-
 ### Summary
 
 The launchers and CLI lane closed recorded daemon launcher, advisor flag/trust/PID, and CLI front-door correctness findings.
@@ -53,3 +50,6 @@ The launchers and CLI lane closed recorded daemon launcher, advisor flag/trust/P
 ### Follow-Ups
 
 - Waived P2 entries are recorded with reasons.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/006-launchers-and-cli` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation`

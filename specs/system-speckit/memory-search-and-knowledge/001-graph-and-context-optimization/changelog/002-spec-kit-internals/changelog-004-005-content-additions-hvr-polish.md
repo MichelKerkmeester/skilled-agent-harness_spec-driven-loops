@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/005-content-additions-hvr-polish` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor`
-
 ### Summary
 
 The skill-advisor package had content gaps across five reference topics: lane-weight tuning, skill-graph query patterns, validation baselines, daemon lease semantics, and skill-graph drift reconciliation. A canonical hook-reference copy was also missing from the skill package, requiring cross-skill traversal. Five new reference documents and one canonical hook-reference copy were created to close these gaps.
@@ -59,3 +56,6 @@ The skill-advisor package had content gaps across five reference topics: lane-we
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/005-content-additions-hvr-polish` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor`

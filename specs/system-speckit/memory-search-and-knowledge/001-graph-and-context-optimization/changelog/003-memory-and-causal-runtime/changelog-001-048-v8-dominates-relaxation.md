@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/048-v8-dominates-relaxation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 The V8 dominance rule in `validate-memory-quality.ts` applied a single hard-coded threshold across all document types. Parent handover docs that legitimately summarize many child packets failed V8 with "foreign spec ids dominate rendered content" even though the repeated references were intentional structural content. The live parent handover at `001-local-embeddings-foundation/handover.md` was blocked with `current_spec:014-local-embeddings-migration`.
@@ -63,3 +60,6 @@ The patch introduced document-type-aware dominance thresholds and a cached direc
 
 - The direct-child allowlist covers direct numbered directories only. Deeper descendants still need their own current or ancestor path to be included in the allowed set.
 - The handover dominance threshold is deliberately lower than the decision-record and implementation-summary threshold to preserve the five-mention unrelated-spec failure case required by T047-04.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/048-v8-dominates-relaxation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

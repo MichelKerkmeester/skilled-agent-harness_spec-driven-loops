@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/005-cross-skill-documentation-decoupling` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation`
-
 ### Summary
 
 The three system-spec-kit docs carried 26 cross-skill references leftover from before the Skill Advisor and Code Graph were extracted as separate skills. Section 1 of each README used tables that fragmented what should be prose overviews. All cross-skill references were removed, Readme Section 1 was converted to prose and bullets, and the three ARCHITECTURE.md files were conformed to a shared canonical template so each skill stands alone with a consistent structure.
@@ -72,3 +69,6 @@ The three system-spec-kit docs carried 26 cross-skill references leftover from b
 - Push to origin/main.
 - Mark all Phase 2 and Phase 3 tasks complete.
 - Verify no blocked tasks remain.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/005-cross-skill-documentation-decoupling` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`
-
 ### Summary
 
 The CocoIndex MCP server split code files using `RecursiveSplitter` with fixed line windows. For `structural-indexer.ts` (2,234 lines), the chunk surfacing at dense rank 1 for the "filesystem walker" probe was the 9-line import header, not the `findFiles` or `indexFiles` function bodies. BGE-family rerankers were starved of semantic content on every supported language.
@@ -89,3 +86,6 @@ Shipped in commit `382059a468` (2026-05-19).
 - Validate RRF recalibration impact on the transient regression lanes via packet 017.
 - Close the full rerank-matrix re-bench to confirm no net regressions after 016 and 017 land via packet 018.
 - Add a "broad-scope scan with code-aware chunker verification" scenario to the manual testing playbook once the skill re-integration path is settled.
+
+> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

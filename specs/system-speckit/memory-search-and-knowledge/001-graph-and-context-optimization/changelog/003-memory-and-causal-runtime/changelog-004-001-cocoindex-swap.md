@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-17
 
-> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/001-cocoindex-swap` (Level 1)
-> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`
-
 ### Summary
 
 The CocoIndex embedder default was `sbert/google/embeddinggemma-300m`, a general-text model that left code-search recall on the table. Device resolution only checked for CUDA, meaning Apple Silicon machines ran CPU inference even when Metal was available.
@@ -69,3 +66,6 @@ Two changes shipped in commit `8f909d229`: `_DEFAULT_MODEL` was flipped to `sber
 
 - Complete 018/003 benchmark measurement and ratify ADR-001 comparing jina-code against gemma-300m on recall metrics. Deferred per operator discretion at time of ship.
 - Verify behavior after the `mcp-coco-index` skill removal (commit `549a8d1e3a`) to confirm the embedder logic was migrated to its replacement location before the skill was deleted.
+
+> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/001-cocoindex-swap` (Level 1)
+> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

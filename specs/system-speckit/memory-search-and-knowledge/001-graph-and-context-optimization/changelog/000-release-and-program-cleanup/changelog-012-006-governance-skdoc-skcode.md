@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-05
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`
-
 ### Summary
 
 This review-only slice audited constitutional governance rules, sk-doc standards and sk-code verification contracts for drift from repo practice. The merged verdict was CONDITIONAL with 10 open findings: 7 P1 and 3 P2. Top findings covered comment-hygiene checker gaps, bypassable hygiene overrides, memory_search as a wrong fallback for semantic code search, sk-doc command contract splits, sk-doc frontmatter guidance drift and sk-code verifier severity mismatches.
@@ -63,3 +60,6 @@ None (review-only packet).
 - Bring comment-hygiene constitutional wording, checker patterns and bypass policy into parity.
 - Correct semantic code-search fallback guidance so memory search is not used for arbitrary project code.
 - Consolidate sk-doc command requirements and reconcile sk-code verifier severity language with its default exit behavior.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`

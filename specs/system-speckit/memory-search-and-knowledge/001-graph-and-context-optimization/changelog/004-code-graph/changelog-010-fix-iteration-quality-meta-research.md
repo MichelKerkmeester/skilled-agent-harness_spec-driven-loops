@@ -19,9 +19,6 @@ contextType: "research"
 
 ## 2026-05-02
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 Iterative LEAF-agent fixes (where an agent fixes a bug, then code review finds a gap, then the agent fixes the gap, then deeper review finds another gap) were accumulating 4 to 7 rounds before reaching completeness. Each round cost time and tokens. The problem was not that the agents were bad at fixing. It was that the process did not tell them what "complete" meant.
@@ -85,3 +82,6 @@ A deep-review Phase 2 verified the R1-R8 infrastructure. The final FIX-010-v2 cy
 
 - **Automated checklist enforcement.** The checklist is currently a document that agents must read. A follow-up could enforce it at the tool level by refusing to mark a task complete until all 8 items are checked.
 - **Historical fix trajectory replay.** The R1-R8 improvements were validated on the FIX-010-v2 cycle. A broader replay on 10+ historical fix trajectories would provide stronger evidence.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 3)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

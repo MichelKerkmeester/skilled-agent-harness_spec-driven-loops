@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-12
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/003-mcp-config-rollout` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 All five MCP runtime configs carried `EMBEDDINGS_PROVIDER=auto` but no explicit model identity. Because `VOYAGE_API_KEY` was exported from three sources (`~/.zshrc`, project `.env` and macOS launchd), the auto-resolver silently picked Voyage on every MCP child spawn even though the local model was already installed in phase 002.
@@ -77,3 +74,6 @@ Phase 3 solved both problems. The five configs (`.claude/mcp.json`, `.mcp.json`,
 - Rotate the HF token visible in chat history at https://huggingface.co/settings/tokens.
 - Verify the auto-resolver lands on `hf-local` by restarting all MCP runtimes and confirming the new vec store filename uses the `hf-local__onnx-community__embeddinggemma-300m-ONNX__768` prefix.
 - Investigate adding a warn-once egress guard in `factory.ts` that fires if `VOYAGE_API_KEY` reappears while the resolved provider is `hf-local`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/003-mcp-config-rollout` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

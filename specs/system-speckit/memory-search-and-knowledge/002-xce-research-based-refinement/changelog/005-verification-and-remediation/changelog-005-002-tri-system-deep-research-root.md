@@ -15,8 +15,6 @@ contextType: "research"
 
 ## 2026-06-12
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research` (Level 1)
-
 ### Summary
 
 The tri-system deep-research program ran 50 read-only gpt-5.5 high iterations across system-spec-kit, system-code-graph, system-skill-advisor, and cross-system concerns. The synthesis records 193 evidence-bearing findings plus 2 live-incident findings; a 12-seat verification wave adjudicated all 103 P0/P1 claims into 48 confirmed, 53 downgraded, and 2 refuted.
@@ -57,3 +55,5 @@ The tri-system deep-research program ran 50 read-only gpt-5.5 high iterations ac
 ### Follow-Ups
 
 - Findings remain analysis-grade until successor remediation re-verifies and fixes them.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research` (Level 1)

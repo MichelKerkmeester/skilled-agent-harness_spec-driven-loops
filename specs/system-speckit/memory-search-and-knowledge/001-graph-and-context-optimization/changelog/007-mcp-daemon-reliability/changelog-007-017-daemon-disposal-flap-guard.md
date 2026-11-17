@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The mk-spec-memory daemon no longer flaps when a session ends. Before this, an owner session's disposal sent SIGTERM to the shared daemon child, and the launcher's supervisor respawned it on a 250 ms backoff — under a runtime that was already going away — so the fresh daemon was killed again ~1 s later. Every session bridged to that daemon saw its MCP transport drop. This is the exact failure a two-model investigation (Opus 4.8 + gpt-5.5 xhigh) reproduced live, and it sits squarely in the owner-shutdown territory v3.5.0.2 explicitly deferred.
@@ -64,3 +61,6 @@ The mk-spec-memory daemon no longer flaps when a session ends. Before this, an o
 - Runtime-verify the flap stops on a fresh session; the launcher change activates only on a new launcher process, so the end-to-end flap-stop is confirmed by syntax, unit tests, and code logic, not by live observation yet.
 - Orphan detection assumes the parent dies. If a disposal leaves a persistent wrapper as the launcher's parent, the ppid will not change and the gate falls back to prior behavior (no regression, but no help in that case). The complete fix is ownership re-election.
 - Only the dominant flap is fixed. Deferred to follow-up phases: daemon ownership re-election, the mk-code-index reconnecting proxy, dead-socket reap requiring N probe failures, CLAUDE_SESSION_PID flow and orphan-mcp-sweeper scheduling (the Stop-hook is currently a no-op and orphans accumulate), and a persistent launcher log for attributable future incidents.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

@@ -14,9 +14,6 @@ contextType: "research"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/008-archive-fleet-marker-validation-scaffold` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`
-
 ### Summary
 
 This phase establishes the scaffold structure for archive fleet marker validation within the template-levels parent. The packet defines Level 3 template boundaries and captures pre-existing reorg baseline state following the 026 system migration. No production code was delivered in this phase.
@@ -52,3 +49,6 @@ This phase establishes the scaffold structure for archive fleet marker validatio
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/008-archive-fleet-marker-validation-scaffold` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

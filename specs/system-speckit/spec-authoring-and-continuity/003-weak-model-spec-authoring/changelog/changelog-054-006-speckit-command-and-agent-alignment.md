@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-24
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment` (Level 3)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 The speckit, create and deep commands and the doc-authoring agents now send a writer to the authoring card and a filled example, state the v2.3 Draft warning in both placeholder classifiers, and no longer point at the retired `checklist.md`. 78 exact text rows were applied, the Codex, Pi and Hermes agent copies and the deep/review compiled contract were regenerated, and the suite matches the phase start.
@@ -71,3 +68,6 @@ The speckit, create and deep commands and the doc-authoring agents now send a wr
 - A row whose text drifted is skipped. The phase records it and does not guess a replacement, so a late change to main can leave one stale line for the operator.
 - The index premise is imprecise. At the start the index was not fresh because 3 documents were missing from it, not because any was stale. The set is unchanged by this phase, and the phase 006 changelog adds one more unindexed document.
 - The deep-review skill still says checklist.md. .skilled/skills/system-deep-loop/deep-review/SKILL.md has 3 mentions the rows do not cover, because the skill is outside this phase.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment` (Level 3)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

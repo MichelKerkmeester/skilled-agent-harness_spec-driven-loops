@@ -16,8 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit` (Level 2, Phase Parent)
-
 ### Summary
 
 This phase parent groups 9 read-only audit and research child packets. The campaign audited system-spec-kit, the 026 program, interconnected MCPs and 027 launch readiness with 40 review lineages plus 5 research lineages. The parent implementation summary records a CONDITIONAL verdict, roughly 50 distinct findings and one confirmed infrastructure P0 around deep-loop fan-out result accounting. No reviewed code was modified by the audit.
@@ -70,3 +68,5 @@ This phase parent groups 9 read-only audit and research child packets. The campa
 - Route remediation for fan-out result accounting first.
 - Then plan fixes for governed retrieval scope, causal-graph scope and entity-density invalidation.
 - Reconcile metadata status derivation, MCP contract parity and catalog or playbook drift after the blocking reliability issues.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit` (Level 2, Phase Parent)

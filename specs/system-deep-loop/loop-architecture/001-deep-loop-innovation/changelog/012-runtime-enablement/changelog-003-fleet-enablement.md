@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-24
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`
-
 ### Summary
 
 Built the serial enablement driver and CLI that walk the frozen mode order one mode at a time with external state, then executed the fleet flip via the operator-chosen registry-direct path. All eight authority modes now hold durable `new_authoritative_reversible` records on disk with `selectedWriter` dark.
@@ -30,3 +27,6 @@ Built the serial enablement driver and CLI that walk the frozen mode order one m
 ### Status
 
 Complete. The coordinator remains the proven pilot mechanism in `002`; the fleet used the registry-direct path the operator chose.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`

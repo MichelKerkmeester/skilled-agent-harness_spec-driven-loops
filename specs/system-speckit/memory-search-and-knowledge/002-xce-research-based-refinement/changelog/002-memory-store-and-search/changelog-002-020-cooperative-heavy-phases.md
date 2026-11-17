@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-cooperative-heavy-phases` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 020 made a reindex's scan and its post-scan embedding queue un-reaped through a shared maintenance marker, but un-reaped is not responsive: a daemon whose event loop is blocked can neither answer a competing launcher's bridge/probe nor fire the marker's 20s self-refresh, so a synchronous phase that blocks longer than the 180s TTL lets the marker go stale and a fresh launcher spawns a second daemon. 020 observed a longest blocking tail phase of ~79s but never pinned which phase it was. This packet is investigation-first. The reindex scan now runs an event-loop lag sampler (a 250ms `setInterval` whose drift reveals how long the loop was blocked since the prior tick; it logs `event-loop blocked ~<ms>` per spike and `max-event-loop-lag ms=<ms>` at scan end) and a `timedPhase` wrapper that logs `phase=<name> ms=<elapsed>` for each un-yielded tail phase. Both are gated on the background-scan `onPhase` hook, so the synchronous foreground path is byte-identical. Together they distinguish a true event-loop block (lag spike equals the block) from work that is merely slow but cooperative (high phase wall-clock, low lag) — the measurement that pins the real blocker on the live daemon. Separately, the one genuinely unbounded synchronous transaction — `trigger-embedding-backfill`'s whole-corpus phrase sync — is split into ~200-row chunk transactions that `await setImmediate` between chunks (never inside a transaction, which better-sqlite3's synchronous transactions forbid), with an `isCancelled` signal threaded from both scan call sites and a yield added to the embedding loop's non-awaiting cache-hit path; this is a latent-bug fix that takes effect whenever `SPECKIT_TRIGGER_EMBEDDING_BACKFILL` is enabled. Finally, entering each un-yielded tail phase via `timedPhase` fires `onPhase`, which refreshes the marker, so each tail phase begins with a full TTL ahead of it. The launcher adopt/reap path was read end to end and confirmed correct — `respawnAfterDeadSocket` checks the marker before respawning, so a fresh marker already causes adoption rather than a second daemon — and is left unchanged.
@@ -63,3 +60,6 @@ contextType: "implementation"
 
 - None. The lag read resolved the open question: with the trigger-backfill flag off, no phase blocks the event loop (max lag 634ms, no spikes), confirming the static-analysis bound — so no chunk-and-yield needs applying to any tail phase. The instrumentation remains in place to finger a regression if one ever appears.
 - The "clean single-launcher session" constraint was sidestepped rather than met: the read ran against an isolated `sqlite .backup` clone driven by a bare daemon on a private socket, so the live daemon and every other session were untouched and no cold-spawn churn could invalidate the measurement.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-cooperative-heavy-phases` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

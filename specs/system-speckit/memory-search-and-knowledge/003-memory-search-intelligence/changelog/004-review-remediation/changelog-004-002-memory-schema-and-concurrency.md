@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation/002-memory-schema-and-concurrency` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation`
-
 ### Summary
 
 This phase defines the remediation contract for three storage-layer findings and ships no code. The P1-2 derived-id split, the P1-4 in-lock embedding and the P1-5 retention spare-only stale snapshot all remain PENDING. The scaffold cites the exact source lines with quoted fix intent so a separate executing seat can land the fixes without re-deriving scope.
@@ -44,3 +41,6 @@ This phase defines the remediation contract for three storage-layer findings and
 ### Follow-Ups
 - A later pass must confirm the cited facts and add migration-safety and concurrency tests before any completion claim.
 - Two seat confidence caveats carry from the review and must be reconfirmed against the broader codebase during execution. The lineage stale-key re-root coverage gap and the `codeGraphEdgeBitemporalReadsEnabled` zero-callers claim were both scoped to `lib/` only.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation/002-memory-schema-and-concurrency` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation`

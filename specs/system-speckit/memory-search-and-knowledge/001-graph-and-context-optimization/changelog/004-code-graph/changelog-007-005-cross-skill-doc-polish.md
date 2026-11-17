@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-16
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/005-cross-skill-doc-polish` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes`
-
 ### Summary
 
 Two system skills had drifted from the sk-doc canonical template shape: `system-code-graph` SKILL.md was missing the structured SMART ROUTING subsections and the RULES section was a flat bullet list instead of H3 ALWAYS/NEVER/ESCALATE IF blocks. Six runtime config files and `AGENTS.md` were undercounting MCP tool surfaces, reporting 10 tools for `mk_code_index` (the correct count is 11, including `code_graph_classify_query_intent`) and 8 tools for `mk_skill_advisor` (the correct count is 9, the internal `skill_graph_propagate_enhances` was missing from five of six configs).
@@ -86,3 +83,6 @@ The packet restructured the code-graph SKILL.md to the canonical 8-section shape
 
 - Tighten `tsconfig.json` `include` and `exclude` in the system-code-graph package so the build only emits its own output and stops mirroring compiled output for sibling packages into `dist/`.
 - Remove the deprecation banner and old hook paths from `system-skill-advisor/references/deferred-decisions.md` after the 90-day deprecation window expires on 2026-08-16.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/005-cross-skill-doc-polish` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes`

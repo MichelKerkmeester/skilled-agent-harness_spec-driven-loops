@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening`
-
 ### Summary
 
 This leaf advances the vector-index schema from v35 to v36 and adds a default-off idempotency path to `memory_save` and `memory_update`. When `SPECKIT_MEMORY_IDEMPOTENCY=true`, an identical retry replays the stored MCP response with `replayed:true`, a changed-payload retry fails closed with `idempotency_key_conflict`, and near-duplicate rows surface as one advisory `near_duplicate_of` hint without gating the write. With the flag off, the schema is present and idle while existing writes remain byte-identical.
@@ -77,3 +74,6 @@ This leaf advances the vector-index schema from v35 to v36 and adds a default-of
 - Runtime replay and near-duplicate behavior remain inert until `SPECKIT_MEMORY_IDEMPOTENCY=true` is set.
 - Near-duplicate advisory requires an embedding to be present; index scan can stamp rows without embeddings after they are enriched.
 - Receipt persistence is best-effort: if storage fails after a valid write, that specific write will not replay until a later successful store.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening`

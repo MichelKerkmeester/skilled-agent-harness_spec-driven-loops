@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/006-parser-quarantine-recovery` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`
-
 ### Summary
 
 Finding F-RUNTIME-2 identified a permanent-until-restart fault: a single B2 error ("memory access out of bounds") set the module-level parser health to `quarantined`, causing every subsequent parse to return a sentinel. An explicit full scan then produced zero nodes, which the zero-node guard rejected to protect the graph. The runtime stayed stranded until a launcher restart. Playbook scenarios 002, 005, 022 and 024 were all blocked by this fault.
@@ -69,3 +66,6 @@ Build and all 54 vitest tests passed. Three previously blocked scenarios (002, 0
 
 - Re-verify scenario 022 with a subject that has multi-hop transitive dependents to demonstrate that `transitive > nontransitive` holds for a deep topology.
 - Consider persisting quarantine state across process restarts as an operator-visibility enhancement (out of scope for this packet, no correctness impact).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/006-parser-quarantine-recovery` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`

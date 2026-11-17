@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-16
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/004-fleet-authority-cutover` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation`
-
 ### Summary
 
 Planned — operator-gated, not executed. This phase plans the serial cutover of the seven remaining mode roots onto the typed ledger, proving five production boundaries per mode and preserving rollback windows, and retires legacy writers only after mode-scoped zero-use telemetry.
@@ -26,3 +23,6 @@ Planned — operator-gated, not executed. This phase plans the serial cutover of
 ### Status
 
 Planned and operator-gated. Neither the authority cutover nor any legacy-writer retirement has been performed: each requires explicit per-mode operator approval, a zero-divergence shadow-parity certificate, and zero-use telemetry before retirement. No mode authority has been flipped and no writer retired.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/004-fleet-authority-cutover` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation`

@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-04-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`
-
 ### Summary
 
 Phase 023 shipped all six work areas from the 021 smart-router research packet and added the OpenCode `spec-kit-skill-advisor` plugin. The packet fixes stale route resources, adds static router validation, tunes conservative ON_DEMAND routing keywords (5.5% to 48.0% hit rate), replaces silent CLI fallback with UNKNOWN disambiguation, creates observe-only telemetry, and delivers a bridge-backed OpenCode plugin that imports the Phase 020 advisor producer and renderer.
@@ -73,3 +70,6 @@ Phase 023 shipped all six work areas from the 021 smart-router research packet a
 - Bloat warnings remain observe-only (5 skills above 50%).
 - Telemetry is not enforcement yet.
 - Plugin rollout remains a deployment step.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

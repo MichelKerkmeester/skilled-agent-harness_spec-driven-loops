@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-04-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/005-fix-opencode-plugin-loader-bridge`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`
-
 ### Summary
 
 A tier-2 code review validated the Outcome A implementation (helper isolation plus legacy export hardening). Review findings corrected stale helper-location evidence from `.opencode/plugin-helpers/` to the actual `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/` path across canonical docs. The review also closed compact-plugin P2 advisories by adding defensive output-array guards and stable object-sessionID cache keys.
@@ -50,3 +47,6 @@ None. Review-only phase.
 ### Follow-Ups
 
 None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/005-fix-opencode-plugin-loader-bridge`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

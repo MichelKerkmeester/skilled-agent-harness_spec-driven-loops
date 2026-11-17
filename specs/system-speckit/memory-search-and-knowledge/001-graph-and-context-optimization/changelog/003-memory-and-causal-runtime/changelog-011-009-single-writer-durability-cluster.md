@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`
-
 ### Summary
 
 A deep review identified a cluster of single-writer and durability defects across the embedding-stack launcher, supervision, and WAL surfaces. These defects shared resources, including the respawn lock, root-liveness authority, leases, and the shutdown marker. They were landed as one coordinated change set rather than piecemeal to prevent re-collision. Each finding was re-validated at HEAD before editing and is now covered by a deterministic regression test.
@@ -71,3 +68,6 @@ A deep review identified a cluster of single-writer and durability defects acros
 - A live two-launcher integration run with real processes remains gated on a working onnxruntime tree. The deterministic unit-level suites assert the corrected logic, not end-to-end residency.
 - Family-3 cross-launcher coordination (OR-R-01 residual) is tracked in the adjacent code-graph launcher packet and was re-validated only.
 - The `reindex.ts` cluster fix and the C2 cancel edit (packet 008) were re-validated together so the staging-swap and cancel-re-read remain consistent.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`

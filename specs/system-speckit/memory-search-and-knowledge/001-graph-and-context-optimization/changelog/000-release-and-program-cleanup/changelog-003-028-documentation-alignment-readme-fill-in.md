@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-07
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/028-documentation-alignment-readme-fill-in` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 Five doc-quality drift items had accumulated under `system-spec-kit/`. Only one of six multi-ai-council reference files conformed to the `skill_reference_template.md` standard. Two manifest maintainer docs lacked reference frontmatter entirely. Two code-folder subdirectories had no README at all. The `skill_advisor/` directory carried two parallel manual-testing surfaces that violated the sk-doc single-source-of-truth contract.
@@ -81,3 +78,6 @@ Future authors who copy any of these folders as patterns now inherit a clean pre
 - Restore `graph-metadata.json` parent_id to the correct parent path after any future `generate-context.js` refresh, as auto-generation resets the field.
 - Confirm NC-004 receiver content against git history to determine if the original narrative needs restoring. A partial cli-codex run emptied the OVERVIEW and SCENARIO CONTRACT sections before being killed.
 - Update parent `000-release-cleanup/` `graph-metadata.json` field `derived.last_active_child_id` to point at this packet if not already set.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/028-documentation-alignment-readme-fill-in` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

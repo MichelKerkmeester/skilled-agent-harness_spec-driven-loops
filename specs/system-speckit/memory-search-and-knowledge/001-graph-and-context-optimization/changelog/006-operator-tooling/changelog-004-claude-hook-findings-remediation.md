@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`
-
 ### Summary
 
 End-to-end Claude Code hook testing surfaced three defects. (A) The skill-advisor freshness contract was broken: `skill-graph-generation.json` reported `state: "live"` but every advisor probe returned `freshness: "stale"` because `sourceSignature` was persisted as `null`. (B) `.claude/settings.local.json` mixed Copilot-schema fields (`bash`, `timeoutSec`) with Claude-schema fields inside nested hook blocks, causing three hooks to fire per `UserPromptSubmit` event instead of the expected two. (C) No documented multi-turn regression harness existed for skill-advisor testing, making per-prompt verification expensive.
@@ -72,3 +69,6 @@ End-to-end Claude Code hook testing surfaced three defects. (A) The skill-adviso
 
 - AS-003 (hook count parity) is blocked by user-global GitKraken/SUPERSET hooks that cannot be changed from this packet.
 - AS-004 (live Claude session) is blocked by sandbox authentication.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

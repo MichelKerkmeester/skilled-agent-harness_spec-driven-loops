@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 cli-claude-code's 6 reference/asset docs now carry exactly the canonical frontmatter contract, making them valid routing signal for the advisor doc harvest. Unlike the 008 pilot (pure normalization of an existing block), this was the campaign's first net-new authoring phase: every doc carried title+description only, so trigger_phrases, importance_tier, and contextType were authored fresh from each doc's actual body.
@@ -58,4 +55,5 @@ cli-claude-code's 6 reference/asset docs now carry exactly the canonical frontma
 | `.opencode/skills/cli-claude-code/assets/prompt_quality_card.md` | Modified | Full contract block authored; tier normal |
 | `.opencode/skills/cli-claude-code/assets/prompt_templates.md` | Modified | Full contract block authored; tier normal |
 
-
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

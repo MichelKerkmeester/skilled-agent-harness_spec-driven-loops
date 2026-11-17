@@ -18,9 +18,6 @@ contextType: "review"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/009-documentation-truth-audit` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`
-
 ### Summary
 
 After recent documentation refresh work, the release surface needed a truth audit to confirm that automation claims, tool counts, feature catalog entries and operator playbooks matched the live runtime. A read-only audit was run across root docs, agent docs, system-spec-kit MCP server descriptions, feature catalogs and manual playbooks. No target documentation was modified.
@@ -65,3 +62,6 @@ None. Review-only phase.
 
 - Plan doc-only remediation passes for the six active P1 findings identified in the review report.
 - Extend the link scan to cover external URLs, which were out of scope for this audit.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/009-documentation-truth-audit` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`

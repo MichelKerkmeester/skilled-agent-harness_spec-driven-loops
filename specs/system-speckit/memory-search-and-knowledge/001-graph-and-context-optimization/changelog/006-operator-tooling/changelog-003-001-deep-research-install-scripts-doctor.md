@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-05-26
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/001-deep-research-install-scripts-doctor` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment`
-
 ### Summary
 
 The CocoIndex deprecation (014 arc) and the 116 deep-skill-evolution renames left operator-facing install guides, setup scripts and `/doctor` commands describing a world that no longer exists. Three competing code-graph DB path claims and three competing deep-loop DB path claims appeared across docs, configs and doctor routes with no single source of truth.
@@ -62,3 +59,6 @@ None. Research-only phase.
 - Prioritize ADJACENT-116 findings A-01 and A-02 (advisor regression fixture and routing-accuracy corpus) in the sibling phase: they are live advisor correctness bugs because the advisor scores itself against `sk-deep-*` skill ids that no longer exist.
 - Verify the latent `config.ts:14` `defaultDir` mismatch against the documented `.spec-kit/code-graph/database` default and file a targeted fix if the discrepancy survives current HEAD.
 - Re-bless the 197-prompt routing corpus and address `fusion.ts` dead bonus branches once a scorer-owner follow-up packet is scoped.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/001-deep-research-install-scripts-doctor` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment`

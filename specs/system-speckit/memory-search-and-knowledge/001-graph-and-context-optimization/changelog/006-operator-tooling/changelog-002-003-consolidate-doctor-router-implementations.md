@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator`
-
 ### Summary
 
 Ten `/doctor:*` markdown commands shared roughly 50 lines of near-identical boilerplate each, replicated across four runtime mirrors. The only meaningful difference per file was which YAML asset it handed off to. Maintaining this surface meant 40 near-duplicate files and a 23-scenario manual playbook hard-coding each per-command path.
@@ -71,3 +68,6 @@ Phase 1 shipped all new files alongside the existing ten commands. No legacy fil
 - Record final `validate.sh --strict` output in the checklist evidence rows before closing the packet.
 - Rebuild the Skill Advisor index after Phase 2 removes the old per-command descriptions.
 - Author `.claude/commands/doctor.md`, `.claude/commands/doctor/mcp.md`, `.codex/commands/doctor.toml` and `.codex/commands/doctor/mcp.toml` mirrors if not yet present (CHK-501 through CHK-506 remain unchecked).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator`

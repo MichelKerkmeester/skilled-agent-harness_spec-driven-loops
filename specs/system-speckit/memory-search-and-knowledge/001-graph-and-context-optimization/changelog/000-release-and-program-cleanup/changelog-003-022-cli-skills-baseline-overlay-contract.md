@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/022-cli-skills-baseline-overlay-contract` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 Five CLI orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) hardcoded specific overlay skill names (`sk-code-review`, `sk-code-skilled`) in their dispatch instructions. When a different stack was active (Webflow, React/Next.js, Go), the dispatch prompt directed the dispatched session to load the wrong overlay, silently producing mismatched code standards.
@@ -70,3 +67,6 @@ Each SKILL.md gained an identical numbered ALWAYS rule titled "Code Standards Lo
 
 - Address `hook_contract.md` missing Overview H2 section. The `missing_required_section: overview` validator failure is pre-existing and was not introduced by this packet. A follow-on cleanup pass should add the missing section.
 - Refresh downstream copies of TEMPLATE 5. Local copies users may have made of cli-opencode TEMPLATE 5 still contain the old hardcoded mentions. The canonical template is fixed and consumers should refresh.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/022-cli-skills-baseline-overlay-contract` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

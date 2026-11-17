@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/005-host-hard-identity-fix5` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 **Status: Closed (2026-07-01), "agent-layer fix sufficient" — never implemented.** Documented a structural-ceiling spec for host-runtime hard `subagent_type` identity plus a FIX-5 process-isolation executor. Stayed parked (no `plan.md`/`tasks.md` were ever created) pending an escalation trigger from phase 005, and was finally closed by phase 013 after phase 012's benchmark found zero of the trigger conditions.
@@ -49,3 +46,6 @@ contextType: "implementation"
 ### Follow-Ups
 
 - None outstanding — closed but explicitly reopenable: any future report of GPT semantic wrong-mode artifacts or a route-proof mismatch would warrant reopening this decision with fresh evidence.
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/005-host-hard-identity-fix5` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

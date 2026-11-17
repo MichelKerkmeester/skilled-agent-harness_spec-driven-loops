@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-05-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`
-
 ### Summary
 
 Phase 004 implemented the ten P1/P2 items deferred from 003 Gate 7 after the greenfield implementation landed. The most impactful changes were: (1) a single-process validation orchestrator that loads rule metadata once, bringing fresh Level 3 strict validation under 2000ms. (2) Manifest-owned template versions that expose `templateVersions` via the resolver and let staleness checks read the manifest map. (3) Batch `--out-dir` mode for the inline-gate-renderer. (4) A canonical save advisory lock in `generate-context.js`. (5) An explicit exit-code taxonomy (1 for bad flags, 2 for validation failures, 3 for missing folders).
@@ -79,3 +76,6 @@ Three commits: `e933c152a7`, `79e97aec92`, `bdb739d973`.
 - **Phase 006 (command md/yaml alignment).** Align command Markdown and YAML assets.
 - **Phase 007 (fleet marker sweep).** Validate fleet markers across spec folders.
 - **Phase 008 (z_archive marker sweep).** Validate archive markers.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels` (Level 3)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

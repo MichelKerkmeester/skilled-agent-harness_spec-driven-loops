@@ -8,8 +8,6 @@
 
 At the time this phase landed, the code graph and memory system worked well on Claude Code, but the other runtime surfaces still depended mostly on instruction-layer recovery rather than shared startup banners, transport digests, or runtime hooks. This phase advanced that instruction-layer parity by adding Session Start Protocol guidance, making seed resolution smarter (tolerating small line shifts instead of failing), tightening branch-switch freshness behavior, fixing a silent failure in the seed resolver, consolidating duplicated recovery documentation, and correcting checklist items that overstated what earlier phases had actually shipped. Later phases superseded the startup story with Gemini hook wiring, Codex bootstrap parity, OpenCode transport digests, and repo-local Copilot startup wiring.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/016-cross-runtime-ux/`
-
 ---
 
 ## What Changed
@@ -122,3 +120,5 @@ At the time this phase landed, the code graph and memory system worked well on C
 ## Upgrade
 
 No migration required.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/016-cross-runtime-ux/`

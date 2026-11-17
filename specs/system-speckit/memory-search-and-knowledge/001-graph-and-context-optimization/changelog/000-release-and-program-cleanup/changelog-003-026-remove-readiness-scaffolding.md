@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/026-remove-readiness-scaffolding` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 Packet `005-vestigial-embedding-readiness-gate-removal` deleted the embedding-readiness gate at `memory-search.ts` but left the surrounding scaffolding untouched: a boolean flag in `db-state.ts`, three exported helper functions (`isEmbeddingModelReady`, `setEmbeddingModelReady`, `waitForEmbeddingModel`), re-exports in `core/index.ts` plus handler files, two no-op call sites in `context-server.ts`, a warmup marker in `api/indexing.ts`, a scheduler wait in `shadow-evaluation-runtime.ts`, plus mocks in 19 test files that bypassed the now-deleted gate. After the T016-T019 lazy-loading migration the embedding model self-initializes on first use, so none of that scaffolding protected anything.
@@ -97,3 +94,6 @@ None.
 
 - Resolve pre-existing Vitest failures in `scripts/tests/progressive-validation.vitest.ts` and `mcp_server/tests/progressive-validation.vitest.ts` before claiming full-suite green. The broad suite timed out at 600s and these hangs are confirmed as environment or path-dependent issues unrelated to readiness removal.
 - Confirm the `dist/` artifact is regenerated in CI. `npx tsc` exited 0 locally and produced zero stale readiness references, but no tracked dist diff was recorded for this packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/026-remove-readiness-scaffolding` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

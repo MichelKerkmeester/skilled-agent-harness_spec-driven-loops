@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/000-spec-tree-consolidation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`
-
 ### Summary
 
 Six themed top-level tracks for 027: - 000-release-cleanup (kept; this consolidation lives at child 000). - 001-research-and-doctrine (peck, gem-team). - 002-memory-store-and-search (write-safety, index/causal, triggers, reducers, memclaw, openltm, vector/bm25, provenance, idempotency — 14 children). - 003-advisor-and-codegraph (causal-bfs, xce-feature-adoption, advisor-reconnect). - 004-shared-infrastructure (cli-transition, command-presentation, adapter-ports, cli-ux, dep-patching, code-mode, ipc-cap). - 005-verification-and-remediation (finding-remediation, tri-system-research, deep-research-remediation, residual-design-units).
@@ -50,3 +47,6 @@ _No file-level detail recorded._
 - Run `validate.sh --recursive` and `validate.sh --strict` on the 027 root to confirm continued compliance.
 - Perform a grep sweep for stale top-level paths in canonical docs and a scoped commit verified via `git show --stat HEAD`.
 - Frozen research-log artifacts and the `028-...` git branch name retain old phase numbers by design; resolve ambiguity via `context-index.md`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/000-spec-tree-consolidation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

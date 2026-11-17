@@ -13,8 +13,6 @@ contextType: "implementation"
 
 ## 2026-09-20
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation` (Phase Parent)
-
 Ten packets that had lived as separate top-level spec folders joined this program, each nested inside
 one of the five thematic group parents: executor and CLI hardening took the two cli-pi DevPass routes
 and the write-containment rework, mode contracts took the completion-message contract and the
@@ -78,11 +76,11 @@ doctrine reachability, catalog and README truth, confirm-variant parity, ledger 
 containment and severity language, and routing doctrine and discovery. It closes with all six
 completion criteria checked.
 
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation` (Phase Parent)
+
 ---
 
 ## 2026-08-24
-
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`
 
 The switch-over ran. Phase `012-runtime-enablement` turned the dark substrate on. It built the append gateway and the per-mode projection the modes never had, migrated every mode's write protocol onto the gateway, and — under an operator-ratified direct flip — moved all eight modes to `new_authoritative_final`, dropped the legacy shadow writer, and deleted the rollback and one-time migration scaffolding the direct flip made dead weight.
 
@@ -92,11 +90,11 @@ The whole-system gate was re-measured on the finalized tree and returns a litera
 
 This is the line the 2026-08-16 entry below held as gated: the cutovers and retirements it described as waiting on a human decision were executed here. The change lands on the mainline with the `012` packet's merge.
 
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`
+
 ---
 
 ## 2026-08-16
-
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation` (Phase Parent)
 
 > **Superseded 2026-08-24:** the cutovers and legacy-writer retirements this entry describes as gated and not-executed were carried out by `012-runtime-enablement` — see the 2026-08-24 entry above. The additive-dark statements below are preserved as the record of what was true on this date.
 
@@ -352,3 +350,7 @@ The concrete things to know:
 | `007-executor-and-cli-hardening` — Executor and CLI Hardening | 10 | 24 | [`changelog-007-…`](./007-executor-and-cli-hardening/changelog-007-executor-and-cli-hardening.md) |
 | `008-review-and-rollback-followup` — Review and Rollback Follow-up | 5 | 5 | [`changelog-008-…`](./008-review-and-rollback-followup/changelog-008-review-and-rollback-followup.md) |
 | `009-innovation-gap-remediation` — Innovation Gap Remediation | 5 | 6 | [`changelog-009-…`](./009-innovation-gap-remediation/changelog-009-innovation-gap-remediation.md) |
+
+&nbsp;
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation` (Phase Parent)

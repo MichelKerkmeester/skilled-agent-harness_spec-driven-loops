@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-04-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation`
-
 ### Summary
 
 Three reference docs described phase-parent folder layout using the old pre-policy model, listing `plan.md`, `tasks.md`, `decision-record.md` and a `memory/` subfolder at the parent level. This directly contradicted the lean-trio policy shipped in phases 001 and 002. The `PHASE_PARENT_CONTENT` validator rule was undocumented everywhere outside its own script.
@@ -80,3 +77,6 @@ None.
 - Extend `AGENTS_Barter.md` and `AGENTS_example_fs_enterprises.md` to mention the `last_active_child_id` and `last_active_at` pointer fields. Currently they describe the lean-trio policy but not the pointer mechanism. Scoped out of this packet at user direction.
 - Add a worked phase-decomposition example to `references/workflows/worked_examples.md`. Deferred as a polish item. Existing examples cover L1/L2/L3 and the new mode is documented across the other files.
 - Wholesale stylistic consistency pass across all 13 files. Each edit mirrored its specific canonical source, so wording is consistent within each pair but not uniform across all files.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation`

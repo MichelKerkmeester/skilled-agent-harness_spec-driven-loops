@@ -20,9 +20,6 @@ contextType: "implementation"
 
 ## 2026-04-18 to 2026-04-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening`
-
 ### Summary
 
 The 2026-04-18 consolidation that shipped 016, 017, and 018 left six high-leverage investigation items unaddressed: three 026 close-out candidates and three system-spec-kit-wide candidates. This phase dispatched them as one research wave (001-initial-research) followed by six implementation sub-phases (002 through 007). All six Tier 1 iterations converged. The research surface produced 40 total findings across 2 P0, 8 P1, 6 P2, 5 validator rules, and 19 residuals. The two P0 fixes (packets 007/008/009/010 missing root `spec.md` and `save_lineage` runtime writeback bug in `workflow.ts`) were closed in sub-phase 002.
@@ -94,3 +91,6 @@ Six sub-phases. Sub-phase 001 (research) dispatched 6 Tier 1 iterations via `cli
 - **cli-copilot `--allow-all-tools` blocker**: Narrower CLI permission surface remains a future enhancement.
 - **Tier 2/3 items**: Remain in backlog unless promoted by future findings.
 - **Advisor accuracy target**: 60.0% corpus accuracy reached. Further gains require training data or model changes.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening`

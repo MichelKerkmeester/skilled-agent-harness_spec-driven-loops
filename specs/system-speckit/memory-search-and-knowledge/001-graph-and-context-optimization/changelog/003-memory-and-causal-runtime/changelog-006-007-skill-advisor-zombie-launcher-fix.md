@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/007-skill-advisor-zombie-launcher-fix` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`
-
 ### Summary
 
 After Phase 006 shipped, a live process audit at 2026-05-18T16:47Z still showed three `mk-skill-advisor-launcher` processes while `mk-code-index-launcher` and `mk-spec-memory-launcher` each held at one. The root cause was an asymmetry in how the launchers enforce the process-count invariant: code-index and spec-memory write an inline PID guard before spawning their child, while skill-advisor only probed the daemon SQLite lease, which is acquired inside the child server after startup work. That left a race window where duplicate parent launchers could survive as degraded children.
@@ -63,3 +60,6 @@ The fix adds a parent-owned PID guard to `mk-skill-advisor-launcher.cjs`. The la
 
 - The `ps` process-count smoke verification was blocked by the codex sandbox `EPERM` restriction. Capture explicit `ps -A | grep mk-skill-advisor-launcher | wc -l` evidence in a non-sandboxed environment to close the literal evidence gap.
 - No change was made to `.opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts` because the root cause was in the parent launcher acquisition gap, not the daemon SQLite lease code. Confirm this boundary holds in a future integration review.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/007-skill-advisor-zombie-launcher-fix` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

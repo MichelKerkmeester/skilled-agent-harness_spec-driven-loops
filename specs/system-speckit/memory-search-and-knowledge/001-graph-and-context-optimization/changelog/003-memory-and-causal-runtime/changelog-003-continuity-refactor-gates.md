@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-04-13
 
-> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
-
 ### Summary
 
 Six coordinated gates that together built the canonical spec-doc continuity path from preconditions through runtime cutover to cleanup verification. Former follow-on work was promoted to sibling top-level phases (007-010), narrowing this packet to Gates A-F only.
@@ -83,3 +80,6 @@ Reference commit: `e802a9072` (Gate C writer path). Packet-level reference: `7a9
 
 - **Historical narrative in research artifacts.** Some root research still uses older phase-018 narrative language as historical context.
 - **Root artifact normalization.** Existing research and review artifacts may need a follow-up pass if stricter packet-integrity cleanup is desired.
+
+> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

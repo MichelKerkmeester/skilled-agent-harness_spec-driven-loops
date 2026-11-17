@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`
-
 ### Summary
 
 `memory_index_scan` surfaced a raw `E429` error to callers whenever a second scan arrived inside the 30-second lease window, even though the handler already distinguished `lease_active` from `cooldown` internally. A forced re-scan of a large document tree exceeded the MCP request deadline because synchronous embedding was run inside the handler. Renested spec folders left stale orphan rows because the sweep was gated to incremental, non-force, zero-failure scans and had no path-identity for moves.
@@ -86,3 +83,6 @@ All three phases landed on the same day with 14, 17 and 19 passing tests respect
 - Document `memory_health.index` field semantics in the handler reference once the follow-on packet for field naming is settled.
 - Investigate the force/incremental path not refreshing existing spec-doc rows that carry NULL `file_mtime_ms`: after the ollama re-index, docs already indexed as `alreadyIndexed` were not re-processed, leaving `handover.md` unindexed.
 - Re-embed 6 residual pre-existing failed index rows via `memory_embedding_reconcile` or a forced re-index (4 in `008-playbook-manual-test-run`, 2 in `026 resource-map.md`).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

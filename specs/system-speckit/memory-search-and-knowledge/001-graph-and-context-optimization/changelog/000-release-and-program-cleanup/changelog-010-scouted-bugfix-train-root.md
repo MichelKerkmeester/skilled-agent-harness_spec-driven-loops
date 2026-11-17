@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-03
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train` (Level 2, Phase Parent)
-
 ### Summary
 
 This phase parent groups 5 child phases. Each batch ran the verify-first pipeline of scout then gpt-5.5-fast confirm deep-dive then implement-and-test, and each shipped independently with its own changelog. The Included Phases table below is the authoritative child inventory. Read each child changelog for the per-batch summary, verification, and files changed.
@@ -56,3 +54,5 @@ This phase parent groups 5 child phases. Each batch ran the verify-first pipelin
 ### Follow-Ups
 
 - The next batch lands as `004-scouted-bugfix-batch-4` under this train.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train` (Level 2, Phase Parent)

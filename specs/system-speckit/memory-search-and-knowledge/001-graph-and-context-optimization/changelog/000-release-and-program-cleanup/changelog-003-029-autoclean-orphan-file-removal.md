@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-08
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/029-autoclean-orphan-file-removal` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 Packet 054 diagnosed roughly 564 `memory_index` rows whose `file_path` no longer existed on disk. These orphan-file rows caused `memory_health.consistency` to report a permanent degraded state because `verify_integrity({ autoClean: true })` only cleaned orphan vectors and orphan chunks, never orphan file rows. No runtime self-heal path existed.
@@ -72,3 +69,6 @@ Note: the implementation-summary.md for this packet was not filled in before the
 
 - Run `memory_health({ autoRepair: true, confirmed: true, cleanFiles: true })` against the live DB after a MCP child restart. Capture before and after stats in `scratch/cleanup-before.json` and `scratch/cleanup-after.json` to confirm orphanedFiles drops to 0 (or fewer than 5) and `consistency.status` flips to `healthy`. Create a `checkpoint_create` snapshot before running against production data.
 - Fill `implementation-summary.md` with results once the live-DB verification run completes.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/029-autoclean-orphan-file-removal` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

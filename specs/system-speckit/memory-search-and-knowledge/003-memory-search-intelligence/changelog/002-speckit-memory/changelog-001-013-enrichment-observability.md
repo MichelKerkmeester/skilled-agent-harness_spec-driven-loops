@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/013-enrichment-observability` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 The Memory MCP now exposes the background enrichment backlog as read-side health data. Pending and failed counts were already surfaced and this phase extends the same health query with oldest-pending timestamp and age. The gauges reuse existing columns, add no migration and degrade neutrally if a schema edge appears.
@@ -55,3 +52,6 @@ The Memory MCP now exposes the background enrichment backlog as read-side health
 
 - Treat effort as structural inference, not a benchmarked performance claim.
 - Keep the gauge read-only. It observes backlog age but does not retry, drain or steer the scheduler.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/013-enrichment-observability` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

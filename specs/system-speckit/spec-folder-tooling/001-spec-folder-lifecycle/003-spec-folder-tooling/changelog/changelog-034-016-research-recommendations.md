@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-08 to 2026-10-10
 
-> Spec folder: `specs/system-speckit/034-spec-folder-tooling/016-research-recommendations` (Level 2)
-> Parent packet: `specs/system-speckit/034-spec-folder-tooling`
-
 ### Summary
 
 The 16 children here build the ranked recommendations of the auto-healing research in `../014-spec-auto-healing-research/research/research.md` section 11. The set fixes the spec template and the phase scaffold, hardens the healer and the upgrade path, corrects what CI compares, adds the era report and the external-user compat path, and lands anchor repair, lane rules as heal modes and the phrase lint. All 16 children are Complete and every acceptance row is Met.
@@ -79,10 +76,10 @@ The 16 children here build the ranked recommendations of the auto-healing resear
 - The 30 recorded findings (27 SPEC_DOC_INTEGRITY and 3 TEMPLATE_SOURCE) are downgraded to warnings, not repaired, because their link targets no longer exist.
 - The phrase lint fails open when the linter, node or git is unavailable, and the atomic cleanup write is exercised on macOS only.
 
-## 2026-10-11
-
 > Spec folder: `specs/system-speckit/034-spec-folder-tooling/016-research-recommendations` (Level 2)
 > Parent packet: `specs/system-speckit/034-spec-folder-tooling`
+
+## 2026-10-11
 
 ### Summary
 
@@ -117,3 +114,7 @@ The operator-gated closeout: the real v3 upgrade runs on a fresh clone, the two 
 
 - Three packets stay failing on METADATA_DISK_PATH_CONSISTENCY after the apply: `027-xce-research-based-refinement`, `029-spec-root-resolution-hardening` and `030-rust-backend-rewrite-research`. They end the run at STATUS=PARTIAL for manual review.
 - The `/doctor:update compat` orchestrator with its prompted approvals is still unexercised on a real clone.
+
+> Spec folder: `specs/system-speckit/034-spec-folder-tooling/016-research-recommendations` (Level 2)
+> Parent packet: `specs/system-speckit/034-spec-folder-tooling`
+

@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/004-launcher-supervision` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server`
-
 ### Summary
 
 The mk-spec-memory launcher now lazily spawns and supervises hf-model-server.cjs as a launcher-owned sibling child (not detached), reusing the F1 and F3 algorithms with separate model-server state. A tiny demand listener on the embed Unix Domain Socket triggers the spawn when the daemon-side hf-local client first requests an embed. A second crash-loop guard and relaunch timer supervise the child independently of the daemon guard. The RSS watchdog was generalized to accept a target pid and model-server memory ceilings. An additive modelServerPid lease field and signal cascade ensure both trees are reaped cleanly. A single-winner hf-embed-respawn.lock prevents double-spawn on rapid restart.
@@ -65,3 +62,6 @@ The mk-spec-memory launcher now lazily spawns and supervises hf-model-server.cjs
 - Live first-embed spawn not exercised. Lazy demand-to-spawn, RSS recycle, and reap-before-respawn are covered by injected-spawn and ps tests. A live daemon plus model server is the natural follow-up.
 - Remaining P2 review notes (non-blocking): the async signal-teardown end-to-end path and the give-up-to-re-arm demand-listener path have thin behavioral coverage validated by code review rather than a dedicated test.
 - Sidecar still present. Both the old sidecar path and the new model-server path coexist until phase 005 retires the sidecar. SPECKIT_EMBEDDER_EXECUTION is still honored until then.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/004-launcher-supervision` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server`

@@ -17,9 +17,6 @@ contextType: "research"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/007-sweep-fleet-marker-validation` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`
-
 ### Summary
 
 The fleet-marker-validation-sweep phase scaffold was initialized as a Level 3 template within the template-levels reorganization. This packet established the spec folder structure and documentation shell with no production code changes. It serves as a placeholder for future work on sweeping fleet marker validation across the spec kit codebase.
@@ -49,3 +46,6 @@ The fleet-marker-validation-sweep phase scaffold was initialized as a Level 3 te
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/007-sweep-fleet-marker-validation` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/008-spec-memory-mcp-stress-test` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test`
-
 ### Summary
 
 Packet 113 un-excluded the z_archive table from `EXCLUDED_FOR_MEMORY`, adding 2,618 archived rows to the index with a 0.1 decay multiplier. No broad validation existed to confirm that scoring, retrieval plus all 39 mk-spec-memory MCP tools behaved correctly under this new load. This phase ran the full validation.
@@ -105,3 +102,6 @@ Phase 1 swept all 39 tools via paired-parallel cli-devin SWE-1.6, yielding 35 PA
 - Investigate cat-24 scenarios 402 (synonymy retrieval) and 408 (compound concept synthesis), which remain open query-intelligence follow-ups not closed by ADR-010.
 - Extend the playbook runner to emit a halting diagnostic when destructive-tool fixture creation fails, preventing the improvised checkpoint-delete pattern observed in Phase 1.
 - Confirm cat-16/239 broad repo-frontmatter-cleanup tail via a dedicated follow-on packet (deferred as broad content debt, not a code defect).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/008-spec-memory-mcp-stress-test` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test`

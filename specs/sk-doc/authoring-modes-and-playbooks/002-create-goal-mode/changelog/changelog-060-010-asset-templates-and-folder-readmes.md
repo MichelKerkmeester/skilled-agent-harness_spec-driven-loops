@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-09-26
 
-> Spec folder: `specs/sk-doc/060-create-goal-mode/010-asset-templates-and-folder-readmes` (Level 2)
-> Parent packet: `specs/sk-doc/060-create-goal-mode`
-
 ### Summary
 
 An author now starts a goal from a blank that already fits its kind. assets/ holds a top-level, a phase-parent and a phase-child template, each carrying the system-spec-kit goal template word for word apart from placeholders written for that kind. A parity test keeps them in step with goal.md.tmpl, and the checker now rejects an unfilled copy of any of them. Before this change, an unfilled top-level copy passed all four checks. The two code folders have READMEs, and the references index is gone.
@@ -64,3 +61,6 @@ _No file-level detail recorded._
 - references/parent-and-nested-goals.md still lacks an Overview section. The validator already flagged it before this phase.
 - The v1.0.0.0 changelog keeps the older layout. v1.1.0.0 uses the current one.
 - sk-design admission drift remains. It predates this packet, and the sk-doc row passes.
+
+> Spec folder: `specs/sk-doc/060-create-goal-mode/010-asset-templates-and-folder-readmes` (Level 2)
+> Parent packet: `specs/sk-doc/060-create-goal-mode`

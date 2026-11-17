@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-11
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/008-validation-integrity-hardening` (Level recorded in phase evidence)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality`
-> Historical alias: `009-validation-integrity-hardening`
-
 ### Summary
 
 This migration index makes the shipped phase discoverable at its final packet-local path without rewriting its historical identity. The allowed implementation evidence records: Validation-gate hardening is built. The implementation adds staged disk/status integrity rules, shares status classification across rules, recalibrates evidence detection to evaluate substantive content, and adds a report-only strict-pass freshness sweep plus scheduled/manual workflow.
@@ -49,3 +45,7 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 ### Follow-Ups
 
 - None in the allowed evidence set.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/008-validation-integrity-hardening` (Level recorded in phase evidence)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality`
+> Historical alias: `009-validation-integrity-hardening`

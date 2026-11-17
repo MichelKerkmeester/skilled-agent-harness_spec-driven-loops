@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-04-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`
-
 ### Summary
 
 The 2026-04-21 hook parity review found 10 runtime-hook defects. The highest risk was an OpenCode plugin path that could silently deliver no code-graph context, and Codex advisor hook flows that could return no visible advisory on timeout. This phase restored reliable, visible hook behavior across OpenCode, Codex, and Copilot while keeping documentation aligned with actual runtime capabilities.
@@ -67,3 +64,6 @@ The 2026-04-21 hook parity review found 10 runtime-hook defects. The highest ris
 ### Follow-Ups
 
 - Phase 002 (Copilot hook parity), Phase 003 (Codex native hooks), and Phase 004 (Claude findings) address remaining runtime gaps not covered by this initial remediation.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 3)
+> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

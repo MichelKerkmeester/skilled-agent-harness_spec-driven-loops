@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-05
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`
-
 ### Summary
 
 This review-only slice audited the 027 phase-parent launch state, child scaffolding and alignment with the completed 026 program. The merged verdict was CONDITIONAL with 11 open findings: 8 P1 and 3 P2. Top findings covered a placeholder `000-release-cleanup` listed as an executable child, stale renumbered child metadata, draft children marked complete in graph metadata, resource-map readiness overstatement and missing 026 completion-surface pinning.
@@ -63,3 +60,6 @@ None (review-only packet).
 - Decide whether `000-release-cleanup` is an executable child or a non-executable placeholder.
 - Regenerate 027 child metadata after renumbering so IDs, titles, trigger phrases and graph pointers agree.
 - Recompute graph derived status from current spec truth and pin the 026 completion surface that 027 builds on.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`

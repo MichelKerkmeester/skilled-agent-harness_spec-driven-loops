@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support` (Level Phase Parent)
-
 ### Summary
 
 Spec 149 turned Kimi K2.7 Code from a live provider slug into a documented, routed and empirically backed small-model option. The packet first registered `kimi-for-coding/k2p7`, then proved the easy prompt bakeoff could not discriminate frameworks, then replaced that placeholder with a strict-validator run that retired `rcaf` for this model and promoted `costar` with `tidd-ec` as fallback. The later phases made the support maintainable by aligning house filenames and documenting the broad-scope timeout failure mode that makes Kimi appear hung when it is actually over-reading before `opencode` can flush output.
@@ -97,3 +95,5 @@ Spec 149 turned Kimi K2.7 Code from a live provider slug into a documented, rout
 - The broad-scope timeout caveat is an observation from two timeouts and one fixed run, not a controlled benchmark.
 - The manual testing playbook scenario `CO-036` still names `kimi-k2.6` and was deferred to avoid disturbing its file-count self-check.
 - Historical and archived references to old dash filenames were intentionally left as point-in-time records.
+
+> Spec folder: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support` (Level Phase Parent)

@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-11
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/031-drift-marker-native-consolidation` (Level recorded in phase evidence)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory`
-> Historical alias: `022-drift-marker-native-consolidation`
-
 ### Summary
 
 This migration index makes the shipped phase discoverable at its final packet-local path without rewriting its historical identity. The allowed implementation evidence records: The embedded git-hook writer was replaced with a compiled TypeScript entrypoint at scripts/git-hooks/drift-marker-write.ts. It parses the unchanged environment payload, delegates DB path resolution, deduplication, atomic writes, and lock reclaim through the public MCP API, and catches operational errors so the hook remains non-fatal.
@@ -49,3 +45,7 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 ### Follow-Ups
 
 - None in the allowed evidence set.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/031-drift-marker-native-consolidation` (Level recorded in phase evidence)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory`
+> Historical alias: `022-drift-marker-native-consolidation`

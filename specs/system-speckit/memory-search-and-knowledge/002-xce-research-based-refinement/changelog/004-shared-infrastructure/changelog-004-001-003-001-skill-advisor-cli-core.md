@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-09
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli`
-
 ### Summary
 
 The skill-advisor CLI core shipped as a manifest-backed CLI layer over the existing advisor daemon contract. The CLI exposes 9 commands with byte-identical schemas to `TOOL_DEFINITIONS`, enforces a trusted-mutation rejection gate on graph-mutating commands both CLI-side and daemon-side, maps exits to 0/1/64/69/75, and guards stale dist with a dev override. The Python facade `skill_advisor.py` was intentionally left untouched for later facade reconciliation fixtures.
@@ -59,3 +56,6 @@ The skill-advisor CLI core shipped as a manifest-backed CLI layer over the exist
 ### Follow-Ups
 
 - Facade reconciliation fixtures for `skill_advisor.py` remain phase 002 work
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli`

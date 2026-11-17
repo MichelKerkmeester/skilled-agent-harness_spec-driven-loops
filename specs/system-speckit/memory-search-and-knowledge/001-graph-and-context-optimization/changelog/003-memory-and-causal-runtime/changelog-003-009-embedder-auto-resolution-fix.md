@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`
-
 ### Summary
 
 Phase 008 proved that `EMBEDDINGS_PROVIDER=auto` silently degraded to the unhealthy `hf-local` fallback because `factory.ts` resolved active-embedder metadata by shelling out to a bare `sqlite3` binary, which returned null whenever the binary was absent from the daemon's restricted PATH. This phase replaced that shell-out with a guarded in-process `node:sqlite` (`DatabaseSync`, read-only) read, generalizing provider and shard-path resolution so the path is built from `active_embedder_provider`, model name and dimension rather than a hardcoded ollama pattern. The interim `EMBEDDINGS_PROVIDER=ollama` config pin was reverted to `auto` after a full verification pass confirmed that the live daemon resolves `ollama` correctly with no subprocess dependency remaining.
@@ -67,3 +64,6 @@ Phase 008 proved that `EMBEDDINGS_PROVIDER=auto` silently degraded to the unheal
 - Hosts running Node below 22.5 degrade to the cascade graceful null rather than the active pointer. Document the Node version floor prominently if the skill is deployed on older runtimes.
 - The `node:sqlite` experimental warning is emitted by the runtime on each startup. Suppress it via `--no-warnings=ExperimentalWarning` or a process flag if the noise becomes a problem.
 - Manifest validation in `readActiveOllamaEmbedderFromDb` still calls `getOllamaManifest`. The generic shard path is forward-looking. Extend manifest validation to non-ollama providers in a follow-on packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

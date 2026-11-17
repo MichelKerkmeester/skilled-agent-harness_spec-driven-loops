@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/001-skreview-checklist-rows` (Level 2)
-> Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`
-
 ### Summary
 
 Phase 1 gave `sk-code-review` sharper language for the most common overbuild smells without changing the review contract. The phase added three checklist rows and one replacement column, all as additive documentation. The result keeps over-engineering at P2 by default while making replacement advice concrete enough for a reviewer to use.
@@ -66,3 +63,6 @@ Phase 1 gave `sk-code-review` sharper language for the most common overbuild sme
 - The shrink row is intentionally deferred to Phase 6 because of style-churn risk.
 - The dry-run was by inspection. The new rows demonstrably catch the named smells, and a full review-agent dispatch was not proportionate for a three-row documentation change.
 - Not committed. Changes sat in the working tree on branch `028-mcp-to-cli-tool-transition`.
+
+> Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/001-skreview-checklist-rows` (Level 2)
+> Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`

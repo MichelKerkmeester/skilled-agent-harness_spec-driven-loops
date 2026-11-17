@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/040-reset-stuck-embedding-rows` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 After packets 038 and 039 corrected the embedding pipeline error-propagation and token-aware truncation paths, 799 rows in `memory_index` remained stuck with `failure_reason='Embedding generation returned null'` and `embedding_status` of `failed` or `retry`. Those rows would not automatically re-enter the retry-manager queue without a bounded database reset. The reset script backed up the live SQLite database, partitioned the 799 candidate rows by `file_path` existence, then updated the 789 live-file rows to `pending` with `retry_count=0` and cleared failure metadata in a single transaction. The 10 remaining rows all referenced deleted files under the 028 orphan cleanup folder and were left untouched intentionally. After the reset the post-counts read `failed=0`, `retry=10`, `pending=0`, confirming only the orphan rows remained out of the retry queue.
@@ -59,3 +56,6 @@ After packets 038 and 039 corrected the embedding pipeline error-propagation and
 
 - Monitor the retry-manager to confirm the 789 reset rows complete embedding generation under the 038 and 039 corrections.
 - Clean up the 10 orphan rows pointing at deleted files under `.opencode/specs/system-spec-kit/028-orphan-code-graph-db-cleanup/` in a dedicated orphan-cleanup packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/040-reset-stuck-embedding-rows` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

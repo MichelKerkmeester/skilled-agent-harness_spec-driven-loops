@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/015-cocoindex-seed-telemetry-passthrough`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 The CocoIndex fork (cocoindex_code v0.2.3+spec-kit-fork.0.2.0) emits five telemetry fields per query result (`raw_score`, `path_class`, `rankingSignals`, `dedupedAliases`, `uniqueResultCount`), but `code_graph_context` dropped all of them when a CocoIndex result was supplied as a seed. Anchors returned to the model lost provenance data that would help explain why the fork ranked one chunk over another. The v1.0.2 stress test confirmed `dedupedAliases:26` lived on the fork side and never reached the consumer (research.md §6, Novel Finding #5).
@@ -79,3 +76,6 @@ Three source files were extended across the schema, type and handler layers to p
 - Response-level telemetry deferred. `dedupedAliases` and `uniqueResultCount` are response-level counters (research.md §6.3 alt #2). They require the caller to supply the entire CocoIndex response envelope into `code_graph_context`, which is a separate composition decision.
 - Surface `rankingSignals` in `textBrief` and `combinedSummary` narrative output deferred to a follow-on packet (spec §7 open question).
 - Telemetry adoption metrics deferred. No counter today tracks how many anchor consumers read the new fields.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/015-cocoindex-seed-telemetry-passthrough`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

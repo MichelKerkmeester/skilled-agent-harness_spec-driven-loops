@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-17
 
-> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
-
 ### Summary
 
 The default `/memory:save` canonical-save path had shipped with `workflow.ts:1259` hardcoding `ctxFileWritten = false`, making the 70-LOC `description.json` tracking block unreachable dead code. Combined with a `plannerMode === 'full-auto'` gate on `refreshGraphMetadata`, every `/memory:save` invocation produced zero metadata writes. All 16 sibling spec folders under the 026 tree had stale `description.json.lastUpdated` values as a deterministic result, not drift.
@@ -92,3 +89,6 @@ Phase 017 shipped 25 commits across 4 waves on 2026-04-17. The H-56-1 `workflow.
 - Address pre-existing `qualityFlags` bug at `memory-save.ts:368` (`TypeError: parsed.qualityFlags is not iterable`) introduced in Phase 016 commit `104f534bd`. Defensive initialization needed before the `Array.from(new Set([...])` call.
 - Investigate `description.json` rich-content overwrite risk: the H-56-1 fix triggers `generate-description.js` auto-regen which overwrites hand-authored cluster breakdowns and wave-structure fields. Either preserve non-autogen fields or opt rich-content folders out of regen.
 - Resolve R55-P2-002 (underused `importance-tier` helper at `importance-tiers.ts:149`), R55-P2-003 (`executeConflict` precondition-block DRY opportunity) and R55-P2-004 (YAML `scalarsEqual` TRUE/FALSE coercion gap) deferred to Phase 019.
+
+> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

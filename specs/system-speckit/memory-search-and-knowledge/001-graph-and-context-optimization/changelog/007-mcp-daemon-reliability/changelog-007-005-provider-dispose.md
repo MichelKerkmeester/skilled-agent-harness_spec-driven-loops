@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The MCP daemon's embedding system had a native memory leak on every provider swap. `invalidateProviderSingleton()` in `shared/embeddings.ts` nulled the provider reference without calling any dispose method, leaving the underlying native ONNX/ORT session (held transitively via `extractor.model.sessions`) orphaned in memory that the JavaScript GC cannot reclaim and `--max-old-space-size` cannot bound. This was RC-1, the primary out-of-memory driver.
@@ -79,3 +76,6 @@ Builds, vitest and a 6-lens adversarial review all passed. Live-daemon RSS obser
 - Run SC-001 (RSS bounded across N swaps) and SC-002 (no native segfault under real ONNX runs) in a live-daemon session with a running sidecar. The headless tests mock the native run/dispose so full confidence still requires a real daemon.
 - Track SC-001/SC-002 completion as T011 before closing out the daemon-reliability track.
 - Consider adding an in-worker dispose protocol to `sidecar-worker.ts` as an alternative to process recycle if future profiling shows recycle latency is unacceptable.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

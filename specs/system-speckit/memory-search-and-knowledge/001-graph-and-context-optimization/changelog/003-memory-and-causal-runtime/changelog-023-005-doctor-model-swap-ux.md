@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/005-doctor-model-swap-ux` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots`
-
 ### Summary
 
 CocoIndex operators had no single preflight for three high-trust failure modes: a stale global `ccc` install, non-commercial default reranker licensing plus expensive model-swap reindexing. The default reranker was empirically strong but licensed CC BY-NC 4.0, creating silent commercial risk for operators who assumed Apache-licensed project code meant unrestricted model use.
@@ -81,3 +78,6 @@ Nine research findings from the 023 deep-research arc (008-A, 008-B, 008-C, 010-
 - PyPI freshness is network-dependent. Doctor returns INFO if PyPI latest cannot be fetched.
 - Fingerprint status is daemon-dependent. Doctor returns INFO when the daemon status payload lacks the 023C fingerprint but still estimates reindex cost from local metadata when possible.
 - Default Jina v3 remains non-commercial. That is intentional from ADR-021 quality evidence. Commercial deployments should enable `COCOINDEX_COMMERCIAL_SAFE_PROFILE=true` or set `COCOINDEX_RERANK_MODEL=BAAI/bge-reranker-v2-m3`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/005-doctor-model-swap-ux` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots`

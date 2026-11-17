@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-04-22
 
-> Spec folder: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`
-
 ### Summary
 
 Copilot CLI has no supported prompt-mutation hook surface. This phase implemented Outcome B: file-based custom instructions. The managed `SPEC-KIT-COPILOT-CONTEXT` block in `$HOME/.copilot/copilot-instructions.md` now receives startup context and advisor briefs on every prompt cycle. Copilot reads the refreshed block on the next prompt. Hook stdout stays `{}` per GitHub's documented hook contract.
@@ -68,3 +65,6 @@ Copilot CLI has no supported prompt-mutation hook surface. This phase implemente
 
 - Next-prompt freshness: Copilot sees the managed block on the next prompt after the file changes, not as true in-turn prompt mutation.
 - ACP (Agent Client Protocol) remains deferred as a future dynamic-injection path once the public-preview API stabilizes.
+
+> Spec folder: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity` (Level 3)
+> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

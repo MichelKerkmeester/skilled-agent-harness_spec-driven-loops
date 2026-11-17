@@ -8,8 +8,6 @@
 
 When context compaction fires, the hook system caches critical session state and replays it later to help the AI recover. But several reliability and security gaps meant that cached payloads could be silently lost, stale data could be injected, and on shared systems, other users could potentially read sensitive session data. This phase fixes six P1 reliability and security bugs -- race conditions, silent disk failures, injection vulnerabilities, session ID collisions, and insecure file permissions -- then adds eight P2 features that make the system automatically load context on every MCP tool call and enrich tool responses with structural code graph information, without any explicit user action.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/014-hook-durability-auto-enrichment/`
-
 ---
 
 ## What Changed
@@ -219,3 +217,5 @@ All existing vitest tests continue to pass (226 out of 226). New tests added in 
 ## Upgrade
 
 No migration required. The code graph schema v2 migration (adding `file_mtime_ms` column) runs automatically on first access. Existing hook state temp files from before SHA-256 hashing become inaccessible, which is acceptable since they are ephemeral and regenerated each session.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/014-hook-durability-auto-enrichment/`

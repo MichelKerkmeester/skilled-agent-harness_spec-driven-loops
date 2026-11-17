@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-12
 
-> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/002-fix-memory-quality` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
-
 ### Summary
 
 Eight distinct JSON-mode memory defects (D1-D8) had accumulated across content shaping, metadata consistency, lineage capture, git provenance. Template structure was also affected. The OVERVIEW anchor mismatch corrupted parser output. Raw truncation lost mid-word. Importance tier drifted across the save path. Garbage trigger phrases polluted search results. Predecessor discovery fabricated lineage from unrelated siblings. The save pipeline had no guardrail to detect its own broken output.
@@ -98,3 +95,6 @@ A 10-phase remediation train repaired all eight defects and extended the pipelin
 - Legacy callers of `reviewPostSaveQuality()` still fall back to file read when they do not pass `content`. Full removal requires updating those callers and tests in a follow-up.
 - The `COMPLEXITY_MATCH` strict-validator warning on the parent packet (`Tasks (3) below minimum (4) for Level 2`) is a historical content-shape warning not targeted by any of the 22 deep-review findings. Remains open.
 - Title-family overlap threshold in `find-predecessor-memory.ts` is set to 50%. Tune if edge cases surface in mixed-topic folders.
+
+> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/002-fix-memory-quality` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/008-vector-read-path-resilience` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 A live malformed vector shard was observed silently degrading search — the read path trusted a shard that could not actually answer a query and returned thin or empty results without any signal. This phase added detection, quarantine, and auto-rebuild to the vector read path. A shard that fails its integrity and dimension checks is quarantined rather than served, the system seeds degraded-vector state so observability can report the condition, and a rebuild is scheduled with hardened dimension discovery so the rebuilt shard matches the active embedder profile. Detection and quarantine are the in-memory half of the story. The durability half — surviving a restart mid-repair — is the follow-on shipped in phase 020.
@@ -59,3 +56,6 @@ A live malformed vector shard was observed silently degrading search — the rea
 ### Follow-Ups
 
 - Durability across a restart mid-repair shipped in phase 020 (vector-resilience-durability). The phase's own deferred requirement (the live-corpus KNN query-shape rerun) remains deferred and is unrelated to restart durability.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/008-vector-read-path-resilience` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

@@ -17,9 +17,6 @@ contextType: "research"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/008-routing-confidence-calibration` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`
-
 ### Summary
 
 The skill advisor scoring engine was investigated for a lane evidence damping mechanism that would reduce explicit and lexical lane contributions when their raw evidence is thin. Codex built a damping prototype with six configuration shapes and ran a sweep across 84 weight-by-damping-by-corpus combinations. No damping configuration beat the undamped baseline on either corpus. One configuration actively regressed the harder corpus. Production code was reverted after the findings.
@@ -57,3 +54,6 @@ The skill advisor scoring engine was investigated for a lane evidence damping me
 - Resolve the three pre-existing vitest suite failures (one plugin-bridge baseline, two parity drift from parallel-session skill folder introductions) before any future damping or fusion work.
 - Revisit damping with different function shapes or a larger real-telemetry corpus once the underlying suite baseline is clean.
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/008-routing-confidence-calibration` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`

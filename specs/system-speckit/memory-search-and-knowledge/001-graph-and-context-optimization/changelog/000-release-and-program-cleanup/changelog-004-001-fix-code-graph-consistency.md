@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/001-fix-code-graph-consistency` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`
-
 ### Summary
 
 Nine consistency-and-resilience defects in the code-graph surface had been identified by a prior deep-research pass (findings F-002-A2-01 through F-002-A2-03, F-014-C4-01 through F-014-C4-04 plus F-004-A4-02 through F-004-A4-03). The defects ranged from partial-write hazards when a crash interrupted a multi-phase file persistence to the doctor diagnostic YAML calling a handler with the wrong contract and receiving empty results in autonomous mode.
@@ -89,3 +86,6 @@ Six new vitest files covering 20 targeted tests pin the new behaviors and ship a
 - Commit and push the staged changes to `origin main`. This is the final step listed in the checklist and the only open item.
 - Consider surfacing the `unavailable` subject-resolution kind through the MCP tool envelope so external `code_graph_context` consumers see the discriminated state, not just `null`.
 - Add metrics-level visibility into SQLite contention duration so operators tuning latency can distinguish a 50ms wait from a 4500ms wait under `busy_timeout`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/001-fix-code-graph-consistency` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

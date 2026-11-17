@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-06
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/002-native-deferred-trial-rerun` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`
-
 ### Summary
 
 The Phase 008/001 sandbox campaign deferred a set of usefulness cells that required live MCP access, native runtime hooks, real file-system state. None of those were available in the sandbox. The sandbox verdict treated code-graph overhead as sandbox-bound rather than a native product finding.
@@ -74,3 +71,6 @@ This packet re-ran those deferred cells against a live environment. The first sc
 - Plugin/runtime integration remains unmeasured. A separate authenticated campaign is needed before that verdict can move from DEFERRED. Candidate runtimes: cli-gemini, Claude Code native, OpenCode native.
 - Compaction recovery relevance scoring was not measured. A controlled trigger is needed to confirm that hook-cache content is not just formatted but actually relevant.
 - Parser crash file:line details are recorded at the class and count level only. Exact file:line citations should be extracted from the native raw transcript when fixing `structural-indexer.ts`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/002-native-deferred-trial-rerun` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

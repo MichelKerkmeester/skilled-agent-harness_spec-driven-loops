@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/005-cosine-topn-reorder` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 Fusion ordering does not always put the single most-relevant result first, because the RRF and RSF blend rewards agreement across channels over raw closeness. This phase adds a light, late, head-only reorder that sorts the top results by absolute cosine relevance so the closest match sits first. The reorder is stable (it preserves the original order on ties), head-only (it touches at most the first ten results), and runs after `truncateToBudget` so it reorders only what will actually render. It preserves both membership and length, so it changes order without adding, dropping or duplicating a result. The behavior is gated behind `SPECKIT_COSINE_TOPN_REORDER`, default-ON because the research grades it low-risk, and fully reversible by setting the flag to false. No model, LLM call or cross-encoder was added, which is the deliberate boundary the research and the operator both drew.
@@ -51,3 +48,6 @@ Fusion ordering does not always put the single most-relevant result first, becau
 ### Follow-Ups
 
 - A cross-encoder reranker remains explicitly out of scope per the operator decision. The research framed it as an only-if-a-gap-remains path, not this phase.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/005-cosine-topn-reorder` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

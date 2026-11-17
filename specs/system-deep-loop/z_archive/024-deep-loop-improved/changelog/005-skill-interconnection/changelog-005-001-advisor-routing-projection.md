@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/005-skill-interconnection/001-advisor-routing-projection` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/005-skill-interconnection`
-
 ### Summary
 
 Auto-generated alias projection from the mode-registry with a hash drift-guard, and published the resolved workflowMode in advisor responses. 29 advisor tests pass; typecheck/drift green.
@@ -59,3 +56,6 @@ Auto-generated alias projection from the mode-registry with a hash drift-guard, 
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/005-skill-interconnection/001-advisor-routing-projection` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/005-skill-interconnection`

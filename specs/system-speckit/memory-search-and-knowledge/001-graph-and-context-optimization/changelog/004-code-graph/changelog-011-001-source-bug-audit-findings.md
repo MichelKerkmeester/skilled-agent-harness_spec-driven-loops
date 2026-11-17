@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-source-bug-audit-findings` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit`
-
 ### Summary
 
 This packet audited the system-code-graph skill, the standalone mk-code-index MCP server of roughly 17,500 lines, and recorded 37 confirmed findings: 10 P1 and 27 P2. You can now open review-report.md and act on each finding from its exact file and line, with a one-line fix already written.
@@ -59,3 +56,6 @@ This packet audited the system-code-graph skill, the standalone mk-code-index MC
 - Call tree.delete() in a finally block around parse to prevent WASM linear memory leaks (tree-sitter-parser.ts).
 - Gate scan freshness on scanPromotable instead of MAX(indexed_at) so failed or non-promoted scans do not report fresh (scan.ts).
 - Feed candidate-manifest drift the on-disk candidate set instead of DB rows so newly added files are detected (ensure-ready.ts).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-source-bug-audit-findings` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit`

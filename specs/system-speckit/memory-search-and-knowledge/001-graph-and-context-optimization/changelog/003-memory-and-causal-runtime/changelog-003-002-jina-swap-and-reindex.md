@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-17
 
-> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack/002-jina-swap-and-reindex` (Level 1)
-> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack`
-
 ### Summary
 
 The skill-advisor stack shipped a pluggable EmbedderAdapter layer in the prior packet (010/001) but left the write path in `skill-graph-db.ts:refreshSkillEmbeddings()` wired to the legacy `createEmbeddingsProvider()` factory. That factory has no Ollama provider, so it cannot produce jina-v3 vectors. Setting the active embedder pointer without also wiring the writer would leave the `vec_1024` table empty, causing semantic-shadow to silently degrade to zero results.
@@ -65,3 +62,6 @@ The architecture gap and its path forward via 010/004 are now documented in the 
 - Re-snapshot `skill-graph.sqlite` immediately before executing the swap in case the schema drifts before 010/004 lands.
 - Validate R1 through R4 after swap: active pointer reads `jina-embeddings-v3`, reindex completes without error, semantic-shadow returns non-empty top-3. Confirm `skill_advisor.py recommend "memory save"` includes `system-spec-kit` in top-3.
 - Align spec.md wording to remove the env-var swap path (P2-11) after 010/004 lands.
+
+> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack/002-jina-swap-and-reindex` (Level 1)
+> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack`

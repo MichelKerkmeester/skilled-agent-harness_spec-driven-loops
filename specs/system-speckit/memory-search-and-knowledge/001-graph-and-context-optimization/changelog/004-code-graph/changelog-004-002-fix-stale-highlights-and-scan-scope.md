@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/002-fix-stale-highlights-and-scan-scope` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan`
-
 ### Summary
 
 The code-graph scale investigation surfaced three problems in one session. First, structural highlights were gated on `status === 'ready'` in `session-snapshot.ts`; graphs in the `stale` state returned no highlights even though the underlying SQL aggregate works for any graph state. Second, the scanner defaulted to `process.cwd()` with minimal excludes (`node_modules`, `dist`, `.git`, `vendor`), causing 26 000 files to be indexed when only 1 000 to 3 000 were active code. Third, two context-injection surfaces (OpenCode plugin minimal payload and MCP startup-brief full payload) were undocumented.
@@ -86,3 +83,6 @@ All three problems were resolved in one focused pass on 2026-04-23. The highligh
 - Run a full `code_graph_scan` after MCP restart to record the authoritative file count. Scan counts are not authoritative until a live post-restart rerun is recorded after the recovery packet lands.
 - Complete `npm install` for the `ignore` package in a normal registry-backed environment. Package metadata is updated and the runtime prefers the direct dependency. The sandbox used a transitive ESLint copy as fallback.
 - Verify that AC-1 (zero `UNIQUE constraint failed` in `errors[]`) and AC-2 (`filesIndexed >= 1300`) hold after operator-driven MCP restart.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/002-fix-stale-highlights-and-scan-scope` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan`

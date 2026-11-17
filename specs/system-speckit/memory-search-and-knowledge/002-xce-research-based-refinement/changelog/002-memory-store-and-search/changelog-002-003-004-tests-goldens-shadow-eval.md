@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback`
-
 ### Summary
 
 This leaf closes the semantic trigger fallback phase without changing the default runtime state. The master flag remains off, the mode default is `shadow`, and union promotion is explicitly blocked.
@@ -91,3 +88,6 @@ Union promotion decision: BLOCKED. Live 768d evidence required before any promot
 - Live false-positive, recall, latency, and cost evidence must be collected against a real 768d embedding profile before union mode promotion is considered.
 - The synthetic goldens fixture proves machinery correctness only. It must not be cited as evidence for live recall behavior or false-positive rates.
 - The original scaffold named `__tests__/triggers/` as the test path. Implementation used the repository's `tests/*.vitest.ts` convention throughout this phase.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback`

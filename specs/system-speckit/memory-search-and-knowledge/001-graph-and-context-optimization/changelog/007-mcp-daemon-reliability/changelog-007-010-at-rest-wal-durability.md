@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 Packet 008 added a close-time WAL TRUNCATE for the main context index but left the attached active vector shard unguarded. The live `context-index.sqlite-wal` was approximately 9.2 MiB (2349 pages) beside a roughly 1.0 GiB index that is not write-hot. This packet bounds WAL exposure on both connections by setting `wal_autocheckpoint = 256` on the main DB and the `active_vec` shard. It re-sequences `close_db()` so the shard TRUNCATE runs before the main TRUNCATE and before detach. It also adds a `checkpointAllWal()` helper that `context-server.ts` calls every five minutes via the existing timer registry. Production remains `synchronous=NORMAL` because a copy-based benchmark showed that adding APFS `fullfsync=ON` raised p99 latency by 19.576ms, making that flip a separate benchmark-gated decision.
@@ -65,3 +62,6 @@ Packet 008 added a close-time WAL TRUNCATE for the main context index but left t
 
 - Evaluate a production flip to `synchronous=FULL` plus `fullfsync=ON` on main and shard connections if a broader daemon benchmark shows the fullfsync tail cost is tolerable under real save volume.
 - Confirm autocheckpoint and periodic TRUNCATE behavior holds under high write-volume stress beyond the 200-transaction copy benchmark.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

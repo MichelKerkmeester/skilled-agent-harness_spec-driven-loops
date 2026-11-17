@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/001-usefulness-test-methodology` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`
-
 ### Summary
 
 This packet created the planning surface for a real-world usefulness campaign. It defines what to test, where to test it, how to score it, and what evidence the later execution pass must produce.
@@ -59,3 +56,6 @@ This packet created the planning surface for a real-world usefulness campaign. I
 - Ensure edge cases from spec.md are represented in the execution design.
 - Run each scenario across the required CLIs with at least three assisted trials per cell or document approved deferrals.
 - Execute S-CG-01 (caller lookup), S-CG-02 (module touch-map), and S-CG-03 (refactor blast-radius preview) trials after plan approval.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/001-usefulness-test-methodology` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

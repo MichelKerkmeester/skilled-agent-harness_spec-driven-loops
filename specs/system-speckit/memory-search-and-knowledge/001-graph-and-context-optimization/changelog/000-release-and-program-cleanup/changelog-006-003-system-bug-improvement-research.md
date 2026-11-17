@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-05-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/003-system-bug-improvement-research` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research`
-
 ### Summary
 
 After packets 042-045 closed the documented stress-coverage backlog, the next layer of risk was unknowns: latent production bugs, miswired automation paths, architectural shortcuts across `system-spec-kit`, `mcp_server`, `code_graph`, `skill_advisor`. A 20-angle charter was defined across four categories (production code bugs, wiring/automation bugs, refinement opportunities, architecture/organization) and a full 20-iteration deep research loop was executed using `cli-codex gpt-5.5` at high reasoning.
@@ -71,3 +68,6 @@ None. Research-only phase.
 - Prioritize remediation of the 31 P1 findings in follow-on packets, starting with A2 SQLite contention, A4 silent fallbacks, A5 schema gaps, B3 memory causal-key mismatch, B2 CLI skill drift, C4 staleness detection.
 - Fix or deprecate `research/run_all.sh`: it uses `declare -A` which is unsupported in macOS bash 3.2. Replace the associative array with a portable `eval`/`mktemp` hash or mark it deprecated in favor of manual dispatch.
 - Validate the full packet with `validate.sh --strict` after changelog lands to close the PENDING verification row.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/003-system-bug-improvement-research` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research`

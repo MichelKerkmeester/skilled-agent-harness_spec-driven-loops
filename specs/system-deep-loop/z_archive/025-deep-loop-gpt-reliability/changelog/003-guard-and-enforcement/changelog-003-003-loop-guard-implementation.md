@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/003-loop-guard-implementation` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 Implemented phase 016's Design Option B: `resolveTargetIdentity()` (fixing the `subagent_type="general"` no-op gap for both checks) plus session-scoped, iteration-aware loop-repeat detection for `orchestrate`-to-command-owned-loop-executor dispatches. Hermetic suite extended and passing; live re-verified against the real installed `opencode` v1.17.11 host with zero regression.
@@ -68,3 +65,6 @@ Implemented phase 016's Design Option B: `resolveTargetIdentity()` (fixing the `
 - Design Option C from phase 016 (a prompt-shape companion guard requiring `execution=single_iteration`) remains a viable complementary addition, not implemented.
 - Adding a `prompt-improver` entry to `mode-registry.json` would let Check 1 cover it too — unrelated to this phase's scope, tracked for discoverability.
 - Live loop-repeat reproduction was not performed via a real multi-turn `@orchestrate` session (the hermetic suite covers the full matrix deterministically; the host-level throw-blocks-dispatch mechanism was reconfirmed live via the mode-mismatch check instead).
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/003-loop-guard-implementation` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

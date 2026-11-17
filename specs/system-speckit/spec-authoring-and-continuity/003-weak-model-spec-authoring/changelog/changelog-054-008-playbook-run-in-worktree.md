@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-25
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree` (Level 3)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 All eight scenarios phase 007 added passed on their first run. The report is `.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--manual-testing-playbook--weak-model-authoring/`, with the verdict PASS and a result of 8 PASS and 0 FAIL.
@@ -63,3 +60,6 @@ All eight scenarios phase 007 added passed on their first run. The report is `.s
 - Two frozen patterns changed. S1 uses ^warn$ and S8 matches the lines the scenario itself prints, so those rows rest on the scenario Pass section.
 - Provisioning needs npm access. A machine with no registry or cache cannot run this phase.
 - Forwarded notes stay open. The tool lists of scenarios 479 and 482 lack awk and rg, and scenario 483 leaves a pointer file in phase 007's scratch folder. This phase edits no scenario file, so both stay with the phase 007 owner.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree` (Level 3)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

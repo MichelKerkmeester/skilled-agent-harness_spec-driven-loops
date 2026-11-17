@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/001-profile-ts-fallback-fix`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`
-
 ### Summary
 
 Three P0 audit findings from packet 021 remained open because `profile.ts:resolveActiveProfileModel` used inline `||` string literals as fallbacks for all four embedding providers. The hf-local branch was actively broken: it returned `BAAI/bge-base-en-v1.5` in common no-config scenarios, sending CLI scripts (checkpoint, ablation, eval) to stale BAAI vector tables even after the daemon switched to nomic. The ollama branch carried a latent `jina-embeddings-v3` literal contradicting ADR-013/014. A parallel dead-code fallback at `embeddings.ts:774` was also flagged.
@@ -66,3 +63,6 @@ All four `profile.ts` inline literals were replaced with `getCanonicalFallback(p
 - Confirm that CLI scripts (checkpoint, ablation, eval) now target the correct nomic vector tables after the hf-local fallback fix.
 - Dim-lookup at `profile.ts:225` retains `BAAI/bge-base-en-v1.5` as a backward-compatibility identifier in a registered-model-to-dim map. This is out of scope per the audit verdict and requires no change.
 - `profile.ts:133` retains `jina-embeddings-v3: 1024` in a dim-map registered-model lookup. Same reasoning applies.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/001-profile-ts-fallback-fix`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

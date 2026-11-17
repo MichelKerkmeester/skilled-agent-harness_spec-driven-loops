@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/043-cocoindex-refresh-split` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 MCP `search` had been defaulting `refresh_index=true`, meaning every ordinary semantic query would trigger a full index refresh inside the same request scope. This made search latency unpredictable and wasted request budget on indexing work that callers had not asked for. Packet 035 identified the timeout risk and packet 041 added the observability hooks needed to measure it.
@@ -83,3 +80,6 @@ The patch flipped the `search.refresh_index` default in `server.py` from `true` 
 - Add path-scoped daemon refresh. The `paths` parameter is currently accepted as a hint and echoed in the response, but the daemon refresh remains project-wide incremental. A follow-on packet would need to extend the `IndexRequest` protocol.
 - Add background periodic refresh. A `COCOINDEX_CODE_BACKGROUND_REFRESH=true` flag with interval clamping and scheduler tests was deferred because it was not needed for the contract split.
 - Note that stale-index reads are possible after code changes. Operators should call `cocoindex_refresh_index` before a search batch. Passing `search(refresh_index=true)` provides a one-shot refresh-before-search alternative.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/043-cocoindex-refresh-split` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

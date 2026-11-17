@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/005-scaffold-content-004-through-007` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation`
-
 ### Summary
 
 Same scaffold-content debt as children 003-004, covering the smaller remaining phases in one combined child: `004-system-spec-kit` (1 leaf), `005-skill-interconnection` (1 leaf), `006-ux-observability-automation` (6 leaves), `007-testing` (2 leaves) -- 10 leaves total.
@@ -49,3 +46,6 @@ Same scaffold-content debt as children 003-004, covering the smaller remaining p
 ### Follow-Ups
 
 - `001-reference-research` (a standalone phase with no leaf children) was outside this child's and children 003-004's stated scope ("phases 002-007's leaf children") and remained scaffold until child 006 closed it directly.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/005-scaffold-content-004-through-007` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation`

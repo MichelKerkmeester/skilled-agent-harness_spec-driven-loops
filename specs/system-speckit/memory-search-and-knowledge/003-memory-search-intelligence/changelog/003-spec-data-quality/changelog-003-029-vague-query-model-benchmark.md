@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 A characterization benchmark that measured how four LLMs drive the `/memory:search` command on deliberately vague queries. It dispatched a 144-cell matrix of bare read-only queries, four models by twelve vagueness-graded queries by three samples, and parsed each event stream into per-model behavioral profiles. The headline is that the citation surface is fully model-robust at a cite-correct rate of 1.0 while the only cross-model variance is in envelope fidelity. This phase ships measured data and a model recommendation, not code.
@@ -52,3 +49,6 @@ A characterization benchmark that measured how four LLMs drive the `/memory:sear
 
 - Consider a standing red-team query for the `kubernetes` off-corpus false-relevance, where every model awarded a good verdict at 0.78 on an unrelated doc.
 - A follow-on running every model at both medium and high would separate the model from the reasoning tier, since gpt-5.5 ran at medium against a high trio.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

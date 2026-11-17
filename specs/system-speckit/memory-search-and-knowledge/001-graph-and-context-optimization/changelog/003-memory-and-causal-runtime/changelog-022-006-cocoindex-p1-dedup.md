@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/006-cocoindex-p1-dedup` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`
-
 ### Summary
 
 CocoIndex Python had two P1 default-duplication sites flagged in the 021 audit. Chunk-size values (`CHUNK_SIZE=1500`, `MIN_CHUNK_SIZE=250`, `CHUNK_OVERLAP=200`) were declared independently in both `indexer/indexer.py` and `config/config.py`, creating a silent drift risk for future bench tuning. The `COCOINDEX_RERANK_VIA_SIDECAR` default `True` was hardcoded in two places: the `Config.from_env` parse call and the `_rerank_via_sidecar_enabled` runtime helper, despite an existing docstring warning that both code paths must read the same default.
@@ -62,3 +59,6 @@ Four surgical edits consolidated both sites to single-source constants in `confi
 
 - Compiled `.pyc` files under `__pycache__/` may hold stale bytecode. Python regenerates them on next module load, so no manual action is required.
 - Lazy import inside `_rerank_via_sidecar_enabled` runs on every call. Overhead is negligible because Python caches the import after the first invocation.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/006-cocoindex-p1-dedup` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

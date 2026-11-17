@@ -8,8 +8,6 @@
 
 This phase made the compact-context design usable outside Claude hooks. Runtime detection now distinguishes hook-capable and hookless environments, and the instruction files tell Codex, Copilot, Gemini, and OpenCode how to recover with tools when native hook transport is unavailable.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/004-cross-runtime-fallback/`
-
 ---
 
 ## New Features (2)
@@ -58,3 +56,5 @@ This phase made the compact-context design usable outside Claude hooks. Runtime 
 ## Upgrade
 
 No migration required.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/004-cross-runtime-fallback/`

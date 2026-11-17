@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/007-testing` (Level 2)
-
 ### Summary
 
 Phase 008 shipped hermetic deep-loop-runtime test isolation and record-replay cassette helpers. Runtime tests now avoid real HOME and database paths, while parity and fanout regressions pin script behavior through reusable record and replay utilities.
@@ -64,3 +62,5 @@ _No file-level detail recorded._
 ### Follow-Ups
 
 - None recorded.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/007-testing` (Level 2)

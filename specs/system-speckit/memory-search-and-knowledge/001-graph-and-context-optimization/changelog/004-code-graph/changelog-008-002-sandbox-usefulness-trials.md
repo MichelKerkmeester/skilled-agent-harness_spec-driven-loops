@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/002-sandbox-usefulness-trials` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`
-
 ### Summary
 
 This execution packet turns the parent campaign from a plan into partial empirical evidence. It ran the sandboxable code graph and hook checks, preserved raw outputs, aggregated metrics, and named the runtime cells that need a live authenticated follow-up.
@@ -70,3 +67,6 @@ This execution packet turns the parent campaign from a plan into partial empiric
 - Compaction recovery is unmeasured. S-HK-04 needs a real long-running session and compaction event.
 - Controls are lower bounds. rg command timings are faster than a real human orientation workflow.
 - Token counts are estimates. Local tools did not expose model-token metrics.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/002-sandbox-usefulness-trials` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

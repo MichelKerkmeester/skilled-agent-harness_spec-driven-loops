@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/009-fix-test-reliability`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`
-
 ### Summary
 
 Six tests across the stress-test and unit-test surface had reliability defects that caused failures on non-developer machines, in CI or under repeated runs. One test hard-coded an absolute developer home-directory path that only worked on the original author's machine. One asserted absolute latency budgets that failed on slower hardware. One used real-timer sleeps with elapsed-time assertions, introducing wall-clock flakes. Two tests mutated process env vars without restoring them, leaking state across the run. One test used a repo-local fixture root that collided when runs overlapped or a prior run crashed.
@@ -76,3 +73,6 @@ Each finding from packet 046 iteration-015 section C5 (F-015-C5-01 through F-015
 - Run each modified test in isolation and fill the TBD rows in the Verification table before marking the packet complete.
 - Add a dedicated unit test for `env-snapshot.ts` if a third consumer is added in a future packet.
 - Consider adding a CI lint step that detects literal home-directory paths in test files to prevent regressions of F-015-C5-01.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/009-fix-test-reliability`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

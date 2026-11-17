@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/011-arc-022-followons`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`
-
 ### Summary
 
 After all 12 phases of the 022 hardcoded-default remediation arc converged, three independent operational debts plus one canonical-fill item surfaced. The `mk_skill_advisor` MCP server had accumulated a 4.1 MB stale SQLite WAL, an orphan IPC socket plus a missing `data/prompt-policy.default.json` in the compiled `dist/` tree (tsc does not copy non-TS assets), causing persistent `-32000` reconnect failures. The `validate-doc-model-refs.js` validator shipped in phase 010 had six bugs that combined to swallow all canonical lookups via uncaught TypeErrors, causing incorrect exit codes plus false positives on valid model names. The `RERANKER_CANONICAL` registry entries for voyage and cohere held empty placeholders from phase 005.
@@ -71,3 +68,6 @@ All four items shipped in one bundle via mixed executors. Step 3 (opencode react
 - Wire `validate-doc-model-refs.js` as an advisory pre-commit hook once the llama-cpp canonical source is added and those drift hits are no longer open.
 - Bench-validate voyage `rerank-2.5` and cohere `rerank-v3.5` on the project fixture to confirm the vendor-documented defaults match actual performance before promoting them to bench-locked status.
 - Wire `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` env-var override into `lane-registry.ts` with a bench-diff to confirm zero behavior change when the env var is unset (deferred from this packet).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/011-arc-022-followons`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

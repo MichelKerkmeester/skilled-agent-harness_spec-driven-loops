@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-10
 
-> Spec folder: `specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes` (Level 2)
-> Parent packet: `specs/system-speckit/034-spec-folder-tooling`
-
 ### Summary
 
 The follow-ups that the spec-folder tooling epic left are closed. /doctor:env accepts ENV-REFERENCE.md again, because the one duplicated switch row now agrees with its twin on default and type and the parse rules read the two row shapes the file uses. The compat workflow now says how a resume treats a step it still owes, closes its move log on every terminal stop and fails when its layout map prints no JSON. The Gate 3 parity test covers 17 menu copies instead of 12, and three CLI tests build their fixtures in OS temp folders, so a run leaves the real specs/ root as it found it. The leaf manifest generator skips dot-named folders, so a local tool cache cannot change a hub manifest.
@@ -82,3 +79,6 @@ The follow-ups that the spec-folder tooling epic left are closed. /doctor:env ac
 - The hooks diagram label is a bare file name. spec-gate-core.mjs names the file but is not a path from runtime/tests/hooks/. The full relative path is ../../hooks/lib/spec-gate/spec-gate-core.mjs. The link checker does not read diagram labels, so the change is accepted as a label. A later edit can use the full path.
 - Resolved by phase 020: the three stress-test category READMEs now pass the document validator. They are command-flow-stress-tests under deep-review and deep-research, and agent-discipline-stress-tests under deep-improvement. Each had 3 missing sections before (u04-stress-test-readme-validate-context.txt). Phase 020 added the missing sections in its working-tree edits, which are not committed yet and ship with phase 020. On 2026-10-10, validate_document.py on each file printed Total issues: 0 and exited 0.
 - The 034 parent handoff row for 018 to 019 had placeholder text at closeout, and it is now filled in. The row read [Criteria TBD] when this phase closed. It was not edited then, because only the 019 phase row was in scope. The row now names 018's acceptance rows and evidence, see the Phase Handoff Criteria table in specs/system-speckit/034-spec-folder-tooling/spec.md.
+
+> Spec folder: `specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes` (Level 2)
+> Parent packet: `specs/system-speckit/034-spec-folder-tooling`

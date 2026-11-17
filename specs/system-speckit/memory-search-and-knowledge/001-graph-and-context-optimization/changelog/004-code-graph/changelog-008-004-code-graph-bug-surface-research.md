@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/004-code-graph-bug-surface-research` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`
-
 ### Summary
 
 This packet turns the completed 10-iteration research loop into an implementation-ready backlog. The corrected headline is narrower than the original synthesis: code graph default scope is working as designed for end-user project code, while destructive empty-scan promotion and parser-error persistence still need P0 reliability fixes.
@@ -66,3 +63,6 @@ This packet turns the completed 10-iteration research loop into an implementatio
 
 - No remediation implemented. This packet is read-only synthesis; the two P0 fixes (zero-node scan safety, parser-error persistence) belong in a follow-up remediation packet.
 - Parser OOB filenames remain unknown. The native artifacts preserved crash count and message, but not the affected file list.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/004-code-graph-bug-surface-research` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

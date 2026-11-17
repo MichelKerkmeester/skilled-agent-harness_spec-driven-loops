@@ -18,9 +18,6 @@ contextType: "review"
 
 ## 2026-05-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The recent daemon-shutdown and memory-DB-lifecycle work (packets 008 checkpoint-on-close, 009 shutdown-durability, 010 at-rest-wal) and the code-graph fixes (packet 012 empty-graph auto-establish plus the 15-bug audit remediation) were shipped rapidly into a safety-critical subsystem that had already suffered a real FTS5 data-integrity incident. That surface needed a hardening pass before further work built on it.
@@ -67,3 +64,6 @@ None. Review-only phase.
 - Confirm line-by-line the WS-3 P1 severities in `launcher.cjs` (reap, respawn, RSS-watchdog paths) that were read only via grep due to the out-of-scope launcher layer.
 - Verify at runtime whether only one DB connection is ever live. Several WS-1 and WS-4 P1s (WAL completeness, telemetry) may drop to P2 if the single-connection topology is confirmed.
 - Update line numbers in findings that may have shifted. A parallel session was actively editing the same surface during the review window.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

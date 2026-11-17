@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`
-
 ### Summary
 
 The three runtime agent mirrors were normalized for shipped agent I/O and verification-discipline doctrine. All 12 runtime triplets were included in parity verification: orchestrate, code, review, context, debug, deep-research, deep-review, deep-context, markdown, prompt-improver, ai-council, and deep-improvement.
@@ -59,3 +56,6 @@ The three runtime agent mirrors were normalized for shipped agent I/O and verifi
 ### Follow-Ups
 
 - Running runtime sessions must restart to load changed agent definitions.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

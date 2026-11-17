@@ -12,9 +12,9 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/003-claim-continuity` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections`
-
 ### Summary
 
 This phase implemented one durable claim identity across iterations so a claim's support, contradiction, supersession, lifecycle, and recomputed status accumulate through replay and resume without losing its identity. Per its implementation summary, the phase delivered and verified the additive dark claim identity, matching, lifecycle fold, replay, and resume frontier. Status is complete.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/003-claim-continuity` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/006-stale-documentation-readme-fixes` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 A batch of runtime and skill-contract changes shipped faster than packet continuity and adjacent READMEs caught up. Three packet-continuity files still carried stale narrative: the 023 implementation summary described TC-3 as `expected_fail`, the 025 tasks file still marked a typecheck-blocked state. The 028 spec continuity still said "Authored Level 1 spec" despite the packet being complete. Five code-adjacent READMEs referenced deleted embedding-readiness functions and outdated parser defaults. Three skill READMEs documented an old `review/{packet}/` first-run shape instead of the flat-first `{artifact_dir}` layout. The `sk-doc` doctype list was missing `playbook_feature`.
@@ -82,3 +79,6 @@ All twelve targets were updated in a single documentation-only pass. The edits r
 - Re-run the README staleness audit to confirm zero STALE-HIGH findings remain on the listed files after subsequent sessions have touched the same READMEs.
 - The 011 deep-review findings registry (`review/deep-review-findings-registry.json`) was unavailable at implementation time. Confirm F-001, F-002, F-004 plus F-006 are formally closed in the registry when it is next accessible.
 - The 025 implementation summary still contains historical typecheck-fail prose. Widening scope would have violated the packet contract at the time, so it was left unchanged. A follow-on edit can address it.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/006-stale-documentation-readme-fixes` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

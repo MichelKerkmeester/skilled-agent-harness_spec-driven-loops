@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 Feature catalog and manual testing playbook entries across system-spec-kit and mcp-coco-index still described Voyage-only defaults, `all-MiniLM-L6-v2` model names. API-first assumptions also remained after the local embedding provider cascade changed. This audit packet recorded the source-of-truth defaults for both the memory provider cascade (`llama-cpp` with `unsloth/embeddinggemma-300m-GGUF` active. `hf-local` ONNX q8 fallback) and the CocoIndex default model (`sbert/google/embeddinggemma-300m` with `InstructionRetrieval`). All P0/P1 catalog and playbook files were updated to reflect current defaults. Reranker, Code Graph plus Skill Advisor surfaces were left unchanged because they do not own embedding-provider defaults. During verification a stored-scope code graph scan entered a stale full-scan loop that blocked graph refresh. A targeted `scan.ts` remediation was applied: incremental scans now survive Git HEAD drift. Successful incremental scans refresh the candidate manifest. Failed-scan metadata now lists structural persistence errors before parse-error noise.
@@ -86,3 +83,6 @@ Feature catalog and manual testing playbook entries across system-spec-kit and m
 - Verify `memory-save.ts` graph-metadata sufficiency exemption is stable after MCP restart. The live check showed `graph-metadata.json` indexing with `status: deferred` rather than `status: rejected` after the patch.
 - Keep `all-MiniLM-L6-v2` and `voyage-code-3` references in mcp-coco-index docs as documented alternatives framed clearly as non-default options.
 - Confirm Code Graph and Skill Advisor docs require no embedding-default update after any future provider cascade change. Neither subsystem owns embedding provider defaults.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

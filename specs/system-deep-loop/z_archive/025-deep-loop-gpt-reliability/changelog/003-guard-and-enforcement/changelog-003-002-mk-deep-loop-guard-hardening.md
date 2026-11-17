@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/002-mk-deep-loop-guard-hardening` (Level 1, research)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 5-iteration dual-model research (`gpt-fast-high` 3 iterations + `glm-max` 2 iterations) on hardening `mk-deep-loop-guard.js` to mechanically detect loop-like repeated `orchestrate`-to-loop-executor dispatches. Both lineages independently converged on session-scoped state plus an iteration-aware heuristic, and surfaced a load-bearing fact: `orchestrate`'s Task dispatches always set `subagent_type: "general"`, meaning phase 011's existing mode-mismatch guard silently no-oped on real `orchestrate`-routed dispatches (flagged, implemented in phase 017).
@@ -54,3 +51,6 @@ contextType: "implementation"
 - No implementation yet — a future phase must pick a design option and write a real spec/plan (completed as phase 017).
 - The phase-011 guard gap (`subagent_type="general"` making the existing mode-mismatch check a no-op for real orchestrate dispatches) flagged, not fixed here — resolved in phase 017 as part of the same identity-resolution work.
 - `prompt-improver` has no entry in `mode-registry.json` (both lineages independently noted this) — the eventual implementation needs a static fallback identity set for it, or a registry addition (still open).
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/002-mk-deep-loop-guard-hardening` (Level 1, research)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

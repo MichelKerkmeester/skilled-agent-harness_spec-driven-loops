@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing`
-
 ### Summary
 
 The 2026-05-11 deep review of `001-deliver-causal-graph-channel-routing-mvp` returned a CONDITIONAL verdict with 0 P0, 3 P1, 39 P2 findings. Two release blockers were outstanding: `invalidateEntityDensityCache()` was exported but never called from `memory_save` or `memory_bulk_delete` commit paths, leaving entity-density scores stale for up to 60 seconds after row mutations. The 001 resource-map also pointed to a non-existent playbook path.
@@ -79,3 +76,6 @@ Tier 1 wired the cache-invalidation call into both commit paths and added an int
 ### Follow-Ups
 
 None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing`

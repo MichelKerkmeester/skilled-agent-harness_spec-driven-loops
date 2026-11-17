@@ -8,8 +8,6 @@
 
 This phase connected semantic search to the new structural graph so the packet could move beyond isolated retrieval channels. CocoIndex hits can now seed graph expansion, and the returned context includes enough structural framing to explain why a semantic result matters in the codebase around it.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/010-cocoindex-bridge-context/`
-
 ---
 
 ## New Features (3)
@@ -58,3 +56,5 @@ This phase connected semantic search to the new structural graph so the packet c
 ## Upgrade
 
 No migration required. File-anchor fallback remains intentionally coarse when a hit cannot be resolved to a symbol.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/010-cocoindex-bridge-context/`

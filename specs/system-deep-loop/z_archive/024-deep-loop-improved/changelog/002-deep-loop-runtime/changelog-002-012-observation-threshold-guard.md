@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/012-observation-threshold-guard` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`
-
 ### Summary
 
 Added a default-off observation-threshold guard to convergence (coverage-graph-signals.ts + convergence.cjs): suppresses verdicts until min-observations is met; activates via --min-observations/config/env. Parity preserved (default-off). 42 convergence tests pass; typecheck green.
@@ -57,3 +54,6 @@ Added a default-off observation-threshold guard to convergence (coverage-graph-s
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/012-observation-threshold-guard` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`

@@ -18,8 +18,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/021-relation-inference-backfill` (Level 3)
-
 ### Summary
 
 Packet 019 corrected `memory_causal_stats` to honestly report that no command balances relation coverage (`backfillJob.implemented:false`, `command:null`). The honest stat was correct but the underlying capability was missing. There was no safe, auditable way to raise typed relation coverage (`caused`/`supports`) without manual `memory_causal_link` calls, even though the system carried strong structural signals (spec-document chains, lineage version links) that already encode causal relationships.
@@ -73,3 +71,5 @@ This packet built the missing piece, a bounded, safe, reversible relation-infere
 - `contradicts` and high-similarity `supports` neighbor inference are deferred best-effort extensions (need sqlite-vec embeddings, not deterministically reproducible in a unit fixture). They were later added as opt-in collectors in packet 023.
 - Structurally, `caused` stays below the 5% coverage target because `supports` dominates the inferred distribution. The two deterministic signals satisfy all P0 requirements but do not move `caused` to target on their own.
 - The backfill is invoked explicitly (no scheduled job). `backfillJob.name` retains `autonomous-causal-relation-backfill` to keep consumers stable, but the implementation is on-demand.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/021-relation-inference-backfill` (Level 3)

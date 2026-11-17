@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/006-playbook-vitest-path-fix` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation`
-
 ### Summary
 
 NC-004 and NC-005 playbook scenarios documented a vitest command that resolved to no test files. The command pointed to a pre-extraction path that no longer existed after the skill was moved to system-skill-advisor. Two playbook scenario docs were corrected to the canonical vitest invocation. The documented commands now run 49 tests successfully.
@@ -48,3 +45,6 @@ NC-004 and NC-005 playbook scenarios documented a vitest command that resolved t
 ### Follow-Ups
 
 - None. Documentation-only correction.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/006-playbook-vitest-path-fix` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation`

@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/001-state-store` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
-
 ### Summary
 
 The passive /goal milestone now has durable state. mk-goal.js persists one active goal per OpenCode session, refuses missing session ids, writes JSON atomically, and serializes mutations so later phases can rely on a stable store.
@@ -62,3 +59,6 @@ The passive /goal milestone now has durable state. mk-goal.js persists one activ
 ### Follow-Ups
 
 - Process-local queueing only. mutateGoal serializes mutations inside the current process; cross-process coordination relies on atomic rename rather than a distributed lock.
+
+> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/001-state-store` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`

@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-11
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/033-self-healing-model-consolidation` (Level recorded in phase evidence)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory`
-> Historical alias: `023-self-healing-model-consolidation`
-
 ### Summary
 
 This migration index makes the shipped phase discoverable at its final packet-local path without rewriting its historical identity. The allowed implementation evidence records: runGlobalOrphanSweep enqueues orphan ids at memory-index.ts:819-827 and reports enqueued plus queue size through OrphanSweepDeleteResult at :265-271. The scoped empty-files branch resolves candidate paths through listIndexedRecordIdsForDeletedPaths() and enqueues them at :1074-1081. Neither path directly deletes a heuristic candidate.
@@ -49,3 +45,7 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 ### Follow-Ups
 
 - None in the allowed evidence set.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/033-self-healing-model-consolidation` (Level recorded in phase evidence)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory`
+> Historical alias: `023-self-healing-model-consolidation`

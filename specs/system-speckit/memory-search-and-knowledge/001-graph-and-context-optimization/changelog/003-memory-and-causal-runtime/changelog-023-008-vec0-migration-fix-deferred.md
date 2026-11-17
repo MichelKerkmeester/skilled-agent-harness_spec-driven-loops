@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-26
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/008-vec0-migration-fix-deferred`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots`
-
 ### Summary
 
 The 023 arc reserved a follow-up slot for vec0 migration repair, but no implementation scope had been authorized. Without a valid child folder at the 008 position, the parent phase would fail recursive strict validation because discovery expects all numbered slots to have a conforming child. A minimal Level 1 scaffold was created at `008-vec0-migration-fix-deferred` covering six files: `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `description.json`, `graph-metadata.json`. The scaffold holds the deferred position, passes strict validation. It explicitly blocks any runtime migration work until a future activation task defines scope.
@@ -57,3 +54,6 @@ The 023 arc reserved a follow-up slot for vec0 migration repair, but no implemen
 - Activate this packet when vec0 migration scope is approved. Define migration requirements. Identify affected tables. Add rollback constraints before touching runtime code.
 - Investigate the active vec0 schema and existing migration scripts before proposing a migration strategy.
 - Run strict validation on this child after future changes to confirm the scaffold remains conformant.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/008-vec0-migration-fix-deferred`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots`

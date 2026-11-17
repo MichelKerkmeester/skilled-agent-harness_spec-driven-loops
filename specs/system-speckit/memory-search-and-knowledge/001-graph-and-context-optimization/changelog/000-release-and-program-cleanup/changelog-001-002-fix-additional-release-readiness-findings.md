@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-fix-additional-release-readiness-findings` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness`
-
 ### Summary
 
 The Tier 2 deep-review program returned four CONDITIONAL verdicts and one FAIL across five packets (D through H). The CONDITIONAL packets carried 8 P1 and 7 P2 findings. The FAIL on H was a license-audit P0 that could not be resolved without a human reading the actual gitignored `external/LICENSE` file on disk.
@@ -76,3 +73,6 @@ Focused vitest suites across 4 test files passed (36 tests) and the TypeScript b
 - Verify actual `external/LICENSE` on disk and close H-P0. The automated pass could not substitute or auto-remediate canonical license text.
 - Copilot next-prompt freshness is an accepted transport limitation until upstream supports same-turn prompt mutation or stable ACP context injection.
 - Re-run strict packet validator against touched packets (008/007, 009/002, 006/008) after template-anchor debt is resolved in a separate hygiene pass.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-fix-additional-release-readiness-findings` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness`

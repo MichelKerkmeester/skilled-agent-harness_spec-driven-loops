@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation/004-adversarial-playbook-scenarios` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation`
-
 ### Summary
 
 Eight adversarial regression scenarios were added to the manual-testing playbooks, one per fixed deep-review cluster. Each is phrased to FAIL the moment its bug regresses and names the real regression test that catches it.
@@ -69,3 +66,6 @@ Eight adversarial regression scenarios were added to the manual-testing playbook
 
 - Adversarial scenarios are review aids, not executable gates. They tell a manual reviewer which test must stay green; they do not themselves run in CI.
 - The named-assertion citations are coupled to test titles. Renaming a regression test title requires updating the matching scenario, which is the intended fail-loud behavior.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation/004-adversarial-playbook-scenarios` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation`

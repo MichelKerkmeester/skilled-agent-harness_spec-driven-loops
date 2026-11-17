@@ -17,9 +17,6 @@ contextType: "research"
 
 ## 2026-04-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Research-only)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 A 4-iteration document-coverage audit investigated what the code-graph documentation was missing after the Phase 004 implementation. The audit examined READMEs, install guides, feature catalog pages, and manual testing playbooks against the post-004 contract vocabulary.
@@ -66,3 +63,6 @@ The investigation converged by iteration 4. The `newInfoRatio` crossed below 0.0
 
 - **Documentation cleanup packet.** A follow-on doc-and-validation cleanup packet is recommended before the next operator-facing release. The 13 missed surfaces are filed in the findings registry with specific file paths and section targets.
 - **Evidence chain repair.** The `applied/T-*.md` citation gaps should be closed by either creating the missing files or removing the dangling references.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Research-only)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

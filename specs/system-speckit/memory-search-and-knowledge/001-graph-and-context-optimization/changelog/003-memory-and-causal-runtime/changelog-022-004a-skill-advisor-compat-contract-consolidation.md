@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004a-skill-advisor-compat-contract-consolidation`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`
-
 ### Summary
 
 The skill-advisor scorer carried the default confidence threshold (0.8) and uncertainty threshold (0.35) as inline literals duplicated across five files, which packet 021 flagged as 14 P0 drift findings. All five sites now derive both values from a single source, `SKILL_ADVISOR_COMPAT_CONTRACT.defaults` at `compat/contract.ts`. This is Wave 1 of the four-wave phase 004 plan. Waves 2 to 4 were split to the follow-on 004b after pre-execution investigation showed the original plan referenced files that do not exist in the current skill-advisor structure.
@@ -58,3 +55,6 @@ The skill-advisor scorer carried the default confidence threshold (0.8) and unce
 
 - Waves 2 to 4 (RoutingCalibration interface expansion, env-var overrides, prompt-policy externalization) shipped in the follow-on 004b
 - Compiled `.js` files keep the old literals until the next `tsc` build, left to the natural build cycle
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004a-skill-advisor-compat-contract-consolidation`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

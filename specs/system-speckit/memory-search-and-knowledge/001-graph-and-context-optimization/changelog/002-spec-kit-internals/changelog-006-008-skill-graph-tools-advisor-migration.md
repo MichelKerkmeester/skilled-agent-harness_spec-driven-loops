@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/008-skill-graph-tools-advisor-migration` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 The skill-advisor extraction was structurally complete after earlier packets, but the four `skill_graph_*` MCP tools remained registered under `spec_kit_memory`. That left a cross-package coupling where skill-related graph operations lived on the memory server even after advisor source, DB plus launcher ownership had moved to `system_skill_advisor`.
@@ -97,3 +94,6 @@ All nine requirements passed. The `system_skill_advisor` MCP server now owns all
 - Advisor and memory broad Vitest suites remain baseline-red. D2 did not attempt out-of-scope suite remediation. A dedicated follow-on packet should triage the 6 failing and 3 skipped advisor tests.
 - Claude runtime listing was inconclusive because the CLI did not show `system_skill_advisor` in the visible rows. Verify after CLI cache clears or in a fresh session.
 - Doctor slash-command smoke is inconclusive outside an interactive runtime. Confirm all doctor probes reach the advisor-owned tools in a live session after the next interactive deployment.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/008-skill-graph-tools-advisor-migration` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

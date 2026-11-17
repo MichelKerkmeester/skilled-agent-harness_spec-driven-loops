@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/016-sk-doc` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 All 39 sk-doc reference and asset docs now carry the canonical 5-field frontmatter contract, and sk-doc's own prescriptive guidance now teaches that contract instead of contradicting it. This mattered more here than in any sibling phase: sk-doc's assets define frontmatter practice for every other skill, and until this phase they instructed authors that knowledge files must never carry frontmatter while the advisor doc harvest required exactly the opposite.
@@ -62,3 +59,6 @@ All 39 sk-doc reference and asset docs now carry the canonical 5-field frontmatt
 
 - Live-daemon matchedDocs verification is deferred until a fresh session respawns the daemon with the doc-trigger flag enabled.
 - Benchmark skeleton placeholder phrases are weak routing signal: the two benchmark templates expose {{PLACEHOLDER}} trigger phrases because their leading fences must stay copyable. The noise is bounded and disappears in filled-in copies.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/016-sk-doc` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-applied-source-and-doc-fixes` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit`
-
 ### Summary
 
 A deep-review audit of the system-code-graph MCP server produced 38 findings (CG-001 through CG-038) covering source bugs and documentation misalignments. The live tree had active BUG-04 and BUG-06 work-in-progress that overlapped several findings, making a direct main-branch landing unsafe.
@@ -80,3 +77,6 @@ None.
 
 - Merge `cg-remediation` into main after BUG-04 and BUG-06 work-in-progress settles on the live tree.
 - Verify the 7 deferred findings (CG-002, CG-006 through CG-010 plus others overlapping BUG-04/BUG-06) once the WIP merges.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-applied-source-and-doc-fixes` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit`

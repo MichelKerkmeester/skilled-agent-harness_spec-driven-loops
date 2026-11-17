@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 The benchmark gate now fails closed on embedding coverage before any recall number is trusted. The phase shipped an `assertEmbeddingCoverage` preflight in the ablation runner and verified that the live corpus already had complete vector coverage, so the manual reindex was superseded rather than run for its own sake. The remaining backlog belongs to background enrichment and normal index consistency repair, not missing benchmark embeddings.
@@ -50,3 +47,6 @@ The benchmark gate now fails closed on embedding coverage before any recall numb
 
 - Treat the enrichment backlog as a separate operational concern. It is not blocking recall benchmark coverage.
 - Keep golden-id mapping available as the fallback if a later reindex changes parent identifiers.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

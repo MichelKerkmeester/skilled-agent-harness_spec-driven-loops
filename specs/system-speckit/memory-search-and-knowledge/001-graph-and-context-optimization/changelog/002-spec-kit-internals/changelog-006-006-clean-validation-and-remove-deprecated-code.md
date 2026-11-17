@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/006-clean-validation-and-remove-deprecated-code` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 After four child phases moved the advisor source, standalone launcher, runtime configs, plus consumer cutover into place, the compatibility bridge left in `spec_kit_memory` became live debt. Stale old-path docs and proxy tool registrations risked misleading operators back to the retired `mcp_server/skill_advisor/` surface.
@@ -87,3 +84,6 @@ Two P0 items remain blocked: package-local Vitest in the standalone advisor fold
 - Fix test-fixture DB path in `.opencode/skills/system-skill-advisor/mcp_server/` so package-local Vitest can discover and pass all 224 tests. Fixtures still reference `system-spec-kit/mcp_server/database/skill-graph.sqlite` instead of the new path.
 - Update hook test fixtures so the settings-driven suite no longer requires a Claude settings file outside the repo root.
 - Confirm `advisor_recommend` round-trip through Claude and Gemini runtimes once CLI listing issues are resolved. Both runtimes list the server in repo config but the CLI listing was inconclusive at ship time.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/006-clean-validation-and-remove-deprecated-code` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

@@ -18,9 +18,6 @@ contextType: "review"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/003-skill-advisor-freshness-audit` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`
-
 ### Summary
 
 Prior packets unified the skill advisor daemon and advisor paths, but the release program needed evidence-backed answers on freshness reporting, status side effects, explicit rebuild correctness. A read-only audit covered the skill advisor runtime surfaces, scoring tables, Codex cold-start fallback behavior, Python shim parity. The audit produced a 9-section review report with severity-classified findings.
@@ -65,3 +62,6 @@ No P0 evidence of silent stale-context fallback or runtime scoring corruption wa
 - Add `workspaceRoot` to the `advisor_rebuild` input schema and tool descriptor. Alternatively update the playbook and status/rebuild docs to document a cwd-only contract.
 - Label the forced/local Python scoring path as a legacy degraded fallback with explicit non-equivalence documentation. Alternatively add golden parity tests against the native TS scorer.
 - Update the README and manual playbook lane-registry table to match the runtime weights in `lane-registry.ts` (derived lane is 0.15 at runtime, documented as 0.10 in several places).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/003-skill-advisor-freshness-audit` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`

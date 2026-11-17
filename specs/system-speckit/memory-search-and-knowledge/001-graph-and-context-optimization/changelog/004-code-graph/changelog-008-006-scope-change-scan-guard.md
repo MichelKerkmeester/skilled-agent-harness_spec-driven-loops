@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/006-scope-change-scan-guard` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`
-
 ### Summary
 
 Phase 005 broadens the F-002 safety guard from "candidate scan has zero nodes" to "candidate scan comes from a different scope fingerprint." That closes the live failure where a default-scope scan with a handful of fixture nodes could replace a populated skill-inclusive graph.
@@ -61,3 +58,6 @@ Phase 005 broadens the F-002 safety guard from "candidate scan has zero nodes" t
 
 - Glob narrowing remains separate. The reused scope fingerprint does not include includeGlobs or excludeGlobs; that matches the council plan and can be hardened separately.
 - Legacy DB first scan is allowed. Missing stored fingerprints do not block so existing databases can establish metadata on their next successful scan.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/006-scope-change-scan-guard` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

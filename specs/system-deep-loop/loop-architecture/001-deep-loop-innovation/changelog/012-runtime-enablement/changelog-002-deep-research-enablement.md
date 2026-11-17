@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-22
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/002-deep-research-enablement` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`
-
 ### Summary
 
 Migrated the deep-research write protocol onto the gateway and executed the pilot authority flip end to end on observed classification evidence. Post-flip fan-out writes through the gateway; the legacy state file is a projection the direct-append guard verifies.
@@ -31,3 +28,6 @@ Migrated the deep-research write protocol onto the gateway and executed the pilo
 ### Status
 
 Complete. The pilot pattern is proven; fleet enablement can follow the same mechanism at scale.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/002-deep-research-enablement` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`

@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/004-abortable-chunked-sleep` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`
-
 ### Summary
 
 Added an abortable, chunked sleep primitive (sleep.ts): signal-cancellable wait that clears its timeout on abort, drops its listener on completion, rejects with signal.reason; chunked waits via a SLEEP_CHUNK_MS constant; AbortSignal.any composition. 5/5 unit tests pass.
@@ -54,3 +51,6 @@ Added an abortable, chunked sleep primitive (sleep.ts): signal-cancellable wait 
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/004-abortable-chunked-sleep` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`

@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-04-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`
-
 ### Summary
 
 Added a structured graph metadata system to all 20 routable skill folders plus skill-advisor itself. Each folder now has a `graph-metadata.json` capturing `skill_id`, `family`, `category`, `edges` (depends_on, enhances, siblings, conflicts_with, prerequisite_for), `domains`, and `intent_signals`. A compiler script produces a single `skill-graph.json` at 4667 bytes. The advisor pipeline now applies graph-derived transitive boosts, family affinity, and conflict penalties after the existing phrase-intent stage.
@@ -69,3 +66,6 @@ Added a structured graph metadata system to all 20 routable skill folders plus s
 - Graph metadata must be manually maintained when skills change.
 - No conflicts defined yet (all `conflicts_with` arrays are empty).
 - Session bootstrap injection not yet implemented.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

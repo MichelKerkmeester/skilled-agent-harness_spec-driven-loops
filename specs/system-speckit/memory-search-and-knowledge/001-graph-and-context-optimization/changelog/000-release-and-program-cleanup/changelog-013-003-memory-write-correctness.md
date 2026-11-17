@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/003-memory-write-correctness`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation`
-
 ### Summary
 
 Memory metadata mutations now refresh entity-density routing immediately. The shared post-mutation hook clears entity-density cache alongside the existing trigger, tool, constitutional, graph-signal, degree and co-activation caches, so `memory_update`, atomic-save, delete and bulk-delete stay covered through one fan-in point. The atomic-save crash recovery path for uuid-suffixed pending-file orphans now has a regression test.
@@ -60,3 +57,6 @@ Memory metadata mutations now refresh entity-density routing immediately. The sh
 
 - The non-atomic quality-loop finalize write in `memory-save.ts` remains outside the pending/recovery mechanism and outside this phase scope.
 - `buildMutationHookFeedback` does not yet echo `entityDensityCacheCleared`. The result records the flag but the feedback envelope does not surface it.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/003-memory-write-correctness`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation`

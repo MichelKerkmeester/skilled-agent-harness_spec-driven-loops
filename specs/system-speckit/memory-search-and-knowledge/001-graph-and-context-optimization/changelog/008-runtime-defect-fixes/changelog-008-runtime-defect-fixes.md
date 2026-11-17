@@ -17,8 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-06
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-defect-fixes` (Level 1)
-
 ### Summary
 
 Four live integration defects surfaced during internal MCP-reliability research were triaged in place. Three shipped: Codex sessions now run the Codex-native `SessionStart` and `UserPromptSubmit` adapters instead of Claude's scripts (with the unsupported `PreCompact` registration removed entirely), the Codex MCP config's backwards code-graph DB-path note was corrected to match the launcher source, and the skill-advisor Gemini hook catalog now distinguishes the active implementation from the spec-kit shim. The fourth — re-pointing the code-graph plugin bridge's three dead imports — was applied, smoke-verified (exit 0, correct transport payload), and then deliberately reverted after a fresh-model review flagged that the runnable bridge initializes the memory database directly in its own process, outside the daemon's single-writer lease. A planned orphan-launcher sweep was executed as a verified no-op: all nine running launchers belonged to live sessions.
@@ -43,3 +41,5 @@ Four live integration defects surfaced during internal MCP-reliability research 
 - Bridge working tree confirmed reverted; packet decision record carries the dual-writer reasoning
 - Orphan sweep: parent-PID classification across 9 launchers — 6 live Claude sessions, 1 live OpenCode TUI; zero kills
 - Packet passes `validate.sh --strict` (0 errors, 0 warnings); independent gpt-5.5 xhigh review's P0/P1 findings all remediated
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-defect-fixes` (Level 1)

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/003-advisor-source-db-tests-migration` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 The advisor source tree and its spec packet were moved outside git tracking before this phase ran. The physical move was already complete but 181 spec-path references still pointed at the retired `015-skill-advisor-semantic-lane` lineage. Bridge imports in `system-spec-kit/mcp_server/context-server.ts` still resolved advisor handlers from the deleted source location. The advisor DB resolver still defaulted to the old Spec Kit database directory with no env override.
@@ -80,3 +77,6 @@ Step A applied a scoped mechanical rewrite across 97 files, canonicalizing all p
 - Standalone launcher and runtime config wiring remain the responsibility of child 004.
 - Hook compatibility, plugin bridge, Python shim, doctor:update consumer cutover all remain the responsibility of child 005.
 - Package-local typecheck needs a build-boundary decision in a later packet because `rootDir: "."` conflicts with shared Spec Kit imports. The required bridge typecheck passes in the interim.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/003-advisor-source-db-tests-migration` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

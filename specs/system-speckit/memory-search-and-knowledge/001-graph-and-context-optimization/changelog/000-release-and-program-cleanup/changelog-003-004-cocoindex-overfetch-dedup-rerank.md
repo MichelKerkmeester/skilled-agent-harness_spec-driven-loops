@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/004-cocoindex-overfetch-dedup-rerank` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 The 005 stress-test surfaced two CocoIndex retrieval defects. REQ-018 showed the same research markdown chunk returning ten times under mirror paths (`.gemini/`, `.agents/`, `.claude/`, `.codex/`, `specs/`, `.opencode/specs/`). Effective unique-result rate was 10%. REQ-019 showed implementation-intent queries returning nine duplicate markdown notes ahead of the actual implementation source.
@@ -83,3 +80,6 @@ The patch set resolved both defects by landing all six requirements in the vendo
 - Verify REQ-018 repro ("semantic search vector embedding implementation") returns one unique chunk per logical location after reindex.
 - Verify REQ-019 repro ("code graph traversal callers query") returns implementation source in top 3 after reindex.
 - Add `pytest` to the sandbox venv or run the test suite in a normal shell environment to close the blocked test gate.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/004-cocoindex-overfetch-dedup-rerank` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

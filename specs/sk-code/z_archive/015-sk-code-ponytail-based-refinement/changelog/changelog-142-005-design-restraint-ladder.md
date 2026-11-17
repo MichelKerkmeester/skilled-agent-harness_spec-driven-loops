@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/005-design-restraint-ladder` (Level 1)
-> Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`
-
 ### Summary
 
 Phase 5 moved design restraint into the moment before code gets written. The ladder sits in the always-loaded `sk-code` quality path, with the phase transition and Phase Overview also pointing at it. It changes the agent's design reflex without changing surface precedence, routing or the Iron Law.
@@ -71,3 +68,6 @@ Phase 5 moved design restraint into the moment before code gets written. The lad
 - Its value depends on the agent reading the always-loaded doc.
 - The integration proof covers the router-sync guard and precedence structure. It does not exhaustively exercise live routing across many real tasks, which is proportionate for a prose gate that consumes rather than alters the surface result.
 - Not committed. Changes sat in the working tree on branch `028-mcp-to-cli-tool-transition`.
+
+> Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/005-design-restraint-ladder` (Level 1)
+> Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`

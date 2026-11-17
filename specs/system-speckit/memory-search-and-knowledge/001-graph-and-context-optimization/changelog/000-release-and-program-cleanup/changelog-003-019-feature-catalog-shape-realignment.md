@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-30
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/019-feature-catalog-shape-realignment` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 Per-feature catalog snippets across the six real catalog roots had drifted from the canonical sk-doc four-section shape. The `skill_advisor` catalog used PURPOSE, TEST COVERAGE and RELATED headings. The `code_graph` catalog used SURFACE, TRIGGER, CLASS, CAVEATS and CROSS-REFS headings. The `sk-deep-review` catalog had redundant per-file TOC blocks. Additional lint drift was found in the `system-spec-kit` catalog beyond the original inventory.
@@ -65,3 +62,6 @@ None.
 
 - Broad repository grep still sees two sk-doc asset templates under a `feature_catalog` folder. Those files are documentation templates for catalog creation. They are not per-feature catalog snippets and remain untouched.
 - One published filename contains historical wording. The file was not renamed because stable catalog paths are part of the published reference surface.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/019-feature-catalog-shape-realignment` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

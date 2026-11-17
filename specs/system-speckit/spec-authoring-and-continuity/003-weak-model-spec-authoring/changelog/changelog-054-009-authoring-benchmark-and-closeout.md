@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-25
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout` (Level 3)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 Phase 009 reran the frozen Level 3 authoring task three times on the final tree, published the benchmark report and closed the packet records. The benchmark failed parent criterion 5 on the frozen metric. A third amendment then clarified the `L3+` label in the `tasks.md` template and reran the final set on cli-devin deepseek-v4-1-flash-1017-max against a new DeepSeek baseline, and criterion 5 failed again. The operator then set a new anchor rule and three fresh runs in a disposable worktree failed it a third time. The cause was fixed at the source, the fix-completeness note in the `tasks.md` template, and a second fresh set passed criterion 5, so the phase and the parent read Complete.
@@ -71,3 +68,6 @@ Phase 009 reran the frozen Level 3 authoring task three times on the final tree,
 
 - Strict validation does not enforce required anchors, so a packet without a required `tasks.md` section can pass. That is an open follow-up and is not fixed here.
 - Review the local commits, decide the push and remove the two disposable worktrees.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout` (Level 3)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-07-05
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment` (Phase Parent)
-
 ### Summary
 
 The 008 remediation packet converted the surface-alignment research into a documented closure arc. The parent audit found documentation-vs-implementation drift across system-speckit surfaces, the Fable review narrowed the record to citation-verified issues, and the child phases executed the audit and remediation sequence. Phases 011 and 012 produced read-only audits for system-code-graph docs and the stress-test plus SKILL.md/changelog surfaces. The paired fix phases then corrected the code-graph and stress-doc findings. Phase 013 shipped the inert `newInfoRatio` warning in the deep-research reducer and phase 014 closed the recorded-but-unactioned detector class with a cap reconciliation, constitutional rule, surfacer, and RED/GREEN test.
@@ -80,3 +78,5 @@ The 008 remediation packet converted the surface-alignment research into a docum
 ### Follow-Ups
 
 - Metadata files for the newly authored docs remain handled separately by the metadata pipeline, per operator instruction.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment` (Phase Parent)

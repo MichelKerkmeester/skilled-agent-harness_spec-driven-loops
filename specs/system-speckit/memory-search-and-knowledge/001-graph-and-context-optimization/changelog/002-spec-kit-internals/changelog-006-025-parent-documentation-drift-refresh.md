@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/025-parent-documentation-drift-refresh` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 The parent extraction handover and graph metadata had fallen out of sync with the current 25-child phase inventory. The handover still described the original seven-child framing from early extraction work and the graph metadata was missing the four most recent children. The parent documents were refreshed so resume agents see the full child phase set. No child phase content was modified.
@@ -48,3 +45,6 @@ The parent extraction handover and graph metadata had fallen out of sync with th
 
 ### Follow-Ups
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/025-parent-documentation-drift-refresh` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

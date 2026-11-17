@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/014-chunk-prefix` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 This phase is PLANNED and scaffolded. Nothing is implemented yet. The spec, plan, tasks, and this doc describe the intended work so the next session can pick it up cleanly. No code path has changed and no vector has moved.
@@ -52,3 +49,6 @@ This phase is PLANNED and scaffolded. Nothing is implemented yet. The spec, plan
 
 - Build this retrieval-class change per plan.md and keep it default-off.
 - It earns a promotion only after the prod-mode completeRecall@3 benchmark in `015-prodmode-recall-gate` shows a real move, because the truncation law makes eval-mode gains untransferable.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/014-chunk-prefix` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

@@ -12,9 +12,9 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/006-shadow-parity` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment`
-
 ### Summary
 
 This phase planned the Deep Alignment shadow-parity harness for migration to the typed event-ledger substrate: run the new ledger path beside the legacy emitter, compare canonical events and public projections event-for-event, and block any authority cutover until parity, replay determinism, and fail-closed mismatch handling are green, consuming the phase-014 shadow framework and reusing the shared review-loop contract frozen in phase 012. Per its implementation summary, the phase delivered the additive-dark Deep Alignment parity harness with logical event pairing, distinct legacy modeling, deterministic replay, typed fault classification, and manifest-bound evidence. Status is implemented.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/006-shadow-parity` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment`

@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research` (Level 2, Research-only)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research`
-
 ### Summary
 
 012's 7-iteration automation reality research stopped at the `max_iterations` cap with newInfoRatio=0.18, still above the 0.10 convergence threshold. Three gaps remained uncovered: deep-loop graph entry-points, CCC and eval reporting and ablation runner automation. Validator auto-fire conditions were also unmapped. The 4 P1 aspirational findings from 012 had not been adversarially re-tested with fresh file:line evidence.
@@ -71,3 +68,6 @@ The newInfoRatio sequence was 0.82, 0.78, 0.86, 0.74, 0.12. Convergence (`newInf
 - P1-3 (Copilot hook docs) and P1-4 (Codex hook readiness) were reclassified based on new evidence. Verify those findings survive the doc-truth pass in packet 031 before closing them.
 - Eight new gap-findings (session-manager cleanup, code graph freshness, skill_graph_scan/validate, memory_drift_why, learning_history loop, advisor_status freshness, code_graph_context auto-fire, memory_health diagnostic) are catalogued in the findings registry. Assign each to a downstream packet before starting 031.
 - No empirical hook smoke tests were run. The packet used documentation and code-trace only. Packets 034-035 (full-matrix execution) will provide the empirical coverage.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research` (Level 2, Research-only)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research`

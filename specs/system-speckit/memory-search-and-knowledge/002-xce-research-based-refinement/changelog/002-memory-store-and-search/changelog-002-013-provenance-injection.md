@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/013-provenance-injection` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 The write-ingress guard could enforce the constitutional rule that an automated writer never overwrites a manual or constitutional field only if it knew which writes were automated, and the reducer and feedback writers were not tagging themselves. This phase added a source-kind deriver and schema-guarded persisters in a new `write-provenance.ts`, and threaded provenance context through the automated write paths so machine-authored rows carry their source kind. The guard's existing memory_update coverage now operates on accurate source kinds, and the publication gate no longer excludes machine-authored rows for missing provenance; enforcement on the same-path reindex-retire and feedback auto-promotion ingress paths remains a follow-on that this tagging unblocks. The deriver defaults to `human` — the safe default, since a missing tag must never be treated as automated and allowed to overwrite a human edit. Two pre-existing guard-coverage gaps were documented as follow-ons that this tagging unblocks.
@@ -60,3 +57,6 @@ The write-ingress guard could enforce the constitutional rule that an automated 
 ### Follow-Ups
 
 - Two pre-existing guard-coverage gaps are unblocked by this tagging and tracked as follow-ons: same-path reindex-retire, and feedback auto-promotion lacking a source_kind ingress check.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/013-provenance-injection` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

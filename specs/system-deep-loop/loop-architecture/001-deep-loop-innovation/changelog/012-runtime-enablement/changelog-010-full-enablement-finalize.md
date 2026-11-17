@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-24
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/010-full-enablement-finalize` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`
-
 ### Summary
 
 Executed the window-free finalize advancing all eight modes from `new_authoritative_reversible` to `new_authoritative_final`, dropped the legacy shadow writer, and re-measured the whole-system gate to a literal PASS earned by an observed read — proven by a reader-contract negative control that turns red on corrupted materialization.
@@ -29,3 +26,6 @@ Executed the window-free finalize advancing all eight modes from `new_authoritat
 ### Status
 
 Complete. All eight modes finalized; legacy shadow dropped; whole-system gate verdict PASS with all seven checks green and none not-run.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/010-full-enablement-finalize` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`

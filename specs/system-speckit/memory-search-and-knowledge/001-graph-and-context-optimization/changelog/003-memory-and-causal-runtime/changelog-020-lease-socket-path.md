@@ -18,8 +18,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/020-lease-socket-path` (Level 2)
-
 ### Summary
 
 A secondary `mk-spec-memory` launcher running under a different `SPECKIT_IPC_SOCKET_DIR` than the live daemon used to recompute a socket path the owner never opened, fail `fs.existsSync`, and report `no-bridge-socket`, even though the daemon was alive and reachable. This closed defect (c), deferred as a follow-up in packet 018 (front-proxy recycle hardening).
@@ -64,3 +62,5 @@ The lease now carries the owner's actual IPC socket path, and the shared launche
 - Activation is lazy. The fix activates on the next `mk-spec-memory` launcher spawn (no daemon recycle required), so a fully-divergent already-running secondary does not benefit until it next writes or reads a lease.
 - The stored path is point-in-time. If the owner relocates its socket after writing the lease without rewriting it, the path can go stale, and the `fs.existsSync` guard catches this and falls back to recompute.
 - The recorded 34 passed and 16 skipped is the at-ship snapshot. Packet 024 later un-skipped the launcher-lease integration suite, so a current re-run of these named suites reports 43 passed and 8 skipped.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/020-lease-socket-path` (Level 2)

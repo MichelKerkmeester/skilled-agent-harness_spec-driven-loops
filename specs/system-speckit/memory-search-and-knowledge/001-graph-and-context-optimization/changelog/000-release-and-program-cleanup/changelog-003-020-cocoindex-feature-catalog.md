@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-30
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 The `mcp-coco-index` skill had no structured inventory of its capabilities. Operators needed to read `SKILL.md`, references, scripts, tests plus vendored source in isolation to understand what shipped. A complete feature catalog was authored with 46 current-state snippet files across 9 category folders. Each snippet follows the canonical four-section shape (`OVERVIEW`, `CURRENT REALITY`, `SOURCE FILES`, `SOURCE METADATA`) citing live implementation and validation anchors. The catalog ships as read-only documentation with zero runtime code changes.
@@ -70,3 +67,6 @@ The `mcp-coco-index` skill had no structured inventory of its capabilities. Oper
 
 - Catalog source anchors are point references citing the current line where each function, test or doc section begins, not an exhaustive line range. Update anchors when source files shift significantly.
 - Manual playbook scenario files remain separate. The catalog links validation anchors but does not duplicate scenario execution steps.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

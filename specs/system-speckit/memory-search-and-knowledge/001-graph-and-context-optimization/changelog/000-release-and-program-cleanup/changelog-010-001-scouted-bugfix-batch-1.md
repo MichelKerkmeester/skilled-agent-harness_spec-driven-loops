@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-06-03
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train`
-
 ### Summary
 
 A broad codebase scout surfaced 40 candidate defects with no single review having triaged them. The top 5 — carrying the highest risk across two shell scripts, one IPC socket server, and two MCP-server bugs — were put through a verify-first pipeline: an 8-agent scout selected targets, 5 parallel gpt-5.5-fast deep-dives confirmed or refuted each headline against the real code (refuting the two loudest "pre-try lease leak" claims, finding a real lesser defect in each target instead), and 5 disjoint-file implement agents fixed the confirmed defects across 10 files. Three security hardenings (shell command injection, unguarded `rm -rf`, IPC path confinement) and two MCP-server bug fixes (file-watcher `close()` blocking on a non-cancellable backoff, scan lease expiry during multi-batch indexing) landed in full. Both MCP builds exit 0; all targeted verification suites pass.
@@ -84,3 +81,6 @@ A broad codebase scout surfaced 40 candidate defects with no single review havin
 - Deploy the fixes: orchestrator must recycle the mk-spec-memory daemon and the skill-advisor MCP after commit for Fixes 3, 4, and 5 to take effect. The two shell hardenings (Fixes 1 and 2) need no deploy.
 - The remaining 35 scouted candidates from the 40-candidate backlog are deferred to later batches (002-scouted-bugfix-batch-2, 003-scouted-bugfix-batch-3).
 - Two pre-existing failures in `handler-memory-index.vitest.ts` remain in the `[deferred - requires DB test fixtures]` describe block; they predate and are unrelated to the heartbeat change. The cooldown suite (9/9) is the relevant gate for Fix 5.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train`

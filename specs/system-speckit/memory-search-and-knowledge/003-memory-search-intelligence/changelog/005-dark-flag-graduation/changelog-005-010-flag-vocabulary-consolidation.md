@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-11
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/010-flag-vocabulary-consolidation` (Level recorded in phase evidence)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation`
-> Historical alias: `017-flag-vocabulary-consolidation`
-
 ### Summary
 
 This migration index makes the shipped phase discoverable at its final packet-local path without rewriting its historical identity. The allowed implementation evidence records: Added parseFlagTristate(envVarName, defaultValue) to lib/search/search-flags.ts (:46-56), next to the existing isOptInEnabled() and its TRUTHY_OPT_IN set. It recognizes {true, 1, yes, on, enabled} as opt-in and a new mirrored FALSY_OPT_OUT set {false, 0, no, off, disabled} as opt-out, case-insensitively and whitespace-tolerant, returning the caller's defaultValue for unset or unrecognized input. isOptInEnabled() is re-expressed as parseFlagTristate(variableName, false) — zero behavior change, confirmed by its existing test suite passing unchanged.
@@ -49,3 +45,7 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 ### Follow-Ups
 
 - None in the allowed evidence set.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/010-flag-vocabulary-consolidation` (Level recorded in phase evidence)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation`
+> Historical alias: `017-flag-vocabulary-consolidation`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-16
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/011-z-archive-memory-indexing` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
-
 ### Summary
 
 Two subsystems in the spec-kit memory runtime contradicted each other. `lib/utils/index-scope.ts` blocked all `z_archive/` paths from the memory index via `EXCLUDED_FOR_MEMORY`, while `shared/scoring/folder-scoring.ts` defined an `ARCHIVE_MULTIPLIERS` decay multiplier of 0.1 to deprioritize but retain archived content in search rankings. The exclusion override made archived spec content invisible to memory search, even when its decay-adjusted relevance would have placed it ahead of newer noise.
@@ -69,3 +66,6 @@ The fix removed `compileSegmentPattern('z_archive')` from `EXCLUDED_FOR_MEMORY`.
 
 - Promote a code-graph z_archive policy if structural archive queries become valuable. `EXCLUDED_FOR_CODE_GRAPH` still excludes z_archive because code graph has no decay multiplier. This is not a regression but a deferred decision.
 - Verify the 12 doc fixes in `010-memory-indexer-invariants/` remain accurate over time as the index-scope design evolves.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/011-z-archive-memory-indexing` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

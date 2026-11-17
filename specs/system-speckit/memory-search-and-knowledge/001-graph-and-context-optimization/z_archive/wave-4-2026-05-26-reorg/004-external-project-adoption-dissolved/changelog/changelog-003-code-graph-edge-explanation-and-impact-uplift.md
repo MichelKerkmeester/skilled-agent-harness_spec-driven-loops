@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/005-graph-impact-and-affordance`
-
 ### Summary
 
 Phase 003 made Code Graph impact output easier to audit. Edge metadata now carries `reason` and `step` inside the existing JSON metadata payload, without a SQLite migration. Relationship queries and `code_graph_context` propagate those fields beside confidence and provenance. `blast_radius` kept the prior file-oriented fields and added depth groups, risk level, `minConfidence`, ambiguity candidates and structured failure fallback.
@@ -67,3 +64,6 @@ Phase 003 made Code Graph impact output easier to audit. Edge metadata now carri
 
 - DQI scores for packet-local docs remain operator-pending in canonical Wave-3 evidence.
 - 008 research later recommended more tests around malformed metadata JSON and failure-fallback codes.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/005-graph-impact-and-affordance`

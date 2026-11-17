@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/003-embedder-pluggability-narrative`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment`
-
 ### Summary
 
 The mk-spec-memory and CocoIndex embedder architectures had been implemented across multiple packets (016, 018, 019) but no single document explained them together. A new user or contributor asking "which embedder should I use" had to read four separate spec folders and two codebases to reconstruct the picture.
@@ -66,3 +63,6 @@ None.
 - Wire cross-link from root README (handled by 021/002).
 - Run read-through with a new contributor framing to confirm swap-in-10-min test passes against the shipped doc.
 - Verify out-of-box matrix rows stay accurate if registered_embedders.py adds candidates in future packets.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/003-embedder-pluggability-narrative`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment`

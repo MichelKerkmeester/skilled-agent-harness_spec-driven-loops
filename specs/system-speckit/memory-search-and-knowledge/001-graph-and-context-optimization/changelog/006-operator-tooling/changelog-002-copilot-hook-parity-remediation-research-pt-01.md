@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-04-22
 
-> Spec folder: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity/research/001-copilot-hook-gap-deep-review-remediation` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity`
-
 ### Summary
 
 A deep-review iteration of the Copilot hook parity remediation produced findings on custom-instructions merge behavior, workspace scoping, and the Superset hook routing chain. The review confirmed that Outcome B (file-based custom instructions) is the correct approach given Copilot's documented hook contract, and identified early evidence of the `.claude/settings.local.json` schema collision that later became phase 006.
@@ -44,3 +41,6 @@ None. Research-only phase.
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity/research/001-copilot-hook-gap-deep-review-remediation` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity`

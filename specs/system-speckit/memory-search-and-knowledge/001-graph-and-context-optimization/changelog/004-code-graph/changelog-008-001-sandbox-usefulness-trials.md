@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-06
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/001-sandbox-usefulness-trials` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`
-
 ### Summary
 
 The parent campaign had a 58-cell usefulness matrix but no empirical evidence yet. Many cells required authenticated external CLIs, network access, native Claude Code or OpenCode sessions or live compaction state that the sandbox cannot reproduce. This execution sub-phase ran every cell the sandbox could reach, preserved raw outputs and paired controls, aggregated metrics and named the cells that need a live follow-up.
@@ -82,3 +79,6 @@ None.
 - Measure compaction recovery. S-HK-04 requires a real long-running session with an observed compaction event.
 - Treat control timings as lower bounds. Shell `rg` timings are faster than a real human orientation workflow and should be recalibrated with a live engineer baseline.
 - Replace token estimates with actual counts. Local tools did not expose model-token accounting. A live run can record real token usage.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/001-sandbox-usefulness-trials` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

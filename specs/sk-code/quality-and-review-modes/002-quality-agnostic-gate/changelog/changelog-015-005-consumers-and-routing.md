@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-26
 
-> Spec folder: `specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing` (Level 2)
-> Parent packet: `specs/sk-code/015-quality-agnostic-gate`
-
 ### Summary
 
 A change can no longer come back from @code as done with no gate evidence, and a comment hygiene or restraint request now reaches sk-code-quality. The run verdict has its three named readers, the two quality modes have their rows, and both outside validators refuse a malformed quality declaration.
@@ -98,3 +95,6 @@ A change can no longer come back from @code as done with no gate evidence, and a
 - The over-engineering prose replay is clean only because the word is absent from stage one. The cake prompt returns sk-doc at 0.9302 with no sk-code row. The intent still resolves at stage two, where the ROUTER.md CODE_QUALITY row carries the word, so a request that means the code sense still reaches the quality mode.
 - The yagni prose replay returns no recommendation at all. That is the same reason, recorded in ADR-003: at stage one the word pulled sk-code to 0.82 on a sentence about a life philosophy.
 - The comment hygiene prose replay is exempt, not clean. "write prose about comment hygiene for a newsletter" returns sk-code at 0.82, tied with sk-doc and system-spec-kit. The phrase has no sense outside code, so the tie is about code comments and the phrase stays at stage one.
+
+> Spec folder: `specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing` (Level 2)
+> Parent packet: `specs/sk-code/015-quality-agnostic-gate`

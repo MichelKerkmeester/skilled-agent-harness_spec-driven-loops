@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/004-search-rag-measurement-implementation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 Phase C had identified five search and RAG optimization workstreams (W3-W7) but deferred all of them until Phase D delivered a measurement harness. With the harness in place, Phase E ran each workstream through a baseline-variant-decision cycle and produced 11 JSON measurement snapshots as evidence.
@@ -80,3 +77,6 @@ All five decisions are backed by measurement JSON that records baseline metrics,
 - Synthetic benchmark scope: measurements prove fixture behavior, not production retrieval quality. Real-world lift from W3 and W4 should be confirmed once the harness runs against a broader corpus.
 - Promote W6 to default-on if a production corpus confirms the duplicate-density precision gain without overfetch regressions. Current evidence is fixture-only.
 - `rerank-gate.ts` and `cocoindex-calibration.ts` were removed in a later cleanup pass that stripped vestigial CocoIndex integration from the memory stack. The W4 gate logic was absorbed into `stage3-rerank.ts` directly.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/004-search-rag-measurement-implementation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`
-
 ### Summary
 
 `memory_index_scan` reported 503 failures after investigation showed only 2 were sufficiency failures. The remainder were metadata repair failures: stale `memory_lineage.logical_key` values, graph metadata not satisfying the v1 schema, `importance_tier: "high"` values rejected by the database enum plus archived graph metadata tripping V8 because foreign relationship references still pointed at other packets.
@@ -71,3 +68,6 @@ A new direct-run runner at `.opencode/skills/system-spec-kit/mcp_server/scripts/
 
 - Repair the 3 remaining malformed `description.json` files in `013-embedder-testing-and-architecture/004-code-index-stack` packets 015, 017 plus 018. Those files were outside the allowed mutation scope for this packet.
 - Ensure the lineage repair path in `repair-graph-metadata.mjs` is documented for operators: it requires a scan log containing `E_LINEAGE` predecessor ids and does not infer database repairs without scan evidence.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

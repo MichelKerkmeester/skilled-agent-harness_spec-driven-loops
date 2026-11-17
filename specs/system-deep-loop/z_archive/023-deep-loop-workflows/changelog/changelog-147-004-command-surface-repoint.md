@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/004-command-surface-repoint` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`
-
 ### Summary
 
 This phase moved the `/deep` command surface off five old skill paths and onto the merged `deep-loop-workflows` packet. The external command and agent names stayed stable. Only the skill references moved, so users kept the same commands while the framework stopped depending on the old skill layout.
@@ -54,3 +51,6 @@ This phase moved the `/deep` command surface off five old skill paths and onto t
 - CHK-011 Changes follow existing project conventions.
 - CHK-020 Phase-003 `deep-loop-workflows` hub, mode packets and `mode-registry.json` exist before edits.
 - CHK-021 Per-mode `graph-metadata.json` files are absent. Only hub graph metadata survives.
+
+> Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/004-command-surface-repoint` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`

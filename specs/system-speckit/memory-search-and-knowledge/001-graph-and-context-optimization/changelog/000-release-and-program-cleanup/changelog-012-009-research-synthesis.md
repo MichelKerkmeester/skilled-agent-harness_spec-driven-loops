@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-05
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`
-
 ### Summary
 
 This research-only slice synthesized root causes and blast radius from the eight deep-review audit slices. The merged research registry resolved all five charter questions and recorded 19 key findings. The synthesis identified divergent hand-maintained contracts as the main doc/schema drift cause, systemic metadata-status drift, real memory write-path correctness risks, conditional P0 severity for governed-scope defects and fan-out orchestration summaries as content-usable but provenance-suspect.
@@ -64,3 +61,6 @@ None (review-only packet).
 - Add parity gates across public tool schemas, runtime schemas, handler-read fields, docs, catalog entries and playbook examples.
 - Add semantic metadata audits for stale last-active pointers, renumbered child descriptions, placeholder children and draft-complete states.
 - Fix fan-out accounting before using orchestration summaries as release-gate proof.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`

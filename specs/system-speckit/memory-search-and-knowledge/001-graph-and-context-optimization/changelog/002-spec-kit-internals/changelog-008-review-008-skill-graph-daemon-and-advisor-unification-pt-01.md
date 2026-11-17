@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-04-20
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`
-
 ### Summary
 
 A 4-iteration deep review of Phase 027 (skill graph daemon and advisor unification) converged early after all dimensions were covered. The unified advisor runtime is broadly sound. Daemon shutdown, plugin loader safety, Python compatibility, and freshness semantics all passed review. Three P1 release blockers remain: direct `advisor_recommend` unavailable fail-open behavior, public `skill_graph_scan` authority gating, and missing regression coverage for active invariants. Fifteen P2 advisories cover live-path recovery, diagnostics, documentation drift, ADR coverage, and pattern consistency.
@@ -55,3 +52,6 @@ None - review-only phase.
 - Fix `advisor_recommend` to fail-open during unavailable freshness.
 - Add authority gating to `skill_graph_scan`.
 - Add regression tests covering the three P1 invariants plus corruption recovery and path-leak hardening.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

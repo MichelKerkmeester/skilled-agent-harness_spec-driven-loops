@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`
-
 ### Summary
 
 This phase ran a research-only audit of whether packet 028 shipped features into the three daemon-backed system skills without recording them in those skills feature catalogs or testing playbooks. The release-cleanup that synced catalogs and playbooks only ever touched system-spec-kit and ran edits-only, so the other two skills were never checked. Twenty read-only iterations across two models confirmed roughly fifty high-confidence coverage gaps and cleared a twelve-flag false-positive cluster. No catalog and no testing playbook was modified.
@@ -45,3 +42,6 @@ This phase ran a research-only audit of whether packet 028 shipped features into
 - Operator decides close-now versus scaffolding a follow-on cleanup phase that adds the missing catalog and playbook entries.
 - The five cross-cutting Deep Loop features are cataloged nowhere, so whether they belong in a deep-loop-workflows catalog or in system-spec-kit is an open ownership question.
 - No CI parity check compares shipped flags and tools against the catalog and playbook indexes, so this debt can recur after the next epic until a parity script is added.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`

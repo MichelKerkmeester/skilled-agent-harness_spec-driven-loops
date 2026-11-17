@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 Four P0 correctness gaps in the memory write path were closed before the learning reducers in `027/005` take a hard dependency on this phase. Three were structural: the automatic-edge strength cap only matched the literal string `auto` and therefore let any namespaced variant such as `auto-session` bypass it; the `insertEdge` conflict path could overwrite a curated manual edge with automatic provenance; and the retention sweep deleted constitutional or critical rows purely on TTL expiry without consulting tier metadata. The fourth fix — an OpenLTM amendment folded into this phase — adds a fail-closed secret scrubber at the head of the parse pipeline so API keys, tokens and JWTs never reach content-hash computation, embedding or FTS storage. All four protections ship inside existing modules with no feature flags and no new architecture.
@@ -84,3 +81,6 @@ Four P0 correctness gaps in the memory write path were closed before the learnin
 - The caura-memclaw `source_kind` enum (`human|agent|system|import|feedback`) and automated-mutation audit standardization are planned in `027/010/001` and `027/010/002`.
 - Recency fields (`access_count` and `last_accessed`) are selected by the retention sweep for audit but do not confer protection; that policy decision is deferred to the learning-reducers phase.
 - A `render.ts` uncertainty-check short-circuit for the skill advisor (high-uncertainty records rendering mandate wording) is a related correctness surface scoped to the next advisor contract packet, not this phase.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

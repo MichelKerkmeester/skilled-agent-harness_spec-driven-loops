@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/003-implement-layer-d-launcher-pre-flight-reap-and-parity-fixtures` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper`
-
 ### Summary
 
 Both detached rerank sidecar launchers could reuse or spawn sidecars without first removing rows whose registered launcher owners were all dead. That left failed-start, hung or ownerless stale rows able to accumulate until a later cleanup path noticed them. Layer D pre-flight reap was added to both the JS and Python launcher twins so stale rows are cleaned before the normal reuse-or-spawn path runs. JS reads ledger v1/v2 payloads, identity-checks owners via PID lstart/comm, probes the health endpoint, SIGTERMs dead-owner or unhealthy rows, removes them and registers the current launcher owner. Python mirrors the same behavior using flock-backed ledger helpers and v2 liveness checks. Cross-runtime parity was confirmed by running identical fixture inputs through both JS Vitest and Python pytest.
@@ -74,3 +71,6 @@ Both detached rerank sidecar launchers could reuse or spawn sidecars without fir
 ## Later Update (2026-06-04)
 
 The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits b8a866de2f, c99f990897 and ada2c51ee8. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/003-implement-layer-d-launcher-pre-flight-reap-and-parity-fixtures` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/017-fix-deep-review-p1-findings-for-package-extraction` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 The 10-iteration deep review of the extracted `mk_skill_advisor` server surfaced two P1 edge-case risks. A stale bootstrap lock directory created during a hard crash could block a clean checkout for up to 120 seconds, and the shadow delta sink accepted an environment-controlled path without workspace containment validation, allowing a hostile env variable to write files outside the repository root.
@@ -69,3 +66,6 @@ Vitest regression coverage was added for lock recovery, stale artifact detection
 ### Follow-Ups
 
 - Broaden subprocess environment whitelisting as a P2 item tracked in packet `021-subprocess-env-whitelist`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/017-fix-deep-review-p1-findings-for-package-extraction` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

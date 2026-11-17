@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/012-v3-remediation` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 Setup A's deep-review-v3 surfaced a cluster of drift findings: memory-side hf-local still defaulted to fp32 (roughly double the RAM of q8 at negligible quality loss), dtype was absent from the profile key so fp32 and q8 vectors could silently share the same sqlite file, three runtime launcher configs bypassed `.env.local` entirely, the Voyage egress guard fired too late in the resolution chain, the tcpdump helper script used a Linux interface name on macOS. CocoIndex search-only mode also trusted client-supplied project roots without validation.
@@ -78,3 +75,6 @@ This phase remediated all of those findings in one commit (`42aa114e3d`). The me
 - Codex config write was resolved by the main agent in 42aa114e3d. Apple TCC still blocks Codex from writing its own config directly. Future note-only changes to the Codex config should record a scratch patch for the main agent to apply.
 - The unloaded CocoIndex status direct-read depends on `sqlite_vec` import and load. If extension loading fails, the daemon falls back to a 0-count response and logs a prompt to call `ccc index` to refresh.
 - PAT rotation remains a user manual action and is intentionally out of scope.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/012-v3-remediation` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

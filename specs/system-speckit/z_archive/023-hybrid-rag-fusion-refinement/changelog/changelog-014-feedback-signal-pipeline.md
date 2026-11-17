@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-04-03
 
-> Spec folder: `system-spec-kit/023-hybrid-rag-fusion-refinement/014-feedback-signal-pipeline` (Level 2)
-> Parent packet: `system-spec-kit/023-hybrid-rag-fusion-refinement`
-
 ### Summary
 
 Wired the 4 previously unwired feedback event types (`result_cited`, `follow_on_tool_use`, `query_reformulated`, `same_topic_requery`) into the memory search pipeline. The system previously only logged `search_shown` (weak signal, 0.1x weight) -- now all 5 event types are active, including the two strongest signals (`result_cited` and `follow_on_tool_use` at 1.0x weight). This enables the learned-trigger, negative-feedback, and batch-learning subsystems to receive real usage data for relevance tuning.
@@ -62,3 +59,6 @@ Wired the 4 previously unwired feedback event types (`result_cited`, `follow_on_
 - Performance validation to confirm <5ms async overhead (T-010)
 - Wire `memory-context.ts` orchestration path for L1 context retrieval events (T-006)
 - Monitor feedback event accumulation to validate graduation criteria
+
+> Spec folder: `system-spec-kit/023-hybrid-rag-fusion-refinement/014-feedback-signal-pipeline` (Level 2)
+> Parent packet: `system-spec-kit/023-hybrid-rag-fusion-refinement`

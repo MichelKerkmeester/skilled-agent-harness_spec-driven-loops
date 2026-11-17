@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/015-mcp-server-mk-skill-advisor-rename` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 The Skill Advisor MCP server was registered as `system_skill_advisor`, which no longer matched the `mk_` custom MCP naming pattern used by other servers like `mk_code_index`. The runtime identity, launcher, state file, and all live consumer references were renamed to `mk_skill_advisor` following the established rename precedent. The skill folder and public tool ids were preserved to maintain caller stability.
@@ -65,3 +62,6 @@ The Skill Advisor MCP server was registered as `system_skill_advisor`, which no 
 
 - Long-lived MCP sessions may need a restart or reconnect to drop cached `system_skill_advisor` entries.
 - Generated SQLite and runtime state files were dirtied by local MCP smoke and list commands, unrelated database churn was excluded from the scoped commit.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/015-mcp-server-mk-skill-advisor-rename` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

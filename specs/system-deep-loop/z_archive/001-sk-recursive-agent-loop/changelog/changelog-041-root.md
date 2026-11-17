@@ -8,8 +8,6 @@
 
 This packet delivered the sk-improve-agent skill across 11 phases, starting from a proposal-only evaluator-first MVP and ending with a holistic 5-dimension integration-aware scoring framework, a self-referential test pass, fixes promoted from that test, and full skill advisor routing. The skill can now evaluate any agent across structural integrity, rule coherence, integration consistency, output quality, and system fitness without LLM-as-judge scoring. The work also included a repo-wide rename from `sk-recursive-agent` to `sk-improve-agent` and from `/speckit:recursive-agent` to `/deep:start-agent-improvement-loop`, touching 187+ files and 1129+ occurrences.
 
-> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/` (Level 3)
-
 ---
 
 ## Evaluator-First Architecture (4)
@@ -158,3 +156,5 @@ These phases handled template fidelity, command path changes, and wording consis
 ## Upgrade
 
 No migration required. The rename from `sk-recursive-agent` to `sk-improve-agent` was completed within Phase 008 with zero stale references remaining. All runtime mirrors, commands, YAML workflows, and skill advisor routing were updated atomically.
+
+> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/` (Level 3)

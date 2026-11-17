@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/002-retrieval-scope-hardening`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation`
-
 ### Summary
 
 Five retrieval and causal-graph surfaces now respect the governed `{tenantId, userId, agentId}` boundary. Community fallback rows are filtered by scope, causal traversal and causal writes fail closed for out-of-scope endpoints, causal links reject missing endpoints before insert, forged `memory_search` session ids are rejected and scoped callers without explicit sessions no longer collapse into the same process-wide bucket. Unscoped single-user callers keep the prior local behavior.
@@ -63,3 +60,6 @@ Five retrieval and causal-graph surfaces now respect the governed `{tenantId, us
 
 - Real MCP traffic can only pass causal graph scope fields after the contract-parity schema phase exposes `tenantId/userId/agentId` on `memory_drift_why` and `memory_causal_link`.
 - Central verification owns the deferred `mcp_server` typecheck and vitest run after concurrent edits settle.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/002-retrieval-scope-hardening`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation`

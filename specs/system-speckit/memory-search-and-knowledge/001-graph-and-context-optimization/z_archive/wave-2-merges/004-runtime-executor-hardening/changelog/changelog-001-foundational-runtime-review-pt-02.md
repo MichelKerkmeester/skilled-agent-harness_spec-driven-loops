@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-04-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening` (Level 2, review-only)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening`
-
 ### Summary
 
 A 10-iteration autonomous deep-review of Phase 017 review-findings remediation covered 32 commits across 4 waves (A=5, B=11, C=4, D=3) plus 3 support, 5 finalization, and 2 post-finalize commits. Phase 017 closed all 27 remediation tasks from the Phase 016 closing-pass audit. The review cycled through 8 dimensions (correctness, security, traceability, maintainability, cross-reference, adversarial-self-check, regression-verification, p0-escalation) plus a recovery sweep on unreviewed residual files. 178/179 regression tests executed green at HEAD (1 skipped, 0 failed).
@@ -69,3 +66,6 @@ None - review-only phase.
 
 - **P1 remediation backlog**: 5 P1 findings (Unicode sanitization incompleteness, session-resume residual gaps, traceability coherence, canonical save rollout, readiness-contract `assertNever`) are addressed in the 003-system-hardening sub-phases (NFKC unification, routing accuracy, canonical-save invariants).
 - **P2 advisory items**: 15 P2 findings flagged as `hasAdvisories=true` for future remediation cycles.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening` (Level 2, review-only)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening`

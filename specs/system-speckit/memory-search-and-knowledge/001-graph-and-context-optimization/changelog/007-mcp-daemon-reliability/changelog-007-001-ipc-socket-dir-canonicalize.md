@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/001-ipc-socket-dir-canonicalize` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The `mk_code_index` (system-code-graph) MCP server crashed at startup with `MCP error -32000` whenever its `/tmp/mk-code-index` socket directory was absent, which happens on every reboot because macOS clears `/tmp`. The root cause was that `resolveIpcSocketPath` only called `realpath` on the socket dir when `existsSync` returned true. A missing dir stayed as the literal string `/tmp/mk-code-index`, which then failed the allowed-root check because that check compared it against the pre-canonicalized root `/private/tmp`.
@@ -60,3 +57,6 @@ The `mk_code_index` (system-code-graph) MCP server crashed at startup with `MCP 
 ### Follow-Ups
 
 - Live confirmation deferred. Unit test and code inspection confirm the fix. The live `mk_code_index` reconnect with no pre-created socket dir is verified in Phase 2, which requires the reconnect anyway.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/001-ipc-socket-dir-canonicalize` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

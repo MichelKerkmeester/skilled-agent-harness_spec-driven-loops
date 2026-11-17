@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-16
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/001-measurement-and-traceability` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation`
-
 ### Summary
 
 Delivered the measurement and traceability plane for the 036 gap remediation. The derived recommendation-to-runtime traceability join, the three-field composition status schema, and the consolidation alias manifest are in place, computed without rewriting the frozen recommendation ledger.
@@ -29,3 +26,6 @@ Delivered the measurement and traceability plane for the 036 gap remediation. Th
 ### Status
 
 Complete. Additive-dark — no authority flipped.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/001-measurement-and-traceability` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation`

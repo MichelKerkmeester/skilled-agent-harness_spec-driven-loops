@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`
-
 ### Summary
 
 The embedding-stack hardening program and older system-spec-kit modules accumulated ~55 ephemeral-artifact pointers across 27 files. Pointers such as spec folder numbers, task and checklist IDs, ADR IDs, and review-finding IDs become dangling references when artifacts are renamed, renumbered, or archived. This phase stripped those perishable pointers from comments and two at-risk string literals while preserving the durable reasoning each comment explains. Zero logic was changed. Builds, syntax checks, and re-audit all pass.
@@ -95,3 +92,6 @@ The embedding-stack hardening program and older system-spec-kit modules accumula
 - Scope was system-spec-kit source and bin launchers only. Other code surfaces such as webflow and motion_dev were not swept.
 - No regression guard was added. A grep-based lint step or pre-commit hook would make the rule enforceable and prevent re-introduction. This is deferred as a separate decision.
 - Test-file comments were not swept. A handful of .vitest.ts and .test.* files carry ephemeral IDs in comments and remain out of scope.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`

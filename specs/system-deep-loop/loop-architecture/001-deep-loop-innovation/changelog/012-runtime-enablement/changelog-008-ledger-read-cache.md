@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-24
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/008-ledger-read-cache` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`
-
 ### Summary
 
 Added an opt-in, default-off verified-events read cache on `AppendOnlyLedger` so the effect producer's per-lineage ledger stops paying the exclusive-lock read floor on every read. Measured ~40% per-dispatch win; residual concurrent serialization from synchronous durable writes was ratified as accepted.
@@ -29,3 +26,6 @@ Added an opt-in, default-off verified-events read cache on `AppendOnlyLedger` so
 ### Status
 
 Complete. New read-cache suite 6/6 green; authorized-ledger regression 52/53 with one pre-existing multiprocess flake causally excluded from this change.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/008-ledger-read-cache` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`

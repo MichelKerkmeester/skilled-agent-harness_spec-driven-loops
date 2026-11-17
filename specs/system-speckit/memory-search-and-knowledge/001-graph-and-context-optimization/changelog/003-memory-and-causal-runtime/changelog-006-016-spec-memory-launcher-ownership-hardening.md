@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-05
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/016-spec-memory-launcher-ownership-hardening` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`
-
 ### Summary
 
 This phase closes the residual mk-spec-memory ownership gap identified after phases 014 and 015. The launcher now uses an exclusive `.spec-memory-owner.json` owner lease, keeps live ownership fresh with an unref'd heartbeat, fails closed if it no longer owns the lease and reaps the recorded owner before dead-socket takeover. Report paths now emit retryable JSON-RPC instead of writing plaintext onto the MCP stream.
@@ -66,3 +63,6 @@ This phase closes the residual mk-spec-memory ownership gap identified after pha
 
 - Activate the launcher change on a fresh session or fresh launcher start.
 - Accept the extreme simultaneous stale-start loser behavior as fail-fast for now. It self-heals on reconnect and avoids the prior dual-owner condition.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/016-spec-memory-launcher-ownership-hardening` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

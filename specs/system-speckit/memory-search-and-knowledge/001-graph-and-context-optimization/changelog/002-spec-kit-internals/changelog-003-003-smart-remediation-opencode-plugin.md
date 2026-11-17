@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine/003-smart-remediation-opencode-plugin` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine`
-
 ### Summary
 
 Phase 023 shipped six work areas from smart-router research and added the OpenCode spec-kit-skill-advisor plugin. The packet fixed five stale route references across the skill advisor graph, raised the ON_DEMAND hit rate from 5.5% to 48.0% on a200-prompt corpus, replaced silent zero-score CLI fallbacks with explicit UNKNOWN disambiguation, delivered a static CI checker that validates router resource paths, created an observe-only telemetry harness for compliance recording, and shipped a bridge-backed OpenCode plugin that imports Phase 020 advisor producer/renderer without modifying Phase 020 runtime code.
@@ -81,3 +78,6 @@ Phase 023 shipped six work areas from smart-router research and added the OpenCo
 - Bloat warnings remain observe-only. The static checker reports five ALWAYS-tier bloat warnings but exits 0 because Area D defines bloat as informational.
 - Telemetry is not enforcement. Runtime enforcement should wait until real compliance data has been collected from `.opencode/skills/.smart-router-telemetry/compliance.jsonl`.
 - Plugin rollout remains a deployment step. The plugin files are present and tested, but enabling them for users should be handled by the orchestrator or plugin marketplace/config workflow.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine/003-smart-remediation-opencode-plugin` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine`

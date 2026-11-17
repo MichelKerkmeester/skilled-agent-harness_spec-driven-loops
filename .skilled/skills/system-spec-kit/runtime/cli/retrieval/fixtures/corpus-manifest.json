@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f83f8e9bf8702ad20b7a366c8556cf199678b27f9b6091c72a127a933ef596af",
+  "corpusHash": "a1cc3ca7205e51289225214315b09f843de2cb9e4376e33f5dc7aca9876d2ff8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28173,
+  "includedPathCount": 28185,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6776,6 +6776,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.1.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.2.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.3.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.4.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
@@ -10122,6 +10123,11 @@
     "specs/cli-external-orchestration/model-rosters/006-remove-llmgateway-luna-route/plan.md",
     "specs/cli-external-orchestration/model-rosters/006-remove-llmgateway-luna-route/spec.md",
     "specs/cli-external-orchestration/model-rosters/006-remove-llmgateway-luna-route/tasks.md",
+    "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/goal.md",
+    "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/implementation-summary.md",
+    "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/plan.md",
+    "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/spec.md",
+    "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/tasks.md",
     "specs/cli-external-orchestration/opencode-platform/001-layer-3-own-paths-baseline/implementation-summary.md",
     "specs/cli-external-orchestration/opencode-platform/001-layer-3-own-paths-baseline/plan.md",
     "specs/cli-external-orchestration/opencode-platform/001-layer-3-own-paths-baseline/spec.md",
@@ -16339,6 +16345,12 @@
     "specs/sk-doc/document-standards/006-readme-template-conformance/decision-record.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/goal.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/spec.md",
+    "specs/sk-doc/document-standards/007-changelog-spec-folder-at-bottom/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/007-changelog-spec-folder-at-bottom/goal.md",
+    "specs/sk-doc/document-standards/007-changelog-spec-folder-at-bottom/implementation-summary.md",
+    "specs/sk-doc/document-standards/007-changelog-spec-folder-at-bottom/plan.md",
+    "specs/sk-doc/document-standards/007-changelog-spec-folder-at-bottom/spec.md",
+    "specs/sk-doc/document-standards/007-changelog-spec-folder-at-bottom/tasks.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/001-transport-and-baseline/acceptance-criteria.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/001-transport-and-baseline/goal.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/001-transport-and-baseline/implementation-summary.md",
@@ -28205,7 +28217,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0b1fa705cd7b84f30c45f7bbcf0d9812dca63c5ae1c4d0cf9bf09f0e837f8811",
+  "manifestHash": "355dd0988209d4c0d676a07c0f29f51f090826e09e6d7174da094b0878d8299d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30109,6 +30121,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/model-rosters/006-remove-llmgateway-luna-route/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/scratch",
       "reason": "excluded directory"
     },
     {
@@ -35121,6 +35137,10 @@
     },
     {
       "path": "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/007-changelog-spec-folder-at-bottom/scratch",
       "reason": "excluded directory"
     },
     {

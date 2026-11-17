@@ -16,8 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening` (Level 2, Phase Parent)
-
 ### Summary
 
 This phase parent groups 5 child phases shipped on 2026-06-10. Each child shipped independently and carries its own changelog with full verification detail. The overarching theme is hardening derived memory writes on three dimensions: provenance integrity, idempotency safety, and lifecycle governance.
@@ -63,3 +61,5 @@ Leaf 003 locks in the feedback safety posture: forged reserved feedback types ar
 - `SPECKIT_MEMORY_IDEMPOTENCY` and `SPECKIT_SOFT_DELETE_TOMBSTONES` both require follow-up work before enabling. Idempotency requires near-duplicate embedding coverage. Tombstones require recall-surface `deleted_at IS NULL` filtering and cache invalidation across search, list, get, context, and triggers.
 - Automated callers introduced in later phases must inject `__provenanceContext` to remain governed by the write-ingress provenance guard.
 - Active feedback reducers (ranking, retention, FSRS mutation) remain deferred pending ledger quality measurement in the 005 diagnostics-first children.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening` (Level 2, Phase Parent)

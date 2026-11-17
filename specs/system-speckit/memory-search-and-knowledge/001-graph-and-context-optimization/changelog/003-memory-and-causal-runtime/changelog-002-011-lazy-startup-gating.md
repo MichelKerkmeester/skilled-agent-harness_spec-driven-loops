@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/011-lazy-startup-gating` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`
-
 ### Summary
 
 The context server opened SQLite and started all memory-owned background work unconditionally at MCP process startup. That tied idle startup to DB residency, BM25 warmup, reindex resume, retry jobs plus startup scans even when the caller only needed lightweight tool discovery or a health check.
@@ -82,3 +79,6 @@ A lazy memory runtime guard now splits startup into two stages. The thin MCP boo
 - Resolve pre-existing `handler-memory-save` atomic-save and chunking test failures confirmed present on main before this packet. Track in a separate follow-on packet.
 - First memory-owning call pays initialization latency. This is the accepted trade-off from deep-research-005 iter-010 Finding 3. Document the latency profile if measurements reveal a p99 concern.
 - `memory_health` reports reduced DB-derived fields while cold. Evaluate whether callers that depend on DB-derived health fields need an explicit wait-for-ready option.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/011-lazy-startup-gating` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

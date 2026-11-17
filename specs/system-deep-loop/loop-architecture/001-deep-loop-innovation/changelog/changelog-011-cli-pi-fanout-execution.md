@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-16
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation`
-
 ### Summary
 
 Hardened the deep-loop fan-out runner for non-streaming cli-pi executors. Controlled reproduction overturned the original "orphan-requeue loop" premise — a cli-pi DeepSeek review lineage already completes `fulfilled` — and identified the real defect: print-mode pi emits no incremental stdout, so liveness judgements treat a working lineage as idle. Artifact-progress liveness now counts real writes under the lineage directory as a live signal feeding the stall watchdog, lag-ceiling abort path, and post-exit-orphan watchdog. A live review run drove the full loop with zero requeue/orphan events; streaming executors were regression-tested clean.
@@ -31,3 +28,6 @@ Hardened the deep-loop fan-out runner for non-streaming cli-pi executors. Contro
 ### Status
 
 Complete. P0 requirements satisfied; research live run deferred by approval. Advisory `stall_detected` may still log for pi configs that buffer all disk writes to the end.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation`

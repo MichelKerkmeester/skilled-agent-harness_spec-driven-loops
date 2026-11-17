@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-10
 
-> Spec folder: `specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification` (Level 2)
-> Parent packet: `specs/system-speckit/034-spec-folder-tooling`
-
 ### Summary
 
 The lane-mode command line now takes only --apply, --folder and --roots. The compat action states its failed-step rule in one key. A new test fails if the refusals in upgrade-baseline.json stop being ordered by mode, then document, then reason. No lane mode and no part of upgrade-legacy.mjs changed.
@@ -72,3 +69,6 @@ The lane-mode command line now takes only --apply, --folder and --roots. The com
 - The CLI suite creates folders in the real specs/ root while it runs. The corpus run's real-tree hash diff caught nine .md files under specs/001-scaffold-gate-phase-probe that were not there before. The suite also makes a .repair-fixture- directory under the real specs root, in two places in repair-derived.vitest.ts. The hash diff lists additions only, so no file that already existed changed its hash. Both kinds of folder were gone once the suite finished. This packet does not fix it, because the tests are outside its scope. The cheap fix is to point those tests at a temporary directory. A run that dies mid-suite could leave a folder behind, which is inferred and not observed.
 - The flag removal rests on the operator's word. A search of this repository finds no caller, but a script elsewhere is not visible from here. If one exists, --mode and --json are now ignored, so --mode <name> --apply runs all five lane modes. Every mode acts only on proof, so that run is the default one and not a wrong one.
 - The corpus copy and the full run logs are not in the packet. They stayed in the session scratch area outside the repository, and scratch/ keeps only their summary lines.
+
+> Spec folder: `specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification` (Level 2)
+> Parent packet: `specs/system-speckit/034-spec-folder-tooling`

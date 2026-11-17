@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-07-04
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/` (Phase Parent, 13 children)
-
 ### Summary
 
 The 016 deep-dive remediation program fixed the P0 through P2 findings from the mk-spec-memory deep dive across 13 shipped phases. The arc runs from corpus identity and read-exclusions through save-dedup, embedding coverage, trigger quality, the eval-production parity harness, ranking gates and score scales, causal-graph hygiene, the learning loop, search hot-path performance, daemon freshness, envelope and command-doc alignment and a doc-only closeout. Every phase followed the same pipeline: an implement pass, an independent adversarial xhigh review, a remediation of the gaps and an Opus final-verify. Six phases ran live data migrations under atomic backups. All 13 are complete, committed and pushed.
@@ -63,3 +61,5 @@ Several daemon-side captures are pending a daemon restart.
 - The eval-delta before and after numbers from phases 006 and 007.
 - `trackAccess` production enablement from phase 009.
 - The memory-index of the phase 013 closeout.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/` (Phase Parent, 13 children)

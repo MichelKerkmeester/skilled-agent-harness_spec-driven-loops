@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/011-system-code-graph-suite-triage` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`
-
 ### Summary
 
 Arc 009 phase 007 shipped the code-graph launcher single-owner and `closeDb` lifecycle work but deferred 31 failing tests across 12 files as a documented out-of-scope baseline. Those failures left the broader `system-code-graph` vitest suite producing a noisy signal that would mask real regressions in future work.
@@ -91,3 +88,6 @@ The full suite now passes: 57 files, 553 tests passed, zero failures. No new `.s
 ### Follow-Ups
 
 - Confirm the `code-graph-context-cocoindex-telemetry-passthrough.vitest.ts` test suite replacement covers the telemetry fields added to `tool-schemas.ts`, now that CocoIndex decoupling removed the original file.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/011-system-code-graph-suite-triage` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

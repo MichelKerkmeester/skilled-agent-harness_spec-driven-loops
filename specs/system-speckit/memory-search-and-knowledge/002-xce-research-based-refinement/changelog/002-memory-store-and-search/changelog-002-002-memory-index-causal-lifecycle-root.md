@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle` (Level 2, Phase Parent)
-
 ### Summary
 
 This phase parent groups 4 child phases that all shipped on 2026-06-10. Each child shipped independently and carries its own changelog with full detail. The Included Phases table below is the authoritative child inventory.
@@ -57,3 +55,5 @@ The phase advanced the memory store schema from v30 to v33 via three additive mi
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle` (Level 2, Phase Parent)

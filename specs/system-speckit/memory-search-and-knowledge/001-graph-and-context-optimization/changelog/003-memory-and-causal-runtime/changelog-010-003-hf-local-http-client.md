@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/003-hf-local-http-client` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server`
-
 ### Summary
 
 hf-local.ts was rewritten from an in-process `@huggingface/transformers` provider into an ollama-shaped HTTP client against the Phase-002 model server. It no longer imports transformers or loads a model in-process. The public `IEmbeddingProvider` surface is unchanged so the factory and all importers compile without modification. `dispose()` is now a client no-op because the server owns model lifecycle. Client-side nomic prefixes are applied once before POST. A two-layer readiness retry handles connection and loading errors up to `HF_EMBED_SERVER_READY_TIMEOUT_MS`. The dimension is adopted from the server at runtime and a provisional default dim seeds the metadata contract before the server is reached. All 86 embedding tests pass with no regressions.
@@ -68,3 +65,6 @@ hf-local.ts was rewritten from an in-process `@huggingface/transformers` provide
 - Not wired to a live server yet. Phase 004 adds launcher supervision of the 002 server.
 - Provisional default dim (768) is a startup convenience for the canonical nomic model. The server-reported dim is the runtime authority.
 - Live embed round-trip is deferred to phase 004. Readiness retry, 404 cascade, and dim adoption are covered by mocked-transport tests.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/003-hf-local-http-client` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server`

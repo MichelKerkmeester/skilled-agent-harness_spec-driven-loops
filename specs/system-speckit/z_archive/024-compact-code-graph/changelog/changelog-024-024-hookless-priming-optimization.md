@@ -8,8 +8,6 @@
 
 When an AI session starts without startup-hook support or when startup surfacing is otherwise unavailable, the system previously needed four separate tool calls just to figure out where you left off -- slow, fragile, and easy to skip entirely. This phase collapsed that into a streamlined two-call bootstrap, added a single composite tool that returns everything in one shot, and made the whole process smart enough to get out of the way when you need an urgent fix. All 10 planned items were delivered with 9,241 tests passing.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/024-hookless-priming-optimization/`
-
 ---
 
 ## Architecture (3)
@@ -165,3 +163,5 @@ Three changes to how agent workflows handle priming.
 ## Upgrade
 
 No migration required. The new `session_bootstrap` tool is additive. Existing `session_resume` calls continue to work unchanged -- the `minimal` parameter defaults to `false`. Agent file updates are backward-compatible.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/024-hookless-priming-optimization/`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/006-benchmark-format-to-sk-doc` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality`
-
 ### Summary
 
 The benchmark format mechanics for MCP skill-local benchmark folders were split across two separate files (`references/benchmarks/FORMAT.md` and `references/benchmarks_format.md`) in sk-doc and mirrored to sibling MCP skills via relative symlinks. Authors had to consult both files to get the full picture. The symlink topology added maintenance overhead and the file names did not follow the `*_creation.md` pattern used by sk-doc's other creation references.
@@ -81,3 +78,6 @@ The consolidation shipped in commit `e76b578fc4` on 2026-05-19. All seven succes
 
 - The four `004-skill-local-benchmarks-format` docs still contain REQ-001 and REQ-002 lines that name old paths. These are historical statements true at time-of-ship, preserved per the "do not rewrite history" decision. The appended historical note in each file points readers to packet 006 as the relocation event.
 - No automated lint prevents a future `FORMAT.md` file from reappearing at the legacy path. A follow-on packet could add a `validate.sh` lint rule if needed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/006-benchmark-format-to-sk-doc` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality`

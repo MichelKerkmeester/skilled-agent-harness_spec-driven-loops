@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-30
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/007-fix-stress-test-coverage-gap-followup` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test`
-
 ### Summary
 
 Packet 042's stress audit produced a 54-row coverage matrix and classified 10 features as P0 gaps: concurrency, lease, capacity and perf-budget surfaces in `code_graph` and `skill_advisor` that had no direct stress coverage. The all-green baseline run from 042 (28 files, 69 tests) reflected coverage absence, not regression-free behavior. Without closing these gaps, release readiness for the MCP server could not advance past the 005-review-remediation parent.
@@ -86,3 +83,6 @@ Ten new stress test files were written via three sequential cli-codex batches (g
 - Run a flake-soak test (3+ consecutive `npm run stress` invocations) to confirm none of the new multiprocess tests (sa-002 lease, sa-003 daemon) produce intermittent failures on slow CI.
 - Ensure python3 is on PATH in CI environments to exercise sa-037 rather than skipping it.
 - Address P1 gaps (6 features: 3 code_graph and 3 skill_advisor with thin direct stress coverage) and P2 gaps (30 features with uncovered Maybe-required surfaces) in a follow-on release-readiness pass.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/007-fix-stress-test-coverage-gap-followup` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test`

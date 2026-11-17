@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-24
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment` (Level 3)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 The phase copied eight scenario texts, four catalog leaves and 14 doc edits from plan.md by script, added the two index layers, and closed with both package validators green and the suite unchanged.
@@ -68,3 +65,6 @@ The phase copied eight scenario texts, four catalog leaves and 14 doc edits from
 - Four P2 review findings were recorded for phase 8 and the operator. The README line is now fixed. README.md line 538 said a Draft packet may warn and pass strict without the v2.3 condition (fixed by 9a0b4a935e, which states the condition). Scenarios 479 and 482 list their tools without awk and rg. Scenario 483 keeps its pointer file in this phase's scratch/verify/ and never removes it. The other 24 findings are serial commas in frozen prose.
 - README.md said references/ (41 files). Phase 5 added the card, so the count is 42. Fixed by 9a0b4a935e, which sets the count to the real file total.
 - The catalog validator prints two baseline notes. They sit in session-relaunch-loop.md and spec-validation-rule-engine.md, files this phase does not own.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment` (Level 3)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The standalone `generate-context.js` save workflow had an unconditional Step 11.5 that opened its own better-sqlite3 connection to `context-index.sqlite` and wrote FTS5 rows directly. When the mk-spec-memory daemon was already running, this made the save process a second SQLite writer against the daemon-owned WAL, violating the single-writer invariant and creating data contention.
@@ -73,3 +70,6 @@ A focused adversarial review caught a P0 defect in the initial implementation: t
 
 - The daemon-up path leaves the memory index stale until `memory_index_scan` runs. A future packet could automate that MCP call at the end of a daemon-up standalone save to close the freshness gap without reopening the second-writer risk.
 - PID-reuse false-positives are accepted as safe (deferred stale index rather than corruption). Adding `startedAt` cross-check parity with the launcher would eliminate the false-positive class entirely.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

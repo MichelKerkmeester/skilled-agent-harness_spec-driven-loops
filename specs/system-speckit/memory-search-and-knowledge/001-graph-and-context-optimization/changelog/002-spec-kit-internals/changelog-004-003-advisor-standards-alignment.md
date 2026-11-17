@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/003-advisor-standards-alignment` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening`
-
 ### Summary
 
 The packet resolved a conflict between the sk-code-skilled JavaScript CommonJS rule and the OpenCode plugin loader contract. The loader requires ESM default exports, which the existing CommonJS rule prohibited. This packet added an OpenCode Plugin Exemption Tier to the quality standards reference, annotated the affected checklist item, and updated the skill-advisor plugin file with standard header fields, section dividers, and JSDoc. No behavior or logic changed.
@@ -62,3 +59,6 @@ The packet resolved a conflict between the sk-code-skilled JavaScript CommonJS r
 - Full package-wide Vitest remains outside this packet scope, the focused skill-advisor suite passed 30/30.
 - Canonical save used deferred embedding fallback due to restricted network access, BM25 and FTS indexing remain available.
 - Post-save quality reviewer reported a non-blocking EISDIR error with no HIGH or MEDIUM issues to patch.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/003-advisor-standards-alignment` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening`

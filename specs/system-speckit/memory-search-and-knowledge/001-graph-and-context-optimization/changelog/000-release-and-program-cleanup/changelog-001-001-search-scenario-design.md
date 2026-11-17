@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-26
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/001-search-scenario-design` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook`
-
 ### Summary
 
 Without a fixed corpus, rubric and dispatch matrix, a stress test of the system-spec-kit Search/Query/Intelligence surfaces devolves into ad-hoc prompting that is non-reproducible and impossible to compare across CLIs or over time. This sub-phase delivered the complete design fixture: 9 scenarios arranged in a 3-feature by 3-prompt-type matrix (Search, Query, Intelligence crossed with Simple, Vague, Specific), a 5-dimension scoring rubric using a 0-2 scale (correctness, tool selection, latency, token efficiency, hallucination), a per-CLI dispatch matrix with copy-paste shell invocations, an output schema covering `meta.json` and `score.md` formats. Scoring methodology with tie-breaker rules completed the fixture. Five of the nine scenarios cross-reference known defects from sibling packet 005, so runs with different CLIs can reveal whether each CLI hits or avoids those bugs. Dispatch scripts were authored alongside the corpus design.
@@ -71,3 +68,6 @@ Without a fixed corpus, rubric and dispatch matrix, a stress test of the system-
 - Recalibrate latency thresholds (10s fast, 60s slow) after the first full sweep. All cells scoring 0 on latency would indicate the thresholds need adjustment.
 - Evaluate extending cli-copilot coverage beyond gpt-5.4 to additional models in a v2 pass per the decision record.
 - Consider adding N=3 repetitions per scenario (REQ-009) to separate systematic failures from variance once baseline data exists.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/001-search-scenario-design` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook`

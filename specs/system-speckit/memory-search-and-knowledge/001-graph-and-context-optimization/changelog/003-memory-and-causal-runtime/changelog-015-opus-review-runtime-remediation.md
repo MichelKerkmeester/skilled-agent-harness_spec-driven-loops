@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-02
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/015-opus-review-runtime-remediation` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`
-
 ### Summary
 
 This packet was scaffolded to remediate an independent Opus 4.8 cross-review of the deployed 013 runtime and documentation. The artifacts identify 4 P1 correctness defects: checkpoint restore can leave no live database after a crash window, front-proxy frame decoding can corrupt split UTF-8, `reconcileMoves` can drop `spec_folder` and runtime docs have stale schema or tool-count claims.
@@ -66,3 +63,6 @@ The packet also tracks 17 P2 advisories. No runtime or documentation fixes had l
 - Fix the three runtime-behavior P1 defects with focused vitests.
 - Complete the schema-version and tool-count documentation sweep.
 - Resolve or explicitly defer the 17 P2 advisories.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/015-opus-review-runtime-remediation` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

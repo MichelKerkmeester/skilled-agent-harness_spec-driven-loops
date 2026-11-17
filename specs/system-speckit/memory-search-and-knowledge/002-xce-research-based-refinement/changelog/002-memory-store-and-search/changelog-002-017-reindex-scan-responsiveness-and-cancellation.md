@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-reindex-scan-responsiveness-and-cancellation` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 A background `memory_index_scan` with force on starved the memory daemon for over an hour. The scan runs on the daemon's single event-loop thread, and its `await`s only drained microtasks (synchronous better-sqlite3 plus cache-served embeddings), while its two post-batch tail loops swept every indexed row fully synchronously with no yield. On a force scan over the whole corpus the loop was never handed back to the poll phase, so every IPC call (status, cancel, health, search) timed out and the scan was uncancellable, forcing a SIGKILL that left the index partially rebuilt. This packet makes the scan cooperative. The metadata-edge promotion loop yields a real macrotask and re-checks cancellation every 200 rows, the causal-chain folder loop does the same every 50 folders, `processBatches` gained an early-abort so a cancelled run stops promptly instead of draining no-op batches, and the cancel flag is mirrored in process so a hot loop can poll it without a SQLite round-trip on the shared connection. The diagnosis was confirmed by three parallel Opus seats, which established that the batch loop already yields, so the genuine starvation was the synchronous tail loops rather than the batch loop or the embedding await.
@@ -60,3 +57,6 @@ A background `memory_index_scan` with force on starved the memory daemon for ove
 ### Follow-Ups
 
 - The launcher lease-heartbeat refresh fails under scan load or multi-launcher contention, and re-election recycles the daemon mid-scan, so a full force scan still does not run to completion. Making the heartbeat tolerate a busy maintenance scan, or moving the scan to an out-of-process worker, is the open follow-on. The index is functionally healthy without it.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-reindex-scan-responsiveness-and-cancellation` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

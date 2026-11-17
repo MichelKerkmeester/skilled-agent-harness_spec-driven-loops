@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-09-28
 
-> Spec folder: `specs/system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure` (Level 1)
-> Parent packet: `specs/system-speckit/033-system-speckit-v4`
-
 ### Summary
 
 A person who clones this repository now learns from the README that git hooks will check their commits, what those hooks refuse and how to turn them off. When a hook does block, its message names the variable that lets that one command through, so nobody has to read a hook's source to get unstuck.
@@ -70,3 +67,6 @@ A person who clones this repository now learns from the README that git hooks wi
 
 - The agent mirror gate has no switch of its own. Getting one commit past it turns off the whole pre-commit chain for that commit. A per-gate switch would need its own change to the gate.
 - The git hook bypasses are read from the environment only. They cannot be saved in hook-flags.env. Only SYSTEM_GIT_COMMIT_HOOKS_DISABLED and the master SYSTEM_HOOKS_DISABLED reach the pre-commit chain from that file.
+
+> Spec folder: `specs/system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure` (Level 1)
+> Parent packet: `specs/system-speckit/033-system-speckit-v4`

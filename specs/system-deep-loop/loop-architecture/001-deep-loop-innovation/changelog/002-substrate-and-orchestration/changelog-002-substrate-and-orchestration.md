@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration` (Level 3)
-
 ### Summary
 
 This group covers the substrate and orchestration spine of the 036 deep-loop innovation packet: the early fan-out live-tools unblock, the transition-authorized dark ledger core, the shared evidence and control services, the compatibility/shadow/rollback bridge, durable fan-out/fan-in orchestration, novelty/claims continuity and projections, and convergence/termination/health. Each child owns its own scope, plan, and verification; this parent tracks the shared theme only. Per the parent phase documentation map, phases 005, 006, and 010 are complete; phases 007, 008, 009, and 011 are in progress.
@@ -29,3 +27,5 @@ This group covers the substrate and orchestration spine of the 036 deep-loop inn
 | `005-fanout-fanin-durable-orchestration` | Make fan-out and fan-in durable over the canonical ledger through dispatch receipts, result envelopes, resumable branch orchestration, budget-aware completion policy, and provenance-balanced reduction. |
 | `006-novelty-claims-continuity-and-projections` | Define the intelligence layer over the durable substrate: concept-level semantic communities, typed contradiction and supersession, stable claim continuity, next-focus semantics, and deterministic transactional projections and gauges. |
 | `007-convergence-termination-and-health` | Replace count-based stopping with path-covering termination, cycle detection, independent stopping clocks, value-of-computation allocation, and a generic health and degeneration harness. |
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration` (Level 3)

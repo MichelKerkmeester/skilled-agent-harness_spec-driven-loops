@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/012-empty-graph-first-time-auto-scan` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 Read tools (`code_graph_query`, `code_graph_context`) returned a `blocked` payload when the code graph had never been built, forcing users of a fresh clone to run `code_graph_scan` by hand before the graph was useful. Building from an empty graph is safe because nothing gets overwritten. Under the default end-user-code scope the scan is also small and predictable.
@@ -73,3 +70,6 @@ Six tests (4 predicate unit tests, 2 integration tests) were added. One existing
 - First auto-scan latency: under the default scope a very large `/src` could take a few seconds on first read. The 10s `AUTO_INDEX_TIMEOUT_MS` cap and abort signal bound it (timeout returns `blocked`).
 - Opted-in scopes (this repo) keep the manual `code_graph_scan` gate by design. This repo's own empty graph still blocks until an explicit scan.
 - Scope is read from env at request time. Flipping `SPECKIT_CODE_GRAPH_INDEX_*` changes whether auto-establish applies on the next read.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/012-empty-graph-first-time-auto-scan` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph`

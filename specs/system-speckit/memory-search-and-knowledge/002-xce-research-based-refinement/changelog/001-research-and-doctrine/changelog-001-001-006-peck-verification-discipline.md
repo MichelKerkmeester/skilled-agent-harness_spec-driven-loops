@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/006-peck-verification-discipline` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`
-
 ### Summary
 
 Delivered peck verification discipline across four successive commits. The first added strict non-diff read-budget guidance to the `review` agent and adapted read-budget guidance to `context`, `deep-research`, `deep-review`, and `orchestrate` agents with all three runtime mirrors. The second added escalation discipline (root-cause, amendment path, three-strike, reviewer-contradiction) to `sk-code` and `CLAUDE.md`, plus anti-softening rules and VERDICT_LOCK to the `deep-review` skill and agent, and advisory `riskScore` to `sk-code-review`. The third shipped the T6 completion-freshness validator (`CONTINUITY_FRESHNESS`) as a default-off strict rule with fingerprint recompute, packet-scoped dirty-path detection, warn-first behavior, and enforcement promotion behind `SPECKIT_COMPLETION_FRESHNESS_ENFORCE`. Each slice is additive: no existing routing, permissions, severity model, or output schema was changed.
@@ -85,3 +82,6 @@ Delivered peck verification discipline across four successive commits. The first
 - `CONTINUITY_FRESHNESS` is inert until `SPECKIT_COMPLETION_FRESHNESS=true`.
 - `ENV_REFERENCE.md` and the constitutional completion-ritual file were outside approved write paths and were not edited.
 - Dist files were not touched. The orchestrator build remains authoritative outside this source-only verification slice.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/006-peck-verification-discipline` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`

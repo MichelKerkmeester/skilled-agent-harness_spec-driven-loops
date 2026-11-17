@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`
-
 ### Summary
 
 Packet 007 found that Qwen3-Reranker-0.6B on Apple Silicon MPS OOMs at the default 50-doc batch. Packet 008 tried capping the batch size and also held. This packet attacked from the weights side: loading in fp16 instead of fp32 cuts model memory roughly in half (~750 MB vs ~1.5 GB) and was expected to reduce per-call activation memory too.
@@ -69,3 +66,6 @@ None.
 - Investigate whether stacking packet 008 cap-top_k with this packet's fp16 dtype narrows the MPS kernel-scratch allocation further.
 - Consider bf16 bench only if a future model variant shows dtype-sensitive OOM behavior distinct from Qwen3-Reranker-0.6B.
 - Revisit fp16 on CUDA hardware if deployment target expands beyond single-user Apple Silicon.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`

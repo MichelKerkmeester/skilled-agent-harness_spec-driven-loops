@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation`
-
 ### Summary
 
 Shipped checkpoint-v2 — a `VACUUM INTO` file-snapshot checkpoint/restore — across Phases 1-7 (schema v29, v2 CREATE, v2 RESTORE, journal crash-safety). After deploy, a **live verification caught a v2-selection gate bug** that had left the feature **inert on sharded runtimes**, and fixed it; the full-DB create + restore round-trip was then proven on the production database. Two follow-on P2 crash-safety hardenings landed afterward.
@@ -55,3 +52,6 @@ Shipped checkpoint-v2 — a `VACUUM INTO` file-snapshot checkpoint/restore — a
 ### Follow-Ups
 
 - The post-restore derived-rebuild self-heal (a `.needs-rebuild` sentinel) shipped separately as `013/005` — see `changelog-013-005-checkpoint-needs-rebuild-sentinel.md`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation`

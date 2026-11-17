@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/005-validate-recursive-orchestrator-fix` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals`
-
 ### Summary
 
 `validate.sh --recursive` now validates phase children when the compiled orchestrator is present. Before this fix, `run_node_orchestrator` ran the orchestrator on the parent and immediately called `exit $?`, which fired before the main function reached its recursive block. Every checkout with the compiled orchestrator quietly validated only the parent. The shell fallback already recursed so only the orchestrator path was broken, which made the gap easy to miss.
@@ -54,3 +51,6 @@ contextType: "implementation"
 ### Follow-Ups
 
 - No automated regression test was added. Verification was static plus diff review and a packet self-validate. A live phase-parent fixture run with the orchestrator present was not added so future regressions in child enumeration rely on the same manual checks.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/005-validate-recursive-orchestrator-fix` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals`

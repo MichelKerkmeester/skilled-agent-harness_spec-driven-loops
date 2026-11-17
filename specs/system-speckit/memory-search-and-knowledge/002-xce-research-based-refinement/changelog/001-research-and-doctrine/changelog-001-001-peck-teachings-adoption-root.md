@@ -16,8 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption` (Level 1, Phase Parent)
-
 ### Summary
 
 This phase parent groups 7 child phases spanning 2026-06-05 to 2026-06-10. Each child shipped independently and carries its own changelog with full detail. The Included Phases table below is the authoritative child inventory. Read each child changelog for the per-phase summary, verification, and files changed.
@@ -62,3 +60,5 @@ The seven phases adopted all four peck teachings (T1-T4) plus three additional v
 
 - AC-format normalization in shared manifest templates (`spec.md.tmpl`, `checklist.md.tmpl`) remains deferred. It was outside the approved write paths for the acceptance-coverage-gate phase.
 - `CONTINUITY_FRESHNESS` and `AC_COVERAGE` are both default-off. Promotion to active enforcement requires separate decisions.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption` (Level 1, Phase Parent)

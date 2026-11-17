@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/050-all-skills-alignment-sweep` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 The skill library had accumulated mixed current-state language across recent restructures: the standalone `system_skill_advisor` extraction, the `mk-code-index` code-graph rename, post-040 embedding behavior changes. sk-doc template hardening had also progressed. No single sweep had verified all 19 skills, leaving future agents exposed to stale routing guidance.
@@ -107,3 +104,6 @@ Five sequential batch commits audited every skill family against sk-doc validato
 ### Follow-Ups
 
 - A follow-on packet (`016-runtime-config-mk-code-index-parity`) should migrate runtime config files (`opencode.json`, `.codex/config.toml`, `.gemini/settings.json`, possible launcher aliases) from legacy `system_code_graph` to canonical `mk_code_index` naming. Config and source edits were out of scope for this doc-only sweep.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/050-all-skills-alignment-sweep` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

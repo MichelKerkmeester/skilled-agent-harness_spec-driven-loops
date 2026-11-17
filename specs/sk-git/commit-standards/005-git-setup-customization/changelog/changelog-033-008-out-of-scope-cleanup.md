@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-16
 
-> Spec folder: `specs/sk-git/033-git-setup-customization/008-out-of-scope-cleanup` (Level 1)
-> Parent packet: `specs/sk-git/033-git-setup-customization`
-
 ### Summary
 
 The sk-code drift guards pass again, every doctor script has a test, no Hermes mirror header breaks the Human Voice Rules, and sk-create-command states one place for the mandatory input gate. All four issues held when checked against the code, and all four are fixed.
@@ -67,3 +64,6 @@ The sk-code drift guards pass again, every doctor script has a test, no Hermes m
 - Pre-existing HVR blockers stay. sk-create-command SKILL.md (31), references/common-pitfalls.md (2), references/worked-example.md (2) and references/argument-hints-and-modes.md (1) had these before this phase, on lines it did not change. Counts are unchanged.
 - doctor/git.md is the one shipped command outside the gate rule. It puts the gate before the H1, because phase 7 moved it there to meet the old wording. Moving it back was out of scope. Four other commands (deep/ai-council.md, deep/research.md, deep/review.md, prompt/improve.md) put the gate inside section 1. That still meets the rule, though the skeletons show it before section 1.
 - The phrase-reach happy path needs a fresh advisor build. A stale local build makes it fail with exit 2. CI builds the runtime first.
+
+> Spec folder: `specs/sk-git/033-git-setup-customization/008-out-of-scope-cleanup` (Level 1)
+> Parent packet: `specs/sk-git/033-git-setup-customization`

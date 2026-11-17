@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/013-design-fidelity-and-polish` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
-> Commit: `563541d3d0` feat(mk-goal): wire usage_limited detector + fingerprint/observability polish
-
 ### Summary
 
 The goal plugin now treats provider rate limiting as a real lifecycle stop instead of a dormant enum value, following the operator's decision to wire a real detector rather than collapse the `usage_limited` status. This phase also removed stale continuity fingerprint placeholders from phases 001-008, corrected phase 006's overstated completion claim, and added two lightweight observability signals.
@@ -61,3 +57,7 @@ The goal plugin now treats provider rate limiting as a real lifecycle stop inste
 ### Follow-Ups
 
 - None recorded for this scoped phase.
+
+> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/013-design-fidelity-and-polish` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
+> Commit: `563541d3d0` feat(mk-goal): wire usage_limited detector + fingerprint/observability polish

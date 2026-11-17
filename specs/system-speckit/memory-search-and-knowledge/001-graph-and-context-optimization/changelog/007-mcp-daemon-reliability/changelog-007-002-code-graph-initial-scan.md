@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/002-code-graph-initial-scan` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The code graph reported `totalNodes: 0` with `freshness: "empty"` and `action: "full_scan"`. Structural queries (callers, imports, impact analysis) returned nothing because the graph had never been built in this environment. The root cause was that `mk_code_index` could not start due to the socket-dir issue fixed in Phase 1.
@@ -59,3 +56,6 @@ Phase 2 was set up to run one full `code_graph_scan` after the user reconnects `
 - Run `code_graph_scan` (full) to populate the empty graph after reconnect.
 - Verify `code_graph_status` reports nodes > 0 and non-empty freshness.
 - Update implementation-summary with final node and edge counts once the scan completes.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/002-code-graph-initial-scan` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

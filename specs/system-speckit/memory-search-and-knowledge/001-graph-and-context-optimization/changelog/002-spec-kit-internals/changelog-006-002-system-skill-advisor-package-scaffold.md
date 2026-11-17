@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/002-system-skill-advisor-package-scaffold` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 The `system-skill-advisor` skill folder existed as a partial-stub state: `SKILL.md` was empty, `graph-metadata.json` was missing entirely. The `feature_catalog/`, `manual_testing_playbook/` and `references/` directories held only `.gitkeep` files. This caused skill-discovery to treat the advisor as an unknown thin skill that occasionally won ambiguous routings, diverging from the Python golden corpus. Two parity test regressions were attributable to the empty-stub pickup.
@@ -89,3 +86,6 @@ A cli-codex dispatch authored the full package envelope in a single 11-minute wi
 - Resolve the 4 remaining parity test failures in child 003 alongside the runtime move. The residual failures are pre-existing and unrelated to the empty-stub collateral resolved here.
 - Populate `feature_catalog/` and `manual_testing_playbook/` with full mirror content in child 003 alongside source movement. The current one-entry seeds are illustrative placeholders only.
 - Revisit the three `references/` documents as child 003 implementation reveals constraints. The files were authored from ADR-001 principles without live runtime data.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/002-system-skill-advisor-package-scaffold` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

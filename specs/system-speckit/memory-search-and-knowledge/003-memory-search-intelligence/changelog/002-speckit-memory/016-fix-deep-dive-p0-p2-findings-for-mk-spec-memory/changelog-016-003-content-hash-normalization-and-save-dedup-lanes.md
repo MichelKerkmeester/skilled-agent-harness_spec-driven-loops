@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-07-04
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/003-content-hash-normalization-and-save-dedup-lanes/` (Level 3)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`
-
 ### Summary
 
 Saving an unchanged document no longer churns the corpus. `content_hash` used to be a raw sha256 of the file bytes, so a CRLF flip, a trailing space or a bumped continuity timestamp read as new content. Every same-path re-save then retired its predecessor to deprecated and inserted a fresh row, accumulating snapshots without bound. `normalizeContentHashInput` now folds CRLF to LF, strips trailing whitespace and zeros the continuity fingerprint and timestamp lines before hashing. The dedup match path is dual-compare, so it accepts the normalized hash or the legacy raw hash without any stored-hash rewrite. The broken save-dedup lanes that should have absorbed re-saves work again. Shipped in `9ddc2f2802`.
@@ -60,3 +57,6 @@ Saving an unchanged document no longer churns the corpus. `content_hash` used to
 
 - No batch migration ships. Legacy raw-hash rows match on the fly and store the normalized hash only on their next real re-save.
 - Search-level effects depend on the daemon running this code.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/003-content-hash-normalization-and-save-dedup-lanes/` (Level 3)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

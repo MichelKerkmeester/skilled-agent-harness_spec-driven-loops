@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 After Phase G wired W8-W13 telemetry and runtime consumers, the system needed empirical evidence that all 11 wiring points (W3-W13) fire end-to-end under the full search-quality stress matrix. Earlier stress packets had measured W3-W7 in isolation and could not confirm whether the newly wired W8-W13 signals propagated into envelope, audit or shadow artifacts at runtime.
@@ -81,3 +78,6 @@ The overall verdict is CONDITIONAL. Module-level telemetry and focused tests pro
 - Add a live telemetry export mode to the search-quality harness so future runs can observe the full `handleMemorySearch` handler path without a direct function probe.
 - Resolve the embedding-model readiness timeout that blocked the live handler probe so a future v1.0.4 run can produce a PASS verdict without the P1 gap.
 - Consider first-class harness support for emitting envelope, audit or shadow telemetry natively rather than relying on packet-local wrappers.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

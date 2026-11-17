@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/008-deep-review-correctness-edges` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`
-
 ### Summary
 
 Three deep-review correctness fixes, each independently re-validated at HEAD and shipped with a regression test. Two further findings were dispositioned after re-validation rather than patched.
@@ -60,3 +57,6 @@ Three deep-review correctness fixes, each independently re-validated at HEAD and
 - DR-002-P1-002 left as-is. If a future requirement demands hard cross-process exclusivity (no degradation), the fs-lock timeout path would need an opt-in fail-closed mode, a separate decision.
 - DR-014 guard is unit-tested at the predicate level. A true select-then-concurrent-update-then-delete race needs multi-process injection, the predicate test asserts the guard's correctness directly.
 - Cluster findings excluded. DR-005/006/012/016/011/020 + DR-001-P1-002 + DR-002-P1-001 + OR-R-01 are the coordinated single-writer/durability packet (009), not this one.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/008-deep-review-correctness-edges` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`

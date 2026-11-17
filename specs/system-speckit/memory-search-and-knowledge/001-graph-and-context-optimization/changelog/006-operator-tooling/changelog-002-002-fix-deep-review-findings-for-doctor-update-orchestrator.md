@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator`
-
 ### Summary
 
 The 013 deep-review (commit `8d794afad`) emitted a CONDITIONAL verdict with 0 P0, 30 P1 and 30 P2 findings against the doctor-update-orchestrator parent plus its 001 and 002 child packets. The findings covered four failure classes: spec docs that claimed completion states contradicted by unchecked checklists, a bootstrap script with a `--no-audit` flag and a TOCTOU-prone mkdir lock, a sandbox container with an overly broad read-write mount and no capability drop and doctor commands present only under `.opencode/commands/doctor/` instead of all four runtime directories.
@@ -95,3 +92,6 @@ Four sequential cli-codex (gpt-5.5 high fast) batches resolved all 30 P1 finding
 - Address the 2 formally deferred P2 findings: R9-P2-006 (parent handover.md doc-code drift with specific symbol references) once parent handover.md is in scope for editing.
 - Run `/deep:start-review-loop:auto` on the 013 parent to confirm the verdict moves from CONDITIONAL to PASS or PASS-with-advisories now that all 30 P1 findings are closed.
 - Address the 003 packet's own template-compliance issues (spec/plan/tasks/checklist authored at creation did not fully match Level 2 template anchor names) in a follow-on packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator`

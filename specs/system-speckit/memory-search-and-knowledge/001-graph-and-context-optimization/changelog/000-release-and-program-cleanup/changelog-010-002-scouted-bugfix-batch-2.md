@@ -20,9 +20,6 @@ contextType: "implementation"
 
 ## 2026-06-03
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train`
-
 ### Summary
 
 The 8-agent scout that fed batch 1 surfaced 20 high-risk targets; batch 1 fixed the top 5, leaving 15 latent defects across chunking, the deep-loop runtime, embeddings, vector-index validation, skill-advisor, code-graph, and benchmark/runner tooling. Many of the 15 carried a loud headline that did not survive contact with the real code.
@@ -101,3 +98,6 @@ Total: **22 files** (13 sources + 9 partial regression tests merged into existin
 - Deploy is required for the fixes to take effect: the orchestrator must recycle the mk-spec-memory daemon (shared/ + migration changes) after commit; skill-advisor + code-graph dist deploy on their next restart; the deep-loop `.cjs`/`.ts` files run via the consuming toolchain (no separate build step needed).
 - The 2 REFUTED headlines (hook-tests `specs/` symlink path; reconsolidation env-leak) are closed with no action owed — both are correct as-is.
 - Batch 2 closes the last 15 of the original 20-target scout; no further scouted targets remain from that scout batch.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train`

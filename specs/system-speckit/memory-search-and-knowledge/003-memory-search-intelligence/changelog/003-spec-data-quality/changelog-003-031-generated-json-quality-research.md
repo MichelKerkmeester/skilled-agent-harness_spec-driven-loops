@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/031-generated-metadata-quality-research` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 A 10-angle read-only research study on the quality and safety of the spec-kit generated JSON metadata, the `description.json` and `graph-metadata.json` files and the generators that produce them. It sorted every finding into four safety classes, found broad-walk over-reach and non-idempotent writes dominant, converged on a shared spec-folder identity resolver and a first-class generated-metadata validator as the root-cause fixes, skeptically cross-checked the load-bearing claims, and produced 14 ranked proposals with a build order. This phase ships a diagnosis and a ranked plan, not a code change.
@@ -52,3 +49,6 @@ A 10-angle read-only research study on the quality and safety of the spec-kit ge
 - The operator decides which verified proposals warrant a build phase versus a backlog entry.
 - The shared spec-folder identity resolver is the gating first build, since the validator path invariants and the merge-path lineage guard both depend on it.
 - The behavioral fixes need a scoped migration, since existing files carry the prose statuses and prefixed paths the new contract rejects, so each should ship behind a default-off flag or a grandfather report mode.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/031-generated-metadata-quality-research` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/007-finalize-documentation-quality-refactor` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor`
-
 ### Summary
 
 Closed all remaining deferred items from packets 002-006 Known Limitations. A dispatched cli-opencode run with DeepSeek API failed twice with an InstanceRef not provided error (opencode v1.15.1 internal session-management issue, plausibly a baseline drift from the v1.3.17 SKILL.md pinned version). Fell back to in-session execution by Claude Code, delivering the same scope: semicolon HVR sweep (137 to 30, 78% reduction), F34 deviation notes across 20 playbook files, 5 new reference docs covering query cookbook, validation baselines, daemon lease contract, skill graph drift, and deferred decisions.
@@ -72,3 +69,6 @@ Closed all remaining deferred items from packets 002-006 Known Limitations. A di
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/007-finalize-documentation-quality-refactor` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/006-deep-context` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 deep-context's 11 reference/asset docs now carry exactly the canonical frontmatter contract, making the skill's docs valid routing signal for the advisor doc harvest. Unlike the 008 pilot (pure normalization), this was net-new authoring: every doc had title+description only, so trigger_phrases, importance_tier, and contextType were composed from each doc's own vocabulary.
@@ -67,4 +64,5 @@ deep-context's 11 reference/asset docs now carry exactly the canonical frontmatt
 | `.opencode/skills/deep-context/references/state/state_reducer_registry.md` | Modified | Authored phrases; normal/implementation |
 | `.opencode/skills/deep-context/assets/context_report_template.md` | Modified | Authored phrases; normal/planning |
 
-
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/006-deep-context` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

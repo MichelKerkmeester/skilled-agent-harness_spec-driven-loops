@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-02
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/004-memory-save-enrichment-repair` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation`
-
 ### Summary
 
 Shipped and **deployed** the first deferred follow-up of the memory-index-scan roadmap. `memory_save` commits the primary row inside `writeTransaction.immediate()`, then runs secondary enrichment (FTS, vector, entity/summary, causal/graph) afterward. A SIGKILL in that window left a committed-but-unenriched row that dedup replay (`unchanged`/`duplicate`) never repaired — the memory stayed invisible to search until an unrelated scan re-indexed it. This packet adds a durable per-row enrichment-completion marker (schema v30), repaired idempotently on the dedup replay return and as a bounded scan-lease backfill. Implemented via `cli-opencode gpt-5.5-fast --variant xhigh`, integrated with 005, and deployed: the live `context-index.sqlite` was migrated (9692 rows, all defaulted to `complete`, no re-enrich storm).
@@ -58,3 +55,6 @@ Shipped and **deployed** the first deferred follow-up of the memory-index-scan r
 ### Follow-Ups
 
 - None required. Monitor `post_insert_enrichment_status` distribution on live `memory_save` to confirm markers flip to `complete` and that no `pending`/`failed` rows accumulate.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/004-memory-save-enrichment-repair` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation`

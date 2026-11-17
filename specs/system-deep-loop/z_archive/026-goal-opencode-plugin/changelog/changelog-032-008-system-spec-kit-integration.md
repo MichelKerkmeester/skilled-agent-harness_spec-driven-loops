@@ -16,9 +16,6 @@ This phase changelog records the system-spec-kit documentation integration for t
 
 ## 1. 2026-06-30
 
-> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/008-system-spec-kit-integration` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
-
 ### Summary
 
 The `/goal` OpenCode plugin is now documented inside `system-spec-kit` as a known local plugin surface. The integration adds routed skill logic, a hook reference, feature catalog and manual playbook assets, environment variable coverage, and explicit bridge-boundary notes so operators do not confuse `mk-goal` with daemon-backed plugins.
@@ -67,3 +64,6 @@ The `/goal` OpenCode plugin is now documented inside `system-spec-kit` as a know
 ### Follow-Ups
 
 - Restart OpenCode before testing newly loaded plugin or command behavior after plugin edits.
+
+> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/008-system-spec-kit-integration` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`

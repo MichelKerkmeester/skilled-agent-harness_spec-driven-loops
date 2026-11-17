@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/002-runtime-wiring-enterprise-readiness-audit` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`
-
 ### Summary
 
 Phase F found that W3-W7 search and RAG decision workstreams existed as isolated measured artifacts: W3 (trust tree) and W6 (CocoIndex calibration) were test-only. W5 (advisor shadow) was response-only. W7 (degraded readiness) was fixture-only. W4 (conditional rerank) received an unknown empty QueryPlan that prevented gate telemetry. Without a shared decision envelope, the search stack could not audit trust, rerank, shadow scoring, calibration or degraded-readiness state per request.
@@ -83,3 +80,6 @@ Phase G wired all five workstreams into a request-scoped `SearchDecisionEnvelope
 - Cached `memory_search` responses do not rebuild full pipeline envelopes. The audit row is emitted only when the pipeline executes and an envelope exists. Cached-path audit coverage is deferred.
 - W6 overfetch promotion remains deferred. The envelope reports `recommendedMultiplier` but `effectiveLimit` still follows the existing opt-in flag path. Promotion requires a separate measurement decision.
 - Audit retention relies on file rotation only. JSONL rotation caps file size, but dashboards and long-term retention policy are future enterprise-readiness work.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/002-runtime-wiring-enterprise-readiness-audit` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`

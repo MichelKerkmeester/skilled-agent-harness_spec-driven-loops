@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`
-
 ### Summary
 
 The skill-documentation pass corrected stale shipped-state claims in `system-spec-kit` and `cli-opencode` documentation while leaving already-current sibling skills untouched. The updates document schema v37, the 37-tool memory surface, default-off 027 flags, self-maintaining scan behavior, and the daemon-backed CLI front-door handback guidance.
@@ -58,3 +55,6 @@ The skill-documentation pass corrected stale shipped-state claims in `system-spe
 ### Follow-Ups
 
 - Historical manual-testing playbook entries that describe v30-era validation scenarios were intentionally not rewritten.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

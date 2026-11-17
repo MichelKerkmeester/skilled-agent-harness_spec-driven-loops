@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle`
-
 ### Summary
 
 Spec Kit Memory now has an explicit statediff layer for write-path planning and post-mutation subscribers. The layer does not decide semantic policy; handlers still make policy decisions first, then pass durable row actions to subscribers for cache and hygiene effects. `lib/storage/statediff.ts` defines target rows, insert/upsert/replace/delete actions, composite parent-child targets, and subscriber interfaces with deterministic target sorting and safe incomplete-prior handling via upsert. `mutation-hooks.ts` was converted from direct cache invalidation calls to action-aware subscribers: trigger, tool, constitutional, graph, degree, and coactivation caches subscribe fail-safe to any non-empty applied action batch. Entity-density subscribes to memory and graph actions. Graph and coactivation clears are not gated on graph-targeted actions because batches are an advisory aid that under-reports cascaded causal-edge deletes. Four handlers gained explicit action-batch wiring: `memory-index.ts` builds a scan action plan before write batches; `memory-save.ts` routes enrichment and atomic-save cache effects through subscribers; `save/response-builder.ts` routes normal save cache effects; and `memory-bulk-delete.ts` emits delete action batches and removes inline entity-density invalidation.
@@ -76,3 +73,6 @@ Spec Kit Memory now has an explicit statediff layer for write-path planning and 
 
 - Existing lower-level mutation helpers still perform some best-effort cache invalidation for legacy callers. The handler-level inline invalidations requested for this phase were removed; remaining lower-level callsites are candidates for a follow-on cleanup sweep.
 - Two pre-existing module-header defects in `canonical-fingerprint.ts` and `memo.ts` remain outside this phase's allowed write scope.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle`

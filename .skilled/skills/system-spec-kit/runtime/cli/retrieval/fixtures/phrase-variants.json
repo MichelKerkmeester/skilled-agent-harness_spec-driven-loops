@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0b1fa705cd7b84f30c45f7bbcf0d9812dca63c5ae1c4d0cf9bf09f0e837f8811",
+  "manifestHash": "355dd0988209d4c0d676a07c0f29f51f090826e09e6d7174da094b0878d8299d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8287,6 +8287,9 @@
     ],
     "add gpt 6 1 terra to cli codex": [
       "add gpt 6 1 terra to cli codex"
+    ],
+    "add hy4 flash free to the cli opencode": [
+      "add hy4 flash free to the cli opencode"
     ],
     "add iconic rule": [
       "add iconic rule"
@@ -18099,6 +18102,24 @@
     ],
     "changelog spacing tasks": [
       "changelog spacing tasks"
+    ],
+    "changelog spec folder at bottom": [
+      "changelog spec folder at bottom"
+    ],
+    "changelog spec folder at bottom acceptance criteria": [
+      "changelog spec folder at bottom acceptance criteria"
+    ],
+    "changelog spec folder at bottom goal": [
+      "changelog spec folder at bottom goal"
+    ],
+    "changelog spec folder at bottom implementation summary": [
+      "changelog spec folder at bottom implementation summary"
+    ],
+    "changelog spec folder at bottom plan": [
+      "changelog spec folder at bottom plan"
+    ],
+    "changelog spec folder at bottom tasks": [
+      "changelog spec folder at bottom tasks"
     ],
     "changelog stale counts": [
       "changelog stale counts"
@@ -61058,6 +61079,21 @@
     "hvr workflow references": [
       "hvr workflow references"
     ],
+    "hy4 flash free opencode roster": [
+      "hy4 flash free opencode roster"
+    ],
+    "hy4 flash free opencode roster goal": [
+      "hy4 flash free opencode roster goal"
+    ],
+    "hy4 flash free opencode roster implementation summary": [
+      "hy4 flash free opencode roster implementation summary"
+    ],
+    "hy4 flash free opencode roster plan": [
+      "hy4 flash free opencode roster plan"
+    ],
+    "hy4 flash free opencode roster tasks": [
+      "hy4 flash free opencode roster tasks"
+    ],
     "hybrid boost rrf scaling": [
       "hybrid boost RRF scaling"
     ],
@@ -74994,6 +75030,9 @@
     ],
     "move task": [
       "move task"
+    ],
+    "move the changelog spec folder blockquote from under": [
+      "move the changelog spec folder blockquote from under"
     ],
     "move worktrees out of checkout": [
       "move worktrees out of checkout"
@@ -111022,6 +111061,9 @@
     "sk create changelog 1 5 3 0": [
       "sk-create-changelog 1.5.3.0"
     ],
+    "sk create changelog 1 5 4 0": [
+      "sk-create-changelog 1.5.4.0"
+    ],
     "sk create changelog concise default": [
       "sk-create-changelog concise default"
     ],
@@ -111138,6 +111180,9 @@
     ],
     "sk create changelog v1 5 3 0": [
       "sk-create-changelog v1.5.3.0"
+    ],
+    "sk create changelog v1 5 4 0": [
+      "sk-create-changelog v1.5.4.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"
@@ -118616,6 +118661,9 @@
     ],
     "spec folder level contract": [
       "spec folder level contract"
+    ],
+    "spec folder line at the end": [
+      "spec folder line at the end"
     ],
     "spec folder literal naming ai derived slugs": [
       "spec folder literal naming ai-derived slugs"

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/002-retrieval-class-weights` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`
-
 ### Summary
 
 This phase benchmarked the default-off `SPECKIT_RETRIEVAL_CLASS_ROUTING` flag on the production search path. The flag suppresses the graph and degree channels for single-hop find-one queries. On a labeled set of ten single-hop and eight multi-hop queries driven through the production `executePipeline` against a read-only corpus backup, single-hop precision at one fell from 0.90 off to 0.80 on, a stable -0.10 across three runs, while multi-hop recall at ten held at 0.75 in both states with every multi-hop channel set and top-K byte-identical. The graph and degree channels were pulling the correct packet to rank one on `sh-skill-advisor-daemon`, so suppressing them dropped the answer. The flag lowers precision with no recall benefit. Verdict: CUT.
@@ -48,3 +45,6 @@ This phase benchmarked the default-off `SPECKIT_RETRIEVAL_CLASS_ROUTING` flag on
 ### Follow-Ups
 - The flat SingleHop suppression branch and the `SPECKIT_RETRIEVAL_CLASS_ROUTING` flag can be deleted. No production default was flipped in this phase.
 - An entity-density-aware suppression variant that keeps graph and degree on high-degree single-hop queries was noted as a plausible future refinement but was not pursued here, since the current flag shows no win to refine toward.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/002-retrieval-class-weights` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

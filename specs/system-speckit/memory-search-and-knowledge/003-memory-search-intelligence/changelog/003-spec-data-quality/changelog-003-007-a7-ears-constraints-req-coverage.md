@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Nothing is built yet. This phase is PLANNED and scaffolded. The doc set captures the approach so a later build stage can clone the shipped AC_COVERAGE rule into a REQ_COVERAGE gate without re-deriving the seams. The plan, tasks, and checklist hold the verified file references the build will act on.
@@ -52,3 +49,6 @@ Nothing is built yet. This phase is PLANNED and scaffolded. The doc set captures
 
 - Build this on-write gate per plan.md. The A1, B1 and B2 surfaces share the safe-fix engine in `026-shared-safe-fix-engine`, so build that first.
 - Land it default-off and warn first, then flip to error only after the corpus backfill reads zero, per the migration sequence in `028-governance-rollout`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

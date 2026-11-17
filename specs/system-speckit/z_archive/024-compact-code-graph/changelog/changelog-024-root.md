@@ -8,8 +8,6 @@
 
 Long AI coding sessions in this repo no longer depend on the user re-explaining context after compaction, restart, or runtime switches. This packet grew from the original 25-phase delivery into a 30-phase program that now covers Claude hook rescue, hookless bootstrap recovery, structural code-graph retrieval, CocoIndex bridging, cross-runtime instruction parity, startup-orientation quality fixes, the packet-030 OpenCode transport/startup-parity extension, and the follow-on review/remediation work that brought the packet back to a clean validation state. The end result is a context-preservation stack that can recover active work, point the AI at the right retrieval tools, and surface structural code context without pretending that every intermediate phase shipped as fully complete.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/` (Level 3)
-
 ---
 
 ## New Features (7)
@@ -227,3 +225,5 @@ These changes made the packet shippable and explainable, not just functional.
 ## Upgrade
 
 No migration is required for operators already using the packet in-repo. The behavior changes are additive, but the packet history is not a flat "all phases fully complete" story: several middle phases were foundation or partial phases that were later tightened by follow-on work in phases `017`, `025`, and `026-028`. Treat the packet as complete at the current root state, not at any single intermediate checkpoint.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/` (Level 3)

@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/006-active-continuation` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
-
 ### Summary
 
 The goal plugin now has a guarded continuation path after idle-time verification. It stays passive by default, can be smoke-tested without sending a prompt, and only calls promptAsync when every gate passes.
@@ -63,3 +60,6 @@ The goal plugin now has a guarded continuation path after idle-time verification
 
 - Live idle smoke is still required. The unit tests prove the plugin hook logic, but they do not prove whether session.idle is observable in a one-shot opencode run versus requiring opencode serve or the TUI.
 - Active mode depends on the runtime client shape. The installed plugin type surface exposes ctx.client.session.promptAsync, and tests use that shape, but live smoke should confirm the same call path inside a running OpenCode instance.
+
+> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/006-active-continuation` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`

@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/006-skill-readme-refinement-survey` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation`
-
 ### Summary
 
 The 17 non-system skill READMEs carried the same policy drift that packet-005 had resolved in the 3 system skill READMEs: markdown tables inside Section 1 Overview and em dashes scattered through the body. cli-devin SWE 1.6 first audited all 17 READMEs, then autonomously remediated each one across 4 parallel dispatch waves. Every README now has zero tables in Section 1 Overview and zero em dashes anywhere in the body.
@@ -53,3 +50,6 @@ The 17 non-system skill READMEs carried the same policy drift that packet-005 ha
 
 ### Follow-Ups
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/006-skill-readme-refinement-survey` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation`

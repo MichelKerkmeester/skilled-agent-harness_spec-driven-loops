@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`
-
 ### Summary
 
 Implemented the reviewer-prompt benchmark substrate for deep-improvement Lane B. The scorer works in two modes: deterministic replay using fixture-provided `reviewer_output` for CI-safe runs, and live dispatch through `dispatch-model.cjs` when a case omits `reviewer_output`. A visible/hidden oracle split mirrors the existing `t3-*` fixture shape so a reviewer prompt cannot overfit to the visible answer. Verdict extraction is pattern-first with an optional `--grader llm` fallback for ambiguous prose. The entire addition is gated behind `SPECKIT_REVIEWER_BENCHMARKS`, leaving Lane B/C defaults completely inert.
@@ -77,3 +74,6 @@ Implemented the reviewer-prompt benchmark substrate for deep-improvement Lane B.
 
 - Live-LLM verdicts are nondeterministic. Only deterministic replay is suitable for blocking CI or pre-commit. Live-LLM reviewer runs stay opt-in and nightly by design.
 - `.github/workflows/` and `run-benchmark.cjs` were outside the approved write paths. CI seam and default runner internals were not directly modified.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`

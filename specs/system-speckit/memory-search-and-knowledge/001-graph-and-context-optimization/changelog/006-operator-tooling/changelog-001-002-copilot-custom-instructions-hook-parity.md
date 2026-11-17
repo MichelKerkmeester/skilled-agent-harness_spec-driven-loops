@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-22
 
-> Spec folder: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`
-
 ### Summary
 
 Claude Code sessions received startup code-graph context and per-prompt skill-advisor briefs through native hooks. Copilot CLI sessions received nothing because GitHub's hook contract silently discards hook output: `sessionStart` output is ignored and `userPromptSubmitted` cannot modify the model-visible prompt. No amount of TypeScript hook logic could bridge this gap by returning `additionalContext`.
@@ -87,3 +84,6 @@ The implementation added a custom-instructions writer (`hooks/copilot/custom-ins
 - Resolve spec validation drift. This packet's strict spec validation has pre-existing template/anchor/spec-doc drift that needs a documentation cleanup pass to reach exit 0.
 - Fix memory indexing failure. `generate-context.js` refreshed graph metadata but canonical spec-doc indexing failed and the post-save reviewer returned `REVIEWER_ERROR (EISDIR)`. Investigate the indexing path.
 - Patch Superset wrapper generator conflict. The Superset wrapper at `~/.superset/bin/copilot` rewrites `.github/hooks/superset-notify.json` on every launch, bypassing the repo-local Spec Kit writer. A follow-on packet must either inject the writer command into the Claude wrapper entry or patch the Superset generator so the managed block refreshes per-prompt.
+
+> Spec folder: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity` (Level 3)
+> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

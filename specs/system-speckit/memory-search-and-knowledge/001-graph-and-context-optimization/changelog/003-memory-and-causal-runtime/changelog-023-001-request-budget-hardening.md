@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/001-request-budget-hardening`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots`
-
 ### Summary
 
 The mcp-coco-index retrieval stack had no central guard on request cost. A demonstrated `ccc search "registered_embedders" --path '*' --limit 100 --offset 20000` query took 21.59 seconds because `fetch_k = (limit + offset) * 4` produced unbounded DB work. Full-scan path handling amplified the scan while multi-language KNN fanout multiplied the cost further. Four deep-research findings (FINDING-005-A, FINDING-015-A, FINDING-015-C, FINDING-020-C) documented the risk but no validation existed at any entry point.
@@ -75,3 +72,6 @@ A new `search_budget.py` module introduced `SearchBudget`, `SearchBudgetedReques
 - Soft timeout is cooperative and cannot preempt every SQLite extension operation mid-call. It prevents rerank work after retrieval returns if the elapsed budget is already exceeded, but does not interrupt active DB calls.
 - MCP response model remains message-based. Structured fields live on `SearchBudgetExceeded` but the MCP envelope stays `success=false` plus message for protocol compatibility.
 - Path fullscan policy covers global wildcards only. Scoped patterns such as `src/*` remain allowed. A future packet could add more granular wildcard matching if required.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/001-request-budget-hardening`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots`

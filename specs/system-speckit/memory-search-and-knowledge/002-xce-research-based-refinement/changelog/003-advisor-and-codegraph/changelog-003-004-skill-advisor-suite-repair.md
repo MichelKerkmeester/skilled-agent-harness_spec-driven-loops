@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/004-skill-advisor-suite-repair` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 The `system-skill-advisor/mcp_server` vitest suite reported 61 of 553 tests failing in the working tree. The dominant cause was the committed deep-loop merge, which folded the five legacy deep-* skills into one `deep-loop-workflows` node but left scorer fixtures, corpora, ledgers, the Python disambiguation layer, and the metadata-category allowlist still expecting the now-deleted legacy ids. Separately, an intentional fable-5 `GOVERNOR_DIRECTIVE` capsule appended to every advisor brief in `render.ts` broke the brief-assertion tests that hard-coded the pre-governor string. This packet drove the suite to 0 failures in two passes: a first pass fixed the 26 scorer/governor failures (61 to 36), and a second pass retargeted the settings-parity guard to the committed portable `settings.json` and added three reciprocal symmetry edges to external skill graph-metadata (36 to 0). `npm run build` is clean and the verified `render.ts` governor was left untouched.
@@ -83,3 +80,6 @@ The `system-skill-advisor/mcp_server` vitest suite reported 61 of 553 tests fail
 
 - One advisory WEIGHT-PARITY warning remains in the graph validator for `mcp-figma -> mcp-code-mode` (source `depends_on` 0.45 vs reciprocal `prerequisite_for` 0.7). It is advisory only and does not gate validation; matching it downward would breach the `prerequisite_for` [0.7,1.0] band, so the minimal symmetric addition was chosen and the source weight left untouched.
 - Pre-existing WEIGHT-BAND warnings on `deep-loop-workflows`, `mcp-figma`, and `sk-prompt-models` predate this packet; they are advisory and non-gating and were intentionally not touched.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/004-skill-advisor-suite-repair` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

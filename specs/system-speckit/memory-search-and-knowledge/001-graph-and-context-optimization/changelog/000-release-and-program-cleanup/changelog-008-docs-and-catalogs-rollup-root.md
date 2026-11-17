@@ -16,8 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-05
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup` (Level 2)
-
 ### Summary
 
 This phase parent groups two completed documentation phases. The first synchronized umbrella docs and catalog indexes to the shipped 026 capability set. The second backfilled packet-local changelogs across the 026 program, flattened the changelog tree, removed residue and recorded a program-wide audit. Detail lives in the child phase changelogs.
@@ -58,3 +56,5 @@ This phase parent groups two completed documentation phases. The first synchroni
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup` (Level 2)

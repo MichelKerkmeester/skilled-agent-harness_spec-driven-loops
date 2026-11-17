@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/006-prompt-license-registry` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots`
-
 ### Summary
 
 Prior to 023A2, CocoIndex consumers had to navigate optional helper objects or inline metadata dicts to read prompt names and license strings. The registry lacked a single stable access path, which weakened the fingerprint contract established in 023A1 and the license policy added in 023D.
@@ -83,3 +80,6 @@ Four open findings from the 023-arc investigation were closed: prompt names beca
 - Stale generated copies may remain in `build/lib`. The source-level duplicate prompt registry test intentionally ignores build output. A clean build or `build/lib` purge would remove the stale copies.
 - Unknown custom models still bypass registry policy in compatibility paths that previously tolerated unknown models. A follow-on packet could extend accessor coverage to those paths with an explicit allow-list pattern.
 - No git commit was created for the implementation per a user constraint. The changes are reflected in commit `443a7dd68c` which consolidated them with prior session work.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/006-prompt-license-registry` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots`

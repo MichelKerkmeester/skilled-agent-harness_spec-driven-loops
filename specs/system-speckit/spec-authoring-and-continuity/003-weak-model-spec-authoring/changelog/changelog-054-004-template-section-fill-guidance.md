@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-24
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance` (Level 3)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 Every `## ` section in the four core templates now carries one `<!-- FILL: ... -->` line with a good and a weak example about the `--quiet` flag, and so does every content section in the ten addon templates. Seven anchor placements that crossed a level gate are repaired, 14 hand-written examples are aligned with the template contract, and two guards stop the result from drifting.
@@ -71,3 +68,6 @@ Every `## ` section in the four core templates now carries one `<!-- FILL: ... -
 - Amended 2026-10-24: the six optional sections the review named now carry a non-applicable escape in their fill line (Level 2 edge cases, Level 2 complexity assessment, the fix addendum affected surfaces, and the Level 3+ architecture verification, documentation verification and sign-off). The Level 3+ implementation summary example now lists Verification and Known Limitations after Key Decisions, the same order as the template, and the golden snapshot was regenerated for the 11 rendered fill lines that changed.
 - Amended 2026-10-24 (second pass): on the operator's decision "Add them before 009", the five plan template sections that were left without an escape (phase dependencies, effort estimation, dependency graph, critical path and milestones) now carry "Write `N/A` with one reason, or delete the whole section." in their fill line. All five anchors are optional in the contract. The golden snapshot was regenerated for the 12 rendered fill lines that changed, and the plan rows equal the shipped lines.
 - A leftover fill comment is not a placeholder. The gate does not count it, so a filled document can still carry the line.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance` (Level 3)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

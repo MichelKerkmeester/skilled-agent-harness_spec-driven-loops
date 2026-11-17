@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/005-graph-impact-and-affordance`
-
 ### Summary
 
 Phase 001 cleared the P0 governance gate for the packet. The audit identified the upstream license posture as PolyForm Noncommercial 1.0.0 and approved clean-room adaptation rather than source reuse. It classified the in-scope adaptation patterns for phases 002-005 and set a fail-closed rule for any PR that copies source, schema text or implementation logic. Later review remediation added the post-scrub caveat: the external project name was removed from runtime paths, so the quote requirement became historical rather than controlling.
@@ -64,3 +61,6 @@ Phase 001 cleared the P0 governance gate for the packet. The audit identified th
 
 - Historical quote language remains in older source docs as context.
 - Any future direct reuse still needs external legal review and a superseding ADR.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/005-graph-impact-and-affordance`

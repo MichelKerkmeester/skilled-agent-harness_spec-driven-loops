@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/006-codegraph-edge-lifecycle` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`
-
 ### Summary
 
 This phase benchmarked the code-graph edge-lifecycle cluster of three default-off flags and returned a verdict for each. The fan-in rebind benchmark the staleness repair was explicitly gated on was run for the first time, proving force-reparsing importers rebinds cross-file edges correctly on 3 of 3 labeled cases and discriminating on the importer-unchanged kind-flip case. The first pass returned REFINE on the staleness repair and the bitemporal flag. A second refinement pass then built the degree cap and the bitemporal close-and-insert consumer, re-benchmarked both, and lifted the two REFINE verdicts to GRADUATE. Crucially, the bitemporal writer was wired into the proving consumer and confirmed correct, but a deep review of the live graph revealed that the bitemporal `invalid_at` column was NULL across all 70427 edges because the production edge-replace path still hard-deletes superseded edges rather than closing them. That read confirmed the refinement builds the correct machinery and proves the query but does not yet wire the writer into the reindex path, keeping the GRADUATE recommendation honest about the remaining step. The governance flag is CUT: the live data is already vocab-compliant and no current producer can violate the CHECK. No default is flipped by this phase. Final verdicts: edge-staleness repair GRADUATE, bitemporal reads GRADUATE, governance vocab CUT.
@@ -65,3 +62,6 @@ This phase benchmarked the code-graph edge-lifecycle cluster of three default-of
 - Wire `closeEdgesForSources` and `insertEdgeWithValidity` into the `replaceEdges` / `replaceNodes` reindex path behind `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS` before the flag flips. The staleness repair already detects the exact moment a symbol identity changes and is the natural write site.
 - Set `SPECKIT_CODE_GRAPH_REVERSE_DEP_DEGREE_CAP` to a sensible ceiling when flipping the staleness flag. The cost benchmark informs the tuning but does not fix the value.
 - Revisit `SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB` only if an untyped or external edge writer is ever added. Absent that path the CUT verdict stands.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/006-codegraph-edge-lifecycle` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

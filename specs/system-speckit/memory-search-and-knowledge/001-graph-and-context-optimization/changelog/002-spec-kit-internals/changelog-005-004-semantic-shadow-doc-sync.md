@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/004-semantic-shadow-doc-sync` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation`
-
 ### Summary
 
 The SC-004 and SC-005 scenario documentation, the feature catalog attribution document, and a stale code comment in the semantic_shadow lane source file were out of sync with the verified live lane configuration. Each was updated to reflect the actual lane behavior (weight 0.05, live set to true, fused shadowOnly set to false). The lane weight was intentional and was not changed. This documentation and comment sync clears the SC-004 PARTIAL finding from the 028 remediation run.
@@ -57,3 +54,6 @@ The SC-004 and SC-005 scenario documentation, the feature catalog attribution do
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/004-semantic-shadow-doc-sync` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation`

@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers`
-
 ### Summary
 
 This leaf closed out the phase with two deliverables. First, a cross-consumer integration test file verified that all three shipped reducers behave independently and respect their default-off safety posture when run together in a shared in-memory SQLite fixture. Second, a documentation correction fixed the `SPECKIT_FEEDBACK_RETENTION_MODE` summary-table default from `OFF` to `shadow`, aligning the reference with what the retention reducer actually ships. The phase spec expected four reducer flags; only three exist because the aggregator is read-only and flagless, so no fourth flag was added.
@@ -52,3 +49,6 @@ This leaf closed out the phase with two deliverables. First, a cross-consumer in
 ### Follow-Ups
 
 - Parent packet closeout can treat this child as the phase closeout gate. The aggregator has no flag; the three-flag count documented in ENV_REFERENCE is the authoritative record.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers`

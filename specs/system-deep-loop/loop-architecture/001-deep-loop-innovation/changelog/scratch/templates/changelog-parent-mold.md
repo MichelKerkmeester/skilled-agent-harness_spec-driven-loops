@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-08-16
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/scratch/templates/parent-mold` (scaffolding template)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/scratch/templates`
-
 ### Summary
 
 This folder is a phase-parent scaffolding mold, not a delivered 036 phase. It provides the file shape used when creating new parent spec folders; its `spec.md` holds placeholder example content and does not describe shipped work. Recorded here only so every folder under 036 has a corresponding changelog.
@@ -24,3 +21,6 @@ This folder is a phase-parent scaffolding mold, not a delivered 036 phase. It pr
 ### Status
 
 Scaffolding template — no runtime history.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/scratch/templates/parent-mold` (scaffolding template)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/scratch/templates`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/006-commands` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`
-
 ### Summary
 
 This child phase executed (commit 7239e3d2bd). All 19 command docs under `.opencode/commands` were reviewed against shipped state and the one factual drift found, a fable-mode route reference in `doctor/speckit.md`, was fixed. The `.claude/commands` mirror is a symlink so the same edit covers it. The deep-research command-router and `agent_router.md` stay deferred to the concurrent session that owns them.
@@ -54,3 +51,6 @@ This child phase executed (commit 7239e3d2bd). All 19 command docs under `.openc
 ### Follow-Ups
 
 - Hand the deferred deep-research router and `agent_router.md` back to the concurrent session that owns them.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/006-commands` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`

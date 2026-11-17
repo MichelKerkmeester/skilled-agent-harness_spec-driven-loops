@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/002-rerun-24-scenarios-suite`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups`
-
 ### Summary
 
 The 15-scenario local-LLM query intelligence playbook (scenarios 401-415) could not be executed after Wave 1 substrate fixes because two runtime blockers stopped the preflight gate cold. The Spec Kit Memory MCP launcher exited with `ERR_MODULE_NOT_FOUND` for `zod-to-json-schema`. The `opencode-go/kimi-k2.6` provider route responded with `ConnectionRefused` from the sandbox environment. A reusable runner script was committed so the suite can be replayed once both blockers are resolved. A blocked evidence report captures the full diagnostic trail with verdict counts: 0 PASS / 0 PARTIAL / 0 FAIL / 15 SKIP.
@@ -65,3 +62,6 @@ None.
 - Confirm `opencode-go/kimi-k2.6` provider connectivity from a non-sandbox environment before rerunning the script.
 - Rerun `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.sh` once both blockers are resolved to produce an actual PASS/FAIL distribution against the post-fix substrate.
 - Decide whether the dependency repair belongs in sibling packet 003 or a new dedicated follow-up packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/002-rerun-24-scenarios-suite`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups`

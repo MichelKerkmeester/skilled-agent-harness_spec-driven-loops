@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/008-remove-sk-doc-legacy-template-debt` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 The sk-doc template alignment audit over the last 40 commits flagged 93 MISALIGN-HIGH and 177 MISALIGN-MEDIUM findings in 384 documentation files. Nearly all were pre-existing legacy debt in spec folders authored under earlier sk-doc template versions that lacked current frontmatter, anchor requirements and template-source-marker requirements.
@@ -71,3 +68,6 @@ Re-audit confirmed eligible HIGH findings dropped from 82 to 0. Explicit MED fin
 
 - Resolve the 45 remaining explicit MISALIGN-MEDIUM findings that require narrative rewrite, skill-doc restructuring or manual playbook source-file sections. These are grouped in the implementation-summary Tier 5 deferral table and need a dedicated Tier 5 pass.
 - Verify MED hidden-ref enumeration. The original audit summary reported 177 MED findings but the file body exposed only 142 concrete refs plus summarized `(+N more)` entries. A full enumeration pass would confirm whether hidden refs are covered by the Tier 5 group assignments.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/008-remove-sk-doc-legacy-template-debt` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

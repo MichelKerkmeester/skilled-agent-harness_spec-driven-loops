@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/018-feature-catalog-playbook-degraded-alignment` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 Three operator-facing documentation surfaces drifted from the shipped runtime contract in ways that led operators to construct wrong payloads and misread handler response shapes. The auto-trigger catalog page described `fallbackDecision` recovery routing as a single universal contract across handlers. The readiness-contract catalog page implied one shared response type covers all three handlers. The CocoIndex routing playbook described `rankingSignals` as an object instead of an array of strings.
@@ -74,3 +71,6 @@ None.
 - Run `validate.sh --strict` against the packet folder to record a final PASS for SC-002.
 - Once packet 016 is fully landed, re-read the auto-trigger catalog page to confirm the `[^c016]` footnote wording is still accurate against 016's shipped contract. If 016 ships a different field name than `fallbackDecision`, queue a Packet C-prime single-edit patch.
 - Confirm `git diff --name-only` for the packet's working set shows no `.ts`, `.js`, `.py`, `.sh` files (REQ-004 and SC-004 evidence).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/018-feature-catalog-playbook-degraded-alignment` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-02
 
-> Spec folder: `system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders` (Level 2)
-> Parent packet: `system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix`
-
 ### Summary
 
 Before this phase, child-phase deep-research and deep-review artifacts landed under ancestor root folders. That scattered packet history away from the owning phase and forced downstream consumers to reason through a parent coordination root. Root specs were fine. Everything else was misplaced.
@@ -80,3 +77,6 @@ Commits: `79e97aec92` (scaffold sweep), `30024e3bed` (fleet marker + validation)
 ### Follow-Ups
 
 - None. The rollback contract, migration, and rebase are complete.
+
+> Spec folder: `system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders` (Level 2)
+> Parent packet: `system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix`

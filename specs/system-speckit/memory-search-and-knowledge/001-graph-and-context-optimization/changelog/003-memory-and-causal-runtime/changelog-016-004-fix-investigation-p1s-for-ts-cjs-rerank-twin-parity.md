@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle`
-
 ### Summary
 
 The TS/CJS/Python sidecar helpers had accumulated nine P1 drift findings where contracts disagreed or where the canonical source was unclear. Backend kind normalization had an ambiguous ownership point between `sidecar-client.ts` and `execution-router.ts`. The production `SidecarClientOptions` type leaked test-only fields. SPECKIT_ environment variable names were undocumented. JS ledger writes had no locking while the Python equivalent used `fcntl.flock`. The Python health payload cap was 8KB versus the JS canonical 64KB. The Python `processLiveness` function returned a bare `Literal` rather than the structured dict the JS contract specified.
@@ -85,3 +82,6 @@ Nine findings were closed in a single commit. Schema and location drifts (F2, F3
 ## Later Update (2026-06-04)
 
 The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits b8a866de2f, c99f990897 and ada2c51ee8. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle`

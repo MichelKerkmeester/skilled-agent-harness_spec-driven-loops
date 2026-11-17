@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/010-deep-improvement-accepted-vs-shipped` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`
-
 ### Summary
 
 Two-phase promotion (accept vs ship) with branch-preserved failure + a new rollback-candidate.cjs, in promote-candidate.cjs (+ promotion gate/rules docs + config). 388 deep-improvement tests pass; hygiene/drift clean.
@@ -58,3 +55,6 @@ Two-phase promotion (accept vs ship) with branch-preserved failure + a new rollb
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/010-deep-improvement-accepted-vs-shipped` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`

@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation` (Level 2, Phase Parent)
-
 ### Summary
 
 The finding-remediation phase parent closed the remaining epic deep-review backlog through eight subsystem lanes. The pipeline was verify-first: Fable 5 refuted or confirmed each unverified P1, gpt-5.5-fast implemented confirmed items, Fable verified fixes, P2 clusters were triaged fix-or-waive, and targeted suites plus strict validation backed each lane.
@@ -75,3 +73,5 @@ The successor playbook/stress stage also completed: 475 manual-testing-playbook 
 
 - Live main-DB repair decision remains operator-gated per `playbook-report.md`.
 - `scripts/tests/test-validation-system.js` and privacy-preserving shadow replay are recorded follow-ons in the source report.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation` (Level 2, Phase Parent)

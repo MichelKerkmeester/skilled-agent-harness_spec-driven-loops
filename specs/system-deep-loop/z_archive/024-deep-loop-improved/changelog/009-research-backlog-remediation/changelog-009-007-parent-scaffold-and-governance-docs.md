@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/007-parent-scaffold-and-governance-docs` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`
-
 ### Summary
 
 Phase 008's own tasks.md, implementation-summary.md and plan.md were still raw, unedited templates despite the parent claiming Complete with 7 real shipped children, and two ADR sub-phases in phase 003 had no decision-record at all. Real aggregate docs replaced the scaffolds, both missing decision-records were authored from each phase's own real shipped content and a non-standard Level annotation was corrected.
@@ -56,3 +53,6 @@ Phase 008's own tasks.md, implementation-summary.md and plan.md were still raw, 
 ### Follow-Ups
 
 - None for this phase's own scope. A later phase in this same remediation (010) independently discovered that one of 008's own children, `003-model-benchmark-reducer-ledger`, still has genuine scaffold docs, tracked as a known, deliberately deferred instance.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/007-parent-scaffold-and-governance-docs` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`

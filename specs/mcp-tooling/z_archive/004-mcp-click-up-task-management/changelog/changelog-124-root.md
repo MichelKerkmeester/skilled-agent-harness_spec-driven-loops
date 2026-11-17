@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/mcp-tooling/004-mcp-click-up-task-management` (Level 3)
-
 ### Summary
 
 The mcp-click-up skill gives AI agents a structured, safe interface to ClickUp. Unlike ad-hoc tool usage, this skill provides:
@@ -59,3 +57,5 @@ _No file-level detail recorded._
 - cupt community tool — Not maintained by ClickUp officially. Future versions may break. Version not pinned in install.sh (installs latest); pin if stability required.
 - MCP requires Node.js/npx — Not auto-installed by install.sh. User must have Node.js installed separately.
 - Official MCP config — User must manually add config snippet to opencode.json; install.sh prints but does not apply it.
+
+> Spec folder: `.opencode/specs/mcp-tooling/004-mcp-click-up-task-management` (Level 3)

@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/003-manifest-template-implementation-plan` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`
-
 ### Summary
 
 Spec Kit now has one Level-driven template path instead of parallel rendered template trees. Scaffolding, validation, AI-facing instructions, feature catalog entries, and manual playbooks now describe the same public model: Level 1, Level 2, Level 3, Level 3+, and phase-parent packets. The implementation added a manifest-backed resolver and inline gate renderer, migrated the scaffold and validator stacks to the new source, and removed the obsolete legacy template directories.
@@ -91,3 +88,6 @@ Spec Kit now has one Level-driven template path instead of parallel rendered tem
 - Manifest schema extensions for section profiles and template versioning remain deferred pending compatibility policy.
 - Cross-session parent-session identifier existence checks remain deferred because lineage semantics are currently advisory.
 - Exit-code taxonomy cleanup remains deferred because it changes public CLI behavior across scripts.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/003-manifest-template-implementation-plan` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

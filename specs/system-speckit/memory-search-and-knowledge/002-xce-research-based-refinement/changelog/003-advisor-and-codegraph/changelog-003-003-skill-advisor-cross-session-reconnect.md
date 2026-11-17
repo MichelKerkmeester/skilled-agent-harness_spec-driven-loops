@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 The skill-advisor launcher was the odd one out of the three daemon launchers. The spec-memory and code-index launchers had reached a resilience bar in 026 and 027 — an owner lease and a reconnecting session proxy so a second session bridges the warm daemon instead of spawning a duplicate writer — but the advisor launcher's lease check only reported that a lease was held and did nothing about a dead socket. This phase brought it up to parity. A second session now bridges the live daemon through the session proxy, and a dead-socket respawn decision is acted on: the launcher reaps the dead owner and respawns a replacement under a bootstrap lock, rather than leaving the session stranded or starting a second writer.
@@ -55,3 +52,6 @@ The skill-advisor launcher was the odd one out of the three daemon launchers. Th
 ### Follow-Ups
 
 - Live adoption requires a fresh session (operator-gated), since the running launcher process keeps the pre-fix `.cjs` resident.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

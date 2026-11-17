@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/006-fix-deferred-p2s-for-provider-adapter-redesign` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes`
-
 ### Summary
 
 The `execution-router.ts` module carried a single-instantiation `DirectProviderAdapter` class that mixed provider creation, provider promise caching and Ollama registry delegation in one object. The `sidecar-worker.ts` module silently fell back to `hf-local` on a missing provider env and to the active profile dimension on invalid request dimensions, even though the router already resolved both upstream. Six deferred P2 findings (F10, F23, F63, F64, F71, F75) were closed by collapsing the class to a `createDirectProviderAdapter()` factory and three focused helpers, moving Ollama delegation to creation time, removing the worker fallbacks and normalizing provider aliases in one worker helper. The public `getEmbedderAdapter()` contract was preserved unchanged and all embedders vitest suites exited 0 after two F95 fixtures were updated to supply the now-required provider env.
@@ -74,3 +71,6 @@ The `execution-router.ts` module carried a single-instantiation `DirectProviderA
 - The arc 020 parent `spec.md` was not updated in this packet because the prompt scoped writable docs to the child packet only. A follow-on pass should reflect the arc completion state.
 - The F48 random-ID flake appeared twice during full-suite runs. The final allowed retry passed. The flake remains a known non-deterministic test issue for a separate remediation packet.
 - Three arc 020 findings (outside all six bucket scopes) remain DEFERRED and require operator sign-off before closure.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/006-fix-deferred-p2s-for-provider-adapter-redesign` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes`

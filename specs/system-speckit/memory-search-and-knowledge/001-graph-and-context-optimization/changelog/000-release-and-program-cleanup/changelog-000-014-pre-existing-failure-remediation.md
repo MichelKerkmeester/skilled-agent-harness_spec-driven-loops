@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-05
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/014-pre-existing-failure-remediation` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup`
-
 ### Summary
 
 The pre-existing failures surfaced by the 013 central verification were reconciled without weakening assertions. Advisor fixtures and expectations now match the current advisor output, with one real render ordering fix. Feature-flag reference tests point at the renumbered docs instead of duplicate files. DB-fixture-dependent suites now cleanly skip when fixtures are absent, the dead-code canary matches live symbols and code-index security hardening accepts the macOS `EINVAL` result for non-socket bind.
@@ -72,3 +69,6 @@ The pre-existing failures surfaced by the 013 central verification were reconcil
 - The DB-fixture-dependent suites remain deferred until real fixtures exist.
 - The advisor cap-ordering behavior and the corpus-parity 62 to 61 baseline are flagged as reversible judgment calls.
 - The advisor rendering change activates at runtime only after advisor dist rebuild and daemon recycle.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/014-pre-existing-failure-remediation` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup`

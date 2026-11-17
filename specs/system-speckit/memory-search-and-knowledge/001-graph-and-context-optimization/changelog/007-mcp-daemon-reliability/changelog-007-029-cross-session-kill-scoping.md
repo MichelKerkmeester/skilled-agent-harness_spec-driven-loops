@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 Two fixes and one rescue. session-cleanup.sh no longer guesses its identity: without CLAUDE_SESSION_PID it does nothing, and before every kill it re-proves the candidate's ancestor chain reaches this session's pid — a sibling session's launcher can never satisfy that, which closes the cross-session kill path behind today's mid-session MCP losses. The vector-index store gained a post-crash integrity gate: when the dirty-shutdown marker is present at open, it runs PRAGMA quick_check(1), and on failure writes the checkpoint needs-rebuild sentinel and refuses to serve, mirroring the dimension-mismatch fail-fast shape. The probe found the live index already structurally corrupted (invalid page numbers, double-referenced pages — the source of the "database disk image is malformed" warnings); with no checkpoint available, sqlite3 .recover salvaged a clean candidate that was verified and swapped in, with the corrupted original preserved beside it.
@@ -60,3 +57,6 @@ Two fixes and one rescue. session-cleanup.sh no longer guesses its identity: wit
 - The recovered index lost 2 rows and parked 368 orphans in lost_and_found — an embedding reconcile / index scan pass re-derives drift from canonical docs; not yet run.
 - The shared-daemon owner-shutdown question (one session legitimately stopping the daemon others share) remains with the watchdog/respawn phases.
 - The new integrity gate takes effect from the next daemon start (dist rebuilt; daemon was down at ship time).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

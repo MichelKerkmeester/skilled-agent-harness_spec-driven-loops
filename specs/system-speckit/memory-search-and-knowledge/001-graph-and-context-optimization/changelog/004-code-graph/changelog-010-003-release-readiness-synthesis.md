@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-26
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/003-release-readiness-synthesis` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`
-
 ### Summary
 
 Phases 001 and 002 each produced per-scenario evidence across 22 system-code-graph playbook scenarios, but the playbook's release-readiness verdict required a single consolidated view. All 22 scenarios were aggregated from the two evidence files into a release-readiness matrix covering per-scenario verdicts, triage classifications plus follow-on recommendations.
@@ -62,3 +59,6 @@ All P0 requirements were met. Triage for every non-PASS row is recorded in the m
 - Open a follow-on remediation packet for F-025-1 (Devin SessionStart hook registration path broken in scenario 025).
 - Re-run scenarios 002, 005, 022, 024 after the tree-sitter parser quarantine (F-RUNTIME-2) is resolved.
 - Verify sequential_thinking enforcement in Devin output once positive trace visibility is available.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/003-release-readiness-synthesis` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`

@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/001-deep-route-guard-plugin` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 Built `.opencode/plugins/deep-route-guard.js` (same day, renamed to `mk-deep-loop-guard.js`), a `tool.execute.before` hook that flags/blocks Task dispatches whose declared mode disagrees with `mode-registry.json`, live-verified against the real installed `opencode` binary for hook firing, warn vs. throw-reject behavior, fail-open safety, and non-deep passthrough.
@@ -67,3 +64,6 @@ Built `.opencode/plugins/deep-route-guard.js` (same day, renamed to `mk-deep-loo
 - Does not catch a schema-valid, route-matched artifact that is semantically wrong-mode internally.
 - Mismatch regex is a simple text match, not a structured parse (low but non-zero false-positive risk).
 - **Note (2026-07-01, later)**: this plugin's mode-mismatch check was hardened with prompt-text identity resolution and a second loop-repeat check in phase 017; the shared `.opencode/plugins/__tests__/` directory was subsequently renamed to `.opencode/plugins/tests/` by a concurrent cross-packet session (commit `1f20ab5e1a`) — the test file now lives at `.opencode/plugins/tests/mk-deep-loop-guard.test.cjs`.
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/001-deep-route-guard-plugin` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

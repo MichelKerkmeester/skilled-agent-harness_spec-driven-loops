@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-12
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation`
-
 ### Summary
 
 Seven routers still carried bare or mixed MCP names in `allowed-tools`. They now use the fully qualified `mcp__<server>__<tool>` form. The sk-doc command template was also corrected so it describes the actual common core plus workflow-backed and direct-router variants instead of falsely claiming one universal six-section shape.
@@ -55,3 +52,6 @@ Seven routers still carried bare or mixed MCP names in `allowed-tools`. They now
 ### Follow-Ups
 
 - Section-header style still varies across command families and is documented as acceptable variation, not normalized here.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation`

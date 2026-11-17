@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`
-
 ### Summary
 
 This review-only packet audited MCP retrieval, unified context, trigger matching and causal graph handlers. The merged child registry verdict was FAIL, with 4 open findings. The child registry classified community fallback scope bypass and bare-ID causal graph access as P0, plus a P1 for wrong-target or orphan causal edges and a P2 for hidden `memory_causal_stats` backfill capability. The parent summary later recalibrated the two scope findings to P1 under the trusted local single-user MCP model, while noting they remain P0 for governed or multi-tenant isolation claims.
@@ -59,3 +56,6 @@ This review-only packet audited MCP retrieval, unified context, trigger matching
 - Add governed scope propagation and fail-closed filtering to community fallback retrieval.
 - Add scope authorization to causal graph tools that operate on bare IDs.
 - Validate causal edge targets before writers can create wrong-target or orphan edges.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`

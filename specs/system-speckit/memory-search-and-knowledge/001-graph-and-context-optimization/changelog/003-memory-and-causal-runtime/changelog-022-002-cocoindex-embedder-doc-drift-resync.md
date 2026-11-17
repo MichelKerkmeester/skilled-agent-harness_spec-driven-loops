@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/002-cocoindex-embedder-doc-drift-resync`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`
-
 ### Summary
 
 Three `_NOTE_2` citation lines in `config_templates.md` still named `google/embeddinggemma-300m` as the CocoIndex default even though `DEFAULT_EMBEDDER_NAME = "sbert/nomic-ai/CodeRankEmbed"` shipped on 2026-05-19. An operator copy-pasting the template would misconfigure or under-resource accordingly. Two adjacent surfaces compounded the drift: `embedder-pluggability.md:342` described `jinaai/jina-embeddings-v2-base-code` as the production default without noting supersession, and `SKILL.md:8` listed `embeddinggemma-300m` as a keyword but not `code-rank-embed`, making the canonical current default invisible to operators searching the skill.
@@ -66,3 +63,6 @@ All four embedder-side edits shipped in a single main-agent pass. The three `_NO
 - Ship phase 002b to close reranker-side prose drift: `007-reranker-opt-in.md`, `manual_testing_playbook.md:402,407`, and `benchmarks/README.md:202` still cite `BAAI/bge-reranker-v2-m3` and BGE-specific size prose requiring Qwen3-Reranker-0.6B disk footprint and daemon-log identifier verification.
 - Update memory entry `project_2026_05_19_cocoindex_arc_shipped.md` post-arc to note that 023B promoted `Qwen/Qwen3-Reranker-0.6B` over `jina-reranker-v3` as the production reranker default.
 - Audit `README.md:217` and `INSTALL_GUIDE.md:563` embeddinggemma rows for a non-default marker. P2 informational finding deferred pending 002b closure.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/002-cocoindex-embedder-doc-drift-resync`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

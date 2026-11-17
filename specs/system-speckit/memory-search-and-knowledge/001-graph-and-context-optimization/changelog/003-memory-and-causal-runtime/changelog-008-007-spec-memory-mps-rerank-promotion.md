@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/007-spec-memory-mps-rerank-promotion` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`
-
 ### Summary
 
 Spec-memory's `SPECKIT_CROSS_ENCODER` default remained off after Phase 005 locked a HOLD for CPU because Qwen3-Reranker-0.6B exceeded the MCP rerank-gate timeout on 77 percent of probes. This packet investigated whether routing the sidecar to Apple Silicon MPS would change that verdict. Phase A smoke confirmed a promising signal: 155 ms per 3-doc rerank at ~19x speedup over CPU. Phase C bench (50 probes, 20-doc Stage 3 batches under `memory_search` load) exposed the hard constraint: MPS GPU memory could not hold Qwen's attention forwards at the production batch shape. The sidecar crashed mid-run with `MPS backend out of memory` allocating 76 GB, leaving 116 of 150 Arm B rows degraded to positional fallback. All three promotion gates failed by large margins. HOLD applied: `cross-encoder.ts:54` reverted to `cross-encoder/ms-marco-MiniLM-L-6-v2` and `SPECKIT_CROSS_ENCODER` default stays false.
@@ -75,3 +72,6 @@ Spec-memory's `SPECKIT_CROSS_ENCODER` default remained off after Phase 005 locke
 - Bench `ms-marco` (80 MB) or `BGE` (600 MB) on MPS at the same batch shape. Both have smaller attention footprints than Qwen and should fit. Whether MPS changes the hit-rate ordering penalty seen on the 2026-05-21 CPU ms-marco run remains open.
 - Test quantized Qwen (`Qwen3-Reranker-0.6B-Q4_K_M`), which would cut model memory ~3-4x. Requires a new model artifact and revalidation.
 - Implement per-model device assignment in the sidecar (Qwen on CPU for cocoindex, ms-marco on MPS for spec-memory opt-in). Not in scope for this packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/007-spec-memory-mps-rerank-promotion` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`

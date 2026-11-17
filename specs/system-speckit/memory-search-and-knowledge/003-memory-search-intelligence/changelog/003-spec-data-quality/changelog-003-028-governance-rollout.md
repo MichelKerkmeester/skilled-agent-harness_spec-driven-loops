@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/028-governance-rollout` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Nothing has shipped yet. This phase is PLANNED and scaffolded only. The spec, plan, tasks and checklist are authored and the five governance deliverables are described, but no governance document has landed and no acceptance criterion has been verified.
@@ -50,3 +47,6 @@ Nothing has shipped yet. This phase is PLANNED and scaffolded only. The spec, pl
 ### Follow-Ups
 
 - Build per plan.md. This phase is foundational and the dependents sequenced behind it are listed in `028-governance-rollout`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/028-governance-rollout` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

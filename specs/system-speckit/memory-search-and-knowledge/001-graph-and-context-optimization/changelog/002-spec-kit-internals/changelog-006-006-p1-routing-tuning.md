@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/006-p1-routing-tuning` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation`
-
 ### Summary
 
 Fixed 5 root-cause classes of residual non-alias P1 regression failures across both the TypeScript and Python scorers. The fixes cover terse-phrase routing, CLI-vs-skill disambiguation, breadth abstention, deep-loop colon syntax, and review-target disambiguation. Both regression harnesses now report 0 failures across all 50 cases with P0 at 12/12 each.
@@ -62,3 +59,6 @@ Fixed 5 root-cause classes of residual non-alias P1 regression failures across b
 
 - Class C abstention is intentionally narrow. It fires only when the would-be top is code-like and the prompt is a broad greenfield build with no narrow anchor or a multi-concern optimization with two distinct concern classes. Genuinely terse prompts that the scorer already cannot route confidently abstain for low-confidence reasons unrelated to this gate.
 - Signals are domain-meaningful, but the corpus is small. Anchors target specific multi-token phrases and were verified against the 50-case regression suite and the 193-row corpus parity tests, not just the failing rows. The adversarial guards lock in the over-abstention boundary.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/006-p1-routing-tuning` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation`

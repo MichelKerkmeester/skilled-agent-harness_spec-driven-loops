@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening`
-
 ### Summary
 
 This leaf adds two diagnostic and governance surfaces without changing recall behavior or stored data. The health audit exposes hard-exclusion predicate metadata through `memory_health` and classifies intended archived exclusions separately from deprecated-tier silent-risk rows, surfacing hints through `/doctor memory`. The tool-ownership lint derives a deterministic 37-tool map from `TOOL_DEFINITIONS` at pre-commit time and blocks on missing tools, extra tools, field drift, a malformed map, or unreadable definitions. No schema version bump occurred.
@@ -74,3 +71,6 @@ This leaf adds two diagnostic and governance surfaces without changing recall be
 
 - Recall policy is intentionally unchanged. Widening recall to include deprecated rows requires a separate policy decision.
 - Direct skill-budget YAML was not edited (outside the allowed write list). Ownership drift is enforced by pre-commit and documented in the hook reference.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening`

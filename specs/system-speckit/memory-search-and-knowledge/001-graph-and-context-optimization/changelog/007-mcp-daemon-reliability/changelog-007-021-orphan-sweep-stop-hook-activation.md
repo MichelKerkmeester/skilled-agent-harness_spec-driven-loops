@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/021-orphan-sweep-stop-hook-activation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 Leaked MCP daemons can finally be cleaned up on session end. The Stop hook runs session-cleanup.sh, but that script only reaps a session's processes when CLAUDE_SESSION_PID is set — and the harness never sets it, so it logged skip reason=no-session-pid and did nothing while orphaned daemons piled up. It deliberately would not guess the pid from its PPID, because on a shared terminal that mis-targets and kills live sibling sessions (the v3.5.0.2 incident). So the safe answer is not to guess at all.
@@ -57,3 +54,6 @@ Leaked MCP daemons can finally be cleaned up on session end. The Stop hook runs 
 - Default off. Orphans are only swept when an operator sets SPECKIT_STOP_HOOK_ORPHAN_SWEEP. The default stays a no-op, so the accumulation only stops once enabled.
 - Runtime-unverified reap. The gating is fully tested, but an actual live reap on session end is owed to an operator dry-run-then-enable pass; it cannot be safely exercised in-session.
 - Session-scoped cleanup still needs the pid. The precise, session-scoped kill remains gated on CLAUDE_SESSION_PID; this packet only adds the pid-independent orphan fallback, it does not make the harness provide a session pid.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/021-orphan-sweep-stop-hook-activation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

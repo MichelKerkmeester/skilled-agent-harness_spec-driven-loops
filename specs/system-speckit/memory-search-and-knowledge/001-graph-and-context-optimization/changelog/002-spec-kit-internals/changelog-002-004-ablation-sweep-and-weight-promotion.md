@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/004-ablation-sweep-and-weight-promotion` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`
-
 ### Summary
 
 The semantic_shadow cosine lane had shipped shadow-only in a prior phase, producing match payloads that never influenced skill recommendations. This packet promoted it to a live scoring lane with a conservative 0.05 weight and rebalanced the existing four lanes so the live total is exactly 1.00. The change gives the cosine similarity signal a small but measurable contribution to routing decisions without letting it overpower the explicit and lexical evidence lanes.
@@ -60,3 +57,6 @@ The semantic_shadow cosine lane had shipped shadow-only in a prior phase, produc
 
 - The known plugin-bridge Vitest baseline failure (forced-local fail-open expectation) was not addressed in this packet.
 - A weight-vector sweep harness for automated candidate evaluation is deferred to follow-on work.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/004-ablation-sweep-and-weight-promotion` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`

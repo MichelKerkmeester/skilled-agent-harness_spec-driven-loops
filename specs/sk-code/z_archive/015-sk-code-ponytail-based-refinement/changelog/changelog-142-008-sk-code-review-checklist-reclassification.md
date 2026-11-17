@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/008-sk-code-review-checklist-reclassification` (Level 1)
-> Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`
-
 ### Summary
 
 Phase 8 moved reusable `sk-code-review` checklist artifacts to the place the framework expects reusable checklists to live. Six files were filed under `references/`, but reviewers apply them as assets rather than read them as doctrine. The review doctrine did not change, only the location, routing and overview shape.
@@ -69,3 +66,6 @@ Phase 8 moved reusable `sk-code-review` checklist artifacts to the place the fra
 - v1.1 through v1.4 document the state at their release.
 - The move is recorded in v1.5.0.0.
 - External links to a moved file should update to `sk-code-review/assets/<name>.md`.
+
+> Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/008-sk-code-review-checklist-reclassification` (Level 1)
+> Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/001-inventory-extract` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands`
-
 ### Summary
 
 Inventoried the memory command family and extracted presentation responsibilities into a command-to-asset map.
@@ -50,3 +47,6 @@ _No file-level detail recorded._
 ### Follow-Ups
 
 - Existing memory workflow YAML assets were requested but are absent in this checkout. Creating YAML assets was outside the allowed write paths for this task.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/001-inventory-extract` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands`

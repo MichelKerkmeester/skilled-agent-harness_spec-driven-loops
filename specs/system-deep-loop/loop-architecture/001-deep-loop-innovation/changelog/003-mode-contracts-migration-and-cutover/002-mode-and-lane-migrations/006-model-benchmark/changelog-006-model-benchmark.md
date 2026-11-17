@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark` (Level 2)
-
 ### Summary
 
 This phase-parent migrates the model-benchmark variant's multi-model runs and scoring matrix onto the typed event-ledger substrate through seven concern children, reusing the deep-improvement-common backbone and ending in an independent mode gate. Each child owns its own scope, plan, and verification. Per the phase documentation map the children are delivered; the lane remains in progress.
@@ -30,9 +28,9 @@ This phase-parent migrates the model-benchmark variant's multi-model runs and sc
 | `006-shadow-parity` | Plan the Model Benchmark shadow-parity harness that compares projections event-for-event and blocks authority cutover on any unexplained semantic difference. |
 | `007-rollback-and-mode-gate` | Plan the fail-closed rollback switch and independent migration gate for the Model Benchmark variant over the shared Deep Improvement Common Services backbone. |
 
-## 2026-08-16
-
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark` (Level 2)
+
+## 2026-08-16
 
 ### Summary
 
@@ -43,3 +41,5 @@ The Model Benchmark migration lane is now Complete, with all seven concern child
 - All 7 leaves Complete.
 - Sealed-artifacts verified green at 12/12; certificates-and-receipts at 47/47 (missing implementation-summary authored from a completed sibling template).
 - Resume-adapter at 22/22; shadow-parity at 40/40; rollback-gate at 58/58.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark` (Level 2)

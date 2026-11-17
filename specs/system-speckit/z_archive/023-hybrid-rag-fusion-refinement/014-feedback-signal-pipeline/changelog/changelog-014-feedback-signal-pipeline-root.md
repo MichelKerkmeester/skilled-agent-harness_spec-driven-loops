@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-04-03
 
-> Spec folder: `system-spec-kit/023-hybrid-rag-fusion-refinement/014-feedback-signal-pipeline` (Level 2)
-
 ### Summary
 
 The memory search system now observes how searches are used and records five types of usage signals: result views, content citations, rephrased queries, repeated queries, and follow-on tool use. These signals are collected in the background without affecting ranking. The key fix was enabling follow-on tracking for tools that have no session identifier, solved by remembering the most recent session and using it as a fallback.
@@ -57,3 +55,5 @@ The memory search system now observes how searches are used and records five typ
 
 - Use collected signals to improve search ranking once the dataset is large enough and validated
 - Revisit the session fallback approach if the system moves to multi-client connections (current design assumes one client at a time)
+
+> Spec folder: `system-spec-kit/023-hybrid-rag-fusion-refinement/014-feedback-signal-pipeline` (Level 2)

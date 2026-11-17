@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/043-gap-threshold-calibration-benchmark` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Tested whether the Stage-4 evidence-gap detector's Z-score threshold of 1.3 is calibrated, after the 041 rerun showed the now-live cap demoting even aligned one-word queries. A read-only 18-query labeled-set harness ran the production `executePipeline` once per query (6 should-good strong aligned, 6 should-gap off-corpus, 6 boundary one-word aligned), read the real `evidenceGapDetected` from Stage-4 and recomputed the continuous Z-score under a per-query faithfulness assertion. The finding is that the detector is mis-designed, not mis-tuned. The Z-score measures peakedness not relevance, so the should-good false-positive rate is 0.67 and the should-gap detection rate is 0.33, the distributions are inverted and no threshold separates the groups, the optimal 0.8 reaching only 0.50. Verdict REDESIGN relevance-aware, do not tune. This phase ships measured data and a verdict, not code.
@@ -53,3 +50,6 @@ Tested whether the Stage-4 evidence-gap detector's Z-score threshold of 1.3 is c
 
 - Redesign the detector to be relevance-aware, keying the evidence-gap signal off the noise-floor-relative absolute relevance the `requestQuality` verdict banding already computes, so a rich strong cluster is never called a gap and a flat weak cluster always is. That redesign landed in `044-relevance-aware-evidence-gap`, with this 043 harness as its validation gate.
 - The 041 keystone wiring is sound, the statistic is the fix to chase. The cap errs toward under-confidence (the safe direction opposite the original over-confident bug), so this is a quality refinement rather than an urgent regression.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/043-gap-threshold-calibration-benchmark` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

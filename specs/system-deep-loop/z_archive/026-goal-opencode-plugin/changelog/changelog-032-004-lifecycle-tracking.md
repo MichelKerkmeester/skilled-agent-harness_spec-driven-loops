@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/004-lifecycle-tracking` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
-
 ### Summary
 
 Lifecycle tracking now gives /goal enough runtime memory to govern budgets and prepare verifier evidence without changing its passive M1 behavior. The plugin observes OpenCode events, records assistant activity, charges usage only when it is safe, and marks a goal budget_limited once its configured token cap is reached.
@@ -60,3 +57,6 @@ Lifecycle tracking now gives /goal enough runtime memory to govern budgets and p
 ### Follow-Ups
 
 - Usage payload coverage is best-effort. If OpenCode does not include token counts on message.updated, the plugin records usageSource=unavailable and does not charge tokens.
+
+> Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/004-lifecycle-tracking` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`

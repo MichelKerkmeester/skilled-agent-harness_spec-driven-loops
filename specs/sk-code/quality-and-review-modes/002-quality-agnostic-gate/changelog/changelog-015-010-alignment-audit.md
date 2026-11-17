@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-26
 
-> Spec folder: `specs/sk-code/015-quality-agnostic-gate/010-alignment-audit` (Level 2)
-> Parent packet: `specs/sk-code/015-quality-agnostic-gate`
-
 ### Summary
 
 The phase's changes landed on main as 7d6474c602 (this folder), f431355ac2 (the fixes) and 554c8c8f78 (the version name), with the CI repairs c1fe3ae9b4 and 8c760290ff. tasks.md holds one task per fix group with its evidence, and acceptance-criteria.md holds the eighteen criteria, all Met. The CI routing fix closed the last open criterion, and an audit of AGENTS.md and the repo rules closed its five surviving findings.
@@ -94,3 +91,6 @@ The phase's changes landed on main as 7d6474c602 (this folder), f431355ac2 (the 
 - Two released sk-code-quality entries were reworded with no fact changed: v1.4.0.0.md names its playbook scenario in words and v1.5.0.0.md drops its suite counts. The changelog check now ignores ids inside inline code spans.
 - A code folder without a README is governed by audit_readmes.py, which derives every durable directory with its exemptions; a repo-wide run found 781 directories and 0 gaps.
 - Commit the working tree. Landed 2026-10-27 on main as 7d6474c602 (this folder), f431355ac2 (the fixes) and 554c8c8f78 (the version name), with the CI repairs c1fe3ae9b4 and 8c760290ff, and every CI run on 8c760290ff passed.
+
+> Spec folder: `specs/sk-code/015-quality-agnostic-gate/010-alignment-audit` (Level 2)
+> Parent packet: `specs/sk-code/015-quality-agnostic-gate`

@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-05
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup` (Level 2, Phase Parent)
-
 ### Summary
 
 This phase parent groups 150 leaf changelogs that sit flat in this directory. Each child phase shipped independently and carries its own changelog with full detail. The authoritative child inventory is the full set of `changelog-*.md` files in this directory (excluding this root rollup). The Included Phases table below highlights the representative child rollup rather than re-listing all 150 leaves. Read each child changelog for the per-phase summary, verification, and files changed.
@@ -52,3 +50,5 @@ This phase parent groups 150 leaf changelogs that sit flat in this directory. Ea
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup` (Level 2, Phase Parent)

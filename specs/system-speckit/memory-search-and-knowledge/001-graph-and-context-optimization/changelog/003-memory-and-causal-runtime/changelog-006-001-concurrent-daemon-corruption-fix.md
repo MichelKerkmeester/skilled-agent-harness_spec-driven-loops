@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/001-concurrent-daemon-corruption-fix`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`
-
 ### Summary
 
 Multiple skill-advisor daemons could open the same SQLite database at once, and the resulting writer contention drove a `.corrupt` quarantine pathway that produced about 1005 files in 6 hours under the parallel-AI benchmark. A single daemon now owns the file at any time. Sibling launchers detect the live owner via a PID liveness probe, print `LEASE_HELD_BY:<pid>`, and exit cleanly before touching the database. Every database open also sets WAL journal mode plus a 5 second busy_timeout so the remaining single writer tolerates brief lock contention.
@@ -61,3 +58,6 @@ Multiple skill-advisor daemons could open the same SQLite database at once, and 
 
 - The full spawn-twice integration test is deferred. Unit tests substitute for `isLeaseHeld` semantics for now
 - The 24 hour zero-`.corrupt` soak (SC-001) is deferred to the operator, run after restart with the new launcher binary live
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/001-concurrent-daemon-corruption-fix`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

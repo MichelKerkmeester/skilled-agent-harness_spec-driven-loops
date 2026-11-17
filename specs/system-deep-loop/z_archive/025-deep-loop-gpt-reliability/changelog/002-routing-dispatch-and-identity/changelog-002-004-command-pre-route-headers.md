@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/004-command-pre-route-headers` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 Added additive "Resolved route" headers before body prose in research/review/context/ai-council prompt packs, command YAMLs, and council scripts, so route identity is explicit before a leaf agent interprets instructions.
@@ -65,3 +62,6 @@ Added additive "Resolved route" headers before body prose in research/review/con
 - Prompt-contract hardening only, not host hard identity.
 - GPT smoke acceptance testing owned by the next phase (005).
 - Route headers (`@ai-council`) intentionally differ in format from phase 002's route-proof state fields.
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/004-command-pre-route-headers` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

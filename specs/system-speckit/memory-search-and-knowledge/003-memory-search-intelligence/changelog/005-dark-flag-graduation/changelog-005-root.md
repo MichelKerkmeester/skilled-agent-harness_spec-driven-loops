@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation` (Level 2)
-
 ### Summary
 
 The Dark Flag Graduation phase parent put the tail of built-but-default-off features through one earn-or-cut gauntlet on the real corpus and graph. Eight benchmark families measured their feature on the production path and returned a verdict, then a flag-name cleanup, a validation pass, a production-readiness follow-up and a closing deep review finished the program. Four families graduated, three were cut on a measured loss or tie and one was held at refine. The multi-hop tail appends graduated for deep-K readers, the code-graph edge-staleness repair and bitemporal reads graduated, the advisor RRF fusion spine graduated and the deep-loop finding dedup graduated with its gauges. The retrieval-class channel weights, the save reconsolidation and the code-graph seeded PageRank were cut, alongside the edge governance vocabulary and the advisor self-recommendation guard as sub-cuts. The true-citation ledger stays at refine pending live session traffic. No production default was flipped inside this program. The parent stays a rollup and implementation detail lives in the child phase folders.
@@ -60,3 +58,5 @@ _No file-level detail recorded._
 - The bitemporal edge writer must be wired into the `replaceEdges` reindex path behind its read flag before that flag can flip. The validation and review phases both recorded the wiring as the one honest remaining step. **Resolved in the 011 graduation follow-ups (`007-graduation-follow-ups/001-codegraph-defaults-bitemporal`): the writer was wired into `code-graph-db.ts` behind `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS`, closing superseded edges with an open validity window on reindex.**
 - The true-citation ledger stays at refine until live session-carrying traffic reaches the density floor the probe now reports.
 - The unset production tunables for the deep-loop gauges and the degree cap need defined values, and flipping any graduated default on stays a separate evidence-gated decision outside this program.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation` (Level 2)

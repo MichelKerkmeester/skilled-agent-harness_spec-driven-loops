@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/004-literal-spec-folder-names` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals`
-
 ### Summary
 
 AI-chosen spec-folder and phase slugs now must include a specific subject token describing the concrete work being built or fixed. Generic placeholders like phase-1, phase-2, remediation, cleanup, and review-remediation-2 are explicitly listed as rejected examples. The instruction lands at four surfaces: the four YAML workflow files that drive /spec_kit:plan and /spec_kit:complete, the create.sh auto-generation fallback, the complete.md interactive Q8 prompt, and a new always-on rule 20 in system-spec-kit/SKILL.md.
@@ -65,3 +62,6 @@ AI-chosen spec-folder and phase slugs now must include a specific subject token 
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/004-literal-spec-folder-names` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals`

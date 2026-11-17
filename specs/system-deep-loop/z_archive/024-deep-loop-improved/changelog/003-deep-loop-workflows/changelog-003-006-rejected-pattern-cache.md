@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/006-rejected-pattern-cache` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`
-
 ### Summary
 
 Bounded rejected-idea index with exact + fuzzy suppression and reversal events in deep-research reduce-state.cjs (+ state_jsonl/loop_protocol docs + yaml). Reduce-state tests 12/12; hygiene/drift clean.
@@ -57,3 +54,6 @@ Bounded rejected-idea index with exact + fuzzy suppression and reversal events i
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/006-rejected-pattern-cache` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`

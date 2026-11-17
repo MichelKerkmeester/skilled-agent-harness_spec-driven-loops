@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 This phase shipped two retention candidates behind the default-off `SPECKIT_RETENTION_FORGETTING_V1` flag, alongside the candidate ledger for the remaining six. Spare-only retention eligibility and the live incoming-edge allowlist landed with deterministic tests, while the benchmark-gated, cascade and trust-gated candidates stay pending behind their real gates. Commit `478bebf387` carried the lib code with focused tests.
@@ -62,3 +59,6 @@ This phase shipped two retention candidates behind the default-off `SPECKIT_RETE
 - Resolve the feedback-learning and allowlist prerequisites before retention scoring.
 - Keep each ranking tweak flag-gated until a measured recall delta exists.
 - Move GDPR erasure behavior into its own packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

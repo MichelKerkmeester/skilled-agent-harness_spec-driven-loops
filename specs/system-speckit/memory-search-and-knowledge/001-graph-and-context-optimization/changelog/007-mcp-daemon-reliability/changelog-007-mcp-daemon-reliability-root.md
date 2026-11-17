@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability` (Level 2, Phase Parent)
-
 ### Summary
 
 This phase parent groups 15 child phases spanning 2026-05-28 to 2026-06-01. Each child phase shipped independently and carries its own changelog with full detail. The Included Phases table below is the authoritative child inventory. Read each child changelog for the per-phase summary, verification, and files changed.
@@ -75,3 +73,5 @@ These infra-followup phase parents were renested into this track during the prog
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability` (Level 2, Phase Parent)

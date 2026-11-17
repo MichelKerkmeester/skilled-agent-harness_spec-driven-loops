@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-09
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/001-code-graph-runtime-upgrades` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan`
-
 ### Summary
 
 The code-graph runtime had no formal detector provenance vocabulary, so non-AST fallback paths could silently emit `ast` labels. Blast-radius traversal walked past `maxDepth` before filtering, leaking out-of-bound nodes into results. Hot-file degree data existed in the index but was not surfaced to callers. Edge evidence metadata was absent from query and scan responses.
@@ -79,3 +76,6 @@ Lanes A through E shipped in order. Two tasks (lexical fallback cascade and clus
 - Add a graph-local capability selector and forced-degrade verification matrix if a lexical fallback cascade is introduced later. The cascade was deferred because failure rates were below 1 percent and the cost of a multi-language lexical fallback exceeded the benefit at this stage.
 - Stage cluster metadata and export contracts behind explicit feature flags when trust and payload prerequisites are in place. Clustering, GraphML or Cypher export plus rationale-node support remain prototype-later per ADR-003.
 - Resume/bootstrap trust preservation stays with packet 011. Startup, compact plus response-surface routing nudges remain with packet 008.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/001-code-graph-runtime-upgrades` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan`

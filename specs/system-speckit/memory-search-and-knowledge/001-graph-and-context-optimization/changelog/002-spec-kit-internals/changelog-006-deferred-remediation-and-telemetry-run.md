@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-04-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`
-
 ### Summary
 
 Phase 024 shipped the measurement machinery that Phases 020-023 deferred: a static 200-prompt harness, an observe-only live-session wrapper, and a JSONL analyzer. The static report processed 200/200 prompts and measured 112/200 advisor top-1 matches against corpus labels. The requested Codex config writes (Track 1) were blocked by the sandbox. The packet is 90% complete with one blocked track.
@@ -64,3 +61,6 @@ Phase 024 shipped the measurement machinery that Phases 020-023 deferred: a stat
 
 - Track 1 blocked: retry Codex config writes outside the sandbox.
 - Live-wrapper evidence must be collected from actual runtime sessions before routing-readiness can be claimed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

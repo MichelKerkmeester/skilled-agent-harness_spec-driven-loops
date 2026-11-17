@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/024-harness-telemetry-export-mode` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 The search-quality harness had no native slot for `SearchDecisionEnvelope`, decision-audit rows or shadow rows. The v1.0.3 stress test worked around this by composing a packet-local wrapper that imported production builders directly, duplicating code and masking differences between harness and runtime emission.
@@ -64,3 +61,6 @@ The harness was extended so a runner can return optional telemetry fields on `Se
 
 - Wire the harness to `handleMemorySearch` for live runtime telemetry capture. That connection is PP-1 scope deferred to packet 023.
 - Add runner-side envelope builder support so harness callers can construct envelopes without importing production builders directly.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/024-harness-telemetry-export-mode` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

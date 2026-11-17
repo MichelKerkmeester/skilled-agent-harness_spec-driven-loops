@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-16
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/003-pilot-mode-cutover` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation`
-
 ### Summary
 
 Planned — operator-gated, not executed. This phase plans the deep-research pilot that wires the authority-flip coordinator into its production composition root behind a rollback window, requires zero-divergence shadow parity before the flip, and proves five production boundaries.
@@ -26,3 +23,6 @@ Planned — operator-gated, not executed. This phase plans the deep-research pil
 ### Status
 
 Planned and operator-gated. Cutover is deliberately not performed: it requires explicit operator approval and the pilot mode's current zero-divergence shadow-parity certificate. No mode authority has been flipped.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/003-pilot-mode-cutover` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation`

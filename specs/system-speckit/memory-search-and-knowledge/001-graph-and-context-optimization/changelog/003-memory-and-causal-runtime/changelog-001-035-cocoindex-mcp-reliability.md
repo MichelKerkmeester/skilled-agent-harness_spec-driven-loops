@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/035-cocoindex-mcp-reliability` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 Repeated-query scenarios against the CocoIndex MCP surface produced two failure modes: `MCP error -32001: Request timed out` and `msgspec` decode errors between the daemon and its client protocol. Packets 037 and 039 address embedding-worker availability separately, but neither explains a client-visible JSON-RPC timeout or binary IPC decode failure in the CocoIndex path.
@@ -75,3 +72,6 @@ None.
 - Confirm the exact host MCP client timeout budget and whether it is configurable at the operator level.
 - Evaluate making `refresh_index=false` the runtime default for MCP calls, splitting refresh from search into separate tool calls or adding a bounded progressive response strategy to prevent host-side timeout on long refresh cycles.
 - Capture a live msgspec decode stack trace with `COCOINDEX_CODE_IPC_DEBUG` enabled to confirm whether decode failures stem from malformed payloads, schema drift or transport truncation after host cancellation.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/035-cocoindex-mcp-reliability` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-24
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`
-
 ### Summary
 
 Retired direct-append write paths by routing workflow directives through the gateway and guarding out-of-band writes, not by deleting prose protocol. Pinned legacy shapes keep their addresses by design; per-mode end-to-end currency is discharged by the whole-system gate's reader-contracts check.
@@ -29,3 +26,6 @@ Retired direct-append write paths by routing workflow directives through the gat
 ### Status
 
 Complete. Retirement is achieved by mechanism and guard, not directive deletion; the guard fires on a real out-of-band append.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`

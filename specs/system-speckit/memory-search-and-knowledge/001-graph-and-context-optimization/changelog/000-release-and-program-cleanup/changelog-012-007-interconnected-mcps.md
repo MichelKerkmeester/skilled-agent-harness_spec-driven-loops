@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-05
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`
-
 ### Summary
 
 This review-only slice audited the code-graph MCP, skill-advisor MCP and deep-loop-runtime integration contracts. The merged verdict was FAIL with 13 open findings: 1 P0, 6 P1 and 6 P2. The active P0 found non-zero CLI lineage exits counted as successful fan-out results. Other top findings covered `spawnSync` serializing fan-out despite a concurrency cap, per-lineage iteration settings only sizing timeouts, service-tier schema drift, stale code-graph guidance and ephemeral labels in reviewed code comments.
@@ -63,3 +60,6 @@ None (review-only packet).
 - Fix fan-out result accounting so non-zero child exits fail the run summary.
 - Replace synchronous CLI worker behavior or revise the concurrency contract so the cap reflects actual execution.
 - Align per-lineage iteration, sandbox and service-tier contracts with validated executor behavior.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`

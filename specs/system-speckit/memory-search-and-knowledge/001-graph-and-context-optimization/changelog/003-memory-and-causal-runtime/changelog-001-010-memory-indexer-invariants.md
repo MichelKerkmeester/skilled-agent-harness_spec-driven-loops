@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
-
 ### Summary
 
 Two save-path regressions shipped during the 026 optimization cycle: cross-file lineage reuse produced E_LINEAGE errors, and scan rechecks generated spurious candidate_changed warnings. Simultaneously the live database was polluted with 5700 constitutional rows from only 2 real rule files and 5947 forbidden z_future rows. This packet closed both tracks through a shared index-scope SSOT, multi-layer defense-in-depth guards at every mutation surface, and a transactional cleanup CLI.
@@ -91,3 +88,6 @@ Two save-path regressions shipped during the 026 optimization cycle: cross-file 
 - Track A live MCP rescan on the hook-parity packet is pending. Code-level fixes are shipped and focused regressions pass but the live re-verification gate requires an MCP restart in an embedding-capable runtime.
 - MCP restart is required before the new save, scan, update, checkpoint, code-graph, and cleanup-helper behavior is active for connected clients.
 - `npm run test:core` carryover: unrelated failures in `copilot-hook-wiring.vitest.ts` and `stage3-rerank-regression.vitest.ts` remain, both outside this packet's scope.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
