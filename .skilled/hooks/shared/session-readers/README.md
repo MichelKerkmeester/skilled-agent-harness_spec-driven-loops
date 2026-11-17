@@ -1,5 +1,5 @@
 ---
-title: "Shared: Session Readers"
+title: "Session Readers: Read One Session by Exact Id"
 description: "The read-only session reader package: one exact-id reader per runtime, the shared failure envelope, the capability table and the projection to the HistoryEntry list."
 trigger_phrases:
   - "session readers"
@@ -9,72 +9,88 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# Shared: Session Readers
+# Session Readers: Read One Session by Exact Id
 
 ---
 
 ## 1. OVERVIEW
 
-This package reads one runtime session by its exact id. It returns the shared `HistoryEntry` list that the history lookup core takes. It never writes.
+`session-readers/` reads one runtime session by its exact id and returns the shared `HistoryEntry` list that the history lookup core accepts. It never writes.
 
-A caller names a runtime and one session id. No reader guesses the newest session or lists a store. `identity.mjs` rejects a separator, a NUL or a dot-only segment before it becomes a path.
+A caller names a runtime and one session id. No reader guesses the newest session or lists a store. `identity.mjs` rejects a separator, a NUL, an empty id or a dot-only segment before the id becomes a path segment.
 
-Files are read and SQLite stores are opened with read-only flags. The side-effect suite hashes every store before and after a read. It compares bytes, size and modification time, so a stray write shows up.
+Current state:
 
-`readSession` returns `{ ok: true, source, items }` or `{ ok: false, code }`. It never throws across the boundary and never returns a partial list. A projection defect becomes `store_unreadable`.
-
-A reader resolves its store path inside the runtime's root before it opens it, and opens the path that check resolved, so a path swapped after the check is not followed.
-
-`index.mjs` exports `capabilities`, one row per runtime. Each row carries a `status`, a locator kind and a store root. A gated runtime also carries a `reason`. The dispatcher does not consult the table. The lookup CLI refuses a runtime whose `status` is not `ready`.
-
-`loadSession` returns the raw neutral records. Claude, Pi, Devin and DSH also return `injected`, a list of `{ source, text }`. That list holds context a hook or runtime put into the session, which `records` never carries. `loadSession` passes `injected` through and `readSession` ignores it. A Codex custom tool call has no JSON arguments, so its record carries the call's body as `arguments.input`, a string.
-
-- Claude's `injected` source is `hook_additional_context`, one entry per hook context attachment.
-- Pi's `injected` source is the entry's custom type, such as `session-start-context`. It falls back to `custom_message` when the entry carries none.
-- Devin's `injected` source is `system` for a system node and `unflagged-user` for a user node without the input flag. The transcript fallback uses the step's own source.
-- DSH's `injected` source is the event's source kind, such as `repo-guards`. It falls back to `unknown` when the event names none. A `user/message` with no source stays injected and never becomes a record.
-
-A failure is one of these codes.
-
-| Code | Meaning |
-|---|---|
-| `locator_unavailable` | The id is empty, or the runtime has no locator to resolve. An unsafe id returns `session_mismatch`. |
-| `capability_gated` | No reader exists for the runtime, or its switch is off. |
-| `session_not_found` | No store record matches the id |
-| `session_mismatch` | A record was found, but its recorded id or path does not match |
-| `session_ambiguous` | More than one record claims the id |
-| `store_unreadable` | The store could not be read or projected. For Devin, an open or projection failure falls back to the transcript first, so the code means the transcript failed too |
-| `unsupported_format` | The journal holds no record shape the reader knows, so it fails instead of returning an empty session |
-
-Vibe's reader is `ready`. It projects `harness.public-session-state/v1` and the completion records beside it. Its helpers are `loadVibeSession`, `lastAssistantText`, `turnToolCalls`, `compactionsSince` and `turnId`. `compactionsSince` returns the compactions after a watermark.
-
-The reply comes from the current turn's completion record first. Vibe runs a `post_agent` hook before it appends the assistant message to the projection. A hook passes the payload's `transcript_path`, which is the session storage root. The journal is `<transcript_path>/journal/*.jsonl`.
-
-An interactive session folds its journal into a snapshot generation at each quiet point. It restarts the journal after that generation. The reader starts from the generation `CURRENT` names and its projection chunks under `chunks/`. It then applies the journal tail after that generation's `snapshot_sequence`. A compaction folded into a snapshot carries the snapshot's sequence.
-
-Cursor is the gated runtime. Its reader returns `capability_gated` while `SYSTEM_SESSION_READERS_CURSOR_ENABLED` is off. With the switch on it returns `locator_unavailable`, because no store path is proven yet.
-
-Only Vibe registers hooks that call these readers. `.vibe/hooks.toml` runs `turn-start` as a `pre_agent` hook, `turn-end` as a `post_agent` hook and `compaction-post-tool` as a `post_tool` hook. The history lookup CLI calls `readSession` for any runtime whose `status` is `ready`.
-
-The decision-capture sweeps write the queue. Six sweeps read their own store inline. The Vibe sweep calls `loadVibeSession`.
+- A reader that receives a file path inside a runtime store proves the path sits inside that store, then reads the resolved path. The Vibe reader receives the session folder itself and reads its journal from there.
+- Files are read. SQLite stores are opened with read-only flags.
+- `readSession` returns `{ ok: true, source, items }` or `{ ok: false, code }`. It never throws across the boundary and never returns a partial list.
+- `loadSession` returns the raw neutral records. A runtime that carries injected context also returns it in `injected`.
 
 ---
 
-## 2. FILES
+## 2. ARCHITECTURE
+
+`index.mjs` is the only entry point a caller needs. It checks the id, picks the reader for the named runtime and passes the neutral records to `project.mjs`. `identity.mjs` holds the id and path guards every reader except Cursor and Vibe calls. No reader imports another reader.
+
+```text
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                               session-readers                                │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+┌──────────────────────┐    ┌──────────────────────┐    ┌──────────────────────┐
+│ history lookup CLI   │    │ index.mjs            │    │ runtime module       │
+│                      │    │ readSession          │    │ one file per runtime │
+└──────────────────────┘    └───────────┬──────────┘    └───────────┬──────────┘
+                                        │                           │
+                                        ▼                           ▼
+
+                            ┌──────────────────────┐    ┌──────────────────────┐
+                            │ project.mjs          │    │ identity.mjs         │
+                            │ HistoryEntry list    │    │ id and path guards   │
+                            └──────────────────────┘    └──────────────────────┘
+
+Dependency direction: index.mjs ──▶ runtime module
+Runtime module ──▶ project.mjs and identity.mjs (Vibe uses project.mjs only)
+```
+
+Each runtime reader exports its loader. A reader that resolves its own store also exports its store-root helper, and that helper accepts a caller override before it falls back to the runtime environment variable or the home folder.
+
+### Runtime coverage
+
+`index.mjs` exports `capabilities`, one frozen row per runtime. The dispatcher does not consult the table. The history lookup CLI checks a row before it reads.
+
+| Runtime | Status | Locator kind | Store root |
+|---|---|---|---|
+| Claude Code | `ready` | `transcript_path` | `~/.claude/projects` |
+| Codex | `ready` | `transcript_path` | `$CODEX_HOME/sessions` |
+| Pi | `ready` | `live_branch_or_session_log` | `~/.pi/agent/sessions` |
+| OpenCode | `ready` | `session-store` | `$XDG_DATA_HOME/opencode/opencode.db` |
+| Devin | `ready` | `transcript_file` | `$XDG_DATA_HOME/devin/cli/sessions.db` |
+| DSH | `ready` | `session_log` | `$DSH_HOME/sessions` |
+| Cursor | `gated` | `capability_flag` | `(unconfirmed)` |
+| Vibe | `ready` | `transcript_path` | `$VIBE_HOME/logs/session/unified/<session_id>` |
+
+Cursor is the gated runtime. Its reader returns `capability_gated` while `SYSTEM_SESSION_READERS_CURSOR_ENABLED` is off. With the switch on it returns `locator_unavailable`, because no store path is proven yet.
+
+---
+
+## 3. FILES
+
+Every file in this folder sits at one level. Each runtime reader has a committed declaration and a source map beside it.
 
 | File | Responsibility |
 |---|---|
-| `index.mjs` | The dispatcher. It exports `readSession`, `loadSession` and `capabilities`. |
-| `identity.mjs` | The shared guards. Safe ids, path containment and the recorded-id check. |
-| `project.mjs` | The projection to `HistoryEntry`. It pairs each tool result with its call. |
-| `claude.mjs` | Claude Code transcript reader. A `subagents` path returns `session_mismatch`. |
-| `codex.mjs` | Codex rollout reader. The `session_meta` id outranks the file name. |
-| `pi.mjs` | Pi reader. It follows the live branch, then the session log. Two candidates for one id return `session_ambiguous`. |
-| `opencode.mjs` | OpenCode SQLite reader. When the caller names a folder, a different recorded directory returns `session_mismatch`. |
-| `devin.mjs` | Devin `sessions.db` reader. A recorded folder at or below the named one passes. It falls back to the transcript file for a store without the session's turns. |
-| `dsh.mjs` | DSH session log reader. A missing project folder returns `session_not_found`. |
-| `vibe.mjs` | Vibe journal reader. A journal with no projection returns `unsupported_format`. |
-| `cursor.mjs` | Cursor gate. It returns before touching any file. |
+| `index.mjs` | The dispatcher. It exports `readSession` and `loadSession`. It also exports `capabilities`. |
+| `identity.mjs` | The shared guards: session id shape, path containment, recorded id and real path comparison. |
+| `project.mjs` | The projection to `HistoryEntry`, including the tool call and result pairing rule. |
+| `claude.mjs` | Claude Code transcript reader. A path under a `subagents` folder returns `session_mismatch`. |
+| `codex.mjs` | Codex rollout reader. The `session_meta` payload id outranks the file name. |
+| `pi.mjs` | Pi reader. It reads the live branch in process, then the session log on disk. |
+| `opencode.mjs` | OpenCode SQLite reader. A named project folder must match the session row's `directory` when the table carries one. |
+| `devin.mjs` | Devin `sessions.db` reader. A session with no turn rows falls back to its transcript file. |
+| `dsh.mjs` | DSH session log reader. It decodes the Zstandard frame chain before it reads events. |
+| `vibe.mjs` | Vibe journal reader, with the reply, tool call, compaction and turn helpers. |
+| `cursor.mjs` | The Cursor gate. It returns before it touches any file. |
 | `claude.d.mts` | The committed declaration for `claude.mjs`. |
 | `claude.d.mts.map` | The source map for `claude.d.mts`. |
 | `codex.d.mts` | The committed declaration for `codex.mjs`. |
@@ -98,23 +114,115 @@ The decision-capture sweeps write the queue. Six sweeps read their own store inl
 | `vibe.d.mts` | The committed declaration for `vibe.mjs`. |
 | `vibe.d.mts.map` | The source map for `vibe.d.mts`. |
 
-Each reader proves the session before it returns a record. Claude and Codex decide containment before they open a file. Pi and DSH compare the header's `cwd` with the named folder. Devin walks the main chain and, through each compaction's `summarized_from` link, the threads before it. OpenCode proves the session row before it selects a part.
+Each reader checks the recorded id when the caller names one. Claude Code and Codex decide containment before they open a file. Pi and DSH compare the header `cwd` with the named folder. Devin walks the main chain and, through each compaction `summarized_from` link, the threads before it. OpenCode proves the session row before it selects a part.
 
 ---
 
-## 3. VALIDATION
+## 4. BOUNDARIES AND FLOW
 
-Run this from the repository root.
+| Boundary | Rule |
+|---|---|
+| Imports | `index.mjs` imports every reader and `project.mjs`. The Claude, Codex, Devin, DSH, OpenCode and Pi readers import `identity.mjs` and `project.mjs`. The Vibe reader imports `project.mjs` only, and `cursor.mjs` reads `../hook-flags.cjs`. Everything else is a Node built-in. |
+| Exports | `index.mjs` exports the dispatcher. Each runtime file exports its loader, plus a store-root helper where it resolves its own store. |
+| Ownership | One runtime per file. Knowledge of a store layout stays in that runtime's file. |
+| Writes | None. A read touches nothing writable. Database handles open read-only. |
+
+Main flow:
+
+```text
+╭────────────────────────────────────────────╮
+│ caller names a runtime and one id          │
+╰────────────────────────────────────────────╯
+                      │
+                      ▼
+┌────────────────────────────────────────────┐
+│ dispatcher checks the id is not empty      │
+└────────────────────────────────────────────┘
+                      │
+                      ▼
+┌────────────────────────────────────────────┐
+│ reader opens its runtime store             │
+└────────────────────────────────────────────┘
+                      │
+                      ▼
+┌────────────────────────────────────────────┐
+│ reader returns the neutral records         │
+└────────────────────────────────────────────┘
+                      │
+                      ▼
+┌────────────────────────────────────────────┐
+│ projectEntries pairs results with calls    │
+└────────────────────────────────────────────┘
+                      │
+                      ▼
+╭────────────────────────────────────────────╮
+│ HistoryEntry list or a failure code        │
+╰────────────────────────────────────────────╯
+```
+
+`readSession` turns a projection defect into `store_unreadable`, so a caller never receives a partial conversation. A failure is one of these codes.
+
+| Code | Meaning |
+|---|---|
+| `locator_unavailable` | The id is empty or the runtime has no locator to resolve. An unsafe id returns `session_mismatch`. |
+| `capability_gated` | No reader exists for the runtime or its switch is off. |
+| `session_not_found` | No store record matches the id. |
+| `session_mismatch` | A record was found, but its recorded id or path does not match. |
+| `session_ambiguous` | More than one record claims the id. |
+| `store_unreadable` | The store could not be read or projected. For Devin, an open or projection failure falls back to the transcript first, so this code means the transcript failed too. |
+| `unsupported_format` | The journal holds no record shape the reader knows, so the read fails instead of returning an empty session. |
+
+Four runtimes also report context that a hook or the runtime added to the session, apart from the operator turns.
+
+- Claude Code reports an attachment entry of type `hook_additional_context`, one entry per attachment.
+- Pi reports the entry custom type such as `session-start-context` and falls back to `custom_message`.
+- Devin reports `system` for a system node and `unflagged-user` for a user node without the input flag. The transcript fallback uses the step's own source.
+- DSH reports the event source kind such as `repo-guards` and falls back to `unknown`. A `user/message` with no source stays injected and never becomes a record.
+
+The Vibe store adds one layer. An interactive session folds its journal into a snapshot generation at each quiet point, then restarts the journal. The reader starts from the generation that the `CURRENT` file names and its chunk files, then applies the journal tail after that generation's `snapshot_sequence`. A compaction folded into a snapshot keeps the snapshot's sequence.
+
+The history package CLI at `../../session-handover/history/lib/cli.ts` is the only hook that calls the dispatcher. The skill advisor's routing-accuracy scripts call it as well. It refuses a runtime whose capability `status` is not `ready`.
+
+---
+
+## 5. ENTRYPOINTS
+
+| Entrypoint | Type | Purpose |
+|---|---|---|
+| `readSession` | Function | Resolve one session and return the projected `HistoryEntry` list. |
+| `loadSession` | Function | Resolve one session and return its raw neutral records, with `injected` when the runtime carries it. |
+| `capabilities` | Constant | One row per runtime: `status`, `locatorKind`, `storeRoot` and a `reason` on the gated row. |
+| Per-runtime loaders | Functions | `loadClaudeSession`, `loadCodexSession`, `loadPiSession`, `loadOpenCodeSession`, `loadDevinSession`, `loadDshSession`, `loadCursorSession` and `loadVibeSession`. |
+| Store-root helpers | Functions | `claudeStoreRoot`, `codexStoreRoot`, `piStoreRoot`, `openCodeStoreRoot`, `dshStoreRoot` and `devinDataDirectory`, plus `devinTranscriptRoot`, `openCodeDatabasePath` and `devinDatabasePath`. |
+| `projectEntries` | Function | Pair each tool result with its call and fail the whole read on a broken pairing. |
+| `guardSessionPath` | Function | Prove the id shape and the path containment, then compare the recorded id. |
+| `resolveInside` | Function | Resolve both spellings and refuse a path that leaves the store. |
+| `lastAssistantText` | Function | Return the reply of the session's current turn from a Vibe session. |
+| `turnToolCalls` | Function | Return the current turn's tool calls in the order they started. |
+| `compactionsSince` | Function | Return the compactions after a journal watermark. |
+| `turnId` | Function | Return the session's current turn id, which a retry keeps. |
+
+`loadVibeSession` accepts the hook payload's `transcript_path`, which is the session storage root, then returns its entries, records, journal records and turn id beside the shared envelope.
+
+---
+
+## 6. VALIDATION
+
+Run from the repository root.
 
 ```bash
 node --test .skilled/hooks/shared/tests/session-readers/
 ```
 
-The matrix suite covers each runtime by store state. The projection suite validates every projected entry against the history core's published JSON Schema. The side-effect suite proves no read changes a store. The declaration suite rebuilds each `.d.mts` and compares it with the committed file.
+Expected result: the run ends with `ℹ pass 109` and `ℹ fail 0`.
+
+The matrix suite covers seven runtimes by store state, and the Vibe reader suite covers Vibe. The projection suite checks every projected entry against the history core's published JSON Schema. The side-effect suite hashes each store file before and after a read, then compares the full folder listing. The declaration suite rebuilds each committed declaration and compares it with the file on disk. The injected text suite covers the context a runtime adds to a turn. The Vibe reader suite covers the journal, the snapshot, the compaction lookup and the reply helpers.
 
 ---
 
-## 4. RELATED
+## 7. RELATED
 
-- [`../README.md`](../README.md): the shared hook helpers this package sits beside.
-- [`../../session-handover/history/README.md`](../../session-handover/history/README.md): the lookup core and CLI that consume these readers.
+- [Hook adapter helpers](../README.md): the shared hook plumbing this package sits beside.
+- [History lookup core](../../session-handover/history/README.md): the engine and CLI that consume these readers.
+- [Hooks library](../../README.md): the full hook folder map.
+- [Decision capture sweeps](../../decision-capture/bin/README.md): the sweep that reads Vibe journals through `vibe.mjs`.

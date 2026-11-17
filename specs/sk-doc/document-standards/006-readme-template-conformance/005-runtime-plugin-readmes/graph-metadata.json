@@ -3,6 +3,7 @@
   "packet_id": "sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes",
   "spec_folder": "sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes",
   "parent_id": "sk-doc/document-standards/006-readme-template-conformance",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "blocked",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -56,11 +57,11 @@
       ".cursor/hooks/README.md",
       ".devin/hooks/README.md",
       ".cursor/hooks.json",
-      ".skilled/changelog/skilled/v4.0.2.1.md",
       ".pi/settings.json",
       ".cursor/SYNC.md",
       "hooks/README.md",
-      ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-plugin-readme-template.md"
+      ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-plugin-readme-template.md",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json"
     ],
     "entities": [
       {
@@ -112,12 +113,6 @@
         "source": "derived"
       },
       {
-        "name": "v4.0.2.1.md",
-        "kind": "doc",
-        "path": ".skilled/changelog/skilled/v4.0.2.1.md",
-        "source": "derived"
-      },
-      {
         "name": "settings.json",
         "kind": "config",
         "path": ".pi/settings.json",
@@ -133,6 +128,12 @@
         "name": "runtime-plugin-readme-template.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-plugin-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
         "source": "derived"
       },
       {
@@ -210,7 +211,7 @@
     ],
     "causal_summary": "These folders are where a runtime picks up the repository's hooks and plugins, and their READMEs tell a maintainer which entry is a link, a re-export or a real plugin",
     "created_at": "2026-11-16T15:20:16Z",
-    "last_save_at": "2026-11-17T16:55:35.881Z",
+    "last_save_at": "2026-11-17T21:44:27.904Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +222,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:31e8e9eaaba78f80cce3c26edc0705c578ca8897d4add4a6c1a65adcdf2906ea",
+    "source_fingerprint": "sha256:bad5441c7d315e02b51dd1903e3eadbd08ac0776e5856f0fa5692df721caafc4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6ec0788a36b8c79c281b51d41e73be3bb28a85c37bf326144a9593b70c87cc92",
+      "spec.md": "ae01b242fa60af960fdc50978c04dcf136c47d62a318ab3a075973f43d36779f",
       "plan.md": "e9bceb05d90966bb1129f99bcb76dae8cba3f8c65c4098b4f71ca651d152d5f3",
-      "tasks.md": "5cff63c961e3b9a02a4f2472aca92b77b8a982b8a639e67f9bff89739b63b647",
-      "implementation-summary.md": "7f93e270d2e67f4fe05139f1b61076a7c061264c4fbdc283c2fee6bbd81d8970"
+      "tasks.md": "e5126e754879ce2f95ad598f563d086933cb3ab85171c0a68689d0b030e92ccd",
+      "implementation-summary.md": "3b2eeeec257c081e429cee342ab2453aa4434e2306b19ddf40048f6c20b0c630"
     },
     "last_active_at": null
   }
