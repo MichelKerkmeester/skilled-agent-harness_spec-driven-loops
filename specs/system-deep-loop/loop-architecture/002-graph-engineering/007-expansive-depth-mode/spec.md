@@ -34,7 +34,7 @@ contextType: "general"
 The deep-research and deep-review loops converge on the three to five questions seeded at init and stop once novelty drops, so a broad target such as "research the last 100 commits for bugs, drift and improvements" or "analyze system-skill-advisor for chat-time auto-utilization" gets a narrow, shallow answer. Nothing in the loop adds scope as it learns.
 
 ### Purpose
-Produce a research-backed design for an additive, opt-in expansive-depth sub-mode that widens and deepens a run's scope, grounded in the current convergence and focus code and in the 002-graph-engineering program.
+Produce a research-backed design for an additive, opt-in expansive-depth sub-mode that widens and deepens a run's scope, grounded in the current convergence and focus code and in the 002-graph-engineering program, then build it with the extension and defect fixes through phases 001-014.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
@@ -55,18 +55,19 @@ N/A: this packet is research only. The deep-research loop in research/ measures 
 - Mine the 002-graph-engineering program (children 001-006, research/, reference/, context/) for usable graph-loop principles.
 - Design the expansive-depth sub-mode and its additive integration into agents, commands, workflow YAMLs, mode registry and convergence logic.
 - Record the dispatch-iteration.cjs config-dir routing defect for research runs as a finding.
+- Build what the research designed, through phases 001-014 in the Phase Documentation Map: the completed-run extension (001), the defect fixes D1-D14 that the research kept (002-009, 012, 013, the dispatch-iteration.cjs config-dir defect among them in 002), the opt-in expansive-depth sub-mode for deep-research (010) and deep-review (011), and the playbook coverage, feature catalogs and alignment pass (014).
 
 ### Out of Scope
-- Implementing the sub-mode - this packet produces findings and a design only.
-- Changing default convergence behavior - the sub-mode must stay opt-in.
-- Fixing the dispatch-iteration.cjs defect - recorded only, for a later packet.
+- Changing default convergence behavior for the expansive-depth sub-mode - it stays opt-in behind `--depth-mode=expansive`, and default runs stay byte-identical for phases 010 and 011. The defect fixes in 002-009, 012 and 013 do change default-path behavior on purpose; each phase states that change in its own spec.
+- A new mode-registry entry, a fifth `--convergence-mode` value, or promoting `wave_orchestration` past reference-only.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `research/` | Create | Deep-research loop state, iterations and the `research.md` synthesis |
-| `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` | Create | Packet docs for this research phase |
+| `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `goal.md` | Create | Packet docs for the research stage and the phase parent |
+| `001-*/` to `014-*/` | Create | One child packet per build phase; each child's spec names the runtime, workflow and doc files it changes |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -146,26 +147,29 @@ REQ ids run in one sequence across the P0 and P1 tables.
   - whether the research upcast may widen;
   - whether to enforce the four review dimensions or support custom ones.
 <!-- END GENERATED: deep-research/spec-findings -->
+
+The generated block above was written before the 2026-11-17 decisions and the plan review. `research/research.md` is current: §12 records the decisions for Slices F, H and L, and §20 holds the revised build order. The block refreshes at the next deep-research synthesis; no standalone script regenerates it.
 <!-- /ANCHOR:questions -->
 
 ---
 
 ## Phase Documentation Map
 
-Build order: 001 first; 002-009, 012 and 013 in any order; then 010; then 011. No phase waits on a decision now: the operator decided phases 006, 008 and 012 on 2026-11-17, and each `decision-record.md` holds the accepted choice.
+Build order: 001 merges first; 005 before 004; 012 before 010 and 011; 010 after 004-007; 011 after 003, 004 and 008-010; 014 last, after every other phase. 002, 003, 007, 009 and 013 have no ordering edge besides merging after 001. The operator decided phases 006, 008 and 012 on 2026-11-17, and each `decision-record.md` holds the accepted choice. Phase-level open questions that remain are listed in each phase's spec and in `scratch/cross-phase-handoff.md`.
 
 | Phase | Folder | Status | Description |
 |-------|--------|--------|-------------|
 | 1 | `001-completed-run-extension/` | draft | Slice A: `completed-continue` / `--extend=N` for finished research and review runs |
 | 2 | `002-research-claude-config-dir/` | draft | Slice B (D2): forward the Claude config dir on single-executor research |
 | 3 | `003-review-min-iterations-floor/` | draft | Slice C (D3): apply the review `minIterations` floor |
-| 4 | `004-focus-hijack-fix/` | draft | Slice D (D5): stop stale free text steering Next Focus, research and review |
+| 4 | `004-focus-hijack-fix/` | draft | Slice D (D5): stop stale free text steering Next Focus, research and review; after 005 |
 | 5 | `005-prompt-pack-contract-alignment/` | draft | Slice E (D6, D13): prompt-pack write list and heading match the agent definition |
 | 6 | `006-state-log-leaf-fields/` | draft | Slice F (D7, D9): widen the research upcast, stem schema and type so leaf fields reach the state log |
 | 7 | `007-source-diversity-quality-class/` | draft | Slice G (D1): derive `quality_class` at upsert from a closed vocabulary |
 | 8 | `008-review-dimension-coverage/` | draft | Slice H (D10): support custom review dimensions, so every configured dimension is tracked and can be covered |
 | 9 | `009-fanout-review-coverage-merge/` | draft | Slice I (D12): carry review coverage surfaces through the fan-out merge |
-| 10 | `010-research-frontier-mode/` | draft | Slice J: opt-in `--depth-mode=expansive` for deep-research; needs 004-007 |
-| 11 | `011-review-frontier-mode/` | draft | Slice K: expansive mode for deep-review; needs 008, 009 and 010 |
+| 10 | `010-research-frontier-mode/` | draft | Slice J: opt-in `--depth-mode=expansive` for deep-research; needs 004-007 and 012 |
+| 11 | `011-review-frontier-mode/` | draft | Slice K: expansive mode for deep-review; needs 003, 004, 008, 009, 010 and 012 |
 | 12 | `012-pivot-hygiene/` | draft | Slice L: council seat cap of 3 per council attempt with at most one quorum retry per pivot (6 seats at most), dead pivot guard retired |
 | 13 | `013-no-redispatch-landed-iteration/` | draft | Slice M (D14): no redispatch of an iteration that already landed |
+| 14 | `014-docs-playbooks-alignment/` | draft | Playbook coverage check (each phase writes its own scenarios), feature catalogs and doc/skilled alignment for the features and fixes of 001-013; needs 001-013 |

@@ -16,7 +16,7 @@
     "ledger",
     "event"
   ],
-  "lastUpdated": "2026-11-17T16:56:33.058Z",
+  "lastUpdated": "2026-11-17T18:12:34.335Z",
   "specId": "001",
   "folderSlug": "completed-run-extension",
   "parentChain": [
@@ -25,8 +25,9 @@
     "002-graph-engineering",
     "007-expansive-depth-mode"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "17-11-26_17-56__ran-deep-research-generation-2-5-cli-devin-swe-2.md"
+    "17-11-26_17-56__ran-deep-research-generation-2-5-cli-devin-swe-2.md",
+    "17-11-26_19-12__applied-the-fable-5-2-plan-review-across-all.md"
   ]
 }

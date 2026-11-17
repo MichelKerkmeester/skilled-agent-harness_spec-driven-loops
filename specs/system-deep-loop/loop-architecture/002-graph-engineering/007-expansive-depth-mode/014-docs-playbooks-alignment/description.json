@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment",
+  "description": "Phase 14: docs-playbooks-alignment",
+  "keywords": [
+    "phase",
+    "docs-playbooks-alignment"
+  ],
+  "lastUpdated": "2026-11-17T17:06:40.495Z",
+  "specId": "014",
+  "folderSlug": "docs-playbooks-alignment",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "002-graph-engineering",
+    "007-expansive-depth-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -8,7 +8,7 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration"
-    last_updated_at: "2026-11-17T14:34:35Z"
+    last_updated_at: "2026-11-17T17:15:00Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"
     next_safe_action: "Execute against the completion criteria"
@@ -22,9 +22,9 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 # Goal: Stop redispatch_once from re-running an iteration that already landed
 
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 <!-- GOAL_AUTHORING: .skilled/skills/sk-doc/sk-create-goal/SKILL.md -->
 
@@ -34,7 +34,7 @@ _memory:
 ## 1. DURABLE DIRECTIVE
 <!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Keep only the newest n archives on request. WEAK: Improve the script. -->
 
-**Objective:** A deep-loop iteration that already landed is never dispatched a second time because of an `executor_missing` verify failure.
+**Objective:** A deep-loop iteration that already landed is never dispatched a second time because of a verify failure that only a landed iteration can return.
 
 ### Decisions
 
@@ -43,21 +43,22 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | The fix is a reason filter in both workflow YAMLs; `verify-iteration.cjs` is not changed. |
-| D2 | Only `executor_missing` is excluded; route-proof reasons keep their redispatch because an append-only retry can correct them. |
+| D2 | The excluded reasons are `executor_missing`, `findings_not_enumerated` and `ledger_backing_missing`, the non-route-proof reasons returned after the delta check; route-proof reasons keep their redispatch as the one named exception, which the existing append-only verify case depends on. |
 | D3 | No other slice is a prerequisite. |
 
 <!-- /ANCHOR:directive -->
 
 ---
 
-
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `grep -n 'redispatch_once:.*executor_missing'` prints one line in each of `deep-research.yaml` and `deep-review.yaml`.
-- [ ] `npx vitest run` over `verify-iteration.vitest.ts` and `stop-policy-yaml-parity.vitest.ts` exits 0 with the new cases.
-- [ ] The YAML assertion fails against the pre-change YAMLs.
+- [ ] `grep -n 'redispatch_once:.*executor_missing, findings_not_enumerated or ledger_backing_missing'` prints one line in each of `.skilled/commands/deep/assets/deep-research.yaml` and `deep-review.yaml`.
+- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/verify-iteration.vitest.ts tests/unit/loop-counters-derivation.vitest.ts tests/unit/deep-research-reduce-state.vitest.ts tests/unit/deep-review-state-reducer.vitest.ts` exits 0 with the new cases.
+- [ ] The YAML assertion in `verify-iteration.vitest.ts` fails against the pre-change YAMLs.
+- [ ] `node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs` exits 0.
+- [ ] The `runtime/manual-testing-playbook` index lists a no-redispatch scenario written by `/create:manual-testing-playbook`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,5 +81,6 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| Other post-delta reasons | Open question: should `findings_not_enumerated`, `gateway_bypass_detected` and `ledger_backing_missing` also skip the redispatch? Not in scope; D14 names only `executor_missing`. |
+| Other post-delta reasons | Amended 2026-11-17 (D2 and the objective): `findings_not_enumerated` and `ledger_backing_missing` join `executor_missing`. Phase 006 makes the research `findings_not_enumerated` gate live, both reasons are returned after the delta check (`verify-iteration.cjs:533-550`, `:582-590`), and both leaf definitions refuse to overwrite a landed iteration or delta file, so a redispatch for them is wasted. `gateway_bypass_detected` is declared but never returned and is not named. Confirmed by the operator 2026-11-17 (`decision-record.md` ADR-001), which also closes the X-5 coupling with phase 006. |
+| Plan review amendments 2026-11-17 | Applied the Fable 5.2 plan review: shared literal clause because the two rules differ today; `command_note` lines updated; `stop-policy-yaml-parity` dropped from the test plan; a landed-plus-error-row fixture pins the still-fails consequence; test commands run from `runtime/`; both contracts regenerated; the playbook scenario goes through `/create:manual-testing-playbook`. |
 <!-- /ANCHOR:log -->

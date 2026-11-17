@@ -99,7 +99,7 @@ Not delivered. Delivery will follow `tasks.md`: golden review baseline first, th
 ## Known Limitations
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **Not started.** The phase cannot begin until phases 008, 009 and 010 are merged; the bucket mapping and the focus shape stay Proposed in `plan.md` ADR-001 and ADR-002.
+1. **Not started.** The phase cannot begin until phases 008, 009 and 010 are merged; `plan.md` ADR-001 to ADR-004 were accepted as proposed on 2026-11-17, and the pilot's pick under ADR-002 is still open.
 <!-- /ANCHOR:limitations -->
 
 ---

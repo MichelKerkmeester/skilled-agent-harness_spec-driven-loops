@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/001-completed-run-extension"
-    last_updated_at: "2026-11-17T16:56:33Z"
+    last_updated_at: "2026-11-17T18:12:34Z"
     last_updated_by: "generate-context"
-    recent_action: "13 build phases authored; decisions recorded"
-    next_safe_action: "Plan and build 001-completed-run-extension"
+    recent_action: "Plan review applied; decisions recorded"
+    next_safe_action: "Run step-0 executor probes, then build wave 1"
     packet_purpose: "Purpose: An operator runs `/deep:research --extend=N` or `/deep:review --extend=N` on a completed run and gets exactly N more iterations in the same session and generation, with the extension recorded as a `run_extended` ledger event and the run re-synthesized afterwards."
     blockers: []
     key_files:
@@ -24,7 +24,7 @@ _memory:
       runtime: "claude"
       sessionId: "94a4cf06-5c71-4a49-952f-6bbffe1f9b56"
       workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-17T16:56:33Z"
+      savedAt: "2026-11-17T18:12:34Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 0
@@ -83,7 +83,7 @@ Not delivered. The test plan is `plan.md` §5 and the closure gate is `acceptanc
 
 | Decision | Why |
 |----------|-----|
-| None recorded yet | The design decisions are frozen in `goal.md` §1; four open questions in `spec.md` §10 wait on the operator |
+| Open questions 1 to 4 take their recommended defaults (`decision-record.md` ADR-001 to ADR-004, Accepted 2026-11-17) | The operator accepted all four; the design decisions stay frozen in `goal.md` §1 |
 <!-- /ANCHOR:decisions -->
 
 ---

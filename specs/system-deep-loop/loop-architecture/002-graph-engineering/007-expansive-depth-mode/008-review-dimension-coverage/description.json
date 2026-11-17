@@ -1,13 +1,13 @@
 {
   "level": "1",
   "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/008-review-dimension-coverage",
-  "description": "Close the out-of-contract review dimension gap (D10), after an operator decision",
+  "description": "Support custom review dimensions end to end (D10), after an operator decision",
   "keywords": [
-    "close",
-    "out-of-contract",
+    "support",
+    "custom",
     "review",
     "dimension",
-    "gap",
+    "end-to-end",
     "d10",
     "operator",
     "decision"

@@ -8,10 +8,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields"
-    last_updated_at: "2026-11-17T14:35:01Z"
+    last_updated_at: "2026-11-17T17:15:00Z"
     last_updated_by: "scaffold"
     recent_action: "Operator decided ADR-001: option 1, widen the upcast"
-    next_safe_action: "Capture the REQ-007 baseline (T002)"
+    next_safe_action: "Capture the REQ-006 baseline (T002)"
     blockers: []
     key_files: []
     session_dedup:
@@ -22,9 +22,9 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 # Goal: Restore the research leaf fields the state-log projection drops (D7, D9)
 
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 <!-- GOAL_AUTHORING: .skilled/skills/sk-doc/sk-create-goal/SKILL.md -->
 
@@ -32,8 +32,9 @@ _memory:
 
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
+<!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Keep only the newest n archives on request. WEAK: Improve the script. -->
 
-**Objective:** Make the research `findings_not_enumerated` gate and the `focusAlignment` guard run on real leaf data, from the source the operator chooses.
+**Objective:** Make the research `findings_not_enumerated` gate and the `focusAlignment` guard run on real leaf data carried through a widened ledger upcast, the option the operator chose.
 
 ### Decisions
 
@@ -41,28 +42,34 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | No implementation task starts until `decision-record.md` ADR-001 is Accepted. |
-| D2 | Frontier fields stay off state-log rows whichever option is chosen. |
+| D1 | Option 1: widen the research upcast, stem schema, type and projection (`decision-record.md` ADR-001, Accepted 2026-11-17). |
+| D2 | Frontier fields and the identity fields `runId`, `sessionId` and `lineageId` stay off state-log rows. |
 | D3 | The parent packet's own files are not edited from this phase; needed parent wording is recorded in ADR-001. |
+| D4 | `focusAlignment` evaluates only the latest record that carries both lists, and compares normalized text with a leading question-id prefix removed. |
+| D5 | Which landed-iteration reasons may trigger `redispatch_once` is decided by `../013-no-redispatch-landed-iteration/`, not here. |
 
 <!-- /ANCHOR:directive -->
 
 ---
 
-
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
+<!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
 - [ ] `rg -n 'Accepted' decision-record.md` prints the ADR-001 status line.
-- [ ] The findings-gate-runs case in `verify-iteration.vitest.ts` passes with reason `findings_not_enumerated`.
-- [ ] The convergence case reports `focusAlignment` `failed` and passes.
-- [ ] The REQ-007 suites from `spec.md` pass against the T002 baseline.
+- [ ] A `verify-iteration.vitest.ts` case whose gateway-projected state row claims `findingsCount: 3` with nothing enumerated returns reason `findings_not_enumerated`, and a route-proof case on a projected row passes with no "route proof came from deltas" warning.
+- [ ] `convergence-script.vitest.ts` cases report `focusAlignment` `failed` when the latest record answers outside its `keyQuestions`, `passed` after a later aligned iteration, and `passed` for `Q1: `-prefixed `keyQuestions` matching bare answered text.
+- [ ] `deep-research-projections-contract.vitest.ts` asserts these ten keys on a projected research `iteration` row: `target_agent`, `agent_definition_loaded`, `resolved_route`, `findingsCount`, `keyQuestions`, `noveltyJustification`, `focusTrack`, `edgeCase`, `toolsUsed`, `sourcesQueried`.
+- [ ] `rg -n '"keyQuestions"' .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` prints the record-shape line, and `check-contract-drift.vitest.ts` passes after the research contract is regenerated.
+- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/append-mode-event-cli.vitest.ts tests/unit/append-mode-event-legacy-seam.vitest.ts tests/unit/check-projection-coverage.vitest.ts tests/unit/deep-research-projections-contract.vitest.ts tests/unit/deep-research-ledger-schema.vitest.ts tests/unit/verify-iteration.vitest.ts tests/unit/deep-research-reduce-state.vitest.ts tests/unit/prompt-pack.vitest.ts tests/unit/check-contract-drift.vitest.ts tests/integration/convergence-script.vitest.ts` exits 0, with a pass count equal to the baseline in this goal's log plus the new cases.
+- [ ] `rg -l "focusAlignment" .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook` lists a scenario written by `/create:manual-testing-playbook`.
 <!-- /ANCHOR:completion -->
 
 ---
 
 <!-- ANCHOR:log -->
 ## 4. LOG
+<!-- FILL: Record each step with its command output. Keep this table current. GOOD: T001 Done. `ls logs/archive | wc -l` printed 3. WEAK: Progress is good. -->
 
 Everything below is VOLATILE. It is not part of the directive, it is not copied
 into the objective, and it is expected to grow. Progress, evidence, deviations
@@ -80,5 +87,6 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| Option 2 consequence | Parent section 12 item 6 ties the default-run change to option 1 only, but section 20 Slice F and the code agree that option 2 also switches both checks on for every research run. This phase states it for both. |
+| Default-run change | Widening switches both checks on for every research run; parent section 20 Slice F and the code agree. The changelog states it. |
+| Plan review | The 2026-11-17 plan review findings were applied: consumer risks enumerated with a case each, pack record shape and contract regeneration, `focusAlignment` scoped and prefix-tolerant, the ten-field list and the route-proof survival task, renumbered REQ and task ids, decision-record label fixed, the 013 redispatch interaction recorded, runnable test commands, and this phase's own playbook scenario. |
 <!-- /ANCHOR:log -->

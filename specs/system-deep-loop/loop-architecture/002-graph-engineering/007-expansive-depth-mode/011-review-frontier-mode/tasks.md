@@ -25,7 +25,7 @@ contextType: "implementation"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-`D` is `.skilled/skills/system-deep-loop`. `Y` is `.skilled/commands/deep/assets/deep-review.yaml`. `U` is `$D/runtime/tests/unit`.
+`D` is `.skilled/skills/system-deep-loop`. `Y` is `.skilled/commands/deep/assets/deep-review.yaml`. `U` is `$D/runtime/tests/unit`. `R` is `cd $D/runtime && npm test --`: the only Vitest config is `$D/runtime/vitest.config.ts`, so a test path is given relative to `$D/runtime`, and a run from any other directory finds no `.vitest.ts` file.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -36,9 +36,9 @@ contextType: "implementation"
 Before starting any task, verify:
 1. [ ] spec.md scope unchanged
 2. [ ] Current phase identified in plan.md
-3. [ ] Predecessor phases named in spec.md metadata are merged
+3. [ ] Predecessor phases named in spec.md metadata are merged (003, 004, 008, 009, 010, 012)
 4. [ ] Relevant P0/P1 checklist items identified
-5. [ ] The ADRs in plan.md that the task depends on are Accepted
+5. [ ] The ADRs in plan.md that the task depends on are Accepted (T000)
 
 ### Execution Rules
 | Rule | Description |
@@ -60,9 +60,10 @@ Mark the task `[B]`, name the blocking phase, file or failing check on the same 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm phases 008, 009 and 010 are merged on the working branch (`../008-review-dimension-coverage/`, `../009-fanout-review-coverage-merge/`, `../010-research-frontier-mode/`). Verify: each phase's `implementation-summary.md` names a merged commit and `git branch --contains <sha>` lists the working branch for all three.
+- [x] T000 Record the operator's acceptance or replacement of ADR-001 to ADR-004, including the pilot's choice between a larger `maxIterations` and narrower `review_dimensions` under ADR-002 (`plan.md`). Verify: each ADR's `**Status**` line reads `Accepted`, or names the ADR that replaces it. Done 2026-11-17: the operator accepted all four as proposed; the builder may raise an amendment if the code disagrees. ADR-002 as proposed leaves both pilot options open, so the pilot's pick between a larger `maxIterations` and narrower `review_dimensions` is still to be recorded in this phase's `goal.md` log before the pilot runs.
+- [ ] T001 Confirm phases 003, 004, 008, 009, 010 and 012 are merged on the working branch (`../003-review-min-iterations-floor/`, `../004-focus-hijack-fix/`, `../008-review-dimension-coverage/`, `../009-fanout-review-coverage-merge/`, `../010-research-frontier-mode/`, `../012-pivot-hygiene/`). Verify: each phase's `implementation-summary.md` names a merged commit and `git branch --contains <sha>` lists the working branch for all six.
 - [ ] T002 Confirm 008's custom dimension support is in place: the review coverage universe this phase extends is the configured `reviewDimensions` list (`../008-review-dimension-coverage/implementation-summary.md`). Verify: this phase's `implementation-summary.md` quotes 008's support decision in one line.
-- [ ] T003 Capture the golden review baseline: registry, dashboard, Next Focus, rendered pack, pivot seed output and a fan-out lineage prompt with `depthMode` absent (`$U/fixtures/`, path settled at build). Verify: the six baseline files exist and `sha256sum` prints one stable hash per file across two runs.
+- [ ] T003 Capture the golden review baseline: registry, dashboard, Next Focus, rendered pack, pivot seed output and a fan-out lineage prompt with `depthMode` absent (`$U/fixtures/`, path settled at build). Verify: the six baseline files exist and `shasum -a 256` prints one stable hash per file across two runs.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -71,22 +72,30 @@ Mark the task `[B]`, name the blocking phase, file or failing check on the same 
 ## Phase 2: Implementation
 
 - [ ] T004 Add `antiConvergence.depthMode: "default"`, the `expansiveDepth` block and the `lockedFields` entry (`$D/deep-review/assets/deep-review-config.json`). Verify: `jq '.antiConvergence.depthMode'` on that file prints `"default"`.
-- [ ] T005 Lock the review `depthMode` key in the optimizer manifest (`.skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json`). Verify: `npx vitest run $U/optimizer-manifest-anti-convergence.vitest.ts` exits 0 with a review lock case.
+- [ ] T005 Lock the review `depthMode` key in the optimizer manifest (`.skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json`). Verify: `$R tests/unit/optimizer-manifest-anti-convergence.vitest.ts` exits 0 with a review lock case.
 - [ ] T006 Add the flag row and write the keys in `step_create_config` (`.skilled/commands/deep/review.md`, `Y`). Verify: `rg -n 'depth-mode' .skilled/commands/deep/review.md` prints one flag row and `rg -n 'depthMode' Y` shows the config write.
-- [ ] T007 Add the golden review test for absent key and `--depth-mode=default` (`$U/`, new golden review case). Verify: the case exits 0 against the T003 baseline for all six artifacts.
-- [ ] T008 Add the review `frontier_proposal` row to the leaf contract (`.skilled/agents/deep-review.md`). Verify: `rg -n 'frontier_proposal' .skilled/agents/deep-review.md` prints the row and states leaves never write coverage surfaces.
-- [ ] T009 [P] Add the conditional `## FRONTIER` block to the review pack and renderer (`$D/deep-review/assets/prompt-pack-iteration.md.tmpl`, `$D/runtime/lib/deep-loop/prompt-pack.ts`). Verify: `npx vitest run $U/prompt-pack.vitest.ts` exits 0 and the `deep-review-deltas-contract` suite passes with a proposal row case.
-- [ ] T010 Add a review target mode to the phase-010 admission helper that emits debt entries instead of inbox rows (admission helper from phase 010). Verify: a review admit suite exits 0 with one prune case per check and the research admission suite still passes.
-- [ ] T011 Add the review admission step after verify-iteration and before the reduce step, `enabled_when depthMode == expansive` (`Y`). Verify: `rg -n` for the step name in `Y` shows it between the two steps and no `inbox` write appears in it.
-- [ ] T012 Add the review `registry.frontier` projection and admission into `searchDebt` (`$D/runtime/scripts/reduce-state.cjs`). Verify: a reducer case shows one admitted node as one open debt entry and one frontier node.
-- [ ] T013 Add the close rule: a terminal node clears its debt and records its `candidateCoverage` bucket per plan ADR-001 (`$D/runtime/scripts/reduce-state.cjs`). Verify: a close case with one `exhausted` and one `answered` node shows no frontier-owned `searchDebt` entry and no `deferred` or `blocked` disposition for either.
-- [ ] T014 Add the review Next Focus frontier assignment in the last-assignment-wins sequence, naming the node and its next uncovered dimension (`$D/runtime/scripts/reduce-state.cjs`). Verify: a precedence case shows blocked-stop, then pivot, then frontier, then leaf `nextFocus`, then first uncovered dimension.
-- [ ] T015 Apply the `frontierOpen` veto to review STOP candidates (`$D/runtime/scripts/convergence.cjs`). Verify: `npx vitest run $U/stop-decision.vitest.ts` and the `review-depth-convergence` suite exit 0 with review veto rows for `all_dimensions_clean` and composite candidates.
-- [ ] T016 Add the expansive review STUCK_RECOVERY sub-branch keeping `deep_review.recovery_started` (`Y`). Verify: a counter case shows `stuckCount` reset to 0 after the sub-branch.
-- [ ] T017 Gate the review pivot on a terminal frontier, seed from `exhausted` and `blocked` nodes and route accepted candidates through admission (`$D/deep-review/scripts/divergent-review-pivot.ts`). Verify: `divergent-pivot` suites exit 0 with a gating case, and default seed output matches the T003 baseline byte for byte.
-- [ ] T018 Add the review `frontier_scope:` binding beside `review_focus` with round-robin depth-1 partition (`$D/runtime/scripts/fanout-run.cjs`). Verify: `npx vitest run $U/fanout-run.vitest.ts` exits 0 with a review partition case and a no-flag case without a `frontier_scope:` line.
-- [ ] T019 Add the review fan-in guard over the phase-009 merged coverage (`$D/runtime/scripts/fanout-merge.cjs`). Verify: `npx vitest run $U/fanout-merge.vitest.ts` exits 0 with a case that fails when one depth-1 node is missing.
-- [ ] T020 [P] Add frontier size, pruned nodes, revisits and budget per depth to the review dashboard under the flag (`$D/deep-review/assets/deep-review-dashboard.md`). Verify: the golden review case still passes and an expansive fixture shows the four metrics.
+- [ ] T007 Bind `depth_mode` on every surface `convergence_mode` is bound on: the presentation setup default, input table row, resolution rule and bound-values list (`.skilled/commands/deep/assets/deep-review-presentation.txt`, today `:42`, `:75`, `:228`, `:244`); `user_inputs`, `step_preflight_contract`, the `step_read_state` extract and a `--depth-mode` argument on the `convergence.cjs` call (`Y`, today `:54-58`, `:356`, `:889`, `:989`). Verify: `$R tests/unit/stop-decision-yaml-contract.vitest.ts` exits 0 with a review binding case.
+- [ ] T008 Add the golden review test for absent key and `--depth-mode=default` (`$U/`, new golden review case). Verify: the case exits 0 against the T003 baseline for all six artifacts.
+- [ ] T009 Add the review `frontier_proposal` row to the leaf contract and sync the five runtime mirrors (`.skilled/agents/deep-review.md`, `.claude/agents/deep-review.md`, `.codex/agents/deep-review.toml`, `.pi/agents/deep-review.md`, `.vibe/agents/deep-review.toml`, `.dsh/agents/deep-review.patch.yml`). Verify: `rg -n 'frontier_proposal'` prints the row in all six files, the row states leaves never write coverage surfaces or the node store, and `/doctor:runtime-mirrors` reports no drift.
+- [ ] T010 Add one `{frontier_block}` token to the review template, placed so an empty value adds no byte, and add `frontier_block` (empty unless expansive) to `render_prompt_pack.variables` beside `review_focus_block` and to every other caller that renders the template (`$D/deep-review/assets/prompt-pack-iteration.md.tmpl`, `Y`, the callers from `rg -l 'prompt-pack-iteration.md.tmpl' $D/runtime/tests`). Verify: `$R tests/unit/prompt-pack.vitest.ts tests/unit/deep-review-marker-scan.vitest.ts tests/fanout-review-focus.vitest.ts tests/unit/deep-review-deltas-contract.vitest.ts` exits 0 with a proposal row case, and the golden case still passes.
+- [ ] T011 Add a review target mode to the phase-010 admission helper that writes `review/frontier-nodes.jsonl` rows instead of inbox rows, with `seed`, `admit` and `close` entry points (`$D/runtime/scripts/frontier-admit.cjs`, per ADR-003). Verify: a review admit suite exits 0 with one prune case per check and a store-row case, and `$R tests/unit/frontier-admit.vitest.ts` still passes.
+- [ ] T012 Add the review `step_frontier_seed`: before `step_fanout_spawn` on the fan-out path and in `phase_init` after `step_create_config` otherwise, calling `frontier-admit.cjs seed --target review`; the target-1 pruning of merges and index rebuilds happens here (`Y`). Verify: a review seed case writes admitted depth-1 rows, and `stop-decision-yaml-contract` finds the step in both places (a wording check).
+- [ ] T013 Add the review admission step after verify-iteration and before the reduce step, `enabled_when depthMode == expansive` (`Y`). Verify: `rg -n` for the step name in `Y` shows it between the two steps and no `inbox` write appears in it.
+- [ ] T014 Build the review `registry.frontier`, the frontier-owned `searchDebt` entries and per-node dimension coverage from `review/frontier-nodes.jsonl` (`$D/runtime/scripts/reduce-state.cjs`). Verify: `$R tests/unit/deep-review-state-reducer.vitest.ts` exits 0 with a case where one admitted node gives one open debt entry and one frontier node, and a case where two reduces of the same state give a byte-identical `frontier` and `searchDebt`.
+- [ ] T015 Add the close rule: a terminal node clears its debt and records its `candidateCoverage` bucket per plan ADR-001, and a node whose configured dimensions are all covered closes `answered` (`$D/runtime/scripts/reduce-state.cjs`). Verify: a close case with one `exhausted` and one `answered` node shows no frontier-owned `searchDebt` entry and no `deferred` or `blocked` disposition for either.
+- [ ] T016 Add the review Next Focus frontier assignment in the last-assignment-wins sequence of the strategy focus block and its dashboard twin, naming the node and its next uncovered dimension (`$D/runtime/scripts/reduce-state.cjs`, today `:2173-2187` and `:2271-2274`). Verify: a precedence case shows blocked-stop, then pivot, then frontier, then leaf `nextFocus`, then first uncovered dimension, in both the strategy and dashboard text.
+- [ ] T017 Steer dispatch: add the `active_frontier_node` extract from `registry.frontier` to `step_read_state` and a flag-gated case in the `next_dimension` rule that returns that node's next uncovered dimension, and fill `frontier_block` from the node (`Y`, per ADR-004). Verify: `stop-decision-yaml-contract` finds the flag-gated case in the `next_dimension` rule and the unchanged default rule (a wording check), and a reducer case shows the active node and its next uncovered dimension in `registry.frontier`.
+- [ ] T018 Apply the `frontierOpen` veto to review STOP candidates, after the review floor (`$D/runtime/scripts/convergence.cjs`). Verify: `$R tests/unit/stop-decision.vitest.ts tests/integration/review-depth-convergence.vitest.ts` exits 0 with review veto rows for `all_dimensions_clean` and composite candidates, a case asserting the echo is unchanged when `--depth-mode default` is passed, and `'echoes the input unchanged'` passing unedited.
+- [ ] T019 Add the expansive review STUCK_RECOVERY sub-branch that calls `frontier-admit.cjs close --target review --status exhausted` and keeps `deep_review.recovery_started` (`Y`). Verify: `stop-decision-yaml-contract` finds the close call and the event in the sub-branch (a wording check), and a review close case shows the node `exhausted` after the call.
+- [ ] T020 Gate the review pivot on a terminal frontier, seed from `exhausted` and `blocked` nodes and route accepted candidates through admission, on the pivot code and branch as 012 left them (`$D/deep-review/scripts/divergent-review-pivot.ts`, `Y` divergent branch). Verify: `$R tests/integration/divergent-pivot.vitest.ts` exits 0 with a gating case, and default seed output matches the T003 baseline byte for byte.
+- [ ] T021 Add the review fan-out path in `fanout-run.cjs`: `config.depthMode` in review lineage params only when the value is `expansive`, the `frontier_scope:` binding beside `review_focus` with round-robin depth-1 partition, the partition recorded in `orchestration-summary.json`, each lineage's nodes written into `lineages/<label>/review/frontier-nodes.jsonl` before spawn, and the frontier rules in the review detached `leafContract` (`$D/runtime/scripts/fanout-run.cjs`). Verify: `$R tests/unit/fanout-run.vitest.ts` exits 0 with a review partition case, a store-written-before-spawn case and a no-flag case and a `--depth-mode default` case without a `frontier_scope:` or `depthMode` line.
+- [ ] T022 Pass `--depth-mode {depth_mode}` on the review `fanout-run.cjs` command in `step_fanout_spawn_cli` (`Y`). Verify: `stop-decision-yaml-contract` finds the argument on that command.
+- [ ] T023 Add the merged review `frontier` to the return of `mergeReviewRegistries` and the review fan-in guard over the recorded partition and the phase-009 merged coverage (`$D/runtime/scripts/fanout-merge.cjs`). Verify: `$R tests/unit/fanout-merge.vitest.ts` exits 0 with a merged-frontier case and a case that fails when one depth-1 node is missing.
+- [ ] T024 [P] Add frontier size, pruned nodes, revisits and budget per depth to the review dashboard rows under the flag (`$D/runtime/scripts/reduce-state.cjs`, `renderDashboard`). Verify: a reducer dashboard case shows the four metrics on an expansive fixture and the golden review case still passes.
+- [ ] T025 Update the review reference docs for the flag, seed step, node store, steering rule, veto and fan-out partition (`$D/deep-review/references/`, `$D/deep-review/assets/review-mode-contract.yaml`, `$D/deep-review/SKILL.md`, `$D/deep-review/README.md`). Verify: `rg -l -- '--depth-mode'` prints each of those files.
+- [ ] T026 Write the expansive review playbook scenarios through `/create:manual-testing-playbook system-deep-loop update --path $D/deep-review/manual-testing-playbook` (`$D/deep-review/manual-testing-playbook/`). Verify: the command completes and `rg -l -- '--depth-mode=expansive' $D/deep-review/manual-testing-playbook` prints at least one file.
+- [ ] T027 Add the changelog entry for the review flag (`$D/deep-review/changelog/`, through `/create:changelog`). Verify: `rg -l -- '--depth-mode' $D/deep-review/changelog` prints the new file.
+- [ ] T028 Regenerate the review compiled contract after the last digested source change (`.skilled/commands/deep/assets/compiled/deep-review.contract.markdown`). Verify: `node $D/runtime/scripts/compile-command-contracts.cjs --command deep/review --write` exits 0, then `$R tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -94,9 +103,9 @@ Mark the task `[B]`, name the blocking phase, file or failing check on the same 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T021 Run the full deep-loop suite (`$D/runtime/tests/`). Verify: `npx vitest run $D/runtime/tests` exits 0.
-- [ ] T022 Run the pilot on example target 1: record `<pilot-sha>`, review `<pilot-sha>~100..<pilot-sha>`, prune merges and index rebuilds at init with one sampled determinism node, admit the seven subsystem nodes and run with fan-out and a stated `maxIterations` and lineage count (pilot packet under this phase's `scratch/`). Verify: `jq '.frontier.stats'` on the merged registry shows seven depth-1 nodes, zero open and zero active, and the stop reason is not `maxIterationsReached`.
-- [ ] T023 Check the pilot config satisfies the depth-1 band rule (pilot config). Verify: 50% of each lineage's `maxIterations` is at least `ceil(7 / lineages)`, computed with `jq` from the pilot config.
+- [ ] T029 Run the full deep-loop suite. Verify: `npm test` from `$D/runtime` exits 0.
+- [ ] T030 Run the pilot on example target 1: record `<pilot-sha>`, review `<pilot-sha>~100..<pilot-sha>`, prune merges and index rebuilds in the seed step with one sampled determinism node, admit the seven subsystem nodes and run with fan-out and a stated `maxIterations`, lineage count and `review_dimensions` (pilot packet under this phase's `scratch/`). Verify: `jq '.frontier.stats'` on the merged registry shows seven depth-1 nodes, zero open and zero active, and the stop reason is not `maxIterationsReached`.
+- [ ] T031 Check the pilot config satisfies the depth-1 band rule (pilot config). Verify: 50% of each lineage's `maxIterations` is at least `ceil(7 / lineages) * dimensions`, computed with `jq` from the pilot config.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -144,7 +153,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 
 - [ ] CHK-001 [P0] Requirements documented in spec.md
 - [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Phases 008-010 merged, per T001
+- [ ] CHK-003 [P1] Phases 003, 004, 008, 009, 010 and 012 merged, per T001
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -189,7 +198,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 ## Security
 
 - [ ] CHK-030 [P0] No credential is read or written by any changed file
-- [ ] CHK-031 [P0] Review leaves cannot write coverage surfaces; only the admission step and the reducer do
+- [ ] CHK-031 [P0] Review leaves cannot write coverage surfaces or `review/frontier-nodes.jsonl`; only `frontier-admit.cjs` and the reducer do
 - [ ] CHK-032 [P1] Proposal scope must intersect the configured review target, so neither a leaf nor the pivot can expand it
 <!-- /ANCHOR:security -->
 
@@ -201,6 +210,8 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 - [ ] CHK-040 [P1] Spec/plan/tasks synchronized
 - [ ] CHK-041 [P1] `review.md` command flag table and the review agent definition describe the same flag and row
 - [ ] CHK-042 [P2] The review synthesis names frontier-derived `deferred` entries as follow-up work
+- [ ] CHK-043 [P1] Reference docs, playbook scenarios and the changelog entry name `--depth-mode`, per T025-T027
+- [ ] CHK-044 [P1] The review compiled contract is regenerated and the agent mirrors show no drift, per T009 and T028
 <!-- /ANCHOR:docs -->
 
 ---
@@ -220,7 +231,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 14 | 0/14 |
-| P1 Items | 23 | 0/23 |
+| P1 Items | 25 | 0/25 |
 | P2 Items | 9 | 0/9 |
 
 **Verification Date**: Not yet verified; this phase is Planned.
@@ -231,8 +242,8 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:arch-verify -->
 ## L3+: Architecture Verification
 
-- [ ] CHK-100 [P0] ADR-001 and ADR-002 in `plan.md` are Accepted or replaced before T013 and T014 run
-- [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
+- [x] CHK-100 [P0] ADR-001 to ADR-004 in `plan.md` are Accepted or replaced in T000, before any Phase 2 task runs. Accepted as proposed 2026-11-17.
+- [x] CHK-101 [P1] All ADRs have status (Proposed/Accepted). Each reads Accepted since 2026-11-17.
 - [ ] CHK-102 [P1] Alternatives documented with rejection rationale
 - [ ] CHK-103 [P2] No migration needed: an absent key reads as default
 <!-- /ANCHOR:arch-verify -->
@@ -277,7 +288,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 
 - [ ] CHK-140 [P1] All spec documents synchronized
 - [ ] CHK-141 [P1] Review pack allowed-write list matches the review agent definition
-- [ ] CHK-142 [P2] N/A: no user-facing documentation beyond the command doc
+- [ ] CHK-142 [P2] User-facing docs beyond the command doc are listed in T025-T027
 - [ ] CHK-143 [P2] N/A: knowledge lives in this packet and the parent research
 <!-- /ANCHOR:docs-verify -->
 
