@@ -17,7 +17,8 @@
       "slice e prompt pack",
       "prompt pack contract alignment plan",
       "prompt pack contract alignment tasks",
-      "prompt pack contract alignment goal"
+      "prompt pack contract alignment goal",
+      "progressive synthesis write rule"
     ],
     "key_topics": [
       "prompt",
@@ -40,12 +41,14 @@
       "plan.md",
       "tasks.md",
       "goal.md",
-      ".skilled/agents/deep-review.md",
+      "implementation-summary.md",
+      ".skilled/agents/deep-research.md",
       ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts",
       ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
-      ".skilled/agents/deep-research.md",
-      ".skilled/commands/deep/assets/deep-research.yaml"
+      ".skilled/agents/deep-review.md",
+      ".skilled/commands/deep/assets/deep-research.yaml",
+      "scratch/baseline.txt"
     ],
     "entities": [
       {
@@ -73,9 +76,15 @@
         "source": "derived"
       },
       {
-        "name": "deep-review.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".skilled/agents/deep-review.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-research.md",
         "source": "derived"
       },
       {
@@ -97,15 +106,21 @@
         "source": "derived"
       },
       {
-        "name": "deep-research.md",
+        "name": "deep-review.md",
         "kind": "doc",
-        "path": ".skilled/agents/deep-research.md",
+        "path": ".skilled/agents/deep-review.md",
         "source": "derived"
       },
       {
         "name": "deep-research.yaml",
         "kind": "config",
         "path": ".skilled/commands/deep/assets/deep-research.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
         "source": "derived"
       },
       {
@@ -179,37 +194,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A research leaf gets two contradicting write rules: `.skilled/agents/deep-research.md:58` allows `research/research.md` when `progressiveSynthesis == true`, while the prompt pack's \"ALLOWED WRITE PATHS\" list (`deep-research/assets/prompt-pack-iteration.md.tmpl:42-45`) names only the iteration narrative, the delta and the gateway writes (defect D6, seen on 12 of 12 iterations across both generations of the parent run)",
     "created_at": "2026-11-17T14:43:29.630Z",
-    "last_save_at": "2026-11-17T17:52:13.027Z",
+    "last_save_at": "2026-11-17T18:49:11.858Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d4b52565b8e4d92905ce20eb28e66af48b18288f1e8de11e8e60e068f4cf35ab",
+    "source_fingerprint": "sha256:4dc9d7fb93a2c28fd4d67a62143de738bc725d73bc8e882c310ee0fe01c220ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c2cf368b5dc6f378cce28854e073a6bcdfd21d20672e6c12bfef74b29c78819",
       "plan.md": "6e6bcb7e8c05c51a14d6972e6163b56e26bd0efca1bcc2d7f508e88443114102",
-      "tasks.md": "23ea3b7d02382986cc1dd723747597a75c59099d0815da6f2319ea28951d53fe"
+      "tasks.md": "e8a0988dc04af89fb2e0ab087076a66a8532ddfdf5087d37f1cebce08e707a0b",
+      "implementation-summary.md": "a4fae88088f7870219f59ff6ae3567f90f47199d5e1dda72a35c49420ea6b41b"
     },
     "last_active_child_id": null,
     "last_active_at": null

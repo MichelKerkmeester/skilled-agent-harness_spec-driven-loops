@@ -54,12 +54,12 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `rg -n "research\.md.*progressiveSynthesis" .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` prints one line inside the ALLOWED WRITE PATHS list with no `research/research.md` literal, and a `prompt-pack.vitest.ts` case rendering a lineage iteration path shows the entry pointing at that lineage directory's `research.md`.
-- [ ] `rg -n "Questions Remaining, Recommended Next Focus"` on that template prints one line, and `rg -n ", Next Focus\."` on it prints nothing.
-- [ ] A `prompt-pack.vitest.ts` case asserts that `.skilled/agents/deep-research.md` and the template both have a line naming `research.md` with `progressiveSynthesis` and both name `Recommended Next Focus`, and it fails when either line is deleted from a scratch copy of the pack.
-- [ ] A case feeds the research reducer a narrative with the headings the pack names and gets a non-empty parsed `nextFocus`.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/prompt-pack.vitest.ts tests/unit/deep-research-reduce-state.vitest.ts tests/unit/deep-research-deltas-contract.vitest.ts tests/unit/deep-review-deltas-contract.vitest.ts tests/unit/check-documentation-drift.vitest.ts tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0.
-- [ ] `git diff --stat` for this phase lists no file under `deep-review/`, neither agent definition and no compiled contract other than a regenerated `deep-research.contract.markdown`.
+- [x] `rg -n "research\.md.*progressiveSynthesis" .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` prints one line inside the ALLOWED WRITE PATHS list with no `research/research.md` literal, and a `prompt-pack.vitest.ts` case rendering a lineage iteration path shows the entry pointing at that lineage directory's `research.md`.
+- [x] `rg -n "Questions Remaining, Recommended Next Focus"` on that template prints one line, and `rg -n ", Next Focus\."` on it prints nothing.
+- [x] A `prompt-pack.vitest.ts` case asserts that `.skilled/agents/deep-research.md` and the template both have a line naming `research.md` with `progressiveSynthesis` and both name `Recommended Next Focus`, and it fails when either line is deleted from a scratch copy of the pack.
+- [x] A case feeds the research reducer a narrative with the headings the pack names and gets a non-empty parsed `nextFocus`.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/prompt-pack.vitest.ts tests/unit/deep-research-reduce-state.vitest.ts tests/unit/deep-research-deltas-contract.vitest.ts tests/unit/deep-review-deltas-contract.vitest.ts tests/unit/check-documentation-drift.vitest.ts tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0.
+- [x] `git diff --stat` for this phase lists no file under `deep-review/`, neither agent definition and no compiled contract other than a regenerated `deep-research.contract.markdown`.
 - [ ] `rg -l "progressiveSynthesis" .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/prompt-rendering` lists a scenario written by `/create:manual-testing-playbook`.
 <!-- /ANCHOR:completion -->
 
@@ -78,7 +78,9 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase spec authored | Done | `spec.md`, `plan.md`, `tasks.md` written 2026-11-17 |
-| Implementation | Pending | Not started |
+| Implementation | Done (code and tests) | 2026-11-17 in worktree `458-ed-005-prompt-pack-contract`. Pack entry at `prompt-pack-iteration.md.tmpl:45`, heading renamed at `:62`, four new `prompt-pack.vitest.ts` cases, research contract regenerated. Seven suites: 89 passed, exit 0 (baseline 85) |
+| Negative control | Done | A scratch pack without the entry failed the lockstep case, and one with the old heading failed it too. Both copies deleted |
+| Playbook scenario | Blocked | `/create:manual-testing-playbook` hard-blocks at Phase 0 unless run as `@markdown`; the phase worker cannot start that agent |
 
 ### Deviations and findings
 
@@ -86,5 +88,7 @@ and findings belong here.
 |------|------|
 | Goal source | This phase has no `acceptance-criteria.md`; the criteria come from the REQ table in `spec.md` §4, as the authoring brief directed. |
 | Open questions | `spec.md` §7 records the reverse fix direction (remove the leaf permission from the agent) and the render-variable alternative; this goal follows the spec's chosen direction. |
+| Changelog | Added T011 from the cross-phase handoff §3 (default-path change). Blocked by the same `@markdown` gate as the playbook. |
+| Typecheck command | `npx tsc` resolves no TypeScript in the runtime package. The real check is `npm run -s typecheck` there. |
 | Plan review | The 2026-11-17 plan review findings were applied: the allowed path is worded relative to the run's artifact directory with a lineage render case, the contract is regenerated after each merge, this phase lands before 004, the test command runs from the runtime folder, and this phase writes its own playbook scenario. |
 <!-- /ANCHOR:log -->

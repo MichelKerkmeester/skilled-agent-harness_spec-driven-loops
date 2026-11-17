@@ -1,0 +1,4 @@
+005 seven-suite baseline, 2026-11-17, worktree 458 at 21c4b325b5a
+cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/prompt-pack.vitest.ts tests/unit/deep-research-reduce-state.vitest.ts tests/unit/deep-research-deltas-contract.vitest.ts tests/unit/deep-review-deltas-contract.vitest.ts tests/unit/check-documentation-drift.vitest.ts tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts
+Result: exit 0. Test Files 7 passed (7). Tests 85 passed (85).
+T002: rg -n 'Questions Remaining, Next Focus' runtime/tests printed nothing (exit 1).

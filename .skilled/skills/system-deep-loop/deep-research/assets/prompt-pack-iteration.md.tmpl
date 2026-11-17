@@ -42,6 +42,7 @@ All paths are relative to the repo root.
 - **ALLOWED WRITE PATHS (the ONLY paths you may create, modify, or append to)**:
   - `{state_paths_iteration_pattern}`, this iteration's narrative markdown
   - `{state_paths_delta_pattern}`, this iteration's delta JSONL
+  - the `research.md` in the directory that holds the `iterations/` folder of `{state_paths_iteration_pattern}` (the run's artifact directory, or the lineage directory in a fan-out), only when `progressiveSynthesis` is `true` in `{state_paths_config}`; never a `research.md` anywhere else
   - the append gateway's own writes into the run directory when you invoke it (see OUTPUT CONTRACT item 2) — the gateway is the only writer of `{state_paths_state_log}`; that path is NEVER one you write directly
 - **A DELTA FINDING'S TEXT GOES IN `label`**: emit `{"type":"finding","id":"<id>","label":"<the finding text>","iteration":<n>}`. `label` is the field the contract names for a finding's text — put the finding statement there, not in `title`, `claim`, `summary`, `finding` or `text`.
 - **NO OPERATOR IS PRESENT — NEVER HALT TO ASK**: a fan-out lineage runs unattended, with no operator on the other end to answer a question. When you meet a contradiction or a "which truth prevails" decision, record it as a finding with its evidence and keep going; never stop the run to ask, and never emit a LOGIC-SYNC halt.
@@ -58,7 +59,7 @@ All paths are relative to the repo root.
 
 You MUST produce THREE artifacts per iteration. The YAML-owned post_dispatch_validate step emits a `schema_mismatch` conflict event if any is missing or malformed.
 
-1. **Iteration narrative markdown** at `{state_paths_iteration_pattern}` (path is pre-substituted for the current iteration number). Structure: headings for Focus, Actions Taken, Findings, Questions Answered, Questions Remaining, Next Focus.
+1. **Iteration narrative markdown** at `{state_paths_iteration_pattern}` (path is pre-substituted for the current iteration number). Structure: headings for Focus, Actions Taken, Findings, Questions Answered, Questions Remaining, Recommended Next Focus.
 
 2. **Canonical iteration record recorded THROUGH THE APPEND GATEWAY** — never written to `{state_paths_state_log}` directly — the gateway is its only writer, and it refreshes that log from the ledger after authorizing, fencing, and receipting the record. The record MUST use `"type":"iteration"` EXACTLY — NOT `"iteration_delta"` or any other variant. The reducer counts records where `type === "iteration"` only; other types are silently ignored (the iteration will look incomplete and the reducer may re-run it). The record MUST also carry stable identity: `runId`, `sessionId` and `lineageId`, all set to the run's session id, which you read from `{state_paths_config}` (the `lineage.sessionId` field). A record without them is refused with `stable-identity-missing`, because the gateway cannot attach a record it cannot place in a run. Required schema:
 
