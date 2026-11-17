@@ -2131,6 +2131,28 @@ test('consume returns the handoff path and its spec folder', (t) => {
   assert.equal(fs.existsSync(filePath), false);
 });
 
+test('consume names the root that owns a note under another checkout', (t) => {
+  const sandbox = createSandbox(t);
+  const otherRoot = path.join(sandbox.root, 'other-checkout');
+  const outsidePath = path.join(
+    otherRoot, '.skilled', 'skills', '.state', 'session-handover', 'handoffs', 'handoff.md',
+  );
+  fs.mkdirSync(path.dirname(outsidePath), { recursive: true });
+  fs.writeFileSync(outsidePath, handoffText());
+  writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'armed', handoff: outsidePath });
+
+  const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(JSON.parse(result.stdout), {
+    handoff: '',
+    spec_folder: '',
+    note: 'outside-root',
+    repo_root: sandbox.repoRoot,
+    note_root: otherRoot,
+  });
+});
+
 test('consume refuses a handoff outside the handoffs directory', (t) => {
   const sandbox = createSandbox(t);
   writeHandoff(sandbox);
@@ -2146,10 +2168,12 @@ test('consume refuses a handoff outside the handoffs directory', (t) => {
   const logPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log');
 
   assert.equal(result.status, 0, result.stderr);
+  // The path is not shaped like a note under any root, so no note root is named.
   assert.deepEqual(JSON.parse(result.stdout), {
     handoff: '',
     spec_folder: '',
-    note: 'missing',
+    note: 'outside-root',
+    repo_root: sandbox.repoRoot,
   });
   assert.equal(fs.existsSync(filePath), false);
   assert.match(

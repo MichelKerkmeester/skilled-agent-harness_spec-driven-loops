@@ -1,5 +1,5 @@
 {
-  "corpusHash": "46e6ae71a3c6c90f25ddcb6a357c7dec3033acb65884662122b80d7900f9d312",
+  "corpusHash": "ad48953dabc2c2567c6fe3df4a8b104fc73f032409847b1d060e613d69aec6fd",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28285,
+  "includedPathCount": 28352,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -16297,6 +16297,73 @@
     "specs/sk-doc/document-standards/003-changelog-system/009-release-notes-layout-default/plan.md",
     "specs/sk-doc/document-standards/003-changelog-system/009-release-notes-layout-default/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/009-release-notes-layout-default/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/timeline.md",
     "specs/sk-doc/document-standards/004-security-policy-alignment/goal.md",
@@ -28317,7 +28384,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "565615abd0a6e11b3ad63059980e25278777884ab07aefa5e8920dde85184c9f",
+  "manifestHash": "bb3033b7815bc2dc8a8cfbb2bdf1ebcb5ea176d088b5cfac57f914639af6ff3d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -35209,6 +35276,58 @@
     },
     {
       "path": "specs/sk-doc/document-standards/003-changelog-system/009-release-notes-layout-default/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/scratch",
       "reason": "excluded directory"
     },
     {

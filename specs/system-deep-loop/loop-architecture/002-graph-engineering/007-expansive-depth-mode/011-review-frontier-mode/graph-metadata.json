@@ -19,6 +19,7 @@
       "review frontier mode plan",
       "review frontier mode tasks",
       "review frontier mode acceptance criteria",
+      "review frontier mode goal",
       "review frontier mode implementation summary"
     ],
     "key_topics": [
@@ -42,19 +43,22 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       ".skilled/commands/deep/review.md",
+      ".skilled/commands/deep/assets/deep-review-presentation.txt",
       ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
       ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
       ".skilled/commands/deep/assets/deep-review.yaml",
       ".skilled/agents/deep-review.md",
+      ".claude/agents/deep-review.md",
+      ".codex/agents/deep-review.toml",
+      ".pi/agents/deep-review.md",
+      ".vibe/agents/deep-review.toml",
+      ".dsh/agents/deep-review.patch.yml",
       ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts",
-      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
-      ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
-      ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
-      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
     ],
     "entities": [
       {
@@ -82,6 +86,12 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -91,6 +101,12 @@
         "name": "review.md",
         "kind": "doc",
         "path": ".skilled/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
         "source": "derived"
       },
       {
@@ -118,6 +134,18 @@
         "source": "derived"
       },
       {
+        "name": "deep-review.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.patch.yml",
+        "kind": "config",
+        "path": ".dsh/agents/deep-review.patch.yml",
+        "source": "derived"
+      },
+      {
         "name": "prompt-pack-iteration.md.tmpl",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
@@ -133,30 +161,6 @@
         "name": "reduce-state.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "convergence.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "divergent-review-pivot.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-merge.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
         "source": "derived"
       },
       {
@@ -204,7 +208,7 @@
     ],
     "causal_summary": "The review coverage universe is `reviewDimensions`, normalized once at init and locked, and the review reducer has no `inbox`, `keyQuestions` or `openQuestions` surface, so nothing a leaf discovers can become counted review work",
     "created_at": "2026-11-17T14:34:38Z",
-    "last_save_at": "2026-11-17T16:54:25.445Z",
+    "last_save_at": "2026-11-17T18:10:54.960Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,15 +216,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:020d433ee35f25609d0d81248f537123010c2c70e15698eb7fe810f0bace4e4c",
+    "source_fingerprint": "sha256:9159645e2861d054f270ef4de460075eabe7ceeaef05829f1575d90c49f3ec96",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7deae604cc6beaab506de86dc8e59eb5a865f828a84f25c16148cf983534d494",
-      "plan.md": "1022539fc0a28390ebe50968c5d2545ef8263460129720c2c26e8ff16f8529d4",
-      "tasks.md": "09a1f5e45cb92d0bb17377b07aaf8b8731a65382ca4c1dd70ef2498d8a68ac86",
-      "implementation-summary.md": "fab0e7a2e562f18856485d49f188fad5ea9090937e26fa94ab4aa84971e4f54e"
+      "spec.md": "be1fa21a271a1889502208f01d0389cda2ffb2573c5d7207c40935a2017ac567",
+      "plan.md": "efd6636f21b940bb625666b660ab1cdd69666da3355612a74bf4e1cbc289de87",
+      "tasks.md": "6ff37a42fef51a7038e0c8faf4e350e33789f8d88d5a05c214994a3145f17ed5",
+      "implementation-summary.md": "d661fe9dd34b31b9830d04dac7301a0fd36839ffc2bf37117ab820faa1682f3e"
     },
     "last_active_at": null
   }

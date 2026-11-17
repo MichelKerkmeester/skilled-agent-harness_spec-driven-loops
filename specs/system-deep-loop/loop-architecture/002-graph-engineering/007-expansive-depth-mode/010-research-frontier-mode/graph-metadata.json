@@ -19,6 +19,8 @@
       "research frontier mode plan",
       "research frontier mode tasks",
       "research frontier mode acceptance criteria",
+      "research frontier mode goal",
+      "010-research-frontier-mode operator decisions",
       "research frontier mode implementation summary"
     ],
     "key_topics": [
@@ -42,18 +44,22 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/commands/deep/research.md",
+      ".skilled/commands/deep/assets/deep-research-presentation.txt",
       ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
       ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
       ".skilled/commands/deep/assets/deep-research.yaml",
       ".skilled/agents/deep-research.md",
+      ".claude/agents/deep-research.md",
+      ".codex/agents/deep-research.toml",
+      ".pi/agents/deep-research.md",
+      ".vibe/agents/deep-research.toml",
+      ".dsh/agents/deep-research.patch.yml",
       ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
-      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts",
-      ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
-      ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
-      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts"
     ],
     "entities": [
       {
@@ -81,9 +87,27 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
         "source": "derived"
       },
       {
@@ -111,6 +135,18 @@
         "source": "derived"
       },
       {
+        "name": "deep-research.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-research.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.patch.yml",
+        "kind": "config",
+        "path": ".dsh/agents/deep-research.patch.yml",
+        "source": "derived"
+      },
+      {
         "name": "prompt-pack-iteration.md.tmpl",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
@@ -120,30 +156,6 @@
         "name": "prompt-pack.ts",
         "kind": "code",
         "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "convergence.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-merge.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
         "source": "derived"
       },
       {
@@ -193,33 +205,30 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A deep-research run stops on `allquestionsanswered` or `compositeconverged` as soon as the questions written at init are answered, however narrowly",
     "created_at": "2026-11-17T14:34:22Z",
-    "last_save_at": "2026-11-17T14:47:13.757Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-17T18:12:37.749Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a8cb04d8c14eb28d68c1f72e48f06a8096fb09be42ea8cc0069622825ef13d9",
+    "source_fingerprint": "sha256:3c28fc5594d7a5ff3d569d99f791edda986273b18185f929258cbc7b306c25b4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9da0c4a4ebbb9baf828098d57de3675c7d4dc42149299f53a3c864951080a1cd",
-      "plan.md": "864584c1c54df72e521eaa6730f95360545061d3da7e254713be20026d716442",
-      "tasks.md": "3bbcb3ca5eb4af894349e92b2daeb3d1e286a2d331380e6e4a2c58b37ed7b0d9",
-      "implementation-summary.md": "b010e2f52acfb524134413b0af4ea145c5a153de6fd8f1999126a8a60b878e7a"
+      "spec.md": "50340ebf91365cc6cdc46ec8687c360b04e0b0e65091a5c6877aca9f442564d2",
+      "plan.md": "888c8f9174744791fc36841b8908e9f7de4435b8693d1063f1f0c386d86bd727",
+      "tasks.md": "de7691a59540fb57a39bb316898a27c90d6584bd4922320f91bea1fa040e5eaf",
+      "decision-record.md": "3fe4f41ac6a30613026be6fc7d58b1648c5629ecd28ccccb2b1a1266453bc325",
+      "implementation-summary.md": "b1e17d47a246aa2e7a2bb9d9c175984430ffc0d8857e0252bdc9eb9da6645e1e"
     },
     "last_active_at": null
   }

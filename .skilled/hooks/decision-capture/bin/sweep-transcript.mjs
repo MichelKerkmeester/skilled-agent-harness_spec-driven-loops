@@ -274,9 +274,15 @@ function recordedCwd(filePath) {
 // Claude Code gives every command it runs the id of the session that ran it. The
 // id names the transcript exactly, wherever the save runs, so a newer transcript
 // from another session in the same project is never read by mistake.
+// Claude Code keeps its projects under CLAUDE_CONFIG_DIR when that is set, so a second
+// account or a moved config directory is read where Claude Code wrote it.
+function claudeProjectsDir() {
+  return join(process.env.CLAUDE_CONFIG_DIR || join(homedir(), '.claude'), 'projects');
+}
+
 function sessionTranscript(sessionId) {
   if (!/^[A-Za-z0-9-]+$/.test(sessionId)) return null;
-  const projectsDir = join(homedir(), '.claude', 'projects');
+  const projectsDir = claudeProjectsDir();
   let dirs;
   try {
     dirs = readdirSync(projectsDir);
@@ -293,12 +299,7 @@ function sessionTranscript(sessionId) {
 // The newest transcript recorded for this project is the session a save
 // without an explicit path is most likely to be resuming.
 function latestTranscript(projectDir) {
-  const transcriptDir = join(
-    homedir(),
-    '.claude',
-    'projects',
-    projectDir.replace(/[^A-Za-z0-9]/g, '-'),
-  );
+  const transcriptDir = join(claudeProjectsDir(), projectDir.replace(/[^A-Za-z0-9]/g, '-'));
 
   let names;
   try {

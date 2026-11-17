@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Close the out-of-contract review dimension gap (D10)"
+title: "Implementation Summary: Support custom review dimensions end to end (D10)"
 description: "Implementation has not started. Only the setup task T001 is done: the operator chose on 2026-11-17 to support custom review dimensions in buildDimensionCoverage."
 trigger_phrases:
   - "review dimension coverage implementation summary"
@@ -31,7 +31,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Implementation Summary: Close the out-of-contract review dimension gap (D10)
+# Implementation Summary: Support custom review dimensions end to end (D10)
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
@@ -60,8 +60,8 @@ No runtime code has changed yet. The operator decided ADR-001 on 2026-11-17, and
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `decision-record.md` | Modified | ADR-001 Accepted with the operator's choice and one Operator Decisions row |
-| `plan.md`, `tasks.md` | Modified | The rejected option's branch removed; T001 marked done |
+| `decision-record.md` | Modified | ADR-001 Accepted with the operator's choice, carried by OD-001 |
+| `spec.md`, `plan.md`, `tasks.md` | Modified | The rejected option's branch removed; T001 marked done; the plan review (`../scratch/fable-5-2-plan-review.md`) widened the file list to every surface that names the four dimensions |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -98,7 +98,7 @@ The decision was recorded in the spec documents only. No code was written, and n
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No runtime change yet.** `reduce-state.cjs` and `deep-review.yaml` are untouched until T005 to T007 land.
+1. **No runtime change yet.** `reduce-state.cjs`, `deep-review.yaml` and the other surfaces in `spec.md` §3 are untouched until T003 to T013 land.
 <!-- /ANCHOR:limitations -->
 
 ---

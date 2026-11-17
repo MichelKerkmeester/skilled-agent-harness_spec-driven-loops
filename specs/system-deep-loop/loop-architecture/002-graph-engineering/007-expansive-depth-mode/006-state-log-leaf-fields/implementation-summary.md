@@ -60,7 +60,7 @@ No runtime code has changed yet. The operator decided ADR-001 on 2026-11-17, and
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `decision-record.md` | Modified | ADR-001 Accepted with the operator's choice and one Operator Decisions row |
+| `decision-record.md` | Modified | ADR-001 Accepted with the operator's choice, recorded in two Operator Decisions rows (OD-001 and the captured question Q001) |
 | `plan.md`, `tasks.md` | Modified | The rejected option's branch removed; T001 marked done |
 <!-- /ANCHOR:what-built -->
 
@@ -98,7 +98,7 @@ The decision was recorded in the spec documents only. No code was written, and n
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No runtime change yet.** The four drop-chain files are untouched until T003 to T006 land.
+1. **No runtime change yet.** The four drop-chain files are untouched until T004 to T007 land.
 <!-- /ANCHOR:limitations -->
 
 ---

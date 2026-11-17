@@ -73,7 +73,7 @@ _memory:
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Per pivot, default 6** | A failed or resumed pivot no longer shrinks later pivots; every pivot can afford its one retry; lifetime cost stays bounded by `maxPivots` | Changes what an existing `maxCouncilSeatOutputs` value means; worst-case lifetime seat cost rises from 9 to 18 | 7/10 |
+| Per pivot, default 6 | A failed or resumed pivot no longer shrinks later pivots; every pivot can afford its one retry; lifetime cost stays bounded by `maxPivots` | Changes what an existing `maxCouncilSeatOutputs` value means; worst-case lifetime seat cost rises from 9 to 18 | 7/10 |
 | Lifetime, default 9 | No change in meaning or cost ceiling; smallest code change | A retry spends a later pivot's seats; a resumed pivot still burns budget silently | 6/10 |
 | Lifetime, counting only completed pivots | Fixes the resumed-pivot leak without a meaning change | Needs a new definition of "completed" for partial rounds; most code of the three | 4/10 |
 
@@ -92,14 +92,14 @@ _memory:
 - A transient council quorum failure no longer ends a pivot on its first occurrence.
 
 **What it costs**:
-- Changes what an existing `maxCouncilSeatOutputs` value means. Mitigation: the changelog states the new meaning.
+- Changes what an existing `maxCouncilSeatOutputs` value means. Mitigation: the changelog entry (`tasks.md` T014) states the new meaning.
 - The worst-case seat cost of a run rises from 9 to 18 (3 pivots, each with one retry). Mitigation: the retry fires only on a quorum failure and at most once per pivot.
 
 **Risks**:
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| Existing configs set `maxCouncilSeatOutputs` with lifetime intent and read differently under per-pivot | L | The changelog states the new meaning; no shipped config sets the field today (it appears only in `divergent-pivot.ts` and its test) |
+| Existing configs set `maxCouncilSeatOutputs` with lifetime intent and read differently under per-pivot | L | The changelog (`tasks.md` T014) states the new meaning; no shipped config sets the field today. `rg -l maxCouncilSeatOutputs .skilled` on 2026-11-17 lists `divergent-pivot.ts`, its integration test and one retrieval phrase fixture (`system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json`), no config |
 | A retry masks a systematic seat failure | L | Only one retry; a second failure fails closed with the original reason |
 <!-- /ANCHOR:adr-001-consequences -->
 
@@ -112,7 +112,7 @@ _memory:
 |---|-------|--------|----------|
 | 1 | **Necessary?** | PASS | Parent §12 item 4 is open and the retry depends on it |
 | 2 | **Beyond Local Maxima?** | PASS | Three scopes compared |
-| 3 | **Sufficient?** | PASS | One check and one usage line change |
+| 3 | **Sufficient?** | PASS | The change set covers the cap default and check, the usage line, the seat count in both pivot scripts (`divergent-research-pivot.ts:420`, `divergent-review-pivot.ts:405`), the attempt identity in event ids, seat paths and the persisted config, the retry loop in both YAMLs and both compiled contracts (`plan.md` §3) |
 | 4 | **Fits Goal?** | PASS | Pivot yield is part of the widening story in parent §18 |
 | 5 | **Open Horizons?** | PASS | `maxPivots` stays the outer bound |
 
@@ -126,9 +126,11 @@ _memory:
 
 **What changes**:
 - `divergent-pivot.ts`: the default at :286 becomes 3, the check at :736 counts the current council attempt only, and the usage line at :1486 records the real seat outputs of the pivot, 3 or 6.
-- The retry opens a second attempt with its own 3 seats; a pivot never gets a third attempt.
+- `divergent-research-pivot.ts:420` and `divergent-review-pivot.ts:405`: the seat count, today every `pivot_seat_returned` event under the artifact root, is scoped to the current pivot id and attempt.
+- The retry opens a second attempt with its own 3 seats; a pivot never gets a third attempt. The attempt number joins the seat event ids, the seat output paths and the persisted config, because today all three are fixed per pivot (`divergent-pivot.ts:600-601`, :807-830, :1130-1165) and a second attempt would collide with the first. Seat ids stay `seat-001` to `seat-003`.
+- Both workflow YAMLs gain the one-time re-entry into prepare, and both compiled contracts are regenerated.
 
-**How to roll back**: Revert the slice's commit. Usage records written meanwhile stay readable as ordinary seat counts.
+**How to roll back**: Revert the slice's commit and regenerate both compiled contracts. Usage records written meanwhile stay readable as ordinary seat counts.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
@@ -139,11 +141,11 @@ _memory:
 
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
-| OD-001 | 2026-11-17: cap council seat outputs per pivot, 3 per pivot; `maxPivots: 3` still caps the run | A failed or resumed pivot no longer shrinks later pivots | ADR-001 Proposed status | `plan.md`, `tasks.md` T003 |
-| OD-002 | 2026-11-17: "Retry gets its own 3". Each council attempt gets 3 seat outputs, with at most one retry per pivot on a quorum failure, so one pivot uses at most 6; `maxPivots: 3` still caps the run | A per-pivot cap of 3 left no room for the planned retry; giving the retry its own 3 keeps the retry and bounds it | OD-001's 3-per-pivot value, now 3 per council attempt | `plan.md`, `tasks.md` T003 and T004, `spec.md` REQ-002 and REQ-005 |
+| OD-001 | 2026-11-17: cap council seat outputs per pivot, 3 per pivot; `maxPivots: 3` still caps the run | A failed or resumed pivot no longer shrinks later pivots | ADR-001 Proposed status | `plan.md`, `tasks.md` T004 |
+| OD-002 | 2026-11-17: "Retry gets its own 3". Each council attempt gets 3 seat outputs, with at most one retry per pivot on a quorum failure, so one pivot uses at most 6; `maxPivots: 3` still caps the run | A per-pivot cap of 3 left no room for the planned retry; giving the retry its own 3 keeps the retry and bounds it | OD-001's 3-per-pivot value, now 3 per council attempt | `plan.md`, `tasks.md` T004 to T010, `spec.md` REQ-002, REQ-005, REQ-007 and REQ-008 |
 | Q001 | No decision: the operator asked what council meant; the question was re-asked as 012 pivot after clarifying it is divergent mode three-seat vote, not the deprecated ai-council mode. | Not stated. | None | 012-pivot-hygiene/decision-record.md |
 | Q002 | Cap divergent-pivot council seat outputs per pivot instead of for the whole run; maxPivots 3 still caps the run. | Not stated. | None | 012-pivot-hygiene/decision-record.md OD-001 |
-| Q003 | Each council attempt gets its own 3 seat outputs with at most one retry per pivot, so one pivot uses at most 6 seats. | Not stated. | None | 012-pivot-hygiene/decision-record.md OD-002, spec.md REQ-002, tasks.md T004 |
+| Q003 | Each council attempt gets its own 3 seat outputs with at most one retry per pivot, so one pivot uses at most 6 seats. | Not stated. | None | 012-pivot-hygiene/decision-record.md OD-002, spec.md REQ-002, tasks.md T007 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---

@@ -41,8 +41,10 @@
       ".skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs",
       ".skilled/commands/deep/assets/deep-research.yaml",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
-      ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-claude-code.vitest.ts",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/cli-matrix.vitest.ts"
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/dispatch-iteration.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts"
     ],
     "entities": [
       {
@@ -88,15 +90,27 @@
         "source": "derived"
       },
       {
-        "name": "cli-claude-code.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-claude-code.vitest.ts",
+        "name": "deep-research.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
         "source": "derived"
       },
       {
-        "name": "cli-matrix.vitest.ts",
+        "name": "dispatch-iteration.vitest.ts",
         "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/cli-matrix.vitest.ts",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/dispatch-iteration.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit-cli-branch-receipts.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-branch-contract.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts",
         "source": "derived"
       },
       {
@@ -176,23 +190,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A single-executor deep-research run on `cli-claude-code` silently drops a configured `config.executor.configDir`, and an explicit `--claude-config-dir` makes `dispatch-iteration.cjs` raise a UsageError, because the flag is accepted only for `--loop-type review`",
     "created_at": "2026-11-17T14:34:21Z",
-    "last_save_at": "2026-11-17T14:43:39.271Z",
+    "last_save_at": "2026-11-17T17:46:56.821Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +203,12 @@
       "tasks.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:fa0998c7429bc12d5de7eab39f7019994855445facca62cd4a874126e57c712d",
+    "source_fingerprint": "sha256:b092b0ce867e405aa94edaf340686cf4ef60e733e7c0a1692c8e3f5452acd970",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "727e6e3b3ebb1edd9bc6155fef056a25d0dc9c7be47d2e32fc376ef158350414",
-      "plan.md": "05d9ec10667b108fe511912d91a75e8322ace7d1c083ad6af2f0e453772876ec",
-      "tasks.md": "d45a71b1931f4016409439ea97b302a95c08aa2d57a66e375170986e0a7d6893"
+      "spec.md": "b4b10388e6881c0e759dff2bc02cf068158beb64999005a3ccac171226aa6e6f",
+      "plan.md": "0adb0cf51221ad96e07dd62412bad13af9fdb62f5ad9d9b7a8fd749c420ccaf8",
+      "tasks.md": "4234d5f917049b725d6d186f0b1562c344ca43faf4d1035fdff29b18dd476c13"
     },
     "last_active_at": null
   }

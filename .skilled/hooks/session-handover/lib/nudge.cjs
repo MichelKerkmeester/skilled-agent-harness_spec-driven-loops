@@ -34,10 +34,16 @@ const GOAL_GUIDANCE = '   When spec_folder names a packet, open ## Goal with one
   + 'When neither exists and the packet holds a goal.md, write `Goal objective: <sentence>` from '
   + 'its Objective. Leave the line out when there is no such text. Then say what this session '
   + 'works toward.';
-// Every adapter prints this command, so the model always runs the CLI from the repo root.
-const CLI_COMMAND = 'node .skilled/hooks/session-handover/bin/session-handover.cjs';
-const CONTINUITY_WRITER_COMMAND = 'node .skilled/skills/system-spec-kit/runtime/cli/'
-  + 'dist/continuity/generate-context.js';
+// Every adapter prints this command. It names this checkout's CLI by its absolute path, so
+// a shell standing in a subdirectory or in another checkout still runs the CLI whose
+// nudge planned the note.
+const CLI_COMMAND = `node ${shellQuote(path.join(__dirname, '..', 'bin', 'session-handover.cjs'))}`;
+// The writer finds the repository from the working directory, so naming its script by
+// absolute path keeps the save step working from a subdirectory.
+const CONTINUITY_WRITER_COMMAND = `node ${shellQuote(path.join(
+  __dirname, '..', '..', '..', 'skills', 'system-spec-kit', 'runtime', 'cli',
+  'dist', 'continuity', 'generate-context.js',
+))}`;
 const NUDGE_STEP = 0.05;
 const LAST_NUDGE_LEVEL = 1;
 // What a session is told when its prepared hand-over was withdrawn by a prompt: the prompt
@@ -101,7 +107,10 @@ function stripControlCharacters(value) {
 // single-quoted string without a quote inside, or a run of characters the shell reads as
 // data. Anything else is quoted whole, so it can only ever be the path of the command.
 function commandPrefix(cliPath) {
-  if (typeof cliPath !== 'string' || !cliPath.trim()) return CLI_COMMAND;
+  // The module's own command is already quoted, even for a checkout path holding a quote.
+  if (typeof cliPath !== 'string' || !cliPath.trim() || cliPath === CLI_COMMAND) {
+    return CLI_COMMAND;
+  }
   const nodeInvocation = /^node +(.*)$/s.exec(cliPath);
   if (nodeInvocation !== null) {
     const argument = nodeInvocation[1];
@@ -615,7 +624,7 @@ function questionHoldReason({ sessionId, runtime, env = process.env } = {}) {
     'this turn ends. A question dialog keeps the turn open, so the hop would never run.',
     `End this turn now and put the question in the handoff note at ${record.handoff} for`,
     'the next session, or call the hand-over off first with',
-    `\`node .skilled/hooks/session-handover/bin/session-handover.cjs cancel --loop-id ${record.loopId}\`.`,
+    `\`${CLI_COMMAND} cancel --loop-id ${record.loopId}\`.`,
   ].join(' ');
 }
 

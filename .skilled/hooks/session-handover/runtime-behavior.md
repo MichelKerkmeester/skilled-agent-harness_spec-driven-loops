@@ -124,14 +124,40 @@ In the recorded live runs, OpenCode reported about 1M context tokens for `openai
 
 ## 7. LAUNCHING A RUNTIME UNDER THE LOOP
 
-The shim defines `claude`, `pi`, `opencode`, `codex`, `devin`, `cursor-agent`, `vibe` and `skilled-loop` as shell functions. The `skilled-loop` function runs the wrapper from the checkout that owns the sourced shim, so a pasted manual claim works from any directory and without the terminal check. Typing `claude` in a terminal then runs `bash <repo>/.skilled/bin/skilled-loop claude`, and `cursor-agent` runs the wrapper's `cursor` arm. A function hands the launch to the wrapper only when all of these hold:
+The shim defines `claude`, `pi`, `opencode`, `codex`, `devin`, `cursor-agent`, `vibe` and `skilled-loop` as shell functions. The `skilled-loop` function runs the trusted wrapper for the current directory, found the same way a runtime launch finds it. Where no trusted wrapper sits at or above the current directory, it runs the wrapper from the checkout that owns the sourced shim. So a pasted manual claim works from any directory and without the terminal check, and with two checkouts it runs the one you stand in. Typing `claude` in a terminal then runs `bash <repo>/.skilled/bin/skilled-loop claude`, and `cursor-agent` runs the wrapper's `cursor` arm. A function hands the launch to the wrapper only when all of these hold:
 
 - `SKILLED_LOOP_ID` is unset, so no loop is running yet.
 - Standard input and standard output are both a terminal.
 - The arguments open an interactive session. Subcommands such as `claude doctor`, `codex exec` or `opencode run`, print modes such as `-p`, version and help run the binary directly. Each list comes from that runtime's own `--help`. Codex `resume` and `fork` stay wrapped, and so do Cursor `agent`, `ls` and `resume`, because they open a session.
 - A `.skilled/bin/skilled-loop` exists in the current directory or one of its parents. A `.skilled` that is a symlink counts, so the wrapper also starts in a repository that links this checkout's `.skilled`.
 
-The shim resolves only wrappers inside the sourced checkout or a linked worktree registered to it. It also accepts an absolute checkout listed in `SKILLED_LOOP_TRUSTED_CHECKOUTS` as a colon-separated value. An unset or empty variable trusts no extra checkout.
+The shim resolves only wrappers inside the sourced checkout or a linked worktree registered to it. It also accepts an absolute checkout listed in `SKILLED_LOOP_TRUSTED_CHECKOUTS` as a colon-separated value. An unset or empty variable trusts no extra checkout. When a second checkout's shim is sourced later, the shim appends the earlier checkout to `SKILLED_LOOP_TRUSTED_CHECKOUTS` once, so the earlier checkout keeps its trust.
+
+### One root for the whole loop
+
+A looped session can run another checkout's hand-over CLI, for example when it works in a project that vendors its own copy of Skilled. So the wrapper exports `SESSION_HANDOVER_REPO_ROOT`, set to its own real checkout root, before the first launch. Every CLI copy the session runs reads and writes notes under that root, so the note a session prepares is the one the wrapper consumes. A value the caller exported is kept. A wrapper started from a looped session's shell replaces the inherited value, because that value belongs to the outer loop's checkout.
+
+The printed commands name the CLI by its absolute path, so a session whose shell stands in a subdirectory or another checkout still runs the right CLI. When a note still ends up outside the root the wrapper reads, `consume` reports the note state `outside-root` and names both roots, and the wrapper prints `warning: the handoff note <path> belongs to <note root>, outside the handoffs directory this loop reads under <root>; not relaunching`. The claim command it prints next starts with `SESSION_HANDOVER_REPO_ROOT=<note root>`, so the claim runs under the root that holds the note.
+
+### The shell startup block
+
+Source the shim from your shell startup file inside a marked block, one block per checkout. The markers carry the checkout's absolute path, so an installer can find its own block, replace it on update and leave another checkout's block alone:
+
+```sh
+# >>> skilled-loop shim: /abs/path/to/checkout >>>
+if [ -f "/abs/path/to/checkout/.skilled/bin/skilled-loop-shell.sh" ]; then
+  source "/abs/path/to/checkout/.skilled/bin/skilled-loop-shell.sh"
+fi
+# <<< skilled-loop shim: /abs/path/to/checkout <<<
+```
+
+The `if` keeps a new terminal working after the checkout moves or is deleted. To remove the block, delete every line from the opening marker through the closing marker and open a new terminal. On macOS:
+
+```sh
+sed -i '' '\|# >>> skilled-loop shim: /abs/path/to/checkout >>>|,\|# <<< skilled-loop shim: /abs/path/to/checkout <<<|d' ~/.zshrc
+```
+
+Two checkouts on one machine each get their own block. A wrapper inside either checkout is trusted in both orders, so a runtime launch and a pasted `skilled-loop` run the wrapper of the checkout you stand in. The order matters in two cases. Outside both checkouts, `skilled-loop` falls back to the checkout whose block comes last. Linked git worktrees that sit outside their checkout are trusted only for the checkout whose block comes last, so add an earlier checkout's external worktree to `SKILLED_LOOP_TRUSTED_CHECKOUTS` yourself.
 
 The automatic hop in a linking repository also needs that repository's runtime folders, because each runtime reads its hooks or plugins from the project it starts in. Link `.claude`, `.codex`, `.opencode`, `.pi` and `.vibe` from this checkout as well, or give each its own session-handover registration. A repository that links only `.skilled` starts under the wrapper but never receives the nudge, so its sessions hop only through `/speckit:handoff`.
 

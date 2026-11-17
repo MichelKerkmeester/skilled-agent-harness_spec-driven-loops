@@ -8,16 +8,25 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode"
-    last_updated_at: "2026-11-17T14:34:22Z"
-    last_updated_by: "template-author"
-    recent_action: "Authored the planned phase docs"
-    next_safe_action: "Wait for phases 004-007, then start T001"
+    last_updated_at: "2026-11-17T18:12:37Z"
+    last_updated_by: "generate-context"
+    recent_action: "Plan review applied; decisions recorded"
+    next_safe_action: "Run step-0 executor probes, then build wave 1"
+    packet_purpose: "Purpose: With `--depth-mode=expansive`, a research run discovers new scope as typed proposals, admits it under fixed bounds, steers focus to it breadth-first, refuses to stop while admitted nodes are open within budget and still reaches a clean stop when every node is terminal; without the flag, nothing c..."
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-010-research-frontier-mode"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "94a4cf06-5c71-4a49-952f-6bbffe1f9b56"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-17T18:12:37Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 0
     open_questions: []
     answered_questions: []
@@ -99,7 +108,7 @@ Not delivered. Delivery will follow `tasks.md`: golden baseline first, then the 
 ## Known Limitations
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **Not started.** The phase cannot begin until phases 004, 005, 006 and 007 are merged; three design choices stay Proposed in `plan.md` ADR-001 to ADR-003.
+1. **Not started.** The phase cannot begin until phases 004, 005, 006 and 007 are merged; `plan.md` ADR-001 to ADR-005 were accepted as proposed on 2026-11-17.
 <!-- /ANCHOR:limitations -->
 
 ---

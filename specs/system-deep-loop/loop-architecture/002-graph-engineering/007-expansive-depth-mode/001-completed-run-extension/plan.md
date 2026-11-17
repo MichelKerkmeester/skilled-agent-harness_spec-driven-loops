@@ -39,11 +39,12 @@ The change adds one opt-in lineage path, `completed-continue`, spelled `--extend
 - [ ] Problem statement clear and scope documented
 - [ ] Success criteria measurable
 - [ ] Dependencies identified
-- [ ] Open questions 1 to 4 in `spec.md` §10 answered or their recommended defaults accepted by the operator
+- [x] Open questions 1 to 4 in `spec.md` §10 answered or their recommended defaults accepted by the operator (2026-11-17, `decision-record.md` ADR-001 to ADR-004)
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] `npx vitest run` in `.skilled/skills/system-deep-loop/runtime` and the two named `system-spec-kit` suites exit 0, and `node .skilled/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs` and `check-projection-coverage.cjs` exit 0
+- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run` and the two named `system-spec-kit` suites (`cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/deep-review-contract-parity.vitest.ts tests/deep-review-reducer-schema.vitest.ts`) exit 0, and `node .skilled/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs`, `check-projection-coverage.cjs` and `check-contract-drift.cjs` exit 0
+- [ ] Both compiled contracts regenerated, the ten runtime agent mirrors synced, and the playbook scenarios written through `/create:manual-testing-playbook`
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
@@ -59,6 +60,7 @@ Event-sourced lifecycle branch: a new ledger stem plus an in-place config mutati
 - **Locked pre-classify step (both YAMLs)**: runs after `step_acquire_lock` and before `step_classify_session`; without it the mutation would run before the lock (the existing lifecycle step at `deep-research.yaml:270` is the wrong place) and classification would halt on `complete`.
 - **`run_extended` stem (both ledger schemas and types)**: records the prior and new budgets so the extension is replayable; without it the extension is indistinguishable from a plain resume, which is an eliminated alternative.
 - **Stem handlers (typed reducers, legacy projections, lifecycle filters, stem-producer tables, upcaster)**: without a projection case the event never reaches the state log.
+- **Fan-out rejection (both YAMLs, pre-spawn guard before `step_fanout_spawn`)**: a fan-out run jumps from `step_fanout_spawn` to `phase_synthesis` and never reaches `phase_init`, the lock or the classifier, so the guard must sit before the spawn step; without it `--extend` on fan-out would do nothing and report no error.
 - **Snapshot step (both YAMLs)**: the protocol requires a synthesis snapshot before any `completed-continue` flow (`loop-protocol.md:562`); without it the re-synthesis overwrites the prior report.
 
 ### Data Flow
@@ -76,14 +78,17 @@ This phase fixes defect D11 and touches schema boundaries and persistence, so th
 |---------|--------------|--------|--------------|
 | Ledger schemas, types and stem-producer tables (both loops) | Own the closed stem set | update: add `run_extended` | `check-ledger-stem-producers` exits 0; ledger-schema suites pass |
 | Typed reducers and legacy projections (both loops) | Consume every stem | update: add a case per switch and projection | compiler (`assertNeverStem`); `check-projection-coverage`; new projection case |
-| `reduce-state.cjs` (both) | Filter lifecycle events; review normalizes lineage mode | update: filters and `LIVE_LINEAGE_MODES` | reducer Lifecycle-section parity case |
+| `reduce-state.cjs` (both) | Filter lifecycle events by the legacy names `resumed` and `restarted`; review normalizes lineage mode | update: add `extended` at research `:2245`, `:2294` and review `:497`, `:549`, `:591`; `LIVE_LINEAGE_MODES` | reducer Lifecycle-section parity case; not-terminal-before-first-iteration case per reducer |
+| Presentation assets (both) | Bind `lineage_mode` | update: bind `--extend` and `--extend-minutes` | binding case in `workflow-restart-lifecycle.vitest.ts` |
+| Compiled contracts (both) | Carry sha256 digests of the YAML, command doc, presentation, config, protocol, `SKILL.md` and agent | regenerate with `compile-command-contracts.cjs --write` | `check-contract-drift.cjs` exits 0 |
+| Runtime agent mirrors (ten files) | Copy the agent definitions per runtime | sync through `/doctor:runtime-mirrors` | no drift reported |
 | `convergence.cjs` | Reads `maxIterations` and counts every iteration row | unchanged: the cap and floor need no change (research §19 item 3) | existing convergence suites pass |
 | Docs, agent definitions, command docs, two `system-spec-kit` assertions | Describe the mode as deferred | update | `rg` for the deferred wording; the two suites pass |
 
 Required inventories:
-- Same-class producers: `rg -n 'run_resumed' .skilled/skills/system-deep-loop/runtime` lists every place the new stem needs a twin.
+- Same-class producers: `rg -n 'run_resumed' .skilled/skills/system-deep-loop/runtime` lists the typed sites, and `rg -n "'resumed'|'restarted'" .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` lists the five legacy-name lifecycle sites the stem grep cannot find.
 - Consumers of changed symbols: `rg -n 'completed-continue|LIVE_LINEAGE_MODES|deferredModes' .skilled --glob '*.ts' --glob '*.cjs' --glob '*.md' --glob '*.yaml' --glob '*.json'`.
-- Matrix axes: loop (research, review) by `stopPolicy` (convergence, off, max-iterations) by start time (inside the old budget, after it) by extension count (first, second).
+- Matrix axes: loop (research, review) by `stopPolicy` (convergence, off, max-iterations) by prior stop reason (`all_questions_answered` or `all_dimensions_clean`, consecutive failures) by start time (inside the old budget, after it) by extension count (first, second) by dispatch shape (single-executor, fan-out rejected).
 - Algorithm invariant: after an extension, `maxIterations - continuedFromRun == N` and `maxDurationMinutes > elapsedMinutesAtExtension`.
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -94,7 +99,7 @@ Required inventories:
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 
-Setup reads the `run_resumed` handlers, traces every `:confirm` branch for status `initialized` and records the answers to the open questions. Implementation adds the `run_extended` stem and its handlers, the locked pre-classify step, the snapshot step, the config and flag changes and the doc wording. Verification runs the extended vitest suites, the two guard scripts and the two `system-spec-kit` suites, and walks the playbook entry.
+Setup reads the `run_resumed` handlers, traces every `:confirm` branch for status `initialized` and records the answers to the open questions. Implementation adds the `run_extended` stem and its handlers, the locked pre-classify step, the fan-out rejection, the snapshot step, the config, presentation and flag changes and the doc wording, then regenerates both compiled contracts and syncs the runtime agent mirrors. Verification runs the extended vitest suites, the three guard scripts and the two `system-spec-kit` suites, and writes and walks the playbook scenarios through the create command.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -104,9 +109,9 @@ Setup reads the `run_resumed` handlers, traces every `:confirm` branch for statu
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Ledger-schema and upcast suites; reducer Lifecycle-section parity; `run_extended` projection case; `append-mode-event-legacy-seam`; double-terminal telemetry; the two `system-spec-kit` assertions | vitest |
-| Integration | `workflow-restart-lifecycle` and `deep-review-auto-restart-contract` with an extension case; a 7-of-10 plus `--extend=3` cap case; a duration-ceiling case that starts after the old budget; `check-ledger-stem-producers`, `check-projection-coverage` | vitest, `node` guard scripts |
-| Manual | A playbook entry per loop: extend a completed fixture run and read the state log, config and snapshot | `/deep:research`, `/deep:review` |
+| Unit | Ledger-schema and upcast suites; reducer Lifecycle-section parity (`deep-research-reducers`, `deep-review-reducers`); `run_extended` projection case; not-terminal-before-first-iteration case (`deep-research-reduce-state`, `deep-review-state-reducer`); `append-mode-event-legacy-seam`; double-terminal telemetry (`loop-heartbeat`); the two `system-spec-kit` assertions | vitest, run from `.skilled/skills/system-deep-loop/runtime` |
+| Integration | `workflow-restart-lifecycle` and `deep-review-auto-restart-contract` with an extension case; presentation binding case; fan-out rejection case; a 7-of-10 plus `--extend=3` cap case; a duration-ceiling case that starts after the old budget and asserts `step_check_max_duration` reports `reached == false`; `check-ledger-stem-producers`, `check-projection-coverage`, `check-contract-drift` | vitest, `node` guard scripts |
+| Manual | One scenario per loop, written through `/create:manual-testing-playbook system-deep-loop update --path <playbook dir>`: extend a completed fixture run and read the state log, config and snapshot | `/deep:research`, `/deep:review` |
 <!-- /ANCHOR:testing -->
 
 ---

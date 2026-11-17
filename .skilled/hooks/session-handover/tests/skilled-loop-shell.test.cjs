@@ -441,3 +441,90 @@ for (const shell of SHELLS) {
     assert.doesNotMatch(result.stderr, /command not found/, `${shell.name} replay stderr`);
   });
 }
+
+// Two checkouts on one machine each source their own shim, and the operator works in
+// either. Each copy holds the real shim and wrapper, so trust comes only from sourcing.
+function twoCheckouts(t) {
+  const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'skilled-loop-two-')));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const checkout = (name) => {
+    const directory = path.join(root, name);
+    fs.mkdirSync(path.join(directory, '.skilled', 'bin'), { recursive: true });
+    fs.mkdirSync(path.join(directory, 'work'));
+    fs.copyFileSync(SHIM, path.join(directory, '.skilled', 'bin', 'skilled-loop-shell.sh'));
+    fs.copyFileSync(
+      path.join(SKILLED_DIR, 'bin', 'skilled-loop'),
+      path.join(directory, '.skilled', 'bin', 'skilled-loop'),
+    );
+    return {
+      directory,
+      work: path.join(directory, 'work'),
+      shim: path.join(directory, '.skilled', 'bin', 'skilled-loop-shell.sh'),
+      wrapper: path.join(directory, '.skilled', 'bin', 'skilled-loop'),
+    };
+  };
+  return { root, first: checkout('first'), second: checkout('second'), third: checkout('third') };
+}
+
+function runSourced(shell, shims, directory, line, env = cleanEnv()) {
+  const sources = shims.map((_, index) => `source "\${${index + 2}}" || exit 90`).join('; ');
+  const script = `${sources}; cd "$1" || exit 91; ${line}`;
+  const result = spawnSync(
+    shell.command,
+    [...shell.flags, script, 'skilled-loop-shell-test', directory, ...shims],
+    { encoding: 'utf8', env },
+  );
+  assert.equal(result.status, 0, `${shell.name}: ${result.stderr}`);
+  assert.equal(result.stderr, '', `${shell.name} stderr`);
+  return result.stdout;
+}
+
+for (const shell of SHELLS) {
+  // Each shim records only the checkout it came from, so a second one sourced later must
+  // not cost the first its trust: both orders resolve each checkout's own wrapper.
+  test(`${shell.name}: a second sourced shim keeps the first checkout trusted`, (t) => {
+    const box = twoCheckouts(t);
+    for (const [earlier, later] of [[box.first, box.second], [box.second, box.first]]) {
+      assert.equal(
+        runSourced(shell, [earlier.shim, later.shim], earlier.work, 'skilled_loop_resolve claude'),
+        `${earlier.wrapper}\n`,
+      );
+      assert.equal(
+        runSourced(shell, [earlier.shim, later.shim], later.work, 'skilled_loop_resolve claude'),
+        `${later.wrapper}\n`,
+      );
+    }
+    // Sourcing the same shim twice adds nothing to the trusted list.
+    assert.equal(
+      runSourced(
+        shell,
+        [box.first.shim, box.first.shim],
+        box.first.work,
+        'printf "%s\\n" "${SKILLED_LOOP_TRUSTED_CHECKOUTS:-}"',
+      ),
+      '\n',
+    );
+  });
+
+  // A pasted manual claim must start the wrapper for the checkout the operator stands in,
+  // not whichever shim was sourced last, and a directory no shim trusts falls back to the
+  // shim's own checkout.
+  test(`${shell.name}: the skilled-loop command prefers the trusted wrapper for the current directory`, (t) => {
+    const box = twoCheckouts(t);
+    const bin = stubBin(box.root);
+    const env = cleanEnv({ PATH: `${bin}:${process.env.PATH}` });
+    const shims = [box.first.shim, box.second.shim];
+    assert.equal(
+      runSourced(shell, shims, box.first.work, 'skilled-loop claude', env),
+      `WRAPPED ${box.first.wrapper} claude\n`,
+    );
+    assert.equal(
+      runSourced(shell, shims, box.second.work, 'skilled-loop claude', env),
+      `WRAPPED ${box.second.wrapper} claude\n`,
+    );
+    assert.equal(
+      runSourced(shell, shims, box.third.work, 'skilled-loop claude', env),
+      `WRAPPED ${box.second.wrapper} claude\n`,
+    );
+  });
+}

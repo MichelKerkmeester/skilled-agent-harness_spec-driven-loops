@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Close the out-of-contract review dimension gap (D10)"
+title: "Tasks: Support custom review dimensions end to end (D10)"
 description: "Task Format: T### [P?] Description (file path). Verify: <command> prints <expected output>"
 trigger_phrases:
   - "review dimension coverage tasks"
@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.4 -->
-# Tasks: Close the out-of-contract review dimension gap (D10)
+# Tasks: Support custom review dimensions end to end (D10)
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -25,7 +25,7 @@ contextType: "general"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-`R` is `.skilled/skills/system-deep-loop/runtime`. Run every `npm test` from `R`. ADR-001 chose support; the enforce tasks were removed.
+`R` is `.skilled/skills/system-deep-loop/runtime`. `DR` is `.skilled/skills/system-deep-loop/deep-review`. `Y` is `.skilled/commands/deep/assets/deep-review.yaml`. Every test command runs as `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/...` from the repository root. ADR-001 chose support; the enforce tasks were removed and the ids renumbered.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -33,8 +33,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Get the operator's choice between enforce and support and record it as ADR-001 `Accepted` with one Operator Decisions row (`decision-record.md`). Verify: `rg -n 'Accepted' decision-record.md` prints the ADR-001 status line. Done 2026-11-17: support.
-- [ ] T002 Capture the baseline of the REQ-004 suites (`R/tests/`). Verify: `npm test -- tests/integration/review-depth-convergence.vitest.ts tests/integration/review-stop-path-replay.vitest.ts tests/unit/deep-review-state-reducer.vitest.ts` exits 0 and the pass count is written in `goal.md` section 4.
+- [x] T001 Get the operator's choice between enforce and support and record it as ADR-001 `Accepted` (`decision-record.md`). Verify: `rg -n 'Accepted' decision-record.md` prints the ADR-001 status line. Done 2026-11-17: support.
+- [ ] T002 Capture the baseline of the REQ-004 and contract suites (`R/tests/`). Verify: `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/review-depth-convergence.vitest.ts tests/integration/review-stop-path-replay.vitest.ts tests/unit/deep-review-state-reducer.vitest.ts tests/unit/prompt-pack.vitest.ts tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0 and the pass count is written in `goal.md` section 4.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -42,9 +42,17 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 Seed `buildDimensionCoverage` from the configured dimensions, defaulting to `REQUIRED_DIMENSIONS` when none are configured (`R/scripts/reduce-state.cjs`). Verify: `npm test -- tests/unit/deep-review-state-reducer.vitest.ts` passes with a `performance` coverage case.
-- [ ] T006 Route the strategy lists, both Next Focus fallbacks and the dashboard rows through the configured list (`R/scripts/reduce-state.cjs`). Verify: `rg -n "REQUIRED_DIMENSIONS" R/scripts/reduce-state.cjs` shows it only as the default and the export.
-- [ ] T007 Relax the four-name rule to allow configured custom names (`.skilled/commands/deep/assets/deep-review.yaml`). Verify: `rg -n 'canonical dimension' .skilled/commands/deep/assets/deep-review.yaml` shows the new wording.
+- [ ] T003 Add the dimension universe: `REQUIRED_DIMENSIONS` then the configured custom names, lowercased, trimmed and deduped; pass the configured list into `buildDimensionCoverage` (new parameter, call at :1937, config at :2522-2537) and match `deriveDimension` (:1213-1220) against the universe (`R/scripts/reduce-state.cjs`). Verify: `npx vitest run tests/unit/deep-review-state-reducer.vitest.ts` passes with a `performance` coverage case, a `deriveDimension` case and a canonical-subset case whose registry keys are unchanged.
+- [ ] T004 Route the strategy lists (:2173, :2178), both Next Focus fallbacks (:2185, :2272) and the dashboard rows (:2301) through the universe (`R/scripts/reduce-state.cjs`). Verify: `rg -n "REQUIRED_DIMENSIONS" R/scripts/reduce-state.cjs` shows it only in the universe builder, the constant and the export.
+- [ ] T005 Accept custom names in the workflow: input text (:54, keeping the four canonical names listed), risk order (:628-641, custom names after the four), normalize rule (:644-654), registry seed (:782, four keys plus custom keys) and dimension table (:2324-2330, custom rubric row) (`Y`). Verify: `rg -n 'canonical dimension' Y` shows the new wording and `npx vitest run tests/unit/stop-decision-yaml-contract.vitest.ts` still passes.
+- [ ] T006 Replace the literal list at line 38 with `{review_dimensions_list}` and add `review_dimensions_list` to `render_prompt_pack.variables` (:1455-1470), rendered as the universe joined by `, ` (`DR/assets/prompt-pack-iteration.md.tmpl`, `Y`). Verify: `npx vitest run tests/unit/prompt-pack.vitest.ts` passes with a byte-identity golden for the default pack and a custom-list render case.
+- [ ] T007 State the custom rubric rule in the agent definition at :170, :189 and :338 (`.skilled/agents/deep-review.md`). Verify: `rg -n 'custom' .skilled/agents/deep-review.md` prints the new lines.
+- [ ] T008 Sync the agent mirrors (`.claude/agents/deep-review.md`, `.codex/agents/deep-review.toml`, `.pi/agents/deep-review.md`, `.vibe/agents/deep-review.toml`, `.dsh/agents/deep-review.patch.yml`) with `/doctor:runtime-mirrors`. Verify: the command reports every deep-review mirror in sync.
+- [ ] T009 [P] Name custom names as allowed in the setup presentation at :35 and :183 (`.skilled/commands/deep/assets/deep-review-presentation.txt`). Verify: `rg -n 'custom' .skilled/commands/deep/assets/deep-review-presentation.txt` prints both lines.
+- [ ] T010 [P] Add the custom-dimension rule after :62-82 and regenerate the snapshot (`DR/assets/review-mode-contract.yaml`, `DR/assets/review-mode-contract-snapshot.md`). Verify: `node DR/scripts/render-contract-snapshot.cjs --check` exits 0.
+- [ ] T011 [P] Add the custom-dimension note to the strategy and dashboard example lists (`DR/assets/deep-review-strategy.md`, `DR/assets/deep-review-dashboard.md`). Verify: `rg -n 'custom' DR/assets/deep-review-strategy.md DR/assets/deep-review-dashboard.md` prints the notes.
+- [ ] T012 [P] Replace "all 4 dimensions" with "every configured dimension (the four by default)" (`DR/references/convergence/convergence.md` :171, :201; `DR/references/protocol/loop-protocol.md` :206; `DR/references/protocol/quick-reference.md` :137, :158; `DR/README.md` :16, :45). Verify: `rg -n -i 'all (4|four) dimensions|four review dimensions' DR/references DR/README.md` prints nothing (seven lines match today).
+- [ ] T013 Regenerate the review compiled contract, last of the implementation tasks (`.skilled/commands/deep/assets/compiled/deep-review.contract.markdown`). Verify: `node R/scripts/compile-command-contracts.cjs --command deep/review --write` prints the contract path, and `npx vitest run tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0. Regenerate again after each merge instead of resolving digest lines by hand.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,9 +60,12 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Add the custom dimension case (`R/tests/integration/review-depth-convergence.vitest.ts`). Verify: the case asserts `missingDimensions` excludes `performance` once covered, and passes.
-- [ ] T010 Add a review-pivot case with a covered custom dimension (`R/tests/integration/divergent-pivot.vitest.ts`). Verify: the case accepts `all_dimensions_clean` and seeds no `unswept-dimension` for `performance`.
-- [ ] T011 Rerun the T002 suites and compare with the baseline (`R/tests/`). Verify: the same command exits 0 and the pass count rose only by the new cases.
+- [ ] T014 Add the custom dimension stop-path case (`R/tests/integration/review-depth-convergence.vitest.ts`). Verify: the case asserts `missingDimensions` excludes `performance` once covered and the run reaches `all_dimensions_clean`, and passes.
+- [ ] T015 Add a review-pivot case with a covered custom dimension (`R/tests/integration/divergent-pivot.vitest.ts`). Verify: the case accepts `all_dimensions_clean` and seeds no `unswept-dimension` for `performance`.
+- [ ] T016 Run the spec-kit parity suites. Verify: `cd .skilled/skills/system-spec-kit && npx vitest run --project cli deep-review-contract-parity deep-review-reducer-schema` exits 0.
+- [ ] T017 Write the changelog entry stating custom review dimensions are supported, how they are ordered and that canonical-only runs are unchanged (`DR/changelog/`). Verify: `rg -l 'custom' DR/changelog` lists the new entry.
+- [ ] T018 Write the manual testing playbook scenario for a review run with `review_dimensions: correctness,performance` through `/create:manual-testing-playbook system-deep-loop update --path .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook` (`DR/manual-testing-playbook/`). Verify: `rg -l 'performance' DR/manual-testing-playbook` lists the new scenario.
+- [ ] T019 Rerun the T002 suites and compare with the baseline (`R/tests/`). Verify: the same command exits 0 and the pass count rose only by the new cases.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -64,7 +75,7 @@ contextType: "general"
 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
-- [ ] The T011 rerun matches the baseline plus the new cases
+- [ ] The T019 rerun matches the baseline plus the new cases
 <!-- /ANCHOR:completion -->
 
 ---
@@ -73,7 +84,7 @@ contextType: "general"
 ## Cross-References
 
 - **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Plan**: See `plan.md` (section 3 holds the dimension universe rules)
 - **Decision record**: See `decision-record.md` (ADR-001 gates every implementation task)
 <!-- /ANCHOR:cross-refs -->
 

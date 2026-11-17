@@ -15,7 +15,8 @@
       "stop redispatch once from re-running",
       "no redispatch landed iteration plan",
       "no redispatch landed iteration tasks",
-      "no redispatch landed iteration goal"
+      "no redispatch landed iteration goal",
+      "013-no-redispatch-landed-iteration operator decisions"
     ],
     "key_topics": [
       "redispatch",
@@ -26,10 +27,10 @@
       "plan",
       "tasks",
       "goal",
-      "verify-iteration",
-      "cjs",
-      "returns",
-      "executormissing"
+      "013-no-redispatch-landed-iteration",
+      "operator",
+      "decisions",
+      "verify-iteration"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -38,9 +39,12 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       ".skilled/commands/deep/assets/deep-research.yaml",
       ".skilled/commands/deep/assets/deep-review.yaml",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts"
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts"
     ],
     "entities": [
       {
@@ -68,6 +72,12 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "deep-research.yaml",
         "kind": "config",
         "path": ".skilled/commands/deep/assets/deep-research.yaml",
@@ -80,9 +90,21 @@
         "source": "derived"
       },
       {
+        "name": "deep-research.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+        "source": "derived"
+      },
+      {
         "name": "verify-iteration.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "loop-counters-derivation.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts",
         "source": "derived"
       },
       {
@@ -110,13 +132,13 @@
         "source": "derived"
       },
       {
-        "name": "Purpose An",
+        "name": "Measured Behavior",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Measured Behavior",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -168,43 +190,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "each",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`verify-iteration.cjs` returns `executormissing` only after the narrative, state record and delta checks pass, so that reason means the iteration already landed",
     "created_at": "2026-11-17T14:34:36Z",
-    "last_save_at": "2026-11-17T14:41:27.751Z",
+    "last_save_at": "2026-11-17T18:10:57.213Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "goal.md"
+      "goal.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:0f54563b8ec738f76d4e1412cc0c7e15416d50f5306a452737aa9990aa683c15",
+    "source_fingerprint": "sha256:809406d62c41c2547f2c673dd710a278baf02ba7f6216c37dbbc88e24674e7e3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b298a83db92b253a79d336f7d9cb7005451d31b321bb55d0789f13cf05cac1dd",
-      "plan.md": "f899545ebd2ed81ee9defe4157d6e13973eb1dfbb98468fae5d2aa1b59938409",
-      "tasks.md": "6fbf10c0a636bb1e38cf480e83fcfd05f43d5ef7018cd3b6b25fe449b56d6925"
+      "spec.md": "a886dcf09c595cd40e76616917bde431a8fbf50f9df248b4f4f5b19528e4202b",
+      "plan.md": "c1204b5df5836691f4dc93101ef1a572e890d8243a9d41fc42967ba812ae7721",
+      "tasks.md": "4e89204ca2dcfb5be186ca619d04d9d71330045cc170255c83e648462f4e3eec",
+      "decision-record.md": "087da1f8ef877d50badd481f09234a444e9582ddd4b8811c7b772672ab7b911f"
     },
     "last_active_at": null
   }

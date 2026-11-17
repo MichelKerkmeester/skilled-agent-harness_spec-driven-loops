@@ -23,7 +23,7 @@ contextType: "general"
 | **Language/Stack** | CommonJS Node script (`fanout-merge.cjs`) |
 | **Framework** | system-deep-loop fan-out: `fanout-run.cjs` runs lineages, `fanout-merge.cjs` joins their registries |
 | **Storage** | Per-lineage review registries (JSON) and the merged registry |
-| **Testing** | Vitest, run from `.skilled/skills/system-deep-loop/runtime` with `npm test -- <file>` |
+| **Testing** | Vitest: `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/...` |
 
 ### Overview
 One function changes: `mergeReviewRegistries` gains a merge step per coverage surface and returns six more fields. Each rule follows a precedent already in the file or the reducer, so no new policy is invented. New unit cases pin each rule, and the existing merge suites prove findings, verdict and search debt did not move.
@@ -37,12 +37,13 @@ One function changes: `mergeReviewRegistries` gains a merge step per coverage su
 ### Definition of Ready
 - [ ] `mergeReviewRegistries` still spans `fanout-merge.cjs:869-997` and returns no coverage surface
 - [ ] The REQ-004 suites pass on the unchanged tree (baseline captured)
-- [ ] Every reader of the merged review registry is listed (grep for `mergedRegistry` and the merged registry file name)
+- [ ] Every reader of the merged review registry is listed: `rg -l 'deep-review-findings-registry\.json' .skilled/skills/system-deep-loop --glob '*.cjs' --glob '*.ts' --glob '!**/tests/**'` (seven files on 2026-11-17). `rg mergedRegistry` is not enough: it matches only `fanout-merge.cjs`, because readers open the file by name
 
 ### Definition of Done
 - [ ] Every P0 requirement in `spec.md` is met
-- [ ] `npm test -- tests/unit/fanout-merge.vitest.ts tests/fanout-review-focus.vitest.ts` passes with the new cases
+- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-merge.vitest.ts tests/fanout-review-focus.vitest.ts` passes with the new cases
 - [ ] The REQ-004 suites pass, and the delta against the baseline is only the new cases
+- [ ] The merged-coverage playbook scenario exists under `deep-review/manual-testing-playbook/fanout/`
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -76,7 +77,7 @@ Merge rules, one per surface:
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Setup captures the REQ-004 baseline and lists the merged registry's readers. Implementation adds the six merge steps to `mergeReviewRegistries` in `fanout-merge.cjs`. Verification runs the per-surface cases, the order-swap determinism case and the REQ-004 suites. The ordered work is in `tasks.md`.
+Setup captures the REQ-004 baseline and lists the merged registry's readers. Implementation adds the six merge steps to `mergeReviewRegistries` in `fanout-merge.cjs`. Verification runs the per-surface cases, the order-swap determinism case and the REQ-004 suites, then writes the playbook scenario. No compiled contract or agent mirror changes: `fanout-merge.cjs` is not a contract digest source and no agent definition is edited. The ordered work is in `tasks.md`.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -92,7 +93,15 @@ Proving tests from parent `research.md` §20 Slice I: `fanout-review-focus.vites
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-No slice must land first, and no operator decision is needed. Slice K (`../011-review-frontier-mode/`) depends on this slice for its merge-time coverage guard and its `frontier_scope` partition check.
+No slice must land first, and no operator decision is needed. Slice K (`../011-review-frontier-mode/`) depends on this slice for its merge-time coverage guard, which reads the merged `candidateCoverage` (with per-bug-class `lineages`) and `searchCoverage`.
+
+What this slice does not deliver, so Slice K must deliver it itself:
+
+| Slice K needs | Why 009 cannot supply it | Owner |
+|---------------|--------------------------|-------|
+| A merged `frontier` and its `frontier.stats` (011 T022 pilot reads `jq '.frontier.stats'` on the merged registry) | No review `registry.frontier` exists until 011 creates it, so there is no shape to merge | 011, in `mergeReviewRegistries` beside the six surfaces |
+| The `frontier_scope:` partition of depth-1 nodes across lineages | Partitioning happens at spawn in `fanout-run.cjs`, which this slice does not touch | 011 (with the research twin in 010) |
+| A merge-time guard that fails on a missing depth-1 node | This slice adds data only (goal D2) | 011 T019 |
 <!-- /ANCHOR:dependencies -->
 
 ---

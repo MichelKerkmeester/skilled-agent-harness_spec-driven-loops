@@ -8,7 +8,7 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/002-research-claude-config-dir"
-    last_updated_at: "2026-11-17T14:34:20Z"
+    last_updated_at: "2026-11-17T17:15:00Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"
     next_safe_action: "Execute against the completion criteria"
@@ -22,9 +22,9 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 # Goal: Forward the Claude config dir on single-executor research cli-claude-code dispatch
 
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 <!-- GOAL_AUTHORING: .skilled/skills/sk-doc/sk-create-goal/SKILL.md -->
 
@@ -50,14 +50,15 @@ Frozen choices. Changing one is an amendment.
 
 ---
 
-
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `npx vitest run` over `cli-claude-code.vitest.ts`, `cli-matrix.vitest.ts` and `combo-matrix.vitest.ts` exits 0 with the new research config-dir cases.
-- [ ] The new research config-dir case fails against the pre-change `dispatch-iteration.cjs`.
+- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/dispatch-iteration.vitest.ts tests/executor-audit-cli-branch-receipts.test.ts tests/unit/executor-branch-contract.vitest.ts` exits 0 with the new research config-dir cases.
+- [ ] The new research config-dir case in `dispatch-iteration.vitest.ts` fails against the pre-change `dispatch-iteration.cjs`.
 - [ ] `grep -n "claude-config-dir" .skilled/commands/deep/assets/deep-research.yaml` prints the `if_cli_claude_code` command line.
+- [ ] `node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs --command deep/research` exits 0.
+- [ ] The `runtime/manual-testing-playbook` index lists a research config-dir scenario written by `/create:manual-testing-playbook`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -81,4 +82,5 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Inherited `CLAUDE_CONFIG_DIR` with no configured dir | Open question: should research strip it? Not in scope, because stripping it changes every default research run. |
+| Plan review amendments 2026-11-17 | Applied the Fable 5.2 plan review: the test homes moved from the stress, `cli-matrix` and `combo-matrix` suites, which never run `dispatch-iteration.cjs`, to `dispatch-iteration.vitest.ts` and `executor-audit-cli-branch-receipts.test.ts`; a review required-flag reference case is added first; the test command runs from `runtime/`; the research contract is regenerated; the playbook scenario goes through `/create:manual-testing-playbook`. |
 <!-- /ANCHOR:log -->

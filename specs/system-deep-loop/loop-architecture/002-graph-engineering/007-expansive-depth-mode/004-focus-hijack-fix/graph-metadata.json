@@ -16,7 +16,9 @@
       "questions remaining next focus",
       "slice d focus",
       "focus hijack fix plan",
-      "focus hijack fix tasks"
+      "focus hijack fix tasks",
+      "focus hijack fix goal",
+      "004-focus-hijack-fix operator decisions"
     ],
     "key_topics": [
       "focus",
@@ -27,10 +29,10 @@
       "slice",
       "plan",
       "tasks",
-      "research",
-      "runs",
-      "leaf",
-      "free"
+      "goal",
+      "004-focus-hijack-fix",
+      "operator",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -38,6 +40,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
+      "decision-record.md",
       ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs",
       ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
@@ -62,6 +66,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -173,34 +189,31 @@
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "both",
         "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "On research runs, a leaf's free text under `## Questions Remaining` becomes a carried-forward question, and `deriveNextFocusFromContinuity` returns the latest one ahead of every machine question, so an iteration's status sentence can become the next focus verbatim (defect D5, parent `research/research.md` §13 and §14)",
     "created_at": "2026-11-17T14:43:29.301Z",
-    "last_save_at": "2026-11-17T14:46:14.558Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-17T18:12:41.883Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "goal.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:dcb1bf98f1d710150584ee600e56e2a3e5e21fc7a8f7e9c1c25adfc8b31d10eb",
+    "source_fingerprint": "sha256:1f712a703d791344829faeb4956a349b79a697a204588b3fb2c5f05e197e0ea3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9b0a86b82797a03e68b8086657dbd1c94030eb145a59464e0b4300e400069aa0",
-      "plan.md": "9ce7471b62f41f4456a551f45d22140cb7c29ab8767a000f09f2bffca51098d8",
-      "tasks.md": "821a7be7a6d0a294f62b8330612d92e3049b9f3484493c5ac790138f479dbe55"
+      "spec.md": "078640c5c19f80fbe22a25f8a0ac722057bd1c81040e8e98d019b9906e90ec00",
+      "plan.md": "f4eda21c88069900c5258544433ee83934111bf3c4fc47dfb82450d40a61f7c8",
+      "tasks.md": "00d74e593883edd4b09ca9ccd803d026d442b5d2f25a38e006840e45fb833161",
+      "decision-record.md": "959a4e28667d159c84e3ef254789b0f9f7bafe94e7134d394ac2a293ed944ed2"
     },
     "last_active_child_id": null,
     "last_active_at": null

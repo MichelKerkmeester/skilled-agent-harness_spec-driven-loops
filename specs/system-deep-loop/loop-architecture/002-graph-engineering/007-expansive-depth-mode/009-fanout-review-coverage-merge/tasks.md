@@ -25,7 +25,7 @@ contextType: "general"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-`R` is `.skilled/skills/system-deep-loop/runtime`. Run every `npm test` from `R`. `M` is `R/scripts/fanout-merge.cjs`.
+`R` is `.skilled/skills/system-deep-loop/runtime`. `M` is `R/scripts/fanout-merge.cjs`. Every test command runs as `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/...` from the repository root. No compiled-contract regeneration or agent mirror sync is needed: `M` is not a contract digest source and no agent changes.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -33,8 +33,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Capture the baseline of the REQ-004 suites (`R/tests/`). Verify: `npm test -- tests/unit/fanout-merge.vitest.ts tests/unit/fanout-merge-latest-record.vitest.ts tests/unit/fanout-merge-structured-missing.vitest.ts tests/unit/fanout-merge-reducer-provenance.vitest.ts tests/fanout-review-focus.vitest.ts` exits 0 and the pass count is written in `goal.md` section 4.
-- [ ] T002 List every reader of the merged review registry (`R/scripts/`). Verify: `rg -n "mergedRegistry" R/scripts` output is recorded in `goal.md` section 4 with each reader marked safe or needing a change.
+- [ ] T001 Capture the baseline of the REQ-004 suites (`R/tests/`). Verify: `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-merge.vitest.ts tests/unit/fanout-merge-latest-record.vitest.ts tests/unit/fanout-merge-structured-missing.vitest.ts tests/unit/fanout-merge-reducer-provenance.vitest.ts tests/fanout-review-focus.vitest.ts` exits 0 and the pass count is written in `goal.md` section 4.
+- [ ] T002 List every reader of the merged review registry by its file name (`.skilled/skills/system-deep-loop/`). Verify: `rg -l 'deep-review-findings-registry\.json' .skilled/skills/system-deep-loop --glob '*.cjs' --glob '*.ts' --glob '!**/tests/**'` lists seven files (`divergent-review-pivot.ts`, `fanout-run.cjs`, `fanout-merge.cjs`, `score-fanout-pairs.cjs`, `reduce-state.cjs`, `deep-review-projections-contract.ts`, `legacy-projection-manifest.ts` on 2026-11-17), and each is recorded in `goal.md` section 4 as safe or needing a change. The variable name `mergedRegistry` matches only `M`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -59,6 +59,7 @@ contextType: "general"
 - [ ] T010 Add the order-swap and missing-fields cases (`R/tests/unit/fanout-merge.vitest.ts`). Verify: A,B and B,A merges are byte-identical, a lineage without the fields merges cleanly, and both cases pass.
 - [ ] T011 Rerun the T001 suites and compare with the baseline (`R/tests/`). Verify: the same command exits 0 and the pass count rose only by the new cases.
 - [ ] T012 Rerun the Measured Behavior loop (`M`). Verify: each of the six names prints a count above 0.
+- [ ] T013 Write the merged-coverage manual testing playbook scenario: a two-lineage review fan-out whose merged registry is read with `jq` for the six surfaces, through `/create:manual-testing-playbook system-deep-loop update --path .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook` (`.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/`). Verify: `rg -l 'dimensionCoverage' .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout` lists the new scenario.
 <!-- /ANCHOR:phase-3 -->
 
 ---
