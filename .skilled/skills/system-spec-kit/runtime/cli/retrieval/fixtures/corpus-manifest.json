@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e77650cfe06dea993474e55ff3ebac5cccdff3757e6383d7d6f2e3a4dfb36c09",
+  "corpusHash": "c37c356714528fcce35075677894d1835982d93083934add75356923217bb1e8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28285,
+  "includedPathCount": 28372,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12997,6 +12997,12 @@
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation/plan.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/decision-record.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/goal.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/goal.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research/research.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
@@ -16297,6 +16303,73 @@
     "specs/sk-doc/document-standards/003-changelog-system/009-release-notes-layout-default/plan.md",
     "specs/sk-doc/document-standards/003-changelog-system/009-release-notes-layout-default/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/009-release-notes-layout-default/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/timeline.md",
     "specs/sk-doc/document-standards/004-security-policy-alignment/goal.md",
@@ -18445,9 +18518,12 @@
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix/decision-record.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix/goal.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/005-prompt-pack-contract-alignment/goal.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/005-prompt-pack-contract-alignment/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/005-prompt-pack-contract-alignment/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/005-prompt-pack-contract-alignment/tasks.md",
@@ -18457,6 +18533,8 @@
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/007-source-diversity-quality-class/decision-record.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/007-source-diversity-quality-class/goal.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/007-source-diversity-quality-class/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/007-source-diversity-quality-class/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/007-source-diversity-quality-class/tasks.md",
@@ -18471,11 +18549,14 @@
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/009-fanout-review-coverage-merge/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/009-fanout-review-coverage-merge/tasks.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/acceptance-criteria.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/decision-record.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/goal.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/implementation-summary.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/tasks.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/acceptance-criteria.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/goal.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/implementation-summary.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/spec.md",
@@ -18486,11 +18567,17 @@
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/decision-record.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/goal.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/goal.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/plan.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/spec.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/tasks.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/decision-record.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/goal.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/implementation-summary.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/research.md",
@@ -28317,7 +28404,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "69345c91c6394ac1c55afd2ef9c1e65c194b0edfcc9ed4b85df90b110ebaad17",
+  "manifestHash": "2f4a8d23746550f19eaa6ac4f7e66372e4628b1e9dbc680d788edec581ac76d7",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -32736,6 +32823,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research/lineages",
       "reason": "excluded directory"
     },
@@ -35212,6 +35303,62 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/document-standards/004-security-policy-alignment/scratch",
       "reason": "excluded directory"
     },
@@ -36249,6 +36396,10 @@
     },
     {
       "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/scratch",
       "reason": "excluded directory"
     },
     {

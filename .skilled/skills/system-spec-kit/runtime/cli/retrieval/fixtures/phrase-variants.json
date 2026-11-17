@@ -1,5 +1,5 @@
 {
-  "manifestHash": "69345c91c6394ac1c55afd2ef9c1e65c194b0edfcc9ed4b85df90b110ebaad17",
+  "manifestHash": "2f4a8d23746550f19eaa6ac4f7e66372e4628b1e9dbc680d788edec581ac76d7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1099,6 +1099,9 @@
     "004 fix release readiness findings synthesis resource map": [
       "004-fix-release-readiness-findings-synthesis resource map"
     ],
+    "004 focus hijack fix operator decisions": [
+      "004-focus-hijack-fix operator decisions"
+    ],
     "004 followup post program changelog index": [
       "004-followup-post-program changelog index"
     ],
@@ -1963,6 +1966,9 @@
     "007 sk prompt parent complete": [
       "007-sk-prompt-parent complete"
     ],
+    "007 source diversity quality class operator decisions": [
+      "007-source-diversity-quality-class operator decisions"
+    ],
     "007 tasks voyage cleanup": [
       "007 tasks voyage cleanup"
     ],
@@ -2627,6 +2633,9 @@
     "010 public repo docs alignment": [
       "010 public repo docs alignment"
     ],
+    "010 research frontier mode operator decisions": [
+      "010-research-frontier-mode operator decisions"
+    ],
     "010 review findings": [
       "010 review findings"
     ],
@@ -3169,6 +3178,9 @@
     ],
     "013 migration bridge": [
       "013 migration bridge"
+    ],
+    "013 no redispatch landed iteration operator decisions": [
+      "013-no-redispatch-landed-iteration operator decisions"
     ],
     "013 p1 1 remediation": [
       "013 P1-1 remediation"
@@ -7324,6 +7336,9 @@
     ],
     "054 tasks": [
       "054 tasks"
+    ],
+    "055 cross checkout root pinning operator decisions": [
+      "055-cross-checkout-root-pinning operator decisions"
     ],
     "055 decision record": [
       "055 decision record"
@@ -17989,6 +18004,12 @@
     "changelog judgment lanes": [
       "changelog judgment lanes"
     ],
+    "changelog layout retrofit goal": [
+      "changelog layout retrofit goal"
+    ],
+    "changelog layout retrofit phase parent spec": [
+      "changelog layout retrofit phase parent spec"
+    ],
     "changelog metadata closure gate": [
       "changelog metadata closure gate"
     ],
@@ -22998,6 +23019,9 @@
     ],
     "cli external orchestration changelogs acceptance criteria": [
       "cli external orchestration changelogs acceptance criteria"
+    ],
+    "cli external orchestration changelogs goal": [
+      "cli external orchestration changelogs goal"
     ],
     "cli external orchestration changelogs implementation summary": [
       "cli external orchestration changelogs implementation summary"
@@ -32919,6 +32943,21 @@
     ],
     "cross ai scoring": [
       "cross-AI scoring"
+    ],
+    "cross checkout root pinning": [
+      "cross checkout root pinning"
+    ],
+    "cross checkout root pinning goal": [
+      "cross checkout root pinning goal"
+    ],
+    "cross checkout root pinning implementation summary": [
+      "cross checkout root pinning implementation summary"
+    ],
+    "cross checkout root pinning plan": [
+      "cross checkout root pinning plan"
+    ],
+    "cross checkout root pinning tasks": [
+      "cross checkout root pinning tasks"
     ],
     "cross cli intent stability": [
       "cross-CLI intent stability"
@@ -43051,6 +43090,18 @@
     "docs impact remediation": [
       "docs impact remediation"
     ],
+    "docs playbooks alignment": [
+      "docs playbooks alignment"
+    ],
+    "docs playbooks alignment goal": [
+      "docs playbooks alignment goal"
+    ],
+    "docs playbooks alignment plan": [
+      "docs playbooks alignment plan"
+    ],
+    "docs playbooks alignment tasks": [
+      "docs playbooks alignment tasks"
+    ],
     "docs quality audit research": [
       "docs quality audit research"
     ],
@@ -48989,6 +49040,9 @@
     "expansive depth mode tasks": [
       "expansive depth mode tasks"
     ],
+    "expansive depth playbooks and catalogs": [
+      "expansive depth playbooks and catalogs"
+    ],
     "expansive depth sub mode for deep research": [
       "expansive depth sub mode for deep research"
     ],
@@ -52812,6 +52866,9 @@
     "focus hijack fix": [
       "focus hijack fix"
     ],
+    "focus hijack fix goal": [
+      "focus hijack fix goal"
+    ],
     "focus hijack fix plan": [
       "focus hijack fix plan"
     ],
@@ -55750,6 +55807,21 @@
     "github release changelog option": [
       "github release changelog option"
     ],
+    "github release notes sync": [
+      "github release notes sync"
+    ],
+    "github release notes sync goal": [
+      "github release notes sync goal"
+    ],
+    "github release notes sync implementation summary": [
+      "github release notes sync implementation summary"
+    ],
+    "github release notes sync plan": [
+      "github release notes sync plan"
+    ],
+    "github release notes sync tasks": [
+      "github release notes sync tasks"
+    ],
     "gitignore claim refuted": [
       "gitignore claim refuted"
     ],
@@ -58391,6 +58463,9 @@
     ],
     "handoff note": [
       "handoff note"
+    ],
+    "handoff note is missing not relaunching": [
+      "handoff note is missing not relaunching"
     ],
     "handoff note not claimed": [
       "handoff note not claimed"
@@ -64938,6 +65013,21 @@
     "layout rehearsal checklist": [
       "layout rehearsal checklist"
     ],
+    "layout tooling and pilot": [
+      "layout tooling and pilot"
+    ],
+    "layout tooling and pilot goal": [
+      "layout tooling and pilot goal"
+    ],
+    "layout tooling and pilot implementation summary": [
+      "layout tooling and pilot implementation summary"
+    ],
+    "layout tooling and pilot plan": [
+      "layout tooling and pilot plan"
+    ],
+    "layout tooling and pilot tasks": [
+      "layout tooling and pilot tasks"
+    ],
     "lazy add on docs": [
       "lazy add-on docs"
     ],
@@ -70344,6 +70434,9 @@
     ],
     "mcp tooling changelogs acceptance criteria": [
       "mcp tooling changelogs acceptance criteria"
+    ],
+    "mcp tooling changelogs goal": [
+      "mcp tooling changelogs goal"
     ],
     "mcp tooling changelogs implementation summary": [
       "mcp tooling changelogs implementation summary"
@@ -80291,6 +80384,9 @@
     "outside repository surface discovery": [
       "outside repository surface discovery"
     ],
+    "outside root handoff note": [
+      "outside-root handoff note"
+    ],
     "outside skill checklist rows": [
       "outside skill checklist rows"
     ],
@@ -82986,6 +83082,9 @@
     "phase 1 ignore and commit guard": [
       "phase 1 ignore and commit guard"
     ],
+    "phase 1 layout tooling and pilot": [
+      "phase 1 layout tooling and pilot"
+    ],
     "phase 1 made the preflight enforce but two": [
       "phase 1 made the preflight enforce but two"
     ],
@@ -83453,6 +83552,9 @@
     ],
     "phase 13 fix review findings in json entry": [
       "phase 13 fix review findings in json entry"
+    ],
+    "phase 13 github release notes sync": [
+      "phase 13 github release notes sync"
     ],
     "phase 13 killer test spawn race": [
       "phase 13 killer test spawn race"
@@ -84765,6 +84867,9 @@
     "phase 4 cli cursor": [
       "phase 4 cli cursor"
     ],
+    "phase 4 cli external orchestration changelogs": [
+      "phase 4 cli external orchestration changelogs"
+    ],
     "phase 4 closure gate": [
       "phase 4 closure gate"
     ],
@@ -85242,6 +85347,9 @@
     "phase 55 command support into commands": [
       "phase 55 command support into commands"
     ],
+    "phase 55 cross checkout root pinning": [
+      "phase 55 cross checkout root pinning"
+    ],
     "phase 56 command folder guard and readme baseline": [
       "phase 56 command folder guard and readme baseline"
     ],
@@ -85355,6 +85463,9 @@
     ],
     "phase 6 mcp mobbin": [
       "phase 6 mcp mobbin"
+    ],
+    "phase 6 mcp tooling changelogs": [
+      "phase 6 mcp tooling changelogs"
     ],
     "phase 6 measurement": [
       "phase 6 measurement"
@@ -85641,6 +85752,9 @@
     "phase 7 system deep loop changelogs": [
       "phase 7 system deep loop changelogs"
     ],
+    "phase 7 system spec kit changelogs": [
+      "phase 7 system spec kit changelogs"
+    ],
     "phase 7 test and ci bloat research": [
       "phase 7 test and ci bloat research"
     ],
@@ -85796,6 +85910,9 @@
     ],
     "phase 8 surface hint hub root": [
       "phase 8 surface hint hub root"
+    ],
+    "phase 8 system deep loop changelogs": [
+      "phase 8 system deep loop changelogs"
     ],
     "phase 8 track subtrack regrouping": [
       "phase 8 track subtrack regrouping"
@@ -90621,6 +90738,9 @@
     ],
     "prompt pack contract alignment": [
       "prompt pack contract alignment"
+    ],
+    "prompt pack contract alignment goal": [
+      "prompt pack contract alignment goal"
     ],
     "prompt pack contract alignment plan": [
       "prompt pack contract alignment plan"
@@ -98115,6 +98235,9 @@
     "research frontier mode acceptance criteria": [
       "research frontier mode acceptance criteria"
     ],
+    "research frontier mode goal": [
+      "research frontier mode goal"
+    ],
     "research frontier mode implementation summary": [
       "research frontier mode implementation summary"
     ],
@@ -100320,6 +100443,9 @@
     ],
     "review frontier mode acceptance criteria": [
       "review frontier mode acceptance criteria"
+    ],
+    "review frontier mode goal": [
+      "review frontier mode goal"
     ],
     "review frontier mode implementation summary": [
       "review frontier mode implementation summary"
@@ -108976,6 +109102,9 @@
     "sk code changelogs acceptance criteria": [
       "sk code changelogs acceptance criteria"
     ],
+    "sk code changelogs goal": [
+      "sk code changelogs goal"
+    ],
     "sk code changelogs implementation summary": [
       "sk code changelogs implementation summary"
     ],
@@ -113004,6 +113133,9 @@
     "sk design changelogs acceptance criteria": [
       "sk design changelogs acceptance criteria"
     ],
+    "sk design changelogs goal": [
+      "sk design changelogs goal"
+    ],
     "sk design changelogs implementation summary": [
       "sk design changelogs implementation summary"
     ],
@@ -113929,6 +114061,9 @@
     "sk doc changelogs acceptance criteria": [
       "sk doc changelogs acceptance criteria"
     ],
+    "sk doc changelogs goal": [
+      "sk doc changelogs goal"
+    ],
     "sk doc changelogs implementation summary": [
       "sk doc changelogs implementation summary"
     ],
@@ -114634,6 +114769,9 @@
     ],
     "sk git changelogs acceptance criteria": [
       "sk git changelogs acceptance criteria"
+    ],
+    "sk git changelogs goal": [
+      "sk git changelogs goal"
     ],
     "sk git changelogs implementation summary": [
       "sk git changelogs implementation summary"
@@ -117466,6 +117604,9 @@
     "skilled loop pi": [
       "skilled-loop pi"
     ],
+    "skilled loop rc block": [
+      "skilled-loop rc block"
+    ],
     "skilled loop relaunch": [
       "skilled-loop relaunch"
     ],
@@ -117606,6 +117747,9 @@
     ],
     "skilled release line changelog": [
       "skilled release line changelog"
+    ],
+    "skilled release line goal": [
+      "skilled release line goal"
     ],
     "skilled release line implementation summary": [
       "skilled release line implementation summary"
@@ -118102,6 +118246,9 @@
     "small skill changelogs acceptance criteria": [
       "small skill changelogs acceptance criteria"
     ],
+    "small skill changelogs goal": [
+      "small skill changelogs goal"
+    ],
     "small skill changelogs implementation summary": [
       "small skill changelogs implementation summary"
     ],
@@ -118334,6 +118481,9 @@
     ],
     "source diversity quality class": [
       "source diversity quality class"
+    ],
+    "source diversity quality class goal": [
+      "source diversity quality class goal"
     ],
     "source diversity quality class plan": [
       "source diversity quality class plan"
@@ -124309,6 +124459,9 @@
     "system deep loop changelogs acceptance criteria": [
       "system deep loop changelogs acceptance criteria"
     ],
+    "system deep loop changelogs goal": [
+      "system deep loop changelogs goal"
+    ],
     "system deep loop changelogs implementation summary": [
       "system deep loop changelogs implementation summary"
     ],
@@ -124800,6 +124953,9 @@
     ],
     "system skill advisor changelogs acceptance criteria": [
       "system skill advisor changelogs acceptance criteria"
+    ],
+    "system skill advisor changelogs goal": [
+      "system skill advisor changelogs goal"
     ],
     "system skill advisor changelogs implementation summary": [
       "system skill advisor changelogs implementation summary"
@@ -125748,6 +125904,9 @@
     ],
     "system spec kit changelogs acceptance criteria": [
       "system spec kit changelogs acceptance criteria"
+    ],
+    "system spec kit changelogs goal": [
+      "system spec kit changelogs goal"
     ],
     "system spec kit changelogs implementation summary": [
       "system spec kit changelogs implementation summary"

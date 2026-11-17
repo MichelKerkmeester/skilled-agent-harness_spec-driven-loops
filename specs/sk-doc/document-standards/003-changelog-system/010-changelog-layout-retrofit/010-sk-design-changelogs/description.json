@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs",
+  "description": "Phase 10: sk-design-changelogs",
+  "keywords": [
+    "phase",
+    "sk-design-changelogs"
+  ],
+  "lastUpdated": "2026-11-17T18:13:10.427Z",
+  "specId": "010",
+  "folderSlug": "sk-design-changelogs",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system",
+    "010-changelog-layout-retrofit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

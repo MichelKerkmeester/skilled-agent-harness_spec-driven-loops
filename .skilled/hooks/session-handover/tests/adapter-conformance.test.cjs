@@ -312,7 +312,7 @@ const SEED_CASES = [
     check: (text) => {
       assert.ok(text.includes(`claim '${NOTE_PATH}' --session '${SESSION_ID}'`), text);
       assert.ok(text.includes(`/speckit:resume ${SPEC_FOLDER}`), text);
-      assert.ok(text.includes('node .skilled/hooks/session-handover/bin/session-handover.cjs'), text);
+      assert.ok(text.includes(require('../lib/nudge.cjs').CLI_COMMAND), text);
     },
   },
   {

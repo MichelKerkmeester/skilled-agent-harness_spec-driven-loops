@@ -94,7 +94,9 @@ If the saved cwd is missing or the cwd or handoff path contains CR or LF, it pri
 
 Before a relaunch the wrapper checks the note state that `consume` reports, because a claim seed for any note that is not open fails in the fresh session. A note in another state prints `warning: the handoff note is <state>; not relaunching`. A failed consume, which also loses the Gate 3 answer, prints `warning: could not read the consumed relaunch record; not relaunching`.
 
-Both exit 1, and the manual command is printed only when the state could not be read or the note is `invalid`, because a claimed, done or missing note cannot be claimed. Only when the note is open does the wrapper run `hand-over`, which writes the `handed-over` line, before it relaunches.
+Both exit 1, and the manual command is printed only when the state could not be read or the note is `invalid`, because a claimed, done or missing note cannot be claimed.
+
+A note under another checkout's handoffs directory has the state `outside-root`. This happens when the session ran another checkout's CLI under a root the wrapper did not set. The wrapper prints `warning: the handoff note <path> belongs to <note root>, outside the handoffs directory this loop reads under <root>; not relaunching`, then a claim command that starts with `SESSION_HANDOVER_REPO_ROOT=<note root>`. Paste that command to continue. Without the prefix the claim is refused, because the note is outside that checkout's root too. Only when the note is open does the wrapper run `hand-over`, which writes the `handed-over` line, before it relaunches.
 
 On the other exit paths a consume failure prints a warning and the wrapper continues with the exit it was already handling. If the wrapper cannot decode the record returned by `should-relaunch`, it prints `warning: could not read the relaunch record` and consumes the record. It exits 1 when `should-relaunch` approved the hop and exits with the runtime's own exit code when `should-relaunch` declined. Neither path prints a manual claim command.
 

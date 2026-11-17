@@ -22,6 +22,7 @@ import {
   readRelaunchFile,
   resolveKillerTarget,
 } from '../lib/relaunch-core.cjs';
+import nudge from '../lib/nudge.cjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -176,7 +177,7 @@ async function armPendingRecord(payload, dependencies = {}) {
         systemMessage: `Session handover is waiting on ${tasks} background `
           + `task${tasks === 1 ? '' : 's'}; the hop goes ahead at the first Stop after `
           + 'they finish. Send a prompt or run '
-          + '`node .skilled/hooks/session-handover/bin/session-handover.cjs cancel` '
+          + `\`${nudge.CLI_COMMAND} cancel\` `
           + 'to call it off.',
       })}\n`);
     } catch (error) {

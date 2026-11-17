@@ -1,0 +1,8 @@
+- This entry is expanded and stays expanded. Keep its #### items, and keep every ## section the original has, in the same order, unless the template renames it.
+- Open with two to four parts after the # title: each part is one lead sentence on a theme and two to four short bullets.
+- When the original marks any change as breaking, add the > [!IMPORTANT] box after the opening, one numbered line per breaking change, each linked to its item. Inside that item, put a > [!WARNING] box where the original had the breaking marker.
+- ## What's New at a Glance is a table with the columns | Change | What It Means | Section |. Each Change cell links to an item anchor, such as [Short phrase](#c-item-slug). The Section cell names the ## section that holds the item, spelled exactly as that heading. Rows follow the order of the sections.
+- Every #### heading ends with <a id="c-item-slug"></a>, the slug being the heading in lowercase with punctuation dropped and spaces as hyphens. Every link to #c-... must reach one of these anchors.
+- A #### item is bullets only, no paragraph.
+- Fold detail a reader opens only when needed into <details><summary><b>Name</b></summary> blocks: smaller fixes, costs, test results, upgrade groups and a list of several spec folders. Leave a blank line after the summary line and before </details>.
+- Keep a ## How It Was Checked section only when the original has test or verification content. A verification section under another name takes that name.

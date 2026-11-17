@@ -155,7 +155,8 @@ const record = {
     hasGoalPacket: Object.hasOwn(process.env, "SESSION_HANDOVER_GOAL_PACKET"),
     SKILLED_LOOP_CLAIM_SEED: process.env.SKILLED_LOOP_CLAIM_SEED || "",
     hasClaimSeed: Object.hasOwn(process.env, "SKILLED_LOOP_CLAIM_SEED"),
-    OPENCODE_CONFIG_CONTENT: process.env.OPENCODE_CONFIG_CONTENT ?? null
+    OPENCODE_CONFIG_CONTENT: process.env.OPENCODE_CONFIG_CONTENT ?? null,
+    SESSION_HANDOVER_REPO_ROOT: process.env.SESSION_HANDOVER_REPO_ROOT ?? null
   }
 };
 fs.appendFileSync(recordPath, JSON.stringify(record) + "\\n");

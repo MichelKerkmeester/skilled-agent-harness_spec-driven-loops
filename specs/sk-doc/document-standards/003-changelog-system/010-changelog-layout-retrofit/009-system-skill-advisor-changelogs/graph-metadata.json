@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs",
+  "spec_folder": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs",
+  "parent_id": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system skill advisor changelogs",
+      "phase 9 system skill advisor changelogs",
+      "system skill advisor changelogs plan",
+      "system skill advisor changelogs tasks",
+      "system skill advisor changelogs goal",
+      "system skill advisor changelogs implementation summary"
+    ],
+    "key_topics": [
+      "system",
+      "skill",
+      "advisor",
+      "changelogs",
+      "phase",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "system-skill-advisor",
+      "written"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flash Free",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 75 system-skill-advisor changelogs were written before the v4.1.0.0 layout",
+    "created_at": "2026-11-17T18:13:08Z",
+    "last_save_at": "2026-11-17T18:17:59.713Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2f8939d9d31cb9d83b4ecb65f47bc7ea696096ce06e2479ddfeb924e5cb1d699",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c7aee7ec8f7fb925ac198cb9ebc0592c1e5a7d823e226d97ae01a9603d2946c2",
+      "plan.md": "1f9af4eba0cf6eb35706e2f614c9a18d229b6133c12c410bf9c2565643f6ca1f",
+      "tasks.md": "293bec5bd47fa8ebfa5615b43830e58f65555f279e7141c16554d899423cdfa4",
+      "implementation-summary.md": "34698300c923974ae3217001282eee155f91a8988e7d3cdcc81ba4dc03d1409e"
+    },
+    "last_active_at": null
+  }
+}

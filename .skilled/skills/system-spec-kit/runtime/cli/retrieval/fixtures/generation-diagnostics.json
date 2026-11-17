@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6930,
-    "ok": 19728,
+    "ok": 19815,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28285,
+  "documentsScanned": 28372,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "69345c91c6394ac1c55afd2ef9c1e65c194b0edfcc9ed4b85df90b110ebaad17",
+  "manifestHash": "2f4a8d23746550f19eaa6ac4f7e66372e4628b1e9dbc680d788edec581ac76d7",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45053,
+      "ok": 45106,
       "prose-sentence": 22,
       "single-token": 150,
       "stop-word-only": 1,
@@ -57433,6 +57433,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research/lineages",
       "reason": "excluded directory"
     },
@@ -59909,6 +59913,62 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/document-standards/004-security-policy-alignment/scratch",
       "reason": "excluded directory"
     },
@@ -60946,6 +61006,10 @@
     },
     {
       "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/scratch",
       "reason": "excluded directory"
     },
     {

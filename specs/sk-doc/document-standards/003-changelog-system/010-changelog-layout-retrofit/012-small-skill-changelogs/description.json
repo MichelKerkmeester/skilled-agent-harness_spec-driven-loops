@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs",
+  "description": "Phase 12: small-skill-changelogs",
+  "keywords": [
+    "phase",
+    "small-skill-changelogs"
+  ],
+  "lastUpdated": "2026-11-17T18:13:12.762Z",
+  "specId": "012",
+  "folderSlug": "small-skill-changelogs",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system",
+    "010-changelog-layout-retrofit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
