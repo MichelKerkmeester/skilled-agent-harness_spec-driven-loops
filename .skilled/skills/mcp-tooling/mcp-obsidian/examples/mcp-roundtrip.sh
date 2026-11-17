@@ -12,7 +12,7 @@ set -euo pipefail
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 NOTE_PATH="${NOTE_PATH:-Daily/$(date -u +%Y-%m-%d).md}"
-BASE_URL="${OBSIDIAN_BASE_URL:-http://127.0.0.1:27123}"
+BASE_URL="${OBSIDIAN_BASE_URL:-${obsidian_OBSIDIAN_BASE_URL:-http://127.0.0.1:27123}}"
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 info()    { echo "[mcp] → $*"; }
@@ -26,9 +26,9 @@ error()   { echo "[mcp] ✗ $*" >&2; }
 preflight() {
   info "Checking app-backed prerequisites for the obsidian MCP..."
 
-  if [[ -z "${OBSIDIAN_API_KEY:-}" ]]; then
+  if [[ -z "${OBSIDIAN_API_KEY:-${obsidian_OBSIDIAN_API_KEY:-}}" ]]; then
     warn "OBSIDIAN_API_KEY is UNSET — the Local REST API requires a bearer token."
-    warn "Copy it from Obsidian → Settings → Local REST API, then export OBSIDIAN_API_KEY."
+    warn "Copy it from Obsidian → Settings → Local REST API, then export OBSIDIAN_API_KEY (or the prefixed obsidian_OBSIDIAN_API_KEY that .env.example lists)."
   else
     success "OBSIDIAN_API_KEY is set"
   fi
@@ -40,7 +40,7 @@ preflight() {
     # plugin disabled, or wrong port — route the task to notesmd-cli instead.
     # Skipping cert verification is safe only because BASE_URL is loopback; never
     # send the bearer token to a non-127.0.0.1 host with verification disabled.
-    if curl -sk --max-time 5 -H "Authorization: Bearer ${OBSIDIAN_API_KEY:-}" "$BASE_URL/" >/dev/null 2>&1; then
+    if curl -sk --max-time 5 -H "Authorization: Bearer ${OBSIDIAN_API_KEY:-${obsidian_OBSIDIAN_API_KEY:-}}" "$BASE_URL/" >/dev/null 2>&1; then
       success "Local REST API responded — app is running"
     else
       warn "Local REST API did not respond. Is the Obsidian app open with the vault + plugin enabled?"

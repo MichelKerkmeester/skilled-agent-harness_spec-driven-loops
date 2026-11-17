@@ -5,10 +5,12 @@ trigger_phrases:
   - "refero screen image example"
   - "refero screenshot fetch"
   - "refero image walkthrough"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Example: Screen Image Fetch (Image Last)
+
+## 1. OVERVIEW
 
 A worked walkthrough of the funnel's last resort: *"The text metadata cannot settle whether this onboarding screen uses a progress rail — show me the screenshot."* Images are requested only when text cannot answer, `thumbnail` before `full`, for **one** materially relevant screen. Every tool and argument traces to [`references/tool-surface.md`](../references/tool-surface.md).
 

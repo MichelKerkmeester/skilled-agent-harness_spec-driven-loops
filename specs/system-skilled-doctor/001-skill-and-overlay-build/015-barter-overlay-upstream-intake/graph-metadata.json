@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake",
+  "spec_folder": "system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake",
+  "parent_id": "system-skilled-doctor/001-skill-and-overlay-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "barter overlay upstream intake",
+      "phase 15 barter overlay upstream intake",
+      "repin missing upstream links",
+      "mcp-tooling bare health keyword",
+      "barter overlay upstream intake plan",
+      "barter overlay upstream intake tasks",
+      "barter overlay upstream intake goal",
+      "barter overlay upstream intake implementation summary"
+    ],
+    "key_topics": [
+      "barter",
+      "overlay",
+      "upstream",
+      "intake",
+      "phase",
+      "repin",
+      "missing",
+      "links",
+      "mcp-tooling",
+      "bare",
+      "health",
+      "keyword"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/governance/feature-flag-governance.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json",
+      ".skilled/skills/mcp-tooling/mcp-obsidian/examples/mcp-roundtrip.sh",
+      ".skilled/skills/mcp-tooling/hub-router.json",
+      ".skilled/skills/mcp-tooling/mode-registry.json",
+      ".skilled/skills/mcp-tooling/ROUTER.md",
+      ".skilled/skills/mcp-tooling/graph-metadata.json",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/mcp-tooling/manifest.json",
+      "scratch/repin-check.sh",
+      ".skilled/bin/compiled-route.cjs",
+      ".skilled/bin/compiled-route-admission.cjs",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-flag-governance.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/governance/feature-flag-governance.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-hub-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-hub-router-template.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-roundtrip.sh",
+        "kind": "script",
+        "path": ".skilled/skills/mcp-tooling/mcp-obsidian/examples/mcp-roundtrip.sh",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-tooling/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-tooling/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/mcp-tooling/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "repin-check.sh",
+        "kind": "script",
+        "path": "scratch/repin-check.sh",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-admission.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-admission.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "ci-router-vocabulary-reach.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The vendoring project keeps overlays for Skilled files that are wrong upstream: a stale hub list, two template sentences, an example script that misses the env names `.env.example` declares, and a bare `health` keyword that routes backend health checks to Obsidian",
+    "created_at": "2026-11-17T08:23:07Z",
+    "last_save_at": "2026-11-17T10:31:11.569Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f3baa45729c2d2c48073bd0b8bfc839a5c55ae6d1860a8d1218432936f14a674",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c093dc27dbf52c5c732f663d01e619d5bca1d4f6264fdbbd474b2f76bb7763f3",
+      "plan.md": "dfff9c90dcdb85ae56fb22470394a35f46d8f1ba9ac06f6d3bee9955666693d4",
+      "tasks.md": "d28709cf7ac944dc49acde0dfeef6f26ac30cbe4b60792feaeb336415c693cea",
+      "implementation-summary.md": "41e38cf7719c541162ffcb717fcc4ebc8660825f36e6589821f984093b9a6d28"
+    },
+    "last_active_at": null
+  }
+}

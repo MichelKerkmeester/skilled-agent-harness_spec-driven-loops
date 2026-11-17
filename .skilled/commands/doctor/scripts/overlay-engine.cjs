@@ -3257,7 +3257,7 @@ function crossCheckNote(record, spec, readPinned) {
  * @param {object} analysis Analysis of the tree.
  * @returns {string[]} One line per note, without its prefix.
  */
-function statusNotes(ctx, manifest, state, analysis) {
+function statusNotes(ctx, manifest, state, analysis, { isAudit = false } = {}) {
   const notes = [];
   if (state.loadedVersion === 1) {
     notes.push(`${STATE_FILE} is schema version 1; the next apply rewrites it as version 2. A script that still ` +
@@ -3289,6 +3289,11 @@ function statusNotes(ctx, manifest, state, analysis) {
     if (spec) notes.push(...untrackedOperationNotes(entry, spec));
   }
   if (!isPinReadable) return notes;
+  // The audit lists a missing path as its own finding, so the note would repeat it.
+  if (!isAudit) {
+    const missing = missingUnownedPaths(ctx, manifest);
+    if (missing.length > 0) notes.push(missingPathsNote(missing));
+  }
   // A regenerate step rewrites its outputs after the entry sets apply, so the
   // pinned copy says nothing about what such a file should hold.
   const generated = new Set((manifest.regenerate || [])
@@ -3321,7 +3326,7 @@ function commandStatus(ctx, options = {}) {
   const outOfSync = analysis.records.filter((record) => record.state !== 'in-sync');
   const stale = staleRootFiles(manifest);
   const offLayout = layoutMoves(manifest);
-  const notes = statusNotes(ctx, manifest, state, analysis);
+  const notes = statusNotes(ctx, manifest, state, analysis, { isAudit: Boolean(options.isAudit) });
   const isInSync = outOfSync.length === 0 && analysis.blocked.length === 0 && check.miss === 0 &&
     stale.length === 0 && (audit === null || audit.findings.length === 0);
 
@@ -5388,6 +5393,57 @@ function trackedTreeKeys(root) {
  *   One finding per unowned path that drifted, sorted by path. `isAvailable` is
  *   false when the manifest names no checkout that holds the pin.
  */
+/**
+ * Build the test for a vendored path no overlay owns, the only kind of path
+ * whose drift from the pin a re-pin would lose.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {{settings: object, isJudged: (key: string) => boolean}}
+ */
+function unownedVendoredJudge(ctx, manifest) {
+  const settings = writeCheckSettings(manifest);
+  const isManaged = managedPathTest(ctx, manifest);
+  // A generated path is one of the project's own outputs and a managed one is
+  // written back by apply, so neither can hold drift a re-pin would lose.
+  const isJudged = (key) => isVendoredKey(key, settings) && !settings.isGenerated(key) &&
+    !isManaged(key) && !isEnvName(key);
+  return { settings, isJudged };
+}
+
+/**
+ * List the unowned paths the pin ships that the tree lacks. A re-pin copies
+ * only the paths upstream changed, so such a path stays missing through every
+ * later re-pin. Only one lstat per pinned path, so plain status can afford it.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest with a readable pin.
+ * @returns {string[]} Sorted paths relative to the tree.
+ */
+function missingUnownedPaths(ctx, manifest) {
+  const pin = manifest.pin;
+  const { settings, isJudged } = unownedVendoredJudge(ctx, manifest);
+  const missing = [];
+  for (const key of lsTreeBlobs(pin.checkout, pin.commit, [...settings.roots, ...settings.rootFiles]).keys()) {
+    if (!isJudged(key)) continue;
+    try {
+      fs.lstatSync(path.join(ctx.root, key));
+    } catch (error) {
+      if (!error || (error.code !== 'ENOENT' && error.code !== 'ENOTDIR')) throw error;
+      missing.push(key);
+    }
+  }
+  return missing.sort();
+}
+
+const MISSING_NOTE_SHOWN = 5;
+
+function missingPathsNote(missing) {
+  const count = missing.length;
+  const shown = missing.slice(0, MISSING_NOTE_SHOWN).join(', ');
+  const more = count > MISSING_NOTE_SHOWN ? ` and ${count - MISSING_NOTE_SHOWN} more` : '';
+  return `${count} unowned upstream ${count === 1 ? 'path at the pin is' : 'paths at the pin are'} missing from the tree: ` +
+    `${shown}${more}; restore ${count === 1 ? 'it' : 'them'} from the pinned commit, and run status --audit for the full drift report`;
+}
+
 function auditVendoredTree(ctx, manifest) {
   const pin = manifest.pin || {};
   if (typeof pin.checkout !== 'string' || typeof pin.commit !== 'string' || !isDirectory(pin.checkout)) {
@@ -5397,12 +5453,7 @@ function auditVendoredTree(ctx, manifest) {
   // commit, holds no copy to compare against. The audit reports itself skipped
   // instead of letting the unreadable pin fail the whole status run.
   if (resolveCommit(pin.checkout, pin.commit) === null) return { isAvailable: false, findings: [] };
-  const settings = writeCheckSettings(manifest);
-  const isManaged = managedPathTest(ctx, manifest);
-  // A generated path is one of the project's own outputs and a managed one is
-  // written back by apply, so neither can hold drift a re-pin would lose.
-  const isJudged = (key) => isVendoredKey(key, settings) && !settings.isGenerated(key) &&
-    !isManaged(key) && !isEnvName(key);
+  const { settings, isJudged } = unownedVendoredJudge(ctx, manifest);
   const format = objectFormat(pin.checkout);
   const upstream = lsTreeBlobs(pin.checkout, pin.commit, [...settings.roots, ...settings.rootFiles]);
   const findings = [];

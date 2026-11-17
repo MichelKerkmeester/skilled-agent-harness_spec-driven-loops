@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a1cc3ca7205e51289225214315b09f843de2cb9e4376e33f5dc7aca9876d2ff8",
+  "corpusHash": "af2d68aa8cec493dffb9fa602a39664a6e025bf7d44a9e4fb0d6bb4a8c685c02",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28185,
+  "includedPathCount": 28191,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -19593,6 +19593,12 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/goal.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/handover-from-barter-032.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/research.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/spec.md",
     "specs/system-skilled-doctor/002-symlink-first-link/implementation-summary.md",
@@ -28217,7 +28223,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "355dd0988209d4c0d676a07c0f29f51f090826e09e6d7174da094b0878d8299d",
+  "manifestHash": "2a8d2ea3732029e130e764d42a094f65246f8f602ce83e55b9b7586488046210",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36897,6 +36903,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/scratch",
       "reason": "excluded directory"
     },
     {

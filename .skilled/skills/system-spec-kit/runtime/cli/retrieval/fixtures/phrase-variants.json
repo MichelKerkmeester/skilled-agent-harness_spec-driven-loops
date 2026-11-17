@@ -1,5 +1,5 @@
 {
-  "manifestHash": "355dd0988209d4c0d676a07c0f29f51f090826e09e6d7174da094b0878d8299d",
+  "manifestHash": "2a8d2ea3732029e130e764d42a094f65246f8f602ce83e55b9b7586488046210",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14451,6 +14451,24 @@
     ],
     "barter overlay mechanics research": [
       "barter overlay mechanics research"
+    ],
+    "barter overlay upstream handover": [
+      "barter overlay upstream handover"
+    ],
+    "barter overlay upstream intake": [
+      "barter overlay upstream intake"
+    ],
+    "barter overlay upstream intake goal": [
+      "barter overlay upstream intake goal"
+    ],
+    "barter overlay upstream intake implementation summary": [
+      "barter overlay upstream intake implementation summary"
+    ],
+    "barter overlay upstream intake plan": [
+      "barter overlay upstream intake plan"
+    ],
+    "barter overlay upstream intake tasks": [
+      "barter overlay upstream intake tasks"
     ],
     "barter parity": [
       "barter parity"
@@ -70180,6 +70198,9 @@
     "mcp tooling 1 9 9 0": [
       "mcp-tooling 1.9.9.0"
     ],
+    "mcp tooling bare health keyword": [
+      "mcp-tooling bare health keyword"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -80327,6 +80348,9 @@
     "overlay guard test": [
       "overlay guard test"
     ],
+    "overlay legacy cleanup message": [
+      "overlay legacy cleanup message"
+    ],
     "overlay lock takeover": [
       "overlay lock takeover"
     ],
@@ -83414,6 +83438,9 @@
     ],
     "phase 15 archive current location and ignored files": [
       "phase 15 archive current location and ignored files"
+    ],
+    "phase 15 barter overlay upstream intake": [
+      "phase 15 barter overlay upstream intake"
     ],
     "phase 15 cli claude code": [
       "phase 15 cli claude code"
@@ -96785,6 +96812,9 @@
     ],
     "repin live run failed after stage passed": [
       "repin live run failed after stage passed"
+    ],
+    "repin missing upstream links": [
+      "repin missing upstream links"
     ],
     "repin plan": [
       "repin plan"

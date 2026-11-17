@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface packet scaffold"
 importance_tier: normal
 contextType: general
-version: 1.2.7.0
+version: 1.2.8.0
 ---
 
 # Parent Skill Hub Template - Canonical Two-Axis Hub
@@ -219,7 +219,7 @@ You run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) first.
 | `[parent-skill-name]/leaf-manifest.json` | Generated leaf inventory |
 | `[parent-skill-name]/changelog/` | Hub changelogs |
 | `[parent-skill-name]/manual-testing-playbook/` | Manual test cases |
-| `[parent-skill-name]/benchmark/` | Benchmark baseline (parent-skill-check 9b warns if absent) |
+| `[parent-skill-name]/benchmark/` | Benchmark baseline (parent-skill-check 9b fails if absent; it only warns with `PARENT_HUB_CHECK_STRICT=0`) |
 | `[parent-skill-name]/[workflow-packet-a]/SKILL.md` | Workflow instructions |
 | `[parent-skill-name]/[workflow-packet-a]/ROUTER.md` | Workflow packet router |
 | `[parent-skill-name]/[workflow-packet-a]/README.md` | Workflow overview |

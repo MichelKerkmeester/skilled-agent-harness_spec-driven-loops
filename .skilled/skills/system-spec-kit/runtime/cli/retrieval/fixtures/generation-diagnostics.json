@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6914,
-    "ok": 19644,
+    "ok": 19650,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28185,
+  "documentsScanned": 28191,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "355dd0988209d4c0d676a07c0f29f51f090826e09e6d7174da094b0878d8299d",
+  "manifestHash": "2a8d2ea3732029e130e764d42a094f65246f8f602ce83e55b9b7586488046210",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44928,
+      "ok": 44938,
       "prose-sentence": 22,
       "single-token": 150,
       "stop-word-only": 1,
@@ -61598,6 +61598,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/scratch",
       "reason": "excluded directory"
     },
     {

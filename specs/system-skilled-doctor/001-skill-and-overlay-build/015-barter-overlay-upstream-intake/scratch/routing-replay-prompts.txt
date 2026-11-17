@@ -1,0 +1,13 @@
+run a health check on the backend-system API
+check the health of the gaia-services pods
+inspect the dom of the checkout page
+capture repl evidence of the login flow
+chart my apple health data in obsidian
+open the health.md note in my vault
+use aside to click through the signup
+run aside on the pricing page
+open aside and log in
+aside, fill the form
+health check
+check the health-md dashboard
+put this aside for later and review the obsidian vault

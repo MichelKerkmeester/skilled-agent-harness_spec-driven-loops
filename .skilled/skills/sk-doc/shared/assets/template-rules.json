@@ -553,7 +553,7 @@
       "sectionReferenceChecks": false
     },
     "benchmark_companion": {
-      "description": "Benchmark report companion files (failed-runs.md, source.md, skill-benchmark-report.md, findings-and-recommendations.md) in a run folder below benchmark/reports/ (<run>/ or <group>/<run>/). Detected by name and position. The report contract and its renderer own their shape, so no section, divider or heading-case rule applies",
+      "description": "Benchmark report companion files (failed-runs.md, source.md, skill-benchmark-report.md, findings-and-recommendations.md, and the compiled-routing report.md and serving-snapshot.md) in a run folder below benchmark/reports/ (<run>/ or <group>/<run>/). Detected by name and position. The report contract and its renderer own their shape, so no section, divider or heading-case rule applies",
       "requiredSections": [],
       "recommendedSections": [],
       "optionalSections": [],
@@ -721,6 +721,33 @@
         "Test harness"
       ],
       "description": "Per-feature catalog leaf file under */feature-catalog/<category>/ (only the Validation And Tests table Type + placeholder check applies; catalogs do not use emoji/uppercase H2s). allowedValidationTypes is a curated canonical set \u2014 the advisory Type warning surfaces near-dupes/typos to normalize toward these, not to force 2 values on the real corpus"
+    },
+    "rule": {
+      "description": "Repository rule file under repo-rules/: the expansion of one AGENTS.md clause that REPO RULES.md routes to. Every rule opens with an unnumbered Fires when and The rule, carries numbered sections, and closes with a self-check",
+      "requiredSections": [
+        "fires_when",
+        "the_rule",
+        "self_check"
+      ],
+      "recommendedSections": [],
+      "optionalSections": [
+        "what_this_rule_is_not"
+      ],
+      "sectionEmojis": {},
+      "sectionAliases": {
+        "fires when": "fires_when",
+        "the rule": "the_rule",
+        "self-check": "self_check",
+        "what this rule is not": "what_this_rule_is_not"
+      },
+      "tocRequired": false,
+      "h2DividerRequired": false,
+      "h2EmojiRequired": false,
+      "h2UppercaseRequired": false,
+      "renderChecks": true,
+      "unnumberedSectionsCount": true,
+      "firstSectionName": "fires when",
+      "lastSectionPattern": "self-check"
     },
     "skill_router": {
       "description": "Sibling ROUTER.md beside a skill's or mode's SKILL.md. Detected by filename. It opens with an Overview and ends with the machine router: the intent map, resource map, default resource, loading levels and routing pseudocode",

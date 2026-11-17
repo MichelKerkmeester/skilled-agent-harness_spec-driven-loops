@@ -1,16 +1,18 @@
 ---
 title: "Example: limit-1 Smoke Search"
 description: "The smallest useful mcp-mobbin walkthrough: re-confirm the discovery-confirmed callable with tool_info, run one screen search at limit 1, and verify the response shape against the fixture-declared schema without widening anything."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Example: limit-1 Smoke Search
+
+## 1. OVERVIEW
 
 The minimum end-to-end verification of the Mobbin transport: one confirmed callable, one call, one screen. This is the same smoke check the post-registration checklist in `../assets/utcp-mobbin-manual.md` carries as its live item, worked as a full walkthrough. Contract authority: [`../references/tool-surface.md`](../references/tool-surface.md) §1 (the one tool, hard constraints).
 
 ---
 
-## 1. PRECONDITIONS
+## 2. PRECONDITIONS
 
 - `bash .skilled/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh` reports `OK 'mobbin' manual registered`.
 - Fresh Code Mode session (manuals load at startup).
@@ -18,7 +20,7 @@ The minimum end-to-end verification of the Mobbin transport: one confirmed calla
 
 ---
 
-## 2. STEP 1 — MANDATORY CALLABLE CONFIRMATION
+## 3. STEP 1 — MANDATORY CALLABLE CONFIRMATION
 
 The callable below is **CONFIRMED by live discovery 2026-07-16** (`../references/discovery-fixture-2026-07-16.json`; registry name `mobbin.mobbin.search_screens`). Re-confirm per session, fail closed on drift.
 
@@ -35,7 +37,7 @@ call_tool_chain({
 
 ---
 
-## 3. STEP 2 — THE SMOKE CALL
+## 4. STEP 2 — THE SMOKE CALL
 
 One call, one result, no widening. The name used is whatever Step 1 returned (shown here as the prediction).
 
@@ -54,7 +56,7 @@ call_tool_chain({
 
 ---
 
-## 4. STEP 3 — VERIFY THE DOCUMENTED SHAPE
+## 5. STEP 3 — VERIFY THE DOCUMENTED SHAPE
 
 Check the response against the documented baseline (tool-surface.md §1):
 
@@ -67,6 +69,6 @@ Check the response against the documented baseline (tool-surface.md §1):
 
 ---
 
-## 5. WHAT THIS EXAMPLE NEVER DOES
+## 6. WHAT THIS EXAMPLE NEVER DOES
 
 No `deep` parameter, no second image-download call, no `search_apps`/`search_flows`/`search_elements`, no widening past `limit: 1` (this is a smoke test), no design verdict, and no edit to `.utcp_config.json` or `~/.mcp-auth` under any failure.

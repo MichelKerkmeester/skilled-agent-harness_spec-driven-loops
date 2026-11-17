@@ -5,10 +5,12 @@ trigger_phrases:
   - "figma mcp example"
   - "pull design context example"
   - "framelink discovery walkthrough"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Optional MCP Context Pull - Worked Walkthrough
+
+## 1. OVERVIEW
 
 The mcp-figma skill works fully with the CLI alone. This walkthrough covers the OPT-IN path only: pulling design context FROM Figma into the agent through the community Framelink `figma` manual registered in this repo's Code Mode. It mirrors playbook scenario MCP-001 and is read-only end to end.
 
@@ -16,7 +18,7 @@ The mcp-figma skill works fully with the CLI alone. This walkthrough covers the 
 
 ---
 
-## 1. PRECONDITIONS
+## 2. PRECONDITIONS
 
 - Code Mode is configured (`.utcp_config.json` contains the `figma` manual, stdio, `npx -y figma-developer-mcp --stdio`).
 - A Figma personal access token is in `.env` as `figma_FIGMA_API_KEY`. Code Mode prefixes every manual's env vars with the manual name, so a bare `FIGMA_API_KEY` will NOT work.
@@ -26,7 +28,7 @@ Snippets to verify or (re)create the manual and the `.env` line: [`../assets/utc
 
 ---
 
-## 2. STEP 1: DISCOVER, NEVER ASSUME
+## 3. STEP 1: DISCOVER, NEVER ASSUME
 
 Confirm the manual and its tool names live before relying on any of them (SKILL.md NEVER rule 6):
 
@@ -43,7 +45,7 @@ Naming is `figma.figma_<tool>` (single dot plus underscore). The two live-confir
 
 ---
 
-## 3. STEP 2: PULL DESIGN CONTEXT (READ-ONLY)
+## 4. STEP 2: PULL DESIGN CONTEXT (READ-ONLY)
 
 ```typescript
 call_tool_chain({
@@ -61,7 +63,7 @@ Treat both confirmed tools as read-only context pulls. The CLI (`figma-ds-cli`) 
 
 ---
 
-## 4. FAILURE MODES
+## 5. FAILURE MODES
 
 | What you see | Cause | Fix |
 |---|---|---|

@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.20.0
+version: 1.0.21.0
 ---
 
 # Vendored Skilled Overlays
@@ -105,6 +105,7 @@ Two more `status` lines name work no destination state covers.
 | `no upstream checkout at the pin, so ... skipped` | The checkout `pin.checkout` names is missing, or it lacks the pinned commit, so the stale root-file check, the `json-entry` cross-check, or both did not run | Name the checkout in `pin.checkout`, or fetch the pinned commit into it |
 | `<overlay>: setKeyOnItem of ...` or `insertObjectKeys of ...` | The operation keeps no record, so its value stays in the file after it leaves the entry set. The line names the key and the matched item, or the inserted keys | Remove the value by hand when you drop the operation |
 | `<overlay>: set at ... goes through an array index` | The `set` names an item by its position, so it lands on another item when one before it is added or removed | Prefer an operation that matches the item by identity |
+| `<n> unowned upstream path(s) at the pin ... missing from the tree` | Upstream ships the path at the pin, no overlay owns it, and the tree lacks it. A re-pin copies only the paths upstream changed, so the path stays missing through every later re-pin. The line names the first five paths and counts the rest. It needs a readable checkout at the pin, and `status --audit` prints a `missing` line instead | Restore the paths from the pinned commit, then run `status --audit` for the full drift report |
 | `cross-check <path>: the live file differs ...` | An in-sync `json-entry` destination differs from the entry set applied to the pinned copy, at the path the line names. No record covers that value, such as one a dropped `setKeyOnItem` left | Remove the value by hand, or list the path in the `outputs` of the `regenerate` step that writes it |
 
 The cross-check skips every destination a `regenerate` step lists in its `outputs`, because the step rewrites that file after the entry sets apply. A step that writes a `json-entry` destination without listing it gets a cross-check line on every run until the path joins its `outputs`.
@@ -183,7 +184,7 @@ It exits 1 and names each staged change under a vendored root that no overlay ow
 
 ### Drift No Overlay Owns
 
-The write checks judge a write as it is made. A vendored file that already differs from upstream, or an upstream file the tree lacks, has no line in a re-pin unless the path is one the re-pin copies or deletes. A re-pin copies the `.skilled` paths upstream changed and the runtime folders whole, and it deletes the paths upstream dropped. A drifted path outside that set, such as a hand-edited `.skilled` file upstream left alone, is never refused, so `/doctor:overlay status --audit` is the only report for it. It prints one `AUDIT` line per vendored path no overlay owns:
+The write checks judge a write as it is made. A vendored file that already differs from upstream, or an upstream file the tree lacks, has no line in a re-pin unless the path is one the re-pin copies or deletes. A re-pin copies the `.skilled` paths upstream changed and the runtime folders whole, and it deletes the paths upstream dropped. A drifted path outside that set, such as a hand-edited `.skilled` file upstream left alone, is never refused, so `/doctor:overlay status --audit` is the only full report for it. Plain `status` also prints one `NOTE` for the missing kind, because a missing path costs one file check to find, while the full comparison reads every vendored file. It prints one `AUDIT` line per vendored path no overlay owns:
 
 - `differs`: the path's contents differ from upstream at the pin.
 - `missing`: upstream has the path at the pin and the tree does not.

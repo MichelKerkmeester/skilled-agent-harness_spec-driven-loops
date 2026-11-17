@@ -63,7 +63,23 @@
     "what doctor setup prints",
     "doctor setup",
     "repository health legs",
-    "repair the runtime mirrors"
+    "repair the runtime mirrors",
+    "put skilled into my project",
+    "skilled in my project repo",
+    "keep skilled current in my project",
+    "vendored skilled overlays",
+    "re-pin vendored skilled",
+    "link a local skilled checkout into a project",
+    "overlay layout path",
+    "overlay audit",
+    "strict overlay writes",
+    "unowned vendored change",
+    "overlay sources",
+    "no overlay owns",
+    "overlay root files drifted upstream",
+    "overlay rebase",
+    "drifted from the pinned upstream commit",
+    "changed the root files an overlay owns"
   ],
   "derived": {
     "trigger_phrases": [
@@ -128,5 +144,31 @@
     "causal_summary": "Standalone skill that owns the doctor commands for putting Skilled into a project, checking it there and keeping it current; each command keeps its own workflow under .skilled/commands/doctor and is credited to this skill through its skill_agent tag.",
     "created_at": "2026-11-06T07:28:03.454659+00:00",
     "last_updated_at": "2026-11-06T07:30:00.221Z"
-  }
+  },
+  "intent_signals_generated": [
+    "vendored skilled copy",
+    "keep my changes to vendored skilled",
+    "unowned vendored files",
+    "overlay no longer adds a json item",
+    "stage an overlay re-pin",
+    "staged overlay re-pin",
+    "take over an overlay lock",
+    "overlay lock whose owner has ended",
+    "put skilled into my project",
+    "skilled in my project repo",
+    "keep skilled current in my project",
+    "vendored skilled overlays",
+    "re-pin vendored skilled",
+    "link a local skilled checkout into a project",
+    "overlay layout path",
+    "overlay audit",
+    "strict overlay writes",
+    "unowned vendored change",
+    "overlay sources",
+    "no overlay owns",
+    "overlay root files drifted upstream",
+    "overlay rebase",
+    "drifted from the pinned upstream commit",
+    "changed the root files an overlay owns"
+  ]
 }

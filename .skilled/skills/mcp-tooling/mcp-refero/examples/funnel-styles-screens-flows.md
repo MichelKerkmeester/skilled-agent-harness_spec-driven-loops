@@ -5,10 +5,12 @@ trigger_phrases:
   - "refero funnel example"
   - "styles screens flows walkthrough"
   - "refero research funnel"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Example: The Styles -> Screens -> Flows Funnel
+
+## 1. OVERVIEW
 
 A worked walkthrough of the official research funnel for a realistic brief: *"We are designing a pricing page for a developer-tools SaaS; gather visual direction, real pricing-page patterns, and how products run the upgrade journey."* Every tool, argument, and bound below traces to [`references/tool-surface.md`](../references/tool-surface.md).
 

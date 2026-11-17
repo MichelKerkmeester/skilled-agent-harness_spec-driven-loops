@@ -42,25 +42,37 @@ function hubs() {
     .map((e) => e.name)
     // A private skill belongs to one checkout, so this writer must never open or rewrite it.
     .filter((name) => !name.startsWith('local-'))
-    .filter((name) => fs.existsSync(path.join(SKILLS, name, 'ROUTER.md'))
-      && fs.existsSync(path.join(SKILLS, name, 'hub-router.json'))
-      && fs.existsSync(path.join(SKILLS, name, 'graph-metadata.json')))
+    .filter((name) => fs.existsSync(path.join(SKILLS, name, 'graph-metadata.json')))
     .sort();
+}
+
+function isMultiWordPhrase(phrase) {
+  return phrase.includes(' ')
+    && /^[a-z0-9]/i.test(phrase)
+    && !/[{}[\]]/.test(phrase)
+    && !/^(weight|keywords)$/i.test(phrase);
 }
 
 // The same extraction the reach check probes with. Keeping one definition means
 // the gate and the generator can never disagree about what a router declared.
 function declaredPhrases(hub) {
-  const text = fs.readFileSync(path.join(SKILLS, hub, 'ROUTER.md'), 'utf8');
+  // A hub declares stage-one vocabulary in ROUTER.md. A router-less skill
+  // declares it in the keyword list its SKILL.md already carries.
+  const hasHubRouter = fs.existsSync(path.join(SKILLS, hub, 'hub-router.json'));
+  const sourcePath = path.join(SKILLS, hub, hasHubRouter ? 'ROUTER.md' : 'SKILL.md');
+  if (!fs.existsSync(sourcePath)) return [];
+
+  const text = fs.readFileSync(sourcePath, 'utf8');
+  if (!hasHubRouter) {
+    const keywords = /<!--\s*Keywords:\s*([\s\S]*?)\s*-->/i.exec(text);
+    if (!keywords) return [];
+    return [...new Set(keywords[1].split(',').map((phrase) => phrase.trim()).filter(isMultiWordPhrase))];
+  }
+
   const block = /INTENT_SIGNALS\s*=\s*\{([^\n]*(?=\}[ \t]*$)|[\s\S]*?(?=\n\}))/m.exec(text);
   if (!block) return [];
   const found = [...block[1].matchAll(/"([^"]{3,60})"/g)].map((m) => m[1]);
-  return [...new Set(found.filter((k) => (
-    k.includes(' ')
-    && /^[a-z0-9]/i.test(k)
-    && !/[{}[\]]/.test(k)
-    && !/^(weight|keywords)$/i.test(k)
-  )))];
+  return [...new Set(found.filter(isMultiWordPhrase))];
 }
 
 /**
