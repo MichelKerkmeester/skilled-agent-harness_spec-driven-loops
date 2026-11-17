@@ -24,7 +24,8 @@ const { reviewUnfinishedCoreProtocols } = require('./convergence.cjs');
 const REQUIRED_DIMENSIONS = ['correctness', 'security', 'traceability', 'maintainability'];
 const SEVERITY_KEYS = ['P0', 'P1', 'P2'];
 const SEVERITY_WEIGHTS = { P0: 10.0, P1: 5.0, P2: 1.0 };
-const LIVE_LINEAGE_MODES = new Set(['new', 'resume', 'restart']);
+// An extension continues a completed run in place, so its lineage mode stays live.
+const LIVE_LINEAGE_MODES = new Set(['new', 'resume', 'restart', 'completed-continue']);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -494,7 +495,7 @@ function buildClaimAdjudicationByFinding(records) {
 
 function buildLineageState(config, records, terminalStop = null) {
   const latestLifecycleEvent = records
-    .filter((record) => record?.type === 'event' && (record?.event === 'resumed' || record?.event === 'restarted'))
+    .filter((record) => record?.type === 'event' && (record?.event === 'resumed' || record?.event === 'restarted' || record?.event === 'extended'))
     .at(-1);
   const eventContinuedFromRun = latestLifecycleEvent
     ? getNestedField(latestLifecycleEvent, 'continuedFromRun') ?? getNestedField(latestLifecycleEvent, 'fromIteration')
@@ -546,7 +547,7 @@ function buildTerminalStopState(records) {
       latestSynthesis = record;
       latestSynthesisIndex = index;
     }
-    if (record.event === 'resumed' || record.event === 'restarted') {
+    if (record.event === 'resumed' || record.event === 'restarted' || record.event === 'extended') {
       latestLifecycleIndex = index;
     }
   });
@@ -588,7 +589,7 @@ function deriveDashboardStatus(config, records, terminalStop) {
     if (record.event === 'userPaused' || record.event === 'stuckRecovery') {
       latestPauseStuckIndex = index;
       latestPauseStuckKind = record.event;
-    } else if (record.event === 'resumed' || record.event === 'restarted' || record.event === 'synthesis_complete') {
+    } else if (record.event === 'resumed' || record.event === 'restarted' || record.event === 'extended' || record.event === 'synthesis_complete') {
       latestProgressIndex = index;
     }
   });

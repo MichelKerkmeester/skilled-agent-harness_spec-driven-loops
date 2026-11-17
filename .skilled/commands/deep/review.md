@@ -1,6 +1,6 @@
 ---
 description: "Autonomous deep-review loop: iterative code audit with convergence detection. Modes :auto, :confirm."
-argument-hint: "<target> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--dry-run] [--restart]"
+argument-hint: "<target> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--dry-run] [--restart] [--extend=N]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
@@ -99,7 +99,9 @@ into `config`.
 | `--no-resource-map` | no value | Suppresses the resource-map write; the review report still emits. |
 | `--dry-run` | no value | See Dry-Run Flag below. |
 | `--review-focus` | `"TEXT"` | Optional operator focus that every iteration covers in addition to its dimension, in single-executor and fan-out runs alike. It is cut to one line of at most 1000 characters, stored as `reviewFocus` in the config and shown in the review report. |
-| `--restart`, `--lineage-mode` | `auto` \| `resume` \| `restart` | Session lifecycle intent, default `auto`. `resume` keeps the same `sessionId` and archives nothing; `restart`, which bare `--restart` selects, opens a new `sessionId` at generation+1 and archives the prior `review/`. `fork` and `completed-continue` are deferred and rejected. |
+| `--restart`, `--lineage-mode` | `auto` \| `resume` \| `restart` | Session lifecycle intent, default `auto`. `resume` keeps the same `sessionId` and archives nothing; `restart`, which bare `--restart` selects, opens a new `sessionId` at generation+1 and archives the prior `review/`. `fork` is not accepted. |
+| `--extend` | positive integer, as `--extend=N` | Extends a completed run in place by `N` iterations, lineage mode `completed-continue`. The run keeps its `sessionId` and generation, records one `run_extended` ledger event and keeps the prior review report as `review/review-report-v{generation}-r{continuedFromRun}.md`. The run must be complete, so use `--lineage-mode=resume` for an unfinished one. Refused with fan-out. Under `stopPolicy: convergence` an extension with nothing new can re-stop on `all_dimensions_clean` at once: pass `--convergence-mode=off` or use `stopPolicy: max-iterations`. |
+| `--extend-minutes` | positive integer, as `--extend-minutes=M` | Minutes added to the duration budget on an extension, default the prior `maxDurationMinutes`. The new budget is `max(prior, elapsed) + M`, because the clock counts idle time since `createdAt`, so an extension started after the old budget still runs. Valid only with `--extend`. |
 | `--executor` | `TYPE` | Selects the executor kind, and is repeatable. Each occurrence opens a group accepting `--model=X`, `--config-dir=PATH`, `--reasoning-effort=LEVEL`, `--service-tier=TIER`, `--executor-timeout=SECONDS`, `--iters=N`, `--count=N` and `--label=X`. Which of those a given kind supports is in the presentation asset. |
 | `--executors` | `JSON` | Declares the executor matrix in one value; one expanded lineage selects `config.executor`, while two or more select `config.fanout`. |
 | `--concurrency` | `N` | Caps concurrent lineages in the fan-out pool. Default `2`. |

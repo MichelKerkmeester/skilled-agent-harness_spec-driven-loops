@@ -289,6 +289,20 @@ export function createDeepResearchProjectionContract(
           reason: typeof data.restartReason === 'string' ? data.restartReason : 'restarted',
           timestamp: occurredAt,
         };
+      } else if (stem === 'deep_research.run_extended') {
+        row = {
+          type: 'event',
+          event: 'extended',
+          sessionId: typeof data.sessionId === 'string' ? data.sessionId
+            : typeof scope.runId === 'string' ? scope.runId : '',
+          generation: typeof data.generation === 'number' ? data.generation : 1,
+          lineageMode: 'completed-continue',
+          continuedFromRun: typeof data.continuedFromRun === 'number' ? data.continuedFromRun : 0,
+          extension: (data.extension && typeof data.extension === 'object')
+            ? (data.extension as JsonObject)
+            : {},
+          timestamp: occurredAt,
+        };
       } else if (stem === 'deep_research.question_registered') {
         row = {
           type: 'event',

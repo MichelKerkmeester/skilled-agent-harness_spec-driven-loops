@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "32360b72e5e0b228ea1a76c78c8c50e8305de02d9862ff6c09547ccdc56758d7",
+      "sha256": "9ba3b0f27e0b6dd264d9e2f91f4cb1e98489484dcf0a632c164fba3401d1078c",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "dd28d8c163b8ddabbce01b63a2315ba5288c5f73bfd8ce9ea7dee703832b471d",
+      "sha256": "a56739d6100f7836bc05f163b203d5cac71d6002c51f75c234e6d3f08239ac3a",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research.yaml",
-      "sha256": "74049eabd5e099d8d4de4220bfffdff1d67ebda67889de067a717a0dc248478e",
+      "sha256": "f5e9c706b34dac376e859846c2f0be748695556cd839b72568e4031821c14e07",
       "section": "full"
     },
     {
@@ -62,7 +62,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
-      "sha256": "63394584287032f586b362d1a3ad27ec7d2fd20458fd2d9aa2fb4e398be72927",
+      "sha256": "7840a5e706061b1f8c522c01b7d84c305aa012fb0aa2f6ece232b0b71b366b1e",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "c598b0a8d6f547b30bb8ae6c1f05be093960ddea7c2214015b860c39c8cefc50"
+  "compiledBodyDigest": "e3e022399721d432aec5596470a83ec92ddae2049bddb784d961c1f0f8577e39"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -187,7 +187,9 @@ PRE-BOUND SETUP ANSWERS:
   maxIterations: 10  # positive integer
   convergenceThreshold: 0.05  # decimal 0..1
   convergence_mode: default  # default | off | sliding-window | divergent
-  lineage_mode: auto  # one of: auto | resume | restart
+  lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
+  extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
+  extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the duration budget, default the prior budget
   executor: native  # native | cli-codex | cli-claude-code | cli-opencode | cli-cursor | cli-devin | cli-pi | cli-deepseek-harness | cli-mistral-vibe, the last one fan-out only (`EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`)
   executor_model: ""  # optional executor-specific model id (cli-opencode e.g. llmgateway/glm-5.3-flash, minimax-coding-plan/MiniMax-M2.7-highspeed)
   executor_config_dir: ""  # optional, cli-claude-code only; maps to CLAUDE_CONFIG_DIR
@@ -211,6 +213,8 @@ Rules: see `auto-mode-contract.md` §2 (unspecified fields fall back to default;
 | `convergence_mode`      | Y        | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default                                                                                                  | `default`                          | N                                                       |
 | `stop_policy`           | Y        | flag `--stop-policy=convergence|max-iterations`, marker `stop_policy`, or default                                                                                                                      | `convergence`                      | N                                                       |
 | `lineage_mode`          | Y        | flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default                                                                                                         | `auto`                             | N                                                       |
+| `extend` | N | flag `--extend=N` (positive integer); sets `lineage_mode=completed-continue` on a completed run; refused with fan-out | none | N |
+| `extend_minutes` | N | flag `--extend-minutes=M` (positive integer), valid only with `--extend` | the prior `maxDurationMinutes` | N |
 | `executor`              | N        | flag `--executor`, marker `executor`, config file, or default                                                                                                                                          | `native`                           | N                                                       |
 | `executor_model`        | N        | flag `--model`, marker `executor_model`, or executor-specific validation                                                                                                                               | none                               | N                                                       |
 | `executor_config_dir`   | N        | flag `--config-dir`, marker `executor_config_dir`, or executor-specific default                                                                                                                        | none                               | N                                                       |
@@ -257,6 +261,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --restart -> lineage_mode = restart
    |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
+   |-- --extend=N -> extend = N, lineage_mode = completed-continue (positive integer only; a completed run only; refused with fan-out)
+   |-- --extend-minutes=M -> extend_minutes = M (positive integer only; valid only with --extend)
    |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness` | `cli-mistral-vibe`, `cli-deepseek-harness` as a single lineage or a fan-out and `cli-mistral-vibe` only as a fan-out lineage. `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; must resolve under ~/.claude* or a repository .claude* folder; fan-out sets CLAUDE_CONFIG_DIR)

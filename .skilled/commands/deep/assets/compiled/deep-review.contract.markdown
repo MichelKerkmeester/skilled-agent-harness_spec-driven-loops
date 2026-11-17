@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "99f77d123118e3f5e42f04be0ed97cd764abc3070703423cfb64106a58181688",
+      "sha256": "b96c3110da9b99e30b1f92174942f9d38b1642b4fbe09977ed2a38d57fb6141e",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "7cbc9f96bea1d4240d41d3457cdf4be48c545b80658ec4aed8a13bba176f50ca",
+      "sha256": "469f93bb0634f07220ffbe367208d07fb7b8a9e92396c8e2ee5838a61458e324",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "b9a41639d4e317354a6d972d0e8834dc6a7da632c852a1dcad7344101cd37872",
+      "sha256": "e2b40282d58aec7ba111044db48ac9928893df14f5faf1cc9f7d52c80713c385",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "d8a2ec351a80e74daaffafdb7a1537321090f044c8e9f970d19b20dc9d5c3483"
+  "compiledBodyDigest": "647a11e4874cfa00ac70f8f363946f8f93420910e17b0f1bd0d16aeb7ba52ff3"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -173,7 +173,9 @@ PRE-BOUND SETUP ANSWERS:
   review_focus: ""  # optional free text every iteration covers in addition to its dimension
   spec_folder: existing  # one of: existing | new | update-related | phase-folder, or an explicit specs/.opencode/specs path
   execution_mode: AUTONOMOUS  # from :auto suffix
- lineage_mode: auto  # one of: auto | resume | restart
+ lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
+ extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
+ extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the duration budget, default the prior budget
   maxIterations: 10
   convergenceThreshold: 0.10
   convergence_mode: default  # default | off | sliding-window | divergent
@@ -207,6 +209,8 @@ Rules:
 | `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, `scope-extract` → a target/scope path that resolves to an existing spec folder (auto-bound, per `auto_mode_contract` §1 source 3), or target path when target is a spec folder | none | Y, when target is not a spec folder |
 | `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
 | `lineage_mode` | Y | flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default | `auto` | N |
+| `extend` | N | flag `--extend=N` (positive integer); sets `lineage_mode=completed-continue` on a completed run; refused with fan-out | none | N |
+| `extend_minutes` | N | flag `--extend-minutes=M` (positive integer), valid only with `--extend` | the prior `maxDurationMinutes` | N |
 | `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default | `7` | N |
 | `convergenceThreshold` | Y | flag `--convergence`, marker `convergenceThreshold`, or default | `0.10` | N |
 | `convergence_mode` | Y | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default | `default` | N |
@@ -264,6 +268,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --restart -> lineage_mode = restart
    |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
+   |-- --extend=N -> extend = N, lineage_mode = completed-continue (positive integer only; a completed run only; refused with fan-out)
+   |-- --extend-minutes=M -> extend_minutes = M (positive integer only; valid only with --extend)
    |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness` | `cli-mistral-vibe`. Every kind runs in `:auto` and `:confirm`, `cli-deepseek-harness` as a single lineage or a fan-out and `cli-mistral-vibe` only as a fan-out lineage. `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; must resolve under ~/.claude* or a repository .claude* folder; fan-out sets CLAUDE_CONFIG_DIR)
@@ -367,7 +373,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - spec_choice = [A/B/C from Q1]
    - spec_path = [derived path]
    - execution_mode = [AUTONOMOUS/INTERACTIVE]
-   - lineage_mode = [auto/resume/restart from flag, marker, or default auto]
+   - lineage_mode = [auto/resume/restart from flag, marker, or default auto; completed-continue from --extend=N]
+   - extend = [N from --extend=N, else unset]
    - maxIterations = [from Q3 or flag or default 7]
    - convergenceThreshold = [from flag or default 0.10]
    - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]
