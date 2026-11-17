@@ -55,12 +55,12 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] A golden case under `.skilled/skills/system-deep-loop/runtime/tests/unit/` exits 0, showing the registry, dashboard, Next Focus and rendered prompt pack byte-identical to the baseline with `depthMode` absent and with `--depth-mode=default`.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npm test -- tests/unit/frontier-admit.vitest.ts` exits 0, pruning one proposal per failing check with that check's reason and appending exactly one `origin: "frontier"` inbox row for a valid proposal.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npm test -- tests/unit/stop-decision.vitest.ts tests/unit/stop-decision-yaml-contract.vitest.ts` exits 0 with the veto table and the `depth_mode` binding case, and `'echoes the input unchanged'` passes unedited.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npm test -- tests/unit/deep-research-reduce-state.vitest.ts` exits 0 with the frontier-origin, reduce-twice, node-close, visit-does-not-answer, lowest-depth focus, budget-rollover and dashboard cases.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npm test -- tests/unit/check-contract-drift.vitest.ts` exits 0 after the research contract is regenerated, and `rg -l -- '--depth-mode'` prints a file in the deep-research playbook, changelog and `references/` folders.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npm test -- tests/unit/fanout-run.vitest.ts tests/unit/fanout-merge.vitest.ts` exits 0 with seeded nodes written to each lineage store before spawn, round-robin `frontier_scope:` assignment, a merged `frontier`, a failing merge guard for a missing depth-1 node and no `frontier_scope:` line without the flag.
+- [x] A golden case under `.skilled/skills/system-deep-loop/runtime/tests/unit/` exits 0, showing the registry, dashboard, Next Focus and rendered prompt pack byte-identical to the baseline with `depthMode` absent and with `--depth-mode=default`.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npm test -- tests/unit/frontier-admit.vitest.ts` exits 0, pruning one proposal per failing check with that check's reason and appending exactly one `origin: "frontier"` inbox row for a valid proposal.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npm test -- tests/unit/stop-decision.vitest.ts tests/unit/stop-decision-yaml-contract.vitest.ts` exits 0 with the veto table and the `depth_mode` binding case, and `'echoes the input unchanged'` passes unedited.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npm test -- tests/unit/deep-research-reduce-state.vitest.ts` exits 0 with the frontier-origin, reduce-twice, node-close, visit-does-not-answer, lowest-depth focus, budget-rollover and dashboard cases.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npm test -- tests/unit/check-contract-drift.vitest.ts` exits 0 after the research contract is regenerated, and `rg -l -- '--depth-mode'` prints a file in the deep-research playbook, changelog and `references/` folders.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npm test -- tests/unit/fanout-run.vitest.ts tests/unit/fanout-merge.vitest.ts` exits 0 with seeded nodes written to each lineage store before spawn, round-robin `frontier_scope:` assignment, a merged `frontier`, a failing merge guard for a missing depth-1 node and no `frontier_scope:` line without the flag.
 - [ ] On the target-2 pilot, `jq '.frontier.stats'` over its `findings-registry.json` shows zero open and zero active nodes, and its stop reason is not `maxIterationsReached`.
 <!-- /ANCHOR:completion -->
 
@@ -80,7 +80,8 @@ and findings belong here.
 |------|-------|----------|
 | Phase spec authored | Done | `spec.md`, `plan.md`, `tasks.md` written 2026-11-17 |
 | Implementation | Done on branch | 13 commits on `worktrees/467-ed-010-research-frontier-mode`, head `6d4adc8ef41` plus the closure commit; T001-T026 and T029 done |
-| Merge-time steps | Open | T027, T028 (@markdown in integration), T030 full suite, T031-T032 pilot (D-010-04). Next task on resume: T030 at the merge gate |
+| Merge-time steps | Open | T030 full suite, T031-T032 pilot (D-010-04). Next task on resume: T030 at the merge gate |
+| Playbook and changelog | Done | DR-068 to DR-073 added to the deep-research playbook. The package validator prints PASS with 71 scenarios and 0 violations. Changelog `v1.16.0.0.md`: shape PASS, `validate_document.py` 0 issues, DQI 89. Both compiled contracts regenerated. `check-documentation-drift.cjs --facts` reports 0 errors and `check-contract-drift.cjs` prints OK. |
 
 ### Deviations and findings
 
@@ -89,5 +90,6 @@ and findings belong here.
 | Golden and the agent persona | The lineage prompt embeds the agent definition, so the leaf-contract row changed default bytes. The check now strips only that paragraph (D-010-02). |
 | Close status was dropped | The reducer case for the close rule showed `buildQuestionFields` dropped `frontierStatus`; it now carries it. |
 | Criteria grouping | The rows of `acceptance-criteria.md` are grouped into seven criteria; closure still requires every row there to be `Met`, `Waived` or `Superseded`. |
+| Playbook and changelog | The playbook command's spec-folder steps were skipped, because this Level 3 packet already holds its documents. The ADR id stays out of the playbook and changelog, since both are evergreen. The waiver is named in words there. |
 | Plan review 2026-11-17 | The Fable 5.2 plan review (`../scratch/fable-5-2-plan-review.md`, F010-1 to F010-6, X-1, X-2, X-6, X-7) added the seed step, the node store, the fan-out passthrough and merged `frontier`, the binding surfaces, the `{frontier_block}` variable, the `renderDashboard` target, the docs, contract and mirror tasks, and the `npm test` form. The stuck and pivot checks are YAML wording checks, so they left the criteria for `acceptance-criteria.md`. |
 <!-- /ANCHOR:log -->

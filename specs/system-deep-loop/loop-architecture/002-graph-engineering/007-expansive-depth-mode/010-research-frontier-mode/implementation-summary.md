@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Built on its branch: --depth-mode=expansive seeds, admits, projects, steers, vetoes and closes a research frontier, and default runs keep their bytes. The pilot, playbook, changelog and full suite run at the integration merge gate."
+description: "Built on its branch: --depth-mode=expansive seeds, admits, projects, steers, vetoes and closes a research frontier, and default runs keep their bytes. The playbook and changelog are written. The pilot and the full suite run at the integration merge gate."
 trigger_phrases:
   - "research frontier mode implementation summary"
 importance_tier: "normal"
@@ -45,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 010-research-frontier-mode |
-| **Completed** | Built on branch `worktrees/467-ed-010-research-frontier-mode` 2026-11-17; merge-time steps open |
+| **Completed** | Built on branch `worktrees/467-ed-010-research-frontier-mode` 2026-11-17; playbook and changelog written 2026-11-17; pilot and full suite open |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -74,7 +74,9 @@ _memory:
 | `.skilled/commands/deep/assets/deep-research.yaml` | Bindings, config write, seed, admit, graph mirror, stuck close, pivot gate, frontier block, wave pointer |
 | `.skilled/commands/deep/research.md` | `--depth-mode` flag row |
 | `.skilled/skills/system-deep-loop/deep-research/README.md` | `--depth-mode` paragraph |
-| `.skilled/skills/system-deep-loop/deep-research/SKILL.md` | Expansive depth section |
+| `.skilled/skills/system-deep-loop/deep-research/SKILL.md` | Expansive depth section and version 1.16.0.0 |
+| `.skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md` | Release entry for the flag |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/` | Six scenarios DR-068 to DR-073 in their category folders, and the root index |
 | `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | `antiConvergence.depthMode` and `expansiveDepth` caps |
 | `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` | `{frontier_block}` token |
 | `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Frontier reference section |
@@ -137,13 +139,14 @@ The golden baseline was captured first, on the untouched tree. Each change then 
 |-------|--------|
 | Golden byte identity | `npx vitest run research-depth-mode-golden.vitest`: 12 passed |
 | Admission | `npx vitest run frontier-admit.vitest`: 24 passed |
-| Reducer | `npx vitest run deep-research-reduce-state.vitest`: 48 passed |
+| Reducer | `npx vitest run deep-research-reduce-state.vitest`: 49 passed |
 | Stop decision | `npx vitest run stop-decision.vitest`: 79 passed; `stop-decision-yaml-contract.vitest`: 22 passed |
 | Fan-out | `npx vitest run fanout-run.vitest`: 203 passed; `fanout-merge.vitest`: 84 passed |
 | Prompt and config | `prompt-pack.vitest` 18, `optimizer-manifest-anti-convergence.vitest` 4, `convergence-script.vitest` 38, `loop-counters-derivation.vitest` 17, `fanout-loop-prompt-in-process` 8: all passed |
 | Contracts and docs | `check-contract-drift.vitest` 9, `compile-command-contracts.vitest` 17, `check-documentation-drift.vitest` 11: all passed; `validate_document.py` 0 issues on each changed doc |
 | Mirrors | `check-agent-mirror-sync.cjs`: all comparable mirrors in sync |
 | Syntax | `node --check` exits 0 on all five changed `.cjs` files |
+| Playbook and changelog | Package validator PASS with 71 scenarios and 0 violations; changelog shape PASS, `validate_document.py` 0 issues, DQI 89 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -152,9 +155,9 @@ The golden baseline was captured first, on the untouched tree. Each change then 
 ## Known Limitations
 
 1. **Pilot not run on the branch.** The target-2 pilot (T031, T032) runs at the integration merge gate. Until then the live loop is covered only by unit suites and the CLI smoke.
-2. **Playbook and changelog pending.** @markdown writes them in integration after the merge (T027, T028).
+2. **Playbook and changelog written.** Six scenarios (DR-068 to DR-073) and the v1.16.0.0 changelog entry landed in integration.
 3. **Full suite pending.** The whole deep-loop suite runs at the merge gate (T030). Earlier integration gates showed one unrelated flaky test per run.
-4. **Focus must be copied verbatim.** Node visits, the depth budget and the stuck close all find a node through the iteration's `focus` text, `Frontier node <id> ...`. A leaf that paraphrases its focus leaves visits at 0, so the budget never spends and the stuck close cannot find the node. Check this first in the pilot.
+4. **A focus without the node marker is not counted.** Visits match the `Frontier node <id>` marker anywhere in the focus, and the frontier block asks the leaf to copy its Focus Area line. A leaf that drops the marker altogether leaves visits at 0, so the budget does not spend and the stuck close cannot find the node. Check this first in the pilot.
 5. **CLI lineage prompt bytes.** A default CLI lineage now carries the expansive-only leaf-contract paragraph in its embedded persona. AC-001 is waived for that one artifact under ADR-006, pending operator ratification.
 <!-- /ANCHOR:limitations -->
 

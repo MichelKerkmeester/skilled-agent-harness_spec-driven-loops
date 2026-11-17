@@ -58,8 +58,8 @@
       ".skilled/commands/deep/research.md",
       ".skilled/skills/system-deep-loop/deep-research/README.md",
       ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
-      ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl"
+      ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+      ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json"
     ],
     "entities": [
       {
@@ -153,15 +153,15 @@
         "source": "derived"
       },
       {
-        "name": "deep-research-config.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
+        "name": "v1.16.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
         "source": "derived"
       },
       {
-        "name": "prompt-pack-iteration.md.tmpl",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
         "source": "derived"
       },
       {
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "A deep-research run stops on `allquestionsanswered` or `compositeconverged` as soon as the questions written at init are answered, however narrowly",
     "created_at": "2026-11-17T14:34:22Z",
-    "last_save_at": "2026-11-17T22:13:34.715Z",
+    "last_save_at": "2026-11-17T22:48:20.346Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8c11b4481868f70ce303e9911b0b34d30cc853226b05142d50a2b06137e0877d",
+    "source_fingerprint": "sha256:609a8236e858feb21d1f72c9ca2d86b346fa3bd4fc574c548b489a647c2d2b9d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fa77cd7265fbdc158c2588eacbd72848d31dec45699ce25cae65d0b4970a7fcd",
       "plan.md": "888c8f9174744791fc36841b8908e9f7de4435b8693d1063f1f0c386d86bd727",
-      "tasks.md": "780b627f4dfaab10d718834adb6ab5dee9a098d0fceed4585fa41b8c3ec55d53",
+      "tasks.md": "fb6dde56fa9173c47d071a257b39052b120996693aaf35f6e4b0d68438f14856",
       "decision-record.md": "48d30fc3a3d01e51867df5f95ad97657c62efd40efa75a4f906dec0263cdd298",
-      "implementation-summary.md": "805744292fb8ed9f5bda0136b854c651f3f416c8b44de2174c6eb032dbdd0d04"
+      "implementation-summary.md": "6b53ffdad8c3f3c04f029034f57b8c2f7c37d6e588ef34cdfac37d00b8171c2e"
     },
     "last_active_at": null
   }

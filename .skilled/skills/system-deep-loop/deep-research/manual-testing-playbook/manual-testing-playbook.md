@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.14.6.0
+version: 1.16.0.0
 ---
 
 # deep-research: Manual Testing Playbook
@@ -27,7 +27,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 65 deterministic scenarios across 9 categories validating the current `deep-research` skill surface, including 6 CP-* command-flow stress tests. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 71 deterministic scenarios across 9 categories validating the current `deep-research` skill surface, including 6 CP-* command-flow stress tests. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -83,7 +83,7 @@ This playbook provides 65 deterministic scenarios across 9 categories validating
 
 ## 7. ENTRY POINTS AND MODES
 
-This category covers 5 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 6 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DR-001 | Auto mode deep-research kickoff
 
@@ -150,11 +150,24 @@ Expected signals: One `run_extended` event projected as one `extended` row, the 
 #### Test Execution
 > **Feature File:** [DR-065](../manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md)
 
+### DR-068 | Expansive depth flag and default byte identity
+
+#### Description
+Verify that `--depth-mode` defaults to `default`, that `--depth-mode=expansive` is the only opt-in value and that a default run matches the pre-change baseline byte for byte, with the expansive-only agent paragraph as the only CLI lineage difference.
+
+#### Scenario Contract
+Prompt summary: Check that --depth-mode defaults to default and that a research run without the flag matches the pre-change baseline byte for byte. Name any byte that differs. Return a PASS or FAIL verdict with the reason.
+
+Expected signals: The flag row names `default` as the value when the flag is absent, the config carries `"depthMode": "default"`, the golden suite passes 12 of 12 tests, and the only paragraph the comparison removes is the expansive-only persona paragraph in the CLI lineage prompt.
+
+#### Test Execution
+> **Feature File:** [DR-068](../manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md)
+
 ---
 
 ## 8. INITIALIZATION AND STATE SETUP
 
-This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 5 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DR-004 | Fresh initialization creates canonical state files
 
@@ -208,11 +221,24 @@ Expected signals: strategy.md has a "## 4. Non-Goals" section (may be empty but 
 #### Test Execution
 > **Feature File:** [DR-027](../manual-testing-playbook/initialization-and-state-setup/research-charter-validation.md)
 
+### DR-069 | Expansive seed writes depth-one nodes before iteration one
+
+#### Description
+Verify that the expansive seed step runs before the fan-out spawn and after config creation, and that a repeated seed does not decompose the topic a second time.
+
+#### Scenario Contract
+Prompt summary: Check that expansive depth mode seeds its depth-one frontier nodes before iteration one, on the fan-out path and on the single-executor path, and that a second seed does not decompose the topic again. Return a PASS or FAIL verdict with the reason.
+
+Expected signals: The root `step_frontier_seed` precedes `step_fanout_spawn`, the `phase_init` copy follows `step_create_config`, two YAML contract cases pass and two admission cases pass, one showing root parents and one showing that a second seed adds nothing.
+
+#### Test Execution
+> **Feature File:** [DR-069](../manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md)
+
 ---
 
 ## 9. ITERATION EXECUTION AND STATE DISCIPLINE
 
-This category covers 15 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 17 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DR-007 | Iteration reads state before research
 
@@ -409,11 +435,37 @@ Expected signals: A projected row that claims findings with nothing enumerated r
 #### Test Execution
 > **Feature File:** [DR-067](../manual-testing-playbook/iteration-execution-and-state-discipline/focus-alignment-and-findings-gate-read-leaf-fields.md)
 
+### DR-070 | Frontier admission prunes each proposal with its reason
+
+#### Description
+Verify that each failing admission check prunes a leaf proposal with that check's own reason, and that only an admitted proposal reaches the research inbox.
+
+#### Scenario Contract
+Prompt summary: Check that every frontier proposal that fails an admission check is pruned with that check's reason, and that only the admitted proposal reaches the research inbox with origin frontier. Return a PASS or FAIL verdict with the reason.
+
+Expected signals: The helper returns the six reasons `relevance`, `dedupe`, `depth`, `fanout`, `budget` and `cycle`, the seven prune rows pass, the admitted proposal writes one inbox row with `origin: "frontier"`, and the pruned proposal writes a store row and no inbox row.
+
+#### Test Execution
+> **Feature File:** [DR-070](../manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md)
+
+### DR-071 | Frontier focus picks the shallowest open node
+
+#### Description
+Verify that Next Focus under the expansive mode picks the open node at the lowest depth, that one visit with that focus leaves its question open and that a reworded focus still counts as a visit.
+
+#### Scenario Contract
+Prompt summary: Check that expansive Next Focus picks the shallowest open frontier node, that one visit with that focus leaves its question open, and that a reworded focus that keeps the node marker still counts as a visit. Return a PASS or FAIL verdict with the reason.
+
+Expected signals: The focus case chooses a depth-one node over a depth-two node and leaves its question open after the visit, the reworded-visit case spends the node as `exhausted` with reason `budget`, and the reducer matches the `Frontier node` marker anywhere in the focus.
+
+#### Test Execution
+> **Feature File:** [DR-071](../manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md)
+
 ---
 
 ## 10. CONVERGENCE AND RECOVERY
 
-This category covers 15 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 16 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DR-011 | Stop on max iterations
 
@@ -613,6 +665,19 @@ Expected signals: `graphConvergenceScore`, `graphDecision`, and `graphBlockers` 
 #### Test Execution
 > **Feature File:** [DR-033](../manual-testing-playbook/convergence-and-recovery/graph-aware-stop-gate.md)
 
+### DR-072 | Frontier open veto holds a soft stop
+
+#### Description
+Verify that under the expansive mode an open frontier node turns a composite convergence stop into CONTINUE, and that the cap, the floor, stuck recovery, convergence off and the max-iterations policy still decide first.
+
+#### Scenario Contract
+Prompt summary: Check that under expansive depth mode a composite convergence stop continues while frontier nodes are open, and that the cap, the floor, stuck recovery, convergence off and the max-iterations policy still decide first. Return a PASS or FAIL verdict with the reason.
+
+Expected signals: The veto table passes all eight rows, the open-node row returns `CONTINUE` with `frontierOpen`, the empty-frontier row returns `STOP` with `composite_converged`, the hard limits keep their own decisions, and the input echo case passes unedited.
+
+#### Test Execution
+> **Feature File:** [DR-072](../manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md)
+
 ---
 
 ## 11. PAUSE, RESUME, AND FAULT TOLERANCE
@@ -800,7 +865,7 @@ Validate that command-dispatched `@deep-research` reads existing state and does 
 
 ## 14. FAN-OUT
 
-This category covers 3 scenarios validating the opt-in fan-out dispatch layer added in the research loop: CLI lineage pool dispatch, native sequential agent dispatch, and single-executor parity.
+This category covers 4 scenarios validating the opt-in fan-out dispatch layer added in the research loop: CLI lineage pool dispatch, native sequential agent dispatch, and single-executor parity.
 
 ### DR-052 | Fan-out research with two CLI lineages
 
@@ -840,6 +905,19 @@ Expected signals: `if_absent` command unchanged; both fan-out steps have `skip_w
 
 #### Test Execution
 > **Feature File:** [DR-054](../manual-testing-playbook/fanout/fanout-single-executor-parity-research.md)
+
+### DR-073 | Fan-out deals seeded frontier nodes round-robin
+
+#### Description
+Verify that a fan-out run under the expansive mode deals the seeded depth-one nodes round-robin across its lineages, writes each lineage store before spawn and fails the merge guard when a partitioned node is missing.
+
+#### Scenario Contract
+Prompt summary: Check that a fan-out research run under expansive depth mode deals the seeded depth-one nodes round-robin across its lineages, writes each lineage store before spawn, and fails the merge guard when a partitioned node is missing. Return a PASS or FAIL verdict with the reason.
+
+Expected signals: The round-robin, store-before-spawn and default-path cases pass, the merge guard passes when every partitioned node is reported and fails when one is missing from every lineage, and the runner writes `frontier_scope:` only under the expansive flag.
+
+#### Test Execution
+> **Feature File:** [DR-073](../manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md)
 
 ---
 
