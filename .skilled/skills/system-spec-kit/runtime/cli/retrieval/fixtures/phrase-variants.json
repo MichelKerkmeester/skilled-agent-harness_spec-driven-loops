@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b57e1aab891416d85f570f19a9612aeeba30de2893655449a371532b10f58ed2",
+  "manifestHash": "8cd81cee5a60ab2a2211404cb7e05dfda2b47de77704a4cf0786b5ca37f00c57",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -58330,6 +58330,21 @@
     "hardcoded embedder default removal": [
       "hardcoded embedder default removal"
     ],
+    "harden overlay engine from fable review": [
+      "harden overlay engine from fable review"
+    ],
+    "harden overlay engine from fable review goal": [
+      "harden overlay engine from fable review goal"
+    ],
+    "harden overlay engine from fable review implementation summary": [
+      "harden overlay engine from fable review implementation summary"
+    ],
+    "harden overlay engine from fable review plan": [
+      "harden overlay engine from fable review plan"
+    ],
+    "harden overlay engine from fable review tasks": [
+      "harden overlay engine from fable review tasks"
+    ],
     "harden the series parent rule": [
       "harden the series parent rule"
     ],
@@ -79856,6 +79871,9 @@
     "overlay apply adopt": [
       "overlay apply adopt"
     ],
+    "overlay apply failure state record": [
+      "overlay apply failure state record"
+    ],
     "overlay engine": [
       "overlay engine"
     ],
@@ -79949,6 +79967,9 @@
     "overlay owned path": [
       "overlay owned path"
     ],
+    "overlay pinned copy cross check": [
+      "overlay pinned copy cross check"
+    ],
     "overlay repin": [
       "overlay repin"
     ],
@@ -79966,6 +79987,9 @@
     ],
     "overlay status audit and relayout": [
       "overlay status audit and relayout"
+    ],
+    "overlay status honesty no checkout note": [
+      "overlay status honesty no checkout note"
     ],
     "overlay sync repin failure modes": [
       "overlay sync repin failure modes"
@@ -82946,6 +82970,9 @@
     ],
     "phase 14 handover docs promotion": [
       "phase 14 handover docs promotion"
+    ],
+    "phase 14 harden overlay engine from fable review": [
+      "phase 14 harden overlay engine from fable review"
     ],
     "phase 14 playbook docs and closeout": [
       "phase 14 playbook docs and closeout"

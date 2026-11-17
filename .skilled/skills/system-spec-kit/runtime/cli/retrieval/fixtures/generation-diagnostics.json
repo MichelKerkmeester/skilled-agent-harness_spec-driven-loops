@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6874,
-    "ok": 19461,
+    "ok": 19466,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27962,
+  "documentsScanned": 27967,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "b57e1aab891416d85f570f19a9612aeeba30de2893655449a371532b10f58ed2",
+  "manifestHash": "8cd81cee5a60ab2a2211404cb7e05dfda2b47de77704a4cf0786b5ca37f00c57",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44644,
+      "ok": 44653,
       "prose-sentence": 22,
       "single-token": 150,
       "stop-word-only": 1,
@@ -61226,6 +61226,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/scratch",
       "reason": "excluded directory"
     },
     {
