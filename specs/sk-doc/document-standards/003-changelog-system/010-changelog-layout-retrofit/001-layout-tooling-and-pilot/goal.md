@@ -55,11 +55,11 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `../scratch/lists/` holds 12 lists whose line counts add up to 1,576
-- [ ] `rewrite-driver.cjs --dry-run` exits 0 and prints the writer as `opencode-go/hy4-flash-free#high`
-- [ ] The 20 pilot files in `../scratch/lists/pilot.txt` record `pass` in the driver state
-- [ ] `check_changelog_shape.py` fails no rule on a pilot rewrite that it did not fail on the original
-- [ ] `validate.sh --strict` on `001-layout-tooling-and-pilot` prints `RESULT: PASSED`
+- [x] `../scratch/lists/` holds 11 lists, one per rewrite phase, whose line counts add up to 1,576
+- [x] `rewrite-driver.cjs --dry-run` exits 0 and prints the writer as `opencode-go/hy4-flash-free#high`
+- [x] The 20 pilot files in `../scratch/lists/pilot.txt` record `pass` in the driver state
+- [x] `check_changelog_shape.py` fails no rule on a pilot rewrite that it did not fail on the original
+- [x] `validate.sh --strict` on `001-layout-tooling-and-pilot` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,10 +77,19 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Goal authored | Done | `check-goal.cjs` on this packet |
+| Lists | Done | 11 lists, 1,576 lines, no path twice |
+| Dry run | Done | `rewrite-driver.cjs --dry-run` prints `opencode-go/hy4-flash-free#high through opencode run` |
+| Pilot | Done | 19 `pass` and 1 `unchanged`. `wave-verify.cjs` printed `"failures":0` and `"factMisses":0` |
+| Shape check | Done | 6 pilot files fail `[checked-section]`, the same rule each original fails, and no other rule |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | - |
+| List count | The plan said 12 lists. Phases 002 to 012 are 11 phases, so there are 11 lists. The criterion now says 11 |
+| Level labels | 860 spec-folder lines lost their (Level N) label by script before any rewrite, in commit `3c9cc2a3b59`, because the layout carries paths only. A script, not the model, made that change, so the fact lock never reads the dropped digit as a lost number |
+| Layout lint | The shape checker does not check the layout itself, so `scratch/layout_lint.py` gates it outright: no bold outside a summary, an anchor on every H4, links that reach their anchor, an &nbsp; line before every H2, one source line per paragraph and bullet, plain bullets of at most two sentences, no H3 or rule line, and a glance table in an expanded entry |
+| Fact checker | Devin's free `glm-5-2` checks each draft, a different model from the Hy4 writer |
+| Verdict fallback | GLM hit its output cap on the 536-line `v4.0.0.0` and gave no verdict. The same draft is then checked once by Hy4, which used it 3 times in the pilot |
+| Requeued pilot files | Two compact files written under the first compact rules turned paragraphs into lists. They were put back and run again under the new rules |
 <!-- /ANCHOR:log -->

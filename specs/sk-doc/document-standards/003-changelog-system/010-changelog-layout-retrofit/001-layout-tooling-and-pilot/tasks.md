@@ -31,8 +31,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Write the 12 scope lists and the pilot list (`../scratch/lists/`). Verify: the line counts add up to 1,576 with no path twice.
-- [ ] T002 Measure each list with the shape check (`check_changelog_shape.py`). Verify: a baseline count per rule is saved to `../scratch/baseline.txt`.
+- [x] T001 Write the 11 scope lists and the pilot list (`../scratch/lists/`). Verify: the line counts add up to 1,576 with no path twice.
+- [x] T002 Measure each list with the shape check (`check_changelog_shape.py`). Verify: a baseline count per rule is saved to `../scratch/baseline.txt`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -40,9 +40,9 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Copy and adapt the driver with the fact lock (`../scratch/rewrite-driver.cjs`). Verify: `--dry-run` prints the writer as `opencode-go/hy4-flash-free#high`.
-- [ ] T004 Write the rewrite and fact-check briefs (`../scratch/brief-rewrite.md`, `../scratch/brief-verify.md`). Verify: both name the v4.1.0.0 template and the model entry.
-- [ ] T005 Run the pilot (`../scratch/lists/pilot.txt`). Verify: the state file records a result for all 20 files.
+- [x] T003 Copy and adapt the driver with the fact lock (`../scratch/rewrite-driver.cjs`). Verify: `--dry-run` prints the writer as `opencode-go/hy4-flash-free#high`.
+- [x] T004 Write the rewrite and fact-check briefs (`../scratch/brief-rewrite.md`, `../scratch/brief-verify.md`). Verify: the rewrite brief carries the template tiers and the compact model entry, and the fact-check brief lists what is not a problem.
+- [x] T005 Run the pilot (`../scratch/lists/pilot.txt`). Verify: the state file records a result for all 20 files.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -50,8 +50,8 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Recheck the pilot on disk (`../scratch/wave-verify.cjs`). Verify: it prints 0 failures.
-- [ ] T007 Validate the phase (`001-layout-tooling-and-pilot/`). Verify: `validate.sh --strict` prints `RESULT: PASSED`.
+- [x] T006 Recheck the pilot on disk (`../scratch/wave-verify.cjs`). Verify: it prints 0 failures.
+- [x] T007 Validate the phase (`001-layout-tooling-and-pilot/`). Verify: `validate.sh --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -59,9 +59,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

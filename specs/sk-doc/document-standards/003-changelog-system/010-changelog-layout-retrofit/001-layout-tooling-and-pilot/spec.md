@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-17 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -45,7 +45,7 @@ This is **Phase 1** of the changelog layout retrofit.
 
 **Deliverables**:
 - `../scratch/rewrite-driver.cjs`, `../scratch/brief-rewrite.md` and `../scratch/brief-verify.md`
-- 12 scope lists in `../scratch/lists/` and a 20-file pilot list
+- 11 scope lists, one per rewrite phase, in `../scratch/lists/` and a 20-file pilot list
 - 20 rewritten pilot changelogs
 <!-- /ANCHOR:phase-context -->
 
@@ -74,7 +74,7 @@ N/A: the baseline is measured by this phase's first task, which counts each list
 ### In Scope
 - Copy the driver and replace its structure lock with a fact lock: every inline code span, number, frontmatter key and spec-folder line of the original must survive.
 - Point the writer at `opencode-go/hy4-flash-free#high`, with Devin's `glm-5-2` as the fallback, and the fact check at a free model too.
-- Write the 12 scope lists and a 20-file pilot drawn from every list.
+- Write the 11 scope lists and a 20-file pilot drawn from every list.
 - Run the pilot and record each file's gate results.
 
 ### Out of Scope
@@ -86,7 +86,7 @@ N/A: the baseline is measured by this phase's first task, which counts each list
 |-----------|-------------|-------------|
 | `../scratch/rewrite-driver.cjs` | Create | The layout driver with the fact lock |
 | `../scratch/brief-rewrite.md`, `../scratch/brief-verify.md` | Create | The writer and fact-check briefs |
-| `../scratch/lists/*.txt` | Create | The 12 scope lists and the pilot list |
+| `../scratch/lists/*.txt` | Create | The 11 scope lists and the pilot list |
 | The 20 files in `../scratch/lists/pilot.txt` | Modify | Rewritten pilot changelogs |
 <!-- /ANCHOR:scope -->
 
@@ -107,7 +107,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-003 | The 12 lists cover the scope exactly once. | Their line counts add up to 1,576 and no path appears twice. |
+| REQ-003 | The 11 lists cover the scope exactly once. | Their line counts add up to 1,576 and no path appears twice. |
 <!-- /ANCHOR:requirements -->
 
 ---

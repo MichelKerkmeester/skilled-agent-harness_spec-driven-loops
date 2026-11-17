@@ -106,7 +106,7 @@ Every skill and release changelog, and every GitHub release body, reads in the v
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-layout-tooling-and-pilot/ | Adapt the driver and fact lock, then pilot on 20 entries across every family | Pending |
+| 1 | 001-layout-tooling-and-pilot/ | Adapt the driver and fact lock, then pilot on 20 entries across every family | Complete |
 | 2 | 002-skilled-release-line/ | 62 Skilled release entries | Pending |
 | 3 | 003-sk-doc-changelogs/ | 306 sk-doc changelogs | Pending |
 | 4 | 004-cli-external-orchestration-changelogs/ | 216 cli-external-orchestration changelogs | Pending |

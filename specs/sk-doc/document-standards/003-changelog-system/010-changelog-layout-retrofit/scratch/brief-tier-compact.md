@@ -1,0 +1,7 @@
+- This entry is compact and stays compact. Its parts, in order: the frontmatter, the # title line if the original has one, a short summary, ## What's New at a Glance, ## Upgrade, then the spec-folder line.
+- Keep a ## Why This Release section only when the original has one.
+- Never add a #### heading, an anchor, an alert box or an ## Upgrade Notes section.
+- The summary and Why This Release stay prose: one or two short paragraphs each, three when the original says that much. Never turn a paragraph into a list.
+- The glance section is bullets, never a table. Each change the original lists gets one top-level bullet: one short plain sentence that names the change, written from its bold lead. The facts that explain that change go under it as indented sub-bullets ("  - "), one fact each, in the original order. A change with only one fact needs no sub-bullet.
+- A sub-bullet must make sense under its parent. Never start one with a bare They, It or These when the parent does not name what it means.
+- When the original has other ## sections, keep them as ## sections in the same order, written the same way.
