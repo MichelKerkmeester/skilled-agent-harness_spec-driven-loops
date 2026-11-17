@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a42156cca73e46c749c3ef1e5e54d5a6602a36132727fb39299f819b1da42726",
+  "corpusHash": "61766537e041aad005fc811377c4169be75f16286bd392b428d2a0e5d1829333",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28191,
+  "includedPathCount": 28278,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -16287,6 +16287,11 @@
     "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs/tasks.md",
     "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/008-spec-line-position-gates/decision-record.md",
+    "specs/sk-doc/document-standards/003-changelog-system/008-spec-line-position-gates/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/008-spec-line-position-gates/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/008-spec-line-position-gates/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/008-spec-line-position-gates/tasks.md",
     "specs/sk-doc/document-standards/003-changelog-system/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/timeline.md",
     "specs/sk-doc/document-standards/004-security-policy-alignment/goal.md",
@@ -18420,6 +18425,88 @@
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/006-cross-study-integration/research/research.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/006-cross-study-integration/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/006-cross-study-integration/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/001-completed-run-extension/acceptance-criteria.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/001-completed-run-extension/goal.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/001-completed-run-extension/implementation-summary.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/001-completed-run-extension/plan.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/001-completed-run-extension/spec.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/001-completed-run-extension/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/002-research-claude-config-dir/goal.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/002-research-claude-config-dir/plan.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/002-research-claude-config-dir/spec.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/002-research-claude-config-dir/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor/goal.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor/plan.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor/spec.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix/plan.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix/spec.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/005-prompt-pack-contract-alignment/plan.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/005-prompt-pack-contract-alignment/spec.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/005-prompt-pack-contract-alignment/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields/decision-record.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields/goal.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields/implementation-summary.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields/plan.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields/spec.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/007-source-diversity-quality-class/plan.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/007-source-diversity-quality-class/spec.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/007-source-diversity-quality-class/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/008-review-dimension-coverage/decision-record.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/008-review-dimension-coverage/goal.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/008-review-dimension-coverage/implementation-summary.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/008-review-dimension-coverage/plan.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/008-review-dimension-coverage/spec.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/008-review-dimension-coverage/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/009-fanout-review-coverage-merge/goal.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/009-fanout-review-coverage-merge/plan.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/009-fanout-review-coverage-merge/spec.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/009-fanout-review-coverage-merge/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/acceptance-criteria.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/implementation-summary.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/plan.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/spec.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/acceptance-criteria.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/implementation-summary.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/plan.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/spec.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/decision-record.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/goal.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/implementation-summary.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/plan.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/spec.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/goal.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/plan.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/spec.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/implementation-summary.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/plan.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/research.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/deep-research-dashboard.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/deep-research-strategy.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/iterations/iteration-001.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/iterations/iteration-002.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/iterations/iteration-003.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/iterations/iteration-004.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/iterations/iteration-005.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/iterations/iteration-006.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/iterations/iteration-007.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/prompts/iteration-1.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/prompts/iteration-2.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/prompts/iteration-3.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/prompts/iteration-4.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/prompts/iteration-5.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/prompts/iteration-6.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/prompts/iteration-7.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/research.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/resource-map.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/spec.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/tasks.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/context-index.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/handover.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/reference/01-graph-engineering-primer.md",
@@ -28223,7 +28310,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "b3dee7df489c6fb439c66b1924edf4f0c1031a76325f8056f908900ac847d371",
+  "manifestHash": "28b95d5bb401ed2f5d53a22f23dbb87e17cdbb3e6848d57e38d23b5bffd2ba51",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -35110,6 +35197,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/008-spec-line-position-gates/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/document-standards/004-security-policy-alignment/scratch",
       "reason": "excluded directory"
     },
@@ -36098,6 +36189,90 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/001-completed-run-extension/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/002-research-claude-config-dir/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/005-prompt-pack-contract-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/007-source-diversity-quality-class/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/008-review-dimension-coverage/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/009-fanout-review-coverage-merge/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/research/deltas",
       "reason": "excluded directory"
     },
@@ -36919,6 +37094,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/review/lineages",
       "reason": "excluded directory"
     },
     {
