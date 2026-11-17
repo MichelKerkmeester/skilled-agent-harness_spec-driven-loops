@@ -283,6 +283,17 @@ describe('frontier-admit', () => {
     expect(node?.depth).toBe(1);
   });
 
+  it('seedNodes seeds a run once and skips a second decomposition', () => {
+    const artifactDir = makeArtifactDir();
+    const first = seedNodes({ artifactDir, iteration: 0, candidates: [makeProposal('which gate fires the policy')] });
+    expect(first.admitted).toHaveLength(1);
+
+    const second = seedNodes({ artifactDir, iteration: 0, candidates: [makeProposal('what decides when the policy fires')] });
+
+    expect(second).toEqual({ admitted: [], pruned: [], skipped: 'already-seeded' });
+    expect(readNodeStore(join(artifactDir, STORE_FILE)).size).toBe(1);
+  });
+
   it('closeNode appends a terminal row and the last row wins', () => {
     const artifactDir = makeArtifactDir();
     const storePath = join(artifactDir, STORE_FILE);

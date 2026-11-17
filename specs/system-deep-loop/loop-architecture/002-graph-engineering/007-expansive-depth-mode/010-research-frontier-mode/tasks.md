@@ -221,7 +221,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 ## File Organization
 
 - [ ] CHK-050 [P1] Pilot packet and fixtures stay under `scratch/` or the test fixture folder
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-051 [P1] scratch/ cleaned before completion Evidence 2026-11-17: `scratch/` holds only `.gitkeep`; the CLI smoke ran in the session scratchpad and an OS temp dir, both removed.
 <!-- /ANCHOR:file-org -->
 
 ---

@@ -3,9 +3,12 @@
 // ───────────────────────────────────────────────────────────────────
 // The opt-in expansive depth mode touches the reducer, the stop decision,
 // the prompt pack and the fan-out lineage prompt. A run that never asks for
-// it must not change by a single byte, so this suite renders the six
-// default-path artifacts for one fixed research packet and compares them to
-// baselines captured before any depth-mode code existed.
+// it must render the same bytes, so this suite renders the six default-path
+// artifacts for one fixed research packet and compares them to baselines
+// captured before any depth-mode code existed. One exception: the lineage
+// prompt embeds the agent persona, whose leaf contract gained a paragraph that
+// applies only to expansive runs. That paragraph alone is stripped before the
+// lineage prompt is compared; see withoutExpansiveOnlyPersona below.
 //
 // Regenerate the baselines only on a tree that predates the depth-mode code:
 //   GOLDEN_UPDATE=1 npx vitest run research-depth-mode-golden.vitest

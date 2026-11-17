@@ -209,7 +209,7 @@
     ],
     "causal_summary": "A deep-research run stops on `allquestionsanswered` or `compositeconverged` as soon as the questions written at init are answered, however narrowly",
     "created_at": "2026-11-17T14:34:22Z",
-    "last_save_at": "2026-11-17T22:10:19.453Z",
+    "last_save_at": "2026-11-17T22:13:34.715Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a15c168865393835f45f5a1030b1b07772d1a9aa9d704a26acd79595eb675a92",
+    "source_fingerprint": "sha256:8c11b4481868f70ce303e9911b0b34d30cc853226b05142d50a2b06137e0877d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fa77cd7265fbdc158c2588eacbd72848d31dec45699ce25cae65d0b4970a7fcd",
       "plan.md": "888c8f9174744791fc36841b8908e9f7de4435b8693d1063f1f0c386d86bd727",
-      "tasks.md": "778e06c9313ea13190506cfa87d053a05278baa8f0dbbeb54f5e6cda90981560",
-      "decision-record.md": "3c931f99dae5999637a9b590e9befea4ca48d6f20d1555667617e7b9e2b08e44",
-      "implementation-summary.md": "c4cde718fe88b25b02debb65ce5e5f5861e97ebcd53889b17e845b19f357aed0"
+      "tasks.md": "780b627f4dfaab10d718834adb6ab5dee9a098d0fceed4585fa41b8c3ec55d53",
+      "decision-record.md": "48d30fc3a3d01e51867df5f95ad97657c62efd40efa75a4f906dec0263cdd298",
+      "implementation-summary.md": "805744292fb8ed9f5bda0136b854c651f3f416c8b44de2174c6eb032dbdd0d04"
     },
     "last_active_at": null
   }

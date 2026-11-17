@@ -123,7 +123,7 @@ The golden baseline was captured first, on the untouched tree. Each change then 
 | Separate `--depth-mode` flag, not a fifth `--convergence-mode` value | A convergence-mode value would exclude `divergent` and `sliding-window`, which the frontier must compose with |
 | Frontier data travels through delta and inbox rows | The research state-log upcast drops non-core fields, and widening it would change every research run |
 | Closed nodes become closed CLAIMs in the graph (D-010-01) | They stop lowering question coverage and source diversity while CLAIM touches only claim verification |
-| The golden strips only the expansive-only persona paragraph (D-010-02) | The lineage prompt embeds the agent file, which the leaf contract had to change |
+| The golden strips only the expansive-only persona paragraph (D-010-02, ADR-006; AC-001 waived pending operator ratification) | The lineage prompt embeds the agent file, which the leaf contract had to change |
 | The partition guard reports instead of aborting (D-010-03) | One crashed lineage should not cost the fan-out its synthesis |
 | The pilot runs at the merge gate (D-010-04) | A live loop does not fit the branch's turn budget; the CLI smoke covers the pipeline |
 <!-- /ANCHOR:decisions -->
@@ -136,7 +136,7 @@ The golden baseline was captured first, on the untouched tree. Each change then 
 | Check | Result |
 |-------|--------|
 | Golden byte identity | `npx vitest run research-depth-mode-golden.vitest`: 12 passed |
-| Admission | `npx vitest run frontier-admit.vitest`: 23 passed |
+| Admission | `npx vitest run frontier-admit.vitest`: 24 passed |
 | Reducer | `npx vitest run deep-research-reduce-state.vitest`: 48 passed |
 | Stop decision | `npx vitest run stop-decision.vitest`: 79 passed; `stop-decision-yaml-contract.vitest`: 22 passed |
 | Fan-out | `npx vitest run fanout-run.vitest`: 203 passed; `fanout-merge.vitest`: 84 passed |
@@ -154,6 +154,8 @@ The golden baseline was captured first, on the untouched tree. Each change then 
 1. **Pilot not run on the branch.** The target-2 pilot (T031, T032) runs at the integration merge gate. Until then the live loop is covered only by unit suites and the CLI smoke.
 2. **Playbook and changelog pending.** @markdown writes them in integration after the merge (T027, T028).
 3. **Full suite pending.** The whole deep-loop suite runs at the merge gate (T030). Earlier integration gates showed one unrelated flaky test per run.
+4. **Focus must be copied verbatim.** Node visits, the depth budget and the stuck close all find a node through the iteration's `focus` text, `Frontier node <id> ...`. A leaf that paraphrases its focus leaves visits at 0, so the budget never spends and the stuck close cannot find the node. Check this first in the pilot.
+5. **CLI lineage prompt bytes.** A default CLI lineage now carries the expansive-only leaf-contract paragraph in its embedded persona. AC-001 is waived for that one artifact under ADR-006, pending operator ratification.
 <!-- /ANCHOR:limitations -->
 
 ---

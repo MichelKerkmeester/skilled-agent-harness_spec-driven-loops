@@ -319,6 +319,15 @@ function admitProposals({ artifactDir, iteration, proposals, knownTexts = [] }) 
 function seedNodes({ artifactDir, iteration = 0, candidates, knownTexts = [] }) {
   // Every seeded node sits at depth 1 against the run's synthetic root: the seed
   // sees only the topic, so it cannot justify a deeper placement on its own.
+  // A run is seeded once. A re-run of the seed step (a restart that kept the
+  // store, a repeated fan-out launch) would otherwise add a reworded second
+  // decomposition beside the first, and a fan-out partition would then name
+  // nodes no lineage holds.
+  const existing = readNodeStore(path.join(artifactDir, NODE_STORE_FILE));
+  if ([...existing.values()].some((node) => node.depth === 1)) {
+    return { admitted: [], pruned: [], skipped: 'already-seeded' };
+  }
+
   const proposals = (Array.isArray(candidates) ? candidates : []).map((candidate) => (
     isPlainObject(candidate) ? { ...candidate, parentId: 'root' } : candidate
   ));
