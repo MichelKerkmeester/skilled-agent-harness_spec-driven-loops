@@ -39,7 +39,7 @@
       "waves"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A code folder README orients a developer before they open the source",
     "created_at": "2026-11-16T15:20:18Z",
-    "last_save_at": "2026-11-17T21:43:37.261Z",
+    "last_save_at": "2026-11-17T21:51:24.467Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:101929ebd7683b81d468f7ba178e672f16417ed7eb5e6180c42e059dd4337bd3",
+    "source_fingerprint": "sha256:c85e541e00fbba55226f6200e3b2599c286e0ec9d9c36a1cfc705cd5dd85ce8e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9b1a29b60d0dbff572fa04404f42d0ff8f89fb77f194c40d0d270c33bb5b6452",
       "plan.md": "f51e98076c32ec5246b738ff3a9b6ab54830205939f50399855126395fd1b830",
-      "tasks.md": "2ed3e0f707418f2affc537e7254e9a3be483280ab189ca0e2aa4f1f7a2398c64",
-      "implementation-summary.md": "3841959f1bd94eb10586211b8a3c5993ef885d0546523cec6355ad368e0aa066"
+      "tasks.md": "edd666be55c48b63239b2caee71e4b0a7518138a232106985477ec6cf88858ff",
+      "implementation-summary.md": "9da8e74299f8c30f0706099326aa9146b2cf460243e79cc45df4c3ecc0dcb96d"
     },
     "last_active_at": null
   }

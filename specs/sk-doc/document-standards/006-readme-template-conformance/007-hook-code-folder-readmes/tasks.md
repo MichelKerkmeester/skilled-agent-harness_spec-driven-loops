@@ -59,7 +59,7 @@ contextType: "general"
 - [x] T010 Rerun the link check and every consumer test (`plan.md` affected surfaces). Verify: `readme_links.py` prints `0 problems`, `check-markdown-links.cjs` prints `0 broken` and each consumer prints its pass line. Evidence: `readme_links.py` printed `0 problems`, `check-markdown-links.cjs` printed `0 broken markdown links` and runtime-refusal printed `pass 6`.
 - [x] T011 Run the sk-doc suite (`run-script-tests.sh`). Verify: it exits 0. Evidence: `run-script-tests.sh` printed `all sk-doc script tests passed`, 58 PASS, exit 0.
 - [x] T012 Record before and after numbers and close the packet docs (`implementation-summary.md`). Verify: `validate.sh --strict` on this folder prints `RESULT: PASSED`. Evidence: `implementation-summary.md` records the before and after numbers, and `validate.sh --strict` on this folder printed `RESULT: PASSED`.
-- [ ] T013 Commit, merge origin/main and push under sk-git (`git log -1`). Verify: `git rev-parse HEAD origin/main` prints the same hash twice.
+- [x] T013 Commit, merge origin/main and push under sk-git (`git log -1`). Verify: `git rev-parse HEAD origin/main` prints the same hash twice. Evidence: commit `ddacb0a2bf9` was merged with origin/main and pushed as `6f22dec0ca1`, and `git rev-parse HEAD origin/main` printed `6f22dec0ca1` twice.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -70,7 +70,7 @@ contextType: "general"
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed: every reviewer finding is applied or rejected with a reason
-- [ ] The phase commit is on origin/main
+- [x] The phase commit is on origin/main
 <!-- /ANCHOR:completion -->
 
 ---
@@ -154,7 +154,7 @@ A blocked task is marked `[B]` with the failing command and its output beside it
 ## File Organization
 
 - [x] CHK-050 [P1] Temp files live in the scratchpad, never in the repository. Evidence: every helper and ledger sits in the scratchpad.
-- [ ] CHK-051 [P1] `git status --short` after the commit shows only paths this program does not own
+- [x] CHK-051 [P1] `git status --short` after the commit shows only paths this program does not own. Evidence: `git status --short` over `.skilled/hooks/` and this packet printed nothing after the push
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -165,7 +165,7 @@ A blocked task is marked `[B]` with the failing command and its output beside it
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 7 | 7/7 |
-| P1 Items | 9 | 8/9 |
+| P1 Items | 9 | 9/9 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-11-17
