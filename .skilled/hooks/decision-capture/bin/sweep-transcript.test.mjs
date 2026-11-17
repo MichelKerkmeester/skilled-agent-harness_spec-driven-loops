@@ -349,7 +349,7 @@ test('the CLI skips a newer transcript recorded for another project', () => {
     const run = spawnSync(process.execPath, [SCRIPT], {
       cwd: projectDir,
       encoding: 'utf8',
-      env: { ...process.env, HOME: homeDir, CLAUDE_CODE_SESSION_ID: '' },
+      env: { ...process.env, HOME: homeDir, CLAUDE_CONFIG_DIR: '', CLAUDE_CODE_SESSION_ID: '' },
       timeout: 20000,
     });
 
@@ -377,7 +377,36 @@ test('the CLI reads the calling session transcript, not a newer one from another
     const run = spawnSync(process.execPath, [SCRIPT], {
       cwd: join(projectDir, 'home'),
       encoding: 'utf8',
-      env: { ...process.env, HOME: homeDir, CLAUDE_CODE_SESSION_ID: 'own-session' },
+      env: { ...process.env, HOME: homeDir, CLAUDE_CONFIG_DIR: '', CLAUDE_CODE_SESSION_ID: 'own-session' },
+      timeout: 20000,
+    });
+
+    assert.equal(run.status, 0, run.stderr);
+    assert.equal(JSON.parse(run.stdout).transcript, ownPath);
+  });
+});
+
+// Claude Code keeps its transcripts under CLAUDE_CONFIG_DIR when that is set, so an
+// operator with a second account or config directory still gets a sweep.
+test('the CLI finds the session transcript under CLAUDE_CONFIG_DIR', () => {
+  withProject((projectDir) => {
+    const configDir = join(projectDir, 'claude-config');
+    const realProject = realpathSync(projectDir);
+    const transcriptDir = join(configDir, 'projects', realProject.replace(/[^A-Za-z0-9]/g, '-'));
+    mkdirSync(transcriptDir, { recursive: true });
+    const ownPath = writeTranscript(transcriptDir, 'config-session.jsonl', [
+      { ...userPrompt('u0', 'start'), cwd: realProject },
+    ]);
+
+    const run = spawnSync(process.execPath, [SCRIPT], {
+      cwd: projectDir,
+      encoding: 'utf8',
+      env: {
+        ...process.env,
+        HOME: join(projectDir, 'empty-home'),
+        CLAUDE_CONFIG_DIR: configDir,
+        CLAUDE_CODE_SESSION_ID: 'config-session',
+      },
       timeout: 20000,
     });
 
