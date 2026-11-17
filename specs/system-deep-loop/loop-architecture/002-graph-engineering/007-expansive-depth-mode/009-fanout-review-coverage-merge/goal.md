@@ -54,10 +54,10 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-merge.vitest.ts tests/fanout-review-focus.vitest.ts` exits 0 with the new per-surface, order-swap and missing-fields cases.
-- [ ] `rg -c` over `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` prints a count above 0 for each of `dimensionCoverage`, `traceability`, `searchCoverage`, `candidateCoverage`, `divergence` and `ruledOutCandidates`.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-merge.vitest.ts tests/unit/fanout-merge-latest-record.vitest.ts tests/unit/fanout-merge-structured-missing.vitest.ts tests/unit/fanout-merge-reducer-provenance.vitest.ts tests/fanout-review-focus.vitest.ts` exits 0, with a pass count equal to the baseline in this goal's log plus the new cases.
-- [ ] This goal's log records each of the seven files that `rg -l 'deep-review-findings-registry\.json' .skilled/skills/system-deep-loop --glob '*.cjs' --glob '*.ts' --glob '!**/tests/**'` lists, marked safe or changed.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-merge.vitest.ts tests/fanout-review-focus.vitest.ts` exits 0 with the new per-surface, order-swap and missing-fields cases.
+- [x] `rg -c` over `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` prints a count above 0 for each of `dimensionCoverage`, `traceability`, `searchCoverage`, `candidateCoverage`, `divergence` and `ruledOutCandidates`.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-merge.vitest.ts tests/unit/fanout-merge-latest-record.vitest.ts tests/unit/fanout-merge-structured-missing.vitest.ts tests/unit/fanout-merge-reducer-provenance.vitest.ts tests/fanout-review-focus.vitest.ts` exits 0, with a pass count equal to the baseline in this goal's log plus the new cases.
+- [x] This goal's log records each of the seven files that `rg -l 'deep-review-findings-registry\.json' .skilled/skills/system-deep-loop --glob '*.cjs' --glob '*.ts' --glob '!**/tests/**'` lists, marked safe or changed.
 - [ ] `rg -l 'dimensionCoverage' .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout` lists a merged-coverage scenario written through `/create:manual-testing-playbook`.
 <!-- /ANCHOR:completion -->
 
@@ -76,12 +76,18 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase docs authored | Done | `spec.md`, `plan.md`, `tasks.md` |
-| Implementation | Pending | Starts at `tasks.md` T001 |
+| Baseline (T001) | Done | 2026-11-17, worktree `460-ed-009-fanout-review-coverage` at `21c4b325b5a`: the five REQ-004 suites, 5 files, **92 passed**, exit 0 |
+| Readers (T002) | Done | `rg -l 'deep-review-findings-registry\.json' ... --glob '!**/tests/**'` lists the seven files. `fanout-merge.cjs`: **changed** (the merge itself). `divergent-review-pivot.ts`: **safe**, reads `dimensionCoverage` and `traceability.results` behind `isRecord` and array guards, and the merged surfaces keep the lineage shapes. `reduce-state.cjs`: **safe**, it is the per-lineage producer of the file and reads none of the merged-only keys. `score-fanout-pairs.cjs` and `fanout-run.cjs`: **safe**, they list the file name as a lineage artifact and read none of the six surfaces. `deep-review-projections-contract.ts` and `legacy-projection-manifest.ts`: **safe**, path declarations only |
+| Final suites | Done | The five REQ-004 suites: 5 files, **102 passed** (92 + 10 new), exit 0 |
+| Implementation | Done | Six merge helpers plus `mergeReviewCoverageSurfaces` in `fanout-merge.cjs`, spread into the merged registry. Nine `fanout-merge.vitest.ts` cases (seven failed before the merge was wired) and one end-to-end case in `fanout-review-focus.vitest.ts` |
+| Playbook scenario (T013) | Blocked | `/create:manual-testing-playbook` hard-blocks at Phase 0 unless run as `@markdown`; the phase worker cannot start that agent |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Plan review 2026-11-17 | `../scratch/fable-5-2-plan-review.md` F009-1, X-3 and X-7 applied: readers found by file name, the 011 deliveries recorded as 011's own, test commands in the `npx vitest run` form, a playbook task added. No X-1 or X-2 task: no digest source or agent changes. |
+| Task grouping | T003-T008 shipped as one helper dispatch plus one wiring dispatch, after the tests (T010) went in first, instead of six per-surface dispatches. Each surface still has its own named case. |
+| Changelog | Added T014 from the cross-phase handoff §3 (an operator-visible defect fix). Blocked by the same `@markdown` gate. |
 | Pivot state key | The merged registry carries `divergenceByLineage`, not `divergence`, because merging lineage-local pivot state into one object would invent a focus no lineage chose. |
 <!-- /ANCHOR:log -->

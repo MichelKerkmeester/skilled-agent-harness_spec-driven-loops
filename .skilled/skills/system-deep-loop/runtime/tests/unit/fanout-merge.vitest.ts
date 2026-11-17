@@ -1951,3 +1951,128 @@ describe('fanout-merge.cjs — lineage executor provenance', () => {
     expect(attribution).toContain('| lin-bare | unknown | unknown |');
   });
 });
+
+describe('mergeReviewRegistries — coverage surfaces', () => {
+  const SURFACES = ['dimensionCoverage', 'traceability', 'searchCoverage', 'candidateCoverage', 'divergenceByLineage', 'ruledOutCandidates'];
+
+  function coverageRegistry(overrides: Record<string, unknown>): Record<string, unknown> {
+    return { openFindings: [], resolvedFindings: [], searchDebt: [], ...overrides };
+  }
+
+  const lineageA: LineageDataFixture = {
+    label: 'lineage-a',
+    registry: coverageRegistry({
+      dimensionCoverage: { correctness: true, security: false, traceability: false, maintainability: false },
+      traceability: {
+        results: [
+          { protocolId: 'spec_code', status: 'pass', applicable: true, gateClass: 'hard' },
+          { protocolId: 'checklist_evidence', status: 'pass', applicable: true, gateClass: 'hard' },
+        ],
+        unfinishedCoreProtocols: ['spec_code'],
+      },
+      searchCoverage: { requiredBugClasses: ['injection', 'race'], covered: ['injection'], ruledOut: [], deferred: [], blocked: [], graphCoverageMode: 'graph' },
+      candidateCoverage: {
+        covered: ['injection'], ruledOut: [], deferred: [], blocked: [],
+        byBugClass: { injection: { covered: true, ruledOut: false, deferred: false, blocked: false, iterations: [1] } },
+      },
+      divergence: { started: 1, completed: 1, failed: 0, overrides: [], saturatedDirections: ['auth'], remainingFrontier: [], currentFocus: 'pivot-a' },
+      ruledOutCandidates: [
+        { id: 'rc-1', iteration: 1, bugClass: 'race' },
+        { id: 'rc-1', iteration: 2, bugClass: 'race' },
+      ],
+    }),
+  };
+
+  const lineageB: LineageDataFixture = {
+    label: 'lineage-b',
+    registry: coverageRegistry({
+      dimensionCoverage: { correctness: false, security: true, traceability: false, maintainability: false },
+      traceability: {
+        results: [
+          { protocolId: 'spec_code', status: 'fail', applicable: true, gateClass: 'hard' },
+          { protocolId: 'checklist_evidence', status: 'pending', applicable: true, gateClass: 'hard' },
+        ],
+        unfinishedCoreProtocols: ['checklist_evidence'],
+      },
+      searchCoverage: { requiredBugClasses: ['race'], covered: ['race'], ruledOut: [], deferred: [], blocked: [], graphCoverageMode: 'fallback' },
+      candidateCoverage: {
+        covered: [], ruledOut: ['injection'], deferred: [], blocked: [],
+        byBugClass: { injection: { covered: false, ruledOut: true, deferred: false, blocked: false, iterations: [2] } },
+      },
+      ruledOutCandidates: [{ id: 'rc-1', iteration: 1, bugClass: 'race' }],
+    }),
+  };
+
+  function surfaces(result: Record<string, unknown>): string {
+    return JSON.stringify(SURFACES.map((key) => [key, result[key]]));
+  }
+
+  it('carries all six coverage surfaces on the merged registry', () => {
+    const result = mergeReviewRegistries([lineageA, lineageB]);
+    for (const key of SURFACES) expect(result).toHaveProperty(key);
+  });
+
+  it('merges dimension coverage as a union with sorted keys', () => {
+    const result = mergeReviewRegistries([lineageA, lineageB]);
+    expect(result.dimensionCoverage).toEqual({ correctness: true, maintainability: false, security: true, traceability: false });
+    expect(Object.keys(result.dimensionCoverage as Record<string, boolean>)).toEqual(['correctness', 'maintainability', 'security', 'traceability']);
+  });
+
+  it('merges traceability by strongest restriction and recomputes the summary', () => {
+    const traceability = mergeReviewRegistries([lineageA, lineageB]).traceability as {
+      results: Array<{ protocolId: string; status: string }>;
+      summary: Record<string, number>;
+      unfinishedCoreProtocols: string[];
+    };
+    expect(traceability.results.map((result) => [result.protocolId, result.status])).toEqual([
+      ['checklist_evidence', 'pass'],
+      ['spec_code', 'fail'],
+    ]);
+    expect(traceability.summary).toEqual({
+      required: 2, executed: 2, pass: 1, partial: 0, fail: 1, blocked: 0, notApplicable: 0, gatingFailures: 1,
+    });
+    expect(traceability.unfinishedCoreProtocols).toEqual(['checklist_evidence', 'spec_code']);
+  });
+
+  it('merges search coverage lists and drops a graph coverage mode the lineages disagree on', () => {
+    const disagree = mergeReviewRegistries([lineageA, lineageB]).searchCoverage as Record<string, unknown>;
+    expect(disagree.requiredBugClasses).toEqual(['injection', 'race']);
+    expect(disagree.covered).toEqual(['injection', 'race']);
+    expect(disagree.graphCoverageMode).toBeNull();
+    const agree = mergeReviewRegistries([lineageA, { ...lineageA, label: 'lineage-c' }]).searchCoverage as Record<string, unknown>;
+    expect(agree.graphCoverageMode).toBe('graph');
+  });
+
+  it('merges candidate coverage buckets and ORs a shared bug class with its lineages', () => {
+    const candidate = mergeReviewRegistries([lineageA, lineageB]).candidateCoverage as Record<string, unknown>;
+    expect(candidate.covered).toEqual(['injection']);
+    expect(candidate.ruledOut).toEqual(['injection']);
+    expect(candidate.byBugClass).toEqual({
+      injection: { covered: true, ruledOut: true, deferred: false, blocked: false, iterations: [1, 2], lineages: ['lineage-a', 'lineage-b'] },
+    });
+  });
+
+  it('keeps pivot state per lineage under divergenceByLineage', () => {
+    const result = mergeReviewRegistries([lineageA, lineageB]);
+    expect(result.divergenceByLineage).toEqual({ 'lineage-a': (lineageA.registry as Record<string, unknown>).divergence });
+  });
+
+  it('dedupes ruled-out candidates on lineage plus id and sorts them', () => {
+    const result = mergeReviewRegistries([lineageB, lineageA]);
+    expect(result.ruledOutCandidates).toEqual([
+      { id: 'rc-1', iteration: 1, bugClass: 'race', lineage: 'lineage-a' },
+      { id: 'rc-1', iteration: 1, bugClass: 'race', lineage: 'lineage-b' },
+    ]);
+  });
+
+  it('produces byte-identical surfaces when the lineage order is swapped', () => {
+    expect(surfaces(mergeReviewRegistries([lineageB, lineageA]))).toBe(surfaces(mergeReviewRegistries([lineageA, lineageB])));
+  });
+
+  it('merges a lineage that has none of the coverage fields without error', () => {
+    const bare: LineageDataFixture = { label: 'lineage-bare', registry: coverageRegistry({}) };
+    const withBare = mergeReviewRegistries([lineageA, bare]);
+    const alone = mergeReviewRegistries([lineageA]);
+    expect(surfaces(withBare)).toBe(surfaces(alone));
+  });
+});

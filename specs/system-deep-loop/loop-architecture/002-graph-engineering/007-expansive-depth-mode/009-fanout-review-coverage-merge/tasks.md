@@ -33,8 +33,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Capture the baseline of the REQ-004 suites (`R/tests/`). Verify: `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-merge.vitest.ts tests/unit/fanout-merge-latest-record.vitest.ts tests/unit/fanout-merge-structured-missing.vitest.ts tests/unit/fanout-merge-reducer-provenance.vitest.ts tests/fanout-review-focus.vitest.ts` exits 0 and the pass count is written in `goal.md` section 4.
-- [ ] T002 List every reader of the merged review registry by its file name (`.skilled/skills/system-deep-loop/`). Verify: `rg -l 'deep-review-findings-registry\.json' .skilled/skills/system-deep-loop --glob '*.cjs' --glob '*.ts' --glob '!**/tests/**'` lists seven files (`divergent-review-pivot.ts`, `fanout-run.cjs`, `fanout-merge.cjs`, `score-fanout-pairs.cjs`, `reduce-state.cjs`, `deep-review-projections-contract.ts`, `legacy-projection-manifest.ts` on 2026-11-17), and each is recorded in `goal.md` section 4 as safe or needing a change. The variable name `mergedRegistry` matches only `M`.
+- [x] T001 Capture the baseline of the REQ-004 suites (`R/tests/`). Verify: `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-merge.vitest.ts tests/unit/fanout-merge-latest-record.vitest.ts tests/unit/fanout-merge-structured-missing.vitest.ts tests/unit/fanout-merge-reducer-provenance.vitest.ts tests/fanout-review-focus.vitest.ts` exits 0 and the pass count is written in `goal.md` section 4. Done: 5 files, 92 passed, exit 0 (recorded in `goal.md` §4).
+- [x] T002 List every reader of the merged review registry by its file name (`.skilled/skills/system-deep-loop/`). Verify: `rg -l 'deep-review-findings-registry\.json' .skilled/skills/system-deep-loop --glob '*.cjs' --glob '*.ts' --glob '!**/tests/**'` lists seven files (`divergent-review-pivot.ts`, `fanout-run.cjs`, `fanout-merge.cjs`, `score-fanout-pairs.cjs`, `reduce-state.cjs`, `deep-review-projections-contract.ts`, `legacy-projection-manifest.ts` on 2026-11-17), and each is recorded in `goal.md` section 4 as safe or needing a change. The variable name `mergedRegistry` matches only `M`. Done: seven files, each recorded in `goal.md` §4; only `fanout-merge.cjs` changes.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -42,12 +42,12 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Merge `dimensionCoverage` as a sorted-key union (`M`). Verify: the REQ-002 case in `tests/unit/fanout-merge.vitest.ts` passes.
-- [ ] T004 Merge `traceability` results per protocol by strongest restriction, recompute `summary` and union `unfinishedCoreProtocols` (`M`). Verify: the REQ-003 case passes.
-- [ ] T005 Merge `searchCoverage` bucket lists as sorted unions, keeping `graphCoverageMode` only when all lineages agree (`M`). Verify: a case with two lineages and different modes yields `null` and passes.
-- [ ] T006 Merge `candidateCoverage` buckets and `byBugClass` entries with a `lineages` list (`M`). Verify: a shared bug class lists both lineage labels and its flags are ORed; the case passes.
-- [ ] T007 Return pivot state as `divergenceByLineage` keyed by lineage label (`M`). Verify: a case with a pivot in one lineage shows it under that label only; the case passes.
-- [ ] T008 Merge `ruledOutCandidates` with a `lineage` field, deduped on lineage plus `id` and sorted (`M`). Verify: a repeated `id` within one lineage appears once, the same `id` in two lineages appears twice; the case passes.
+- [x] T003 Merge `dimensionCoverage` as a sorted-key union (`M`). Verify: the REQ-002 case in `tests/unit/fanout-merge.vitest.ts` passes. Done: `mergeDimensionCoverage`; the union case passes.
+- [x] T004 Merge `traceability` results per protocol by strongest restriction, recompute `summary` and union `unfinishedCoreProtocols` (`M`). Verify: the REQ-003 case passes. Done: `mergeTraceability`; the strongest-restriction and summary case passes.
+- [x] T005 Merge `searchCoverage` bucket lists as sorted unions, keeping `graphCoverageMode` only when all lineages agree (`M`). Verify: a case with two lineages and different modes yields `null` and passes. Done: `mergeSearchCoverage`; disagreeing modes give `null`, agreeing modes are kept.
+- [x] T006 Merge `candidateCoverage` buckets and `byBugClass` entries with a `lineages` list (`M`). Verify: a shared bug class lists both lineage labels and its flags are ORed; the case passes. Done: `mergeCandidateCoverage`; the shared bug class lists both lineages with flags ORed.
+- [x] T007 Return pivot state as `divergenceByLineage` keyed by lineage label (`M`). Verify: a case with a pivot in one lineage shows it under that label only; the case passes. Done: `mergeDivergenceByLineage`; only the lineage with a pivot appears.
+- [x] T008 Merge `ruledOutCandidates` with a `lineage` field, deduped on lineage plus `id` and sorted (`M`). Verify: a repeated `id` within one lineage appears once, the same `id` in two lineages appears twice; the case passes. Done: `mergeRuledOutCandidates`; one entry per lineage plus id, sorted.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,11 +55,12 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Add the end-to-end merged-coverage case (`R/tests/fanout-review-focus.vitest.ts`). Verify: the merged registry carries all six surfaces (REQ-001) and the case passes.
-- [ ] T010 Add the order-swap and missing-fields cases (`R/tests/unit/fanout-merge.vitest.ts`). Verify: A,B and B,A merges are byte-identical, a lineage without the fields merges cleanly, and both cases pass.
-- [ ] T011 Rerun the T001 suites and compare with the baseline (`R/tests/`). Verify: the same command exits 0 and the pass count rose only by the new cases.
-- [ ] T012 Rerun the Measured Behavior loop (`M`). Verify: each of the six names prints a count above 0.
-- [ ] T013 Write the merged-coverage manual testing playbook scenario: a two-lineage review fan-out whose merged registry is read with `jq` for the six surfaces, through `/create:manual-testing-playbook system-deep-loop update --path .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook` (`.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/`). Verify: `rg -l 'dimensionCoverage' .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout` lists the new scenario.
+- [x] T009 Add the end-to-end merged-coverage case (`R/tests/fanout-review-focus.vitest.ts`). Verify: the merged registry carries all six surfaces (REQ-001) and the case passes. Done: the end-to-end case runs `fanout-merge.cjs` on two lineages and reads all six surfaces from disk.
+- [x] T010 Add the order-swap and missing-fields cases (`R/tests/unit/fanout-merge.vitest.ts`). Verify: A,B and B,A merges are byte-identical, a lineage without the fields merges cleanly, and both cases pass. Done, written first: the A,B and B,A surfaces are byte-identical, and a bare lineage merges cleanly.
+- [x] T011 Rerun the T001 suites and compare with the baseline (`R/tests/`). Verify: the same command exits 0 and the pass count rose only by the new cases. Done: 5 files, 102 passed (92 + 10), exit 0.
+- [x] T012 Rerun the Measured Behavior loop (`M`). Verify: each of the six names prints a count above 0. Done: counts 2, 5, 2, 2, 3 and 3.
+- [B] T013 Write the merged-coverage manual testing playbook scenario: a two-lineage review fan-out whose merged registry is read with `jq` for the six surfaces, through `/create:manual-testing-playbook system-deep-loop update --path .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook` (`.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/`). Verify: `rg -l 'dimensionCoverage' .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout` lists the new scenario. Blocked: the command hard-blocks at its Phase 0 self-check unless run as the `@markdown` agent, which this phase worker cannot start.
+- [B] T014 Write the changelog entry for the merged review coverage fix through `/create:changelog` under `.skilled/skills/system-deep-loop/changelog/` (cross-phase handoff §3). Verify: the entry names the six merged surfaces and `divergenceByLineage`. Blocked: same `@markdown` gate as T013.
 <!-- /ANCHOR:phase-3 -->
 
 ---

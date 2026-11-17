@@ -8,6 +8,9 @@
 
 import { describe, expect, it } from 'vitest';
 import { createRequire } from 'node:module';
+import { execFileSync } from 'node:child_process';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -175,5 +178,47 @@ describe('normalizeReviewFocus', () => {
     expect(() => normalizeReviewFocus(true)).toThrow(/reviewFocus must be a text value/);
     expect(normalizeReviewFocus('x'.repeat(REVIEW_FOCUS_MAX_LENGTH))).toHaveLength(REVIEW_FOCUS_MAX_LENGTH);
     expect(() => normalizeReviewFocus('x'.repeat(REVIEW_FOCUS_MAX_LENGTH + 1))).toThrow(/at most 1000 characters/);
+  });
+});
+
+describe('fanout-merge.cjs review coverage end to end', () => {
+  it('writes all six coverage surfaces into the merged review registry', () => {
+    const fanoutMergeScript = join(testsDir, '..', 'scripts', 'fanout-merge.cjs');
+    const baseDir = mkdtempSync(join(tmpdir(), 'fanout-review-coverage-'));
+    try {
+      const lineages: Array<[string, Record<string, unknown>]> = [
+        ['lina', {
+          openFindings: [],
+          dimensionCoverage: { correctness: true, security: false },
+          traceability: { results: [{ protocolId: 'spec_code', status: 'pass', applicable: true, gateClass: 'hard' }], unfinishedCoreProtocols: [] },
+          searchCoverage: { requiredBugClasses: ['injection'], covered: ['injection'], ruledOut: [], deferred: [], blocked: [], graphCoverageMode: 'graph' },
+          candidateCoverage: { covered: ['injection'], ruledOut: [], deferred: [], blocked: [], byBugClass: {} },
+          divergence: { started: 1, completed: 1, failed: 0, overrides: [], saturatedDirections: [], remainingFrontier: [], currentFocus: 'pivot-a' },
+          ruledOutCandidates: [{ id: 'rc-1', iteration: 1, bugClass: 'race' }],
+        }],
+        ['linb', {
+          openFindings: [],
+          dimensionCoverage: { correctness: false, security: true },
+          traceability: { results: [{ protocolId: 'spec_code', status: 'fail', applicable: true, gateClass: 'hard' }], unfinishedCoreProtocols: ['spec_code'] },
+        }],
+      ];
+      for (const [label, registry] of lineages) {
+        const lineageDir = join(baseDir, 'lineages', label);
+        mkdirSync(lineageDir, { recursive: true });
+        writeFileSync(join(lineageDir, 'deep-review-findings-registry.json'), JSON.stringify(registry), 'utf8');
+      }
+
+      execFileSync(process.execPath, [fanoutMergeScript, '--loop-type', 'review', '--artifact-dir', baseDir], { encoding: 'utf8' });
+
+      const merged = JSON.parse(readFileSync(join(baseDir, 'deep-review-findings-registry.json'), 'utf8')) as Record<string, unknown>;
+      for (const key of ['dimensionCoverage', 'traceability', 'searchCoverage', 'candidateCoverage', 'divergenceByLineage', 'ruledOutCandidates']) {
+        expect(merged).toHaveProperty(key);
+      }
+      expect(merged.dimensionCoverage).toEqual({ correctness: true, security: true });
+      expect((merged.traceability as { results: Array<{ status: string }> }).results.map((result) => result.status)).toEqual(['fail']);
+      expect(Object.keys(merged.divergenceByLineage as Record<string, unknown>)).toEqual(['lina']);
+    } finally {
+      rmSync(baseDir, { recursive: true, force: true });
+    }
   });
 });
