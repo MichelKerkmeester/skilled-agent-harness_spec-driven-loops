@@ -54,12 +54,12 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `rg -n 'Accepted' decision-record.md` prints the ADR-001 status line.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/review-depth-convergence.vitest.ts tests/integration/divergent-pivot.vitest.ts` exits 0 with a case where a configured `performance` dimension is covered and the run reaches `all_dimensions_clean`.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/review-depth-convergence.vitest.ts tests/integration/review-stop-path-replay.vitest.ts tests/unit/deep-review-state-reducer.vitest.ts tests/unit/prompt-pack.vitest.ts` exits 0 with no fixture edits, and its pass count equals the baseline in this goal's log plus the new cases.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0 after the review compiled contract is regenerated.
-- [ ] `rg -n -i 'all (4|four) dimensions|four review dimensions' .skilled/skills/system-deep-loop/deep-review/references .skilled/skills/system-deep-loop/deep-review/README.md` prints nothing.
-- [ ] `/doctor:runtime-mirrors` reports all five `deep-review` agent mirrors in sync with `.skilled/agents/deep-review.md`.
+- [x] `rg -n 'Accepted' decision-record.md` prints the ADR-001 status line.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/review-depth-convergence.vitest.ts tests/integration/divergent-pivot.vitest.ts` exits 0 with a case where a configured `performance` dimension is covered and the run reaches `all_dimensions_clean`.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/review-depth-convergence.vitest.ts tests/integration/review-stop-path-replay.vitest.ts tests/unit/deep-review-state-reducer.vitest.ts tests/unit/prompt-pack.vitest.ts` exits 0 with no fixture edits, and its pass count equals the baseline in this goal's log plus the new cases.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0 after the review compiled contract is regenerated.
+- [x] `rg -n -i 'all (4|four) dimensions|four review dimensions' .skilled/skills/system-deep-loop/deep-review/references .skilled/skills/system-deep-loop/deep-review/README.md` prints nothing.
+- [x] `/doctor:runtime-mirrors` reports all five `deep-review` agent mirrors in sync with `.skilled/agents/deep-review.md`.
 - [ ] `rg -l 'performance' .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook` lists a custom-dimension scenario written through `/create:manual-testing-playbook`.
 <!-- /ANCHOR:completion -->
 
@@ -80,6 +80,7 @@ and findings belong here.
 | Phase docs authored | Done | `spec.md`, `plan.md`, `tasks.md`, `decision-record.md` |
 | ADR-001 operator decision | Done | 2026-11-17: support custom dimensions (`decision-record.md` OD-001) |
 | Session save | Done | operator decisions written to decision-record.md |
+| Build 2026-11-17 (autonomous) | Done | Go lane, worktree 468, commits `45462106508` to `a762572c909`. Baseline: 8 suites 93 passed; the four REQ-004 suites 42. After: 100 and 48. Every custom case fails against the pre-change reducer. Contract drift OK, snapshot check OK, all agent mirrors in sync. Playbook and changelog wait for `@markdown` in integration. |
 
 ### Deviations and findings
 

@@ -1,0 +1,30 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/468-ed-008-review-dimension-coverage
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0
+are set. The spec folder is: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/008-review-dimension-coverage (pre-approved). Proceed directly. Do not print
+A/B/C/D options. A failed edit match means a stale anchor: re-read the file and retry; halt
+only after three failures on the same file. Your task is complete only when the file is
+changed on disk and the check below has been run.
+
+PERSONA: You are a careful code implementer. Change only what the task names, keep existing style (CommonJS, 2-space indent, single quotes), never refactor nearby code, and run the check before you report.
+
+PERSONA: You are a careful implementer. Change only what the task names, keep the files' style, and run the check before you report.
+
+TASK T006: render the review prompt pack's dimension list from a variable, so a configured custom dimension reaches the leaf, while the default render stays byte-identical.
+FILES:
+1. .skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl — under the heading `## REVIEW DIMENSIONS`, the line that is exactly `correctness, security, traceability, maintainability` becomes exactly `{review_dimensions_list}`. Change nothing else in this file.
+2. .skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts — in the existing `renderPromptPack(reviewTemplatePath, { ... })` call (the one with `next_dimension: 'traceability'`), add the binding `review_dimensions_list: 'correctness, security, traceability, maintainability',` after `review_focus_block: '',`. Then append, at the end of the file, a new top-level block:
+describe('review prompt pack dimension list', () => { ... });
+with two cases, each rendering the review template (path: join(deepLoopRootDir, 'deep-review', 'assets', 'prompt-pack-iteration.md.tmpl')) with the same bindings as that existing review render (copy them):
+  a. 'renders the default dimension line byte for byte': with review_dimensions_list 'correctness, security, traceability, maintainability', expect the rendered text toContain '## REVIEW DIMENSIONS\n\ncorrectness, security, traceability, maintainability\n'.
+  b. 'renders a configured custom dimension after the canonical four': with review_dimensions_list 'correctness, security, traceability, maintainability, performance', expect it toContain '## REVIEW DIMENSIONS\n\ncorrectness, security, traceability, maintainability, performance\n'.
+3. .skilled/skills/system-deep-loop/runtime/tests/fanout-review-focus.vitest.ts — in its `renderPromptPack(reviewTemplatePath, { ... })` binding object, add `review_dimensions_list: 'correctness, security, traceability, maintainability',` next to `review_focus_block`.
+ALLOWED WRITE PATHS: the three files above.
+BANNED OPERATIONS: git commit/push/reset/checkout/stash/rebase, rm of any tracked file,
+  edits outside ALLOWED WRITE PATHS, regenerating compiled contracts, editing tasks.md,
+  implementation-summary.md, spec.md or any spec-folder doc.
+COMMENTS: keep the durable WHY; never put spec paths, phase numbers or REQ/ADR/task ids in code.
+CHECK: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/prompt-pack.vitest.ts tests/fanout-review-focus.vitest.ts
+RETURN: the changed paths, the CHECK's last 15 lines and its exit code. Nothing else.

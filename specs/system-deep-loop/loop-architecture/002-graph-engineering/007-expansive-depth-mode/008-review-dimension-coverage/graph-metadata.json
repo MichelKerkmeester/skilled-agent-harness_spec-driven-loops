@@ -43,10 +43,11 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
       ".skilled/commands/deep/assets/deep-review.yaml",
-      ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
       ".skilled/agents/deep-review.md",
+      "scratch/dispatch/results.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
       ".claude/agents/deep-review.md",
       ".codex/agents/deep-review.toml",
       ".pi/agents/deep-review.md",
@@ -55,8 +56,7 @@
       ".skilled/commands/deep/assets/deep-review-presentation.txt",
       ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
       ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md",
-      ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md",
-      ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md"
+      ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md"
     ],
     "entities": [
       {
@@ -96,27 +96,33 @@
         "source": "derived"
       },
       {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
         "name": "deep-review.yaml",
         "kind": "config",
         "path": ".skilled/commands/deep/assets/deep-review.yaml",
         "source": "derived"
       },
       {
-        "name": "prompt-pack-iteration.md.tmpl",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
-        "source": "derived"
-      },
-      {
         "name": "deep-review.md",
         "kind": "doc",
         "path": ".skilled/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "results.md",
+        "kind": "doc",
+        "path": "scratch/dispatch/results.md",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack-iteration.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
         "source": "derived"
       },
       {
@@ -153,12 +159,6 @@
         "name": "deep-review-strategy.md",
         "kind": "doc",
         "path": ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "convergence.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
         "source": "derived"
       },
       {
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The review reducer's `buildDimensionCoverage` (`runtime/scripts/reduce-state.cjs:1223-1250`) seeds and marks only the four `REQUIREDDIMENSIONS` keys, while `convergence.cjs:1541-1556` counts every configured `reviewDimensions` entry as missing until covered",
     "created_at": "2026-11-17T14:35:11Z",
-    "last_save_at": "2026-11-17T17:48:19.337Z",
+    "last_save_at": "2026-11-17T21:19:00.715Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +217,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24e8e26f8259686d4061665b99f02d40cfffbc2575fecec9d513f18807ac05c1",
+    "source_fingerprint": "sha256:348d2b70a332fc57c68869bec8308a9b3a9801425e113d672a79a030295ee5fc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "672340cba796c8ec58aa638b2570ca1e4b55c2db0ffc6af9a466269d6535a491",
       "plan.md": "025cfb39d4164bd4eaa49f32d0383f9d9603cc5deacf5ad8e2d305357744df3b",
-      "tasks.md": "c96e8957d56c95d9cf5ded40e9c48da72c0c58d6c0320a4e34208164e7378442",
-      "decision-record.md": "1c53757ca24109683454536ab128c1c8c4c9a60e97543e3ea5c4274cd2ee4c24",
-      "implementation-summary.md": "02bb8bbe5126deaa18532bf684ae008abb317869278691d8da1a80fd7a7180e6"
+      "tasks.md": "29320c140c66c809a039b19f4a8de31a475fb8eddf3c7beac46a76f5ca6877df",
+      "decision-record.md": "11c5aedab0d773a5dd6e562f570e902b93cc42e85ddedb2dc67793f2a9eaa319",
+      "implementation-summary.md": "bc40450dd8e82b7cfe789b1e061e7721fdf862b8a94a8c5db852e3a0e406067e"
     },
     "last_active_at": null
   }

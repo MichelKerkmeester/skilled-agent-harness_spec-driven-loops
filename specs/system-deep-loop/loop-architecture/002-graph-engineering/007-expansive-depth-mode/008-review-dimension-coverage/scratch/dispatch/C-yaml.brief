@@ -1,0 +1,40 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/468-ed-008-review-dimension-coverage
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0
+are set. The spec folder is: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/008-review-dimension-coverage (pre-approved). Proceed directly. Do not print
+A/B/C/D options. A failed edit match means a stale anchor: re-read the file and retry; halt
+only after three failures on the same file. Your task is complete only when the file is
+changed on disk and the check below has been run.
+
+PERSONA: You are a careful code implementer. Change only what the task names, keep existing style (CommonJS, 2-space indent, single quotes), never refactor nearby code, and run the check before you report.
+
+PERSONA: You are a careful workflow-YAML editor. Change only the lines the task names, keep indentation and quoting style exactly, and run the check before you report.
+
+TASK T005: let the review workflow accept configured custom review dimensions after the four canonical ones.
+FILE: .skilled/commands/deep/assets/deep-review.yaml
+EDITS (apply all, literally; anchors are text, not line numbers):
+1. The input line that starts `  review_dimensions: "[all|correctness,security,traceability,maintainability] - Dimensions to check. Default: all."` becomes:
+  review_dimensions: "[all|correctness,security,traceability,maintainability|custom names] - Dimensions to check. The four canonical dimensions are correctness, security, traceability and maintainability; any other name is a custom dimension, reviewed after the canonical four in configured order. Default: all."
+2. In step `step_order_dimensions`, its `algorithm` line `          3. If review_dimensions != "all", filter to only requested dimensions` becomes:
+          3. If review_dimensions != "all", filter to only requested dimensions; each configured custom dimension follows the canonical four, in configured order
+3. In step `step_normalize_review_dimensions`:
+   a. Under its `outputs:` list, after the `review_dimensions_json` line, add two lines at the same indentation:
+          - review_dimensions_list: "The canonical four in risk order, then each configured custom dimension in configured order, joined by ', '"
+          - dimension_coverage_seed: "JSON object mapping the canonical four, then each configured custom dimension, to false"
+   b. In its `normalize:` block, after the line `            - ["correctness"] → ["correctness"]` add:
+            - "correctness,performance" → ["correctness","performance"]
+   c. Replace the line `          Every element MUST be one of the four canonical dimension names.` with:
+          Trim and lowercase each element and drop duplicates; an empty name fails setup. A name outside the four canonical dimension names is a custom dimension, kept in configured order after the canonical ones.
+4. In step `step_create_findings_registry`, in its `content:` JSON string, replace exactly `"dimensionCoverage":{"correctness":false,"security":false,"traceability":false,"maintainability":false}` with `"dimensionCoverage":{dimension_coverage_seed}`. Change nothing else on that line.
+5. In the `render_prompt_pack:` block, under `variables:`, after the line `              review_focus_block: "{review_focus_block}"` add:
+              review_dimensions_list: "{review_dimensions_list}"
+6. In the top-level `review_dimensions:` table near the end of the file: change its `note:` value from `"All 4 default review dimensions with priority ordering"` to `"The four canonical review dimensions in priority order; each configured custom dimension follows them under the custom rubric row"`, and after the `maintainability` row add, at the same indentation:
+      - { priority: 5, name: "<custom>", checks: "A configured custom dimension: review the target for the property its name states, under the shared P0-P2 doctrine. It follows the canonical four in configured order and is not required for severity coverage." }
+ALLOWED WRITE PATHS: .skilled/commands/deep/assets/deep-review.yaml
+BANNED OPERATIONS: git commit/push/reset/checkout/stash/rebase, rm of any tracked file,
+  edits outside ALLOWED WRITE PATHS, regenerating compiled contracts, editing tasks.md,
+  implementation-summary.md, spec.md or any spec-folder doc.
+CHECK: node -e "require('js-yaml')" 2>/dev/null; cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/stop-decision-yaml-contract.vitest.ts tests/unit/stop-policy-yaml-parity.vitest.ts
+RETURN: the changed path, the CHECK's last 15 lines and its exit code. Nothing else.

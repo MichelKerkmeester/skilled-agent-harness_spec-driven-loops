@@ -139,6 +139,8 @@ _memory:
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
 | OD-001 | 2026-11-17: support custom dimensions in `buildDimensionCoverage` | Best UX and logic, even if it takes more time: every configured dimension is tracked and can be covered | ADR-001 Proposed status | `plan.md`, `tasks.md` T003-T018; `../011-review-frontier-mode/` dependency |
+| OD-002 | 2026-11-17 (night, autonomous): the registry seed keeps the four literal canonical keys and appends custom keys through `{dimension_coverage_custom_seed}` | `system-spec-kit` `deep-review-contract-parity` pins the literal `"<dim>":false` keys, and a default run stays byte-identical | A whole-object seed placeholder | `deep-review.yaml` `step_create_findings_registry`; rollback: restore the seed line and drop the output |
+| OD-003 | 2026-11-17 (night, autonomous): the mode contract states the custom rule as a `customDimensionRule` key, not a fifth `dimensions` entry | Consumers that loop over `dimensions` keep seeing the canonical four | A `<custom>` list entry | `review-mode-contract.yaml`; rollback: delete the key |
 | Q001 | Support custom review dimensions in buildDimensionCoverage instead of enforcing only the four built-ins. | Operator asked for the best UX and logic even if it takes more time; 011-review-frontier-mode now depends on 008. | None | 008-review-dimension-coverage/decision-record.md ADR-001, 011-review-frontier-mode/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
