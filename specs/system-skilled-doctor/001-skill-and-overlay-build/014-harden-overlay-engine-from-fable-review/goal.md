@@ -46,6 +46,8 @@ Frozen choices. Changing one is an amendment.
 | D2 | The pinned-copy cross-check only reports a difference. It does not become the write path in this phase. |
 | D3 | Item 2 lands before item 3, because item 3's fix reads the state item 2 writes early. |
 | D4 | Each engine change starts with a test that fails on `969335a6380`. |
+| D5 | A dropped key whose record says the overlay did not add it is refused once, with a message naming the fix, never deleted. The operator chose this on 2026-11-16. |
+| D6 | The state file moves to schema version 2, and the loader upgrades a version 1 file. The operator chose this on 2026-11-16. |
 
 <!-- /ANCHOR:directive -->
 

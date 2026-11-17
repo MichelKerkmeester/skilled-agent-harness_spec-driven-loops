@@ -132,7 +132,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-006 | A relative `pin.checkout` resolves against the tree root | A test runs status from another directory and reads the checkout |
 | REQ-007 | A malformed entry set blocks only its own overlay and names its file | A test with broken JSON in one entry set still reports the other overlays and names `entry.source` |
 | REQ-008 | An operation the engine cannot track gets a non-failing `NOTE` line | A test with `setKeyOnItem` and an indexed `set` prints a `NOTE` for each and exits 0 |
-| REQ-009 | A state record with a bad shape is refused with a fix | A test with a record lacking `path` exits 2 and names the record |
+| REQ-009 | The state file is schema version 2, a version 1 file is upgraded on load, and a record with a bad shape is refused with a fix | A test loads a version 1 file and writes version 2, and a test with a record lacking `path` exits 2 and names the record |
 | REQ-010 | The state file and the manifest are written atomically | A test checks that each write goes through a temporary file and a rename |
 <!-- /ANCHOR:requirements -->
 
@@ -153,7 +153,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | A vendoring project that gives `pin.checkout` as a relative path | Low | Barter's path is absolute. The handover still names the change for any other project |
-| Risk | Reading `added` refuses keys an older engine wrote, which carry `added: false` | Med | Decide with the operator before building; the refusal names the fix |
+| Risk | Reading `added` refuses keys an older engine wrote, which carry `added: false` | Med | The operator chose a one-time refusal whose message names the fix |
 | Risk | The cross-check reports differences the records already handle, as noise | Low | Report only where the two results differ after the restore runs |
 <!-- /ANCHOR:risks -->
 
@@ -162,8 +162,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Item 7: should keys an older engine wrote, which carry `added: false`, be refused once, or should the first apply on the new engine mark them?
-- Item 8: bump the state `schemaVersion` to 2 with a migration, or keep version 1 and print a note when a manifest holds json-entry sets the state has no key for?
+- Item 7: should keys an older engine wrote, which carry `added: false`, be refused once, or should the first apply on the new engine mark them? Answered 2026-11-16: refuse once, with a message that names the fix.
+- Item 8: bump the state `schemaVersion` to 2 with a migration, or keep version 1 and print a note when a manifest holds json-entry sets the state has no key for? Answered 2026-11-16: bump to version 2, with a loader that upgrades a version 1 file.
 - Item 4: does Barter's manifest give `pin.checkout` as a relative path today? Answered 2026-11-16: no. `barter-overlays/overlay-manifest.json` gives the absolute path `/Users/michelkerkmeester/MEGA/Development/Skilled`, so resolving a relative path against the tree root does not change Barter's runs.
 <!-- /ANCHOR:questions -->
 

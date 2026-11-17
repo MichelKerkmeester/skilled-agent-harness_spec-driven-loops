@@ -197,7 +197,7 @@
     ],
     "causal_summary": "A json-entry overlay is the only scope whose bytes come from the live file rather than from a source, so the restore has to guess what the overlay wrote before",
     "created_at": "2026-11-16T22:20:26Z",
-    "last_save_at": "2026-11-16T22:25:19.480Z",
+    "last_save_at": "2026-11-17T04:39:57.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e9c3265837dc57162d742866f05226ca05acdc4e173811b85346a61504935ede",
+    "source_fingerprint": "sha256:bd02893a21e0dc07993d5ffe789b38b4789391530e03ffad86804219ac10f979",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eb2c972e81004f6b020472845f598442a27e39e2c2064b0567b398d978701d0b",
+      "spec.md": "980b208fc0fb78c22edc9836347cfadebd2b90c217e2d79c208b5bb2a03aedb4",
       "plan.md": "79037b2f3e2163ef7d03c083aa00dea4ab71ab2228e51c8d7752fd0a656f9524",
-      "tasks.md": "240acf95a880d81f57816f6ba90d0ce2ec5f4071b4ec3ed17e6b36cdc1939a65",
+      "tasks.md": "717f54b10b096fcd07b944bba0a5f4cdbff10f7acdbd27c0d4963bd01792c7a2",
       "implementation-summary.md": "0384d517a59ee4c07ab9b3be926b8a7d27eac4c2e16a50d3b9e976127957e7c7"
     },
     "last_active_at": null
