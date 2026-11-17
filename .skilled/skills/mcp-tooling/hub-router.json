@@ -154,6 +154,7 @@
     },
     "browser-debug": {
       "keywords": [
+        "inspect the dom",
         "screenshot capture",
         "console errors",
         "network requests",
@@ -191,7 +192,6 @@
         "notesmd-cli",
         "obsidian mcp",
         "markdown notes",
-        "health",
         "health-md"
       ]
     },
@@ -261,6 +261,7 @@
         "browser agent",
         "aside daemon",
         "aside account",
+        "capture repl evidence",
         "repl evidence capture",
         "click through"
       ]
