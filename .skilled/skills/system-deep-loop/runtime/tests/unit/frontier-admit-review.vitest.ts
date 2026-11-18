@@ -259,6 +259,16 @@ describe('frontier-admit review target', () => {
     expect(scopeInsideReviewTarget('lib/x', config)).toBe(false);
   });
 
+  it('resolves .. segments before testing containment, so a path that climbs out is outside', () => {
+    const config = { reviewTargetType: 'files', reviewTarget: 'src/app' };
+
+    expect(scopeInsideReviewTarget('src/app/../../lib/x.ts', config)).toBe(false);
+    expect(scopeInsideReviewTarget('src/app/../app-other/x.ts', config)).toBe(false);
+    expect(scopeInsideReviewTarget('src/app/../app/x.ts', config)).toBe(true);
+    expect(scopeInsideReviewTarget('src/app/./deep//x.ts', config)).toBe(true);
+    expect(scopeInsideReviewTarget('.', config)).toBe(false);
+  });
+
   it('keeps every scope relevant when the target is not a file list', () => {
     const config = { reviewTargetType: 'skill', reviewTarget: 'the review skill' };
 

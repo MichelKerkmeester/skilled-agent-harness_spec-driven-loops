@@ -349,10 +349,14 @@ function childCapFor(parentId, caps) {
 }
 
 // A review target is a file list, and only those paths can hold a finding. The
-// './' prefix and trailing '/' a caller writes carry no meaning, so both sides
-// of the comparison are normalized before containment is tested.
+// './' prefix, trailing '/' and './' or '..' segments a caller writes carry no
+// meaning of their own, so both sides of the comparison are normalized before
+// containment is tested; otherwise a path that climbs out with '..' would still
+// start with the target's prefix. A blank entry stays blank for the caller to drop.
 function normalizeTargetPath(value) {
-  return value.trim().replace(/^\.\//, '').replace(/\/+$/, '');
+  const trimmed = value.trim();
+  if (trimmed === '') return '';
+  return path.posix.normalize(trimmed).replace(/^\.\//, '').replace(/\/+$/, '');
 }
 
 function splitTargetPaths(value) {
