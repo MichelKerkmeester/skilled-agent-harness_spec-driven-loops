@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill section guidance"
 importance_tier: normal
 contextType: general
-version: 1.2.9.0
+version: 1.2.10.0
 ---
 
 # SKILL.md File Templates - Creation Guide
@@ -431,7 +431,7 @@ Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md) when the skill has installat
     ├── scripts/          - Executable automation
     ├── references/       - Detailed documentation (flat or domain subfolders)
     └── assets/           - Templates and examples (subfolders OK)
-        ├── opencode/     - OpenCode component templates (skills, agents, commands)
+        ├── skilled/      - Skilled component templates (skills, agents, commands)
         └── readme/        - README-shaped scaffolds (README, install guide)
 ```
 

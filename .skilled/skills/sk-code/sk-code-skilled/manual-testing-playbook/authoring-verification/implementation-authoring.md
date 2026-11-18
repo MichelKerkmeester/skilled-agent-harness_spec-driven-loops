@@ -15,7 +15,7 @@ expected_resources:
   - assets/checklists/command-authoring.md
   - assets/checklists/skill-authoring.md
   - assets/checklists/mcp-server-authoring.md
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # OC-006: Implementation authoring routing
@@ -32,7 +32,7 @@ resource set, per `ROUTER.md` §3's machine-readable router.
 
 ### Why This Matters
 
-New OpenCode component authoring spans naming/commenting and code-organization conventions plus four distinct checklist shapes (agent, command, skill, MCP server). If the router narrows to only one checklist, an author could ship a new skill module without ever checking the command- or MCP-server-specific authoring contract the prompt explicitly asked for.
+New Skilled component authoring spans naming/commenting and code-organization conventions plus four distinct checklist shapes (agent, command, skill, MCP server). If the router narrows to only one checklist, an author could ship a new skill module without ever checking the command- or MCP-server-specific authoring contract the prompt explicitly asked for.
 
 ---
 

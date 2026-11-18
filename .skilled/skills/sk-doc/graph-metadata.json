@@ -491,7 +491,7 @@
       "voice-application"
     ],
     "intent_signals": [
-      "create an OpenCode component (skill/agent/command)",
+      "create a Skilled component (skill/agent/command)",
       "author a doc package (readme/catalog/playbook/benchmark/flowchart/changelog/diff)",
       "validate/score/optimize an existing document",
       "apply or score prose against the Human Voice Rules"
