@@ -2,7 +2,7 @@
 title: "Skilled Commands"
 description: "Skilled slash commands: component creation, deep loops, prompts, continuity and spec kit workflows."
 trigger_phrases:
-  - "opencode commands"
+  - "skilled commands"
   - "slash commands"
   - "command reference"
   - "available commands"

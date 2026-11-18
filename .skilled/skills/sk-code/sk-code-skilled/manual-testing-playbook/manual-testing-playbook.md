@@ -1,7 +1,7 @@
 ---
 title: "sk-code-skilled: Manual Testing Playbook"
 description: "Routing-recall corpus for the sk-code-skilled surface: one scenario per declared intent, plus the always-load shared tier, the guard exit statuses and the SKILLED surface detection the packet rests on."
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # sk-code-skilled: Manual Testing Playbook
@@ -215,7 +215,7 @@ implementation checklist.
 
 #### Scenario Contract
 
-Prompt: `For an OpenCode TypeScript module, apply the typescript .ts standards before I implement a feature.`
+Prompt: `For a Skilled TypeScript module, apply the typescript .ts standards before I implement a feature.`
 
 Expected intent `TYPESCRIPT` with seven expected resources: the two style-guide parts, the three
 quality-standards parts, and the two quick-reference parts under `references/typescript/`.
@@ -278,7 +278,7 @@ and quick reference trio, including the interop-model and TypeScript-parity anch
 
 #### Scenario Contract
 
-Prompt: `For an OpenCode Rust napi-rs or WASM module, apply the Rust standards and TypeScript parity contracts before I implement a feature.`
+Prompt: `For a Skilled Rust napi-rs or WASM module, apply the Rust standards and TypeScript parity contracts before I implement a feature.`
 
 Expected intent `RUST` with all seventeen expected resources: the seven style-guide parts, the five
 quality-standards parts and the five quick-reference parts under `references/rust/`.
@@ -390,7 +390,7 @@ twelve-file authoring checklist set, including the three `js-css-style` parts.
 
 #### Scenario Contract
 
-Prompt: `Run a quality gate for lint, format, naming, standards, and code smell risks in OpenCode system code.`
+Prompt: `Run a quality gate for lint, format, naming, standards, and code smell risks in Skilled system code.`
 
 Expected intent `CODE_QUALITY` with twelve expected resources: the universal checklist, the JavaScript
 checklist with its three `js-css-style` parts, the TypeScript, Python and Shell checklists, and the four-part

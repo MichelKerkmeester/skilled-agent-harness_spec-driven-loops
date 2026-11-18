@@ -4,7 +4,7 @@ description: Repeatable verifier guidance for recurring OpenCode alignment drift
 trigger_phrases:
   - "alignment drift verification"
   - "verify alignment drift script"
-  - "opencode alignment checks"
+  - "skilled alignment checks"
   - "repeatable drift verifier"
 importance_tier: normal
 contextType: implementation

@@ -3,7 +3,7 @@ title: Import Ordering & Export Patterns
 description: File structure principles, module organization concepts, and import ordering standards for OpenCode system code. — Import Ordering & Export Patterns.
 trigger_phrases:
   - "cross language import ordering"
-  - "opencode export patterns"
+  - "skilled export patterns"
   - "typescript type imports"
   - "python public api exports"
 importance_tier: normal

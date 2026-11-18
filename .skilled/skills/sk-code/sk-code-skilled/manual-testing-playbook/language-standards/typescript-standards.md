@@ -13,7 +13,7 @@ expected_resources:
   - references/typescript/quality-standards/tsconfig-and-modules.md
   - references/typescript/quick-reference/template-naming-and-types.md
   - references/typescript/quick-reference/imports-errors-and-tsconfig.md
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # OC-001: TypeScript standards routing
@@ -41,12 +41,12 @@ resource set without contradictory evidence.
 
 - Objective: confirm the exact prompt routes to surface `SKILLED`, intent `TYPESCRIPT`, and every path in
   `expected_resources`.
-- Real user request: `For an OpenCode TypeScript module, apply the typescript .ts standards before I implement a feature.`
-- Prompt: `For an OpenCode TypeScript module, apply the typescript .ts standards before I implement a feature.`
+- Real user request: `For a Skilled TypeScript module, apply the typescript .ts standards before I implement a feature.`
+- Prompt: `For a Skilled TypeScript module, apply the typescript .ts standards before I implement a feature.`
 
 **Exact prompt**:
 ```text
-For an OpenCode TypeScript module, apply the typescript .ts standards before I implement a feature.
+For a Skilled TypeScript module, apply the typescript .ts standards before I implement a feature.
 ```
 
 - Expected execution process: the hub detects `SKILLED` (work under `.skilled/`), the `TYPESCRIPT`
@@ -65,7 +65,7 @@ For an OpenCode TypeScript module, apply the typescript .ts standards before I i
 
 ### Prompt
 
-- Prompt: `For an OpenCode TypeScript module, apply the typescript .ts standards before I implement a feature.`
+- Prompt: `For a Skilled TypeScript module, apply the typescript .ts standards before I implement a feature.`
 
 ### Commands
 

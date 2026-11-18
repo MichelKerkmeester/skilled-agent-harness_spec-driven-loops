@@ -10,7 +10,7 @@
       {
         "target": "system-spec-kit",
         "weight": 0.3,
-        "context": "opencode standards and verification for spec-kit system code"
+        "context": "skilled standards and verification for spec-kit system code"
       }
     ],
     "siblings": [
@@ -378,11 +378,11 @@
       "sk-code",
       "code work",
       "surface-aware code implementation",
-      "opencode typescript verification",
+      "skilled typescript verification",
       "stack-specific code quality gate",
       "language-specific verification commands",
       "surface detection routing",
-      "opencode system code workflow",
+      "skilled system code workflow",
       "alignment verifier workflow",
       "code quality gate",
       "verification commands",

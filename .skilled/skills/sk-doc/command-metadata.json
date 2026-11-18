@@ -7,9 +7,9 @@
     "mutating": "mutates",
     "gate3_location": "a new or updated Skilled skill package at --path or the path setup resolves",
     "userIntent": {
-      "job": "I want to create or update a standalone OpenCode skill package.",
+      "job": "I want to create or update a standalone Skilled skill package.",
       "ownedSignals": [
-        "create an OpenCode skill",
+        "create a Skilled skill",
         "scaffold a skill package",
         "update a skill definition"
       ]
@@ -132,9 +132,9 @@
     "mutating": "mutates",
     "gate3_location": "a new agent file under .skilled/agents/ and its runtime mirrors",
     "userIntent": {
-      "job": "I want to create an OpenCode agent with explicit permissions and behavioral rules.",
+      "job": "I want to create a Skilled agent with explicit permissions and behavioral rules.",
       "ownedSignals": [
-        "create an OpenCode agent",
+        "create a Skilled agent",
         "define agent permissions",
         "write an agent persona"
       ]
@@ -168,7 +168,7 @@
     "mutating": "mutates",
     "gate3_location": "a slash command file plus its auto and confirm workflow YAML assets",
     "userIntent": {
-      "job": "I want to create or update an OpenCode slash command with routed workflow assets.",
+      "job": "I want to create or update a Skilled slash command with routed workflow assets.",
       "ownedSignals": [
         "create a slash command",
         "scaffold command routing",

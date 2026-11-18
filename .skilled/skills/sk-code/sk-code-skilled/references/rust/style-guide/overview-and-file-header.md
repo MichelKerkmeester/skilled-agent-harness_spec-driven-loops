@@ -2,7 +2,7 @@
 title: Rust Style Guide
 description: Formatting standards, naming conventions, and TypeScript interoperability rules for Rust files in the OpenCode development environment.
 trigger_phrases:
-  - "opencode rust style guide"
+  - "skilled rust style guide"
   - "rust file header format"
   - "rust formatting standards"
   - "rust typescript interop style"

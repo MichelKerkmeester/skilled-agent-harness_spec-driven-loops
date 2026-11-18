@@ -2,7 +2,7 @@
 title: Agent Template - Specialist Agent Structure
 description: Template for creating Skilled agent files with production frontmatter, permission boundaries, dispatch rules, and orchestration contracts.
 trigger_phrases:
-  - "opencode agent template"
+  - "skilled agent template"
   - "agent frontmatter scaffold"
   - "agent permission boundaries"
   - "specialist agent structure"

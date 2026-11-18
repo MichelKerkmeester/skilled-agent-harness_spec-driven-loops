@@ -2,7 +2,7 @@
 title: Shell Quality Standards
 description: Code quality requirements, validation rules, and best practices for Bash scripts in the OpenCode development environment.
 trigger_phrases:
-  - "opencode shell quality standards"
+  - "skilled shell quality standards"
   - "bash strict mode gates"
   - "double quoted variables"
   - "shell quality validation"

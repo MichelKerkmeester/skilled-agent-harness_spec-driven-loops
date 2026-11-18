@@ -2,7 +2,7 @@
 title: Config Style Guide
 description: Formatting standards and conventions for JSONC behavior config and strict-JSON machine descriptors in the OpenCode development environment.
 trigger_phrases:
-  - "opencode config style guide"
+  - "skilled config style guide"
   - "jsonc formatting standards"
   - "config section organization"
   - "json style conventions"

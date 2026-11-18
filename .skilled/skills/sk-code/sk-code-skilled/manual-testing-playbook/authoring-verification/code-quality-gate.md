@@ -18,7 +18,7 @@ expected_resources:
   - assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md
   - assets/checklists/rust-checklist/p1-required.md
   - assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # OC-007: Code quality gate routing
@@ -46,12 +46,12 @@ resource set without contradictory evidence.
 
 - Objective: confirm the exact prompt routes to surface `SKILLED`, intent `CODE_QUALITY`, and every path in
   `expected_resources`.
-- Real user request: `Run a quality gate for lint, format, naming, standards, and code smell risks in OpenCode system code.`
-- Prompt: `Run a quality gate for lint, format, naming, standards, and code smell risks in OpenCode system code.`
+- Real user request: `Run a quality gate for lint, format, naming, standards, and code smell risks in Skilled system code.`
+- Prompt: `Run a quality gate for lint, format, naming, standards, and code smell risks in Skilled system code.`
 
 **Exact prompt**:
 ```text
-Run a quality gate for lint, format, naming, standards, and code smell risks in OpenCode system code.
+Run a quality gate for lint, format, naming, standards, and code smell risks in Skilled system code.
 ```
 
 - Expected execution process: the hub detects `SKILLED` (work under `.skilled/`), the `CODE_QUALITY`
@@ -70,7 +70,7 @@ Run a quality gate for lint, format, naming, standards, and code smell risks in 
 
 ### Prompt
 
-- Prompt: `Run a quality gate for lint, format, naming, standards, and code smell risks in OpenCode system code.`
+- Prompt: `Run a quality gate for lint, format, naming, standards, and code smell risks in Skilled system code.`
 
 ### Commands
 

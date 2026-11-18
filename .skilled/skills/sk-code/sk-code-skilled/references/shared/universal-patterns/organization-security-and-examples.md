@@ -3,7 +3,7 @@ title: File Organization, Security & Copy-Paste Alignment Examples
 description: Patterns applicable to ALL languages in OpenCode system code including naming principles, commenting philosophy, and reference comment patterns. — File Organization, Security & Copy-Paste Alignment Examples.
 trigger_phrases:
   - "cross language file organization"
-  - "opencode security patterns"
+  - "skilled security patterns"
   - "copy paste alignment examples"
   - "path traversal prevention"
 importance_tier: normal

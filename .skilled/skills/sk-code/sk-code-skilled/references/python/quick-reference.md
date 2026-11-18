@@ -2,7 +2,7 @@
 title: Python Quick Reference
 description: Fast lookup for Python coding patterns, naming conventions, and common structures in OpenCode.
 trigger_phrases:
-  - "opencode python quick reference"
+  - "skilled python quick reference"
   - "python file template"
   - "python type hints patterns"
   - "python docstring format"
