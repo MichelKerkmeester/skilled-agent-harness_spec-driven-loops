@@ -349,6 +349,25 @@ describe('upsert.cjs review finding evidence', () => {
     ]);
   }
 
+  // Each usage guard on the review evidence inputs exits 3 with its own message,
+  // before anything is written.
+  it.each([
+    ['a non-review loop type', 'research', (file: string) => ['--state-log', file, '--iteration', '2'], 'supported only for loop type "review"'],
+    ['a --state-log flag with no path', 'review', () => ['--state-log', '--iteration', '2'], '--state-log requires a path'],
+    ['a --delta-dir flag with no path', 'review', () => ['--iteration', '2', '--delta-dir'], '--delta-dir requires a path'],
+    ['--iteration with no source', 'review', () => ['--iteration', '2'], '--iteration needs --state-log or --delta-dir'],
+    ['--iteration 0', 'review', (file: string) => ['--state-log', file, '--iteration', '0'], '--iteration must be a positive integer'],
+    ['a state log that cannot be read', 'review', () => ['--state-log', '/tmp/deep-loop-missing-state-log.jsonl', '--iteration', '2'], 'is unreadable'],
+  ] as const)('refuses %s', (_label, loopType, extraArgs, message) => {
+    const namespace = uniqueNamespace('upsert', loopType);
+    const file = stateLog([]);
+    const result = runScript('upsert', [...namespaceArgs(namespace), '--nodes', '[]', ...extraArgs(file)]);
+
+    expect(result.exitCode).toBe(3);
+    expect(result.json).toMatchObject({ status: 'error', code: 'INPUT_VALIDATION' });
+    expect(result.json.error).toContain(message);
+  });
+
   it('links a finding with a file ref to its file node, so evidence density rises above 0', async () => {
     const namespace = uniqueNamespace('upsert');
     namespaces.push(namespace);
