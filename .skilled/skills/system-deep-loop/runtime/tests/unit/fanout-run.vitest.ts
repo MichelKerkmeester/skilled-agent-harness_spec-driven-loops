@@ -6948,9 +6948,9 @@ describe('fanout-run.cjs — per-lineage expansive budget', () => {
     const notes = expansiveLineageBudgetNotes(expanded, budgeted, partition);
 
     expect(notes).toEqual([
-      'fanout-run: 3 lineages share 1 open seed node, so 2 lineages get no seed share',
-      'fanout-run: lineage a budget 24 iterations, derived from its seed share',
-      'fanout-run: lineage b got no seed share and runs at its loop default of 7 iterations',
+      '[fanout-run] 3 lineages share 1 open seed node, so 2 lineages get no seed share',
+      '[fanout-run] lineage a budget 24 iterations, derived from its seed share',
+      '[fanout-run] lineage b got no seed share and runs at its loop default of 7 iterations',
     ]);
   });
 

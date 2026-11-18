@@ -359,14 +359,14 @@ function expansiveLineageBudgetNotes(expanded, budgeted, partition) {
   const notes = [];
   if (expanded.length > seedCount) {
     const idle = expanded.length - seedCount;
-    notes.push(`fanout-run: ${expanded.length} lineages share ${seedCount} open seed node${seedCount === 1 ? '' : 's'}, `
+    notes.push(`[fanout-run] ${expanded.length} lineages share ${seedCount} open seed node${seedCount === 1 ? '' : 's'}, `
       + `so ${idle} lineage${idle === 1 ? '' : 's'} get${idle === 1 ? 's' : ''} no seed share`);
   }
   budgeted.forEach((lineage, index) => {
     if (lineage === expanded[index]) return;
     notes.push(shareOf(lineage.label) === 0
-      ? `fanout-run: lineage ${lineage.label} got no seed share and runs at its loop default of ${lineage.iterations} iterations`
-      : `fanout-run: lineage ${lineage.label} budget ${lineage.iterations} iterations, derived from its seed share`);
+      ? `[fanout-run] lineage ${lineage.label} got no seed share and runs at its loop default of ${lineage.iterations} iterations`
+      : `[fanout-run] lineage ${lineage.label} budget ${lineage.iterations} iterations, derived from its seed share`);
   });
   return notes;
 }
