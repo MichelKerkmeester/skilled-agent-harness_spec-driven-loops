@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Phases 001-013 add `--extend=N`, `--depth-mode=expansive` for deep-research and deep-review, custom review dimensions and defect fixes that change what an operator sees, but no system-deep-loop manual testing playbook or feature catalog mentions any of them",
     "created_at": "2026-11-17T17:06:39Z",
-    "last_save_at": "2026-11-18T14:21:47.602Z",
+    "last_save_at": "2026-11-18T15:47:13.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +215,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:333c4dc20144d5bae22debb91109676e97c2a9b37f6026acb7a9c0f6d6f35ff2",
+    "source_fingerprint": "sha256:401cac0539a067195f6d037e07338964b5c404d909267f9f4aac7fb109967a52",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2c249a194c56b848de1a14acf4ccefdc88eb2e25fca394a2c2972f8a0ea24039",
-      "plan.md": "ea20eb9b2f27cda84da92a416d5f722b78894572294ce6e295911489bd9621aa",
-      "tasks.md": "a4e7541a6d13470118601eed226bec90b4fc9dec533f663209ef40a2f546b5c6",
+      "spec.md": "455e52f38d743efb089c1b65866496ee8b7bb1b7e841dd5b283ec29993dd0313",
+      "plan.md": "0bc696372ff0a83d06ba07692991c924697f73df85a5f0d95630620145771bb8",
+      "tasks.md": "eb888a4e04b5475976f7420828504408b3e9579ed03edd3ff3c4c3865bdd39f8",
       "implementation-summary.md": "bdeaf1f1e09d4ccdf006408759edd3fc41ff53a53798237b396c0e1a4d40992f"
     },
     "last_active_at": null

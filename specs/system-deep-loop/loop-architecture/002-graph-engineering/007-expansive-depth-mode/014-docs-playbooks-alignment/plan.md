@@ -43,7 +43,7 @@ Each of phases 001-013 has already written its playbook scenarios through `/crea
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] Both alignment reports show zero open findings
+- [ ] Both alignment reports show every lane and the critic completed, no open P0 or P1 finding, and every open P2 finding fixed or handed off
 - [ ] `check-contract-drift.vitest.ts` passes after the last doc fix
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
@@ -81,7 +81,7 @@ Setup confirms 001-013 are done and records the Measured Behavior output. Implem
 ## 5. TESTING STRATEGY
 <!-- FILL: Name the one command you will run and the output it must print. GOOD: `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: Test it manually. -->
 
-From the repository root, rerun the two Measured Behavior commands from `spec.md`; each must print at least one file in every named directory. Fill the coverage table in `goal.md` §4 with one scenario file per map row. Then read the `report.md` of the final `/local-doc-alignment` and `/local-skilled-alignment` runs under `scratch/`; each must report zero open findings. Finally run `npm test -- tests/unit/check-contract-drift.vitest.ts` from `.skilled/skills/system-deep-loop/runtime`.
+From the repository root, rerun the two Measured Behavior commands from `spec.md`; each must print at least one file in every named directory. Fill the coverage table in `goal.md` §4 with one scenario file per map row. Then read the `report.md` of the final `/local-doc-alignment` and `/local-skilled-alignment` runs under `scratch/`; each must show every lane and the critic completed, no open P0 or P1 finding, and every open P2 finding fixed by a later commit or handed off in `goal.md` §4. Finally run `npm test -- tests/unit/check-contract-drift.vitest.ts` from `.skilled/skills/system-deep-loop/runtime`.
 <!-- /ANCHOR:testing -->
 
 ---

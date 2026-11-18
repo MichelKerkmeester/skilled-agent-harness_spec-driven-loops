@@ -34,7 +34,7 @@ _memory:
 ## 1. DURABLE DIRECTIVE
 <!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Keep only the newest n archives on request. WEAK: Improve the script. -->
 
-**Objective:** Confirm that every user-visible feature and fix of phases 001-013 has the manual testing playbook scenario its phase wrote, give each a feature catalog entry, and close the program with both alignment checks reporting no open finding.
+**Objective:** Confirm that every user-visible feature and fix of phases 001-013 has the manual testing playbook scenario its phase wrote, give each a feature catalog entry, and close the program with both alignment checks reporting no open P0 or P1 finding and every P2 finding fixed or handed off.
 
 ### Decisions
 
@@ -46,6 +46,7 @@ Frozen choices. Changing one is an amendment.
 | D2 | Catalog entries are written only through `/create:feature-catalog`; other doc findings are fixed here by direct edit, and a compiled contract they make stale is regenerated, never hand-edited. |
 | D3 | This phase changes docs only; a code finding goes back to its owning phase and blocks closure until fixed or waived by the operator. |
 | D4 | This phase starts only after phases 001-013 are complete. |
+| D5 | Criterion 5 closes on a confirming pair with no open P0 or P1 and every P2 fixed by a later commit or handed off (operator ruling 2026-11-18, verbatim in §4). |
 
 <!-- /ANCHOR:directive -->
 
@@ -59,7 +60,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `rg -l -- "--depth-mode=expansive" .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook` prints at least one file in each directory.
 - [x] `rg -il "custom review dimension" .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook .skilled/skills/system-deep-loop/deep-review/feature-catalog` prints at least one file in each directory.
 - [x] `rg -l -- "--depth-mode" .skilled/skills/system-deep-loop/deep-research/feature-catalog .skilled/skills/system-deep-loop/deep-review/feature-catalog` prints at least one file in each directory.
-- [ ] The last `/local-doc-alignment` run and the last `/local-skilled-alignment` run under this phase's `scratch/` each have a `report.md` that shows zero open findings.
+- [ ] The last `/local-doc-alignment` run and the last `/local-skilled-alignment` run under this phase's `scratch/` each have a `report.md` with every lane and the critic completed and no open P0 or P1 finding, and every open P2 finding in them is fixed by a later commit or recorded as handed off in this goal's log.
 - [x] `git diff --name-only` for this phase's commits lists no file outside `specs/` ending in `.cjs`, `.ts`, `.js`, `.yaml`, `.json`, `.toml` or `.txt`, and `npm test -- tests/unit/check-contract-drift.vitest.ts` run from `.skilled/skills/system-deep-loop/runtime` exits 0. Checked 2026-11-18: this phase's commits `e4c1a24b2d7`, `98082bf5177` and `0c6b0c6a900` list no such file. The code findings the alignment handed off went into separate fix commits merged as `f49c7ddd5eb`. `check-contract-drift.vitest` passes 9 of 9.
 <!-- /ANCHOR:completion -->
 
@@ -98,6 +99,7 @@ and findings belong here.
 | Reclassified | Ours | Hand-offs of text this program wrote were misclassified; they are fixed by class now; only pre-base text stays handed off |
 | Pair 1 (Vibe) | Not final | doc run-7 24 open (L4 timed out twice), skilled run-9 20 open; own findings fixed before pair 2 |
 | Pair 2 (Vibe, last) | Not met | doc run-8 12 open (4 handed off), all 8 lanes ok after reruns; skilled run-10 16 open (1 handed off); own findings reported, not fixed |
+| Criterion 5 amended | Done | Operator ruling 'Fix 28, then amend' (D5, verbatim Q001); 28 pair-2 P2s fixed; confirming pair runs next |
 
 ### Deviations and findings
 
@@ -176,6 +178,29 @@ Handed to the coordinator (not edited: code, YAML, JSON, agent or `.txt`):
 - `runtime/scripts/frontier-admit.cjs:341`, `:363`, `:532`; `deep-research/scripts/reduce-state.cjs:2465`, `:2484`, `:3573`; `runtime/tests/unit/research-depth-mode-golden.vitest.ts:167` (skilled run 4 F1 to F5, run 5 A-1 to A-4).
 - Gap for its owning phase: `--extend-minutes=M` has no manual scenario (skilled run 5 X-3, phase 001).
 - Other phases' docs, outside this folder and not edited: `010-research-frontier-mode/implementation-summary.md:157` and `011-review-frontier-mode/implementation-summary.md:119` still say the pilot did not run (X-5, X-6).
+
+### Operator answers verbatim
+
+### Q001
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_017uVrSb2fFwyS7pmeJy8Ps2:0 -->
+
+Question:
+```text
+Phase 014 criterion 5 (last alignment pair shows zero open findings) is still unmet after the last allowed pair. Doc run 8 has 12 open and skilled run 10 has 16, all 28 P2 (minor). The only P1s are three pre-existing ones, already handed off. Every lane and critic completed. Each fresh pair finds about 15 new minor items, so zero open has not converged in three allowances. How should criterion 5 close?
+```
+
+Options:
+```text
+Fix 28, then amend (Recommended)
+One more full round
+Amend now, hand off P2s
+Leave unmet, report
+```
+
+Answer:
+```text
+Fix 28, then amend (Recommended)
+```
 
 ### VERIFY 2026-11-18 (lanes pass)
 

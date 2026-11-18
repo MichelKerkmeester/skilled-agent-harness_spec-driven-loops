@@ -59,7 +59,7 @@ This is **Phase 14** of the expansive-depth program, and it runs last.
 Phases 001-013 add `--extend=N`, `--depth-mode=expansive` for deep-research and deep-review, custom review dimensions and defect fixes that change what an operator sees, but no system-deep-loop manual testing playbook or feature catalog mentions any of them. An operator cannot find a scenario that exercises the new flags, and a reviewer cannot check the catalogs against the shipped code.
 
 ### Purpose
-Confirm that every user-visible feature and fix of 001-013 has the playbook scenario its phase wrote, give each a catalog entry, and close the program with both alignment checks reporting no open finding.
+Confirm that every user-visible feature and fix of 001-013 has the playbook scenario its phase wrote, give each a catalog entry, and close the program with both alignment checks reporting no open P0 or P1 finding and every P2 finding fixed or handed off.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
@@ -143,7 +143,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-002 | `--depth-mode=expansive` has a playbook scenario on both loops | `rg -l -- "--depth-mode=expansive" $D/deep-research/manual-testing-playbook $D/deep-review/manual-testing-playbook` prints at least one file in each directory |
 | REQ-003 | Custom review dimensions have a playbook scenario and a catalog entry | `rg -il "custom review dimension" $D/deep-review/manual-testing-playbook $D/deep-review/feature-catalog` prints at least one file in each directory |
 | REQ-004 | Each row of the Feature to Playbook Map has a scenario in its category, written by its owning phase | The coverage table in `goal.md` §4 names one scenario file per 001-013 row; a row with no file is routed to its phase and rechecked after that phase adds it |
-| REQ-005 | Both alignment checks end clean | The final `/local-doc-alignment` run and the final `/local-skilled-alignment` run each report zero open findings in their `report.md`; a code finding counts as open until its owning phase lands a fix or the operator records a waiver in `goal.md` §4 |
+| REQ-005 | Both alignment checks end clean | The final `/local-doc-alignment` run and the final `/local-skilled-alignment` run each have a `report.md` with every lane and the critic completed and no open P0 or P1 finding, and every open P2 finding in them is fixed by a later commit or recorded as handed off in `goal.md` §4 (amended by operator ruling 2026-11-18); a code finding counts as open until its owning phase lands a fix or the operator records a waiver in `goal.md` §4 |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -162,7 +162,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: With 10 archives in `logs/archive`, `bash scripts/rotate-logs.sh --keep 3` leaves 3. WEAK: The feature is successful. -->
 
 - **SC-001**: The two Measured Behavior commands each print at least one file, where today they print none, without this phase writing a scenario.
-- **SC-002**: The final runs of `/local-doc-alignment` and `/local-skilled-alignment` each report zero open findings.
+- **SC-002**: The final runs of `/local-doc-alignment` and `/local-skilled-alignment` each have a `report.md` with every lane and the critic completed and no open P0 or P1 finding, and every open P2 finding in them is fixed by a later commit or recorded as handed off in `goal.md` §4 (amended by operator ruling 2026-11-18).
 <!-- /ANCHOR:success-criteria -->
 
 ---
