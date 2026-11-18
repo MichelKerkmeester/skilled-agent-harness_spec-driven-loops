@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "All 71 sk-design changelogs now read in the release-notes layout, and a recheck on disk found no lost fact."
 trigger_phrases:
   - "sk design changelogs implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs"
-    last_updated_at: "2026-11-17T18:13:10Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-11-18T04:58:12Z"
+    last_updated_by: "generate-context"
+    recent_action: "Phase 010 closed: 71 files, 0 failures"
+    next_safe_action: "Run phase 011 with 4 slots"
+    packet_purpose: "Purpose: Every sk-design changelog reads in the v4.1.0.0 layout and records exactly the facts it recorded before."
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/scratch/lists/010.txt"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:bbb04cfe598f68560a91faa4f997f9b129231d6df75da5d00739c382b0bffa4e"
       session_id: "scaffold-010-sk-design-changelogs"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "cbc62a39-7ca8-4b5a-989f-a86fdea260ea"
+      workspace: "/Users/michelkerkmeester/worktrees/public/454-changelog-layout-retrofit"
+      savedAt: "2026-11-18T04:58:12Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,60 +54,61 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+All 71 sk-design changelogs now read in the release-notes layout. 70 were rewritten and 1 already were in it.
 
 ### Phase 10: sk-design-changelogs
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+Each file went through the phase 001 driver: Hy4 Flash Free at high thinking wrote the draft, and the draft stayed only after the fact lock, the tier lock, the layout lint, the shape check, the voice scan and Devin's `glm-5-2` fact check passed. A compact entry stayed compact, with its summary as prose and each change as a plain bullet over its facts. An expanded entry gained the opening parts, the linked glance table and an anchor on every item.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| The 70 rewritten files in `../scratch/lists/010.txt` | Modified | Moved into the release-notes layout |
+| `../scratch/state.jsonl` | Modified | One record per file |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+The driver ran the list with 4 slots, then once more with `--retry-failed` for any file it had restored. `wave-verify.cjs` then rechecked every file on disk before the commit.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| No How It Was Checked section was added where the original had no test content | Adding one would invent facts. 6 files still fail that one rule, against 10 originals that did |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| `wave-verify.cjs ../scratch/lists/010.txt` | `{"listed":71,"pass":70,"unchanged":1,"restored":0,"missing":0,"problems":0,"factMisses":0,"failures":0}` |
+| `layout_lint.py` on the list | `SUMMARY files=71 pass=71 fail=0` |
+| `check_changelog_shape.py` on the list | Only `[checked-section]` fails: 6 files, against 10 in the baseline |
+| `hvr_scan.py --json` on the list | 0 hard blockers |
+| Attempts per rewritten file | 65 on attempt 1, 3 on attempt 2, 2 on attempt 3 |
+| Seconds per rewritten file | Mean 71 |
+| Fact checks by the writer's own model | 0 left. 0 drafts that only Hy4 had checked were checked again by GLM 5.3 Flash and passed |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **Old entries without test content stay without a How It Was Checked section.** The layout asks for one in an expanded entry. The original never recorded the content, so the section stays out.
 <!-- /ANCHOR:limitations -->
 
 ---

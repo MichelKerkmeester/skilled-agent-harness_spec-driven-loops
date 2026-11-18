@@ -143,19 +143,19 @@
     ],
     "causal_summary": "Phase 009 made the v4.1.0.0 layout the default for new changelogs: short bullets under short paragraphs, a linked glance table, alert boxes, folded detail and one source line per paragraph",
     "created_at": "2026-11-17T18:12:58Z",
-    "last_save_at": "2026-11-18T04:29:31.003Z",
+    "last_save_at": "2026-11-18T04:58:32.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:f8a64ba2556df10ef94a3653f0a9ee4ca8aaccfaa5b0e895599cb09ac0a2d8d5",
+    "source_fingerprint": "sha256:6613137ff0efc4e82d159be66239e5dcd49bfd6f1dabe47e05b3c7aa0ad983d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0fc33c9b122b1b4c5bca1bc589b337b1461f66fd18f31fe4179098307d4061da"
+      "spec.md": "03154d419fddedf61c23e4ceff4486c1519e6028199bdc7a3f3129089f8e818a"
     },
-    "last_active_child_id": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs",
-    "last_active_at": "2026-11-18T04:29:10.899Z"
+    "last_active_child_id": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs",
+    "last_active_at": "2026-11-18T04:58:12.391Z"
   }
 }

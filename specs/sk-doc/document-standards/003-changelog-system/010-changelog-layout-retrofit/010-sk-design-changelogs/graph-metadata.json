@@ -33,7 +33,7 @@
       "feature"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -189,8 +189,8 @@
     ],
     "causal_summary": "The 71 sk-design changelogs were written before the v4.1.0.0 layout",
     "created_at": "2026-11-17T18:13:09Z",
-    "last_save_at": "2026-11-17T22:19:21.357Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-18T04:58:12.372Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -199,13 +199,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:18c8e9bbf0dc6fd62035847a285967e0e967f3188574f58470e00f85abba3463",
+    "source_fingerprint": "sha256:873f965aa1db6e5529b94778daaa1210e4b9f0846685d73a8dbed237eacfb11f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d4642ff8cfb824ef7b2e8175f095c6f0f9e86e45913d85e4529e2ef7cbdbb1bd",
+      "spec.md": "5bac6dcb04202c66d1f9e1b8c569cf1e0ec5cb245d5dc744338b33b2d1387c3c",
       "plan.md": "92a437650523044077b9acb130e0998b88f3d1edc7d232f629d53ba3c83d5321",
-      "tasks.md": "34a631eb3d567acbbb0fd51a1db4907a572cdda8d8a622e8f7fadb5447c6de43",
-      "implementation-summary.md": "9f86d537c481cdaee829827cef4e3f0710ad45c03860b05465456e6c4c12c6cf"
+      "tasks.md": "4330c29c817eba7c1705da2947b585f8966b58360b56705dd9d003f67017e811",
+      "implementation-summary.md": "ea97fe75e6a77acf8ae103c1acedeaddcd583bfcee9666054e238c5b030c11ad"
     },
     "last_active_at": null
   }
