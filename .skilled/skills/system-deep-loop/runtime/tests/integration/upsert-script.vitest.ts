@@ -615,6 +615,24 @@ describe('upsert.cjs review finding identity', () => {
     expect(edges.find((edge) => edge.id === 'conf-b')?.targetId).toBe('finding:F1#2');
   });
 
+  it('keeps the file of a folded leaf finding, so a later reused id still splits', async () => {
+    const namespace = uniqueNamespace('upsert');
+    namespaces.push(namespace);
+    const file = stateLog([
+      { iteration: 1, findingDetails: [{ id: 'F1', title: 'Leak in a', file: 'src/a.cjs:3' }] },
+      { iteration: 2, findingDetails: [{ id: 'F1', title: 'Race in b', file: 'src/b.cjs:9' }] },
+    ]);
+
+    expect(upsert(namespace, file, 1, [{ id: 'finding-F1', kind: 'FINDING', name: 'Leak in a' }]).exitCode).toBe(0);
+    expect(upsert(namespace, file, 2).exitCode).toBe(0);
+
+    const { nodes } = await graph(namespace);
+    const earlier = nodes.find((node) => node.id === 'finding:F1');
+    expect(earlier?.name).toBe('Leak in a');
+    expect(earlier?.metadata).toMatchObject({ file: 'src/a.cjs' });
+    expect(nodes.find((node) => node.id === 'finding:F1#2')?.name).toBe('Race in b');
+  });
+
   it('derives an edge only from a ref with a line, and drops a trailing column', async () => {
     const namespace = uniqueNamespace('upsert');
     namespaces.push(namespace);
