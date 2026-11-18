@@ -571,35 +571,17 @@ describe('divergent pivot preflight and resume', () => {
     expect(dispatchSeat).not.toHaveBeenCalled();
   });
 
-  // The pivot no longer refuses on remaining iterations, so a live setting for it
-  // would be accepted and do nothing. It is not read, and not persisted.
-  it('ignores a live minRemainingIterations setting and persists no such limit', async () => {
-    const env = environment('pivot-min-remaining-ignored');
+  it('keeps accepting a persisted minRemainingIterations limit without refusing on it', async () => {
+    const env = environment('pivot-min-remaining-accepted');
     const result = await runDivergentPivot(options(env.tmpDir, {
-      identity: identity({ normalizedTrigger: 'min remaining ignored' }),
-      // An older config may still carry the key the input type no longer names.
-      config: { antiConvergence: { divergent: { minRemainingIterations: 2 } } } as RunDivergentPivotOptions['config'],
+      identity: identity({ normalizedTrigger: 'min remaining accepted' }),
+      config: { antiConvergence: { divergent: { minRemainingIterations: 2 } } },
       usage: { completedPivots: 0, councilSeatOutputs: 0, remainingIterations: 1 },
     }));
 
     expect(result.status).toBe('completed');
     const persisted = JSON.parse(readFileSync(result.paths.configPath, 'utf8')) as { limits: Record<string, unknown> };
-    expect(Object.prototype.hasOwnProperty.call(persisted.limits, 'minRemainingIterations')).toBe(false);
-  });
-
-  it('still finalizes a pivot whose persisted limits carry minRemainingIterations', async () => {
-    const env = environment('pivot-min-remaining-persisted');
-    const result = await runDivergentPivot(options(env.tmpDir, {
-      identity: identity({ normalizedTrigger: 'min remaining persisted' }),
-      usage: { completedPivots: 0, councilSeatOutputs: 0, remainingIterations: 1 },
-    }));
-    expect(result.status).toBe('completed');
-    const persisted = JSON.parse(readFileSync(result.paths.configPath, 'utf8')) as { limits: Record<string, unknown> };
-    writeFileSync(result.paths.configPath, JSON.stringify({
-      ...persisted,
-      limits: { ...persisted.limits, minRemainingIterations: 2 },
-    }), 'utf8');
-
+    expect(persisted.limits.minRemainingIterations).toBe(2);
     const replayed = finalizePivotTransaction({ paths: result.paths, pivotId: result.pivotId });
     expect(replayed.status).toBe('completed');
   });
