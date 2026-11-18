@@ -60,7 +60,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `rg -il "custom review dimension" .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook .skilled/skills/system-deep-loop/deep-review/feature-catalog` prints at least one file in each directory.
 - [x] `rg -l -- "--depth-mode" .skilled/skills/system-deep-loop/deep-research/feature-catalog .skilled/skills/system-deep-loop/deep-review/feature-catalog` prints at least one file in each directory.
 - [ ] The last `/local-doc-alignment` run and the last `/local-skilled-alignment` run under this phase's `scratch/` each have a `report.md` that shows zero open findings.
-- [ ] `git diff --name-only` for this phase's commits lists no file outside `specs/` ending in `.cjs`, `.ts`, `.js`, `.yaml`, `.json`, `.toml` or `.txt`, and `npm test -- tests/unit/check-contract-drift.vitest.ts` run from `.skilled/skills/system-deep-loop/runtime` exits 0.
+- [x] `git diff --name-only` for this phase's commits lists no file outside `specs/` ending in `.cjs`, `.ts`, `.js`, `.yaml`, `.json`, `.toml` or `.txt`, and `npm test -- tests/unit/check-contract-drift.vitest.ts` run from `.skilled/skills/system-deep-loop/runtime` exits 0. Checked 2026-11-18: this phase's commits `e4c1a24b2d7`, `98082bf5177` and `0c6b0c6a900` list no such file. The code findings the alignment handed off went into separate fix commits merged as `f49c7ddd5eb`. `check-contract-drift.vitest` passes 9 of 9.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -212,4 +212,5 @@ One row per Feature to Playbook Map row. Every scenario file is listed in its pa
 
 Totals: 13 map rows, 18 scenario files. Rows 001, 004, 008, 010 and 011 name two categories, so each has one file per category. T004 found no row without a scenario.
 
+| 2026-11-18 04:1x | Final gate on `f49c7ddd5eb`: 190 files, 3383 passed, 11 skipped, 0 failed (baseline `c9d8ff4`: 3095 passed, 0 failed). Criterion 6 checked. Criterion 5 stays open: the last doc-alignment run (run-3) and the last skilled-alignment run (run-5) do not show zero open, because the aggregator has no handed-off or rebutted status. The code findings were then fixed in `94d246cb3bc` (merged `f49c7ddd5eb`), and no lane re-read followed. A fresh lane run on the final tree, plus a handed-off status in `aggregate-findings.cjs`, would close it. |
 <!-- /ANCHOR:log -->
