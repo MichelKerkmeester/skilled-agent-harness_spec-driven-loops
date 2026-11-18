@@ -45,6 +45,7 @@ PRE-BOUND SETUP ANSWERS:
   convergenceThreshold: 0.05  # decimal 0..1
   convergence_mode: default  # default | off | sliding-window | divergent
   depth_mode: default  # default | expansive (opt-in frontier growth)
+  frontier_scope: none  # internal, written by fan-out for an expansive lineage: comma-separated frontier node ids, or none
   lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
   extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
   extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the duration budget, default the prior budget
@@ -81,6 +82,7 @@ Rules: see `auto-mode-contract.md` §2 (unspecified fields fall back to default;
 | `executor_service_tier` | N        | flag `--service-tier`, marker `executor_service_tier`, or executor default                                                                                                                             | none                               | N                                                       |
 | `executor_timeout`      | N        | flag `--executor-timeout`, marker `executor_timeout`, or default                                                                                                                                       | `900`                              | N                                                       |
 | `resource_map_emit`     | N        | flag `--no-resource-map`, marker `resource_map_emit`, or default                                                                                                                                       | `true`                             | N                                                       |
+| `frontier_scope` | N | internal marker `frontier_scope`, written by `fanout-run.cjs` for an expansive fan-out lineage | none | N |
 | `fanout_executors`      | N        | repeatable `--executor=<type>` flags or `--executors=<json>`; each group accepts `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count`; one expanded lineage selects `config.executor`, two or more select `config.fanout` | none (single-executor when absent) | N                                                       |
 | `fanout_concurrency`    | N        | flag `--concurrency=N`                                                                                                                                                                                 | `2`                                | N                                                       |
 
@@ -295,7 +297,7 @@ Run an iterative loop for deep research: Initialize state under `{artifact_dir}`
 **Success:**
 ```
 Deep research complete.
-Iterations: [N] | Stop reason: [converged|max_iterations|all_answered]
+Iterations: [N] | Stop reason: [converged|maxIterationsReached|maxDurationReached]
 Artifacts: research/research.md, research/resource-map.md (unless `--no-resource-map`), [N] iteration files, continuity update in canonical spec docs refreshed
 Ready for: /speckit:plan [feature-description]
 STATUS=OK PATH=[spec-folder-path]

@@ -197,8 +197,10 @@ function readNodeStore(storePath) {
   let content;
   try {
     content = fs.readFileSync(storePath, 'utf8');
-  } catch {
-    return nodes;
+  } catch (error) {
+    // An empty map would read as a never-seeded run, so a store that exists but
+    // cannot be read is an error, never an empty frontier.
+    throw new Error(`cannot read node store ${storePath}: ${error instanceof Error ? error.message : String(error)}`);
   }
 
   for (const line of content.split('\n')) {
@@ -317,6 +319,9 @@ function checkProposal(proposal, nodes, caps, knownTexts, options = {}) {
   const reviewConfig = isPlainObject(options) ? options.reviewConfig : undefined;
 
   // 1. relevance
+  // A row with no question is missing a required field, so it must not reach
+  // dedupe, which would report a duplicate of nothing.
+  if (!isNonEmptyString(proposal.question)) return 'relevance';
   if (!isNonEmptyString(proposal.evidence)) return 'relevance';
   if (!hasScope(proposal.scope)) return 'relevance';
   // A review run only reads the paths its target names, so a node scoped

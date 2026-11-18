@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "e93965450782636df72a177b06fff64ef4414539e72abd51cdde9ac36eec2ed8",
+      "sha256": "d427fcd39b08dfd82c9ea8b7206be539c8123ed6711d2be4781e2c385eec6a36",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "10ee3b68045e9a7489bd5300aa7ac1bdf404dc2acffdd2af5bcb23b23000b8c2",
+      "sha256": "cd75d19b60da376996a52ca8c1104f1918d4fc0e79b2db1795e562e9576598f5",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research.yaml",
-      "sha256": "d3e7edf57ecee4076a51e38421c252607ec2f301d42ba721ec8241822313183a",
+      "sha256": "3185ee5ce524413b7614912bdf8a67511cc34275d65c7fa7bd809c724e146076",
       "section": "full"
     },
     {
@@ -37,12 +37,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "34eefbd5c6838f81d436efaa923460959c3b43ed762f72c0d36792c5d5eb8817",
+      "sha256": "a3c88fc956a76621d4e1c57a03750d5f4d6d15615047c996e912eb24e2057c34",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "2812ac6eda099466df32ccd1a0376ae32c3811218ce40b3dce198f0bed9e39b8",
+      "sha256": "9d728228f08c6a910acd667155a8e9618e4209a7ce4e69e1a340d70b2b71d00e",
       "section": "full"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
-      "sha256": "9f1abeca94829106938240354b574a57ca24f908485d746b03f3f6416b43f8ee",
+      "sha256": "0c2ad9c64c25f73046f6dd174d811975b9bdd9d80148b5ff9e11f49a3cb4a272",
       "section": "full"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "path": ".skilled/agents/deep-research.md",
-      "sha256": "703c3adf6e66da6680e4ee6e2c621034c06d7c22064446e6336f41c94b9c2f92",
+      "sha256": "370499f561bd3d671e2f5588c12289e27444f9e1ffb0e6310e15ecbeb11feb37",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "f6d5d2967e6ca47b6f27928ab6833b3715e156aed1fb499ac632aa8c83e9c0ac"
+  "compiledBodyDigest": "fcb29590047007a87ed205f4fea9d598de468b3d38dfd8a63f463fbfc2145990"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -188,6 +188,7 @@ PRE-BOUND SETUP ANSWERS:
   convergenceThreshold: 0.05  # decimal 0..1
   convergence_mode: default  # default | off | sliding-window | divergent
   depth_mode: default  # default | expansive (opt-in frontier growth)
+  frontier_scope: none  # internal, written by fan-out for an expansive lineage: comma-separated frontier node ids, or none
   lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
   extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
   extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the duration budget, default the prior budget
@@ -224,6 +225,7 @@ Rules: see `auto-mode-contract.md` §2 (unspecified fields fall back to default;
 | `executor_service_tier` | N        | flag `--service-tier`, marker `executor_service_tier`, or executor default                                                                                                                             | none                               | N                                                       |
 | `executor_timeout`      | N        | flag `--executor-timeout`, marker `executor_timeout`, or default                                                                                                                                       | `900`                              | N                                                       |
 | `resource_map_emit`     | N        | flag `--no-resource-map`, marker `resource_map_emit`, or default                                                                                                                                       | `true`                             | N                                                       |
+| `frontier_scope` | N | internal marker `frontier_scope`, written by `fanout-run.cjs` for an expansive fan-out lineage | none | N |
 | `fanout_executors`      | N        | repeatable `--executor=<type>` flags or `--executors=<json>`; each group accepts `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count`; one expanded lineage selects `config.executor`, two or more select `config.fanout` | none (single-executor when absent) | N                                                       |
 | `fanout_concurrency`    | N        | flag `--concurrency=N`                                                                                                                                                                                 | `2`                                | N                                                       |
 

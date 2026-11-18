@@ -385,8 +385,8 @@ export function buildReviewPivotPreparationInput(
 
   // The stop veto already keeps the run going while frontier nodes are open, so a
   // pivot reaching this point with one still open means the caller skipped it. An
-  // accepted direction re-enters breadth through frontier admission as a frontier
-  // proposal, which is why the pivot itself needs a closed queue.
+  // accepted direction becomes the next review focus, not a frontier node, so the
+  // pivot needs a closed queue to avoid competing with open frontier work.
   const frontierOpen = expansiveFrontierNodes(config, registry)
     .some((node) => ['open', 'active'].includes(normalizeText(node.status)));
   if (frontierOpen) {

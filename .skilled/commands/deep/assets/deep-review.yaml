@@ -880,7 +880,7 @@ workflow:
           expansiveDepth.maxDepth: 3
           expansiveDepth.maxChildrenPerNode: 6
           expansiveDepth.budgetSplit: { depth1: 0.5, depth2: 0.35, depth3: 0.15 }
-          # Null derives the node cap at admission as half the iteration budget, so seeded questions and the stop gates keep iterations of their own.
+          # Null derives the run-wide node cap at admission as half the iteration budget, so the frontier cannot claim every iteration; the depth-1 seed answers only to the root-children cap but counts toward this one, so growth past depth 1 needs maxIterations above twice the live node count.
           expansiveDepth.maxFrontierNodes: null
           antiConvergence.divergent: {}
           stopPolicy: "{stop_policy}"
@@ -1374,7 +1374,7 @@ workflow:
               eligible_reasons: [all_dimensions_clean]
               excluded_reasons: [maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached]
               fail_closed: "Any missing or ambiguous reason uses if_existing_terminal_path without preparing a pivot. The nine legal-stop gates have already run and remain unchanged."
-              frontier_gate: "Under depth_mode == 'expansive' the pivot is eligible only once registry.frontier holds no open or active node. The frontierOpen stop veto already returns CONTINUE while one is open, so this gate records the order rather than adding a second check. A candidate the pivot accepts re-enters breadth through step_frontier_admit as a frontier_proposal row, and the pivot may seed from nodes closed exhausted or blocked."
+              frontier_gate: "Under depth_mode == 'expansive' the pivot is eligible only once registry.frontier holds no open or active node. The frontierOpen stop veto already returns CONTINUE while one is open, so this gate records the order rather than adding a second check. A candidate the pivot accepts becomes next_dimension through pivot_result.restoredFocus; with the frontier terminal the leaf gets no FRONTIER block, so the pivot adds no frontier node. The pivot may seed from nodes closed exhausted or blocked."
             steps:
               step_prepare_divergent_pivot:
                 action: "Generate state-grounded read-only review candidates and prepare or resume the pivot transaction"

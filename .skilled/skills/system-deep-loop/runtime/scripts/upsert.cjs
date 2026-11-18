@@ -194,12 +194,8 @@ function parseFindingRef(ref) {
   return filePath ? { filePath, line: Number(match[2]) } : null;
 }
 
-// The iteration's own findings are the source of review evidence: each finding with
-// a `path:line` ref becomes a FINDING node and an EVIDENCE_FOR edge to the FILE node
-// of that path. The evidence-density signal counts those edges per finding, and a
-// leaf that sends no graph events would otherwise leave it at zero, so the graph
-// could never allow a stop. The delta's finding rows carry the ref the leaf
-// contract requires; the state record's findingDetails may leave it out.
+// An optional source that does not exist reads as no rows; any other read failure
+// is an input error, so a required log is never silently treated as empty.
 function readJsonlRows(filePath, label, required) {
   let raw;
   try {
@@ -220,6 +216,12 @@ function readJsonlRows(filePath, label, required) {
   return rows;
 }
 
+// The iteration's own findings are the source of review evidence: each finding with
+// a `path:line` ref becomes a FINDING node and an EVIDENCE_FOR edge to the FILE node
+// of that path. The evidence-density signal counts those edges per finding, and a
+// leaf that sends no graph events would otherwise leave it at zero, so the graph
+// could never allow a stop. The delta's finding rows carry the ref the leaf
+// contract requires; the state record's findingDetails may leave it out.
 function readReviewIterationFindings({ stateLog, deltaDir, iteration }) {
   const byId = new Map();
   const add = (finding) => {

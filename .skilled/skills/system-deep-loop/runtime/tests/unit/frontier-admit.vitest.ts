@@ -16,7 +16,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { chmodSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -226,6 +226,13 @@ describe('frontier-admit', () => {
     expect(checkProposal(proposal, new Map(), CAPS, ['How does the frontier prune?'])).toBe('relevance');
   });
 
+  it('names relevance, not dedupe, for a proposal that carries no question', () => {
+    const { question: _omitted, ...proposal } = makeProposal('which question went missing');
+
+    expect(checkProposal(proposal, new Map(), CAPS, [])).toBe('relevance');
+    expect(checkProposal({ ...proposal, question: '   ' }, new Map(), CAPS, [])).toBe('relevance');
+  });
+
   it('admits a valid proposal: one inbox row with origin frontier and one open store row', () => {
     const artifactDir = makeArtifactDir();
 
@@ -294,6 +301,18 @@ describe('frontier-admit', () => {
 
     expect(second).toEqual({ admitted: [], pruned: [], skipped: 'already-seeded' });
     expect(readNodeStore(join(artifactDir, STORE_FILE)).size).toBe(1);
+  });
+
+  it.skipIf(process.getuid?.() === 0)('throws on a node store it cannot read, so a seeded run is never re-seeded', () => {
+    const artifactDir = makeArtifactDir();
+    seedNodes({ artifactDir, iteration: 0, candidates: [makeProposal('which gate fires the policy')] });
+    const storePath = join(artifactDir, STORE_FILE);
+    chmodSync(storePath, 0o200);
+    try {
+      expect(() => readNodeStore(storePath)).toThrow(/cannot read node store/);
+    } finally {
+      chmodSync(storePath, 0o600);
+    }
   });
 
   it('closeNode appends a terminal row and the last row wins', () => {
