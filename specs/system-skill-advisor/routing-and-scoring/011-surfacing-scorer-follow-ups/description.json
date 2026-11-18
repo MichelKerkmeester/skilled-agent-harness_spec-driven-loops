@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups",
+  "description": "Fix eight skill and command surfacing gaps in the advisor scorer, its CLI JSON and its index freshness check",
+  "keywords": [
+    "eight",
+    "skill",
+    "command",
+    "surfacing",
+    "gaps",
+    "advisor",
+    "scorer",
+    "cli",
+    "json",
+    "index",
+    "freshness",
+    "check"
+  ],
+  "lastUpdated": "2026-11-17T22:04:54.268Z",
+  "specId": "011",
+  "folderSlug": "surfacing-scorer-follow-ups",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-11-26_23-04__fixed-four-advisor-surfacing-gaps-a-vendoring.md"
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups",
+  "parent_id": "system-skill-advisor/routing-and-scoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "surfacing scorer follow ups",
+      "fix eight skill and command surfacing gaps",
+      "surfacing scorer follow ups plan",
+      "surfacing scorer follow ups tasks",
+      "surfacing scorer follow ups acceptance criteria",
+      "surfacing scorer follow ups goal",
+      "011-surfacing-scorer-follow-ups operator decisions",
+      "surfacing scorer follow ups implementation summary"
+    ],
+    "key_topics": [
+      "surfacing",
+      "scorer",
+      "follow",
+      "ups",
+      "eight",
+      "skill",
+      "command",
+      "gaps",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/command-bridge-loader.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/command-phrase-tolerance.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/review-status-wording.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/command-bridge-loader.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/name-mention-scoring.vitest.ts",
+      "scratch/advisor-baseline.txt",
+      "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/synthesis-review.md",
+      "scratch/work-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-bridge-loader.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/command-bridge-loader.ts",
+        "source": "derived"
+      },
+      {
+        "name": "projection.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-phrase-tolerance.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/command-phrase-tolerance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-status-wording.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/review-status-wording.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-bridge-loader.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/command-bridge-loader.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "name-mention-scoring.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/name-mention-scoring.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-baseline.txt",
+        "kind": "file",
+        "path": "scratch/advisor-baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-review.md",
+        "kind": "doc",
+        "path": "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/synthesis-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "work-record.md",
+        "kind": "doc",
+        "path": "scratch/work-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Success",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior Command",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A project that vendors Skilled measured the advisor on its own prompts and reported eight surfacing gaps",
+    "created_at": "2026-11-17T20:46:09Z",
+    "last_save_at": "2026-11-17T22:05:23.510Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:933ffd95621786680ede604e6f04016e95cffca9f52baf0d5d9e68443ff9cff4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b378db6fb3de2479e461d17fb65fc7818efc47a9e34e22c2545b86e8094d8ede",
+      "plan.md": "940637b7420285bf74ab58b11d8e496e1cfba77695410134bf79a43bc4fef1fc",
+      "tasks.md": "a70bf0b65d9e7666e60b26127030af84342793746e9f3f3481bea509206b8fdb",
+      "decision-record.md": "2e940ebe39ce919c16ff03fda47526ed69ec0b406257341df9f26b647e9ff7e2",
+      "implementation-summary.md": "36238224579d9f742e4aa2ea55b373101dcd0dd23f75c513f0a2ce4fe4a78bbb"
+    },
+    "last_active_at": null
+  }
+}

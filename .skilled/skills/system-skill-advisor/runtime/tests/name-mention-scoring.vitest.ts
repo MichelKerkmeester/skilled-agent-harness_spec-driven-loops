@@ -133,3 +133,30 @@ describe('advisor name mention scoring', () => {
     expect(resolveExecutorDelegation(promptLower, table)).toBeNull();
   });
 });
+
+// A word joined to another by a hyphen is part of a compound name, such as a
+// repository called `ai-speckit`, so a single-word keyword must not match inside it.
+describe('advisor keyword matching inside hyphenated names', () => {
+  const projection = createFixtureProjection([
+    skill({ id: 'system-spec-kit', keywords: ['speckit', 'spec-kit'] }),
+    skill({ id: 'system-skilled-doctor', keywords: ['re-pin'] }),
+  ]);
+  const evidence = (skillId: string, prompt: string): readonly string[] => (
+    scoreExplicitLane(prompt, projection).find((entry) => entry.skillId === skillId)?.evidence ?? []
+  );
+
+  it('does not match a single-word keyword inside a hyphenated compound', () => {
+    expect(evidence('system-spec-kit', 'link this project to ai-speckit')).not.toContain('author:speckit');
+    expect(evidence('system-spec-kit', 'open the speckit-cache folder')).not.toContain('author:speckit');
+  });
+
+  it('still matches the keyword standing alone or at a sentence edge', () => {
+    expect(evidence('system-spec-kit', 'run speckit on this packet')).toContain('author:speckit');
+    expect(evidence('system-spec-kit', 'speckit, please validate')).toContain('author:speckit');
+  });
+
+  it('still matches a keyword that carries its own hyphen', () => {
+    expect(evidence('system-spec-kit', 'use the spec-kit validator')).toContain('author:spec-kit');
+    expect(evidence('system-skilled-doctor', 're-pin the vendored tree')).toContain('author:re-pin');
+  });
+});

@@ -13,7 +13,8 @@
     "system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
     "system-skill-advisor/routing-and-scoring/009-git-history-lift",
-    "system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan"
+    "system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan",
+    "system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups"
   ],
   "manual": {
     "depends_on": [],
