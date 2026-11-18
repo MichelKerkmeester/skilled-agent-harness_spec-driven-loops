@@ -1,7 +1,7 @@
 ---
 title: "DLR-065 -- frontier-admit.cjs"
 description: "This scenario validates the frontier-admit.cjs CLI: seed writes depth-1 nodes and reports the budget, admit prunes a proposal with its reason, close appends a status row, and a pruned node cannot be closed as live, for `DLR-065`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DLR-065 -- frontier-admit.cjs
@@ -45,14 +45,14 @@ Operators run the exact commands below against a scratch directory and confirm e
 `seed.json`:
 
 ```json
-[{"question":"Which module owns admission?","scope":"runtime/lib","evidence":"runtime/lib/a.ts:10"},
- {"question":"Which caps does admission read?","scope":"runtime/lib","evidence":"runtime/lib/b.ts:4"}]
+[{"question":"Which module owns admission?","scope":"runtime/lib","evidence":"runtime/scripts/frontier-admit.cjs:620"},
+ {"question":"Which caps does admission read?","scope":"runtime/lib","evidence":"runtime/scripts/frontier-admit.cjs:266"}]
 ```
 
 `delta.jsonl`, one row with evidence and one without:
 
 ```json
-{"type":"frontier_proposal","parentId":"F-1-001","question":"Which file holds the cycle check?","scope":"runtime/lib","evidence":"runtime/lib/c.ts:7"}
+{"type":"frontier_proposal","parentId":"F-1-001","question":"Which file holds the cycle check?","scope":"runtime/lib","evidence":"runtime/scripts/frontier-admit.cjs:168"}
 {"type":"frontier_proposal","parentId":"F-1-001","question":"Which file holds the depth check?","scope":"runtime/lib","evidence":""}
 ```
 
