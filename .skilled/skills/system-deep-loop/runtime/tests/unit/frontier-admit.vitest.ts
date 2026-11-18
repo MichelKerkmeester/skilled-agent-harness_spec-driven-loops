@@ -251,6 +251,15 @@ describe('frontier-admit', () => {
     expect(checkProposal({ ...proposal, question: '   ' }, new Map(), CAPS, [])).toBe('relevance');
   });
 
+  it('names relevance for a scope list that holds no usable path', () => {
+    const proposal = makeProposal('which path does this node cover');
+
+    for (const scope of [['   '], [123], [null], []]) {
+      expect(checkProposal({ ...proposal, scope }, new Map(), CAPS, [])).toBe('relevance');
+    }
+    expect(checkProposal({ ...proposal, scope: ['   ', 'src/app.ts'] }, new Map(), CAPS, [])).toBeNull();
+  });
+
   it('admits a valid proposal: one inbox row with origin frontier and one open store row', () => {
     const artifactDir = makeArtifactDir();
 

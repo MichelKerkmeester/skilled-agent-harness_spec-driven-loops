@@ -108,9 +108,12 @@ function isNonEmptyString(value) {
   return typeof value === 'string' && value.trim() !== '';
 }
 
+// A scope list counts only when one entry is a non-blank string. A list of blanks
+// or non-strings would otherwise pass here and then pass the review-target
+// containment check vacuously, since that check reads string entries only.
 function hasScope(scope) {
   if (typeof scope === 'string') return scope.trim() !== '';
-  return Array.isArray(scope) && scope.length > 0;
+  return Array.isArray(scope) && scope.some(isNonEmptyString);
 }
 
 function normalizeIteration(value) {
