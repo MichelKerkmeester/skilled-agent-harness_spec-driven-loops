@@ -651,9 +651,9 @@ function renderFrontierBlock({ artifactDir, focus, nodeId, dimension, target = '
   } else if (slots === 0) {
     lines.push('This node has no child slots left, so do not propose children.');
   } else if (mode === 'review') {
-    lines.push(`You may append up to ${slots} \`frontier_proposal\` rows to this iteration's delta with "parentId":"${resolvedId}", one per sub-target your evidence opened inside this node. Each row needs "question" (what to review), "scope" (paths inside the review target) and "evidence". The admission step prunes duplicates, anything outside the review target and anything past the depth, fan-out or budget caps. Never write review/frontier-nodes.jsonl or a coverage surface yourself.`);
+    lines.push(`You may append up to ${slots} \`frontier_proposal\` rows to this iteration's delta with "parentId":"${resolvedId}", one per sub-target your evidence opened inside this node. Each row needs "question" (what to review), "scope" (paths inside the review target) and "evidence". The admission step prunes duplicates, anything outside the review target, anything past the depth or fan-out caps, and any budget above one the parent recorded. Never write review/frontier-nodes.jsonl or a coverage surface yourself.`);
   } else {
-    lines.push(`You may append up to ${slots} \`frontier_proposal\` rows to this iteration's delta with "parentId":"${resolvedId}", one per follow-up question your evidence opened inside this node. Each row needs "question", "scope" and "evidence". The admission step prunes duplicates and anything past the depth, fan-out or budget caps.`);
+    lines.push(`You may append up to ${slots} \`frontier_proposal\` rows to this iteration's delta with "parentId":"${resolvedId}", one per follow-up question your evidence opened inside this node. Each row needs "question", "scope" and "evidence". The admission step prunes duplicates, anything past the depth or fan-out caps, and any budget above one the parent recorded.`);
   }
 
   return `\n\n${lines.join('\n')}`;
