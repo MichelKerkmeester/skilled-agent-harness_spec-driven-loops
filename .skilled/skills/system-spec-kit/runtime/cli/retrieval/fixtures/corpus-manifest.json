@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e259041397e5b0fb1cda71658efb340f5dd32b8baa6b65c34ce63081bb15298b",
+  "corpusHash": "7426c1a1afaa650428d3bda69486eac5bbc32844dee8d93f94304b19812bbf92",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28448,
+  "includedPathCount": 28449,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -19868,6 +19868,7 @@
     "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/spec.md",
     "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/tasks.md",
     "specs/system-skilled-doctor/005-barter-upstream-fixes/acceptance-criteria.md",
+    "specs/system-skilled-doctor/005-barter-upstream-fixes/decision-record.md",
     "specs/system-skilled-doctor/005-barter-upstream-fixes/implementation-summary.md",
     "specs/system-skilled-doctor/005-barter-upstream-fixes/plan.md",
     "specs/system-skilled-doctor/005-barter-upstream-fixes/spec.md",
@@ -28480,7 +28481,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "13bd52800dcea3d322aeb752119078f170b640621513458dad088d67ef6bc0df",
+  "manifestHash": "a3f04f3e35f44188ba362bffaa10cf88d7b9edac4ca9d6c3c9280e98918d9585",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

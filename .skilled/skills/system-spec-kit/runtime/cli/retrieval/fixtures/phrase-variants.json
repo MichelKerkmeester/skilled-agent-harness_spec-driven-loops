@@ -1,5 +1,5 @@
 {
-  "manifestHash": "13bd52800dcea3d322aeb752119078f170b640621513458dad088d67ef6bc0df",
+  "manifestHash": "a3f04f3e35f44188ba362bffaa10cf88d7b9edac4ca9d6c3c9280e98918d9585",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1329,6 +1329,9 @@
     ],
     "005 alignment report fixes operator decisions": [
       "005-alignment-report-fixes operator decisions"
+    ],
+    "005 barter upstream fixes operator decisions": [
+      "005-barter-upstream-fixes operator decisions"
     ],
     "005 claudest adr": [
       "005-claudest adr"
