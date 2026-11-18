@@ -1,7 +1,7 @@
 ---
 title: "runtime/: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the runtime/ skill."
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # runtime/: Manual Testing Playbook
@@ -548,7 +548,7 @@ Expected signals: Similarity thresholding, category guard, bounded namespace beh
 ### DLR-061 | Source quality class derivation
 
 #### Description
-Verify that `upsert.cjs` derives `quality_class` on each research SOURCE node from its path, then its label, then its id, and that the source-diversity signal reads the derived classes on normal runs.
+Verify that `upsert.cjs` derives `quality_class` on each research SOURCE node from its path, then its name, then its label, then its id, and that the source-diversity signal reads the derived classes on normal runs.
 
 #### Scenario Contract
 Prompt: `Upsert a research source with a repo test path and a leaf-supplied quality_class that disagrees, then confirm the stored class follows the path and that a question answered only from code files still blocks at the source diversity guard.`

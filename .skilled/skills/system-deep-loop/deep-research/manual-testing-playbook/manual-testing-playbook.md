@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.16.2.0
+version: 1.16.3.0
 ---
 
 # deep-research: Manual Testing Playbook
@@ -27,7 +27,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 71 deterministic scenarios across 9 categories validating the current `deep-research` skill surface, including 6 CP-* command-flow stress tests. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 72 deterministic scenarios across 9 categories validating the current `deep-research` skill surface, including 6 CP-* command-flow stress tests. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -238,7 +238,7 @@ Expected signals: The root `step_frontier_seed` precedes `step_fanout_spawn`, th
 
 ## 9. ITERATION EXECUTION AND STATE DISCIPLINE
 
-This category covers 17 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 18 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DR-007 | Iteration reads state before research
 
@@ -460,6 +460,19 @@ Expected signals: The focus case chooses a depth-one node over a depth-two node 
 
 #### Test Execution
 > **Feature File:** [DR-071](../manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md)
+
+### DR-074 | Frontier graph mirror closes unanswered nodes as claims
+
+#### Description
+Verify that under the expansive mode the frontier node store is mirrored into the coverage graph, that a pruned node never reaches the graph, that a node closed without an answer becomes a closed CLAIM, and that the upsert is skipped when no node is projected.
+
+#### Scenario Contract
+Prompt summary: Check that under expansive depth mode the frontier node store is mirrored into the coverage graph, that a pruned node never reaches the graph, that a node closed without an answer becomes a closed CLAIM instead of a QUESTION, and that the upsert is skipped when no node is projected. Return a PASS or FAIL verdict with the reason.
+
+Expected signals: The five projection cases pass, the mirror step follows `step_graph_upsert` and runs `frontier-admit.cjs graph` and `upsert.cjs`, the end-to-end case inserts two nodes and one edge, the closed status set names `blocked`, `exhausted` and `abstained`, and the step skips the upsert when the graph command reports no nodes.
+
+#### Test Execution
+> **Feature File:** [DR-074](../manual-testing-playbook/iteration-execution-and-state-discipline/frontier-graph-mirror-closes-unanswered-nodes.md)
 
 ---
 
@@ -865,7 +878,7 @@ Validate that command-dispatched `@deep-research` reads existing state and does 
 
 ## 14. FAN-OUT
 
-This category covers 4 scenarios validating the opt-in fan-out dispatch layer added in the research loop: CLI lineage pool dispatch, native sequential agent dispatch, and single-executor parity.
+This category covers 4 scenarios validating the opt-in fan-out dispatch layer added in the research loop: CLI lineage pool dispatch, native sequential agent dispatch, single-executor parity, and the round-robin deal of seeded frontier nodes under the expansive mode.
 
 ### DR-052 | Fan-out research with two CLI lineages
 

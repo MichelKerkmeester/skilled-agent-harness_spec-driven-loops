@@ -6,7 +6,7 @@ trigger_phrases:
   - "council quorum retry"
   - "maxCouncilSeatOutputs"
   - "pivot attempt 2"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Divergent pivot seat cap and council retry
@@ -43,7 +43,8 @@ Seat event ids include the attempt number, so attempt 2 does not reuse attempt 1
 | `.skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs` | Script | Carries the attempt number and retry signal through `prepare` and `finalize`. |
 | `.skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts` | Script | Scopes the research seat count to the pivot id and attempt. |
 | `.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` | Script | Scopes the review seat count to the pivot id and attempt. |
-| `.skilled/commands/deep/assets/deep-review.yaml` | Command workflow | Reopens the pivot once as attempt 2 after a retryable quorum failure. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Command workflow | `step_retry_divergent_pivot_once` reopens the research pivot once as attempt 2 after a retryable quorum failure. |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Command workflow | `step_retry_divergent_pivot_once` reopens the review pivot once as attempt 2 after a retryable quorum failure. |
 
 ### Validation And Tests
 

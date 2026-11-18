@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.13.4.0
+version: 1.13.5.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -28,7 +28,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 69 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (50 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (7 scenarios under DRV-058..063 and DRV-075), and §17 covers fan-out dispatch (6 scenarios under DRV-064..067, DRV-071 and DRV-082). DRV-076 to DRV-082 cover the opt-in expansive depth flag for review. Default runs differ from the pre-change baseline only by the expansive-only agent paragraph, which is waived pending operator ratification. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 70 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (51 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (7 scenarios under DRV-058..063 and DRV-075), and §17 covers fan-out dispatch (6 scenarios under DRV-064..067, DRV-071 and DRV-082). DRV-076 to DRV-083 cover the opt-in expansive depth flag for review. Default runs differ from the pre-change baseline only by the expansive-only agent paragraph, which is waived pending operator ratification. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -430,7 +430,7 @@ Expected signals: The node stays open at two of four covered and answers at four
 
 ## 10. CONVERGENCE AND RECOVERY
 
-This category covers 14 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 15 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DRV-030 | Stop on max iterations
 
@@ -616,6 +616,19 @@ Expected signals: The three review pivot cases pass, the workflow gate case pass
 
 #### Test Execution
 > **Feature File:** [DRV-081](../manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md)
+
+### DRV-083 | Drained frontier forms a review stop candidate
+
+#### Description
+Verify that under the expansive mode a review whose frontier holds no open or active node and at least one answered node forms the `frontier_drained` hard stop candidate, that the legal-stop gates still decide it, and that a default run or a frontier closed with nothing answered forms no candidate.
+
+#### Scenario Contract
+Prompt: `Check that under expansive depth mode a review whose frontier holds no open or active node and at least one answered node forms the frontier_drained stop candidate, that the legal-stop gates still decide it, and that a default run or a frontier closed with nothing answered forms no candidate. Return a PASS or FAIL verdict with the reason.`
+
+Expected signals: The 21 drained-frontier cases pass, the headline case returns `STOP` with `frontier_drained`, a failed gate blocks the stop with its own name, an open node or a frontier with nothing answered returns `CONTINUE` with `noStopCandidate`, and the review stop-order prose lists `frontier_drained` before the floor and the gates.
+
+#### Test Execution
+> **Feature File:** [DRV-083](../manual-testing-playbook/convergence-and-recovery/frontier-drained-stops-review.md)
 
 ---
 
@@ -839,6 +852,7 @@ Automated coverage for `deep-review` lives in the deep-loop runtime test tree an
 - DRV-072: [Review run holds below its minIterations floor](../manual-testing-playbook/convergence-and-recovery/review-min-iterations-floor.md)
 - DRV-080: [Frontier open veto holds a review stop, hard stops included](../manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-review-stop.md)
 - DRV-081: [Review pivot waits for a terminal frontier](../manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md)
+- DRV-083: [Drained frontier forms a review stop candidate](../manual-testing-playbook/convergence-and-recovery/frontier-drained-stops-review.md)
 
 ### PAUSE, RESUME, AND FAULT TOLERANCE
 

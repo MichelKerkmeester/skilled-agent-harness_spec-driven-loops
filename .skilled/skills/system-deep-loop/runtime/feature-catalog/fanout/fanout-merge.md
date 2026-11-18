@@ -1,13 +1,13 @@
 ---
 title: "Fan-out cross-lineage merge"
-description: "Cross-lineage merge: research (dedup by findingId + cross-model attribution) or review (strongest-restriction: any active P0 or failed required gate → merged FAIL). Writes consolidated registry and fanout-attribution.md."
+description: "Cross-lineage merge: research (dedup by findingId + cross-model attribution) or review (strongest-restriction: any active P0 or failed required gate → merged FAIL, plus the six coverage surfaces). Merges lineage frontiers under a partition guard. Writes consolidated registry and fanout-attribution.md."
 trigger_phrases:
   - "fan-out cross-lineage merge"
   - "fanout-merge.cjs"
   - "merge fanout lineages"
   - "strongest-restriction review merge"
   - "cross-model finding attribution"
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # Fan-out cross-lineage merge
@@ -42,6 +42,29 @@ PASS otherwise). The merge also unions `searchDebt` across lineages, one entry p
 findings (resolved,
 `resolved_false_positive`) are excluded from counts.
 
+**Review coverage surfaces**: the review merge also spreads the result of
+`mergeReviewCoverageSurfaces` into the merged registry: `dimensionCoverage`, `traceability`,
+`searchCoverage`, `candidateCoverage`, `divergenceByLineage` and `ruledOutCandidates`. Each
+surface walks lineages in label order and sorts its output. See
+[fanout-review-coverage-merge.md](fanout-review-coverage-merge.md) for the per-surface rules.
+
+**Frontier merge (expansive depth)**: when any lineage registry carries `frontier.nodes`, both
+merges add a merged `frontier`. `mergeResearchFrontier` builds it for research, and
+`mergeReviewRegistries` calls the same function rather than a review-specific one. Lineages
+number the nodes they admit from their own store, so two lineages can both name a node
+`F-2-002`. `qualifyFrontierId` prefixes each node id and its `parentId` with the lineage label
+(`{label}:{nodeId}`), leaving `root` and empty ids as they are. Each merged node keeps its
+original id as `lineageNodeId` and its label as `lineage`. The merged `frontier.stats` counts
+the total and each node status.
+
+**Partition guard**: `main()` reads `frontier_partition` from `orchestration-summary.json` and
+passes it to the merge as `frontierPartition`. The guard runs only inside the frontier merge, so
+it needs at least one lineage registry that carries `frontier.nodes`. When that partition names any node,
+`frontier.partitionGuard` records `passed` and `missing`: every dealt node id that no lineage
+reports as a `lineageNodeId`. When the guard fails, the script writes a
+`{"warning":"frontier_partition_guard_failed","missing":[...]}` JSON line to stderr. The stdout
+summary carries `frontier_partition_guard` for both loop types, and the exit code stays 0.
+
 Both modes write `{artifact_dir}/fanout-attribution.md`: a per-lineage Markdown table with
 label, kind, model, iterations, convergence score, salvaged event count, and verdict.
 
@@ -55,7 +78,7 @@ finding, or a required gate still failing, in ANY lineage surfaces to the final 
 
 ## 2. HOW IT WORKS
 
-Fully shipped. Dual-mode script: exports `mergeResearchRegistries`,
+Fully shipped. Dual-mode script: exports `mergeResearchRegistries`, `mergeResearchFrontier`,
 `mergeReviewRegistries`, `buildAttributionMd` for unit testing; `main()` executes when
 `require.main === module`. CLI: `--loop-type research|review --artifact-dir <path>`. Exit
 codes: 0=ok, 3=input validation error.
@@ -68,13 +91,14 @@ codes: 0=ok, 3=input validation error.
 
 | File | Role |
 |---|---|
-| `scripts/fanout-merge.cjs` | `mergeResearchRegistries`, `mergeReviewRegistries`, `buildAttributionMd`, `main()` (guarded behind `require.main === module`); near-dup dedup via `nearDuplicateContentKey`, `titleOverlap` and the title-aware `getFindingBucket` behind `SPECKIT_FANOUT_NEAR_DUP_DEDUP` |
+| `scripts/fanout-merge.cjs` | `mergeResearchRegistries`, `mergeReviewRegistries`, `buildAttributionMd`, `main()` (guarded behind `require.main === module`); near-dup dedup via `nearDuplicateContentKey`, `titleOverlap` and the title-aware `getFindingBucket` behind `SPECKIT_FANOUT_NEAR_DUP_DEDUP`; review coverage surfaces via `mergeReviewCoverageSurfaces`; frontier merge and partition guard via `qualifyFrontierId` and `mergeResearchFrontier` |
 
 ### Validation
 
 | File | Role |
 |---|---|
 | `tests/unit/fanout-merge.vitest.ts` | 10 tests: research dedup/attribution (3: dedup by id + cross-lineage tracking, iteration count aggregation, null registry handled); review strongest-restriction (5: clean+P0→FAIL, all clean→PASS, P1-only→CONDITIONAL, duplicate escalates severity, non-active excluded); script e2e (2: no lineages dir → ok, 2-lineage review fixture → merged FAIL + attribution.md) |
+| `tests/unit/fanout-merge.vitest.ts` | Expansive and coverage groups: `research frontier merge` (5 tests), `review frontier merge` (5 tests) and `mergeReviewRegistries — coverage surfaces` (9 tests) |
 
 ---
 

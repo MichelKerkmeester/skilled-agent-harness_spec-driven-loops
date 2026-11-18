@@ -1,7 +1,7 @@
 ---
 title: "DLR-061 -- Source quality class derivation"
 description: "This scenario validates the derived quality_class on research SOURCE nodes for `DLR-061`. It focuses on the path-first classification at upsert and on the source-diversity signal that reads it."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DLR-061 -- Source quality class derivation
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, execution flow, and 
 
 ## 1. OVERVIEW
 
-This scenario validates the derived `quality_class` for `DLR-061`. It focuses on two points: `upsert.cjs` sets `quality_class` on every research SOURCE node it stores, derived from the node's path first, then its label, then its id, and the `sourceDiversity` signal now reads those derived classes on normal runs instead of only on fixtures that typed one in.
+This scenario validates the derived `quality_class` for `DLR-061`. It focuses on two points: `upsert.cjs` sets `quality_class` on every research SOURCE node it stores, derived from the first of its path, name, label and id that names a real location, and the `sourceDiversity` signal now reads those derived classes on normal runs instead of only on fixtures that typed one in.
 
 ### Why This Matters
 
@@ -29,7 +29,7 @@ Operators run this as a single check against the upsert path and the signal that
 - Real user request: A research question answered from source code should not pass the diversity guard on code alone, and the stored source should say what kind of source it is.
 - Prompt: `Upsert a research source with a repo test path and a leaf-supplied quality_class that disagrees, then confirm the stored class follows the path and that a question answered only from code files still blocks at the source diversity guard.`
 - Expected signals: The stored `quality_class` is `repo-test` for the test path, the leaf-supplied value is gone, a question answered only from code files scores 1.0 and blocks, and code plus its tests scores 2.0 and passes.
-- Pass/fail: PASS if the stored class follows the path, the leaf value is overwritten, and both diversity scores match; FAIL if the label or the leaf value decides the class, or the code-only question passes.
+- Pass/fail: PASS if the stored class follows the path, the leaf value is overwritten, and both diversity scores match; FAIL if a later field outranks an earlier one in the path, name, label, id order, the leaf value decides the class, or the code-only question passes.
 
 ---
 
@@ -49,7 +49,7 @@ Operators run this as a single check against the upsert path and the signal that
 
 ### Expected
 
-Command 1 prints the frozen vocabulary constant, the classifier and the derivation helper. Command 2 prints one vocabulary literal, `coverage-graph-query.ts:142`, so no second copy of the class names exists. Command 3 exits 0 with all cases passing, including the path-over-label case, the eight-class derivation case and the three source-diversity cases. Command 4 exits 0 with no output.
+Command 1 prints the frozen vocabulary constant, the classifier and the derivation helper. Command 2 prints one vocabulary literal, `coverage-graph-query.ts:142`, so no second copy of the class names exists. Command 3 exits 0 with all cases passing, including the path-first case, the eight-class derivation case and the three source-diversity cases. Command 4 exits 0 with no output.
 
 ### Evidence
 
@@ -57,12 +57,12 @@ Capture the command 1 and 2 matches, the command 3 pass count and exit status, a
 
 ### Pass / Fail
 
-- **Pass**: The path-over-label and leaf-overwrite cases pass, the code-only question scores 1.0 and blocks, code plus tests scores 2.0 and passes, and the typecheck exits 0.
-- **Fail**: A label or leaf value decides the class, the code-only question passes the guard, a second copy of the class names exists, or the typecheck fails.
+- **Pass**: The path-first and leaf-overwrite cases pass, the code-only question scores 1.0 and blocks, code plus tests scores 2.0 and passes, and the typecheck exits 0. The class comes from the path, then the name, then the label, then the id.
+- **Fail**: A later field decides the class while an earlier one in the path, name, label, id order names a real location, a leaf-supplied value decides the class, the code-only question passes the guard, a second copy of the class names exists, or the typecheck fails.
 
 ### Failure Triage
 
-If the classification is wrong, check the order in `classifySourceLocation` first: the path decides, then the label, then the id. If the diversity score is wrong, check that the seeded fixtures carry paths and not labels, since a label-only fixture cannot produce a derived class.
+If the classification is wrong, check the order in `deriveSourceQualityClass` first: it tries the path, then the name, then the label, then the id, and the first field that `classifySourceLocation` does not mark `unclassified` decides. A free-text field with spaces is `unclassified` and falls through. If the diversity score is wrong, check that the seeded fixtures carry paths, or a path-shaped name or label, since a fixture whose fields are all free text cannot produce a derived class.
 
 ### Optional Supplemental Checks
 
@@ -86,7 +86,7 @@ If the classification is wrong, check the order in `classifySourceLocation` firs
 |---|---|
 | `.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs` | Derives `quality_class` on each SOURCE node in the node loop |
 | `.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts` | Frozen `SOURCE_QUALITY_CLASS` vocabulary |
-| `.skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts` | Path-over-label, eight-class and pass-through cases |
+| `.skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts` | Path-first, eight-class and pass-through cases |
 | `.skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts` | Source-diversity cases: 2.0, 1.0 with guard, code plus tests 2.0 |
 
 ---

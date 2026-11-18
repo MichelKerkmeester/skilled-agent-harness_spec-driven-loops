@@ -6,7 +6,7 @@ trigger_phrases:
   - "quality_class"
   - "source diversity quality"
   - "source node quality class"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Source quality class (quality_class)
@@ -21,7 +21,7 @@ The graph upsert sets `quality_class` on each research SOURCE node from where th
 
 ### Derivation
 
-`runtime/scripts/upsert.cjs` derives the class from the source `path`, then `name`, then `id`, and writes it on research SOURCE nodes. The derived value replaces any leaf-supplied `quality_class`.
+`runtime/scripts/upsert.cjs` `deriveSourceQualityClass` derives the class from the source `path`, then `name`, then `label`, then `id`, and writes it on research SOURCE nodes. `classifySourceLocation` classifies each field in turn, and the first field that names a real location decides the class. A free-text field, such as a name with spaces, classifies as `unclassified` and falls through to the next field. The derived value replaces any leaf-supplied `quality_class`.
 
 ### Closed Vocabulary
 

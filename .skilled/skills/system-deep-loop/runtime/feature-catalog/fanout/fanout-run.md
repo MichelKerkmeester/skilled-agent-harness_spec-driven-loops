@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # Fan-out CLI lineage driver
@@ -68,6 +68,48 @@ orchestrator-owned exemptions rather than left to be attributed to whichever lea
 running. Reading this default as "opt-in, therefore usually absent" is what made that
 failure look impossible on a single-lineage run.
 
+Every lineage subprocess gets `DEEP_LOOP_COVERAGE_DB_DIR` set to `graph-db/` inside its own
+lineage directory, for every depth mode. The coverage graph store otherwise defaults to the
+shared runtime database, which sits outside the lineage write surface, so a leaf that honors
+the write limit would skip every graph step. Each CLI lineage now keeps its coverage graph in
+its own `graph-db/`.
+
+### Expansive Depth
+
+`--depth-mode` takes `default` or `expansive`, and `normalizeDepthMode` refuses any other value
+with exit 3. A run without the flag is unchanged.
+
+Under `expansive`, `partitionFrontierNodes` reads `frontier-nodes.jsonl` in the base artifact
+dir, keeps the depth-1 nodes that are `open` or `active`, sorts them by node id and deals them
+round-robin across the lineage labels. The same seed therefore always gives each lineage the
+same share. The split is written to `orchestration-summary.json` as `frontier_partition`, a map
+from lineage label to node ids, which the merge's partition guard reads.
+
+Before a lineage spawns, `writeLineageFrontierStore` writes its share to
+`{lineageDir}/frontier-nodes.jsonl`. It writes only when the lineage has no store yet and its
+share is not empty, so a resumed lineage keeps the nodes it already closed. A research lineage
+also gets one `inbox.jsonl` row per node. A review lineage gets no inbox, because its nodes reach
+the leaf through the FRONTIER block.
+
+`depthMode` and the lineage's node ids reach the lineage through its prompt.
+`buildLoopPrompt` adds `config.depthMode: expansive` and a `frontier_scope` binding that lists
+the lineage's node ids, or `none`. A review lineage also gets `frontier_scope` in its review
+setup bindings. A leaf-contract line tells a research or review lineage to work its
+`frontier_scope` nodes and to propose children only as `frontier_proposal` delta rows.
+`buildNativeCommandInput` adds `--depth-mode=expansive`, `depth_mode: expansive` and the same
+`frontier_scope` line.
+
+For an expansive research or review run, `expansiveLineageBudgets` sets each lineage's
+iteration count. A matrix `iterations` value is explicit and always kept. A lineage with no
+matrix value is sized from its own seed share by `expansiveBudget` in `frontier-admit.cjs`.
+The floor is the loop default that lineage would otherwise run: 12 for a native lineage, and
+`LOOP_DEFAULT_MAX_ITERATIONS` for a CLI lineage, 7 for review and 10 for research. A lineage
+dealt no seed node runs at that floor. A lineage with a share runs
+`min(24, max(floor, 2 × perNode × (share + 2)))` iterations, where `perNode` is 4 for review
+(the canonical four dimensions) and 1 for research, and `share + 2` comes from the default
+`maxDepth` of 3. `expansiveLineageBudgetNotes` writes one stderr line per derived budget and a
+warning when there are more lineages than open seed nodes.
+
 ---
 
 ## 3. SOURCE FILES
@@ -76,7 +118,8 @@ failure look impossible on a single-lineage run.
 
 | File | Role |
 |---|---|
-| `scripts/fanout-run.cjs` | Main entry: CLI arg parsing, per-kind command construction, pool orchestration, stdout capture and salvage call, plus the per-lineage progress heartbeat via `startLineageProgressHeartbeat` |
+| `scripts/fanout-run.cjs` | Main entry: CLI arg parsing, per-kind command construction, pool orchestration, stdout capture and salvage call, plus the per-lineage progress heartbeat via `startLineageProgressHeartbeat`; expansive depth via `normalizeDepthMode`, `partitionFrontierNodes`, `writeLineageFrontierStore`, `expansiveLineageBudgets` and `expansiveLineageBudgetNotes`; per-lineage `DEEP_LOOP_COVERAGE_DB_DIR` |
+| `scripts/frontier-admit.cjs` | `readNodeStore`, `expansiveBudget` and `LOOP_DEFAULT_MAX_ITERATIONS` used for the frontier partition and lineage budgets |
 | `scripts/fanout-salvage.cjs` | Called post-subprocess for write-failure recovery |
 | `scripts/fanout-pool.cjs` | `runCappedPool` for concurrency cap + ledger |
 | `lib/deep-loop/executor-config.ts` | `parseFanoutConfig`, `expandLineages` imported via TSX |
@@ -87,6 +130,7 @@ failure look impossible on a single-lineage run.
 | File | Role |
 |---|---|
 | `tests/unit/fanout-run.vitest.ts` | 5 tests: native-only config returns early (no pool spawn), bad JSON config exits 3, missing required args exits 3, 2-lineage pool creates distinct dirs + ledger + summary, same-kind replica state dirs are distinct |
+| `tests/unit/fanout-run.vitest.ts` | Expansive depth groups: `expansive depth frontier` (12 tests: the round-robin deal, the per-lineage node store, the `frontier_scope` binding, the recorded partition and `depthMode` propagation) and `per-lineage expansive budget` (4 tests: the seed-share budget and the loop-default floor for a lineage dealt no seed node) |
 
 ---
 

@@ -5,7 +5,7 @@ trigger_phrases:
   - "runtime/ feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
-version: 1.4.6.0
+version: 1.4.7.0
 ---
 
 # runtime/: Feature Catalog
@@ -601,7 +601,7 @@ Computes graph-aware CONTINUE, STOP_ALLOWED, or STOP_BLOCKED decisions for a ses
 
 #### How It Works
 
-Direct replacement for `deep_loop_graph_convergence`; emits graph decision bindings.
+Direct replacement for `deep_loop_graph_convergence`; emits graph decision bindings. `depthMode` comes from `--depth-mode` or `antiConvergence.depthMode`. Under `--depth-mode=expansive`, an open or active frontier node turns a stop candidate into CONTINUE with `frontierOpen`, and an expansive review whose frontier is drained with at least one node answered forms the hard candidate `frontier_drained`. The `minIterations` floor (`minIterationsNotReached`) now applies to review as well as research.
 
 #### Source Files
 
@@ -613,11 +613,11 @@ See [`script-entry-points/convergence-script.md`](../feature-catalog/script-entr
 
 #### Description
 
-Stores coverage graph nodes and edges from JSON arrays or iteration graph event files.
+Stores coverage graph nodes and edges from JSON arrays or iteration graph event files, and derives review finding evidence from an iteration's state log and delta.
 
 #### How It Works
 
-Direct replacement for `deep_loop_graph_upsert`; validates kinds, relations, and self-loops.
+Direct replacement for `deep_loop_graph_upsert`; validates kinds, relations, and self-loops. On the review loop only, `--state-log`, `--delta-dir` and `--iteration` derive one FINDING node per iteration finding and an EVIDENCE_FOR edge to the FILE node of its `path:line` ref (`deriveReviewFindingEvidence`, `parseFindingRef`). A reused finding id that names a different finding is keyed per iteration, and `resolveReviewFindingId` folds a leaf-sent finding id onto the stored node. On every upsert, an edge to an undeclared node is skipped and listed in `rejectedOrphanEdges`. The input guards exit 3 with INPUT_VALIDATION.
 
 #### Source Files
 
@@ -746,6 +746,16 @@ TSX-bootstrapped entry point that spawns N headless CLI subprocesses (opencode, 
 opencode), each running the full loop in an isolated `lineages/{label}/`
 sub-packet, with per-kind state-dir isolation and a post-subprocess salvage sweep.
 
+#### How It Works
+
+Each lineage keeps its coverage graph in `graph-db/` inside its own directory through
+`DEEP_LOOP_COVERAGE_DB_DIR`. Under `--depth-mode=expansive`, `partitionFrontierNodes` deals the
+open depth-1 frontier nodes round-robin in node-id order, `writeLineageFrontierStore` writes
+each lineage's share, the prompt binds `depthMode` and `frontier_scope`, and the split is
+recorded as `frontier_partition` in `orchestration-summary.json`. `expansiveLineageBudgets`
+sizes a lineage with no matrix `iterations` from its seed share, and a lineage dealt no seed
+node runs at its loop default: 12 native, 7 CLI review, 10 CLI research.
+
 #### Source Files
 
 See [`fanout/fanout-run.md`](../feature-catalog/fanout/fanout-run.md) for full implementation and validation file listings.
@@ -770,8 +780,16 @@ See [`fanout/fanout-salvage.md`](../feature-catalog/fanout/fanout-salvage.md) fo
 #### Description
 
 Cross-lineage merge: research (dedup by `findingId` + cross-model attribution) or review
-(strongest-restriction: any active P0 or failed required gate → merged FAIL). Writes consolidated registry and
+(strongest-restriction: any active P0 or failed required gate → merged FAIL, plus the six coverage surfaces).
+Merges lineage frontiers under a partition guard. Writes consolidated registry and
 `fanout-attribution.md`.
+
+#### How It Works
+
+Under expansive depth, `mergeResearchFrontier` merges lineage frontier nodes for both loop types,
+with ids qualified by lineage label through `qualifyFrontierId`. The partition guard checks the
+`frontier_partition` recorded in `orchestration-summary.json` and writes a
+`frontier_partition_guard_failed` warning to stderr when a dealt node is missing.
 
 #### Source Files
 
@@ -847,11 +865,11 @@ See [`fanout/fanout-pair-replay.md`](../feature-catalog/fanout/fanout-pair-repla
 
 #### Description
 
-A merged review fan-out keeps the candidate, dimension and search coverage surfaces from its lineages instead of dropping them.
+A merged review fan-out keeps the six review coverage surfaces from its lineages instead of dropping them.
 
 #### How It Works
 
-`mergeReviewRegistries` in `fanout-merge.cjs` merges each coverage surface and returns it in the merged registry.
+`mergeReviewCoverageSurfaces` in `fanout-merge.cjs` merges six surfaces: dimension coverage, traceability, search coverage, candidate coverage, divergence by lineage and ruled-out candidates. `mergeReviewRegistries` returns them in the merged registry.
 
 #### Source Files
 
