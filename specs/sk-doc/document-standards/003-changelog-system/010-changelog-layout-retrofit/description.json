@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit",
   "description": "Retroactively rewrite every skill and release changelog into the v4.1.0.0 layout and rebuild every GitHub release body",
   "keywords": [
@@ -13,7 +14,7 @@
     "github",
     "body"
   ],
-  "lastUpdated": "2026-11-17T18:12:59.063Z",
+  "lastUpdated": "2026-11-18T07:58:23.026Z",
   "specId": "010",
   "folderSlug": "changelog-layout-retrofit",
   "parentChain": [
@@ -21,7 +22,13 @@
     "document-standards",
     "003-changelog-system"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 6,
+  "memoryNameHistory": [
+    "18-11-26_06-05__the-chain-is-still-running-phase-011-sk-git-has.md",
+    "18-11-26_08-16__the-goal-isn-t-done-yet-because-the-last-step.md",
+    "18-11-26_08-46__the-changelog-layout-retrofit-is-finished-all-1.md",
+    "18-11-26_08-58__i-ve-amended-criterion-4-as-you-chose-the-commit.md",
+    "18-11-26_08-58__the-work-and-the-goal-file-are-done-but-the.md",
+    "18-11-26_08-58__nothing-more-on-my-side-can-satisfy-this-check.md"
+  ]
 }
