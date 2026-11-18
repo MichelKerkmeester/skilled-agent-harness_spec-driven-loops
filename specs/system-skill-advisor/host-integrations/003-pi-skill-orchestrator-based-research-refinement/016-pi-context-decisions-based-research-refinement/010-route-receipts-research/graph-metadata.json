@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Five of nine weak follow-ups route away from their session task, and the simple guard that would stop them also hides 19 correct corpus routes",
     "created_at": "2026-11-18T15:49:32Z",
-    "last_save_at": "2026-11-18T16:12:21.125Z",
+    "last_save_at": "2026-11-18T18:50:07.044Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c34d3697c36cddd6579c7a4556b6c05409a712b93d9d2b45379750c1827e7c4",
+    "source_fingerprint": "sha256:d8abf107b6d9fd07324650b40e2c6c15e8d7290cc65e09307c3befb4a275c409",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "75b086e0e7046a0e36c219835a259eb6cface385b3b113818aaaed48ea583656",
       "plan.md": "e8fc187f93e9bf38055ac7d3d71bb3f3ebd723ee2213c94abb86085daa3a55bd",
-      "tasks.md": "a247c041be716737d202ade5bed7ca1938381d077d979ba816daf878d9ef468d",
-      "implementation-summary.md": "4ac400d9e52d2014e72aa4638b48665d5cef6e3b0103ac831eca96bda343d910"
+      "tasks.md": "8911f13b698d06da5815dbac2cbd03df5258949247c117a0ed42f5689d30757a",
+      "implementation-summary.md": "aec2e30b46375a7a59c57f1d5f912d2e7fed641e9c3eb34fbaea4420fef3d53c"
     },
     "last_active_at": null
   }

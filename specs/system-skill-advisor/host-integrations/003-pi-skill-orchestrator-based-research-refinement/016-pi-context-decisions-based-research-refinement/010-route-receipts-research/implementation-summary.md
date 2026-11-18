@@ -90,7 +90,9 @@ Not delivered yet. The plan is in `plan.md` and the ordered work in `tasks.md`.
 | Check | Result |
 |-------|--------|
 | Pre-006 baseline bench at `84a2d1eb697`, run during planning | `N=9 H=5 Hsame=2 C=19`, `Tests 1 passed (1)`. Not the premise result, which waits on phase 006 |
-| Premise rerun, research and strict validation | Not run yet |
+| Q0 bench rerun, 2026-11-18 at `18ce562e8b3` on branch `worktrees/474-advisor-pasted-context-and-crash-fallback`, after a rebuild | `N=9`, stripped-text `H=5`, raw-text `H=4` (pair 9 raw reads `explicit_skill_or_governance_marker`), `Hsame=2`, `C=19`, `Tests 1 passed (1)`. `C` ids: rr-iter2-008, rr-iter2-028, rr-iter2-032, rr-iter2-034, rr-iter2-041, rr-iter3-073, rr-iter3-075, rr-iter3-078, rr-iter3-079, rr-iter3-081, rr-iter3-090, rr-iter3-130, rr-iter3-131, rr-iter3-133, rr-iter3-141, rr-iter3-147, rr-iter3-170, rr-iter3-179, rr-paste-208 |
+| Q0 branch: over-suppresses | Decided on stripped-text `H`: `H=5 >= 5` and `C=19 > 0`, by phase 003's rule unchanged. The research proceeds; no operator stop |
+| Research and strict validation | Not run yet |
 <!-- /ANCHOR:verification -->
 
 ---
