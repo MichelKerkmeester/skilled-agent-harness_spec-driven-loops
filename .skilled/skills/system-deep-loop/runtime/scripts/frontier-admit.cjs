@@ -231,7 +231,13 @@ function readCaps(artifactDir, target = 'research') {
   const config = readTargetConfig(artifactDir, assertTarget(target));
   const source = isPlainObject(config) ? config : {};
   const expansive = isPlainObject(source.expansiveDepth) ? source.expansiveDepth : {};
-  const runCap = capValue(expansive.maxFrontierNodes, capValue(source.maxIterations, DEFAULT_MAX_FRONTIER_NODES));
+  // Each node costs at least one iteration, so a cap equal to the iteration budget
+  // fills every slot and leaves none for the seeded questions or the stop gates.
+  const iterationBudget = capValue(source.maxIterations, null);
+  const derivedCap = iterationBudget === null
+    ? DEFAULT_MAX_FRONTIER_NODES
+    : Math.max(1, Math.floor(iterationBudget / 2));
+  const runCap = capValue(expansive.maxFrontierNodes, derivedCap);
 
   const maxChildrenPerNode = capValue(expansive.maxChildrenPerNode, DEFAULT_MAX_CHILDREN_PER_NODE);
 

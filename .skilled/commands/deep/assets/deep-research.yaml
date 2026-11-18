@@ -727,8 +727,8 @@ workflow:
           expansiveDepth.maxDepth: 3
           expansiveDepth.maxChildrenPerNode: 6
           expansiveDepth.budgetSplit: { depth1: 0.5, depth2: 0.35, depth3: 0.15 }
-          # The node cap follows the iteration budget, so admission stops before a spent budget becomes the usual close reason.
-          expansiveDepth.maxFrontierNodes: "{max_iterations}"
+          # Null derives the node cap at admission as half the iteration budget, so seeded questions and the stop gates keep iterations of their own.
+          expansiveDepth.maxFrontierNodes: null
           antiConvergence.divergent: {}
           stuckThreshold: 3
           minIdeaObservations: 2

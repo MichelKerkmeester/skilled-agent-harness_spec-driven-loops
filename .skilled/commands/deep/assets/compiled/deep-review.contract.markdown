@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "e64d14c0b1ad262a1d26451103949c003bcb4e9e8e08c818b35b4ae43d26cdf7",
+      "sha256": "97b0d83b4cbf20f162bc2ae3fa6a453b6a790088ba8acc129a81ba03c3ea8769",
       "section": "full"
     },
     {
@@ -37,27 +37,27 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "ba0a3f32702a0e2245a107bed68956ec9be5e3c0ebcb5e1d4aab06b0bfaebe1d",
+      "sha256": "cb6ff136787a1e901c1aa1d874fe91da04de09417b85b9cb5907f7d1ec3ed64d",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "411f55b5d347ee562dfb14f075655ed763b29644516b157ae9d71b62c687ef01",
+      "sha256": "bf05d481bf7fab8fa8d297e698a3490e21e7f29e1176fa2f3b160ba6de9d6961",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "sha256": "2d0de88c746f2b26e6db504308e66e0ac0007b9c791bdb2519a0f086597f241d",
+      "sha256": "3f17841a5853e2e4f017beb661fb1eb8628856094d5051c1ef30f90362f6f3f7",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
-      "sha256": "e14b36c96dd7945a9a147ff8a8c407c3ca3940af5b04619347ed71c034c59f61",
+      "sha256": "cbff5a0205899fd17f058d051064720c1dc409a91478c353c63a439ed42fa7e3",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "6fa625d6568b3ebb4544ed361925fd8573059b324d1d6d5ab852693e115cca40",
+      "sha256": "60a1df4763b5053fdc09afe8226c9063d245ce1e1c2b68f78cb06b4a24ed0299",
       "section": "full"
     },
     {

@@ -186,8 +186,8 @@ contract:
           depth1: 0.5
           depth2: 0.35
           depth3: 0.15
-        # Inherited from maxIterations at config creation rather than fixed here.
-        maxFrontierNodes: maxIterations
+        # Derived at admission as half of maxIterations unless the config sets a number.
+        maxFrontierNodes: null
 
   lifecycleModes:
     - id: new

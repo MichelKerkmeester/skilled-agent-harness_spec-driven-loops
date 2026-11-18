@@ -50,6 +50,7 @@ const {
   renderFrontierBlock,
   readNodeStore,
   buildFrontierGraphEvents,
+  readCaps,
 } = require(FRONTIER_ADMIT_SCRIPT) as {
   checkProposal: (proposal: unknown, nodes: Map<string, NodeRow>, caps: Caps, knownTexts?: string[]) => string | null;
   admitProposals: (options: {
@@ -74,6 +75,7 @@ const {
   renderFrontierBlock: (options: { artifactDir: string; focus: string }) => string;
   readNodeStore: (storePath: string) => Map<string, NodeRow>;
   buildFrontierGraphEvents: (nodes: Iterable<NodeRow>) => FrontierGraphEvent[];
+  readCaps: (artifactDir: string, target?: string) => Caps;
 };
 
 const CONFIG_FILE = 'deep-research-config.json';
@@ -575,5 +577,27 @@ describe('frontier block', () => {
 
     expect(result.status).toBe(0);
     expect(String(result.stdout)).toBe(renderFrontierBlock({ artifactDir, focus }));
+  });
+});
+
+describe('frontier node cap', () => {
+  function capsFor(config: Record<string, unknown>): Caps {
+    const dir = mkdtempSync(join(tmpdir(), 'frontier-cap-'));
+    tempDirs.push(dir);
+    writeFileSync(join(dir, CONFIG_FILE), JSON.stringify(config), 'utf8');
+    return readCaps(dir);
+  }
+
+  it('defaults to half the iteration budget, leaving iterations for the seeded questions and the stop gates', () => {
+    expect(capsFor({ maxIterations: 16, expansiveDepth: { maxFrontierNodes: null } }).maxFrontierNodes).toBe(8);
+    expect(capsFor({ maxIterations: 7, expansiveDepth: {} }).maxFrontierNodes).toBe(3);
+  });
+
+  it('never drops below one node on a tiny budget', () => {
+    expect(capsFor({ maxIterations: 1, expansiveDepth: {} }).maxFrontierNodes).toBe(1);
+  });
+
+  it('keeps an explicit cap as an override', () => {
+    expect(capsFor({ maxIterations: 16, expansiveDepth: { maxFrontierNodes: 12 } }).maxFrontierNodes).toBe(12);
   });
 });
