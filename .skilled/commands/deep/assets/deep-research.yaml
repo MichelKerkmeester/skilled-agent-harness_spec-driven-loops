@@ -1150,6 +1150,7 @@ workflow:
 
       step_graph_convergence:
         action: "Run convergence.cjs once: it evaluates the coverage graph, persists the graph snapshot and computes the whole stop decision"
+        fanout_graph_store: 'When config.fanout_lineage_artifact_dir is bound, or SPECKIT_FANOUT_LINEAGE_ID is set, this run is a fan-out lineage and its coverage graph store is {artifact_dir}/graph-db, inside the lineage write surface. The fan-out runner exports DEEP_LOOP_COVERAGE_DB_DIR to that directory. Run this step against it and never skip it as a write outside the lineage; when DEEP_LOOP_COVERAGE_DB_DIR is absent from the environment, prefix the command with DEEP_LOOP_COVERAGE_DB_DIR="{artifact_dir}/graph-db".'
         dry_run_event_policy: preview-only
         bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --convergence-mode "{convergence_mode}" --depth-mode "{depth_mode}" --persist-snapshot --iteration "{current_iteration}" --stop-decision --config-path "{state_paths.config}" --state-log "{state_paths.state_log}" --registry-path "{state_paths.registry}" --iteration-count "{iteration_count}"'
         note: "The script is the only place the stop decision is computed. step_check_convergence branches on its stop_decision output."
@@ -1858,6 +1859,7 @@ workflow:
 
       step_graph_upsert:
         action: "Persist the latest iteration graph delta after the reducer refresh and after the iteration file exists"
+        fanout_graph_store: 'When config.fanout_lineage_artifact_dir is bound, or SPECKIT_FANOUT_LINEAGE_ID is set, this run is a fan-out lineage and its coverage graph store is {artifact_dir}/graph-db, inside the lineage write surface. The fan-out runner exports DEEP_LOOP_COVERAGE_DB_DIR to that directory. Run this step against it and never skip it as a write outside the lineage; when DEEP_LOOP_COVERAGE_DB_DIR is absent from the environment, prefix the command with DEEP_LOOP_COVERAGE_DB_DIR="{artifact_dir}/graph-db".'
         dry_run_boundary: "state-mutation"
         note: "Skips with an informational line and exit 0 when this iteration carries no graph events."
         command: |
@@ -1865,6 +1867,7 @@ workflow:
 
       step_frontier_graph_upsert:
         action: "Mirror the frontier into the coverage graph so traversal does not depend on the leaf emitting graph events"
+        fanout_graph_store: 'When config.fanout_lineage_artifact_dir is bound, or SPECKIT_FANOUT_LINEAGE_ID is set, this run is a fan-out lineage and its coverage graph store is {artifact_dir}/graph-db, inside the lineage write surface. The fan-out runner exports DEEP_LOOP_COVERAGE_DB_DIR to that directory. Run this step against it and never skip it as a write outside the lineage; when DEEP_LOOP_COVERAGE_DB_DIR is absent from the environment, prefix the command with DEEP_LOOP_COVERAGE_DB_DIR="{artifact_dir}/graph-db".'
         enabled_when: "depth_mode == 'expansive'"
         dry_run_boundary: "state-mutation"
         note: "Pruned nodes are never written. A node that closed exhausted, blocked or abstained is re-kinded from QUESTION to a CLAIM marked closed, so it stops lowering question coverage and source diversity. Open, active and answered nodes stay QUESTION nodes linked to their parent by DERIVED_FROM."

@@ -61,6 +61,7 @@ interface ReviewFacts {
   graphCoverageMode: 'graph' | 'graphless_fallback' | 'unavailable_blocked' | null;
   fallbackCoveredBugClasses: string[];
   frontierOpen?: number;
+  frontierTotal?: number;
 }
 
 interface StopDecisionInput {
@@ -1250,5 +1251,84 @@ describe('review frontierOpen veto', () => {
     const bare = buildStopDecisionInput({}, 'review', files, graph);
 
     expect(flagged.config).toEqual(bare.config);
+  });
+});
+
+describe('review frontier_drained candidate', () => {
+  // A drained lineage that neither clean nor composite would stop: one active P1
+  // with file:line evidence keeps the clean candidate off, and ratios that are
+  // still high keep the composite vote under its cutoff.
+  const drained = (overrides: InputOverrides = {}): StopDecisionInput => reviewInput({
+    ratios: [0.6, 0.5, 0.45],
+    ...overrides,
+    config: { depthMode: 'expansive', ...(overrides.config ?? {}) },
+    review: {
+      activeP1: 1,
+      evidenceBackedP0P1: 1,
+      frontierOpen: 0,
+      frontierTotal: 3,
+      ...(overrides.review ?? {}),
+    },
+  });
+
+  it('the fixture forms no other candidate', () => {
+    const decision = buildStopDecision(drained({ config: { depthMode: undefined } }));
+    expect(decision.decision).toBe('CONTINUE');
+    expect(decision.reasonDetail).toBe('noStopCandidate');
+  });
+
+  it('stops a drained lineage whose gates all pass', () => {
+    const decision = buildStopDecision(drained());
+    expect(decision.graphDecision).toBe('STOP_ALLOWED');
+    expect(decision.decision).toBe('STOP');
+    expect(decision.stopReason).toBe('converged');
+    expect(decision.reasonDetail).toBe('frontier_drained');
+    expect(decision.blockedBy).toEqual([]);
+  });
+
+  const cases: Array<[string, InputOverrides, string, string]> = [
+    ['a failed hotspot gate blocks it', { review: { hotspotSaturated: null } }, 'BLOCKED', 'hotspotSaturationGate'],
+    ['an active P0 blocks it', { review: { activeP0: 1, evidenceBackedP0P1: 2 } }, 'BLOCKED', 'p0ResolutionGate'],
+    ['unsettled traceability blocks it', { review: { traceabilityCovered: false } }, 'BLOCKED', 'dimensionCoverageGate'],
+    ['an open node keeps the lineage running', { review: { frontierOpen: 1 } }, 'CONTINUE', 'noStopCandidate'],
+    ['an empty partition forms no candidate', { review: { frontierTotal: 0 } }, 'CONTINUE', 'noStopCandidate'],
+    ['a missing node count forms no candidate', { review: { frontierTotal: undefined } }, 'CONTINUE', 'noStopCandidate'],
+    ['a default run gets no candidate', { config: { depthMode: 'default' } }, 'CONTINUE', 'noStopCandidate'],
+    ['a run without depth mode gets no candidate', { config: { depthMode: undefined } }, 'CONTINUE', 'noStopCandidate'],
+    ['the cap still wins', { iterationCount: 7 }, 'STOP', 'maxIterationsReached'],
+    ['the floor still comes first', { iterationCount: 1, config: { minIterations: 3 } }, 'CONTINUE', 'minIterationsNotReached'],
+    ['stuck recovery still comes first', { stuckCount: 2 }, 'STUCK_RECOVERY', 'stuckThresholdReached'],
+    ['convergence mode off still wins', { config: { convergenceMode: 'off' } }, 'CONTINUE', 'convergenceModeOff'],
+    ['max-iterations policy still wins', { config: { stopPolicy: 'max-iterations' } }, 'CONTINUE', 'stopPolicyMaxIterations'],
+    ['a continuing graph keeps the lineage running', { graphDecision: 'CONTINUE' }, 'CONTINUE', 'graph_convergence_continue'],
+  ];
+
+  it.each(cases)('%s', (_label, overrides, decision, reasonDetail) => {
+    const result = buildStopDecision(drained(overrides));
+    expect(result.decision).toBe(decision);
+    expect(result.reasonDetail).toBe(reasonDetail);
+  });
+
+  it('ranks after the clean candidate', () => {
+    const decision = buildStopDecision(drained({ review: { activeP1: 0, evidenceBackedP0P1: 0 } }));
+    expect(decision.reasonDetail).toBe('all_dimensions_clean');
+  });
+
+  it('counts every frontier node as the partition size', () => {
+    const graph = { nodes: [], edges: [] };
+    const input = buildStopDecisionInput({ depthMode: 'expansive' }, 'review', {
+      config: { maxIterations: 10 },
+      registry: { frontier: { nodes: [{ status: 'answered' }, { status: 'pruned' }, { status: 'pruned' }] } },
+      stateLogRows: [],
+    }, graph);
+    expect(input.review?.frontierOpen).toBe(0);
+    expect(input.review?.frontierTotal).toBe(3);
+
+    const withoutFrontier = buildStopDecisionInput({ depthMode: 'expansive' }, 'review', {
+      config: { maxIterations: 10 },
+      registry: {},
+      stateLogRows: [],
+    }, graph);
+    expect(Object.prototype.hasOwnProperty.call(withoutFrontier.review ?? {}, 'frontierTotal')).toBe(false);
   });
 });

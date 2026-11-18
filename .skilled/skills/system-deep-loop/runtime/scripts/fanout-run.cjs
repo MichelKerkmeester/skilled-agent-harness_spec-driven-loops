@@ -4042,6 +4042,11 @@ async function main() {
         // so they are re-injected here to reach the child. Harmless for the codex path.
         SYSTEM_SPEC_GATE_DISABLED: '1',
         AI_SESSION_CHILD: '1',
+        // The coverage graph store defaults to the shared runtime database, which sits
+        // outside the lineage's write surface, so a leaf that honors the write limit
+        // skips every graph step and the lineage stops only at its cap. Each lineage
+        // keeps its own store inside its directory instead.
+        DEEP_LOOP_COVERAGE_DB_DIR: path.join(promptLineageDir, 'graph-db'),
         ...(stateEnvKey ? { [stateEnvKey]: stateDir } : {}),
         ...(dshHome ? { DSH_HOME: dshHome } : {}),
         // The adapter names its own lineage-local home; applying it after the allowlist

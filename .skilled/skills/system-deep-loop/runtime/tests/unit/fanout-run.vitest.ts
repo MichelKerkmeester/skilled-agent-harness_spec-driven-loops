@@ -3845,6 +3845,56 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
     expect(out1).toContain('LINEAGE_ID=rep-1');
     expect(out2).toContain('LINEAGE_ID=rep-2');
   });
+
+  // A lineage may write only inside its own directory, and the coverage graph
+  // store defaults to the shared runtime database. Unless the runner points the
+  // store into the lineage, a compliant leaf skips every graph step and the run
+  // is graphless, so no review candidate can pass hotspot saturation.
+  it.each(['research', 'review'])(
+    'points the coverage graph store inside each %s lineage directory',
+    async (loopType) => {
+      const binDir = makeTempDir('fanout-run-graph-db-bin-');
+      writeFileSync(
+        join(binDir, 'opencode'),
+        '#!/bin/sh\n' + OPENCODE_VERSION_PROBE
+          + '\necho "GRAPH_DB=$DEEP_LOOP_COVERAGE_DB_DIR"\n'
+          + writeFanoutArtifactsShell() + '\nexit 0\n',
+        { mode: 0o755 },
+      );
+      const baseDir = makeTempDir('fanout-run-graph-db-base-');
+      const fanoutConfig = JSON.stringify({
+        executors: [{ label: 'graph', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+        concurrency: 1,
+      });
+
+      const hermetic = useHermeticEnv(`graph-db-${loopType}`);
+      await spawnCjs(
+        fanoutRunScript,
+        [
+          '--spec-folder',
+          `specs/test-fanout-run-graph-db-${loopType}`,
+          '--loop-type',
+          loopType,
+          '--fanout-config-json',
+          fanoutConfig,
+          '--base-artifact-dir',
+          baseDir,
+        ],
+        {
+          cwd: hermetic.tmpDir,
+          env: envWithBin(hermetic, binDir),
+          timeoutMs: 15_000,
+        },
+      );
+
+      const lineageDir = join(baseDir, 'lineages', 'graph');
+      const out = readFileSync(join(lineageDir, 'logs', 'fanout-lineage.out'), 'utf8');
+      const graphDb = /GRAPH_DB=(\S*)/.exec(out)?.[1] ?? '';
+      expect(graphDb).not.toBe('');
+      mkdirSync(graphDb, { recursive: true });
+      expect(realpathSync(graphDb)).toBe(join(realpathSync(lineageDir), 'graph-db'));
+    },
+  );
 });
 
 describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {

@@ -370,3 +370,44 @@ describe('deep-research snapshot path pattern', () => {
     expect(text).toContain('synthesis-v${GENERATION}-r{continued_from_run}.md');
   });
 });
+
+// A fan-out lineage may write only inside its own directory. Every step that
+// opens the coverage graph store has to tell the leaf that the store lives in
+// the lineage, or a compliant leaf skips the step and the lineage runs graphless.
+describe('graph-writing steps name the lineage-local graph store', () => {
+  const GRAPH_STEPS: Array<[string, string]> = [
+    ['deep-review.yaml', 'step_seed_coverage_graph'],
+    ['deep-review.yaml', 'step_graph_upsert'],
+    ['deep-review.yaml', 'step_graph_convergence'],
+    ['deep-research.yaml', 'step_graph_convergence'],
+    ['deep-research.yaml', 'step_graph_upsert'],
+    ['deep-research.yaml', 'step_frontier_graph_upsert'],
+  ];
+
+  it.each(GRAPH_STEPS)('%s %s', (file, stepName) => {
+    const step = stepText(readFileSync(resolve(ASSETS, file), 'utf8'), stepName);
+    expect(step.length).toBeGreaterThan(0);
+    expect(step).toContain('DEEP_LOOP_COVERAGE_DB_DIR="{artifact_dir}/graph-db"');
+    expect(step).toContain('config.fanout_lineage_artifact_dir');
+  });
+});
+
+describe('deep-review stop-order prose names the drained-frontier candidate', () => {
+  const text = readFileSync(resolve(ASSETS, 'deep-review.yaml'), 'utf8');
+  const step = stepText(text, 'step_check_convergence');
+
+  it('lists frontier_drained with the candidates, before the floor and the gates', () => {
+    const composite = step.indexOf('composite_converged');
+    const drained = step.indexOf('frontier_drained');
+    const floor = step.indexOf('minIterationsNotReached');
+    expect(composite).toBeGreaterThan(-1);
+    expect(drained).toBeGreaterThan(composite);
+    expect(floor).toBeGreaterThan(drained);
+    expect(step.indexOf('legal-stop gates run on a candidate')).toBeGreaterThan(drained);
+  });
+
+  it('leaves the research stop order without it', () => {
+    const research = stepText(readFileSync(resolve(ASSETS, 'deep-research.yaml'), 'utf8'), 'step_check_convergence');
+    expect(research).not.toContain('frontier_drained');
+  });
+});

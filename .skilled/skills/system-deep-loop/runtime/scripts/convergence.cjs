@@ -13,7 +13,7 @@
 // convergenceModeOff, stopPolicyMaxIterations, noStopCandidate,
 // minIterationsNotReached, frontierOpen,
 // qualityGuardFailed, all_questions_answered, all_dimensions_clean,
-// composite_converged, graphStopBlocked, graph_convergence_continue,
+// composite_converged, frontier_drained, graphStopBlocked, graph_convergence_continue,
 // graphDecisionMissing, or the name of a failed gate.
 
 'use strict';
@@ -1166,6 +1166,16 @@ function buildStopDecision(input) {
       candidate = { reasonDetail: 'all_dimensions_clean', hardStop: true };
     } else if (signalResult.stopCandidate) {
       candidate = { reasonDetail: 'composite_converged', hardStop: false };
+    } else if (config.depthMode === 'expansive'
+      && Number.isFinite(review.frontierTotal)
+      && review.frontierTotal >= 1
+      && review.frontierOpen === 0) {
+      // A lineage whose frontier holds nodes and none still open or active has
+      // no work left in its partition. Without this candidate it runs to the
+      // cap even after every node is answered. It is a hard stop because a soft
+      // one passes the convergence gate only where the composite vote already
+      // forms a candidate; every other legal-stop gate still applies.
+      candidate = { reasonDetail: 'frontier_drained', hardStop: true };
     }
   } else if (coverage.total > 0 && coverage.answered >= coverage.total) {
     candidate = { reasonDetail: 'all_questions_answered', hardStop: false };
@@ -1631,7 +1641,10 @@ function stopDecisionReviewFacts(options = {}) {
       : null,
     fallbackCoveredBugClasses: reviewFallbackCoveredBugClasses(iterationRecords),
     ...(isPlainObject(registry.frontier) && Array.isArray(registry.frontier.nodes)
-      ? { frontierOpen: registry.frontier.nodes.filter((node) => node?.status === 'open' || node?.status === 'active').length }
+      ? {
+        frontierOpen: registry.frontier.nodes.filter((node) => node?.status === 'open' || node?.status === 'active').length,
+        frontierTotal: registry.frontier.nodes.length,
+      }
       : {}),
   };
 }

@@ -1003,6 +1003,7 @@ workflow:
 
       step_seed_coverage_graph:
         action: "Seed the review coverage graph before the first convergence check"
+        fanout_graph_store: 'When config.fanout_lineage_artifact_dir is bound, or SPECKIT_FANOUT_LINEAGE_ID is set, this run is a fan-out lineage and its coverage graph store is {artifact_dir}/graph-db, inside the lineage write surface. The fan-out runner exports DEEP_LOOP_COVERAGE_DB_DIR to that directory. Run this step against it and never skip it as a write outside the lineage; when DEEP_LOOP_COVERAGE_DB_DIR is absent from the environment, prefix the command with DEEP_LOOP_COVERAGE_DB_DIR="{artifact_dir}/graph-db".'
         dry_run_boundary: "state-mutation"
         transform: |
           1. Convert review_scope_files into FILE nodes.
@@ -1193,6 +1194,7 @@ workflow:
 
       step_graph_convergence:
         action: "Run convergence.cjs once: it evaluates the coverage graph and computes the whole review stop decision"
+        fanout_graph_store: 'When config.fanout_lineage_artifact_dir is bound, or SPECKIT_FANOUT_LINEAGE_ID is set, this run is a fan-out lineage and its coverage graph store is {artifact_dir}/graph-db, inside the lineage write surface. The fan-out runner exports DEEP_LOOP_COVERAGE_DB_DIR to that directory. Run this step against it and never skip it as a write outside the lineage; when DEEP_LOOP_COVERAGE_DB_DIR is absent from the environment, prefix the command with DEEP_LOOP_COVERAGE_DB_DIR="{artifact_dir}/graph-db".'
         inspect:
           - "{state_paths.state_log}"
           - "{state_paths.findings_registry}"
@@ -1241,7 +1243,7 @@ workflow:
           2. if stuck_count >= config.stuckThreshold: STUCK_RECOVERY
           3. if convergence_mode == "off": skip convergence stop candidates and continue.
           3a. if stop_policy == "max-iterations" AND iteration_count < max_iterations: the vote is telemetry only and the decision is CONTINUE.
-          4. a STOP candidate exists when every dimension is clean (all_dimensions_clean) or the weighted vote passes (composite_converged). The vote cutoffs follow the configured convergenceThreshold.
+          4. a STOP candidate exists when every dimension is clean (all_dimensions_clean) or the weighted vote passes (composite_converged). The vote cutoffs follow the configured convergenceThreshold. When neither forms and depth_mode == "expansive", a lineage whose frontier holds at least one node and none still open or active forms a hard candidate (frontier_drained). A default run never forms it, and the legal-stop gates below still decide it.
           4a. if iteration_count < min_iterations: CONTINUE (minIterationsNotReached). min_iterations is config.minIterations, else antiConvergence.minIterations, capped at max_iterations; like research, the floor runs on a candidate before the legal-stop gates.
           4b. if depth_mode == "expansive" and the frontier still holds an open or active node: CONTINUE (frontierOpen). It vetoes every review candidate, all_dimensions_clean included, and never creates a stop.
           5. the nine legal-stop gates run on a candidate: convergenceGate, dimensionCoverageGate, p0ResolutionGate, evidenceDensityGate, hotspotSaturationGate, claimAdjudicationGate, fixCompletenessReplayGate, candidateCoverageGate, graphlessFallbackGate. Any failed gate gives BLOCKED (blockedStop).
@@ -2018,6 +2020,7 @@ workflow:
 
       step_graph_upsert:
         action: "Project canonical review coverage plus optional graphEvents into graph nodes and edges, then upsert it"
+        fanout_graph_store: 'When config.fanout_lineage_artifact_dir is bound, or SPECKIT_FANOUT_LINEAGE_ID is set, this run is a fan-out lineage and its coverage graph store is {artifact_dir}/graph-db, inside the lineage write surface. The fan-out runner exports DEEP_LOOP_COVERAGE_DB_DIR to that directory. Run this step against it and never skip it as a write outside the lineage; when DEEP_LOOP_COVERAGE_DB_DIR is absent from the environment, prefix the command with DEEP_LOOP_COVERAGE_DB_DIR="{artifact_dir}/graph-db".'
         dry_run_boundary: "state-mutation"
         read:
           - "{state_paths.config}"
