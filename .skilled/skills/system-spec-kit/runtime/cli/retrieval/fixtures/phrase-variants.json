@@ -1,5 +1,5 @@
 {
-  "manifestHash": "64ad3d695ca14ad52a35749fcec301295a4bed8caffcfc5564eeb40ede1600c8",
+  "manifestHash": "b84fa2f88d76ce5cfbc84f9b0e57c7e199070eb4c98ac3e9a0d82ea60e54333e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -2992,6 +2992,9 @@
     ],
     "012 plan": [
       "012 plan"
+    ],
+    "012 plan text and goal closeout operator decisions": [
+      "012-plan-text-and-goal-closeout operator decisions"
     ],
     "012 post restart": [
       "012 post-restart"
@@ -9187,6 +9190,9 @@
     "advisor hook cli spawn trim": [
       "advisor hook cli spawn trim"
     ],
+    "advisor hook crash setup wording skipped prompt": [
+      "advisor hook crash setup wording skipped prompt"
+    ],
     "advisor hook deadline": [
       "advisor hook deadline"
     ],
@@ -9805,6 +9811,9 @@
     ],
     "advisor skipped status meaning": [
       "advisor skipped status meaning"
+    ],
+    "advisor socket dir caveat": [
+      "advisor socket dir caveat"
     ],
     "advisor socket protocol": [
       "advisor socket protocol"
@@ -11601,6 +11610,9 @@
     ],
     "alignment drift pi extensions module header": [
       "alignment drift pi extensions module header"
+    ],
+    "alignment drift probe shebang strict mode": [
+      "alignment drift probe shebang strict mode"
     ],
     "alignment drift verification": [
       "alignment drift verification"
@@ -29486,6 +29498,9 @@
     "compiled route probe criteria": [
       "compiled route probe criteria"
     ],
+    "compiled route raw prompt pasted reply": [
+      "compiled route raw prompt pasted reply"
+    ],
     "compiled route re mint": [
       "compiled route re-mint"
     ],
@@ -30142,6 +30157,9 @@
     ],
     "confidence uncertainty threshold dedup": [
       "confidence uncertainty threshold dedup"
+    ],
+    "confidenceonly threshold doc clause": [
+      "confidenceOnly threshold doc clause"
     ],
     "confident unsupported claim shapes": [
       "confident unsupported claim shapes"
@@ -32283,6 +32301,24 @@
     ],
     "craft markdown structure": [
       "craft markdown structure"
+    ],
+    "crash fallback directive dedup policy observation": [
+      "crash fallback directive dedup policy observation"
+    ],
+    "crash fallback edge cases": [
+      "crash fallback edge cases"
+    ],
+    "crash fallback edge cases goal": [
+      "crash fallback edge cases goal"
+    ],
+    "crash fallback edge cases implementation summary": [
+      "crash fallback edge cases implementation summary"
+    ],
+    "crash fallback edge cases plan": [
+      "crash fallback edge cases plan"
+    ],
+    "crash fallback edge cases tasks": [
+      "crash fallback edge cases tasks"
     ],
     "crash loop cooldown enospc resilient writes": [
       "crash-loop cooldown ENOSPC resilient writes"
@@ -45165,6 +45201,21 @@
     ],
     "drift guard passes again": [
       "drift guard passes again"
+    ],
+    "drift guard probe script errors": [
+      "drift guard probe script errors"
+    ],
+    "drift guard probe script errors goal": [
+      "drift guard probe script errors goal"
+    ],
+    "drift guard probe script errors implementation summary": [
+      "drift guard probe script errors implementation summary"
+    ],
+    "drift guard probe script errors plan": [
+      "drift guard probe script errors plan"
+    ],
+    "drift guard probe script errors tasks": [
+      "drift guard probe script errors tasks"
     ],
     "drift guard repairs": [
       "drift guard repairs"
@@ -58502,6 +58553,21 @@
     ],
     "handler memory search live envelope": [
       "handler-memory-search-live-envelope"
+    ],
+    "handler scored prompt consumers": [
+      "handler scored prompt consumers"
+    ],
+    "handler scored prompt consumers goal": [
+      "handler scored prompt consumers goal"
+    ],
+    "handler scored prompt consumers implementation summary": [
+      "handler scored prompt consumers implementation summary"
+    ],
+    "handler scored prompt consumers plan": [
+      "handler scored prompt consumers plan"
+    ],
+    "handler scored prompt consumers tasks": [
+      "handler scored prompt consumers tasks"
     ],
     "handler token budgets": [
       "handler token budgets"
@@ -81779,6 +81845,9 @@
     "past due tasks": [
       "past-due tasks"
     ],
+    "pasted command attaches to task": [
+      "pasted command attaches to task"
+    ],
     "pasted context stripping": [
       "pasted context stripping"
     ],
@@ -81793,6 +81862,12 @@
     ],
     "pasted context stripping tasks": [
       "pasted context stripping tasks"
+    ],
+    "pasted reply strip edges": [
+      "pasted reply strip edges"
+    ],
+    "pasted reply strip shared fixture": [
+      "pasted reply strip shared fixture"
     ],
     "patch a notion page s properties": [
       "patch a Notion page's properties"
@@ -83283,6 +83358,9 @@
     "phase 10 review remediation": [
       "phase 10 review remediation"
     ],
+    "phase 10 route receipts research": [
+      "phase 10 route receipts research"
+    ],
     "phase 10 sk create goal": [
       "phase 10 sk create goal"
     ],
@@ -83385,6 +83463,9 @@
     "phase 11 restore pinned value when json entry": [
       "phase 11 restore pinned value when json entry"
     ],
+    "phase 11 route receipts build": [
+      "phase 11 route receipts build"
+    ],
     "phase 11 sk create quality control": [
       "phase 11 sk create quality control"
     ],
@@ -83456,6 +83537,9 @@
     ],
     "phase 12 plain offer reach": [
       "phase 12 plain offer reach"
+    ],
+    "phase 12 plan text and goal closeout": [
+      "phase 12 plan text and goal closeout"
     ],
     "phase 12 playbook docs and closeout": [
       "phase 12 playbook docs and closeout"
@@ -83552,6 +83636,9 @@
     ],
     "phase 13 devin compaction fallback budget": [
       "phase 13 devin compaction fallback budget"
+    ],
+    "phase 13 drift guard probe script errors": [
+      "phase 13 drift guard probe script errors"
     ],
     "phase 13 dsh live contract pin": [
       "phase 13 dsh live contract pin"
@@ -85584,6 +85671,9 @@
     "phase 6 speckit command and agent alignment": [
       "phase 6 speckit command and agent alignment"
     ],
+    "phase 6 strip rule boundary edges": [
+      "phase 6 strip rule boundary edges"
+    ],
     "phase 6 task list": [
       "phase 6 task list"
     ],
@@ -85716,6 +85806,9 @@
     "phase 7 purpose reader coverage": [
       "phase 7 purpose reader coverage"
     ],
+    "phase 7 python scorer strip parity": [
+      "phase 7 python scorer strip parity"
+    ],
     "phase 7 remediation deep review": [
       "phase 7 remediation deep review"
     ],
@@ -85842,6 +85935,9 @@
     "phase 8 embedder setup and cost": [
       "phase 8 embedder setup and cost"
     ],
+    "phase 8 handler scored prompt consumers": [
+      "phase 8 handler scored prompt consumers"
+    ],
     "phase 8 history test database env": [
       "phase 8 history test database env"
     ],
@@ -85964,6 +86060,9 @@
     ],
     "phase 9 compaction purpose folder": [
       "phase 9 compaction purpose folder"
+    ],
+    "phase 9 crash fallback edge cases": [
+      "phase 9 crash fallback edge cases"
     ],
     "phase 9 deep loop executor kind": [
       "phase 9 deep loop executor kind"
@@ -86964,6 +87063,9 @@
     ],
     "pi context decisions delegation strategy": [
       "pi-context-decisions delegation strategy"
+    ],
+    "pi context decisions packet closeout": [
+      "pi-context-decisions packet closeout"
     ],
     "pi context decisions plan check": [
       "pi-context-decisions plan check"
@@ -88106,6 +88208,21 @@
     ],
     "plan template phase trim": [
       "plan template phase trim"
+    ],
+    "plan text and goal closeout": [
+      "plan text and goal closeout"
+    ],
+    "plan text and goal closeout goal": [
+      "plan text and goal closeout goal"
+    ],
+    "plan text and goal closeout implementation summary": [
+      "plan text and goal closeout implementation summary"
+    ],
+    "plan text and goal closeout plan": [
+      "plan text and goal closeout plan"
+    ],
+    "plan text and goal closeout tasks": [
+      "plan text and goal closeout tasks"
     ],
     "plan time parent gate": [
       "plan-time parent gate"
@@ -91470,6 +91587,9 @@
     "python formatting standards": [
       "python formatting standards"
     ],
+    "python local scorer pasted reply": [
+      "python local scorer pasted reply"
+    ],
     "python module docstring rules": [
       "python module docstring rules"
     ],
@@ -91493,6 +91613,21 @@
     ],
     "python regression suite": [
       "python regression suite"
+    ],
+    "python scorer strip parity": [
+      "python scorer strip parity"
+    ],
+    "python scorer strip parity goal": [
+      "python scorer strip parity goal"
+    ],
+    "python scorer strip parity implementation summary": [
+      "python scorer strip parity implementation summary"
+    ],
+    "python scorer strip parity plan": [
+      "python scorer strip parity plan"
+    ],
+    "python scorer strip parity tasks": [
+      "python scorer strip parity tasks"
     ],
     "python shebang docstring check": [
       "python shebang docstring check"
@@ -102004,6 +102139,36 @@
     "route native advisor brief": [
       "route native Advisor brief"
     ],
+    "route receipts build": [
+      "route receipts build"
+    ],
+    "route receipts build goal": [
+      "route receipts build goal"
+    ],
+    "route receipts build implementation summary": [
+      "route receipts build implementation summary"
+    ],
+    "route receipts build plan": [
+      "route receipts build plan"
+    ],
+    "route receipts build tasks": [
+      "route receipts build tasks"
+    ],
+    "route receipts research": [
+      "route receipts research"
+    ],
+    "route receipts research goal": [
+      "route receipts research goal"
+    ],
+    "route receipts research implementation summary": [
+      "route receipts research implementation summary"
+    ],
+    "route receipts research plan": [
+      "route receipts research plan"
+    ],
+    "route receipts research tasks": [
+      "route receipts research tasks"
+    ],
     "route remint plan": [
       "route remint plan"
     ],
@@ -102746,6 +102911,9 @@
     "routingcalibration typed slots": [
       "RoutingCalibration typed slots"
     ],
+    "rr paste 208 divergence": [
+      "rr-paste-208 divergence"
+    ],
     "rrf fusion": [
       "RRF fusion"
     ],
@@ -103045,6 +103213,9 @@
     ],
     "run 2026 05 14b post 032 evidence": [
       "run-2026-05-14b-post-032 evidence"
+    ],
+    "run all drift guards exit 1 review probes": [
+      "run-all-drift-guards exit 1 review probes"
     ],
     "run all manual testing playbooks": [
       "run all manual testing playbooks"
@@ -122931,6 +123102,12 @@
     "store unreadable inherited database name": [
       "store_unreadable inherited database name"
     ],
+    "stored route receipts": [
+      "stored route receipts"
+    ],
+    "stored route receipts design": [
+      "stored route receipts design"
+    ],
     "strategic milestones": [
       "strategic milestones"
     ],
@@ -123257,6 +123434,21 @@
     ],
     "strip reported speech before scoring": [
       "strip reported speech before scoring"
+    ],
+    "strip rule boundary edges": [
+      "strip rule boundary edges"
+    ],
+    "strip rule boundary edges goal": [
+      "strip rule boundary edges goal"
+    ],
+    "strip rule boundary edges implementation summary": [
+      "strip rule boundary edges implementation summary"
+    ],
+    "strip rule boundary edges plan": [
+      "strip rule boundary edges plan"
+    ],
+    "strip rule boundary edges tasks": [
+      "strip rule boundary edges tasks"
     ],
     "strip yaml frontmatter": [
       "strip yaml frontmatter"
@@ -134721,6 +134913,12 @@
     ],
     "weak follow up guard": [
       "weak follow-up guard"
+    ],
+    "weak follow up receipt guard": [
+      "weak follow-up receipt guard"
+    ],
+    "weak follow up session receipt": [
+      "weak follow-up session receipt"
     ],
     "weak model authoring baseline": [
       "weak model authoring baseline"
