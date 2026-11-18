@@ -6,7 +6,7 @@ trigger_phrases:
   - "claude-config-dir research"
   - "--claude-config-dir"
   - "research cli-claude-code config dir"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Research Claude config dir (--claude-config-dir)
@@ -48,7 +48,7 @@ The executor audit row for a research iteration carries the configured dir, so a
 | File | Type | Role |
 |---|---|---|
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/dispatch-iteration.vitest.ts` | Vitest | Flag refusal and acceptance cases for research and review. |
-| `.skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts` | Node test | Research twin of the claude-code branch receipt; the audit row carries the configured dir. |
+| `.skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts` | Vitest | Research twin of the claude-code branch receipt; the audit row carries the configured dir. |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts` | Vitest | Pins the `if_cli_claude_code` branch in both command YAMLs. |
 | `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/executor/research-claude-config-dir.md` | Manual playbook | DLR-064: research on `cli-claude-code` runs under the configured Claude config dir. |
 

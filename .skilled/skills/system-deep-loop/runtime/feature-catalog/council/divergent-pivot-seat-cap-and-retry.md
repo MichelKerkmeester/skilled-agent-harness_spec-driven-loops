@@ -6,7 +6,7 @@ trigger_phrases:
   - "council quorum retry"
   - "maxCouncilSeatOutputs"
   - "pivot attempt 2"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Divergent pivot seat cap and council retry
@@ -52,6 +52,7 @@ Seat event ids include the attempt number, so attempt 2 does not reuse attempt 1
 |---|---|---|
 | `.skilled/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts` | Vitest | Seat scope, the attempt-2 retry, and attempt identity cases. |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/divergent-pivot-seat-scope.vitest.ts` | Vitest | Seat-count scope per pivot id and attempt. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/divergent-pivot-cli.vitest.ts` | Vitest | The CLI seam: `finalize` prints a retryable quorum failure, and a second `prepare` returns attempt 2 with three missing seats and attempt-2 seat paths. |
 | `.skilled/skills/system-deep-loop/runtime/tests/council/multi-seat-dispatch.vitest.ts` | Vitest | Multi-seat dispatch with any seat ids, unchanged by this behavior. |
 | `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/divergent-council-quorum-retry.md` | Manual playbook | DLR-062: three seats per attempt and one retry after a first-attempt quorum miss. |
 

@@ -1,7 +1,7 @@
 ---
 title: "runtime/: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the runtime/ skill."
-version: 1.4.8.0
+version: 1.4.9.0
 ---
 
 # runtime/: Manual Testing Playbook
@@ -220,7 +220,7 @@ Verify that the research prompt pack allows `research/research.md` under `progre
 #### Scenario Contract
 Prompt: `Validate the research prompt pack against the research agent contract: check the research.md write path and the Recommended Next Focus heading, then run the lockstep and reducer-parse cases.`
 
-Expected signals: One conditional `research.md` entry beside the iteration folder, the heading list ending in `Recommended Next Focus`, the four prompt-pack cases passing, and a drifted copy failing the lockstep case.
+Expected signals: One conditional `research.md` entry beside the iteration folder, the heading list ending in `Recommended Next Focus`, the lockstep, rendered-pack, lineage-render, iteration-record and reducer-parse cases passing, and a drifted copy failing the lockstep case.
 
 #### Test Execution
 > **Feature File:** [DLR-060](../manual-testing-playbook/prompt-rendering/research-prompt-pack-contract.md)

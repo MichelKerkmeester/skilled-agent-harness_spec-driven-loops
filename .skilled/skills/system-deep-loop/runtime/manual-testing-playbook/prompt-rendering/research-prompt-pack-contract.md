@@ -1,7 +1,7 @@
 ---
 title: "DLR-060 -- Research prompt pack contract"
 description: "This scenario validates the research prompt pack for `DLR-060`. It focuses on the conditional research.md write path and the Recommended Next Focus heading the reducer parses."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DLR-060 -- Research prompt pack contract
@@ -28,7 +28,7 @@ Operators run this as a single contract check against the pack, the agent defini
 - Layer partition: prompt rendering runtime.
 - Real user request: A fan-out research lineage must write its own synthesis, and the reducer must read the next focus the pack asks for.
 - Prompt: `Validate the research prompt pack against the research agent contract: check the research.md write path and the Recommended Next Focus heading, then run the lockstep and reducer-parse cases.`
-- Expected signals: The pack carries one conditional `research.md` entry beside the iteration folder, the heading list ends in `Recommended Next Focus`, the four prompt-pack cases pass, and a drifted copy of the pack fails the lockstep case.
+- Expected signals: The pack carries one conditional `research.md` entry beside the iteration folder, the heading list ends in `Recommended Next Focus`, the lockstep, rendered-pack, lineage-render, iteration-record and reducer-parse cases pass, and a drifted copy of the pack fails the lockstep case.
 - Pass/fail: PASS if every signal holds and the drifted copy fails; FAIL if the pack and the agent definition disagree, a case fails on the real pack, or the drifted copy passes.
 
 ---
@@ -83,7 +83,7 @@ If the lockstep case fails on the real pack, compare the write-path entry and th
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` | Research prompt pack; the write-path entry and the narrative heading list |
 | `.skilled/agents/deep-research.md` | Agent definition the pack must match |
-| `.skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts` | Lockstep, rendered-pack, lineage-render and reducer-parse cases |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts` | Lockstep, rendered-pack, lineage-render, iteration-record and reducer-parse cases |
 
 ---
 

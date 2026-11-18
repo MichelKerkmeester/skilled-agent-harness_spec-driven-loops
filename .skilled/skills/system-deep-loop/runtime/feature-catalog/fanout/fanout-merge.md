@@ -7,7 +7,7 @@ trigger_phrases:
   - "merge fanout lineages"
   - "strongest-restriction review merge"
   - "cross-model finding attribution"
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # Fan-out cross-lineage merge
@@ -99,8 +99,8 @@ codes: 0=ok, 3=input validation error.
 
 | File | Role |
 |---|---|
-| `tests/unit/fanout-merge.vitest.ts` | 10 tests: research dedup/attribution (3: dedup by id + cross-lineage tracking, iteration count aggregation, null registry handled); review strongest-restriction (5: clean+P0→FAIL, all clean→PASS, P1-only→CONDITIONAL, duplicate escalates severity, non-active excluded); script e2e (2: no lineages dir → ok, 2-lineage review fixture → merged FAIL + attribution.md) |
-| `tests/unit/fanout-merge.vitest.ts` | Expansive and coverage groups: `research frontier merge` (7 tests), `review frontier merge` (6 tests) and the `mergeReviewRegistries` coverage surfaces (9 tests) |
+| `tests/unit/fanout-merge.vitest.ts` | Research dedup/attribution (dedup by id + cross-lineage tracking, iteration count aggregation, null registry handled), review strongest-restriction (clean+P0→FAIL, all clean→PASS, P1-only→CONDITIONAL, duplicate escalates severity, non-active excluded) and script e2e (no lineages dir → ok, 2-lineage review fixture → merged FAIL + attribution.md) |
+| `tests/unit/fanout-merge.vitest.ts` | Expansive and coverage groups: `research frontier merge`, `review frontier merge` and the `mergeReviewRegistries` coverage surfaces |
 
 ---
 
