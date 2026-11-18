@@ -178,6 +178,8 @@ Every symptom was reproduced first on a scratch copy of the consumer's vendored 
 | Router drift after the rename | `routers=42 clean=42 path-drift=0`. `typo-flags.vitest.ts` 34/34, roster tests 15/15, advisor transcript tests 359/359. Before removing the old stem the transcript test failed 2 |
 | `run-all.sh` in the worktree after the follow-ups | `7 suite(s) passed, 0 failed`, node:test tests 1332, pass 1332, fail 0, skipped 0, exit 0 |
 | spec-kit vitest, cli project, after the follow-ups | 209 files passed, 3 skipped. 2592 tests passed, 20 skipped, 0 failed, exit 0. The first-round codex router failure is closed |
+| Main after the closeout merge | Fast-forward to `d7e1ec9440e`, trigger index rebuilt as `6c2a19d9f44`, `--check` exit 0. `run-all.sh` `7 suite(s) passed, 0 failed`, 1332 pass. Strict validation `RESULT: PASSED` |
+| GitHub Actions on `6c2a19d9f44` | Pi Entry Checks run 44351163891 success. Eighteen other workflows green. A Dependabot `uv` update run on the same commit failed, which this packet does not touch. Three red ones failed the same way on main before this packet: Hook Vitest Suites (one session-handover Pi test, also red at `538d2f789ec`), Routing Registry Drift Guard (the corpus gate and the sk-doc hub-vocabulary step, also red at `067d72028ef`) and Skill Advisor Stress Tests (`vibe-prompt-advisor.vitest.ts`, also red at `838b9862e51`) |
 <!-- /ANCHOR:verification -->
 
 ---
