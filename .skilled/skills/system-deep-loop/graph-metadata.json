@@ -69,7 +69,12 @@
     "find out everything",
     "findings stop changing",
     "executor_missing gate",
-    "names no executor"
+    "names no executor",
+    "depth-capped frontier",
+    "follow-up question frontier",
+    "frontier of follow-up questions",
+    "review target",
+    "this research run"
   ],
   "derived": {
     "trigger_phrases": [
@@ -165,6 +170,10 @@
     "severity weighted findings",
     "convergence review",
     "find out everything",
-    "findings stop changing"
+    "findings stop changing",
+    "follow-up question frontier",
+    "frontier of follow-up questions",
+    "review target",
+    "this research run"
   ]
 }

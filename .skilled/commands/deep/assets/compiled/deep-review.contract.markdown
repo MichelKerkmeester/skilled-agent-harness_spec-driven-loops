@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "91868f7ab2e17891aba39ad4b9684fed7fdc129cef7ca3a9f9d69b04aa21b912",
+      "sha256": "b3b87ffc965745cfc849f9d172c69ee30472982b613162be52bbb2d4cb61f2af",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "693cf6bc331d0f6a2a7da699d7644ff529f1cb6ec38ed94dc970c0f20b276ca7",
+      "sha256": "2cc0791ae1e1437fafe9c0659f729b609a7329c8fe2a5d1989fe07bfeb66fa64",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "aa5d66a5dd14804729d78aa780aaf4a8045da2f7b42729bafdc4f0a4326a8051",
+      "sha256": "3976cd709afde8cff70499fee1943155f00ed0a8755d5cd54d281cba5fb8b39b",
       "section": "full"
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "df66b26bd7fc5089e8abb27d2e3a2368c2b731dd9c3c02a2651ebb6d54adab92",
+      "sha256": "854f935ea5ca4481e1119d11dff05dc22dbd7f75d6ff491a333110e4ed7e8c08",
       "section": "full"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "a95d8977b013311b27bfaf76bae9b35338af2b1b715fc848bc9903c02de52c9c",
+      "sha256": "ef30952bb842cbff40f1bc490a7b81405a7210e8929d4dedf9f5af743486cad8",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "90e0ae5e73c5df74408464ca5889bedfd546d37e00ec754d31c9cbce959beb35"
+  "compiledBodyDigest": "c8386dd03562bb55b69c79a91f0b9f72b1e82397b93730192e81b58800214408"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -213,7 +213,7 @@ Rules:
 | `lineage_mode` | Y | flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default | `auto` | N |
 | `extend` | N | flag `--extend=N` (positive integer); sets `lineage_mode=completed-continue` on a completed run; refused with fan-out | none | N |
 | `extend_minutes` | N | flag `--extend-minutes=M` (positive integer), valid only with `--extend` | the prior `maxDurationMinutes` | N |
-| `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default; the setup-only binding `max_iterations_source` names which (`flag`, `marker`, `setup`, `matrix` or `default`) and is never written to the config. Under `--depth-mode=expansive` a `default` budget is resized after the seed step to `min(24, max(7, 2·c·(S + maxDepth − 1)))`, with S the depth-1 nodes the seed admitted and c the configured dimension count, and kept at `7` when S is 0; any other source is kept as given | `7` | N |
+| `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default; the setup-only binding `max_iterations_source` names which (`flag`, `marker`, `setup`, `matrix` or `default`) and is never written to the config. Under `--depth-mode=expansive` a `default` budget is resized after the seed step to `min(24, max(7, 2·c·(S + maxDepth − 1)))`, with S the depth-1 nodes the seed admitted and c the four canonical dimensions plus any custom name, each counted once, and kept at `7` when S is 0; any other source is kept as given | `7` | N |
 | `convergenceThreshold` | Y | flag `--convergence`, marker `convergenceThreshold`, or default | `0.10` | N |
 | `convergence_mode` | Y | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default | `default` | N |
 | `depth_mode` | Y | flag `--depth-mode=default|expansive`, marker `depth_mode`, or default `default` | `default` | N |
