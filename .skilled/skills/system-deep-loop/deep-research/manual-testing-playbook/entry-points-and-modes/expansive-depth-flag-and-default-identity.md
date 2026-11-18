@@ -1,7 +1,7 @@
 ---
 title: "DR-068 -- Expansive depth flag and default byte identity"
 description: "This scenario validates that --depth-mode defaults to default, that a default run matches the pre-change baseline byte for byte and that only the expansive-only agent paragraph differs on CLI lineage prompts, for `DR-068`."
-version: 1.16.3.0
+version: 1.16.4.0
 ---
 
 # DR-068 -- Expansive depth flag and default byte identity
@@ -31,7 +31,7 @@ Operators run the exact commands below and confirm that the flag documents `defa
 - Prompt: `Check that --depth-mode defaults to default and that a research run without the flag matches the pre-change baseline byte for byte. Name any byte that differs. Return a PASS or FAIL verdict with the reason.`
 - Expected execution process: Read the flag row and the config default, read the golden helper that removes one paragraph, then run the golden suite by file stem.
 - Expected signals: The flag row lists `default` as the value when the flag is absent. The config carries `"depthMode": "default"`. The golden suite passes 12 of 12 tests. The only paragraph the comparison removes is the expansive-only persona paragraph in the CLI lineage prompt.
-- Desired user-visible outcome: The operator can say a default run matches the baseline byte for byte, except for one expansive-only paragraph in the embedded agent persona of CLI lineage prompts. That exception is a waiver pending operator ratification.
+- Desired user-visible outcome: The operator can say a default run matches the baseline byte for byte, except for one expansive-only paragraph in the embedded agent persona of CLI lineage prompts. That paragraph is the only exception.
 - Pass/fail: PASS if the flag row and the config default both name `default`, the golden suite passes and the helper removes only the persona paragraph; FAIL if any other byte differs or any golden case fails.
 
 ---

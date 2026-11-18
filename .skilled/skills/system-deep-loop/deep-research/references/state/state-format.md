@@ -9,7 +9,7 @@ trigger_phrases:
   - "research packet location"
 importance_tier: important
 contextType: implementation
-version: 1.14.6.0
+version: 1.14.7.0
 ---
 
 # State Format Reference
@@ -78,7 +78,7 @@ This avoids an unnecessary `pt-01` wrapper on first runs.
 
 ### Frontier Node Store (expansive depth only)
 
-`research/frontier-nodes.jsonl` is the node-status store for a run started with `--depth-mode=expansive`. A default run never creates it, nor the seed step's input `research/frontier-seed.json`, the JSON array of depth-1 sub-questions that `frontier-admit.cjs seed --input` reads. Rows are append-only and carry `{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey}`, plus an optional `budget` on an admitted row whose proposal named one. The last row for a node wins, so a status change is one more row rather than an edit. `runtime/scripts/frontier-admit.cjs` writes it for seed, admit and close, and `runtime/scripts/fanout-run.cjs` writes the starting store of each fan-out lineage dealt at least one node before the lineage spawns, unless the lineage already has one; a lineage dealt no node gets no store.
+`research/frontier-nodes.jsonl` is the node-status store for a run started with `--depth-mode=expansive`. A default run never creates it, nor the seed step's input `research/frontier-seed.json`, the JSON array of depth-1 sub-questions that `frontier-admit.cjs seed --input` reads. Rows are append-only and carry `{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey}`, plus an optional `budget` on an admitted row whose proposal named one. The last row for a node wins, so a status change is one more row rather than an edit. `runtime/scripts/frontier-admit.cjs` writes it for seed, admit and close, and `runtime/scripts/fanout-run.cjs` writes the starting store of each fan-out lineage dealt at least one node before the lineage spawns, unless the lineage already has one; a lineage dealt no node gets no store. Each expansive iteration also writes `research/frontier-graph-events.json`, the event file `step_frontier_graph_upsert` passes to `upsert.cjs` for the coverage graph, and a default run never creates it.
 
 Statuses are `open`, `active`, `answered`, `blocked`, `exhausted`, `abstained` and `pruned`. A frontier question resolves when its node reaches a terminal status. The reducer mirrors that resolution into `findings-registry.json`, where the question carries a `frontierStatus` field holding one of `answered`, `blocked`, `exhausted`, `abstained` or `pruned`. It derives `resolvedAtIteration` from the node's `closedAtIteration` when no iteration evidence names one.
 

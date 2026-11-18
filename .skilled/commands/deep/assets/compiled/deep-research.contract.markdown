@@ -37,7 +37,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "88972fcc712496d7443ae9f5c7b2643d71554aa0b5184334d5901bfaab4d9ed0",
+      "sha256": "c472d7b1dc1a6e9df085c005da0a913176a216a0fae2b32617715f5eb5c2c0e6",
       "section": "full"
     },
     {
@@ -52,7 +52,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
-      "sha256": "6b8156b4b62fbf4981f7d3cbe547b8eac121fc4e125c0228731d842fdd089931",
+      "sha256": "8a188cf1ef9f992abf46b907d71237f8c5a21ba2636b30a6aaf62c5feae235e2",
       "section": "full"
     },
     {

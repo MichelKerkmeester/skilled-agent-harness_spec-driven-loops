@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.21.0
+version: 1.14.22.0
 ---
 
 # deep-research
@@ -107,6 +107,7 @@ Every run keeps continuity under `{spec_folder}/research/`. A root spec writes t
 | `.deep-research-pause` | Operator | The pause sentinel checked before each dispatch |
 | `frontier-nodes.jsonl` | Frontier admission | The node store an expansive run keeps, absent on a default run |
 | `frontier-seed.json` | Workflow | The seed step's depth-1 sub-questions, the input `frontier-admit.cjs seed` reads, absent on a default run |
+| `frontier-graph-events.json` | Workflow | The frontier graph events each expansive iteration mirrors into the coverage graph, absent on a default run |
 
 The workflow owns the config and the synthesis. The agent writes its iteration file and delta, plus any progressive synthesis contribution the config allows. The reducer owns the strategy sections and the registry. It redraws the dashboard. Because every artifact is on disk, a crashed run resumes from the packet files.
 
@@ -276,4 +277,5 @@ allow-ref research.md | the workflow writes it inside a run's research packet
 allow-ref findings-registry.json | the reducer creates it inside a run's research packet
 allow-ref iterations/iteration-NNN.md | a round writes it inside a run's research packet
 allow-ref frontier-seed.json | the seed step of an expansive run writes it inside the run's research packet
+allow-ref frontier-graph-events.json | the graph upsert of an expansive run writes it inside the run's research packet
 -->
