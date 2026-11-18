@@ -35,7 +35,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "A project that vendors Skilled measured the advisor on its own prompts and reported eight surfacing gaps",
     "created_at": "2026-11-17T20:46:09Z",
-    "last_save_at": "2026-11-17T22:05:23.510Z",
+    "last_save_at": "2026-11-18T04:11:04.548Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +215,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:933ffd95621786680ede604e6f04016e95cffca9f52baf0d5d9e68443ff9cff4",
+    "source_fingerprint": "sha256:17af44fe7243d4ce13123c46041b902c7ec9ab92a6f71ec4fec4f14d0de983dc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b378db6fb3de2479e461d17fb65fc7818efc47a9e34e22c2545b86e8094d8ede",
       "plan.md": "940637b7420285bf74ab58b11d8e496e1cfba77695410134bf79a43bc4fef1fc",
-      "tasks.md": "a70bf0b65d9e7666e60b26127030af84342793746e9f3f3481bea509206b8fdb",
+      "tasks.md": "d39e53e75764f18ecb8c66e8533a9ec516f4934f9a78eef84a676ffa742405af",
       "decision-record.md": "2e940ebe39ce919c16ff03fda47526ed69ec0b406257341df9f26b647e9ff7e2",
       "implementation-summary.md": "36238224579d9f742e4aa2ea55b373101dcd0dd23f75c513f0a2ce4fe4a78bbb"
     },

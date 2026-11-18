@@ -145,7 +145,7 @@ A task that waits on a decision stays `[ ]` and names the decision in its text. 
 - [x] CHK-FIX-004 [P0] Security, path, parser, or redaction fixes include adversarial table tests. Evidence: the phrase changes carry negative tables: scattered words, missing leading word and skill rows in `command-phrase-tolerance.vitest.ts`, hyphen-joined words in `name-mention-scoring.vitest.ts`, and code-review wording in `review-status-wording.vitest.ts`.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Evidence: axes are prompt shape (exact, close wording, scattered, hyphen-joined, ticket status, code review) and row kind (command, skill). 12 new advisor tests, plus the 45-row vendoring prompt set before and after.
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. Evidence: N/A. The changed code reads no environment or global state (`process.env` and `globalThis` appear in none of the added lines). The loader reads one file path fixed by its own location.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Open: nothing is committed. The evidence sits on an uncommitted tree on top of `9cda2018330`.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Evidence: the advisor fix is commit `8a6f64beac8`, and the deep-loop half is `c588762cf8d`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
