@@ -34,7 +34,7 @@
       "reader"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "A reader who opens `.skilled/repo-rules/` finds ten rule files and nothing that says how they load or how to add one",
     "created_at": "2026-11-18T08:48:49Z",
-    "last_save_at": "2026-11-18T08:58:30.139Z",
+    "last_save_at": "2026-11-18T09:02:05.010Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:714a1ba36102001fef3bf45ebc863669e8be11f20719308d29d12c5d0f52f744",
+    "source_fingerprint": "sha256:1be64b21e604902f48ef82cfe2812f3ad4a986f5be467481a824643c46182e14",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6e5427f77788efbb3dd1e34cf676541227034ee0a55c36914d2a1b5a57f41b1f",
       "plan.md": "4ecb3fb4d5bba03a59582dc47f0e2faa931811d70a6ee9a2d74bf763eb36d652",
-      "tasks.md": "5ab31570280b2c89adb73da2ca63c97022e3d203975e4e7c97a08600166dbf18",
-      "implementation-summary.md": "040fedb79751e9d3f876a6fa0f1eaa052745492a3db0dad6097572769364bd95"
+      "tasks.md": "8d3790bcacf7e00a20b4c2f76c1f274f7eaa985f42f43f08aeeaca17b32c8511",
+      "implementation-summary.md": "b831d74bd36f284bd1e200bbeb7ce5de7a6d677073c4f243b976ab490cfa48de"
     },
     "last_active_at": null
   }
