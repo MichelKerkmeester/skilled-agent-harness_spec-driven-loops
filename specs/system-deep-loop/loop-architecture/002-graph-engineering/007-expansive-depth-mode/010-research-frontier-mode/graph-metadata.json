@@ -209,7 +209,7 @@
     ],
     "causal_summary": "A deep-research run stops on `allquestionsanswered` or `compositeconverged` as soon as the questions written at init are answered, however narrowly",
     "created_at": "2026-11-17T14:34:22Z",
-    "last_save_at": "2026-11-18T04:25:25.925Z",
+    "last_save_at": "2026-11-18T05:54:48.890Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d685b8aac2585cc8fee70813dae5470f70db594971810034750d9b9991ce411",
+    "source_fingerprint": "sha256:7420859a9608233d96204d2eb1abfd073e45279b6370aa49b488d58f49e1e9ec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6fd0b086ecaa4809260df48763acf125b6f338a1243762caae76e9e4b421c84b",
+      "spec.md": "eef899994f548253b451d5f89df1a74bee3f0eb98996fba8b5fbff10eefcfd55",
       "plan.md": "81258e91190ca4f419a4862d5aed222b4ad842a43208e88315117fb00aa40cb3",
       "tasks.md": "7d5a3603d55cc81bb52f9ba0e435f524f02f339adae1c9d01b9b0f61896ba753",
       "decision-record.md": "88f697a3bdf5cf3e1f17eef95cac0e7592832b1ca764eab46399959e4738a00e",

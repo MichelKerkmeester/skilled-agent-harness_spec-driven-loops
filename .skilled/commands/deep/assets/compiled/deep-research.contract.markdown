@@ -57,7 +57,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
-      "sha256": "9ec9a9dcb11fca44585c374ce5d34b2244d9cdc549f95c31030616ae9ad79256",
+      "sha256": "9f1abeca94829106938240354b574a57ca24f908485d746b03f3f6416b43f8ee",
       "section": "full"
     },
     {

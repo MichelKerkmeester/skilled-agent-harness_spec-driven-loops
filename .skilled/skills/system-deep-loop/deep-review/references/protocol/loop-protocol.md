@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.19.0
+version: 1.11.20.0
 ---
 
 # Deep Review Loop Protocol
@@ -464,7 +464,7 @@ Under `--depth-mode=expansive` the loop keeps a frontier of sub-target nodes bes
 
 `step_frontier_admit` runs before the reducer and applies six checks in order: relevance, dedupe, depth, fan-out, budget, cycle. Relevance includes a node's scope sitting inside a file-list review target. The first failure prunes the proposal under that check's name. A review run has no inbox, so the store alone queues an admitted node, and `runtime/scripts/frontier-admit.cjs --target review` is its only writer.
 
-Next Focus reads, in precedence order: blocked-stop recovery, the pivot, the active frontier node, the leaf's `nextFocus`, then the first uncovered dimension. The `frontierOpen` veto holds the loop at CONTINUE while a node stays open, and never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the review floor. Stuck recovery closes the active node `exhausted` with reason `stuck` before recovery continues. Once no node is open or active, a run with no other candidate gets the hard `frontier_drained` candidate, which the legal-stop gates and the graph decision still decide.
+Next Focus reads, in precedence order: blocked-stop recovery, the pivot, the active frontier node, the leaf's `nextFocus`, then the first uncovered dimension. The `frontierOpen` veto holds the loop at CONTINUE while a node stays open, and never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the review floor. Stuck recovery closes the active node `exhausted` with reason `stuck` before recovery continues. Once no node is open or active and at least one is answered, a run with no other candidate gets the hard `frontier_drained` candidate, which the legal-stop gates and the graph decision still decide.
 
 On a fan-out run the depth-1 nodes are dealt round-robin in node-id order, `frontier_scope:` binds each lineage's node ids beside `review_focus:` in its prompt, and the partition is recorded as `frontier_partition` in `orchestration-summary.json`. Each lineage's store is written before it spawns, the merge returns a merged `frontier`, and a partition guard names any dealt node no lineage reports. A node needs one iteration per configured dimension, so 50% of each lineage's `maxIterations` should reach `ceil(nodes / lineages) * dimensions`; below that the depth-1 band cannot fund the nodes it was dealt.
 

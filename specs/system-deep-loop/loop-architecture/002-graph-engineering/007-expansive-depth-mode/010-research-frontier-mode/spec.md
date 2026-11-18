@@ -89,6 +89,7 @@ $ rg -n '"maxIterations"' $D/deep-research/assets/deep-research-config.json
 - Add the `frontierOpen` veto in `convergence.cjs`.
 - Add the fan-out path: `--depth-mode` passthrough to every lineage, a round-robin `frontier_scope:` partition persisted in `orchestration-summary.json`, each lineage's assigned nodes written into its own node store before it spawns, a merged `frontier` in `mergeResearchRegistries` and a fan-in guard that reads the persisted partition.
 - Own the research-side documentation this phase makes stale: the reference docs, the manual testing playbook scenarios (written through `/create:manual-testing-playbook`), the changelog entry, the compiled-contract regeneration and the agent mirror sync. Then pilot on example target 2.
+- Inert default-run byte change (2026-11-18): `step_create_config` writes `expansiveDepth.maxFrontierNodes: null` for every run, where it wrote the iteration budget before, so admission derives the cap as half of `maxIterations`. A default run's config file therefore differs by that one value; only expansive steps (`frontier-admit.cjs` seed and admit) read it, so default behavior does not change.
 
 ### Out of Scope
 - The review-side frontier - built in `011-review-frontier-mode`, because review has no question surface and admits into different structures.

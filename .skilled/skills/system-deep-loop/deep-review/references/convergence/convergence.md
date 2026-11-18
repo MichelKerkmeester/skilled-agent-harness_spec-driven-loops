@@ -9,7 +9,7 @@ trigger_phrases:
   - "composite convergence vote"
 importance_tier: important
 contextType: implementation
-version: 1.11.12.0
+version: 1.11.13.0
 ---
 
 # Deep Review Convergence
@@ -102,11 +102,11 @@ The shared convergence runtime accepts four values. Review legality, security ga
 
 #### Expansive Depth Mode
 
-`--depth-mode=expansive` grows a depth-capped frontier of sub-target nodes beside the review target. The value lands in `antiConvergence.depthMode`, and the caps live in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `budgetSplit` of 0.5/0.35/0.15 across the depth bands, and `maxFrontierNodes`, which defaults to half of `maxIterations` unless the config sets a number. The mode is locked against the optimizer; the `expansiveDepth` block is in neither its tunable nor its locked list. An absent flag means `default`, which runs exactly as before.
+`--depth-mode=expansive` grows a depth-capped frontier of sub-target nodes beside the review target. The value lands in `antiConvergence.depthMode`, and the caps live in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `budgetSplit` of 0.5/0.35/0.15 across the depth bands, and `maxFrontierNodes`, which defaults to half of `maxIterations` unless the config sets a number. The run cap never prunes a depth-1 seed, which only the root-children cap bounds, but every seed that is not pruned, answered ones included, counts toward the live total that later admissions are checked against. A fan-out parent seeds before any config exists, so its cap falls back to 10. The mode is locked against the optimizer; the `expansiveDepth` block is in neither its tunable nor its locked list. An absent flag means `default`, which runs exactly as before.
 
 After the review floor, an expansive run that still holds an open or active node turns a stop candidate into `CONTINUE` with reasonDetail `frontierOpen`, whichever candidate it was, `all_dimensions_clean` or a composite convergence vote. The veto never creates a stop of its own and never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the `minIterations` floor. Under stuck recovery the handler closes the active node as `exhausted` with reason `stuck`, so a node the run cannot fund stops holding the veto open.
 
-When the frontier holds at least one node and none is open or active, and neither `all_dimensions_clean` nor the composite vote forms, an expansive run gets the hard candidate `frontier_drained`. It ranks after the other two, so the floor, the legal-stop gates and the graph decision run on it as on any candidate: a failed gate gives `BLOCKED`, and a stop records `converged` with reasonDetail `frontier_drained`. A fan-out lineage whose partition is answered therefore stops rather than running to its cap. A default run never forms it.
+When the frontier holds at least one answered node and none is open or active, and neither `all_dimensions_clean` nor the composite vote forms, an expansive run gets the hard candidate `frontier_drained`. It ranks after the other two, so the floor, the legal-stop gates and the graph decision run on it as on any candidate: a failed gate gives `BLOCKED`, and a stop records `converged` with reasonDetail `frontier_drained`. A fan-out lineage reads only its own partition, so one whose nodes are answered stops rather than running to its cap. A frontier that closed with nothing answered, every node exhausted or pruned, forms no candidate, and a default run never forms it.
 
 #### Divergent Pivot Contract
 
@@ -180,7 +180,7 @@ Checks are evaluated in this order (first match wins), as `buildStopDecision` in
 3. **Stuck detection** -- `stuckThreshold` (2) consecutive no-progress iterations route to stuck recovery.
 4. **Convergence mode off** -- `convergenceMode: off` returns `CONTINUE` (`convergenceModeOff`).
 5. **Stop policy max-iterations** -- `stopPolicy: max-iterations` returns `CONTINUE` (`stopPolicyMaxIterations`).
-6. **Stop candidate** -- all dimensions covered and clean (every configured dimension covered, the four by default, no active P0/P1, coverage stabilized) is a hard candidate; otherwise the 3-signal composite vote with threshold 0.60 is a soft one. Under `--depth-mode=expansive`, a frontier with nodes and none open or active is a third, hard candidate (`frontier_drained`) when neither forms. No candidate returns `CONTINUE` (`noStopCandidate`).
+6. **Stop candidate** -- all dimensions covered and clean (every configured dimension covered, the four by default, no active P0/P1, coverage stabilized) is a hard candidate; otherwise the 3-signal composite vote with threshold 0.60 is a soft one. Under `--depth-mode=expansive`, a frontier with at least one answered node and none open or active is a third, hard candidate (`frontier_drained`) when neither forms. No candidate returns `CONTINUE` (`noStopCandidate`).
 7. **Iteration floor** -- below `minIterations` the candidate returns `CONTINUE` (`minIterationsNotReached`).
 8. **Frontier veto** -- under `--depth-mode=expansive`, an open frontier node turns the candidate into `CONTINUE` (`frontierOpen`).
 9. **Legal-stop gate bundle** -- review-specific stop gates. If the candidate fails any gate, persist `stopReason=blockedStop` and continue.
