@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.24.0
+version: 1.11.25.0
 ---
 
 # Deep Review Loop Protocol
@@ -183,7 +183,7 @@ Run `shouldContinue_review()` (see `../deep-research/references/convergence/conv
 - Stuck count `>= 2` using `noProgressThreshold = 0.05`? `STUCK_RECOVERY`
 - Composite convergence votes `STOP` only after:
   - Rolling average uses `rollingStopThreshold = 0.08`
-  - Dimension coverage reaches 100% across every configured dimension, the four canonical ones plus any custom name
+  - Dimension coverage reaches 100% across the dimensions `reviewDimensions` names in the config, which is the four canonical ones for `all` and only the names given otherwise; a config with no list falls back to the dimensions the coverage map holds
   - Coverage has aged through `minStabilizationPasses >= 1`
   - Required traceability protocols are covered
   - Evidence, scope, and coverage gates pass

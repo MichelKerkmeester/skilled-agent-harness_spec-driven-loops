@@ -9,7 +9,7 @@ trigger_phrases:
   - "review iteration file structure"
 importance_tier: important
 contextType: implementation
-version: 1.11.9.0
+version: 1.11.10.0
 ---
 
 # Deep Review State Format
@@ -35,7 +35,7 @@ The deep review loop uses 9 state files under the resolved `{artifact_dir}/` own
 
 | File | Format | Mutability |
 |------|--------|------------|
-| `deep-review-config.json` | JSON | Immutable after init, except the terminal `status: complete` flip and the `--extend=N` rewrite of `maxIterations`, `maxDurationMinutes`, `lineageMode` and `continuedFromRun` |
+| `deep-review-config.json` | JSON | Immutable after init, except the terminal `status: complete` flip and the `--extend=N` rewrite, which resets `status` to `initialized` and sets `maxIterations`, `maxDurationMinutes`, `lineageMode` and `continuedFromRun` |
 | `deep-review-state.jsonl` | JSON Lines | Append-only |
 | `deep-review-findings-registry.json` | JSON | Auto-generated reducer state |
 | `deep-review-strategy.md` | Markdown | Updated each iteration |
@@ -301,7 +301,7 @@ When JSONL parses cleanly, `corruptionWarnings: []`.
 
 `review/frontier-nodes.jsonl` is the node-status store for a run started with `--depth-mode=expansive`; a default run never creates it. Rows are append-only and carry `{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey}`. The last row per `nodeId` wins, so a status change is one more row rather than an edit, and `runtime/scripts/frontier-admit.cjs --target review` is its only writer, for seed, admit and close.
 
-The reducer projects the store as `registry.frontier`: `nodes`, each with its `coveredDimensions`, `nextDimension` and `visits`; `stats`; `budget`; `activeNodeId`; and `activeNextDimension`. A node is `answered` once every configured dimension is covered for it. An iteration counts toward a node by its `frontierNodeId`, by the `Frontier node <id>` focus marker anywhere in the focus, or by the store's `active` row for that iteration.
+The reducer projects the store as `registry.frontier`: `nodes`, each with its `coveredDimensions`, `nextDimension` and `visits`; `stats`; `budget`; `activeNodeId`; and `activeNextDimension`. A node is `answered` once every dimension in its universe is covered for it. The universe always holds the four canonical dimensions, then each configured custom name, so a node in a run configured with a subset still needs all four. An iteration counts toward a node by its `frontierNodeId`, by the `Frontier node <id>` focus marker anywhere in the focus, or by the store's `active` row for that iteration.
 
 An open node is a `searchDebt` entry with `bugClass: frontier:<id>`, since the depth it stands for is unspent. An answered node becomes `candidateCoverage` `covered`; a pruned or abstained node becomes `ruledOut`; an exhausted or blocked node stays frontier-only, because filing it as debt would report work the run may no longer do.
 
