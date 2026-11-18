@@ -16,7 +16,7 @@ Setup contract: see `.skilled/skills/system-spec-kit/references/workflows/auto-m
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, `antiConvergence.depthMode`, `expansiveDepth.*` (`maxDepth`, `maxChildrenPerNode`, `budgetSplit`, `maxFrontierNodes`), reserved `antiConvergence.divergent: {}`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-research.yaml` with `execution_mode` bound to `auto`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `topic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, `antiConvergence.depthMode`, `expansiveDepth.*` (`maxDepth`, `maxChildrenPerNode`, `budgetSplit`, `maxFrontierNodes`), reserved `antiConvergence.divergent: {}`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-research.yaml` with `execution_mode` bound to `auto`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed. Missing `research_topic` is absence, not ambiguity — go to Tier 3.
 
@@ -297,7 +297,7 @@ Run an iterative loop for deep research: Initialize state under `{artifact_dir}`
 **Success:**
 ```
 Deep research complete.
-Iterations: [N] | Stop reason: [converged|maxIterationsReached|maxDurationReached]
+Iterations: [N] | Stop reason: [a STOP_REASONS value: converged, maxIterationsReached, maxDurationReached, blockedStop, stuckRecovery, error, manualStop or userPaused]
 Artifacts: research/research.md, research/resource-map.md (unless `--no-resource-map`), [N] iteration files, continuity update in canonical spec docs refreshed
 Ready for: /speckit:plan [feature-description]
 STATUS=OK PATH=[spec-folder-path]

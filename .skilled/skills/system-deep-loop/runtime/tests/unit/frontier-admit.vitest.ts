@@ -226,6 +226,15 @@ describe('frontier-admit', () => {
     expect(checkProposal(proposal, new Map(), CAPS, ['How does the frontier prune?'])).toBe('relevance');
   });
 
+  it('names relevance for a proposal whose parent admission already pruned', () => {
+    const proposal = { ...makeProposal('which child would hang off the rejected branch'), parentId: 'F-1-001' };
+    const nodes = new Map([
+      ['F-1-001', nodeRow('F-1-001', 'root', 1, 'the branch admission rejected', { status: 'pruned' })],
+    ]);
+
+    expect(checkProposal(proposal, nodes, CAPS, [])).toBe('relevance');
+  });
+
   it('names relevance, not dedupe, for a proposal that carries no question', () => {
     const { question: _omitted, ...proposal } = makeProposal('which question went missing');
 

@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "73d2da9f339d4a57c27e80eae4aeb2ed582193f9f876ebb1c6bd80ec9251ad5e",
+      "sha256": "1a2a262cc590429781370ec2ed21896bb0f61e3977ce39143b5c64df9eaf1899",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "354717f427d09792fc0acfcc7a901457defc5cd34af21ec48aa11f175967bae6",
+      "sha256": "80bb950c52b5d8a2567af21a69927fa9afb5ca8cb4bd0165b0854b67cf4f55c8",
       "section": "full"
     },
     {
@@ -42,12 +42,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "f2c66389c8c3fdbcb6e9d662b01a128c45174582104d75cf734cb55c236389b3",
+      "sha256": "26eecedb79a031d0387829d622a9d5704d97bf00586e156ab032c282a0304f84",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "sha256": "2ba3854edf31b303ab5d1e78a03834c4820387697b8b93bede732593a3d9b314",
+      "sha256": "3b957d2001141b44403203e0cbe915865276dba4789e440571fc62234fbc0b77",
       "section": "full"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "d2417b29e1a9d1eb07b2cdb900ec3eb90df2794123908446db1f0dde2cb18c5c",
+      "sha256": "91444684b6346b913285a370610ab7f706f60661bccb851c1be15eb96264c6f0",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "1c508a48a672131c709f06c544f1e1ebfb18feb1847c2854f17bc09d87a4d217"
+  "compiledBodyDigest": "aa98df6f9285d1d7e0b31d4f65b0c50504dbe37c3f04e9110221c4dc1e13e01d"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -206,7 +206,7 @@ Rules:
 |-------|----------|--------------|---------|------------------|
 | `review_target` | Y | `$ARGUMENTS` first positional target, or marker `review_target` | none | N |
 | `review_target_type` | Y | marker `review_target_type`, or auto-detect from `review_target` | inferred only | Y, when target is present but ambiguous |
-| `review_dimensions` | Y | flag `--dims` if supported by caller, marker `review_dimensions`, or default | `"all"` | N |
+| `review_dimensions` | Y | marker `review_dimensions`, the dimensions answer, or default | `"all"` | N |
 | `review_focus` | N | flag `--review-focus="TEXT"`, marker `review_focus`, or default. Control characters and whitespace runs collapse to one space, an empty result is absent, and more than 1000 characters fails setup | empty (dimensions only) | N |
 | `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, `scope-extract` → a target/scope path that resolves to an existing spec folder (auto-bound, per `auto_mode_contract` §1 source 3), or target path when target is a spec folder | none | Y, when target is not a spec folder |
 | `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
@@ -366,7 +366,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Reply format examples:
    - `"skill:deep-research, B, all, A, A"`
-   - `"review the deep-review packet output, E, correctness security, B, B, 5"`
+   - `"review the deep-review packet output, E, correctness, B, B, 5"`
    - `"Review review/review-report.md contract drift, E, all, A, 7, 0.10, B, gpt-5.4, high, fast"`
    - `"review executor drift across CLIs, E, all, A, 7, 0.10, C, gpt-5.4, _, _"`
 

@@ -389,6 +389,8 @@ function checkProposal(proposal, nodes, caps, knownTexts, options = {}) {
   // elsewhere could never be answered by a finding.
   if (reviewConfig !== undefined && !scopeInsideReviewTarget(proposal.scope, reviewConfig)) return 'relevance';
   if (proposal.parentId !== 'root' && !nodes.has(proposal.parentId)) return 'relevance';
+  // A child of a pruned node would reopen a branch admission already rejected.
+  if (proposal.parentId !== 'root' && nodes.get(proposal.parentId).status === 'pruned') return 'relevance';
 
   // 2. dedupe
   const key = dedupeKey(proposal.question);

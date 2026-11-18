@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "517194200e36f15a3ef77ac9e39faecb30e3893a7b84ff38ad61951c3833a03d",
+      "sha256": "5461d3dc57349bf677ada09b98471dc3ede18f83d5cd0b98802363331beb5b40",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "85279928b389acea31f325326173091dfd52bf1c6ee06d82263cbbab1a3bc2fe",
+      "sha256": "977009902d265126168db9df08b0b9456c0cad737c0ec8f95d458d96b6bbb6fa",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "bf9d4a29b231333bdb700b22828aa9deba8634f09bfdbd7388d1398b5a879241"
+  "compiledBodyDigest": "0f7119dcfb82f61e6a7f13a5625921a3aa72dbe2be5114f49b953e0c0a56df2a"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -159,7 +159,7 @@ Setup contract: see `.skilled/skills/system-spec-kit/references/workflows/auto-m
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, `antiConvergence.depthMode`, `expansiveDepth.*` (`maxDepth`, `maxChildrenPerNode`, `budgetSplit`, `maxFrontierNodes`), reserved `antiConvergence.divergent: {}`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-research.yaml` with `execution_mode` bound to `auto`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `topic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, `antiConvergence.depthMode`, `expansiveDepth.*` (`maxDepth`, `maxChildrenPerNode`, `budgetSplit`, `maxFrontierNodes`), reserved `antiConvergence.divergent: {}`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-research.yaml` with `execution_mode` bound to `auto`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed. Missing `research_topic` is absence, not ambiguity — go to Tier 3.
 
