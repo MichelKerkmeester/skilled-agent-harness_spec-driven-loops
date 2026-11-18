@@ -787,6 +787,8 @@ test('a set whose value changes in the source is rewritten and recorded, not res
 
 test('a state file without set records loads, restores nothing and keeps its bytes', (t) => {
   const fixture = createFixture(t);
+  // An inserted object key is recorded as a set, so the entry set holds none here.
+  writeFile(fixture.overlayDir, 'json/entries.json', JSON.stringify({ target: 'settings.json', operations: [] }, null, 2) + '\n');
   seedState(fixture);
   const stateBefore = fs.readFileSync(fixture.statePath, 'utf8');
   assert.equal(Object.hasOwn(JSON.parse(stateBefore), 'sets'), false);
@@ -951,7 +953,7 @@ test('a dropped set is restored while the operations that stay are still applied
 
   assert.equal(applied.code, 0, applied.output);
   assert.deepEqual(readJson(fixture.livePath).rows.a, { top: 'sk-code', note: 'kept' });
-  assert.deepEqual(fixture.recordedSets(), []);
+  assert.deepEqual(fixture.recordedSets(), [{ path: ['rows', 'a', 'note'], value: 'kept', added: true }]);
 });
 
 // A path step into an array is an index however the entry set spells it.
@@ -1452,7 +1454,7 @@ test('a malformed entry set blocks only its own overlay and names its file', (t)
   assert.match(status.output, /overlay-edited guarded\.txt/);
 });
 
-test('status notes each operation the engine keeps no record of', (t) => {
+test('status notes a set through an array index and no longer notes a recorded setKeyOnItem', (t) => {
   const fixture = createPinnedSetFixture(t, PINNED_LIST);
   fixture.writeOperations([
     { op: 'setKeyOnItem', path: ['rows'], identityKey: 'id', match: { id: 'B' }, key: 'extra', value: 1 },
@@ -1462,7 +1464,7 @@ test('status notes each operation the engine keeps no record of', (t) => {
 
   const status = fixture.run(['status']);
   assert.equal(status.code, 0, status.output);
-  assert.match(status.output, /^NOTE +baseline-set: setKeyOnItem of extra on the item matching id=B at rows keeps no record, so its value stays in baseline\.json after it leaves the entry set$/m);
+  assert.doesNotMatch(status.output, /keeps no record/);
   assert.match(status.output, /^NOTE +baseline-set: set at rows\.0\.top goes through an array index, so it lands on another item when an item before it is added or removed$/m);
 });
 
@@ -1474,6 +1476,11 @@ test('status reports a json-entry result that differs from the entry set applied
   seedState(fixture);
   const clean = fixture.run(['status']);
   assert.doesNotMatch(clean.output, /cross-check/);
+  // A state file an older engine wrote holds no record of the key, so the
+  // drop below leaves the value in the file with nothing to explain it.
+  const older = readJson(fixture.statePath);
+  delete older.keys;
+  writeFile(fixture.overlayDir, 'sync-state.json', JSON.stringify(older, null, 2) + '\n');
 
   fixture.writeOperations([]);
   assert.equal(fixture.run(['apply']).code, 0);
@@ -1484,7 +1491,7 @@ test('status reports a json-entry result that differs from the entry set applied
   assert.match(status.output, /^NOTE +cross-check baseline\.json: the live file differs from the entry set applied to the pinned copy at rows\.1\.extra; no record covers that value, unless a regenerate step that leaves baseline\.json out of its outputs wrote it$/m);
 });
 
-test('status names each untracked operation by what it sets, so two at one path read apart', (t) => {
+test('status prints no note for recorded setKeyOnItem and insertObjectKeys operations', (t) => {
   const fixture = createPinnedSetFixture(t, PINNED_LIST);
   fixture.writeOperations([
     { op: 'setKeyOnItem', path: ['rows'], identityKey: 'id', match: { id: 'A' }, key: 'extra', value: 1 },
@@ -1494,11 +1501,7 @@ test('status names each untracked operation by what it sets, so two at one path 
   seedState(fixture);
 
   const notes = fixture.run(['status']).output.split('\n').filter((line) => line.startsWith('NOTE'));
-  assert.deepEqual(notes, [
-    'NOTE     baseline-set: setKeyOnItem of extra on the item matching id=A at rows keeps no record, so its value stays in baseline.json after it leaves the entry set',
-    'NOTE     baseline-set: setKeyOnItem of extra on the item matching id=B at rows keeps no record, so its value stays in baseline.json after it leaves the entry set',
-    'NOTE     baseline-set: insertObjectKeys of one, two at the top level keeps no record, so its value stays in baseline.json after it leaves the entry set',
-  ]);
+  assert.deepEqual(notes, []);
 });
 
 test('status skips the cross-check on a json-entry destination a regenerate step lists as an output', (t) => {
@@ -1514,4 +1517,131 @@ test('status skips the cross-check on a json-entry destination a regenerate step
   const status = fixture.run(['status']);
   assert.equal(status.code, 0, status.output);
   assert.doesNotMatch(status.output, /cross-check/);
+});
+
+// An array index is a position whatever operation walks through it, so every
+// operation whose path steps through one is named, not only `set`.
+test('status notes an appendItems or insertItems whose path goes through an array index', (t) => {
+  const fixture = createPinnedSetFixture(t, { groups: [{ items: ['a'] }] });
+  fixture.writeOperations([
+    { op: 'appendItems', path: ['groups', 0, 'items'], items: ['b'] },
+    { op: 'insertItems', path: ['groups', '0', 'items'], items: ['c'] },
+  ]);
+  seedState(fixture);
+
+  const notes = fixture.run(['status']).output.split('\n').filter((line) => line.startsWith('NOTE'));
+  assert.deepEqual(notes, [
+    'NOTE     baseline-set: appendItems at groups.0.items goes through an array index, so it lands on another item when an item before it is added or removed',
+    'NOTE     baseline-set: insertItems at groups.0.items goes through an array index, so it lands on another item when an item before it is added or removed',
+  ]);
+});
+
+// A missing anchor still appends, so an entry set that worked before keeps
+// applying; the note is what tells the author the position is no longer kept.
+test('status notes a before anchor the file no longer holds, and apply still adds the items at the end', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_LIST);
+  fixture.writeOperations([
+    { op: 'insertItems', path: ['rows'], identityKey: 'id', before: { id: 'Z' }, items: [{ id: 'X', top: 'x' }] },
+    { op: 'insertItems', path: ['rows'], identityKey: 'id', before: { id: 'A' }, items: [{ id: 'Y', top: 'y' }] },
+    { op: 'insertObjectKeys', path: [], beforeKey: 'missing', entries: [{ key: 'extra', value: 1 }] },
+  ]);
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+  assert.deepEqual(readJson(fixture.livePath).rows.map((row) => row.id), ['Y', 'A', 'B', 'X']);
+
+  const expected = [
+    'NOTE     baseline-set: insertItems before "Z" at rows finds no such item, so its items go at the end of the array; point before at an item the file holds',
+    'NOTE     baseline-set: insertObjectKeys before "missing" at the top level finds no such key, so its keys go at the end of the object; point beforeKey at a key the file holds',
+  ];
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  assert.deepEqual(status.output.split('\n').filter((line) => line.startsWith('NOTE')), expected);
+  assert.deepEqual(JSON.parse(fixture.run(['status', '--json']).stdout).notes,
+    expected.map((line) => line.replace(/^NOTE {5}/, '')));
+});
+
+test('status notes a before anchor that has no identityKey to match it by', (t) => {
+  const fixture = createPinnedSetFixture(t, { rows: ['a', 'b'] });
+  fixture.writeOperations([{ op: 'insertItems', path: ['rows'], before: 'a', items: ['c'] }]);
+  seedState(fixture);
+
+  const notes = fixture.run(['status']).output.split('\n').filter((line) => line.startsWith('NOTE'));
+  assert.deepEqual(notes, [
+    'NOTE     baseline-set: insertItems at rows names a before anchor but no identityKey, so the anchor is ignored and its items go at the end of the array; add an identityKey',
+  ]);
+});
+
+// setKeyOnItem and insertObjectKeys are recorded like `set`, so a value either
+// one wrote leaves the live file once the operation leaves the entry set.
+test('apply takes back a dropped insertObjectKeys key and keeps a record of it while it is listed', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'insertObjectKeys', path: ['rows', 'a'], entries: [{ key: 'extra', value: 1 }] }]);
+  seedState(fixture);
+  assert.equal(readJson(fixture.livePath).rows.a.extra, 1);
+  assert.deepEqual(fixture.recordedSets(), [{ path: ['rows', 'a', 'extra'], value: 1, added: true }]);
+
+  fixture.writeOperations([]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+  assert.deepEqual(fixture.recordedSets(), []);
+});
+
+test('apply takes back a dropped setKeyOnItem: a key it added leaves and a key upstream ships returns to the pin', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_LIST);
+  fixture.writeOperations([
+    { op: 'setKeyOnItem', path: ['rows'], identityKey: 'id', match: { id: 'B' }, key: 'extra', value: 1 },
+    { op: 'setKeyOnItem', path: ['rows'], identityKey: 'id', match: { id: 'A' }, key: 'top', value: 'mine' },
+  ]);
+  seedState(fixture);
+  assert.deepEqual(readJson(fixture.livePath).rows, [{ id: 'A', top: 'mine' }, { id: 'B', top: 'b', extra: 1 }]);
+  assert.deepEqual(readJson(fixture.statePath).keys['baseline.json'], [
+    { path: ['rows'], identityKey: 'id', identity: 'B', key: 'extra', value: 1, added: true },
+    { path: ['rows'], identityKey: 'id', identity: 'A', key: 'top', value: 'mine', added: false },
+  ]);
+  assert.doesNotMatch(fixture.run(['status']).output, /keeps no record/);
+
+  fixture.writeOperations([]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+  assert.equal(readJson(fixture.statePath).keys, undefined);
+  assert.equal(fixture.run(['apply']).output.trim(), '0 changed');
+});
+
+test('a dropped setKeyOnItem on an item the same entry set inserts leaves while the item stays', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_LIST);
+  const addsExtra = { op: 'setKeyOnItem', path: ['rows'], identityKey: 'id', match: { id: 'X' }, key: 'extra', value: 1 };
+  fixture.writeOperations([INSERT_X, addsExtra]);
+  seedState(fixture);
+  assert.deepEqual(readJson(fixture.livePath).rows[0], { id: 'X', top: 'x', extra: 1 });
+
+  fixture.writeOperations([INSERT_X]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.deepEqual(readJson(fixture.livePath).rows, [{ id: 'X', top: 'x' }, ...PINNED_LIST.rows]);
+  assert.equal(fixture.run(['apply']).output.trim(), '0 changed');
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+test('a dropped setKeyOnItem whose value was edited by hand is refused, not removed', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_LIST);
+  fixture.writeOperations([
+    { op: 'setKeyOnItem', path: ['rows'], identityKey: 'id', match: { id: 'B' }, key: 'extra', value: 1 },
+  ]);
+  seedState(fixture);
+  const live = readJson(fixture.livePath);
+  live.rows[1].extra = 2;
+  writeFile(fixture.tree, 'baseline.json', JSON.stringify(live, null, 2) + '\n');
+  const liveBefore = fixture.readLive();
+
+  fixture.writeOperations([]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 1, applied.output);
+  assert.match(applied.output, /dropped setKeyOnItem of extra on the item matching id=B at rows was edited after it was applied/);
+  assert.equal(fixture.readLive(), liveBefore);
 });

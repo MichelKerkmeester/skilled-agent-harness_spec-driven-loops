@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ff679d80d135e8ede62a07828f7381dcbb65951f77f5d5df5787bdab26b68782",
+  "corpusHash": "73e8ee7d212ae396fee309552efc0ba1dc82cb85a6312d74da8ab65278001255",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28390,
+  "includedPathCount": 28402,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -16363,6 +16363,7 @@
     "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/plan.md",
     "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/decision-record.md",
     "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/goal.md",
     "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/implementation-summary.md",
     "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/plan.md",
@@ -16431,6 +16432,11 @@
     "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/plan.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/spec.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/tasks.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/goal.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/implementation-summary.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/plan.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/spec.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/tasks.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/decision-record.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/goal.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/spec.md",
@@ -19798,6 +19804,12 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/acceptance-criteria.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/goal.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/research.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/spec.md",
     "specs/system-skilled-doctor/002-symlink-first-link/implementation-summary.md",
@@ -28422,7 +28434,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "cb83078d6b3e2ca2be720df3dc32e13e2ebbd02a684c893931da349fea3c0075",
+  "manifestHash": "299379299734fd587bc2ac85a82fdcf3106111a280881ebf56e920289ebac03a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -35417,6 +35429,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/document-standards/007-changelog-spec-folder-at-bottom/scratch",
       "reason": "excluded directory"
     },
@@ -37274,6 +37290,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/scratch",
       "reason": "excluded directory"
     },
     {
