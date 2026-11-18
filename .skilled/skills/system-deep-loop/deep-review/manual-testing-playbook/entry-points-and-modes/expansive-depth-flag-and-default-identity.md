@@ -1,7 +1,7 @@
 ---
 title: "DRV-076 -- Expansive depth flag and default byte identity"
 description: "This scenario validates that `--depth-mode` defaults to `default`, that a review run without the flag matches the pre-change baseline on every compared artifact and that only the expansive-only agent paragraph differs on CLI lineage prompts, for `DRV-076`."
-version: 1.13.4.0
+version: 1.13.5.0
 ---
 
 # DRV-076 -- Expansive depth flag and default byte identity
@@ -83,6 +83,7 @@ Command 1 prints two lines: the preflight `depth_mode` binding note and the flag
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `feature-catalog/` | `feature-catalog/loop-lifecycle/expansive-depth-mode.md` covers the `deep-review` expansive depth mode; the implementation anchors below are the contract |
 
 ### Implementation And Test Anchors
 

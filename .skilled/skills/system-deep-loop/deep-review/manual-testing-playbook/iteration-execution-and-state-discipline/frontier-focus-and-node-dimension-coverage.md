@@ -1,7 +1,7 @@
 ---
 title: "DRV-079 -- Frontier focus and per-node dimension coverage"
 description: "This scenario validates that an open review node is answered only after every dimension in its universe, the four canonical ones plus each configured custom name, is covered for it, that the active node's next uncovered dimension steers the iteration and that the dashboard reports the frontier metrics, for `DRV-079`."
-version: 1.13.2.0
+version: 1.13.3.0
 ---
 
 # DRV-079 -- Frontier focus and per-node dimension coverage
@@ -80,6 +80,7 @@ Command 1 prints `Tests  3 passed` (the rest of the file skipped). Its three pas
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `feature-catalog/` | `feature-catalog/loop-lifecycle/expansive-depth-mode.md` covers the `deep-review` expansive depth mode; the implementation anchors below are the contract |
 
 ### Implementation And Test Anchors
 

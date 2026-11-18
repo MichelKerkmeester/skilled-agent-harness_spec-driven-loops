@@ -1,7 +1,7 @@
 ---
 title: "DRV-077 -- Expansive seed writes depth-one nodes before iteration one"
 description: "This scenario validates that an expansive review run decomposes its target into depth-one sub-target nodes before iteration one, on a plain run and before fan-out spawns on a fan-out run, and that the seed writes no inbox, for `DRV-077`."
-version: 1.13.2.0
+version: 1.13.3.0
 ---
 
 # DRV-077 -- Expansive seed writes depth-one nodes before iteration one
@@ -80,6 +80,7 @@ Command 1 prints `Tests  1 passed` (the rest of the file skipped), and the case 
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `feature-catalog/` | `feature-catalog/loop-lifecycle/expansive-depth-mode.md` covers the `deep-review` expansive depth mode; the implementation anchors below are the contract |
 
 ### Implementation And Test Anchors
 

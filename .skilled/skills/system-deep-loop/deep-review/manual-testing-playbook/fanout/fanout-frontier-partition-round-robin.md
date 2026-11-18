@@ -1,7 +1,7 @@
 ---
 title: "DRV-082 -- Review fan-out deals seeded frontier nodes round-robin"
 description: "This scenario validates that a review fan-out run under the expansive mode deals its seeded depth-one nodes round-robin across its lineages, writes each lineage store without an inbox and reports a missing node through the merge guard, for `DRV-082`."
-version: 1.13.2.0
+version: 1.13.3.0
 ---
 
 # DRV-082 -- Review fan-out deals seeded frontier nodes round-robin
@@ -81,6 +81,7 @@ Command 1 prints `Tests  4 passed` (the rest of the file skipped). The round-rob
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `feature-catalog/` | `feature-catalog/loop-lifecycle/expansive-depth-mode.md` covers the `deep-review` expansive depth mode; the implementation anchors below are the contract |
 
 ### Implementation And Test Anchors
 

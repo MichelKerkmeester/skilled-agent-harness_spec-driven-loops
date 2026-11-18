@@ -1,7 +1,7 @@
 ---
 title: "DRV-078 -- Frontier admission prunes each proposal with its reason"
 description: "This scenario validates that each failing admission check prunes a review proposal with that check's own reason, that a seed candidate arrives settled with its prune reason, and that the review workflow names `merge-no-own-diff` and `generated-artifact` as seed prune reasons, for `DRV-078`."
-version: 1.13.2.0
+version: 1.13.3.0
 ---
 
 # DRV-078 -- Frontier admission prunes each proposal with its reason
@@ -83,6 +83,7 @@ No case names `generated-artifact` itself. The seed accepts any non-empty reason
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `feature-catalog/` | `feature-catalog/loop-lifecycle/expansive-depth-mode.md` covers the `deep-review` expansive depth mode; the implementation anchors below are the contract |
 
 ### Implementation And Test Anchors
 

@@ -1,7 +1,7 @@
 ---
 title: "DRV-070 -- Completed-run extension with --extend"
 description: "This scenario validates `--extend=N` on a completed deep-review run for `DRV-070`. It focuses on same-session continuation, the `run_extended` ledger event and the review report snapshot taken before re-synthesis."
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # DRV-070 -- Completed-run extension with --extend
@@ -87,6 +87,7 @@ Check the state log first, then the config. A missing event with a correct confi
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `feature-catalog/` | `feature-catalog/loop-lifecycle/completed-run-extension.md` covers the `deep-review` completed-run extension; the implementation anchors below are the contract |
 | `../../../deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md` | Research counterpart of this extension, for the same flag on the research loop |
 
 ### Implementation And Test Anchors

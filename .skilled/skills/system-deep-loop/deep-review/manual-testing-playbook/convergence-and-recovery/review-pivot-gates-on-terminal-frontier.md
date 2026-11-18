@@ -1,7 +1,7 @@
 ---
 title: "DRV-081 -- Review pivot waits for a terminal frontier"
 description: "This scenario validates that under the expansive mode the review divergent pivot refuses to run while a frontier node stays open, seeds one revisit direction per closed sub-target the frontier left uncovered and leaves a default run untouched, for `DRV-081`."
-version: 1.13.1.0
+version: 1.13.2.0
 ---
 
 # DRV-081 -- Review pivot waits for a terminal frontier
@@ -80,6 +80,7 @@ Command 1 prints `Tests  3 passed` (the rest of the file skipped). Its three pas
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `feature-catalog/` | `feature-catalog/loop-lifecycle/expansive-depth-mode.md` covers the `deep-review` expansive depth mode; the implementation anchors below are the contract |
 
 ### Implementation And Test Anchors
 

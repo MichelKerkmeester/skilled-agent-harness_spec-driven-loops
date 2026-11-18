@@ -1,7 +1,7 @@
 ---
 title: "DRV-080 -- Frontier open veto holds a review stop, hard stops included"
 description: "This scenario validates that under the expansive mode an open or active review frontier node turns a stop candidate into CONTINUE, hard stop candidates included, and that the cap, the floor, stuck recovery, convergence off and the max-iterations policy still decide first, for `DRV-080`."
-version: 1.13.1.0
+version: 1.13.2.0
 ---
 
 # DRV-080 -- Frontier open veto holds a review stop, hard stops included
@@ -81,6 +81,7 @@ The table covers the cap, the floor, stuck recovery, convergence off and the max
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `feature-catalog/` | `feature-catalog/loop-lifecycle/expansive-depth-mode.md` covers the `deep-review` expansive depth mode; the implementation anchors below are the contract |
 
 ### Implementation And Test Anchors
 
