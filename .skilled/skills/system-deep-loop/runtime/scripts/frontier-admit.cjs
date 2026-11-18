@@ -208,12 +208,13 @@ function dedupeKey(text) {
   if (typeof text !== 'string') return '';
 
   // A leading question id carries no meaning for equivalence, so it is dropped
-  // before punctuation collapses. Only id-shaped prefixes qualify, written with
-  // no space inside them (Q3, RQ-12, F-1-001): an ordinary word followed by a
-  // space, a number and a colon is part of the question.
+  // before punctuation collapses. Only the two id shapes the loop writes
+  // qualify: a strategy question id (Q3) and a frontier node id (F-1-001). A
+  // word followed by a number and a colon is part of the question, and so is a
+  // short token such as ES2015, V8 or H2, which names what is being asked about.
   return text
     .toLowerCase()
-    .replace(/^[a-z]{1,2}-?\d+(?:-\d+)*\s*:\s*/, '')
+    .replace(/^(?:q\d+|f-\d+-\d+)\s*:\s*/, '')
     .replace(/[^a-z0-9]+/g, ' ')
     .trim();
 }

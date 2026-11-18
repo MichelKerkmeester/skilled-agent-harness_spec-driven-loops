@@ -336,6 +336,15 @@ describe('frontier-admit', () => {
     expect(dedupeKey('We 2: how does the loop stop')).toBe('we 2 how does the loop stop');
   });
 
+  it('keeps a short technical token that only looks like an id prefix', () => {
+    const { dedupeKey } = require(FRONTIER_ADMIT_SCRIPT) as { dedupeKey: (text: string) => string };
+    expect(dedupeKey('ES2015: what changed in module loading'))
+      .not.toBe(dedupeKey('ES2022: what changed in module loading'));
+    expect(dedupeKey('V8: how is the cache invalidated')).toBe('v8 how is the cache invalidated');
+    expect(dedupeKey('H2: which header leads')).toBe('h2 which header leads');
+    expect(dedupeKey('IE11: which polyfill is loaded')).toBe('ie11 which polyfill is loaded');
+  });
+
   it('records a pruned proposal in the store without an inbox row', () => {
     const artifactDir = makeArtifactDir();
     const question = 'how does the frontier hand off a duplicate';
