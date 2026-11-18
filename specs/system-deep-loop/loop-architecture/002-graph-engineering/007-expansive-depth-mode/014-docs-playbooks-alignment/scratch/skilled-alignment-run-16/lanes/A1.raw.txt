@@ -1,0 +1,28 @@
+Both checks are settled. The prompt pack asks for "the exact text of each strategy key question", and I found no producer that writes a non-`Q` prefix, so that candidate is dropped. One finding stands: the closeNode reopening. It is P1 because a shipped workflow path reaches it.
+
+**Review result for lane A1: changes requested (one P1 finding)**
+
+**Finding A1-1 (P1, needs a judgment call):** `frontier-admit.cjs` line 739. `closeNode` lets a node that was closed for being stuck come back to life.
+- **The cause:** the only check is that a pruned node stays pruned. `active` is an allowed close status, so an exhausted, answered, blocked or abstained node can be moved back to `active`. That breaks the docstring's promise to "move a node to a later lifecycle status".
+- **Why a real run hits it:** in `deep-review.yaml`, `active_frontier_node` is set once at line 1184. The stuck branch (lines 1599–1605) closes that node as `exhausted` and re-runs the reducer, then logs "moved to the next open node". But nothing resets the variable before `step_frontier_activate` (line 1699–1704) closes the same id as `active`.
+- **The effect:** the stuck node is live again and counts toward `frontierOpen`, so the stop is blocked. It gets dispatched again and can loop through stuck → exhausted → active until the iteration cap.
+- **Fix options:** make `closeNode` refuse to move a terminal status back to `active` (with a test for that case), or have the review workflow pick the active node again after the stuck close. The first is safer.
+
+I reproduced the reopening only in my scratch folder. I traced the workflow path by reading the YAML, which is outside this lane's files, and did not run it.
+
+**What I checked and did not report:**
+- **Headers, strict mode, fail-closed paths and comments:** all fine in the reviewed code. An unreadable store or config throws, and the CLI exits 2.
+- **convergence.cjs changes:**
+  - The minimum-iterations floor now covers review runs too. Default review runs don't change because no review config sets `minIterations`, and the floor has a test.
+  - The focus-alignment guard now judges only the latest record and strips a `Q<n>` prefix, both tested.
+  - The `frontierOpen` stop veto and the `frontier_drained` stop are tested in `stop-decision.vitest.ts`, outside this lane.
+- **Golden suites:** baselines are only rewritten when `GOLDEN_UPDATE=1` is set. The review baseline at HEAD matches its original pin apart from one persona-doc line.
+- **Not reported as defects:**
+  - convergence.cjs lost its executable bit (100755 to 100644). Every caller runs it with `node`, and upsert.cjs got the same change.
+  - frontier-admit.cjs lines 14 and 320 are over-long comment lines. No declared rule covers either.
+
+**Not checked:** I did not run the vitest suites, because they write temp folders and graph data inside the repository and the brief forbids writes there. The battery rows the brief lists all passed, so this lane had no failure to confirm. Confidence is medium.
+
+Only `${TMPDIR}/local-skilled-alignment-scratch/skilled-alignment-run-16/A1` was written to (the resolver output and the reproduction).
+
+{"lane": "A1", "findings": [{"id": "A1-1", "surface": "S1", "standard": "sk-code", "severity": "P1", "fix_class": "judgment", "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs", "line": 739, "issue": "closeNode guards only pruned-to-live moves and keeps 'active' in CLOSE_STATUSES, so a node closed as exhausted, answered, blocked or abstained can be revived as active, despite its docstring promise to 'move a node to a later lifecycle status'. A shipped caller sends this: in deep-review.yaml, active_frontier_node is bound once at line 1184; the stuck-recovery branch (lines 1599-1605) closes it as exhausted and re-runs the reducer but never rebinds it, and step_frontier_activate (lines 1699-1704) then closes the same id as active. The stuck node is revived, counts toward frontierOpen (vetoing the stop), and is redispatched, so stuck recovery cannot retire it and the run can cycle until maxIterations. Fix: refuse moves from a terminal status (answered, blocked, exhausted, abstained) back to active, with a test for that case, and/or rebind active_frontier_node after the stuck close.", "evidence": {"cmd": "D=$TMPDIR/local-skilled-alignment-scratch/skilled-alignment-run-16/A1/close-repro; node frontier-admit.cjs seed --artifact-dir $D --input seed.json; node frontier-admit.cjs close --artifact-dir $D --node-id F-1-001 --status exhausted --reason stuck --iteration 2; node frontier-admit.cjs close --artifact-dir $D --node-id F-1-001 --status active --iteration 3", "exit": 0, "out": "{\"nodeId\":\"F-1-001\",...,\"status\":\"exhausted\",\"reason\":\"stuck\",\"iteration\":2,...} exit=0 then {\"nodeId\":\"F-1-001\",...,\"status\":\"active\",\"reason\":null,\"iteration\":3,...} exit=0"}}], "reviewed": [".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs", ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts", ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts", ".skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts", ".skilled/skills/system-deep-loop/runtime/tests/unit/review-depth-mode-golden.vitest.ts", ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs", ".skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts", ".skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts"], "not_reviewed": []}

@@ -1,0 +1,31 @@
+{
+  "lane": "A1",
+  "findings": [
+    {
+      "id": "A1-1",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "line": 739,
+      "issue": "closeNode guards only pruned-to-live moves and keeps 'active' in CLOSE_STATUSES, so a node closed as exhausted, answered, blocked or abstained can be revived as active, despite its docstring promise to 'move a node to a later lifecycle status'. A shipped caller sends this: in deep-review.yaml, active_frontier_node is bound once at line 1184; the stuck-recovery branch (lines 1599-1605) closes it as exhausted and re-runs the reducer but never rebinds it, and step_frontier_activate (lines 1699-1704) then closes the same id as active. The stuck node is revived, counts toward frontierOpen (vetoing the stop), and is redispatched, so stuck recovery cannot retire it and the run can cycle until maxIterations. Fix: refuse moves from a terminal status (answered, blocked, exhausted, abstained) back to active, with a test for that case, and/or rebind active_frontier_node after the stuck close.",
+      "evidence": {
+        "cmd": "D=$TMPDIR/local-skilled-alignment-scratch/skilled-alignment-run-16/A1/close-repro; node frontier-admit.cjs seed --artifact-dir $D --input seed.json; node frontier-admit.cjs close --artifact-dir $D --node-id F-1-001 --status exhausted --reason stuck --iteration 2; node frontier-admit.cjs close --artifact-dir $D --node-id F-1-001 --status active --iteration 3",
+        "exit": 0,
+        "out": "{\"nodeId\":\"F-1-001\",...,\"status\":\"exhausted\",\"reason\":\"stuck\",\"iteration\":2,...} exit=0 then {\"nodeId\":\"F-1-001\",...,\"status\":\"active\",\"reason\":null,\"iteration\":3,...} exit=0"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/review-depth-mode-golden.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+    ".skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts"
+  ],
+  "not_reviewed": []
+}

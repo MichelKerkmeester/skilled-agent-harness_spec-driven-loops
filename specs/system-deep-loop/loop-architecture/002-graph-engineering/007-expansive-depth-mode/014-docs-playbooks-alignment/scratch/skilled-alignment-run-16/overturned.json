@@ -1,0 +1,156 @@
+[
+  {
+    "id": "C1-1",
+    "source_id": "C1-1",
+    "lane": "C1",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
+    "line": "123",
+    "issue": "This rewritten line says the legal-stop gates check that one weak source does not carry a finding. That check does not ship: convergence.cjs hard-codes singleWeakSource to notEvaluated, so it can never block a stop. The README now disagrees with quality-guards.md, which this scope reworded to call the entry reserved, and with playbook DR-022, which fails any source that claims a per-source strength check the code does not run.",
+    "evidence": {
+      "cmd": "grep -n 'one weak source does not carry a finding' .skilled/skills/system-deep-loop/deep-research/README.md; grep -n \"singleWeakSource = guardOutcome('notEvaluated'\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "exit": 0,
+      "out": "README.md:123: ...that sources are diverse and that one weak source does not carry a finding. ... | convergence.cjs:907:  const singleWeakSource = guardOutcome('notEvaluated', []);"
+    },
+    "fix": {
+      "old": "that sources are diverse and that one weak source does not carry a finding.",
+      "new": "that sources are diverse and that the latest iteration stayed on its key questions."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "duplicate",
+      "note": "Duplicate of B1-2: same file, line 123 and sentence, with the same fix intent. Dropping C1-1 is also a severity call, P1 to P2. DR-022 reads convergence.md, not the README, so the README claim does not fail a scenario. The claim already existed at base line 121; this range only rewrote the line around it. B1-2 at P2 is the right grade.",
+      "lane_severity": "P1"
+    }
+  },
+  {
+    "id": "C1-2",
+    "source_id": "C1-2",
+    "lane": "C1",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+    "line": "158",
+    "issue": "This scope edited the Quality Gate row but kept 'no single weak-source dominance' as a check that must pass. The code never evaluates singleWeakSource (convergence.cjs:907 always returns notEvaluated). Playbook DR-022 reads this row first and fails any source that claims this check.",
+    "evidence": {
+      "cmd": "grep -n 'no single weak-source dominance pass' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+      "exit": 0,
+      "out": "158:| Quality Gate | Source diversity, focus alignment, and no single weak-source dominance pass | `CONTINUE` with `qualityGuardFailed`, no `blocked_stop` event |"
+    },
+    "fix": {
+      "old": "| Quality Gate | Source diversity, focus alignment, and no single weak-source dominance pass |",
+      "new": "| Quality Gate | Source diversity and focus alignment pass; the reserved `singleWeakSource` entry reports `notEvaluated` |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "duplicate",
+      "note": "Duplicate of B1-1: same convergence.md:158 Quality Gate row and the same fix. B1-1 keeps P1 because the range rewrote both that row and DR-022, whose new FAIL rule fails on it.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "C1-3",
+    "source_id": "C1-3",
+    "lane": "C1",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    "line": "213",
+    "issue": "Rule 12 still says source diversity, focus alignment and no-single-weak-source checks must pass before STOP. The single-weak-source check is not evaluated (convergence.cjs:907). This line was not edited by this scope, but SKILL.md is in scope and now disagrees with the reworded quality-guards.md and DR-022.",
+    "evidence": null,
+    "fix": null,
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "duplicate",
+      "note": "Duplicate of B1-3: same deep-research SKILL.md:213 rule 12 claim. B1-3 carries the literal fix.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "C1-4",
+    "source_id": "C1-4",
+    "lane": "C1",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+    "line": "135",
+    "issue": "Says the quality guards (source diversity, focus alignment, no single-weak-source) must pass before STOP. singleWeakSource is a reserved entry that is always notEvaluated, so the quick reference names a check the code does not run. This scope edited the decision tree just below this line but left the claim in place.",
+    "evidence": null,
+    "fix": null,
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "duplicate",
+      "note": "Duplicate of B1-4: same quick-reference.md:135 line. B1-4 carries the literal fix.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "C2-6",
+    "source_id": "C2-6",
+    "lane": "C2",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+    "line": "115",
+    "issue": "The divergent pivot contract lists its candidate sources as unswept dimensions, search debt, producer-consumer gaps, negative-test gaps and traceability gaps. scripts/divergent-review-pivot.ts now adds a fifth source, frontier-unanswered. Under --depth-mode=expansive it seeds one read-only revisit direction for each frontier node closed exhausted or blocked. feature-catalog/severity-system/divergent-convergence-mode.md:22 has the same five-item list. Only the expansive catalog entry, the v1.13.0.0 changelog and DRV-081 describe the new source. Add the frontier-unanswered source (expansive runs only) to both candidate-source lists.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false diff 21c4b325b5a 7a1b0ec7a1e -- .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+      "exit": 0,
+      "out": "+      source: 'frontier-unanswered',\n+      title: `Revisit ${status} frontier node ${nodeId}`,"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "duplicate",
+      "note": "Duplicate of B2-1 for deep-review references/convergence/convergence.md:115. B2-1 carries the literal fix and counts six sources correctly; C2-6 says 'fifth'. The second file C2-6 named, feature-catalog/severity-system/divergent-convergence-mode.md:22, is kept as CRIT-2.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "C4-3",
+    "source_id": "C4-3",
+    "lane": "C4",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    "line": "129",
+    "issue": "convergence.cjs dropped the loopType === 'research' guard on the minIterations floor (commit 15f0c2c268e), so every review now holds at CONTINUE with minIterationsNotReached until it reaches the shipped antiConvergence.minIterations of 2. A review that is clean on pass 1 used to stop and now runs a second pass. That changes the default path, but no changelog states it: deep-review v1.13.0.0 line 129 mentions 'the review floor' only in passing, as if it already existed, and no hub v2.1.x entry names it. Add an entry that says a review run now keeps going until it reaches minIterations (default 2).",
+    "evidence": {
+      "cmd": "grep -l minIterationsNotReached .skilled/skills/system-deep-loop/changelog/v2.1.*.md .skilled/skills/system-deep-loop/deep-review/changelog/v1.1[23]*.md",
+      "exit": 1,
+      "out": ""
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "The evidence glob deep-review/changelog/v1.1[23]* cannot match v1.11.18.0.md. That range-added entry documents exactly this change. Line 3: 'A review stop candidate below its configured minIterations now continues with minIterationsNotReached, as research runs already did. The shipped floor of 2 is unchanged.' Line 16: 'The floor now applies to review runs too.' Line 22 names CONTINUE with reason minIterationsNotReached. Verified with grep -n -E 'minIterations|floor' on that file.",
+      "lane_severity": "P2"
+    }
+  }
+]

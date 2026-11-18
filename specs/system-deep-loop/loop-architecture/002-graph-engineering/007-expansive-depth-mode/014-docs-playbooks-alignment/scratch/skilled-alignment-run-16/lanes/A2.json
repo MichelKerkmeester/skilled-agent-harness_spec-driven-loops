@@ -1,0 +1,62 @@
+{
+  "lane": "A2",
+  "findings": [
+    {
+      "id": "A2-1",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      "line": 2664,
+      "issue": "On an expansive research run, a frontier node closed as exhausted with reason budget makes its question resolved (line 2684). The write-back then marks it '- [x]' in the strategy key questions, lists it under ANSWERED QUESTIONS and saves it as resolved in the registry. On the next reduce, question.checked is true, so line 2664 puts the node in answeredNodeIds, and applyFrontierBudget and buildFrontierProjection flip it from 'exhausted' to 'answered'. From then on the frontier stats, the dashboard FRONTIER section and frontierStatus report unanswered, budget-closed work as answered, and a later run_extended that raises maxIterations can never reopen the node. Reach: every expansive run whose band spend reaches its share, because the workflow's reduce writes the strategy each iteration. No test reduces twice, so nothing catches it. Fix: build answeredNodeIds only from evidence (resolutionRecords, or a checked question that frontierClose did not resolve), and keep a frontier-closed question out of ANSWERED QUESTIONS and out of the persisted checked flag, or persist frontierStatus and let it win over checked.",
+      "evidence": {
+        "cmd": "node ${TMPDIR:-/tmp}/local-skilled-alignment-scratch/skilled-alignment-run-16/A2/scripts/repro-exhausted.cjs .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs ${TMPDIR:-/tmp}/local-skilled-alignment-scratch/skilled-alignment-run-16/A2",
+        "exit": 0,
+        "out": "reduce1(write) [\"F-1-001:answered:null\",\"F-2-002:answered:null\",\"F-2-003:exhausted:budget\"] stats {...\"answered\":2,...\"exhausted\":1...} F-2-003 frontierStatus exhausted\nstrategy line: - [x] Which limits does admission skip? | - Which limits does admission skip?\nreduce2(read) [\"F-1-001:answered:null\",\"F-2-002:answered:null\",\"F-2-003:answered:null\"] stats {...\"answered\":3,...\"exhausted\":0...} F-2-003 frontierStatus answered"
+      }
+    },
+    {
+      "id": "A2-2",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+      "line": 1,
+      "issue": "The diff changes the file mode from 100755 to 100644 while the script keeps its '#!/usr/bin/env node' shebang. Its CLI siblings query.cjs, status.cjs and loop-lock.cjs stay 100755. Every workflow caller runs it as 'node .../upsert.cjs', so only a direct './upsert.cjs' run, such as a manual repair the doctor assets point at, fails with permission denied. Restore the executable bit with git update-index --chmod=+x.",
+      "evidence": {
+        "cmd": "git -c core.fsmonitor=false log --format='%h %s' --summary 21c4b325b5a..7a1b0ec7a1e -- .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs | grep 'mode change'; git -c core.fsmonitor=false ls-tree 7a1b0ec7a1e .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+        "exit": 0,
+        "out": "mode change 100755 => 100644 .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs\n100644 blob d4cb94d82ad327b96f55296b73da2d376b2e4f86\t.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+    ".skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts",
+    ".skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts",
+    ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts",
+    ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+    ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts",
+    ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts",
+    ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+    ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reducers.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-reducers.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-graph-upsert.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-legacy-seam.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/coverage-graph-signals.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts"
+  ],
+  "not_reviewed": []
+}

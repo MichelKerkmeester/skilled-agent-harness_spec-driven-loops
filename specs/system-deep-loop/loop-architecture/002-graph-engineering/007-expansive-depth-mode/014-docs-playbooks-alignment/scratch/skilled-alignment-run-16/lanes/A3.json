@@ -1,0 +1,41 @@
+{
+  "lane": "A3",
+  "findings": [
+    {
+      "id": "A3-1",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+      "line": 471,
+      "issue": "preflightFailure (line 749) no longer refuses on remaining iterations, yet normalizeConfig still accepts, validates and persists antiConvergence.divergent.minRemainingIterations, and the 'insufficient_remaining_iterations' reason stays in the failure union. Case: an operator sets antiConvergence.divergent.minRemainingIterations: 3 and a pivot opens with remainingIterations 1. The pivot proceeds with no error or warning, so a setting the code still validates has silently stopped having any effect (review.kiss: an option with no current behavior). Commit c06f0f06831 calls the old refusal unreachable, which is true only at the default of 1. Fix: either stop accepting the key from live config (keep parsing it only in parsePersistedLimits for persisted limits) or warn when a non-default value is supplied. The integration test 'keeps accepting a persisted minRemainingIterations limit without refusing on it' only covers the persisted case.",
+      "evidence": {
+        "cmd": "cd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && grep -n \"minRemainingIterations\" .skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+        "exit": 0,
+        "out": "99: readonly minRemainingIterations?: number; | 235: readonly minRemainingIterations: number; | 293: minRemainingIterations: 1, | 471-473: normalizeConfig parses antiConvergence.divergent.minRemainingIterations | 1055/1062: persisted limits require and parse it. No other reads: preflightFailure no longer references it."
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+    ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+    ".skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs",
+    ".skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts",
+    ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/fanout-review-focus.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/dispatch-iteration.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/divergent-pivot-cli.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/divergent-pivot-seat-scope.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts",
+    ".skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs"
+  ],
+  "not_reviewed": []
+}

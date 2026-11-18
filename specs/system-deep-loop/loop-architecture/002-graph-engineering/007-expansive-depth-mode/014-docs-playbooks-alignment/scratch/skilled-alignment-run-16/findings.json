@@ -1,0 +1,785 @@
+[
+  {
+    "id": "A1-1",
+    "source_id": "A1-1",
+    "lane": "A1",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    "line": "739",
+    "issue": "closeNode guards only pruned-to-live moves and keeps 'active' in CLOSE_STATUSES, so a node closed as exhausted, answered, blocked or abstained can be revived as active, despite its docstring promise to 'move a node to a later lifecycle status'. A shipped caller sends this: in deep-review.yaml, active_frontier_node is bound once at line 1184; the stuck-recovery branch (lines 1599-1605) closes it as exhausted and re-runs the reducer but never rebinds it, and step_frontier_activate (lines 1699-1704) then closes the same id as active. The stuck node is revived, counts toward frontierOpen (vetoing the stop), and is redispatched, so stuck recovery cannot retire it and the run can cycle until maxIterations. Fix: refuse moves from a terminal status (answered, blocked, exhausted, abstained) back to active, with a test for that case, and/or rebind active_frontier_node after the stuck close.",
+    "evidence": {
+      "cmd": "D=$TMPDIR/local-skilled-alignment-scratch/skilled-alignment-run-16/A1/close-repro; node frontier-admit.cjs seed --artifact-dir $D --input seed.json; node frontier-admit.cjs close --artifact-dir $D --node-id F-1-001 --status exhausted --reason stuck --iteration 2; node frontier-admit.cjs close --artifact-dir $D --node-id F-1-001 --status active --iteration 3",
+      "exit": 0,
+      "out": "{\"nodeId\":\"F-1-001\",...,\"status\":\"exhausted\",\"reason\":\"stuck\",\"iteration\":2,...} exit=0 then {\"nodeId\":\"F-1-001\",...,\"status\":\"active\",\"reason\":null,\"iteration\":3,...} exit=0"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A2-1",
+    "source_id": "A2-1",
+    "lane": "A2",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    "line": "2664",
+    "issue": "On an expansive research run, a frontier node closed as exhausted with reason budget makes its question resolved (line 2684). The write-back then marks it '- [x]' in the strategy key questions, lists it under ANSWERED QUESTIONS and saves it as resolved in the registry. On the next reduce, question.checked is true, so line 2664 puts the node in answeredNodeIds, and applyFrontierBudget and buildFrontierProjection flip it from 'exhausted' to 'answered'. From then on the frontier stats, the dashboard FRONTIER section and frontierStatus report unanswered, budget-closed work as answered, and a later run_extended that raises maxIterations can never reopen the node. Reach: every expansive run whose band spend reaches its share, because the workflow's reduce writes the strategy each iteration. No test reduces twice, so nothing catches it. Fix: build answeredNodeIds only from evidence (resolutionRecords, or a checked question that frontierClose did not resolve), and keep a frontier-closed question out of ANSWERED QUESTIONS and out of the persisted checked flag, or persist frontierStatus and let it win over checked.",
+    "evidence": {
+      "cmd": "node ${TMPDIR:-/tmp}/local-skilled-alignment-scratch/skilled-alignment-run-16/A2/scripts/repro-exhausted.cjs .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs ${TMPDIR:-/tmp}/local-skilled-alignment-scratch/skilled-alignment-run-16/A2",
+      "exit": 0,
+      "out": "reduce1(write) [\"F-1-001:answered:null\",\"F-2-002:answered:null\",\"F-2-003:exhausted:budget\"] stats {...\"answered\":2,...\"exhausted\":1...} F-2-003 frontierStatus exhausted\nstrategy line: - [x] Which limits does admission skip? | - Which limits does admission skip?\nreduce2(read) [\"F-1-001:answered:null\",\"F-2-002:answered:null\",\"F-2-003:answered:null\"] stats {...\"answered\":3,...\"exhausted\":0...} F-2-003 frontierStatus answered"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B1-1",
+    "source_id": "B1-1",
+    "lane": "B1",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+    "line": "158",
+    "issue": "This diff rewrote the Quality Gate row, but the row still lists 'no single weak-source dominance' as a rule that must pass. The runtime never evaluates that guard: convergence.cjs:907 hardcodes singleWeakSource = guardOutcome('notEvaluated', []), and guardOutcome (line 848) counts notEvaluated as passed. The catalog entry quality-guards.md was updated in the same diff to call it a reserved entry that reports notEvaluated, so the reference and the catalog now disagree. This breaks a playbook scenario: DR-022 command 1 prints this exact row, and DR-022's own Pass/Fail rule says 'FAIL if any source claims a per-source strength evaluation the code does not perform'. Run as shipped, DR-022 returns FAIL, and the playbook makes release readiness depend on every scenario passing.",
+    "evidence": {
+      "cmd": "rg -n 'singleWeakSource|notEvaluated' .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs; rg -n -A6 '^function guardOutcome' .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs; cd .skilled/skills/system-deep-loop/runtime && npx vitest run stop-decision.vitest -t 'always leaves single weak source not evaluated'",
+      "exit": 0,
+      "out": "907:  const singleWeakSource = guardOutcome('notEvaluated', []); 848:  return { status, passed: status !== 'failed', violations }; Tests 1 passed | 112 skipped (113)"
+    },
+    "fix": {
+      "old": "| Quality Gate | Source diversity, focus alignment, and no single weak-source dominance pass | `CONTINUE` with `qualityGuardFailed`, no `blocked_stop` event |",
+      "new": "| Quality Gate | Source diversity and focus alignment pass; the reserved single-weak-source entry reports `notEvaluated` | `CONTINUE` with `qualityGuardFailed`, no `blocked_stop` event |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C2-1",
+    "source_id": "C2-1",
+    "lane": "C2",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    "line": "129",
+    "issue": "The entry fails the changelog shape gate. One bullet holds a 24-word sentence, over the 22-word ceiling. sk-create-changelog SKILL.md section 9 says an exit 1 from check_changelog_shape.py blocks the write.",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+      "exit": 1,
+      "out": "FAIL ... [sentence-max] line 129: a sentence of 24 words, ceiling 22. Split it"
+    },
+    "fix": {
+      "old": "- The iteration cap, consecutive failures, stuck recovery, pause, the max-duration stop, the off setting, the max-iterations policy and the review floor still decide first.",
+      "new": "- The iteration cap, consecutive failures, stuck recovery, pause and the max-duration stop still decide first. So do the off setting, the max-iterations policy and the review floor."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C4-1",
+    "source_id": "C4-1",
+    "lane": "C4",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/changelog/skilled/v4.1.0.0.md",
+    "line": "237",
+    "issue": "No root release-notes entry describes the user-visible capabilities this scope adds: --depth-mode=expansive with its frontier node store (frontier-admit.cjs, the convergence.cjs frontierOpen veto and frontier_drained stop, the fan-out frontier partition), --extend=N / --extend-minutes=M, custom review dimensions, and the review minIterations floor. The root README (line 255) now describes these, but the newest root release notes do not. v4.1.0.0 is already tagged (tag commit 05dbe23f023), so by sk-create-changelog it is not an open release and this work needs a new untagged root release entry. Run 15 raised this as C4-1 and handed it to the release owner; it is still open at HEAD 7a1b0ec7a1e.",
+    "evidence": {
+      "cmd": "grep -c -i -E \"expansive|--extend|frontier|custom dimension\" .skilled/changelog/skilled/v4.1.0.0.md",
+      "exit": 1,
+      "out": "0"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range",
+    "disposition": {
+      "status": "handed_off",
+      "note": "Owner: operator (root release notes). The gap is that the root .skilled/changelog/skilled/v4.1.0.0.md does not describe this program's new deep-loop features (expansive depth mode, --extend, custom review dimensions, the review minIterations floor), and v4.1.0.0 is already tagged. Opening or amending the root release record is the release owner's call, made when this branch lands. Same hand-off as run 15's C4-1."
+    }
+  },
+  {
+    "id": "A2-2",
+    "source_id": "A2-2",
+    "lane": "A2",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+    "line": "1",
+    "issue": "The diff changes the file mode from 100755 to 100644 while the script keeps its '#!/usr/bin/env node' shebang. Its CLI siblings query.cjs, status.cjs and loop-lock.cjs stay 100755. Every workflow caller runs it as 'node .../upsert.cjs', so only a direct './upsert.cjs' run, such as a manual repair the doctor assets point at, fails with permission denied. Restore the executable bit with git update-index --chmod=+x.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false log --format='%h %s' --summary 21c4b325b5a..7a1b0ec7a1e -- .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs | grep 'mode change'; git -c core.fsmonitor=false ls-tree 7a1b0ec7a1e .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+      "exit": 0,
+      "out": "mode change 100755 => 100644 .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs\n100644 blob d4cb94d82ad327b96f55296b73da2d376b2e4f86\t.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A3-1",
+    "source_id": "A3-1",
+    "lane": "A3",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+    "line": "471",
+    "issue": "preflightFailure (line 749) no longer refuses on remaining iterations, yet normalizeConfig still accepts, validates and persists antiConvergence.divergent.minRemainingIterations, and the 'insufficient_remaining_iterations' reason stays in the failure union. Case: an operator sets antiConvergence.divergent.minRemainingIterations: 3 and a pivot opens with remainingIterations 1. The pivot proceeds with no error or warning, so a setting the code still validates has silently stopped having any effect (review.kiss: an option with no current behavior). Commit c06f0f06831 calls the old refusal unreachable, which is true only at the default of 1. Fix: either stop accepting the key from live config (keep parsing it only in parsePersistedLimits for persisted limits) or warn when a non-default value is supplied. The integration test 'keeps accepting a persisted minRemainingIterations limit without refusing on it' only covers the persisted case.",
+    "evidence": {
+      "cmd": "cd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && grep -n \"minRemainingIterations\" .skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+      "exit": 0,
+      "out": "99: readonly minRemainingIterations?: number; | 235: readonly minRemainingIterations: number; | 293: minRemainingIterations: 1, | 471-473: normalizeConfig parses antiConvergence.divergent.minRemainingIterations | 1055/1062: persisted limits require and parse it. No other reads: preflightFailure no longer references it."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A4-1",
+    "source_id": "A4-1",
+    "lane": "A4",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts",
+    "line": "437",
+    "issue": "The test 'places step_frontier_budget right after the phase_init seed step' never asserts that the budget step comes after the seed step. It slices text from the seed index to the budget index. If step_frontier_budget were moved above step_frontier_seed, that slice is the empty string, the step-key match count is 0, and the test passes. The order it names can be reversed without the test going red. It still fails when another step sits between the two, so this is a partial assertion gap (test-quality checklist, P2), not a test that cannot fail.",
+    "evidence": {
+      "cmd": "node -e 'const text=\"x\\n      step_frontier_budget:\\n  a: 1\\n      step_frontier_seed:\\n\"; const initSeed=text.indexOf(\"      step_frontier_seed:\\n\"); const between=text.slice(initSeed, text.indexOf(\"      step_frontier_budget:\\n\")); console.log(JSON.stringify(between), (between.match(/\\n      step_[a-z_]+:\\n/g) ?? []).length);'",
+      "exit": 0,
+      "out": "\"\" 0"
+    },
+    "fix": {
+      "old": "    expect(budget.length).toBeGreaterThan(0);",
+      "new": "    expect(budget.length).toBeGreaterThan(0);\n    expect(text.indexOf('      step_frontier_budget:\\n')).toBeGreaterThan(initSeed);"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "CRIT-3",
+    "source_id": "CRIT-3",
+    "lane": "critic",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+    "line": "1",
+    "issue": "A2-2 reported the 100755 to 100644 mode change on upsert.cjs only. Commit ab7312fe467 made the same change to convergence.cjs, which keeps its '#!/usr/bin/env node' shebang. Its CLI siblings query.cjs, status.cjs and loop-lock.cjs stay 100755. The reach matches A2-2: workflow callers run 'node .../convergence.cjs' and reduce-state, terminal-gates and review-verdict require() it, so only a direct './convergence.cjs' run fails with permission denied. These two are the only mode changes in the range. Restore the bit with git update-index --chmod=+x in the same fix as A2-2.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false diff --summary 21c4b325b5a 7a1b0ec7a1e | grep 'mode change'; git -c core.fsmonitor=false log --format='%h %s' --summary 21c4b325b5a..7a1b0ec7a1e -- .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs; head -1 .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "exit": 0,
+      "out": "mode change 100755 => 100644 .../runtime/scripts/convergence.cjs | mode change 100755 => 100644 .../runtime/scripts/upsert.cjs | ab7312fe467 feat(system-deep-loop): veto a soft research stop while frontier nodes stay open | #!/usr/bin/env node | ls-tree HEAD: 100644 convergence.cjs, 100755 query.cjs, 100755 status.cjs, 100755 loop-lock.cjs"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "CRIT-1",
+    "source_id": "CRIT-1",
+    "lane": "critic",
+    "surface": "S10",
+    "standard": "sk-doc/sk-create-agent",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/agents/deep-research.md",
+    "line": "181",
+    "issue": "Cross-lane gap. The agent body says 'The orchestrator flags single-weak-source answers during convergence quality checks.' convergence.cjs:907 hard-codes singleWeakSource to notEvaluated, which counts as passed, so no weak-source check runs. Lanes B1 and C1 raised the same claim in the deep-research README, SKILL.md, quick-reference and convergence.md (B1-1 to B1-4), but no lane named the agent. A fix applied only to those docs leaves the agent and its generated .claude, .codex, .pi, .dsh and .vibe copies stating it. The in-range DR-022 rewrite fails 'any source' that claims a per-source strength evaluation. The line is unchanged from base line 180, so this is drift in the same class as B1-3 and B1-4, not a regression. It is half right: sourceDiversity does fail a one-source answer, but no 'weak' classification exists. Edit the canonical file and regenerate the mirrors.",
+    "evidence": {
+      "cmd": "sed -n 181p .skilled/agents/deep-research.md; git -c core.fsmonitor=false show 21c4b325b5a:.skilled/agents/deep-research.md | sed -n 180p; rg -n \"singleWeakSource = guardOutcome\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "exit": 0,
+      "out": "181: **Source diversity**: Aim for >=2 independent sources per key finding. The orchestrator flags single-weak-source answers during convergence quality checks. (identical at base line 180) | convergence.cjs:907: const singleWeakSource = guardOutcome('notEvaluated', []);"
+    },
+    "fix": {
+      "old": "The orchestrator flags single-weak-source answers during convergence quality checks.",
+      "new": "The source diversity guard blocks a stop while an answered question rests on one source."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B1-2",
+    "source_id": "B1-2",
+    "lane": "B1",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
+    "line": "123",
+    "issue": "This diff rewrote the line, but it still says the legal-stop gates check 'that one weak source does not carry a finding'. That guard is hardcoded notEvaluated (convergence.cjs:907), and quality-guards.md now calls it a reserved entry. The README overview is never read by DR-022, so this is drift rather than a scenario failure. It also leaves out focus alignment, a guard that does run.",
+    "evidence": {
+      "cmd": "grep -n 'one weak source does not carry a finding' .skilled/skills/system-deep-loop/deep-research/README.md",
+      "exit": 0,
+      "out": "123:A normalized score above 0.60 nominates STOP. ... that sources are diverse and that one weak source does not carry a finding. ..."
+    },
+    "fix": {
+      "old": "that sources are diverse and that one weak source does not carry a finding.",
+      "new": "that sources are diverse and that answered questions stay within the key questions."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B1-3",
+    "source_id": "B1-3",
+    "lane": "B1",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    "line": "213",
+    "issue": "Rule 12 says the 'no single-weak-source' check must pass before STOP. The shipped guard is never evaluated (convergence.cjs:907) and always counts as passed. SKILL.md therefore describes a check that the shipped code does not run, which contradicts the updated quality-guards.md catalog entry.",
+    "evidence": {
+      "cmd": "sed -n '213p' .skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      "exit": 0,
+      "out": "12. **Quality guards must pass before convergence** -- Source diversity, focus alignment, and no single-weak-source checks must pass before STOP can trigger"
+    },
+    "fix": {
+      "old": "Source diversity, focus alignment, and no single-weak-source checks must pass before STOP can trigger",
+      "new": "Source diversity and focus alignment checks must pass before STOP can trigger; the reserved single-weak-source entry reports `notEvaluated`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B1-4",
+    "source_id": "B1-4",
+    "lane": "B1",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+    "line": "135",
+    "issue": "The quick reference loads first on every invocation. It lists no-single-weak-source as a quality guard that must pass, but the runtime reports that guard as notEvaluated (convergence.cjs:907). This contradicts quality-guards.md as updated in this diff.",
+    "evidence": {
+      "cmd": "sed -n '135p' .skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+      "exit": 0,
+      "out": "Quality guards (source diversity, focus alignment, no single-weak-source) must pass before STOP."
+    },
+    "fix": {
+      "old": "Quality guards (source diversity, focus alignment, no single-weak-source) must pass before STOP.",
+      "new": "Quality guards (source diversity, focus alignment) must pass before STOP; the reserved single-weak-source entry reports `notEvaluated`."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B1-5",
+    "source_id": "B1-5",
+    "lane": "B1",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
+    "line": "83",
+    "issue": "reduce-state.cjs now writes a per-question `frontierStatus` field into findings-registry.json (lines 1422 and 2706) when a frontier node closes a question. When the question has no iteration evidence, it also derives resolvedAtIteration from the node's closedAtIteration. No markdown file anywhere in system-deep-loop names `frontierStatus`. The Frontier Node Store subsection, which says 'A frontier question resolves when its node reaches a terminal status', is the natural place to add one sentence naming the field and its values.",
+    "evidence": {
+      "cmd": "rg -n 'frontierStatus' .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs; rg -l 'frontierStatus' .skilled/skills/system-deep-loop --glob '*.md'",
+      "exit": 1,
+      "out": "1422: ...(question.frontierStatus ? { frontierStatus: question.frontierStatus } : {}), 2706: ...(frontierClose ? { frontierStatus: frontierClose.status } : {}), [no .md hits]"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B2-1",
+    "source_id": "B2-1",
+    "lane": "B2",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+    "line": "115",
+    "issue": "The Divergent Pivot Contract gives a closed list of five candidate sources, but the changed divergent-review-pivot.ts now seeds a sixth, 'frontier-unanswered', for each frontier node an expansive run closed 'exhausted' or 'blocked'. The reference no longer describes the shipped candidate generation. Case: a divergent review run under --depth-mode=expansive whose frontier closed a node exhausted gets a frontier-revisit candidate that this list says cannot exist.",
+    "evidence": {
+      "cmd": "grep -n -o \"Candidate sources are[^.]*\\.\" .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md; grep -n \"source: '\" .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+      "exit": 0,
+      "out": "115:Candidate sources are persisted unswept dimensions, search debt, producer-consumer gaps, negative-test gaps, and traceability gaps. | 242 unswept-dimension, 256 search-debt, 276 producer-consumer-gap, 286 negative-test-gap, 305 traceability-gap, 325 frontier-unanswered (6 sources)"
+    },
+    "fix": {
+      "old": "Candidate sources are persisted unswept dimensions, search debt, producer-consumer gaps, negative-test gaps, and traceability gaps.",
+      "new": "Candidate sources are persisted unswept dimensions, search debt, producer-consumer gaps, negative-test gaps, traceability gaps, and, under `--depth-mode=expansive`, frontier nodes closed `exhausted` or `blocked`."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B2-2",
+    "source_id": "B2-2",
+    "lane": "B2",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    "line": "120",
+    "issue": "The release note says a sub-target answers once 'every configured dimension' has evidence. The reducer's per-node universe always starts from the four canonical dimensions and only adds custom names (buildReviewFrontier -> buildDimensionUniverse, seeded from REQUIRED_DIMENSIONS), so a subset-configured run still needs all four per node. state-format.md states the correct rule. Case: an expansive run with review_dimensions: security,correctness keeps a node open after both configured dimensions are covered, contrary to this line.",
+    "evidence": {
+      "cmd": "sed -n 24p .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs; sed -n 1225p .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs; sed -n 2000p .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      "exit": 0,
+      "out": "const REQUIRED_DIMENSIONS = ['correctness', 'security', 'traceability', 'maintainability']; | const universe = [...REQUIRED_DIMENSIONS]; | const universe = buildDimensionUniverse(config);"
+    },
+    "fix": {
+      "old": "- A sub-target answers once every configured dimension has evidence behind it.",
+      "new": "- A sub-target answers once every dimension in its universe, the four canonical ones plus each custom name, has evidence behind it."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B3-1",
+    "source_id": "B3-1",
+    "lane": "B3",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/changelog/v2.1.7.0.md",
+    "line": "38",
+    "issue": "The changelog says the golden tests keep a default run's output byte for byte, but research-depth-mode-golden.vitest.ts and review-depth-mode-golden.vitest.ts strip the expansive-only persona paragraph from the lineage prompt before comparing (EXPANSIVE_ONLY_PERSONA_PARAGRAPH, lines 211-221). A default run's lineage prompt now carries that paragraph, so the claim overstates the guarantee. runtime/tests/unit/README.md and feature-catalog/deep-loop-mode-classification/depth-mode-flag.md both state the exception.",
+    "evidence": {
+      "cmd": "grep -n 'byte for byte' .skilled/skills/system-deep-loop/changelog/v2.1.7.0.md; sed -n 211,221p .skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts",
+      "exit": 0,
+      "out": "38:The frontier, stop-decision, fan-out, ledger and reducer suites pass. The golden tests keep a default run's output byte for byte. / // The lineage prompt embeds the agent persona verbatim. ... That paragraph alone is removed before comparison"
+    },
+    "fix": {
+      "old": "The golden tests keep a default run's output byte for byte.",
+      "new": "The golden tests keep a default run's output byte for byte, apart from the expansive-only persona paragraph they strip from the lineage prompt."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "CRIT-2",
+    "source_id": "CRIT-2",
+    "lane": "critic",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md",
+    "line": "22",
+    "issue": "The catalog entry for the divergent review pivot lists five candidate sources. The in-range divergent-review-pivot.ts adds a sixth, 'frontier-unanswered' (line 325), which an expansive run seeds for each frontier node closed exhausted or blocked. The entry no longer describes the shipped feature. C2-6 named this file, but C2-6 is overridden here as a duplicate of B2-1, which covers only references/convergence/convergence.md:115. This finding keeps the catalog half. Case: a divergent review under --depth-mode=expansive whose frontier closed a node exhausted gets a revisit candidate that this entry does not list.",
+    "evidence": {
+      "cmd": "sed -n 22p .skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md; grep -n \"source: '\" .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+      "exit": 0,
+      "out": "22: ...Candidate sources include unswept dimensions, search debt, producer-consumer paths, negative-test gaps, and traceability gaps. ... | 242 unswept-dimension, 256 search-debt, 276 producer-consumer-gap, 286 negative-test-gap, 305 traceability-gap, 325 frontier-unanswered"
+    },
+    "fix": {
+      "old": "Candidate sources include unswept dimensions, search debt, producer-consumer paths, negative-test gaps, and traceability gaps.",
+      "new": "Candidate sources include unswept dimensions, search debt, producer-consumer paths, negative-test gaps, traceability gaps, and, under `--depth-mode=expansive`, frontier nodes closed `exhausted` or `blocked`."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B1-6",
+    "source_id": "B1-6",
+    "lane": "B1",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "963",
+    "issue": "The root H2 sections are out of sequence: '## 14. FAN-OUT', then '## 16. INTRA ROUTING RECALL' (963), then '## 15. AUTOMATED TEST CROSS-REFERENCE' (1076), then a second '## 15. FEATURE CATALOG CROSS-REFERENCE INDEX' (1083). The standard's root scaffold numbers its H2s sequentially and ends with the automated-test and catalog cross-reference sections. This diff rewrote the body of the second '## 15' and kept the duplicate number. The misnumbering predates this diff, since the base has the same 16/15/15 order. The validator passes, so this is cosmetic.",
+    "evidence": {
+      "cmd": "grep -nE '^## 1[3-7]\\.' .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+      "exit": 0,
+      "out": "851:## 13. COMMAND FLOW STRESS TESTS 905:## 14. FAN-OUT 963:## 16. INTRA ROUTING RECALL 1076:## 15. AUTOMATED TEST CROSS-REFERENCE 1083:## 15. FEATURE CATALOG CROSS-REFERENCE INDEX"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "pre-existing (critic)",
+    "critic_override": {
+      "verdict": "pre-existing",
+      "note": "The lane says so and the base confirms it. git show 21c4b325b5a:.../deep-research/manual-testing-playbook/manual-testing-playbook.md has '## 16. INTRA ROUTING RECALL' at line 807, then '## 15. AUTOMATED TEST CROSS-REFERENCE' at 920 and '## 15. FEATURE CATALOG CROSS-REFERENCE INDEX' at 927. That is the same 16/15/15 order HEAD has.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "BAT-01",
+    "source_id": "S5-derived-counts",
+    "lane": "battery",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "S5-derived-counts failed (exit 1).",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py .skilled/bin/README.md .skilled/skills/system-deep-loop/README.md .skilled/skills/system-deep-loop/deep-research/README.md .skilled/skills/system-deep-loop/deep-review/README.md .skilled/skills/system-skill-advisor/README.md .skilled/skills/system-spec-kit/README.md README.md",
+      "exit": 1,
+      "out": "PASS .skilled/bin/README.md: claims=1 failures=0\nPASS .skilled/skills/system-deep-loop/README.md: claims=0 failures=0\nPASS .skilled/skills/system-deep-loop/deep-research/README.md: claims=0 failures=0\nPASS .skilled/skills/system-deep-loop/deep-review/README.md: claims=0 failures=0\n  line 141: numeric count for 'files': | `trustState` reads `absent` | The SQLite database file is missing | Run `advisor_rebuild --trusted`. If that fails, delete the `skill-graph.sqlite` database and its two sidecar files under `runtime/database/`, then rebuild with `--trusted --force` |\nFAIL .skilled/skills/system-skill-advisor/README.md: claims=1 failures=1\nPASS .skilled/skills/system-spec-kit/README.md: claims=0 failures=0\nPASS README.md: claims=1 failures=0\nSUMMARY files=7 pass=6 fail=1",
+      "ci_gated": false,
+      "ci_workflows": []
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Owner: check_derived_readme_counts.py owner. The S5-derived-counts row fails only on .skilled/skills/system-skill-advisor/README.md line 141, where the checker reads 'its two sidecar files' in a troubleshooting row as a numeric file-count claim. That is a false positive in the checker, not README drift: lane C3 confirmed the database has two sidecar files (-shm and -wal). Same hand-off as run 15."
+    }
+  },
+  {
+    "id": "C2-5",
+    "source_id": "C2-5",
+    "lane": "C2",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/state-management/focus-hijack-guard.md",
+    "line": "24",
+    "issue": "The catalog understates the Next Focus rule. Line 24 says an uncovered dimension outranks a leaf nextFocus 'that names no dimension'. Lines 3 and 16, and the index entry feature-catalog.md:352, say the same. In code (runtime/scripts/reduce-state.cjs:2404) the leaf focus survives only when it names an uncovered dimension or nothing is uncovered. So a leaf focus naming only an already-covered dimension is also overridden, which the catalog never says. loop-protocol.md:154 and the DRV-073 expected signals state the rule correctly, so the docs disagree. Reword lines 3, 16 and 24 and the index line 352: the first uncovered dimension wins unless the leaf focus names an uncovered dimension or every dimension is covered.",
+    "evidence": {
+      "cmd": "sed -n 2402,2407p .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      "exit": 0,
+      "out": "if (leafFocus && (uncovered.length === 0 || uncovered.some((dimension) => leafKey.includes(dimension)))) { return leafFocus; } return uncovered[0] || leafFocus || '[All dimensions covered]';"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C3-1",
+    "source_id": "C3-1",
+    "lane": "C3",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/tests/unit/README.md",
+    "line": "19",
+    "issue": "The line this diff rewrote adds a semicolon. sk-create-readme section 8 Human Voice Rules says 'No semicolons', and its pre-publish checks require 'HVR passes'. The base version of this README had 0 HVR hard blockers and the head version has 1.",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .skilled/skills/system-deep-loop/runtime/tests/unit/README.md",
+      "exit": 1,
+      "out": "x1 first@19 hard punctuation ; | hard blockers: 1 (base 21c4b325b5a version: hard blockers: 0)"
+    },
+    "fix": {
+      "old": "It is not the complete direct-file inventory; list the folder for every test file.",
+      "new": "It is not the complete direct-file inventory. List the folder for every test file."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C4-4",
+    "source_id": "C4-4",
+    "lane": "C4",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/tests/fixtures/README.md",
+    "line": "24",
+    "issue": "This scope adds the fixture folders golden-research-default/ and golden-review-default/. research-depth-mode-golden.vitest.ts:29 and review-depth-mode-golden.vitest.ts:31 read them, and running with GOLDEN_UPDATE=1 regenerates them. The fixtures README directory tree (lines 24-29) and FILES table (lines 35-40) still list only the four authorized-ledger and event files. A FILES row for each folder is also needed, saying it holds a default run's golden outputs and is regenerated with GOLDEN_UPDATE=1.",
+    "evidence": {
+      "cmd": "grep -c golden .skilled/skills/system-deep-loop/runtime/tests/fixtures/README.md",
+      "exit": 1,
+      "out": "0"
+    },
+    "fix": {
+      "old": "├── event-envelope-producers.ts\n└── ...",
+      "new": "fixtures/\n├── authorized-ledger-fixtures.ts\n├── authorized-ledger-test-helper.ts\n├── authorized-ledger-worker.ts\n├── event-envelope-producers.ts\n├── golden-research-default/\n└── golden-review-default/"
+    },
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "C4-5",
+    "source_id": "C4-5",
+    "lane": "C4",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/README.md",
+    "line": "166",
+    "issue": "The README gives the expansive caps as 'maxDepth 3, maxChildrenPerNode 6' with no exception. But frontier-admit.cjs:61 sets ROOT_CHILDREN_FLOOR = { research: 6, review: 8 }, and readCaps (frontier-admit.cjs:310) sets maxRootChildren = max(maxChildrenPerNode, 8) for a review. So a review root takes up to 8 depth-1 sub-targets, and deep-review.yaml:329 asks the seed step for 3 to 8. Someone reading the README would expect at most 6 at the root. State that the review root takes up to 8 depth-1 children.",
+    "evidence": {
+      "cmd": "grep -n \"ROOT_CHILDREN_FLOOR = \" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "exit": 0,
+      "out": "61:const ROOT_CHILDREN_FLOOR = Object.freeze({ research: 6, review: 8 });"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C2-2",
+    "source_id": "C2-2",
+    "lane": "C2",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    "line": "100",
+    "issue": "An Oxford comma sits in a three-item series (caps..., caps..., and caps...). SKILL.md section 8 rule 5 bans Oxford commas. hvr_scan flags it as a candidate. The other candidates it flags (lines 58, 63, 123, 136 and v1.12.0.0 line 16) join clauses, so they are not defects.",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py --all .skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+      "exit": 0,
+      "out": "100:79  review oxford-comma-candidate , and"
+    },
+    "fix": {
+      "old": "- Fan-out caps each parent at six children, caps the root at eight on a review, and caps the total count.",
+      "new": "- Fan-out caps each parent at six children, caps the root at eight on a review and caps the total count."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C2-3",
+    "source_id": "C2-3",
+    "lane": "C2",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    "line": "179",
+    "issue": "The How It Was Checked table says the review command reference holds 1 --depth-mode match, the flag row. Commit 0c6b0c6a900 later added the setup line review.md:41, so the command the entry names (line 64) now finds 2. The entry belongs to no tagged release, so the After cell can still be corrected.",
+    "evidence": {
+      "cmd": "rg -c -- '--depth-mode' .skilled/commands/deep/review.md",
+      "exit": 0,
+      "out": "2"
+    },
+    "fix": {
+      "old": "| Count of `--depth-mode` in the review command reference | 0 matches at the baseline commit | 1 match, the flag row |",
+      "new": "| Count of `--depth-mode` in the review command reference | 0 matches at the baseline commit | 2 matches, the setup line and the flag row |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C2-4",
+    "source_id": "C2-4",
+    "lane": "C2",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md",
+    "line": "22",
+    "issue": "The three glance bullets (lines 22-24) open with bold lead-ins. assets/changelog-template.md line 209 says the folded summary header is the one place bold text appears. Line 34 names bold lead-in bullets as an older layout not to copy. The same rule is a voice-gate structural check in SKILL.md section 9.",
+    "evidence": {
+      "cmd": "grep -n '\\*\\*' .skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md",
+      "exit": 0,
+      "out": "22:- **A review below its floor continues.** ...\n23:- **The floor is checked before the legal-stop gates.** ...\n24:- **The shipped floor is unchanged.** ..."
+    },
+    "fix": {
+      "old": "- **A review below its floor continues.** A stop candidate below `minIterations` returns `CONTINUE` with reason `minIterationsNotReached`. The run releases once the floor is reached.\n- **The floor is checked before the legal-stop gates.** The review workflow's stop order names it as item `4a`. The deep-review README says what it does.\n- **The shipped floor is unchanged.** The shipped floor of 2 and its stop-path replay are the same. The fixtures are untouched.",
+      "new": "- A review below its floor continues. A stop candidate below `minIterations` returns `CONTINUE` with reason `minIterationsNotReached`. The run releases once the floor is reached.\n- The floor is checked before the legal-stop gates. The review workflow's stop order names it as item `4a`. The deep-review README says what it does.\n- The shipped floor is unchanged. The shipped floor of 2 and its stop-path replay are the same. The fixtures are untouched."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C3-2",
+    "source_id": "C3-2",
+    "lane": "C3",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/changelog/v2.1.7.0.md",
+    "line": "20",
+    "issue": "The entry uses the compact shape (summary, bullet glance list, Upgrade) for 11 changes. changelog-template.md section 5 requires the expanded format at 10 or more changes: a glance table with a Section column, Why This Release, topical H2 sections with anchored H4 items, How It Was Checked and Upgrade Notes. All 11 glance bullets also open with bold text, which template section 4 forbids ('No bold text outside a folded block's summary header. No bold lead-in bullets.'). check_changelog_shape.py does not test the change-count threshold, so it passes. Either merge items until fewer than 10 changes survive the cut test, or rewrite the entry in the expanded layout.",
+    "evidence": {
+      "cmd": "awk '/^## What.s New at a Glance/{g=1;next} /^## /{g=0} g && /^- /' .skilled/skills/system-deep-loop/changelog/v2.1.7.0.md | wc -l; grep -c '^- \\*\\*' .skilled/skills/system-deep-loop/changelog/v2.1.7.0.md",
+      "exit": 0,
+      "out": "glance=11 boldlead=11"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C3-3",
+    "source_id": "C3-3",
+    "lane": "C3",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/changelog/v2.1.0.0.md",
+    "line": "21",
+    "issue": "Every glance bullet opens with bold text. changelog-template.md section 4 Structure: 'No bold text outside a folded block's summary header. No bold lead-in bullets.' The SKILL.md section 9 structural checks repeat the rule. The other entries written in the same batch (v2.1.3.0 to v2.1.6.0) follow it. Rewrite the bullets as plain sentences.",
+    "evidence": {
+      "cmd": "grep -c '^- \\*\\*' .skilled/skills/system-deep-loop/changelog/v2.1.0.0.md",
+      "exit": 0,
+      "out": "5 (all 5 glance bullets)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C3-4",
+    "source_id": "C3-4",
+    "lane": "C3",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/changelog/v2.1.1.0.md",
+    "line": "21",
+    "issue": "Every glance bullet opens with bold text, which changelog-template.md section 4 forbids ('No bold lead-in bullets'). Rewrite the bullets as plain sentences, as v2.1.3.0 to v2.1.6.0 do.",
+    "evidence": {
+      "cmd": "grep -c '^- \\*\\*' .skilled/skills/system-deep-loop/changelog/v2.1.1.0.md",
+      "exit": 0,
+      "out": "4 (all 4 glance bullets)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C3-5",
+    "source_id": "C3-5",
+    "lane": "C3",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/changelog/v2.1.2.0.md",
+    "line": "21",
+    "issue": "Every glance bullet opens with bold text, which changelog-template.md section 4 forbids ('No bold lead-in bullets'). Rewrite the bullets as plain sentences.",
+    "evidence": {
+      "cmd": "grep -c '^- \\*\\*' .skilled/skills/system-deep-loop/changelog/v2.1.2.0.md",
+      "exit": 0,
+      "out": "6 (all 6 glance bullets)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C3-6",
+    "source_id": "C3-6",
+    "lane": "C3",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-spec-kit/changelog/v2.13.5.0.md",
+    "line": "21",
+    "issue": "Every glance bullet opens with bold text, which changelog-template.md section 4 forbids ('No bold lead-in bullets'). Rewrite the bullets as plain sentences.",
+    "evidence": {
+      "cmd": "grep -c '^- \\*\\*' .skilled/skills/system-spec-kit/changelog/v2.13.5.0.md",
+      "exit": 0,
+      "out": "3 (all 3 glance bullets)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C4-2",
+    "source_id": "C4-2",
+    "lane": "C4",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/changelog/v2.1.7.0.md",
+    "line": "28",
+    "issue": "fanout-run.cjs now exports DEEP_LOOP_COVERAGE_DB_DIR to graph-db/ inside every fan-out lineage (commit d68f9261a5c). Commit d68f9261a5c says this also changes default fan-out runs of both loop types: before it, a lineage that respected its write limit ran with no graph and could stop only at its cap. No new hub, deep-research or deep-review changelog entry names this. v2.1.7.0 describes only the expansive frontier partition for fan-out. Add a bullet saying each fan-out lineage keeps its own coverage graph in graph-db/, so a default fan-out lineage can stop before its cap.",
+    "evidence": {
+      "cmd": "grep -l -i -E \"graph-db|DEEP_LOOP_COVERAGE_DB_DIR\" .skilled/skills/system-deep-loop/changelog/v2.1.*.md .skilled/skills/system-deep-loop/deep-research/changelog/v1.1[56]*.md .skilled/skills/system-deep-loop/deep-review/changelog/v1.1[23]*.md",
+      "exit": 1,
+      "out": ""
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "BAT-02",
+    "source_id": "S9-command-references",
+    "lane": "battery",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "S9-command-references failed (exit 1).",
+    "evidence": {
+      "cmd": "node .skilled/commands/scripts/validate-command-references.cjs",
+      "exit": 1,
+      "out": "FAIL  1 unresolved command reference(s):\n  .skilled/commands/speckit/assets/speckit-resume.yaml:104  [skill-asset]  .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json  - path does not exist on disk",
+      "ci_gated": false,
+      "ci_workflows": []
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Owner: validate-command-references.cjs owner. The S9-command-references row fails only on .skilled/commands/speckit/assets/speckit-resume.yaml:104, which names system-spec-kit/runtime/database/access-telemetry.json, a gitignored runtime file (.gitignore:431, lane D) the YAML falls back from. The YAML is right; the checker needs a runtime-state exemption. Same hand-off as run 15."
+    }
+  }
+]

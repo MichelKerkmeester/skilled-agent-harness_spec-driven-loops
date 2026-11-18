@@ -1,0 +1,131 @@
+{
+  "lane": "D",
+  "findings": [],
+  "reviewed": [
+    ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+    ".skilled/skills/system-deep-loop/ROUTER.md",
+    ".skilled/skills/system-deep-loop/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/description.json",
+    ".skilled/skills/system-deep-loop/graph-metadata.json",
+    ".skilled/skills/system-deep-loop/hub-router.json",
+    ".skilled/skills/system-deep-loop/mode-registry.json",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+    ".skilled/skills/system-spec-kit/SKILL.md",
+    ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+    ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+    ".skilled/commands/deep/assets/deep-research-presentation.txt",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md",
+    ".claude/agents/deep-research.md",
+    ".claude/agents/deep-review.md",
+    ".codex/agents/deep-research.toml",
+    ".codex/agents/deep-review.toml",
+    ".pi/agents/deep-research.md",
+    ".pi/agents/deep-review.md",
+    ".skilled/agents/deep-research.md",
+    ".skilled/agents/deep-review.md"
+  ],
+  "not_reviewed": [],
+  "probes": [
+    {
+      "prompt": "Run an expansive deep research loop on the routing architecture, keeping a depth-capped frontier of follow-up questions",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Enable expansive depth mode on this research run",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Seed a depth-capped frontier of follow-up questions for this research run",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Run an expansive deep review of this diff, expanding the review target into a depth-capped frontier of sub-targets",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Expand the review target into sub-targets to depth 3",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Turn on expansive depth mode for the review loop",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Review this one file for bugs and report findings",
+      "expect": "sk-code"
+    },
+    {
+      "prompt": "Implement the frontier admission check in the reducer",
+      "expect": "sk-code"
+    },
+    {
+      "prompt": "Update the deep-research README to document the expansive depth flag",
+      "expect": "sk-doc"
+    },
+    {
+      "prompt": "Extend the completed deep research run by 5 more iterations in the same session",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Extend the finished deep review loop by 4 iterations without restarting it",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Continue the completed research loop and add 60 minutes to its duration budget",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Size the expansive deep review budget from the seeded sub-targets and all review dimensions",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Stop the deep review loop once every frontier sub-target node is drained",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Run a deep review loop with a custom performance dimension beside the four standard ones",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Check the review target file for injection bugs and report findings",
+      "expect": "sk-code"
+    },
+    {
+      "prompt": "Run an expansive deep review with the whole repo root as the review target and seed its sub-targets",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Run an expansive deep review over a glob target like src/**/*.ts and expand it into sub-targets",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Stop the expansive deep research loop when it hits its max duration even though frontier nodes are still open",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Run a deep loop that keeps a depth-capped frontier of open nodes until it converges",
+      "expect": "system-deep-loop"
+    }
+  ]
+}

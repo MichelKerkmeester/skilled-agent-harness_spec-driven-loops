@@ -1,0 +1,116 @@
+{
+  "findings": [
+    {
+      "id": "CRIT-1",
+      "surface": "S10",
+      "standard": "sk-doc/sk-create-agent",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/agents/deep-research.md",
+      "line": 181,
+      "issue": "Cross-lane gap. The agent body says 'The orchestrator flags single-weak-source answers during convergence quality checks.' convergence.cjs:907 hard-codes singleWeakSource to notEvaluated, which counts as passed, so no weak-source check runs. Lanes B1 and C1 raised the same claim in the deep-research README, SKILL.md, quick-reference and convergence.md (B1-1 to B1-4), but no lane named the agent. A fix applied only to those docs leaves the agent and its generated .claude, .codex, .pi, .dsh and .vibe copies stating it. The in-range DR-022 rewrite fails 'any source' that claims a per-source strength evaluation. The line is unchanged from base line 180, so this is drift in the same class as B1-3 and B1-4, not a regression. It is half right: sourceDiversity does fail a one-source answer, but no 'weak' classification exists. Edit the canonical file and regenerate the mirrors.",
+      "evidence": {
+        "cmd": "sed -n 181p .skilled/agents/deep-research.md; git -c core.fsmonitor=false show 21c4b325b5a:.skilled/agents/deep-research.md | sed -n 180p; rg -n \"singleWeakSource = guardOutcome\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "181: **Source diversity**: Aim for >=2 independent sources per key finding. The orchestrator flags single-weak-source answers during convergence quality checks. (identical at base line 180) | convergence.cjs:907: const singleWeakSource = guardOutcome('notEvaluated', []);"
+      },
+      "fix": {
+        "old": "The orchestrator flags single-weak-source answers during convergence quality checks.",
+        "new": "The source diversity guard blocks a stop while an answered question rests on one source."
+      }
+    },
+    {
+      "id": "CRIT-2",
+      "surface": "S3",
+      "standard": "sk-doc/sk-create-feature-catalog",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md",
+      "line": 22,
+      "issue": "The catalog entry for the divergent review pivot lists five candidate sources. The in-range divergent-review-pivot.ts adds a sixth, 'frontier-unanswered' (line 325), which an expansive run seeds for each frontier node closed exhausted or blocked. The entry no longer describes the shipped feature. C2-6 named this file, but C2-6 is overridden here as a duplicate of B2-1, which covers only references/convergence/convergence.md:115. This finding keeps the catalog half. Case: a divergent review under --depth-mode=expansive whose frontier closed a node exhausted gets a revisit candidate that this entry does not list.",
+      "evidence": {
+        "cmd": "sed -n 22p .skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md; grep -n \"source: '\" .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+        "exit": 0,
+        "out": "22: ...Candidate sources include unswept dimensions, search debt, producer-consumer paths, negative-test gaps, and traceability gaps. ... | 242 unswept-dimension, 256 search-debt, 276 producer-consumer-gap, 286 negative-test-gap, 305 traceability-gap, 325 frontier-unanswered"
+      },
+      "fix": {
+        "old": "Candidate sources include unswept dimensions, search debt, producer-consumer paths, negative-test gaps, and traceability gaps.",
+        "new": "Candidate sources include unswept dimensions, search debt, producer-consumer paths, negative-test gaps, traceability gaps, and, under `--depth-mode=expansive`, frontier nodes closed `exhausted` or `blocked`."
+      }
+    },
+    {
+      "id": "CRIT-3",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "line": 1,
+      "issue": "A2-2 reported the 100755 to 100644 mode change on upsert.cjs only. Commit ab7312fe467 made the same change to convergence.cjs, which keeps its '#!/usr/bin/env node' shebang. Its CLI siblings query.cjs, status.cjs and loop-lock.cjs stay 100755. The reach matches A2-2: workflow callers run 'node .../convergence.cjs' and reduce-state, terminal-gates and review-verdict require() it, so only a direct './convergence.cjs' run fails with permission denied. These two are the only mode changes in the range. Restore the bit with git update-index --chmod=+x in the same fix as A2-2.",
+      "evidence": {
+        "cmd": "git -c core.fsmonitor=false diff --summary 21c4b325b5a 7a1b0ec7a1e | grep 'mode change'; git -c core.fsmonitor=false log --format='%h %s' --summary 21c4b325b5a..7a1b0ec7a1e -- .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs; head -1 .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "mode change 100755 => 100644 .../runtime/scripts/convergence.cjs | mode change 100755 => 100644 .../runtime/scripts/upsert.cjs | ab7312fe467 feat(system-deep-loop): veto a soft research stop while frontier nodes stay open | #!/usr/bin/env node | ls-tree HEAD: 100644 convergence.cjs, 100755 query.cjs, 100755 status.cjs, 100755 loop-lock.cjs"
+      }
+    }
+  ],
+  "untouched": [
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/001-completed-run-extension/ (packet folder: goal.md + scratch/ 4 files; does not matter: goal slice 2502 chars under the 4000 limit, scratch is tracked run evidence, secret scan clean)",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/002-research-claude-config-dir/ (packet folder: goal.md + scratch/ 13 files; does not matter: goal slice 2044 chars, secret scan clean)",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor/ (packet folder: goal.md + scratch/ 10 files; does not matter: goal slice 2594 chars, secret scan clean)",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix/ (packet folder: goal.md + scratch/ 25 files; does not matter: goal slice 3321 chars, secret scan clean)",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/005-prompt-pack-contract-alignment/ (packet folder: goal.md + scratch/ 7 files; does not matter: goal slice 3146 chars, secret scan clean)",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields/ (packet folder: goal.md + scratch/ 40 files; does not matter: goal slice 3611 chars, secret scan clean)",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/007-source-diversity-quality-class/ (packet folder: goal.md + scratch/ 15 files; does not matter: goal slice 3354 chars, secret scan clean)",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/008-review-dimension-coverage/ (packet folder: goal.md + scratch/ 8 files; does not matter: goal slice 2843 chars, secret scan clean)",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/009-fanout-review-coverage-merge/ (packet folder: goal.md + scratch/ 8 files; does not matter: goal slice 2684 chars, secret scan clean)",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/ (packet folder: goal.md + scratch/ 2 files; does not matter: goal slice 3745 chars, secret scan clean)",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/ (packet folder: goal.md + scratch/ 2 files; does not matter: goal slice 3765 chars, secret scan clean)",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/ (packet folder: goal.md + scratch/ 25 files; does not matter: goal slice 2517 chars, secret scan clean)",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/ (packet folder: goal.md + scratch/ 11 files; does not matter: goal slice 2266 chars, secret scan clean)",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/ (packet folder: goal.md + scratch/ 1372 files of earlier alignment-run lanes and logs; does not matter: goal slice 3674 chars, scratch is tracked by repo convention with 39380 scratch files at base, secret scan of all 1561 gap files returned 0 hits)",
+    ".dsh/agents/deep-research.patch.yml (generated mirror of .skilled/agents/deep-research.md, which Lane D reviewed; no battery row replays dsh sync; checked by hand: sync-agents-dsh.cjs --check exit 0, 11 patches in sync; carries the CRIT-1 line)",
+    ".dsh/agents/deep-review.patch.yml (generated mirror; sync-agents-dsh.cjs --check exit 0 by hand)",
+    ".vibe/agents/deep-research.toml (generated mirror; no battery row replays vibe sync; sync-agents-vibe.cjs --check exit 0 by hand, 11 profiles in sync; carries the CRIT-1 line)",
+    ".vibe/agents/deep-review.toml (generated mirror; sync-agents-vibe.cjs --check exit 0 by hand)",
+    "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-deep-loop/manifest.json (does not matter: cmp shows it byte-identical to .skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json, which Lane D reviewed)"
+  ],
+  "overrides": [
+    {
+      "id": "C1-1",
+      "verdict": "duplicate",
+      "note": "Duplicate of B1-2: same file, line 123 and sentence, with the same fix intent. Dropping C1-1 is also a severity call, P1 to P2. DR-022 reads convergence.md, not the README, so the README claim does not fail a scenario. The claim already existed at base line 121; this range only rewrote the line around it. B1-2 at P2 is the right grade."
+    },
+    {
+      "id": "C1-2",
+      "verdict": "duplicate",
+      "note": "Duplicate of B1-1: same convergence.md:158 Quality Gate row and the same fix. B1-1 keeps P1 because the range rewrote both that row and DR-022, whose new FAIL rule fails on it."
+    },
+    {
+      "id": "C1-3",
+      "verdict": "duplicate",
+      "note": "Duplicate of B1-3: same deep-research SKILL.md:213 rule 12 claim. B1-3 carries the literal fix."
+    },
+    {
+      "id": "C1-4",
+      "verdict": "duplicate",
+      "note": "Duplicate of B1-4: same quick-reference.md:135 line. B1-4 carries the literal fix."
+    },
+    {
+      "id": "C2-6",
+      "verdict": "duplicate",
+      "note": "Duplicate of B2-1 for deep-review references/convergence/convergence.md:115. B2-1 carries the literal fix and counts six sources correctly; C2-6 says 'fifth'. The second file C2-6 named, feature-catalog/severity-system/divergent-convergence-mode.md:22, is kept as CRIT-2."
+    },
+    {
+      "id": "C4-3",
+      "verdict": "refuted",
+      "note": "The evidence glob deep-review/changelog/v1.1[23]* cannot match v1.11.18.0.md. That range-added entry documents exactly this change. Line 3: 'A review stop candidate below its configured minIterations now continues with minIterationsNotReached, as research runs already did. The shipped floor of 2 is unchanged.' Line 16: 'The floor now applies to review runs too.' Line 22 names CONTINUE with reason minIterationsNotReached. Verified with grep -n -E 'minIterations|floor' on that file."
+    },
+    {
+      "id": "B1-6",
+      "verdict": "pre-existing",
+      "note": "The lane says so and the base confirms it. git show 21c4b325b5a:.../deep-research/manual-testing-playbook/manual-testing-playbook.md has '## 16. INTRA ROUTING RECALL' at line 807, then '## 15. AUTOMATED TEST CROSS-REFERENCE' at 920 and '## 15. FEATURE CATALOG CROSS-REFERENCE INDEX' at 927. That is the same 16/15/15 order HEAD has."
+    }
+  ],
+  "upheld_probes": []
+}

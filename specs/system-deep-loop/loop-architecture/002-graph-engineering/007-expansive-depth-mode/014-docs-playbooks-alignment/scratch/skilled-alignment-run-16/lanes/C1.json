@@ -1,0 +1,105 @@
+{
+  "lane": "C1",
+  "findings": [
+    {
+      "id": "C1-1",
+      "surface": "S5",
+      "standard": "sk-doc/sk-create-readme",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
+      "line": 123,
+      "issue": "This rewritten line says the legal-stop gates check that one weak source does not carry a finding. That check does not ship: convergence.cjs hard-codes singleWeakSource to notEvaluated, so it can never block a stop. The README now disagrees with quality-guards.md, which this scope reworded to call the entry reserved, and with playbook DR-022, which fails any source that claims a per-source strength check the code does not run.",
+      "evidence": {
+        "cmd": "grep -n 'one weak source does not carry a finding' .skilled/skills/system-deep-loop/deep-research/README.md; grep -n \"singleWeakSource = guardOutcome('notEvaluated'\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "README.md:123: ...that sources are diverse and that one weak source does not carry a finding. ... | convergence.cjs:907:  const singleWeakSource = guardOutcome('notEvaluated', []);"
+      },
+      "fix": {
+        "old": "that sources are diverse and that one weak source does not carry a finding.",
+        "new": "that sources are diverse and that the latest iteration stayed on its key questions."
+      }
+    },
+    {
+      "id": "C1-2",
+      "surface": "S5",
+      "standard": "sk-doc/sk-create-readme",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+      "line": 158,
+      "issue": "This scope edited the Quality Gate row but kept 'no single weak-source dominance' as a check that must pass. The code never evaluates singleWeakSource (convergence.cjs:907 always returns notEvaluated). Playbook DR-022 reads this row first and fails any source that claims this check.",
+      "evidence": {
+        "cmd": "grep -n 'no single weak-source dominance pass' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+        "exit": 0,
+        "out": "158:| Quality Gate | Source diversity, focus alignment, and no single weak-source dominance pass | `CONTINUE` with `qualityGuardFailed`, no `blocked_stop` event |"
+      },
+      "fix": {
+        "old": "| Quality Gate | Source diversity, focus alignment, and no single weak-source dominance pass |",
+        "new": "| Quality Gate | Source diversity and focus alignment pass; the reserved `singleWeakSource` entry reports `notEvaluated` |"
+      }
+    },
+    {
+      "id": "C1-3",
+      "surface": "S5",
+      "standard": "sk-doc/sk-create-readme",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      "line": 213,
+      "issue": "Rule 12 still says source diversity, focus alignment and no-single-weak-source checks must pass before STOP. The single-weak-source check is not evaluated (convergence.cjs:907). This line was not edited by this scope, but SKILL.md is in scope and now disagrees with the reworded quality-guards.md and DR-022."
+    },
+    {
+      "id": "C1-4",
+      "surface": "S5",
+      "standard": "sk-doc/sk-create-readme",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+      "line": 135,
+      "issue": "Says the quality guards (source diversity, focus alignment, no single-weak-source) must pass before STOP. singleWeakSource is a reserved entry that is always notEvaluated, so the quick reference names a check the code does not run. This scope edited the decision tree just below this line but left the claim in place."
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/deep-research/README.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
+    ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
+    ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.17.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/initialization.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/focus-hijack-guard.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/leaf-field-gates.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/focus-alignment-and-findings-gate-read-leaf-fields.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-graph-mirror-closes-unanswered-nodes.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/next-focus-ignores-answered-free-text.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
+    ".skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts",
+    ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/quality-guards.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/convergence-passes-guard-fails-override.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-focus-alignment.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-no-single-weak-source.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-source-diversity.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-band-budget-rolls-down.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-dashboard-section.md"
+  ],
+  "not_reviewed": []
+}
