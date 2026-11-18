@@ -63,10 +63,13 @@ const ROOT_CHILDREN_FLOOR = Object.freeze({ research: 6, review: 8 });
 // The iteration budget each workflow uses when no flag, marker, setup answer or
 // fan-out matrix value sets one, and the ceiling a budget derived from the seed may
 // reach. Four is the canonical review dimension count a fan-out lineage reviews.
+/** Iteration budget each loop runs at when nothing sets one. */
 const LOOP_DEFAULT_MAX_ITERATIONS = Object.freeze({ research: 10, review: 7 });
+/** Highest iteration budget a defaulted expansive run is sized to. */
 const EXPANSIVE_BUDGET_CEILING = 24;
 const CANONICAL_REVIEW_DIMENSIONS = 4;
 
+/** Every status a frontier node row may carry. */
 const NODE_STATUSES = Object.freeze([
   'open',
   'active',
@@ -188,6 +191,12 @@ function checkCycle(parentId, nodes, caps) {
 // 4. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Reduce a question to the key that dedupe compares.
+ *
+ * @param {unknown} text - The question text.
+ * @returns {string} The lowercased key with any leading question id and punctuation removed, or '' for a non-string.
+ */
 function dedupeKey(text) {
   if (typeof text !== 'string') return '';
 
@@ -214,6 +223,13 @@ function nextNodeSerial(nodes) {
   return String(highest + 1).padStart(3, '0');
 }
 
+/**
+ * Read the append-only node store into its current nodes.
+ *
+ * @param {string} storePath - Path to frontier-nodes.jsonl.
+ * @returns {Map<string, Object>} The last row per nodeId, empty when the file does not exist.
+ * @throws {Error} When the file exists but cannot be read.
+ */
 function readNodeStore(storePath) {
   const nodes = new Map();
   if (!fs.existsSync(storePath)) return nodes;
@@ -262,6 +278,14 @@ function readTargetConfig(artifactDir, target) {
   }
 }
 
+/**
+ * Read the admission caps from the run's config, with the defaults filled in.
+ *
+ * @param {string} artifactDir - The run's artifact directory.
+ * @param {'research'|'review'} [target='research'] - Which loop's config to read.
+ * @returns {{maxDepth: number, maxChildrenPerNode: number, maxRootChildren: number, maxFrontierNodes: number}} The caps.
+ * @throws {Error} When the config exists but cannot be read or parsed.
+ */
 function readCaps(artifactDir, target = 'research') {
   const config = readTargetConfig(artifactDir, assertTarget(target));
   const source = isPlainObject(config) ? config : {};
@@ -296,6 +320,17 @@ function readCaps(artifactDir, target = 'research') {
 // ceiling, which binds for a review from the first seed at the default depth. Twice the node count keeps the half-budget node cap
 // above the seed, so the frontier can still grow. A run or lineage with no seeded
 // node has no frontier to fund, so it runs at its loop default.
+/**
+ * Size a defaulted expansive iteration budget from the seed.
+ *
+ * @param {Object} options - Sizing inputs.
+ * @param {'research'|'review'} options.target - The loop being sized.
+ * @param {number} options.seeded - Depth-1 nodes the seed admitted.
+ * @param {number} [options.maxDepth] - The deepest level the frontier may reach.
+ * @param {number} [options.dimensions] - Dimensions a review node needs before it is answered.
+ * @param {number} [options.loopDefault] - The floor; the loop default when absent.
+ * @returns {number} The iteration budget, between the floor and EXPANSIVE_BUDGET_CEILING.
+ */
 function expansiveBudget({ target, seeded, maxDepth = DEFAULT_MAX_DEPTH, dimensions = CANONICAL_REVIEW_DIMENSIONS, loopDefault }) {
   const perNode = assertTarget(target) === 'review' ? Math.max(1, Math.floor(dimensions) || 1) : 1;
   const floor = capValue(loopDefault, LOOP_DEFAULT_MAX_ITERATIONS[target]);
@@ -316,6 +351,15 @@ function reviewDimensionCount(config) {
 // The budget the run uses after the seed step, and how many nodes past depth 1 the
 // node cap still leaves. Only a defaulted budget is derived; a flag, marker, setup
 // answer or fan-out matrix value is kept as given, even below the derived value.
+/**
+ * Compute the budget a run uses after its seed step.
+ *
+ * @param {Object} options - Budget inputs.
+ * @param {string} options.artifactDir - The run's artifact directory.
+ * @param {'research'|'review'} [options.target='research'] - The loop being sized.
+ * @param {string} [options.maxIterationsSource='default'] - Where maxIterations came from; only 'default' is derived.
+ * @returns {{derivedMaxIterations: number, growthSlots: number, warning?: string}} The budget, the node slots left past depth 1, and a warning when none are left.
+ */
 function seedBudget({ artifactDir, target = 'research', maxIterationsSource = 'default' }) {
   const mode = assertTarget(target);
   const config = readTargetConfig(artifactDir, mode);
@@ -426,6 +470,13 @@ function scopeInsideTouchedFiles(scope, touchedFiles) {
   )));
 }
 
+/**
+ * Test whether a proposal's scope lies inside the review target.
+ *
+ * @param {string|string[]} scope - The proposal's scope entries.
+ * @param {Object} config - The review config holding the target and its scope files.
+ * @returns {boolean} True when every entry is inside the target, or the target names no paths.
+ */
 function scopeInsideReviewTarget(scope, config) {
   const source = isPlainObject(config) ? config : {};
   // Any target kind other than a file list is described in prose, so there is no
@@ -440,6 +491,16 @@ function scopeInsideReviewTarget(scope, config) {
   return scopeEntries(scope).every((entry) => allowed.some((base) => isInsidePath(entry, base)));
 }
 
+/**
+ * Run the six admission checks in order and name the first that fails.
+ *
+ * @param {Object} proposal - The proposed node.
+ * @param {Map<string, Object>} nodes - The current node store.
+ * @param {Object} caps - The caps from readCaps.
+ * @param {string[]} knownTexts - Question texts the run already holds.
+ * @param {{reviewConfig?: Object, seeding?: boolean}} [options] - Review target config and whether this is the seed.
+ * @returns {string|null} The failing check's name (relevance, dedupe, depth, fanout, budget or cycle), or null to admit.
+ */
 function checkProposal(proposal, nodes, caps, knownTexts, options = {}) {
   if (!isPlainObject(proposal)) return 'relevance';
 
@@ -498,6 +559,18 @@ function checkProposal(proposal, nodes, caps, knownTexts, options = {}) {
   return checkCycle(proposal.parentId, nodes, caps);
 }
 
+/**
+ * Admit or prune each proposal and record every outcome in the node store.
+ *
+ * @param {Object} options - Admission inputs.
+ * @param {string} options.artifactDir - The run's artifact directory.
+ * @param {number} options.iteration - The iteration the proposals came from.
+ * @param {Object[]} options.proposals - The proposed nodes.
+ * @param {string[]} [options.knownTexts=[]] - Question texts the run already holds.
+ * @param {'research'|'review'} [options.target='research'] - The loop admitting them.
+ * @param {boolean} [options.seeding=false] - True for the seed, which skips the run-wide node cap.
+ * @returns {{admitted: string[], pruned: Array<{nodeId: string, reason: string}>}} The admitted node ids and the pruned ones with their reasons.
+ */
 function admitProposals({ artifactDir, iteration, proposals, knownTexts = [], target = 'research', seeding = false }) {
   const mode = assertTarget(target);
   const storePath = path.join(artifactDir, NODE_STORE_FILE);
@@ -573,6 +646,18 @@ function admitProposals({ artifactDir, iteration, proposals, knownTexts = [], ta
   return { admitted, pruned };
 }
 
+/**
+ * Seed a run's depth-1 nodes once and report the budget that follows.
+ *
+ * @param {Object} options - Seed inputs.
+ * @param {string} options.artifactDir - The run's artifact directory.
+ * @param {number} [options.iteration=0] - The iteration recorded on the seeded rows.
+ * @param {Object[]} options.candidates - The decomposed sub-questions or review sub-targets.
+ * @param {string[]} [options.knownTexts=[]] - Question texts the run already holds.
+ * @param {'research'|'review'} [options.target='research'] - The loop being seeded.
+ * @param {string} [options.maxIterationsSource='default'] - Where maxIterations came from.
+ * @returns {Object} The admitted and pruned nodes plus the seedBudget fields, or skipped 'already-seeded'.
+ */
 function seedNodes({ artifactDir, iteration = 0, candidates, knownTexts = [], target = 'research', maxIterationsSource = 'default' }) {
   // Every seeded node sits at depth 1 against the run's synthetic root: the seed
   // sees only the topic, so it cannot justify a deeper placement on its own.
@@ -627,6 +712,18 @@ function seedNodes({ artifactDir, iteration = 0, candidates, knownTexts = [], ta
   };
 }
 
+/**
+ * Move a node to a later lifecycle status by appending a row.
+ *
+ * @param {Object} options - Close inputs.
+ * @param {string} options.artifactDir - The run's artifact directory.
+ * @param {string} options.nodeId - The node to close.
+ * @param {string} options.status - One of the close statuses.
+ * @param {string|null} [options.reason=null] - Why the node closed.
+ * @param {number} options.iteration - The iteration that closed it.
+ * @returns {Object} The appended row.
+ * @throws {Error} On an unknown status or node, or a pruned node closed as anything but pruned.
+ */
 function closeNode({ artifactDir, nodeId, status, reason = null, iteration }) {
   if (!CLOSE_STATUSES.has(status)) {
     throw new Error(`unknown close status: ${status}; expected one of ${[...CLOSE_STATUSES].join(', ')}`);
@@ -654,6 +751,17 @@ function closeNode({ artifactDir, nodeId, status, reason = null, iteration }) {
 
 // The block is computed, not written by the orchestrating model, so the slot count
 // the leaf sees is the one admission will enforce.
+/**
+ * Render the frontier prompt block for the node an iteration is dispatched to.
+ *
+ * @param {Object} options - Block inputs.
+ * @param {string} options.artifactDir - The run's artifact directory.
+ * @param {string} [options.focus] - The research focus naming the node.
+ * @param {string} [options.nodeId] - The review node id.
+ * @param {string} [options.dimension] - The review dimension for this visit.
+ * @param {'research'|'review'} [options.target='research'] - The loop rendering it.
+ * @returns {string} The block text, or '' when no open or active node matches.
+ */
 function renderFrontierBlock({ artifactDir, focus, nodeId, dimension, target = 'research' }) {
   const mode = assertTarget(target);
   let resolvedId;
@@ -718,6 +826,12 @@ function renderFrontierBlock({ artifactDir, focus, nodeId, dimension, target = '
 // node that closed unanswered would hold both signals down for the rest of the
 // run. It is re-kinded to a CLAIM marked closed instead: CLAIM feeds only the
 // claim-verification rate, which counts a closed claim as settled.
+/**
+ * Project frontier nodes into coverage-graph node and edge events.
+ *
+ * @param {Iterable<Object>} nodes - The store's current node rows.
+ * @returns {Object[]} Node events in nodeId order, followed by edge events.
+ */
 function buildFrontierGraphEvents(nodes) {
   const rows = Array.from(nodes ?? [])
     .filter((row) => isPlainObject(row) && isNonEmptyString(row.nodeId))
@@ -939,7 +1053,7 @@ function runCli(argv) {
       maxIterationsSource: args.maxIterationsSource === undefined ? 'default' : args.maxIterationsSource,
     });
     if (result.derivedMaxIterations !== undefined) {
-      process.stderr.write(`frontier-admit: budget after seed ${result.derivedMaxIterations} iterations, ${result.growthSlots} growth slots${result.warning ? `; warning: ${result.warning}` : ''}\n`);
+      process.stderr.write(`[frontier-admit] budget after seed ${result.derivedMaxIterations} iterations, ${result.growthSlots} growth slots${result.warning ? `; warning: ${result.warning}` : ''}\n`);
     }
     return result;
   }
@@ -954,13 +1068,19 @@ function runCli(argv) {
   return closeNode({ artifactDir, nodeId, status, reason: args.reason === undefined ? null : args.reason, iteration });
 }
 
+/**
+ * Run the CLI and exit: 0 on success, 2 on any error.
+ *
+ * @param {string[]} [argv] - The arguments after the script path.
+ * @returns {void}
+ */
 function main(argv = process.argv.slice(2)) {
   try {
     const result = runCli(argv);
     if (result !== undefined) process.stdout.write(`${JSON.stringify(result)}\n`);
     process.exit(0);
   } catch (error) {
-    process.stderr.write(`frontier-admit: ${error instanceof Error ? error.message : String(error)}\n`);
+    process.stderr.write(`[frontier-admit] ${error instanceof Error ? error.message : String(error)}\n`);
     process.exit(2);
   }
 }

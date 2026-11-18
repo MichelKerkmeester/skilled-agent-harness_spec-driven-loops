@@ -750,11 +750,6 @@ function buildLineageExecutors(lineageData) {
   return executors;
 }
 
-/**
- * Merge research findings registries from all lineages.
- * Deduplicates by findingId; cross-model attribution via lineage labels.
- * Returns the merged registry object.
- */
 const FRONTIER_STATUSES = ['open', 'active', 'answered', 'blocked', 'exhausted', 'abstained', 'pruned'];
 
 // Lineages number the nodes they admit from their own store, so two lineages
@@ -797,6 +792,11 @@ function mergeResearchFrontier(lineageData, frontierPartition) {
   };
 }
 
+/**
+ * Merge research findings registries from all lineages.
+ * Deduplicates by findingId; cross-model attribution via lineage labels.
+ * Returns the merged registry object.
+ */
 function mergeResearchRegistries(lineageData, options = {}) {
   const mergeOptions = resolveMergeOptions(options);
   const findingById = mergeOptions.enableNearDuplicateDedup ? createFindingBucketIndex() : new Map();

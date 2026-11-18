@@ -344,7 +344,7 @@ function expansiveLineageBudgets(lineages, { loopType, partition }) {
     const iterations = expansiveBudget({
       target: loopType,
       seeded: share,
-      loopDefault: lineage.kind === 'native' ? 12 : LOOP_DEFAULT_MAX_ITERATIONS[loopType],
+      loopDefault: lineage.kind === 'native' ? DEFAULT_LINEAGE_ITERATIONS : LOOP_DEFAULT_MAX_ITERATIONS[loopType],
     });
     return { ...lineage, iterations };
   });
@@ -672,6 +672,9 @@ const WAIT_CHECKPOINT_SCHEMA_VERSION = 1;
 const WAIT_SLEEP_CHUNK_MS = 200;
 const OBSERVABILITY_EVENTS_FILENAME = 'observability-events.jsonl';
 const DEFAULT_POST_EXIT_GRACE_MS = 5 * 60 * 1000;
+// The iteration count fan-out assumes for a lineage the matrix gives none: a native
+// lineage runs it, and the budget and timeout bounds size every such lineage from it.
+const DEFAULT_LINEAGE_ITERATIONS = 12;
 function stopActiveLineageProcesses(signal) {
   for (const child of activeLineageProcesses) {
     terminateLineageProcess(child, signal);
@@ -1302,7 +1305,7 @@ function normalizeLineageBudgetGuards(rawConfig = {}) {
 function computeLineageBudgetUpperBound(lineage, guardsInput = {}, maxRetries = 0) {
   const guards = normalizeLineageBudgetGuards(guardsInput);
   const rawIterations = Number(lineage && lineage.iterations);
-  const iterations = Number.isFinite(rawIterations) && rawIterations > 0 ? Math.floor(rawIterations) : 12;
+  const iterations = Number.isFinite(rawIterations) && rawIterations > 0 ? Math.floor(rawIterations) : DEFAULT_LINEAGE_ITERATIONS;
   const normalizedRetries = Number.isFinite(Number(maxRetries)) && Number(maxRetries) >= 0
     ? Math.floor(Number(maxRetries))
     : 0;
@@ -1855,7 +1858,7 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
 
 function buildNativeCommandInput(loopType, specFolder, lineageDir, lineage, options = {}) {
   assertActiveFanoutLoopType(loopType);
-  const maxIterations = lineage.iterations || 12;
+  const maxIterations = lineage.iterations || DEFAULT_LINEAGE_ITERATIONS;
   const convergenceThreshold = options.convergenceThreshold ?? (loopType === 'research' ? 0.05 : 0.1);
   const stopPolicy = options.stopPolicy || 'convergence';
   const sessionId = options.sessionId || '';
@@ -1925,7 +1928,7 @@ function assertLineageTimeoutHoursOverrideWithinCeiling(ceilingHoursOverride) {
  */
 function computeLineageTimeoutMs(lineage, ceilingHoursOverride) {
   assertLineageTimeoutHoursOverrideWithinCeiling(ceilingHoursOverride);
-  const iters = lineage.iterations || 12;
+  const iters = lineage.iterations || DEFAULT_LINEAGE_ITERATIONS;
   const perIterSecs = lineage.timeoutSeconds || 900;
   const ceilingMs = Number.isFinite(ceilingHoursOverride) && ceilingHoursOverride > 0
     ? ceilingHoursOverride * 60 * 60 * 1000
