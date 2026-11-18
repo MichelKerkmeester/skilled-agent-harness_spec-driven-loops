@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8730d41698a0d2b694e99ecdb94f3f01da97b58e90708aa6a558de2bb263b6f8",
+  "corpusHash": "cfe4f26e093bb170ed1d5cdca5aed4471425ab3705628dc2ff3e73f203d671a4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28408,
+  "includedPathCount": 28413,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -16443,6 +16443,11 @@
     "specs/sk-doc/document-standards/006-readme-template-conformance/010-readme-text-diagrams/plan.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/010-readme-text-diagrams/spec.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/010-readme-text-diagrams/tasks.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/011-readme-guards/goal.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/011-readme-guards/implementation-summary.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/011-readme-guards/plan.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/011-readme-guards/spec.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/011-readme-guards/tasks.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/decision-record.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/goal.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/spec.md",
@@ -28440,7 +28445,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a173cbf84109504b9575474175cbb883bbc0a751001748a76c3553efe7128fbd",
+  "manifestHash": "9825dc1b7b969a514dd6c8dfae8b98f0504d4879b9aa1d7450eea166733f2c37",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -35440,6 +35445,10 @@
     },
     {
       "path": "specs/sk-doc/document-standards/006-readme-template-conformance/010-readme-text-diagrams/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/011-readme-guards/scratch",
       "reason": "excluded directory"
     },
     {
