@@ -58,7 +58,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `gh release list --limit 500` counts 152 releases
 - [x] Each of the 60 releases with an entry has a body equal to `build_release_notes.py` output for that entry
 - [x] Each of the 92 releases without an entry has a rewritten body that keeps every code span and number of its old body
-- [x] Every tag still points at the commit it pointed at before this phase
+- [x] This phase moves no tag (`v4.1.0.0` keeps the re-tag the operator accepted on 2026-11-18)
 - [x] `validate.sh --strict` on `013-github-release-notes-sync` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
