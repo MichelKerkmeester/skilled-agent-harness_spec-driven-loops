@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/005-barter-upstream-fixes",
+  "spec_folder": "system-skilled-doctor/005-barter-upstream-fixes",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "barter upstream fixes",
+      "upstream fixes so barter can drop four overlays",
+      "code mode disabled manual startup",
+      "marked section insertBefore",
+      "barter upstream fixes plan",
+      "barter upstream fixes tasks",
+      "barter upstream fixes acceptance criteria",
+      "barter upstream fixes implementation summary"
+    ],
+    "key_topics": [
+      "barter",
+      "upstream",
+      "drop",
+      "four",
+      "overlays",
+      "code",
+      "mode",
+      "disabled",
+      "manual",
+      "startup",
+      "marked",
+      "section"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/mcp-code-mode/mcp-server/index.ts",
+      ".skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md",
+      ".pi/settings.json",
+      ".pi/pi-blackhole-config.json",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs",
+      ".skilled/skills/system-skilled-doctor/references/overlays.md",
+      ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      "runtime-mirrors/sync-hook-registrations.cjs",
+      "runtime/tests/hook-adapter-path-parity.vitest.ts",
+      "runtime/cli/tests/hook-registration-sync.vitest.ts",
+      ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      ".pi/types/pi-coding-agent.d.ts",
+      ".pi/types/node-globals.d.ts",
+      ".pi/SYNC.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".skilled/skills/mcp-code-mode/mcp-server/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "pi-blackhole-config.json",
+        "kind": "config",
+        "path": ".pi/pi-blackhole-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-sync.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlays.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/references/overlays.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-wiring-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-hook-registrations.cjs",
+        "kind": "file",
+        "path": "runtime-mirrors/sync-hook-registrations.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-adapter-path-parity.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/hook-adapter-path-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registration-sync.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/hook-registration-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "pi-coding-agent.d.ts",
+        "kind": "code",
+        "path": ".pi/types/pi-coding-agent.d.ts",
+        "source": "derived"
+      },
+      {
+        "name": "node-globals.d.ts",
+        "kind": "code",
+        "path": ".pi/types/node-globals.d.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".pi/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Barter vendors Skilled and has to carry overlays, or live with a red gate, after every re-pin",
+    "created_at": "2026-11-18T12:44:24Z",
+    "last_save_at": "2026-11-18T14:28:53.440Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9f4f91ce91db9c91cb023da5fe822b5af3fe1412be1cb1a40fc8733ad092439e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "83e0301c0009df27eeefa93954a0307c4d18564e486568c8e9209faa95c17f49",
+      "plan.md": "fdc67a85bb7170dabb58b2d0ffa7123f726070960d2a13e634d94666f25479a3",
+      "tasks.md": "70dbc6fc62fe98e9b83635e6c052851bc8fa0e9b217f148ee77010366697fbba",
+      "implementation-summary.md": "143b7bd9e6dd365c431e186be6355355da92e41681e44f9220ea5888b5f4b0c4"
+    },
+    "last_active_at": null
+  }
+}

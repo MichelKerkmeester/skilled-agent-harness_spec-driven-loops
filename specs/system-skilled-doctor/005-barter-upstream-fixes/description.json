@@ -1,0 +1,36 @@
+{
+  "level": "2",
+  "specFolder": "system-skilled-doctor/005-barter-upstream-fixes",
+  "description": "Upstream fixes so Barter can drop four overlays: Code Mode disabled manuals, provider-neutral Pi config, doctor tests outside the source repo, overlay",
+  "keywords": [
+    "upstream",
+    "barter",
+    "drop",
+    "four",
+    "overlays",
+    "code",
+    "mode",
+    "disabled",
+    "manuals",
+    "provider-neutral",
+    "config",
+    "doctor",
+    "tests",
+    "outside",
+    "source",
+    "repo",
+    "overlay",
+    "anchor",
+    "placement"
+  ],
+  "lastUpdated": "2026-11-18T14:23:22.959Z",
+  "specId": "005",
+  "folderSlug": "barter-upstream-fixes",
+  "parentChain": [
+    "system-skilled-doctor"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-11-26_15-23__rehearsed-the-consumer-re-pin-with-its-own.md"
+  ]
+}
