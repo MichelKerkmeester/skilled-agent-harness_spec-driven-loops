@@ -1,5 +1,5 @@
 ---
-title: "Post-Edit Quality: Test Suite"
+title: "Post-Edit Quality Tests: Router and Adapter Suites"
 description: "node --test suites for the shared router, the DSH adapter and the Codex and Devin PostToolUse adapters."
 trigger_phrases:
   - "post edit quality tests"
@@ -8,57 +8,105 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# Post-Edit Quality: Test Suite
+# Post-Edit Quality Tests: Router and Adapter Suites
 
 ---
 
 ## 1. OVERVIEW
 
-`tests/` holds the automated checks for the post-edit quality concern. Each file drives one adapter or the shared router against a throwaway project tree. Checker dispatch and project-root resolution therefore never touch this repository.
+`.skilled/hooks/post-edit-quality/tests/` holds the `node --test` suites for the post-edit quality concern. Most cases build a temporary project tree, so checker dispatch and project-root lookup run against a fixture. The router and DSH suites load the code in the same process. The Codex and Devin suites spawn their adapter as a child process.
 
-Run the whole set with `node --test .skilled/hooks/post-edit-quality/tests/`.
-
-The suites cover three runtimes. Codex registers its adapter as `PostToolUse` on `apply_patch|edit` in `.codex/hooks.json`. Devin registers its adapter as `PostToolUse` on `^(edit|write)$` in `.devin/hooks.v1.json`. DSH registers on `tools/post-execute` through `.dsh/plugins/repo-guards/adapters/post-edit-quality.mjs`. The concern README holds the full runtime matrix.
+The router suite covers checker resolution, the extension table, the missing-checker notice and router silence. The DSH suite covers parity with a direct core call and the fail-open throw policy. The Codex suite covers `edit` and the Devin suite covers `write` and `edit`. Both check that a read raises no finding and check the finding each adapter prints for an edit.
 
 ---
 
-## 2. FILES
+## 2. ARCHITECTURE
+
+The split is in how a suite reaches the code. An in-process suite loads the module and reads the value it returns. A child-process suite runs the adapter the way a runtime runs it, so the case can read the exit status as well.
+
+```text
+node --test .skilled/hooks/post-edit-quality/tests/
+         │
+         ├─────────────────────┐
+         ▼                     ▼
+┌──────────────────┐  ┌──────────────────┐
+│ in process       │  │ child process    │
+│ router, DSH      │  │ Codex, Devin     │
+└────────┬─────────┘  └────────┬─────────┘
+         │                     │
+         └──────────┬──────────┘
+                    ▼
+┌─────────────────────────────────────────┐
+│ the checkers the router runs            │
+└─────────────────────────────────────────┘
+
+Dependency direction: suites ───▶ router or adapter ───▶ checkers
+```
+
+---
+
+## 3. FILES
+
+The folder is flat. Each file is one `node --test` suite.
 
 | File | Responsibility |
 |---|---|
-| `post-edit-router.test.cjs` | Drives the shared router: checker resolution, the extension table, the missing-checker notice and router silence. |
-| `dsh-post-edit-quality.test.mjs` | Registers the DSH adapter on a stub context and pins parity plus the fail-open throw policy. |
-| `codex-post-edit-quality.test.cjs` | Spawns the Codex adapter against a fixture project and pins the `edit` positive control. |
-| `devin-post-edit-quality.test.cjs` | Spawns the Devin adapter against a fixture project and pins `write` and `edit` as edit events. |
-
-`post-edit-router.test.cjs` resolves the comment-hygiene checker beside the router's real path first. A project copy of that checker does not override the hub copy. The suite also pins the languages the family table adds, and the built-in set that replaces a missing, broken or empty table.
-
-A router copied alone into a fresh source root falls back to the project checker. Two entries naming the same missing checker give one `quality-notice`. A dedupe tracker then keeps that notice to one per session. The last case asserts the router writes nothing to stdout or stderr.
-
-`codex-post-edit-quality.test.cjs` and `devin-post-edit-quality.test.cjs` spawn their adapter as a child process. Each child gets a sanitized environment: the disable switches are dropped and `HOOK_FLAGS_CONFIG` points at a file that does not exist. The fixture file carries a comment the real checker flags, so the advisory is observable.
-
-Codex prints that advisory as plain text on stdout. Devin delivers it in a `hookSpecificOutput.additionalContext` envelope, and a clean edit prints nothing. Both suites use `read` as the negative control. Both also send a non-string `file_path` beside a valid `filePath`, which must not hide the path.
-
-`dsh-post-edit-quality.test.mjs` imports the shared test helper from `../../shared/tests/dsh-plugin-harness.mjs`. One case checks that an ordinary file result survives with no core findings. The other makes the core throw and asserts the result still passes through, with one log line.
+| `post-edit-router.test.cjs` | The shared router: checker resolution, the extension table, the missing-checker notice and router silence. |
+| `dsh-post-edit-quality.test.mjs` | The DSH adapter on a fake context: parity with a direct core call and the fail-open throw policy. |
+| `codex-post-edit-quality.test.cjs` | The Codex adapter, spawned as a child process against a fixture project. |
+| `devin-post-edit-quality.test.cjs` | The Devin adapter, spawned as a child process against a fixture project. |
 
 ---
 
-## 3. VALIDATION
+## 4. BOUNDARIES AND FLOW
 
-Run from the repository root.
+| Boundary | Rule |
+|---|---|
+| Fixture | Most cases build a temporary project tree and remove it when the case ends. A few router cases pass a literal project path instead. |
+| Environment | A spawned child gets a copy of the current environment with the disable names removed. |
+| Checker | The router resolves the comment-hygiene checker beside its own real path first and in the project folder second. |
+| Output | The router prints nothing and leaves reporting to its adapters. |
+| Ownership | Test cases only. The code under test lives in the folders above. |
+
+A router case edits a file in a temporary project. The hub copy of the checker wins in both directions. A project with no checker of its own still reaches the hub copy, and a project that ships its own copy does not replace it.
+
+The router reads the extensions it dispatches from the checker's family table and keeps a built-in set for a table it cannot read. One case copies the router alone into a fresh source root with no checker and no table beside it, which is the state a partial install leaves behind. That copy falls back to the project checker. A checker that is missing becomes one `quality-notice` finding that names the path, and a dedupe tracker keeps the notice to one per session.
+
+The silence case swaps the process streams and the console methods, then asserts each one stayed empty.
+
+The Codex and Devin suites spawn their adapter with `process.execPath`, so each case sees the exit status a runtime sees. The child gets a copy of the environment with these disable names removed: `SYSTEM_HOOKS_DISABLED`, `MK_HOOKS_DISABLED`, `SK_CODE_POST_EDIT_QUALITY_DISABLED` and `MK_POST_EDIT_QUALITY_DISABLED`. `HOOK_FLAGS_CONFIG` points at a file in the fixture that does not exist, so a persisted switch cannot turn the hook into a silent no-op.
+
+Each fixture carries a comment with an ADR reference, which the checker flags. The Codex suite asserts the advisory as plain text on stdout. The Devin suite reads it from `hookSpecificOutput.additionalContext`, and a clean edit prints nothing at all. A read event is the negative control in both suites, and both send a non-string `file_path` beside a valid `filePath` to prove the path is not lost.
+
+The DSH suite registers the adapter on a fake context from the shared helpers. One case compares the adapter with a direct core call on a plain text file, then asserts the accepted result comes back unchanged. The other gives the adapter a core that throws, asserts `ERROR_POLICY` is `fail-open` and keeps the accepted result with one log line.
+
+---
+
+## 5. VALIDATION
+
+Run the whole folder from the repository root.
 
 ```bash
 node --test .skilled/hooks/post-edit-quality/tests/
 ```
 
-Expected result: every suite passes, with `fail 0`.
+Expected result: `pass 15` and `fail 0`, with exit status 0.
+
+Run one suite while you work on it.
+
+```bash
+node --test .skilled/hooks/post-edit-quality/tests/dsh-post-edit-quality.test.mjs
+```
+
+Expected result: `pass 2` and `fail 0`, with exit status 0.
 
 ---
 
-## 4. RELATED
+## 6. RELATED
 
-- [`../README.md`](../README.md): the concern README with the dispatch table and the per-runtime matrix.
-- [`../lib/post-edit-router.cjs`](../lib/post-edit-router.cjs): the router the suites exercise.
-- [`../dsh/post-edit-quality.mjs`](../dsh/post-edit-quality.mjs): the DSH adapter under test.
-- [`../codex/post-edit-quality.cjs`](../codex/post-edit-quality.cjs): the Codex adapter the suite spawns.
-- [`../devin/post-edit-quality.cjs`](../devin/post-edit-quality.cjs): the Devin adapter the suite spawns.
+- [the concern README](../README.md): the runtime coverage table and the switch table.
+- [the shared router](../lib/post-edit-router.cjs): the module the router suite exercises and each adapter calls.
+- [the DSH adapter](../dsh/post-edit-quality.mjs): the module the DSH suite registers on a fake context.
+- [the Codex adapter](../codex/post-edit-quality.cjs): the file the Codex suite spawns.
+- [the Devin adapter](../devin/post-edit-quality.cjs): the file the Devin suite spawns.
+- [the shared test helpers](../../shared/tests/README.md): the fake context and temporary directory helpers the DSH suite uses.

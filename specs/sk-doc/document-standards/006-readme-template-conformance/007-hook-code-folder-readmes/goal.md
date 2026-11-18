@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-11-16-readme-conformance-goal-007"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -78,11 +78,18 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| H1 and H2 model, 32 files | Done | `h2model.py` printed `SUBSET nodiv=0` for all 32 |
+| Validator and voice scan | Done | 32 `✅ VALID` (fixtures with `--no-exclude`) and `hard=0` on every line |
+| `readme_links.py` | Done | 182 outbound and 2 inbound anchored links, `0 problems` |
+| Review line per README | Done | 32 lines in `implementation-summary.md`, 3,040 claims, 78 applied, 2 rejected |
+| Parity, sk-doc suite, runtime-refusal | Done | `PARITY PASS`, 58 PASS with exit 0, `pass 6` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| Writer effort | From wave 6 on, writers ran DeepSeek V4.1 Flash at high effort on OpenCode Go at the operator's request, and reviewers stayed at max. The parent goal's D4 names max. Wave 6 drew 13 findings against 12 for wave 5, so quality held |
+| Fallback route | The operator named cli-pi on llmgateway with DeepSeek V4.1 Flash as the fallback for an OpenCode Go quota hit. No hit happened, so no session used it |
+| Early commits | The first five READMEs and an OpenCode-to-Skilled wording fix in four README files were committed before the phase closed, at the operator's request |
+| Sample review | A Claude review agent sampled 160 claims after the waves, as phase 006 did, and 7 findings were applied |
 <!-- /ANCHOR:log -->

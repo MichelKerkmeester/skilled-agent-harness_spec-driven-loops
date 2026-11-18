@@ -38,14 +38,28 @@ const LAYOUT_LINT = path.join(HERE, 'layout_lint.py');
 const ORIG_DIR = path.join(HERE, 'orig');
 const FAIL_DIR = path.join(HERE, 'failed');
 const RUN_DIR = path.join(HERE, 'runs');
+// Per-file exceptions, each backed by a source the entry itself does not carry.
+const SANCTIONED_FILE = path.join(HERE, 'sanctioned.json');
+const sanctioned = (file) => (fs.existsSync(SANCTIONED_FILE) ? JSON.parse(fs.readFileSync(SANCTIONED_FILE, 'utf8'))[file] : null) || {};
 const STOP_FILE = path.join(HERE, process.env.DRIVER_STOP || 'STOP');
 
 const WRITERS = {
-  hy4: { label: 'opencode-go/hy4-flash-free#high through opencode run' },
+  hy4: { label: 'opencode-go/hy4-flash-free#high through opencode run, with opencode-go/glm-5.3-flash#high when Hy4 is limited or fails' },
+  glm53: { label: 'opencode-go/glm-5.3-flash#high through opencode run' },
   glm: { label: 'glm-5-2 through devin -p' },
 };
-const VERIFY_LABEL = 'glm-5-2 through devin -p, read-only permission mode, with Hy4 Flash Free as the fallback when GLM returns no verdict';
-const MAX_ATTEMPTS = 3;
+const HY4_WRITER = 'opencode-go/hy4-flash-free#high';
+const GLM_WRITER = 'opencode-go/glm-5.3-flash#high';
+// The fact check runs on a different model family from the draft's writer, so
+// a draft is never judged by the family that wrote it. Each list is tried in
+// order until one returns a verdict.
+const CHECKERS = {
+  hy4: ['opencode-go/glm-5.3-flash#high', 'opencode/glm-5.3-flash-free#high', 'devin:glm-5-2'],
+  glm: ['opencode-go/hy4-flash-free#high', 'devin:swe-2-max'],
+};
+const VERIFY_LABEL = 'a model from another family than the writer: GLM 5.3 Flash at high on opencode-go for a Hy4 draft and Hy4 Flash Free for a GLM draft, with free GLM and Devin models as the backup';
+// A large entry can need more rounds of feedback, so a retry run may raise it.
+const MAX_ATTEMPTS = Number(process.env.DRIVER_MAX_ATTEMPTS || 3);
 const MAX_SLOTS = 4;
 const WRITE_TIMEOUT_MS = 15 * 60 * 1000;
 const VERIFY_TIMEOUT_MS = 10 * 60 * 1000;
@@ -54,7 +68,7 @@ const SENTENCE_RULES = new Set(['sentence-max', 'sentence-mean']);
 // every skill's changelog folder. Templates and READMEs there are not entries.
 const ENTRY_RE = /^\.skilled\/(?:changelog\/skilled|skills\/.+\/changelogs?)\/(?:v\d+\+\/)?v\d+(?:\.\d+)+[^/]*\.md$/;
 // A usage limit stops the run instead of retrying into the same wall.
-const LIMIT_RE = /usage limit|rate[ _-]?limit|too many requests|\b429\b|status 402|insufficient[_ ](quota|balance)|quota exceeded|hit your (usage )?limit|budget exhausted|FreeUsageLimit|free (tier|usage) (limit|exhausted)/i;
+const LIMIT_RE = /usage limit|rate[ _-]?limit|too many requests|\b429\b|status 402|insufficient[_ ](quota|balance)|quota exceeded|hit your (usage )?limit|budget exhausted|usage quota has been exhausted|daily usage quota|FreeUsageLimit|free (tier|usage) (limit|exhausted)/i;
 
 const CHILD_ENV = { ...process.env, AI_SESSION_CHILD: '1', SYSTEM_SPEC_GATE_ENFORCE: '0', MK_SPEC_GATE_ENFORCE: '0' };
 
@@ -129,9 +143,10 @@ function facts(text) {
       block = [line];
       continue;
     }
+    // A spec-folder line still counts toward the spans and numbers, so a path
+    // the draft moves out of prose into the closing line is not lost.
     if (SPEC_LINE_RE.test(t)) {
       for (const m of t.matchAll(SPEC_PATH_RE)) specPaths.add(m[0].replace(/\/+$/, ''));
-      continue;
     }
     if (LAYOUT_NUMBER_LINES.some((re) => re.test(t))) continue;
     prose.push(line);
@@ -142,29 +157,35 @@ function facts(text) {
   const plain = all
     .replace(SPAN_RE, ' ')
     .replace(URL_RE, ' ')
+    // A spec path's digits are part of the path, which the path check covers.
+    .replace(SPEC_PATH_RE, ' ')
     .replace(/<a id="[^"]*"><\/a>/g, ' ')
     .replace(/\]\(#[^)]*\)/g, '] ')
     .replace(/<\/?[a-z][^>]*>/gi, ' ')
     .replace(/^(\s*>)?\s*\d+[.)]\s/gm, ' ');
   const numbers = new Set(plain.match(/\d+(?:[.,]\d+)*/g) || []);
-  return { front, fences, specPaths, spans, urls, numbers, plain };
+  return { front, fences, specPaths, spans, urls, numbers, plain, body };
 }
 
-function factLock(oldText, newText) {
+function factLock(oldText, newText, allowSpans = []) {
   const errors = [];
   const o = facts(oldText);
   const n = facts(newText);
   if (o.front !== n.front) errors.push('The frontmatter changed. Copy it byte for byte.');
   for (const f of o.fences) if (!n.fences.includes(f)) errors.push(`A fenced code block changed or is missing. Copy it exactly:\n${f}`);
   const missingSpec = [...o.specPaths].filter((p) => !n.specPaths.has(p));
-  const extraSpec = [...n.specPaths].filter((p) => !o.specPaths.has(p));
+  // A path the original names anywhere, such as in prose, may close the entry.
+  const extraSpec = [...n.specPaths].filter((p) => !o.specPaths.has(p) && !o.body.includes(p));
   if (missingSpec.length) errors.push(`Spec-folder path missing from the closing spec-folder line: ${missingSpec.join(', ')}`);
   if (extraSpec.length) errors.push(`Spec-folder path not in the original: ${extraSpec.join(', ')}`);
   for (const u of o.urls) if (!n.urls.has(u)) errors.push(`URL missing: ${u}`);
-  for (const s of o.spans) if (!n.spans.has(s)) errors.push(`Inline code span missing: \`${s}\`. Keep it, with its backticks, with the fact it belongs to.`);
+  // The closing spec-folder list writes its paths plain, so a spec path that
+  // was a code span is kept when the draft's spec-folder lines still name it.
+  const keptAsSpecPath = (x) => n.specPaths.has(x.replace(/\/+$/, ''));
+  for (const s of o.spans) if (!n.spans.has(s) && !keptAsSpecPath(s)) errors.push(`Inline code span missing: \`${s}\`. Keep it, with its backticks, with the fact it belongs to.`);
   // Putting a name the original wrote in plain text into code is a layout
   // change. A span whose text the original never had is a new fact.
-  for (const s of n.spans) if (!o.spans.has(s) && !o.plain.includes(s)) errors.push(`Inline code span not in the original: \`${s}\`.`);
+  for (const s of n.spans) if (!o.spans.has(s) && !o.plain.includes(s) && !allowSpans.includes(s)) errors.push(`Inline code span not in the original: \`${s}\`.`);
   for (const x of o.numbers) if (!n.numbers.has(x)) errors.push(`Number missing: ${x}. Keep it, written the same way.`);
   // A number the frontmatter states, such as the version in the title, is not
   // a new fact when the body repeats it in a title line.
@@ -214,7 +235,7 @@ function voiceScan(file) {
 
 function gates(file, oldText, baseline) {
   const newText = read(path.join(ROOT, file));
-  const items = [...factLock(oldText, newText)];
+  const items = [...factLock(oldText, newText, sanctioned(file).allowSpans || [])];
   const layout = layoutLint(file);
   if (layout.expanded !== baseline.layout.expanded) {
     items.push(baseline.layout.expanded
@@ -267,14 +288,14 @@ function runProcess(cmd, args, opts) {
 
 // opencode runs in an empty folder, so it loads no repository instructions and
 // has no file to touch. A reply that used a tool is refused all the same.
-async function writeWithHy4(prompt, tag) {
+async function runOpencode(model, prompt, tag, kind, timeoutMs) {
   const runDir = fs.mkdtempSync(path.join(os.tmpdir(), 'layout-rewrite-'));
-  const log = path.join(RUN_DIR, `${tag}.writer.jsonl`);
+  const log = path.join(RUN_DIR, `${tag}.${kind}.jsonl`);
   // The prompt goes in as the message, so the model never has to read a file.
   // The largest prompt stays far under the 1 MB argument limit.
   const res = await runProcess('opencode', [
-    'run', '-m', 'opencode-go/hy4-flash-free#high', '--format', 'json', prompt,
-  ], { cwd: runDir, log, timeoutMs: WRITE_TIMEOUT_MS });
+    'run', '-m', model, '--format', 'json', prompt,
+  ], { cwd: runDir, log, timeoutMs });
   fs.rmSync(runDir, { recursive: true, force: true });
   const texts = [];
   let toolUsed = false;
@@ -301,20 +322,54 @@ async function writeWithHy4(prompt, tag) {
   return { ok, reply, output: res.output, usage, outcome };
 }
 
+// Hy4 Flash Free writes when it can. When it is rate limited or fails, GLM 5.3
+// Flash on the opencode-go provider writes that attempt instead.
+async function writeWithHy4(prompt, tag) {
+  const h = await runOpencode(HY4_WRITER, prompt, tag, 'writer', WRITE_TIMEOUT_MS);
+  if (h.ok) return { ...h, family: 'hy4', model: HY4_WRITER };
+  const g = await runOpencode(GLM_WRITER, prompt, tag, 'writer-glm', WRITE_TIMEOUT_MS);
+  return { ...g, family: 'glm', model: GLM_WRITER, hy4Outcome: h.outcome, output: `${h.output}\n${g.output}` };
+}
+
+const writeWithGlm53 = async (prompt, tag) => ({ ...(await runOpencode(GLM_WRITER, prompt, tag, 'writer-glm', WRITE_TIMEOUT_MS)), family: 'glm', model: GLM_WRITER });
+
+// Returns { verdict, by, limited }. The writer's family never judges its draft.
+async function factCheck(oldText, newText, tag, writerFamily = 'hy4', file = '') {
+  const prompt = fillVerify(oldText, newText, file);
+  const outputs = [];
+  for (const checker of CHECKERS[writerFamily]) {
+    const r = checker.startsWith('devin:')
+      ? await runDevin(prompt, tag, 'verify-devin', VERIFY_TIMEOUT_MS, checker.slice('devin:'.length)).then((d) => ({ ok: d.code === 0, reply: d.output, output: d.output }))
+      : await runOpencode(checker, prompt, tag, `verify-${checker.split('/')[1].replace(/[^a-z0-9.]+/gi, '-')}`, VERIFY_TIMEOUT_MS);
+    const verdict = r.ok ? extractVerdict(r.reply) : null;
+    if (verdict) return { verdict, by: checker, limited: false };
+    outputs.push(r.output);
+  }
+  return { verdict: null, by: null, limited: outputs.every((o) => LIMIT_RE.test(o)) };
+}
+
 // Devin refuses an untrusted folder, so it runs from the repository in its
 // read-only permission mode.
-async function runDevin(prompt, tag, kind, timeoutMs) {
+async function runDevin(prompt, tag, kind, timeoutMs, model = 'glm-5-2') {
   const promptFile = path.join(RUN_DIR, `${tag}.${kind}.prompt.md`);
   fs.writeFileSync(promptFile, prompt);
   const log = path.join(RUN_DIR, `${tag}.${kind}.log`);
-  const res = await runProcess('devin', ['-p', '--model', 'glm-5-2', '--permission-mode', 'auto', '--prompt-file', promptFile], { cwd: ROOT, log, timeoutMs });
+  const res = await runProcess('devin', ['-p', '--model', model, '--permission-mode', 'auto', '--prompt-file', promptFile], { cwd: ROOT, log, timeoutMs });
   fs.rmSync(promptFile, { force: true });
   return res;
 }
 
 async function writeWithGlm(prompt, tag) {
   const res = await runDevin(prompt, tag, 'writer', WRITE_TIMEOUT_MS);
-  return { ok: res.code === 0 && !res.timedOut, reply: res.output, output: res.output, usage: null, outcome: res.timedOut ? 'timed out' : `exit ${res.code}` };
+  return { ok: res.code === 0 && !res.timedOut, reply: res.output, output: res.output, usage: null, outcome: res.timedOut ? 'timed out' : `exit ${res.code}`, family: 'glm', model: 'devin:glm-5-2' };
+}
+
+function withOriginalFrontmatter(draft, oldText) {
+  if (!draft) return draft;
+  const [front] = splitFrontmatter(oldText);
+  if (!front) return draft;
+  const [draftFront, draftBody] = splitFrontmatter(draft);
+  return front + (draftFront ? draftBody : draft.replace(/^\n+/, '\n'));
 }
 
 // The reply is one fenced block. A reply that holds the file without the fence
@@ -366,7 +421,7 @@ function templatePart(tier) {
   return `${tierBlock}\n${cut('## 4. WRITING STYLE RULES', '## 5. FORMAT SELECTION GUIDE')}`;
 }
 
-function fillRewrite(oldText, tier, draft, items) {
+function fillRewrite(oldText, tier, draft, items, file) {
   const compactModel = tier === 'compact'
     ? `\nA COMPACT ENTRY IN THE LAYOUT (copy its shape, never its content)\n<<<MODEL\n${read(path.join(ROOT, COMPACT_MODEL)).replace(/\n$/, '')}\nMODEL>>>\n`
     : '';
@@ -375,6 +430,7 @@ function fillRewrite(oldText, tier, draft, items) {
     .replace('{{TIER_RULES}}', () => read(path.join(HERE, `brief-tier-${tier}.md`)).replace(/\n$/, ''))
     .replace('{{TEMPLATE}}', () => templatePart(tier))
     .replace('{{COMPACT_MODEL}}', () => compactModel)
+    .replace('{{SANCTIONED}}', () => sanctioned(file).writer || '')
     .replace('{{ORIGINAL}}', () => oldText.replace(/\n$/, ''));
   if (draft) {
     prompt += `\nPREVIOUS ATTEMPT\nYour previous draft is below. It failed these checks. Fix every item and keep every other line of the draft as it is.\n${items.map((x) => `- ${x}`).join('\n')}\n<<<PREVIOUS DRAFT\n${draft.replace(/\n$/, '')}\nPREVIOUS DRAFT>>>\n`;
@@ -382,7 +438,8 @@ function fillRewrite(oldText, tier, draft, items) {
   return prompt;
 }
 
-const fillVerify = (oldText, newText) => read(path.join(HERE, 'brief-verify.md'))
+const fillVerify = (oldText, newText, file) => read(path.join(HERE, 'brief-verify.md'))
+  .replace('{{SANCTIONED}}', () => sanctioned(file).verifier || '')
   .replace('{{ORIGINAL}}', () => oldText.replace(/\n$/, ''))
   .replace('{{REWRITE}}', () => newText.replace(/\n$/, ''));
 
@@ -425,15 +482,21 @@ async function processFile(file, writer) {
   let items = [];
 
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
-    const prompt = fillRewrite(oldText, tier, draft, items);
-    const w = writer === 'glm' ? await writeWithGlm(prompt, `${tag}.a${attempt}`) : await writeWithHy4(prompt, `${tag}.a${attempt}`);
+    const prompt = fillRewrite(oldText, tier, draft, items, file);
+    const w = writer === 'glm' ? await writeWithGlm(prompt, `${tag}.a${attempt}`)
+      : writer === 'glm53' ? await writeWithGlm53(prompt, `${tag}.a${attempt}`)
+        : await writeWithHy4(prompt, `${tag}.a${attempt}`);
+    tokens.writtenBy = w.model;
     if (w.usage) for (const k of Object.keys(w.usage)) tokens.writer[k] += w.usage[k];
     if (!w.ok) {
       if (LIMIT_RE.test(w.output)) throw new LimitHit(`writer usage limit on ${file}`);
       history.push({ attempt, problem: `writer did not finish (${w.outcome})` });
       continue;
     }
-    const text = extractFile(w.reply);
+    // The frontmatter must stay byte for byte, so the original block replaces
+    // whatever the model wrote there. A model that tidies one word of a
+    // description would otherwise fail every attempt on a line it may not touch.
+    const text = withOriginalFrontmatter(extractFile(w.reply), oldText);
     if (!text) {
       history.push({ attempt, problem: 'reply held no fenced file' });
       items = ['Your reply held no file. Reply with the whole file inside one ~~~markdown fenced block and nothing else.'];
@@ -447,19 +510,11 @@ async function processFile(file, writer) {
       history.push({ attempt, problem: 'gates', items });
       continue;
     }
-    const v = await runDevin(fillVerify(oldText, text), `${tag}.a${attempt}`, 'verify', VERIFY_TIMEOUT_MS);
+    const v = await factCheck(oldText, text, `${tag}.a${attempt}`, w.family, file);
     tokens.verifyCalls += 1;
-    if (LIMIT_RE.test(v.output) && !extractVerdict(v.output)) throw new LimitHit(`fact checker usage limit on ${file}`);
-    let verdict = extractVerdict(v.output);
-    // GLM can hit its output-token cap on the largest entries and stop before
-    // the verdict. The same draft then gets one check on the free Hy4 route,
-    // whose output room is far larger, instead of costing a writer attempt.
-    if (!verdict) {
-      const h = await writeWithHy4(fillVerify(oldText, text), `${tag}.a${attempt}.verify-hy4`);
-      tokens.verifyFallback = (tokens.verifyFallback || 0) + 1;
-      if (!h.ok && LIMIT_RE.test(h.output)) throw new LimitHit(`fallback fact checker usage limit on ${file}`);
-      verdict = h.ok ? extractVerdict(h.reply) : null;
-    }
+    if (v.limited) throw new LimitHit(`both fact checkers hit a usage limit on ${file}`);
+    const verdict = v.verdict;
+    if (verdict) tokens.verifiedBy = v.by;
     if (!verdict) {
       history.push({ attempt, problem: 'fact checker gave no verdict' });
       items = [];
@@ -574,7 +629,7 @@ async function main() {
 
 // wave-verify.cjs loads the same gates, so the check after a run is the check the
 // run applied.
-module.exports = { gates, factLock, layoutLint, houseCheck, voiceScan, alreadyDone, safeName, ORIG_DIR };
+module.exports = { gates, factLock, factCheck, layoutLint, houseCheck, voiceScan, alreadyDone, safeName, verdictItems, ORIG_DIR, RUN_DIR, LimitHit };
 
 if (require.main === module) {
   main().catch((err) => {

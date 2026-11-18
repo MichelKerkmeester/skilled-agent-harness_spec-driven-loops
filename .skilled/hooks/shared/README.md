@@ -12,145 +12,176 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-This folder injects nothing into an AI session. It is plumbing for the adapters that do. A resolver decides whether a hook runs at all. Two helpers read stdin and parse JSON without throwing. A reader package resolves one exact session id per runtime.
+`.skilled/hooks/shared/` holds the code every hook adapter under `.skilled/hooks/` imports, so a hook that needs one of these helpers finds it inside the hooks tree. A few adapters still import a skill-owned module on purpose. Nothing in this folder writes to a session. It answers the questions an adapter asks before it acts.
 
-Keeping local copies is deliberate, because it makes every adapter under `.skilled/hooks/` importable with no dependency outside this tree. That is the point of the tree existing.
+Current state:
 
-A second ESM sibling lives in `system-spec-kit/runtime/hooks/lib/`. That copy, `hook-adapter-shared.mjs`, serves the spec-gate adapters of that skill. Those adapters are not part of the fully-portable set. The two copies may drift in principle, but in practice the file is small and stable enough that they should not.
+- The kill-switch resolver decides whether a hook runs. It answers on by default, so adding a guard changes no behavior until an operator sets a flag.
+- The JSON parser never throws, and a failed parse returns `null`. The stdin reader resolves at its deadline, resolves an empty string past its byte cap and rejects only on a stream error.
+- Imports are Node builtins only. That is what keeps the hooks tree portable.
+- The session readers resolve one exact session id per runtime and write nothing.
 
----
-
-## 2. HOW IT WORKS
-
-**The resolver.** `hook-flags.cjs` exports `isHookEnabled(concern, env?, config?)`. It is default-on, so adding the guard changes no behavior until a flag is set. A hook goes silent when the master switch (`SYSTEM_HOOKS_DISABLED`, alias `MK_HOOKS_DISABLED`) or one of the concern's kill-switches is truthy (`1`/`true`/`yes`/`on`, case-insensitive).
-
-A short list of concerns is default-off instead. That list is `DEFAULT_OFF` in `hook-flags.cjs`, and today it holds two entries: `session-handover` and `claude-user-hook-sync`. A default-off concern answers enabled only when its enable flag is truthy. That flag is read from the same two sources as the kill-switches.
-
-For `session-handover` the caller names its runtime through a fourth `options.runtime` argument. The enable flag is that runtime's `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` (`CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR`, `DEVIN` or `VIBE`) when it holds a non-empty value, `1` on and `0` off. Otherwise `SYSTEM_SESSION_HANDOVER_ENABLED` decides when it holds a non-empty value.
-
-With both blank, a runtime that `DEFAULT_ON_RUNTIMES` lists for the concern is on. Today that is `claude` alone, so Claude Code hands over by default. Every other runtime, and a caller that names none, stays off.
-
-Each key resolves environment first, then config file, before that rule applies. A config-file `SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED=0` therefore beats an environment `SYSTEM_SESSION_HANDOVER_ENABLED=1` for Claude Code. The master switch and the concern's kill-switch still win over every enable flag.
-
-A switch also answers to a second spelling. `SYSTEM_SESSION_HANDOVER_*` falls back to `SYSTEM_IN_SESSION_HANDOVER_*` while the main name is blank.
-
-`concernFlag(concern)` derives the canonical env-var name. Concerns listed in `CONCERN_CANONICAL` get their hand-set name, such as `goal` → `OPENCODE_GOAL_DISABLED` and `dispatch` → `CLI_DISPATCH_AUDIT_DISABLED`. Every other concern falls back to the default shape `SYSTEM_<CONCERN>_DISABLED`.
-
-`LEGACY_ALIASES` maps some concerns to older `MK_`, `SPECKIT_` or plugin-owned names that also disable them. Some concerns, such as `session-handover`, `live-sync` and `git-commit-hooks`, have none.
-
-`isFlagOn(name, env?, config?)` answers the same question for one named switch that is not a hook concern. The `SPECKIT_SKIP_VALIDATION` and `SKDOC_SKIP_VALIDATION` validation switches are the example. The environment answers whenever the name is set there, even to an empty value. The config file answers otherwise.
-
-**Where flags come from.** Flags resolve from two sources: the live environment and an optional operator config file. The file is `hook-flags.env`, a sibling of this folder, overridable via `HOOK_FLAGS_CONFIG`. The environment always wins over the file for a given key, so a persisted default can still be overridden per session.
-
-The config file is read once per process and cached, and tests reset the cache via `_resetConfigCache()`. In the file a `#` after a space or tab ends a value. So `SYSTEM_SKILL_ADVISOR_DISABLED=1  # why` reads as `1`.
-
-Every reader of the file applies that rule: `hook-flags.cjs`, `hook-flags.sh`, sk-doc's `validation_switch.py` and sk-code's `check-dist-staleness.sh`. A test in `hook-flags.test.cjs` holds all four to the same answers.
-
-**The env bridge.** At load, `hook-flags.cjs` calls `env-aliases.cjs.applyEnvAliases()`. That copies every legacy `MK_*` env value forward onto its new name. It copies only when the new name is unset, so a value set under the new name always wins. So an operator who still exports an `MK_` name keeps that setting under its current name.
-
-**Adapter plumbing.** `hook-adapter-shared.cjs` provides `readStdin({ timeoutMs })` and `parseJsonFailOpen(raw)`. The reader resolves at a 3000 ms deadline with the bytes read so far, and it rejects on a stream error. A stream past its byte cap resolves to an empty string instead of throwing. The parser resolves to `null` instead of throwing.
-
-CommonJS adapters `require()` the file, and ESM adapters import `readStdin` and `parseJsonFailOpen` by name. Node reads those names from the `module.exports` object literal. Behavior is byte-identical for every consumer.
-
-**Session readers.** `session-readers/` resolves one exact session id per runtime. It projects the store's records into the shared `HistoryEntry` list and writes nothing. Its `capabilities` export is the source of truth for which runtimes are `ready`. Cursor stays `gated` until its PreCompact delivery is confirmed. The decision-capture sweeps keep their own readers and remain the writers.
-
-**The POSIX mirror.** `hook-flags.sh` exposes `hook_enabled <concern>` for shell entrypoints. It resolves the config file at source time: explicit `HOOK_FLAGS_CONFIG`, then `__hf_root`, then `git rev-parse --show-toplevel`.
-
-It checks the master switch and the default-shape `SYSTEM_<CONCERN>_DISABLED`. It also carries the `session-handover` enable switches, the runtime one included. It does not carry the `CONCERN_CANONICAL` overrides or `LEGACY_ALIASES`. Shell entrypoints that need those must use the Node resolver instead.
-
-`hook_flag_on <name>` checks one named switch with the same precedence. It refuses any name that is not a plain variable name before the resolver's `eval` sees it. Shell entrypoints load the file with `source` and then call `hook_enabled <concern>`. `.skilled/bin/worktree-guard.sh` sources it, as do the git hooks and `validate.sh`.
-
-**Boundaries.** Imports are Node builtins only. `hook-flags.cjs` imports `node:fs`, `node:path` and `./env-aliases.cjs`. `hook-adapter-shared.cjs` imports nothing. `payload-dir.mjs` and `cli-entry.mjs` import `node:fs`, `node:path` and `node:url`. The ESM facade imports `node:module` only.
-
-Only helpers genuinely shared by multiple concerns belong here. A concern-specific helper goes in that concern's `lib/`.
-
-The resolver is default-on. A missing or unreadable config file, a missing env var or any parse failure resolves to enabled. A default-off concern resolves to off in the same cases, except on a runtime `DEFAULT_ON_RUNTIMES` lists, which is `claude`. `parseJsonFailOpen` returns `null` instead of throwing.
-
-The ESM facade is zero-drift by construction, because it re-exports the `.cjs` implementation, while the `.sh` mirror is a manual port and intentionally narrower.
+A second copy of the stdin helper serves the spec-gate adapters inside the system-spec-kit skill. Those adapters sit outside the portable set. This folder does not import that copy.
 
 ---
 
-## 3. DIRECTORY TREE
+## 2. ARCHITECTURE
+
+An adapter sits between a runtime and its payload. It asks this folder one question at a time, then finishes its own work and exits. The switch check comes first, so a disabled concern exits before any payload is read.
+
+```text
+╭──────────────────────────────────────────────────────────────╮
+│  runtime hooks across every supported runtime                │
+╰───────────────────────────────┬──────────────────────────────╯
+                                │ payload on standard input
+                                ▼
+╭──────────────────────────────────────────────────────────────╮
+│                    .skilled/hooks/shared/                    │
+│                                                              │
+│  hook-flags.cjs            may this concern run?             │
+│  hook-adapter-shared.cjs   what arrived on standard input?   │
+│  payload-dir.mjs           which directory may it write to?  │
+│  cli-entry.mjs             is this module the entry script?  │
+│  session-readers/          what did that session record?     │
+╰──────────────────────────────────────────────────────────────╯
+                                │ answer
+                                ▼
+╭──────────────────────────────────────────────────────────────╮
+│  the adapter's own work, then exit                           │
+╰──────────────────────────────────────────────────────────────╯
+
+Dependency direction: adapter ──▶ shared
+Nothing here imports a hook adapter.
+```
+
+---
+
+## 3. PACKAGE TOPOLOGY
+
+Three module flavors exist so an adapter can reach the resolver without a module-system mismatch.
+
+```text
+hook-flags.mjs  ──▶  hook-flags.cjs  ──▶  env-aliases.cjs
+    facade             resolver             prefix bridge
+
+hook-flags.sh        independent shell port, no import
+```
+
+Allowed direction runs from the facade through the resolver to the alias bridge. The facade re-exports the resolver, so both module systems run one implementation.
+
+Nothing here imports a concern folder, and the resolver never imports the readers or the stdin helpers.
+
+CommonJS adapters require the resolver file. ESM adapters import the facade. Shell entrypoints source the port.
+
+---
+
+## 4. DIRECTORY TREE
 
 ```text
 shared/
-+-- hook-flags.cjs                   # canonical kill-switch resolver
-+-- hook-flags.mjs                   # ESM facade over .cjs
-+-- hook-flags.sh                    # POSIX sh mirror
-+-- hook-flags.test.cjs              # node --test suite for the resolver
-+-- env-aliases.cjs                  # copies MK_* env values forward at load
-+-- hook-adapter-shared.cjs          # readStdin() + parseJsonFailOpen()
-+-- hook-adapter-shared.test.cjs     # node --test suite for the reader
-+-- hook-stdin-deadline.test.mjs     # node --test suite for the deadline
-+-- payload-dir.mjs                  # where a payload cwd points, and whether a hook may write there
-+-- cli-entry.mjs                    # whether a hook module is the script node was started with, symlinks resolved
-+-- session-reader-declarations.mjs  # rebuilds or checks the .d.mts files
-+-- dsh/                             # DSH loader and fan-out leaf marker
-+-- session-readers/                 # one reader per runtime, plus identity, index and project
-`-- tests/                           # DSH loader and launch-check tests, plugin test helpers
++-- hook-flags.cjs                     # kill-switch resolver, the single implementation
++-- hook-flags.mjs                     # ESM facade over the resolver
++-- hook-flags.sh                      # POSIX shell port of the resolver
++-- env-aliases.cjs                    # copies legacy MK_* values onto their current names
++-- hook-adapter-shared.cjs            # readStdin() and parseJsonFailOpen()
++-- payload-dir.mjs                    # which directory a payload names, and whether it may receive a write
++-- cli-entry.mjs                      # is the calling module the script node was started with
++-- session-reader-declarations.mjs    # rebuilds or checks the committed declaration files
++-- hook-flags.test.cjs                # resolver suite
++-- hook-adapter-shared.test.cjs       # stdin reader suite
++-- hook-stdin-deadline.test.mjs       # deadline suite over the ESM adapters
++-- dsh/                               # dsh package loader and the fan-out leaf marker
++-- session-readers/                   # one read-only reader per runtime
++-- tests/                             # shared plugin contexts and the suites beside them
+`-- README.md
 ```
-
-`dsh/` holds `dsh-llm.mjs`, which resolves the dsh packages from the running dsh binary. It also holds `session-role.mjs`, which marks a fan-out leaf.
-
-`session-readers/` holds one reader per runtime plus `identity.mjs`, `index.mjs` and `project.mjs`. Each file has a `.d.mts` type file beside it. Its own README stays.
-
-`tests/` holds the DSH loader test and the fake plugin contexts the DSH adapter suites use. `tests/session-readers/` holds the reader suites.
 
 ---
 
-## 4. KEY FILES
+## 5. KEY FILES
 
 | File | Responsibility |
 |---|---|
-| `hook-flags.cjs` | Canonical kill-switch resolver. Exports `isHookEnabled(concern, env?, config?)`, `isFlagOn(name, env?, config?)`, `concernFlag()`, `isTruthy()`, `loadConfigFile()`, `configPath()` and `_resetConfigCache()`. Owns `MASTER_FLAG`, `MASTER_ALIASES`, `CONCERN_CANONICAL` and `LEGACY_ALIASES`. Calls `env-aliases.cjs` at load. Caches the config file per process. |
-| `hook-flags.mjs` | ESM facade over `hook-flags.cjs` through `createRequire`. Zero drift. |
-| `hook-flags.sh` | POSIX sh mirror. `hook_enabled <concern>` returns 0 unless the master or default-shape switch is truthy. `hook_flag_on <name>` returns 0 when one named switch is truthy. Resolves the config file at source time. Also carries the `session-handover` enable switches. Carries no canonical-name override and no legacy alias. |
-| `env-aliases.cjs` | Back-compat bridge. `applyEnvAliases(env?)` copies every legacy `MK_*` value forward when the new name is unset. `PREFIX_RULES` maps specific prefixes, such as `MK_GOAL_` → `OPENCODE_GOAL_` and `MK_CLI_DISPATCH_AUDIT_` → `CLI_DISPATCH_AUDIT_`. The catch-all `MK_` → `SYSTEM_` rule handles the rest. |
-| `hook-adapter-shared.cjs` | `readStdin({ timeoutMs })` and `parseJsonFailOpen()`. The reader resolves at a 3000 ms deadline with the bytes read so far. The parser returns `null` on bad JSON. |
-| `hook-flags.test.cjs` | `node --test` suite. Covers default-on, the master switch, the per-concern switch, `concernFlag` derivation, config-file merge, legacy-alias parity, named-switch precedence in both resolvers and trailing comments in all four readers of the file. |
-| `hook-adapter-shared.test.cjs` | `node --test` suite. A never-closed stdin resolves at the deadline and its process exits. Complete input comes back whole. |
-| `hook-stdin-deadline.test.mjs` | `node --test` suite. With stdin left open and never written, each ESM adapter in its list exits 0 at the deadline with its fail-open output. The adapters no other suite spawns still answer a normal payload. |
-| `payload-dir.mjs` | `sessionDirFor(cwd)` resolves a payload's relative cwd against the checkout and falls back to the checkout when none is given. `existingDirectory(path)` is true only for an absolute path that already exists as a directory, so a payload cannot make a hook create a tree wherever it names. The Vibe session-lifecycle, decision-capture and ask-surface adapters import it, and `.vibe/plugins/repo-guards/lib/hook-io.mjs` re-exports it for the Vibe guards. |
-| `cli-entry.mjs` | `isCliEntry(import.meta.url)` is true when the calling module is the script node was started with. Both paths are compared after resolving symlinks, because Node reports the entry module under its real path while `process.argv[1]` keeps the path as typed, so a hook reached through a linked `.skilled` tree would otherwise skip its main step. The four Vibe session-lifecycle entry points and `.vibe/plugins/repo-guards/dist-freshness.mjs` use it. |
-| `session-readers/` | Read-only reader package. `readSession()` resolves one exact session id per runtime and projects it into the shared `HistoryEntry` list. It writes nothing. Claude, Codex, Pi, OpenCode, Devin, DSH and Vibe are `ready`. Cursor is `gated`. See [`session-readers/index.mjs`](./session-readers/index.mjs). |
-| `session-reader-declarations.mjs` | Rebuilds the committed `session-readers/*.d.mts` declarations that TypeScript callers read. With `--check` it reports any that no longer match their source. The compiler will not overwrite a declaration in place, so a plain build never refreshes them. It builds in a temporary copy and borrows the TypeScript compiler that the system-spec-kit skill installs. No hook loads it. |
-| `dsh/` | Loader and leaf marker for the DSH adapters. `dsh-llm.mjs` resolves the dsh packages from the running dsh binary. `session-role.mjs` marks a fan-out leaf. |
-| `tests/` | Shared test layer for the DSH adapters. `dsh-llm.test.mjs` checks the loader. `dsh-plugin-harness.mjs` builds fake plugin contexts. |
+| `hook-flags.cjs` | Canonical resolver. Exports `isHookEnabled`, `hookFlagDecision`, `isFlagOn`, `concernFlag`, `runtimeEnableFlag`, `isTruthy`, `loadConfigFile`, `switchAlias`, `configPath` and `_resetConfigCache`, plus the tables `MASTER_FLAG`, `MASTER_ALIASES`, `CONCERN_CANONICAL`, `LEGACY_ALIASES`, `DEFAULT_OFF`, `DEFAULT_ON_RUNTIMES`, `RUNTIMES` and `SWITCH_ALIAS_PREFIXES`. Calls the alias bridge at load and caches the config file per process. |
+| `hook-flags.mjs` | ESM facade. Loads the resolver through `createRequire`, so `.mjs` adapters and ESM plugins read one implementation. Its named exports are `isHookEnabled`, `hookFlagDecision`, `concernFlag`, `runtimeEnableFlag`, `isTruthy`, `MASTER_FLAG`, `LEGACY_ALIASES`, `DEFAULT_OFF`, `RUNTIMES`, `loadConfigFile` and `configPath`. Its default export is the whole resolver, so reach `isFlagOn` and the other tables through the default import. |
+| `hook-flags.sh` | POSIX shell port. `hook_enabled <concern> [runtime]` returns 1 when the concern is off. `hook_flag_on <name>` checks one named switch and refuses any name that is not a plain variable name. Resolves the config file when it is sourced. Carries the same master switch and the same default-shape concern switch as the Node resolver. It also carries the `session-handover` enable switches. Carries no canonical override and no per-concern legacy alias, though it honors the legacy master alias `MK_HOOKS_DISABLED`. |
+| `env-aliases.cjs` | `applyEnvAliases(env?)` copies each `MK_*` value onto its current name when that name is unset. `PREFIX_RULES` lists the specific prefixes first and the catch-all `MK_` → `SYSTEM_` rule last. |
+| `hook-adapter-shared.cjs` | `readStdin({ timeoutMs, maxBytes })` resolves at 3000 ms with the bytes received so far, rejects on a stream error and resolves an empty string past the byte cap. `parseJsonFailOpen(raw)` returns `null` on bad JSON. |
+| `payload-dir.mjs` | `sessionDirFor(cwd)` resolves a relative payload directory against the checkout and falls back to the checkout. `existingDirectory(path)` is true only for an absolute path that already exists as a directory, so a payload cannot cause a hook to create a tree wherever it names. |
+| `cli-entry.mjs` | `isCliEntry(importMetaUrl, entryArg)` compares both paths after `realpathSync`, so a hook reached through a symlinked `.skilled` tree still runs its main step. |
+| `session-reader-declarations.mjs` | Development tool. Rebuilds the committed declaration files beside each session reader, or reports stale ones with `--check`. Builds in a temporary copy and borrows the TypeScript compiler that the system-spec-kit skill installs. No hook loads it. |
+| `hook-flags.test.cjs` | Resolver suite. Covers default-on, the master switch, the per-concern switch, `concernFlag` derivation, config-file merge, legacy-alias parity, named-switch precedence in both resolvers and trailing comments in every reader of the file. |
+| `hook-adapter-shared.test.cjs` | Reader suite. It checks that input ending before the deadline comes back whole, that a stream past the cap resolves empty, that the default cap is 64 MiB and that a never-closed stream resolves at the deadline. |
+| `hook-stdin-deadline.test.mjs` | Suite that spawns each listed ESM adapter with stdin left open. Every one exits 0 at the deadline with its fail-open output, and the adapters that no other suite spawns still answer a normal payload. |
 
-Three module flavors exist so a different runtime's adapter can import the resolver without a module-system mismatch. `hook-flags.cjs` serves Claude, Codex, Devin, Cursor (via `.mjs`) and the OpenCode plugins (via `createRequire`). `hook-flags.mjs` serves Cursor, Pi (via `.ts`) and the ESM adapters. `hook-flags.sh` serves the shell entrypoints, such as the git hooks, `validate.sh` and `.skilled/bin/worktree-guard.sh`. Dist-freshness carries its own Python port.
-
-`hook-adapter-shared.cjs` has two consumer groups. CommonJS adapters `require()` it, such as `mcp-route-guard/{claude,codex,devin}`, `subagent-dispatch-guard/{claude,devin}`, `post-edit-quality/{claude,codex,devin}`, `overlay-guard/{claude,codex,devin}`, `ask-surface-guard/{claude,lib}` and `env-secret-guard/command-hook`. ESM adapters import `import { readStdin }` from it, such as `classifier-injection-screen/{claude,devin}`, `cli-dispatch/{claude,codex,cursor,devin}` (preflight), `cli-dispatch/{claude,codex,devin}` (audit), `goal/{cursor,devin}`, `mcp-route-guard/cursor`, `subagent-dispatch-guard/{cursor,claude}`, `session-handover/{claude,codex}`, `decision-capture/{claude,devin,vibe}` and `overlay-guard/cursor`. The session-handover adapters also import `parseJsonFailOpen`. The relative specifier climbs from the adapter's runtime folder to the hooks root and then into `shared/`. Node reads the named exports from the CommonJS file.
-
-The resolver family gates these concerns:
-
-- `skill-advisor`, `spec-gate`, `completion`, `codex-watchdog` and `permission-policy`
-- `directive-lifecycle`, `dispatch`, `dispatch-guard`, `post-edit-quality` and `task-dispatch`
-- `mcp-route-guard`, `goal`, `git-preflight`, `session-lifecycle` and `git-worktree-guard`
-- `git-hooks-check`, `dist-freshness`, `session-cleanup`, `hook-install` and `git-commit-hooks`
-- `live-sync`, `live-follow`, `injection-screen`, `session-handover` and `primary-reconcile`
-- `overlay-guard`, `decision-capture`, `ask-surface` and `env-secret-guard`
-
-Pi's bundled SessionStart adapter calls `isHookEnabled()` separately for each advisory concern.
+`dsh/` holds the loader for the dsh packages and the marker that labels a fan-out leaf. `session-readers/` holds one reader per runtime, a dispatcher, an identity helper and a projection module. `tests/` holds the fake plugin contexts and the suites that sit beside them.
 
 ---
 
-## 5. CONFIGURATION
+## 6. BOUNDARIES AND FLOW
 
-The resolver is itself the configuration mechanism for every other concern. Operators interact with it through env vars and the config file, not through this folder.
-
-| Variable | Effect |
+| Boundary | Rule |
 |---|---|
-| `SYSTEM_HOOKS_DISABLED=1` | Master switch. Disables every concern across every runtime. |
-| `MK_HOOKS_DISABLED=1` | Legacy alias of the master switch. |
-| `SYSTEM_<CONCERN>_DISABLED=1` | Default-shape per-concern switch, such as `SYSTEM_TASK_DISPATCH_DISABLED=1`. Derivable via `concernFlag(concern)`. |
-| `SYSTEM_SESSION_HANDOVER_ENABLED=1` | Enable flag for `session-handover`, one of the two default-off concerns. Without it, or a runtime's own flag, the concern stays silent on every runtime but Claude Code. A set value, `1` or `0`, decides for Claude Code too. `SYSTEM_SESSION_HANDOVER_DISABLED=1` and the master switch still win. |
-| `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED=1` or `=0` | Per-runtime enable flag for `session-handover`, one each for `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR`, `DEVIN` and `VIBE`. A non-empty value wins over `SYSTEM_SESSION_HANDOVER_ENABLED` for that runtime. An empty or unset value falls back to it. `SYSTEM_SESSION_HANDOVER_ENABLED=1` with `SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED=0` is on for every runtime except Claude Code. The disable switch and the master switch still win. |
-| `OPENCODE_GOAL_DISABLED=1` | Canonical name for `goal`, which does not follow the default shape. Six concerns have hand-set canonical names in `CONCERN_CANONICAL`. See the table below. |
-| `HOOK_FLAGS_CONFIG` | Override path for the operator config file. The default is `.skilled/hooks/hook-flags.env`. |
+| Imports | Node builtins only. `hook-flags.cjs` also requires `./env-aliases.cjs`. Nothing here imports a concern or a skill. |
+| Exports | The resolver, the stdin reader, the payload rules, the CLI-entry check and the session readers. |
+| Ownership | A helper that two or more concerns use belongs here. A helper that only one concern uses belongs in that concern's own lib folder. |
 
-Concerns whose canonical name does not follow the default `SYSTEM_<CONCERN>_DISABLED` shape:
+Main flow:
 
-| Concern | Canonical flag |
+```text
+╭──────────────────────────────────────────╮
+│ runtime starts a hook                    │
+╰──────────────────────────────────────────╯
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ hook-flags.cjs decides the concern       │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ readStdin() collects the payload         │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ parseJsonFailOpen() shapes it            │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ the adapter's own work, then exit 0      │
+└──────────────────────────────────────────┘
+```
+
+A disabled concern stops at the second box. It never reads a payload.
+
+### Switch resolution
+
+`isHookEnabled` answers in this order and stops at the first rung that applies.
+
+1. The master switch `SYSTEM_HOOKS_DISABLED`, or its legacy alias `MK_HOOKS_DISABLED`. A truthy value disables every concern on every runtime.
+2. The concern's kill switch from `concernFlag()`, or one of its `LEGACY_ALIASES`.
+3. For a concern in `DEFAULT_OFF`, the runtime enable switch, then the global enable switch, then the runtime default.
+4. Anything left over is on.
+
+A truthy value is `1`, `true`, `yes` or `on`, compared without regard to case after trimming. A value that is not a string is false. Every rung reads the environment first and the config file second for the same key.
+
+Two concerns are off until their enable switch is set. They are `session-handover` and `claude-user-hook-sync`. For `session-handover` the caller names its runtime in `options.runtime`, and that runtime's `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` answers while it holds a value. With both of those switches blank, `session-handover` is on for Claude Code alone, because `DEFAULT_ON_RUNTIMES` lists `claude`.
+
+A switch also answers to a second spelling. `SYSTEM_SESSION_HANDOVER_*` falls back to `SYSTEM_IN_SESSION_HANDOVER_*` while the main name is blank.
+
+`hookFlagDecision` returns the same answer with the switch that decided it and a reason of `master`, `kill`, `runtime`, `global` or `default`.
+
+### The config file
+
+The operator config file sits beside this folder, so a choice can persist without an exported variable each session. `HOOK_FLAGS_CONFIG` overrides the path. The file is read once per process, and a test clears the cache with `_resetConfigCache()`.
+
+Four readers share one parse rule, and a test holds all four to the same answers: `hook-flags.cjs`, `hook-flags.sh`, sk-doc's validation switch and sk-code's dist-staleness check. In the file, a hash character after a space or tab ends a value, so a trailing comment still counts. Surrounding quotes on a value are stripped.
+
+Concerns whose kill switch does not follow the default shape:
+
+| Concern | Kill switch |
 |---|---|
 | `goal` | `OPENCODE_GOAL_DISABLED` |
 | `dispatch` | `CLI_DISPATCH_AUDIT_DISABLED` |
@@ -159,11 +190,42 @@ Concerns whose canonical name does not follow the default `SYSTEM_<CONCERN>_DISA
 | `git-preflight` | `SK_GIT_PREFLIGHT_DISABLED` |
 | `post-edit-quality` | `SK_CODE_POST_EDIT_QUALITY_DISABLED` |
 
-`LEGACY_ALIASES` maps some concerns to older `MK_`, `SPECKIT_` or plugin-owned names that also disable them. Some concerns, such as `session-handover`, `live-sync` and `git-commit-hooks`, have none. The config file is `hook-flags.env`, copied from `hook-flags.env.example` and gitignored. It lets an operator persist choices without exporting env vars every session. The environment always wins over the file.
+Every other concern follows the default shape `SYSTEM_<CONCERN>_DISABLED`.
 
 ---
 
-## 6. VALIDATION
+## 7. ENTRYPOINTS
+
+| Entrypoint | Type | Purpose |
+|---|---|---|
+| `isHookEnabled` | Function | Whether a concern may run on a named runtime. |
+| `hookFlagDecision` | Function | The same answer plus the switch that decided it. |
+| `isFlagOn` | Function | Whether one named switch outside the concern set is truthy. |
+| `concernFlag` | Function | The canonical kill-switch name for a concern. |
+| `readStdin` | Function | The payload text, with a 3000 ms deadline and a byte cap. |
+| `parseJsonFailOpen` | Function | The parsed payload, or `null`. |
+| `sessionDirFor` | Function | The directory a payload's working directory names. |
+| `existingDirectory` | Function | Whether that directory may receive a write. |
+| `isCliEntry` | Function | Whether the calling module is the script node started. |
+| `readSession` | Function | One exact session as the shared entry list. |
+| `loadSession` | Function | One exact session as raw neutral records. |
+| `hook_enabled` | Shell | The shell port of `isHookEnabled`, runtime argument included. |
+| `hook_flag_on` | Shell | The shell port of `isFlagOn`. |
+| `session-reader-declarations.mjs` | CLI | Rebuilds or checks the reader declaration files. |
+
+### Declaration rebuild
+
+A reader change that alters an export or a return shape leaves its committed declaration behind, and the compiler refuses to overwrite a declaration in place. The script deletes the old files and rebuilds them.
+
+```bash
+node .skilled/hooks/shared/session-reader-declarations.mjs --check
+```
+
+Expected output: `STATUS=OK session-reader-declarations: 22 file(s) current`, exit 0. Exit 1 means a declaration is stale, exit 2 means the compiler failed, and exit 3 means the compiler or the Node types are not installed. Run the same command without `--check` to rewrite them.
+
+---
+
+## 8. VALIDATION
 
 Run from the repository root.
 
@@ -171,43 +233,39 @@ Run from the repository root.
 node --test .skilled/hooks/shared/hook-flags.test.cjs
 ```
 
-Expected result: all tests pass. The suite covers default-on, the master switch, the per-concern switch, `concernFlag` derivation, config-file merge, legacy-alias parity, named-switch precedence and trailing comments.
-
-`hook-adapter-shared.cjs` is covered by its consumers' own suites:
+Expected output: `pass 31` and `fail 0`.
 
 ```bash
-node --test .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs
+node --test .skilled/hooks/shared/hook-adapter-shared.test.cjs
 ```
 
-Expected result: all tests pass.
-
-The stdin deadline has its own suites. The first checks the reader itself. The second checks that each ESM adapter exits at the deadline when its stdin never closes:
+Expected output: `pass 5` and `fail 0`.
 
 ```bash
-node --test .skilled/hooks/shared/hook-adapter-shared.test.cjs .skilled/hooks/shared/hook-stdin-deadline.test.mjs
+node --test .skilled/hooks/shared/hook-stdin-deadline.test.mjs
 ```
 
-Expected result: all tests pass. The second suite takes about 3 seconds because it waits out the reader's deadline.
+Expected output: `pass 22` and `fail 0`, after about 4 seconds. Each adapter has to wait out the reader's deadline.
 
-The session readers have their own suite:
+```bash
+node --test .skilled/hooks/shared/tests/*.test.mjs
+```
+
+Expected output: `pass 4` and `fail 0`. The dsh loader test reports itself skipped when dsh is not installed.
 
 ```bash
 node --test .skilled/hooks/shared/tests/session-readers/*.test.mjs
 ```
 
-Expected result: every test passes. That includes the store-unchanged check that every reader leaves the seven fixture stores untouched. It also includes the declaration check, which is skipped when the TypeScript compiler is not installed.
-
-After changing a reader's exports or return shapes, rebuild its declarations:
-
-```bash
-node .skilled/hooks/shared/session-reader-declarations.mjs
-```
+Expected output: `pass 109` and `fail 0`. That run includes the check that every reader leaves its fixture store untouched.
 
 ---
 
-## 7. RELATED
+## 9. RELATED
 
-- [`../README.md`](../README.md): the unified hooks tree this helper serves, with the full kill-switch index and coverage matrix.
-- [`../hook-flags.env.example`](../hook-flags.env.example): the operator config file template.
-- [`../injection-contract.md`](../injection-contract.md): runtime injection visibility contract.
-- [`./session-readers/README.md`](./session-readers/README.md): the reader package contract and its failure codes.
+- [Hooks hub](../README.md): the kill-switch index and the runtime coverage matrix.
+- [Session readers](./session-readers/README.md): the reader contract and its failure codes.
+- [DSH helpers](./dsh/README.md): the package loader and the fan-out leaf marker.
+- [Shared tests](./tests/README.md): the fake plugin contexts and the suites beside them.
+- [Injection contract](../injection-contract.md): what each runtime injects, stated per runtime.
+- [Config template](../hook-flags.env.example): the operator config file to copy.

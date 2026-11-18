@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The voice-rewrite driver locks every heading, table row and bullet in place, because that rewrite only shortened sentences",
     "created_at": "2026-11-17T18:12:59Z",
-    "last_save_at": "2026-11-17T19:53:55.635Z",
+    "last_save_at": "2026-11-17T22:20:27.430Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,7 +199,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:19f60c2cd427a1cd0d46167e6ccc7e2aa5577b26551b9fc34fc8237ead124bc9",
+    "source_fingerprint": "sha256:a68c91cdf90531f5ac206fef466ed257827229bad1280ba2b6f29167c15d9efb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3183306df234754266f052851da6a7d31974678caf2ac4d2d00808704a9e29a9",

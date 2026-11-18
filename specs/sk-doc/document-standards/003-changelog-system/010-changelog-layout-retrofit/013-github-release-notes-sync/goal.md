@@ -43,7 +43,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | Only release bodies change. No tag moves and no release is deleted |
-| D2 | The writer is Hy4 Flash Free at high thinking through cli-opencode, with Devin's free `glm-5-2` as the only fallback. No paid model writes, for the 92 bodies that have no entry |
+| D2 | Hy4 Flash Free at high thinking through cli-opencode writes whenever it is available. When it is limited or fails, GLM 5.3 Flash at high on the opencode-go provider writes instead. A free model from another family checks the facts, for the 92 bodies that have no entry |
 | D3 | A body with an entry is rebuilt by `build_release_notes.py`, never written by hand |
 
 <!-- /ANCHOR:directive -->

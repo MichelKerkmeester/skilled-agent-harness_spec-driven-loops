@@ -33,7 +33,7 @@
       "feature"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -189,8 +189,8 @@
     ],
     "causal_summary": "The 205 sk-code changelogs were written before the v4.1.0.0 layout",
     "created_at": "2026-11-17T18:13:03Z",
-    "last_save_at": "2026-11-17T18:17:32.479Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-18T01:15:00.825Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -199,13 +199,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b4abaab309786ebe4003f372ebfa23d16dcfeeabdb1cef2fb930af44c5c889f",
+    "source_fingerprint": "sha256:85e21f9bdc247d11ee5618de9dc8447457ddaeb97c5a9b78e5f7b995d887f609",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1ca655a1f45d9012678c1195c405b56392488442c18eee38e7460e4039dba84b",
+      "spec.md": "adffadb6b82ca63f116f3affb23fe3a0617e1a8feacb7cb8ab095da7dfe90a4a",
       "plan.md": "4a1106568798a62a8937f1bf379697eb571a2c39a9f41f22c8aa11ba7fe6f94d",
-      "tasks.md": "0e2be1cc0fb1146f219adcdadfa9805aa251438400d725a053e673fefe7bca09",
-      "implementation-summary.md": "101f2a0771c990a1b0ef02432b358e3c8e2d5c539ca763e0b0115f4746b6c8e2"
+      "tasks.md": "2eab42621dd99dd266321acda3b59ed123c002068c6d6b357151bc4ffe682a90",
+      "implementation-summary.md": "49c8ae10e3d673caf972f330fa8036f72880bf27f29f6cb3a117f4ba2d70eaae"
     },
     "last_active_at": null
   }

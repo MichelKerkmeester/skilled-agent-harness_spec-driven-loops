@@ -204,7 +204,7 @@
     ],
     "causal_summary": "A mode packet README is what a reader opens after the hub routes them to one mode, such as `cli-codex` or `sk-create-readme`",
     "created_at": "2026-11-16T15:20:13Z",
-    "last_save_at": "2026-11-17T06:19:29.464Z",
+    "last_save_at": "2026-11-17T21:58:13.277Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +215,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:27e48ff3bbb737c0e4553c939c2bd61792f95bf56d7488f76dfef770be95de2c",
+    "source_fingerprint": "sha256:fdd7fdb5883fc497be3397df86ddeec272611af47965230fe7cbfcc835cbac07",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3a84ec935e1abe49931db2324ca9fe5102853a38e8c048946e78c4c646fc3b73",

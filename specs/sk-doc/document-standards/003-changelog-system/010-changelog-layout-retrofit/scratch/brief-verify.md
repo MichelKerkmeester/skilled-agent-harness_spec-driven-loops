@@ -24,6 +24,8 @@ Report three kinds of problem. Quote the text briefly in each item.
 
 Not problems: splitting sentences or bullets, plainer synonyms that keep the meaning, reordering, a bold lead turned into a plain sentence that keeps its meaning, a heading or glance row that restates a fact the body states, a fact stated in both a summary and its section, a name put in code formatting, and layout scaffolding such as &nbsp; lines, anchors, folded-block summaries, a Spec folders count and the fixed opening of the breaking-change box ("N changes can break an existing setup. Read these before you update.") when ORIGINAL marks exactly those N changes as breaking.
 
+{{SANCTIONED}}
+
 OUTPUT
 Reply with one JSON object and nothing else:
 {"verdict": "PASS" or "FAIL", "dropped": [], "added": [], "changed": []}

@@ -42,7 +42,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The writer is Hy4 Flash Free at high thinking through cli-opencode, with Devin's free `glm-5-2` as the only fallback. No paid model writes |
+| D1 | Hy4 Flash Free at high thinking through cli-opencode writes whenever it is available. When it is limited or fails, GLM 5.3 Flash at high on the opencode-go provider writes instead. A free model from another family checks the facts |
 | D2 | A draft lands only after the fact lock, the shape check and the voice scan pass. Anything else is restored from the saved original |
 | D3 | The pilot covers every list, so each family's entry shapes are tried before its phase runs |
 
@@ -92,4 +92,5 @@ and findings belong here.
 | Fact checker | Devin's free `glm-5-2` checks each draft, a different model from the Hy4 writer |
 | Verdict fallback | GLM hit its output cap on the 536-line `v4.0.0.0` and gave no verdict. The same draft is then checked once by Hy4, which used it 3 times in the pilot |
 | Requeued pilot files | Two compact files written under the first compact rules turned paragraphs into lists. They were put back and run again under the new rules |
+| Fact checker moved | Devin's daily quota ran out around 19:45 UTC on 2026-11-17, and its message did not match the limit pattern, so 61 drafts were checked by the Hy4 fallback, the writer's own model. The fact check now runs on `opencode/glm-5.3-flash-free#high`, with Devin's `glm-5-2` as its fallback and Hy4 never judging its own draft. `reverify.cjs` checks those 61 drafts again, and a failed one is restored and rewritten |
 <!-- /ANCHOR:log -->

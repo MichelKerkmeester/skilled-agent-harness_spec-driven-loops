@@ -42,7 +42,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The writer is Hy4 Flash Free at high thinking through cli-opencode, with Devin's free `glm-5-2` as the only fallback. No paid model writes |
+| D1 | Hy4 Flash Free at high thinking through cli-opencode writes whenever it is available. When it is limited or fails, GLM 5.3 Flash at high on the opencode-go provider writes instead. A free model from another family checks the facts |
 | D2 | A draft lands only after the fact lock, the shape check and the voice scan pass. Anything else is restored from the saved original |
 | D3 | No fact or section the original did not record is added |
 
@@ -55,11 +55,11 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `wc -l < ../scratch/lists/007.txt` prints 169, and the driver state records `pass` or `unchanged` for every listed file
-- [ ] `wave-verify.cjs ../scratch/lists/007.txt` prints 0 failures for the files on disk
-- [ ] The fact lock reports 0 missing code spans, numbers or spec-folder lines across the listed files
-- [ ] `hvr_scan.py` reports 0 hard blockers on every listed file
-- [ ] `validate.sh --strict` on `007-system-spec-kit-changelogs` prints `RESULT: PASSED`
+- [x] `wc -l < ../scratch/lists/007.txt` prints 169, and the driver state records `pass` or `unchanged` for every listed file
+- [x] `wave-verify.cjs ../scratch/lists/007.txt` prints 0 failures for the files on disk
+- [x] The fact lock reports 0 missing code spans, numbers or spec-folder lines across the listed files
+- [x] `hvr_scan.py` reports 0 hard blockers on every listed file
+- [x] `validate.sh --strict` on `007-system-spec-kit-changelogs` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,6 +77,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Goal authored | Done | `check-goal.cjs` on this packet |
+| Rewrite | Done | `{"listed":169,"pass":168,"unchanged":1,"restored":0,"missing":0,"problems":0,"factMisses":0,"failures":0}` |
+| Voice and layout | Done | 0 hard blockers. `SUMMARY files=169 pass=169 fail=0` |
 
 ### Deviations and findings
 

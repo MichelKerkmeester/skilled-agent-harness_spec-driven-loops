@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-17 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -119,7 +119,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | The free Hy4 Flash Free route through opencode-go | The run stops while the route is down | The driver stops on a usage limit, and Devin's free `glm-5-2` is the fallback |
+| Dependency | The free Hy4 Flash Free route through opencode-go | The run stops while the route is down | GLM 5.3 Flash on the opencode-go provider writes when Hy4 is limited or fails |
 | Risk | A rewrite drops or changes a fact | High | The fact lock and the second-model fact check restore the original on any miss |
 <!-- /ANCHOR:risks -->
 

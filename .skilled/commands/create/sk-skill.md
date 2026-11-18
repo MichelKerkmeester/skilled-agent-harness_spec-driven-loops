@@ -1,5 +1,5 @@
 ---
-description: Create or update OpenCode skills via one unified command with operation routing. :auto/:confirm.
+description: Create or update Skilled skills via one unified command with operation routing. :auto/:confirm.
 argument-hint: "<skill-name> [operation] [type] [--path <dir>] [--chained] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---

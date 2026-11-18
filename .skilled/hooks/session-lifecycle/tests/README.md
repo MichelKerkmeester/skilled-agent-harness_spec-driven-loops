@@ -1,5 +1,5 @@
 ---
-title: "Session Lifecycle: Adapter Tests"
+title: "Session Lifecycle Tests: DSH Adapter and Pi Advisory Suites"
 description: "Tests for the DSH session lifecycle adapters and the Pi session-start advisories, covering start context, advisory warnings, compaction re-prime, stop autosave and the fail-open policy."
 trigger_phrases:
   - "dsh session lifecycle tests"
@@ -8,15 +8,17 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# Session Lifecycle: Adapter Tests
+# Session Lifecycle Tests: DSH Adapter and Pi Advisory Suites
 
 ---
 
 ## 1. OVERVIEW
 
-`tests/` holds the automated checks for the DSH session lifecycle adapters and the Pi session-start advisories. The DSH suite drives each registration function with a fake plugin context and stubbed cores. It then asserts the injected notices, the leaf gate, the concern switch and the fail-open policy. It runs under `node --test`. The Pi suite runs under Vitest with a fake `exec`, so no guard script runs.
+`.skilled/hooks/session-lifecycle/tests/` holds the automated checks for the session lifecycle hooks on DSH and Pi. The folder carries no hook code of its own. The DSH suite drives the four adapters with a fake plugin context and stubbed cores. The Pi suite drives the session-start advisories extension with a fake `exec`.
 
-The suite covers four adapters. `session-start-context` primes a new session. `session-start-advisories` runs the guard scripts and injects their warnings. `session-compact-context` re-primes after a completed compaction. `session-stop-context` checkpoints state when an agent is disposed.
+The four DSH adapters prime context at session start, inject guard warnings, re-prime after compaction and checkpoint state when an agent is disposed. A case registers one adapter, fires one event and reads what the adapter injected or logged. Every adapter exports `ERROR_POLICY` as `fail-open`. The DSH suite asserts that value for all four.
+
+The Pi suite checks the advisory scripts from the extension side. A fake `exec` answers each command by its arguments, so no guard script runs.
 
 ---
 
@@ -24,30 +26,85 @@ The suite covers four adapters. `session-start-context` primes a new session. `s
 
 | File | Responsibility |
 |---|---|
-| `dsh-session-lifecycle.test.mjs` | The `node --test` suite for the DSH session lifecycle adapters. |
-| `pi-session-start-advisories.test.ts` | The Vitest suite for the Pi session-start advisories. |
+| `dsh-session-lifecycle.test.mjs` | The `node --test` suite for the four DSH session lifecycle adapters. |
+| `pi-session-start-advisories.test.ts` | The Vitest suite for the Pi session-start advisories extension. |
 
-The suite covers the startup advisories and the command each one runs. It checks that a completed compaction re-primes the session and that a failed one does not. It checks that the stop autosave runs for an interactive agent and never for a fan-out leaf. It checks the start context injection and each fail-open throw path. On both runtimes it checks that a passing Codex hook check shows nothing and a failing one warns.
+`dsh-session-lifecycle.test.mjs` imports the adapters from `../dsh/` and the test helpers from `../../shared/tests/dsh-plugin-harness.mjs`. `pluginHarness()` records every handler, command and log line an adapter registers. `adapterHarness()` keeps one handler per event. `fakeAgent()` records injected messages and supplies a session identity.
 
-The suite has no error path of its own. It asserts behavior and fails the run when an assertion breaks.
+The advisory cases run every enabled guard and inject their warnings as one notice. They assert that a fan-out leaf and a resumed session stay quiet. A throwing guard logs once and the remaining warning still lands. The concern switch removes the registration. One case pins the worktree-guard and dist-staleness commands in full. It also checks the arguments of the live-sync and Codex install guards and the detached flag of primary-reconcile. `bash` runs `.skilled/bin/worktree-guard.sh` and `python3` runs `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` with `--all`.
+
+The codex hook check has its own case. It writes a stand-in installer into a temporary checkout, so the real script never runs. An OK line injects nothing and a DRIFT line injects one notice.
+
+The compaction case stubs `runSessionPrime` and fires a completed compaction. It asserts the `source` value `compact`, then reads the prime output and the recovery pointer that names `/speckit:resume` in the injected notice. A compaction that carries an error adds no run. A summary event adds no run either.
+
+The stop case runs `runSessionStop` for an interactive agent and not for a leaf. It also hands the stop script the payload Pi sends: `process.execPath`, the script path, the project directory and a JSON body on stdin that names the session, the cwd and the `Stop` event.
+
+The start context case fires agent creation and asserts the prime input and the injected text. A throwing prime logs once and continues without injecting.
+
+`pi-session-start-advisories.test.ts` imports the extension from `../pi/session-start-advisories.ts` and calls its handler with a fake `exec`. An installer OK line on stdout stays quiet. A DRIFT line on stderr warns with that line. A worktree guard message on stdout still warns when the exit code is clean.
 
 ---
 
-## 3. VALIDATION
+## 3. BOUNDARIES AND FLOW
+
+| Boundary | Rule |
+|---|---|
+| Imports | The suites import the adapters from `../dsh/` and `../pi/`, plus the shared test helpers. They own no production code. |
+| Test doubles | The helpers supply the fake context and the fake agent. `enabled` and `disabled` answer the switch check. `leaf` and `interactive` answer the leaf check. |
+| Runtime | A stubbed core stands in for the shared hook, so no DSH runtime starts. The Pi case fakes `exec`, so no guard script runs. The codex hook check spawns a stand-in installer inside a temporary checkout. |
+
+A case follows one path.
+
+```text
+╭──────────────────────────────────────────╮
+│ test case                                │
+╰──────────────────────────────────────────╯
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ register the adapter with the helpers    │
+│ and the stubbed core                     │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ fire one event with its payload          │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ the adapter reads the stub and acts      │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+╭──────────────────────────────────────────╮
+│ injected notice, log line or nothing     │
+╰──────────────────────────────────────────╯
+```
+
+---
+
+## 4. VALIDATION
 
 Run from the repository root.
 
 ```bash
 node --test .skilled/hooks/session-lifecycle/tests/dsh-session-lifecycle.test.mjs
+```
+
+Expected result: `pass 13` and `fail 0`, with exit status 0.
+
+```bash
 .skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-lifecycle/tests/pi-session-start-advisories.test.ts
 ```
 
-Expected result: every test passes in both runs.
+Expected result: `Tests  3 passed (3)` in one test file, with exit status 0.
 
 ---
 
-## 4. RELATED
+## 5. RELATED
 
-- [`../README.md`](../README.md): the concern README with the per-runtime matrix.
-- [`../dsh/session-start-context.mjs`](../dsh/session-start-context.mjs): one adapter under test.
-- [`../../shared/tests/`](../../shared/tests/): the shared DSH test helpers.
+- [The session lifecycle concern](../README.md) holds the adapters and their switches. Its runtime coverage table names each runtime entry.
+- [The start context adapter](../dsh/session-start-context.mjs) passes the start source to the shared session-prime hook.
+- [The Pi advisories extension](../pi/session-start-advisories.ts) runs the guard scripts at session start.
+- [The shared DSH test helpers](../../shared/tests/README.md) build the fake plugin context and the fake agent.

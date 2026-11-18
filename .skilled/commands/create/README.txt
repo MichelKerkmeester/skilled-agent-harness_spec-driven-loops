@@ -44,7 +44,7 @@ This document is a routing and reference surface only. Run the command entrypoin
 ## 3. COMMANDS
 | Command | Invocation | Description |
 |---------|------------|-------------|
-| **agent** | `/create:agent <agent_name> [agent_description] [:auto\|:confirm]` | Create a new OpenCode agent with frontmatter, tool permissions, and behavioral rules |
+| **agent** | `/create:agent <agent_name> [agent_description] [:auto\|:confirm]` | Create a new Skilled agent with frontmatter, tool permissions, and behavioral rules |
 | **benchmark** | `/create:benchmark <skill-or-mode> <spec-packet> [create\|update] --family=<family> [--benchmark-id <id>] [--date YYYY-MM-DD] [--path <dir>] [:auto\|:confirm]` | Author or update family-keyed benchmark packages |
 | **changelog** | `/create:changelog <spec-folder-or-component> [--bump <major\|minor\|patch\|build\|auto>] [--release] [:auto\|:confirm]` | Create a global changelog entry under `.skilled/changelog/` that search can find, with a GitHub release for the `skilled` line when asked |
 | **command** | `/create:command <command_invocation> [command_request] [:auto\|:confirm]` | Create or update an OpenCode slash command set with router and `:auto`/`:confirm` workflow assets |

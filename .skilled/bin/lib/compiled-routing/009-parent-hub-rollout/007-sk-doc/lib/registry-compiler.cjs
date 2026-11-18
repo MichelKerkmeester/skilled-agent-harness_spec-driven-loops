@@ -250,7 +250,7 @@ function orderedBundleRules(hubRouter) {
 function fallbackChecklist(registry) {
   return [
     `Choose one sk-doc workflow mode: ${registry.modes.map((mode) => mode.workflowMode).join(', ')}.`,
-    'Name the target document or OpenCode component.',
+    'Name the target document or Skilled component.',
     'Confirm whether the request is authoring or quality validation.',
   ];
 }

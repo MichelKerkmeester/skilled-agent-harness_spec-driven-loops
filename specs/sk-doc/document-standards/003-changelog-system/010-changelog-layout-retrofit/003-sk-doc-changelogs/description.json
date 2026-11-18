@@ -1,11 +1,12 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs",
   "description": "Phase 3: sk-doc-changelogs",
   "keywords": [
     "phase",
     "sk-doc-changelogs"
   ],
-  "lastUpdated": "2026-11-17T18:13:02.360Z",
+  "lastUpdated": "2026-11-17T23:27:27.134Z",
   "specId": "003",
   "folderSlug": "sk-doc-changelogs",
   "parentChain": [
@@ -14,7 +15,8 @@
     "003-changelog-system",
     "010-changelog-layout-retrofit"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-11-26_00-27__rewrote-all-306-sk-doc-changelogs-into-the.md"
+  ]
 }

@@ -33,7 +33,7 @@
       "layout"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -189,8 +189,8 @@
     ],
     "causal_summary": "The 62 Skilled release changelogs were written before the v4.1.0.0 layout",
     "created_at": "2026-11-17T18:13:00Z",
-    "last_save_at": "2026-11-17T18:17:17.252Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-17T22:18:39.089Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -199,13 +199,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6e20f562e5a50cb9f42610ad2e6ade708fd831c44b50614a755a2013a0e4a97",
+    "source_fingerprint": "sha256:444c8ae5fbd7168e80f2086c3b36e5c9ae39c37ecfb6f0138ce0d95dc9dc8771",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "104ce9aab096c8fa0569be8cb7e46d3aa0a72967c146f2a159e4c62dad6ac9f7",
+      "spec.md": "c610099ef9f0b6dc295a2d7caeb415b64f33d67e36d3f26e6ea60e22dd6f88d6",
       "plan.md": "71574609c465776d15e14f40e01e4b1dc5c3ececedabc7d7f75f7f267fdbd621",
-      "tasks.md": "07fb313bbe75f5e222f1f27345266edc5991e069a8c8eb760ae9377fb1fc5a83",
-      "implementation-summary.md": "f55e5144c72be187421a9408692ab44508f8bb1d46ca5ac4c8f66b0427a0465d"
+      "tasks.md": "f6a21c2e1fbd5802dee2586ec6713b6f7592e690038ac32f48f2318987010672",
+      "implementation-summary.md": "d3cfa943f69ad5fd2c2172185255b601c9ba401cee3309fb40539490be480f03"
     },
     "last_active_at": null
   }

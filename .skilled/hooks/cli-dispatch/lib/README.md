@@ -65,7 +65,7 @@ The test files cover one core each. The corpus file holds sample version output 
 | Output | No stdout and no stderr. The audit path reports through its return value. |
 | Failure | A throwing check counts as satisfied. A failed write returns `false`. |
 
-The grade is a list. `evaluate` returns only the rules that failed. A rule with `block` or `error` severity keeps that weight so the adapter can deny. Every other severity becomes a warning. An unknown check id is skipped, so a typo in a sidecar loses its rule without an error. The rule engine suite is what catches that.
+The grade is a list. `evaluate` returns only the rules that failed. A rule with `block` or `error` severity comes back as `block`, so the adapter can deny. Every other severity becomes `warn`. So does a version-scoped rule when the binary's version resolves to `unknown`. An unknown check id is skipped, so a typo in a sidecar loses its rule without an error. The rule engine suite is what catches that.
 
 `recordDispatch` checks the kill switch first. With `CLI_DISPATCH_AUDIT_DISABLED` set to `1`, it returns `false` before it reads the command.
 

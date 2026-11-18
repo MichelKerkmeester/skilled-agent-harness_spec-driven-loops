@@ -20,6 +20,8 @@ FACT RULES (these outrank every layout and style rule)
 - Copy every fenced code block exactly.
 - The closing spec-folder line keeps every path the original names. When the original puts words beside the paths, keep those words on that line too.
 
+{{SANCTIONED}}
+
 LAYOUT RULES FOR THIS ENTRY
 {{TIER_RULES}}
 
