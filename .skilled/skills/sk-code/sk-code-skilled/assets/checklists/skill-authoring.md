@@ -1,6 +1,6 @@
 ---
 title: Skill Authoring Checklist
-description: Checklist for authoring or modifying OpenCode skills with correct metadata, parent-hub files, resources, and validation.
+description: Checklist for authoring or modifying Skilled skills with correct metadata, parent-hub files, resources, and validation.
 trigger_phrases:
   - "skill authoring checklist"
   - "opencode skill metadata"
@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill validation path"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Skill Authoring Checklist
@@ -19,13 +19,13 @@ Open this before handing a new or changed skill to another runtime, so its metad
 
 ### Purpose
 
-This checklist keeps new and modified OpenCode skills consistent with the live skill contract. Use it to verify whether the skill is a flat skill or a parent-hub skill, then check metadata, resource layout, routing files, versioning, and validation before handing the skill to another runtime or authoring command.
+This checklist keeps new and modified Skilled skills consistent with the live skill contract. Use it to verify whether the skill is a flat skill or a parent-hub skill, then check metadata, resource layout, routing files, versioning, and validation before handing the skill to another runtime or authoring command.
 
 ### Usage
 
 - Use this when authoring a new skill under `.skilled/skills/`.
 - Use this when modifying an existing skill's frontmatter, `SKILL.md` structure, allowed tools, bundled references, assets, or scripts.
-- Use this when promoting a skill from a local draft into the shared OpenCode skill inventory.
+- Use this when promoting a skill from a local draft into the shared Skilled skill inventory.
 - Use this when a skill changes routing behavior, resource discovery, or version metadata.
 - Use this when converting a flat skill into a parent-hub skill with nested mode packets.
 

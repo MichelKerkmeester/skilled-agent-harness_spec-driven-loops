@@ -47,7 +47,7 @@ This document is a routing and reference surface only. Run the command entrypoin
 | **agent** | `/create:agent <agent_name> [agent_description] [:auto\|:confirm]` | Create a new Skilled agent with frontmatter, tool permissions, and behavioral rules |
 | **benchmark** | `/create:benchmark <skill-or-mode> <spec-packet> [create\|update] --family=<family> [--benchmark-id <id>] [--date YYYY-MM-DD] [--path <dir>] [:auto\|:confirm]` | Author or update family-keyed benchmark packages |
 | **changelog** | `/create:changelog <spec-folder-or-component> [--bump <major\|minor\|patch\|build\|auto>] [--release] [:auto\|:confirm]` | Create a global changelog entry under `.skilled/changelog/` that search can find, with a GitHub release for the `skilled` line when asked |
-| **command** | `/create:command <command_invocation> [command_request] [:auto\|:confirm]` | Create or update an OpenCode slash command set with router and `:auto`/`:confirm` workflow assets |
+| **command** | `/create:command <command_invocation> [command_request] [:auto\|:confirm]` | Create or update a Skilled slash command set with router and `:auto`/`:confirm` workflow assets |
 | **diff** | `/create:diff <target-document \| --before old --after new> [--report out.html] [--view unified\|side-by-side] [:auto\|:confirm]` | Create a self-contained before/after document diff report via the create-diff engine |
 | **feature-catalog** | `/create:feature-catalog <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `feature-catalog/` package using the shipped `sk-doc` contract |
 | **goal** | `/create:goal <packet path> [top-level\|phase-parent\|child\|retrofit\|phase-add\|amend] [:auto\|:confirm]` | Author or revise a packet `goal.md` for top-level, phase-parent, child, retrofit, phase-add and amend |
@@ -204,7 +204,7 @@ A: The command reads the newest version in the target folder, including its gene
 
 | Document | Purpose |
 |----------|---------|
-| [Parent: OpenCode Commands](../README.txt) | Overview of all command groups |
+| [Parent: Skilled Commands](../README.txt) | Overview of all command groups |
 | [sk-doc SKILL.md](../../skills/sk-doc/SKILL.md) | Templates and standards used by create commands |
 | [references/README.md](../../skills/sk-doc/sk-create-feature-catalog/references/README.md) | Standards for rooted feature catalog packages |
 | [references/README.md](../../skills/sk-doc/sk-create-manual-testing-playbook/references/README.md) | Standards for rooted testing playbook packages |

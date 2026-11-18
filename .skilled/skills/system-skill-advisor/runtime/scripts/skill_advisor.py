@@ -2355,7 +2355,7 @@ GENERATED_COMMAND_BRIDGES = {
         "routing_enabled": True,
     },
     "command-create-agent": {
-        "description": "Create a new OpenCode agent using /create:agent.",
+        "description": "Create a new Skilled agent using /create:agent.",
         "slash_markers": ["/create:agent", "create:agent"],
         "inventory_id": "command-create-agent",
         "command": "/create:agent",
@@ -2373,7 +2373,7 @@ GENERATED_COMMAND_BRIDGES = {
         "routing_enabled": True,
     },
     "command-create-sk-skill": {
-        "description": "Create or update an OpenCode skill using /create:sk-skill.",
+        "description": "Create or update a Skilled skill using /create:sk-skill.",
         "slash_markers": ["/create:sk-skill", "create:sk-skill"],
         "inventory_id": "command-create-sk-skill",
         "command": "/create:sk-skill",
@@ -3115,7 +3115,7 @@ def get_skills(force_refresh: bool = False) -> Dict[str, Dict[str, Any]]:
 
     skills["create:agent"] = _build_inline_record(
         name="create:agent",
-        description="Create command bridge for /create:agent OpenCode agent scaffolding.",
+        description="Create command bridge for /create:agent Skilled agent scaffolding.",
         kind="skill",
         source="bridge",
         path=None,

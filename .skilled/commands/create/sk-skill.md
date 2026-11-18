@@ -10,7 +10,7 @@ This command is a thin router. It separates execution routing from user-facing p
 
 ## 1. ROUTER CONTRACT
 
-Route /create:sk-skill to its presentation contract and workflow YAML for creating or updating OpenCode skills through the unified skill command.
+Route /create:sk-skill to its presentation contract and workflow YAML for creating or updating Skilled skills through the unified skill command.
 
 - Do not split behavior across legacy command definitions.
 - Do not edit workflow YAML while executing this command.

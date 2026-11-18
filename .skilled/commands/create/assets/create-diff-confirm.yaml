@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------
-# OPENCODE CREATE: DOCUMENT DIFF WORKFLOW (CONFIRM MODE)
+# SKILLED CREATE: DOCUMENT DIFF WORKFLOW (CONFIRM MODE)
 # -----------------------------------------------------------------
 # Mode: confirm-only (interactive step-by-step approval)
 # Note: This workflow follows the same creation path as :auto, with

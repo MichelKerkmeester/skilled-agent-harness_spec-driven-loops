@@ -31,7 +31,7 @@
           "order": 3,
           "id": "create:agent",
           "name": "create:agent",
-          "description": "Create command bridge for /create:agent OpenCode agent scaffolding.",
+          "description": "Create command bridge for /create:agent Skilled agent scaffolding.",
           "keywords": [
             "/create:agent",
             "create new agent",
@@ -57,7 +57,7 @@
           "inventoryId": "command-create-agent",
           "order": 10,
           "id": "command-create-agent",
-          "description": "Create a new OpenCode agent using /create:agent.",
+          "description": "Create a new Skilled agent using /create:agent.",
           "slashMarkers": [
             "/create:agent",
             "create:agent"
@@ -124,7 +124,7 @@
       "command": "/create:command",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-command",
-      "description": "Create or update OpenCode slash command sets with :auto/:confirm workflow assets.",
+      "description": "Create or update Skilled slash command sets with :auto/:confirm workflow assets.",
       "ownedSignals": [
         "create a slash command",
         "scaffold command routing",
@@ -353,7 +353,7 @@
           "inventoryId": "command-create-sk-skill",
           "order": 12,
           "id": "command-create-sk-skill",
-          "description": "Create or update an OpenCode skill using /create:sk-skill.",
+          "description": "Create or update a Skilled skill using /create:sk-skill.",
           "slashMarkers": [
             "/create:sk-skill",
             "create:sk-skill"
