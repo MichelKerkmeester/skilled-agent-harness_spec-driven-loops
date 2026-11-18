@@ -7,7 +7,7 @@ trigger_phrases:
   - "extend completed research run"
   - "run_extended"
   - "--extend-minutes"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Completed-run extension (--extend)
@@ -48,13 +48,16 @@ The `run_extended` stem is part of the deep-research ledger schema, and the deep
 | `.skilled/commands/deep/assets/deep-research.yaml` | Command workflow | Lineage handling and the snapshot of the prior synthesis. |
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts` | Shared | Defines the `run_extended` stem and its payload. |
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts` | Shared | Routes the `run_extended` stem. |
+| `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts` | Shared | Projects `deep_research.run_extended` into the `extended` state-log row with `lineageMode`, `continuedFromRun` and `extension`. |
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Script | Lifecycle event filters that read the extension event. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts` | Vitest | `run_extended` payload: the new ceiling must equal `continuedFromRun` plus `addedIterations`; the legacy extended row upcast refuses one without a full budget. |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reducers.vitest.ts` | Vitest | Reducer routing for the run lifecycle event stems. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts` | Vitest | `completed-run extension` group: fan-out refusal, not-complete refusal, positive-integer flags and the `--extend-minutes` budget. |
 | `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md` | Manual playbook | DR-065: same-session continuation, the `run_extended` event and the synthesis snapshot. |
 
 ---

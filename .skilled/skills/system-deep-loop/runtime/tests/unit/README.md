@@ -98,9 +98,9 @@ The table lists the runtime contracts that carry a written entry. It is not the 
 | `receipts-and-effect-recovery.vitest.ts` | Executable checks for the receipts and effect recovery runtime contract. |
 | `render-command-contract.vitest.ts` | Executable checks for the render command contract runtime contract. |
 | `replay-fingerprint.vitest.ts` | Executable checks for the replay fingerprint runtime contract. |
-| `research-depth-mode-golden.vitest.ts` | Executable checks that a default research run keeps its pre-expansive output byte for byte. |
+| `research-depth-mode-golden.vitest.ts` | Executable checks that a default research run keeps its pre-expansive output, apart from the expansive-only persona paragraph the test strips from the lineage prompt. |
 | `result-envelopes.vitest.ts` | Executable checks for the result envelopes runtime contract. |
-| `review-depth-mode-golden.vitest.ts` | Executable checks that a default review run keeps its pre-expansive output byte for byte. |
+| `review-depth-mode-golden.vitest.ts` | Executable checks that a default review run keeps its pre-expansive output, apart from the expansive-only persona paragraph the test strips from the lineage prompt. |
 | `runtime-bootstrap.test.cjs` | `node:test` suite for `../../scripts/runtime-bootstrap.cjs`: `tsxChildEnv` drops `NODE_PRESERVE_SYMLINKS` and never mutates `process.env`, `resolveContainmentRepoRoot` honors its precedence order and symlink redirection, and every tsx re-exec entry point builds its child env through `tsxChildEnv`. A regression here reintroduces the `ERR_MODULE_NOT_FOUND` that stalls every executor at iteration 1. |
 | `run-now-yaml-control.vitest.ts` | Executable checks for the run now yaml control runtime contract. |
 | `runtime-capabilities-matrix-conformance.vitest.ts` | Executable checks for the runtime capabilities matrix conformance runtime contract. |

@@ -1,7 +1,7 @@
 ---
 title: "DLR-062 -- Divergent council quorum retry"
 description: "This scenario validates that a divergent pivot council gets three seats per attempt and one retry after a first-attempt quorum miss, for `DLR-062`. It focuses on the seat budget and the attempt identity that the retry relies on."
-version: 2.1.1.0
+version: 2.1.2.0
 ---
 
 # DLR-062 -- Divergent council quorum retry
@@ -16,7 +16,7 @@ This scenario validates the divergent pivot council budget. It focuses on three 
 
 ### Why This Matters
 
-A quorum miss used to end a pivot for good. A resumed or later pivot could also be refused because an earlier pivot had spent seats. The retry gives one pivot one more council attempt. The per-pivot cap keeps the run bounded.
+Without the retry, one missed seat round ends a pivot; without the per-pivot cap, a later pivot is refused for seats an earlier one spent. The retry gives one pivot one more council attempt, and the per-pivot cap keeps the run bounded.
 
 ---
 

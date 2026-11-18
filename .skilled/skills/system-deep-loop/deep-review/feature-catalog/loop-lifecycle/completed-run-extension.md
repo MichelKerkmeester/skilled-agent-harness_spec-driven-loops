@@ -7,7 +7,7 @@ trigger_phrases:
   - "extend completed review run"
   - "review run_extended"
   - "--extend-minutes review"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Completed-run extension (--extend)
@@ -48,6 +48,7 @@ The `run_extended` stem is part of the deep-review ledger schema, and the deep-r
 | `.skilled/commands/deep/assets/deep-review.yaml` | Command workflow | Lineage handling and the snapshot of the prior review report. |
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts` | Shared | Defines the `run_extended` stem and its payload. |
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts` | Shared | Routes the `run_extended` stem. |
+| `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts` | Shared | Projects `deep_review.run_extended` into the `extended` state-log row with `lineageMode`, `continuedFromRun` and `extension`. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Script | Live lineage modes that read the extension. |
 
 ### Validation And Tests
@@ -55,6 +56,8 @@ The `run_extended` stem is part of the deep-review ledger schema, and the deep-r
 | File | Type | Role |
 |---|---|---|
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts` | Vitest | Ledger schema coverage for the review lifecycle event stems. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-reducers.vitest.ts` | Vitest | `run_extended` group: the projected iteration ceiling rises and the run stays live. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts` | Vitest | The `review:` extension case plus the shared fan-out and lock cases. |
 | `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/extend-completed-review-run.md` | Manual playbook | DRV-070: same-session continuation, one `run_extended` event and the report snapshot. |
 
 ---

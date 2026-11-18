@@ -1,7 +1,7 @@
 ---
 title: "DLR-061 -- Source quality class derivation"
 description: "This scenario validates the derived quality_class on research SOURCE nodes for `DLR-061`. It focuses on the path-first classification at upsert and on the source-diversity signal that reads it."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # DLR-061 -- Source quality class derivation
@@ -12,11 +12,11 @@ This document captures the realistic user-testing contract, execution flow, and 
 
 ## 1. OVERVIEW
 
-This scenario validates the derived `quality_class` for `DLR-061`. It focuses on two points: `upsert.cjs` sets `quality_class` on every research SOURCE node it stores, derived from the first of its path, name, label and id that names a real location, and the `sourceDiversity` signal now reads those derived classes on normal runs instead of only on fixtures that typed one in.
+This scenario validates the derived `quality_class` for `DLR-061`. It focuses on two points: `upsert.cjs` sets `quality_class` on every research SOURCE node it stores, derived from the first of its path, name, label and id that names a real location, and the `sourceDiversity` signal reads those derived classes on normal runs rather than only on fixtures that typed one in.
 
 ### Why This Matters
 
-Before this change no producer set `quality_class`, so the source-diversity guard had nothing real to read. If the derivation runs on the wrong field, a free-text label can hide a repo path, and a leaf-supplied value can override the classification the runtime owns. Either failure lets a code-only research question pass the diversity guard it should block.
+If no producer sets `quality_class`, the source-diversity guard has nothing real to read. If the derivation runs on the wrong field, a free-text label can hide a repo path, and a leaf-supplied value can override the classification the runtime owns. Either failure lets a code-only research question pass the diversity guard it should block.
 
 ---
 

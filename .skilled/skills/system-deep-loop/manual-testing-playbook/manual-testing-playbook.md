@@ -1,7 +1,7 @@
 ---
 title: "system-deep-loop: Manual Testing Playbook"
 description: "Operator-facing reference for manually validating system-deep-loop hub routing, advisor integration, backend discrimination, state discipline, and per-mode artifact ownership against the live skill registry."
-version: "1.2.7.0"
+version: "1.2.8.0"
 ---
 
 # system-deep-loop: Manual Testing Playbook
@@ -226,8 +226,8 @@ The two mode packages and the shared runtime package hold the remaining operator
 
 | Package | Scenarios | Categories | Package Index |
 |---|---|---|---|
-| `deep-research` | 72 | 9 | [deep-research/manual-testing-playbook/manual-testing-playbook.md](../deep-research/manual-testing-playbook/manual-testing-playbook.md) |
+| `deep-research` | 74 | 9 | [deep-research/manual-testing-playbook/manual-testing-playbook.md](../deep-research/manual-testing-playbook/manual-testing-playbook.md) |
 | `deep-review` | 70 | 10 | [deep-review/manual-testing-playbook/manual-testing-playbook.md](../deep-review/manual-testing-playbook/manual-testing-playbook.md) |
-| `runtime` | 56 | 12 | [runtime/manual-testing-playbook/manual-testing-playbook.md](../runtime/manual-testing-playbook/manual-testing-playbook.md) |
+| `runtime` | 58 | 12 | [runtime/manual-testing-playbook/manual-testing-playbook.md](../runtime/manual-testing-playbook/manual-testing-playbook.md) |
 
 The package counts above are outside the Section 8 directory, which lists the hub's own scenarios only.

@@ -5,7 +5,7 @@ trigger_phrases:
   - "runtime/ feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
-version: 1.4.10.0
+version: 1.4.11.0
 ---
 
 # runtime/: Feature Catalog
@@ -601,7 +601,7 @@ Computes graph-aware CONTINUE, STOP_ALLOWED, or STOP_BLOCKED decisions for a ses
 
 #### How It Works
 
-Direct replacement for `deep_loop_graph_convergence`; emits graph decision bindings. `depthMode` comes from `--depth-mode expansive` (or `--depth_mode`; the script does not split a `--flag=value` form) or `antiConvergence.depthMode`. Under expansive depth, an open or active frontier node turns a stop candidate into CONTINUE with `frontierOpen`, and an expansive review whose frontier is drained with at least one node answered forms the hard candidate `frontier_drained`. The `minIterations` floor (`minIterationsNotReached`) now applies to review as well as research.
+Direct replacement for `deep_loop_graph_convergence`; emits graph decision bindings. `depthMode` comes from `--depth-mode expansive` (or `--depth_mode`; the script does not split a `--flag=value` form) or `antiConvergence.depthMode`. Under expansive depth, an open or active frontier node turns a stop candidate into CONTINUE with `frontierOpen`, and an expansive review whose frontier is drained with at least one node answered forms the hard candidate `frontier_drained`. The `minIterations` floor (`minIterationsNotReached`) applies to review as well as research.
 
 #### Source Files
 

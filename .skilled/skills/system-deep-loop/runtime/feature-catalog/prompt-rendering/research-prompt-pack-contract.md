@@ -6,7 +6,7 @@ trigger_phrases:
   - "research.md allowed write"
   - "Recommended Next Focus heading"
   - "research prompt pack"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Research prompt pack contract
@@ -41,7 +41,7 @@ The pack names the `Recommended Next Focus` heading, the heading the reducer rea
 |---|---|---|
 | `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` | Template | Carries the conditional allowed-write entry for `research.md`. |
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts` | Shared | Renders the pack by token substitution. |
-| `.skilled/agents/deep-research.md` | Agent contract | The rule the rendered pack must match. Checked, not edited by this change. |
+| `.skilled/agents/deep-research.md` | Agent contract | The rule the rendered pack must match. |
 
 ### Validation And Tests
 

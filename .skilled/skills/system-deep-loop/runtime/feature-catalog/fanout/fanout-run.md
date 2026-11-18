@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.6.0
+version: 1.4.7.0
 ---
 
 # Fan-out CLI lineage driver
@@ -71,7 +71,7 @@ failure look impossible on a single-lineage run.
 Every lineage subprocess gets `DEEP_LOOP_COVERAGE_DB_DIR` set to `graph-db/` inside its own
 lineage directory, for every depth mode. The coverage graph store otherwise defaults to the
 shared runtime database, which sits outside the lineage write surface, so a leaf that honors
-the write limit would skip every graph step. Each CLI lineage now keeps its coverage graph in
+the write limit would skip every graph step. Each CLI lineage keeps its coverage graph in
 its own `graph-db/`.
 
 ### Expansive Depth

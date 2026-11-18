@@ -6,7 +6,7 @@ trigger_phrases:
   - "findings_not_enumerated"
   - "focusAlignment guard"
   - "projected iteration row"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Findings gate and focusAlignment read leaf fields
@@ -42,6 +42,8 @@ The `focusAlignment` guard in `runtime/scripts/convergence.cjs` judges only the 
 | `.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs` | Script | Findings gate on the projected row. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Script | The `focusAlignment` guard and the question-prefix normalizer. |
 | `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts` | Shared | Conditional copies of the leaf keys into the projected iteration row. |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts` | Shared | Admits the leaf fields on `iteration_completed`, so the persisted event carries them. |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts` | Shared | Keeps the leaf fields through the legacy upcast in `optionalLeafFields`. |
 | `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` | Asset | Record shape the leaf writes, with `findingsCount` and `keyQuestions`. |
 
 ### Validation And Tests
@@ -51,6 +53,8 @@ The `focusAlignment` guard in `runtime/scripts/convergence.cjs` judges only the 
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts` | Vitest | Findings gate and route proof on the projected row. |
 | `.skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts` | Vitest | `focusAlignment` failure, recovery and prefix match. |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-projections-contract.vitest.ts` | Vitest | The leaf keys on a projected research iteration row. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts` | Vitest | Accepts an `iteration_completed` event carrying the leaf fields. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-legacy-seam.vitest.ts` | Vitest | Carries the leaf dispatch, gate and telemetry fields of a legacy iteration row through the gateway. |
 | `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/focus-alignment-and-findings-gate-read-leaf-fields.md` | Manual playbook | DR-067: both checks read the leaf fields. |
 
 ---

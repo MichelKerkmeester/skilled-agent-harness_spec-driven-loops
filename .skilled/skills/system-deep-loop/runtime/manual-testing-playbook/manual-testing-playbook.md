@@ -1,7 +1,7 @@
 ---
 title: "runtime/: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the runtime/ skill."
-version: 1.4.7.0
+version: 1.4.8.0
 ---
 
 # runtime/: Manual Testing Playbook
@@ -103,7 +103,7 @@ Scenario verdict — three outcomes only:
 - `FAIL`: expected behavior is missing, output contradicts the contract, a critical check failed, or the core behavior worked but the required evidence or metadata is incomplete. An outcome another operator cannot reproduce from the captured evidence is a `FAIL`, not a partial pass.
 - `SKIP`: a concrete sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevented execution, and the run record names it
 
-Release is cleared only when all 56 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
+Release is cleared only when all 58 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
 
 ---
 
@@ -675,7 +675,7 @@ Expected signals: The retry case and the fail-closed second-miss case pass. The 
 
 ## 14. FAN-OUT
 
-This category covers 12 scenarios validating the opt-in multi-executor fan-out layer added in packet 124: config schema, pool primitive, CLI lineage driver, write-failure salvage, research merge, review strongest-restriction, artifact-dir-override parity, and the expansive per-lineage budget.
+This category covers 12 scenarios validating the opt-in multi-executor fan-out layer: config schema, pool primitive, CLI lineage driver, write-failure salvage, research merge, review strongest-restriction, artifact-dir-override parity, and the expansive per-lineage budget.
 
 ### DLR-023 | Fan-out config schema
 
