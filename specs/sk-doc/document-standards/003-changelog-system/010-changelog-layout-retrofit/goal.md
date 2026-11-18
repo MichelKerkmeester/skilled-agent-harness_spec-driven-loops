@@ -88,11 +88,11 @@ string, not these files.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] The driver state records `pass` or `unchanged` for all 1,576 skill and release changelogs, with 0 restored
-- [ ] The fact lock reports 0 missing code spans, numbers or spec-folder lines across all 1,576 rewrites
-- [ ] `hvr_scan.py` reports 0 hard blockers on every rewritten changelog
-- [ ] All 152 GitHub release bodies read in the new layout, and every tag points at the commit it pointed at before
-- [ ] `validate.sh --recursive --strict` on `010-changelog-layout-retrofit` prints `RESULT: PASSED`
+- [x] The driver state records `pass` or `unchanged` for all 1,576 skill and release changelogs, with 0 restored
+- [x] The fact lock reports 0 missing code spans, numbers or spec-folder lines across all 1,576 rewrites
+- [x] `hvr_scan.py` reports 0 hard blockers on every rewritten changelog
+- [x] All 152 GitHub release bodies read in the new layout, and every tag points at the commit it pointed at before
+- [x] `validate.sh --recursive --strict` on `010-changelog-layout-retrofit` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -110,10 +110,14 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Parent goal authored | Done | `check-goal.cjs` on this packet |
+| Changelogs 002-012 | Done | 1,576 entries: 1,569 pass, 7 unchanged, 0 restored; lint 1576/1576 |
+| Release bodies 013 | Done | 152 live bodies match their prepared files; 120 edited, 32 already in layout |
+| Validation | Done | validate.sh --recursive --strict printed RESULT: PASSED for 14 folders |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | - |
+| `v4.1.0.0` tag | Another session re-tagged it to `6a78ea87f9c` after adding README work to the entry. The operator accepted it as the new baseline on 2026-11-18, and no tag was moved by this work |
+| Checker wording | Phases 002 to 012 first said Devin's `glm-5-2` checked the facts. The state file shows GLM 5.3 Flash did, so the summaries were corrected |
 <!-- /ANCHOR:log -->

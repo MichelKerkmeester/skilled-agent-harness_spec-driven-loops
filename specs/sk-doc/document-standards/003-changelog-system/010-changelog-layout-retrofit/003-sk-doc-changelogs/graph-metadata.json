@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The 306 sk-doc changelogs were written before the v4.1.0.0 layout",
     "created_at": "2026-11-17T18:13:01Z",
-    "last_save_at": "2026-11-17T23:27:27.134Z",
+    "last_save_at": "2026-11-18T07:43:37.096Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6bc3ff44aaaa3180a65cfb8c1cedef0218530d57cc0253e8589afeb15b330f2e",
+    "source_fingerprint": "sha256:2e74cf84a5f353c4dc8705a6e69b5fb02f3ea45d88746ee9110fa1d7b19f06c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "54e9e74d24eab9509350695efb8bd8f25123f9255a02c9e80c25b732e2d98999",
       "plan.md": "92cf567db3e72ed21a275d573d2746fb534a542faac10bd2565917f0a55dc1bb",
       "tasks.md": "eaff9966c4033cc3706090b3d371d32e76afab8b1eea13f713fd4532cdba955a",
-      "implementation-summary.md": "1a21397c11e0736652aa4f990df1746627b6c63d899284d146c135692babd814"
+      "implementation-summary.md": "eb9f40be1f131c97191e9202886cf74bbd8999fe22ce61a70ee7c1209099e6ff"
     },
     "last_active_at": null
   }

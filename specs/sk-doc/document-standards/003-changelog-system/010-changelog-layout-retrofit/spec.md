@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-17 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -118,7 +118,7 @@ Every skill and release changelog, and every GitHub release body, reads in the v
 | 10 | 010-sk-design-changelogs/ | 71 sk-design changelogs | Complete |
 | 11 | 011-sk-git-changelogs/ | 54 sk-git changelogs | Complete |
 | 12 | 012-small-skill-changelogs/ | 99 changelogs: sk-prompt, cli-classifier, mcp-code-mode, cli-orca and system-skilled-doctor | Complete |
-| 13 | 013-github-release-notes-sync/ | Rebuild 60 release bodies from entries and rewrite the 92 without one | Pending |
+| 13 | 013-github-release-notes-sync/ | Rebuild 60 release bodies from entries and rewrite the 92 without one | Complete |
 
 ### Phase Transition Rules
 

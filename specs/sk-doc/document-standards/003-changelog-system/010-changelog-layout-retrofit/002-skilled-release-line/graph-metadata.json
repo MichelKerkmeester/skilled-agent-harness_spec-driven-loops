@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The 62 Skilled release changelogs were written before the v4.1.0.0 layout",
     "created_at": "2026-11-17T18:13:00Z",
-    "last_save_at": "2026-11-17T22:18:39.089Z",
+    "last_save_at": "2026-11-18T07:43:35.451Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:444c8ae5fbd7168e80f2086c3b36e5c9ae39c37ecfb6f0138ce0d95dc9dc8771",
+    "source_fingerprint": "sha256:9317d873230440ef1f37ea2c35cd7a4b6f5387eacc4e5f449a4c4054b8c9e229",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c610099ef9f0b6dc295a2d7caeb415b64f33d67e36d3f26e6ea60e22dd6f88d6",
       "plan.md": "71574609c465776d15e14f40e01e4b1dc5c3ececedabc7d7f75f7f267fdbd621",
       "tasks.md": "f6a21c2e1fbd5802dee2586ec6713b6f7592e690038ac32f48f2318987010672",
-      "implementation-summary.md": "d3cfa943f69ad5fd2c2172185255b601c9ba401cee3309fb40539490be480f03"
+      "implementation-summary.md": "9852af0f812013d0261768d4c6301ee5e1dda141e9fa06f04b4110797dea605a"
     },
     "last_active_at": null
   }

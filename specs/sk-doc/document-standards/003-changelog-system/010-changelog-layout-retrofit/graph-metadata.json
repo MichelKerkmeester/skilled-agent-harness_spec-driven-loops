@@ -43,7 +43,7 @@
       "bullets"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -143,19 +143,19 @@
     ],
     "causal_summary": "Phase 009 made the v4.1.0.0 layout the default for new changelogs: short bullets under short paragraphs, a linked glance table, alert boxes, folded detail and one source line per paragraph",
     "created_at": "2026-11-17T18:12:58Z",
-    "last_save_at": "2026-11-18T05:35:13.084Z",
+    "last_save_at": "2026-11-18T07:43:56.855Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d968b18d180ec16725fa3ef8372ef53f1d6449be407aba83616a8857220ea024",
+    "source_fingerprint": "sha256:452d201074e5e1c9b75559e98f9bd46e5757626719a5455eed6017bfb387d520",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b77ce7343a0a44cb10964d9eed5b9a45b7793d48b7828c57204c37310437821d"
+      "spec.md": "59d1dbd477dca94b37ea607e280f022bfb1b22203db42f6bfe7a885a1dbaff9d"
     },
-    "last_active_child_id": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs",
-    "last_active_at": "2026-11-18T05:34:53.857Z"
+    "last_active_child_id": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync",
+    "last_active_at": "2026-11-18T07:43:27.721Z"
   }
 }

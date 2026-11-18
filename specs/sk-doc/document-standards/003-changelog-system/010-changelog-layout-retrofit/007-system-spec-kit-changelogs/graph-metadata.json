@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The 169 system-spec-kit changelogs were written before the v4.1.0.0 layout",
     "created_at": "2026-11-17T18:13:06Z",
-    "last_save_at": "2026-11-18T03:12:29.626Z",
+    "last_save_at": "2026-11-18T07:43:43.904Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e45f48517ab5dc0013c8877352e2f5ba6809f05b885a38cead6cced26be9ff48",
+    "source_fingerprint": "sha256:1d3c7c97d6a5102b942e2a45728766a56e267e8a05ffd830c9e510e10f47a1b5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "11f893721f83f427a23854c98202ccfc25abc72a8880f09fb3e61bf3912b6b5a",
       "plan.md": "d2627d1fe60c72b3fb629ddfe068ad4e6cb3068bc0349666c169796f4ee54cae",
       "tasks.md": "10bcdb6d9ec022dd6327cddc07037e10b46cd0dfebf01d5d5e3cf4a17cfef5a9",
-      "implementation-summary.md": "f9213840f0412cf8d2d974f78f3f50dc0ab854cbc3e8e44890af02fb45d4dbae"
+      "implementation-summary.md": "e42a3c5bdba5876c63efbe5c7945202036121a488a25fb4407b184bc5fd61758"
     },
     "last_active_at": null
   }

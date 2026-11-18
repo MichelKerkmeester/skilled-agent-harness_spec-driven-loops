@@ -55,11 +55,11 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `gh release list --limit 500` counts 152 releases
-- [ ] Each of the 60 releases with an entry has a body equal to `build_release_notes.py` output for that entry
-- [ ] Each of the 92 releases without an entry has a rewritten body that keeps every code span and number of its old body
-- [ ] Every tag still points at the commit it pointed at before this phase
-- [ ] `validate.sh --strict` on `013-github-release-notes-sync` prints `RESULT: PASSED`
+- [x] `gh release list --limit 500` counts 152 releases
+- [x] Each of the 60 releases with an entry has a body equal to `build_release_notes.py` output for that entry
+- [x] Each of the 92 releases without an entry has a rewritten body that keeps every code span and number of its old body
+- [x] Every tag still points at the commit it pointed at before this phase
+- [x] `validate.sh --strict` on `013-github-release-notes-sync` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,10 +77,14 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Goal authored | Done | `check-goal.cjs` on this packet |
+| Bodies prepared | Done | 60 built, 92 through the driver: `{"listed":92,"pass":60,"unchanged":32,"restored":0,"missing":0,"problems":0,"factMisses":0,"failures":0}` |
+| Bodies published | Done | 120 edited, 152 live bodies match their prepared files |
+| Tags | Done | Only `v4.1.0.0` differs, accepted by the operator |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | - |
+| `v4.1.0.0` tag | Another session re-tagged it to `6a78ea87f9c` after adding README work to the entry. The operator accepted it as the new baseline on 2026-11-18 |
+| Alert line breaks | 14 entries had consecutive alert lines that GitHub renders with a forced break. Each was split with a bare `>` line, and the layout lint now fails the pattern |
 <!-- /ANCHOR:log -->

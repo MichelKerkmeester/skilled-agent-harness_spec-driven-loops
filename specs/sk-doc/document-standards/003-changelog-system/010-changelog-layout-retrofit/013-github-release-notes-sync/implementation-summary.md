@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "All 152 GitHub release bodies now read in the release-notes layout, and no release lost a fact."
 trigger_phrases:
   - "github release notes sync implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync"
-    last_updated_at: "2026-11-17T18:13:13Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-11-18T07:43:27Z"
+    last_updated_by: "generate-context"
+    recent_action: "Published 120 release bodies and closed phase 013"
+    next_safe_action: "Review the release pages; the retrofit has no open step"
+    packet_purpose: "Purpose: Every GitHub release body reads in the v4.1.0.0 layout and keeps every fact it held."
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:effde954d0dcb92b1f2a3e1ea0f99f4bbb93899fb0d4302a7902954d874bc5bc"
       session_id: "scaffold-013-github-release-notes-sync"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "cbc62a39-7ca8-4b5a-989f-a86fdea260ea"
+      workspace: "/Users/michelkerkmeester/worktrees/public/454-changelog-layout-retrofit"
+      savedAt: "2026-11-18T07:43:27Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,60 +54,66 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+All 152 GitHub release bodies now read in the release-notes layout. 120 were edited and 32 already met it.
 
 ### Phase 13: github-release-notes-sync
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The 60 releases with a changelog entry got bodies built by `build_release_notes.py` from their rewritten entries. The 92 without an entry were saved into `../scratch/release-bodies/` and went through the same driver and gates as the changelogs. 60 of them were rewritten, and 32 were already in the layout.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| GitHub release bodies (120) | Modified | Published with `gh release edit --notes-file` |
+| `../scratch/release-bodies-before/` | Created | The 152 bodies as they were, for rollback |
+| `../scratch/release-bodies/` | Created | The 92 bodies with no entry, rewritten in place |
+| `../scratch/release-bodies-after/` | Created | The 152 bodies as published |
+| 14 changelog entries | Modified | Consecutive alert lines split with a bare `>` line, no word changed |
+| `../scratch/layout_lint.py` | Modified | Fails two text lines in a row inside an alert |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+Every changed body was rendered through the GitHub markdown API first, to check for forced breaks and broken anchors. Five sample releases went live first, and the operator approved the other 115 after reading them.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| The `v4.1.0.0` tag stays at `6a78ea87f9c` | Another session re-tagged it after adding its README work to that entry. The operator accepted the new tag as the baseline, so no tag was moved |
+| Alert lines were split in the entries, not only in the bodies | GitHub renders the newline between two alert lines as a forced break. Fixing the entries keeps future builds clean |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| `gh release list --limit 500` | 152 releases |
+| Live body against prepared file, all 152 | 152 match, 0 mismatches |
+| `wave-verify.cjs ../scratch/lists/013-bodies.txt` | `{"listed":92,"pass":60,"unchanged":32,"restored":0,"missing":0,"problems":0,"factMisses":0,"failures":0}` |
+| `layout_lint.py` on the 152 prepared bodies | `SUMMARY files=152 pass=152 fail=0` |
+| `hvr_scan.py --json` on the 92 bodies | 0 hard blockers |
+| GitHub render of the 120 changed bodies | 0 forced breaks, 0 broken anchors |
+| `git ls-remote --tags origin` against `tags-before.txt` | Only `v4.1.0.0` differs, re-tagged by another session |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **A release body is a copy.** A later edit to a changelog entry needs `build_release_notes.py` and `gh release edit` again to reach its release page.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The 99 small-skill changelogs were written before the v4.1.0.0 layout",
     "created_at": "2026-11-17T18:13:11Z",
-    "last_save_at": "2026-11-18T05:34:53.842Z",
+    "last_save_at": "2026-11-18T07:43:53.476Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ca31cc4dbf66467090556823090736b8b163969d886679f8dca3471e8220f539",
+    "source_fingerprint": "sha256:8ab35b479176bb11c56e4905d1fe4aa3d3345914d7dba26cf2563a2f1a00f028",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "80e80910e1513f6ef61b9814a364af5aaba19b4677a3e343a88482a489db0e76",
       "plan.md": "89148b87d8a56f12b174f6f71f89baaf65ba92bd63ab57b32783be878543802c",
       "tasks.md": "102df40d76a1b1cc237dfe3d3184d73ab8746fb71b4025a813a48430d22a66b3",
-      "implementation-summary.md": "82159525ac11b85e8930e39cd2bcb132fbf572bdf39dcb629307833fa916588c"
+      "implementation-summary.md": "bc9c2b769099a07e51228972b7e4929fd4598e1c79fb35685410d40e996988ec"
     },
     "last_active_at": null
   }
