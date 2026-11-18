@@ -74,6 +74,7 @@ and findings belong here.
 |------|-------|----------|
 | [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
 | Items 1-8 | done | items 1, 4, 5, 6 fixed, 2, 3, 7, 8 closed, advisor suite 2407 passed, validate strict PASSED |
+| Second-round advisor fixes 3, 5, 6; fix 4 kept skill-first | done | advisor 2414 passed 0 failed; validate strict PASSED |
 
 ### Deviations and findings
 

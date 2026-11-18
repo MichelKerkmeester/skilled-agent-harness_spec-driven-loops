@@ -40,7 +40,7 @@ Reject an unknown action or any flag that is invalid for the selected action bef
 - `align` accepts `--release=<tag>`, `--scope=all|<unit,...>`, `--offline`, `--dry-run`, `--include-prerelease` and `--remote=<name-or-url>`.
 - `apply` accepts `--decisions=<path>`, `--dry-run`, `--release=<tag>`, `--scope=all|<unit,...>`, `--include-prerelease`, `--offline` and `--remote=<name-or-url>`.
 - `rollback` accepts `--run=<runDir>` and `--dry-run`.
-- `record-base` accepts `--release=<tag>`, `--remote=<name-or-url>`, `--scope=all|<unit,...>`, `--offline`, `--include-prerelease`, `--trust-release` and `--dry-run`.
+- `record-base` accepts `--release=<tag>` or `--pin=<full-sha>`, `--remote=<name-or-url>`, `--scope=all|<unit,...>`, `--offline`, `--include-prerelease`, `--trust-release` and `--dry-run`.
 - `compat` accepts `--dry-run` and `--offline`.
 - A `--scope` unit is a plain name or a `<kind>:<name>` key such as `skill:hub-a` or `directory:hooks`. Use the kind-qualified form when two kinds share a name. The engine rejects a plain name in that case.
 - Reject cross-action and unknown flags before loading a workflow YAML. Do not infer confirmation suffixes or modes.
@@ -83,6 +83,7 @@ Generated files (leaf manifests, the trigger index and its sidecars, compiled-ro
 A copy the operator regenerated stays in place and apply names its generator, while a release change to a copy the operator never regenerated is applied like any other file.
 
 A first run on a copied or freshly installed tree reports `baseRecording.needed`. The `record-base` action records the base, and the presentation's base-recording template owns what the operator is told.
+A tree copied from a framework revision between release tags matches no tag, so `--pin=<full-sha>` records that exact revision instead of a release. It cannot be combined with `--release` and skips the nearer-release check.
 
 ---
 

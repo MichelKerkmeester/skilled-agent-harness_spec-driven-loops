@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports",
+  "spec_folder": "system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports",
+  "parent_id": "system-skilled-doctor/001-skill-and-overlay-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vendored record base and overlay loss reports",
+      "record base in a vendored layout and overlay",
+      "vendored record base and overlay loss reports plan",
+      "vendored record base and overlay loss reports tasks",
+      "vendored record base and overlay loss reports acceptance criteria",
+      "vendored record base and overlay loss reports goal",
+      "vendored record base and overlay loss reports implementation summary"
+    ],
+    "key_topics": [
+      "vendored",
+      "record",
+      "base",
+      "overlay",
+      "loss",
+      "reports",
+      "layout",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/release-update.cjs",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs",
+      ".skilled/commands/doctor/update.md",
+      ".skilled/commands/doctor/assets/doctor-update-record-base.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+      ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml",
+      ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+      ".skilled/commands/doctor/assets/doctor-overlay-status.yaml",
+      ".skilled/skills/system-skilled-doctor/references/overlays.md",
+      "scratch/work-record.md",
+      ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "release-update.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/release-update.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "release-update.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-repin.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-sync.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-record-base.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-record-base.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-repin.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-status.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-status.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "overlays.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/references/overlays.md",
+        "source": "derived"
+      },
+      {
+        "name": "work-record.md",
+        "kind": "doc",
+        "path": "scratch/work-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-apply.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Success",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior Recorded",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A project that vendors Skilled under a subfolder, with a root `.skilled` symlink into it, could not record its base",
+    "created_at": "2026-11-18T06:50:22Z",
+    "last_save_at": "2026-11-18T08:54:31.599Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e8bbda8e7d2d9dfed95a2aa9cdb37842af640bc07e58aa5094161e5fea921ac1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "300e9d73137ebbbd275f3862635212ce58fd31740fdf78a9249fd275124498a6",
+      "plan.md": "d023e1c6dd982c44235e376d38182180d9c753dcf60fdb059eac9827af416078",
+      "tasks.md": "945f6879eeb0ee4636ef1dcd749802985720bbd34ea44bf36c4ef7465c1d805b",
+      "implementation-summary.md": "679354f83a4808a3a339c8bd0707982f07da6a8b795468446021f04d8b05a225"
+    },
+    "last_active_at": null
+  }
+}

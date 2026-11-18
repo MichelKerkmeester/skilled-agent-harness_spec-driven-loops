@@ -309,6 +309,7 @@ export const AdvisorRecommendationSchema = z.object({
   uncertainty: z.number().min(0).max(1),
   dominantLane: AdvisorLaneSchema.nullable(),
   laneBreakdown: z.array(laneBreakdownSchema).optional(),
+  laneContributions: z.array(laneBreakdownSchema).optional(),
   why_recommended: whyRecommendedSchema.optional(),
   matchedDocs: z.array(z.string().min(1)).max(3).optional(),
   redirectFrom: z.array(z.string().min(1)).optional(),

@@ -255,6 +255,17 @@ function publicRecommendation(
     ? sanitizedStatus as PublicRecommendationStatus
     : undefined;
   const workflowMode = workflowModeForRecommendation(recommendation, prompt);
+  // Callers read the per-lane scores under either name, so both carry the same
+  // prompt-free numbers. Lane evidence stays out, because it can quote the prompt.
+  const laneScores = includeAttribution
+    ? recommendation.laneContributions.map((lane) => ({
+      lane: lane.lane,
+      rawScore: lane.rawScore,
+      weightedScore: lane.weightedScore,
+      weight: lane.weight,
+      shadowOnly: lane.shadowOnly,
+    }))
+    : [];
   return {
     skillId,
     kind: recommendation.kind,
@@ -263,13 +274,8 @@ function publicRecommendation(
     uncertainty: recommendation.uncertainty,
     dominantLane: recommendation.dominantLane,
     ...(includeAttribution ? {
-      laneBreakdown: recommendation.laneContributions.map((lane) => ({
-        lane: lane.lane,
-        rawScore: lane.rawScore,
-        weightedScore: lane.weightedScore,
-        weight: lane.weight,
-        shadowOnly: lane.shadowOnly,
-      })),
+      laneBreakdown: laneScores,
+      laneContributions: laneScores,
       why_recommended: publicWhyRecommended(recommendation),
     } : {}),
     ...(matchedDocs.length > 0 ? { matchedDocs } : {}),
