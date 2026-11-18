@@ -35,7 +35,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The skill README template created on 2026-11-16 asks every multi-step skill for \"a small Mermaid diagram\", and 55 READMEs now carry one",
     "created_at": "2026-11-18T10:21:37Z",
-    "last_save_at": "2026-11-18T11:25:09.184Z",
+    "last_save_at": "2026-11-18T11:27:10.513Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:55149ee43ba76762f35312d9eaf289416693fce3ca2586f0d7e41cc5537b9a44",
+    "source_fingerprint": "sha256:6199ceb32f5fcee90753d0402d88402447c7e88d5c1cfe1708bb7b75ca523226",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e613d0e3e7543caad63caa0c54f8e055caf82fb83d4d516f2452506fba866861",
       "plan.md": "ba903241eeb4e98c8f6d9086a065225afab323e7f50c635a01469aee4f1a0cae",
-      "tasks.md": "d7849a26821335df0ea6de1ac9123403b55d1eccc0f5d4632e15cf6757d6ead0",
+      "tasks.md": "735d6c75fb4a13daa213f682c65738f91b9416fa1b702cfd97bfe6d1a85a7fa2",
       "implementation-summary.md": "9797685dac700b5e5375abf4db1648152f789e8c881171257fbbadb7a1e53fa3"
     },
     "last_active_at": null

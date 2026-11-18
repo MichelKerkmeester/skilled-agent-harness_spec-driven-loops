@@ -56,7 +56,7 @@ Frozen choices. Changing one is an amendment.
 
 - [x] `git ls-files '*README.md' | xargs rg -l '```mermaid'` prints nothing
 - [x] `boxcheck.py` prints `OK` for all 55 files, and each prints `VALID` with 0 hard voice blockers
-- [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED` and the phase commit is on origin/main
+- [x] `validate.sh --strict` on this phase prints `RESULT: PASSED` and the phase commit is on origin/main
 <!-- /ANCHOR:completion -->
 
 ---

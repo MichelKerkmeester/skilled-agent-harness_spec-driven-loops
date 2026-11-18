@@ -60,7 +60,7 @@ contextType: "general"
 - [x] T011 Rerun the per-file gates from the final state. Verify: no regression. Evidence: `files 55 outside 0`, 55 `OK`, 55 `VALID` with `hard blockers: 0`, reference failures 13 and count failures 8 with 0 new.
 - [x] T012 Run the repository gates. Verify: each passes. Evidence: `all sk-doc script tests passed` exit 0, `PARITY PASS`, `0 broken markdown links`, 0 READMEs with a Mermaid fence.
 - [x] T013 Validate the program. Verify: `validate.sh --recursive --strict` prints `RESULT: PASSED`. Evidence: `RESULT: PASSED` on the parent and every phase.
-- [ ] T014 Commit, merge origin/main and push under sk-git. Verify: the phase commit is an ancestor of origin/main.
+- [x] T014 Commit, merge origin/main and push under sk-git. Verify: the phase commit is an ancestor of origin/main. Evidence: commit `9cafa1d3c64`, pushed inside merge `21576fa3feb`, built with `git merge-tree` because another session had files staged in the checkout.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -68,7 +68,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed: the canary diagram and the two fixed diagrams were read line by line
 <!-- /ANCHOR:completion -->
@@ -140,7 +140,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Parser fixes include adversarial cases. Evidence: not applicable, no parser changed
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed. Evidence: 55 files, one fence each
 - [x] CHK-FIX-006 [P1] Hostile env variant executed when code reads process-wide state. Evidence: not applicable, no code reads state
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA. Evidence: set at the commit
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA. Evidence: commit `9cafa1d3c64`
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -180,7 +180,7 @@ contextType: "general"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 12 | 12/12 |
-| P1 Items | 13 | 12/13 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-18
