@@ -148,7 +148,7 @@ A row with no receipt stays `[ ]` and says `Open:` with what is missing. A row t
 - [x] CHK-FIX-004 [P0] The path fix carries adversarial cases. Evidence: `release-update.test.cjs` refuses a root `.skilled` symlink to a tree outside the work tree and an in-tree symlink whose target is not named `.skilled`, keeps a normal checkout on its top level, and the unchanged `safeResolve` guard still refuses a symlinked parent. `--pin` rejects an abbreviated id and `--pin` with `--release`, each with exit 2.
 - [ ] CHK-FIX-005 [P1] Open: the axes are listed in plan.md, but the work record gives no row count.
 - [x] CHK-FIX-006 [P1] N/A: the added code reads no environment variable (a scan of the added lines found 0) and uses the working directory only as the default `--repo`, as before.
-- [ ] CHK-FIX-007 [P1] Open: nothing is committed. The evidence is not pinned to a fix SHA or a diff range yet.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA. Evidence: the doctor fix is commit `3b8fdb7f89c`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---

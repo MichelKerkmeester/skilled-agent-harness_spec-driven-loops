@@ -152,7 +152,7 @@ A task that waits on a decision stays `[ ]` and names the decision in its text. 
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Evidence: axes are prompt shape (exact, close wording, scattered, hyphen-joined, ticket status, code review) and row kind (command, skill). 12 new advisor tests, plus the 45-row vendoring prompt set before and after.
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. Evidence: N/A. The changed code reads no environment or global state (`process.env` and `globalThis` appear in none of the added lines). The loader reads one file path fixed by its own location.
 - [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Evidence: the advisor fix is commit `8a6f64beac8`, and the deep-loop half is `c588762cf8d`.
-- [ ] CHK-FIX-008 [P1] The second round's evidence is pinned to its fix SHA. Open: nothing from the second round is committed yet.
+- [x] CHK-FIX-008 [P1] The second round's evidence is pinned to its fix SHA. Evidence: the advisor fix is commit `67782cf23f0`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---

@@ -204,7 +204,7 @@
     ],
     "causal_summary": "A project that vendors Skilled under a subfolder, with a root `.skilled` symlink into it, could not record its base",
     "created_at": "2026-11-18T06:50:22Z",
-    "last_save_at": "2026-11-18T08:30:50.418Z",
+    "last_save_at": "2026-11-18T08:38:47.312Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +215,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7ce4c32ae605fb54059d67215179c3db88485ebc0ab28ca35253f3ca9b069dda",
+    "source_fingerprint": "sha256:80a96122558e1801dfda51ea182c7d6262bf070ead28647ace9f05e6ce67bd38",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "300e9d73137ebbbd275f3862635212ce58fd31740fdf78a9249fd275124498a6",
       "plan.md": "d023e1c6dd982c44235e376d38182180d9c753dcf60fdb059eac9827af416078",
-      "tasks.md": "96a1e8eedcbaa81d092f281905690e03934f4ba2ec4dcdfd918d60f64ba68c7e",
+      "tasks.md": "95e87501ec925f711582d16000e5aab7ceadf4157fb55b3409ac8e01b5c0cb53",
       "implementation-summary.md": "679354f83a4808a3a339c8bd0707982f07da6a8b795468446021f04d8b05a225"
     },
     "last_active_at": null
