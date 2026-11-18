@@ -819,6 +819,11 @@ describe('completed-run extension', () => {
     const result = extendResearch(run, '3');
     expect(result.status, String(result.stdout) + String(result.stderr)).toBe(0);
     expect(lastJsonLine(result.stdout)).toMatchObject({ continuedFromRun: 7, newMaxIterations: 10 });
+    // The extension never writes the stop policy or convergence mode, so only an
+    // inbox question can keep a converged run going.
+    expect(lastJsonLine(result.stdout).warning).toContain('all_questions_answered');
+    expect(lastJsonLine(result.stdout).warning).not.toContain('Pass --convergence-mode=off');
+    expect(lastJsonLine(result.stdout).warning).toContain('keeps the stop policy and convergence mode it was created with');
 
     const after = readJson(run.config);
     expect(after).toMatchObject({ status: 'initialized', maxIterations: 10 });
@@ -1018,7 +1023,11 @@ describe('completed-run extension', () => {
     expect(after.createdAt).toBe(before.createdAt);
     expect(after.maxDurationMinutes).toBeGreaterThanOrEqual(420);
     expect(durationCheck('deep-review.yaml', config)).toMatchObject({ reached: false });
+    // The extension never writes the stop policy or convergence mode, so the warning
+    // must not advise passing a flag beside --extend.
     expect(lastJsonLine(result.stdout).warning).toContain('all_dimensions_clean');
+    expect(lastJsonLine(result.stdout).warning).not.toContain('Pass --convergence-mode=off');
+    expect(lastJsonLine(result.stdout).warning).toContain('keeps the stop policy and convergence mode it was created with');
     expect(stateRows(stateLog).some((row) => row.event === 'extended' && row.continuedFromRun === 4)).toBe(true);
 
     const report = join(dir, 'review-report.md');

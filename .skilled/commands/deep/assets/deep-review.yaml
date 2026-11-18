@@ -578,9 +578,10 @@ workflow:
             // Config creation writes the stop policy at the top level, beside maxIterations.
             const stopPolicy = config.stopPolicy || "convergence";
             // Review has no question inbox, so under convergence an unchanged dimension set
-            // can re-stop on all_dimensions_clean before the new budget is used.
+            // can re-stop on all_dimensions_clean before the new budget is used. The
+            // extension keeps the stop policy and convergence mode the config already holds.
             const warning = stopPolicy === "convergence"
-              ? "This run stops on convergence, so it may re-stop on all_dimensions_clean right away. Pass --convergence-mode=off or use stopPolicy max-iterations to keep it running."
+              ? "This run stops on convergence, so it may re-stop on all_dimensions_clean right away. An extension keeps the stop policy and convergence mode it was created with, and a flag passed beside --extend does not change them, so only a run created with --convergence-mode=off is sure to use the new budget."
               : null;
             console.log(JSON.stringify({ continuedFromRun, newMaxIterations, newMaxDurationMinutes, warning }));
           ' "{state_paths.config}" "{state_paths.state_log}" "{extend}" "{extend_minutes}" "$WORK_DIR" > "$WORK_DIR/result.json" || { rm -rf "$WORK_DIR"; exit 2; }

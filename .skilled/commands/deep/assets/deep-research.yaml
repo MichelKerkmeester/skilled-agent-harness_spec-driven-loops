@@ -560,7 +560,7 @@ workflow:
             // Config creation writes the stop policy at the top level, beside maxIterations.
             const stopPolicy = config.stopPolicy || "convergence";
             const warning = stopPolicy === "convergence" && pendingInbox === 0
-              ? "This run stops on convergence and has no pending inbox question, so it may re-stop on all_questions_answered right away. Pass --convergence-mode=off, use stopPolicy max-iterations, or add questions to research/inbox.jsonl to keep it running."
+              ? "This run stops on convergence and has no pending inbox question, so it may re-stop on all_questions_answered right away. An extension keeps the stop policy and convergence mode it was created with, and a flag passed beside --extend does not change them. Add questions to research/inbox.jsonl before you extend to keep it running."
               : null;
             console.log(JSON.stringify({ continuedFromRun, newMaxIterations, newMaxDurationMinutes, warning }));
           ' "{state_paths.config}" "{state_paths.state_log}" "{state_paths.packet_dir}/inbox.jsonl" "{extend}" "{extend_minutes}" "$WORK_DIR" > "$WORK_DIR/result.json" || { rm -rf "$WORK_DIR"; exit 2; }
