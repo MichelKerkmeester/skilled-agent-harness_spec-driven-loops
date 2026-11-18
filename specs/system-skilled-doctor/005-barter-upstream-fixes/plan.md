@@ -42,9 +42,9 @@ Code Mode drops disabled manuals from its startup config, and the three OAuth re
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `bash .skilled/commands/doctor/scripts/tests/run-all.sh` reports every suite passed in the worktree
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met: AC-001 to AC-014 read Met in `acceptance-criteria.md`
+- [x] `bash .skilled/commands/doctor/scripts/tests/run-all.sh` reports every suite passed in the worktree: `7 suite(s) passed, 0 failed`, node:test 1332 pass, 0 fail
+- [x] Docs updated (spec/plan/tasks): status Complete, follow-up tasks T023 to T028 recorded
 <!-- /ANCHOR:quality-gates -->
 
 ---

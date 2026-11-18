@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-18 |
 | **Branch** | `worktrees/473-barter-upstream-fixes` |
 <!-- /ANCHOR:metadata -->
@@ -81,10 +81,17 @@ Same entries over the full tree: {"loaded": 22, "errors": 0, "handlers": 37}
 - Port Barter's `hook-wiring-check` overlay, which proves each Pi extension entry can load, with its test and the three doctor assets that run it.
 - Render the 22 Pi extension entries from one template that imports the adapter inside the factory, so an adapter that cannot load costs one session notice, and hold every entry to that template in the sync check, the parity test, `doctor:git` and the wiring check.
 
+### Scope Amendment
+
+After the first merge, the operator said "leave nothing open". That brings the four follow-ups the first round reported into scope:
+- Correct the stale "manuals load at startup" wording in the Mobbin, Refero and ClickUp docs, now that those manuals register on demand.
+- Restore the backup-path test's check that `.gitignore` ignores `.skilled/output/`, behind the same source-repo skip the other doctor tests use.
+- Add a CI step that type-checks the Pi entries through `tsconfig.pi.json` and runs `hook-wiring-check.cjs`.
+- Regenerate the codex command-router mirror that drifted from `create/sk-skill.md`.
+
 ### Out of Scope
 - `record-base --release` choosing an old nearest release - the consumer did not ask for it, and `--pin <sha>` already works.
 - Renumbering or reshaping the consumer's own review-core fragment - the fragment lives in the consumer's overlay folder.
-- Stale "manuals load at startup" wording in Mobbin's README, INSTALL-GUIDE, references and playbook - reported as follow-up, not part of the ask.
 
 ### Files to Change
 
@@ -128,6 +135,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-006 | A `marked-section` entry with `insertBefore` places, rewrites, captures and moves its block before the anchor, and refuses when the anchor line is missing. |
 | REQ-007 | `hook-wiring-check.cjs` names every Pi extension entry that cannot load and exits 1, passes the Skilled tree, and `/doctor:setup` and `/doctor:symlink` run it. |
 | REQ-008 | Every Pi extension entry is the rendered template. With the shared tree missing or stale, Pi loads every entry without a load error and shows one notice naming the entries that are off. With the tree present, the same hooks register as before. An adapter that throws while it registers still fails as a Pi load error. |
+| REQ-009 | No doc in the Mobbin, Refero or ClickUp modes says the manual loads at startup or that reconnecting Code Mode makes its tools appear, and `sk-skill-check` reports no new finding on the three modes. |
+| REQ-010 | In the source repository, a doctor test fails when `.gitignore` stops ignoring `.skilled/output/`, and a vendoring host skips that case. |
+| REQ-011 | A CI workflow type-checks the Pi entries through `tsconfig.pi.json` and runs `hook-wiring-check.cjs` on a change to `.pi/`, the config or a Pi adapter. |
+| REQ-012 | `generate-command-routers.cjs --check` reports no drift, so the spec-kit cli vitest project passes with 0 failures. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

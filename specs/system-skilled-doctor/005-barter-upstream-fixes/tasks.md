@@ -73,6 +73,12 @@ contextType: "general"
 - [x] T013 Run the full doctor runner in the worktree (`T/run-all.sh`). Verify: `7 suite(s) passed, 0 failed`, node:test `1327` pass, `0` skipped.
 - [x] T021 Load the rendered entries through Pi's installed loader in scratch trees (full, without `.skilled`, one missing dependency, throwing adapter) on Pi 1.5.0 and 1.5.2. Verify: 22 loaded with 37 handlers, then 0 errors with one notice, then a notice naming one entry, then a Pi load error.
 - [x] T022 Rerun the full doctor runner after items 5 and 6 (`T/run-all.sh`). Verify: `7 suite(s) passed, 0 failed`, node:test `1331` pass, `0` skipped.
+- [x] T023 [P] Say that the ask step's `register_manual` loads the disabled manual (`mcp-tooling/mcp-mobbin`, `mcp-tooling/mcp-refero`, `mcp-tooling/mcp-click-up`). Verify: the stale-wording grep finds no claim outside changelogs, and `sk-skill-check` prints `NO FINDINGS (1 UNKNOWN)` on each mode, as before.
+- [x] T024 [P] Cover the backup path outside the source repo (`T/agents-md-embed.test.cjs`). Verify: the case passes with the `.skilled/output/` line in `.gitignore` and fails without it.
+- [x] T025 [P] Run the Pi type gate and wiring check in CI (`.github/workflows/pi-entry-checks.yml`, `.github/workflows/README.md`, `.pi/SYNC.md`). Verify: on a clean clone both exit 0 after `provision_worktree`, and `check-gate-inputs.sh` prints `RESULT: PASSED`.
+- [x] T026 Rename the `create-skill-*` assets to `create-sk-skill-*` and drop the advisor stem (`.skilled/commands/create/assets/`, `score-command-transcripts.mjs`). Verify: router `--check` prints `routers=42 clean=42`, and the advisor transcript tests pass 359/359.
+- [x] T027 Run the no-token Code Mode probe and the live registration. Verify: `{"tools":[]}` with no `npx` call, then `register_manual` succeeds for all three manuals.
+- [x] T028 Rerun the doctor runner and the spec-kit cli vitest. Verify: `7 suite(s) passed, 0 failed` with 1332 pass, and 2592 passed, 0 failed.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -83,7 +89,7 @@ contextType: "general"
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed: a fresh session with no OAuth tokens opens no sign-in tab
+- [x] Manual verification passed: a fresh session with no OAuth tokens opens no sign-in tab. The shipped dist with an empty `HOME` lists `{"tools":[]}` and makes no `npx` call, and live `register_manual` loads all three manuals after the operator picked Ready
 <!-- /ANCHOR:completion -->
 
 ---

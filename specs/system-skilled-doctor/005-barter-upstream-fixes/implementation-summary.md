@@ -8,32 +8,30 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/005-barter-upstream-fixes"
-    last_updated_at: "2026-11-18T14:23:22Z"
+    last_updated_at: "2026-11-18T16:39:29Z"
     last_updated_by: "generate-context"
-    recent_action: "Rehearsed the consumer re-pin on a scratch commit; stage clean, checks and doctor suite green"
-    next_safe_action: "Run the operator OAuth check for AC-007, then commit after the operator approves"
+    recent_action: "Recorded final gates and set status Complete"
+    next_safe_action: "Run strict validation, then commit and fast-forward main"
     packet_purpose: "Purpose: A consumer re-pins Skilled and drops its Code Mode, Pi and Mobbin/Refero overlays, its doctor tests pass on the vendored tree, and a marked block can sit before a closing section."
-    blockers:
-      - "AC-007 needs the operator OAuth session check"
-      - "Commit, merge and push wait for the operator"
+    blockers: []
     key_files:
-      - ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs"
-      - ".skilled/commands/doctor/scripts/hook-wiring-check.cjs"
-      - ".skilled/commands/doctor/scripts/overlay-engine.cjs"
-      - ".skilled/skills/mcp-code-mode/mcp-server/index.ts"
-      - ".pi/extensions/prompt-advisor.ts"
+      - ".github/workflows/pi-entry-checks.yml"
+      - ".skilled/commands/create/assets/create-sk-skill-confirm.yaml"
+      - ".skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs"
+      - ".skilled/skills/mcp-tooling/mcp-mobbin/INSTALL-GUIDE.md"
+      - ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:faa41dc843de8a50f1f4ddfa9ddb16aa8730d7a5f15795e32554d53c45439def"
       session_id: "scaffold-005-barter-upstream-fixes"
       parent_session_id: null
     session_ref:
       runtime: "claude"
-      sessionId: "6ee1f64b-92ac-4e16-ae24-eec329392c21"
+      sessionId: "9d5d9117-89f5-4e61-8c2d-ddc8639dd5d1"
       workspace: "/Users/michelkerkmeester/worktrees/public/473-barter-upstream-fixes"
-      savedAt: "2026-11-18T14:23:22Z"
+      savedAt: "2026-11-18T16:39:29Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,7 +50,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-barter-upstream-fixes |
-| **Completed** | Code done 2026-11-18. Closure waits on the operator OAuth check (AC-007) |
+| **Status** | Complete |
+| **Completed** | 2026-11-18. Every acceptance criterion is Met |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -71,6 +70,10 @@ Code Mode now leaves a manual marked `"disabled": true` out of startup registrat
 ### Pi entries that survive a stale tree
 
 `hook-wiring-check.cjs`, which the consumer carried as an overlay, now ships with its test, and `/doctor:setup` and `/doctor:symlink` run it. It names every Pi extension entry that cannot load. The 22 Pi entries are no longer one-line re-exports. `sync-hook-registrations.cjs` renders each from one template that imports the adapter inside an async factory. When that import fails, the entry registers a `session_start` handler instead of the hook, and the first such handler shows one notice for the session: how many entries are off, which ones, the first error, and "run git pull in it, then /doctor:setup". An adapter that throws while it registers is outside the `try`, so Pi still reports it as a load error. The sync check, the parity test, `doctor:git` and the wiring check all read the new shape, and `tsconfig.pi.json` type-checks the template through three entries.
+
+### Follow-ups closed after the first merge
+
+The operator asked for nothing to stay open, so four follow-ups the first round reported were closed too. The Mobbin, Refero and ClickUp docs no longer say the manual loads at startup or that reconnecting Code Mode brings its tools. They now say the ask step's `register_manual` call loads it and opens the sign-in tab. The backup-path test again checks this repository's own `.gitignore`, behind the same source-repo gate the other doctor tests use. A new CI workflow, `pi-entry-checks.yml`, type-checks the Pi entries and runs `hook-wiring-check.cjs`. The `/create:sk-skill` assets now carry the command's own name, which ends the codex command-router drift and drops the advisor scorer's exception for the old stem.
 
 ### Files Changed
 
@@ -91,6 +94,12 @@ Code Mode now leaves a manual marked `"disabled": true` out of startup registrat
 | `.skilled/commands/doctor/scripts/git-setup-check.cjs` and its test | Modified | Follow the lazy import to the git advisory adapter |
 | `tsconfig.pi.json`, `.pi/types/pi-coding-agent.d.ts`, `.pi/types/node-globals.d.ts` | Modified | Three entries in the type gate, a `session_start` overload and `process.stderr` |
 | `.pi/SYNC.md`, `.pi/README.md`, `.pi/extensions/README.md`, `.skilled/CROSS-CLI.md` and about 30 hook docs | Modified | Describe the rendered entry and the notice |
+| 28 files in `mcp-tooling/mcp-mobbin`, `mcp-refero` and `mcp-click-up` | Modified | Register on demand through the ask step, not at startup |
+| `.skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs` | Modified | Source-repo case for the `.gitignore` entry |
+| `.github/workflows/pi-entry-checks.yml`, `.github/workflows/README.md` | Created, Modified | The Pi entry CI gate and its two README rows |
+| `.skilled/commands/create/assets/create-sk-skill-{auto,confirm}.yaml`, `create-sk-skill-presentation.txt` | Renamed | Take the command's own name, as the command contract expects |
+| `create/sk-skill.md`, `command-metadata.json`, the asset roster fixture and five tests and docs that name the assets | Modified | Follow the rename |
+| `system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs` | Modified | Drop the old-stem exception |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -99,7 +108,7 @@ Code Mode now leaves a manual marked `"disabled": true` out of startup registrat
 ## How It Was Delivered
 <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-Every symptom was reproduced first on a scratch copy of the consumer's vendored tree, then fixed in the worktree and re-run there. Code Mode was probed with a dummy stdio manual over a real MCP client, against both the patched and the unpatched build. The `insertBefore` tests were run against the old engine to confirm they fail, and the change was applied to the consumer's real review-core entry in scratch. The full doctor runner closed the work. Last, the consumer's re-pin was rehearsed with its own vendored `overlay-engine.cjs repin --stage`, from its pin to a scratch commit of these changes, on a copy of its tree. Nothing is committed yet.
+Every symptom was reproduced first on a scratch copy of the consumer's vendored tree, then fixed in the worktree and re-run there. Code Mode was probed with a dummy stdio manual over a real MCP client, against both the patched and the unpatched build. The `insertBefore` tests were run against the old engine to confirm they fail, and the change was applied to the consumer's real review-core entry in scratch. The full doctor runner closed the work. Last, the consumer's re-pin was rehearsed with its own vendored `overlay-engine.cjs repin --stage`, from its pin to a scratch commit of these changes, on a copy of its tree. The first round landed on main as six commits and a merge, pushed as `067d72028ef`. The follow-ups were built in the same worktree, proven on a clean clone where CI was involved, and landed as a fast-forward.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -120,6 +129,8 @@ Every symptom was reproduced first on a scratch copy of the consumer's vendored 
 | Catch only the adapter import | An adapter that throws while it registers is a bug, and Pi's own load error is the right report |
 | One notice per session through `globalThis`, with a handler per failing entry | Pi evaluates each entry in its own module scope, and a reload can discard the first handler before it runs |
 | Read the adapter path back from the entry, not from the registry | The registry has no adapter path, and the entry already names one. Write mode can then migrate an older re-export entry |
+| Rename the `/create:sk-skill` assets, not teach the generator an exception | The command contract derives every create asset from the command name, so the old stem was the one outlier. Two tools carried it: the router check flagged it and the advisor scorer special-cased it |
+| A new workflow from `/doctor:ci scaffold`, not a job in `pi-extension-tests.yml` | The scaffold never edits a workflow, and the existing one installs each extension package, while this gate needs the repository's own provisioning |
 | Type-check three entries, not 22 | Every entry pulls its adapter into tsc, and most adapters use Pi events the local type shim never declared. The three chosen adapters are already in the gate, and the entries differ only in two strings |
 <!-- /ANCHOR:decisions -->
 
@@ -150,12 +161,23 @@ Every symptom was reproduced first on a scratch copy of the consumer's vendored 
 | Comment hygiene on all 44 changed code files | exit 0, and a planted `REQ-007` comment fails it |
 | `run-all.sh` after items 5 and 6 | `7 suite(s) passed, 0 failed`, node:test 1331 pass, 0 skipped (1327 before). The first run failed one test because the advisor dist was stale after the `prompt-advisor.ts` comment edit. Rebuilding it, as the message said, cleared it |
 | spec-kit vitest, root project | 111 files, 1495 passed, 13 skipped, exit 0 |
-| spec-kit vitest, cli project | 2591 passed, 1 failed, 20 skipped. The failure is the codex command-router drift on `create/sk-skill.md`, which main `ee54e3183db` shows too and this packet does not touch |
+| spec-kit vitest, cli project, first round | 2591 passed, 1 failed, 20 skipped. The failure was the codex command-router drift on `create/sk-skill.md`, closed in the follow-ups |
 | Consumer re-pin rehearsal, manifest unchanged | First refused: six doctor test files the consumer edited in place, with no overlay. With those restored from the old pin: `RESULT: BLOCKED`, 12 blocked entries. Six come from main since the consumer's pin. Six are this packet's: the hook registry `json-entry`, Mobbin, Refero and the three item-5 overlays. Five more report `equals-upstream`: both `.pi` files, Code Mode `index.ts`, `doctor-setup.yaml` and its presentation |
 | Rehearsal after the drops and rebases | Dropping an entry alone is refused, because its old bytes stay as an unowned edit. Dropped entries restored from the old pin: `RESULT: STAGED`, exit 0. Then `overlay-engine status` `RESULT: PASSED`, `hook-wiring-check` exit 0 with 22 Pi entries ok, `sync --check` PASS on the 37-hook registry, the loader 24 loaded, 0 errors, 0 notices, and `git-setup-check --tool pi` all 11 checks PASS |
 | Doctor suite on the re-pinned copy | Before the two consumer fixes: pass 1295, fail 10, skipped 28. Nine failures sit in the consumer's own `symlink-engine` test overlay, one is the stale advisor dist. After the `REPO RULES.md` fixture line and `npm run build`: pass 1305, fail 0, skipped 28, exit 0 |
 | Consumer review-core with `insertBefore` after the re-pin | Block placed before `## 10. RELATED RESOURCES`, which stays last, with no stray separator |
 | Negative control for dropping the item-5 overlay | With `hooks/shared/hook-flags.mjs` hidden on the re-pinned copy, the consumer's old `hook-wiring-check.cjs` exits 0 and names nothing. The shipped one exits 1 with 16 `pi-extension-broken` lines, and the loader shows one notice naming the same 16 entries |
+| Main after the first merge | `run-all.sh` failed one test, which reported the advisor dist stale against the merged source. After `npm run build`: `7 suite(s) passed, 0 failed`, 1331 pass. Strict validation `RESULT: PASSED`. Trigger index `--check` 0 stale documents |
+| Push of the first round | GitHub's rule-suite log reads `bypass` for `ee54e3183db..067d72028ef`: pull request, linear history, code scanning, signed commits and the message-contract check failed and were bypassed. All 30 pushes to main that week read `bypass` |
+| No-token Code Mode probe on the shipped entries | Shipped dist, empty `HOME`, an `npx` shim that logs each call: `{"tools":[]}` and no `npx` call. With `mobbin` enabled: `npx -y mcp-remote https://api.mobbin.com/mcp`, twice with the retry |
+| Live registration after the operator picked Ready | `register_manual` gave `success: true` for `clickup_official` (67 tools), `mobbin` (8) and `refero` (10), all listed again on the next `list_tools`. Each connected from a token cached under `~/.mcp-auth` |
+| Pi 1.5.2 live session, RPC mode, `--offline` | A tree with `.pi/` and no `.skilled/`: one `notify` naming 22 entries that are off and no `Failed to load extension`. The full worktree: no notice and no load error |
+| Stale-wording grep and `sk-skill-check` on the three modes | No stale claim outside changelogs. `Result: NO FINDINGS (1 UNKNOWN)` on each mode, the same as before the edit. `bash -n` exit 0 on both scripts |
+| Backup-path case | Passes with the `.gitignore` line, fails without it |
+| CI recipe on a clean clone | Before provisioning: tsc exit 0, wiring check exit 1 naming `packet-purpose.js`. After `provision_worktree`: both exit 0. `ci-report` row with no flags. `check-gate-inputs.sh` `RESULT: PASSED` |
+| Router drift after the rename | `routers=42 clean=42 path-drift=0`. `typo-flags.vitest.ts` 34/34, roster tests 15/15, advisor transcript tests 359/359. Before removing the old stem the transcript test failed 2 |
+| `run-all.sh` in the worktree after the follow-ups | `7 suite(s) passed, 0 failed`, node:test tests 1332, pass 1332, fail 0, skipped 0, exit 0 |
+| spec-kit vitest, cli project, after the follow-ups | 209 files passed, 3 skipped. 2592 tests passed, 20 skipped, 0 failed, exit 0. The first-round codex router failure is closed |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -164,14 +186,13 @@ Every symptom was reproduced first on a scratch copy of the consumer's vendored 
 ## Known Limitations
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **No real OAuth run.** Whether a fresh session opens no sign-in tab is checked with a dummy manual only. The operator confirms it in a session with no tokens.
+1. **The sign-in tab was not seen opening.** The live registrations connected from cached tokens, so the tab path on a first approval is inferred from `mcp-remote` behavior, not observed here.
 2. **Cached tokens no longer auto-connect.** ClickUp, Mobbin and Refero register only through each mode's ask step, even for a developer who already approved them.
 3. **Numbering in the consumer's block.** A block placed before a numbered RELATED RESOURCES must use headings one level down, or the section numbering check fails.
-4. **One lost assertion.** The backup-path test no longer checks that this repository's own `.gitignore` ignores `.skilled/output/`.
-5. **Fail-soft helps only trees that carry it.** A consumer gets the notice once its `.pi/extensions` entries are the rendered ones. A tree that still has one-line entries keeps the 22 load errors.
-6. **A broken adapter in the source repo is a warning.** The notice names it, and `hook-wiring-check.cjs` and `doctor:git` still fail on it, but Pi no longer refuses the extension.
-7. **Not run in a live Pi session.** The proof drives Pi's installed loader directly in scratch, on 1.5.0 and 1.5.2. The notice in a real TUI session is not observed.
-8. **The re-pin rehearsal is a stage on a scratch commit.** The stage itself skips the manifest's regenerate and verify steps. The `overlay-engine apply` run afterwards in the staged tree wrote one file, so it ran all ten regenerate steps, none failed, and then the twelve verify checks. Ten passed. The consumer's two checks failed only because `pin.checkout` named the real checkout, and both passed when rerun by hand against the scratch clone. The six blocked entries from main were rebased mechanically, keeping the consumer's copy where `git merge-file` conflicted. The consumer rebases those by hand.
+4. **Fail-soft helps only trees that carry it.** A consumer gets the notice once its `.pi/extensions` entries are the rendered ones. A tree that still has one-line entries keeps the 22 load errors.
+5. **A broken adapter in the source repo is a warning.** The notice names it, and `hook-wiring-check.cjs` and `doctor:git` still fail on it, but Pi no longer refuses the extension.
+6. **The notice is seen in RPC mode only.** A live Pi 1.5.2 session in RPC mode sent it as one `notify` request. How the TUI draws it is not observed.
+7. **The re-pin rehearsal is a stage on a scratch commit.** The stage itself skips the manifest's regenerate and verify steps. The `overlay-engine apply` run afterwards in the staged tree wrote one file, so it ran all ten regenerate steps, none failed, and then the twelve verify checks. Ten passed. The consumer's two checks failed only because `pin.checkout` named the real checkout, and both passed when rerun by hand against the scratch clone. The six blocked entries from main were rebased mechanically, keeping the consumer's copy where `git merge-file` conflicted. The consumer rebases those by hand.
 <!-- /ANCHOR:limitations -->
 
 ---

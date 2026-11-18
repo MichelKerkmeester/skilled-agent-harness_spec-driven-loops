@@ -18,6 +18,7 @@
       "barter upstream fixes plan",
       "barter upstream fixes tasks",
       "barter upstream fixes acceptance criteria",
+      "005-barter-upstream-fixes operator decisions",
       "barter upstream fixes implementation summary"
     ],
     "key_topics": [
@@ -35,12 +36,13 @@
       "section"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/mcp-code-mode/mcp-server/index.ts",
       ".skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md",
@@ -55,8 +57,7 @@
       "runtime/cli/tests/hook-registration-sync.vitest.ts",
       ".skilled/commands/doctor/scripts/git-setup-check.cjs",
       ".pi/types/pi-coding-agent.d.ts",
-      ".pi/types/node-globals.d.ts",
-      ".pi/SYNC.md"
+      ".pi/types/node-globals.d.ts"
     ],
     "entities": [
       {
@@ -81,6 +82,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -174,12 +181,6 @@
         "source": "derived"
       },
       {
-        "name": "SYNC.md",
-        "kind": "doc",
-        "path": ".pi/SYNC.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -198,7 +199,7 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Problem Statement Barter",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -206,7 +207,7 @@
     ],
     "causal_summary": "Barter vendors Skilled and has to carry overlays, or live with a red gate, after every re-pin",
     "created_at": "2026-11-18T12:44:24Z",
-    "last_save_at": "2026-11-18T14:28:53.440Z",
+    "last_save_at": "2026-11-18T16:39:29.055Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,15 +215,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f4f91ce91db9c91cb023da5fe822b5af3fe1412be1cb1a40fc8733ad092439e",
+    "source_fingerprint": "sha256:272b391c1ff8a4aaf555f10cbb0f2aee28c6831c47ca5b44df05b4948256fd79",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "83e0301c0009df27eeefa93954a0307c4d18564e486568c8e9209faa95c17f49",
-      "plan.md": "fdc67a85bb7170dabb58b2d0ffa7123f726070960d2a13e634d94666f25479a3",
-      "tasks.md": "70dbc6fc62fe98e9b83635e6c052851bc8fa0e9b217f148ee77010366697fbba",
-      "implementation-summary.md": "143b7bd9e6dd365c431e186be6355355da92e41681e44f9220ea5888b5f4b0c4"
+      "spec.md": "ea1b8c726508c604d6369a3df179f8a56268cde758b2283c0ab9d6f32a8996b8",
+      "plan.md": "c39a806f06be3c4c649d474b6f6b763a4b9db7ad9d048e0d1951a89934284d65",
+      "tasks.md": "21bbe5bc54e8de6b487735ace1dbb909646675aed484c8658e2efd5a79968633",
+      "decision-record.md": "f8617c61380e5804d75d4d64c32d0643665849254195ffbcdaa95514e133d054",
+      "implementation-summary.md": "9fdfec7c582d52b8043537bdc92af289933c413a58cfe3bbd680bad943d67147"
     },
     "last_active_at": null
   }
