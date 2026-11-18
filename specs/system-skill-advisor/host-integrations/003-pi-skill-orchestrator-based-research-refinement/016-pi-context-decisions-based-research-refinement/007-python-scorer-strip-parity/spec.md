@@ -132,9 +132,10 @@ The CLI's own local path routes the probe `sk-doc` first today. Stripped first, 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `runtime/scripts/skill_advisor.py` | Modify | The whitespace set, the two compiled regexes and `strip_leading_pasted_reply`, placed before `analyze_request`, and one call after its empty check at `:4793-4794` |
-| `runtime/tests/python/test_skill_advisor.py` | Modify | `test_pasted_reply_strip_parity` and its line in `main` |
+| `runtime/scripts/skill_advisor.py` | Modify | The whitespace set, the two compiled regexes and `strip_leading_pasted_reply`, placed before `analyze_request`, and one call after its empty check at `:4793-4794`. Amended at build: `analyze_batch` trims with the same JavaScript set, because the refutation pass showed `str.strip()` exposing a U+001C-led pasted reply |
+| `runtime/tests/python/test_skill_advisor.py` | Modify | `test_pasted_reply_strip_parity` and its line in `main`, plus two batch-trim assertions added at build |
 | `runtime/tests/fixtures/pasted-reply-strip-cases.json` | Modify | Append the six parity rows |
+| `runtime/tests/fixtures/README.md` | Modify (amended at build) | The fixture's key-files row names the Python reader too |
 | `runtime/tests/parity/fixtures/local-native-approved-divergences.json` | Modify | Recaptured by its capture script with `--write`. `rr-paste-208` leaves it |
 | `runtime/tests/parity/python-ts-parity.vitest.ts` | Modify, only if the pins move | `pythonCorrect` at `:269` and `tsAlsoCorrect` at `:274`, plus one comment line. INFERRED: 113 to 114 and 108 to 109 |
 | `runtime/tests/legacy/advisor-corpus-parity.vitest.ts` | Modify, only if the pins move | `pythonCorrect` at `:178` and `hookPreservedPythonCorrect` at `:179`, plus one comment line. INFERRED: 117 to 118 and 112 to 113 |

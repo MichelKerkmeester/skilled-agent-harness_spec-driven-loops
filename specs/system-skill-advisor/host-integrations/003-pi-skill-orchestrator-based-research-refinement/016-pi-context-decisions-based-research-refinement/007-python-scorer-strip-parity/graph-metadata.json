@@ -42,9 +42,9 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      "runtime/tests/fixtures/README.md",
       "tmp/p002-briefs/out/last-refute.txt",
       "tmp/p002-briefs/rule.cjs",
-      "runtime/tests/fixtures/README.md",
       "SCRATCH/proposed-port.py"
     ],
     "entities": [
@@ -79,6 +79,12 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/tests/fixtures/README.md",
+        "source": "derived"
+      },
+      {
         "name": "last-refute.txt",
         "kind": "file",
         "path": "tmp/p002-briefs/out/last-refute.txt",
@@ -88,12 +94,6 @@
         "name": "rule.cjs",
         "kind": "file",
         "path": "tmp/p002-briefs/rule.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "runtime/tests/fixtures/README.md",
         "source": "derived"
       },
       {
@@ -181,21 +181,21 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "One Luna",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "When the daemon is unreachable, `advisorrecommend` falls back to the Python scorer",
     "created_at": "2026-11-18T15:49:26Z",
-    "last_save_at": "2026-11-18T16:18:27.854Z",
+    "last_save_at": "2026-11-18T17:45:05.787Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:800153c80aa2dc71d3c9403e6f9aacccf1bf1473c175949477abb73a4023ad19",
+    "source_fingerprint": "sha256:296ff47562d70150737d3e7dd330445fdbf9cac8c65d9eba1a43eb223af6d312",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "470c6d0b34f615a8dba92b05b01c7eec79856401cbcf5499f8ae5aee60abe786",
+      "spec.md": "62973214a31eca0b6ff40b0e6f32edfd0562df92b275bf22348e30efc71b2e30",
       "plan.md": "06a83467e959ed38652cc05fde575467274434955c49885e9007ae275cbaaed9",
-      "tasks.md": "2fc9a84937e6c87f0fc0a7282ce831f97bfae7ba86ce9c1d7a63829d68dfa2c6",
-      "implementation-summary.md": "14b2e68a56832229b25196b411ef4861ff1b5d7d823d399b170d34eaf80438ae"
+      "tasks.md": "c089a63b81c4b35e4d27f21d173129862fa8d66277ecd593e240e58c3ff343f8",
+      "implementation-summary.md": "d0af607ebf24e775ab90a1a8f6fb03a144f89c6dbade4fa0bacf47e9cd074c29"
     },
     "last_active_at": null
   }

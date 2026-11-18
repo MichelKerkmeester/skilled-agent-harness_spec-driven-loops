@@ -59,11 +59,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `python3 .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` exits 0 with a PASS line for each of the 23 fixture ids
-- [ ] `npx vitest run tests/parity` exits 0 from the advisor runtime folder
-- [ ] `rg -c rr-paste-208 .skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json` prints nothing and exits 1
-- [ ] Piping the phase 002 probe to `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --threshold 0.8 --uncertainty 0.35 --stdin` returns `sk-code` as the first skill
-- [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED`
+- [x] `python3 .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` exits 0 with a PASS line for each of the 23 fixture ids
+- [x] `npx vitest run tests/parity` exits 0 from the advisor runtime folder
+- [x] `rg -c rr-paste-208 .skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json` prints nothing and exits 1
+- [x] Piping the phase 002 probe to `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --threshold 0.8 --uncertainty 0.35 --stdin` returns `sk-code` as the first skill
+- [x] `validate.sh --strict` on this phase prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,11 +80,13 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase planned | Done | `spec.md`, `plan.md` and `tasks.md` written 2026-11-18. Measurements in `spec.md` Measured Behavior |
+| Phase built | Done | 2026-11-18: `PY` pass=115 fail=0 with a PASS line per fixture id, parity 10 files 75/75, ledger free of `rr-paste-208`, `LOCAL` lists `sk-code` first. Detail in `implementation-summary.md` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Extra files beyond the brief | The two parity suites pin Python-reference counts that the port raises, so they are listed now instead of found by a failing gate |
+| Batch trim fixed at build | The refutation pass found `analyze_batch` trimming with Python's whitespace set. Fixed with two assertions run red first; `spec.md` Files to Change amended, with the fixture README row |
 | CLI fallback line range | The brief cited `skill-advisor-cli.ts:1456-1468`. `runLocalScorer` spans `:1456-1476` and its call site is `:1577` |
 <!-- /ANCHOR:log -->
