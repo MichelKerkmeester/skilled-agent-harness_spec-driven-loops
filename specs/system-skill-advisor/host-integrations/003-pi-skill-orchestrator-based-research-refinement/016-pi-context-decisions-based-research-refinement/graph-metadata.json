@@ -160,7 +160,7 @@
     ],
     "causal_summary": "The skill advisor picks skills with a local five-lane scorer and pushes a brief into every prompt",
     "created_at": "2026-11-18T06:49:25Z",
-    "last_save_at": "2026-11-18T16:48:49.912Z",
+    "last_save_at": "2026-11-18T19:26:28.480Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -172,7 +172,7 @@
     "source_doc_hashes": {
       "spec.md": "670d222cbd82beb1afe9fe7c878e1b3106d83f5c140274b7bfdedb013b7ff990"
     },
-    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping",
-    "last_active_at": "2026-11-18T13:45:45.010Z"
+    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research",
+    "last_active_at": "2026-11-18T19:26:28.480Z"
   }
 }

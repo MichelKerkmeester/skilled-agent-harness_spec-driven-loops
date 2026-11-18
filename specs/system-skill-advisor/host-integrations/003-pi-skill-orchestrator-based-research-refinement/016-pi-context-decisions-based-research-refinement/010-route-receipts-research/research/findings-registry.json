@@ -1,0 +1,1452 @@
+{
+  "sessionId": "2026-11-18T19:04:03Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-receipt-contents-and-the-guard-s-action-what-a-receipt-holds-which-turns-writ",
+      "inboxId": null,
+      "text": "Q1 Receipt contents and the guard's action: what a receipt holds, which turns write one, reuse versus suppress on a weak follow-up, and the test that separates a weak follow-up from a floored topic change",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q2-the-state-store-reuse-the-directive-lifecycle-store-a-sibling-folder-beside-v",
+      "inboxId": null,
+      "text": "Q2 The state store: reuse the directive-lifecycle store, a sibling folder beside Vibe's head receipts, or `.skilled/skills/.state/`, with atomicity and concurrency",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-expiry-by-turn-count-by-time-or-by-a-lifecycle-event-startup-resume-compact-c",
+      "inboxId": null,
+      "text": "Q3 Expiry: by turn count, by time or by a lifecycle event (startup, resume, compact, clear, shrinking transcript)",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-runtime-reach-claude-pi-dsh-vibe-codex-and-the-opencode-plugin-including-vibe",
+      "inboxId": null,
+      "text": "Q4 Runtime reach: Claude, Pi, DSH, Vibe, Codex and the OpenCode plugin, including Vibe head-receipt interaction",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-the-measurement-the-harness-the-success-threshold-on-the-nine-follow-up-pairs",
+      "inboxId": null,
+      "text": "Q5 The measurement: the harness, the success threshold on the nine follow-up pairs, why C does not apply without a receipt, the scorer-isolation check and one false-carry case",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-receipt-contents-and-the-guard-s-action-what-a-receipt-holds-which-turns-writ",
+      "inboxId": null,
+      "text": "Q1 Receipt contents and the guard's action: what a receipt holds, which turns write one, reuse versus suppress on a weak follow-up, and the test that separates a weak follow-up from a floored topic change",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-q2-the-state-store-reuse-the-directive-lifecycle-store-a-sibling-folder-beside-v",
+      "inboxId": null,
+      "text": "Q2 The state store: reuse the directive-lifecycle store, a sibling folder beside Vibe's head receipts, or `.skilled/skills/.state/`, with atomicity and concurrency",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-q3-expiry-by-turn-count-by-time-or-by-a-lifecycle-event-startup-resume-compact-c",
+      "inboxId": null,
+      "text": "Q3 Expiry: by turn count, by time or by a lifecycle event (startup, resume, compact, clear, shrinking transcript)",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-q4-runtime-reach-claude-pi-dsh-vibe-codex-and-the-opencode-plugin-including-vibe",
+      "inboxId": null,
+      "text": "Q4 Runtime reach: Claude, Pi, DSH, Vibe, Codex and the OpenCode plugin, including Vibe head-receipt interaction",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-q5-the-measurement-the-harness-the-success-threshold-on-the-nine-follow-up-pairs",
+      "inboxId": null,
+      "text": "Q5 The measurement: the harness, the success threshold on the nine follow-up pairs, why C does not apply without a receipt, the scorer-isolation check and one false-carry case",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q3, Q4, Q5: not started.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: partly answered (store location leaning to a sibling folder). Atomicity under concurrent writers, the bound and pruning are still open.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4, Q5: not started.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: partly answered. A clock-bound receipt expires on every boundary that reaches the lifecycle store. Still open: which hosts deliver boundaries, whether an age limit or turn count is needed on top, and the clock-versus-age fallback if the spawn cost is too high.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None of Q1 to Q5 is open as a design question. Three claims still need checking: the floored state of the five harm-pair task tops (finding 8), Codex PreCompact's with-input branch (finding 2), and iteration 1's hand-worked separator table. The rebuilt-`dist/` probe or 011's bench row confirms all three.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-12-011-change-keep-the-modify-only-if-010-picks-suppress-row-for-runtime-lib-skill-",
+      "text": "**011 change:** keep the \"Modify, only if 010 picks suppress\" row for `runtime/lib/skill-advisor-brief.ts` and make it unconditional. Add the `isWeakFollowUp` closed list and the content-word cap to `hooks/lib/route-receipt.ts`'s description. Rewrite the hook row's anchors to `:457-483`. Add a REQ: the guard reads its policy reason from the stripped text through its own `shouldFireAdvisor` call, never the hook's `skippedResult`.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:200-532",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:40-254",
+        ".skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json (jq)",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:355-443",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:514-674",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:85-252",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1397-1414",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:46-51",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:69-105",
+        "specs/.../011-route-receipts-build/spec.md:40-159",
+        "specs/.../010-route-receipts-research/spec.md (Research Brief, Measured Behavior)"
+      ]
+    },
+    {
+      "id": "finding-1-11-action-on-a-guarded-turn-suppress-emit-the-skipped-result-advisor-prompt-skipped",
+      "text": "**Action on a guarded turn: suppress.** Emit the skipped result (`Advisor: prompt skipped.`) through a new exported helper that wraps the private `result` builder, with a distinct `policyReason`, for example `weak_follow_up_receipt`, so the diagnostics can count it. Reasons: a false carry under suppress withholds a route, while under reuse it pushes the wrong one; the earlier brief is already in the model's context; reuse would need four more receipt fields and would print an old score as if new. INFERRED, a judgment from the error asymmetry. The Q5 false-carry test checks it.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:200-532",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:40-254",
+        ".skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json (jq)",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:355-443",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:514-674",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:85-252",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1397-1414",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:46-51",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:69-105",
+        "specs/.../011-route-receipts-build/spec.md:40-159",
+        "specs/.../010-route-receipts-research/spec.md (Research Brief, Measured Behavior)"
+      ]
+    },
+    {
+      "id": "finding-1-10-guard-predicate-all-must-hold-a-a-fresh-receipt-exists-for-the-session-b-shouldf",
+      "text": "**Guard predicate (all must hold):** (a) a fresh receipt exists for the session; (b) `shouldFireAdvisor(stripLeadingPastedReply(prompt)).reason === 'work_intent_with_meaningful_tokens'`; (c) the delivered top-1 is floored; (d) the top-1 differs from `receipt.skill` (pairs 7 and 8 pass through unchanged); (e) `isWeakFollowUp(stripped)`: at least one back-reference word from a closed list (`that`, `it`, `this`, `there`, `them`, `those`, `these`, `same`, `again`, `too`, `also`, `well`, `remaining`, `ones`) and at most 3 content words. The decision function is pure: (receipt, stripped prompt, policy reason, top-1, floored) to `deliver | suppress`.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:200-532",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:40-254",
+        ".skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json (jq)",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:355-443",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:514-674",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:85-252",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1397-1414",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:46-51",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:69-105",
+        "specs/.../011-route-receipts-build/spec.md:40-159",
+        "specs/.../010-route-receipts-research/spec.md (Research Brief, Measured Behavior)"
+      ]
+    },
+    {
+      "id": "finding-1-14-leaning-recommendation-for-q2-a-sibling-folder-not-the-lifecycle-record-a-siblin",
+      "text": "**Leaning recommendation for Q2: a sibling folder, not the lifecycle record.** A sibling avoids the version-2 schema bump in the Python helper. The receipt is written from TypeScript after the brief is chosen, so it can use temp-file plus `rename` without the helper's lock. INFERRED, not yet closed: the concurrency case (two hosts on one session id) and the bound (011 says 64 sessions) still need the helper's lock and pruning code at `hooks/lib/directive-lifecycle-store.py:121-145`, `:357`. `.skilled/skills/.state/` is repo-scoped, and the hook's workspace root moves with `cwd` (`user-prompt-submit.ts:200-204`), so session state there could split. INFERRED.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:200-532",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:40-254",
+        ".skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json (jq)",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:355-443",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:514-674",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:85-252",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1397-1414",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:46-51",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:69-105",
+        "specs/.../011-route-receipts-build/spec.md:40-159",
+        "specs/.../010-route-receipts-research/spec.md (Research Brief, Measured Behavior)"
+      ]
+    },
+    {
+      "id": "finding-1-5-membership-tests-do-not-separate-the-cases-but-the-prompt-s-shape-might-the-poli",
+      "text": "**Membership tests do not separate the cases, but the prompt's shape might.** The policy floor is 3 meaningful tokens, the stop words include `it`, `the`, `with`, `for`, `to`, and `fix`, `add`, `update`, `change`, `refactor` are work verbs [SOURCE: .skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:95-113]. Counting by hand with that tokenizer:",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:200-532",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:40-254",
+        ".skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json (jq)",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:355-443",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:514-674",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:85-252",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1397-1414",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:46-51",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:69-105",
+        "specs/.../011-route-receipts-build/spec.md:40-159",
+        "specs/.../010-route-receipts-research/spec.md (Research Brief, Measured Behavior)"
+      ]
+    },
+    {
+      "id": "finding-1-8-receipt-fields-version-1-sessionid-skill-the-delivered-top-1-skill-id-not-the-di",
+      "text": "**Receipt fields:** `version: 1`, `sessionId`, `skill` (the delivered top-1 skill id, not the display label), `writtenAt` (epoch ms), `transcriptBytes` (the size the hook already reads before dedup, `user-prompt-submit.ts:326-333`, or `null`), and the lifecycle epoch or boundary token Q3 settles. No confidence, uncertainty or prompt hash: suppress does not use them, and a field nothing reads is weight. `floored` is dropped because only unfloored routes are written.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:200-532",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:40-254",
+        ".skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json (jq)",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:355-443",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:514-674",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:85-252",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1397-1414",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:46-51",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:69-105",
+        "specs/.../011-route-receipts-build/spec.md:40-159",
+        "specs/.../010-route-receipts-research/spec.md (Research Brief, Measured Behavior)"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-floor-flag-is-set-in-the-scorer-and-nowhere-downstream-the-scorer-sets-confi",
+      "text": "**The floor flag is set in the scorer and nowhere downstream.** The scorer sets `confidenceFloored: true` on a recommendation [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1397-1414]. One `rg -n confidenceFloored` over `runtime/schemas/advisor-tool-schemas.ts`, `runtime/handlers/advisor-recommend.ts`, `runtime/lib/subprocess.ts` and `hooks/lib/skill-advisor-cli-fallback.ts` returned zero lines. CONFIRMED: today the hook cannot tell a floored top from a confident one. The five carry edits in 011's Files to Change table are needed (schema, `publicRecommendation`, `AdvisorRecommendation`, `recommendationFromCli`) and stay in.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:200-532",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:40-254",
+        ".skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json (jq)",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:355-443",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:514-674",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:85-252",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1397-1414",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:46-51",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:69-105",
+        "specs/.../011-route-receipts-build/spec.md:40-159",
+        "specs/.../010-route-receipts-research/spec.md (Research Brief, Measured Behavior)"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-hook-s-skip-gate-reads-the-raw-prompt-not-the-stripped-text-skippedresult-in",
+      "text": "**The hook's skip gate reads the raw prompt, not the stripped text.** `skippedResult = injectedBrief ? null : skippedAdvisorResultFor(prompt)`, where `prompt` is only `normalizePrompt(input.prompt)` [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:435] [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:457], and `skippedAdvisorResultFor` calls `shouldFireAdvisor(prompt)` on it unchanged [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:420-423]. The explicit-marker branch wins over work intent [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:171-191]. So the guard cannot reuse the hook's existing policy result. It has to call `shouldFireAdvisor(stripLeadingPastedReply(prompt))` itself, which is what the bench does [SOURCE: .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:231]. CONFIRMED from code. This backs the provisional REQ-007 in 011.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:200-532",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:40-254",
+        ".skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json (jq)",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:355-443",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:514-674",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:85-252",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1397-1414",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:46-51",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:69-105",
+        "specs/.../011-route-receipts-build/spec.md:40-159",
+        "specs/.../010-route-receipts-research/spec.md (Research Brief, Measured Behavior)"
+      ]
+    },
+    {
+      "id": "finding-1-13-the-lifecycle-file-store-and-vibe-s-head-receipts-already-share-one-state-base-b",
+      "text": "**The lifecycle file store and Vibe's head receipts already share one state base.** Both resolve `SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR`, defaulting to `join(tmpdir(), 'speckit-advisor')` [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:46-48] [SOURCE: .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:69-70]. Vibe writes its head with a plain `writeFileSync(target, head, { mode: 0o600 })` [SOURCE: .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:105]. CONFIRMED. A `route-receipts/` sibling under that base picks up the existing test override for free. That fits 011's provisional row.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:200-532",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:40-254",
+        ".skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json (jq)",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:355-443",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:514-674",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:85-252",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1397-1414",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:46-51",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:69-105",
+        "specs/.../011-route-receipts-build/spec.md:40-159",
+        "specs/.../010-route-receipts-research/spec.md (Research Brief, Measured Behavior)"
+      ]
+    },
+    {
+      "id": "finding-1-7-the-line-anchors-in-011-are-stale-011-says-the-hook-builds-the-result-at-366-378",
+      "text": "**The line anchors in 011 are stale.** 011 says the hook builds the result at `:366-378` and renders at `:388` [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/011-route-receipts-build/spec.md:65]. After phase 009 the build is at `:457-470`, the render at `:480-482` and the dedup at `:483` [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:457-483]. The crash path renders its fallback from `skippedResult` at `:521-523`. CONFIRMED from code. T001 has to re-anchor them.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:200-532",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:40-254",
+        ".skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json (jq)",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:355-443",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:514-674",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:85-252",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1397-1414",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:46-51",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:69-105",
+        "specs/.../011-route-receipts-build/spec.md:40-159",
+        "specs/.../010-route-receipts-research/spec.md (Research Brief, Measured Behavior)"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-negative-controls-stay-out-without-any-new-test-pair-2-do-the-same-for-the-o",
+      "text": "**The negative controls stay out without any new test.** Pair 2 `do the same for the other branch` has no work verb and reads `length_and_token_threshold`, and pair 4 `make it a bit tighter` reads `below_prompt_policy_threshold` (spec Measured Behavior, pairs 2 and 4). The stripped-reason check `== work_intent_with_meaningful_tokens` already drops both [SOURCE: .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:232]. CONFIRMED from the bench rule and the recorded pair reasons.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:200-532",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:40-254",
+        ".skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json (jq)",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:355-443",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:514-674",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:85-252",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1397-1414",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:46-51",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:69-105",
+        "specs/.../011-route-receipts-build/spec.md:40-159",
+        "specs/.../010-route-receipts-research/spec.md (Research Brief, Measured Behavior)"
+      ]
+    },
+    {
+      "id": "finding-1-9-turns-that-write-only-a-turn-whose-result-is-status-ok-whose-rendered-brief-is-n",
+      "text": "**Turns that write:** only a turn whose result is `status: 'ok'`, whose rendered brief is non-null, and whose top-1 is not floored. A floored route never becomes a receipt, because a floored follow-up that overwrote the receipt would let a run of follow-ups drift. Skipped, degraded, fail-open, no-match and crash turns, and guarded turns, write nothing.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:200-532",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:40-254",
+        ".skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json (jq)",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:355-443",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:514-674",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:85-252",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1397-1414",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:46-51",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:69-105",
+        "specs/.../011-route-receipts-build/spec.md:40-159",
+        "specs/.../010-route-receipts-research/spec.md (Research Brief, Measured Behavior)"
+      ]
+    },
+    {
+      "id": "finding-1-4-what-reuse-would-have-to-rebuild-re-emitting-the-earlier-route-needs-a-full-rend",
+      "text": "**What \"reuse\" would have to rebuild.** Re-emitting the earlier route needs a full renderable recommendation: `skill`, `confidence`, `uncertainty`, `passes_threshold`, and `command`/`needsMode` for the label, plus the shared payload's `skillLabel` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:530-561]. A receipt would have to hold all of that, and the rebuilt head would print an old confidence as if this turn had scored it. INFERRED from the render contract. A test that renders a rebuilt result against the stored head would confirm the field list.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:200-532",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:40-254",
+        ".skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json (jq)",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:355-443",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:514-674",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:85-252",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1397-1414",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:46-51",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:69-105",
+        "specs/.../011-route-receipts-build/spec.md:40-159",
+        "specs/.../010-route-receipts-research/spec.md (Research Brief, Measured Behavior)"
+      ]
+    },
+    {
+      "id": "finding-1-3-what-suppress-would-emit-a-skipped-result-with-freshness-unavailable-renders-as-",
+      "text": "**What \"suppress\" would emit.** A `skipped` result with `freshness: 'unavailable'` renders as `Advisor: prompt skipped.` plus the directive block [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:644-665]. A normal brief renders `Advisor: <freshness>; use <label> <conf>/<unc> pass.` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:618-624]. Both then go through directive dedup unchanged [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:480-483]. `skippedAdvisorResultFor` returns `null` whenever the policy fires [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:423]. A weak follow-up always fires (it is work intent by definition), so the guard cannot get its skipped result from that function. It needs the new helper built on the private `result` builder that 011 already lists as \"only if 010 picks suppress\". CONFIRMED from code.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:200-532",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:40-254",
+        ".skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json (jq)",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:355-443",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:514-674",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:85-252",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1397-1414",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:46-51",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:69-105",
+        "specs/.../011-route-receipts-build/spec.md:40-159",
+        "specs/.../010-route-receipts-research/spec.md (Research Brief, Measured Behavior)"
+      ]
+    },
+    {
+      "id": "finding-2-13-a-boundary-rotates-the-clock-the-receipt-would-store-a-boundary-with-a-session-i",
+      "text": "**A boundary rotates the clock the receipt would store.** A boundary with a session id runs `advance-session`, which deletes that session's lifecycle record and writes a fresh random epoch token [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:297-299]. A boundary without one runs `advance-generation`, which deletes every record and epoch and writes a new generation token [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:300-308]. The boundary adapter calls one of the two and ignores its `boundary` field, so any boundary the host sends counts [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:31-37] [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:183-191]. CONFIRMED. A receipt that stores the clock expires on every boundary with no change to the boundary path and no deletion of the receipt file.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:14-36, :58-87, :121-145, :185-369",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:1-148",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:6-9",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:1-192, :225-228",
+        ".skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:1-69",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:60-194",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:215-383",
+        ".skilled/hooks/directive-lifecycle/README.md:23-96",
+        "specs/.../010-route-receipts-research/spec.md:163-166 (Research Brief Q2 to Q5)",
+        "specs/.../011-route-receipts-build/spec.md:110, :140, :172, :182-183"
+      ]
+    },
+    {
+      "id": "finding-2-10-bound-and-pruning-import-max-directive-lifecycle-sessions-rather-than-adding-a-s",
+      "text": "**Bound and pruning:** import `MAX_DIRECTIVE_LIFECYCLE_SESSIONS` rather than adding a second `64`. When the target file is new, evict the oldest `*.json` by `mtime` down to the cap minus one, as both existing stores do. Remove temp files older than 5 minutes on the same pass. An eviction race only deletes receipts (finding 6).",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:14-36, :58-87, :121-145, :185-369",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:1-148",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:6-9",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:1-192, :225-228",
+        ".skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:1-69",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:60-194",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:215-383",
+        ".skilled/hooks/directive-lifecycle/README.md:23-96",
+        "specs/.../010-route-receipts-research/spec.md:163-166 (Research Brief Q2 to Q5)",
+        "specs/.../011-route-receipts-build/spec.md:110, :140, :172, :182-183"
+      ]
+    },
+    {
+      "id": "finding-2-12-cost-to-settle-in-011-a-write-turn-would-add-one-clock-spawn-finding-3-to-keep-t",
+      "text": "**Cost to settle in 011:** a write turn would add one `clock` spawn (finding 3). To keep that off most turns, call `clock` on the read side only after the cheap predicates (b) to (e) hold, and on the write side only on an `ok`, unfloored turn. INFERRED: whether one extra spawn on each delivered turn is acceptable is a latency question nobody has measured. If 011's measurement shows it is too slow, the fallback is to drop the clock from the receipt and expire by transcript shrink plus an age limit only. Q3 decides between them.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:14-36, :58-87, :121-145, :185-369",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:1-148",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:6-9",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:1-192, :225-228",
+        ".skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:1-69",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:60-194",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:215-383",
+        ".skilled/hooks/directive-lifecycle/README.md:23-96",
+        "specs/.../010-route-receipts-research/spec.md:163-166 (Research Brief Q2 to Q5)",
+        "specs/.../011-route-receipts-build/spec.md:110, :140, :172, :182-183"
+      ]
+    },
+    {
+      "id": "finding-2-3-each-helper-call-is-a-python3-spawn-with-a-750-ms-cap-invokeat-runs-spawnsync-wi",
+      "text": "**Each helper call is a `python3` spawn with a 750 ms cap.** `invokeAt` runs `spawnSync` with `HELPER_TIMEOUT_MS = 750` and returns `null` on any error, non-zero status or empty output [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:22] [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:113-145]. CONFIRMED. Every extra helper op the receipt needs adds one process spawn to the turn.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:14-36, :58-87, :121-145, :185-369",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:1-148",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:6-9",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:1-192, :225-228",
+        ".skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:1-69",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:60-194",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:215-383",
+        ".skilled/hooks/directive-lifecycle/README.md:23-96",
+        "specs/.../010-route-receipts-research/spec.md:163-166 (Research Brief Q2 to Q5)",
+        "specs/.../011-route-receipts-build/spec.md:110, :140, :172, :182-183"
+      ]
+    },
+    {
+      "id": "finding-2-11-lifecycle-coupling-bridge-into-q3-the-receipt-stores-the-lifecycle-clock-storege",
+      "text": "**Lifecycle coupling (bridge into Q3):** the receipt stores the lifecycle clock `{storeGeneration, lifecycleEpoch}` from `state.clock(sessionId)` at write time. The guard reads the current clock and fires only when both tokens match. The clock is already part of the `DirectiveLifecycleState` interface the decision core uses [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:156-162], and both the file store and the in-memory store implement it [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:71-73] [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:225-228]. A `null` clock (helper missing, timeout, poisoned failsafe) means no guard. This adds the clock to iteration 1's receipt fields and settles the \"lifecycle epoch or boundary token\" slot iteration 1 left to Q3.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:14-36, :58-87, :121-145, :185-369",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:1-148",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:6-9",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:1-192, :225-228",
+        ".skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:1-69",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:60-194",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:215-383",
+        ".skilled/hooks/directive-lifecycle/README.md:23-96",
+        "specs/.../010-route-receipts-research/spec.md:163-166 (Research Brief Q2 to Q5)",
+        "specs/.../011-route-receipts-build/spec.md:110, :140, :172, :182-183"
+      ]
+    },
+    {
+      "id": "finding-2-7-location-a-sibling-folder-route-receipts-under-the-shared-state-base-which-is-sp",
+      "text": "**Location:** a sibling folder `route-receipts/` under the shared state base, which is `SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR` or `join(tmpdir(), 'speckit-advisor')`, resolved the same way as the lifecycle and Vibe stores. One `<sha256(sessionId)[:16]>.json` per session, directory mode `0o700`, file mode `0o600`. Not the lifecycle record (finding 1), and not `.skilled/skills/.state/` (finding 4).",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:14-36, :58-87, :121-145, :185-369",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:1-148",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:6-9",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:1-192, :225-228",
+        ".skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:1-69",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:60-194",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:215-383",
+        ".skilled/hooks/directive-lifecycle/README.md:23-96",
+        "specs/.../010-route-receipts-research/spec.md:163-166 (Research Brief Q2 to Q5)",
+        "specs/.../011-route-receipts-build/spec.md:110, :140, :172, :182-183"
+      ]
+    },
+    {
+      "id": "finding-2-9-reads-parse-check-version-1-and-the-field-types-and-treat-any-failure-as-no-rece",
+      "text": "**Reads:** parse, check `version === 1` and the field types, and treat any failure as no receipt, which means deliver.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:14-36, :58-87, :121-145, :185-369",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:1-148",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:6-9",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:1-192, :225-228",
+        ".skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:1-69",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:60-194",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:215-383",
+        ".skilled/hooks/directive-lifecycle/README.md:23-96",
+        "specs/.../010-route-receipts-research/spec.md:163-166 (Research Brief Q2 to Q5)",
+        "specs/.../011-route-receipts-build/spec.md:110, :140, :172, :182-183"
+      ]
+    },
+    {
+      "id": "finding-2-6-the-guard-s-failure-direction-makes-a-lock-unnecessary-under-iteration-1-s-desig",
+      "text": "**The guard's failure direction makes a lock unnecessary.** Under iteration 1's design, a missing, unreadable or stale receipt means the guard does not fire, so the floored route is delivered: today's behavior. The races that a lock-free store allows are (a) two writers on one session id, where either last unfloored route is a valid receipt, (b) an eviction that deletes a live receipt, which costs one guard miss, and (c) a torn file, which temp-file-plus-`rename` prevents and a parse check catches. None of them can suppress a route that today's code would deliver, except by reading a receipt that is valid but older than intended, which the expiry rule bounds. INFERRED from iteration 1's predicate and the POSIX same-directory `rename` guarantee. The 011 concurrency test confirms it: two writers on one session, then a read that parses one of the two skills or none.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:14-36, :58-87, :121-145, :185-369",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:1-148",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:6-9",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:1-192, :225-228",
+        ".skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:1-69",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:60-194",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:215-383",
+        ".skilled/hooks/directive-lifecycle/README.md:23-96",
+        "specs/.../010-route-receipts-research/spec.md:163-166 (Research Brief Q2 to Q5)",
+        "specs/.../011-route-receipts-build/spec.md:110, :140, :172, :182-183"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-helper-s-write-is-atomic-and-locked-and-that-machinery-is-private-to-it-writ",
+      "text": "**The helper's write is atomic and locked, and that machinery is private to it.** `write_json` opens a temp file with `O_CREAT | O_EXCL | O_NOFOLLOW`, `fsync`s it, `rename`s it in the same directory and `fsync`s the directory [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:121-143]. Every operation runs under one exclusive `flock` on `.store.lock` [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:353-362]. It accepts only the ops in `mutate`, and anything else raises `unknown operation` [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:276-309]. CONFIRMED. A receipt cannot ride the lock without a new helper op.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:14-36, :58-87, :121-145, :185-369",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:1-148",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:6-9",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:1-192, :225-228",
+        ".skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:1-69",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:60-194",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:215-383",
+        ".skilled/hooks/directive-lifecycle/README.md:23-96",
+        "specs/.../010-route-receipts-research/spec.md:163-166 (Research Brief Q2 to Q5)",
+        "specs/.../011-route-receipts-build/spec.md:110, :140, :172, :182-183"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-lifecycle-record-cannot-carry-a-receipt-without-a-helper-change-the-helper-v",
+      "text": "**The lifecycle record cannot carry a receipt without a helper change.** The helper validates every record field and `schemaVersion` 2 (`record()` and the contract's `DIRECTIVE_LIFECYCLE_SCHEMA_VERSION = 2`) [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:9]. `evaluate` rebuilds the candidate from five fixed keys plus the clock [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:250-256], and `write_record` copies the prior record only for those same keys [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:235-241]. A `skill` field would be dropped on the next matched turn. CONFIRMED from code. This rules out the shared record.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:14-36, :58-87, :121-145, :185-369",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:1-148",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:6-9",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:1-192, :225-228",
+        ".skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:1-69",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:60-194",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:215-383",
+        ".skilled/hooks/directive-lifecycle/README.md:23-96",
+        "specs/.../010-route-receipts-research/spec.md:163-166 (Research Brief Q2 to Q5)",
+        "specs/.../011-route-receipts-build/spec.md:110, :140, :172, :182-183"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-lifecycle-state-is-split-by-working-directory-not-just-by-session-open-state",
+      "text": "**The lifecycle state is split by working directory, not just by session.** `open_state_directory` opens `directive-lifecycle/<sha256(cwd)[:12]>/` under the base [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:79-81]. CONFIRMED. A clock read from a different `cwd` returns that project's tokens, which for a new project are `initial`. Iteration 1's worry that `.skilled/skills/.state/` moves with `cwd` applies to the lifecycle store as well, so that worry does not on its own rule out the repo folder. What rules the repo folder out is that it is repo-scoped and committed-tree-adjacent, while the other two per-session stores live under the temp base. INFERRED.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:14-36, :58-87, :121-145, :185-369",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:1-148",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:6-9",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:1-192, :225-228",
+        ".skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:1-69",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:60-194",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:215-383",
+        ".skilled/hooks/directive-lifecycle/README.md:23-96",
+        "specs/.../010-route-receipts-research/spec.md:163-166 (Research Brief Q2 to Q5)",
+        "specs/.../011-route-receipts-build/spec.md:110, :140, :172, :182-183"
+      ]
+    },
+    {
+      "id": "finding-2-14-the-prompt-hook-s-dropped-clear-matters-less-than-the-brief-suggests-lifecycleev",
+      "text": "**The prompt hook's dropped `clear` matters less than the brief suggests.** `lifecycleEventFor` maps only `startup`, `resume` and `compact` [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-237], and that value only feeds the decision core's `forceFull` flag [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:334-343]. Epoch rotation comes from the separate boundary adapter, so a `clear` that reaches that adapter still expires a clock-bound receipt. INFERRED. What is not confirmed is which hosts register the boundary adapter: the registration search in this iteration found only the concern README, which says adapters are registered elsewhere [SOURCE: .skilled/hooks/directive-lifecycle/README.md:25] [SOURCE: .skilled/hooks/directive-lifecycle/README.md:58]. It also says OpenCode, Vibe and Pi advance their lifecycle state on their own paths [SOURCE: .skilled/hooks/directive-lifecycle/README.md:96]. Iteration 3 has to name, per host, whether a boundary reaches `advanceSessionEpoch`.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:14-36, :58-87, :121-145, :185-369",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:1-148",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:6-9",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:1-192, :225-228",
+        ".skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:1-69",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:60-194",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:215-383",
+        ".skilled/hooks/directive-lifecycle/README.md:23-96",
+        "specs/.../010-route-receipts-research/spec.md:163-166 (Research Brief Q2 to Q5)",
+        "specs/.../011-route-receipts-build/spec.md:110, :140, :172, :182-183"
+      ]
+    },
+    {
+      "id": "finding-2-5-vibe-s-head-receipts-show-the-plain-file-pattern-and-its-bound-one-sha256-sessio",
+      "text": "**Vibe's head receipts show the plain-file pattern and its bound.** One `<sha256(sessionId)[:16]>.head` file per session under `<base>/<HEAD_RECEIPT_SUBDIR>`, the same base resolution as the lifecycle store [SOURCE: .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:68-77] [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:46-48]. It evicts the oldest files by `mtime` only when the target is new and the count reaches the cap [SOURCE: .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:89-104]. It writes with a plain `writeFileSync` and swallows every error, on the grounds that a lost receipt only repeats a head [SOURCE: .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:105-108]. CONFIRMED. The lifecycle store's bound is the shared constant `MAX_DIRECTIVE_LIFECYCLE_SESSIONS = 64` [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:8], evicted by `mtime` the same way [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:215-226], with stale temp files removed after 5 minutes [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:199-212].",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:14-36, :58-87, :121-145, :185-369",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:1-148",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:6-9",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:1-192, :225-228",
+        ".skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:1-69",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:60-194",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:215-383",
+        ".skilled/hooks/directive-lifecycle/README.md:23-96",
+        "specs/.../010-route-receipts-research/spec.md:163-166 (Research Brief Q2 to Q5)",
+        "specs/.../011-route-receipts-build/spec.md:110, :140, :172, :182-183"
+      ]
+    },
+    {
+      "id": "finding-2-8-writes-a-pure-typescript-store-in-hooks-lib-route-receipt-ts-write-a-temp-file-i",
+      "text": "**Writes:** a pure-TypeScript store in `hooks/lib/route-receipt.ts`. Write a temp file in the same folder with the exclusive-create flag (`wx`), then `renameSync` it onto the target. No `flock` and no new Python op (findings 2, 3 and 6). Refuse a base or folder that `lstat` shows to be a symlink, and refuse a receipt file over a small cap, for example 4 KiB, mirroring the helper's `secure_stat` and `MAX_RECORD_BYTES` checks in spirit (`directive-lifecycle-store.py:14`, `:95`). INFERRED: `/tmp` is shared between users on Linux, so the symlink check carries weight there.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:14-36, :58-87, :121-145, :185-369",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:1-148",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:6-9",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:1-192, :225-228",
+        ".skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:1-69",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:60-194",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:215-383",
+        ".skilled/hooks/directive-lifecycle/README.md:23-96",
+        "specs/.../010-route-receipts-research/spec.md:163-166 (Research Brief Q2 to Q5)",
+        "specs/.../011-route-receipts-build/spec.md:110, :140, :172, :182-183"
+      ]
+    },
+    {
+      "id": "finding-2-16-add-a-req-a-receipt-that-is-missing-unreadable-oversized-the-wrong-version-or-cl",
+      "text": "Add a REQ: a receipt that is missing, unreadable, oversized, the wrong version or clock-mismatched, or a `null` clock, means the guard does not fire and the turn delivers as it does today.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:14-36, :58-87, :121-145, :185-369",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:1-148",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:6-9",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:1-192, :225-228",
+        ".skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:1-69",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:60-194",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:215-383",
+        ".skilled/hooks/directive-lifecycle/README.md:23-96",
+        "specs/.../010-route-receipts-research/spec.md:163-166 (Research Brief Q2 to Q5)",
+        "specs/.../011-route-receipts-build/spec.md:110, :140, :172, :182-183"
+      ]
+    },
+    {
+      "id": "finding-2-17-add-a-req-no-edit-to-hooks-lib-directive-lifecycle-store-py-and-no-change-to-dir",
+      "text": "Add a REQ: no edit to `hooks/lib/directive-lifecycle-store.py`, and no change to `DIRECTIVE_LIFECYCLE_SCHEMA_VERSION`.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:14-36, :58-87, :121-145, :185-369",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:1-148",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:6-9",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:1-192, :225-228",
+        ".skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:1-69",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:60-194",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:215-383",
+        ".skilled/hooks/directive-lifecycle/README.md:23-96",
+        "specs/.../010-route-receipts-research/spec.md:163-166 (Research Brief Q2 to Q5)",
+        "specs/.../011-route-receipts-build/spec.md:110, :140, :172, :182-183"
+      ]
+    },
+    {
+      "id": "finding-2-18-add-test-rows-to-runtime-tests-hooks-route-receipt-vitest-ts-two-writers-on-one-",
+      "text": "Add test rows to `runtime/tests/hooks/route-receipt.vitest.ts`: two writers on one session leave a parseable receipt or none; a write past the bound evicts the oldest; a stale temp file is removed; and an `advanceSessionEpoch` on an `InMemoryDirectiveLifecycleStore` makes the next guard read deliver.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:14-36, :58-87, :121-145, :185-369",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:1-148",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:6-9",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:1-192, :225-228",
+        ".skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:1-69",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:60-194",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:215-383",
+        ".skilled/hooks/directive-lifecycle/README.md:23-96",
+        "specs/.../010-route-receipts-research/spec.md:163-166 (Research Brief Q2 to Q5)",
+        "specs/.../011-route-receipts-build/spec.md:110, :140, :172, :182-183"
+      ]
+    },
+    {
+      "id": "finding-2-15-rewrite-the-hooks-lib-route-receipt-ts-row-a-pure-typescript-file-store-in-route",
+      "text": "Rewrite the `hooks/lib/route-receipt.ts` row: a pure-TypeScript file store in `route-receipts/` under the shared state base, temp file with `wx` plus `renameSync`, no lock, the bound from `MAX_DIRECTIVE_LIFECYCLE_SESSIONS`, `mtime` eviction on a new target, temp cleanup after 5 minutes, symlink refusal and a size cap. The receipt also holds `storeGeneration` and `lifecycleEpoch` from `state.clock()`.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:14-36, :58-87, :121-145, :185-369",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:1-148",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:6-9",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:1-192, :225-228",
+        ".skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:1-69",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:60-194",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:215-383",
+        ".skilled/hooks/directive-lifecycle/README.md:23-96",
+        "specs/.../010-route-receipts-research/spec.md:163-166 (Research Brief Q2 to Q5)",
+        "specs/.../011-route-receipts-build/spec.md:110, :140, :172, :182-183"
+      ]
+    },
+    {
+      "id": "finding-3-14-c-does-not-apply-when-there-is-no-receipt-by-construction-c-counts-corpus-rows-w",
+      "text": "**`C` does not apply when there is no receipt, by construction.** `C` counts corpus rows whose floored, work-intent top-1 is correct. Each row is a single prompt with no session [SOURCE: .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:256-262]. Guard predicate (a) needs a receipt that is fresh for the session, so a turn with no receipt always delivers. INFERRED from iteration 1's predicate. Running the pure function with `receipt = null` over the corpus rows would confirm it.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-12-amendment-to-iteration-1-s-fields-drop-writtenat-from-the-primary-design-nothing",
+      "text": "**Amendment to iteration 1's fields:** drop `writtenAt` from the primary design. Nothing reads it, and file `mtime` already drives eviction. That follows iteration 1's own rule against fields nothing reads. Keep `transcriptBytes`. `null` means the shrink check is skipped, which is the DSH case.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-1-claude-rotates-the-clock-on-all-four-lifecycle-sources-and-on-precompact-runsess",
+      "text": "**Claude rotates the clock on all four lifecycle sources and on PreCompact.** `runSessionStartHook` passes the host's `source` straight through as the boundary, keyed by session id [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:262-267]. The bridge's boundary type includes `clear` [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:37]. PreCompact notifies a `compact` boundary for the session [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:587-588] and skips sub-agent payloads, whose session id is the parent's [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:578-584]. When stdin is missing, both hooks fall back to a no-session boundary, which advances the generation for every session [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:350-351] [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:572-574]. CONFIRMED from code. Iteration 2's open point is now closed for Claude: `clear` reaches the clock through SessionStart's `source`, even though the prompt hook's `lifecycleEventFor` drops it.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-2-codex-reaches-the-same-clock-through-the-claude-adapters-in-a-subprocess-runclau",
+      "text": "**Codex reaches the same clock through the Claude adapters in a subprocess.** `runClaudeHookAdapter` spawns the Claude adapter with the whole Codex input as stdin [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115]. The Codex prompt hook calls it with `user-prompt-submit.js` [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/codex/user-prompt-submit.ts:22], and the Codex SessionStart calls it with `session-prime.js` [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/codex/session-start.ts:34-41]. So `session_id` reaches both the handler and the boundary. CONFIRMED from code for the forwarding. INFERRED that Codex's PreCompact path also notifies with the session id when it has input: this iteration saw only its no-input branch [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/codex/compact-inject.ts:34]. Reading the rest of that file would confirm it.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-4-dsh-passes-a-session-id-but-no-boundary-ever-reaches-its-file-store-clock-dsh-s-",
+      "text": "**DSH passes a session id, but no boundary ever reaches its file-store clock.** DSH's `agent/created` and `compaction/end` handlers only delete its in-process receipt map [SOURCE: .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:59-61] [SOURCE: .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:148-155]. The handler call passes `session_id` but no `transcript_path` [SOURCE: .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:168-173]. The decision core sends full context whenever the transcript is not valid [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:133], so the shared store never dedups a DSH turn, and DSH does its own trimming afterward [SOURCE: .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:177]. CONFIRMED from code. A DSH route receipt would therefore survive compaction, which breaks the suppress rationale that the earlier brief is still in context. Adding a call to `advanceDirectiveLifecycleBoundary(defaultDirectiveLifecycleStore(), { sessionId, boundary })` in those two existing handlers would fix it. It would change no directive delivery, because the shared store never dedups DSH. INFERRED from the two facts above. A DSH test that compacts and then reads the guard would confirm it.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-8-expire-on-lifecycle-clock-mismatch-or-transcript-shrink-add-no-age-limit-and-no-",
+      "text": "**Expire on lifecycle clock mismatch or transcript shrink. Add no age limit and no turn count.** The guard fires only when the receipt's `{storeGeneration, lifecycleEpoch}` equals `state.clock(sessionId)`, and, when both byte counts are numbers, the current transcript bytes are at least the receipt's `transcriptBytes`. The shrink check reuses the size the hook already reads, so it costs no spawn. It also catches a host-side rewind that sends no boundary. INFERRED: no rewind path was traced.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-22-expiry-rows-one-replay-advances-the-session-epoch-between-the-task-and-follow-up",
+      "text": "**Expiry rows:** one replay advances the session epoch between the task and follow-up of pair 1, and one shrinks the transcript bytes. Both expect `sk-code` delivered.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-11-fallback-if-the-spawn-cost-is-too-high-if-phase-011-measures-the-clock-spawn-and",
+      "text": "**Fallback if the spawn cost is too high.** If phase 011 measures the `clock` spawn and rejects it, drop the clock fields and expire by transcript shrink plus a 30-minute age limit from a `writtenAt` field. INFERRED: the 30 minutes is a judgment, not a measurement. Claude's transcript is believed append-only across compaction, so in the fallback a compaction would expire a receipt only through the age limit. That is the weaker design, so the clock stays primary.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-21-false-carry-case-literal-session-task-update-the-advisor-readme-to-document-the-",
+      "text": "**False-carry case, literal:** session task `Update the advisor README to document the new corpus file layout` (receipt `sk-doc`, if unfloored), then follow-up `Refactor the session store module to remove duplicated locking code`. That follow-up is floored `sk-code` with reason `work_intent_with_meaningful_tokens` (spec Measured Behavior, third block). Predicate (e) fails: there is no back-reference word and there are 6 content words. **Expected route: `sk-code` delivered**, and no `weak_follow_up_receipt` policy reason is recorded.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-15-harness-both-layers",
+      "text": "**Harness: both layers.**",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-18-new-bench-output-add-taskfloored-receiptwritten-and-guard-to-each-pair-row-plus-",
+      "text": "**New bench output:** add `taskFloored`, `receiptWritten` and `guard` to each pair row, plus `H_after`, the count of harm pairs the guard still delivers.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-5-pi-cannot-hold-a-receipt-today-pi-calls-the-shared-handler-with-only-prompt-cwd-",
+      "text": "**Pi cannot hold a receipt today.** Pi calls the shared handler with only `prompt`, `cwd` and `hook_event_name` [SOURCE: .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:289-294]. It reads its session id only for its own repeat check, which it resets on `session_start` and `session_compact` [SOURCE: .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:248-254]. The shared handler takes the session from `input.session_id` [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:318-320], so guard predicate (a) can never hold for Pi. CONFIRMED from code. Putting Pi in scope would take three changes: pass `sessionIdFromContext(ctx)` to the handler, and add a boundary call to both reset handlers. INFERRED.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-20-scorer-isolation-check-rg-n-route-receipt-routereceipt-weak-follow-up-skilled-sk",
+      "text": "**Scorer isolation check:** `rg -n 'route-receipt|routeReceipt|weak_follow_up' .skilled/skills/system-skill-advisor/runtime/lib/scorer/` prints nothing. The `scoreAdvisorPrompt` signature and its cache key are unchanged in the diff.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-19-success-threshold-literal-h-after-0-of-h-5-pairs-1-3-5-6-9-all-suppress-hsame-2-",
+      "text": "**Success threshold, literal:** `H_after = 0` of `H = 5` (pairs 1, 3, 5, 6, 9 all `suppress`); `Hsame = 2` pairs (7, 8) `deliver`; negative controls 2 and 4 `deliver`; `C_after = 0` suppressions over the 19 `C` rows with `receipt = null`. Precondition: `receiptWritten = true` for pairs 1, 3, 5, 6 and 9. If any of those is `false`, 011 stops and reports it. It does not lower the threshold, because a floored task reopens iteration 1's \"floored routes never become receipts\" rule (finding 8).",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-13-the-bench-records-the-task-s-top-skill-but-not-whether-it-was-floored-tasktop-is",
+      "text": "**The bench records the task's top skill but not whether it was floored.** `taskTop` is the skill only [SOURCE: .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:227]. The harm count is `floored && policyReason === WORK_INTENT_REASON` against the task top [SOURCE: .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:230-234]. CONFIRMED from code. Under iteration 1's design only an unfloored route writes a receipt. If the task in any of harm pairs 1, 3, 5, 6 or 9 is itself floored, the guard cannot fire for that pair. UNKNOWN: whether those five task tops are floored was never measured. Pair 8's task (the refactor prompt) is floored per the spec's Measured Behavior, third block, and pair 8 passes through on predicate (d) anyway. This is the largest risk to the threshold below.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-opencode-plugin-never-runs-the-shared-handler-it-spawns-the-advisor-cli-s-ad",
+      "text": "**The OpenCode plugin never runs the shared handler.** It spawns the advisor CLI's `advisor_recommend` [SOURCE: .opencode/plugins/system-skill-advisor.js:137] [SOURCE: .opencode/plugins/system-skill-advisor.js:692-694]. It keeps its dedup generation, epoch and last-directive state in memory, and treats only `startup`, `resume` and `compact` as boundaries [SOURCE: .opencode/plugins/system-skill-advisor.js:229-246]. CONFIRMED from code. A guard that lives in the hook does not reach OpenCode. Covering it would mean porting the pure decision function into the plugin with a second store.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-3-vibe-rotates-the-clock-on-compaction-only-and-that-is-enough-compaction-context-",
+      "text": "**Vibe rotates the clock on compaction only, and that is enough.** `compaction-context.mjs` imports `advanceDirectiveLifecycleBoundary` and `defaultDirectiveLifecycleStore` from the advisor dist [SOURCE: .skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:52-64]. It advances the session's epoch before the turn's advisor text is built [SOURCE: .skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:288-293]. Vibe's one `session_start` hook is `session-start.mjs` [SOURCE: .vibe/hooks.toml:142-146], and that file is not in the list of lifecycle callers from action 2. The prompt path passes both `session_id` and `transcript_path` [SOURCE: .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:229-237]. CONFIRMED from code. A new Vibe session has a new id, so it finds no receipt. A resumed session keeps its transcript, so the earlier route is still in context. INFERRED: missing start and resume boundaries do not make a Vibe receipt unsafe.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-7-vibe-s-head-receipt-fits-suppress-without-a-conflict-reducerepeatedhead-passes-a",
+      "text": "**Vibe's head receipt fits suppress without a conflict.** `reduceRepeatedHead` passes any context that has a directive separator through unchanged, recording only the head. For a head-only context it delivers nothing when the head matches the stored one, and otherwise stores the new head and delivers it [SOURCE: .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:173-187]. CONFIRMED from code. A suppressed turn renders `Advisor: prompt skipped.`. Two guarded follow-ups in a row would deliver that line once and then nothing, which is the intended result. The next real route has a different head, so it is delivered. Suppress also writes no route receipt (iteration 1 design), so the two receipts never feed each other. INFERRED. A Vibe replay test of route, guard, guard, route would confirm it.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-10-why-no-age-limit-while-the-clock-is-present-on-claude-codex-and-vibe-every-event",
+      "text": "**Why no age limit while the clock is present.** On Claude, Codex and Vibe, every event that removes the earlier brief from context (clear, compact, a new session) rotates the clock (findings 1 to 3). An old receipt in an unbroken session still points at a route that is still in the transcript. INFERRED from the boundary coverage.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-9-why-no-turn-count-a-run-of-weak-follow-ups-fix-that-too-then-and-the-other-one-s",
+      "text": "**Why no turn count.** A run of weak follow-ups (\"fix that too\", then \"and the other one\") should keep suppressing against the same unfloored route. A turn cap would cut that run off, and it would need a write on guarded turns, which iteration 1 ruled out. INFERRED, a design judgment.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-23-hooks-lib-route-receipt-ts-row-the-receipt-holds-version-sessionid-skill-storege",
+      "text": "`hooks/lib/route-receipt.ts` row: the receipt holds `version`, `sessionId`, `skill`, `storeGeneration`, `lifecycleEpoch` and `transcriptBytes`, with no `writtenAt`. Add the pure `decideRouteReceiptGuard`.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-17-a-hook-level-replay-in-runtime-tests-hooks-route-receipt-vitest-ts-it-runs-each-",
+      "text": "A hook-level replay in `runtime/tests/hooks/route-receipt.vitest.ts`. It runs each pair's task, then its follow-up, through `handleClaudeUserPromptSubmit` on one session id. It injects `InMemoryDirectiveLifecycleStore` and an in-memory receipt store, with the scorer result fixed to the bench's recorded tops.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-16-a-pure-decideroutereceiptguard-receipt-clock-transcriptbytes-strippedprompt-poli",
+      "text": "A pure `decideRouteReceiptGuard(receipt, clock, transcriptBytes, strippedPrompt, policyReason, top1, floored) -> 'deliver' | 'suppress'` in `hooks/lib/route-receipt.ts`. The bench's follow-up block calls it with a synthetic receipt built from the task's top, written only when the task top is unfloored, and with a fixed matching clock.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-24-add-a-modify-row-for-hooks-dsh-prompt-advisor-mjs-a-boundary-call-in-the-agent-c",
+      "text": "Add a Modify row for `hooks/dsh/prompt-advisor.mjs`: a boundary call in the `agent/created` and `compaction/end` handlers.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-27-add-a-modify-row-for-runtime-bench-scorer-calibration-bench-ts-per-pair-taskfloo",
+      "text": "Add a Modify row for `runtime/bench/scorer-calibration.bench.ts`: per-pair `taskFloored`, `receiptWritten` and `guard`, plus `H_after`, with the scorer untouched.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-26-add-a-req-naming-pi-and-opencode-as-out-of-scope-with-the-reasons-in-findings-5-",
+      "text": "Add a REQ naming Pi and OpenCode as out of scope, with the reasons in findings 5 and 6.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-25-add-a-req-the-guard-fires-only-when-the-stored-clock-equals-state-clock-sessioni",
+      "text": "Add a REQ: the guard fires only when the stored clock equals `state.clock(sessionId)` and the transcript has not shrunk. There is no age or turn limit.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-28-add-the-frozen-threshold-the-false-carry-pair-the-two-expiry-rows-and-the-vibe-r",
+      "text": "Add the frozen threshold, the false-carry pair, the two expiry rows and the Vibe route-guard-guard-route row to `runtime/tests/hooks/route-receipt.vitest.ts`.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    },
+    {
+      "id": "finding-3-29-add-the-scorer-isolation-rg-as-a-verification-row",
+      "text": "Add the scorer-isolation `rg` as a verification row.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:255-272, :340-356",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:566-590",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:18-92",
+        ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:90-115, session-start.ts:28-42, user-prompt-submit.ts:11-22, compact-inject.ts:15-34",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:50-64, :262, :280-296",
+        ".skilled/hooks/directive-lifecycle/README.md:20-100",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:40-75, :128-200",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:240-300",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:166-190, :229-243",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:227-248, :318-338",
+        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-175",
+        ".opencode/plugins/system-skill-advisor.js:128-140, :226-248, :688-700",
+        ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:90-110, :220-262",
+        ".claude/settings.json:175-221, :331-337; .codex/hooks.json:3-42, :214-219; .vibe/hooks.toml:123-151"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-3c4c7f63ae82",
+      "text": "**A raw meaningful-token cut.** It separates pair 7 (7 tokens) from the refactor task (8) by one token, too narrow to hold.",
+      "contentHash": "3c4c7f63ae82",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-4dd0aa4a0422",
+      "text": "**Floored-passing-set membership as the separator.** The refactor task's floored passing set also holds `sk-doc` (spec Measured Behavior, third block), so \"receipt skill is in the follow-up's floored set\" would carry a topic change.",
+      "contentHash": "4dd0aa4a0422",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-9809e29e355f",
+      "text": "**Reusing the hook's `skippedResult` as the guard's policy reason.** It is computed on raw text (finding 1).",
+      "contentHash": "9809e29e355f",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-238285dcad4d",
+      "text": "The in-process probe through `dist/` was refused by the permission layer in this unattended run. Not a dead end for the question, only for this iteration's tool path.",
+      "contentHash": "238285dcad4d",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-bfa789fb2b1a",
+      "text": "**Clearing receipts from the boundary adapter.** Storing the clock expires them with no change to the boundary path (finding 7).",
+      "contentHash": "bfa789fb2b1a",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-41ce63d6ec01",
+      "text": "**Riding the helper's `flock`.** It needs a new helper op and an extra spawn, and the guard's fail-to-deliver direction makes a lock unnecessary (findings 2, 3 and 6).",
+      "contentHash": "41ce63d6ec01",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-55fa755778d0",
+      "text": "**Storing the receipt inside the lifecycle record.** The helper rebuilds and copies only fixed keys, so an extra field would not survive a matched turn (finding 1).",
+      "contentHash": "55fa755778d0",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-f2426fc87090",
+      "text": "None new. The `dist/` probe from iteration 1 was not retried. This iteration needed no runtime probe.",
+      "contentHash": "f2426fc87090",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-f0e3bd194ac1",
+      "text": "**A turn-count expiry.** It cuts off a legitimate run of weak follow-ups and needs a write on guarded turns.",
+      "contentHash": "f0e3bd194ac1",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-a1535fcc9b46",
+      "text": "**An age limit on top of the clock.** It adds no safety on hosts where the clock rotates, and it adds a field.",
+      "contentHash": "a1535fcc9b46",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-f9ac5598eb4e",
+      "text": "**Putting OpenCode in scope.** The guard runs in the hook, and the plugin calls the CLI.",
+      "contentHash": "f9ac5598eb4e",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-a94c15fb4b89",
+      "text": "None. No runtime probe was attempted in this iteration, so the iteration 1 permission dead end was not retried.",
+      "contentHash": "a94c15fb4b89",
+      "addedAtIteration": 3
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 5,
+    "keyFindings": 61,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.78,
+    "coverageBySources": {
+      "code": 42,
+      "other": 3
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

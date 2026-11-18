@@ -226,6 +226,16 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - Which reading of the policy reason decides the Q0 branch? Recommended default, written into Q0 above: the stripped-text `H`, with the raw-text `H` recorded beside it. Phase 011's guard then must call the policy on stripped text, and phase 011 carries that as a requirement.
 - The executor is an assumption the operator did not set. Recommended default: mirror phase 005, 3 iterations of `claude-opus-5-5` at high effort through cli-claude-code on the second account. See `plan.md`.
 - If Q0 takes the no-guard branch, does phase 011 close as not built, or does the operator want receipts anyway? Recommended default: close 011 as not built, the same way 003 closed its ship-only tasks.
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+_Source: `research/research.md` (single lineage, Claude Opus 5.5 high on the second account, 3 iterations). Do not edit inside this fence._
+
+- **Q1:** suppress, do not reuse. A receipt holds `version`, `sessionId`, `skill`, `storeGeneration`, `lifecycleEpoch` and `transcriptBytes`, and only unfloored `ok` turns write one. The guard fires on stripped-text work intent, a floored top-1 that differs from the receipt, and a weak-follow-up shape: a back-reference word and at most 3 content words.
+- **Q2:** a pure-TypeScript store in `route-receipts/` under the shared state base, using a temp file and rename with no lock. The bound is `MAX_DIRECTIVE_LIFECYCLE_SESSIONS`. No change to the Python helper or the lifecycle schema.
+- **Q3:** expire on a lifecycle clock mismatch or a transcript shrink, with no age or turn limit. The fallback, if the clock spawn is rejected, is shrink plus a 30-minute age limit.
+- **Q4:** Claude, Codex and Vibe are in. DSH is in with a boundary call in its `agent/created` and `compaction/end` handlers. Pi and OpenCode are out.
+- **Q5:** a pure `decideRouteReceiptGuard` that the bench calls, plus a hook replay. The threshold is `H_after = 0` of 5, with `Hsame`, the negative controls and `C_after = 0` unchanged. The precondition is `receiptWritten` on harm pairs 1, 3, 5, 6 and 9, and it is UNKNOWN today.
+- **Verification:** 75 of 75 iteration citations resolve; the orchestrator opened the citations behind each recommended design.
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---

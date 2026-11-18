@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "20078428-5166-43d7-85ac-a68d9210f82f"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -59,11 +59,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `rg -n 'Q0 branch' implementation-summary.md` prints one line naming over-suppresses or no guard
-- [ ] On the over-suppresses branch, `rg -c '"type":"iteration"' research/deep-research-state.jsonl` prints 3
-- [ ] On the over-suppresses branch, `rg -n '^#+ .*Q[1-5]' research/research.md` prints a heading for each of Q1 to Q5
-- [ ] On the no-guard branch, `research/deep-research-state.jsonl` does not exist and `rg -n 'Operator decision' implementation-summary.md` prints one line
-- [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED`
+- [x] `rg -n 'Q0 branch' implementation-summary.md` prints one line naming over-suppresses or no guard
+- [x] On the over-suppresses branch, `rg -c '"type":"iteration"' research/deep-research-state.jsonl` prints 3
+- [x] On the over-suppresses branch, `rg -n '^#+ .*Q[1-5]' research/research.md` prints a heading for each of Q1 to Q5
+- [x] Not applicable, Q0 took the over-suppresses branch. On the no-guard branch, `research/deep-research-state.jsonl` does not exist and `rg -n 'Operator decision' implementation-summary.md` prints one line
+- [x] `validate.sh --strict` on this phase prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,6 +80,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase planned | Done | `spec.md`, `plan.md`, `tasks.md` and this goal written 2026-11-18 |
+| Q0 rerun | Done | `N=9`, stripped `H=5`, raw `H=4`, `Hsame=2`, `C=19` at `18ce562e8b3`: over-suppresses |
+| Research run | Done | 3 iterations on `claude-opus-5-5` high, account 2, launched with phase 005's override on the operator's approval. Q1 to Q5 answered in `research/research.md` |
 | Pre-006 baseline | Done | The bench at `84a2d1eb697` printed `N=9 H=5 Hsame=2 C=19`. This is not the Q0 result |
 
 ### Deviations and findings

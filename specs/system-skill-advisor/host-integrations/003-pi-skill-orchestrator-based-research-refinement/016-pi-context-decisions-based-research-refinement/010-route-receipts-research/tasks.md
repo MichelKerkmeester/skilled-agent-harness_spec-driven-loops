@@ -42,7 +42,7 @@ Tasks T007 to T011 run only when T005 records the over-suppresses branch. On the
 - [x] T003 Q0: run the follow-up bench once on the final strip rule (`A/bench/scorer-calibration.bench.ts`). Verify: `BENCH` exits 0 and prints one `advisor-scorer-calibration` line with a `collateral` count and one `advisor-follow-up-routing` line with `"N":9`. Evidence: Exit 0; `N=9`, `C=19`, `Tests 1 passed (1)`.
 - [x] T004 Q0: read the policy reason from each raw follow-up with a one-off probe on `dist/`, as in `spec.md` Measured Behavior, and count raw-text `H` with the same guarded test the bench uses at `A/bench/scorer-calibration.bench.ts:232-233` (`A/dist/runtime/lib/prompt-policy.js`). Verify: the probe prints nine lines, one reason per follow-up, and no file under `A` changes (`git status --short -- A` prints nothing). Evidence: Nine reasons printed; raw-text `H=4`; `git status --short -- A` printed nothing.
 - [x] T005 Q0: record `N`, stripped-text `H`, raw-text `H`, `Hsame`, `C`, the `C` row ids, the commit and the branch, decided on the stripped-text `H` by 003's rule: `H >= 5` and `C > 0` is over-suppresses, `H < 5` is no guard (`implementation-summary.md`). Verify: `rg -n 'Q0 branch' implementation-summary.md` prints one line naming over-suppresses or no guard. Evidence: `Q0 branch: over-suppresses` recorded.
-- [ ] T006 Only on the no-guard branch: stop, tell the operator the Q0 numbers and ask whether phase 011 closes as not built (`implementation-summary.md`). Verify: `rg -n 'Operator decision' implementation-summary.md` prints one line, and `ls R/deep-research-state.jsonl` fails because the file does not exist.
+- [x] T006 Only on the no-guard branch: stop, tell the operator the Q0 numbers and ask whether phase 011 closes as not built (`implementation-summary.md`). Verify: `rg -n 'Operator decision' implementation-summary.md` prints one line, and `ls R/deep-research-state.jsonl` fails because the file does not exist. Evidence: not needed, Q0 took the over-suppresses branch.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -50,8 +50,8 @@ Tasks T007 to T011 run only when T005 records the over-suppresses branch. On the
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T007 Run `/deep:research:auto` for 3 iterations on the second account with the flags in `plan.md` section 4 (`R/deep-research-config.json`). Verify: `node -e 'const c=require("./R/deep-research-config.json").executor;console.log(c.kind,c.model,c.reasoningEffort,c.configDir)'` prints `cli-claude-code claude-opus-5-5 high /Users/michelkerkmeester/.claude-account2`.
-- [ ] T008 Let the loop write its synthesis (`R/research.md`). Verify: `rg -n '^#+ .*Q[1-5]' R/research.md` prints a heading for each of Q1 to Q5.
+- [x] T007 Run `/deep:research:auto` for 3 iterations on the second account with the flags in `plan.md` section 4 (`R/deep-research-config.json`). Verify: `node -e 'const c=require("./R/deep-research-config.json").executor;console.log(c.kind,c.model,c.reasoningEffort,c.configDir)'` prints `cli-claude-code claude-opus-5-5 high /Users/michelkerkmeester/.claude-account2`. Evidence: the config check printed `cli-claude-code claude-opus-5-5 high /Users/michelkerkmeester/.claude-account2`. Iterations launched detached with phase 005's override, approved by the operator.
+- [x] T008 Let the loop write its synthesis (`R/research.md`). Verify: `rg -n '^#+ .*Q[1-5]' R/research.md` prints a heading for each of Q1 to Q5. Evidence: headings printed at lines 54, 84, 103, 116 and 139.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -59,11 +59,11 @@ Tasks T007 to T011 run only when T005 records the over-suppresses branch. On the
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Count the iteration records (`R/deep-research-state.jsonl`). Verify: `rg -c '"type":"iteration"' R/deep-research-state.jsonl` prints 3.
-- [ ] T010 Confirm Q5 froze literal values: the harness, the success threshold on the nine pairs, the false-carry prompt pair and its expected route (`R/research.md`). Verify: `rg -n 'false-carry' R/research.md` prints at least one line that quotes both prompts and names the expected skill.
-- [ ] T011 Re-check every citation behind a recommended design (`R/research.md`). Verify: the verification note lists each one as resolved or failed, with none unchecked.
-- [ ] T012 Confirm the run wrote nothing outside this phase (`git`). Verify: `git status --short` lists no run-made change outside `010-route-receipts-research/`.
-- [ ] T013 Record the outcome and validate this phase (`implementation-summary.md`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this folder> --strict --quiet` prints `RESULT: PASSED`.
+- [x] T009 Count the iteration records (`R/deep-research-state.jsonl`). Verify: `rg -c '"type":"iteration"' R/deep-research-state.jsonl` prints 3. Evidence: printed 3, each record with the route-proof fields.
+- [x] T010 Confirm Q5 froze literal values: the harness, the success threshold on the nine pairs, the false-carry prompt pair and its expected route (`R/research.md`). Verify: `rg -n 'false-carry' R/research.md` prints at least one line that quotes both prompts and names the expected skill. Evidence: the case-sensitive pattern misses the capitalized line, so `rg -n -i 'false-carry case' R/research.md` was run. It printed line 155, which quotes both prompts and names `sk-code` delivered.
+- [x] T011 Re-check every citation behind a recommended design (`R/research.md`). Verify: the verification note lists each one as resolved or failed, with none unchecked. Evidence: the conductor verification note in section 10 lists 57 citations, 56 matching, 1 with the line off and corrected, 0 failed, none unchecked.
+- [x] T012 Confirm the run wrote nothing outside this phase (`git`). Verify: `git status --short` lists no run-made change outside `010-route-receipts-research/`. Evidence: the run-made changes sit in this phase, plus two parent `graph-metadata.json` timestamp refreshes from the save, recorded in the summary. Primary checkout unchanged.
+- [x] T013 Record the outcome and validate this phase (`implementation-summary.md`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this folder> --strict --quiet` prints `RESULT: PASSED`. Evidence: `validate.sh --strict --quiet` printed `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -71,9 +71,9 @@ Tasks T007 to T011 run only when T005 records the over-suppresses branch. On the
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`, with T006 or T007 to T011 noted as not run, depending on the Q0 branch
-- [ ] No `[B]` blocked tasks remaining
-- [ ] `implementation-summary.md` names the Q0 branch, and on the over-suppresses branch `R/research.md` answers Q1 to Q5 with every cited line re-checked
+- [x] All tasks marked `[x]`, with T006 or T007 to T011 noted as not run, depending on the Q0 branch
+- [x] No `[B]` blocked tasks remaining
+- [x] `implementation-summary.md` names the Q0 branch, and on the over-suppresses branch `R/research.md` answers Q1 to Q5 with every cited line re-checked
 <!-- /ANCHOR:completion -->
 
 ---
