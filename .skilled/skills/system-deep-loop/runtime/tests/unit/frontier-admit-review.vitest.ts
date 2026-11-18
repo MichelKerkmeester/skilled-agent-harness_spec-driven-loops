@@ -568,7 +568,7 @@ describe('review expansive budget scales with the dimension count', () => {
     expect(result.growthSlots).toBe(2);
   });
 
-  it('four dimensions hit the ceiling of 24 from two seeds on', () => {
+  it('four dimensions hit the ceiling of 24 from the first seed', () => {
     const one = seedWithBudget({ artifactDir: reviewDir(['correctness', 'security', 'traceability', 'maintainability']), candidates: parts(1), target: 'review', maxIterationsSource: 'default' });
     expect(one.derivedMaxIterations).toBe(24);
     const two = seedWithBudget({ artifactDir: reviewDir(['correctness', 'security', 'traceability', 'maintainability']), candidates: parts(2), target: 'review', maxIterationsSource: 'default' });
