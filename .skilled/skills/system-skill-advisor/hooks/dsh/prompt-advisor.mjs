@@ -89,9 +89,14 @@ function deliveredContext(context, sessionId, dedupEnabled) {
 
 // A clock rotation is advisory: when it fails, a stored route still expires on
 // its own transcript check, so the failure is logged and never reaches the host.
+// A session with no id has no clock to move, so only a named session whose clock
+// did not move counts as a failure.
 async function rotateSessionClock(ctx, core, sessionId) {
   try {
-    await core.advanceBoundary?.(sessionId);
+    const advanced = await core.advanceBoundary?.(sessionId);
+    if (advanced === false && typeof sessionId === 'string' && sessionId.trim()) {
+      logFailure(ctx, new Error('session clock did not advance'));
+    }
   } catch (error) {
     logFailure(ctx, error);
   }

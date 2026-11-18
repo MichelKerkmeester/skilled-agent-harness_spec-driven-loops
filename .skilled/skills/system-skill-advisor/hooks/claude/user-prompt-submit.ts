@@ -88,17 +88,28 @@ function hookFlagsResolverPath(): string | null {
   }
 }
 
-function skillAdvisorHookEnabled(): boolean {
+function hookConcernEnabled(concern: string): boolean {
   try {
     const resolverPath = hookFlagsResolverPath();
     if (resolverPath === null) return true;
     const { isHookEnabled } = requireFromAdvisor(resolverPath) as {
       isHookEnabled?: (concern: string) => boolean;
     };
-    return typeof isHookEnabled !== 'function' || isHookEnabled('skill-advisor') !== false;
+    return typeof isHookEnabled !== 'function' || isHookEnabled(concern) !== false;
   } catch {
     return true;
   }
+}
+
+function skillAdvisorHookEnabled(): boolean {
+  return hookConcernEnabled('skill-advisor');
+}
+
+// A route receipt expires on the directive-lifecycle clock, and the lifecycle
+// hooks stop moving that clock while their switch is off. A receipt kept then
+// would outlive a compaction, so receipts are neither read nor written.
+function routeReceiptsEnabled(): boolean {
+  return hookConcernEnabled('directive-lifecycle');
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -355,7 +366,7 @@ function guardWeakFollowUp(
   try {
     const sessionId = receiptSessionId(input);
     const top = topPassingRecommendation(result);
-    if (!sessionId || !top || top.confidenceFloored !== true) return result;
+    if (!sessionId || !top || top.confidenceFloored !== true || !routeReceiptsEnabled()) return result;
     const receipt = (dependencies.routeReceiptStore ?? defaultRouteReceiptStore()).read(sessionId);
     if (!receipt) return result;
     const strippedPrompt = stripLeadingPastedReply(prompt);
@@ -386,11 +397,20 @@ function recordRouteReceipt(
   try {
     const sessionId = receiptSessionId(input);
     const top = topPassingRecommendation(result);
-    // Only a route the model was shown on its own evidence is worth holding to.
-    if (!sessionId || !brief || !top || top.confidenceFloored === true) return;
+    if (!sessionId || !brief || !top || !routeReceiptsEnabled()) return;
+    const store = dependencies.routeReceiptStore ?? defaultRouteReceiptStore();
+    // Only a route the model was shown on the advisor's own evidence is worth
+    // holding to: not one lifted onto the confidence floor, and not one the
+    // local scorer gave while the advisor was down. Showing either still moves
+    // the session off an earlier route that differs, so that route expires.
+    if (top.confidenceFloored === true || result.metrics.degraded === true) {
+      const held = store.read(sessionId);
+      if (held && held.skill !== top.skill) store.remove(sessionId);
+      return;
+    }
     const clock = (dependencies.directiveLifecycleStore ?? defaultDirectiveLifecycleStore()).clock(sessionId);
     if (!clock) return;
-    (dependencies.routeReceiptStore ?? defaultRouteReceiptStore()).write({
+    store.write({
       version: ROUTE_RECEIPT_VERSION,
       sessionId,
       skill: top.skill,
@@ -547,6 +567,9 @@ export async function handleClaudeUserPromptSubmit(
       }, writeDiagnostic);
       return {};
     }
+    // Set before the brief build, so a crash below records its fallback against
+    // this session instead of an anonymous one.
+    deliveryState = deliveryStateOptionsFor(input);
 
     const renderBrief = dependencies.renderBrief ?? renderAdvisorBrief;
     // The CLI owns the warm-daemon probe and local-scorer fallback.
@@ -577,7 +600,6 @@ export async function handleClaudeUserPromptSubmit(
         durationMs: elapsed(),
       },
     };
-    deliveryState = deliveryStateOptionsFor(input);
     const brief = renderBrief(result, { deliveryState });
     recordRouteReceipt(result, brief, input, dependencies);
     const renderOptions = { deliveryState, setupWording: !brief && SETUP_WORDING.test(prompt) };
@@ -616,6 +638,9 @@ export async function handleClaudeUserPromptSubmit(
     } catch {
       // Diagnostics are best effort; the fallback below still runs.
     }
+    // A payload with no prompt string is silent on the normal path, so a crash
+    // while rejecting it must not turn it into an outage line.
+    if (!input || typeof input.prompt !== 'string') return {};
     // A crash shows the model what a timeout would show for this turn, deduplicated the
     // same way. If any of that throws as well, there is nothing safe left to show.
     try {
@@ -657,10 +682,22 @@ export function commitClaudeDirectiveDeliveryReceipt(
   return commit();
 }
 
-function writeHookOutput(output: ClaudeUserPromptSubmitOutput): Promise<void> {
+export interface HookOutputStream {
+  write(chunk: string, callback: (error?: Error | null) => void): boolean;
+}
+
+/**
+ * Write the hook output and commit its deferred receipt once the write lands.
+ * A failed write leaves the receipt uncommitted, so the next turn delivers the
+ * full brief again instead of a head the model never saw the rest of.
+ */
+export function writeHookOutput(
+  output: ClaudeUserPromptSubmitOutput,
+  stream: HookOutputStream = process.stdout,
+): Promise<void> {
   return new Promise<void>((resolvePromise) => {
-    process.stdout.write(`${JSON.stringify(output)}\n`, () => {
-      commitClaudeDirectiveDeliveryReceipt(output);
+    stream.write(`${JSON.stringify(output)}\n`, (error) => {
+      if (!error) commitClaudeDirectiveDeliveryReceipt(output);
       resolvePromise();
     });
   });

@@ -51,6 +51,8 @@ export interface RouteReceipt {
 export interface RouteReceiptStore {
   read(sessionId: string): RouteReceipt | null;
   write(receipt: RouteReceipt): boolean;
+  /** Drop a session's receipt. True when none is left, including when there was none. */
+  remove(sessionId: string): boolean;
 }
 
 export interface RouteReceiptGuardInput {
@@ -199,6 +201,11 @@ export class InMemoryRouteReceiptStore implements RouteReceiptStore {
     this.receipts.set(receipt.sessionId, receipt);
     return true;
   }
+
+  remove(sessionId: string): boolean {
+    this.receipts.delete(sessionId);
+    return true;
+  }
 }
 
 /**
@@ -254,6 +261,17 @@ export class FileRouteReceiptStore implements RouteReceiptStore {
           // The temp file never landed or a concurrent cleanup removed it.
         }
       }
+    }
+  }
+
+  remove(sessionId: string): boolean {
+    try {
+      if (!this.ownedFolder()) return false;
+      unlinkSync(join(this.dir, receiptFileName(sessionId)));
+      return true;
+    } catch (error) {
+      // A folder or file that is not there holds no receipt either.
+      return (error as NodeJS.ErrnoException).code === 'ENOENT';
     }
   }
 

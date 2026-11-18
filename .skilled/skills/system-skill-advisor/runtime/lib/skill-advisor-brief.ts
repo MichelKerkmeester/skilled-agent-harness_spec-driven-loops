@@ -26,7 +26,7 @@ import {
 } from './prompt-cache.js';
 import { onCacheInvalidation } from './freshness/cache-invalidation.js';
 import { SKILL_ADVISOR_COMPAT_CONTRACT, resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from './compat/contract.js';
-import { shouldFireAdvisor } from './prompt-policy.js';
+import { shouldFireAdvisor, stripLeadingPastedReply } from './prompt-policy.js';
 import {
   runAdvisorSubprocess,
   type AdvisorRecommendation,
@@ -472,8 +472,11 @@ export async function buildSkillAdvisorBrief(
 
     const policy = shouldFireAdvisor(prompt);
     // advisor_recommend refuses a longer prompt, so a longer one is routed on its head
-    // instead of failing open as an outage.
-    const routedPrompt = policy.canonicalPrompt.slice(0, ADVISOR_PROMPT_MAX_CHARS);
+    // instead of failing open as an outage. A pasted earlier reply is dropped before
+    // the cut, so a long paste cannot push the task past it, and before the prompt is
+    // folded to one line, which would hide a task marker that starts a line.
+    const routedPrompt = shouldFireAdvisor(stripLeadingPastedReply(prompt)).canonicalPrompt
+      .slice(0, ADVISOR_PROMPT_MAX_CHARS);
     const baseDiagnostics: AdvisorHookDiagnostics | null = policy.metalinguisticMentions.length > 0
       ? {
         metalinguisticMention: policy.metalinguisticMentions,

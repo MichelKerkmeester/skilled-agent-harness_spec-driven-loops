@@ -179,6 +179,16 @@ describe('InMemoryRouteReceiptStore', () => {
     store.write(receipt({ skill: 'system-spec-kit' }));
     expect(store.read('session-1')?.skill).toBe('system-spec-kit');
   });
+
+  it('removes only the named session receipt', () => {
+    const store = new InMemoryRouteReceiptStore();
+    store.write(receipt());
+    store.write(receipt({ sessionId: 'session-2' }));
+    expect(store.remove('session-1')).toBe(true);
+    expect(store.read('session-1')).toBeNull();
+    expect(store.read('session-2')?.skill).toBe(receipt().skill);
+    expect(store.remove('session-1')).toBe(true);
+  });
 });
 
 describe('FileRouteReceiptStore', () => {
@@ -190,6 +200,17 @@ describe('FileRouteReceiptStore', () => {
 
   it('reads a missing receipt as none', () => {
     expect(new FileRouteReceiptStore(tempBase()).read('session-1')).toBeNull();
+  });
+
+  it('removes a receipt so it reads as none, and a missing one counts as removed', () => {
+    const store = new FileRouteReceiptStore(tempBase());
+    store.write(receipt());
+    store.write(receipt({ sessionId: 'session-2' }));
+    expect(store.remove('session-1')).toBe(true);
+    expect(store.read('session-1')).toBeNull();
+    expect(store.read('session-2')?.sessionId).toBe('session-2');
+    expect(store.remove('session-1')).toBe(true);
+    expect(new FileRouteReceiptStore(tempBase()).remove('session-1')).toBe(true);
   });
 
   it.each([

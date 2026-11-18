@@ -1009,6 +1009,9 @@ def recommend_with_native_advisor(
     confidence_only: bool = False,
 ) -> Optional[List[Dict[str, Any]]]:
     """Return native recommendations when the compiled advisor runtime is available."""
+    # Drop a pasted earlier reply before the head cut and the routing layers below,
+    # so a long paste cannot push the task past the cut or steer the layers.
+    prompt = strip_leading_pasted_reply(prompt)
     response = _run_native_bridge({
         "mode": "recommend",
         "workspaceRoot": REPO_ROOT,

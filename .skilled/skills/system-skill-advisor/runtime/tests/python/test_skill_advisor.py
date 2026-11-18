@@ -2576,6 +2576,35 @@ def test_pasted_reply_strip_parity():
     else:
         fail_test(name, f"pasted={pasted[:3]} bare={bare[:3]}")
 
+    # The native path drops the pasted reply before it cuts the prompt to the
+    # advisor limit, so a long paste cannot push the task past the cut.
+    name = "STRIP-NATIVE: recommend_with_native_advisor sends the task behind a long pasted reply"
+    sent = {}
+
+    def capture_bridge(payload, timeout=None):
+        sent.update(payload)
+        return {"status": "ok", "data": {"recommendations": []}}
+
+    original_bridge = advisor._run_native_bridge
+    advisor._run_native_bridge = capture_bridge
+    try:
+        long_paste = (
+            "Earlier you replied: "
+            + "I updated the README with sk-doc conventions. " * 300
+            + "Now: "
+            + probe["expected"]
+        )
+        advisor.recommend_with_native_advisor(long_paste)
+    except Exception as exc:
+        fail_test(name, str(exc))
+    else:
+        if sent.get("prompt") == probe["expected"]:
+            ok(name)
+        else:
+            fail_test(name, f"sent={str(sent.get('prompt'))[:80]!r}")
+    finally:
+        advisor._run_native_bridge = original_bridge
+
     # Batch mode trims each prompt before scoring. It must trim JavaScript's
     # whitespace set, or a control character the native scorer keeps would
     # expose a pasted reply that the native scorer leaves in place.

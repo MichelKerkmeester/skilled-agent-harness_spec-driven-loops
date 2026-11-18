@@ -258,6 +258,37 @@ test('route receipts: a rotation failure is logged and the brief still arrives',
   assert.equal(logs.length, 1);
 });
 
+test('route receipts: a named session whose clock did not move is logged', async () => {
+  const brief = 'Advisor: route sk-code\nDirectives: keep comments durable';
+  const { ctx, fire, handlers, logs } = pluginHarness();
+  registerPromptAdvisor(ctx, {
+    enabled: true,
+    isLeaf: interactive,
+    isEnabled: enabled,
+    core: { ...advisorCore(brief), advanceBoundary: async () => false },
+    createNotice: plainNotice,
+  });
+  const { agent } = fakeAgent({ id: 'session-rotate-unmoved' });
+  await handlers.get('agent/created')[0]({ agent, source: 'startup' });
+  const first = await step(fire, agent, [humanMessage('Fix the parser.')]);
+  assert.equal(noticeText(first.messages[0]), brief);
+  assert.equal(logs.length, 1);
+});
+
+test('route receipts: a session with no id logs no unmoved clock', async () => {
+  const { ctx, handlers, logs } = pluginHarness();
+  registerPromptAdvisor(ctx, {
+    enabled: true,
+    isLeaf: interactive,
+    isEnabled: enabled,
+    core: { ...advisorCore('Advisor: route sk-code'), advanceBoundary: async () => false },
+    createNotice: plainNotice,
+  });
+  const { agent } = fakeAgent({ id: '' });
+  await handlers.get('agent/created')[0]({ agent, source: 'startup' });
+  assert.equal(logs.length, 0);
+});
+
 test('route receipts: advanceBoundary rotates only a named session', async () => {
   const { advanceBoundary } = await import('../dsh/prompt-advisor.mjs');
   const calls = [];
