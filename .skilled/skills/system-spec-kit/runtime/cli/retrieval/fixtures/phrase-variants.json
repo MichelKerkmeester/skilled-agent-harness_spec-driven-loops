@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1c83faad15d72dc034f0635f40e9ba27f43ee8c5332099500b1a385fcb005e32",
+  "manifestHash": "299379299734fd587bc2ac85a82fdcf3106111a280881ebf56e920289ebac03a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -85938,6 +85938,9 @@
     "phase 9 rename rule and test root fixes": [
       "phase 9 rename rule and test root fixes"
     ],
+    "phase 9 repo rules readme": [
+      "phase 9 repo rules readme"
+    ],
     "phase 9 research fixes": [
       "phase 9 research fixes"
     ],
@@ -97326,8 +97329,26 @@
     "repo rule trigger phrases ripgrep": [
       "repo rule trigger phrases ripgrep"
     ],
+    "repo rules checker skips readme": [
+      "repo rules checker skips readme"
+    ],
     "repo rules md scaffold": [
       "REPO RULES.md scaffold"
+    ],
+    "repo rules readme": [
+      "repo rules readme"
+    ],
+    "repo rules readme goal": [
+      "repo rules readme goal"
+    ],
+    "repo rules readme implementation summary": [
+      "repo rules readme implementation summary"
+    ],
+    "repo rules readme plan": [
+      "repo rules readme plan"
+    ],
+    "repo rules readme tasks": [
+      "repo rules readme tasks"
     ],
     "repo rules relocation reconciliation": [
       "repo-rules relocation reconciliation"

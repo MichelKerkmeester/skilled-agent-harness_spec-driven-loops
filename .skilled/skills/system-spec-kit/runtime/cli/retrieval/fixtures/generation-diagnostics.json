@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6930,
-    "ok": 19840,
+    "ok": 19845,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28397,
+  "documentsScanned": 28402,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "1c83faad15d72dc034f0635f40e9ba27f43ee8c5332099500b1a385fcb005e32",
+  "manifestHash": "299379299734fd587bc2ac85a82fdcf3106111a280881ebf56e920289ebac03a",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45137,
+      "ok": 45144,
       "prose-sentence": 22,
       "single-token": 150,
       "stop-word-only": 1,
@@ -60006,6 +60006,10 @@
     },
     {
       "path": "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f44146ad5a4aeec97782fa2a5eaea73ad1113c4c2ac5f7b5ffacb0dca13181ab",
+  "corpusHash": "73e8ee7d212ae396fee309552efc0ba1dc82cb85a6312d74da8ab65278001255",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28397,
+  "includedPathCount": 28402,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -16432,6 +16432,11 @@
     "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/plan.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/spec.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/tasks.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/goal.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/implementation-summary.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/plan.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/spec.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/tasks.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/decision-record.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/goal.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/spec.md",
@@ -28429,7 +28434,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1c83faad15d72dc034f0635f40e9ba27f43ee8c5332099500b1a385fcb005e32",
+  "manifestHash": "299379299734fd587bc2ac85a82fdcf3106111a280881ebf56e920289ebac03a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -35421,6 +35426,10 @@
     },
     {
       "path": "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/scratch",
       "reason": "excluded directory"
     },
     {
