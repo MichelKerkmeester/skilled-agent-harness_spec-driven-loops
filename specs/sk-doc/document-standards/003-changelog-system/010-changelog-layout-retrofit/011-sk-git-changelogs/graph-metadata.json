@@ -33,7 +33,7 @@
       "feature"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -189,8 +189,8 @@
     ],
     "causal_summary": "The 54 sk-git changelogs were written before the v4.1.0.0 layout",
     "created_at": "2026-11-17T18:13:10Z",
-    "last_save_at": "2026-11-17T22:19:25.760Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-18T05:10:57.803Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -199,13 +199,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ca75dfe3ae3e41843007a745d53da22145299bf6846190cf8b925da047133340",
+    "source_fingerprint": "sha256:3785d868fd313d91ceb80130accdeb25152f691df75a39ae5b48a09853177dd4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "17f48ec8317b55887908ea078476f842a6944b4a9399aab40801085e360a97d5",
+      "spec.md": "2bd5e50b161d867d24170a1131ff0299ed336ae9a4725aef5d89c2b601ae64ac",
       "plan.md": "2e3a6ec8dac8fb156c41d8c94fe1178c1ba71c4445078fa6065139353a72950c",
-      "tasks.md": "94d71b0e77d607f5478f3a84b9982fcce63832ccbfcc1cb3f102a4a609eda1b4",
-      "implementation-summary.md": "22c6601a5fe9b7d2698c51a7d61f42e20d465a455e8cc61c4cd40d5ebd9da9ed"
+      "tasks.md": "0e6552c5e46951631455dc8c44984fdaa4540e3136226481204e2773e058cca4",
+      "implementation-summary.md": "03b4f191a1015bff18e641ceec20f5396668b7b73c55847d8169f1aa052aa891"
     },
     "last_active_at": null
   }
