@@ -46,7 +46,11 @@
     },
     "inferred": false,
     "outside_scope": false,
-    "outside_reason": null
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: the expansive-depth docs follow-up the coordinator opens after this phase. deep-research manual-testing-playbook.md:52 asks for a PARTIAL verdict the standard forbids; older root playbook text."
+    }
   },
   {
     "id": "D-01",
@@ -209,7 +213,11 @@
     "fix": null,
     "inferred": false,
     "outside_scope": false,
-    "outside_reason": null
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: the expansive-depth docs follow-up the coordinator opens after this phase. deep-review SKILL.md:229 says convergence.cjs computes the whole stop decision, but deep-review.yaml:1203 renders the duration stop; older text."
+    }
   },
   {
     "id": "B-S3-01",
@@ -233,7 +241,11 @@
     },
     "inferred": false,
     "outside_scope": false,
-    "outside_reason": null
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: the expansive-depth docs follow-up the coordinator opens after this phase. runtime catalog source-quality-class.md:24 omits that the label decides before the id; owned with the source-quality-class feature."
+    }
   },
   {
     "id": "B-S4-02",
@@ -254,7 +266,11 @@
     "fix": null,
     "inferred": false,
     "outside_scope": false,
-    "outside_reason": null
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: packet 011 review frontier mode. deep-review manual-testing-playbook.md:793 cross-reference index never names the catalog, and 8 of the 13 new review scenarios carry no catalog reference."
+    }
   },
   {
     "id": "B-S4-03",
@@ -275,7 +291,11 @@
     "fix": null,
     "inferred": false,
     "outside_scope": false,
-    "outside_reason": null
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: the expansive-depth docs follow-up the coordinator opens after this phase. runtime playbook source-quality-class-derivation.md:61 fails a label-decided class the code allows; owned with the source-quality-class feature."
+    }
   },
   {
     "id": "B-S4-04",
@@ -296,7 +316,11 @@
     "fix": null,
     "inferred": false,
     "outside_scope": false,
-    "outside_reason": null
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: the expansive-depth docs follow-up the coordinator opens after this phase. deep-research manual-testing-playbook.md:316 DR-025 cites v1.1.0 agent instructions the agent file no longer versions; older text."
+    }
   },
   {
     "id": "C-01",
@@ -320,7 +344,11 @@
     },
     "inferred": false,
     "outside_scope": false,
-    "outside_reason": null
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: packet 011 review frontier mode. deep-review README.md:139 State on Disk table omits review/frontier-nodes.jsonl."
+    }
   },
   {
     "id": "C-02",
@@ -341,7 +369,11 @@
     "fix": null,
     "inferred": false,
     "outside_scope": false,
-    "outside_reason": null
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: packet 010 research frontier mode. deep-research README.md:127 budget sentence omits the native fan-out lineage floor of 12."
+    }
   },
   {
     "id": "C-03",
@@ -365,7 +397,11 @@
     },
     "inferred": false,
     "outside_scope": false,
-    "outside_reason": null
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: packet 010 research frontier mode. deep-research README.md:107 Packet Files table omits the research frontier node store."
+    }
   },
   {
     "id": "C-04",
@@ -386,7 +422,11 @@
     "fix": null,
     "inferred": false,
     "outside_scope": false,
-    "outside_reason": null
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: the expansive-depth docs follow-up the coordinator opens after this phase. deep-review README.md:158 and deep-research README.md:127 depth-mode paragraphs exceed the README paragraph and sentence length guidance; a rewrite for both READMEs together."
+    }
   },
   {
     "id": "D-02",

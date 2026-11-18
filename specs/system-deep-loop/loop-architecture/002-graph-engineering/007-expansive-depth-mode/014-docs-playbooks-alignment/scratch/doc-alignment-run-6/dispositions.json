@@ -33,5 +33,80 @@
   "id": "L4-3",
   "status": "rebutted",
   "note": "The sentence is accurate. 'Binds' means the ceiling changes the value: with D 4 and maxDepth 3, one seed gives 2 x 4 x (1 + 2) = 24, which min(24, ...) leaves unchanged, and two seeds give 2 x 4 x 4 = 32, which the ceiling cuts to 24. So the ceiling binds from two seeds on, as written; the lane's arithmetic (24 at one seed) agrees."
+ },
+ {
+  "id": "L2-1",
+  "status": "handed_off",
+  "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: packet 010 research frontier mode. deep-research-presentation.txt:70 gives the derived budget formula without the zero-seed loop-default case; with maxDepth 7 or more the formula and frontier-admit.cjs:273 differ at S 0."
+ },
+ {
+  "id": "L2-2",
+  "status": "handed_off",
+  "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: packet 010 research frontier mode. deep-research.yaml:356 calls frontier-admit.cjs the only node-store writer, but fanout-run.cjs writeLineageFrontierStore writes each lineage store directly."
+ },
+ {
+  "id": "L3-1",
+  "status": "handed_off",
+  "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: the expansive-depth docs follow-up the coordinator opens after this phase. deep-review-presentation.txt:446 lists three quality gates where the review stop path checks nine legal-stop gates; older presentation text this program did not write."
+ },
+ {
+  "id": "L3-2",
+  "status": "handed_off",
+  "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: packet 011 review frontier mode. deep-review.yaml:367 names a phase_main_loop the workflow does not have (phase_loop)."
+ },
+ {
+  "id": "L4-1",
+  "status": "handed_off",
+  "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: packet 010 research frontier mode. research.md:107 --depth-mode row lists the admission checks without relevance, the first of six in frontier-admit.cjs."
+ },
+ {
+  "id": "L4-2",
+  "status": "handed_off",
+  "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: packet 011 review frontier mode. review.md:100 --depth-mode row lists the admission checks without relevance, which keeps a review node inside the target."
+ },
+ {
+  "id": "L4-4",
+  "status": "handed_off",
+  "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: the expansive-depth docs follow-up the coordinator opens after this phase. deep-research-strategy.md:179 lists the live lifecycle branches without new; older strategy text."
+ },
+ {
+  "id": "L5-1",
+  "status": "handed_off",
+  "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: packet 010 research frontier mode. deep-research loop-protocol.md:415 says the FRONTIER allowance comes from remaining child slots; frontier-admit.cjs takes the minimum with the run-wide remainder."
+ },
+ {
+  "id": "L5-2",
+  "status": "handed_off",
+  "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: packet 010 research frontier mode. deep-research manual-testing-playbook.md:868 FAN-OUT blurb says 4 scenarios and names three, leaving out DR-073."
+ },
+ {
+  "id": "L6-1",
+  "status": "handed_off",
+  "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: packet 011 review frontier mode. cross-mode-anti-convergence-contract.md:29 omits antiConvergence.depthMode from the optimizer manifest's anti-convergence-floor lock group."
+ },
+ {
+  "id": "L7-4",
+  "status": "handed_off",
+  "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: the expansive-depth docs follow-up the coordinator opens after this phase. deep-review convergence.md:169 describes blocked_stop gateResults as keyed sub-records; the producer emits a row array. Older convergence text this program did not write."
+ },
+ {
+  "id": "L7-5",
+  "status": "handed_off",
+  "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: packet 011 review frontier mode. deep-review quick-reference.md:98 STATE FILES table omits frontier-nodes.jsonl."
+ },
+ {
+  "id": "L7-6",
+  "status": "handed_off",
+  "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: the expansive-depth docs follow-up the coordinator opens after this phase. deep-review state-format.md:514 gives the finding dimension a closed canonical list; the reducer derives it over the universe with custom names. Owned with the custom-dimension text, not this phase."
+ },
+ {
+  "id": "L8-1",
+  "status": "handed_off",
+  "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: packet 010 research frontier mode. depth-mode-flag.md:16 states the run cap as half of maxIterations without the configurable expansiveDepth.maxFrontierNodes or the seed-pass exemption."
+ },
+ {
+  "id": "L8-2",
+  "status": "handed_off",
+  "note": "Handed off under the operator ruling of 2026-11-18 ('Fix ours, hand off rest'). Owner: packet 011 review frontier mode. depth-mode-flag.md:46 implementation table omits fanout-merge.cjs, which carries the merged frontier and the partition guard."
  }
 ]

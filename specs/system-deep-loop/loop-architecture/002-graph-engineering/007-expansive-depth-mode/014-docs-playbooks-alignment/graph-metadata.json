@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Phases 001-013 add `--extend=N`, `--depth-mode=expansive` for deep-research and deep-review, custom review dimensions and defect fixes that change what an operator sees, but no system-deep-loop manual testing playbook or feature catalog mentions any of them",
     "created_at": "2026-11-17T17:06:39Z",
-    "last_save_at": "2026-11-18T10:01:43.438Z",
+    "last_save_at": "2026-11-18T10:18:56.974Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +215,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7ec352ee8c273ab260891e6bbda1c65c85b396410eaf18af1557c617bf90c074",
+    "source_fingerprint": "sha256:a27d534086a6d56596e902745b6c88f685314eaace42073e1c24fd5c48140b0d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2c249a194c56b848de1a14acf4ccefdc88eb2e25fca394a2c2972f8a0ea24039",
