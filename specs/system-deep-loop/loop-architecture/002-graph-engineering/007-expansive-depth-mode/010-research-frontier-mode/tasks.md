@@ -105,7 +105,7 @@ Mark the task `[B]`, name the blocking phase, file or failing check on the same 
 ## Phase 3: Verification
 
 - [B] T030 Run the full deep-loop suite. Verify: `npm test` from `$D/runtime` exits 0 and the guard suites from parent research section 10 are all listed as passed. Merge-time step 2026-11-17: the full suite runs at the integration merge gate. Named suites on this branch: golden 12, frontier-admit 23, reduce-state 48, stop-decision 79, yaml-contract 22, fanout-run 203, fanout-merge 84, prompt-pack 18, all passing.
-- [B] T031 Run the pilot on example target 2 with `--depth-mode=expansive`, a stated `maxIterations`, depth-1 nodes rooted at `runtime/lib/prompt-policy.ts` and `runtime/data/prompt-policy.default.json`, the scorer at depth 2 and dedupe against `specs/system-skill-advisor/routing-and-scoring/001-010` (pilot packet under this phase's `scratch/`). Verify: `jq '.frontier.stats'` on the pilot `findings-registry.json` shows zero open and zero active nodes, the stop reason is not `maxIterationsReached`, and the log records how many depth-1 nodes the seed step produced. Merge-time step 2026-11-17 (decision D-010-04): the live pilot needs a full \`/deep:research\` loop and runs after integration. Interim evidence is a CLI smoke on a scratch packet: seed admitted 2 and pruned 1 duplicate; admit added F-2-004 and pruned a repeat; the reducer projected stats, budget and the 6B section; the stop decision returned CONTINUE \`frontierOpen\`; closing every node left zero open and zero active. First live run 2026-11-18 (`scratch/pilot-run-1.md`): FAIL, stop `maxIterationsReached` at 12 of 12, 0 open, 0 active, 8 nodes admitted beyond the seed. Its three defects are fixed on integration `1642d622a3b`; a rerun at maxIterations 16 runs on that tree.
+- [x] T031 Run the pilot on example target 2 with `--depth-mode=expansive`, a stated `maxIterations`, depth-1 nodes rooted at `runtime/lib/prompt-policy.ts` and `runtime/data/prompt-policy.default.json`, the scorer at depth 2 and dedupe against `specs/system-skill-advisor/routing-and-scoring/001-010` (pilot packet under this phase's `scratch/`). Verify: `jq '.frontier.stats'` on the pilot `findings-registry.json` shows zero open and zero active nodes, the frontier reaches zero open before the iteration cap (amended 2026-11-18, decision-record Q003), and the log records how many depth-1 nodes the seed step produced. Merge-time step 2026-11-17 (decision D-010-04): the live pilot needs a full \`/deep:research\` loop and runs after integration. Interim evidence is a CLI smoke on a scratch packet: seed admitted 2 and pruned 1 duplicate; admit added F-2-004 and pruned a repeat; the reducer projected stats, budget and the 6B section; the stop decision returned CONTINUE \`frontierOpen\`; closing every node left zero open and zero active. First live run 2026-11-18 (`scratch/pilot-run-1.md`): FAIL, stop `maxIterationsReached` at 12 of 12, 0 open, 0 active, 8 nodes admitted beyond the seed. Its three defects are fixed on integration `1642d622a3b`; Rerun 2026-11-18 at maxIterations 16 (`scratch/pilot-run-2.md`): 16 of 16 nodes answered, 0 open, 0 active, the frontier at zero open from the check before iteration 15, stop on the cap; the seed step produced 4 depth-1 nodes. Met under the amended criterion; the cap is now derived as half of `maxIterations`.
 - [x] T032 Check the pilot cites the current command-surfacing symbols (pilot `research.md`). Verify: `rg -c 'COMMAND_POLICIES'` on it prints nothing and `rg -c 'COMMAND_ROWS|TRACKED_COMMANDS'` prints at least 1. Merge-time step 2026-11-17: checked on the pilot \`research.md\` once T031 runs. Checked on the first live pilot research.md 2026-11-18: `rg -c COMMAND_POLICIES` prints nothing, `rg -c "COMMAND_ROWS|TRACKED_COMMANDS"` prints 1.
 <!-- /ANCHOR:phase-3 -->
 
@@ -117,7 +117,7 @@ Mark the task `[B]`, name the blocking phase, file or failing check on the same 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Manual verification passed
-- [ ] The golden test passes and the pilot registry shows every frontier node terminal
+- [x] The golden test passes and the pilot registry shows every frontier node terminal
 <!-- /ANCHOR:completion -->
 
 ---
@@ -176,7 +176,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 - [ ] CHK-020 [P0] All acceptance criteria met
 - [x] CHK-021 [P0] Golden byte-identity test passes for absent key and `--depth-mode=default` Evidence 2026-11-17: `research-depth-mode-golden.vitest` 12 of 12.
 - [x] CHK-022 [P1] Admission, veto, close, stuck and fan-out edge cases tested Evidence 2026-11-17: Admission table, veto precedence table, close, stuck wording and fan-out partition cases all pass.
-- [ ] CHK-023 [P1] Pilot run on target 2 completed
+- [x] CHK-023 [P1] Pilot run on target 2 completed [EVIDENCE: `scratch/pilot-run-2.md`, 16 iterations, 16 of 16 nodes answered]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -220,7 +220,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Pilot packet and fixtures stay under `scratch/` or the test fixture folder
+- [x] CHK-050 [P1] Pilot packet and fixtures stay under `scratch/` or the test fixture folder [EVIDENCE: both pilot fixtures lived in a throwaway detached worktree and were never merged; only the run records are in `scratch/`]
 - [x] CHK-051 [P1] scratch/ cleaned before completion Evidence 2026-11-17: `scratch/` holds only `.gitkeep`; the CLI smoke ran in the session scratchpad and an OS temp dir, both removed.
 <!-- /ANCHOR:file-org -->
 
@@ -255,8 +255,8 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 ## L3+: Performance Verification
 
 - [x] CHK-110 [P1] NFR-P01: no new process per iteration; the admission suite runs inside the existing vitest run Evidence 2026-11-17: No new process per iteration beyond the admit, block and graph helper calls under expansive; the suites run inside vitest.
-- [ ] CHK-111 [P1] Pilot iteration count stays within its stated `maxIterations`
-- [ ] CHK-112 [P2] Frontier size per depth recorded from the pilot dashboard
+- [x] CHK-111 [P1] Pilot iteration count stays within its stated `maxIterations` [EVIDENCE: run 2 stopped at 16 of 16]
+- [x] CHK-112 [P2] Frontier size per depth recorded from the pilot dashboard [EVIDENCE: `scratch/pilot-run-2.md` budget block, depth1 spent 4, depth2 spent 10, depth3 spent 0]
 - [ ] CHK-113 [P2] Budget spent per depth recorded from the pilot dashboard
 <!-- /ANCHOR:perf-verify -->
 

@@ -61,7 +61,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `cd .skilled/skills/system-deep-loop/runtime && npm test -- tests/unit/deep-research-reduce-state.vitest.ts` exits 0 with the frontier-origin, reduce-twice, node-close, visit-does-not-answer, lowest-depth focus, budget-rollover and dashboard cases.
 - [x] `cd .skilled/skills/system-deep-loop/runtime && npm test -- tests/unit/check-contract-drift.vitest.ts` exits 0 after the research contract is regenerated, and `rg -l -- '--depth-mode'` prints a file in the deep-research playbook, changelog and `references/` folders.
 - [x] `cd .skilled/skills/system-deep-loop/runtime && npm test -- tests/unit/fanout-run.vitest.ts tests/unit/fanout-merge.vitest.ts` exits 0 with seeded nodes written to each lineage store before spawn, round-robin `frontier_scope:` assignment, a merged `frontier`, a failing merge guard for a missing depth-1 node and no `frontier_scope:` line without the flag.
-- [ ] On the target-2 pilot, `jq '.frontier.stats'` over its `findings-registry.json` shows zero open and zero active nodes, and its stop reason is not `maxIterationsReached`.
+- [x] On the target-2 pilot, `jq '.frontier.stats'` over its `findings-registry.json` shows zero open and zero active nodes with every node terminal, and its stop checks show the frontier at zero open before the iteration cap.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -82,6 +82,7 @@ and findings belong here.
 | Implementation | Done on branch | 13 commits on `worktrees/467-ed-010-research-frontier-mode`, head `6d4adc8ef41` plus the closure commit; T001-T026 and T029 done |
 | Merge-time steps | Open | T030 full suite, T031-T032 pilot (D-010-04). Next task on resume: T030 at the merge gate |
 | Playbook and changelog | Done | DR-068 to DR-073 added to the deep-research playbook. The package validator prints PASS with 71 scenarios and 0 violations. Changelog `v1.16.0.0.md`: shape PASS, `validate_document.py` 0 issues, DQI 89. Both compiled contracts regenerated. `check-documentation-drift.cjs --facts` reports 0 errors and `check-contract-drift.cjs` prints OK. |
+| AC-014 amended and met | Done 2026-11-18 | Operator ruling Q003: decouple the cap, no rerun, amend AC-014 to a frontier drain before the cap. Run 2 stop checks show frontierOpen 0 from the check before iteration 15 of 16; final stats 16 answered, 0 open, 0 active. frontier-admit.cjs now derives the cap as half of maxIterations; frontier-admit suites 51 passed. |
 
 ### Deviations and findings
 

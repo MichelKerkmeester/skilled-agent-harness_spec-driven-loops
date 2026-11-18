@@ -9,7 +9,7 @@ trigger_phrases:
   - "review iteration file structure"
 importance_tier: important
 contextType: implementation
-version: 1.11.5.0
+version: 1.11.6.0
 ---
 
 # Deep Review State Format
@@ -152,7 +152,7 @@ Created during initialization. Not modified after creation.
 | fileProtection | object | -- | Mutability declarations (see protection levels below) |
 | reducer | object | -- | Canonical reducer inputs, outputs, and metrics names |
 | antiConvergence | object | `{ minIterations: 2, convergenceMode: "default", depthMode: "default", stopPolicy: "fail-closed" }` | Anti-convergence settings: the review iteration floor, the convergence mode and the depth mode |
-| expansiveDepth | object | `{ maxDepth: 3, maxChildrenPerNode: 6, budgetSplit: {depth1: 0.5, depth2: 0.35, depth3: 0.15}, maxFrontierNodes }` | Caps for `--depth-mode=expansive`; `maxFrontierNodes` is set to `maxIterations` at config creation |
+| expansiveDepth | object | `{ maxDepth: 3, maxChildrenPerNode: 6, budgetSplit: {depth1: 0.5, depth2: 0.35, depth3: 0.15}, maxFrontierNodes }` | Caps for `--depth-mode=expansive`; `maxFrontierNodes` defaults to half of `maxIterations` unless the config sets a number |
 
 ### File Protection Levels
 

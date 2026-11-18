@@ -9,7 +9,7 @@ trigger_phrases:
   - "composite convergence vote"
 importance_tier: important
 contextType: implementation
-version: 1.11.10.0
+version: 1.11.11.0
 ---
 
 # Deep Review Convergence
@@ -102,7 +102,7 @@ The shared convergence runtime accepts four values. Review legality, security ga
 
 #### Expansive Depth Mode
 
-`--depth-mode=expansive` grows a depth-capped frontier of sub-target nodes beside the review target. The value lands in `antiConvergence.depthMode`, and the caps live in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `budgetSplit` of 0.5/0.35/0.15 across the depth bands, and `maxFrontierNodes`, which is set to `maxIterations` when the config is created. The mode is locked against the optimizer; the `expansiveDepth` block is in neither its tunable nor its locked list. An absent flag means `default`, which runs exactly as before.
+`--depth-mode=expansive` grows a depth-capped frontier of sub-target nodes beside the review target. The value lands in `antiConvergence.depthMode`, and the caps live in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `budgetSplit` of 0.5/0.35/0.15 across the depth bands, and `maxFrontierNodes`, which defaults to half of `maxIterations` unless the config sets a number. The mode is locked against the optimizer; the `expansiveDepth` block is in neither its tunable nor its locked list. An absent flag means `default`, which runs exactly as before.
 
 After the review floor, an expansive run that still holds an open or active node turns a stop candidate into `CONTINUE` with reasonDetail `frontierOpen`, whichever candidate it was, `all_dimensions_clean` or a composite convergence vote. The veto never creates a stop of its own and never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the `minIterations` floor. Under stuck recovery the handler closes the active node as `exhausted` with reason `stuck`, so a node the run cannot fund stops holding the veto open.
 

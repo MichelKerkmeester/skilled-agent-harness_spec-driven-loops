@@ -151,7 +151,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-009 | Under expansive mode the STUCK_RECOVERY handler closes the active node as `exhausted`, advances focus, falls through to global recovery only when no open node remains and still appends the `stuckRecovery` event that resets `stuckCount`. |
 | REQ-010 | With fan-out under the flag, `step_frontier_seed` writes the depth-1 nodes before `step_fanout_spawn` runs; `fanout-run.cjs` passes `config.depthMode: expansive` to every lineage, partitions the seeded nodes round-robin through a `frontier_scope:` binding, records the partition in `orchestration-summary.json` and writes each lineage's assigned nodes into that lineage's node store before it spawns; `mergeResearchRegistries` returns a merged `frontier`; and the merge guard fails when a depth-1 node from the recorded partition is missing from every lineage. Without the flag, and with `--depth-mode default`, the lineage prompt carries no `frontier_scope:` or `depthMode` line. |
 | REQ-011 | With `divergent`, the Council pivot fires only once every frontier node is terminal. |
-| REQ-012 | A pilot run on example target 2 roots its depth-1 nodes at the prompt-policy gate and its threshold config, places the scorer at depth 2, dedupes against the ten `specs/system-skill-advisor/routing-and-scoring/001-010` packets and ends in a non-cap stop with every node terminal. |
+| REQ-012 | A pilot run on example target 2 roots its depth-1 nodes at the prompt-policy gate and its threshold config, places the scorer at depth 2, dedupes against the ten `specs/system-skill-advisor/routing-and-scoring/001-010` packets and drains its frontier to zero open nodes before the iteration cap, with every node terminal (amended 2026-11-18, decision-record Q003). |
 | REQ-013 | The dashboard that `renderDashboard` writes reports frontier size, pruned nodes, revisits and budget spent per depth under the flag. |
 | REQ-015 | On the single-executor path under the flag, `step_frontier_seed` runs in `phase_init` after `step_create_config`, so iteration 1 already has open depth-1 nodes. |
 | REQ-016 | The flag is bound on every surface `convergence_mode` is bound on: the presentation asset, `user_inputs`, `step_preflight_contract`, `step_read_state` and the `convergence.cjs` call, with a `stop-decision-yaml-contract` case. |
@@ -167,7 +167,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The golden byte-identity test passes for both the absent key and `--depth-mode=default`, and every existing guard suite named in the parent research section 10 stays green.
-- **SC-002**: The pilot on target 2 admits at least one node beyond the init questions, closes every node with a terminal status and stops on a reason other than `maxIterationsReached`, with `jq '.frontier.stats'` on its `findings-registry.json` showing zero open and zero active nodes.
+- **SC-002**: The pilot on target 2 admits at least one node beyond the init questions, closes every node with a terminal status and drains its frontier to zero open nodes before the iteration cap, with `jq '.frontier.stats'` on its `findings-registry.json` showing zero open and zero active nodes.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -230,7 +230,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | R-001 | Default-path regression from a shared file edit (reducer, convergence, prompt pack) | H | M | Golden byte-identity test written before any behavior change |
 | R-002 | Frontier runaway or cost growth | M | M | Depth, children and node caps, narrow-only budgets, the `maxIterations` hard cap |
 | R-003 | Leaves over-propose | M | H | Evidence-anchor relevance check, dedupe, workflow-owned admission |
-| R-004 | Most admitted nodes close as `exhausted: budget` at the default cap of 10 | M | H | Node cap tied to `maxIterations` or an enforced minimum (plan ADR-003) |
+| R-004 | Most admitted nodes close as `exhausted: budget` at the default cap of 10 | M | H | Node cap derived as half of `maxIterations` (plan ADR-003, amended 2026-11-18) |
 | R-005 | Gaming the stop guards through self-chosen `quality_class` labels | M | L | Depend on phase 007; do not rely on graph `sourceDiversity` before it lands |
 
 ---
@@ -257,7 +257,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 12. OPEN QUESTIONS
 
 - Which file holds the admission helper and node store? Plan ADR-004: `runtime/scripts/frontier-admit.cjs` and `research/frontier-nodes.jsonl`, shared with the review phase through a target mode. Accepted by the operator 2026-11-17 (T000).
-- Should the node cap be derived from `maxIterations`, or should expansive mode enforce a minimum `maxIterations`? Derived from `maxIterations`, plan ADR-003, accepted 2026-11-17.
+- Should the node cap be derived from `maxIterations`, or should expansive mode enforce a minimum `maxIterations`? Derived from `maxIterations`, plan ADR-003, accepted 2026-11-17; amended 2026-11-18 to half of `maxIterations`.
 - Does the graph close rule skip writing pruned and exhausted nodes, or re-kind them on close? Skip pruned, re-kind the rest, plan ADR-002, accepted 2026-11-17.
 - How does the seed step decompose a topic into depth-1 nodes before any iteration? Plan ADR-005, accepted 2026-11-17: the orchestrating model writes candidate nodes from the topic and the init key questions, and every candidate goes through the same six admission checks as a leaf proposal.
 <!-- /ANCHOR:questions -->

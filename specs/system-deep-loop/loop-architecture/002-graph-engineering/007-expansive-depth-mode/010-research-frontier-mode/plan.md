@@ -216,7 +216,7 @@ config+flag+bindings ──► golden test ──► node store+helper ──►
 |-----------|-------------|------------------|--------|
 | M1 | Guard in place | The golden test passes for the absent key and `--depth-mode=default` | End of Setup plus config step |
 | M2 | Frontier loop works | Admission, veto and close suites pass | Middle of Implementation |
-| M3 | Pilot proven | Target-2 pilot ends with every node terminal and a non-cap stop | Verification |
+| M3 | Pilot proven | Target-2 pilot ends with every node terminal and its frontier at zero open before the iteration cap (amended 2026-11-18) | Verification |
 <!-- /ANCHOR:milestones -->
 
 ---
@@ -266,6 +266,8 @@ The operator accepted ADR-001 to ADR-005 as proposed on 2026-11-17 (T000). The b
 **Consequences**:
 - Admission stops before budget exhaustion becomes the common close reason.
 - The pilot must still state its `maxIterations`; mitigated by REQ-012.
+
+**Amendment (operator, 2026-11-18, decision-record Q003)**: Both live pilots showed that a cap equal to `maxIterations` fills every iteration slot, so the seeded questions waited until the last iterations and the run could only stop on the cap. The cap is now derived at admission as half of `maxIterations` (at least 1) unless the config sets a number, and the workflow writes `null` so the derivation applies.
 
 **Alternatives Rejected**:
 - Enforce a minimum `maxIterations` for expansive runs: rejects small exploratory runs outright instead of sizing the frontier to them.
