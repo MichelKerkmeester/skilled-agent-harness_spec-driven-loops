@@ -1939,6 +1939,172 @@ test('record-base --dry-run names the units it would record and writes nothing',
   assert.equal(git(vendor, ['status', '--short', '--untracked-files=all']), '');
 });
 
+// A project repository that vendors the framework under skilled/ and reaches it
+// through a root .skilled symlink. It shares no history or tags with upstream.
+function makeVendoredLayout(root, name, sourceTree) {
+  const project = path.join(root, name);
+  const vendored = path.join(project, 'skilled');
+  fs.mkdirSync(vendored, { recursive: true });
+  git(project, ['init', '-q']);
+  configureGit(project);
+  fs.appendFileSync(
+    path.join(project, '.git', 'info', 'exclude'),
+    'skilled/.skilled/skills/.state/*/*\n',
+  );
+  fs.cpSync(path.join(sourceTree, '.skilled'), path.join(vendored, '.skilled'), { recursive: true });
+  fs.symlinkSync('skilled/.skilled', path.join(project, '.skilled'));
+  writeFile(project, 'README.md', '# project\n');
+  commitAll(project, 'vendor framework tree');
+  return { project, vendored };
+}
+
+// Upstream tags v1.0.0.0 and v1.1.0.0 with one untagged commit between them.
+// The middle tree matches neither tag, as a tree pinned between releases does.
+function makePinnedFixture() {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'release-update-pinned-'));
+  fixtureRoots.add(root);
+  const upstream = path.join(root, 'upstream');
+  fs.mkdirSync(upstream);
+  git(upstream, ['init', '-q']);
+  configureGit(upstream);
+  writeFile(upstream, '.skilled/skills/hub-a/SKILL.md', '# hub-a\n');
+  writeFile(upstream, HUB_A_FILE, '# a reference\nBase line\n');
+  writeFile(upstream, HUB_B_FILE, '# hub-b\nBase hub instructions\n');
+  commitAll(upstream, 'base release');
+  git(upstream, ['tag', '-a', 'v1.0.0.0', '-m', 'release v1.0.0.0']);
+  writeFile(upstream, HUB_A_FILE, '# a reference\nMiddle line\n');
+  writeFile(upstream, HUB_B_FILE, '# hub-b\nMiddle hub instructions\n');
+  commitAll(upstream, 'work between releases');
+  const middleCommit = git(upstream, ['rev-parse', 'HEAD']);
+  const middleTree = path.join(root, 'middle-tree');
+  fs.cpSync(path.join(upstream, '.skilled'), path.join(middleTree, '.skilled'), { recursive: true });
+  writeFile(upstream, HUB_A_FILE, '# a reference\nRelease line\n');
+  commitAll(upstream, 'release changes');
+  git(upstream, ['tag', '-a', 'v1.1.0.0', '-m', 'release v1.1.0.0']);
+  return { root, upstream, middleCommit, middleTree };
+}
+
+test('record-base and check run from the vendored folder behind a root .skilled symlink', () => {
+  const fixture = makeFixture();
+  const { project, vendored } = makeVendoredLayout(fixture.root, 'project', fixture.baseTree);
+  const basePath = path.join(vendored, '.skilled/skills/.state/doctor-update/base.json');
+
+  const fromRoot = runCli(project, 'record-base', '--release', 'v1.0.0.0',
+    '--remote', fixture.upstream, '--dry-run');
+  assert.equal(fromRoot.exitCode, 0, JSON.stringify(fromRoot.document));
+  assert.deepEqual(fromRoot.document.units, FAMILY_UNIT_KEYS);
+  assert.equal(fs.existsSync(basePath), false);
+
+  const notNearest = runCli(vendored, 'record-base', '--release', 'v1.1.0.0',
+    '--remote', fixture.upstream);
+  assert.equal(notNearest.exitCode, 1, JSON.stringify(notNearest.document));
+  assert.match(notNearest.document.error, /not the nearest/);
+
+  const recorded = runCli(vendored, 'record-base', '--release', 'v1.0.0.0',
+    '--remote', fixture.upstream);
+  assert.equal(recorded.exitCode, 0, JSON.stringify(recorded.document));
+  assert.equal(recorded.document.verified, true);
+  assert.deepEqual(recorded.document.units, FAMILY_UNIT_KEYS);
+  assert.equal(readJson(basePath).units['skill:hub-a'].release, 'v1.0.0.0');
+  assert.equal(fs.lstatSync(path.join(project, '.skilled')).isSymbolicLink(), true);
+
+  const checked = runCli(vendored, 'check');
+  assert.equal(checked.exitCode, 0, JSON.stringify(checked.document));
+  assert.deepEqual(checked.document.units.map((entry) => entry.key).sort(),
+    [...FAMILY_UNIT_KEYS, 'skill:hub-d'].sort());
+  for (const key of FAMILY_UNIT_KEYS) {
+    assert.equal(unit(checked.document, key).baseSource, 'recorded', key);
+  }
+  assert.equal(unit(checked.document, 'skill:hub-a').status, 'update');
+  assert.equal(checked.document.baseRecording.needed, false);
+
+  const checkedFromRoot = runCli(project, 'check');
+  assert.equal(checkedFromRoot.exitCode, 0, JSON.stringify(checkedFromRoot.document));
+  assert.equal(checkedFromRoot.document.repo, fs.realpathSync(vendored));
+  assert.equal(unit(checkedFromRoot.document, 'skill:hub-a').baseSource, 'recorded');
+});
+
+test('a root .skilled symlink that leaves the work tree or names another folder is refused', () => {
+  const fixture = makeFixture();
+  const outside = makeVendoredLayout(fixture.root, 'outside', fixture.baseTree);
+  fs.rmSync(path.join(outside.project, '.skilled'));
+  fs.symlinkSync(path.join(fixture.baseTree, '.skilled'), path.join(outside.project, '.skilled'));
+  const escaped = runCli(outside.project, 'record-base', '--release', 'v1.0.0.0',
+    '--remote', fixture.upstream, '--dry-run');
+  assert.equal(escaped.exitCode, 1, JSON.stringify(escaped.document));
+  assert.match(escaped.document.error, /path parent is not a real directory: .*\.skilled$/);
+
+  const renamed = makeVendoredLayout(fixture.root, 'renamed', fixture.baseTree);
+  fs.rmSync(path.join(renamed.project, '.skilled'));
+  fs.renameSync(path.join(renamed.vendored, '.skilled'), path.join(renamed.vendored, 'framework'));
+  fs.symlinkSync('skilled/framework', path.join(renamed.project, '.skilled'));
+  const otherName = runCli(renamed.project, 'record-base', '--release', 'v1.0.0.0',
+    '--remote', fixture.upstream, '--dry-run');
+  assert.equal(otherName.exitCode, 1, JSON.stringify(otherName.document));
+  assert.match(otherName.document.error, /path parent is not a real directory: .*\.skilled$/);
+});
+
+test('record-base --pin records a framework commit that falls between release tags', () => {
+  const fixture = makePinnedFixture();
+  const { vendored } = makeVendoredLayout(fixture.root, 'project', fixture.middleTree);
+  const basePath = path.join(vendored, '.skilled/skills/.state/doctor-update/base.json');
+
+  const both = runCli(vendored, 'record-base', '--pin', fixture.middleCommit,
+    '--release', 'v1.0.0.0');
+  assert.equal(both.exitCode, 2, JSON.stringify(both.document));
+  const abbreviated = runCli(vendored, 'record-base', '--pin', fixture.middleCommit.slice(0, 12));
+  assert.equal(abbreviated.exitCode, 2, JSON.stringify(abbreviated.document));
+
+  const pinned = runCli(vendored, 'record-base', '--pin', fixture.middleCommit,
+    '--remote', fixture.upstream);
+  assert.equal(pinned.exitCode, 0, JSON.stringify(pinned.document));
+  assert.equal(pinned.document.release, null);
+  assert.equal(pinned.document.releaseCommit, fixture.middleCommit);
+  assert.deepEqual(pinned.document.units, ['skill:hub-a', 'skill:hub-b']);
+  const record = readJson(basePath).units['skill:hub-a'];
+  assert.equal(record.commit, fixture.middleCommit);
+  assert.equal('release' in record, false);
+  assert.match(record.tree, /^[0-9a-f]{64}$/);
+
+  const checked = runCli(vendored, 'check');
+  assert.equal(checked.exitCode, 0, JSON.stringify(checked.document));
+  assert.equal(checked.document.release, 'v1.1.0.0');
+  assert.equal(unit(checked.document, 'skill:hub-a').baseSource, 'recorded');
+  assert.equal(unit(checked.document, 'skill:hub-a').baseRelease, null);
+  assert.equal(unit(checked.document, 'skill:hub-a').status, 'update');
+  assert.equal(unit(checked.document, 'skill:hub-b').status, 'current');
+  assert.equal(checked.document.baseRecording.needed, false);
+
+  const older = runCli(vendored, 'check', '--release', 'v1.0.0.0');
+  assert.equal(older.exitCode, 0, JSON.stringify(older.document));
+  assert.equal(unit(older.document, 'skill:hub-a').status, 'downgrade');
+
+  const preview = runCli(vendored, 'apply', '--dry-run');
+  assert.equal(preview.exitCode, 0, JSON.stringify(preview.document));
+  assert.ok(preview.document.writes.some((write) => write.path === HUB_A_FILE));
+  const applied = runCli(vendored, 'apply');
+  assert.equal(applied.exitCode, 0, JSON.stringify(applied.document));
+  assert.equal(readText(vendored, HUB_A_FILE), '# a reference\nRelease line\n');
+  const after = readJson(basePath).units;
+  assert.equal(after['skill:hub-a'].release, 'v1.1.0.0');
+  assert.equal(after['skill:hub-b'].commit, fixture.middleCommit);
+});
+
+test('a normal checkout still resolves --repo below its root to the git top level', () => {
+  const fixture = makeFixture();
+  const vendor = makeVendor(fixture, 'vendor-normal-root');
+  const recorded = runCli(path.join(vendor, '.skilled', 'skills'), 'record-base',
+    '--release', 'v1.0.0.0', '--remote', fixture.upstream);
+  assert.equal(recorded.exitCode, 0, JSON.stringify(recorded.document));
+  assert.deepEqual(recorded.document.units, FAMILY_UNIT_KEYS);
+  const basePath = path.join(vendor, '.skilled/skills/.state/doctor-update/base.json');
+  assert.equal(readJson(basePath).units['skill:hub-a'].release, 'v1.0.0.0');
+  const checked = runCli(vendor, 'check');
+  assert.equal(checked.exitCode, 0, JSON.stringify(checked.document));
+  assert.equal(checked.document.repo, fs.realpathSync(vendor));
+  assert.equal(unit(checked.document, 'skill:hub-a').baseSource, 'recorded');
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 7. CLI HELP AND USAGE
 // ─────────────────────────────────────────────────────────────────────────────

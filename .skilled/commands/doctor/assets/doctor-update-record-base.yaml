@@ -29,7 +29,8 @@ upstream_assets:
 
 user_inputs:
   action: "record-base"
-  release: "[RELEASE] required release tag"
+  release: "[RELEASE] release tag, required unless pin is supplied"
+  pin: "[PIN] optional full framework commit id for a tree copied between release tags; excludes release"
   remote: "[REMOTE] optional framework remote name or repository URL"
   scope: "[SCOPE] optional all or comma-separated units"
   offline: "[OFFLINE] boolean"
@@ -39,7 +40,8 @@ user_inputs:
 
 field_handling:
   defaults:
-    release_empty: "Ask which release this tree was installed from."
+    release_empty: "Unless pin is supplied, ask which release this tree was installed from, or which full framework commit id it was copied from; bind the answer as release or pin."
+    pin_empty: none
     remote_empty: base_json_remote_or_origin
     scope_empty: all
     offline_empty: false
@@ -47,13 +49,14 @@ field_handling:
     trust_release_empty: false
     dry_run_empty: false
   engine_mapping:
-    dry_run: "node .skilled/commands/doctor/scripts/release-update.cjs record-base --repo . --json --dry-run --release <tag> [--remote <value>] [--scope <value>] [--offline] [--include-prerelease] [--trust-release]"
-    record_base: "node .skilled/commands/doctor/scripts/release-update.cjs record-base --repo . --json --release <tag> [--remote <value>] [--scope <value>] [--offline] [--include-prerelease] [--trust-release]"
+    dry_run: "node .skilled/commands/doctor/scripts/release-update.cjs record-base --repo . --json --dry-run (--release <tag> | --pin <sha>) [--remote <value>] [--scope <value>] [--offline] [--include-prerelease] [--trust-release]"
+    record_base: "node .skilled/commands/doctor/scripts/release-update.cjs record-base --repo . --json (--release <tag> | --pin <sha>) [--remote <value>] [--scope <value>] [--offline] [--include-prerelease] [--trust-release]"
     remote: "Pass --remote <value> when supplied. Otherwise use the remote recorded in base.json, then origin."
     scope: "--scope <value> when supplied"
     offline: "--offline when requested"
     include_prerelease: "--include-prerelease when requested"
     trust_release: "--trust-release only after explicit approval naming the risk"
+    pin: "--pin <sha> in place of --release when bound; never both. The engine then skips the nearer-release check and reports verified false."
   engine_result_fields: [release, remote, units, verified, error]
 
 mutation_boundaries:
@@ -75,7 +78,7 @@ state_log_schema:
   start: "ISO-8601"
   end: "ISO-8601"
   duration_seconds: "number"
-  release: "string"
+  release: "string|null"
   remote: "string|null"
   units: "array of unit keys"
   verified: "boolean"
@@ -87,12 +90,13 @@ workflow:
     approval: none
     checks:
       - "Confirm the current directory is inside the repository and the engine exists."
-      - "When release is absent, ask which release this tree was installed from."
+      - "When release and pin are both absent, ask which release this tree was installed from, and accept a full framework commit id as a pin."
+      - "When release and pin are both supplied, show the presentation flag error and stop."
       - "Bind only the record-base inputs and validate .skilled/skills/.state/doctor-update/base.json and the lock path."
     on_failure: "Show the presentation error template and stop before writing."
 
   phase_2_engine_dry_run:
-    command: "node .skilled/commands/doctor/scripts/release-update.cjs record-base --repo . --json --dry-run --release <tag> [--remote <value>] [--scope <value>] [--offline] [--include-prerelease] [--trust-release]"
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs record-base --repo . --json --dry-run (--release <tag> | --pin <sha>) [--remote <value>] [--scope <value>] [--offline] [--include-prerelease] [--trust-release]"
     flag_rule: "Pass every bound optional flag. When remote is absent, use the remote in base.json and then origin."
     success: "Show every unit the engine would record and whether the nearest-release check ran in verified."
     nearest_release_refusal: "When another release is nearer, show the nearest-release template. Offer the nearest release when every listed unit names the same one. To keep the named release, request explicit approval to retry with --trust-release and state that the tag may not match the files in this tree."

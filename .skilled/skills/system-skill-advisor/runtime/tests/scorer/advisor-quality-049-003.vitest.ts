@@ -336,9 +336,9 @@ describe('F-012-C2-04 ambiguity tie-cluster computation', () => {
     expect(isAmbiguousTopTwo(recommendations)).toBe(true);
   });
 
-  it('keeps the floor-only member in the wide ambiguity set', () => {
-    // The abstention path reads the wide set, so a member the floor exception
-    // dropped from the visible cluster must still be reported there.
+  it('does not let a floor-only rival tie a real top into abstention', () => {
+    // A rival that only reached the confidence floor carries no evidence of its
+    // own, so a short prompt with one real match keeps that match.
     const recommendations: AdvisorScoredRecommendation[] = [
       recommendation({ skill: 'top', score: 0.560, confidence: 0.8235, passes_threshold: true }),
       recommendation({
@@ -350,7 +350,62 @@ describe('F-012-C2-04 ambiguity tie-cluster computation', () => {
       }),
     ];
 
+    expect(wideAmbiguityMembers(recommendations)).toEqual(new Set());
+  });
+
+  it('keeps the floor tie when the caller has a command named by its own phrase', () => {
+    const recommendations: AdvisorScoredRecommendation[] = [
+      recommendation({ skill: 'top', score: 0.560, confidence: 0.8235, passes_threshold: true }),
+      recommendation({
+        skill: 'floored',
+        score: 0.200,
+        confidence: 0.820,
+        confidenceFloored: true,
+        passes_threshold: true,
+      }),
+    ];
+
+    expect(wideAmbiguityMembers(recommendations, { floorTiesCount: true }))
+      .toEqual(new Set(['top', 'floored']));
+  });
+
+  it('keeps the floor-only member in the wide set when the top is floored too', () => {
+    const recommendations: AdvisorScoredRecommendation[] = [
+      recommendation({
+        skill: 'top',
+        score: 0.560,
+        confidence: 0.820,
+        confidenceFloored: true,
+        passes_threshold: true,
+      }),
+      recommendation({
+        skill: 'floored',
+        score: 0.200,
+        confidence: 0.820,
+        confidenceFloored: true,
+        passes_threshold: true,
+      }),
+    ];
+
     expect(wideAmbiguityMembers(recommendations)).toEqual(new Set(['top', 'floored']));
+  });
+
+  it('keeps the floor-only member in the wide set beside a real tie', () => {
+    // The abstention floors the whole wide set, so the floor-only member cannot
+    // slip through as the top once the two real matches abstain.
+    const recommendations: AdvisorScoredRecommendation[] = [
+      recommendation({ skill: 'top', score: 0.560, confidence: 0.8235, passes_threshold: true }),
+      recommendation({ skill: 'rival', score: 0.540, confidence: 0.8230, passes_threshold: true }),
+      recommendation({
+        skill: 'floored',
+        score: 0.200,
+        confidence: 0.820,
+        confidenceFloored: true,
+        passes_threshold: true,
+      }),
+    ];
+
+    expect(wideAmbiguityMembers(recommendations)).toEqual(new Set(['top', 'rival', 'floored']));
   });
 });
 

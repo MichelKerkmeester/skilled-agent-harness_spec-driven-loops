@@ -16,15 +16,16 @@
     "freshness",
     "check"
   ],
-  "lastUpdated": "2026-11-17T22:04:54.268Z",
+  "lastUpdated": "2026-11-18T08:21:46.721Z",
   "specId": "011",
   "folderSlug": "surfacing-scorer-follow-ups",
   "parentChain": [
     "system-skill-advisor",
     "routing-and-scoring"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "17-11-26_23-04__fixed-four-advisor-surfacing-gaps-a-vendoring.md"
+    "17-11-26_23-04__fixed-four-advisor-surfacing-gaps-a-vendoring.md",
+    "18-11-26_09-21__second-round-of-a-vendoring-project-report-design.md"
   ]
 }
