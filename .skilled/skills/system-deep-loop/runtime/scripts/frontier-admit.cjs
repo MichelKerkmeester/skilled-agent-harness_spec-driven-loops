@@ -626,6 +626,11 @@ function closeNode({ artifactDir, nodeId, status, reason = null, iteration }) {
   const nodes = readNodeStore(storePath);
   const node = nodes.get(nodeId);
   if (!node) throw new Error(`unknown frontier node: ${nodeId}`);
+  // A pruned node never reached the inbox. Closing it as anything live would count
+  // it toward the caps, project it to the graph and let it satisfy a drained stop.
+  if (node.status === 'pruned' && status !== 'pruned') {
+    throw new Error(`frontier node ${nodeId} was pruned; it cannot be closed as ${status}`);
+  }
 
   const row = {
     ...node,

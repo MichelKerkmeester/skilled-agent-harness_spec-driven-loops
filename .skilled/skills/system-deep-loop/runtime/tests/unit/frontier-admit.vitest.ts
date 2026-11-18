@@ -423,6 +423,24 @@ describe('frontier-admit', () => {
       .toThrow(/unknown close status/);
   });
 
+  it('closeNode refuses to revive a node admission pruned', () => {
+    const artifactDir = makeArtifactDir();
+    const storePath = join(artifactDir, STORE_FILE);
+    const proposal = { ...makeProposal('what does the pruned probe show'), evidence: '' };
+    const { admitted, pruned } = admitProposals({ artifactDir, iteration: 1, proposals: [proposal] });
+    expect(admitted).toHaveLength(0);
+    const nodeId = pruned[0].nodeId;
+
+    for (const status of ['answered', 'active', 'exhausted']) {
+      expect(() => closeNode({ artifactDir, nodeId, status, iteration: 2 }))
+        .toThrow(/was pruned/);
+    }
+    expect(readNodeStore(storePath).get(nodeId)?.status).toBe('pruned');
+
+    closeNode({ artifactDir, nodeId, status: 'pruned', reason: 'relevance', iteration: 2 });
+    expect(readNodeStore(storePath).get(nodeId)?.status).toBe('pruned');
+  });
+
   it('the CLI admit command reads frontier_proposal rows from a delta file', () => {
     const artifactDir = makeArtifactDir();
     const deltaPath = join(artifactDir, 'delta.jsonl');
