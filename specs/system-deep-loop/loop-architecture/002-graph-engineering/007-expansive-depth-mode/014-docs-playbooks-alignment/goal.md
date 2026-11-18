@@ -95,6 +95,8 @@ and findings belong here.
 | Criterion 5 | Not met | Second allowance (doc runs 4-6, skilled runs 6-8) used. Final reports: scratch/doc-alignment-run-6/report.md 'Open findings: 18 (6 handed off, 1 rebutted)' of 25; scratch/skilled-alignment-run-8/report.md 'Open findings: 12 (8 handed off, 0 rebutted)' of 20. Earlier: doc run-4 38 open, run-5 14 open; skilled run-6 16 open, run-7 8 open. A first attempt at the final pair (doc-alignment-run-6-abo... |
 | Final-pair abort | Not a run | doc-alignment-run-6-aborted and skilled-alignment-run-8-aborted stopped 08:47 before any report; coordinator ruled not a run |
 | Handed to follow-up | Done | Ruling 'Fix ours, hand off rest': 25 open findings in doc run-6 and skilled run-8 handed off to 010, 011 or the docs follow-up (dispositions.json) |
+| Reclassified | Ours | Hand-offs of text this program wrote were misclassified; they are fixed by class now; only pre-base text stays handed off |
+| Pair 1 (Vibe) | Not final | doc run-7 24 open (L4 timed out twice), skilled run-9 20 open; own findings fixed before pair 2 |
 
 ### Deviations and findings
 
