@@ -193,7 +193,7 @@
     ],
     "causal_summary": "`computeRecommendationOutput` strips the pasted reply once (`runtime/handlers/advisor-recommend.ts:536`) and uses the result for the cache key (`:537-549`), the embedding and the scorer (`:571-579`) and the public fields (`:584-588`)",
     "created_at": "2026-11-18T15:49:28Z",
-    "last_save_at": "2026-11-18T16:22:00.096Z",
+    "last_save_at": "2026-11-18T18:04:03.591Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e76df5e1b28b242280938a1fe58003926f9c2758dc5e6b72b4ffb89ac63fe2f",
+    "source_fingerprint": "sha256:20f254a4dabfa5a53025e5fa27270ba6955004d9395486416d6359980e9e0700",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "da14078e506ad540e48a4328d29b9b5012486c8feacf0f588d078422e870952e",
+      "spec.md": "9371ebb124f2b649698ba133c24dadd5a8581dedced5b4ae99e22f8b32241193",
       "plan.md": "9bc59995617e68c7ed5725ec2913ff91d8ffe017278dc02e0ba9cce8373cd70f",
-      "tasks.md": "4bbd43534f494b0abe452c8bee7e3efeda9c0a9a25f88fb2af79e9c059609fe1",
-      "implementation-summary.md": "66e8e65f67ad16df14a07bf8abdd4d2262a2a8a5696447aec54a122bcf614056"
+      "tasks.md": "81a239bc8d7f7adb7e69e61084d20ad4c6af240feca9dae1c8d907cff71a5c9e",
+      "implementation-summary.md": "e1152a2476a176f2013c383e9aef54c450427fcfb89690dd2d8169eca8c1d462"
     },
     "last_active_at": null
   }

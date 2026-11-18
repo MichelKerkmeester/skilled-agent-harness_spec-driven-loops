@@ -115,6 +115,7 @@ The pasted `/doctor:sk-code quality` reaches the task as its command on a cache 
 - Add a leak test: the pasted `/doctor:sk-code quality` prompt carries no command on a cache miss and again on a cache hit.
 - Add an equality test: the pasted `/deep:review` prompt and the plain task get the same `compiledRoute` and `command`, and the front door reads the stripped task on stdin.
 - Rerun the 002 compiled-route probe after the build and a daemon restart.
+- Amended 2026-11-18, from phase 007's open question: the CLI's degraded path keeps a command row's fields when the raw prompt holds its bare command (`runtime/skill-advisor-cli.ts:1498`, called at `:1585`). It reads the stripped prompt instead, so a command named only in a pasted reply cannot attach when the daemon is unreachable.
 
 ### Out of Scope
 - The strip rule - phase 006 owns it, and this phase reads whatever rule 006 leaves.
@@ -138,6 +139,8 @@ After the fix one read stays. Two calls take the whole `input` and read no promp
 |-----------|-------------|-------------|
 | `runtime/handlers/advisor-recommend.ts` | Modify | `input.prompt` becomes `scoredPrompt` at `:565`, `:566`, `:643` and `:644` |
 | `runtime/tests/handlers/advisor-recommend-compiled-route-option.vitest.ts` | Modify | Two tests and an `advisorPromptCache` import, so each test starts on a cleared cache |
+| `runtime/skill-advisor-cli.ts` | Modify (amended 2026-11-18) | `degradedRecommendations` checks for a typed command in `stripLeadingPastedReply(prompt)`, not the raw prompt, plus the import |
+| `runtime/tests/cli-degraded-command-contract.vitest.ts` | Modify (amended 2026-11-18) | One case: a command named only inside a pasted reply collapses to its owner skill |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -154,6 +157,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-001 | A command typed inside a pasted reply never attaches to the task | The leak test calls the handler twice with `Earlier you replied: Run /doctor:sk-code quality. Now: Refactor the session store module to remove duplicated locking code`. The first call reads `cache.hit` false and the second `cache.hit` true. `recommendations[0].skillId` is `sk-code` on both calls and neither carries `command` `/doctor:sk-code quality`. Before the fix this test fails |
 | REQ-002 | A pasted reply leaves the compiled route and command unchanged | The equality test uses a front-door mock whose answer depends on its stdin. The pasted `/deep:review` prompt and the plain task return equal `skillId`, `compiledRoute` and `command` per recommendation. Every `input` captured on a `compiled-route.cjs` call equals the plain task. Before the fix this test fails |
 | REQ-003 | The handler reads the raw prompt in one place | `rg -c 'input\.prompt' .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` prints 1, the line `:536` strip |
+| REQ-006 | The CLI's degraded path attaches no command named only in a pasted reply | A case in `runtime/tests/cli-degraded-command-contract.vitest.ts` passes a `command-speckit-save` entry with `Earlier you replied: Run /speckit:save to keep this. Now: Refactor the session store module to remove duplicated locking code` and gets one `system-spec-kit` row with no `command`. Before the fix this case fails |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -169,7 +173,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: One edit in the handler covers every caller that reaches the daemon. The shared hook calls the CLI brief builder (`hooks/claude/user-prompt-submit.ts:372-378`), which passes `--no-warm-only` so the CLI reaches or starts the daemon (`hooks/lib/skill-advisor-cli-fallback.ts:262-266`). The Python local scorer, used only when the daemon is unreachable, is phase 007's.
-- **SC-002**: `git diff --stat` for this phase lists exactly the two files in Files to Change.
+- **SC-002**: `git diff --stat` for this phase lists exactly the four files in Files to Change.
 <!-- /ANCHOR:success-criteria -->
 
 ---

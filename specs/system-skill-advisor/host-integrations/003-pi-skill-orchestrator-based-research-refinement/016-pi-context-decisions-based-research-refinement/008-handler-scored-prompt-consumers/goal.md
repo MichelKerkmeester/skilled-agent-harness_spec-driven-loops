@@ -35,7 +35,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** A command or route named inside a pasted earlier reply never reaches the user's task, because the recommend handler gives compiled-route enrichment and typed-command attachment the same stripped prompt it scores, on a cache hit and on a miss.
+**Objective:** A command or route named inside a pasted earlier reply never reaches the user's task, because the recommend handler gives compiled-route enrichment and typed-command attachment the same stripped prompt it scores, on a cache hit and on a miss, and the CLI's degraded path does the same.
 
 ### Decisions
 
@@ -43,7 +43,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Change only the four `input.prompt` arguments at `runtime/handlers/advisor-recommend.ts:565`, `:566`, `:643` and `:644`. No new helper, option or field |
+| D1 | In the handler, change only the four `input.prompt` arguments at `runtime/handlers/advisor-recommend.ts:565`, `:566`, `:643` and `:644`. The CLI's `degradedRecommendations` strips its prompt before the typed-command check. No new helper, option or field |
 | D2 | The read at `:536` stays, because it produces `scoredPrompt`. The calls at `:593` and `:657` stay, because they read no prompt |
 | D3 | Both tests go in `runtime/tests/handlers/advisor-recommend-compiled-route-option.vitest.ts`, clear `advisorPromptCache` first and land and fail before the handler changes |
 | D4 | The equality test uses a front-door mock that answers by its stdin, so it cannot pass before the fix |
@@ -58,11 +58,12 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `npx vitest run tests/handlers/advisor-recommend-compiled-route-option.vitest.ts` exits 0 from `.skilled/skills/system-skill-advisor/runtime`, with the leak test and the equality test included
-- [ ] `rg -c 'input\.prompt' .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` prints 1
-- [ ] From a daemon started after the last build, `node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "$p" --format json | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{for(const r of JSON.parse(s).data.recommendations)console.log(r.skillId+" "+JSON.stringify(r.compiledRoute??null))})'` prints the same lines with `p` set to `Earlier you replied: I ran /deep:review on the hook changes. Now: Refactor the session store module to remove duplicated locking code` as with `p` set to `Refactor the session store module to remove duplicated locking code`
-- [ ] `npx vitest run tests/hooks` exits 0 from `.skilled/skills/system-skill-advisor/runtime`
-- [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED`
+- [x] `npx vitest run tests/handlers/advisor-recommend-compiled-route-option.vitest.ts` exits 0 from `.skilled/skills/system-skill-advisor/runtime`, with the leak test and the equality test included
+- [x] `rg -c 'input\.prompt' .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` prints 1
+- [x] From a daemon started after the last build, `node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "$p" --format json | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{for(const r of JSON.parse(s).data.recommendations)console.log(r.skillId+" "+JSON.stringify(r.compiledRoute??null))})'` prints the same lines with `p` set to `Earlier you replied: I ran /deep:review on the hook changes. Now: Refactor the session store module to remove duplicated locking code` as with `p` set to `Refactor the session store module to remove duplicated locking code`
+- [x] `npx vitest run tests/hooks` exits 0 from `.skilled/skills/system-skill-advisor/runtime`
+- [x] `npx vitest run tests/cli-degraded-command-contract.vitest.ts` exits 0 from `.skilled/skills/system-skill-advisor/runtime`, with the pasted-reply case included
+- [x] `validate.sh --strict` on this phase prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -79,6 +80,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase planned | Done | `spec.md`, `plan.md` and `tasks.md` written 2026-11-18. The leak was measured live: `hit=true top=sk-code cmd=/doctor:sk-code quality mode=sk-code-quality` |
+| Phase built | Done | 2026-11-18: handler and CLI degraded path read the stripped task; `ROUTE` 9/9, CLI 3/3, live probes equal. Detail in `implementation-summary.md` |
 
 ### Deviations and findings
 
