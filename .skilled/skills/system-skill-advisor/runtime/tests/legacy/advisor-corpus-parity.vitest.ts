@@ -175,8 +175,11 @@ describe('advisor 196-prompt corpus regression-protection parity', () => {
       // reference follows them, so it answers two more prompts correctly and the
       // native scorer keeps one of them; rr-iter3-105 is the row it loses.
       // The Python fallback now also answers rr-iter3-076 correctly.
-      expect(pythonCorrect).toBe(117);
-      expect(hookPreservedPythonCorrect).toBe(112);
+      // 117 -> 118 and 112 -> 113: the Python reference now drops a pasted
+      // earlier reply before scoring, as the native scorer does, so the
+      // pasted-reply row reaches its gold on both.
+      expect(pythonCorrect).toBe(118);
+      expect(hookPreservedPythonCorrect).toBe(113);
       expect(hookGoldNoneFalseFire).toBeLessThanOrEqual(pythonGoldNoneFalseFire);
       expect(
         regressions.map((regression) => regression.id),

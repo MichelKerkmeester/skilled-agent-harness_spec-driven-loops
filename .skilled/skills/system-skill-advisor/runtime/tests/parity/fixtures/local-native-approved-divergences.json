@@ -751,17 +751,6 @@
       "nativeTop": "system-spec-kit",
       "reason": "reviewed 2026-11-05: local returns the gold command-speckit-save on a typed /memory:save at a dead-level 0.95 against system-spec-kit and breaks that tie toward the command, while native breaks the same tie toward the umbrella skill; why native resolves this prompt to the owner is not traced",
       "approvedAt": "2026-11-05"
-    },
-    {
-      "id": "rr-paste-208",
-      "corpus": "labeled",
-      "prompt": "Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: Refactor the session store module to remove duplicated locking code",
-      "gold": "sk-code",
-      "promptHash": "sha256:9370508d23654061d7d5238590fdcb36386c2f9614a4bbed0ee690329a3530df",
-      "localTop": "sk-doc",
-      "nativeTop": "sk-code",
-      "reason": "native strips the earlier reply pasted ahead of the task marker and scores only the task, reaching the gold sk-code; the Python local scorer is left unchanged by design and still routes on the pasted reply's sk-doc and sk-git names",
-      "approvedAt": "2026-11-18"
     }
   ]
 }
