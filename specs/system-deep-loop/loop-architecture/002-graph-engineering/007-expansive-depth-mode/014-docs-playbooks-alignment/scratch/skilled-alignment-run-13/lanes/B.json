@@ -1,0 +1,129 @@
+{
+ "lane": "B",
+ "findings": [
+  {
+   "id": "B-1",
+   "surface": "S4",
+   "standard": "sk-doc/sk-create-manual-testing-playbook",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/script-entry-points/upsert-script.md",
+   "line": 15,
+   "issue": "Triggered by the S4 scope file runtime/scripts/upsert.cjs. This program added a review finding evidence capability to upsert.cjs: the --state-log, --delta-dir and --iteration inputs, deriveReviewFindingEvidence (one FINDING node plus an EVIDENCE_FOR edge per path:line ref), the finding:&lt;id&gt;#&lt;iteration&gt; split for a reused id, leaf-id folding through resolveReviewFindingId, and the rejectedOrphanEdges skip. The only upsert scenario, DLR-015, still describes the script as 'Stores coverage graph nodes and edges from JSON arrays or iteration graph event files' (line 15). Its expected signals (line 28) name only JSON stdout, exit codes and DB close. No scenario in the deep-review, runtime or hub playbooks exercises the new inputs: the one other grep hit, zero-iteration-review-report.md, passes --state-log to terminal-gates.cjs and review-verdict.cjs, not to upsert.cjs. The lens wants a scenario for every new feature, and the runtime catalog entry already documents this one. The file sits outside the listed scope but is where the fix lands. Fix: add a DLR scenario, or extend DLR-015, that runs a review upsert with --state-log, --delta-dir and --iteration and checks the derived EVIDENCE_FOR edge, the #&lt;iteration&gt; split for a reused id, and rejectedOrphanEdges for an edge to an undeclared node.",
+   "evidence": {
+    "cmd": "grep -n -E \"state-log|delta-dir|#&lt;iteration&gt;|rejectedOrphanEdges\" .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/script-entry-points/upsert-script.md",
+    "exit": 1,
+    "out": ""
+   }
+  },
+  {
+   "id": "B-2",
+   "surface": "S3",
+   "standard": "sk-doc/sk-create-feature-catalog",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/upsert-script.md",
+   "line": 35,
+   "issue": "This is an omission, not a false statement. Commit cec5a403eb3 changed how upsert.cjs maps a reused review finding id. The iteration's own derived findings now register in knownFindings before the stored ones (upsert.cjs lines 386-393), so when a reused id splits to finding:&lt;id&gt;#&lt;iteration&gt;, the leaf-sent FINDING node and every edge naming that id land on the new split node, not on the earlier finding. A leaf finding node that folds onto a derived finding now stores { ...derivedMetadata, ...leafMetadata } (lines 444-457), so it gains the derived finding_id, file and line it left out, and a later reused-id check can still compare files. Lines 33-37 still hold: leaf keys win, and the fold targets the node the finding is stored under. But the entry never says that the leaf's node and edges follow the split, or that a folded leaf finding gains the derived id, file and line. The integration tests at upsert-script.vitest.ts lines 593 and 618 pin both behaviors. Fix: add one or two sentences after line 35 stating both behaviors.",
+   "evidence": {
+    "cmd": "git -c core.fsmonitor=false diff 4a96a5da1e6 HEAD -- .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs .skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/upsert-script.md",
+    "exit": 0,
+    "out": "upsert.cjs: +This iteration's own findings register first. When a reused id was split into finding:&lt;id&gt;#&lt;iteration&gt;, the leaf's node and edges for that id belong to the new finding ... +derivedFinding ? { ...derivedFinding, ...(leafMetadata ?? {}) } : n.metadata; catalog upsert-script.md: no change since 4a96a5da1e6"
+   }
+  },
+  {
+   "id": "B-3",
+   "surface": "S3",
+   "standard": "sk-doc/sk-create-feature-catalog",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md",
+   "line": 16,
+   "issue": "The hub entry gives one defaulted-budget formula, min(24, max(loop default, 2 x c x (S + maxDepth - 1))) with c for review = the four canonical dimensions plus any custom name, and the next sentence applies it to a fan-out lineage too. A fan-out lineage is sized differently. fanout-run.cjs expansiveLineageBudgets (lines 339-350) calls expansiveBudget with no dimensions and no maxDepth, so it falls back to CANONICAL_REVIEW_DIMENSIONS (4) and DEFAULT_MAX_DEPTH (3) whatever the config sets. The code comment says 'A review lineage reviews the canonical four dimensions'. The command doc (review.md line 100), deep-review README line 167, SKILL.md line 238, loop-protocol.md line 459, convergence.md line 105 and the fanout-run catalog (line 108, 'share + 2') all state this. The hub entry is the one place that still implies custom dimensions and the configured maxDepth size a lineage budget. Reach: a fan-out expansive review with a custom dimension, or a non-default expansiveDepth.maxDepth, and no matrix iterations value.",
+   "evidence": {
+    "cmd": "sed -n 325,375p .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    "exit": 0,
+    "out": "// ... A review lineage reviews the canonical four dimensions. A matrix iterations value is explicit and always kept.\nfunction expansiveLineageBudgets(lineages, { loopType, partition }) { ... const iterations = expansiveBudget({ target: loopType, seeded: share, loopDefault: lineage.kind === 'native' ? 12 : LOOP_DEFAULT_MAX_ITERATIONS[loopType], }); ..."
+   },
+   "fix": {
+    "old": "with c 1 for research and, for review, the four canonical dimensions plus any custom name, each counted once. A run or fan-out lineage with no seeded node keeps its loop default.",
+    "new": "with c 1 for research and, for review, the four canonical dimensions plus any custom name, each counted once. A fan-out lineage with no matrix `iterations` value is sized from its own seed share with c fixed at the canonical four for review and maxDepth at its default of 3, since a lineage reviews only those. A run or fan-out lineage with no seeded node keeps its loop default."
+   }
+  },
+  {
+   "id": "B-4",
+   "surface": "S2",
+   "standard": "sk-doc/sk-create-skill",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+   "line": 238,
+   "issue": "sk-create-skill ALWAYS rule 5 says to keep SKILL.md within the Size Limits table (3000 recommended words), and rule 6 says to move long guidance into references/. The deep-review SKILL.md was already at 3026 words at the program base 21c4b325b5a. This program grew it to 3864, and package_skill.py now warns. Most of the growth is the new Expansive Depth Mode subsection. Its line 238 is a single 1881-character bullet of budget arithmetic (the seed-derived formula, ceiling, fan-out sizing, loop defaults, node cap and duration note). loop-protocol.md line 459 and convergence.md line 105 already carry it nearly word for word. Fix: cut the bullet to the operator-facing rule (expansive is opt-in, a defaulted budget is derived from the seed, an explicit value wins) and point to references/protocol/loop-protocol.md for the arithmetic.",
+   "evidence": {
+    "cmd": "python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/system-deep-loop/deep-review --check",
+    "exit": 0,
+    "out": "1 warning(s): SKILL.md has 3864 words (recommended max: 3000)"
+   }
+  },
+  {
+   "id": "B-5",
+   "surface": "S2",
+   "standard": "sk-doc/sk-create-skill",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+   "line": 93,
+   "issue": "The deep-research SKILL.md went over the 3000-word recommended limit during this program: 2613 words at base 21c4b325b5a, 3059 now by the packager's count, which now warns. That breaks ALWAYS rules 5 and 6 of sk-create-skill. The expansive-depth budget paragraph at line 93 (native lineage 12 in place of 10, node cap and growth slots, explicit-value precedence) repeats references/protocol/loop-protocol.md line 411 and references/convergence/convergence.md line 68 word for word. Fix: keep the operator rule in SKILL.md and point to loop-protocol.md for the budget detail, which brings it back under 3000.",
+   "evidence": {
+    "cmd": "python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/system-deep-loop/deep-research --check",
+    "exit": 0,
+    "out": "SKILL.md has 3059 words (recommended max: 3000)"
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/SKILL.md",
+  ".skilled/skills/system-deep-loop/README.md",
+  ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+  ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md",
+  ".skilled/skills/system-deep-loop/mode-registry.json",
+  ".skilled/skills/system-deep-loop/description.json",
+  ".skilled/skills/system-deep-loop/hub-router.json",
+  ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+  ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+  ".skilled/skills/system-deep-loop/deep-research/README.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+  ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+  ".skilled/skills/system-deep-loop/deep-review/README.md",
+  ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+  ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/custom-review-dimensions.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/extend-completed-review-run.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/custom-dimension-setup-and-universe.md",
+  ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/upsert-script.md",
+  ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/frontier-admit-script.md",
+  ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md",
+  ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+  ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/script-entry-points/upsert-script.md",
+  ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+  ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+  ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts",
+  ".skilled/commands/deep/review.md",
+  ".skilled/commands/deep/assets/deep-review.yaml",
+  ".skilled/commands/deep/assets/deep-research.yaml",
+  "mechanical: relative-link check over every tracked .md under .skilled/skills/system-deep-loop (0 broken)",
+  "mechanical: validate-playbook-package.cjs --package on deep-research, deep-review and runtime playbooks (exit 0 each)"
+ ]
+}

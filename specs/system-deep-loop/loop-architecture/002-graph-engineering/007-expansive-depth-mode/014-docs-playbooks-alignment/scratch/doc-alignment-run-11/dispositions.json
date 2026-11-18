@@ -1,0 +1,7 @@
+[
+ {
+  "id": "L4-1",
+  "status": "handed_off",
+  "note": "Not this program's: deep-research/feature-catalog/convergence/anti-convergence-floor.md, the top-level minIterations: 3 that step_create_config writes in deep-research.yaml, and the precedence in convergence.cjs stopDecisionConfig all predate the program base 21c4b325b5a, and the catalog entry has no diff since then. Owner: the deep-research feature catalog (convergence group). The finding stands: the entry should name the top-level minIterations key the workflow writes and say it is read before antiConvergence.minIterations."
+ }
+]

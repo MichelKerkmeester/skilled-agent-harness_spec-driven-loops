@@ -1,0 +1,317 @@
+[
+  {
+    "id": "A-1",
+    "source_id": "A-1",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    "line": "407",
+    "issue": "The review target containment check compares scope paths against the raw reviewTarget text. A files target written as a glob is in contract: deep-review.yaml lines 793-797 say 'Expand glob patterns from review_target', and the expanded list is stored as reviewScopeFiles (yaml line 874). Containment only consults that list for commit ranges (line 405), so with a glob target like 'src/**/*.ts' no scope path equals the target or starts with it plus '/'. Every seed and admission proposal that carries a path scope is pruned as 'relevance'. seedNodes returns admitted: [] with no warning, and the expansive review runs at its loop default with an empty frontier. A '.' target prunes the same way, while a './' target normalizes to blank and allows every scope. Fix: when the target is a pattern or names the repo root, test containment against reviewScopeFiles through scopeInsideTouchedFiles, as commit ranges already do. Keep the change on the target side: mapping '.' to blank in the shared normalizer would break the new test asserting that scope '.' is outside the target.",
+    "evidence": {
+      "cmd": "node -e 'seedNodes({artifactDir, target:\"review\", candidates:[{question:\"Does a.ts leak a handle?\",scope:\"src/a.ts\"},{question:\"Does b.ts race?\",scope:[\"src/b.ts\"]}]})' with review config {reviewTargetType:\"files\",reviewTarget:\"src/**/*.ts\",reviewScopeFiles:[\"src/a.ts\",\"src/b.ts\"]}; plus scopeInsideReviewTarget probes",
+      "exit": 0,
+      "out": "{\"admitted\":0,\"pruned\":[\"relevance\",\"relevance\"]}; glob false, dot false, dotslash true; all-pruned seed result: {\"admitted\":[],\"pruned\":[{\"nodeId\":\"F-1-001\",\"reason\":\"relevance\"}],\"derivedMaxIterations\":7,\"growthSlots\":3} with no warning field"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "X-1",
+    "source_id": "X-1",
+    "lane": "critic",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/commands/assets/local-skilled-alignment/resolve-scope.cjs",
+    "line": "90",
+    "issue": "The scope was built in the default first-parent mode, which keeps only first-parent, non-merge commits so that changes from merging the base back in stay out. On this branch every one of the 17 first-parent merges (the 'integrate the ...' commits) brings in a program side branch, not the base: none of their second parents is an ancestor of main. So `git diff 21c4b325b5a HEAD` changes 64 non-spec files that scope.json leaves out. The whole system-spec-kit owner is missing from the surface map: runtime/cli/optimizer/optimizer-manifest.json (the new antiConvergence.depthMode locked field) and three runtime/cli/tests deep-review contract tests. Also missing: all ten runtime/lib ledger schema, type, reducer and projection modules (lane C read deep-review-state-contract.ts as context), runtime/lib coverage-graph-query.ts, continuity-thread.cjs and divergent-pivot.ts, runtime/scripts dispatch-iteration.cjs (the --claude-config-dir change), verify-iteration.cjs, fanout-merge.cjs and divergent-pivot.cjs, both mode prompt-pack-iteration.md.tmpl templates, the deep-review dashboard and strategy assets, deep-research/scripts/divergent-research-pivot.ts, the golden-review-default fixtures and 25 runtime test files. Lane C read both config.json assets as context. No battery row ran over these files: not S1-quality-gate, not S1-comment-hygiene and not S13-env-tokens. I replayed the mechanical checks by hand, and they are clean. comment hygiene exit 0 and quality-gate NO_BLOCKER_FOUND over the 45 code files. The 25 runtime test files pass (578 pass, 2 skipped). The 3 system-spec-kit cli test files pass (18). The env reads they add are test-only (DEEP_RESEARCH_PACK_TEMPLATE) or Claude Code's own CLAUDE_CONFIG_DIR, set on the child. What remains unreviewed is the S1 judgment lens on these files: correctness, a test for each changed behavior, and fail-closed paths. Fix: for a branch whose merges are all its own feature branches, run resolve-scope.cjs with --full-diff, or have the scope step detect that no merge's second parent is on the base and switch modes on its own. Then rerun S1 and the lanes over the added files.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false diff --name-only 21c4b325b5a HEAD, minus scope.json files and specs/; for each first-parent merge: git merge-base --is-ancestor <merge>^2 main; xargs check-comment-hygiene.sh / quality-gate.cjs over the 45 code files; vitest over the 25 runtime and 3 spec-kit test files",
+      "exit": 0,
+      "out": "64 non-spec files changed in range but absent from scope.json; 17/17 merges are side branches (none on main); hygiene exit=0; quality-gate gate=NO_BLOCKER_FOUND findings: 0 (45 files); runtime vitest Test Files 25 passed, Tests 578 passed | 2 skipped; spec-kit cli vitest Test Files 3 passed, Tests 18 passed"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "A limitation of the scope tool, not a defect in this program's files. Owner: the local-skilled-alignment tooling (resolve-scope.cjs), whose default first-parent mode drops files that reached HEAD through first-parent merges of program side branches. The critic's manual checks on the off-map files passed: comment hygiene 0, quality gate 0 findings, runtime vitest 578 passed and 2 skipped, spec-kit cli vitest 18 passed. Same cause as E-2 in skilled run 12."
+    }
+  },
+  {
+    "id": "B-4",
+    "source_id": "B-4",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    "line": "238",
+    "issue": "sk-create-skill ALWAYS rule 5 says to keep SKILL.md within the Size Limits table (3000 recommended words), and rule 6 says to move long guidance into references/. The deep-review SKILL.md was already at 3026 words at the program base 21c4b325b5a. This program grew it to 3864, and package_skill.py now warns. Most of the growth is the new Expansive Depth Mode subsection. Its line 238 is a single 1881-character bullet of budget arithmetic (the seed-derived formula, ceiling, fan-out sizing, loop defaults, node cap and duration note). loop-protocol.md line 459 and convergence.md line 105 already carry it nearly word for word. Fix: cut the bullet to the operator-facing rule (expansive is opt-in, a defaulted budget is derived from the seed, an explicit value wins) and point to references/protocol/loop-protocol.md for the arithmetic.",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/system-deep-loop/deep-review --check",
+      "exit": 0,
+      "out": "1 warning(s): SKILL.md has 3864 words (recommended max: 3000)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-5",
+    "source_id": "B-5",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    "line": "93",
+    "issue": "The deep-research SKILL.md went over the 3000-word recommended limit during this program: 2613 words at base 21c4b325b5a, 3059 now by the packager's count, which now warns. That breaks ALWAYS rules 5 and 6 of sk-create-skill. The expansive-depth budget paragraph at line 93 (native lineage 12 in place of 10, node cap and growth slots, explicit-value precedence) repeats references/protocol/loop-protocol.md line 411 and references/convergence/convergence.md line 68 word for word. Fix: keep the operator rule in SKILL.md and point to loop-protocol.md for the budget detail, which brings it back under 3000.",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/system-deep-loop/deep-research --check",
+      "exit": 0,
+      "out": "SKILL.md has 3059 words (recommended max: 3000)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-2",
+    "source_id": "B-2",
+    "lane": "B",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/upsert-script.md",
+    "line": "35",
+    "issue": "This is an omission, not a false statement. Commit cec5a403eb3 changed how upsert.cjs maps a reused review finding id. The iteration's own derived findings now register in knownFindings before the stored ones (upsert.cjs lines 386-393), so when a reused id splits to finding:&lt;id&gt;#&lt;iteration&gt;, the leaf-sent FINDING node and every edge naming that id land on the new split node, not on the earlier finding. A leaf finding node that folds onto a derived finding now stores { ...derivedMetadata, ...leafMetadata } (lines 444-457), so it gains the derived finding_id, file and line it left out, and a later reused-id check can still compare files. Lines 33-37 still hold: leaf keys win, and the fold targets the node the finding is stored under. But the entry never says that the leaf's node and edges follow the split, or that a folded leaf finding gains the derived id, file and line. The integration tests at upsert-script.vitest.ts lines 593 and 618 pin both behaviors. Fix: add one or two sentences after line 35 stating both behaviors.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false diff 4a96a5da1e6 HEAD -- .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs .skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/upsert-script.md",
+      "exit": 0,
+      "out": "upsert.cjs: +This iteration's own findings register first. When a reused id was split into finding:&lt;id&gt;#&lt;iteration&gt;, the leaf's node and edges for that id belong to the new finding ... +derivedFinding ? { ...derivedFinding, ...(leafMetadata ?? {}) } : n.metadata; catalog upsert-script.md: no change since 4a96a5da1e6"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-3",
+    "source_id": "B-3",
+    "lane": "B",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md",
+    "line": "16",
+    "issue": "The hub entry gives one defaulted-budget formula, min(24, max(loop default, 2 x c x (S + maxDepth - 1))) with c for review = the four canonical dimensions plus any custom name, and the next sentence applies it to a fan-out lineage too. A fan-out lineage is sized differently. fanout-run.cjs expansiveLineageBudgets (lines 339-350) calls expansiveBudget with no dimensions and no maxDepth, so it falls back to CANONICAL_REVIEW_DIMENSIONS (4) and DEFAULT_MAX_DEPTH (3) whatever the config sets. The code comment says 'A review lineage reviews the canonical four dimensions'. The command doc (review.md line 100), deep-review README line 167, SKILL.md line 238, loop-protocol.md line 459, convergence.md line 105 and the fanout-run catalog (line 108, 'share + 2') all state this. The hub entry is the one place that still implies custom dimensions and the configured maxDepth size a lineage budget. Reach: a fan-out expansive review with a custom dimension, or a non-default expansiveDepth.maxDepth, and no matrix iterations value.",
+    "evidence": {
+      "cmd": "sed -n 325,375p .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "exit": 0,
+      "out": "// ... A review lineage reviews the canonical four dimensions. A matrix iterations value is explicit and always kept.\nfunction expansiveLineageBudgets(lineages, { loopType, partition }) { ... const iterations = expansiveBudget({ target: loopType, seeded: share, loopDefault: lineage.kind === 'native' ? 12 : LOOP_DEFAULT_MAX_ITERATIONS[loopType], }); ..."
+    },
+    "fix": {
+      "old": "with c 1 for research and, for review, the four canonical dimensions plus any custom name, each counted once. A run or fan-out lineage with no seeded node keeps its loop default.",
+      "new": "with c 1 for research and, for review, the four canonical dimensions plus any custom name, each counted once. A fan-out lineage with no matrix `iterations` value is sized from its own seed share with c fixed at the canonical four for review and maxDepth at its default of 3, since a lineage reviews only those. A run or fan-out lineage with no seeded node keeps its loop default."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-1",
+    "source_id": "B-1",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/script-entry-points/upsert-script.md",
+    "line": "15",
+    "issue": "Triggered by the S4 scope file runtime/scripts/upsert.cjs. This program added a review finding evidence capability to upsert.cjs: the --state-log, --delta-dir and --iteration inputs, deriveReviewFindingEvidence (one FINDING node plus an EVIDENCE_FOR edge per path:line ref), the finding:&lt;id&gt;#&lt;iteration&gt; split for a reused id, leaf-id folding through resolveReviewFindingId, and the rejectedOrphanEdges skip. The only upsert scenario, DLR-015, still describes the script as 'Stores coverage graph nodes and edges from JSON arrays or iteration graph event files' (line 15). Its expected signals (line 28) name only JSON stdout, exit codes and DB close. No scenario in the deep-review, runtime or hub playbooks exercises the new inputs: the one other grep hit, zero-iteration-review-report.md, passes --state-log to terminal-gates.cjs and review-verdict.cjs, not to upsert.cjs. The lens wants a scenario for every new feature, and the runtime catalog entry already documents this one. The file sits outside the listed scope but is where the fix lands. Fix: add a DLR scenario, or extend DLR-015, that runs a review upsert with --state-log, --delta-dir and --iteration and checks the derived EVIDENCE_FOR edge, the #&lt;iteration&gt; split for a reused id, and rejectedOrphanEdges for an edge to an undeclared node.",
+    "evidence": {
+      "cmd": "grep -n -E \"state-log|delta-dir|#&lt;iteration&gt;|rejectedOrphanEdges\" .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/script-entry-points/upsert-script.md",
+      "exit": 1,
+      "out": ""
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "BAT-01",
+    "source_id": "S5-derived-counts",
+    "lane": "battery",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "S5-derived-counts failed (exit 1).",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py .skilled/bin/README.md .skilled/skills/system-deep-loop/README.md .skilled/skills/system-deep-loop/deep-research/README.md .skilled/skills/system-deep-loop/deep-review/README.md .skilled/skills/system-skill-advisor/README.md README.md",
+      "exit": 1,
+      "out": "PASS .skilled/bin/README.md: claims=1 failures=0\nPASS .skilled/skills/system-deep-loop/README.md: claims=0 failures=0\nPASS .skilled/skills/system-deep-loop/deep-research/README.md: claims=0 failures=0\nPASS .skilled/skills/system-deep-loop/deep-review/README.md: claims=0 failures=0\n  line 141: numeric count for 'files': | `trustState` reads `absent` | The SQLite database file is missing | Run `advisor_rebuild --trusted`. If that fails, delete the `skill-graph.sqlite` database and its two sidecar files under `runtime/database/`, then rebuild with `--trusted --force` |\nFAIL .skilled/skills/system-skill-advisor/README.md: claims=1 failures=1\nPASS README.md: claims=1 failures=0\nSUMMARY files=6 pass=5 fail=1",
+      "ci_gated": false,
+      "ci_workflows": []
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Not this program's: the failing claim is system-skill-advisor/README.md line 141, unchanged since the program base 21c4b325b5a, and its count of two sidecar files is true. Owner: sk-create-readme's check_derived_readme_counts.py, which cannot derive a count over a folder that holds other files too. Same cause as C-1."
+    }
+  },
+  {
+    "id": "C-1",
+    "source_id": "C-1",
+    "lane": "C",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/README.md",
+    "line": "141",
+    "issue": "Battery S5-derived-counts fails on this line. The cause is a checker limit, not a wrong claim: 'its two sidecar files under runtime/database/' is a true count (skill-graph.sqlite-shm and skill-graph.sqlite-wal exist there), but check_derived_readme_counts.py cannot derive it, because the folder holds other files too. The line predates the branch (last README change d68e7fdf888, no diff since base 21c4b325b5a). It entered the battery because the recompiled skill-graph.json is in scope. The file itself is not a scope file. Naming the two sidecars removes the count and clears the battery. An allow-count entry in a readme-check block would also work.",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py .skilled/skills/system-skill-advisor/README.md; ls .skilled/skills/system-skill-advisor/runtime/database/",
+      "exit": 1,
+      "out": "line 141: numeric count for 'files' ... FAIL .skilled/skills/system-skill-advisor/README.md: claims=1 failures=1; database/ lists skill-graph.sqlite, skill-graph.sqlite-shm, skill-graph.sqlite-wal, skill-graph-daemon-lease.sqlite(-shm,-wal), README.md, one .bak"
+    },
+    "fix": {
+      "old": "delete the `skill-graph.sqlite` database and its two sidecar files under `runtime/database/`",
+      "new": "delete the `skill-graph.sqlite` database and its `-shm` and `-wal` sidecar files under `runtime/database/`"
+    },
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "pre-existing (critic)",
+    "critic_override": {
+      "verdict": "pre-existing",
+      "note": "git diff --stat 21c4b325b5a HEAD -- .skilled/skills/system-skill-advisor/README.md is empty, and git show 21c4b325b5a:.skilled/skills/system-skill-advisor/README.md already has the 'its two sidecar files under runtime/database/' line at 141. The README is not a scope file. It entered the S5 battery only because the recompiled skill-graph.json is in scope.",
+      "lane_severity": "P2"
+    },
+    "disposition": {
+      "status": "handed_off",
+      "note": "Pre-existing per the critic: system-skill-advisor/README.md has no diff since the program base 21c4b325b5a and the sidecar count is true. Owner: sk-create-readme's check_derived_readme_counts.py, which needs to accept a count of named files in a mixed folder."
+    }
+  },
+  {
+    "id": "X-2",
+    "source_id": "X-2",
+    "lane": "critic",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+    "line": "48",
+    "issue": "This scope adds a new CLI entry point, runtime/scripts/frontier-admit.cjs, which seeds, admits, prunes and closes nodes in the frontier node store. The Files table in the scripts folder README has no row for it. runtime/README.md sends readers to that table for the CLI commands, so the script cannot be found from the runtime's own README. The README is unchanged since the base. Eleven other scripts are also missing from the table, but each existed at base 21c4b325b5a, so only frontier-admit.cjs is attributed to this range. The rest is older debt.",
+    "evidence": {
+      "cmd": "for f in runtime/scripts/*.cjs; do grep -q $(basename $f) runtime/scripts/README.md || echo MISSING; done; git cat-file -e 21c4b325b5a:.skilled/skills/system-deep-loop/runtime/scripts/<name>.cjs per missing name",
+      "exit": 0,
+      "out": "12 MISSING rows; 11 present at base; frontier-admit NEW (status A in range); README.md no diff since base"
+    },
+    "fix": {
+      "old": "| `fanout-salvage.cjs` | Recovers missing iteration artifacts from captured subprocess output. |",
+      "new": "| `fanout-salvage.cjs` | Recovers missing iteration artifacts from captured subprocess output. |\n| `frontier-admit.cjs` | Seeds, admits, prunes and closes nodes in the append-only frontier node store of an expansive run, applying the relevance, dedupe, depth, fan-out, budget and acyclicity checks in that order. |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-2",
+    "source_id": "C-2",
+    "lane": "C",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/changelog/skilled/v4.1.0.0.md",
+    "line": "237",
+    "issue": "The newest root release notes do not describe the capabilities this scope adds, which the lens requires. The Deep Loop section never names --depth-mode=expansive, --extend=N or --extend-minutes, the review minIterations floor or custom review dimensions. The root README section does describe them (README.md lines 253-255). S6-release-coverage passed only because it matches skill ids such as 'deep review', not capabilities. The v4.1.0.0 tag is not an ancestor of HEAD, so that release shipped without this work. These capabilities need an entry in the next root release, or in v4.1.0.0 if the owner republishes it. This repeats run 12's C-1, handed off to the operator as the release owner's call, and spec.md line 93 puts release notes out of this packet's scope.",
+    "evidence": {
+      "cmd": "grep -niE 'depth|extend|dimension|completed-continue|minimum' .skilled/changelog/skilled/v4.1.0.0.md; git -c core.fsmonitor=false merge-base --is-ancestor v4.1.0.0 HEAD",
+      "exit": 1,
+      "out": "no match for depth-mode, expansive, --extend, custom dimension or minimum iteration; the only Deep Loop items are scripted verdicts, AI Council moved out, stdin hang, continuity saves; the tag is not an ancestor of HEAD (exit 1)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range",
+    "disposition": {
+      "status": "handed_off",
+      "note": "Not this program's: .skilled/changelog/skilled/v4.1.0.0.md is unchanged since the program base 21c4b325b5a. Owner: the operator, who owns the open root v4.1.0.0 release notes. Whether the deep-loop section names expansive depth, --extend, the review floor and custom dimensions is the release owner's call, made when this branch lands."
+    }
+  },
+  {
+    "id": "BAT-02",
+    "source_id": "S9-command-references",
+    "lane": "battery",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "S9-command-references failed (exit 1).",
+    "evidence": {
+      "cmd": "node .skilled/commands/scripts/validate-command-references.cjs",
+      "exit": 1,
+      "out": "FAIL  1 unresolved command reference(s):\n  .skilled/commands/speckit/assets/speckit-resume.yaml:104  [skill-asset]  .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json  - path does not exist on disk",
+      "ci_gated": false,
+      "ci_workflows": []
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Not this program's: speckit-resume.yaml:104 and validate-command-references.cjs are both unchanged since the program base 21c4b325b5a. Owner: commands/scripts/validate-command-references.cjs. The YAML names a gitignored runtime file it falls back from, so the checker needs a runtime-state exemption. Same cause as X-3 and the hand-off in earlier runs."
+    }
+  },
+  {
+    "id": "X-3",
+    "source_id": "X-3",
+    "lane": "critic",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/commands/speckit/assets/speckit-resume.yaml",
+    "line": "104",
+    "issue": "No lane explains the S9-command-references battery failure. It is pre-existing and a checker false positive, not a gap in this scope. speckit-resume.yaml did not change in range, and line 104 names the same path at base. The path it flags, .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json, is runtime state that the resume step reads when it is present, and .gitignore line 431 ignores it. So it can never exist in a clean checkout. The reference checker does not skip gitignored runtime-state paths. Fix, outside this scope: have the checker skip paths that git check-ignore matches, or put the path on its allow list. Nothing to change in this range.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false diff --stat 21c4b325b5a HEAD -- .skilled/commands/speckit/assets/speckit-resume.yaml; git -c core.fsmonitor=false check-ignore -v .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json",
+      "exit": 0,
+      "out": "no diff in range; .gitignore:431:.skilled/skills/system-spec-kit/runtime/database/\t.skilled/skills/system-spec-kit/runtime/database/access-telemetry.json"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Pre-existing checker false positive, the explanation of BAT-02. Owner: commands/scripts/validate-command-references.cjs, which flags .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json although .gitignore line 431 ignores that runtime directory and speckit-resume.yaml reads the file only when present."
+    }
+  }
+]

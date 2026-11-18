@@ -1,0 +1,29 @@
+{
+ "lane": "A",
+ "findings": [
+  {
+   "id": "A-1",
+   "surface": "S1",
+   "standard": "sk-code",
+   "severity": "P1",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+   "line": 407,
+   "issue": "The review target containment check compares scope paths against the raw reviewTarget text. A files target written as a glob is in contract: deep-review.yaml lines 793-797 say 'Expand glob patterns from review_target', and the expanded list is stored as reviewScopeFiles (yaml line 874). Containment only consults that list for commit ranges (line 405), so with a glob target like 'src/**/*.ts' no scope path equals the target or starts with it plus '/'. Every seed and admission proposal that carries a path scope is pruned as 'relevance'. seedNodes returns admitted: [] with no warning, and the expansive review runs at its loop default with an empty frontier. A '.' target prunes the same way, while a './' target normalizes to blank and allows every scope. Fix: when the target is a pattern or names the repo root, test containment against reviewScopeFiles through scopeInsideTouchedFiles, as commit ranges already do. Keep the change on the target side: mapping '.' to blank in the shared normalizer would break the new test asserting that scope '.' is outside the target.",
+   "evidence": {
+    "cmd": "node -e 'seedNodes({artifactDir, target:\"review\", candidates:[{question:\"Does a.ts leak a handle?\",scope:\"src/a.ts\"},{question:\"Does b.ts race?\",scope:[\"src/b.ts\"]}]})' with review config {reviewTargetType:\"files\",reviewTarget:\"src/**/*.ts\",reviewScopeFiles:[\"src/a.ts\",\"src/b.ts\"]}; plus scopeInsideReviewTarget probes",
+    "exit": 0,
+    "out": "{\"admitted\":0,\"pruned\":[\"relevance\",\"relevance\"]}; glob false, dot false, dotslash true; all-pruned seed result: {\"admitted\":[],\"pruned\":[{\"nodeId\":\"F-1-001\",\"reason\":\"relevance\"}],\"derivedMaxIterations\":7,\"growthSlots\":3} with no warning field"
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+  ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+  ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+  ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+  ".skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts"
+ ]
+}

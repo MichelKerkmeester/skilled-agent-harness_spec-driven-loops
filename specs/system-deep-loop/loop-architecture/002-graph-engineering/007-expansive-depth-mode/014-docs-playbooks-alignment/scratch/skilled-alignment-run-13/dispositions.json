@@ -1,0 +1,32 @@
+[
+ {
+  "id": "X-1",
+  "status": "handed_off",
+  "note": "A limitation of the scope tool, not a defect in this program's files. Owner: the local-skilled-alignment tooling (resolve-scope.cjs), whose default first-parent mode drops files that reached HEAD through first-parent merges of program side branches. The critic's manual checks on the off-map files passed: comment hygiene 0, quality gate 0 findings, runtime vitest 578 passed and 2 skipped, spec-kit cli vitest 18 passed. Same cause as E-2 in skilled run 12."
+ },
+ {
+  "id": "BAT-01",
+  "status": "handed_off",
+  "note": "Not this program's: the failing claim is system-skill-advisor/README.md line 141, unchanged since the program base 21c4b325b5a, and its count of two sidecar files is true. Owner: sk-create-readme's check_derived_readme_counts.py, which cannot derive a count over a folder that holds other files too. Same cause as C-1."
+ },
+ {
+  "id": "C-1",
+  "status": "handed_off",
+  "note": "Pre-existing per the critic: system-skill-advisor/README.md has no diff since the program base 21c4b325b5a and the sidecar count is true. Owner: sk-create-readme's check_derived_readme_counts.py, which needs to accept a count of named files in a mixed folder."
+ },
+ {
+  "id": "C-2",
+  "status": "handed_off",
+  "note": "Not this program's: .skilled/changelog/skilled/v4.1.0.0.md is unchanged since the program base 21c4b325b5a. Owner: the operator, who owns the open root v4.1.0.0 release notes. Whether the deep-loop section names expansive depth, --extend, the review floor and custom dimensions is the release owner's call, made when this branch lands."
+ },
+ {
+  "id": "BAT-02",
+  "status": "handed_off",
+  "note": "Not this program's: speckit-resume.yaml:104 and validate-command-references.cjs are both unchanged since the program base 21c4b325b5a. Owner: commands/scripts/validate-command-references.cjs. The YAML names a gitignored runtime file it falls back from, so the checker needs a runtime-state exemption. Same cause as X-3 and the hand-off in earlier runs."
+ },
+ {
+  "id": "X-3",
+  "status": "handed_off",
+  "note": "Pre-existing checker false positive, the explanation of BAT-02. Owner: commands/scripts/validate-command-references.cjs, which flags .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json although .gitignore line 431 ignores that runtime directory and speckit-resume.yaml reads the file only when present."
+ }
+]

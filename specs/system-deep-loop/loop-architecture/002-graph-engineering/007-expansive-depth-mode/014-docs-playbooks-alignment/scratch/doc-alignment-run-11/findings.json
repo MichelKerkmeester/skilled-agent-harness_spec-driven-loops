@@ -1,0 +1,574 @@
+[
+  {
+    "id": "C-1",
+    "source_id": "C-1",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    "line": "96",
+    "issue": "The frontier veto line says it 'never outranks the iteration cap, consecutive failures, stuck recovery, `--convergence-mode=off` or `--stop-policy=max-iterations`'. It leaves out two workflow stops that run before step_check_convergence (deep-research.yaml:1209): step_check_max_duration (deep-research.yaml:1127) ends the loop when maxDurationMinutes is reached, and step_check_pause_sentinel (deep-research.yaml:1162) halts on the pause sentinel. Both beat the veto whatever state the frontier is in. This is the research-side counterpart of L7-2/L7-3, which only covered the review docs.",
+    "evidence": {
+      "cmd": "rg -n \"^      step_(check_max_duration|check_pause_sentinel|check_convergence):\" .skilled/commands/deep/assets/deep-research.yaml",
+      "exit": 0,
+      "out": "1127:      step_check_max_duration:\n1162:      step_check_pause_sentinel:\n1209:      step_check_convergence:"
+    },
+    "fix": {
+      "old": "stuck recovery, `--convergence-mode=off` or `--stop-policy=max-iterations`",
+      "new": "stuck recovery, pause, the max-duration stop, `--convergence-mode=off` or `--stop-policy=max-iterations`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-2",
+    "source_id": "C-2",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+    "line": "70",
+    "issue": "Same gap as C-1. The veto 'never outranks the iteration cap, consecutive failures, stuck recovery, `--convergence-mode=off` or `--stop-policy=max-iterations`'. It leaves out pause (step_check_pause_sentinel, deep-research.yaml:1162) and the max-duration stop (step_check_max_duration, deep-research.yaml:1127). Both run before step_check_convergence (deep-research.yaml:1209).",
+    "evidence": {
+      "cmd": "sed -n 70p .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+      "exit": 0,
+      "out": "... never outranks the iteration cap, consecutive failures, stuck recovery, `--convergence-mode=off` or `--stop-policy=max-iterations`. ..."
+    },
+    "fix": {
+      "old": "stuck recovery, `--convergence-mode=off` or `--stop-policy=max-iterations`",
+      "new": "stuck recovery, pause, the max-duration stop, `--convergence-mode=off` or `--stop-policy=max-iterations`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-3",
+    "source_id": "C-3",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/deep/research.md",
+    "line": "107",
+    "issue": "The --depth-mode row's 'never outranks the iteration cap, consecutive failures, the minIterations floor, stuck recovery, pause, `--convergence-mode=off` or `--stop-policy=max-iterations`' leaves out the max-duration stop. step_check_max_duration (deep-research.yaml:1127) runs before step_check_convergence (deep-research.yaml:1209) and stops the loop when maxDurationMinutes is reached, whatever state the frontier is in. L4 reviewed this doc and did not flag it.",
+    "evidence": {
+      "cmd": "rg -n \"^      step_(check_max_duration|check_convergence):\" .skilled/commands/deep/assets/deep-research.yaml",
+      "exit": 0,
+      "out": "1127:      step_check_max_duration:\n1209:      step_check_convergence:"
+    },
+    "fix": {
+      "old": "stuck recovery, pause, `--convergence-mode=off` or `--stop-policy=max-iterations`",
+      "new": "stuck recovery, pause, the max-duration stop, `--convergence-mode=off` or `--stop-policy=max-iterations`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-4",
+    "source_id": "C-4",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/deep/review.md",
+    "line": "100",
+    "issue": "Same gap as L7-2, but in the command doc, which L7 did not review. The --depth-mode row's 'never outranks' list leaves out the max-duration stop. step_check_max_duration (deep-review.yaml:1190) runs before step_check_convergence (deep-review.yaml:1276).",
+    "evidence": {
+      "cmd": "rg -n \"^      step_(check_max_duration|check_convergence):\" .skilled/commands/deep/assets/deep-review.yaml",
+      "exit": 0,
+      "out": "1190:      step_check_max_duration:\n1276:      step_check_convergence:"
+    },
+    "fix": {
+      "old": "stuck recovery, pause, `--convergence-mode=off` or `--stop-policy=max-iterations`",
+      "new": "stuck recovery, pause, the max-duration stop, `--convergence-mode=off` or `--stop-policy=max-iterations`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-5",
+    "source_id": "C-5",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
+    "line": "108",
+    "issue": "The Packet Files table lists frontier-nodes.jsonl for an expansive run but not the seed input {artifact_dir}/frontier-seed.json. Both research seed steps write that file and pass it to frontier-admit.cjs seed --input (deep-research.yaml:353/359 and :763/769). This is the research-side counterpart of L7-7: L7-7's claim that 'no reviewed doc' lists the file was checked only against the review docs, and no research doc names it either.",
+    "evidence": {
+      "cmd": "rg -n \"frontier-seed\" .skilled/skills/system-deep-loop/deep-research -g '*.md'",
+      "exit": 1,
+      "out": ""
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-1",
+    "source_id": "L1-1",
+    "lane": "L1",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".claude/agents/deep-research.md",
+    "line": "286",
+    "issue": "The prune list that follows 'so it prunes a row that' leaves out one relevance prune. frontier-admit.cjs:429 also prunes a proposal whose parent the store holds with status 'pruned'. The doc only names a parent the store does not hold.",
+    "evidence": {
+      "cmd": "sed -n 425,430p .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "exit": 0,
+      "out": "if (proposal.parentId !== 'root' && !nodes.has(proposal.parentId)) return 'relevance';\n  // A child of a pruned node would reopen a branch admission already rejected.\n  if (proposal.parentId !== 'root' && nodes.get(proposal.parentId).status === 'pruned') return 'relevance';"
+    },
+    "fix": {
+      "old": "names a parent the store does not hold,",
+      "new": "names a parent the store does not hold or holds as pruned,"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-2",
+    "source_id": "L1-2",
+    "lane": "L1",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".pi/agents/deep-research.md",
+    "line": "294",
+    "issue": "The prune list leaves out the pruned-parent relevance prune (frontier-admit.cjs:429): a proposal whose parent is stored with status 'pruned' is pruned too.",
+    "evidence": null,
+    "fix": {
+      "old": "names a parent the store does not hold,",
+      "new": "names a parent the store does not hold or holds as pruned,"
+    },
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-3",
+    "source_id": "L1-3",
+    "lane": "L1",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/agents/deep-research.md",
+    "line": "302",
+    "issue": "The prune list leaves out the pruned-parent relevance prune (frontier-admit.cjs:429): a proposal whose parent is stored with status 'pruned' is pruned too.",
+    "evidence": null,
+    "fix": {
+      "old": "names a parent the store does not hold,",
+      "new": "names a parent the store does not hold or holds as pruned,"
+    },
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-4",
+    "source_id": "L1-4",
+    "lane": "L1",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".claude/agents/deep-review.md",
+    "line": "253",
+    "issue": "The review prune list leaves out the pruned-parent relevance prune (frontier-admit.cjs:429): a proposal whose parent is stored with status 'pruned' is pruned too.",
+    "evidence": null,
+    "fix": {
+      "old": "names a parent the store does not hold,",
+      "new": "names a parent the store does not hold or holds as pruned,"
+    },
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-5",
+    "source_id": "L1-5",
+    "lane": "L1",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".pi/agents/deep-review.md",
+    "line": "260",
+    "issue": "The review prune list leaves out the pruned-parent relevance prune (frontier-admit.cjs:429): a proposal whose parent is stored with status 'pruned' is pruned too.",
+    "evidence": null,
+    "fix": {
+      "old": "names a parent the store does not hold,",
+      "new": "names a parent the store does not hold or holds as pruned,"
+    },
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-6",
+    "source_id": "L1-6",
+    "lane": "L1",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/agents/deep-review.md",
+    "line": "267",
+    "issue": "The review prune list leaves out the pruned-parent relevance prune (frontier-admit.cjs:429): a proposal whose parent is stored with status 'pruned' is pruned too.",
+    "evidence": null,
+    "fix": {
+      "old": "names a parent the store does not hold,",
+      "new": "names a parent the store does not hold or holds as pruned,"
+    },
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L2-1",
+    "source_id": "L2-1",
+    "lane": "L2",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+    "line": "70",
+    "issue": "The maxIterations row says: 'Under --depth-mode=expansive a `default` budget is resized after the seed step to `min(24, max(10, 2·c·(S + maxDepth − 1)))`, with S the depth-1 nodes the seed admitted and c = 1; any other source is kept as given'. It does not limit this to single-executor runs. In a fan-out run the parent budget is never resized. fanout-run.cjs expansiveLineageBudgets (lines 332-350) sizes each lineage that has no matrix iterations value from its own round-robin share of the open depth-1 seed nodes (partitionFrontierNodes, lines 312-322), not from the whole seed. The floor is 12 for a native lineage and the workflow default of 10 for a CLI lineage, and a lineage dealt no seed node runs at that floor. Only a matrix iterations value is kept as given. The yaml's fan-out seed step (deep-research.yaml line 359) passes no --max-iterations-source, and step_fanout_spawn_cli passes no max-iterations value to fanout-run.cjs. Its FANOUT_FLAGS list (lines 30-36) has no maxIterations entry. So a --max-iterations flag or marker is not kept as given for fan-out lineages. A fan-out reader gets the wrong set of nodes, the wrong floor and the wrong rule for which sources are kept.",
+    "evidence": {
+      "cmd": "rg -n \"loopDefault: lineage.kind === 'native' \\? 12\" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "exit": 0,
+      "out": "347:      loopDefault: lineage.kind === 'native' ? 12 : LOOP_DEFAULT_MAX_ITERATIONS[loopType],"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L3-1",
+    "source_id": "L3-1",
+    "lane": "L3",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/commands/deep/assets/deep-review.yaml",
+    "line": "2645",
+    "issue": "The custom-dimension rubric row says a configured custom dimension \"is not required for severity coverage\". The code does require it. step_normalize_review_dimensions (yaml 830-831) keeps custom names in config.reviewDimensions, and the registry seed (yaml 1027) writes \"<custom>\":false. convergence.cjs 1599-1614 then builds missingDimensions from config.reviewDimensions, so dimensionCoverageGate fails and the all_dimensions_clean candidate (cleanReviewStop, convergence.cjs 1127-1132) cannot form until the custom dimension is covered. Under expansive depth, reduce-state.cjs buildReviewFrontier (1997-2015) also marks a node answered only once every name in buildDimensionUniverse has evidence, and that universe includes the custom names. The reducer has no four-only coverage check that \"severity coverage\" could refer to: REQUIRED_DIMENSIONS is only the starting point of buildDimensionUniverse. So the doc presents custom dimensions as optional when they block the stop.",
+    "evidence": {
+      "cmd": "rg -n \"missingDimensions: dimensions.filter|config.reviewDimensions$\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "exit": 0,
+      "out": "1600:    ? config.reviewDimensions\n1614:    missingDimensions: dimensions.filter((dimension) => coverage[dimension] !== true),"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "severity",
+      "note": "'Severity coverage' is a defined contract term, not a claim about the stop gate. deep-review/assets/review-mode-contract.yaml:69-92 sets requiredForSeverityCoverage true only for correctness and security. It sets it false for traceability, maintainability and customDimensionRule, yet traceability and maintainability also block all_dimensions_clean. The only code that reads the flag is render-contract-snapshot.cjs:301. So the yaml:2645 row is true under the contract and matches custom-review-dimensions.md:16 and feature-catalog.md:440. It does not say custom dimensions are optional for the stop, so it does not mislead a reader into a wrong stop. The real gap is that the row leaves out that the custom dimension still gates the clean stop (convergence.cjs:1599-1614, :1127-1132). That is a clarity follow-up, so P2.",
+      "lane_severity": "P1"
+    }
+  },
+  {
+    "id": "L3-2",
+    "source_id": "L3-2",
+    "lane": "L3",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/commands/deep/assets/deep-review.yaml",
+    "line": "599",
+    "issue": "step_extend_completed_run on_fail says \"Exit 2 is a usage error, such as a run that is not complete ... Any other failure halts with STATUS=FAIL\". The command at line 588 ends the inline node script with `|| { rm -rf \"$WORK_DIR\"; exit 2; }`. That turns every failure of the script into exit 2 and so into the usage-error branch: an unparseable config, an unreadable state log, a JSON.parse throw. Only the gateway append (line 589) and the config mv (line 590) exit 1. A corrupt config or a missing state log is therefore reported as a usage error, not as STATUS=FAIL.",
+    "evidence": {
+      "cmd": "sed -n 588,590p .skilled/commands/deep/assets/deep-review.yaml",
+      "exit": 0,
+      "out": "' \"{state_paths.config}\" \"{state_paths.state_log}\" \"{extend}\" \"{extend_minutes}\" \"$WORK_DIR\" > \"$WORK_DIR/result.json\" || { rm -rf \"$WORK_DIR\"; exit 2; }\nnode \"$GATEWAY\" ... || { rm -rf \"$WORK_DIR\"; exit 1; }\nmv \"$WORK_DIR/config.json\" \"{state_paths.config}\" || { rm -rf \"$WORK_DIR\"; exit 1; }"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L4-1",
+    "source_id": "L4-1",
+    "lane": "L4",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/anti-convergence-floor.md",
+    "line": "25",
+    "issue": "The doc says the template defines `antiConvergence.minIterations` and 'The workflow writes those values into the config record'. That implies the run's floor lives at `antiConvergence.minIterations`. In fact `step_create_config` in deep-research.yaml writes the floor as a top-level `minIterations: 3` (line 723), and `stopDecisionConfig` in convergence.cjs (lines 1398-1400) reads `config.minIterations` before `antiConvergence.minIterations`. So editing `antiConvergence.minIterations` in a created config does not change the floor while the top-level key is present. The doc should name the top-level `minIterations` key the workflow writes and say that it takes precedence.",
+    "evidence": {
+      "cmd": "rg -n \"^          minIterations: 3|antiConvergence.minIterations\" .skilled/commands/deep/assets/deep-research.yaml",
+      "exit": 0,
+      "out": "723:          minIterations: 3"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Not this program's: deep-research/feature-catalog/convergence/anti-convergence-floor.md, the top-level minIterations: 3 that step_create_config writes in deep-research.yaml, and the precedence in convergence.cjs stopDecisionConfig all predate the program base 21c4b325b5a, and the catalog entry has no diff since then. Owner: the deep-research feature catalog (convergence group). The finding stands: the entry should name the top-level minIterations key the workflow writes and say it is read before antiConvergence.minIterations."
+    }
+  },
+  {
+    "id": "L6-1",
+    "source_id": "L6-1",
+    "lane": "L6",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+    "line": "57",
+    "issue": "feature-catalog.md:228 says this page holds the 'full implementation and validation file listings'. The tables leave files out. The Implementation table has no row for runtime/scripts/fanout-run.cjs, yet the page's own Fan-Out section says that script exports DEEP_LOOP_COVERAGE_DB_DIR (fanout-run.cjs:4114) and deals the seed round-robin (fanout-run.cjs:314-321). The Validation table lists only DRV-076, DRV-080, DRV-081 and DRV-082. It leaves out DRV-077 (seed), DRV-078 (admission prunes), DRV-079 (focus and per-node dimension coverage) and DRV-083 (frontier_drained), and DRV-083's playbook names this page as its catalog source.",
+    "evidence": {
+      "cmd": "rg -n \"DRV-07[789]|DRV-083\" .skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md; echo exit=$?",
+      "exit": 1,
+      "out": "exit=1"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L6-2",
+    "source_id": "L6-2",
+    "lane": "L6",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/custom-review-dimensions.md",
+    "line": "28",
+    "issue": "The doc says 'a custom name that appears in the finding's focus is kept as its own dimension'. deriveDimension (runtime/scripts/reduce-state.cjs:1237-1244) does a substring match of each universe entry against the iteration focus plus the finding's title and description. It checks the universe in order, and the canonical four come first (buildDimensionUniverse, reduce-state.cjs:1224-1235). So when that text also contains a canonical name such as 'security', the finding goes to the canonical dimension and not to the custom name.",
+    "evidence": {
+      "cmd": "sed -n 1237,1244p .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      "exit": 0,
+      "out": "function deriveDimension(finding, iteration, universe = REQUIRED_DIMENSIONS) {\n  const focus = `${iteration.focus} ${finding.title} ${finding.description}`.toLowerCase();\n  for (const dimension of universe) {\n    if (focus.includes(dimension)) {\n      return dimension;\n    }\n  }\n  return iteration.dimensionsAddressed[0] || 'correctness';"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L6-3",
+    "source_id": "L6-3",
+    "lane": "L6",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+    "line": "28",
+    "issue": "The doc says the active node's next uncovered dimension is dispatched 'apart from the last iteration under the cap while a core traceability protocol is unfinished'. The override in deep-review.yaml:1160 also needs max_iterations >= 2. With a cap of 1, the run keeps the frontier node's dimension even on its last iteration.",
+    "evidence": null,
+    "fix": null,
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L6-4",
+    "source_id": "L6-4",
+    "lane": "L6",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "779",
+    "issue": "Section 13, AUTOMATED TEST CROSS-REFERENCE, lists where automated deep-review coverage lives. It names none of the suites that cover expansive depth and the stop changes, although the DRV-076 to DRV-083 scenarios in this playbook run them: runtime/tests/unit/frontier-admit-review.vitest.ts, review-depth-mode-golden.vitest.ts, stop-decision.vitest.ts and stop-decision-yaml-contract.vitest.ts. All four files exist.",
+    "evidence": {
+      "cmd": "rg -c \"frontier-admit-review|review-depth-mode-golden|stop-decision\" .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md; echo exit=$?",
+      "exit": 1,
+      "out": "exit=1"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L7-1",
+    "source_id": "L7-1",
+    "lane": "L7",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+    "line": "185",
+    "issue": "Decision Priority item 8 says only an open node triggers the frontier veto. The code counts nodes whose status is open or active (convergence.cjs:1483 and :1650), then vetoes when that count is above zero (convergence.cjs:1207-1211). The doc's own prose at line 107 says 'open or active'.",
+    "evidence": {
+      "cmd": "rg -n \"node?.status === 'open' || node?.status === 'active'\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "exit": 0,
+      "out": "1483: ? { frontierOpen: registry.frontier.nodes.filter((node) => node?.status === 'open' || node?.status === 'active').length }\n1650: frontierOpen: registry.frontier.nodes.filter((node) => node?.status === 'open' || node?.status === 'active').length,"
+    },
+    "fix": {
+      "old": "an open frontier node turns the candidate into",
+      "new": "an open or active frontier node turns the candidate into"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L7-2",
+    "source_id": "L7-2",
+    "lane": "L7",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+    "line": "107",
+    "issue": "The list of what the frontier veto 'never outranks' names pause, which is a workflow-level check, but leaves out the max-duration stop. In deep-review.yaml, step_check_max_duration (line 1190) runs before step_check_convergence (line 1276). When maxDurationMinutes is reached, the loop skips dispatch and goes to synthesis with maxDurationReached. That stop also beats the veto, so a reader could think an open node holds the run past its duration budget.",
+    "evidence": {
+      "cmd": "rg -n \"^      step_(check_max_duration|check_pause_sentinel|check_convergence):\" .skilled/commands/deep/assets/deep-review.yaml",
+      "exit": 0,
+      "out": "1190:      step_check_max_duration:\n1217:      step_check_pause_sentinel:\n1276:      step_check_convergence:"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L7-3",
+    "source_id": "L7-3",
+    "lane": "L7",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    "line": "242",
+    "issue": "Same gap as L7-2. The 'never outranks' list (iteration cap, consecutive failures, stuck recovery, pause, --convergence-mode=off, --stop-policy=max-iterations, the review floor) leaves out the max-duration stop. step_check_max_duration runs before step_check_convergence (deep-review.yaml:1190 vs :1276), so maxDurationReached also outranks the veto.",
+    "evidence": null,
+    "fix": null,
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L7-4",
+    "source_id": "L7-4",
+    "lane": "L7",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/README.md",
+    "line": "163",
+    "issue": "Same gap as L7-2. 'The frontier veto never outranks the iteration cap, consecutive failures, stuck recovery, pause, ...' leaves out the max-duration stop. step_check_max_duration (deep-review.yaml:1190) runs before step_check_convergence (:1276) and stops the loop with maxDurationReached whatever state the frontier is in.",
+    "evidence": null,
+    "fix": null,
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L7-5",
+    "source_id": "L7-5",
+    "lane": "L7",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+    "line": "467",
+    "issue": "Same gap as L7-2. The 'never outranks' list for the frontierOpen veto leaves out the max-duration stop. step_check_max_duration (deep-review.yaml:1190) runs before step_check_convergence (:1276).",
+    "evidence": null,
+    "fix": null,
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L7-6",
+    "source_id": "L7-6",
+    "lane": "L7",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+    "line": "165",
+    "issue": "Same gap as L7-2. The Frontier veto line's 'never outranks' list leaves out the max-duration stop. step_check_max_duration (deep-review.yaml:1190) runs before step_check_convergence (:1276).",
+    "evidence": null,
+    "fix": null,
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L7-7",
+    "source_id": "L7-7",
+    "lane": "L7",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
+    "line": "34",
+    "issue": "The doc says 'a run started with `--depth-mode=expansive` adds a tenth, `frontier-nodes.jsonl`'. Both review seed steps also write the seed input {artifact_dir}/frontier-seed.json and pass it to frontier-admit.cjs seed --input (deep-review.yaml:333-334 and :914-924). No reviewed doc that lists the artifact-dir files includes it.",
+    "evidence": {
+      "cmd": "rg -n \"frontier-seed\" .skilled/skills/system-deep-loop/deep-review/README.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/references",
+      "exit": 1,
+      "out": ""
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L8-1",
+    "source_id": "L8-1",
+    "lane": "L8",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/convergence-script.md",
+    "line": "47",
+    "issue": "The frontierOpen Veto section lists `--convergence-mode=off` among the decisions that come before the veto. That is the /deep:* command spelling, but this doc is about convergence.cjs. Its parseArgs (convergence.cjs:150-166) never splits a --flag=value token, so assertKnownFlags (convergence.cjs:1724) rejects `--convergence-mode=off` as an unknown option with exit 3. The branch the doc means is `config.convergenceMode === 'off'` (convergence.cjs:1153-1155). That value comes from `--convergence-mode off` given as two arguments, or from `antiConvergence.convergenceMode` (stopDecisionConfig, convergence.cjs:1401-1416). The runtime catalog already warns that this script does not split the = form for --depth-mode.",
+    "evidence": {
+      "cmd": "node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --convergence-mode=off",
+      "exit": 3,
+      "out": "{\"status\":\"error\",\"error\":\"Unknown option: --convergence-mode=off\",\"code\":\"INPUT_VALIDATION\"}"
+    },
+    "fix": {
+      "old": "`--convergence-mode=off`",
+      "new": "convergence mode `off` (`--convergence-mode off` or `antiConvergence.convergenceMode`)"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  }
+]
