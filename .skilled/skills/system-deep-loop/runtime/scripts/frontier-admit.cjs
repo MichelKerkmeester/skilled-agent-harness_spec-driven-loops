@@ -795,7 +795,7 @@ function renderFrontierBlock({ artifactDir, focus, nodeId, dimension, target = '
   const nodes = readNodeStore(path.join(artifactDir, NODE_STORE_FILE));
   const node = nodes.get(resolvedId);
   if (!node) return '';
-  // A closed node's block would invite proposals admission can only prune.
+  // A closed node gets no block, so no leaf is invited to propose under it.
   if (node.status !== 'open' && node.status !== 'active') return '';
 
   const caps = readCaps(artifactDir, mode);
