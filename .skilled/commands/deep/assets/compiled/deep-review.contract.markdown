@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "5bd9ad867eb424e4012c3d0cdb85359f91e380db0a709da3f958e6afc67c7e35",
+      "sha256": "1c5c55de406cdabae6817c1ee03c7c81beade85a45a25c244ef0e5e42d3bb658",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "defbf3cccd6b71e712d015be495f3074c3db8cff1582d0817fb98b036fcc9218",
+      "sha256": "60f7856fdb0e84400188c79abe8d2515869cfb4ad3f1523838967e25ee524dac",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "da8ced00858ff2e0291da82adb17a73808b14424a0eff1b1bd908e1ed8870dcd",
+      "sha256": "9aec5c0e305098a6e806c7f978b689fbfa92dace4e8e3f018381cea797b9958b",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "d31297082d2b5bf1357e00cecb55809adfbc3cea682d120f862f17e22c386c60"
+  "compiledBodyDigest": "0907bb079808ff41c889d902d7ce7855375d59c1117d5346ad7e935c3c286213"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -173,9 +173,9 @@ PRE-BOUND SETUP ANSWERS:
   review_focus: ""  # optional free text every iteration covers in addition to its dimension
   spec_folder: existing  # one of: existing | new | update-related | phase-folder, or an explicit specs/.opencode/specs path
   execution_mode: AUTONOMOUS  # from :auto suffix
- lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
- extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
- extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the later of the prior budget and the minutes elapsed, default the prior budget
+  lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
+  extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
+  extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the later of the prior budget and the minutes elapsed, default the prior budget
   maxIterations: 7
   convergenceThreshold: 0.10
   convergence_mode: default  # default | off | sliding-window | divergent

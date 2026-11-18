@@ -36,9 +36,9 @@ PRE-BOUND SETUP ANSWERS:
   review_focus: ""  # optional free text every iteration covers in addition to its dimension
   spec_folder: existing  # one of: existing | new | update-related | phase-folder, or an explicit specs/.opencode/specs path
   execution_mode: AUTONOMOUS  # from :auto suffix
- lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
- extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
- extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the later of the prior budget and the minutes elapsed, default the prior budget
+  lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
+  extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
+  extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the later of the prior budget and the minutes elapsed, default the prior budget
   maxIterations: 7
   convergenceThreshold: 0.10
   convergence_mode: default  # default | off | sliding-window | divergent
