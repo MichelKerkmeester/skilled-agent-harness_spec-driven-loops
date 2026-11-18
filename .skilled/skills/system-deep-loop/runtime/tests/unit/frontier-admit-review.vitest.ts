@@ -269,6 +269,57 @@ describe('frontier-admit review target', () => {
     expect(scopeInsideReviewTarget('.', config)).toBe(false);
   });
 
+  it('reads a . or ./ target as the repo root, which holds every path that does not climb out', () => {
+    for (const reviewTarget of ['.', './']) {
+      const config = { reviewTargetType: 'files', reviewTarget };
+
+      expect(scopeInsideReviewTarget('src/a.ts', config), reviewTarget).toBe(true);
+      expect(scopeInsideReviewTarget(['.', 'lib/x'], config), reviewTarget).toBe(true);
+      expect(scopeInsideReviewTarget('../x', config), reviewTarget).toBe(false);
+      expect(scopeInsideReviewTarget('src/../../x', config), reviewTarget).toBe(false);
+    }
+  });
+
+  it('reads a ./ scope as the repo root, which a ./src target does not hold', () => {
+    const config = { reviewTargetType: 'files', reviewTarget: './src' };
+
+    expect(scopeInsideReviewTarget('src/a.ts', config)).toBe(true);
+    expect(scopeInsideReviewTarget('./src/a.ts', config)).toBe(true);
+    expect(scopeInsideReviewTarget('./', config)).toBe(false);
+    expect(scopeInsideReviewTarget('lib/a.ts', config)).toBe(false);
+  });
+
+  it('tests a glob target against the directory before its first glob segment', () => {
+    const config = { reviewTargetType: 'files', reviewTarget: 'src/**/*.ts, docs/a*.md' };
+
+    expect(scopeInsideReviewTarget('src/a.ts', config)).toBe(true);
+    expect(scopeInsideReviewTarget('src/deep/b.ts', config)).toBe(true);
+    expect(scopeInsideReviewTarget('docs/abc.md', config)).toBe(true);
+    expect(scopeInsideReviewTarget('lib/a.ts', config)).toBe(false);
+    expect(scopeInsideReviewTarget('src-other/a.ts', config)).toBe(false);
+    expect(scopeInsideReviewTarget('lib/a.ts', { reviewTargetType: 'files', reviewTarget: '**/*.ts' })).toBe(true);
+    expect(scopeInsideReviewTarget('../a.ts', { reviewTargetType: 'files', reviewTarget: '**/*.ts' })).toBe(false);
+  });
+
+  it('seeds a glob-target review instead of pruning every seed as irrelevant', () => {
+    const artifactDir = makeReviewArtifactDir();
+    writeFileSync(
+      join(artifactDir, REVIEW_CONFIG_FILE),
+      JSON.stringify({ ...REVIEW_CONFIG, reviewTarget: 'src/**/*.ts' }),
+      'utf8',
+    );
+    const result = seedNodes({
+      artifactDir,
+      target: 'review',
+      candidates: [
+        { question: 'Does a.ts leak a handle?', evidence: 'src/a.ts:1', scope: 'src/a.ts' },
+        { question: 'Does b.ts race on its lock?', evidence: 'src/b.ts:1', scope: ['src/b.ts'] },
+      ],
+    });
+
+    expect(result.admitted).toHaveLength(2);
+  });
+
   it('keeps every scope relevant when the target is not a file list', () => {
     const config = { reviewTargetType: 'skill', reviewTarget: 'the review skill' };
 

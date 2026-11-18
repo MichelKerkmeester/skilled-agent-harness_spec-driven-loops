@@ -352,11 +352,31 @@ function childCapFor(parentId, caps) {
 // './' prefix, trailing '/' and './' or '..' segments a caller writes carry no
 // meaning of their own, so both sides of the comparison are normalized before
 // containment is tested; otherwise a path that climbs out with '..' would still
-// start with the target's prefix. A blank entry stays blank for the caller to drop.
+// start with the target's prefix. '.' and './' both name the repo root and read as
+// '.', not as blank, so a root scope or target is never dropped from the test. A
+// blank entry stays blank for the caller to drop.
 function normalizeTargetPath(value) {
   const trimmed = value.trim();
   if (trimmed === '') return '';
-  return path.posix.normalize(trimmed).replace(/^\.\//, '').replace(/\/+$/, '');
+  const normalized = path.posix.normalize(trimmed).replace(/^\.\//, '').replace(/\/+$/, '');
+  return normalized === '' ? '.' : normalized;
+}
+
+// The repo root holds every relative path that does not climb out of it.
+function isInsidePath(entry, base) {
+  if (base === '.') return entry !== '..' && !entry.startsWith('../') && !entry.startsWith('/');
+  return entry === base || entry.startsWith(`${base}/`);
+}
+
+// A glob target names a pattern, not a path, so no scope equals it or sits under
+// it. The directory before the first segment holding a glob character bounds every
+// path the pattern can match, so it stands in for the pattern; a pattern with no
+// static directory, such as '**/*.ts', is bounded only by the repo root.
+function staticTargetBase(entry) {
+  const globAt = entry.search(/[*?[{]/);
+  if (globAt === -1) return entry;
+  const slashAt = entry.lastIndexOf('/', globAt);
+  return slashAt <= 0 ? '.' : entry.slice(0, slashAt);
 }
 
 function splitTargetPaths(value) {
@@ -392,7 +412,7 @@ function scopeInsideTouchedFiles(scope, touchedFiles) {
   if (files.length === 0) return true;
 
   return scopeEntries(scope).every((entry) => files.some((file) => (
-    file === entry || file.startsWith(`${entry}/`) || entry.startsWith(`${file}/`)
+    isInsidePath(file, entry) || isInsidePath(entry, file)
   )));
 }
 
@@ -404,10 +424,10 @@ function scopeInsideReviewTarget(scope, config) {
   if (typeof source.reviewTarget !== 'string') return true;
   if (isCommitRange(source.reviewTarget)) return scopeInsideTouchedFiles(scope, source.reviewScopeFiles);
 
-  const allowed = splitTargetPaths(source.reviewTarget);
+  const allowed = splitTargetPaths(source.reviewTarget).map(staticTargetBase);
   if (allowed.length === 0) return true;
 
-  return scopeEntries(scope).every((entry) => allowed.some((base) => entry === base || entry.startsWith(`${base}/`)));
+  return scopeEntries(scope).every((entry) => allowed.some((base) => isInsidePath(entry, base)));
 }
 
 function checkProposal(proposal, nodes, caps, knownTexts, options = {}) {
