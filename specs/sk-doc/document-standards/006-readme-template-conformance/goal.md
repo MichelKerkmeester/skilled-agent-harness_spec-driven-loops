@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "sk-doc/document-standards/006-readme-template-conformance"
     last_updated_at: "2026-11-16T19:30:00Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "All six completion criteria verified"
+    next_safe_action: "None: the program is complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "f7735347-b0b1-4b4f-a0cd-c44e70a362ab"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -88,12 +88,12 @@ string, not these files.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `validate.sh specs/sk-doc/document-standards/006-readme-template-conformance --recursive --strict` prints `RESULT: PASSED` for the parent and all 10 phase folders.
-- [ ] `validate_document.py` prints `VALID` and `hvr_scan.py` reports `hard blockers: 0` for each of the 184 files in scope.
-- [ ] `check-markdown-links.cjs` exits 0 and reports 0 broken links across the repository.
-- [ ] `test_readme_verdict_parity.py` prints `PARITY PASS` and the sk-doc `run-script-tests.sh` suite exits 0.
-- [ ] `.skilled/skills/sk-design/README.md` and `.vibe/README.md` both exist on origin/main.
-- [ ] After the last phase is pushed, `git rev-parse HEAD origin/main` prints the same hash twice.
+- [x] `validate.sh specs/sk-doc/document-standards/006-readme-template-conformance --recursive --strict` prints `RESULT: PASSED` for the parent and all 10 phase folders.
+- [x] `validate_document.py` prints `VALID` and `hvr_scan.py` reports `hard blockers: 0` for each of the 184 files in scope.
+- [x] `check-markdown-links.cjs` exits 0 and reports 0 broken links across the repository.
+- [x] `test_readme_verdict_parity.py` prints `PARITY PASS` and the sk-doc `run-script-tests.sh` suite exits 0.
+- [x] `.skilled/skills/sk-design/README.md` and `.vibe/README.md` both exist on origin/main.
+- [x] After the last phase is pushed, `git rev-parse HEAD origin/main` prints the same hash twice.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -110,8 +110,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| 001-skill-readmes | In Progress | 14 READMEs rewritten, all `✅ VALID` with `hard=0`, fact checks applied |
-| 002 to 007 | Pending | Scaffolded children |
+| 001 to 010 | Done | All ten phases pushed. On 2026-11-18 at `45cdcc29428`: strict 11 of 11 `RESULT: PASSED`, 184 files `VALID` with 0 hard blockers, 0 broken links, `PARITY PASS`, suite exit 0, HEAD equal to origin/main |
 
 ### Deviations and findings
 
