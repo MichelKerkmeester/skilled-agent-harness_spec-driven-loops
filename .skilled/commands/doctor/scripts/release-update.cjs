@@ -54,6 +54,8 @@ const SCRIPT_COMMAND = 'node .skilled/commands/doctor/scripts/release-update.cjs
 const USAGE = 'Usage: release-update.cjs <check|align|decide|apply|rollback|record-base|unlock> [options]';
 const HELP_FLAGS = new Set(['--help', '-h']);
 const objectFormats = new Map();
+const treePrefixes = new Map();
+const COMMIT_RE = /^(?:[0-9a-f]{40}|[0-9a-f]{64})$/;
 
 const COMMAND_OPTIONS = {
   check: new Set(['repo', 'remote', 'release', 'scope', 'offline', 'json', 'include-prerelease']),
@@ -68,8 +70,8 @@ const COMMAND_OPTIONS = {
   rollback: new Set(['repo', 'json', 'run', 'dry-run']),
   unlock: new Set(['repo', 'json', 'dry-run']),
   'record-base': new Set([
-    'repo', 'remote', 'release', 'scope', 'offline', 'json', 'dry-run', 'include-prerelease',
-    'trust-release',
+    'repo', 'remote', 'release', 'pin', 'scope', 'offline', 'json', 'dry-run',
+    'include-prerelease', 'trust-release',
   ]),
 };
 
@@ -80,7 +82,8 @@ const COMMAND_PURPOSES = {
   apply: 'Write the accepted release files and update the base and divergence records.',
   rollback: 'Restore the paths an alignment run recorded in its rollback plan.',
   unlock: 'Remove an apply lock whose owner process is no longer running.',
-  'record-base': 'Record every unit of a named release as the base, for a copied or fresh install.',
+  'record-base': 'Record every unit of a named release, or of a --pin between releases, as the'
+    + ' base for a copied or fresh install.',
 };
 
 // Artifacts a generator writes from local sources. A difference confined to
@@ -153,6 +156,15 @@ function helpText() {
     '  also admits vN.N.N.N-<pre> tags; both orders compare numeric segments, and numeric',
     '  prerelease identifiers compare as numbers (rc.9 before rc.10). A tag named with',
     '  --release is used as given.',
+    '',
+    'Vendored layout and commit pins:',
+    '  --repo <dir> is the root when <dir> holds a real .skilled directory. When <dir>/.skilled',
+    '  is a symlink to a real .skilled directory inside the same git work tree, the folder',
+    '  holding that directory is the root, so a project that vendors the framework below a',
+    '  subfolder works from its own root. Otherwise the root is the git top level, where a',
+    '  symlinked .skilled is refused. record-base --pin <full-sha> records the framework',
+    '  commit a tree was copied from when it falls between release tags. It replaces',
+    '  --release, skips the nearer-release check and reports verified false.',
     '',
     'Apply without a decisions file:',
     '  With no --decisions, apply uses the newest alignment run made at the current HEAD',
@@ -308,10 +320,54 @@ function gitTry(repo, args, options = {}) {
   }
 }
 
+// A vendored layout keeps the framework below a project folder and reaches it
+// through a root .skilled symlink that path safety refuses to write through, so
+// a folder holding a real .skilled directory is the root, inside its git repo.
+// A .skilled symlink is followed only to a real .skilled directory inside the
+// same work tree; any other target keeps the top level, where path safety
+// refuses it, so a link to an outside checkout never redirects writes there.
 function resolveRepo(repoArg) {
   const candidate = path.resolve(repoArg || process.cwd());
-  const root = git(candidate, ['rev-parse', '--show-toplevel']).trim();
-  return fs.realpathSync(root);
+  const root = fs.realpathSync(git(candidate, ['rev-parse', '--show-toplevel']).trim());
+  const link = path.join(candidate, '.skilled');
+  let stats = null;
+  try {
+    stats = fs.lstatSync(link);
+  } catch (error) {
+    if (error.code !== 'ENOENT' && error.code !== 'ENOTDIR') throw error;
+  }
+  if (stats && stats.isDirectory() && !stats.isSymbolicLink()) return fs.realpathSync(candidate);
+  if (stats && stats.isSymbolicLink()) {
+    const vendored = vendoredRoot(link, root);
+    if (vendored) return vendored;
+  }
+  return root;
+}
+
+function vendoredRoot(link, root) {
+  let target;
+  try {
+    target = fs.realpathSync(link);
+  } catch (error) {
+    return null;
+  }
+  if (path.basename(target) !== '.skilled' || !fs.lstatSync(target).isDirectory()) return null;
+  const parent = path.dirname(target);
+  if (!withinRoot(root, parent)) return null;
+  const result = gitTry(parent, ['rev-parse', '--show-toplevel']);
+  if (!result.ok || fs.realpathSync(result.value.trim()) !== root) return null;
+  return parent;
+}
+
+// The project's own commits hold the framework below the root's git prefix,
+// while framework release commits hold it at their top level.
+function treePrefix(repo) {
+  let prefix = treePrefixes.get(repo);
+  if (prefix === undefined) {
+    prefix = git(repo, ['rev-parse', '--show-prefix']).trim();
+    treePrefixes.set(repo, prefix);
+  }
+  return prefix;
 }
 
 function gitBlobId(repo, bytes) {
@@ -350,6 +406,13 @@ function commitFiles(repo, revision) {
   const args = ['ls-tree', '-rz', '--full-tree', '-r', revision, '--', '.skilled'];
   const result = gitTry(repo, args, { encoding: null });
   return result.ok ? parseTreeOutput(result.value) : new Map();
+}
+
+// HEAD and the index belong to the project, so its revisions are read at the
+// root's prefix to list the same .skilled/ paths a release commit lists.
+function headFilesAt(repo, revision) {
+  const prefix = treePrefix(repo);
+  return commitFiles(repo, prefix ? revision + ':' + prefix : revision);
 }
 
 function indexFiles(repo) {
@@ -454,7 +517,9 @@ function tagCommit(repo, tag, remote, allowFetch, cache) {
     cache.set(tag, null);
     return null;
   }
-  const fetched = gitTry(repo, ['fetch', '--no-tags', remote, 'refs/tags/' + tag]);
+  // A pinned framework commit has no tag, so it is fetched by its full object id.
+  const ref = COMMIT_RE.test(tag) ? tag : 'refs/tags/' + tag;
+  const fetched = gitTry(repo, ['fetch', '--no-tags', remote, ref]);
   if (!fetched.ok) {
     cache.set(tag, null);
     return null;
@@ -848,7 +913,7 @@ function releaseContext(repo, options) {
     ? tagCommit(repo, release, options.remote, !options.offline, commits)
     : null;
   if (release && !releaseCommit) throw new Error('release tag could not be resolved: ' + release);
-  const headMap = commitFiles(repo, head);
+  const headMap = headFilesAt(repo, head);
   const targetMap = releaseCommit ? commitFiles(repo, releaseCommit) : new Map();
   const localMap = localFiles(repo, [...targetMap.keys()]);
   const ancestors = [];
@@ -892,16 +957,17 @@ function baseForUnit(repo, unit, context, recorded, options) {
   const record = recorded[unitKey(unit)];
   if (isReleaseRecord(record)) {
     const commit = tagCommit(
-      repo, record.release, options.remote, !options.offline, context.commits,
+      repo, recordRevision(record), options.remote, !options.offline, context.commits,
     );
     if (commit) {
       const files = entriesForUnit(commitFiles(repo, commit), unit);
       const tree = unitTreeFingerprint(files);
+      const release = record.commit ? null : record.release;
       if (!record.tree) {
-        return { source: 'recorded-unverified', release: record.release, commit, files };
+        return { source: 'recorded-unverified', release, commit, files };
       }
       if (record.tree === tree) {
-        return { source: 'recorded', release: record.release, commit, files };
+        return { source: 'recorded', release, commit, files };
       }
     }
   }
@@ -1013,12 +1079,23 @@ function unitStatus(files, base, local, release) {
   return 'customized';
 }
 
-// A path that enumerates to the named unit, for a recorded unit no tree holds.
+// A base record names the release tag a unit was installed from, or pins the
+// exact framework commit, which can fall between release tags. A pinned record
+// carries no release, so version ordering such as downgrade detection skips it.
 function isReleaseRecord(record) {
-  if (!record || typeof record.release !== 'string') return false;
+  if (!record) return false;
+  if (record.commit !== undefined) {
+    return typeof record.commit === 'string' && COMMIT_RE.test(record.commit);
+  }
+  if (typeof record.release !== 'string') return false;
   return Boolean(parseVersion(record.release));
 }
 
+function recordRevision(record) {
+  return record.commit || record.release;
+}
+
+// A path that enumerates to the named unit, for a recorded unit no tree holds.
 function syntheticPathForUnit(name, kind) {
   if (kind === 'root') return '.skilled/.release-unit-placeholder';
   if (kind === 'directory' || kind === 'command') {
@@ -1056,10 +1133,12 @@ function normalizeBaseUnits(records, units, rewritten = new Set()) {
   return result;
 }
 
+// Both commits are framework commits holding .skilled/ at their top level, so
+// the pathspec is anchored there even when the root is a vendored subfolder.
 function releaseRenames(repo, baseCommit, releaseCommit, pathspec) {
   if (!baseCommit || !releaseCommit) return new Map();
   const result = gitTry(repo, [
-    'diff', '-M', '--name-status', '-z', baseCommit, releaseCommit, '--', pathspec,
+    'diff', '-M', '--name-status', '-z', baseCommit, releaseCommit, '--', ':(top)' + pathspec,
   ]);
   if (!result.ok) return new Map();
   const records = result.value.split('\0');
@@ -1102,7 +1181,7 @@ function buildReport(repo, options) {
   for (const [name, record] of Object.entries(recordedRaw)) {
     if (parseUnitKey(name) || treeUnits.some((unit) => unit.name === name)) continue;
     if (!isReleaseRecord(record)) continue;
-    const historical = enumerateUnits([...filesAtRelease(record.release).keys()]);
+    const historical = enumerateUnits([...filesAtRelease(recordRevision(record)).keys()]);
     legacyUniverse.push(...historical.filter((unit) => unit.name === name));
   }
   const recorded = normalizeBaseUnits(recordedRaw, legacyUniverse);
@@ -1110,7 +1189,7 @@ function buildReport(repo, options) {
   for (const [key, record] of Object.entries(recorded)) {
     const matches = (unit) => unitKey(unit) === key;
     if (isReleaseRecord(record)) {
-      const historicalFiles = filesAtRelease(record.release);
+      const historicalFiles = filesAtRelease(recordRevision(record));
       const historicalUnit = enumerateUnits([...historicalFiles.keys()]).find(matches);
       if (historicalUnit) {
         recordedPaths.push(...entriesForUnit(historicalFiles, historicalUnit).keys());
@@ -1190,8 +1269,16 @@ function buildReport(repo, options) {
       newFile.renamedFrom = oldPath;
     }
     let status = unitStatus(fileReports, base, localUnit, releaseUnit);
-    if (base.release && context.release && !['current', 'local', 'blocked'].includes(status)
+    const movable = !['current', 'local', 'blocked'].includes(status);
+    if (base.release && context.release && movable
       && compareVersions(context.release, base.release) < 0) {
+      status = 'downgrade';
+    }
+    // A pinned base has no version to order, so a target release that is an
+    // ancestor of the pinned framework commit is the older one.
+    if (!base.release && base.commit && context.releaseCommit && movable
+      && base.commit !== context.releaseCommit
+      && isAncestor(repo, context.releaseCommit, base.commit) === true) {
       status = 'downgrade';
     }
     const regenerate = fileReports
@@ -1852,7 +1939,7 @@ function dirtyTargetError(filePath) {
 }
 
 function prepareWrites(repo, run, scope) {
-  const headFiles = commitFiles(repo, 'HEAD');
+  const headFiles = headFilesAt(repo, 'HEAD');
   const deferred = new Set(run.decisions.deferredUnits || []);
   const unitMap = new Map(run.plan.units.map((unit) => [unitKey(unit), unit]));
   const selectedUnits = applyScope(run.plan.units, scope);
@@ -2320,21 +2407,29 @@ function followUps(writes, regenerate = []) {
 
 // A copied or freshly installed tree has no shared release history, so check can
 // only infer its base. Recording every unit of the release it was installed from
-// gives the first check `recorded` evidence instead.
+// gives the first check `recorded` evidence instead. A tree copied from a
+// framework commit between release tags matches no tag, so --pin records
+// that exact commit. Naming it is the evidence, so no nearer-release check runs.
 function recordBase(repo, options) {
   const accepts = acceptsTag(options.includePrerelease);
   const localTags = tagNames(repo).filter(accepts);
-  const release = options.release || latestTag(localTags, options.includePrerelease);
-  if (!release) {
+  const pinned = options.pin || null;
+  const release = pinned ? null : options.release || latestTag(localTags, options.includePrerelease);
+  if (!release && !pinned) {
     throw new Error('no local release tag exists;'
       + ' name the release this tree was installed from with --release');
   }
-  const commit = tagCommit(repo, release, options.remote, !options.offline, new Map());
-  if (!commit) throw new Error('release tag could not be resolved: ' + release);
+  const commit = tagCommit(repo, pinned || release, options.remote, !options.offline, new Map());
+  if (!commit) {
+    throw new Error(pinned
+      ? 'commit could not be resolved locally or fetched from ' + options.remote + ': ' + pinned
+      : 'release tag could not be resolved: ' + release);
+  }
+  const label = pinned ? 'commit ' + commit : 'release ' + release;
   const releaseFiles = commitFiles(repo, commit);
   const units = applyScope(enumerateUnits([...releaseFiles.keys()]), options.scope);
-  if (!units.length) throw new Error('release ' + release + ' holds no .skilled units to record');
-  if (!options.trustRelease) {
+  if (!units.length) throw new Error(label + ' holds no .skilled units to record');
+  if (!options.trustRelease && !pinned) {
     const listing = options.offline
       ? { known: false, tags: [], error: 'offline mode' }
       : remoteTags(repo, options.remote);
@@ -2374,7 +2469,7 @@ function recordBase(repo, options) {
         + '--trust-release to record ' + release + ' anyway');
     }
   }
-  const headFiles = commitFiles(repo, 'HEAD');
+  const headFiles = headFilesAt(repo, 'HEAD');
   const existing = loadRecordJson(repo, BASE_FILE, { schemaVersion: 1, units: {} }).value;
   const recording = new Set(units.map(unitKey));
   const knownUnits = uniqueUnits([
@@ -2389,10 +2484,8 @@ function recordBase(repo, options) {
   if (typeof remote === 'string') next.remote = remote;
   next.units = nextUnits;
   for (const unit of units) {
-    next.units[unitKey(unit)] = {
-      release,
-      tree: unitTreeFingerprint(entriesForUnit(releaseFiles, unit)),
-    };
+    const tree = unitTreeFingerprint(entriesForUnit(releaseFiles, unit));
+    next.units[unitKey(unit)] = pinned ? { commit, tree } : { release, tree };
   }
   if (readLockState(repo).state !== 'absent') throw lockConflictError(repo);
   if (!options.dryRun) {
@@ -2417,7 +2510,7 @@ function recordBase(repo, options) {
   return {
     command: 'record-base',
     dryRun: Boolean(options.dryRun),
-    verified: !options.trustRelease,
+    verified: !options.trustRelease && !pinned,
     release,
     releaseCommit: commit,
     baseFile: BASE_FILE,
@@ -2523,8 +2616,8 @@ function parseArgs(argv) {
     command, scope: 'all', offline: false, json: false, dryRun: false,
   };
   const valueOptions = new Set([
-    'repo', 'remote', 'release', 'scope', 'out', 'run', 'path', 'decision', 'unit', 'decisions',
-    'plan-digest',
+    'repo', 'remote', 'release', 'pin', 'scope', 'out', 'run', 'path', 'decision', 'unit',
+    'decisions', 'plan-digest',
   ]);
   const booleanOptions = new Set([
     'offline', 'json', 'dry-run', 'defer', 'include-prerelease', 'trust-release',
@@ -2568,6 +2661,12 @@ function parseArgs(argv) {
   }
   if (options.release && !parseVersion(options.release)) {
     throw usageError('--release must be a version tag');
+  }
+  if (options.pin !== undefined) {
+    if (options.release) throw usageError('--pin and --release cannot be combined');
+    if (!COMMIT_RE.test(options.pin)) {
+      throw usageError('--pin must be a full lowercase hexadecimal commit id');
+    }
   }
   if (command === 'decide') {
     const defer = Boolean(options.defer);

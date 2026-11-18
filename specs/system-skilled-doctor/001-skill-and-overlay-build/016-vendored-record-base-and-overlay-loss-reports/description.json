@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports",
+  "description": "Record-base in a vendored layout and overlay-engine loss reports",
+  "keywords": [
+    "record-base",
+    "vendored",
+    "layout",
+    "overlay-engine",
+    "loss",
+    "reports"
+  ],
+  "lastUpdated": "2026-11-18T08:30:31.316Z",
+  "specId": "016",
+  "folderSlug": "vendored-record-base-and-overlay-loss-reports",
+  "parentChain": [
+    "system-skilled-doctor",
+    "001-skill-and-overlay-build"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-11-26_09-30__fixed-two-doctor-items-from-a-vendoring-project.md"
+  ]
+}

@@ -89,7 +89,7 @@ workflow:
   phase_3_approval:
     purpose: "Ask the one question against the report on screen, and write only after its yes"
     activities:
-      - "Without capture_path, adopt_path or relayout, render the apply plan from the presentation contract: one line per overlay-edited line the report printed, each MISS line, each STALE line with the note that an apply does not clear it and the fix for it, the regenerate and verify steps that follow, and the lock the engine holds. Then ask the apply question once."
+      - "Without capture_path, adopt_path or relayout, render the apply plan from the presentation contract: one line per overlay-edited line the report printed, each MISS line, each STALE line with the note that an apply does not clear it and the fix for it, each NOTE line, the regenerate and verify steps that follow, and the lock the engine holds. Then ask the apply question once."
       - "With capture_path, render the capture plan: the one live-edited line, the overlay source it names and the engine's record. Then ask the capture question once."
       - "With adopt_path, render the adopt plan: the path, the overlay-edited lines the same apply will also write, and what the engine does with the path. Then ask the adopt question once."
       - "With relayout, render the relayout plan from the presentation contract: one line per LAYOUT line the report printed, the backup folder the run leaves, the manifest fields and layout links it rewrites, and the apply that follows in the same run. Then ask the relayout question once."

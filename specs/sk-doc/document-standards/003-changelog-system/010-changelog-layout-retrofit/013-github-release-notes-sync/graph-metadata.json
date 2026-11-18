@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The 152 GitHub releases show their old bodies",
     "created_at": "2026-11-17T18:13:12Z",
-    "last_save_at": "2026-11-18T07:44:49.933Z",
+    "last_save_at": "2026-11-18T08:46:19.629Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +202,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b6e0410313314614296d45e2deadca56c78564413a719fa3ca3c8f1476778ffd",
+    "source_fingerprint": "sha256:a6781a8ec3202aa5e4da9aca528258691b962f06b2f08a2bd061c0fc321952c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "281acd91f23db030bde25be992b9a05eaf54578a26e53ddf84afa940c5f9913f",
       "plan.md": "53e95ad2718d61a619517f0f69d5de267a38b17a1d2b8460590ce65f4047b97e",
       "tasks.md": "a120efe976abb9f69053248dac58907db2a063c15a1e4c5e3c720257cb354256",
-      "decision-record.md": "9f8a609c2a5ae2749ae0352ecbf88cec12dd9b23300689a4dcaebe9d5cef1a53",
-      "implementation-summary.md": "f3a0009a10fd866fb6a6a080980522e4df76b1614141aa8b43f7448f4b319854"
+      "decision-record.md": "5202ed9a77b737be424c0909b55ea39ab25ebd59ecf1b2554f5f893acbcd167e",
+      "implementation-summary.md": "46b9b13671aadef0f966dd6570f5470743550984f79a22054f55dd92d202abb6"
     },
     "last_active_at": null
   }

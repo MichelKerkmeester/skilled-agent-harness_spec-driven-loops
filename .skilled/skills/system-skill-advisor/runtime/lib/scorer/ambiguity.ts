@@ -99,12 +99,26 @@ export function isAmbiguousTopTwo(recommendations: readonly AdvisorScoredRecomme
 
 export function wideAmbiguityMembers(
   recommendations: readonly AdvisorScoredRecommendation[],
+  options: { readonly floorTiesCount?: boolean } = {},
 ): Set<string> {
-  // The low-information abstention reads this wider set, so a skill the floor
+  // The low-information abstention floors this wider set, so a skill the floor
   // exception dropped cannot slip through as the top of an under-specified
-  // prompt.
+  // prompt. Whether to abstain at all follows the visible cluster when the top is
+  // a real match: a rival that only reached the confidence floor carries no
+  // evidence of its own, so it cannot tie that top on its floor alone. A caller
+  // that has a stronger answer than the top, such as a command named by its own
+  // full phrase, keeps the floor ties so the skills still step aside.
   const wide = ambiguousCluster(recommendations, false);
   if (wide.length < 2) return new Set();
+  const top = recommendations.find((recommendation) => recommendation.passes_threshold);
+  if (
+    options.floorTiesCount !== true
+    && top
+    && top.confidenceFloored !== true
+    && ambiguousCluster(recommendations).length < 2
+  ) {
+    return new Set();
+  }
   return new Set(wide.map((recommendation) => recommendation.skill));
 }
 

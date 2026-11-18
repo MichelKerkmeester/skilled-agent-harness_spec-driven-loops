@@ -240,6 +240,12 @@ function push(
 
 const TRACKER_STATUS_REVIEW = /\b(?:in|to|into)\s+review\b|\bstatus\b[^.?!]*\breview\b/;
 const TRACKER_ITEM = /\b(?:ticket|tickets|issue|issues|task|tasks|card|story|clickup|jira|linear|kanban|column)\b/;
+// The design tools the MCP transports read. A dashboard pulled from one is a design
+// fetch, so the word names no code to write.
+const DESIGN_TOOL_SOURCE = /\b(?:figma|refero|mobbin)\b/;
+// A read verb ahead of one of those tools, such as "get the dashboard design
+// from figma" or "grab the figma frame".
+const DESIGN_TOOL_READ = /\b(?:get|fetch|pull|grab|read|download|export|copy|open|inspect)\b.{0,60}?\b(?:figma|refero|mobbin)\b/;
 const WORD_CHAR = /\w/;
 const WHITESPACE_CHAR = /\s/;
 // `changelog` alone names sk-doc's changelog mode; only its file forms count as
@@ -362,14 +368,23 @@ export function scoreExplicitLane(
 
   // "In review" on a ticket or card is a tracker column, not a request to review code.
   const reviewIsStatus = TRACKER_STATUS_REVIEW.test(lower) && TRACKER_ITEM.test(lower);
+  const dashboardIsDesign = DESIGN_TOOL_SOURCE.test(lower);
   for (const token of tokens) {
     if (token === 'review' && reviewIsStatus) continue;
+    if (token === 'dashboard' && dashboardIsDesign) continue;
     for (const [skillId, amount] of TOKEN_BOOSTS[token] ?? []) {
       push(scores, skillId, amount, `token:${token}`);
     }
   }
 
   const writes = WRITE_VERBS.test(affirmedWriteText(lower));
+  // Taking a frame out of a design tool is the MCP transport's read, so the
+  // code skill's design-to-code phrases ("from figma") do not claim it. A build
+  // verb makes it design-to-code work again.
+  if (!writes && DESIGN_TOOL_READ.test(lower)) {
+    push(scores, 'mcp-tooling', 0.9, 'design-tool-read');
+    push(scores, 'sk-code', -0.5, 'design-tool-read');
+  }
   if (writes && /\b(readme|docs|documentation|playbook|taxonomy|markdown|feature_catalog|skill\.md|router\.md)\b/.test(lower)) {
     push(scores, 'sk-doc', 0.7, 'write-doc-surface');
   }
