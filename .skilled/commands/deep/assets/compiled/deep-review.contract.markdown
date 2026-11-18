@@ -42,7 +42,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "bd416fa7a7d2337087021d05eee35321f8853300a033ecd04a4a3c1f84840f8f",
+      "sha256": "677240158f8d649cc0482fb884beb3751cacae097bcf48b187dea14fb9b56fe5",
       "section": "full"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "8ff10cb6afbf1b15246bf9586d91ea30564bd16d0fa6284195f4a3af6d9a258f",
+      "sha256": "824d94b9b8315091866ed8181478279834fd35e01b5fc4a78c6cb4bdfb15d3f4",
       "section": "full"
     },
     {
