@@ -293,6 +293,37 @@ describe('append-mode-event legacy deep-research upcast seam', () => {
       .toBe('deep-research.ledger.run-extended');
   });
 
+  it('refuses a legacy extended row whose budget lacks a field instead of guessing the ceiling', () => {
+    const runDir = createTempDir('extended-legacy-partial');
+    const authorityRoot = createTempDir('extended-legacy-partial-auth');
+    const env = { DEEP_LOOP_AUTHORITY_ROOT: authorityRoot };
+
+    expect(runCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, legacyConfigRow())],
+      env,
+    ).exitCode).toBe(0);
+    const framesBefore = readdirSync(framesDirectory(runDir)).length;
+
+    const result = runCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, {
+        type: 'event',
+        event: 'extended',
+        sessionId: 's1',
+        generation: 1,
+        continuedFromRun: 2,
+        extension: {
+          addedIterations: 1, priorMaxIterations: 3,
+          priorMaxDurationMinutes: 0, newMaxDurationMinutes: 0, elapsedMinutesAtExtension: 5,
+        },
+      })],
+      env,
+    );
+    expect(result.exitCode).toBe(1);
+    expect(result.json.ok).toBe(false);
+    expect(String(result.json.reason)).toContain('run-extended-budget-missing');
+    expect(readdirSync(framesDirectory(runDir)).length).toBe(framesBefore);
+  });
+
   it('carries the leaf dispatch, gate and telemetry fields of a legacy iteration row through the gateway', () => {
     const runDir = createTempDir('iteration-leaf');
     const authorityRoot = createTempDir('iteration-leaf-auth');
