@@ -10,7 +10,8 @@
     "sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes",
     "sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes",
     "sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes",
-    "sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes"
+    "sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes",
+    "sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions"
   ],
   "manual": {
     "depends_on": [],
@@ -44,7 +45,7 @@
       "packet"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -183,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "Flash Max",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
         "name": "In Progress",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -207,6 +202,12 @@
         "source": "derived"
       },
       {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -215,7 +216,7 @@
     ],
     "causal_summary": "The root README and its five root guides now read in a plain human voice, and the `sk-create-readme` templates were rewritten to match",
     "created_at": "2026-11-16T15:20:12Z",
-    "last_save_at": "2026-11-17T21:58:09.813Z",
+    "last_save_at": "2026-11-18T07:27:01.295Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,11 +224,11 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:14673464b99d1ce70201654d4e66bbab8ba3be977dbb23113051676f7be3caf5",
+    "source_fingerprint": "sha256:9e02f479557aa43b6a7570695273c87c21bc438eccf5154d22b1ec26e34b9545",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "05de99d0dd040ba8c936db6d6e87d71a356d651b8a642226c5c4b025043a9825",
-      "decision-record.md": "3f3fc09fbcd3e7fd7b992b3f59e3c3641fe7f3c4946f426daf16458611d6a62c"
+      "spec.md": "c077cabdd1a9ba072b912c5f143f3be138f069465f46f7d06ef3ba045977c0fa",
+      "decision-record.md": "b4af3718dcca1735bc6935255504411938c74b88f9c52141de2d0f14e1a95e7a"
     },
     "last_active_child_id": "sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes",
     "last_active_at": "2026-11-17T17:07:56.519Z"
