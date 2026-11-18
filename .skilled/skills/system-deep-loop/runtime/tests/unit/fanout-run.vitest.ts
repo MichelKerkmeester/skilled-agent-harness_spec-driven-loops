@@ -6911,6 +6911,14 @@ describe('fanout-run.cjs — per-lineage expansive budget', () => {
       [{ label: 'a', kind: 'cli-pi' }, { label: 'b', kind: 'cli-pi' }],
       { loopType: 'review', partition: { a: nodes(2), b: nodes(0) } },
     );
-    expect(lineages.map((lineage) => lineage.iterations)).toEqual([24, 16]);
+    expect(lineages.map((lineage) => lineage.iterations)).toEqual([24, 7]);
+  });
+
+  it('runs a lineage with no seed share at its loop default', () => {
+    const lineages = expansiveLineageBudgets(
+      [{ label: 'a', kind: 'native' }, { label: 'b', kind: 'native' }, { label: 'c', kind: 'cli-opencode' }],
+      { loopType: 'review', partition: { a: nodes(1), b: [], c: [] } },
+    );
+    expect(lineages.map((lineage) => lineage.iterations)).toEqual([24, 12, 7]);
   });
 });

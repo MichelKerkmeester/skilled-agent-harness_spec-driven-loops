@@ -264,11 +264,14 @@ function readCaps(artifactDir, target = 'research') {
 // research and one per configured dimension for review. It never drops below the
 // loop default and never passes the ceiling, which binds for a four-dimension
 // review from two seeds on. Twice the node count keeps the half-budget node cap
-// above the seed, so the frontier can still grow.
+// above the seed, so the frontier can still grow. A run or lineage with no seeded
+// node has no frontier to fund, so it runs at its loop default.
 function expansiveBudget({ target, seeded, maxDepth = DEFAULT_MAX_DEPTH, dimensions = CANONICAL_REVIEW_DIMENSIONS, loopDefault }) {
   const perNode = assertTarget(target) === 'review' ? Math.max(1, Math.floor(dimensions) || 1) : 1;
   const floor = capValue(loopDefault, LOOP_DEFAULT_MAX_ITERATIONS[target]);
-  const nodes = Math.max(0, Math.floor(seeded) || 0) + Math.max(1, Math.floor(maxDepth) || 1) - 1;
+  const seededCount = Math.max(0, Math.floor(seeded) || 0);
+  if (seededCount === 0) return floor;
+  const nodes = seededCount + Math.max(1, Math.floor(maxDepth) || 1) - 1;
   return Math.min(EXPANSIVE_BUDGET_CEILING, Math.max(floor, 2 * perNode * nodes));
 }
 

@@ -664,6 +664,10 @@ describe('expansive budget sized from the seed', () => {
     ['review', 8, 4, 7, 24],
     ['review', 3, 1, 7, 10],
     ['research', 2, 1, 12, 12],
+    // A run or lineage with no seed share runs at its loop default.
+    ['review', 0, 4, 7, 7],
+    ['research', 0, 1, 10, 10],
+    ['review', 0, 4, 12, 12],
   ];
 
   it.each(table)('%s with %i seeds and %i dimensions over a default of %i gives %i', (target, seeded, dimensions, loopDefault, expected) => {
@@ -696,6 +700,19 @@ describe('expansive budget sized from the seed', () => {
     const result = seedWithBudget({ artifactDir: dirWithBudget(10), candidates: seeds(1), maxIterationsSource: 'default' });
     expect(result.derivedMaxIterations).toBe(10);
     expect(result.growthSlots).toBe(4);
+  });
+
+  it('keeps the loop default when admission pruned every seed', () => {
+    const { seedBudget } = require(FRONTIER_ADMIT_SCRIPT) as {
+      seedBudget: (options: { artifactDir: string; target?: string; maxIterationsSource?: string }) => { derivedMaxIterations: number };
+    };
+    const dir = mkdtempSync(join(tmpdir(), 'frontier-admit-budget-'));
+    tempDirs.push(dir);
+    writeFileSync(join(dir, 'deep-review-config.json'), JSON.stringify({ maxIterations: 7, expansiveDepth: { maxDepth: 3 } }), 'utf8');
+    const pruned = [1, 2].map((index) => nodeRow(`F-1-00${index}`, 'root', 1, `which pruned seed ${index} holds`, { status: 'pruned', reason: 'relevance' }));
+    writeFileSync(join(dir, 'frontier-nodes.jsonl'), pruned.map((row) => `${JSON.stringify(row)}\n`).join(''), 'utf8');
+
+    expect(seedBudget({ artifactDir: dir, target: 'review', maxIterationsSource: 'default' }).derivedMaxIterations).toBe(7);
   });
 
   it('lets an explicit budget win, even below the derived one, and warns when no growth slot is left', () => {
