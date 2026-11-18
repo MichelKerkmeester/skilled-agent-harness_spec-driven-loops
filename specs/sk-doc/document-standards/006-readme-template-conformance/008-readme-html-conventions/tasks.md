@@ -58,7 +58,7 @@ contextType: "general"
 - [x] T011 Render the pilot files through GitHub (`gh api markdown`). Verify: the alert and the folded table appear. Evidence: `markdown-alert markdown-alert-warning` in the SYNC render, and `<details>` holding `<summary>All 33 entries</summary>` and a table of 34 rows in the hooks render. A fold with no blank line after `<summary>` rendered its table as raw pipes.
 - [x] T012 Run the fold check over every tracked `.md` file, then the suite, parity and links. Verify: 0 fold issues and every gate exits 0. Evidence: 64,445 files, 0 issues. `all sk-doc script tests passed`, 58 PASS, exit 0. `PARITY PASS`. `0 broken markdown links`.
 - [x] T013 Validate the phase (`008-readme-html-conventions/`). Verify: `validate.sh --strict` prints `RESULT: PASSED`. Evidence: `RESULT: PASSED` on the phase and on the program recursively.
-- [ ] T014 Commit, merge origin/main and push under sk-git. Verify: `git rev-parse HEAD origin/main` prints the same hash twice.
+- [x] T014 Commit, merge origin/main and push under sk-git. Verify: `git rev-parse HEAD origin/main` prints the same hash twice. Evidence: commit `750b15c7eb3` pushed, and both refs printed `750b15c7eb3`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -66,7 +66,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed: the GitHub render shows the alert and the fold
 <!-- /ANCHOR:completion -->
@@ -137,7 +137,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Parser fixes include adversarial cases. Evidence: fence, inline code, one-line fold, stray close and a missing summary are each tested or scanned
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed. Evidence: four broken shapes and three non-fold shapes, seven rows
 - [x] CHK-FIX-006 [P1] Hostile env variant executed when code reads process-wide state. Evidence: not applicable, `validate_folds` reads only the text it is given
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA. Evidence: commit `750b15c7eb3`
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -177,7 +177,7 @@ contextType: "general"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 12 | 12/12 |
-| P1 Items | 13 | 12/13 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-18

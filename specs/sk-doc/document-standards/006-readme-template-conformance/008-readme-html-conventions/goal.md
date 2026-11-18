@@ -11,14 +11,14 @@ _memory:
     last_updated_at: "2026-11-18T07:14:13Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Built and verified the rule, the fold check and the pilot"
-    next_safe_action: "Commit, merge origin/main and push"
+    next_safe_action: "None: the phase is complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-008-readme-html-conventions"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -55,7 +55,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `validate_document.py` prints `INVALID` with `fold_unclosed` for the unclosed probe
 - [x] `validate_folds` reports 0 issues across every tracked `.md` file
 - [x] The four pilot files print `VALID` and `gh api markdown` shows the alert and the folded table
-- [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED` and the phase commit is on origin/main
+- [x] `validate.sh --strict` on this phase prints `RESULT: PASSED` and the phase commit is on origin/main
 <!-- /ANCHOR:completion -->
 
 ---
