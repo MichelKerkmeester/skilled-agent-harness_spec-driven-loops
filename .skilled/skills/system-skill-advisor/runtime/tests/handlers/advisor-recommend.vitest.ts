@@ -203,6 +203,13 @@ describe('advisor_recommend handler', () => {
       }),
     ]);
     expect(JSON.stringify(attributed.data.recommendations)).not.toContain(secretPromptToken);
+
+    // The per-lane scores also travel as laneContributions, the field the
+    // scorer's own result uses, but only when attribution is asked for.
+    expect(plain.data.recommendations[0]).not.toHaveProperty('laneContributions');
+    const [attributedTop] = attributed.data.recommendations;
+    expect(attributedTop.laneContributions).toEqual(attributedTop.laneBreakdown);
+    expect(attributedTop.laneContributions.length).toBeGreaterThan(0);
   });
 
   it('does not change recommendation order or scores when attribution is enabled', async () => {

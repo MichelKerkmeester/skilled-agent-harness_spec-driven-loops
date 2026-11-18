@@ -39,7 +39,7 @@ _memory:
 **Packet:** 011-surfacing-scorer-follow-ups
 **Level:** 2
 **Status:** Complete
-**Date:** 2026-11-17
+**Date:** 2026-11-17, second round 2026-11-18
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -55,10 +55,14 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-002 | REQ-002 | Given a single-word phrase joined to another word by a hyphen, When the prompt contains the joined name, Then that phrase does not match, and a phrase with its own hyphen still matches | `tests/name-mention-scoring.vitest.ts:139`, new describe block with 3 tests, failed before the change and passed after it in the recorded run. Recorded at `scratch/work-record.md:12`. Not re-run. | Met | - |
 | AC-003 | REQ-003 | Given ticket-status wording with a tracker noun, When the prompt also contains the review token, Then the review boost is skipped, and a plain request keeps the boost | `tests/scorer/review-status-wording.vitest.ts:18`, 2 tests, failed before the change and passed after it in the recorded run. Recorded at `scratch/work-record.md:13`. Not re-run. | Met | - |
 | AC-004 | REQ-004 | Given the generated bridge JSON, When the scorer starts, Then the bridges come from the JSON, and a missing or malformed file falls back to the compiled block | `tests/scorer/command-bridge-loader.vitest.ts:37`, 3 tests, passed in the recorded run. Recorded at `scratch/work-record.md:14`. Not re-run. | Met | - |
-| AC-005 | REQ-005 | Given a short prompt that a skill reaching only the floor could tie, When the wide ambiguity set forms, Then the floor-only skill stays in the set, as the recorded decision requires | Operator decision on 2026-11-17: keep current behavior, no code change. `tests/scorer/advisor-quality-049-003.vitest.ts:339` pins the kept behavior. The recorded run passed it. | Met | - |
-| AC-006 | REQ-006 | Given an exact command bridge match and its owner skill, When both score, Then the command keeps its place below the owner and is still offered, as the recorded decision requires | Operator decision on 2026-11-17: keep current behavior, no code change. The tie-break is at `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1421`, and the recorded decision is at `specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/synthesis-review.md:143`. | Met | - |
+| AC-005 | REQ-005 | Given a short prompt that a skill reaching only the floor could tie, When the wide ambiguity set forms, Then the floor-only skill stays in the set | Superseded on 2026-11-18 by AC-011. | Superseded | ADR-001 |
+| AC-006 | REQ-006 | Given an exact command bridge match and its owner skill, When both score, Then the command keeps its place below the owner and is still offered, as the recorded decision requires | Operator decision on 2026-11-17, kept again on 2026-11-18 (ADR-001). The tie-break at `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` is unchanged. The doctor routing slice `tests/doctor-routing-slice.vitest.ts` passes with its 12 skill-first rows. | Met | - |
 | AC-007 | REQ-007 | Given the index freshness claim, When the native scorer is checked, Then a verdict is recorded with its evidence | Verdict recorded at `scratch/work-record.md:15`: not confirmed for the native scorer. The verdict is inferred, not tested. A native route change after a `SKILL.md` keywords edit would confirm it. | Met | - |
 | AC-008 | REQ-008 | Given the CLI JSON per-lane claim, When `advisor_recommend` runs with `"options":{"includeAttribution":true}`, Then each recommendation carries `laneBreakdown` and `why_recommended` | Recorded at `scratch/work-record.md:16` on the ticket prompt. The field was already available, so no code change was made. | Met | - |
+| AC-009 | REQ-009 | Given a prompt that reads from a design tool with no build verb, When it is scored, Then mcp-tooling leads, the `dashboard` boost is skipped, and a build prompt stays with sk-code | `tests/scorer/dashboard-design-source.vitest.ts:18` and `:37`, 4 tests. The boost test and the read test failed before their changes and pass after. Built CLI, cache miss: "get the dashboard design from figma" mcp-tooling 0.611 over sk-code 0.423, "fetch the dashboard frame from figma" mcp-tooling 0.463, "export the logo from figma" mcp-tooling 0.592, "implement the dashboard from figma" sk-code 0.625, "check built screen against figma" sk-code 0.739, "grab the figma frame for the partners dashboard" mcp-tooling 0.441. The vendoring corpus row mcp-03 moved from sk-code MISS to mcp-tooling HIT. | Met | - |
+| AC-010 | REQ-010 | Given the second report's command-order item, When the operator decides, Then the decision and its measured reason are recorded | ADR-001 in `decision-record.md`: kept skill-first on 2026-11-18. The 12 pinned rows and their score leads were measured on the built scorer. No code change. | Met | - |
+| AC-011 | REQ-011 | Given a short prompt with one real match and a floor-only rival, When the low-information rule runs, Then the real match is not abstained, while a floored top, a real tie and a full-phrase command keep the old wide set | `tests/scorer/advisor-quality-049-003.vitest.ts:339`, `:356`, `:372`, `:393`, 4 tests. The test at `:339` pinned the old rule before. `tests/doctor-routing-slice.vitest.ts` passes, with "skill budget audit" (`scripts/routing-accuracy/doctor-prompts.jsonl:11`) still on its command. | Met | - |
+| AC-012 | REQ-012 | Given `"options":{"includeAttribution":true}`, When `advisor_recommend` answers, Then each recommendation carries `laneContributions` equal to `laneBreakdown`, and neither appears without the option | `tests/handlers/advisor-recommend.vitest.ts:207`. It failed before the handler change (1 failed, 23 passed) and passes after. The built CLI returned 5 lanes in `laneContributions` per recommendation. | Met | - |
 
 ### Status values
 
@@ -85,5 +89,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-Every row is Met. Both operator decisions were recorded on 2026-11-17, and no criterion blocks closure. The evidence for the recorded runs is in `scratch/work-record.md` and was not re-run for this packet.
+Every row is Met or Superseded. AC-005 is superseded by AC-011 under ADR-001. The first-round evidence is in `scratch/work-record.md`, and the second round's is in its second-round section.
 <!-- /ANCHOR:closure -->

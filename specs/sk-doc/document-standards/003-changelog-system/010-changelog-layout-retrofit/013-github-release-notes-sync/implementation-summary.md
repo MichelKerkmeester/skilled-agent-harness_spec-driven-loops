@@ -8,23 +8,23 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync"
-    last_updated_at: "2026-11-18T07:43:27Z"
+    last_updated_at: "2026-11-18T08:46:19Z"
     last_updated_by: "generate-context"
-    recent_action: "Published 120 release bodies and closed phase 013"
+    recent_action: "Amended goal criterion 4"
     next_safe_action: "Review the release pages; the retrofit has no open step"
     packet_purpose: "Purpose: Every GitHub release body reads in the v4.1.0.0 layout and keeps every fact it held."
     blockers: []
     key_files:
       - "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:effde954d0dcb92b1f2a3e1ea0f99f4bbb93899fb0d4302a7902954d874bc5bc"
+      fingerprint: "sha256:a5da8dd80c8e83829188c6c15ade0d4ad9fe39898fe6a8a61a39f5b589ba5d12"
       session_id: "scaffold-013-github-release-notes-sync"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "cbc62a39-7ca8-4b5a-989f-a86fdea260ea"
       workspace: "/Users/michelkerkmeester/worktrees/public/454-changelog-layout-retrofit"
-      savedAt: "2026-11-18T07:43:27Z"
+      savedAt: "2026-11-18T08:46:19Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
