@@ -251,7 +251,9 @@ function readCaps(artifactDir, target = 'research') {
   const expansive = isPlainObject(source.expansiveDepth) ? source.expansiveDepth : {};
   // Each node costs at least one iteration, so a cap equal to the iteration budget
   // fills every slot and leaves none for the seeded questions or the stop gates.
-  const iterationBudget = capValue(source.maxIterations, null);
+  // The budget is read the way seedBudget reads it, so the cap admission enforces
+  // is the cap the seed step reported.
+  const iterationBudget = capValue(Number(source.maxIterations), null);
   const derivedCap = iterationBudget === null
     ? DEFAULT_MAX_FRONTIER_NODES
     : Math.max(1, Math.floor(iterationBudget / 2));

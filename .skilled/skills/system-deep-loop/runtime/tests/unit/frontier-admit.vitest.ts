@@ -731,6 +731,18 @@ describe('expansive budget sized from the seed', () => {
     expect(result.growthSlots).toBe(4);
   });
 
+  it('derives the same node cap at admission as the seed reports, for a numeric-string budget', () => {
+    const { seedBudget } = require(FRONTIER_ADMIT_SCRIPT) as {
+      seedBudget: (options: { artifactDir: string; target?: string; maxIterationsSource?: string }) => { derivedMaxIterations: number; growthSlots: number };
+    };
+    const dir = mkdtempSync(join(tmpdir(), 'frontier-admit-budget-'));
+    tempDirs.push(dir);
+    writeFileSync(join(dir, 'deep-research-config.json'), JSON.stringify({ maxIterations: '16', expansiveDepth: { maxDepth: 3 } }), 'utf8');
+
+    expect(seedBudget({ artifactDir: dir, maxIterationsSource: 'flag' }).derivedMaxIterations).toBe(16);
+    expect(readCaps(dir).maxFrontierNodes).toBe(8);
+  });
+
   it('keeps the loop default when admission pruned every seed', () => {
     const { seedBudget } = require(FRONTIER_ADMIT_SCRIPT) as {
       seedBudget: (options: { artifactDir: string; target?: string; maxIterationsSource?: string }) => { derivedMaxIterations: number };
