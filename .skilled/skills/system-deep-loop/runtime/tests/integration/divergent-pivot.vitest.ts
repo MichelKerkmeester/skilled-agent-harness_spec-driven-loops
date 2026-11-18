@@ -927,6 +927,23 @@ describe('review divergent pivot under the expansive depth mode', () => {
     expect(kept[0].focus).toContain('(src/mutation, src/modify-record.ts, src/rewrite-engine)');
   });
 
+  it('still rejects a frontier seed whose free-text scope asks for a change', () => {
+    const proseScoped = {
+      ...exhaustedNode,
+      nodeId: 'frontier-005',
+      scope: ['src/cache', 'implement the fix in src/x'],
+    };
+    const target = fixture(true, [proseScoped]);
+    expect(frontierStatuses(target.registryPath)['frontier-005']).toBe('exhausted');
+
+    const prepared = buildInput(target);
+    const kept = prepared.candidates.filter((entry) => entry.seatProvenance.join(' ').includes('frontier-unanswered'));
+    const dropped = prepared.boundaryRejections.filter((entry) => entry.source.includes('frontier-unanswered'));
+
+    expect(kept).toEqual([]);
+    expect(dropped.map((entry) => entry.title)).toEqual(['Revisit exhausted frontier node frontier-005']);
+  });
+
   it('leaves a default run untouched even when the registry still carries an open frontier node', () => {
     const target = fixture(true, [openNode]);
     writeFileSync(join(target.reviewDir, 'deep-review-config-default.json'), JSON.stringify({

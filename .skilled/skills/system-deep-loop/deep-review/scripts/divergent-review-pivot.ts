@@ -32,8 +32,12 @@ export interface ReviewCandidateSeed {
   readonly evidenceRefs: readonly string[];
   readonly relevanceRationale: string;
   readonly scopeGrounded: boolean;
-  /** Path text quoted inside the focus. It is data, not an instruction, so the read-only guard skips it. */
-  readonly quotedScope?: string;
+  /**
+   * Path entries quoted inside the focus. A path is data, not an instruction, so the
+   * read-only guard skips it. Only path-shaped entries are listed: free text in a
+   * scope is still read by the guard.
+   */
+  readonly quotedPaths?: readonly string[];
 }
 
 /** Files and loop facts needed to derive one review pivot input. */
@@ -173,9 +177,16 @@ function readPivotEvents(artifactRoot: string): JsonRecord[] {
     .flatMap((entry) => readJsonl(join(pivotsRoot, entry.name, 'council', 'state.jsonl')));
 }
 
+// A scope entry reads as a path when it has no whitespace and carries a path
+// separator or a file extension. A bare word such as "implement" does not, so
+// the read-only guard still reads it.
+function isPathShaped(entry: string): boolean {
+  return entry !== '' && !/\s/u.test(entry) && /[/.]/u.test(entry);
+}
+
 function seedViolatesReadOnlyBoundary(seed: ReviewCandidateSeed): boolean {
   if (!seed.scopeGrounded || seed.evidenceRefs.length === 0) return true;
-  const focus = seed.quotedScope ? seed.focus.split(seed.quotedScope).join(' ') : seed.focus;
+  const focus = (seed.quotedPaths ?? []).reduce((text, quoted) => text.split(quoted).join(' '), seed.focus);
   const material = normalizedKey(`${seed.title} ${focus}`);
   return [
     /\bimplement\b/u,
@@ -307,9 +318,9 @@ function buildCandidateSeeds(
     const status = normalizeText(node.status);
     if (status !== 'exhausted' && status !== 'blocked') return;
     const nodeId = normalizeText(node.nodeId);
-    const scope = (Array.isArray(node.scope)
-      ? readStringList(node.scope).join(', ')
-      : normalizeText(node.scope)) || 'unscoped';
+    const scopeList = Array.isArray(node.scope) ? readStringList(node.scope) : [normalizeText(node.scope)].filter(Boolean);
+    const scope = scopeList.join(', ') || 'unscoped';
+    const quotedPaths = scopeList.filter(isPathShaped);
     add({
       source: 'frontier-unanswered',
       title: `Revisit ${status} frontier node ${nodeId}`,
@@ -317,7 +328,7 @@ function buildCandidateSeeds(
       evidenceRefs: [`frontier-nodes.jsonl#${nodeId}`],
       relevanceRationale: `The frontier closed this sub-target ${status} without covering every configured dimension.`,
       scopeGrounded: true,
-      quotedScope: scope,
+      quotedPaths,
     });
   });
 
