@@ -4,6 +4,10 @@
 
 import { afterEach, describe, expect, it } from 'vitest';
 
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+
 import { cleanupNamespace, namespaceArgs, runScript, uniqueNamespace, type ScriptNamespace } from '../helpers/spawn-cjs';
 
 const namespaces: ScriptNamespace[] = [];
@@ -300,5 +304,156 @@ describe('upsert.cjs direct invocation', () => {
     ]);
     expect(reviewResult.exitCode).toBe(0);
     expect((await readStoredMetadata(review)).get('file-1')).toEqual(reviewMetadata);
+  });
+});
+
+// The review graph upsert reads the iteration record itself, so evidence edges
+// no longer depend on the leaf emitting them: the evidence-density signal
+// counts EVIDENCE_FOR edges per finding, and a graph with none never allows
+// a stop.
+describe('upsert.cjs review finding evidence', () => {
+  const scratch: string[] = [];
+  afterEach(() => {
+    while (scratch.length > 0) rmSync(scratch.pop() as string, { recursive: true, force: true });
+  });
+
+  function stateLog(findingDetails: unknown[]): string {
+    const dir = mkdtempSync(join(tmpdir(), 'upsert-evidence-'));
+    scratch.push(dir);
+    const file = join(dir, 'deep-review-state.jsonl');
+    writeFileSync(file, [
+      { type: 'config', topic: 'fixture' },
+      { type: 'iteration', iteration: 1, dimensions: ['correctness'], findingDetails: [] },
+      { type: 'iteration', iteration: 2, dimensions: ['correctness'], findingDetails },
+    ].map((row) => JSON.stringify(row)).join('\n') + '\n');
+    return file;
+  }
+
+  async function graph(namespace: ScriptNamespace) {
+    const db = await import('../../lib/coverage-graph/coverage-graph-db.js');
+    try {
+      const ns = { specFolder: namespace.specFolder, loopType: namespace.loopType, sessionId: namespace.sessionId };
+      return { nodes: db.getNodes(ns), edges: db.getEdges(ns) };
+    } finally {
+      db.closeDb();
+    }
+  }
+
+  function upsert(namespace: ScriptNamespace, file: string, nodes: unknown[] = [], edges: unknown[] = []) {
+    return runScript('upsert', [
+      ...namespaceArgs(namespace),
+      '--nodes', JSON.stringify(nodes),
+      '--edges', JSON.stringify(edges),
+      '--state-log', file,
+      '--iteration', '2',
+    ]);
+  }
+
+  it('links a finding with a file ref to its file node, so evidence density rises above 0', async () => {
+    const namespace = uniqueNamespace('upsert');
+    namespaces.push(namespace);
+    const file = stateLog([{ id: 'R2-P1-001', severity: 'P1', title: 'Guard skips', file: 'src/guard.cjs:42' }]);
+
+    const result = upsert(namespace, file);
+    expect(result.exitCode).toBe(0);
+
+    const { nodes, edges } = await graph(namespace);
+    const evidence = edges.filter((edge) => edge.relation === 'EVIDENCE_FOR');
+    expect(evidence).toHaveLength(1);
+    expect(evidence[0]).toMatchObject({ sourceId: 'finding:R2-P1-001', targetId: 'file:src/guard.cjs' });
+    expect(nodes.find((node) => node.id === 'file:src/guard.cjs')?.kind).toBe('FILE');
+    const findings = nodes.filter((node) => node.kind === 'FINDING');
+    expect(evidence.length / findings.length).toBeGreaterThan(0);
+  });
+
+  it('folds a leaf finding node onto the finding id, so it does not dilute the density', async () => {
+    const namespace = uniqueNamespace('upsert');
+    namespaces.push(namespace);
+    const file = stateLog([{ id: 'R2-P1-001', severity: 'P1', title: 'Guard skips', file: 'src/guard.cjs:42' }]);
+
+    const result = upsert(namespace, file, [
+      { id: 'FIND-R2-P1-001', kind: 'FINDING', name: 'Guard skips' },
+      { id: 'dimension:correctness', kind: 'DIMENSION', name: 'correctness' },
+    ], [
+      { id: 'leaf-edge', relation: 'IN_DIMENSION', source: 'FIND-R2-P1-001', target: 'dimension:correctness' },
+    ]);
+    expect(result.exitCode).toBe(0);
+
+    const { nodes, edges } = await graph(namespace);
+    const findings = nodes.filter((node) => node.kind === 'FINDING');
+    expect(findings.map((node) => node.id)).toEqual(['finding:R2-P1-001']);
+    expect(edges.find((edge) => edge.id === 'leaf-edge')?.sourceId).toBe('finding:R2-P1-001');
+    expect(edges.filter((edge) => edge.relation === 'EVIDENCE_FOR').length / findings.length).toBe(1);
+  });
+
+  it('adds no duplicate edge when the same iteration is upserted again', async () => {
+    const namespace = uniqueNamespace('upsert');
+    namespaces.push(namespace);
+    const file = stateLog([{ id: 'R2-P1-001', severity: 'P1', title: 'Guard skips', file: 'src/guard.cjs:42' }]);
+
+    expect(upsert(namespace, file).exitCode).toBe(0);
+    const first = await graph(namespace);
+    expect(upsert(namespace, file).exitCode).toBe(0);
+    const second = await graph(namespace);
+
+    expect(second.edges).toHaveLength(first.edges.length);
+    expect(second.nodes).toHaveLength(first.nodes.length);
+    expect(second.edges.filter((edge) => edge.relation === 'EVIDENCE_FOR')).toHaveLength(1);
+  });
+
+  it('takes the file ref from the iteration delta when the state record lacks it', async () => {
+    const namespace = uniqueNamespace('upsert');
+    namespaces.push(namespace);
+    const file = stateLog([{ id: 'R2-P2-001', severity: 'P2', title: 'Unplaced in the record' }]);
+    const deltaDir = join(file, '..', 'deltas');
+    mkdirSync(deltaDir, { recursive: true });
+    writeFileSync(join(deltaDir, 'iter-002.jsonl'), [
+      { type: 'iteration', iteration: 2 },
+      { type: 'finding', id: 'R2-P2-001', severity: 'P2', title: 'Unplaced in the record', file: 'src/readme.md:7', iteration: 2 },
+    ].map((row) => JSON.stringify(row)).join('\n') + '\n');
+
+    const result = runScript('upsert', [
+      ...namespaceArgs(namespace),
+      '--nodes', '[]',
+      '--edges', '[]',
+      '--state-log', file,
+      '--delta-dir', deltaDir,
+      '--iteration', '2',
+    ]);
+    expect(result.exitCode).toBe(0);
+    const { edges } = await graph(namespace);
+    const evidence = edges.filter((edge) => edge.relation === 'EVIDENCE_FOR');
+    expect(evidence).toHaveLength(1);
+    expect(evidence[0]).toMatchObject({ sourceId: 'finding:R2-P2-001', targetId: 'file:src/readme.md' });
+  });
+
+  it('adds no edge for a finding without a file ref', async () => {
+    const namespace = uniqueNamespace('upsert');
+    namespaces.push(namespace);
+    const file = stateLog([{ id: 'R2-P2-001', severity: 'P2', title: 'Unplaced' }]);
+
+    const result = upsert(namespace, file);
+    expect(result.exitCode).toBe(0);
+    const { edges } = await graph(namespace);
+    expect(edges.filter((edge) => edge.relation === 'EVIDENCE_FOR')).toHaveLength(0);
+  });
+
+  it('skips an edge to an undeclared node instead of failing on the foreign key', async () => {
+    const namespace = uniqueNamespace('upsert');
+    namespaces.push(namespace);
+    const file = stateLog([{ id: 'R2-P1-001', severity: 'P1', title: 'Guard skips', file: 'src/guard.cjs:42' }]);
+
+    const result = upsert(namespace, file, [
+      { id: 'dimension:correctness', kind: 'DIMENSION', name: 'correctness' },
+    ], [
+      { id: 'orphan-edge', relation: 'COVERS', source: 'dimension:correctness', target: 'file:never-declared.cjs' },
+    ]);
+    expect(result.exitCode).toBe(0);
+    expect(result.json.status).toBe('ok');
+    expect((result.json.data as Record<string, unknown>).rejectedOrphanEdges).toEqual(['orphan-edge']);
+
+    const { edges } = await graph(namespace);
+    expect(edges.find((edge) => edge.id === 'orphan-edge')).toBeUndefined();
+    expect(edges.filter((edge) => edge.relation === 'EVIDENCE_FOR')).toHaveLength(1);
   });
 });

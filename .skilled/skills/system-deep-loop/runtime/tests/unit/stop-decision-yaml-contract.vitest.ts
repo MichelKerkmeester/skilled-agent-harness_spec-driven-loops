@@ -411,3 +411,14 @@ describe('deep-review stop-order prose names the drained-frontier candidate', ()
     expect(research).not.toContain('frontier_drained');
   });
 });
+
+describe('deep-review graph upsert derives finding evidence from the iteration record', () => {
+  it('passes the state log and the iteration to upsert.cjs', () => {
+    const step = stepText(readFileSync(resolve(ASSETS, 'deep-review.yaml'), 'utf8'), 'step_graph_upsert');
+    const bash = step.split('\n').find((line) => line.trim().startsWith('bash:')) ?? '';
+    expect(bash).toContain('--state-log \\"{state_paths.state_log}\\"');
+    expect(bash).toContain('--iteration \\"{current_iteration}\\"');
+    expect(bash).toContain('--delta-dir \\"{state_paths.delta_dir}\\"');
+    expect(step).toContain('EVIDENCE_FOR');
+  });
+});

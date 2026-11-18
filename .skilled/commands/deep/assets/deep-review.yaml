@@ -2034,7 +2034,8 @@ workflow:
           5. Merge optional graphEvents edges after normalizing relation = uppercase(event.relation); keep only COVERS, EVIDENCE_FOR, CONTRADICTS, RESOLVES, CONFIRMS, ESCALATES, IN_DIMENSION, IN_FILE.
           6. Emit nodes as { id, type, name, iteration, metadata } and edges as { id, relation, sourceId, targetId, metadata }, deduplicated by id.
           7. Discard malformed or unknown optional events without discarding canonical dimension and file coverage.
-        bash: "node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder \"{spec_folder}\" --loop-type \"review\" --session-id \"{session_id}\" --nodes '{graph_nodes_json}' --edges '{graph_edges_json}'"
+          8. Do not hand-build finding evidence: upsert.cjs reads iteration {current_iteration}'s finding rows from its delta and the findingDetails of its state record, and adds one FINDING node per finding plus an EVIDENCE_FOR edge to the FILE node of each finding's file:line ref. A leaf finding node whose id wraps the finding id folds onto that node, and an edge to a node neither the batch nor the graph declares is skipped and reported in rejectedOrphanEdges.
+        bash: "node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder \"{spec_folder}\" --loop-type \"review\" --session-id \"{session_id}\" --nodes '{graph_nodes_json}' --edges '{graph_edges_json}' --state-log \"{state_paths.state_log}\" --delta-dir \"{state_paths.delta_dir}\" --iteration \"{current_iteration}\""
         note: "Invoke the runtime script directly. Canonical iteration fields provide baseline coverage; graphEvents add richer evidence."
         outputs:
           - graph_nodes_json: "JSON array of canonical and optional review graph nodes"
