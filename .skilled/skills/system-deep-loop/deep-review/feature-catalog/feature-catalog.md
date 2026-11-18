@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-review review-loop system."
-version: 1.11.8.0
+version: 1.11.9.0
 ---
 
 # deep-review: Feature Catalog
@@ -437,7 +437,7 @@ A review run accepts configured custom dimensions after the four canonical ones,
 
 #### How It Works
 
-Custom names are ordered after the four canonical dimensions, judged by their own name and not required for severity coverage. They apply to a single-executor run only, since a fan-out run binds `review_dimensions: all` in every lineage.
+Custom names are ordered after the four canonical dimensions, judged by their own name and not required for severity coverage, though each must be covered before a clean stop like any configured dimension. They apply to a single-executor run only, since a fan-out run binds `review_dimensions: all` in every lineage.
 
 #### Source Files
 

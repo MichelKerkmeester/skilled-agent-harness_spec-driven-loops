@@ -6,7 +6,7 @@ trigger_phrases:
   - "expansive depth review"
   - "review frontier mode"
   - "review frontier-nodes"
-version: 1.0.10.0
+version: 1.0.11.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
@@ -25,7 +25,7 @@ The expansive run seeds depth-one sub-target nodes from the review target before
 
 ### Dimension Coverage
 
-The active node's next uncovered dimension is dispatched, apart from the last iteration under the cap while a core traceability protocol is unfinished, which reviews `traceability`. A node needs one iteration per dimension in its universe, the four canonical dimensions plus any custom name. Each depth band starts from its `budgetSplit` share of `--max-iterations` (0.5, 0.35 and 0.15), plus any share an earlier band left unspent once that band holds no open node, so fund the depth-1 band with at least `2 * ceil(nodes / lineages) * dimensions`. The run-wide `maxFrontierNodes` cap defaults to half of `maxIterations`, and every seed that is not pruned counts toward it. When `--max-iterations` is left at its default, the run sizes its budget from the seed: `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D the four canonical dimensions plus each custom name the config's `reviewDimensions` list adds, each counted once, and the seed step prints the derived budget. Since D is never below four, the ceiling of 24 binds from the first seed, so one run cannot fund every node at every depth of a wide review; split a wide review with fan-out, where each lineage with no matrix `iterations` value sizes its own budget from its share of the seed, with D fixed at the canonical four because a lineage reviews only those. A lineage dealt no seed node, or a run whose seeds were all pruned, runs at its loop default instead: 12 iterations for a native lineage and 7 for a CLI one or a single run. The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value, and the seed warns when it leaves no room past depth 1. At about seven to eight minutes an iteration, a 24-iteration review can reach `maxDurationMinutes` (120) before its iteration cap.
+The active node's next uncovered dimension is dispatched, apart from the last iteration under a cap of 2 or more while a core traceability protocol is unfinished, which reviews `traceability`. A node needs one iteration per dimension in its universe, the four canonical dimensions plus any custom name. Each depth band starts from its `budgetSplit` share of `--max-iterations` (0.5, 0.35 and 0.15), plus any share an earlier band left unspent once that band holds no open node, so fund the depth-1 band with at least `2 * ceil(nodes / lineages) * dimensions`. The run-wide `maxFrontierNodes` cap defaults to half of `maxIterations`, and every seed that is not pruned counts toward it. When `--max-iterations` is left at its default, the run sizes its budget from the seed: `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D the four canonical dimensions plus each custom name the config's `reviewDimensions` list adds, each counted once, and the seed step prints the derived budget. Since D is never below four, the ceiling of 24 binds from the first seed, so one run cannot fund every node at every depth of a wide review; split a wide review with fan-out, where each lineage with no matrix `iterations` value sizes its own budget from its share of the seed, with D fixed at the canonical four because a lineage reviews only those. A lineage dealt no seed node, or a run whose seeds were all pruned, runs at its loop default instead: 12 iterations for a native lineage and 7 for a CLI one or a single run. The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value, and the seed warns when it leaves no room past depth 1. At about seven to eight minutes an iteration, a 24-iteration review can reach `maxDurationMinutes` (120) before its iteration cap.
 
 ### Stop Behavior
 
@@ -55,6 +55,7 @@ Fan-out lineages receive a share of the seeded nodes. `runtime/scripts/fanout-me
 | `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Script | Applies the frontier-open veto to review stop candidates. |
 | `.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` | Script | Pivots only once the frontier is terminal. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Script | Returns the merged review frontier and runs the fan-in guard. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Script | Deals the open seed nodes round-robin, sizes each lineage budget from its share and exports `DEEP_LOOP_COVERAGE_DB_DIR` to a CLI lineage. |
 
 ### Validation And Tests
 
@@ -62,9 +63,13 @@ Fan-out lineages receive a share of the seeded nodes. `runtime/scripts/fanout-me
 |---|---|---|
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts` | Vitest | Review admission into the node store. |
 | `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md` | Manual playbook | DRV-076: the flag defaults to `default` and a default run matches the baseline. |
+| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md` | Manual playbook | DRV-077: the seed writes depth-1 sub-target nodes. |
+| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md` | Manual playbook | DRV-078: admission prunes a proposal with its reason. |
+| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-and-node-dimension-coverage.md` | Manual playbook | DRV-079: the frontier focus and per-node dimension coverage. |
 | `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-review-stop.md` | Manual playbook | DRV-080: an open frontier node holds a review stop. |
 | `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md` | Manual playbook | DRV-081: the review pivot waits for a terminal frontier. |
 | `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md` | Manual playbook | DRV-082: a review fan-out deals seeded nodes round-robin. |
+| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-drained-stops-review.md` | Manual playbook | DRV-083: a drained frontier forms the `frontier_drained` stop. |
 
 ---
 

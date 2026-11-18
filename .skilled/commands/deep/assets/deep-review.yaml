@@ -2642,7 +2642,7 @@ reference_only_appendix:
       - { priority: 2, name: "security", checks: "Auth, input/output safety, data exposure, permissions" }
       - { priority: 3, name: "traceability", checks: "Spec/checklist alignment, cross-reference integrity, evidence coverage" }
       - { priority: 4, name: "maintainability", checks: "Patterns, documentation quality, safe follow-on change clarity" }
-      - { priority: 5, name: "<custom>", checks: "A configured custom dimension: review the target for the property its name states, under the shared P0-P2 doctrine. It follows the canonical four in configured order and is not required for severity coverage." }
+      - { priority: 5, name: "<custom>", checks: "A configured custom dimension: review the target for the property its name states, under the shared P0-P2 doctrine. It follows the canonical four in configured order. It is not required for severity coverage, but like every configured dimension it must be covered before the run can stop on all_dimensions_clean." }
   cross_reference_protocols:
     note: "Cross-reference verification protocols split into core and overlay classes"
     core_protocols:

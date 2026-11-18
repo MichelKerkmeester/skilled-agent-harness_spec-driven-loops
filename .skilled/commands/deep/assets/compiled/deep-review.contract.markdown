@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "9de38d9b1e88a3acdfdd08348c95c9d2ccd69309c1c1d1cfc5bdf153a373cba5",
+      "sha256": "b8048ab19a66de514bc7605230d6edaeb4009a20536262f46109ecee80d5aecc",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "fc61e4ac9396a0e4a2ec0548a4d46d9740a0eaf0ff0fc33bb10491f7a21e2eaf",
+      "sha256": "1232c07ba4e5e85d970518e885f8bbf76bdf23ef3c19b74772ae24d1a8f757d3",
       "section": "full"
     },
     {
@@ -37,27 +37,27 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "876f9f2aeada71acb49d8823f3d42c4f4469071f0a20301a512ac3d8a548f252",
+      "sha256": "342671406962774e00c701b80e017c391e9fef010a2f394a5dce51aab8e19722",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "47ac8c90f25233f64e58147d669b72b6fad94487513da135088168caa65d2a2a",
+      "sha256": "479dca53fd13892eb0e523199046cd4c15cd15b69c832bb01ab7f6e662cad94e",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "sha256": "292b5bba3d7fad48dee4cde293c81d3cccaad006bd3d6945c6087484d3e9e6bf",
+      "sha256": "d9a8b06f938df81786796cda992889ee280d7b42fb7df9ac9f4effc665b21af1",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
-      "sha256": "f2ef2e8d57a88a81f0e0f12be82ee84835efe9b88b6c44af502723b621d46ccb",
+      "sha256": "14f01a94c1c218b6307c079fc715ad3ba82a0df3c742c4418e680c24a172072e",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "e54ff30d1621a223a767dda1ba64bfb68ec4b3b9f27be88b01cabbd1ed9ea65e",
+      "sha256": "3120de75d1c2259196f94237e8d5fb932607ef6dc1c2bf2e971b608c8023fbea",
       "section": "full"
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "path": ".skilled/agents/deep-review.md",
-      "sha256": "9c0991cfc8ddbc7f2b224207734335bd7fee7ba32e46ebedd3fe2da61ad4253a",
+      "sha256": "89e7c1ff5aec28513bd95d511d6cefa1ac932071f9d4ef58cf9c96c93244e980",
       "section": "full"
     },
     {

@@ -7,7 +7,7 @@ trigger_phrases:
   - "upsert graph nodes edges"
   - "iteration graph event file"
   - "store coverage graph records"
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # upsert.cjs
@@ -34,7 +34,7 @@ A review upsert can take `--state-log`, `--delta-dir` and `--iteration`. `readRe
 
 Finding ids are unique only per source. When an earlier iteration stored the same id for a finding with a different file and a different title, the new node is keyed `finding:{id}#{iteration}`, so the two findings stay apart.
 
-With `--state-log` or `--delta-dir` set, `resolveReviewFindingId` folds a leaf-sent FINDING node id onto the node the finding is stored under. It accepts the bare id and prefixed forms such as `finding-`, `FIND-` and `node:finding:`, in any case. Edge endpoints that name a known finding fold the same way.
+With `--state-log` or `--delta-dir` set, `resolveReviewFindingId` folds a leaf-sent FINDING node id onto the node the finding is stored under. It accepts the bare id and prefixed forms such as `finding-`, `FIND-` and `node:finding:`, in any case. Edge endpoints that name a known finding fold the same way. The iteration's own findings register before the stored ones, so when a reused id was split to `finding:{id}#{iteration}`, the leaf's FINDING node and every edge that names that id land on the new split node, not on the earlier finding. A leaf finding node that folds onto a finding this iteration derived keeps its own metadata keys and gains the derived `finding_id`, `file` and `line` it left out, so a later reused-id check can still compare files.
 
 ### Input Guards
 

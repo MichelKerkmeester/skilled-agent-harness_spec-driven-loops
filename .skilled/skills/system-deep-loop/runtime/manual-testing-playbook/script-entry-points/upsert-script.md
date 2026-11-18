@@ -1,7 +1,7 @@
 ---
 title: "DLR-015 -- upsert.cjs"
 description: "Manual validation scenario for upsert.cjs in the runtime/ skill."
-version: 1.4.0.4
+version: 1.4.1.0
 ---
 
 # DLR-015 -- upsert.cjs
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, execution flow, and 
 
 ## 1. OVERVIEW
 
-Stores coverage graph nodes and edges from JSON arrays or iteration graph event files.
+Stores coverage graph nodes and edges from JSON arrays or iteration graph event files. A review upsert can also take `--state-log`, `--delta-dir` and `--iteration`, and then derives one FINDING node per finding of that iteration, plus an EVIDENCE_FOR edge to the file a `path:line` ref names.
 
 ### Why This Matters
 
@@ -25,7 +25,7 @@ Consumer YAML depends on this direct script interface. A drift in args, stdout J
 - Objective: Confirm upsert.cjs behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: script entry points runtime.
 - Real user request: `Validate upsert.cjs and report whether the current source, script surface, and tests agree with the runtime/ contract.`
-- Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for invalid input, and DB close in `finally` where the script opens the graph DB.
+- Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for invalid input, and DB close in `finally` where the script opens the graph DB. On a review upsert with `--state-log`, `--delta-dir` and `--iteration`: one EVIDENCE_FOR edge from each finding with a `path:line` ref to its FILE node, a reused finding id with a different file and title stored as `finding:{id}#{iteration}` with the leaf's node and edges on that split node, and an edge to an undeclared node listed in `rejectedOrphanEdges` rather than failing the batch.
 - Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
 
 ---
@@ -46,7 +46,7 @@ Consumer YAML depends on this direct script interface. A drift in args, stdout J
 
 1. Inspect `scripts/upsert.cjs` for the implementation contract.
 2. Inspect `tests/integration/upsert-script.vitest.ts` for the primary regression coverage.
-3. Run or inspect the matching test assertions for this feature.
+3. Run or inspect the matching test assertions for this feature, including the review evidence and identity cases: `npx vitest run tests/integration/upsert-script.vitest.ts -t "review finding"` from `runtime/`.
 4. Capture the source lines, command output, or test assertions that prove the expected signals.
 5. Record PASS or FAIL with rationale; record SKIP only when a named sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevents the command from running.
 
@@ -82,7 +82,7 @@ upsert.cjs matches the documented current reality, the source anchors are accura
 
 | File | Role |
 |---|---|
-| `tests/integration/upsert-script.vitest.ts` | Primary regression coverage for upsert.cjs. |
+| `tests/integration/upsert-script.vitest.ts` | Primary regression coverage for upsert.cjs, including the review finding evidence, the reused-id split and the orphan-edge skip. |
 
 ---
 

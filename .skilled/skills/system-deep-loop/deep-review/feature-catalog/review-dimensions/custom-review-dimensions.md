@@ -6,7 +6,7 @@ trigger_phrases:
   - "custom dimension review"
   - "configured review dimension"
   - "review dimension coverage custom"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Custom review dimensions
@@ -25,7 +25,7 @@ A review normally audits four canonical dimensions: correctness, security, trace
 
 ### Coverage Tracking
 
-`runtime/scripts/reduce-state.cjs` derives each finding's dimension by matching it against the configured dimension universe, so a custom name that appears in the finding's focus is kept as its own dimension. When nothing matches, the derivation falls back to the iteration's first addressed dimension and then to `correctness`. `buildDimensionCoverage` builds coverage from the iteration records and the strategy dimensions.
+`runtime/scripts/reduce-state.cjs` derives each finding's dimension by matching it against the configured dimension universe, so a custom name that appears in the iteration focus or the finding's title or description is kept as its own dimension. The universe is checked in order with the canonical four first, so when that text also names a canonical dimension such as `security`, the finding goes to the canonical one. When nothing matches, the derivation falls back to the iteration's first addressed dimension and then to `correctness`. `buildDimensionCoverage` builds coverage from the iteration records and the strategy dimensions.
 
 ### Review Contract And Agent
 

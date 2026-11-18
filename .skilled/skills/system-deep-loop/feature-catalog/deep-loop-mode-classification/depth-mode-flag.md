@@ -6,14 +6,14 @@ trigger_phrases:
   - "depth mode flag"
   - "expansive depth flag"
   - "deep loop depth mode"
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # Depth mode flag (--depth-mode)
 
 ## 1. OVERVIEW
 
-`--depth-mode` is a command-level option on `/deep:research` and `/deep:review`. It takes `default` or `expansive`. The flag is not part of `mode-registry.json`, so the hub classifies a request into the same workflow mode with or without it. The behavior the flag turns on lives in the research and review packets. Admission caps the live frontier at half of `maxIterations`, or at `expansiveDepth.maxFrontierNodes` when the config sets it, and falls back to 10 when no config exists yet, as for a fan-out parent's seed. The seed pass is exempt from that cap, but every seeded node counts toward it afterwards, so a defaulted budget is sized from the seed: `min(24, max(loop default, 2 × c × (S + maxDepth − 1)))` for S seeded depth-1 nodes, with c 1 for research and, for review, the four canonical dimensions plus any custom name, each counted once. A run or fan-out lineage with no seeded node keeps its loop default. An explicit `--max-iterations` always wins, even below the derived value.
+`--depth-mode` is a command-level option on `/deep:research` and `/deep:review`. It takes `default` or `expansive`. The flag is not part of `mode-registry.json`, so the hub classifies a request into the same workflow mode with or without it. The behavior the flag turns on lives in the research and review packets. Admission caps the live frontier at half of `maxIterations`, or at `expansiveDepth.maxFrontierNodes` when the config sets it, and falls back to 10 when no config exists yet, as for a fan-out parent's seed. The seed pass is exempt from that cap, but every seeded node counts toward it afterwards, so a defaulted budget is sized from the seed: `min(24, max(loop default, 2 × c × (S + maxDepth − 1)))` for S seeded depth-1 nodes, with c 1 for research and, for review, the four canonical dimensions plus any custom name, each counted once. A fan-out lineage with no matrix `iterations` value is sized from its own seed share with c fixed at the canonical four for review and maxDepth at its default of 3, since a lineage reviews only those. A run or fan-out lineage with no seeded node keeps its loop default. An explicit `--max-iterations` always wins, even below the derived value.
 
 ---
 

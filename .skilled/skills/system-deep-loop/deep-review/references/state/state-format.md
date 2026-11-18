@@ -9,7 +9,7 @@ trigger_phrases:
   - "review iteration file structure"
 importance_tier: important
 contextType: implementation
-version: 1.11.13.0
+version: 1.11.14.0
 ---
 
 # Deep Review State Format
@@ -31,7 +31,7 @@ The review packet is reproduced from disk on every resume, so each file's format
 - Debugging JSONL reducer output or auditing schema-version transitions.
 - Authoring fixtures that need to round-trip through the reducer.
 
-The deep review loop uses 9 state files under the resolved `{artifact_dir}/` owned by the target spec, and a run started with `--depth-mode=expansive` adds a tenth, `frontier-nodes.jsonl`:
+The deep review loop uses 9 state files under the resolved `{artifact_dir}/` owned by the target spec, and a run started with `--depth-mode=expansive` adds two more, `frontier-nodes.jsonl` and the seed input `frontier-seed.json`:
 
 | File | Format | Mutability |
 |------|--------|------------|
@@ -45,6 +45,7 @@ The deep review loop uses 9 state files under the resolved `{artifact_dir}/` own
 | `review-report.md` | Markdown | Updated at synthesis |
 | `iterations/iteration-NNN.md` | Markdown | Write-once |
 | `frontier-nodes.jsonl` | JSON Lines | Append-only, expansive depth only (see Frontier Node Store) |
+| `frontier-seed.json` | JSON | Written once by the seed step as the input to `frontier-admit.cjs seed`, expansive depth only |
 
 ```text
 {artifact_dir}/

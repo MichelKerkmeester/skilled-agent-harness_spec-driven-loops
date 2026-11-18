@@ -9,7 +9,7 @@ trigger_phrases:
   - "review loop troubleshooting"
 importance_tier: normal
 contextType: general
-version: 1.11.15.0
+version: 1.11.16.0
 ---
 
 # Deep Review Quick Reference
@@ -162,7 +162,7 @@ Review mode stores its packet under the resolved local review path rooted at `{s
 
 **P0 override:** Any new P0 finding sets `newFindingsRatio >= 0.50`, blocking convergence.
 
-**Frontier veto:** Under `--depth-mode=expansive` an open or active frontier node turns a stop candidate into `CONTINUE` with reasonDetail `frontierOpen`. It never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the review floor. A drained frontier (at least one answered node, none open or active) forms the hard candidate `frontier_drained` when no other candidate does; every legal-stop gate still applies.
+**Frontier veto:** Under `--depth-mode=expansive` an open or active frontier node turns a stop candidate into `CONTINUE` with reasonDetail `frontierOpen`. It never outranks the iteration cap, consecutive failures, stuck recovery, pause, the max-duration stop, `--convergence-mode=off`, `--stop-policy=max-iterations` or the review floor. A drained frontier (at least one answered node, none open or active) forms the hard candidate `frontier_drained` when no other candidate does; every legal-stop gate still applies.
 
 ---
 

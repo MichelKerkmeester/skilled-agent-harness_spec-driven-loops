@@ -100,28 +100,13 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 
 ### Resource Map Coverage Gate
 
-When `{spec_folder}/resource-map.md` exists at init, deep review treats it as a mandatory audit input and does four things:
-
-- Persists `resource_map_present` in config.
-- Seeds `Known Context` with a snapshot of the map.
-- Has at least one iteration audit `target_files` coverage against the map: touched, not-touched with `expected-by-scope`-versus-`gap`, and absent-from-map, with findings tagged `resource-map-coverage`.
-- Has synthesis add the `## Resource Map Coverage Gate` report section and a converged `resource-map.md`. Disable this with `--no-resource-map`.
-
-Absent at init, the gate and section are skipped without failing the loop.
+When `{spec_folder}/resource-map.md` exists at init, it is a mandatory audit input: one iteration audits `target_files` coverage against it, and synthesis adds the `## Resource Map Coverage Gate` report section. `--no-resource-map` disables this, and an absent map skips it without failing the loop.
 Full sequencing: `references/protocol/loop-protocol.md` (init 9a, iteration 3b, synthesis 4). Schema: `references/state/state-format.md`.
 
 ### Bounded Context Snapshot Replacement
 
-During initialization, capture a bounded, pointer-based context snapshot in `deep-review-strategy.md` `Known Context` before the first dimension runs.
-The snapshot holds:
-
-- Target pointers: files, specs, symbols and resource-map entries.
-- The claimed behavior and acceptance criteria to verify.
-- Reuse and convention pointers.
-- Risk areas, missing context, stale-graph caveats and out-of-scope areas.
-
+During initialization, capture a bounded, pointer-based context snapshot in `deep-review-strategy.md` `Known Context` before the first dimension runs: target pointers, the claimed behavior to verify, reuse pointers and risk areas.
 Do not create a context-loop report or widen scope beyond the declared target.
-Use `@context` for quick retrieval, and `/speckit:plan` only when findings require implementation planning.
 
 ### State Packet Location
 
@@ -132,9 +117,7 @@ Full resolution rule and worked examples: `references/state/state-format.md` §1
 
 Core artifacts: `deep-review-config.json`, `deep-review-state.jsonl`, `deep-review-strategy.md`, `deep-review-dashboard.md`, `.deep-review-pause`, `resource-map.md`, `review-report.md`, and `iterations/iteration-NNN.md`.
 
-The loop writes `review/review-report.md` itself at synthesis rather than scaffolding it through `create.sh --level review`.
-The report is assembled from the findings registry and the JSONL state, so its content exists only once the loop has run, and a scaffolded skeleton would be overwritten whole.
-`create.sh --level review` exists for a review packet authored by hand, and its template carries the same nine sections the loop emits.
+The loop writes `review/review-report.md` itself at synthesis from the findings registry and the JSONL state; `create.sh --level review` is only for a review packet authored by hand.
 
 ### Core Innovation: Fresh Context Per Iteration
 
@@ -155,7 +138,7 @@ The four primary review dimensions (configured in `assets/review-mode-contract.y
 
 Review mode is lineage-aware.
 
-- **Lifecycle modes:** `new`, `resume`, `restart`, and `completed-continue` (set by `--extend=N` on a completed run, with `--extend-minutes=M` for the minutes added to the later of the prior duration budget and the time already elapsed).
+- **Lifecycle modes:** `new`, `resume`, `restart`, and `completed-continue` (set by `--extend=N` on a completed run; see `references/protocol/loop-protocol.md`).
 - **Required lineage fields:** `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, and `releaseReadinessState`.
 - **Reducer contract:** consumes the latest JSONL delta, the new iteration file, and prior reduced state, then emits finding registry, dashboard metrics, and strategy updates.
 
@@ -234,15 +217,10 @@ Each pass also compares `maxDurationMinutes` with the config `createdAt`. When t
 
 ### Expansive Depth Mode
 
-- `--depth-mode=expansive` keeps a depth-capped frontier of sub-target nodes beside the review target. An absent flag means `default`, which runs exactly as before.
-- The flag writes `antiConvergence.depthMode` and the caps in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6 (the review root seed takes up to 8 depth-1 sub-targets, against 6 for research), a `0.5/0.35/0.15` budget split across the depth bands, and `maxFrontierNodes`, which defaults to half of `maxIterations` unless the config sets a number. The depth-1 seed answers only to the root-children cap, but every seed that is not pruned counts toward the run cap. When `--max-iterations` is left at its default, the run sizes its budget from the seed: `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D the four canonical dimensions plus each custom name the config's `reviewDimensions` list adds, each counted once, and the seed step prints the derived budget. Since D is never below four, the ceiling of 24 binds from the first seed, so one run cannot fund every node at every depth of a wide review; split a wide review with fan-out, where each lineage with no matrix `iterations` value sizes its own budget from its share of the seed, with D fixed at the canonical four because a lineage reviews only those. A lineage dealt no seed node, or a run whose seeds were all pruned, runs at its loop default instead: 12 iterations for a native lineage and 7 for a CLI one or a single run. The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value, and the seed warns when it leaves no room past depth 1. At about seven to eight minutes an iteration, a 24-iteration review can reach `maxDurationMinutes` (120) before its iteration cap. `antiConvergence.depthMode` is locked against the optimizer; the `expansiveDepth` caps are in neither its tunable nor its locked list.
-- `step_frontier_seed` writes the depth-1 nodes before iteration 1 through `runtime/scripts/frontier-admit.cjs seed --target review`, after `step_create_config` or before `step_fanout_spawn` on a fan-out run. A merge with no diff of its own is pruned `merge-no-own-diff` and an index rebuild `generated-artifact`.
-- `step_frontier_admit` runs before the reducer and prunes a `frontier_proposal` on the first failed check among relevance, dedupe, depth, fan-out, budget and cycle. Node status lives in `review/frontier-nodes.jsonl`, written by `frontier-admit.cjs` and, for each fan-out lineage's starting store, by `fanout-run.cjs`; review has no inbox.
-- `step_read_state` reads the active node and sets `next_dimension` to its next uncovered dimension, apart from the last iteration under the cap while a core traceability protocol is unfinished, `step_frontier_activate` marks it active before dispatch, and the prompt pack's `{frontier_block}` names the node. Next Focus takes the blocked stop, then the pivot, then the node, then the leaf focus when it names an uncovered dimension or every dimension is covered, and otherwise the first uncovered dimension.
-- While a node stays open the frontier veto turns a stop candidate into `CONTINUE` with reasonDetail `frontierOpen`. It never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the review floor, and stuck recovery closes the active node `exhausted`.
-- Once the frontier holds at least one answered node and none open or active, an expansive run that forms neither the clean nor the composite candidate gets the hard candidate `frontier_drained`, so a run whose frontier work is done stops instead of running to its cap; a fan-out lineage reads only its own partition. A frontier that closed with nothing answered forms no candidate. Every legal-stop gate and the graph decision still decide it, and a default run never forms it.
-- A fan-out lineage keeps its coverage graph in `graph-db/` inside its own directory: the runner exports `DEEP_LOOP_COVERAGE_DB_DIR` to it, so the graph steps stay inside the lineage write surface and the hotspot saturation gate has a graph to read.
-- A fan-out run deals the depth-1 nodes round-robin in node-id order, binds `frontier_scope:` beside `review_focus:`, records the partition as `frontier_partition` in `orchestration-summary.json` and returns a partition guard for any node no lineage reports. Size each lineage's iteration cap (the `--iters=N` value on its executor entry, which `fanout-run.cjs` passes as that lineage's `--max-iterations`) so half of it covers `ceil(nodes / lineages) * 4`, since a lineage reviews the canonical four. When unset, the cap is derived from the lineage's seed share, 24 once it is dealt a node, or its loop default of 12 native and 7 CLI when it was dealt none.
+- `--depth-mode=expansive` is opt-in. It seeds depth-1 sub-target nodes from the review target before iteration 1 and grows them only through admitted `frontier_proposal` rows, stored in `review/frontier-nodes.jsonl`. An absent flag (`default`) runs exactly as before.
+- A defaulted `--max-iterations` is derived from the seed, up to 24, and an explicit value always wins.
+- While a node is open or active, the frontier veto turns a stop candidate into `CONTINUE` with reasonDetail `frontierOpen`. It never outranks the iteration cap, consecutive failures, stuck recovery, pause, the max-duration stop, `--convergence-mode=off`, `--stop-policy=max-iterations` or the review floor.
+- Caps, budget arithmetic, admission checks, dimension steering, `frontier_drained` and fan-out partitioning: [loop-protocol.md](references/protocol/loop-protocol.md) §Expansive Depth Frontier and [convergence.md](references/convergence/convergence.md) §Expansive Depth Mode.
 
 ---
 
@@ -267,7 +245,7 @@ Each pass also compares `maxDurationMinutes` with the config `createdAt`. When t
 3. **Exceed TCB**, Stay within `config.maxToolCallsPerIteration` tool calls per iteration. Breadth over depth per cycle.
 4. **Ask the user**, The leaf agent never asks. It makes best-judgment decisions without pausing. The workflow asks only in `:confirm` mode, at its approval gates.
 5. **Skip convergence checks**, Every iteration must be evaluated against convergence criteria before the next dispatch.
-6. **Modify config after init**, review parameters in `deep-review-config.json` are read-only after initialization. The workflow makes three permitted writes: the terminal `step_update_config_status` flip to `status: complete`, the `--extend=N` rewrite, and `step_frontier_budget` setting `maxIterations` from the seed for an expansive run with a defaulted budget.
+6. **Modify config after init**, review parameters in `deep-review-config.json` are read-only after initialization, apart from the workflow's own writes that `references/state/state-format.md` lists.
 7. **Modify files under review**, The review loop is observation-only. No code changes during audit.
 8. **Use WebFetch**, Review is code-only. No external resource fetching is permitted.
 9. **Implement fixes during review**, Report findings only. Implementation is a separate follow-up step.
@@ -327,18 +305,7 @@ All of these must hold:
 - `review-report.md` carries all 9 core sections plus the conditional `## Resource Map Coverage Gate`.
 - Continuity is saved via `generate-context.js`.
 
-Nine binary quality gates must all pass before STOP is legal:
-
-1. Config validity and lineage match.
-2. Strategy initialization completeness.
-3. State and registry consistency.
-4. Iteration completeness (markdown plus JSONL delta).
-5. Severity-field coverage on every finding (`severity`/`category`/`file:line`/`content_hash`).
-6. The advisory-only `riskScore` never gating verdict logic.
-7. Adversarial P0 replay.
-8. Dimension and protocol coverage stability.
-9. Acceptance coverage: the advisory `AC_COVERAGE` signal when the spec-folder lifecycle predicate is active.
-
+Nine binary quality gates, from config validity through adversarial P0 replay and acceptance coverage, must all pass before STOP is legal.
 The security-sensitive override also applies when the target touches security, path handling, env precedence, schema boundaries, persistence or shared policy (`minStabilizationPasses=2` plus fix-completeness replay).
 Full gate-by-gate criteria and rationale: `references/protocol/completion-criteria.md`.
 

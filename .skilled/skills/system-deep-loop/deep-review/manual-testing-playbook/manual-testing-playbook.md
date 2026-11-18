@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.13.7.0
+version: 1.13.8.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -788,6 +788,10 @@ Automated coverage for `deep-review` lives in the deep-loop runtime test tree an
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-contract.vitest.ts` | Deep-review state contract |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts` | Deep-review state reducer |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-heading.vitest.ts` | Deep-review strategy heading handling |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts` | Expansive review seeding, admission prunes and the review target bound |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/review-depth-mode-golden.vitest.ts` | Default review artifacts, the lineage prompt among them, unchanged by the depth-mode code |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts` | Stop decision order, the frontier veto and `frontier_drained` |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts` | Stop decision wiring in the workflow YAML |
 | `.skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts` | Review-depth convergence integration |
 | `.skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-graph.vitest.ts` | Review-depth graph integration |
 | `.skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-validator.vitest.ts` | Review-depth validator integration |

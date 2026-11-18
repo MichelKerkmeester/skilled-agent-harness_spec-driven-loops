@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.23.0
+version: 1.11.24.0
 ---
 
 # deep-review
@@ -138,6 +138,7 @@ The packet lives under `{spec_folder}/review/`. A root-spec target writes there 
 | `review-report.md` | The nine-section report, written at synthesis |
 | `iterations/iteration-NNN.md` | One write-once file per iteration |
 | `frontier-nodes.jsonl` | Node store an expansive run keeps, absent on a default run |
+| `frontier-seed.json` | The seed step's depth-1 sub-targets, the input `frontier-admit.cjs seed` reads, absent on a default run |
 
 The lineage block carries `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun` and `releaseReadinessState`. A first run is mode `new`. `resume` continues the same lineage without changing generation. `restart` opens a new generation and archives the prior packet. `completed-continue` is set by `--extend=N`, which reopens a completed run in the same session and generation and records `continuedFromRun`. `--extend-minutes=M` sets the minutes the extension adds to the later of the prior duration budget and the time already elapsed.
 `fork` is reserved and deferred, so the runtime neither emits nor accepts it. `releaseReadinessState` starts at `in-progress`. It moves to `release-blocking` while any unresolved P0 remains. It moves to `converged` when the run stops converged with a PASS or CONDITIONAL verdict.
@@ -160,7 +161,7 @@ Any new P0 forces another iteration. The override sets `newFindingsRatio` to at 
 
 An admission step runs before the reducer. It applies six checks in order: relevance, dedupe, depth, fan-out, budget and cycle. The first failure prunes the proposal. Node status lives in `review/frontier-nodes.jsonl`, which no default run creates. An open node is filed as open search debt, so the run spends the iteration that node still needs.
 
-The frontier veto never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the floor above. Stuck recovery closes the active node as `exhausted`. Once every node is closed and at least one was answered, a run that forms no other stop candidate gets `frontier_drained`. The legal-stop gates still decide it, so a run whose frontier work is done stops before its cap.
+The frontier veto never outranks the iteration cap, consecutive failures, stuck recovery, pause, the max-duration stop, `--convergence-mode=off`, `--stop-policy=max-iterations` or the floor above. Stuck recovery closes the active node as `exhausted`. Once every node is closed and at least one was answered, a run that forms no other stop candidate gets `frontier_drained`. The legal-stop gates still decide it, so a run whose frontier work is done stops before its cap.
 
 The caps are `maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget split and `maxFrontierNodes`, which defaults to half of `maxIterations`. When `--max-iterations` is left at its default, the run sizes its budget from the seed. The budget is `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D the four canonical dimensions plus each custom name the config's `reviewDimensions` list adds, each counted once. The seed step prints the derived budget.
 
@@ -274,4 +275,5 @@ The skill ships a feature catalog and a manual testing playbook. The catalog gro
 allow-ref iteration-NNN.md | a review pass writes it inside the run's review folder under the target spec folder
 allow-ref iterations/iteration-NNN.md | one write-once file per pass inside the run's review folder under the target spec folder
 allow-ref resource-map.md | the synthesis writes it inside the run's review folder under the target spec folder
+allow-ref frontier-seed.json | the seed step of an expansive run writes it inside the run's review folder under the target spec folder
 -->

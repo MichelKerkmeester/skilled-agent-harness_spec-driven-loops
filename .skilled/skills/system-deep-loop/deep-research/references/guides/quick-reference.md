@@ -10,7 +10,7 @@ trigger_phrases:
   - "research progress visualization"
 importance_tier: normal
 contextType: general
-version: 1.14.10.0
+version: 1.14.11.0
 ---
 
 # Deep Research Quick Reference
@@ -147,7 +147,7 @@ stuckThreshold consecutive no-progress?
 All questions answered, or composite convergence (3-signal weighted > 0.60)?
   Yes --> STOP candidate
     Below minIterations? --> CONTINUE
-    Expansive run with an open frontier node? --> CONTINUE
+    Expansive run with an open or active frontier node? --> CONTINUE
     Otherwise --> STOP (converged), once the quality guards pass
 
 Otherwise --> CONTINUE

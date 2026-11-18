@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "86d1a8f8564a71d3a6249de3e6618651507374150776d1e4d1dc40858f3fac65",
+      "sha256": "c35707fc50258961306e2519caa2d1cc09e513ff12022139eedc39771120461a",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "4ef0df43bc5c564dd47f1fc78864830c6641615bcbde3761fb43d4a8010e3556",
+      "sha256": "83c79b12e03f2838fd66c11eae6c4b1817f248c3d83ada5e0a96390f7d906c02",
       "section": "full"
     },
     {
@@ -37,12 +37,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "86eec42c5c9301caa1de3f76a634000f5668244fc6e028b217dca5ae8d52fd47",
+      "sha256": "e32ac26d2a6f53261d3a598edc114cd8c95775b5e5f20adadeeb1340a2214a87",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "8508769b437729b4719aff01e64167cfd46155168d9bee7222a593cacd254ba0",
+      "sha256": "120a7ac6d5fce96b3ab98a0a22623683c53ff0a5a7c081848b2469e4631ba63b",
       "section": "full"
     },
     {
@@ -52,12 +52,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
-      "sha256": "ec5e471e7bcc4b28a0ff18a16face5c5ed4f6ad3cb9248dc516bf3cf362835a3",
+      "sha256": "780c97310056a4bf380c64766ec40c803c276bc24696ef43bbc95a71eebc2201",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
-      "sha256": "26bc58f00a063c58ae2fdaba0e4859d12e961e75e267bc91706ca343db9e65ee",
+      "sha256": "e6d382d1d35c192a9c1d5804877944d632f92611f29d3686334ee05cd2e515b4",
       "section": "full"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "path": ".skilled/agents/deep-research.md",
-      "sha256": "432b51ec37f4f0877b51652c87ebab2419fcedd5824e383235a1a2b63a87cfcc",
+      "sha256": "3ce4c916afef8aa23723a842a8fc4d8dc8fa0d46d9ce42452e47b4c097943d10",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "693dc3c89708ae0ebc1e63eb2409232875ec76eb9e385acf3db65c85639718c6"
+  "compiledBodyDigest": "ef5001ac5be1f31ee0206047dac64f50cb360cf114f1dc8c856f50587642becd"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -210,7 +210,7 @@ Rules: see `auto-mode-contract.md` §2 (unspecified fields fall back to default;
 | `research_topic`        | Y        | `$ARGUMENTS` positional topic, or marker `research_topic`                                                                                                                                              | none                               | N                                                       |
 | `spec_folder`           | Y        | flag `--spec-folder`, marker `spec_folder`, `scope-extract` → a spec-folder path named in the topic/`$ARGUMENTS` that resolves to an existing folder (auto-bound + stripped, per `auto_mode_contract` §1 source 3), or targeted choice among suggested existing/new/update-related/phase folder | none | Y, ONLY when topic is present, names no resolvable spec folder, and the folder choice is ambiguous |
 | `execution_mode`        | Y        | attached suffix `:auto` or marker `execution_mode`                                                                                                                                                     | `AUTONOMOUS` under `:auto`         | N                                                       |
-| `maxIterations`         | Y        | flag `--max-iterations`, marker `maxIterations`, or default; the setup-only binding `max_iterations_source` names which (`flag`, `marker`, `setup`, `matrix` or `default`) and is never written to the config. Under `--depth-mode=expansive` a `default` budget is resized after the seed step to `min(24, max(10, 2·c·(S + maxDepth − 1)))`, with S the depth-1 nodes the seed admitted and c = 1; any other source is kept as given                                                                                                                                            | `10`                               | N                                                       |
+| `maxIterations`         | Y        | flag `--max-iterations`, marker `maxIterations`, or default; the setup-only binding `max_iterations_source` names which (`flag`, `marker`, `setup`, `matrix` or `default`) and is never written to the config. Under `--depth-mode=expansive` a `default` budget is resized after the seed step to `min(24, max(10, 2·c·(S + maxDepth − 1)))`, with S the depth-1 nodes the seed admitted and c = 1. That is the single-executor budget: a fan-out lineage with no matrix `iterations` value is sized the same way from its own round-robin share of the open seed nodes, with maxDepth at its default of 3 and a floor of 12 native or 10 CLI, which a lineage dealt no node runs at; for a fan-out lineage only a matrix `iterations` value is kept as given, and for a single-executor run any other source is kept as given                                                                                                                                            | `10`                               | N                                                       |
 | `convergenceThreshold`  | Y        | flag `--convergence`, marker `convergenceThreshold`, or default                                                                                                                                        | `0.05`                             | N                                                       |
 | `convergence_mode`      | Y        | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default                                                                                                  | `default`                          | N                                                       |
 | `depth_mode`            | Y        | flag `--depth-mode=default|expansive`, marker `depth_mode`, or default `default`                                                                                                                       | `default`                          | N                                                       |

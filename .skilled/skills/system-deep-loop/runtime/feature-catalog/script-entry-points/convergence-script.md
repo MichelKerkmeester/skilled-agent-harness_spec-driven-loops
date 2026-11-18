@@ -7,7 +7,7 @@ trigger_phrases:
   - "check convergence decision"
   - "stop allowed stop blocked"
   - "graph-aware loop convergence"
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # convergence.cjs
@@ -44,7 +44,7 @@ Once a stop candidate exists, a run below a `minIterations` above 1 returns CONT
 
 ### frontierOpen Veto
 
-Under `depthMode: 'expansive'`, a stop candidate becomes CONTINUE with `reasonDetail` `frontierOpen` while `frontierOpen` is above 0. A research run vetoes only a soft candidate. A review run vetoes any candidate, because a review clean candidate is a hard stop. The veto never creates a stop. The cap, consecutive failures, stuck recovery, `--convergence-mode=off`, the max-iterations policy and the minimum iterations floor all decide before it.
+Under `depthMode: 'expansive'`, a stop candidate becomes CONTINUE with `reasonDetail` `frontierOpen` while `frontierOpen` is above 0. A research run vetoes only a soft candidate. A review run vetoes any candidate, because a review clean candidate is a hard stop. The veto never creates a stop. The cap, consecutive failures, stuck recovery, convergence mode `off` (`--convergence-mode off` or `antiConvergence.convergenceMode`), the max-iterations policy and the minimum iterations floor all decide before it.
 
 The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 

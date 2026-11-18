@@ -6,7 +6,7 @@ trigger_phrases:
   - "expansive depth research"
   - "research frontier mode"
   - "frontier admission research"
-version: 1.0.9.0
+version: 1.0.10.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
@@ -35,7 +35,7 @@ After the iteration graph upsert, the workflow step `step_frontier_graph_upsert`
 
 ### Stop And Next Focus
 
-While a frontier node is open, a stop candidate, whether `all_questions_answered` or a composite convergence stop, becomes another iteration. Next Focus steers to the shallowest open node. The iteration cap, consecutive failures, the anti-convergence floor, stuck recovery, pause, `--convergence-mode=off` and the max-iterations policy decide before the frontier veto, so the frontier never extends a run past them.
+While a frontier node is open, a stop candidate, whether `all_questions_answered` or a composite convergence stop, becomes another iteration. Next Focus steers to the shallowest open node. The iteration cap, consecutive failures, the anti-convergence floor, stuck recovery, pause, the max-duration stop, `--convergence-mode=off` and the max-iterations policy decide before the frontier veto, so the frontier never extends a run past them.
 
 ### Fan-Out
 

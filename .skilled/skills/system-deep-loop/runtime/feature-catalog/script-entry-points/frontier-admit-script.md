@@ -7,7 +7,7 @@ trigger_phrases:
   - "frontier-nodes.jsonl"
   - "frontier admission checks"
   - "expansive frontier seed budget"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # frontier-admit.cjs
@@ -46,7 +46,7 @@ A research admission also appends one row to `inbox.jsonl` with `origin` `fronti
 
 `checkProposal` runs six checks in a fixed order. The first one that fails prunes the proposal, and its name becomes the prune reason.
 
-1. `relevance` fails a proposal with no question, no evidence or no usable scope. It also fails a parent that is not in the store or was pruned. On review, a file-list target narrows relevance to scopes inside that target, and a commit-range target narrows it to the files the range touches.
+1. `relevance` fails a proposal with no question, no evidence or no usable scope. It also fails a parent that is not in the store or was pruned. On review, a file-list target narrows relevance to scopes inside that target, and a commit-range target narrows it to the files the range touches. A `.` or `./` target names the repo root, which holds every path that does not climb out of it, and a glob entry such as `src/**/*.ts` is bounded by the directory before its first glob segment.
 2. `dedupe` fails a question whose normalized key matches any stored node, in any status, or any known text. A leading id such as `Q3:` is dropped before the match.
 3. `depth` fails a proposal past `maxDepth`.
 4. `fanout` fails a parent that already holds its child cap. It also fails when the live node count has reached the run-wide node cap.
