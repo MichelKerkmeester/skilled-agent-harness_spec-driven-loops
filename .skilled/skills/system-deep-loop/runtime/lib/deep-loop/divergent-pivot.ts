@@ -96,7 +96,6 @@ export interface PivotAgreementResult {
 export interface DivergentConfigInput {
   readonly maxPivots?: number;
   readonly maxCouncilSeatOutputs?: number;
-  readonly minRemainingIterations?: number;
   readonly candidateSimilarityThreshold?: number;
 }
 
@@ -195,6 +194,7 @@ export type PivotFailureReason =
   | 'recursion_guard'
   | 'max_pivots_exceeded'
   | 'max_council_seat_outputs_exceeded'
+  // Never raised now; kept so a failure persisted by an older pivot still loads.
   | 'insufficient_remaining_iterations'
   | 'no_valid_candidates'
   | 'council_all_seats_rejected'
@@ -232,7 +232,10 @@ export type PivotTransactionResult = PivotCompletedResult | PivotFailedResult;
 interface NormalizedDivergentConfig {
   readonly maxPivots: number;
   readonly maxCouncilSeatOutputs: number;
-  readonly minRemainingIterations: number;
+  // The run stops at its iteration cap before a pivot opens, so no remaining-iterations
+  // limit is read from config. A limit persisted by an older pivot is carried through
+  // unchanged, so replaying that pivot's config still matches the file.
+  readonly minRemainingIterations?: number;
   readonly candidateSimilarityThreshold: number;
 }
 
@@ -290,7 +293,6 @@ const REQUIRED_SEAT_IDS = ['seat-001', 'seat-002', 'seat-003'] as const;
 const DEFAULT_DIVERGENT_CONFIG: NormalizedDivergentConfig = {
   maxPivots: 3,
   maxCouncilSeatOutputs: 3,
-  minRemainingIterations: 1,
   candidateSimilarityThreshold: DEFAULT_CANDIDATE_SIMILARITY_THRESHOLD,
 };
 const PIVOT_LIFECYCLE_STATES = new Set<string>([
@@ -467,10 +469,6 @@ function normalizeConfig(input: PivotConfigInput | undefined): NormalizedDiverge
     maxCouncilSeatOutputs: positiveInteger(
       divergent.maxCouncilSeatOutputs ?? DEFAULT_DIVERGENT_CONFIG.maxCouncilSeatOutputs,
       'antiConvergence.divergent.maxCouncilSeatOutputs',
-    ),
-    minRemainingIterations: nonNegativeInteger(
-      divergent.minRemainingIterations ?? DEFAULT_DIVERGENT_CONFIG.minRemainingIterations,
-      'antiConvergence.divergent.minRemainingIterations',
     ),
     candidateSimilarityThreshold: finiteRatio(
       divergent.candidateSimilarityThreshold
@@ -1052,14 +1050,16 @@ function parsePersistedIdentity(value: unknown): PivotIdentityInput {
 
 function parsePersistedLimits(value: unknown): NormalizedDivergentConfig {
   if (!isRecord(value)) throw new Error('Persisted pivot limits must be an object.');
-  const required = ['maxPivots', 'maxCouncilSeatOutputs', 'minRemainingIterations', 'candidateSimilarityThreshold'];
+  const required = ['maxPivots', 'maxCouncilSeatOutputs', 'candidateSimilarityThreshold'];
   if (required.some((key) => !Object.prototype.hasOwnProperty.call(value, key))) {
     throw new Error('Persisted pivot limits are incomplete.');
   }
   return {
     maxPivots: positiveInteger(value.maxPivots, 'limits.maxPivots'),
     maxCouncilSeatOutputs: positiveInteger(value.maxCouncilSeatOutputs, 'limits.maxCouncilSeatOutputs'),
-    minRemainingIterations: nonNegativeInteger(value.minRemainingIterations, 'limits.minRemainingIterations'),
+    ...(Object.prototype.hasOwnProperty.call(value, 'minRemainingIterations')
+      ? { minRemainingIterations: nonNegativeInteger(value.minRemainingIterations, 'limits.minRemainingIterations') }
+      : {}),
     candidateSimilarityThreshold: finiteRatio(value.candidateSimilarityThreshold, 'limits.candidateSimilarityThreshold'),
   };
 }
