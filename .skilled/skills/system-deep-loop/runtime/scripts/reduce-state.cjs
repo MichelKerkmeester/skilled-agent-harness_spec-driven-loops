@@ -3067,6 +3067,7 @@ module.exports = {
   REQUIRED_DIMENSIONS,
   SEVERITY_KEYS,
   SEVERITY_WEIGHTS,
+  buildDimensionUniverse,
   buildGraphConvergenceRollup,
   buildReviewFrontier,
   frontierMarkerPattern,

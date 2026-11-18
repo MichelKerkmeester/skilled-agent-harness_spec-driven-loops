@@ -291,9 +291,9 @@ function readCaps(artifactDir, target = 'research') {
 // A defaulted expansive budget is sized from the seed: two iterations for each node
 // on every level the frontier may still reach (the seeded nodes plus one node per
 // level below depth 1), times the iterations one node costs, which is one for
-// research and one per configured dimension for review. It never drops below the
-// loop default and never passes the ceiling, which binds for a four-dimension
-// review from the first seed. Twice the node count keeps the half-budget node cap
+// research and, for review, one per dimension the reducer requires before it marks
+// a node answered. It never drops below the loop default and never passes the
+// ceiling, which binds for a review from the first seed at the default depth. Twice the node count keeps the half-budget node cap
 // above the seed, so the frontier can still grow. A run or lineage with no seeded
 // node has no frontier to fund, so it runs at its loop default.
 function expansiveBudget({ target, seeded, maxDepth = DEFAULT_MAX_DEPTH, dimensions = CANONICAL_REVIEW_DIMENSIONS, loopDefault }) {
@@ -305,13 +305,12 @@ function expansiveBudget({ target, seeded, maxDepth = DEFAULT_MAX_DEPTH, dimensi
   return Math.min(EXPANSIVE_BUDGET_CEILING, Math.max(floor, 2 * perNode * nodes));
 }
 
-function configuredReviewDimensionCount(config) {
-  const raw = config.reviewDimensions;
-  const list = Array.isArray(raw)
-    ? raw
-    : typeof raw === 'string' && raw.trim() && raw.trim() !== 'all' ? raw.split(',') : [];
-  const names = list.filter((name) => typeof name === 'string' && name.trim());
-  return names.length > 0 ? names.length : CANONICAL_REVIEW_DIMENSIONS;
+// A review node is answered only once every dimension in the reducer's universe
+// has evidence, the canonical four plus any custom names, so the budget counts that
+// same set. Loaded on use, the way fanout-run loads this module.
+function reviewDimensionCount(config) {
+  const { buildDimensionUniverse } = require('./reduce-state.cjs');
+  return buildDimensionUniverse(config).length;
 }
 
 // The budget the run uses after the seed step, and how many nodes past depth 1 the
@@ -330,7 +329,7 @@ function seedBudget({ artifactDir, target = 'research', maxIterationsSource = 'd
       target: mode,
       seeded,
       maxDepth: capValue(expansive.maxDepth, DEFAULT_MAX_DEPTH),
-      dimensions: mode === 'review' ? configuredReviewDimensionCount(source) : 1,
+      dimensions: mode === 'review' ? reviewDimensionCount(source) : 1,
       loopDefault: configured,
     })
     : configured;

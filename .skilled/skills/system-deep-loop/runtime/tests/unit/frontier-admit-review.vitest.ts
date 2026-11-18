@@ -537,8 +537,9 @@ describe('frontier block review target', () => {
   });
 });
 
-// A review node costs one iteration per configured dimension, so its derived
-// budget scales with the dimension count and reaches the ceiling fast.
+// A review node costs one iteration per dimension a node must cover before the
+// reducer marks it answered: the canonical four plus any custom names, so its
+// derived budget reaches the ceiling fast.
 describe('review expansive budget scales with the dimension count', () => {
   type SeedBudget = AdmissionResult & { derivedMaxIterations: number; growthSlots: number };
   const seedWithBudget = seedNodes as unknown as (options: {
@@ -549,10 +550,10 @@ describe('review expansive budget scales with the dimension count', () => {
     maxIterationsSource?: string;
   }) => SeedBudget;
 
-  function reviewDir(reviewDimensions: string[]): string {
+  function reviewDir(reviewDimensions: string[] | string, maxDepth = 3): string {
     const dir = mkdtempSync(join(tmpdir(), 'frontier-admit-review-budget-'));
     tempDirs.push(dir);
-    writeFileSync(join(dir, REVIEW_CONFIG_FILE), JSON.stringify({ maxIterations: 7, reviewDimensions, expansiveDepth: { maxDepth: 3 } }), 'utf8');
+    writeFileSync(join(dir, REVIEW_CONFIG_FILE), JSON.stringify({ maxIterations: 7, reviewDimensions, expansiveDepth: { maxDepth } }), 'utf8');
     return dir;
   }
 
@@ -562,10 +563,27 @@ describe('review expansive budget scales with the dimension count', () => {
     evidence: `src/part-${index + 1}/index.ts:1`,
   }));
 
-  it('one dimension sizes the budget like research', () => {
+  it('one configured dimension still costs the canonical four per node', () => {
     const result = seedWithBudget({ artifactDir: reviewDir(['correctness']), candidates: parts(3), target: 'review', maxIterationsSource: 'default' });
+    expect(result.derivedMaxIterations).toBe(24);
+    expect(result.growthSlots).toBe(9);
+  });
+
+  // Depth 1 and one seeded node keep the budget under the ceiling, so the count
+  // the budget uses shows: 2 * count * 1 against the loop default of 7.
+  it('two canonical dimensions count as the canonical four', () => {
+    const result = seedWithBudget({ artifactDir: reviewDir(['correctness', 'security'], 1), candidates: parts(1), target: 'review', maxIterationsSource: 'default' });
+    expect(result.derivedMaxIterations).toBe(8);
+  });
+
+  it('a custom dimension adds one to the canonical four', () => {
+    const result = seedWithBudget({ artifactDir: reviewDir(['correctness', 'security', 'performance'], 1), candidates: parts(1), target: 'review', maxIterationsSource: 'default' });
     expect(result.derivedMaxIterations).toBe(10);
-    expect(result.growthSlots).toBe(2);
+  });
+
+  it('counts a repeated or differently cased name, and all, once', () => {
+    const result = seedWithBudget({ artifactDir: reviewDir('Performance, performance, CORRECTNESS, all', 1), candidates: parts(1), target: 'review', maxIterationsSource: 'default' });
+    expect(result.derivedMaxIterations).toBe(10);
   });
 
   it('four dimensions hit the ceiling of 24 from the first seed', () => {
