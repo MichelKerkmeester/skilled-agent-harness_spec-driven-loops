@@ -240,7 +240,7 @@ Each pass also compares `maxDurationMinutes` with the config `createdAt`. When t
 - `step_frontier_admit` runs before the reducer and prunes a `frontier_proposal` on the first failed check among relevance, dedupe, depth, fan-out, budget and cycle. Node status lives in `review/frontier-nodes.jsonl`, written only by `frontier-admit.cjs`; review has no inbox.
 - `step_read_state` reads the active node and sets `next_dimension` to its next uncovered dimension, `step_frontier_activate` marks it active before dispatch, and the prompt pack's `{frontier_block}` names the node. Next Focus takes the blocked stop, then the pivot, then the node, then the leaf focus, then the first uncovered dimension.
 - While a node stays open the frontier veto turns a stop candidate into `CONTINUE` with reasonDetail `frontierOpen`. It never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the review floor, and stuck recovery closes the active node `exhausted`.
-- A fan-out run deals the depth-1 nodes round-robin in node-id order, binds `frontier_scope:` beside `review_focus:`, records the partition in `orchestration-summary.json` and returns a partition guard for any node no lineage reports. Size `--max-iterations` so half of it covers `ceil(nodes / lineages) * dimensions`.
+- A fan-out run deals the depth-1 nodes round-robin in node-id order, binds `frontier_scope:` beside `review_focus:`, records the partition as `frontier_partition` in `orchestration-summary.json` and returns a partition guard for any node no lineage reports. Size `--max-iterations` so half of it covers `ceil(nodes / lineages) * dimensions`.
 
 ---
 

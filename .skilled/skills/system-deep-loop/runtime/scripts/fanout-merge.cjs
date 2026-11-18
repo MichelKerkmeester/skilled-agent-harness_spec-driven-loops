@@ -757,20 +757,35 @@ function buildLineageExecutors(lineageData) {
  */
 const FRONTIER_STATUSES = ['open', 'active', 'answered', 'blocked', 'exhausted', 'abstained', 'pruned'];
 
-// Lineages number the nodes they admit locally, so a node keeps its lineage
-// label beside its id. The partition guard reads the depth-1 split the fan-out
-// runner recorded: a node dealt to a lineage that no lineage reports was lost,
-// and the guard names it instead of letting the merged frontier look complete.
+// Lineages number the nodes they admit from their own store, so two lineages
+// that each hold one dealt node both name their first child F-2-002. A merged
+// node id is therefore qualified by its lineage label, its parent link with it,
+// and the lineage's own id stays beside it. The partition guard reads the depth-1
+// split the fan-out runner recorded against those lineage ids: a node dealt to a
+// lineage that no lineage reports was lost, and the guard names it instead of
+// letting the merged frontier look complete.
+function qualifyFrontierId(label, nodeId) {
+  return typeof nodeId === 'string' && nodeId !== '' && nodeId !== 'root' ? `${label}:${nodeId}` : nodeId;
+}
+
 function mergeResearchFrontier(lineageData, frontierPartition) {
   const nodes = [];
   for (const { label, registry } of [...lineageData].sort((left, right) => compareText(left.label, right.label))) {
     const lineageNodes = Array.isArray(registry?.frontier?.nodes) ? registry.frontier.nodes : [];
-    for (const node of lineageNodes) nodes.push({ ...node, lineage: label });
+    for (const node of lineageNodes) {
+      nodes.push({
+        ...node,
+        nodeId: qualifyFrontierId(label, node.nodeId),
+        lineageNodeId: node.nodeId,
+        ...(Object.prototype.hasOwnProperty.call(node, 'parentId') ? { parentId: qualifyFrontierId(label, node.parentId) } : {}),
+        lineage: label,
+      });
+    }
   }
-  nodes.sort((left, right) => compareText(left.lineage, right.lineage) || compareText(left.nodeId, right.nodeId));
+  nodes.sort((left, right) => compareText(left.lineage, right.lineage) || compareText(left.lineageNodeId, right.lineageNodeId));
   const stats = { total: nodes.length };
   for (const status of FRONTIER_STATUSES) stats[status] = nodes.filter((node) => node.status === status).length;
-  const reported = new Set(nodes.map((node) => node.nodeId));
+  const reported = new Set(nodes.map((node) => node.lineageNodeId));
   const expected = frontierPartition && typeof frontierPartition === 'object'
     ? Object.values(frontierPartition).flatMap((ids) => (Array.isArray(ids) ? ids : []))
     : [];

@@ -52,6 +52,13 @@ const DEFAULT_MAX_DEPTH = 3;
 const DEFAULT_MAX_CHILDREN_PER_NODE = 6;
 const DEFAULT_MAX_FRONTIER_NODES = 10;
 
+// The seed step decomposes a target into a documented number of depth-1 nodes:
+// 3 to 6 sub-questions for research, 3 to 8 sub-targets for review. The root's
+// children are those nodes, so its cap is the top of that range, never below the
+// per-node cap. A fan-out parent seeds before any config exists, so this cannot
+// come from config alone.
+const ROOT_CHILDREN_FLOOR = Object.freeze({ research: 6, review: 8 });
+
 const NODE_STATUSES = Object.freeze([
   'open',
   'active',
@@ -226,11 +233,18 @@ function readCaps(artifactDir, target = 'research') {
   const expansive = isPlainObject(source.expansiveDepth) ? source.expansiveDepth : {};
   const runCap = capValue(expansive.maxFrontierNodes, capValue(source.maxIterations, DEFAULT_MAX_FRONTIER_NODES));
 
+  const maxChildrenPerNode = capValue(expansive.maxChildrenPerNode, DEFAULT_MAX_CHILDREN_PER_NODE);
+
   return {
     maxDepth: capValue(expansive.maxDepth, DEFAULT_MAX_DEPTH),
-    maxChildrenPerNode: capValue(expansive.maxChildrenPerNode, DEFAULT_MAX_CHILDREN_PER_NODE),
+    maxChildrenPerNode,
+    maxRootChildren: Math.max(maxChildrenPerNode, ROOT_CHILDREN_FLOOR[target]),
     maxFrontierNodes: runCap,
   };
+}
+
+function childCapFor(parentId, caps) {
+  return parentId === 'root' && Number.isFinite(caps.maxRootChildren) ? caps.maxRootChildren : caps.maxChildrenPerNode;
 }
 
 // A review target is a file list, and only those paths can hold a finding. The
@@ -256,12 +270,34 @@ function scopeEntries(scope) {
     .filter((entry) => entry !== '');
 }
 
+// A git revision range (base..tip or base...tip) is not a path. The dots must sit
+// between two revision characters, so a '../' path segment never reads as one.
+function isCommitRange(value) {
+  return typeof value === 'string' && /[^\s/.]\.\.\.?[^\s/.]/.test(value) && splitTargetPaths(value).length === 1;
+}
+
+// A commit range names no paths itself; the files it touches are its scope, and
+// scope discovery records them. A proposal is relevant when every entry is one of
+// those files or a directory holding one.
+function scopeInsideTouchedFiles(scope, touchedFiles) {
+  const files = (Array.isArray(touchedFiles) ? touchedFiles : splitTargetPaths(touchedFiles))
+    .filter((entry) => typeof entry === 'string')
+    .map(normalizeTargetPath)
+    .filter((entry) => entry !== '');
+  if (files.length === 0) return true;
+
+  return scopeEntries(scope).every((entry) => files.some((file) => (
+    file === entry || file.startsWith(`${entry}/`) || entry.startsWith(`${file}/`)
+  )));
+}
+
 function scopeInsideReviewTarget(scope, config) {
   const source = isPlainObject(config) ? config : {};
   // Any target kind other than a file list is described in prose, so there is no
   // path to be outside of and every scope stays relevant.
   if (source.reviewTargetType !== 'files') return true;
   if (typeof source.reviewTarget !== 'string') return true;
+  if (isCommitRange(source.reviewTarget)) return scopeInsideTouchedFiles(scope, source.reviewScopeFiles);
 
   const allowed = splitTargetPaths(source.reviewTarget);
   if (allowed.length === 0) return true;
@@ -301,7 +337,7 @@ function checkProposal(proposal, nodes, caps, knownTexts, options = {}) {
   if (depth > caps.maxDepth) return 'depth';
 
   // 4. fan-out
-  if (countLiveChildren(nodes, proposal.parentId) >= caps.maxChildrenPerNode) return 'fanout';
+  if (countLiveChildren(nodes, proposal.parentId) >= childCapFor(proposal.parentId, caps)) return 'fanout';
   if (countLiveNodes(nodes) >= caps.maxFrontierNodes) return 'fanout';
 
   // 5. budget
