@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The 152 GitHub releases show their old bodies",
     "created_at": "2026-11-17T18:13:12Z",
-    "last_save_at": "2026-11-18T07:44:49.933Z",
+    "last_save_at": "2026-11-18T07:56:58.087Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,7 +202,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b6e0410313314614296d45e2deadca56c78564413a719fa3ca3c8f1476778ffd",
+    "source_fingerprint": "sha256:1113efe0324a44d20eee08d245c2b89c5e850c649fd7195268bdda6cab2699ca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "281acd91f23db030bde25be992b9a05eaf54578a26e53ddf84afa940c5f9913f",

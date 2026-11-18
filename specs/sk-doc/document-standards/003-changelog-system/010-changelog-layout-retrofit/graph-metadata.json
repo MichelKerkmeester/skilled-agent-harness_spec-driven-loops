@@ -143,14 +143,14 @@
     ],
     "causal_summary": "Phase 009 made the v4.1.0.0 layout the default for new changelogs: short bullets under short paragraphs, a linked glance table, alert boxes, folded detail and one source line per paragraph",
     "created_at": "2026-11-17T18:12:58Z",
-    "last_save_at": "2026-11-18T07:43:56.855Z",
+    "last_save_at": "2026-11-18T07:56:59.514Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:452d201074e5e1c9b75559e98f9bd46e5757626719a5455eed6017bfb387d520",
+    "source_fingerprint": "sha256:96c9b043f0dd7568dbfdf6a61aa109d4423d32ddfeda955bed0a7e2ecc6b7dde",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "59d1dbd477dca94b37ea607e280f022bfb1b22203db42f6bfe7a885a1dbaff9d"
