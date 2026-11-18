@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "a684d2dad400ff21d59b6e4507f42a2b37df50fd92e0e0ed4a875901c06f1d3c",
+      "sha256": "85279928b389acea31f325326173091dfd52bf1c6ee06d82263cbbab1a3bc2fe",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "a15a8f5c63f1e0c6bf1dd8e10245f8db2c66bfa75ba82cbe333179a738046d7b"
+  "compiledBodyDigest": "bf9d4a29b231333bdb700b22828aa9deba8634f09bfdbd7388d1398b5a879241"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -372,7 +372,7 @@ NEVER split questions into multiple prompts
 
 **Phase Output:**
 - `research_topic` | `spec_choice` | `spec_path`
-- `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode` | `depth_mode`
+- `execution_mode` | `maxIterations` | `max_iterations_source` | `convergenceThreshold` | `convergence_mode` | `depth_mode`
 ~~~
 <!-- END renderBlocks.confirm -->
 

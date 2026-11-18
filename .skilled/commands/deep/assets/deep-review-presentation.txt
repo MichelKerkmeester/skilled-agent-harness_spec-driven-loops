@@ -256,7 +256,7 @@ NEVER split questions into multiple prompts
 **Phase Output:**
 
 - `review_target` | `review_target_type` | `review_dimensions` | `review_focus`
-- `spec_choice` | `spec_path` | `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode` | `depth_mode` | `stop_policy`
+- `spec_choice` | `spec_path` | `execution_mode` | `maxIterations` | `max_iterations_source` | `convergenceThreshold` | `convergence_mode` | `depth_mode` | `stop_policy`
 - `lineage_mode`
 - `config.fanout_lineage_artifact_dir` when present
 

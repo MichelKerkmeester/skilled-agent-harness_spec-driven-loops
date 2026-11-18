@@ -221,7 +221,7 @@ NEVER split questions into multiple prompts
 
 **Phase Output:**
 - `research_topic` | `spec_choice` | `spec_path`
-- `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode` | `depth_mode`
+- `execution_mode` | `maxIterations` | `max_iterations_source` | `convergenceThreshold` | `convergence_mode` | `depth_mode`
 
 ## 2. Dashboard / Checkpoint Layout
 

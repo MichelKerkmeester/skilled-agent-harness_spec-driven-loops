@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "8fae20864f52e4f06af73c346e1f60a5fc1d6352b03decdfda12b96d0b5c1bcc",
+      "sha256": "354717f427d09792fc0acfcc7a901457defc5cd34af21ec48aa11f175967bae6",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "bb029e46a0e467a3dcddb88a8c730901ee9370b2715542e526e2ab12bfa57991"
+  "compiledBodyDigest": "1c508a48a672131c709f06c544f1e1ebfb18feb1847c2854f17bc09d87a4d217"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -401,7 +401,7 @@ NEVER split questions into multiple prompts
 **Phase Output:**
 
 - `review_target` | `review_target_type` | `review_dimensions` | `review_focus`
-- `spec_choice` | `spec_path` | `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode` | `depth_mode` | `stop_policy`
+- `spec_choice` | `spec_path` | `execution_mode` | `maxIterations` | `max_iterations_source` | `convergenceThreshold` | `convergence_mode` | `depth_mode` | `stop_policy`
 - `lineage_mode`
 - `config.fanout_lineage_artifact_dir` when present
 ~~~
