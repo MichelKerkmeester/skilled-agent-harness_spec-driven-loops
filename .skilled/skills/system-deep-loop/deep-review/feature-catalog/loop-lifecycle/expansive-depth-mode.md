@@ -6,7 +6,7 @@ trigger_phrases:
   - "expansive depth review"
   - "review frontier mode"
   - "review frontier-nodes"
-version: 1.0.13.0
+version: 1.0.14.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
@@ -41,7 +41,7 @@ The divergent review pivot runs only once the frontier is terminal. It seeds onl
 
 ### Fan-Out
 
-Fan-out lineages receive a share of the seeded nodes. `runtime/scripts/fanout-merge.cjs` returns the merged review frontier and runs the review fan-in guard over the recorded partition. Each fan-out CLI lineage keeps its coverage graph in `graph-db/` inside its own directory: `fanout-run.cjs` exports `DEEP_LOOP_COVERAGE_DB_DIR` to it, so the graph steps stay inside the lineage write surface instead of the shared runtime database.
+Fan-out lineages receive a share of the seeded nodes. `runtime/scripts/fanout-merge.cjs` returns the merged review frontier and runs the review fan-in guard over the recorded partition. A recorded partition with at least one dealt node builds the merged frontier even when no review lineage reports one, so a lost node still surfaces. Each fan-out CLI lineage keeps its coverage graph in `graph-db/` inside its own directory: `fanout-run.cjs` exports `DEEP_LOOP_COVERAGE_DB_DIR` to it, so the graph steps stay inside the lineage write surface instead of the shared runtime database.
 
 ---
 

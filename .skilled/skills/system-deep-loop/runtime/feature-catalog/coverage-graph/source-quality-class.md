@@ -6,7 +6,7 @@ trigger_phrases:
   - "quality_class"
   - "source diversity quality"
   - "source node quality class"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Source quality class (quality_class)
@@ -23,13 +23,15 @@ The graph upsert sets `quality_class` on each research SOURCE node from where th
 
 `runtime/scripts/upsert.cjs` `deriveSourceQualityClass` derives the class from the source `path`, then `name`, then `label`, then `id`, and writes it on research SOURCE nodes. `classifySourceLocation` classifies each field in turn, and the first field that names a real location decides the class. A free-text field, such as a name with spaces, classifies as `unclassified` and falls through to the next field. The derived value replaces any leaf-supplied `quality_class`.
 
+Only a `.jsonl` path, or a `.json` path whose file name mentions a ledger, is `ledger-state`. A `.ts`, `.cjs` or doc file whose name mentions a ledger keeps its code, spec or doc class, so citing a ledger schema or a ledger script does not add a ledger source kind.
+
 ### Closed Vocabulary
 
 `runtime/lib/coverage-graph/coverage-graph-query.ts` exports the frozen `SOURCE_QUALITY_CLASS` vocabulary: `repo-code`, `repo-test`, `repo-spec`, `skill-doc`, `ledger-state`, `external-doc`, `external-other` and `unclassified`.
 
 ### Diversity Signal
 
-The source-diversity signal reads the derived class from each SOURCE node, not a value the leaf wrote.
+The source-diversity signal counts the distinct derived classes a question's cited sources reach, not a value the leaf wrote. It skips `unclassified`, which names no location, so an unclassified source adds no source kind and does not raise the count. The stored class on each source is unchanged.
 
 ---
 
@@ -49,6 +51,7 @@ The source-diversity signal reads the derived class from each SOURCE node, not a
 | `.skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts` | Vitest | Derivation and strip cases. |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-graph-upsert.vitest.ts` | Vitest | A leaf-supplied value does not survive the research upsert path. |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/coverage-graph-signals.vitest.ts` | Vitest | Fixtures seeded through `upsert` whose source names derive distinct classes. |
+| `.skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts` | Vitest | An unclassified source is not counted as a distinct source kind. |
 | `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/coverage-graph/source-quality-class-derivation.md` | Manual playbook | DLR-061: derived `quality_class` on research SOURCE nodes. |
 
 ---

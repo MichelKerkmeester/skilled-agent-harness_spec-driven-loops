@@ -7,7 +7,7 @@ trigger_phrases:
   - "merge fanout lineages"
   - "strongest-restriction review merge"
   - "cross-model finding attribution"
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # Fan-out cross-lineage merge
@@ -48,9 +48,10 @@ findings (resolved,
 surface walks lineages in label order and sorts its output. See
 [fanout-review-coverage-merge.md](fanout-review-coverage-merge.md) for the per-surface rules.
 
-**Frontier merge (expansive depth)**: when any lineage registry carries `frontier.nodes`, both
-merges add a merged `frontier`. `mergeResearchFrontier` builds it for research, and
-`mergeReviewRegistries` calls the same function rather than a review-specific one. Lineages
+**Frontier merge (expansive depth)**: both merges add a merged `frontier` when any lineage
+registry carries `frontier.nodes`, or when the recorded `frontier_partition` dealt at least one
+node. `mergeResearchFrontier` builds it for both loop types, and `mergeReviewRegistries` calls
+the same function rather than a review-specific one. Lineages
 number the nodes they admit from their own store, so two lineages can both name a node
 `F-2-002`. `qualifyFrontierId` prefixes each node id and its `parentId` with the lineage label
 (`{label}:{nodeId}`), leaving `root` and empty ids as they are. Each merged node keeps its
@@ -58,8 +59,9 @@ original id as `lineageNodeId` and its label as `lineage`. The merged `frontier.
 the total and each node status.
 
 **Partition guard**: `main()` reads `frontier_partition` from `orchestration-summary.json` and
-passes it to the merge as `frontierPartition`. The guard runs only inside the frontier merge, so
-it needs at least one lineage registry that carries `frontier.nodes`. When that partition names any node,
+passes it to the merge as `frontierPartition`. The guard runs inside the frontier merge, and a
+recorded partition with at least one dealt node builds that merge even when no lineage reports a
+frontier, so the guard cannot go silent on a lost node. When the partition names any node,
 `frontier.partitionGuard` records `passed` and `missing`: every dealt node id that no lineage
 reports as a `lineageNodeId`. When the guard fails, the script writes a
 `{"warning":"frontier_partition_guard_failed","missing":[...]}` JSON line to stderr. The stdout
@@ -98,7 +100,7 @@ codes: 0=ok, 3=input validation error.
 | File | Role |
 |---|---|
 | `tests/unit/fanout-merge.vitest.ts` | 10 tests: research dedup/attribution (3: dedup by id + cross-lineage tracking, iteration count aggregation, null registry handled); review strongest-restriction (5: clean+P0→FAIL, all clean→PASS, P1-only→CONDITIONAL, duplicate escalates severity, non-active excluded); script e2e (2: no lineages dir → ok, 2-lineage review fixture → merged FAIL + attribution.md) |
-| `tests/unit/fanout-merge.vitest.ts` | Expansive and coverage groups: `research frontier merge` (5 tests), `review frontier merge` (5 tests) and `mergeReviewRegistries — coverage surfaces` (9 tests) |
+| `tests/unit/fanout-merge.vitest.ts` | Expansive and coverage groups: `research frontier merge` (7 tests), `review frontier merge` (6 tests) and the `mergeReviewRegistries` coverage surfaces (9 tests) |
 
 ---
 

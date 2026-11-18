@@ -1,7 +1,7 @@
 ---
 title: "DR-020 -- Quality Guard — Source Diversity"
 description: "Verify that convergence STOP is blocked when an answered question cites <2 independent sources."
-version: 1.14.3.0
+version: 1.14.4.0
 ---
 
 # DR-020 -- Quality Guard — Source Diversity
@@ -53,7 +53,7 @@ Validate source-diversity guards override STOP when answered questions lack inde
 ### Expected
 the STOP candidate becomes `CONTINUE` with reasonDetail `qualityGuardFailed` and `sourceDiversity` in blockedBy, and no event is written, violated question targeted in next iteration focus.
 ### Evidence
-Capture the Quality Gate row, the sourceDiversity count filter (a question with fewer than two sources is a violation), the Step 2c rule, and the workflow log line. A failed guard writes no event.
+Capture the Quality Gate row, the sourceDiversity count filter (a question with fewer than two sources is a violation), the Step 2c rule, and the workflow log line. The graph `sourceDiversity` signal counts distinct source kinds and skips `unclassified`, so two sources of one kind still block a STOP. A failed guard writes no event.
 ### Pass/Fail
 PASS if the source_diversity guard rule (>= 2 independent sources), its STOP override and its workflow log line are consistent across convergence.md, loop-protocol.md and deep-research.yaml; FAIL if any of those elements drift or contradict.
 ### Failure Triage

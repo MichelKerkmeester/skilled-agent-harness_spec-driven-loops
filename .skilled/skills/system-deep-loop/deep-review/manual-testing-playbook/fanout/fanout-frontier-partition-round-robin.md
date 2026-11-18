@@ -1,7 +1,7 @@
 ---
 title: "DRV-082 -- Review fan-out deals seeded frontier nodes round-robin"
 description: "This scenario validates that a review fan-out run under the expansive mode deals its seeded depth-one nodes round-robin across its lineages, writes each lineage store without an inbox and reports a missing node through the merge guard, for `DRV-082`."
-version: 1.13.3.0
+version: 1.13.4.0
 ---
 
 # DRV-082 -- Review fan-out deals seeded frontier nodes round-robin
@@ -28,7 +28,7 @@ Operators run the commands below and confirm that the deal is round-robin, that 
 - Real user request: Split the review across lineages and show me that no sub-target is dropped.
 - Prompt: `Check that a review fan-out run under expansive depth mode deals its depth-one nodes round-robin across its lineages, writes each lineage store without an inbox and fails the merge guard when a dealt node reaches no lineage. Return a PASS or FAIL verdict with the reason.`
 - Expected execution process: Run the review fan-out cases by file stem, run the review merge cases by describe name, then read the partition helper, the store writer and the guard line in the fan-out and merge scripts.
-- Expected signals: Seven nodes deal to the three lineages as left `F-1-001`, `F-1-004`, `F-1-007`, center `F-1-002`, `F-1-005` and right `F-1-003`, `F-1-006`. The lineage store lands at the lineage directory root with no `inbox.jsonl` file. The default lineage prompt gains no depth-mode bytes. The merge guard passes when every dealt node is reported and fails with the missing identifier when one is not. The merge output carries `frontier_partition_guard`.
+- Expected signals: Seven nodes deal to the three lineages as left `F-1-001`, `F-1-004`, `F-1-007`, center `F-1-002`, `F-1-005` and right `F-1-003`, `F-1-006`. The lineage store lands at the lineage directory root with no `inbox.jsonl` file. The default lineage prompt gains no depth-mode bytes. The merge guard passes when every dealt node is reported. It fails with the missing identifier when one is not reported, and with every dealt id when a partition was recorded and no review lineage reports a frontier. The merge output carries `frontier_partition_guard`.
 - Desired user-visible outcome: The operator can say every seeded sub-target reached a lineage, or the merge names the one that did not.
 - Pass/fail: PASS if the fan-out cases, the merge cases and the guard line pass or print; FAIL if the deal is not round-robin, a lineage store is missing before spawn, an inbox appears for a review lineage, or a missing node passes the guard.
 
@@ -54,7 +54,7 @@ Operators run the commands below and confirm that the deal is round-robin, that 
 
 ### Expected
 
-Command 1 prints `Tests  4 passed` (the rest of the file skipped). The round-robin case asserts the deal above, the store case asserts a `frontier-nodes.jsonl` file at the lineage directory root with no `inbox.jsonl`, the scope case asserts the `frontier_scope` binding beside `review_focus`, and the default case asserts no depth-mode bytes in the lineage prompt. Command 2 prints `Tests  5 passed` (the rest of the file skipped). Its cases pass the guard when every dealt node is reported, fail it with `missing: ['F-1-004']` when one is not, merge each lineage frontier with its label, give every merged node a lineage-qualified id when lineages number their children alike and add no frontier key when no review lineage has one. Command 3 prints the partition helper, the store writer, the `frontier_scope` prompt bindings and the store call, which passes `inbox: false` for a review lineage. Command 4 prints one line, which writes the `frontier_partition_guard_failed` warning with the missing identifiers.
+Command 1 prints `Tests  4 passed` (the rest of the file skipped). The round-robin case asserts the deal above, the store case asserts a `frontier-nodes.jsonl` file at the lineage directory root with no `inbox.jsonl`, the scope case asserts the `frontier_scope` binding beside `review_focus`, and the default case asserts no depth-mode bytes in the lineage prompt. Command 2 prints `Tests  6 passed` (the rest of the file skipped). Its cases pass the guard when every dealt node is reported, fail it with `missing: ['F-1-004']` when one is not, fail it with every dealt id when a partition was recorded but no review lineage reports a frontier, merge each lineage frontier with its label, give every merged node a lineage-qualified id when lineages number their children alike and add no frontier key when no review lineage has one. Command 3 prints the partition helper, the store writer, the `frontier_scope` prompt bindings and the store call, which passes `inbox: false` for a review lineage. Command 4 prints one line, which writes the `frontier_partition_guard_failed` warning with the missing identifiers.
 
 ### Evidence
 

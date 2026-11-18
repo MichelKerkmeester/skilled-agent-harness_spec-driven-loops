@@ -1,7 +1,7 @@
 ---
 title: "DR-073 -- Fan-out deals seeded frontier nodes round-robin"
 description: "This scenario validates that a fan-out run under the expansive mode deals the seeded depth-one nodes round-robin across its lineages, writes each lineage store before spawn and fails the merge guard when a partitioned node is missing, for `DR-073`."
-version: 1.16.3.0
+version: 1.16.4.0
 ---
 
 # DR-073 -- Fan-out deals seeded frontier nodes round-robin
@@ -28,7 +28,7 @@ Operators run the exact commands below and confirm the partition, the store writ
 - Real user request: Split this research across three lineages, and tell me whether every seeded sub-question reached one of them.
 - Prompt: `Check that a fan-out research run under expansive depth mode deals the seeded depth-one nodes round-robin across its lineages, writes each lineage store before spawn, and fails the merge guard when a partitioned node is missing. Return a PASS or FAIL verdict with the reason.`
 - Expected execution process: Run the partition, store-before-spawn, default-path and merge-guard cases by file stem, then read the partition helpers in the fan-out runner.
-- Expected signals: The round-robin case passes. The store-before-spawn case passes. The default-path case passes and shows no lineage store. The merge guard passes when every partitioned node is reported, and fails when one is missing from every lineage. The runner writes `frontier_scope:` only under the expansive flag.
+- Expected signals: The round-robin case passes. The store-before-spawn case passes. The default-path case passes and shows no lineage store. The merge guard passes when every partitioned node is reported, and fails when one is missing from every lineage or when a partition was recorded with dealt nodes and no lineage reports a frontier. The runner writes `frontier_scope:` only under the expansive flag.
 - Desired user-visible outcome: The operator can say each seeded sub-question went to one lineage before spawn, and a missing one would be named at merge.
 - Pass/fail: PASS if all four named cases pass and the runner shows the partition and store helpers; FAIL if a seeded node is dealt to no lineage, a store is written after spawn or a default run writes a store.
 
@@ -50,12 +50,12 @@ Operators run the exact commands below and confirm the partition, the store writ
 1. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run fanout-run.vitest -t "round-robin" --reporter=verbose`
 2. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run fanout-run.vitest -t "writes the lineage store before spawn" --reporter=verbose`
 3. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run fanout-run.vitest -t "default depth mode" --reporter=verbose`
-4. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run fanout-merge.vitest -t "partitioned node" --reporter=verbose`
+4. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run fanout-merge.vitest -t "partitioned node|partition was recorded" --reporter=verbose`
 5. `rg -n "frontier_scope|partitionFrontierNodes|writeLineageFrontierStore" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`
 
 ### Expected
 
-Command 1 prints `Tests  2 passed` (the rest of the file skipped), with the cases `deals open depth-1 nodes round-robin in node-id order` and `deals seven review frontier nodes over three seats round-robin` passing. Command 2 prints `Tests  1 passed` (the rest of the file skipped), with the case `writes the lineage store before spawn and records the partition` passing. Command 3 prints `Tests  1 passed` (the rest of the file skipped), with the case `a default depth mode writes no lineage store and records no partition` passing. Command 4 prints `Tests  4 passed` (the rest of the file skipped), with the cases `passes the guard when every partitioned node is reported` and `fails the guard when a partitioned node is missing from every lineage` passing under both the research and the review frontier merge. Command 5 prints the partition helper, the store writer and the `frontier_scope` binding.
+Command 1 prints `Tests  2 passed` (the rest of the file skipped), with the cases `deals open depth-1 nodes round-robin in node-id order` and `deals seven review frontier nodes over three seats round-robin` passing. Command 2 prints `Tests  1 passed` (the rest of the file skipped), with the case `writes the lineage store before spawn and records the partition` passing. Command 3 prints `Tests  1 passed` (the rest of the file skipped), with the case `a default depth mode writes no lineage store and records no partition` passing. Command 4 prints `Tests  6 passed` (the rest of the file skipped), with the cases `passes the guard when every partitioned node is reported`, `fails the guard when a partitioned node is missing from every lineage` and `fails the guard when a partition was recorded but no lineage reports a frontier` passing under both the research and the review frontier merge. Command 5 prints the partition helper, the store writer and the `frontier_scope` binding.
 
 ### Evidence
 

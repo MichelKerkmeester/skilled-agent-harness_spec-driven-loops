@@ -6,7 +6,7 @@ trigger_phrases:
   - "expansive depth research"
   - "research frontier mode"
   - "frontier admission research"
-version: 1.0.11.0
+version: 1.0.12.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
@@ -43,7 +43,7 @@ The reducer splits `maxIterations` 50/35/15 across the depth bands. Once a band'
 
 ### Fan-Out
 
-Fan-out lineages each receive a share of the seeded nodes. `runtime/scripts/fanout-run.cjs` passes `depthMode` to a lineage only when it is `expansive`. `runtime/scripts/fanout-merge.cjs` merges the lineage frontiers and runs a fan-in guard over the recorded partition.
+Fan-out lineages each receive a share of the seeded nodes. `runtime/scripts/fanout-run.cjs` passes `depthMode` to a lineage only when it is `expansive`. `runtime/scripts/fanout-merge.cjs` merges the lineage frontiers and runs a fan-in guard over the recorded partition. A recorded partition with at least one dealt node builds the merged frontier even when no lineage reports one, so a lost node still surfaces.
 
 ---
 
