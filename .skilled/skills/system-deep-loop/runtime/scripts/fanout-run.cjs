@@ -321,6 +321,14 @@ function partitionFrontierNodes(baseArtifactDir, labels) {
   return partition;
 }
 
+// The spawn step needs the same deal the budget step already made, so it reuses that
+// partition and reads the node store again only when no budget step ran, as for a
+// loop type the budget step does not size.
+function resolveFrontierPartition({ depthMode, budgetPartition, baseArtifactDir, labels }) {
+  if (depthMode !== 'expansive') return null;
+  return budgetPartition || partitionFrontierNodes(baseArtifactDir, labels);
+}
+
 // Under expansive depth a lineage the matrix gave no iterations is sized from its own
 // share of the seed, the way a single-executor run is sized after its seed step. The
 // floor is the budget that lineage would otherwise have run: 12 for a native lineage,
@@ -3831,9 +3839,12 @@ async function main() {
   // LEAF review agent with a full-loop prompt, which is invalid; keep full-loop
   // ownership here so all lineages share the same retries and artifact validation.
   const cliLineages = allLineages;
-  const frontierPartition = depthMode === 'expansive'
-    ? partitionFrontierNodes(baseArtifactDir, cliLineages.map((lineage) => lineage.label))
-    : null;
+  const frontierPartition = resolveFrontierPartition({
+    depthMode,
+    budgetPartition,
+    baseArtifactDir,
+    labels: cliLineages.map((lineage) => lineage.label),
+  });
   const frontierPartitionSummary = frontierPartition
     ? { frontier_partition: Object.fromEntries(Object.entries(frontierPartition).map(([label, nodes]) => [label, nodes.map((node) => node.nodeId)])) }
     : {};
@@ -4808,6 +4819,7 @@ module.exports = {
   normalizeReviewFocus,
   normalizeDepthMode,
   partitionFrontierNodes,
+  resolveFrontierPartition,
   writeLineageFrontierStore,
   REVIEW_FOCUS_MAX_LENGTH,
   findMaxIterationsPolicyViolation,

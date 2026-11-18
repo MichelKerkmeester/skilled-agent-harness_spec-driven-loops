@@ -578,6 +578,7 @@ const {
   buildNativeCommandInput,
   normalizeDepthMode,
   partitionFrontierNodes,
+  resolveFrontierPartition,
   writeLineageFrontierStore,
 } = requireCjs(fanoutRunScript) as {
   withAgentPersona: (agentName: string, prompt: string, repoRoot: string) => string;
@@ -607,6 +608,12 @@ const {
     baseArtifactDir: string,
     labels: string[],
   ) => Record<string, Array<{ nodeId: string }>>;
+  resolveFrontierPartition: (options: {
+    depthMode: string | null;
+    budgetPartition: Record<string, Array<{ nodeId: string }>> | null;
+    baseArtifactDir: string;
+    labels: string[];
+  }) => Record<string, Array<{ nodeId: string }>> | null;
   writeLineageFrontierStore: (
     lineageDir: string,
     nodes: Array<Record<string, unknown>>,
@@ -6634,6 +6641,19 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
     expect(Object.fromEntries(
       Object.entries(partition).map(([label, nodes]) => [label, nodes.map((node) => node.nodeId)]),
     )).toEqual({ a: ['F-1-001', 'F-1-003'], b: ['F-1-002'] });
+  });
+
+  it('reuses the budget partition rather than reading the node store a second time', () => {
+    const dir = makeTempDir('fanout-run-frontier-reuse-');
+    writeNodeStore(dir, [frontierNodeRow('F-1-001'), frontierNodeRow('F-1-002')]);
+    const budgetPartition = { a: [{ nodeId: 'F-1-002' }], b: [{ nodeId: 'F-1-001' }] };
+
+    expect(resolveFrontierPartition({ depthMode: 'expansive', budgetPartition, baseArtifactDir: dir, labels: ['a', 'b'] }))
+      .toBe(budgetPartition);
+    const fresh = resolveFrontierPartition({ depthMode: 'expansive', budgetPartition: null, baseArtifactDir: dir, labels: ['a', 'b'] });
+    expect(Object.fromEntries(Object.entries(fresh ?? {}).map(([label, nodes]) => [label, nodes.map((node) => node.nodeId)])))
+      .toEqual({ a: ['F-1-001'], b: ['F-1-002'] });
+    expect(resolveFrontierPartition({ depthMode: null, budgetPartition, baseArtifactDir: dir, labels: ['a', 'b'] })).toBeNull();
   });
 
   it('writes a lineage store and inbox once', () => {
