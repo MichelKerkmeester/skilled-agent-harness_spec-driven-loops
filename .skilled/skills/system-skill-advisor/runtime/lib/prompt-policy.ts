@@ -222,14 +222,19 @@ export function shouldFireAdvisor(prompt: string): AdvisorPromptPolicyResult {
   };
 }
 
-const PASTED_REPLY_CUE = /^\s*(?:(?:earlier|previously|above),?\s+)?(?:(?:you|the assistant|claude)\s+(?:replied|said|wrote|answered|responded)\s*:|["“>])/i;
-const TASK_MARKER = /(?:^|[.!?\n]\s*)(?:now|task)\s*:\s*/i;
+// A quote mark or `>` only shows that text is quoted, not that the assistant wrote it,
+// so a cue needs an attribution header such as "You said:" or "Assistant response:".
+const PASTED_REPLY_CUE = /^\s*(?:(?:earlier|previously|above),?\s+)?(?:(?:you|the assistant|claude)\s+(?:replied|said|wrote|answered|responded)|(?:the\s+)?(?:assistant|claude)\s+(?:response|reply|answer))\s*:/i;
+const TASK_MARKER = /(?:^|[.!?\n]\s*)(?:now|task)\s*:\s*/gi;
 
+// The last marker wins: a pasted reply can hold its own "Task:" line, and cutting there
+// would keep the reply's skill names in the scored text.
 function stripPastedReplyOnce(prompt: string): string {
   if (!PASTED_REPLY_CUE.test(prompt)) return prompt;
-  const marker = TASK_MARKER.exec(prompt);
+  const markers = [...prompt.matchAll(TASK_MARKER)];
+  const marker = markers[markers.length - 1];
   if (!marker) return prompt;
-  const task = prompt.slice(marker.index + marker[0].length).trim();
+  const task = prompt.slice((marker.index ?? 0) + marker[0].length).trim();
   return task.length > 0 ? task : prompt;
 }
 
