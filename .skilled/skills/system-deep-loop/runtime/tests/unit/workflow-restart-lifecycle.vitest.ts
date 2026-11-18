@@ -1085,4 +1085,74 @@ describe('expansive frontier graph mirror', () => {
     expect(upserted.data?.insertedNodes).toBe(2);
     expect(upserted.data?.insertedEdges).toBe(1);
   });
+
+  // The loop renders the frontier block from the strategy's next focus, which
+  // only a reduce writes. Without a reduce between the seed and the loop, the
+  // first iteration would run with no frontier block at all.
+  it('gives iteration 1 a frontier focus and block once the seed is reduced', () => {
+    const specFolder = join(makeTempDir('frontier-seed-reduce-'), 'spec');
+    const artifactDir = join(specFolder, 'research');
+    mkdirSync(artifactDir, { recursive: true });
+    writeFileSync(join(specFolder, 'spec.md'), '# Seed reduce\n');
+    writeFileSync(join(artifactDir, 'deep-research-config.json'), JSON.stringify({
+      topic: 'How does frontier admission work?',
+      maxIterations: 10,
+      createdAt: '2026-11-18T00:00:00.000Z',
+      status: 'initialized',
+      antiConvergence: { minIterations: 3, convergenceMode: 'default', depthMode: 'expansive' },
+      expansiveDepth: { maxDepth: 3, maxChildrenPerNode: 6, budgetSplit: { depth1: 0.5, depth2: 0.35, depth3: 0.15 } },
+      lineage: { sessionId: 'seed-reduce', parentSessionId: null, lineageMode: 'new', generation: 1, continuedFromRun: null },
+      resource_map: { emit: false },
+    }));
+    writeFileSync(join(artifactDir, 'deep-research-state.jsonl'), `${JSON.stringify({
+      type: 'config',
+      topic: 'How does frontier admission work?',
+      maxIterations: 10,
+      createdAt: '2026-11-18T00:00:00.000Z',
+    })}\n`);
+    writeFileSync(
+      join(artifactDir, 'deep-research-strategy.md'),
+      readFileSync(resolve(SKILLS_ROOT, 'skills', 'system-deep-loop', 'deep-research', 'assets', 'deep-research-strategy.md'), 'utf8'),
+    );
+    writeFileSync(join(artifactDir, 'frontier-seed.json'), JSON.stringify([
+      { question: 'Which module owns frontier admission?', scope: 'runtime/scripts', evidence: 'runtime/scripts/frontier-admit.cjs' },
+      { question: 'Which caps does frontier admission read?', scope: 'runtime/config', evidence: 'runtime/config' },
+    ]));
+    const seed = spawnSync(process.execPath, [
+      resolve(RUNTIME_ROOT, 'scripts', 'frontier-admit.cjs'),
+      'seed',
+      '--artifact-dir',
+      artifactDir,
+      '--iteration',
+      '0',
+      '--input',
+      join(artifactDir, 'frontier-seed.json'),
+    ], { encoding: 'utf8' });
+    expect(seed.status, String(seed.stderr)).toBe(0);
+    expect(existsSync(join(artifactDir, 'frontier-nodes.jsonl'))).toBe(true);
+
+    const reduceCommand = render(stepCommand('deep-research.yaml', 'step_frontier_reduce_seed'), {
+      '{spec_folder}': specFolder,
+      '{reducer_artifact_arg}': '',
+    });
+    expect(reduceCommand).toContain('reduce-state.cjs');
+    const reduce = runShell(reduceCommand);
+    expect(reduce.status, String(reduce.stderr)).toBe(0);
+
+    const strategy = readFileSync(join(artifactDir, 'deep-research-strategy.md'), 'utf8');
+    const anchorBody = /<!-- ANCHOR:next-focus -->([\s\S]*?)<!-- \/ANCHOR:next-focus -->/u.exec(strategy)?.[1] ?? '';
+    const nextFocus = anchorBody.split('\n').map((line) => line.trim()).find((line) => line && !line.startsWith('#')) ?? '';
+    expect(nextFocus).toMatch(/^Frontier node F-1-001 \(depth 1, scope runtime\/scripts\): /u);
+
+    const block = spawnSync(process.execPath, [
+      resolve(RUNTIME_ROOT, 'scripts', 'frontier-admit.cjs'),
+      'block',
+      '--artifact-dir',
+      artifactDir,
+      '--focus',
+      nextFocus,
+    ], { encoding: 'utf8' });
+    expect(block.status, String(block.stderr)).toBe(0);
+    expect(String(block.stdout)).toContain('Current node: F-1-001 at depth 1');
+  });
 });
