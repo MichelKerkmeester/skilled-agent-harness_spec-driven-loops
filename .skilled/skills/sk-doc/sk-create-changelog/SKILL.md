@@ -273,11 +273,11 @@ When step 3 shows a difference, the tag points at a commit that holds older text
 
 Republishing deletes and recreates a public ref, so it needs the operator's yes each time. Never run it as a default or in an unattended run. Ask once, in the same reply as the report, with republish as the recommended answer. Name the old tag object and say it can be pushed back. Only a request that names the tag move counts as the yes, such as "republish the tag" or "move the tag". A request to publish or edit the notes does not. The body edit in step 2 needs no such wait.
 
-After the yes, run these commands in order. The local tag goes too, or `git tag -a` fails because it still exists:
+After the yes, run these commands in order. The local tag goes too, or `git tag -a` fails because it still exists. The delete tolerates a tag that is already gone, so a missing local tag cannot stop the run between deleting the release and recreating it:
 
 ```bash
 gh release delete {release_tag} --cleanup-tag --yes
-git tag -d {release_tag}
+git tag -d {release_tag} 2>/dev/null || true
 git tag -a {release_tag} -m "{tag_message}"
 git push origin {release_tag}
 gh release create {release_tag} --title "{release_title}" --notes-file {notes_file} --latest --verify-tag
@@ -361,7 +361,7 @@ Packet-local files are deprecated, so no new one is validated here. `validate_do
 ### ⛔ NEVER
 
 1. Add a packet-local `graph-metadata.json`.
-2. Overwrite an existing changelog or reuse an existing version. Extending an untagged `skilled` release entry is the one exception, and it adds to the entry rather than replacing it.
+2. Overwrite an existing changelog or reuse an existing version. Extending an untagged `skilled` release entry is one exception, and it adds to the entry rather than replacing it. An edit the operator asks for to a published `skilled` entry is the other: it keeps the version, and Keep a Published Release in Step (section 8) follows it.
 3. Guess a component folder, or create a missing one.
 4. Write an entry with an empty summary or an empty required section.
 5. Write a new packet-local changelog.
