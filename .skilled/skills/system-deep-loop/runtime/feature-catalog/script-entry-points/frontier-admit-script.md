@@ -7,7 +7,7 @@ trigger_phrases:
   - "frontier-nodes.jsonl"
   - "frontier admission checks"
   - "expansive frontier seed budget"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # frontier-admit.cjs
@@ -30,11 +30,11 @@ The CLI takes one command and value flags. The commands are `seed`, `admit`, `cl
 
 - `seed --input <file>` reads a JSON array of candidates and places each one at depth 1 under the synthetic `root`. `--max-iterations-source` says where the run's budget came from, and it defaults to `default`.
 - `admit --input <file>` reads the `frontier_proposal` rows of an iteration delta and runs them through admission.
-- `close --node-id <id> --status <status>` appends a new row for that node with the given status and an optional `--reason`. The status must be `active`, `answered`, `blocked`, `exhausted`, `abstained` or `pruned`. A node admission pruned can be closed only as `pruned`, since it never reached the inbox.
+- `close --node-id <id> --status <status>` appends a new row for that node with the given status and an optional `--reason`. The status must be `active`, `answered`, `blocked`, `exhausted`, `abstained` or `pruned`. A node admission pruned can be closed only as `pruned`, since it never reached the inbox. A node already closed as `answered`, `blocked`, `exhausted` or `abstained` accepts only a repeat of that status, so a settled node never reopens through `close`.
 - `graph --output <file>` writes the graph projection of the store.
 - `block` prints the frontier prompt block. Research needs `--focus`. Review needs `--node-id` and takes an optional `--dimension`.
 
-`seed`, `admit` and `close` also take `--iteration`, a non-negative integer. `seed` and `admit` take `--known-texts`, a file that must hold a JSON array of question texts that count for dedupe. The record commands print one JSON result. `block` prints raw prompt text. Any error goes to stderr, prefixed `[frontier-admit]`, and exits 2.
+`seed`, `admit` and `close` also take `--iteration`, a non-negative integer. `seed` and `admit` take `--known-texts`, a file that must hold a JSON array of question texts that count for dedupe. The record commands print one JSON result. `block` prints raw prompt text. Any error goes to stderr, prefixed `[frontier-admit]`, and exits 2. Warnings also go to stderr with the same prefix and leave the exit at 0: `seed` reports its budget line there, and `admit` reports each delta line it could not parse and skipped.
 
 ### Node Store
 
