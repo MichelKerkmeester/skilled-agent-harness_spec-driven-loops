@@ -1,0 +1,20 @@
+{"lane": "A3", "findings": [], "reviewed": [
+".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+".skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs",
+".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+".skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs",
+".skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts",
+".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
+".skilled/skills/system-deep-loop/runtime/tests/fanout-review-focus.vitest.ts",
+".skilled/skills/system-deep-loop/runtime/tests/unit/dispatch-iteration.vitest.ts",
+".skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts",
+".skilled/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts",
+".skilled/skills/system-deep-loop/runtime/tests/unit/divergent-pivot-cli.vitest.ts",
+".skilled/skills/system-deep-loop/runtime/tests/unit/divergent-pivot-seat-scope.vitest.ts",
+".skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts",
+".skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs"
+], "not_reviewed": []}

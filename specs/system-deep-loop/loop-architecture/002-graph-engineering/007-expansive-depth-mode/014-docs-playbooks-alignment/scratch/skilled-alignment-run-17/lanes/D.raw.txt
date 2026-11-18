@@ -1,0 +1,1 @@
+Lane D (native review, opus, medium) returned: reviewed 27 of 27, not reviewed none, findings P0 0 P1 0 P2 4 (D-1..D-4), 20 probes (the 20 carried forward unchanged, none added: no routing file changed in 7a1b0ec7a1e..9f456e735c2); probes-pre-metadata.md saved before any graph-metadata.json read (lane's claim); no tracked file modified. Copied from the lane's scratch result.json.

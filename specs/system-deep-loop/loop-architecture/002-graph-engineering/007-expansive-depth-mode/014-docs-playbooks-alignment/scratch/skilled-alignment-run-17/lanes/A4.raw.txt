@@ -1,0 +1,1 @@
+Lane A4 (native review, opus, medium) returned: reviewed 16 of 16, not reviewed none, findings P0 0 P1 0 P2 2 (A4-1, A4-2); ran 13 test files (280 + 18 tests, exit 0); no tracked file modified. Copied from the lane's scratch result.json.

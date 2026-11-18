@@ -1,0 +1,141 @@
+{
+ "lane": "B3",
+ "findings": [
+  {
+   "id": "B3-1",
+   "surface": "S4",
+   "standard": "sk-doc/sk-create-manual-testing-playbook",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/prompt-rendering/research-prompt-pack-contract.md",
+   "line": 31,
+   "issue": "DLR-060's Expected signals say 'the four prompt-pack cases pass', but no set of four exists. Command 3 runs all of tests/unit/prompt-pack.vitest.ts with no -t filter, and the 'research prompt pack and agent definition lockstep' group now holds five cases (lines 251, 260, 272, 284, 294). An operator cannot observe the stated signal, which breaks the standard's Determinism rule (observable expected signals).",
+   "evidence": {
+    "cmd": "grep -nE \"^\\s*(describe|it|test)\\(\" .skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts",
+    "exit": 0,
+    "out": "250:describe('research prompt pack and agent definition lockstep' ... followed by it() at 251, 260, 272, 284, 294 (five cases); the file holds 22 cases in total"
+   },
+   "fix": {
+    "old": "the four prompt-pack cases pass",
+    "new": "every prompt-pack case passes"
+   }
+  },
+  {
+   "id": "B3-2",
+   "surface": "S4",
+   "standard": "sk-doc/sk-create-manual-testing-playbook",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+   "line": 223,
+   "issue": "The root summary for DLR-060 repeats the stale 'the four prompt-pack cases passing' signal. The command it summarizes runs the whole prompt-pack suite, and the lockstep group holds five cases, so the root and the scenario both state a count nobody can observe.",
+   "evidence": {
+    "cmd": "grep -no 'the four prompt-pack cases pass[a-z]*' .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+    "exit": 0,
+    "out": "223:the four prompt-pack cases passing"
+   },
+   "fix": {
+    "old": "the four prompt-pack cases passing",
+    "new": "every prompt-pack case passing"
+   }
+  },
+  {
+   "id": "B3-3",
+   "surface": "S3",
+   "standard": "sk-doc/sk-create-feature-catalog",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/runtime/feature-catalog/executor/research-claude-config-dir.md",
+   "line": 51,
+   "issue": "The Validation And Tests row types executor-audit-cli-branch-receipts.test.ts as 'Node test'. The file imports from 'vitest', and runtime/vitest.config.ts runs it through the tests/**/*.{vitest,test}.ts include, so the row names the wrong runner. The matching playbook DLR-064 also runs it with npx vitest.",
+   "evidence": {
+    "cmd": "head -20 .skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts | grep -n import; grep -n include .skilled/skills/system-deep-loop/runtime/vitest.config.ts",
+    "exit": 0,
+    "out": "16:import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'; / 46: include: ['tests/**/*.{vitest,test}.ts']"
+   },
+   "fix": {
+    "old": "| Node test |",
+    "new": "| Vitest |"
+   }
+  },
+  {
+   "id": "B3-4",
+   "surface": "S3",
+   "standard": "sk-doc/sk-create-feature-catalog",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md",
+   "line": 133,
+   "issue": "This change adds per-group test counts to the Validation And Tests rows: fanout-run.md:133 has '(13 tests ...)' and '(4 tests ...)', and fanout-merge.md:103 has '(7 tests)', '(6 tests)' and '(9 tests)'. sk-create-feature-catalog section 7 says catalog prose 'must not freeze measured counts or dated snapshots'. The counts match the suites today, and the validator's lexical snapshot regex misses them. They will go stale on the next added case. The same change removed frozen '5 tests' counts from the DLR fanout-run-cli-lineage-spawn playbook for this reason. Name the cases or groups and drop the numbers in both files. One older precedent exists outside this lane: append-mode-event-script.md:45.",
+   "evidence": {
+    "cmd": "grep -rnoE \"\\([0-9]+ tests[^)]{0,40}\" .skilled/skills/system-deep-loop/runtime/feature-catalog",
+    "exit": 0,
+    "out": "fanout-merge.md:103:(7 tests / (6 tests / (9 tests; fanout-run.md:133:(13 tests ... / (4 tests ...; append-mode-event-script.md:45:(11 tests (pre-existing, out of lane)"
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/README.md",
+  ".skilled/skills/system-deep-loop/ROUTER.md",
+  ".skilled/skills/system-deep-loop/SKILL.md",
+  ".skilled/skills/system-deep-loop/changelog/v2.1.0.0.md",
+  ".skilled/skills/system-deep-loop/changelog/v2.1.1.0.md",
+  ".skilled/skills/system-deep-loop/changelog/v2.1.2.0.md",
+  ".skilled/skills/system-deep-loop/changelog/v2.1.3.0.md",
+  ".skilled/skills/system-deep-loop/changelog/v2.1.4.0.md",
+  ".skilled/skills/system-deep-loop/changelog/v2.1.5.0.md",
+  ".skilled/skills/system-deep-loop/changelog/v2.1.6.0.md",
+  ".skilled/skills/system-deep-loop/description.json",
+  ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/completed-run-extension-flag.md",
+  ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md",
+  ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+  ".skilled/skills/system-deep-loop/graph-metadata.json",
+  ".skilled/skills/system-deep-loop/hub-router.json",
+  ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+  ".skilled/skills/system-deep-loop/mode-registry.json",
+  ".skilled/skills/system-deep-loop/runtime/feature-catalog/council/divergent-pivot-seat-cap-and-retry.md",
+  ".skilled/skills/system-deep-loop/runtime/feature-catalog/coverage-graph/coverage-graph-db.md",
+  ".skilled/skills/system-deep-loop/runtime/feature-catalog/coverage-graph/source-quality-class.md",
+  ".skilled/skills/system-deep-loop/runtime/feature-catalog/executor/landed-iteration-no-redispatch.md",
+  ".skilled/skills/system-deep-loop/runtime/feature-catalog/executor/research-claude-config-dir.md",
+  ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-merge.md",
+  ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-review-coverage-merge.md",
+  ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md",
+  ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+  ".skilled/skills/system-deep-loop/runtime/feature-catalog/prompt-rendering/research-prompt-pack-contract.md",
+  ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/convergence-script.md",
+  ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/frontier-admit-script.md",
+  ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/upsert-script.md",
+  ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/divergent-council-quorum-retry.md",
+  ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/coverage-graph/source-quality-class-derivation.md",
+  ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/executor/landed-iteration-skips-redispatch.md",
+  ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/executor/research-claude-config-dir.md",
+  ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+  ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/prompt-rendering/research-prompt-pack-contract.md",
+  ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/script-entry-points/upsert-script.md",
+  ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+  ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-research-default/dashboard.md",
+  ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-research-default/lineage-prompt.txt",
+  ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-research-default/next-focus.txt",
+  ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-research-default/prompt-pack.md",
+  ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-research-default/registry.json",
+  ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-research-default/stop-decision-config.json",
+  ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-review-default/dashboard.md",
+  ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-review-default/lineage-prompt.txt",
+  ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-review-default/next-focus.txt",
+  ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-review-default/pivot-seeds.json",
+  ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-review-default/prompt-pack.md",
+  ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-review-default/registry.json",
+  ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-review-default/stop-decision-config.json",
+  ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+  ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+  ".skilled/skills/system-deep-loop/changelog/v2.1.7.0.md",
+  ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-expansive-lineage-budget.md",
+  ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-run-cli-lineage-spawn.md",
+  ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/script-entry-points/frontier-admit-script.md",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/README.md",
+  ".skilled/skills/system-spec-kit/SKILL.md",
+  ".skilled/skills/system-spec-kit/changelog/v2.13.5.0.md"
+ ],
+ "not_reviewed": []
+}

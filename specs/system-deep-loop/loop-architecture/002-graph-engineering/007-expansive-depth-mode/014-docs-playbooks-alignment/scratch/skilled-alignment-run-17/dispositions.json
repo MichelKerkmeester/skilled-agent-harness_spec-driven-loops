@@ -1,0 +1,22 @@
+[
+ {
+  "id": "BAT-01",
+  "status": "handed_off",
+  "note": "Owner: check_derived_readme_counts.py owner. The S5-derived-counts row fails only on .skilled/skills/system-skill-advisor/README.md line 141, where the checker reads 'its two sidecar files' in a troubleshooting row as a numeric file-count claim. That is a false positive in the checker, not README drift: lane C3 confirmed the database has two sidecar files (-shm and -wal), and the line is unchanged since the base. Same hand-off as runs 15 and 16."
+ },
+ {
+  "id": "BAT-02",
+  "status": "handed_off",
+  "note": "Owner: validate-command-references.cjs owner. The S9-command-references row fails only on .skilled/commands/speckit/assets/speckit-resume.yaml:104, which names system-spec-kit/runtime/database/access-telemetry.json, a gitignored runtime file (.gitignore:431, lane D) the YAML falls back from. The YAML is right; the checker needs a runtime-state exemption. Same hand-off as runs 15 and 16."
+ },
+ {
+  "id": "C4-1",
+  "status": "handed_off",
+  "note": "Owner: operator (root release notes). The root .skilled/changelog/skilled/v4.1.0.0.md does not describe this program's new deep-loop features (expansive depth mode, --extend, custom review dimensions, the review minIterations floor), and v4.1.0.0 is already tagged. Opening or amending the root release record is the release owner's call, made when this branch lands. Same hand-off as run 16's C4-1; the critic marked C1-6 a duplicate of this one."
+ },
+ {
+  "id": "C3-2",
+  "status": "handed_off",
+  "note": "Owner: runtime scripts README owner. The nine scripts missing from runtime/scripts/README.md all existed at the base commit and were unlisted there too (the critic marked this pre-existing); this range only added frontier-admit.cjs and backfilled two rows."
+ }
+]

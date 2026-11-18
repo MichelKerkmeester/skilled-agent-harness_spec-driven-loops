@@ -1,0 +1,196 @@
+{
+ "lane": "D",
+ "findings": [
+  {
+   "id": "D-1",
+   "surface": "S9",
+   "standard": "sk-doc/sk-create-command",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/commands/deep/review.md",
+   "line": 100,
+   "issue": "The --depth-mode row gives the caps as 'maxDepth 3, maxChildrenPerNode 6' with no root exception. A review root takes up to 8 depth-1 children: frontier-admit.cjs:61 sets ROOT_CHILDREN_FLOOR review: 8, readCaps (frontier-admit.cjs:317) sets maxRootChildren = max(maxChildrenPerNode, 8), and deep-review.yaml:329 and :910 ask the seed step for 3 to 8 sub-targets. Run 16 accepted this as C4-5 for deep-review/README.md, and commit 555be348b61 fixed the README (line 166 now says 'A review root takes up to 8 depth-1 children'), but this operator-facing flag row, unchanged since then, still states 6. research.md:107 is fine because the research root floor is also 6.",
+   "evidence": {
+    "cmd": "grep -n \"ROOT_CHILDREN_FLOOR = \\|maxRootChildren\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    "exit": 0,
+    "out": "61:const ROOT_CHILDREN_FLOOR = Object.freeze({ research: 6, review: 8 });\n317:    maxRootChildren: Math.max(maxChildrenPerNode, ROOT_CHILDREN_FLOOR[target]),\n399:  return parentId === 'root' && Number.isFinite(caps.maxRootChildren) ? caps.maxRootChildren : caps.maxChildrenPerNode;"
+   }
+  },
+  {
+   "id": "D-2",
+   "surface": "S9",
+   "standard": "sk-doc/sk-create-command",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+   "line": 39,
+   "issue": "The PRE-BOUND SETUP ANSWERS example indents lineage_mode, extend and extend_minutes by one space while every other field uses two. The extend and extend_minutes lines are new in this diff and copy the one-space indent of the existing lineage_mode line. auto-mode-contract.md section 2 says 'Each field is `  <key>: <value>` indented two spaces, one per line', and the block is described as YAML-style, so a caller copying this template writes a block that breaks the grammar. deep-research-presentation.txt indents all its fields by two spaces.",
+   "evidence": {
+    "cmd": "grep -n \"^ [a-z_]*: \" .skilled/commands/deep/assets/deep-review-presentation.txt | cut -c1-40",
+    "exit": 0,
+    "out": "39: lineage_mode: auto  # one of: auto |\n40: extend: \"\"  # optional positive inte\n41: extend_minutes: \"\"  # optional posit"
+   },
+   "fix": {
+    "old": " lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)\n extend: \"\"  # optional positive integer N from --extend=N: extends a completed run by N iterations\n extend_minutes: \"\"  # optional positive integer M from --extend-minutes=M: minutes added to the later of the prior budget and the minutes elapsed, default the prior budget",
+    "new": "  lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)\n  extend: \"\"  # optional positive integer N from --extend=N: extends a completed run by N iterations\n  extend_minutes: \"\"  # optional positive integer M from --extend-minutes=M: minutes added to the later of the prior budget and the minutes elapsed, default the prior budget"
+   }
+  },
+  {
+   "id": "D-3",
+   "surface": "S9",
+   "standard": "sk-doc/sk-create-command",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/commands/deep/assets/deep-research.yaml",
+   "line": 1793,
+   "issue": "The rewritten command_note says the check 'prints one machine reason (dispatch_failed|...|delta_file_missing|executor_missing)' and then exempts 'executor_missing, findings_not_enumerated and ledger_backing_missing' from redispatch. Two of the three exempted reasons are not in its own list. verify-iteration.cjs REASONS also returns state_log_malformed, delta_file_malformed and gateway_bypass_detected, none listed. The exemption itself is correct; the reason list it hangs off is stale, so an operator reading a findings_not_enumerated exit finds it undocumented here.",
+   "evidence": {
+    "cmd": "grep -n \"FINDINGS_NOT_ENUMERATED: \\|LEDGER_BACKING_MISSING: \\|STATE_LOG_MALFORMED: \\|DELTA_FILE_MALFORMED: \\|GATEWAY_BYPASS_DETECTED: \" .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+    "exit": 0,
+    "out": "73:  STATE_LOG_MALFORMED: 'state_log_malformed',\n74:  DELTA_FILE_MALFORMED: 'delta_file_malformed',\n75:  FINDINGS_NOT_ENUMERATED: 'findings_not_enumerated',\n76:  GATEWAY_BYPASS_DETECTED: 'gateway_bypass_detected',\n77:  LEDGER_BACKING_MISSING: 'ledger_backing_missing',"
+   }
+  },
+  {
+   "id": "D-4",
+   "surface": "S9",
+   "standard": "sk-doc/sk-create-command",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/commands/deep/assets/deep-review.yaml",
+   "line": 1888,
+   "issue": "Same as D-3 on the review side: the rewritten command_note lists eight reasons (with iteration_verdict_missing) and then exempts findings_not_enumerated and ledger_backing_missing, which its list omits. findings_not_enumerated is mostly a review reason (verify-iteration.cjs:534-546 branches on loopType === 'review'), so the omission matters most here.",
+   "evidence": {
+    "cmd": "grep -n \"FINDINGS_NOT_ENUMERATED: \\|LEDGER_BACKING_MISSING: \\|STATE_LOG_MALFORMED: \\|DELTA_FILE_MALFORMED: \\|GATEWAY_BYPASS_DETECTED: \" .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+    "exit": 0,
+    "out": "73:  STATE_LOG_MALFORMED: 'state_log_malformed',\n74:  DELTA_FILE_MALFORMED: 'delta_file_malformed',\n75:  FINDINGS_NOT_ENUMERATED: 'findings_not_enumerated',\n76:  GATEWAY_BYPASS_DETECTED: 'gateway_bypass_detected',\n77:  LEDGER_BACKING_MISSING: 'ledger_backing_missing',"
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+  ".skilled/skills/system-deep-loop/ROUTER.md",
+  ".skilled/skills/system-deep-loop/SKILL.md",
+  ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+  ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+  ".skilled/skills/system-deep-loop/description.json",
+  ".skilled/skills/system-deep-loop/graph-metadata.json",
+  ".skilled/skills/system-deep-loop/hub-router.json",
+  ".skilled/skills/system-deep-loop/mode-registry.json",
+  ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+  ".skilled/skills/system-spec-kit/SKILL.md",
+  ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+  ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+  ".skilled/commands/deep/assets/deep-research-presentation.txt",
+  ".skilled/commands/deep/assets/deep-research.yaml",
+  ".skilled/commands/deep/assets/deep-review-presentation.txt",
+  ".skilled/commands/deep/assets/deep-review.yaml",
+  ".skilled/commands/deep/research.md",
+  ".skilled/commands/deep/review.md",
+  ".claude/agents/deep-research.md",
+  ".claude/agents/deep-review.md",
+  ".codex/agents/deep-research.toml",
+  ".codex/agents/deep-review.toml",
+  ".pi/agents/deep-research.md",
+  ".pi/agents/deep-review.md",
+  ".skilled/agents/deep-research.md",
+  ".skilled/agents/deep-review.md"
+ ],
+ "not_reviewed": [],
+ "probes": [
+  {
+   "prompt": "Run an expansive deep research loop on the routing architecture, keeping a depth-capped frontier of follow-up questions",
+   "expect": "system-deep-loop",
+   "expectMode": "research"
+  },
+  {
+   "prompt": "Enable expansive depth mode on this research run",
+   "expect": "system-deep-loop",
+   "expectMode": "research"
+  },
+  {
+   "prompt": "Seed a depth-capped frontier of follow-up questions for this research run",
+   "expect": "system-deep-loop",
+   "expectMode": "research"
+  },
+  {
+   "prompt": "Run an expansive deep review of this diff, expanding the review target into a depth-capped frontier of sub-targets",
+   "expect": "system-deep-loop",
+   "expectMode": "review"
+  },
+  {
+   "prompt": "Expand the review target into sub-targets to depth 3",
+   "expect": "system-deep-loop",
+   "expectMode": "review"
+  },
+  {
+   "prompt": "Turn on expansive depth mode for the review loop",
+   "expect": "system-deep-loop",
+   "expectMode": "review"
+  },
+  {
+   "prompt": "Review this one file for bugs and report findings",
+   "expect": "sk-code"
+  },
+  {
+   "prompt": "Implement the frontier admission check in the reducer",
+   "expect": "sk-code"
+  },
+  {
+   "prompt": "Update the deep-research README to document the expansive depth flag",
+   "expect": "sk-doc"
+  },
+  {
+   "prompt": "Extend the completed deep research run by 5 more iterations in the same session",
+   "expect": "system-deep-loop",
+   "expectMode": "research"
+  },
+  {
+   "prompt": "Extend the finished deep review loop by 4 iterations without restarting it",
+   "expect": "system-deep-loop",
+   "expectMode": "review"
+  },
+  {
+   "prompt": "Continue the completed research loop and add 60 minutes to its duration budget",
+   "expect": "system-deep-loop",
+   "expectMode": "research"
+  },
+  {
+   "prompt": "Size the expansive deep review budget from the seeded sub-targets and all review dimensions",
+   "expect": "system-deep-loop",
+   "expectMode": "review"
+  },
+  {
+   "prompt": "Stop the deep review loop once every frontier sub-target node is drained",
+   "expect": "system-deep-loop",
+   "expectMode": "review"
+  },
+  {
+   "prompt": "Run a deep review loop with a custom performance dimension beside the four standard ones",
+   "expect": "system-deep-loop",
+   "expectMode": "review"
+  },
+  {
+   "prompt": "Check the review target file for injection bugs and report findings",
+   "expect": "sk-code"
+  },
+  {
+   "prompt": "Run an expansive deep review with the whole repo root as the review target and seed its sub-targets",
+   "expect": "system-deep-loop",
+   "expectMode": "review"
+  },
+  {
+   "prompt": "Run an expansive deep review over a glob target like src/**/*.ts and expand it into sub-targets",
+   "expect": "system-deep-loop",
+   "expectMode": "review"
+  },
+  {
+   "prompt": "Stop the expansive deep research loop when it hits its max duration even though frontier nodes are still open",
+   "expect": "system-deep-loop",
+   "expectMode": "research"
+  },
+  {
+   "prompt": "Run a deep loop that keeps a depth-capped frontier of open nodes until it converges",
+   "expect": "system-deep-loop"
+  }
+ ]
+}

@@ -1,0 +1,204 @@
+{
+  "lane": "C2",
+  "findings": [
+    {
+      "id": "C2-1",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+      "line": 197,
+      "issue": "How It Was Checked says the Review admission helper suite (tests/unit/frontier-admit-review.vitest.ts) ran 18 passed, and the entry says the suites \"ran on this branch\". At HEAD 9f456e735c2 that suite runs 36 passed. git blame dates the count line to 7ab0b520296. The suite file changed in later commits on this branch, and the entry itself was re-edited afterwards (9ff752dc5f6, 555be348b61) without updating the count. sk-create-changelog section 7 step 4 says How It Was Checked records each suite's result from a real run. The suite-to-file mapping comes from the 011-review-frontier-mode tasks.md and goal.md verify commands. The mapping for the two admission suites is inferred from tasks.md T011 and implementation-summary.md line 73.",
+      "evidence": {
+        "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx --no-install vitest run tests/unit/frontier-admit-review.vitest.ts",
+        "exit": 0,
+        "out": "Tests  36 passed (36)"
+      },
+      "fix": {
+        "old": "- Review admission helper: 18 passed, 0 failed.",
+        "new": "- Review admission helper: 36 passed, 0 failed."
+      }
+    },
+    {
+      "id": "C2-2",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+      "line": 198,
+      "issue": "How It Was Checked says the Shared admission table suite (tests/unit/frontier-admit.vitest.ts) ran 24 passed, and the entry says the suites \"ran on this branch\". At HEAD 9f456e735c2 that suite runs 58 passed. git blame dates the count line to 7ab0b520296. The suite file changed in later commits on this branch, and the entry itself was re-edited afterwards (9ff752dc5f6, 555be348b61) without updating the count. sk-create-changelog section 7 step 4 says How It Was Checked records each suite's result from a real run. The suite-to-file mapping comes from the 011-review-frontier-mode tasks.md and goal.md verify commands. The mapping for the two admission suites is inferred from tasks.md T011 and implementation-summary.md line 73.",
+      "evidence": {
+        "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx --no-install vitest run tests/unit/frontier-admit.vitest.ts",
+        "exit": 0,
+        "out": "Tests  58 passed (58)"
+      },
+      "fix": {
+        "old": "- Shared admission table: 24 passed, 0 failed.",
+        "new": "- Shared admission table: 58 passed, 0 failed."
+      }
+    },
+    {
+      "id": "C2-3",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+      "line": 199,
+      "issue": "How It Was Checked says the Reducer suite (tests/unit/deep-review-state-reducer.vitest.ts) ran 32 passed, and the entry says the suites \"ran on this branch\". At HEAD 9f456e735c2 that suite runs 35 passed. git blame dates the count line to 7ab0b520296. The suite file changed in later commits on this branch, and the entry itself was re-edited afterwards (9ff752dc5f6, 555be348b61) without updating the count. sk-create-changelog section 7 step 4 says How It Was Checked records each suite's result from a real run. The suite-to-file mapping comes from the 011-review-frontier-mode tasks.md and goal.md verify commands.",
+      "evidence": {
+        "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx --no-install vitest run tests/unit/deep-review-state-reducer.vitest.ts",
+        "exit": 0,
+        "out": "Tests  35 passed (35)"
+      },
+      "fix": {
+        "old": "- Reducer: 32 passed, 0 failed.",
+        "new": "- Reducer: 35 passed, 0 failed."
+      }
+    },
+    {
+      "id": "C2-4",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+      "line": 200,
+      "issue": "How It Was Checked says the Stop decision suite (tests/unit/stop-decision.vitest.ts) ran 92 passed, and the entry says the suites \"ran on this branch\". At HEAD 9f456e735c2 that suite runs 113 passed. git blame dates the count line to 7ab0b520296. The suite file changed in later commits on this branch, and the entry itself was re-edited afterwards (9ff752dc5f6, 555be348b61) without updating the count. sk-create-changelog section 7 step 4 says How It Was Checked records each suite's result from a real run. The suite-to-file mapping comes from the 011-review-frontier-mode tasks.md and goal.md verify commands.",
+      "evidence": {
+        "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx --no-install vitest run tests/unit/stop-decision.vitest.ts",
+        "exit": 0,
+        "out": "Tests  113 passed (113)"
+      },
+      "fix": {
+        "old": "- Stop decision: 92 passed, 0 failed.",
+        "new": "- Stop decision: 113 passed, 0 failed."
+      }
+    },
+    {
+      "id": "C2-5",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+      "line": 201,
+      "issue": "How It Was Checked says the Stop decision YAML contract suite (tests/unit/stop-decision-yaml-contract.vitest.ts) ran 34 passed, and the entry says the suites \"ran on this branch\". At HEAD 9f456e735c2 that suite runs 57 passed. git blame dates the count line to 7ab0b520296. The suite file changed in later commits on this branch, and the entry itself was re-edited afterwards (9ff752dc5f6, 555be348b61) without updating the count. sk-create-changelog section 7 step 4 says How It Was Checked records each suite's result from a real run. The suite-to-file mapping comes from the 011-review-frontier-mode tasks.md and goal.md verify commands.",
+      "evidence": {
+        "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx --no-install vitest run tests/unit/stop-decision-yaml-contract.vitest.ts",
+        "exit": 0,
+        "out": "Tests  57 passed (57)"
+      },
+      "fix": {
+        "old": "- Stop decision YAML contract: 34 passed, 0 failed.",
+        "new": "- Stop decision YAML contract: 57 passed, 0 failed."
+      }
+    },
+    {
+      "id": "C2-6",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+      "line": 202,
+      "issue": "How It Was Checked says the Divergent pivot suite (tests/integration/divergent-pivot.vitest.ts) ran 26 passed, and the entry says the suites \"ran on this branch\". At HEAD 9f456e735c2 that suite runs 28 passed. git blame dates the count line to 7ab0b520296. The suite file changed in later commits on this branch, and the entry itself was re-edited afterwards (9ff752dc5f6, 555be348b61) without updating the count. sk-create-changelog section 7 step 4 says How It Was Checked records each suite's result from a real run. The suite-to-file mapping comes from the 011-review-frontier-mode tasks.md and goal.md verify commands.",
+      "evidence": {
+        "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx --no-install vitest run tests/integration/divergent-pivot.vitest.ts",
+        "exit": 0,
+        "out": "Tests  28 passed (28)"
+      },
+      "fix": {
+        "old": "- Divergent pivot: 26 passed, 0 failed.",
+        "new": "- Divergent pivot: 28 passed, 0 failed."
+      }
+    },
+    {
+      "id": "C2-7",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+      "line": 203,
+      "issue": "How It Was Checked says the Fan-out runner suite (tests/unit/fanout-run.vitest.ts) ran 207 passed, and the entry says the suites \"ran on this branch\". At HEAD 9f456e735c2 that suite runs 215 passed. git blame dates the count line to 7ab0b520296. The suite file changed in later commits on this branch, and the entry itself was re-edited afterwards (9ff752dc5f6, 555be348b61) without updating the count. sk-create-changelog section 7 step 4 says How It Was Checked records each suite's result from a real run. The suite-to-file mapping comes from the 011-review-frontier-mode tasks.md and goal.md verify commands.",
+      "evidence": {
+        "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx --no-install vitest run tests/unit/fanout-run.vitest.ts",
+        "exit": 0,
+        "out": "Tests  215 passed (215)"
+      },
+      "fix": {
+        "old": "- Fan-out runner: 207 passed, 0 failed.",
+        "new": "- Fan-out runner: 215 passed, 0 failed."
+      }
+    },
+    {
+      "id": "C2-8",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+      "line": 204,
+      "issue": "How It Was Checked says the Fan-out merge suite (tests/unit/fanout-merge.vitest.ts) ran 88 passed, and the entry says the suites \"ran on this branch\". At HEAD 9f456e735c2 that suite runs 93 passed. git blame dates the count line to 7ab0b520296. The suite file changed in later commits on this branch, and the entry itself was re-edited afterwards (9ff752dc5f6, 555be348b61) without updating the count. sk-create-changelog section 7 step 4 says How It Was Checked records each suite's result from a real run. The suite-to-file mapping comes from the 011-review-frontier-mode tasks.md and goal.md verify commands.",
+      "evidence": {
+        "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx --no-install vitest run tests/unit/fanout-merge.vitest.ts",
+        "exit": 0,
+        "out": "Tests  93 passed (93)"
+      },
+      "fix": {
+        "old": "- Fan-out merge: 88 passed, 0 failed.",
+        "new": "- Fan-out merge: 93 passed, 0 failed."
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/deep-review/README.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
+    ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md",
+    ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md",
+    ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
+    ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md",
+    ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.12.0.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/min-iterations-floor.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/custom-review-dimensions.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/cross-mode-anti-convergence-contract.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/state-management/config-management.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/state-management/focus-hijack-guard.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-drained-stops-review.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-review-stop.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-min-iterations-floor.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/extend-completed-review-run.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fan-out-merged-coverage-surfaces.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/custom-dimension-setup-and-universe.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-and-node-dimension-coverage.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/review-next-focus-first-uncovered-dimension.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/review-depth-v2-rollout/stop-gate-custom-dimension-coverage.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md",
+    ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/composite-review-convergence-stop-behavior.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/dimension-coverage-convergence-signal.md",
+    ".skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs"
+  ],
+  "not_reviewed": []
+}

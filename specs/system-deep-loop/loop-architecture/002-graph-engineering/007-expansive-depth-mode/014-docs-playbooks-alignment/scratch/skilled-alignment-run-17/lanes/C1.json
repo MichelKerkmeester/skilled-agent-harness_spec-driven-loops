@@ -1,0 +1,134 @@
+{
+ "lane": "C1",
+ "findings": [
+  {
+   "id": "C1-1",
+   "surface": "S5",
+   "standard": "sk-doc/sk-create-readme",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
+   "line": 109,
+   "issue": "The README's research-packet artifact table gained the two expansive files frontier-nodes.jsonl and frontier-seed.json, but not frontier-graph-events.json, which step_frontier_graph_upsert writes into the artifact directory on every expansive iteration. references/state/state-format.md's new Frontier Node Store section leaves it out too, so the only doc naming it is the expansive-depth-mode catalog entry. An operator reading the README's list of what a run writes cannot account for that file. Add a row (and an allow-ref comment line beside the frontier-seed.json one), for example: | `frontier-graph-events.json` | Workflow | The frontier graph events each expansive iteration mirrors into the coverage graph, absent on a default run |",
+   "evidence": {
+    "cmd": "sed -n 1907,1914p .skilled/commands/deep/assets/deep-research.yaml; grep -rln 'frontier-graph-events' .skilled/skills/system-deep-loop/deep-research/",
+    "exit": 0,
+    "out": "enabled_when: \"depth_mode == 'expansive'\" ... frontier-admit.cjs graph --artifact-dir \"{artifact_dir}\" --output \"{artifact_dir}/frontier-graph-events.json\"; only match in the package: feature-catalog/convergence/expansive-depth-mode.md"
+   }
+  },
+  {
+   "id": "C1-2",
+   "surface": "S6",
+   "standard": "sk-doc/sk-create-changelog",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+   "line": 150,
+   "issue": "The budget item states the floor only for a native fan-out lineage dealt no seed node. The shipped code and every other doc (README, loop-protocol.md, convergence.md) say a CLI lineage runs at 10. A CLI fan-out reader is left to assume 12.",
+   "evidence": {
+    "cmd": "grep -n 'floor is the budget' .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    "exit": 0,
+    "out": "334:// floor is the budget that lineage would otherwise have run: 12 for a native lineage,"
+   },
+   "fix": {
+    "old": "- A native fan-out lineage dealt no seed node runs 12 iterations.",
+    "new": "- A fan-out lineage dealt no seed node runs at its floor: 12 iterations for a native lineage, 10 for a CLI one."
+   }
+  },
+  {
+   "id": "C1-3",
+   "surface": "S6",
+   "standard": "sk-doc/sk-create-changelog",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+   "line": 138,
+   "issue": "The list of stops the frontier veto never outranks leaves out the max-duration stop. SKILL.md, convergence.md and the expansive-depth-mode catalog entry all name it, so a reader of the changelog could expect an expansive run to outlive maxDurationMinutes.",
+   "fix": {
+    "old": "- Consecutive failures, stuck recovery and pause still win.",
+    "new": "- Consecutive failures, stuck recovery, pause and the max-duration stop still win."
+   }
+  },
+  {
+   "id": "C1-4",
+   "surface": "S6",
+   "standard": "sk-doc/sk-create-changelog",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+   "line": 133,
+   "issue": "The scope changed how two opt-in modes combine, and no changelog entry says so: under --convergence-mode=divergent, an expansive run's pivot is eligible only once no frontier node is open or active. convergence.md and the divergent-convergence-mode catalog entry gained this rule in the diff, but the 'A run keeps going while nodes stay open' item does not mention it. Add one bullet there, such as: 'Under --convergence-mode=divergent, a pivot waits until no node is open.'"
+  },
+  {
+   "id": "C1-5",
+   "surface": "S6",
+   "standard": "sk-doc/sk-create-changelog",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+   "line": 75,
+   "issue": "'Its waiver awaits operator sign-off.' is process status, not a reader-facing change. sk-create-changelog SKILL.md section 8 item 2 says to drop process detail, and this sentence goes stale once the sign-off happens. The bullets before it already tell the reader the paragraph has no effect on a default run.",
+   "fix": {
+    "old": "- That paragraph has no effect on a default run.\n- Its waiver awaits operator sign-off.",
+    "new": "- That paragraph has no effect on a default run."
+   }
+  },
+  {
+   "id": "C1-6",
+   "surface": "S6",
+   "standard": "sk-doc/sk-create-changelog",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/changelog/skilled/v4.1.0.0.md",
+   "line": 1,
+   "issue": "This file is outside the lane's file list, but the S6 lens requires the check. The newest root release notes, v4.1.0.0, are already published: tag v4.1.0.0 exists, and the file at HEAD matches the tagged file. They say nothing about --depth-mode=expansive or --extend/--extend-minutes, two user-visible research capabilities this scope adds. The root README (line 255) does describe both. Unless the operator plans a new skilled release entry for this branch, the capabilities have no root release notes. Per sk-create-changelog section 7 step 3, a tagged release is closed, so the fix is a new skilled entry, not an edit to v4.1.0.0. Which release carries it is the operator's call.",
+   "evidence": {
+    "cmd": "git -c core.fsmonitor=false tag --list 'v4.1*'; git -c core.fsmonitor=false diff --stat v4.1.0.0 9f456e735c2 -- .skilled/changelog/skilled/; grep -niE 'expansive|depth-mode|--extend|frontier' .skilled/changelog/skilled/v4.1.0.0.md",
+    "exit": 1,
+    "out": "v4.1.0.0; (no diff between tag and HEAD for root changelog); (no match)"
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/deep-research/README.md",
+  ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+  ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
+  ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
+  ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+  ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md",
+  ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.17.0.md",
+  ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/quality-guards.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/initialization.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/focus-hijack-guard.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/leaf-field-gates.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/convergence-passes-guard-fails-override.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-focus-alignment.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-no-single-weak-source.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-source-diversity.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/focus-alignment-and-findings-gate-read-leaf-fields.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-band-budget-rolls-down.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-dashboard-section.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-graph-mirror-closes-unanswered-nodes.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/next-focus-ignores-answered-free-text.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
+  ".skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts",
+  ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs"
+ ],
+ "not_reviewed": []
+}

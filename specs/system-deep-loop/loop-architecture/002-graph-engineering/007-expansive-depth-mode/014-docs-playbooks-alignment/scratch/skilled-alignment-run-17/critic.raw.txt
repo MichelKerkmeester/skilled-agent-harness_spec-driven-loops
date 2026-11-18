@@ -1,0 +1,1 @@
+Critic (native review, opus, medium) returned: findings P2 1 (X-1); overrides C1-6 duplicate of C4-1, C3-2 pre-existing; upheld_probes none (no failed probe); untouched 19 entries matching the conductor's 1619-file coverage gap; no tracked file modified. Copied from the critic's scratch result.json.

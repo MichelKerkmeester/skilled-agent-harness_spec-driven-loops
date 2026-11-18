@@ -1,0 +1,1 @@
+Lane B3 (native review, opus, medium) returned: reviewed 61 of 61, not reviewed none, findings P0 0 P1 0 P2 4 (B3-1..B3-4); playbook validators passed; no tracked file modified. Copied from the lane's scratch result.json.

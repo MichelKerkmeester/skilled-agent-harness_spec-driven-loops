@@ -1,0 +1,1 @@
+Lane C3 (native review, opus, medium) returned: reviewed 74 of 74, not reviewed none, findings P0 0 P1 0 P2 2 (C3-1 runtime changelog, C3-2 scripts README); confirmed S5-derived-counts failure as a checker false positive; no tracked file modified. Copied from the lane's scratch result.json.

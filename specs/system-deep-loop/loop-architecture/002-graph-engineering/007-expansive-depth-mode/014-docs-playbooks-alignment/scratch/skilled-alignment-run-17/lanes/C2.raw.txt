@@ -1,0 +1,1 @@
+Lane C2 (native review, opus, medium) returned: reviewed 44 of 44, not reviewed none, findings P0 0 P1 0 P2 8 (C2-1..C2-8, stale test counts in deep-review changelog v1.13.0.0); no tracked file modified. Copied from the lane's scratch result.json.

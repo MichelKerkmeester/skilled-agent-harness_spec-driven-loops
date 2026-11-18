@@ -1,0 +1,28 @@
+[
+  {
+    "id": "C1-6",
+    "source_id": "C1-6",
+    "lane": "C1",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/changelog/skilled/v4.1.0.0.md",
+    "line": "1",
+    "issue": "This file is outside the lane's file list, but the S6 lens requires the check. The newest root release notes, v4.1.0.0, are already published: tag v4.1.0.0 exists, and the file at HEAD matches the tagged file. They say nothing about --depth-mode=expansive or --extend/--extend-minutes, two user-visible research capabilities this scope adds. The root README (line 255) does describe both. Unless the operator plans a new skilled release entry for this branch, the capabilities have no root release notes. Per sk-create-changelog section 7 step 3, a tagged release is closed, so the fix is a new skilled entry, not an edit to v4.1.0.0. Which release carries it is the operator's call.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false tag --list 'v4.1*'; git -c core.fsmonitor=false diff --stat v4.1.0.0 9f456e735c2 -- .skilled/changelog/skilled/; grep -niE 'expansive|depth-mode|--extend|frontier' .skilled/changelog/skilled/v4.1.0.0.md",
+      "exit": 1,
+      "out": "v4.1.0.0; (no diff between tag and HEAD for root changelog); (no match)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range",
+    "critic_override": {
+      "verdict": "duplicate",
+      "note": "Same gap as C4-1, which records it with stronger evidence: the newest root notes are .skilled/changelog/skilled/v4.1.0.0.md, already tagged; grep -c -i -E 'depth-mode|expansive|--extend' on it returns 0 (exit 1); and git merge-base --is-ancestor 2c80c64f391 v4.1.0.0 exits 1, so the --extend commit is not in the tag. Keep C4-1.",
+      "lane_severity": "P2"
+    }
+  }
+]

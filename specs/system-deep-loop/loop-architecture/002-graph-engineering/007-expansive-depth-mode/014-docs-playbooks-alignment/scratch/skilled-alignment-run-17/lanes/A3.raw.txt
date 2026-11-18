@@ -1,0 +1,1 @@
+Lane A3 (native review, opus, medium) returned: reviewed 18 of 18, not reviewed none, findings none; ran 9 test files (418 passed, 2 skipped, exit 0) and render-contract-snapshot --check (exit 0); no tracked file modified. Copied from the lane's scratch result.json.
