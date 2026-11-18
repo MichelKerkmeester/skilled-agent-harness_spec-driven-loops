@@ -94,7 +94,7 @@ describe('deep-research binds depth_mode beside convergence_mode', () => {
   const presentation = readFileSync(resolve(ASSETS, 'deep-research-presentation.txt'), 'utf8');
 
   it('declares depth_mode in user_inputs and requires it in the preflight contract', () => {
-    expect(yaml).toMatch(/\n  depth_mode: "\[default|expansive\]/);
+    expect(yaml).toMatch(/\n  depth_mode: "\[default\|expansive\]/);
     expect(yaml).toContain('convergence_mode, depth_mode, stop_policy]');
   });
 
@@ -132,7 +132,7 @@ describe('deep-review binds depth_mode beside convergence_mode', () => {
   const presentation = readFileSync(resolve(ASSETS, 'deep-review-presentation.txt'), 'utf8');
 
   it('declares depth_mode in user_inputs and requires it in the preflight contract', () => {
-    expect(yaml).toMatch(/\n  depth_mode: "\[default|expansive\]/);
+    expect(yaml).toMatch(/\n  depth_mode: "\[default\|expansive\]/);
     expect(yaml).toContain('convergence_mode, depth_mode, stop_policy]');
   });
 
