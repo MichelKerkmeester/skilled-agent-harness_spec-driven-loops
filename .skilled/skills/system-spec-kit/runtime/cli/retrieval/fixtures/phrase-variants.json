@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cb83078d6b3e2ca2be720df3dc32e13e2ebbd02a684c893931da349fea3c0075",
+  "manifestHash": "a5aaae3acd203140b1691bfbd5784b796ed5216533e6751c9156e41fa7639f5c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -3148,6 +3148,9 @@
     ],
     "013 evergreen doc packet id removal resource map": [
       "013-evergreen-doc-packet-id-removal resource map"
+    ],
+    "013 github release notes sync operator decisions": [
+      "013-github-release-notes-sync operator decisions"
     ],
     "013 handover whats next": [
       "013 handover whats next"
