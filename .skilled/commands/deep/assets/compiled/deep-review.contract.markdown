@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "b53dd804723bda1e2d5317c3472afbaa0d8b7483ad87224a4749ce53fc574063",
+      "sha256": "db955b42d130b587530675b38562716f5b91641581ad1f555737a4a96ccbacbd",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "8b3bb05231adc101a6049794ec0b088956babb0b02581c4f6a59b8d01d7b816c",
+      "sha256": "023c22ee70bb6715644cf3b0f30c41f1de6cfbbc1a370b6ea66e4f06a5aecbd6",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "d2e095345855d0da31cd72a960aca73a208b906b6df64106c0061c397125127c"
+  "compiledBodyDigest": "828f75a5af61a42aa8f5bc71dbb7b7ec000d14a44e4c7d180163236464d6d98d"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -382,6 +382,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - execution_mode = [AUTONOMOUS/INTERACTIVE]
    - lineage_mode = [auto/resume/restart from flag, marker, or default auto; completed-continue from --extend=N]
    - extend = [N from --extend=N, else unset]
+   - extend_minutes = [M from --extend-minutes=M, else unset; valid only with --extend]
    - maxIterations = [from Q3 or flag or default 7]; a Q3 answer that changes the offered value sets max_iterations_source = setup, a marker sets it to marker, and accepting the default keeps it default
    - convergenceThreshold = [from flag or default 0.10]
    - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]

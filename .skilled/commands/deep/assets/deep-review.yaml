@@ -335,8 +335,9 @@ workflow:
       {artifact_dir}/frontier-seed.json, one object per sub-target:
       {"question": "what to review in it", "scope": "<paths inside the review
       target>", "evidence": "<path or commit that grounds it>"}. Then run the
-      command. frontier-admit.cjs is the only writer of the node store; never
-      write that file by hand, and never queue or hand-expand the admitted nodes
+      command. frontier-admit.cjs writes the node store, and fanout-run.cjs
+      writes each lineage's starting store before it spawns; never write that
+      file by hand, and never queue or hand-expand the admitted nodes
       yourself.
     command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --target review --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json"'
     working_directory: "{repo_root}"
@@ -913,8 +914,9 @@ workflow:
           {artifact_dir}/frontier-seed.json, one object per sub-target:
           {"question": "what to review in it", "scope": "<paths inside the
           review target>", "evidence": "<path or commit that grounds it>"}. Then
-          run the command. frontier-admit.cjs is the only writer of the node
-          store; never write that file by hand, and never queue or hand-expand
+          run the command. frontier-admit.cjs writes the node store, and
+          fanout-run.cjs writes each lineage's starting store before it spawns;
+          never write that file by hand, and never queue or hand-expand
           the admitted nodes yourself.
         command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --target review --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json" --max-iterations-source "{max_iterations_source}"'
         working_directory: "{repo_root}"

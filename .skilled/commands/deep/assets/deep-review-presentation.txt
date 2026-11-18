@@ -237,6 +237,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - execution_mode = [AUTONOMOUS/INTERACTIVE]
    - lineage_mode = [auto/resume/restart from flag, marker, or default auto; completed-continue from --extend=N]
    - extend = [N from --extend=N, else unset]
+   - extend_minutes = [M from --extend-minutes=M, else unset; valid only with --extend]
    - maxIterations = [from Q3 or flag or default 7]; a Q3 answer that changes the offered value sets max_iterations_source = setup, a marker sets it to marker, and accepting the default keeps it default
    - convergenceThreshold = [from flag or default 0.10]
    - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]

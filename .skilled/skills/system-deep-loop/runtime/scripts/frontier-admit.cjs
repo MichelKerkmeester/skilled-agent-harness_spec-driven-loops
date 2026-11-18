@@ -9,8 +9,9 @@
 // neither the inbox (six fields) nor the registry (rebuilt from its inputs on
 // every reduce) can carry it, so it lives here instead.
 //
-// This module is the store's only writer: seed, admit, prune and close all pass
-// through it. The admission checks run in one fixed order so the workflow steps
+// Seed, admit, prune and close all pass through this module. The one other
+// writer is fanout-run.cjs, which writes each lineage's starting store before
+// the lineage spawns. The admission checks run in one fixed order so the workflow steps
 // have a single deterministic implementation rather than prose the orchestrating
 // model executes: relevance, dedupe, depth, fan-out, monotone budget, acyclicity.
 // The first failing check prunes the proposal with that check's name as the

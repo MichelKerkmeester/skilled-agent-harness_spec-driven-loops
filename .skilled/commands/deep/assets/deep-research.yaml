@@ -353,8 +353,9 @@ workflow:
       cover the topic. Write them as a JSON array to {artifact_dir}/frontier-seed.json,
       one object per sub-question: {"question": "...", "scope": "<path, module or
       area>", "evidence": "<repo path or topic phrase that grounds it>"}. Then run
-      the command. frontier-admit.cjs is the only writer of the node store and the
-      frontier inbox rows; never write either file by hand.
+      the command. frontier-admit.cjs writes the node store and the
+      frontier inbox rows, and fanout-run.cjs writes each lineage's starting store
+      before it spawns; never write either file by hand.
     command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json"'
     working_directory: "{repo_root}"
     outputs:
@@ -762,8 +763,9 @@ workflow:
           cover the topic. Write them as a JSON array to {artifact_dir}/frontier-seed.json,
           one object per sub-question: {"question": "...", "scope": "<path, module or
           area>", "evidence": "<repo path or topic phrase that grounds it>"}. Then run
-          the command. frontier-admit.cjs is the only writer of the node store and the
-          frontier inbox rows; never write either file by hand.
+          the command. frontier-admit.cjs writes the node store and the
+          frontier inbox rows, and fanout-run.cjs writes each lineage's starting
+          store before it spawns; never write either file by hand.
         command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json" --max-iterations-source "{max_iterations_source}"'
         working_directory: "{repo_root}"
         outputs:

@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "977009902d265126168db9df08b0b9456c0cad737c0ec8f95d458d96b6bbb6fa",
+      "sha256": "3106d07d64b385939904b75f041bed305d10663180fc63c598ce5ba15fd3f43a",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research.yaml",
-      "sha256": "d1afa0ceea850e5ff0e3e0fb32a941405f9636e34cb0e0b08da1a77b94b035e2",
+      "sha256": "f27c947661f9e1cc1b9d164b7568c99e17e457cb4b78a5ef53ea7967a4f70d3d",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "0f7119dcfb82f61e6a7f13a5625921a3aa72dbe2be5114f49b953e0c0a56df2a"
+  "compiledBodyDigest": "7cab96a91d66b730515ae3fda78886fa519ea72d0608e1e19ef9a45b41eccacf"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -355,6 +355,9 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - spec_choice = [A/B/C from Q1]
    - spec_path = [derived path]
    - execution_mode = [AUTONOMOUS/INTERACTIVE]
+   - lineage_mode = [auto/resume/restart from flag, marker, or default auto; completed-continue from --extend=N]
+   - extend = [N from --extend=N, else unset]
+   - extend_minutes = [M from --extend-minutes=M, else unset; valid only with --extend]
    - maxIterations = [from Q3 or flag or default 10]; a Q3 answer that changes the offered value sets max_iterations_source = setup, a marker sets it to marker, and accepting the default keeps it default
    - convergenceThreshold = [from flag or default 0.05]
    - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]
