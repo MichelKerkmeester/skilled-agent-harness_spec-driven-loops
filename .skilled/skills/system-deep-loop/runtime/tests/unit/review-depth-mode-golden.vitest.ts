@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Review default-path golden byte identity
+// MODULE: Review Default-Path Golden Byte Identity Tests
 // ───────────────────────────────────────────────────────────────────
 // The opt-in expansive depth mode touches the review reducer, the stop
 // decision, the review prompt pack, the review pivot seeds and the fan-out

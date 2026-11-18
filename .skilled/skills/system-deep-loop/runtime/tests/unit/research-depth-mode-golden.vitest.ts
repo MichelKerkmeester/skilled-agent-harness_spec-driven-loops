@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Research default-path golden byte identity
+// MODULE: Research Default-Path Golden Byte Identity Tests
 // ───────────────────────────────────────────────────────────────────
 // The opt-in expansive depth mode touches the reducer, the stop decision,
 // the prompt pack and the fan-out lineage prompt. A run that never asks for
