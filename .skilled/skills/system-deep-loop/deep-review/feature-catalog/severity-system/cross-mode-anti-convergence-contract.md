@@ -7,7 +7,7 @@ trigger_phrases:
   - "fail-closed stop policy"
   - "runtime capability stopPolicy"
   - "optimizer invariant group"
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # Cross-Mode Anti-Convergence Contract
@@ -26,7 +26,7 @@ The review config declares the floor in `assets/deep-review-config.json`. Its op
 
 The runtime capability matrix declares `stopPolicy: "fail-closed"`. The shared runtime capability resolver rejects any matrix where `stopPolicy` is absent or not `fail-closed`, so callers cannot silently fall back to permissive stop behavior.
 
-The optimizer manifest carries an invariant group for the same contract: `antiConvergence.convergenceMode` and `convergenceMode` stay locked, and `antiConvergence.minIterations` is tunable only when the paired `minIterations <= maxIterations` constraint holds.
+The optimizer manifest carries an invariant group for the same contract: `antiConvergence.convergenceMode`, `convergenceMode` and `antiConvergence.depthMode` stay locked, and `antiConvergence.minIterations` is tunable only when the paired `minIterations <= maxIterations` constraint holds.
 
 ---
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.25.0
+version: 1.11.26.0
 ---
 
 # Deep Review Loop Protocol
@@ -150,7 +150,7 @@ Set up all state files for a new review session. Discover the scope, order dimen
 
 | File | Location | Purpose |
 |------|----------|---------|
-| Config | `{artifact_dir}/deep-review-config.json` | Review parameters (immutable after init) |
+| Config | `{artifact_dir}/deep-review-config.json` | Review parameters (immutable after init, apart from the terminal status flip, an `--extend=N` rewrite and the derived expansive budget) |
 | State | `{artifact_dir}/deep-review-state.jsonl` | Iteration log (1 initial line) |
 | Registry | `{artifact_dir}/deep-review-findings-registry.json` | Reducer-owned findings state |
 | Strategy | `{artifact_dir}/deep-review-strategy.md` | Dimensions, findings, next focus |
@@ -462,7 +462,7 @@ Under `--depth-mode=expansive` the loop keeps a frontier of sub-target nodes bes
 
 `step_read_state` reads `active_frontier_node` from `registry.frontier.activeNodeId` and sets `next_dimension` to that node's next uncovered dimension, so the iteration reviews depth the node has not spent yet. `step_frontier_activate` marks the node `active` before the dispatch, and the prompt pack's `{frontier_block}` names the node; a leaf proposes `frontier_proposal` rows only when its block is non-empty.
 
-`step_frontier_admit` runs before the reducer and applies six checks in order: relevance, dedupe, depth, fan-out, budget, cycle. Relevance includes a node's scope sitting inside a file-list review target. The first failure prunes the proposal under that check's name. A review run has no inbox, so the store alone queues an admitted node, and `runtime/scripts/frontier-admit.cjs --target review` is its only writer.
+`step_frontier_admit` runs before the reducer and applies six checks in order: relevance, dedupe, depth, fan-out, budget, cycle. Relevance includes a node's scope sitting inside a file-list review target. The first failure prunes the proposal under that check's name. A review run has no inbox, so the store alone queues an admitted node, and `runtime/scripts/frontier-admit.cjs --target review` writes it, apart from the starting store `fanout-run.cjs` writes for each fan-out lineage.
 
 Next Focus reads, in precedence order: blocked-stop recovery, the pivot, the active frontier node, the leaf's `nextFocus`, then the first uncovered dimension. The `frontierOpen` veto holds the loop at CONTINUE while a node stays open, and never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the review floor. Stuck recovery closes the active node `exhausted` with reason `stuck` before recovery continues. Once no node is open or active and at least one is answered, a run with no other candidate gets the hard `frontier_drained` candidate, which the legal-stop gates and the graph decision still decide.
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "review report output"
 importance_tier: normal
 contextType: implementation
-version: 1.11.2.0
+version: 1.11.3.0
 ---
 
 # Deep Review State Outputs
@@ -33,7 +33,7 @@ Load this when writing or validating a packet output rather than a JSONL record.
 
 | File | Owner | Mutability | Purpose |
 |------|-------|------------|---------|
-| `deep-review-config.json` | Workflow | Immutable after init | Run parameters, lineage, threshold settings |
+| `deep-review-config.json` | Workflow | Immutable after init, apart from the terminal status flip, an `--extend=N` rewrite and the derived expansive budget | Run parameters, lineage, threshold settings |
 | `deep-review-state.jsonl` | Workflow and iteration contract | Append-only | Config, iteration, blocked-stop, pause, synthesis events |
 | `deep-review-findings-registry.json` | Reducer | Regenerated | Active, resolved, repeated, and blocked findings |
 | `deep-review-strategy.md` | Reducer with operator-readable sections | Regenerated/updated | Dimension order, known context, next focus |

@@ -9,7 +9,7 @@ trigger_phrases:
   - "review loop troubleshooting"
 importance_tier: normal
 contextType: general
-version: 1.11.12.0
+version: 1.11.13.0
 ---
 
 # Deep Review Quick Reference
@@ -88,7 +88,7 @@ Review mode stores its packet under the resolved local review path rooted at `{s
 
 | File | Location | Format | Purpose |
 |------|----------|--------|---------|
-| Config | `review/deep-review-config.json` | JSON | Review parameters (immutable) |
+| Config | `review/deep-review-config.json` | JSON | Review parameters (immutable after init, apart from the terminal status flip, an `--extend=N` rewrite and the derived expansive budget) |
 | State | `review/deep-review-state.jsonl` | JSONL | Iteration log (append-only) |
 | Registry | `review/deep-review-findings-registry.json` | JSON | Reducer-owned finding registry |
 | Strategy | `review/deep-review-strategy.md` | Markdown | Dimensions, findings, next focus |
@@ -96,6 +96,7 @@ Review mode stores its packet under the resolved local review path rooted at `{s
 | Iterations | `review/iterations/iteration-NNN.md` | Markdown | Per-iteration findings (write-once) |
 | Report | `review/review-report.md` | Markdown | Final 9-section review report |
 | Pause | `review/.deep-review-pause` | Sentinel | Pause between iterations |
+| Frontier | `review/frontier-nodes.jsonl` | JSONL | Expansive node store (only under `--depth-mode=expansive`) |
 
 ### Lifecycle Modes
 
@@ -104,7 +105,7 @@ Review mode stores its packet under the resolved local review path rooted at `{s
 | `resume` | Continue the current review lineage without resetting generation |
 | `restart` | Archive current review state and start a new generation |
 | `fork` (deferred) | Reserved. Start a sibling lineage branch with explicit parent linkage. Not runtime-wired. |
-| `completed-continue` | `--extend=N`: snapshot the completed review report as `review-report-v{generation}-r{continuedFromRun}.md` and reopen the run for N more iterations in the same session |
+| `completed-continue` | `--extend=N`, with `--extend-minutes=M` for the minutes added to the duration budget: snapshot the completed review report as `review-report-v{generation}-r{continuedFromRun}.md` and reopen the run for N more iterations in the same session |
 
 ---
 

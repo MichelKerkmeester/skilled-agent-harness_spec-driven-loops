@@ -6,7 +6,7 @@ trigger_phrases:
   - "expansive depth review"
   - "review frontier mode"
   - "review frontier-nodes"
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
@@ -33,7 +33,7 @@ A review stop candidate becomes another iteration while nodes stay open. The `fr
 
 ### Pivot
 
-The divergent review pivot runs only once the frontier is terminal. It seeds from terminal unanswered nodes, and an accepted candidate becomes the next review direction through `restoredFocus`. The pivot writes no frontier node.
+The divergent review pivot runs only once the frontier is terminal. It seeds only from nodes closed `exhausted` or `blocked`; an `abstained` node is terminal but never seeds it, and an accepted candidate becomes the next review direction through `restoredFocus`. The pivot writes no frontier node.
 
 ### Fan-Out
 

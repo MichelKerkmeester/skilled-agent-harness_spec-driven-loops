@@ -6,14 +6,14 @@ trigger_phrases:
   - "depth mode flag"
   - "expansive depth flag"
   - "deep loop depth mode"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Depth mode flag (--depth-mode)
 
 ## 1. OVERVIEW
 
-`--depth-mode` is a command-level option on `/deep:research` and `/deep:review`. It takes `default` or `expansive`. The flag is not part of `mode-registry.json`, so the hub classifies a request into the same workflow mode with or without it. The behavior the flag turns on lives in the research and review packets. Admission caps the live frontier at half of `maxIterations`, and the seed counts toward that cap, so a defaulted budget is sized from the seed: `min(24, max(loop default, 2 × c × (S + maxDepth − 1)))` for S seeded depth-1 nodes, with c 1 for research and the configured dimension count for review. A run or fan-out lineage with no seeded node keeps its loop default. An explicit `--max-iterations` always wins, even below the derived value.
+`--depth-mode` is a command-level option on `/deep:research` and `/deep:review`. It takes `default` or `expansive`. The flag is not part of `mode-registry.json`, so the hub classifies a request into the same workflow mode with or without it. The behavior the flag turns on lives in the research and review packets. Admission caps the live frontier at half of `maxIterations`, or at `expansiveDepth.maxFrontierNodes` when the config sets it, and falls back to 10 when no config exists yet, as for a fan-out parent's seed. The seed pass is exempt from that cap, but every seeded node counts toward it afterwards, so a defaulted budget is sized from the seed: `min(24, max(loop default, 2 × c × (S + maxDepth − 1)))` for S seeded depth-1 nodes, with c 1 for research and the configured dimension count for review. A run or fan-out lineage with no seeded node keeps its loop default. An explicit `--max-iterations` always wins, even below the derived value.
 
 ---
 
@@ -43,7 +43,8 @@ The expansive behavior is documented in the packet catalogs: [expansive depth mo
 | `.skilled/commands/deep/research.md` | Command doc | The `--depth-mode` flag row for research. |
 | `.skilled/commands/deep/review.md` | Command doc | The `--depth-mode` flag row for review. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Script | Adds `depthMode` to the stop-decision config only when expansive. |
-| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Script | Passes `depthMode` to lineages only when expansive. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Script | Under expansive depth, passes `depthMode` to lineages, deals the seeded nodes round-robin and records the partition. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Script | Merges the lineage frontiers and runs the partition guard over the recorded deal. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` | Script | Owns the node store and the seed, admit, close, block and graph calls the flag turns on. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Script | Projects `registry.frontier`, the input the review stop veto reads. |
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Script | Projects `registry.frontier` for research. |

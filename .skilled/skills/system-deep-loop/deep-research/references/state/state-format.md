@@ -9,7 +9,7 @@ trigger_phrases:
   - "research packet location"
 importance_tier: important
 contextType: implementation
-version: 1.14.1.0
+version: 1.14.2.0
 ---
 
 # State Format Reference
@@ -42,7 +42,7 @@ The deep-research loop persists continuity in packet files so each iteration can
 
 | File | Format | Purpose | Mutability |
 |------|--------|---------|------------|
-| `deep-research-config.json` | JSON | Loop parameters and lineage | Created at init; read-only after |
+| `deep-research-config.json` | JSON | Loop parameters and lineage | Created at init; afterwards only the workflow writes it, through the terminal status flip, an `--extend=N` rewrite and the derived expansive budget |
 | `deep-research-state.jsonl` | JSONL | Append-only structured log | Append-only |
 | `deep-research-strategy.md` | Markdown | Current research plan and next focus | Reducer-managed sections |
 | `deep-research-findings-registry.json` / `findings-registry.json` | JSON | Reducer-owned findings and question state | Auto-generated |
@@ -78,7 +78,7 @@ This avoids an unnecessary `pt-01` wrapper on first runs.
 
 ### Frontier Node Store (expansive depth only)
 
-`research/frontier-nodes.jsonl` is the node-status store for a run started with `--depth-mode=expansive`. A default run never creates it. Rows are append-only and carry `{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey}`. The last row for a node wins, so a status change is one more row rather than an edit. `runtime/scripts/frontier-admit.cjs` is the only writer.
+`research/frontier-nodes.jsonl` is the node-status store for a run started with `--depth-mode=expansive`. A default run never creates it. Rows are append-only and carry `{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey}`. The last row for a node wins, so a status change is one more row rather than an edit. `runtime/scripts/frontier-admit.cjs` writes it for seed, admit and close, and `runtime/scripts/fanout-run.cjs` writes each fan-out lineage's starting store before the lineage spawns.
 
 Statuses are `open`, `active`, `answered`, `blocked`, `exhausted`, `abstained` and `pruned`. A frontier question resolves when its node reaches a terminal status.
 
@@ -103,7 +103,7 @@ The reducer is the source of truth for derived state. Manual edits to reducer-ow
 
 | Protection | Meaning |
 |------------|---------|
-| `immutable` | Created once and not modified after init |
+| `immutable` | Created once; no agent or reducer modifies it after init (the config still takes the workflow's own writes: the terminal status flip, an `--extend=N` rewrite and the derived expansive budget) |
 | `append-only` | New JSONL records may be appended; existing records are not rewritten |
 | `write-once` | Each iteration artifact is created once |
 | `mutable` | Workflow may update the file under defined ownership rules |
