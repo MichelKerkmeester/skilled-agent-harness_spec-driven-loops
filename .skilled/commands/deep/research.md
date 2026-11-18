@@ -40,7 +40,7 @@ Load the presentation contract before showing startup questions, dashboards, che
 >    - `convergence_mode` (default `default` unless `--convergence-mode` is present)
 >    - `depth_mode` (default `default` unless `--depth-mode=expansive` is present)
 >    - `stop_policy` (default `convergence` unless `--stop-policy=max-iterations` is present)
->    - `lineage_mode` (default `auto` unless `--lineage-mode` or `--restart` is present)
+>    - `lineage_mode` (default `auto` unless `--lineage-mode` or `--restart` is present; `--extend=N` sets `completed-continue`)
 >    - `dry_run` (default false unless `--dry-run` is present)
 > 2. Load the workflow YAML from `assets/` only after all setup values are resolved: `deep-research.yaml`. The mode binds `execution_mode` to `auto` or `confirm`.
 > 3. Execute the YAML workflow step by step using those resolved values
