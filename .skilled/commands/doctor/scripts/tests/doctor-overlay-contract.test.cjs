@@ -236,6 +236,19 @@ test('status writes nothing, and each writing target asks before the phases that
   assert.doesNotMatch(applyText, /--plan-digest|--dry-run|--yes/);
 });
 
+test('each writing plan shows the NOTE lines before its question', () => {
+  // A NOTE is the only sign that an insert landed away from its anchor, so the
+  // operator sees it at every yes, not only on a re-pin.
+  for (const target of ['apply', 'repin']) {
+    const workflow = parseYaml(read(path.join(ASSETS, routeFor(target).yaml)));
+    const planLine = Object.values(workflow.workflow)
+      .flatMap((phase) => phase.activities)
+      .find((line) => new RegExp(`render the ${target} plan`, 'i').test(line));
+    assert.ok(planLine, `${target} has no plan-render step`);
+    assert.match(planLine, /each NOTE line/, `the ${target} plan does not show NOTE lines`);
+  }
+});
+
 test('repin stages first, writes only after its yes, and rolls back only after a second yes', () => {
   const repinText = read(path.join(ASSETS, routeFor('repin').yaml));
   const repin = parseYaml(repinText);

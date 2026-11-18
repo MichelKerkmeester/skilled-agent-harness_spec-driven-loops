@@ -91,7 +91,7 @@ string, not these files.
 - [x] The driver state records `pass` or `unchanged` for all 1,576 skill and release changelogs, with 0 restored
 - [x] The fact lock reports 0 missing code spans, numbers or spec-folder lines across all 1,576 rewrites
 - [x] `hvr_scan.py` reports 0 hard blockers on every rewritten changelog
-- [x] All 152 GitHub release bodies read in the new layout, and every tag points at the commit it pointed at before
+- [x] All 152 GitHub release bodies read in the new layout, and this work moves no tag (`v4.1.0.0` keeps the re-tag the operator accepted on 2026-11-18)
 - [x] `validate.sh --recursive --strict` on `010-changelog-layout-retrofit` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
@@ -119,5 +119,6 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | `v4.1.0.0` tag | Another session re-tagged it to `6a78ea87f9c` after adding README work to the entry. The operator accepted it as the new baseline on 2026-11-18, and no tag was moved by this work |
+| Criterion 4 amended | The criterion said every tag keeps its prior commit. `v4.1.0.0` was re-tagged by another session, so the operator amended it on 2026-11-18 to: this work moves no tag |
 | Checker wording | Phases 002 to 012 first said Devin's `glm-5-2` checked the facts. The state file shows GLM 5.3 Flash did, so the summaries were corrected |
 <!-- /ANCHOR:log -->

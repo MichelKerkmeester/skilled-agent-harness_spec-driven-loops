@@ -40,6 +40,7 @@ _memory:
 | Q004 | Publish 5 sample release bodies first and wait before the rest. | Not stated. | None | 013-github-release-notes-sync/implementation-summary.md |
 | Q005 | Publish the remaining 115 release bodies. | Not stated. | None | 013-github-release-notes-sync/implementation-summary.md |
 | Q006 | Accept the other session's v4.1.0.0 re-tag as the new tag baseline; no tag is moved back. | Not stated. | None | goal.md deviations, 013 key decisions |
+| Q007 | Amend goal criterion 4 to: this work moves no tag, with v4.1.0.0 keeping the re-tag the operator accepted. | Not stated. | The original criterion that every tag keeps its prior commit | goal.md completion criteria, 013 goal.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -163,6 +164,25 @@ Move it back
 Answer:
 ```text
 Accept the new tag (Recommended)
+```
+
+### Q007
+<!-- source: claude:cbc62a39-7ca8-4b5a-989f-a86fdea260ea:toolu_017HRYR5oyv7docn2EgBPFNj:0 -->
+
+Question:
+```text
+Goal criterion 4 says every tag still points at the commit it pointed at before. v4.1.0.0 doesn't: another session re-tagged it (34074ea618b → 6a78ea87f9c), and you accepted that as the baseline. The criterion text was never changed, so I ticked it wrongly. How should the goal record this?
+```
+
+Options:
+```text
+Amend the criterion (Recommended)
+Untick it, leave open
+```
+
+Answer:
+```text
+Amend the criterion (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

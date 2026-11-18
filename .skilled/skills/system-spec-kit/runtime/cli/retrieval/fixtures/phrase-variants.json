@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cb83078d6b3e2ca2be720df3dc32e13e2ebbd02a684c893931da349fea3c0075",
+  "manifestHash": "1c83faad15d72dc034f0635f40e9ba27f43ee8c5332099500b1a385fcb005e32",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -3148,6 +3148,9 @@
     ],
     "013 evergreen doc packet id removal resource map": [
       "013-evergreen-doc-packet-id-removal resource map"
+    ],
+    "013 github release notes sync operator decisions": [
+      "013-github-release-notes-sync operator decisions"
     ],
     "013 handover whats next": [
       "013 handover whats next"
@@ -93629,6 +93632,9 @@
     "record": [
       "record"
     ],
+    "record base in a vendored layout and overlay": [
+      "record base in a vendored layout and overlay"
+    ],
     "record executor audit gateway": [
       "record executor audit gateway"
     ],
@@ -132725,6 +132731,24 @@
     ],
     "vendored overlay adoption": [
       "vendored overlay adoption"
+    ],
+    "vendored record base and overlay loss reports": [
+      "vendored record base and overlay loss reports"
+    ],
+    "vendored record base and overlay loss reports acceptance criteria": [
+      "vendored record base and overlay loss reports acceptance criteria"
+    ],
+    "vendored record base and overlay loss reports goal": [
+      "vendored record base and overlay loss reports goal"
+    ],
+    "vendored record base and overlay loss reports implementation summary": [
+      "vendored record base and overlay loss reports implementation summary"
+    ],
+    "vendored record base and overlay loss reports plan": [
+      "vendored record base and overlay loss reports plan"
+    ],
+    "vendored record base and overlay loss reports tasks": [
+      "vendored record base and overlay loss reports tasks"
     ],
     "vendored reference charting library": [
       "vendored reference charting library"
