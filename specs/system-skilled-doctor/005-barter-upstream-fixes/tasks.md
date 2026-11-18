@@ -79,6 +79,7 @@ contextType: "general"
 - [x] T026 Rename the `create-skill-*` assets to `create-sk-skill-*` and drop the advisor stem (`.skilled/commands/create/assets/`, `score-command-transcripts.mjs`). Verify: router `--check` prints `routers=42 clean=42`, and the advisor transcript tests pass 359/359.
 - [x] T027 Run the no-token Code Mode probe and the live registration. Verify: `{"tools":[]}` with no `npx` call, then `register_manual` succeeds for all three manuals.
 - [x] T028 Rerun the doctor runner and the spec-kit cli vitest. Verify: `7 suite(s) passed, 0 failed` with 1332 pass, and 2592 passed, 0 failed.
+- [x] T029 Fold the republish lessons into the changelog skill (`sk-doc/sk-create-changelog/SKILL.md` §8 and §10). Verify: `git tag -d` on a missing tag exits 0 with the tolerant form, and `validate_document.py` reports 0 issues.
 <!-- /ANCHOR:phase-3 -->
 
 ---
