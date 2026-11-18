@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research",
+  "description": "Phase 1: deep-research",
+  "keywords": [
+    "phase",
+    "deep-research"
+  ],
+  "lastUpdated": "2026-11-18T07:46:54.337Z",
+  "specId": "001",
+  "folderSlug": "deep-research",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-11-26_08-46__deep-research-on-pi-context-decisions-completed.md"
+  ]
+}

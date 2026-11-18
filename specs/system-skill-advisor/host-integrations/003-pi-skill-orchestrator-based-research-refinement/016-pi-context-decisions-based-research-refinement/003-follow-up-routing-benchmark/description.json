@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark",
+  "description": "Phase 3: follow-up-routing-benchmark",
+  "keywords": [
+    "phase",
+    "follow-up-routing-benchmark"
+  ],
+  "lastUpdated": "2026-11-18T11:32:36.197Z",
+  "specId": "003",
+  "folderSlug": "follow-up-routing-benchmark",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

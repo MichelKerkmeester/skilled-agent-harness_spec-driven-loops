@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
+  "description": "Mine the pi-context-decisions extension for ideas that could improve system-skill-advisor and its hooks",
+  "keywords": [
+    "mine",
+    "pi-context-decisions",
+    "extension",
+    "ideas",
+    "improve",
+    "system-skill-advisor",
+    "hooks"
+  ],
+  "lastUpdated": "2026-11-18T06:49:25.170Z",
+  "specId": "016",
+  "folderSlug": "pi-context-decisions-based-research-refinement",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

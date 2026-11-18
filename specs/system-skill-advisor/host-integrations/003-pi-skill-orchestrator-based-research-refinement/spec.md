@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-09-28T08:18:17Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Completed 013-review-follow-ups"
-    next_safe_action: "None. All thirteen phases are complete"
+    next_safe_action: "Build phase 16 in the order its goal.md sets, starting with 002"
     blockers: []
     key_files:
       - "spec.md"
@@ -59,7 +59,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete. Phases 1 to 13 are complete. Phase 8 tested the refinements inside every CLI, and phase 9 fixed what it found until all 45 scenario reruns passed. Phase 10 closed the Codex hook cleanup and every phase 6 review advisory, and phase 11 fixed the seven small problems phase 10 had noticed. Phase 12 closed the four follow-ups the goal re-verification after phase 11 left, and phase 13 closed what a fresh review of phase 12 found |
+| **Status** | In Progress. Phase 16 researches a second Pi extension, pi-context-decisions. Phases 1 to 15 are complete. Phase 8 tested the refinements inside every CLI, and phase 9 fixed what it found until all 45 scenario reruns passed. Phase 10 closed the Codex hook cleanup and every phase 6 review advisory, and phase 11 fixed the seven small problems phase 10 had noticed. Phase 12 closed the four follow-ups the goal re-verification after phase 11 left, and phase 13 closed what a fresh review of phase 12 found |
 | **Created** | 2026-09-26 |
 | **Branch** | `main` |
 | **Parent Spec** | None. This packet sits directly under the `system-skill-advisor` track root |
@@ -137,6 +137,7 @@ Phase 1 writes research artifacts, plus one fix to the research workflows that i
 | 13 | 013-review-follow-ups/ | Close what a fresh Opus review of phase 12 confirmed: scenario 433 gets the signal-free teardown, all three teardown blocks check their variables and `lsof` and remove with `rm -r`, one watched crash test runs and the phase 12 records are corrected. The reruns also traced a false `CHANGED` to the live advisor's own reindex | Complete |
 | 14 | 014-changelog-alignment/ | Align the advisor changelog with the sk-create-changelog contract, write the entries the skill advisor work never got in the advisor and seven other components and add that work to the v4.0.0.2 release notes | Complete |
 | 15 | 015-readme-alignment/ | Check the root README and the skill advisor README against the repository, confirm every suspected drift at its source and fix the confirmed ones | Complete |
+| 16 | 016-pi-context-decisions-based-research-refinement/ | Nested phase parent: research the pi-context-decisions extension, a decision-model skill picker with additive advertising, for advisor refinements, then build what the operator adopts | In Progress |
 
 R8, R9 and R10 from `001-deep-research/research/research.md` are not planned. Each waits on a replay or an A/B test that has not run.
 
@@ -165,6 +166,7 @@ R8, R9 and R10 from `001-deep-research/research/research.md` are not planned. Ea
 | 012-reverify-follow-ups | 013-review-follow-ups | A fresh review of phase 12 names each finding with its file and line | Phase 13 `spec.md` records them as F1 to F11 |
 | 013-review-follow-ups | 014-changelog-alignment | Phase 13 is pushed, and no changelog records packet 030 beyond cli-cursor v1.5.0.0 and cli-devin v1.4.5.0 | Phase 14 `spec.md` names each entry to write and each advisor entry to align |
 | 014-changelog-alignment | 015-readme-alignment | Phase 14 is pushed and the operator asked whether the two READMEs match the repository | Phase 15 `spec.md` names the two READMEs and the claim ledger that records each drift |
+| 015-readme-alignment | 016-pi-context-decisions-based-research-refinement | The operator asked for the same research method applied to a second Pi extension, pi-context-decisions | Phase 16 `spec.md` names the source in its `context/` folder and the research child |
 <!-- /ANCHOR:phase-map -->
 
 ---
