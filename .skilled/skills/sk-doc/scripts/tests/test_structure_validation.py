@@ -244,3 +244,50 @@ def test_repo_root_readme_keeps_the_full_divider_score(tmp_path: Path) -> None:
 
     assert extract_structure(str(root))["dqi"]["breakdown"]["divider_score"] == 6
     assert extract_structure(str(nested))["dqi"]["breakdown"]["divider_score"] == 0
+
+
+GOOD_FOLD = """<details>
+<summary>All hook entries</summary>
+
+| File | Role |
+|---|---|
+| `a.mjs` | Guard |
+
+</details>
+"""
+
+
+def test_a_closed_fold_and_fold_mentions_pass() -> None:
+    from validate_document import validate_folds  # type: ignore
+
+    text = (
+        GOOD_FOLD
+        + "\nA fold opens with `<details>` and closes with `</details>`.\n\n"
+        + "```markdown\n<details>\n<summary>Shown, not folded</summary>\n```\n"
+    )
+
+    assert validate_folds(text) == []
+
+
+def test_each_broken_fold_shape_is_reported() -> None:
+    from validate_document import validate_folds  # type: ignore
+
+    cases = {
+        "fold_unclosed": GOOD_FOLD.replace("</details>\n", ""),
+        "fold_stray_close": "Text.\n\n</details>\n",
+        "fold_summary_missing": GOOD_FOLD.replace("<summary>All hook entries</summary>\n", ""),
+        "fold_summary_spacing": GOOD_FOLD.replace("</summary>\n\n", "</summary>\n"),
+    }
+
+    for rule_id, text in cases.items():
+        assert [issue["rule_id"] for issue in validate_folds(text)] == [rule_id], rule_id
+
+
+def test_an_unclosed_fold_blocks_a_readme(tmp_path: Path) -> None:
+    path = tmp_path / "README.md"
+    path.write_text("# Folder: Holds Hooks\n\n" + GOOD_FOLD.replace("</details>\n", ""), encoding="utf-8")
+
+    result = validate(path, "readme")
+
+    assert "fold_unclosed" in issue_types(result)
+    assert result["valid"] is False

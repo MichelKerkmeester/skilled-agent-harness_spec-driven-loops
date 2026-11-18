@@ -65,6 +65,9 @@ The config is generated. `hook-registry.json` names each hook once with its per-
 
 One row per link. The Event column names the Devin event and matcher that carries the entry. The core column is the file the link resolves to, written from the repository root. Two entries carry two registrations each: `goal-inject.mjs` on two events and `spec-gate-enforce.mjs` on two PreToolUse matchers, so the 29 links carry 31 registrations. The Event column writes `exec` for a matcher of `^exec$`. Only the two env-secret matchers also carry `bash`, `run-command` and `run_command`.
 
+<details>
+<summary>All 29 entries</summary>
+
 | Entry | Event | Real file or core | Effect |
 |---|---|---|---|
 | `session-start.js` | SessionStart | `.skilled/skills/system-spec-kit/runtime/dist/hooks/devin/session-start.js` | Adds the session context brief to the turn. |
@@ -96,6 +99,8 @@ One row per link. The Event column names the Devin event and matcher that carrie
 | `ask-surface-stop.cjs` | Stop | `.skilled/hooks/ask-surface-guard/devin/ask-surface-stop.cjs` | Reports a question asked in prose on stderr. |
 | `post-compaction.cjs` | PostCompaction | `.skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs` | Adds the spec-folder continuity after a compaction. |
 | `session-cleanup.sh` | SessionEnd | `.skilled/scripts/session-cleanup.sh` | Ends the MCP helper processes this session owns. |
+
+</details>
 
 ---
 

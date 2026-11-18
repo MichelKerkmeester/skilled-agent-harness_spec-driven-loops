@@ -1,5 +1,5 @@
 {
-  "manifestHash": "601fb2b9caae59dd64e16bc530906291fc377e3e9b25f5902d52b0cc8cef399c",
+  "manifestHash": "cb83078d6b3e2ca2be720df3dc32e13e2ebbd02a684c893931da349fea3c0075",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -85770,6 +85770,9 @@
     "phase 8 quality packet fixes": [
       "phase 8 quality packet fixes"
     ],
+    "phase 8 readme html conventions": [
+      "phase 8 readme html conventions"
+    ],
     "phase 8 release coverage": [
       "phase 8 release coverage"
     ],
@@ -92570,6 +92573,9 @@
     "readme accuracy tasks": [
       "readme accuracy tasks"
     ],
+    "readme alerts and folded tables": [
+      "readme alerts and folded tables"
+    ],
     "readme alignment plan": [
       "readme alignment plan"
     ],
@@ -92812,6 +92818,24 @@
     ],
     "readme heading hierarchy": [
       "readme heading hierarchy"
+    ],
+    "readme html conventions": [
+      "readme html conventions"
+    ],
+    "readme html conventions acceptance criteria": [
+      "readme html conventions acceptance criteria"
+    ],
+    "readme html conventions goal": [
+      "readme html conventions goal"
+    ],
+    "readme html conventions implementation summary": [
+      "readme html conventions implementation summary"
+    ],
+    "readme html conventions plan": [
+      "readme html conventions plan"
+    ],
+    "readme html conventions tasks": [
+      "readme html conventions tasks"
     ],
     "readme hub paths": [
       "readme hub paths"
@@ -130561,6 +130585,9 @@
     ],
     "unclean shutdown sigkill loop fix plan": [
       "unclean shutdown sigkill loop fix plan"
+    ],
+    "unclosed details fold check": [
+      "unclosed details fold check"
     ],
     "under preserve an out of scope untracked path": [
       "under preserve an out of scope untracked path"

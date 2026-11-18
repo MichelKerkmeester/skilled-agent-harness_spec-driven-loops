@@ -59,6 +59,9 @@ The link in `.claude/hooks/` points at the same adapter. It sits beside that pat
 
 One row per link. The Event column names the Claude Code event and matcher that carries the entry. The core column is the file the link resolves to, written from the repository root.
 
+<details>
+<summary>All 33 entries</summary>
+
 | Entry | Event | Real file or core | Effect |
 |---|---|---|---|
 | `session-prime.js` | SessionStart | `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js` | Adds the session context brief to the turn. |
@@ -94,6 +97,8 @@ One row per link. The Event column names the Claude Code event and matcher that 
 | `ask-surface-stop.cjs` | Stop | `.skilled/hooks/ask-surface-guard/claude/ask-surface-stop.cjs` | Blocks the turn when a question belongs in the question tool. |
 | `session-cleanup.sh` | SessionEnd | `.skilled/scripts/session-cleanup.sh` | Ends the MCP helper processes this session owns. |
 | `compact-inject.js` | PreCompact | `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/compact-inject.js` | Precomputes the context to carry across the compaction. |
+
+</details>
 
 ---
 

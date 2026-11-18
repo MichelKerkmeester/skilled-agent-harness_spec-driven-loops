@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions",
+  "spec_folder": "sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions",
+  "parent_id": "sk-doc/document-standards/006-readme-template-conformance",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "readme html conventions",
+      "phase 8 readme html conventions",
+      "readme alerts and folded tables",
+      "unclosed details fold check",
+      "readme html conventions plan",
+      "readme html conventions tasks",
+      "readme html conventions acceptance criteria",
+      "readme html conventions goal",
+      "readme html conventions implementation summary"
+    ],
+    "key_topics": [
+      "readme",
+      "html",
+      "conventions",
+      "phase",
+      "alerts",
+      "folded",
+      "tables",
+      "unclosed",
+      "details",
+      "fold",
+      "check",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md",
+      ".skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_structure_validation.py",
+      ".codex/SYNC.md",
+      ".devin/SYNC.md",
+      ".claude/hooks/README.md",
+      ".devin/hooks/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "writing-patterns.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "quality-and-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_structure_validation.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_structure_validation.py",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".codex/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".claude/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Folded Tables",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A warning that a hand edit is lost reads like any other bullet, and a 33-row file map pushes a README's story off the screen on GitHub",
+    "created_at": "2026-11-18T07:14:12Z",
+    "last_save_at": "2026-11-18T07:28:18.610Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:03bdc657d905ec08fa8a14b1c3efc9533029ebc1902d07b275bf4ff902290ab5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "090653eb1fc8637fcf23f4faa5e8b9fd38cbd58efb0c8e739480342b51ab9c79",
+      "plan.md": "1a07271f87efe93ffc292afa8f12ba70b46b0b71df2d719c9f664e79fbd11490",
+      "tasks.md": "994775ff40ee493c9d64ded0e0815104f9e9c3f71bd0c8fc2ba730df2f1a3b0a",
+      "implementation-summary.md": "52bcdb43c73a5b0359335bb066159ca321972a3bb64ecfb9a9cea38b422d3b38"
+    },
+    "last_active_at": null
+  }
+}

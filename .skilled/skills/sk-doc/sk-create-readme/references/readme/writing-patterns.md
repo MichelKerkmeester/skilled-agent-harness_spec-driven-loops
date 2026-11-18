@@ -9,7 +9,7 @@ trigger_phrases:
   - "readme heading hierarchy"
 importance_tier: normal
 contextType: implementation
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # README Writing Patterns
@@ -106,6 +106,32 @@ Two registers apply. The repository front-page README may use decorative emoji o
 ### Paragraphs and Bullets
 
 Explain in short paragraphs of short sentences, about 10-15 words each and about 60 words a paragraph. Use bullets only for items a reader scans or compares: commands, options, steps and parallel facts. A run of bullets that each hold a sentence of explanation reads better as a paragraph. Balance the two: a section that is all bullets reads like notes, and one that is all prose hides what a reader scans for. Word counts guide rather than gate, so more short sentences are always fine.
+
+### Alerts and Folded Tables
+
+GitHub draws two markdown features that help a long README. Both stay readable as raw text, so an agent reading the file loses nothing.
+
+Use a `> [!WARNING]` alert for a step that loses work or breaks something, such as a hand edit the next generator run overwrites. Keep it to one or two sentences and no more than two alerts a README. Ordinary advice stays a bullet, because an alert on every rule stops meaning anything.
+
+```markdown
+> [!WARNING]
+> A hand edit to `hooks.json` is lost. The next registration run renders the file from `hook-registry.json`, so change the registry instead.
+```
+
+Fold a table in `<details>` when it holds 15 rows or more and a reader looks one row up in it, such as a file map or an entry map. Keep the section's opening sentence above the fold, so the section still says what the table holds. Never fold a table a reader must read through to follow the page, such as a coverage matrix, nor a heading or a command a reader must run. The `<summary>` sits on its own line and names what the fold holds. Leave a blank line after it and another before `</details>`. Without that blank line GitHub shows the table as raw text. `validate_document.py` blocks a fold that never closes or breaks this shape.
+
+```markdown
+<details>
+<summary>All 33 hook entries</summary>
+
+| File | Role |
+|---|---|
+| `a.mjs` | Guard |
+
+</details>
+```
+
+No other HTML belongs in a README, apart from `<br>` inside a table cell.
 
 ### Blockquote Tagline
 

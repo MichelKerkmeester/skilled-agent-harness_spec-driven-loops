@@ -43,6 +43,7 @@ _memory:
 | Q007 | Devin writers and reviewers run in `dangerous` permission mode, four sessions at a time, each killed by its own PID. | `auto` mode refuses the shell commands both roles need to run their checks. | None | 004-hook-runtime-readmes/plan.md Key Components |
 | Q008 | When devin's daily quota ran out at 08:19, the operator asked to keep DeepSeek Flash Max on devin. A probe of both DeepSeek Flash Max ids returned `resource_exhausted`, so the question was asked again. | Not stated. | None | Q009 |
 | Q009 | Writers and reviewers run DeepSeek V4.1 Flash at max through cli-opencode on the OpenCode Go route (`opencode-go/deepseek-v4.1-flash#max`). | Not stated. | Q006 | ../goal.md D4, 004-hook-runtime-readmes/plan.md Key Components |
+| Q010 | The README alert and fold conventions run as phase 008 of this program, not as a new packet. | Not stated. | None | ../goal.md D3, 008-readme-html-conventions/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
