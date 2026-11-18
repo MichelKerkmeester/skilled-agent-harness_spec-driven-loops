@@ -1,0 +1,52 @@
+{
+  "lane": "B",
+  "findings": [
+    {
+      "id": "B-1",
+      "surface": "S3",
+      "standard": "sk-doc/sk-create-feature-catalog",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/frontier-admit-script.md",
+      "line": 66,
+      "issue": "The frontier-admit catalog entry still gives the old review per-node cost: the count of the config's reviewDimensions entries, or four when the list is empty or 'all'. Commit 954345ac43f changed seedBudget to count reviewDimensionCount(config), which returns buildDimensionUniverse(config).length: the four canonical dimensions plus each distinct custom name, never below four. Under the old wording, a run configured with ['correctness'] would cost 1 per node, but the code charges 4 (the test pins derivedMaxIterations 24). Commit ea980b5d971 updated the other pages but missed this one, so the entry no longer describes the changed feature.",
+      "evidence": {
+        "cmd": "grep -n 'For review it is the count' .skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/frontier-admit-script.md; grep -n 'reviewDimensionCount' .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs; grep -n -A11 'function buildDimensionUniverse' .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "exit": 0,
+        "out": "66: ... Per-node cost is 1 for research. For review it is the count of the config's `reviewDimensions` entries, and four when the list is empty or `all`. ...\n311:function reviewDimensionCount(config) {\n332:      dimensions: mode === 'review' ? reviewDimensionCount(source) : 1,\n1224:function buildDimensionUniverse(config) { const universe = [...REQUIRED_DIMENSIONS]; ... if (name && name !== 'all' && !universe.includes(name)) universe.push(name); ... return universe; }"
+      },
+      "fix": {
+        "old": "For review it is the count of the config's `reviewDimensions` entries, and four when the list is empty or `all`.",
+        "new": "For review it is the dimension count the reducer requires before it marks a node answered: the four canonical dimensions plus each custom name the config's `reviewDimensions` list adds, each counted once, so it is never below four."
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/frontier-admit-script.md",
+    ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md",
+    ".skilled/skills/system-deep-loop/deep-review/README.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/custom-review-dimensions.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+    ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md",
+    ".skilled/skills/system-deep-loop/ROUTER.md",
+    ".skilled/skills/system-deep-loop/hub-router.json",
+    ".skilled/skills/system-deep-loop/graph-metadata.json",
+    ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts",
+    ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md"
+  ]
+}

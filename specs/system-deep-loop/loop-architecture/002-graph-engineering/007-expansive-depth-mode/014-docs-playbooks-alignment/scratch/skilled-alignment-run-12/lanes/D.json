@@ -1,0 +1,119 @@
+{
+  "lane": "D",
+  "findings": [
+    {
+      "id": "D-1",
+      "surface": "S7",
+      "standard": ".skilled/repo-rules/skill-hub-routing.md",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/graph-metadata.json",
+      "line": 73,
+      "issue": "Commit 30ac5b51f95 added five intent_signals to graph-metadata.json at positions 30-34 (\"depth-capped frontier\", \"follow-up question frontier\", \"frontier of follow-up questions\", \"review target\", \"this research run\"). It did not regenerate the tracked compiled .skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json, which still holds the 30-signal list for system-deep-loop (generated_at 2026-11-17T11:29:50). The freshness check reports SIGNAL DRIFT compiled vs disk: system-deep-loop and exits 1 under --strict. Reach: any pull request to main that touches .skilled/skills/*/graph-metadata.json or hub-router.json runs the paths filter at .github/workflows/routing-registry-drift.yml lines 71-109. That workflow's step 'Compiled skill graph freshness - compiled json matches graph-metadata' (line 244) runs this exact command with set -euo pipefail, so the CI gate fails. Live routing is not affected: skill_advisor.py merges the source graph-metadata signals at load time (lines 1388-1391 and 1451-1452). Fix: regenerate with the command the script names, python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py --export-json, then commit the refreshed skill-graph.json.",
+      "evidence": {
+        "cmd": "node .opencode/commands/doctor/scripts/skill-graph-freshness.cjs --strict",
+        "exit": 1,
+        "out": "SIGNAL DRIFT compiled vs disk: system-deep-loop (all other rows none; compiled skill-graph.json: 14 skills, generated_at 2026-11-17T11:29:50.903233+00:00)"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/SKILL.md",
+    ".skilled/skills/system-deep-loop/ROUTER.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/description.json",
+    ".skilled/skills/system-deep-loop/graph-metadata.json",
+    ".skilled/skills/system-deep-loop/hub-router.json",
+    ".skilled/skills/system-deep-loop/mode-registry.json",
+    ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".skilled/commands/deep/assets/deep-research-presentation.txt",
+    ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+    ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+    ".skilled/agents/deep-research.md",
+    ".skilled/agents/deep-review.md"
+  ],
+  "probes": [
+    {
+      "prompt": "Run an expansive deep research loop on the routing architecture, keeping a depth-capped frontier of follow-up questions",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Enable expansive depth mode on this research run",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Seed a depth-capped frontier of follow-up questions for this research run",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Run an expansive deep review of this diff, expanding the review target into a depth-capped frontier of sub-targets",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Expand the review target into sub-targets to depth 3",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Turn on expansive depth mode for the review loop",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Review this one file for bugs and report findings",
+      "expect": "sk-code"
+    },
+    {
+      "prompt": "Implement the frontier admission check in the reducer",
+      "expect": "sk-code"
+    },
+    {
+      "prompt": "Update the deep-research README to document the expansive depth flag",
+      "expect": "sk-doc"
+    },
+    {
+      "prompt": "Extend the completed deep research run by 5 more iterations in the same session",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Extend the finished deep review loop by 4 iterations without restarting it",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Continue the completed research loop and add 60 minutes to its duration budget",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Size the expansive deep review budget from the seeded sub-targets and all review dimensions",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Stop the deep review loop once every frontier sub-target node is drained",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Run a deep review loop with a custom performance dimension beside the four standard ones",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Check the review target file for injection bugs and report findings",
+      "expect": "sk-code"
+    }
+  ]
+}

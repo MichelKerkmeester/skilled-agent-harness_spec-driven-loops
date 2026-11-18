@@ -1,0 +1,55 @@
+{
+  "findings": [
+    {
+      "id": "E-1",
+      "surface": "S2",
+      "standard": "sk-doc/sk-create-skill",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+      "line": 508,
+      "issue": "This change made completed-continue a live review lineage mode. It removed `status: deferred` from that entry in lifecycleModes (lines 201-202, reopened through --extend=N), and deep-review/references/protocol/loop-protocol.md line 610 now says 'The runtime supports four lineage modes'. But the contract's own validation check `lifecycle-parity` (line 508) still says the docs and workflow branches must agree on 'the three supported modes: new, resume, and restart'. The generated snapshot copies that stale text at review-mode-contract-snapshot.md line 219. So the changed asset contradicts itself, and any parity check written from this rule would reject the extend branch. No lane reviewed this file, and no battery row validates it. render-contract-snapshot.cjs --check passes only because the snapshot faithfully copies the stale yaml text. After the yaml fix, rerun `node .skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs` to refresh the snapshot.",
+      "evidence": {
+        "cmd": "grep -rn -i -e 'three supported' .skilled/skills/system-deep-loop/deep-review; sed -n 199,203p .skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml; grep -n 'four lineage modes' .skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+        "exit": 0,
+        "out": "assets/review-mode-contract-snapshot.md:219: ... the three supported modes: new, resume, and restart. |\nassets/review-mode-contract.yaml:508: description: \"Ensure lifecycle mode docs and workflow branches agree on the three supported modes: new, resume, and restart.\"\n- id: fork / status: deferred ... - id: completed-continue / description: Reopen a completed review in the same session and generation through --extend=N ...\n610:The runtime supports four lineage modes. `completed-continue` is live through `--extend=N` ..."
+      },
+      "fix": {
+        "old": "description: \"Ensure lifecycle mode docs and workflow branches agree on the three supported modes: new, resume, and restart.\"",
+        "new": "description: \"Ensure lifecycle mode docs and workflow branches agree on the four supported modes: new, resume, restart, and completed-continue, with fork deferred.\""
+      }
+    },
+    {
+      "id": "E-2",
+      "surface": "S15",
+      "standard": ".github/workflows",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/scratch/skilled-alignment-run-12/scope.json",
+      "line": 1,
+      "issue": "The scope map was built in first-parent mode, so it leaves out files that reached HEAD through the integration merges. `git diff --name-only <mergeBase> HEAD` lists 228 changed files that scope.json does not hold. 64 of them are outside specs/, and 45 of those are code: runtime/scripts/verify-iteration.cjs, dispatch-iteration.cjs, fanout-merge.cjs and divergent-pivot.cjs, deep-research/scripts/divergent-research-pivot.ts, the deep-research and deep-review reducers and ledger schemas, lib/deep-loop/continuity-thread.cjs and divergent-pivot.ts, coverage-graph-query.ts, the legacy-projection contracts, 25 deep-loop test files, three system-spec-kit runtime/cli deep-review tests, and system-spec-kit's optimizer-manifest.json. The rest are the deep-research and deep-review config.json files, both prompt-pack-iteration.md.tmpl templates, deep-review-dashboard.md, deep-review-strategy.md and most of the golden fixtures. No lane or battery row saw any of them, and the merge base equals the base, so a PR diff would include them all. To cover the gap, I ran the S1 rows by hand on the 45 off-map code files: quality-gate exit 0 with 0 findings, comment-hygiene exit 0. I also ran the deep-loop-runtime.yml steps: check-contract-drift exit 0, the 12 in-scope test files pass (662 tests, exit 0) and the 25 off-map deep-loop test files pass (578 passed, 2 skipped, exit 0). I did not run the three system-spec-kit runtime/cli tests. They belong to spec-kit-check's CLI suites, which need a build step that writes dist/. Fix: build the scope from the full merge-base diff rather than first-parent, or add the merge-introduced files to the surface map.",
+      "evidence": {
+        "cmd": "git -c core.fsmonitor=false diff --name-only 21c4b325b5a0074ac31d0f2ec3e31e28351be933 HEAD | LC_ALL=C sort > full; <scope.json files> | LC_ALL=C sort > scope; LC_ALL=C comm -23 full scope | wc -l; ... | grep -vc '^specs/'; then quality-gate.cjs and check-comment-hygiene.sh over the 45 code files; npx vitest run --no-coverage <25 off-map deep-loop tests>",
+        "exit": 0,
+        "out": "228 off-map files, 64 non-spec, 45 code; quality-gate qg=0 findings: 0; comment-hygiene ch=0; vitest Test Files 25 passed (25), Tests 578 passed | 2 skipped (580)"
+      }
+    }
+  ],
+  "untouched": [
+    ".gitignore",
+    ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+    ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-research-default/lineage-prompt.txt",
+    "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-deep-loop/manifest.json",
+    ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
+    ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+    ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
+    ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md",
+    ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md",
+    ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
+    ".skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts",
+    ".skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-contract-parity.vitest.ts",
+    ".skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-reducer-schema.vitest.ts"
+  ],
+  "overrides": [],
+  "upheld_probes": []
+}

@@ -1,0 +1,47 @@
+{
+  "lane": "A",
+  "findings": [
+    {
+      "id": "A-1",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+      "line": 386,
+      "issue": "When a review iteration reuses a finding id an earlier iteration stored for a different finding (other file and title), deriveReviewFindingEvidence correctly derives a separate node finding:<id>#<iteration>. But knownFindings is filled from the stored FINDING nodes (line 386) before this iteration's derived nodes (line 393), and an existing key is never overwritten. So the leaf's own finding-<id> node and every edge that targets it resolve to the earlier, different finding. The upsert then overwrites that finding's name with the new title, replaces its metadata (file and line are lost), and attaches this iteration's CONFIRMS edge to the wrong finding. Losing metadata.file also disables the reused-id check in later iterations. Reach: the deep-review workflow calls upsert with leaf nodes plus --state-log, --delta-dir and --iteration (deep-review.yaml:2076), and leaf finding-<id> folding is the supported path (upsert-script.vitest.ts:519). The reused-id test (upsert-script.vitest.ts:576) sends no leaf node, so it does not catch this. Fix: register this iteration's derived FINDING ids in knownFindings before the stored ones, so a #<iteration> split takes precedence for this batch. Add a test that sends a leaf finding-<id> node and an edge in the reused-id case.",
+      "evidence": {
+        "cmd": "DEEP_LOOP_COVERAGE_DB_DIR=<scratch>/db; state log: iteration 1 finding F1 'Leak in a' src/a.cjs:3, iteration 2 finding F1 'Race in b' src/b.cjs:9; node upsert.cjs --spec-folder specs/repro-x --loop-type review --session-id repro-1 --nodes '[]' --edges '[]' --state-log state.jsonl --iteration 1; then the same with --nodes '[{\"id\":\"finding-F1\",\"kind\":\"FINDING\",\"name\":\"Race in b\"},{\"id\":\"ev-b\",\"kind\":\"EVIDENCE\",\"name\":\"trace b\"}]' --edges '[{\"id\":\"conf-b\",\"relation\":\"CONFIRMS\",\"source\":\"ev-b\",\"target\":\"finding-F1\"}]' --iteration 2; then getNodes and getEdges for the namespace",
+        "exit": 0,
+        "out": "it1=0 it2=0; FINDING nodes: [{\"id\":\"finding:F1\",\"name\":\"Race in b\"},{\"id\":\"finding:F1#2\",\"name\":\"Race in b\",\"meta\":{\"finding_id\":\"F1\",\"file\":\"src/b.cjs\",\"line\":9}}]; edges: evidence:F1:file:src/a.cjs (finding:F1 -> file:src/a.cjs), conf-b (ev-b -> finding:F1), evidence:F1#2:file:src/b.cjs (finding:F1#2 -> file:src/b.cjs)"
+      }
+    },
+    {
+      "id": "A-2",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "line": 355,
+      "issue": "normalizeTargetPath strips only a leading './' and trailing slashes, and never resolves '..' segments. So scopeInsideReviewTarget (line 406) admits a proposal scoped 'src/app/../../lib/x.ts' under a file-list target 'src/app', because the string starts with 'src/app/'. The check exists to reject anything outside the review target: the FRONTIER block the leaf sees says admission prunes 'anything outside the review target' (line 670), and the relevance comment at line 420 makes the same promise. Reach: frontier_proposal rows are written by review leaves from the files they read, and admission runs on them. The commit-range path (scopeInsideTouchedFiles) already rejects this input. Fix: normalize the path with path.posix.normalize before the containment test, keep blank entries filtered so normalize('') does not turn into '.', and add a '..' case to frontier-admit-review.vitest.ts.",
+      "evidence": {
+        "cmd": "node -e 'const m=require(\"./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs\"); const cfg={reviewTargetType:\"files\",reviewTarget:\"src/app\"}; console.log(m.scopeInsideReviewTarget([\"src/app/a.ts\"],cfg), m.scopeInsideReviewTarget([\"src/app/../../lib/x.ts\"],cfg), m.scopeInsideReviewTarget([\"lib/x.ts\"],cfg))'",
+        "exit": 0,
+        "out": "inside: true\ndotdot: true\noutside: false"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+    ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+    ".skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts"
+  ]
+}

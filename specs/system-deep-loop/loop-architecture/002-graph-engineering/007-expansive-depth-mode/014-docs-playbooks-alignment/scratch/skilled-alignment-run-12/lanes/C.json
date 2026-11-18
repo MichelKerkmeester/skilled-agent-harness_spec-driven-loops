@@ -1,0 +1,80 @@
+{
+  "lane": "C",
+  "findings": [
+    {
+      "id": "C-1",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/changelog/skilled/v4.1.0.0.md",
+      "line": 237,
+      "issue": "The open root release notes do not cover what this scope adds to the deep loops. v4.1.0.0.md is the newest file under .skilled/changelog/skilled/. Its tag sits on main's HEAD, and main keeps adding post-tag work to it, so it is still open. Its '## Deep Loop' section (lines 237-285) covers only the AI Council move, the failing-required-check rule and deterministic stops. It says nothing about any of the user-visible capabilities this scope adds: the opt-in --depth-mode=expansive frontier mode for /deep:research and /deep:review, --extend=N and --extend-minutes=M for reopening a completed run, the review minIterations floor, and custom review dimensions. The root README section added by this scope (README.md lines 253-255) does describe all of them, so the README and the release notes now disagree. The passing S6-release-coverage row does not contradict this. check-release-coverage.cjs collectRequirements only requires the ids of newly added skill docs and changelogs (skill names such as system-deep-loop) to appear as whole words. It never checks whether a capability is described.",
+      "evidence": {
+        "cmd": "cd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && grep -n -i -e 'expansive' -e 'depth-mode' -e '--extend' -e 'minIterations\\|minimum iteration' -e 'custom dimension' .skilled/changelog/skilled/v4.1.0.0.md",
+        "exit": 1,
+        "out": ""
+      }
+    },
+    {
+      "id": "C-2",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+      "line": 141,
+      "issue": "The changelog for the release that ships research expansive depth does not describe the seed-derived default budget. Commit f7d5fb9cbf8 ('size a defaulted expansive budget from the seed') changed what an operator gets when --max-iterations is left at its default. The run now sizes its budget as min(24, max(10, 2 x (S + maxDepth - 1))), 16 at six seeds, and a native fan-out lineage dealt no seed node runs 12. The node cap stays half that budget, and the seed step prints the derived budget. deep-research/README.md and commands/deep/research.md line 107 document this, but the 'Budget is shared across three depth bands' section of the changelog only lists the 50/35/15 split and the roll-down rules.",
+      "evidence": {
+        "cmd": "cd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && grep -n -i -e 'derived\\|sizes its budget\\|min(24' .skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+        "exit": 1,
+        "out": ""
+      }
+    },
+    {
+      "id": "C-3",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+      "line": 133,
+      "issue": "The changelog for the release that ships review expansive depth does not describe the seed-derived default budget. Commits f7d5fb9cbf8 and 954345ac43f changed the defaulted --max-iterations of an expansive review to min(24, max(7, 2 x D x (S + maxDepth - 1))), where D is the four canonical dimensions plus each custom name. Since D is never below four, the 24 ceiling binds from the first seed, so a wide review should be split with fan-out. A lineage dealt no seed node runs 12 (native) or 7 (CLI or single run). deep-review/README.md lines 165-169 and commands/deep/review.md line 100 document this, but the 'Budget splits across three depth bands' section of the changelog only gives the 50/35/15 split and the roll-down and exhaustion rules.",
+      "evidence": {
+        "cmd": "cd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && grep -n -i -e 'derived\\|sizes its budget\\|min(24' .skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+        "exit": 1,
+        "out": ""
+      }
+    }
+  ],
+  "reviewed": [
+    "README.md",
+    ".skilled/changelog/skilled/v4.1.0.0.md",
+    ".skilled/skills/system-deep-loop/README.md",
+    ".skilled/skills/system-deep-loop/deep-research/README.md",
+    ".skilled/skills/system-deep-loop/deep-review/README.md",
+    ".skilled/skills/system-deep-loop/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.0.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.1.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.2.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.3.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.4.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.5.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.6.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.12.0.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/commands/assets/local-skilled-alignment/check-release-coverage.cjs",
+    ".env.example"
+  ]
+}

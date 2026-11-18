@@ -1,0 +1,17 @@
+[
+ {
+  "id": "BAT-02",
+  "status": "handed_off",
+  "note": "Not this program's: speckit-resume.yaml:104 and validate-command-references.cjs are both unchanged since the program base 21c4b325b5a. Owner: commands/scripts/validate-command-references.cjs. The YAML names system-spec-kit/runtime/database/access-telemetry.json, a gitignored runtime file it falls back from, so the YAML is right and the checker needs a runtime-state exemption. Same cause as the hand-off in earlier runs."
+ },
+ {
+  "id": "C-1",
+  "status": "handed_off",
+  "note": "Not this program's: .skilled/changelog/skilled/v4.1.0.0.md is unchanged since the program base 21c4b325b5a. Owner: the operator, who owns the open root v4.1.0.0 release notes. Whether the deep-loop section names expansive depth, --extend, the review floor and custom dimensions is the release owner's call, made when this branch lands."
+ },
+ {
+  "id": "E-2",
+  "status": "handed_off",
+  "note": "A limitation of the scope tool, not a defect in this program's files. Owner: the local-skilled-alignment tooling (resolve-scope.cjs), which builds the scope in first-parent mode and so leaves out files that reached HEAD through the integration merges. The critic's manual checks on the off-map code passed: quality gate 0 findings, comment hygiene 0, and the off-map vitest suites 578 passed, 2 skipped."
+ }
+]

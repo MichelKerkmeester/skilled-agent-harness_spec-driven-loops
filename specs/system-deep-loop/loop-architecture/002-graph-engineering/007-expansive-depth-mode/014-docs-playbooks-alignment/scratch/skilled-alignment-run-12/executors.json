@@ -1,0 +1,162 @@
+{
+  "defaultPreset": "opencode-go",
+  "presets": {
+    "opencode-go": {
+      "kind": "cli-opencode",
+      "binary": "opencode",
+      "model": "opencode-go/deepseek-v4.1-flash#max",
+      "env": {
+        "SYSTEM_SPEC_GATE_ENFORCE": "0",
+        "AI_SESSION_CHILD": "1",
+        "GIT_CONFIG_COUNT": "1",
+        "GIT_CONFIG_KEY_0": "core.fsmonitor",
+        "GIT_CONFIG_VALUE_0": "false"
+      },
+      "timeoutSeconds": 3600,
+      "persona": ".claude/agents/review.md",
+      "preamble": ".skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md"
+    },
+    "codex": {
+      "kind": "cli-codex",
+      "binary": "codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "xhigh",
+      "serviceTier": "fast",
+      "env": {
+        "SYSTEM_SPEC_GATE_ENFORCE": "0",
+        "AI_SESSION_CHILD": "1",
+        "GIT_CONFIG_COUNT": "1",
+        "GIT_CONFIG_KEY_0": "core.fsmonitor",
+        "GIT_CONFIG_VALUE_0": "false"
+      },
+      "timeoutSeconds": 1800,
+      "persona": ".claude/agents/review.md",
+      "preamble": ".skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md"
+    },
+    "deepseek": {
+      "kind": "cli-pi",
+      "binary": "pi",
+      "model": "llmgateway/deepseek-v4.1-flash-1017",
+      "thinking": "max",
+      "mode": "text",
+      "flags": [
+        "--offline"
+      ],
+      "env": {
+        "SYSTEM_SPEC_GATE_ENFORCE": "0",
+        "AI_SESSION_CHILD": "1",
+        "PI_BLACKHOLE_PASSIVE": "true",
+        "GIT_CONFIG_COUNT": "1",
+        "GIT_CONFIG_KEY_0": "core.fsmonitor",
+        "GIT_CONFIG_VALUE_0": "false"
+      },
+      "tools": "read,grep,find,ls,bash",
+      "stdin": "/dev/null",
+      "timeoutSeconds": 1800,
+      "stallSeconds": 600,
+      "testRunnerPatterns": [
+        "\\bnpx vitest\\b",
+        "\\bvitest run\\b",
+        "\\bnode --test\\b",
+        "\\bpytest\\b",
+        "run-script-tests\\.sh"
+      ],
+      "persona": ".claude/agents/review.md",
+      "preamble": ".skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md"
+    },
+    "terra": {
+      "kind": "cli-pi",
+      "binary": "pi",
+      "model": "openai/gpt-6.1-terra",
+      "thinking": "high",
+      "mode": "text",
+      "flags": [
+        "--offline"
+      ],
+      "env": {
+        "SYSTEM_SPEC_GATE_ENFORCE": "0",
+        "AI_SESSION_CHILD": "1",
+        "PI_BLACKHOLE_PASSIVE": "true",
+        "GIT_CONFIG_COUNT": "1",
+        "GIT_CONFIG_KEY_0": "core.fsmonitor",
+        "GIT_CONFIG_VALUE_0": "false"
+      },
+      "tools": "read,grep,find,ls,bash",
+      "stdin": "/dev/null",
+      "timeoutSeconds": 1800,
+      "stallSeconds": 600,
+      "testRunnerPatterns": [
+        "\\bnpx vitest\\b",
+        "\\bvitest run\\b",
+        "\\bnode --test\\b",
+        "\\bpytest\\b",
+        "run-script-tests\\.sh"
+      ],
+      "persona": ".claude/agents/review.md",
+      "preamble": ".skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md"
+    },
+    "opus-high": {
+      "kind": "native",
+      "agent": "review",
+      "model": "opus",
+      "effort": "high"
+    },
+    "opus-medium": {
+      "kind": "native",
+      "agent": "review",
+      "model": "opus",
+      "effort": "medium"
+    },
+    "vibe-deepseek": {
+      "kind": "cli-vibe",
+      "binary": "/Users/michelkerkmeester/.local/share/uv/tools/mistral-vibe/bin/vibe",
+      "model": "deepseek-flash",
+      "keychainKey": true,
+      "env": {
+        "SYSTEM_SPEC_GATE_ENFORCE": "0",
+        "GIT_CONFIG_COUNT": "1",
+        "GIT_CONFIG_KEY_0": "core.fsmonitor",
+        "GIT_CONFIG_VALUE_0": "false"
+      },
+      "timeoutSeconds": 3600,
+      "stallSeconds": 600
+    }
+  },
+  "lanes": {
+    "kind": "cli-pi",
+    "binary": "pi",
+    "model": "llmgateway/deepseek-v4.1-flash-1017",
+    "thinking": "max",
+    "mode": "text",
+    "flags": [
+      "--offline"
+    ],
+    "env": {
+      "SYSTEM_SPEC_GATE_ENFORCE": "0",
+      "AI_SESSION_CHILD": "1",
+      "PI_BLACKHOLE_PASSIVE": "true",
+      "GIT_CONFIG_COUNT": "1",
+      "GIT_CONFIG_KEY_0": "core.fsmonitor",
+      "GIT_CONFIG_VALUE_0": "false"
+    },
+    "tools": "read,grep,find,ls,bash",
+    "stdin": "/dev/null",
+    "timeoutSeconds": 1800,
+    "stallSeconds": 600,
+    "testRunnerPatterns": [
+      "\\bnpx vitest\\b",
+      "\\bvitest run\\b",
+      "\\bnode --test\\b",
+      "\\bpytest\\b",
+      "run-script-tests\\.sh"
+    ],
+    "persona": ".claude/agents/review.md",
+    "preamble": ".skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md"
+  },
+  "critic": {
+    "kind": "native",
+    "agent": "review",
+    "model": "opus",
+    "effort": "medium"
+  }
+}
