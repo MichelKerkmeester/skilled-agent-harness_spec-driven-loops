@@ -159,3 +159,14 @@ def test_builder_check_mode_exits_one_on_drift_and_writes_nothing(tmp_path: Path
     assert result.returncode == 1, result.stdout + result.stderr
     assert "cards/alpha.md: stale" in result.stdout
     assert snapshot(root) == before
+
+
+def test_a_readme_in_the_rules_folder_gets_no_card(tmp_path: Path) -> None:
+    root = make_tree(tmp_path)
+    (root / ".skilled" / "repo-rules" / "README.md").write_text("# Repo Rules\n\n> What this folder holds.\n")
+
+    result = build(root)
+
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert snapshot(root) == {"alpha.md": CARD.encode()}
+    assert build(root, "--check").returncode == 0
