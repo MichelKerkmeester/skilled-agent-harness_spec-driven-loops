@@ -144,4 +144,24 @@ Answer:
 Ratify both (Recommended)
 ```
 
+### Q005
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01FPRewkTEXRRTCkKKmmFfgM:0 -->
+
+Question:
+```text
+The fresh Opus xhigh design review recommends option (c), with the expansive default budget sized from the seed. The cap rule stays at half the budget, so your earlier decoupling ruling stands. When --depth-mode=expansive is set and --max-iterations is left at its default, the run's budget becomes max(loopDefault, 2·c·(S + 2)), where S = seeded depth-1 nodes and c = 1 for research or the dimension count (4) for review. Research S=3 → 10, S=6 → 16; review S=1 → 24, S=3 → 40. An explicit --max-iterations always wins, and default runs are untouched (D2). Rejected: docs only (review at its default of 7 answers zero seeds), seeds outside the cap (reverses your decoupling ruling), and counting only open nodes (no effect, because the store never records 'answered'). Proceed?
+```
+
+Options:
+```text
+Build option (c) (Recommended)
+(c) with a ceiling
+Docs only
+```
+
+Answer:
+```text
+(c) with a ceiling
+```
+
 <!-- /ANCHOR:operator-answers-verbatim -->

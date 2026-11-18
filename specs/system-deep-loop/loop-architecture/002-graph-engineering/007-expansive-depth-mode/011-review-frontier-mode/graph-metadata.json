@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The review coverage universe is `reviewDimensions`, normalized once at init and locked, and the review reducer has no `inbox`, `keyQuestions` or `openQuestions` surface, so nothing a leaf discovers can become counted review work",
     "created_at": "2026-11-17T14:34:38Z",
-    "last_save_at": "2026-11-18T08:19:55.997Z",
+    "last_save_at": "2026-11-18T09:05:52.966Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:192c51f1e3ca6e0d3687505e249eaaf70bfd53ba4fb380af5d162a82dbaaf45a",
+    "source_fingerprint": "sha256:7b62f04402af5b3f6a7436a6549b88061e3b679258b38ed90babc4b946d3d008",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f6f8201254e5c1e73d50cd40bf73583e4dc6d99ce33eea948428c0d59426bb47",
+      "spec.md": "fb074745bc457f14cdcc6ba5b084e1df14edbf64a741db459bc7f412ab46277c",
       "plan.md": "23d54735d1015fee05fdaa2b6efa379e113ae969ea0a2e7903c101d90e586c25",
       "tasks.md": "c5dfb4c4062868697168ec658784d8b995641eac8e17217c650b28af3e233a47",
-      "decision-record.md": "64d89017a62ab6e4f6152d1c168d37b7cbf4659dc1c50abcb1d4c6ee8654d708",
+      "decision-record.md": "909d7adbc8f87a3a5cc2f3d78eff0c750a2554fb4f24310c73b11b7eee55a184",
       "implementation-summary.md": "71145720c1ba6935f0d65f861b8f32ec7e33e79cc9069bb0b86e2f4bf7c34f42"
     },
     "last_active_at": null

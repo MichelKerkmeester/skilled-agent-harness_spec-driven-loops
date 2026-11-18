@@ -43,6 +43,7 @@ _memory:
 | Q007 | Keep frontier_drained as a hard stop candidate (D-011-07); every quality gate and the graph decision still apply. | Not stated. A soft candidate could never add a stop, since the composite candidate forms at the score the convergence gate needs. | None | D-011-07, REQ-017 |
 | Q008 | Amend AC-011 to seven subsystem depth-1 nodes plus the determinism node, zero open and zero active, every node terminal, with the stop-reason clause dropped; record the four stop-integrity defects outside this packet. | Not stated. Pilot run 2 drained every lineage frontier, but pi-2 capped on real spec_code traceability the fixture cannot satisfy, and leaf-written stop reasons are unchecked. | The stop-reason clause of AC-011, REQ-010 and SC-002 | AC-011, REQ-010, SC-002, T030, goal.md completion criteria |
 | Q009 | Size a defaulted expansive budget from the seed: `min(24, max(loop default, 2·c·(S + maxDepth − 1)))`, with c the configured review dimension count and S counted per lineage under fan-out; an explicit budget always wins, the node cap stays half the final budget, and default runs persist no new key. | Coordinator relay of the operator ruling of 2026-11-18, option (c) with a ceiling. Not stated beyond that. At the default budget the half-budget node cap was full after the seed, so an expansive run worked its seeds only. With four dimensions the ceiling binds from two seeds on, so wide reviews go to fan-out. | None | REQ-019, AC-020, T036, frontier-admit.cjs, fanout-run.cjs, deep-review.yaml |
+| Q010 | Amend Q009 for an empty seed share: a run or fan-out lineage whose open depth-1 seed share is 0, a single run whose seeds were all pruned included, keeps its loop default (12 native, 7 CLI review, 10 CLI research) instead of the formula's value; a matrix or explicit budget still wins, and fan-out prints one warning when lineages outnumber the open seeds. | Coordinator relay of the operator ruling of 2026-11-18, the recommended option. Such a lineage writes no node store and gets an empty frontier block, so it cannot grow nodes; extra iterations only add cost against the 120-minute limit. Skipping the lineage would drop the executors the operator chose. | Q009 for an empty seed share | REQ-019, AC-020, frontier-admit.cjs, fanout-run.cjs, deep-review.yaml |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -228,6 +229,45 @@ Leave Unmet
 Answer:
 ```text
 Amend AC-011, log defects
+```
+
+### Q009
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01FPRewkTEXRRTCkKKmmFfgM:0 -->
+
+Question:
+```text
+The fresh Opus xhigh design review recommends option (c), with the expansive default budget sized from the seed. The cap rule stays at half the budget, so your earlier decoupling ruling stands. When --depth-mode=expansive is set and --max-iterations is left at its default, the run's budget becomes max(loopDefault, 2·c·(S + 2)), where S = seeded depth-1 nodes and c = 1 for research or the dimension count (4) for review. Research S=3 → 10, S=6 → 16; review S=1 → 24, S=3 → 40. An explicit --max-iterations always wins, and default runs are untouched (D2). Rejected: docs only (review at its default of 7 answers zero seeds), seeds outside the cap (reverses your decoupling ruling), and counting only open nodes (no effect, because the store never records 'answered'). Proceed?
+```
+
+Options:
+```text
+Build option (c) (Recommended)
+(c) with a ceiling
+Docs only
+```
+
+Answer:
+```text
+(c) with a ceiling
+```
+
+### Q010
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_016jVgas6Jitctqvg1Hke9CA:0 -->
+
+Question:
+```text
+Fresh Opus high recommends: a lineage with no seed share (S=0) gets its loop default (CLI review 7, CLI research 10, native 12), not 16, and a single run whose seeds were all pruned gets the same. The code shows why: such a lineage writes no node store, gets frontier_scope none and an empty frontier block, so it can't grow nodes. It runs as a plain whole-target review, and extra iterations only add cost against the 120-minute limit. It also recommends not skipping the lineage (that would drop the executors you chose) and printing a warning when lineages outnumber seeds. An explicit or matrix iteration count still wins. Apply?
+```
+
+Options:
+```text
+Apply recommendation (Recommended)
+Keep 16
+```
+
+Answer:
+```text
+Apply recommendation (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
