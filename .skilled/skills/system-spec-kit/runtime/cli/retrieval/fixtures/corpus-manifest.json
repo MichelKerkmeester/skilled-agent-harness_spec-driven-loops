@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7e6e613b4ec04c9149bb75d5ca117dba60ad9ec2b863fdb89ee9265d3e4255f0",
+  "corpusHash": "ff679d80d135e8ede62a07828f7381dcbb65951f77f5d5df5787bdab26b68782",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28384,
+  "includedPathCount": 28390,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -16425,6 +16425,12 @@
     "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/plan.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/spec.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/tasks.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/goal.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/implementation-summary.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/plan.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/spec.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/tasks.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/decision-record.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/goal.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/spec.md",
@@ -28416,7 +28422,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "c59f0829d78e48f8c3ef463b48f4928ceeb4fa138ee61d1369845d61008763ab",
+  "manifestHash": "cb83078d6b3e2ca2be720df3dc32e13e2ebbd02a684c893931da349fea3c0075",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -35404,6 +35410,10 @@
     },
     {
       "path": "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/scratch",
       "reason": "excluded directory"
     },
     {
