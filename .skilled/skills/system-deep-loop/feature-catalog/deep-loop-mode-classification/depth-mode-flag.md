@@ -6,14 +6,14 @@ trigger_phrases:
   - "depth mode flag"
   - "expansive depth flag"
   - "deep loop depth mode"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Depth mode flag (--depth-mode)
 
 ## 1. OVERVIEW
 
-`--depth-mode` is a command-level option on `/deep:research` and `/deep:review`. It takes `default` or `expansive`. The flag is not part of `mode-registry.json`, so the hub classifies a request into the same workflow mode with or without it. The behavior the flag turns on lives in the research and review packets.
+`--depth-mode` is a command-level option on `/deep:research` and `/deep:review`. It takes `default` or `expansive`. The flag is not part of `mode-registry.json`, so the hub classifies a request into the same workflow mode with or without it. The behavior the flag turns on lives in the research and review packets. Admission caps the live frontier at half of `maxIterations` by default, and the seed counts toward that cap, so at the default budgets an expansive run works its seeds only; raise `--max-iterations`, as the pilots did at 16, to reach depths 2 and 3.
 
 ---
 
@@ -44,13 +44,29 @@ The expansive behavior is documented in the packet catalogs: [expansive depth mo
 | `.skilled/commands/deep/review.md` | Command doc | The `--depth-mode` flag row for review. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Script | Adds `depthMode` to the stop-decision config only when expansive. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Script | Passes `depthMode` to lineages only when expansive. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` | Script | Owns the node store and the seed, admit, close, block and graph calls the flag turns on. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Script | Projects `registry.frontier`, the input the review stop veto reads. |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Script | Projects `registry.frontier` for research. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Binds `depth_mode` and owns `step_frontier_seed` and `step_frontier_admit` for research. |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Workflow | Binds `depth_mode` and owns `step_frontier_seed` and `step_frontier_admit` for review. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md` | Manual playbook | DR-068: the flag defaults to `default` and a default run matches the baseline. |
-| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md` | Manual playbook | DRV-076: the review flag defaults to `default` and a default run matches the baseline. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md` | Manual playbook | DR-068: the flag defaults to `default`, and a default run matches the baseline once the golden test strips the expansive-only persona paragraph from a fan-out CLI lineage prompt. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md` | Manual playbook | DR-069: the seed writes depth-1 nodes before iteration 1. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md` | Manual playbook | DR-070: admission prunes with a named reason. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md` | Manual playbook | DR-071: Next Focus picks the shallowest open node. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md` | Manual playbook | DR-072: the `frontierOpen` veto holds a soft stop. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md` | Manual playbook | DR-073: fan-out deals the seeded nodes round-robin. |
+| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md` | Manual playbook | DRV-076: the review flag defaults to `default`, and a default run matches the baseline once the golden test strips the expansive-only persona paragraph from a fan-out CLI lineage prompt. |
+| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md` | Manual playbook | DRV-077: the review seed writes depth-1 sub-target nodes. |
+| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md` | Manual playbook | DRV-078: review admission prunes with a named reason. |
+| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-and-node-dimension-coverage.md` | Manual playbook | DRV-079: focus and per-node dimension coverage. |
+| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-review-stop.md` | Manual playbook | DRV-080: the veto holds a review stop. |
+| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md` | Manual playbook | DRV-081: the review pivot waits for a terminal frontier. |
+| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md` | Manual playbook | DRV-082: review fan-out deals the seeded nodes round-robin. |
 
 ---
 

@@ -7,7 +7,7 @@ trigger_phrases:
   - "extend completed research run"
   - "run_extended"
   - "--extend-minutes"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Completed-run extension (--extend)
@@ -26,7 +26,7 @@ The extension uses lineage mode `completed-continue`. The run must already be co
 
 ### Iteration And Duration Budget
 
-The iteration cap rises by `N` over the prior count. `--extend-minutes=M` is valid only with `--extend`. The new duration budget is `max(prior, elapsed) + M`, because the clock counts time since `createdAt`, so an extension started after the old budget still runs.
+The iteration cap rises by `N` over the prior count. `--extend-minutes=M` is valid only with `--extend`. The new duration budget is `max(prior, elapsed) + M`, because the clock counts time since `createdAt`, so an extension started after the old budget still runs. Without `--extend-minutes`, `M` is the prior budget, and a run with no duration budget keeps none.
 
 ### Stop Interaction
 

@@ -1,7 +1,7 @@
 ---
 title: "DRV-080 -- Frontier open veto holds a review stop, hard stops included"
 description: "This scenario validates that under the expansive mode an open or active review frontier node turns a stop candidate into CONTINUE, hard stop candidates included, and that the cap, the floor, stuck recovery, convergence off and the max-iterations policy still decide first, for `DRV-080`."
-version: 1.13.0.0
+version: 1.13.1.0
 ---
 
 # DRV-080 -- Frontier open veto holds a review stop, hard stops included
@@ -52,7 +52,7 @@ Operators run the commands below and confirm the review veto table and the guard
 
 ### Expected
 
-Command 1 prints `Tests  9 passed | 83 skipped (92)`. The eight table rows are named `expansive review candidate: <row label>`, and the composite case is `vetoes a composite review stop while the frontier is open`. The row `open nodes veto the clean stop` returns `CONTINUE` with `frontierOpen`, and the row `an empty frontier lets the clean stop through` returns `STOP` with `all_dimensions_clean`. Command 2 prints one line, 1191, which sets `vetoable` to true for every review loop and for any research candidate that is not a hard stop.
+Command 1 prints `Tests  9 passed` (the rest of the file skipped). The eight table rows are named `expansive review candidate: <row label>`, and the composite case is `vetoes a composite review stop while the frontier is open`. The row `open nodes veto the clean stop` returns `CONTINUE` with `frontierOpen`, and the row `an empty frontier lets the clean stop through` returns `STOP` with `all_dimensions_clean`. Command 2 prints one line, the guard that sets `vetoable` to true for every review loop and for any research candidate that is not a hard stop.
 
 The table covers the cap, the floor, stuck recovery, convergence off and the max-iterations policy. It does not cover consecutive failures or pause, so this scenario makes no claim about those two.
 
@@ -69,7 +69,7 @@ The table covers the cap, the floor, stuck recovery, convergence off and the max
 ### Failure Triage
 
 1. An open node lets a review stop through: check that the veto reads the expansive flag and the count of open or active nodes from the review facts.
-2. The clean stop escapes the veto: check the guard on line 1191. A review loop must stay vetoable whatever the candidate's `hardStop` value.
+2. The clean stop escapes the veto: check the `vetoable` guard that command 2 prints. A review loop must stay vetoable whatever the candidate's `hardStop` value.
 3. A hard limit loses to the veto: check the order of the veto and the cap, floor and stuck checks in the decision, since the veto must come after the floor.
 
 ---

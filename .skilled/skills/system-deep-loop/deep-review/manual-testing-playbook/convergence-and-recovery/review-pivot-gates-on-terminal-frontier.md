@@ -1,7 +1,7 @@
 ---
 title: "DRV-081 -- Review pivot waits for a terminal frontier"
 description: "This scenario validates that under the expansive mode the review divergent pivot refuses to run while a frontier node stays open, seeds one revisit direction per closed sub-target the frontier left uncovered and leaves a default run untouched, for `DRV-081`."
-version: 1.13.0.0
+version: 1.13.1.0
 ---
 
 # DRV-081 -- Review pivot waits for a terminal frontier
@@ -53,7 +53,7 @@ Operators run the commands below and confirm that the pivot waits for a terminal
 
 ### Expected
 
-Command 1 prints `Tests  3 passed | 23 skipped (26)`. Its three passing cases are `refuses a pivot while an open frontier node remains`, `seeds one frontier-unanswered direction per closed sub-target the frontier left uncovered` and `leaves a default run untouched even when the registry still carries an open frontier node`. Command 2 prints `Tests  1 passed | 33 skipped (34)`, and the case `gates the divergent pivot on a terminal review frontier` passes. Command 3 prints one line, 311, which sets the seed source to `frontier-unanswered`.
+Command 1 prints `Tests  3 passed` (the rest of the file skipped). Its three passing cases are `refuses a pivot while an open frontier node remains`, `seeds one frontier-unanswered direction per closed sub-target the frontier left uncovered` and `leaves a default run untouched even when the registry still carries an open frontier node`. Command 2 prints `Tests  1 passed` (the rest of the file skipped), and the case `gates the divergent pivot on a terminal review frontier` passes. Command 3 prints one line, which sets the seed source to `frontier-unanswered`.
 
 ### Evidence
 

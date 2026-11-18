@@ -6,7 +6,7 @@ trigger_phrases:
   - "expansive depth research"
   - "research frontier mode"
   - "frontier admission research"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
@@ -25,7 +25,7 @@ The expansive run seeds depth-one nodes before iteration 1. Each iteration's lea
 
 ### Configuration
 
-`expansiveDepth` in `deep-research-config.json` sets `maxDepth` to 3, `maxChildrenPerNode` to 6, and a 50/35/15 iteration budget across depths. `antiConvergence.depthMode` defaults to `default`. The convergence script adds `depthMode` to its stop-decision config only when the value is `expansive`.
+`expansiveDepth` in `deep-research-config.json` sets `maxDepth` to 3, `maxChildrenPerNode` to 6, a 50/35/15 iteration budget across depths, and `maxFrontierNodes` to null, which admission resolves to half of `maxIterations` (10 when no config exists yet, as on a fan-out parent). The depth-1 seed answers only to the root-children cap, but every seed that is not pruned counts toward the run cap. Each node needs at least one iteration, so growth past depth 1 needs `maxIterations` above twice the live node count. At the default budget of 10 an expansive run works its seeds only; raise `--max-iterations`, as the pilots did at 16, to reach depths 2 and 3. `antiConvergence.depthMode` defaults to `default`. The convergence script adds `depthMode` to its stop-decision config only when the value is `expansive`.
 
 ### Stop And Next Focus
 

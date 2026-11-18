@@ -9,7 +9,7 @@ trigger_phrases:
   - "review loop troubleshooting"
 importance_tier: normal
 contextType: general
-version: 1.11.9.0
+version: 1.11.10.0
 ---
 
 # Deep Review Quick Reference
@@ -45,11 +45,10 @@ Use this quick reference when you need the command shape, artifact names, conver
 |-----------|---------|-------------|
 | `--max-iterations` | 7 | Maximum review iterations |
 | `--convergence` | 0.10 | Base sensitivity for review convergence |
-| `--depth-mode` | default | `expansive` seeds depth-1 sub-target nodes, reviews the active node's next uncovered dimension, and vetoes a stop while nodes stay open |
+| `--depth-mode` | default | `expansive` seeds depth-1 sub-target nodes, reviews the active node's next uncovered dimension, vetoes a stop while nodes stay open, and stops on `frontier_drained` once every node is closed. Growth past depth 1 needs `--max-iterations` above twice the live node count |
 | `--stop-policy` | convergence | Use `max-iterations` when convergence must not end the run before the iteration ceiling |
 | `--spec-folder` | auto | Target spec folder path |
 | `--restart` | off | Archive the current review packet and start a fresh lineage |
-| `--severity-threshold` | P2 | Minimum severity to report |
 
 ---
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.20.0
+version: 1.11.21.0
 ---
 
 # Deep Review Loop Protocol
@@ -183,7 +183,7 @@ Run `shouldContinue_review()` (see `../deep-research/references/convergence/conv
 - Stuck count `>= 2` using `noProgressThreshold = 0.05`? `STUCK_RECOVERY`
 - Composite convergence votes `STOP` only after:
   - Rolling average uses `rollingStopThreshold = 0.08`
-  - Dimension coverage reaches 100% across the 4-dimension model
+  - Dimension coverage reaches 100% across every configured dimension, the four canonical ones plus any custom name
   - Coverage has aged through `minStabilizationPasses >= 1`
   - Required traceability protocols are covered
   - Evidence, scope, and coverage gates pass
@@ -456,7 +456,7 @@ function selectReviewRecoveryStrategy(stuckIterations, state, config):
 
 ### Expansive Depth Frontier (opt-in)
 
-Under `--depth-mode=expansive` the loop keeps a frontier of sub-target nodes beside the review target. The flag writes `antiConvergence.depthMode: "expansive"` and the caps in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `budgetSplit` of 0.5/0.35/0.15 across the depth bands, and `maxFrontierNodes`, which defaults to half of `maxIterations` unless the config sets a number. A run without the flag keeps the default path and runs exactly as before, and the mode is locked against the optimizer; the `expansiveDepth` caps are in neither its tunable nor its locked list.
+Under `--depth-mode=expansive` the loop keeps a frontier of sub-target nodes beside the review target. The flag writes `antiConvergence.depthMode: "expansive"` and the caps in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `budgetSplit` of 0.5/0.35/0.15 across the depth bands, and `maxFrontierNodes`, which defaults to half of `maxIterations` unless the config sets a number. The depth-1 seed answers only to the root-children cap, but every seed that is not pruned counts toward the run cap. Each node needs at least one iteration, so growth past depth 1 needs `maxIterations` above twice the live node count. At the default budget of 7 an expansive run works its seeds only; raise `--max-iterations`, as the pilots did at 16, to reach depths 2 and 3. A run without the flag keeps the default path and runs exactly as before, and the mode is locked against the optimizer; the `expansiveDepth` caps are in neither its tunable nor its locked list.
 
 `step_frontier_seed` decomposes the review target into depth-1 sub-target nodes before iteration 1, through `runtime/scripts/frontier-admit.cjs seed --target review`. On a plain run it sits in `phase_init` after `step_create_config`; on a fan-out run it runs before `step_fanout_spawn`. A merge that carries no diff of its own is pruned `merge-no-own-diff` and an index rebuild `generated-artifact`, because neither is reviewable work.
 

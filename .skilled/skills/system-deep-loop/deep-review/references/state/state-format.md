@@ -9,7 +9,7 @@ trigger_phrases:
   - "review iteration file structure"
 importance_tier: important
 contextType: implementation
-version: 1.11.6.0
+version: 1.11.7.0
 ---
 
 # Deep Review State Format
@@ -139,7 +139,7 @@ Created during initialization. Not modified after creation.
 | parentSessionId | string \| null | `null` | Parent lineage reference for restart flows |
 | lineageMode | string | `"new"` | `new`, `resume`, `restart`, `completed-continue` (set by `--extend=N`). The current runtime never emits `fork` |
 | generation | number | 1 | Lineage generation number, incremented on `restart`, unchanged on `resume` |
-| continuedFromRun | number \| null | `null` | Count of completed iteration records when `--extend=N` reopened a completed run (`completed-continue`). A new run or a restart writes `null`, and a resume keeps the stored value |
+| continuedFromRun | number \| null | `null` | Count of distinct iteration runs in the state log, error and timeout rows included, when `--extend=N` reopened a completed run (`completed-continue`). A new run or a restart writes `null`, and a resume keeps the stored value |
 | maxIterations | number | 7 | Hard cap on loop iterations |
 | convergenceThreshold | number | 0.10 | Stop when severity-weighted new findings ratio below this |
 | stuckThreshold | number | 2 | Consecutive no-progress iterations before recovery |

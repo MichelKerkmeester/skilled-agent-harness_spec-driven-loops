@@ -6,7 +6,7 @@ trigger_phrases:
   - "expansive depth review"
   - "review frontier mode"
   - "review frontier-nodes"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
@@ -25,15 +25,15 @@ The expansive run seeds depth-one sub-target nodes from the review target before
 
 ### Dimension Coverage
 
-The active node's next uncovered dimension is dispatched. A node needs one iteration per dimension in its universe, the four canonical dimensions plus any custom name. Each depth band starts from its `budgetSplit` share of `--max-iterations` (0.5, 0.35 and 0.15), plus any share an earlier band left unspent once that band holds no open node, so fund the depth-1 band with at least `2 * ceil(nodes / lineages) * dimensions`.
+The active node's next uncovered dimension is dispatched. A node needs one iteration per dimension in its universe, the four canonical dimensions plus any custom name. Each depth band starts from its `budgetSplit` share of `--max-iterations` (0.5, 0.35 and 0.15), plus any share an earlier band left unspent once that band holds no open node, so fund the depth-1 band with at least `2 * ceil(nodes / lineages) * dimensions`. The run-wide `maxFrontierNodes` cap defaults to half of `maxIterations`, and every seed that is not pruned counts toward it. Each node needs at least one iteration, so growth past depth 1 needs `maxIterations` above twice the live node count. At the default budget of 7 an expansive run works its seeds only; raise `--max-iterations`, as the pilots did at 16, to reach depths 2 and 3.
 
 ### Stop Behavior
 
-A review stop candidate becomes another iteration while nodes stay open. The `frontierOpen` veto applies to the review stop candidates, including `all_dimensions_clean` and the composite stop, after the minIterations floor.
+A review stop candidate becomes another iteration while nodes stay open. The `frontierOpen` veto applies to the review stop candidates, including `all_dimensions_clean` and the composite stop, after the minIterations floor. Once every node is closed and at least one was answered, a run that forms no other stop candidate gets `frontier_drained`, which the legal-stop gates still decide.
 
 ### Pivot
 
-The divergent review pivot runs only once the frontier is terminal. It seeds from terminal unanswered nodes and routes accepted candidates through admission.
+The divergent review pivot runs only once the frontier is terminal. It seeds from terminal unanswered nodes, and an accepted candidate becomes the next review direction through `restoredFocus`. The pivot writes no frontier node.
 
 ### Fan-Out
 

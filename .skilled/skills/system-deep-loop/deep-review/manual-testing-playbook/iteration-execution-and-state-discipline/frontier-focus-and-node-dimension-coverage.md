@@ -1,7 +1,7 @@
 ---
 title: "DRV-079 -- Frontier focus and per-node dimension coverage"
 description: "This scenario validates that an open review node is answered only after every configured dimension is covered for it, that the active node's next uncovered dimension steers the iteration and that the dashboard reports the frontier metrics, for `DRV-079`."
-version: 1.13.0.0
+version: 1.13.1.0
 ---
 
 # DRV-079 -- Frontier focus and per-node dimension coverage
@@ -53,7 +53,7 @@ Operators run the commands below and confirm that a node stays open until all of
 
 ### Expected
 
-Command 1 prints `Tests  3 passed | 29 skipped (32)`. Its three passing cases are `keeps a node open with two of four dimensions covered and answers it at four`, `hands next focus to the active frontier node, and keeps the pivot and blocked-stop overrides ahead of it` and `reports frontier size, pruned nodes, revisits and per-band budget on the dashboard`. Command 2 prints `Tests  1 passed | 33 skipped (34)`, and the case `takes the next dimension from the active frontier node under expansive depth` passes. That case checks that `next_dimension` reads `registry.frontier.activeNextDimension` and falls back to the next uncovered dimension in the dimension queue. Command 3 prints three lines: the projection field at line 2052, the Next Focus text at line 2416 and the dashboard active-node line at line 2550.
+Command 1 prints `Tests  3 passed` (the rest of the file skipped). Its three passing cases are `keeps a node open with two of four dimensions covered and answers it at four`, `hands next focus to the active frontier node, and keeps the pivot and blocked-stop overrides ahead of it` and `reports frontier size, pruned nodes, revisits and per-band budget on the dashboard`. Command 2 prints `Tests  1 passed` (the rest of the file skipped), and the case `takes the next dimension from the active frontier node under expansive depth` passes. That case checks that `next_dimension` reads `registry.frontier.activeNextDimension` and falls back to the next uncovered dimension in the dimension queue. Command 3 prints three lines: the projection field, then the Next Focus text, then the dashboard active-node line.
 
 ### Evidence
 

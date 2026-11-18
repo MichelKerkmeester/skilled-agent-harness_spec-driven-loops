@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.13.2.0
+version: 1.13.3.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -380,7 +380,7 @@ Expected signals: Rule 11 mandates the fields. The YAML dispatch prompt constrai
 verify that a running deep review iteration writes a `graphEvents` array that includes review graph nodes such as `dimension_node`, `file_node`, and `finding_node`.
 
 #### Scenario Contract
-Prompt: `Validate deep-review graphEvents records for dimension, file, and finding nodes in graph-aware review convergence.`
+Prompt: `Validate deep-review graphEvents records and confirm the coverage-graph reducer ingests them under loop_type=review.`
 
 Expected signals: `graphEvents` referenced as iteration-record input for graph-aware review convergence. Replay tests include review node-type coverage for `dimension_node`, `file_node`, and `finding_node`.
 

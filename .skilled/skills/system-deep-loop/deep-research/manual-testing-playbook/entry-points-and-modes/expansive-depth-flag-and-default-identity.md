@@ -1,7 +1,7 @@
 ---
 title: "DR-068 -- Expansive depth flag and default byte identity"
 description: "This scenario validates that --depth-mode defaults to default, that a default run matches the pre-change baseline byte for byte and that only the expansive-only agent paragraph differs on CLI lineage prompts, for `DR-068`."
-version: 1.16.1.0
+version: 1.16.2.0
 ---
 
 # DR-068 -- Expansive depth flag and default byte identity
@@ -17,6 +17,8 @@ This scenario validates the `--depth-mode` flag and its default. The objective i
 ### Why This Matters
 
 The expansive mode must stay opt-in. An operator who never passes the flag should see no change in what the loop writes or decides. That promise lets the mode ship without a migration.
+
+An operator who does pass `--depth-mode=expansive` should know its budget rule. Admission caps the live frontier at half of `maxIterations`, and the seed counts toward that cap, so growth past depth 1 needs `maxIterations` above twice the live node count. At the default budget of 10 an expansive run works its seeds only; raise `--max-iterations`, as the pilots did at 16, to reach depths 2 and 3.
 
 ---
 

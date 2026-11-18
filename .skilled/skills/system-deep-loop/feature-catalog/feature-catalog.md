@@ -7,7 +7,7 @@ trigger_phrases:
   - "deep-loop mode classification"
   - "system-deep-loop compiled routing"
 last_updated: "2026-11-18"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # system-deep-loop: Feature Catalog
@@ -60,7 +60,7 @@ See [`deep-loop-mode-classification/depth-mode-flag.md`](deep-loop-mode-classifi
 
 #### Description
 
-The --extend=N and --extend-minutes=M flags on /deep:research and /deep:review reopen a completed single-executor run in place, and leave the registry-driven workflowMode, runtimeLoopType and backendKind classification unchanged.
+The --extend=N flag on /deep:research and /deep:review reopens a completed single-executor run in place, and --extend-minutes=M, valid only with --extend, adds minutes to that run's duration budget. Neither flag changes the registry-driven workflowMode, runtimeLoopType and backendKind classification.
 
 #### How It Works
 

@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-review review-loop system."
-version: 1.11.4.0
+version: 1.11.5.0
 ---
 
 # deep-review: Feature Catalog
@@ -201,7 +201,7 @@ See [`loop-lifecycle/completed-run-extension.md`](loop-lifecycle/completed-run-e
 
 #### Description
 
-A review run with a configured minIterations floor returns CONTINUE with minIterationsNotReached until its iteration count reaches the floor, so a review never stops before the floor.
+A review run with a configured minIterations floor returns CONTINUE with minIterationsNotReached until its iteration count reaches the floor, so no stop candidate ends a review before the floor. The iteration cap and the halt after three consecutive failed iterations are checked first and can still stop it earlier.
 
 #### How It Works
 

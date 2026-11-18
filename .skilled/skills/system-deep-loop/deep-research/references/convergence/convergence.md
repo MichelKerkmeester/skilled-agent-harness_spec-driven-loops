@@ -9,7 +9,7 @@ trigger_phrases:
   - "research convergence decision order"
 importance_tier: important
 contextType: implementation
-version: 1.14.7.0
+version: 1.14.8.0
 ---
 
 # Convergence Detection Reference
@@ -65,7 +65,7 @@ The shared convergence runtime accepts four values. The workflow keeps hard term
 
 #### Expansive Depth Mode
 
-`--depth-mode=expansive` grows a frontier of follow-up questions beside the questions seeded at init. The value lands in `antiConvergence.depthMode`, and the caps live in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, `budgetSplit` 0.5/0.35/0.15 for depths 1, 2 and 3, and `maxFrontierNodes`, which defaults to half of `maxIterations` unless the config sets a number. The run cap never prunes a depth-1 seed, which only the root-children cap bounds, but every seed that is not pruned, answered ones included, counts toward the live total that later admissions are checked against. A fan-out parent seeds before any config exists, so its cap falls back to 10. An absent flag means `default`, which keeps the default behavior; `research-depth-mode-golden.vitest` proves it after stripping the expansive-only persona paragraph from the CLI lineage prompt, the one byte change.
+`--depth-mode=expansive` grows a frontier of follow-up questions beside the questions seeded at init. The value lands in `antiConvergence.depthMode`, and the caps live in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, `budgetSplit` 0.5/0.35/0.15 for depths 1, 2 and 3, and `maxFrontierNodes`, which defaults to half of `maxIterations` unless the config sets a number. The run cap never prunes a depth-1 seed, which only the root-children cap bounds, but every seed that is not pruned, answered ones included, counts toward the live total that later admissions are checked against. Each node needs at least one iteration, so growth past depth 1 needs `maxIterations` above twice the live node count. At the default budget of 10 an expansive run works its seeds only; raise `--max-iterations`, as the pilots did at 16, to reach depths 2 and 3. A fan-out parent seeds before any config exists, so its cap falls back to 10. An absent flag means `default`, which keeps the default behavior; `research-depth-mode-golden.vitest` proves it after stripping the expansive-only persona paragraph from the CLI lineage prompt, the one byte change.
 
 After the `minIterations` floor, an expansive run with open or active frontier nodes turns a soft stop candidate into CONTINUE with reasonDetail `frontierOpen`. The veto never creates a stop of its own and never outranks the iteration cap, consecutive failures, stuck recovery, `--convergence-mode=off` or `--stop-policy=max-iterations`. Under `--convergence-mode=divergent` the pivot becomes eligible only once no frontier node is open or active.
 
