@@ -171,6 +171,7 @@ Overlay folder: [the folder the engine reads, from .skilled-overlays.json or the
 Will apply: [one line per overlay-edited line the report printed, in its order]
 Checks that failed: [one line per MISS line, or none]
 Stale root files: [one line per STALE line with its fix, or none. An apply does not clear these]
+Notes: [the engine's NOTE lines, such as an insert whose anchor the file no longer holds, or none. They do not stop the apply]
 Then: the manifest's regenerate steps run, then its verify steps
 Lock: the engine holds [overlay folder]/.build-lock for the whole run
 

@@ -35,3 +35,7 @@ All five claims confirmed in `scripts/overlay-engine.cjs`.
 ## Manual run on the vendoring project's tree (read-only)
 
 `node <checkout>/.skilled/commands/doctor/scripts/overlay-engine.cjs status --root skilled`, run from the vendoring project's checkout once with main's engine and once with this worktree's. Main: 6 `NOTE` lines, each saying a `setKeyOnItem` or `insertObjectKeys` "keeps no record". This worktree: none of those, and 1 `NOTE` for an `appendItems` at `0.userIntent.ownedSignals` that goes through an array index. Both: `checked=100 ok=100 miss=0`, `RESULT: PASSED`, exit 0. That checkout's `git status --porcelain` hashed the same before and after.
+
+## Missing-anchor follow-up (2026-11-18)
+
+The operator asked a fresh reviewer whether a missing `before` anchor should fail. Recommendation, checked against the code: keep warning and appending. A refused overlay blocks `apply` and `repin` for every overlay (`overlay-engine.cjs` apply writes nothing while any entry is blocked; repin refuses), `setKeyOnItem` throws because its anchor is its write target while a `before` anchor only sets position, and no shipped overlay uses a `before` anchor, so a strict option has no requirement yet. The one gap: `doctor-overlay-apply.yaml` kept NOTE lines from status but never showed them in the apply plan. Fixed in the plan step and the presentation's apply panel (`Notes:`), with a contract test that failed before and passes after. Overlay suite plus contract: 207 of 207, exit 0.

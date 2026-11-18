@@ -54,7 +54,8 @@
       ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
       ".skilled/commands/doctor/assets/doctor-overlay-status.yaml",
       ".skilled/skills/system-skilled-doctor/references/overlays.md",
-      "scratch/work-record.md"
+      "scratch/work-record.md",
+      ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml"
     ],
     "entities": [
       {
@@ -172,6 +173,12 @@
         "source": "derived"
       },
       {
+        "name": "doctor-overlay-apply.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -194,17 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A project that vendors Skilled under a subfolder, with a root `.skilled` symlink into it, could not record its base",
     "created_at": "2026-11-18T06:50:22Z",
-    "last_save_at": "2026-11-18T08:38:47.312Z",
+    "last_save_at": "2026-11-18T08:54:31.599Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +216,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:80a96122558e1801dfda51ea182c7d6262bf070ead28647ace9f05e6ce67bd38",
+    "source_fingerprint": "sha256:e8bbda8e7d2d9dfed95a2aa9cdb37842af640bc07e58aa5094161e5fea921ac1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "300e9d73137ebbbd275f3862635212ce58fd31740fdf78a9249fd275124498a6",
       "plan.md": "d023e1c6dd982c44235e376d38182180d9c753dcf60fdb059eac9827af416078",
-      "tasks.md": "95e87501ec925f711582d16000e5aab7ceadf4157fb55b3409ac8e01b5c0cb53",
+      "tasks.md": "945f6879eeb0ee4636ef1dcd749802985720bbd34ea44bf36c4ef7465c1d805b",
       "implementation-summary.md": "679354f83a4808a3a339c8bd0707982f07da6a8b795468446021f04d8b05a225"
     },
     "last_active_at": null

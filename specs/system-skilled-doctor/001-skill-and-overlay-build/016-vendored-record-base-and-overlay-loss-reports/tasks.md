@@ -68,6 +68,7 @@ Shell variables used in this list:
 - [x] T017 Run the contract, compat and agents-md suites (`R/scripts/tests/`). Verify: work record, line 15, records contract 12 of 12, compat 30 of 30 and agents-md contract 39 of 39, before and after. Recorded, not re-run for this packet.
 - [x] T018 Run the independent rerun over the named suites with `node --test`. Verify: work record, line 33, records 368 tests, 368 pass, 0 fail, exit 0. Recorded, not re-run for this packet.
 - [x] T019 Run `validate.sh --strict` on the packet until it prints `RESULT: PASSED`. Verify: the last run prints `RESULT: PASSED`. Evidence: it printed `Errors: 0  Warnings: 0` and `RESULT: PASSED` on 2026-11-18 after the continuity save.
+- [x] T020 Show NOTE lines in the apply plan, after a fresh review kept warn-and-append for a missing anchor (`.skilled/commands/doctor/assets/doctor-overlay-apply.yaml`, `doctor-overlay-presentation.txt`). Verify: `doctor-overlay-contract.test.cjs` test "each writing plan shows the NOTE lines before its question" failed before (`the apply plan does not show NOTE lines`) and passes after, and the overlay suite passes 207 of 207.
 <!-- /ANCHOR:phase-3 -->
 
 ---
