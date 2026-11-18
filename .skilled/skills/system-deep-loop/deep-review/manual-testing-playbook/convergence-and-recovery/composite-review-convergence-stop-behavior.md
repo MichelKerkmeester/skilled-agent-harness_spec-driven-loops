@@ -1,7 +1,7 @@
 ---
 title: "DRV-031 -- Composite review convergence stop behavior"
 description: "Verify the three-signal composite convergence model with severity-weighted newFindingsRatio, weights 0.30/0.25/0.45, and threshold 0.60."
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # DRV-031 -- Composite review convergence stop behavior
@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate deep-review composite convergence scoring, including rolling average, MAD noise floor, dimension coverage, and stop threshold.`
 - Expected execution process: Inspect the convergence reference first, then the `convergence.cjs` stop decision, then the quick reference and SKILL.md for user-facing summaries.
 - Desired user-facing outcome: The user gets an accurate explanation of the weighted convergence model, the severity weighting unique to review mode, and when convergence applies.
-- Expected signals: Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring all 4 review dimensions.
+- Expected signals: Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring every configured dimension (the four by default).
 - Pass/fail posture: PASS if the signals, weights, severity weighting, and threshold align across the convergence reference, the runtime stop decision, and user-facing docs. FAIL if any of those elements drift materially.
 
 ---
@@ -49,7 +49,7 @@ Validate deep-review composite convergence scoring, including rolling average, M
 2. `bash: rg -n 'COMPOSITE|rolling_average|MAD|dimension_coverage|convergence|stop_score|severity.*weight|newFindingsRatio' .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'Convergence|Rolling Average|MAD|Dimension Coverage|0\.30|0\.25|0\.45|severity.weighted|newFindingsRatio' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md`
 ### Expected
-Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring all 4 review dimensions.
+Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring every configured dimension (the four by default).
 ### Evidence
 Capture the full signal table, `convergence.cjs` stop decision excerpt, severity weighting formula, and the user-facing explanation.
 ### Pass/Fail

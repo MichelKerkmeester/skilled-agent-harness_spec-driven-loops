@@ -1,7 +1,7 @@
 ---
 title: "DRV-020 -- Dimension coverage convergence signal"
 description: "Verify the dimension coverage signal (weight 0.45) requires every configured dimension (the four by default) plus minStabilizationPasses >= 1 before contributing to convergence."
-version: 1.11.2.0
+version: 1.11.3.0
 ---
 
 # DRV-020 -- Dimension coverage convergence signal
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates the dimension coverage convergence signal for `DRV-020`. The objective is to verify that the dimension coverage signal (weight 0.45, the highest-weighted signal) requires all 4 review dimensions to be covered and at least one stabilization pass before it contributes to the composite stop score.
+This scenario validates the dimension coverage convergence signal for `DRV-020`. The objective is to verify that the dimension coverage signal (weight 0.45, the highest-weighted signal) requires every configured dimension (the four by default) to be covered and at least one stabilization pass before it contributes to the composite stop score.
 
 ### WHY THIS MATTERS
 

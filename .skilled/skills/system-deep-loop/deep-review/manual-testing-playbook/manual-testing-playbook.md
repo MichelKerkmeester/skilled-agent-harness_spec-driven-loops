@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.13.9.0
+version: 1.13.10.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -453,7 +453,7 @@ Verify 3-signal composite convergence (rolling avg 0.30, MAD 0.25, dimension cov
 #### Scenario Contract
 Prompt: `Validate deep-review composite convergence scoring, including rolling average, MAD noise floor, dimension coverage, and stop threshold.`
 
-Expected signals: Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring all 4 review dimensions.
+Expected signals: Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring every configured dimension (the four by default).
 
 #### Test Execution
 > **Feature File:** [DRV-031](../manual-testing-playbook/convergence-and-recovery/composite-review-convergence-stop-behavior.md)
