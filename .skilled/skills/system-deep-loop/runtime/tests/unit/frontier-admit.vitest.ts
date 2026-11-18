@@ -493,7 +493,7 @@ describe('frontier graph close rule', () => {
     });
   });
 
-  it('the graph CLI writes JSONL events', () => {
+  it('the graph CLI writes one JSON array the graph upsert can parse', () => {
     const artifactDir = makeArtifactDir();
     const { admitted } = admitProposals({
       artifactDir,
@@ -502,7 +502,7 @@ describe('frontier graph close rule', () => {
     });
     expect(admitted).toHaveLength(1);
 
-    const outputPath = join(artifactDir, 'frontier-graph-events.jsonl');
+    const outputPath = join(artifactDir, 'frontier-graph-events.json');
     const result = spawnSync(process.execPath, [
       FRONTIER_ADMIT_SCRIPT,
       'graph',
@@ -516,9 +516,10 @@ describe('frontier graph close rule', () => {
     const summary = JSON.parse(String(result.stdout).trim()) as { nodes: number; output: string };
     expect(summary.nodes).toBe(1);
 
-    const lines = readJsonl(outputPath);
-    expect(lines).toHaveLength(1);
-    expect(lines[0].kind).toBe('QUESTION');
+    const events = JSON.parse(readFileSync(outputPath, 'utf8')) as Array<{ kind?: string }>;
+    expect(Array.isArray(events)).toBe(true);
+    expect(events).toHaveLength(1);
+    expect(events[0].kind).toBe('QUESTION');
   });
 });
 

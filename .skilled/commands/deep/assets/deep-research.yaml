@@ -866,6 +866,16 @@ workflow:
         edit: "{state_paths.strategy}"
         note: "When resource_map_present is true, append the resource_map_known_context snapshot. When false, append 'resource-map.md not present; skipping coverage gate'."
 
+      step_frontier_reduce_seed:
+        action: "Reduce once after the seed so iteration 1 already focuses a frontier node"
+        enabled_when: "depth_mode == 'expansive'"
+        dry_run_boundary: "reducer-refresh"
+        note: "The loop reads next_focus from the strategy and renders the frontier block from it, and only the reducer writes that focus. Without this pass the first iteration has no frontier node and no frontier block."
+        command: |
+          node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}
+        working_directory: "{repo_root}"
+        on_failure: "Log the stderr line as a config_warning bookkeeping event and continue; iteration 1 then runs on the strategy's own focus and step_reduce_state picks the frontier up after it."
+
       step_detect_spec_present:
         action: "Classify late-INIT spec.md state after the durable research packet exists"
         dry_run_event_policy: preview-only
@@ -1857,8 +1867,8 @@ workflow:
         dry_run_boundary: "state-mutation"
         note: "Pruned nodes are never written. A node that closed exhausted, blocked or abstained is re-kinded from QUESTION to a CLAIM marked closed, so it stops lowering question coverage and source diversity. Open, active and answered nodes stay QUESTION nodes linked to their parent by DERIVED_FROM."
         command: |
-          node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs graph --artifact-dir "{artifact_dir}" --output "{artifact_dir}/frontier-graph-events.jsonl"
-          node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type research --session-id "{config.lineage.sessionId}" --events "{artifact_dir}/frontier-graph-events.jsonl"
+          node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs graph --artifact-dir "{artifact_dir}" --output "{artifact_dir}/frontier-graph-events.json"
+          node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type research --session-id "{config.lineage.sessionId}" --events "{artifact_dir}/frontier-graph-events.json"
         skip_second_command_when: "the first command prints nodes 0"
         working_directory: "{repo_root}"
         on_failure: "Log the stderr line as a config_warning bookkeeping event and continue; the frontier store and registry stay authoritative."

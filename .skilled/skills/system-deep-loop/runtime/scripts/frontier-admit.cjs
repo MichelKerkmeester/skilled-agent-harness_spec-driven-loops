@@ -602,10 +602,12 @@ function buildFrontierGraphEvents(nodes) {
   return nodeEvents.concat(edgeEvents);
 }
 
+// The graph upsert parses its events file as one JSON value, so the projection
+// is written as a single array rather than one event per line.
 function writeFrontierGraph({ artifactDir, output }) {
   const storePath = path.join(artifactDir, NODE_STORE_FILE);
   const events = buildFrontierGraphEvents(readNodeStore(storePath).values());
-  const body = events.map((event) => `${JSON.stringify(event)}\n`).join('');
+  const body = `${JSON.stringify(events)}\n`;
 
   fs.mkdirSync(path.dirname(path.resolve(output)), { recursive: true });
   fs.writeFileSync(output, body, 'utf8');
