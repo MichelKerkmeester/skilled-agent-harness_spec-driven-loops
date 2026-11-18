@@ -269,6 +269,8 @@ The operator accepted ADR-001 to ADR-005 as proposed on 2026-11-17 (T000). The b
 
 **Amendment (operator, 2026-11-18, decision-record Q003)**: Both live pilots showed that a cap equal to `maxIterations` fills every iteration slot, so the seeded questions waited until the last iterations and the run could only stop on the cap. The cap is now derived at admission as half of `maxIterations` (at least 1) unless the config sets a number, and the workflow writes `null` so the derivation applies.
 
+**Amendment (operator, 2026-11-18, decision-record Q005)**: The half-budget cap left an expansive run at the default budget with no room past its seed. When `maxIterations` came from the loop default, the run now sizes it after the seed step to `min(24, max(loop default, 2·c·(S + maxDepth − 1)))`, with c 1 for research and the dimension count for review, so the frontier keeps at least two growth slots past depth 1. An explicit budget always wins, so the pilot consequence above still holds for a stated budget, and the node cap stays half the final budget.
+
 **Alternatives Rejected**:
 - Enforce a minimum `maxIterations` for expansive runs: rejects small exploratory runs outright instead of sizing the frontier to them.
 

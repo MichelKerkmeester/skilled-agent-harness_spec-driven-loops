@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.12.0
+version: 1.14.13.0
 ---
 
 # deep-research
@@ -124,7 +124,7 @@ The shipped config floors convergence at 3 rounds, sets `stuckThreshold` to 3 an
 
 `--convergence-mode` changes the stop path. `off` disables convergence STOP while the hard caps stay active. `sliding-window` scores novelty over a bounded window. `divergent` sends an eligible legal stop into one bounded pivot round instead of synthesis, then returns to the loop.
 
-`--depth-mode=expansive` lets a run grow its own questions. A seed step writes 3 to 6 depth-1 nodes before iteration 1, and the leaf may propose children only when its prompt carries a frontier block. An admission step before the reducer applies six checks in order, relevance, dedupe, depth, fan-out, budget and cycle, and prunes the proposal on the first failure. Next Focus reads the shallowest open node first and writes it as a frontier line, so visiting a node does not read as answering it. While a node stays open the frontier vetoes a soft convergence stop, which never outranks the iteration cap or the other hard stops, and the caps are `maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget split and `maxFrontierNodes`, which defaults to half of `maxIterations`. Each node needs at least one iteration, so growth past depth 1 needs `maxIterations` above twice the live node count. At the default budget of 10 an expansive run works its seeds only; raise `--max-iterations`, as the pilots did at 16, to reach depths 2 and 3.
+`--depth-mode=expansive` lets a run grow its own questions. A seed step writes 3 to 6 depth-1 nodes before iteration 1, and the leaf may propose children only when its prompt carries a frontier block. An admission step before the reducer applies six checks in order, relevance, dedupe, depth, fan-out, budget and cycle, and prunes the proposal on the first failure. Next Focus reads the shallowest open node first and writes it as a frontier line, so visiting a node does not read as answering it. While a node stays open the frontier vetoes a soft convergence stop, which never outranks the iteration cap or the other hard stops, and the caps are `maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget split and `maxFrontierNodes`, which defaults to half of `maxIterations`. When `--max-iterations` is left at its default, the run sizes its budget from the seed: `min(24, max(10, 2 × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes, 16 at the full six seeds, and the seed step prints the derived budget. The node cap stays half that budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker or fan-out matrix `iterations` value always wins, even below the derived value, and the seed warns when it leaves no room past depth 1.
 
 ### Stop Reasons
 

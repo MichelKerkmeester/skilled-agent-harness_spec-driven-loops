@@ -6,7 +6,7 @@ trigger_phrases:
   - "expansive depth review"
   - "review frontier mode"
   - "review frontier-nodes"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
@@ -25,7 +25,7 @@ The expansive run seeds depth-one sub-target nodes from the review target before
 
 ### Dimension Coverage
 
-The active node's next uncovered dimension is dispatched. A node needs one iteration per dimension in its universe, the four canonical dimensions plus any custom name. Each depth band starts from its `budgetSplit` share of `--max-iterations` (0.5, 0.35 and 0.15), plus any share an earlier band left unspent once that band holds no open node, so fund the depth-1 band with at least `2 * ceil(nodes / lineages) * dimensions`. The run-wide `maxFrontierNodes` cap defaults to half of `maxIterations`, and every seed that is not pruned counts toward it. Each node needs at least one iteration, so growth past depth 1 needs `maxIterations` above twice the live node count. At the default budget of 7 an expansive run works its seeds only; raise `--max-iterations`, as the pilots did at 16, to reach depths 2 and 3.
+The active node's next uncovered dimension is dispatched. A node needs one iteration per dimension in its universe, the four canonical dimensions plus any custom name. Each depth band starts from its `budgetSplit` share of `--max-iterations` (0.5, 0.35 and 0.15), plus any share an earlier band left unspent once that band holds no open node, so fund the depth-1 band with at least `2 * ceil(nodes / lineages) * dimensions`. The run-wide `maxFrontierNodes` cap defaults to half of `maxIterations`, and every seed that is not pruned counts toward it. When `--max-iterations` is left at its default, the run sizes its budget from the seed: `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D configured dimensions, and the seed step prints the derived budget. With the four canonical dimensions the ceiling of 24 binds from two seeds on, so one run cannot fund every node at every depth of a wide review; split a wide review with fan-out, where each lineage sizes its own budget from its share of the seed. The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker or fan-out matrix `iterations` value always wins, even below the derived value, and the seed warns when it leaves no room past depth 1. At about seven to eight minutes an iteration, a 24-iteration review can reach `maxDurationMinutes` (120) before its iteration cap.
 
 ### Stop Behavior
 

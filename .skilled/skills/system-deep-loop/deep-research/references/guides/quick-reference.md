@@ -10,7 +10,7 @@ trigger_phrases:
   - "research progress visualization"
 importance_tier: normal
 contextType: general
-version: 1.14.7.0
+version: 1.14.8.0
 ---
 
 # Deep Research Quick Reference
@@ -56,7 +56,7 @@ Operator contract source of truth for this page:
 |-----------|---------|-------------|
 | `--max-iterations` | 10 | Maximum loop iterations |
 | `--convergence` | 0.05 | Stop when avg newInfoRatio below this |
-| `--depth-mode` | default | `expansive` grows a depth-capped frontier of follow-up questions and vetoes a convergence stop while nodes stay open. Growth past depth 1 needs `--max-iterations` above twice the live node count |
+| `--depth-mode` | default | `expansive` grows a depth-capped frontier of follow-up questions and vetoes a convergence stop while nodes stay open. A defaulted `--max-iterations` is sized from the seed, up to 24; an explicit one always wins |
 | `--spec-folder` | auto | Target spec folder path |
 | `progressiveSynthesis` | true | Allow incremental `research/research.md` updates before final synthesis |
 

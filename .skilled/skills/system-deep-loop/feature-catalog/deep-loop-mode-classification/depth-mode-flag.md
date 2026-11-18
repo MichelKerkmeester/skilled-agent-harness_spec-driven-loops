@@ -6,14 +6,14 @@ trigger_phrases:
   - "depth mode flag"
   - "expansive depth flag"
   - "deep loop depth mode"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Depth mode flag (--depth-mode)
 
 ## 1. OVERVIEW
 
-`--depth-mode` is a command-level option on `/deep:research` and `/deep:review`. It takes `default` or `expansive`. The flag is not part of `mode-registry.json`, so the hub classifies a request into the same workflow mode with or without it. The behavior the flag turns on lives in the research and review packets. Admission caps the live frontier at half of `maxIterations` by default, and the seed counts toward that cap, so at the default budgets an expansive run works its seeds only; raise `--max-iterations`, as the pilots did at 16, to reach depths 2 and 3.
+`--depth-mode` is a command-level option on `/deep:research` and `/deep:review`. It takes `default` or `expansive`. The flag is not part of `mode-registry.json`, so the hub classifies a request into the same workflow mode with or without it. The behavior the flag turns on lives in the research and review packets. Admission caps the live frontier at half of `maxIterations`, and the seed counts toward that cap, so a defaulted budget is sized from the seed: `min(24, max(loop default, 2 × c × (S + maxDepth − 1)))` for S seeded depth-1 nodes, with c 1 for research and the configured dimension count for review. An explicit `--max-iterations` always wins, even below the derived value.
 
 ---
 

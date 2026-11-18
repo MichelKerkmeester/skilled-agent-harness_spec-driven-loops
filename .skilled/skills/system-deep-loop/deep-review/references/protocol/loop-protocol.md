@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.21.0
+version: 1.11.22.0
 ---
 
 # Deep Review Loop Protocol
@@ -456,7 +456,7 @@ function selectReviewRecoveryStrategy(stuckIterations, state, config):
 
 ### Expansive Depth Frontier (opt-in)
 
-Under `--depth-mode=expansive` the loop keeps a frontier of sub-target nodes beside the review target. The flag writes `antiConvergence.depthMode: "expansive"` and the caps in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `budgetSplit` of 0.5/0.35/0.15 across the depth bands, and `maxFrontierNodes`, which defaults to half of `maxIterations` unless the config sets a number. The depth-1 seed answers only to the root-children cap, but every seed that is not pruned counts toward the run cap. Each node needs at least one iteration, so growth past depth 1 needs `maxIterations` above twice the live node count. At the default budget of 7 an expansive run works its seeds only; raise `--max-iterations`, as the pilots did at 16, to reach depths 2 and 3. A run without the flag keeps the default path and runs exactly as before, and the mode is locked against the optimizer; the `expansiveDepth` caps are in neither its tunable nor its locked list.
+Under `--depth-mode=expansive` the loop keeps a frontier of sub-target nodes beside the review target. The flag writes `antiConvergence.depthMode: "expansive"` and the caps in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `budgetSplit` of 0.5/0.35/0.15 across the depth bands, and `maxFrontierNodes`, which defaults to half of `maxIterations` unless the config sets a number. The depth-1 seed answers only to the root-children cap, but every seed that is not pruned counts toward the run cap. When `--max-iterations` is left at its default, the run sizes its budget from the seed: `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D configured dimensions, and the seed step prints the derived budget. With the four canonical dimensions the ceiling of 24 binds from two seeds on, so one run cannot fund every node at every depth of a wide review; split a wide review with fan-out, where each lineage sizes its own budget from its share of the seed. The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker or fan-out matrix `iterations` value always wins, even below the derived value, and the seed warns when it leaves no room past depth 1. At about seven to eight minutes an iteration, a 24-iteration review can reach `maxDurationMinutes` (120) before its iteration cap. A run without the flag keeps the default path and runs exactly as before, and the mode is locked against the optimizer; the `expansiveDepth` caps are in neither its tunable nor its locked list.
 
 `step_frontier_seed` decomposes the review target into depth-1 sub-target nodes before iteration 1, through `runtime/scripts/frontier-admit.cjs seed --target review`. On a plain run it sits in `phase_init` after `step_create_config`; on a fan-out run it runs before `step_fanout_spawn`. A merge that carries no diff of its own is pruned `merge-no-own-diff` and an index rebuild `generated-artifact`, because neither is reviewable work.
 
