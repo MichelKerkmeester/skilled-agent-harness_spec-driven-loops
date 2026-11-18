@@ -35,7 +35,7 @@
       "start"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "`handleClaudeUserPromptSubmit` wraps its work in one try (`hooks/claude/user-prompt-submit.ts:316`)",
     "created_at": "2026-11-18T11:32:36Z",
-    "last_save_at": "2026-11-18T13:29:18.439Z",
+    "last_save_at": "2026-11-18T15:29:21.671Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c64d24e80500e34e049ea3f5c3e68a5878b2f4e2a11a2b53144d046f919cfda2",
+    "source_fingerprint": "sha256:72c0f4448ec2ee433295f17d92721dc0de5de0d0a3cd75f914ae42b0fc01ad1c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "60aaa124008c5f2512775f12ada6d3efedb9caaa17448de8362551bc3ab02863",
+      "spec.md": "91d6c0b0f59cb3107436c65a1c83bf117361cb3eed1733b1a3cd2ab344e4ec0d",
       "plan.md": "80d407938ccae2759a71b3b6ff2fea187f21c592ab327ab04d2b27a8edaf26f0",
-      "tasks.md": "2dc3c398fd585f7da8fffdd8a23501c98e214ceb5f81339feaad9f956d2a7e1b",
-      "implementation-summary.md": "b2e14638100e8e8ce796815108e0173f5e95cca82076005a1c0809a1bfa4f333"
+      "tasks.md": "562e2cb70f8ec1d9edd108e20662855533b919c40ed19e4cd1bb5dde95afeae7",
+      "implementation-summary.md": "a90c3364ced24bbbac65df56b5f09c647d72a8bf6f6e2195b0c07c724a6ccfcf"
     },
     "last_active_at": null
   }

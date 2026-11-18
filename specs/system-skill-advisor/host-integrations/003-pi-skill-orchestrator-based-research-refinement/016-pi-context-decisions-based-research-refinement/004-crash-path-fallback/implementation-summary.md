@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Not built yet. This phase is planned: a visible outage fallback on the shared hook's crash path, plus one doc sentence on when the confidence threshold is read."
+description: "Built in worktree 474, not committed: the shared Claude hook catch returns the outage line and directives instead of nothing, and the threshold doc names the override that works."
 trigger_phrases:
   - "crash path fallback implementation summary"
 importance_tier: "normal"
@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/004-crash-path-fallback"
     last_updated_at: "2026-11-18T12:00:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Planned the phase from the adopted research recommendations"
-    next_safe_action: "Start task T001 once phase 002 is complete"
+    recent_action: "Phase built and verified"
+    next_safe_action: "Start phase 003"
     blockers: []
     key_files:
       - "spec.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "db37536c-37e4-472c-8a05-521b8fec328d"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-crash-path-fallback |
-| **Completed** | Not started. Planned 2026-11-18 |
+| **Completed** | 2026-11-18. Built in worktree 474, not committed |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,17 +48,17 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This file holds the plan's decisions until the build starts, and the builder replaces each section with what changed.
-
 ### Phase 4: crash-path-fallback
 
-The planned change makes a crash inside the shared hook show the model the outage line a timeout already shows, on Claude, Pi, DSH and Vibe. It also tells operators that the confidence-threshold variable counts only when the daemon starts.
+When the shared UserPromptSubmit handler's own code throws, its catch still records the `fail_open` diagnostic, and now also returns the timeout outage line and the directives as `additionalContext`. A nested try keeps `{}` if rendering that line throws too. Claude, Codex, Pi, DSH and Vibe reach this handler; OpenCode uses its own plugin, which already did this. The `SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD` row now says the value is read once when the daemon starts, that the per-request `confidenceThreshold` option is the supported override, and that hook briefs always send 0.8.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | Planned | `spec.md` Files to Change lists the three planned files |
+| `hooks/claude/user-prompt-submit.ts` | Modify | Imports `renderAdvisorTimeoutFallback` and returns it from the outer catch inside a nested try |
+| `runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` | Modify | One test: a throwing `renderBrief` yields the outage context and an `UNKNOWN` `fail_open` diagnostic |
+| `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` | Modify | One sentence on line 382 |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -66,7 +66,7 @@ The planned change makes a crash inside the shared hook show the model the outag
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. Delivery follows `tasks.md` T001 to T009.
+The conductor re-read the catch and recorded the hook suite baseline. Two GPT-6 Luna `xhigh` `fast` leaves then wrote the test and the doc sentence in parallel. The conductor confirmed the new test failed for the right reason, and a third leaf changed the catch. The conductor ran every check, then a read-only Luna refutation pass.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -76,8 +76,10 @@ Not delivered. Delivery follows `tasks.md` T001 to T009.
 
 | Decision | Why |
 |----------|-----|
-| Edit only the shared catch | Pi, DSH and Vibe pass `additionalContext` through, so one edit covers four runtimes. The adapter catches fire only on an import failure nobody has seen |
+| Edit only the shared catch | Pi, DSH and Vibe pass `additionalContext` through, so one edit covers them, and Codex delegates to the same handler. The adapter catches fire only on an import failure nobody has seen |
+| Render with default options and skip directive-lifecycle dedup in the catch | The catch cannot trust any state built in the try, and running dedup there would put possibly-failing code back on the crash path. A repeated directive block on a crashing turn costs bytes, not correctness |
 | A doc sentence, not an output field | No two callers need different threshold values today, and the per-request option already works |
+| Doc edit anchored on text unique to line 382 | Line 383 ends with the same words, so the brief's first anchor matched twice |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,8 +89,16 @@ Not delivered. Delivery follows `tasks.md` T001 to T009.
 
 | Check | Result |
 |-------|--------|
-| How often the catch fires | Counted during planning on 2026-11-18 with the Measured Behavior command in `spec.md`, which greps `$TMPDIR/speckit-skill-advisor-metrics/*-diagnostics.jsonl` for `Unhandled UserPromptSubmit hook exception`. It printed `files=187 records=8231 unhandled=0` |
-| Hook suite after the change | Not run yet |
+| How often the catch fires | Counted during planning: `files=187 records=8231 unhandled=0`. This is a cheap guard, not an incident fix |
+| Hook suite baseline (T002) | `npx vitest run tests/hooks` exit 0, 170 of 170 |
+| New test before the catch change (T003) | 1 failed, 170 passed; it received `{}` where the outage context was expected, after `renderBrief` was called once |
+| Hook suite after the change (T004) | Exit 0, 171 of 171 |
+| `npx vitest run tests/hooks tests/parity` | Exit 0, 19 files, 235 of 235 |
+| Typecheck and build (T006) | Both exit 0 |
+| Doc sentence (T005) | `rg -n 'daemon starts'` and `rg -n 'never reaches'` both print line 382. No hook sets `thresholdConfig`, so `hooks/lib/skill-advisor-cli-fallback.ts:245` defaults to 0.8 |
+| Diff scope (T007) | This phase adds only the three planned files; phase 002's uncommitted files share the worktree |
+| Comment hygiene (T008) | `rg` printed nothing |
+| Refutation pass (Luna `xhigh`, read-only) | Six findings, checked by the conductor. Confirmed and kept by design: the crash fallback skips directive dedup. Confirmed edge cases, listed below: setup wording, a skipped prompt shown as an outage, policy observation without session context. Confirmed but outside scope: a throwing `dependencies.now` runs before the try; the row's existing words "unless `confidenceOnly` mode is active" are false, because `skill-advisor-brief.ts:175-176` still applies the confidence threshold in that mode |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -97,6 +107,8 @@ Not delivered. Delivery follows `tasks.md` T001 to T009.
 ## Known Limitations
 
 1. **An adapter that fails to import the built handler stays silent.** Pi, DSH and Vibe each have their own catch for that case. The fallback text lives in the module that failed to load, so covering it would need a duplicated string. Rebuilding the runtime is the workaround if it ever happens.
+2. **The crash fallback renders with default options.** A setup prompt loses its `/doctor:setup` hint, a prompt the policy would skip is shown as an outage, the directive block is not deduplicated across repeated crashing turns, and the policy observation carries no session. Each is reached only when the hook itself throws.
+3. **Follow-up for the doc row:** its existing clause about `confidenceOnly` is wrong; that mode drops the uncertainty check, not the confidence threshold. This phase added one sentence and left the clause alone.
 <!-- /ANCHOR:limitations -->
 
 ---

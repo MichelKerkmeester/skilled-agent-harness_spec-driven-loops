@@ -99,12 +99,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -118,6 +112,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -155,19 +155,19 @@
     ],
     "causal_summary": "The skill advisor picks skills with a local five-lane scorer and pushes a brief into every prompt",
     "created_at": "2026-11-18T06:49:25Z",
-    "last_save_at": "2026-11-18T13:29:45.621Z",
+    "last_save_at": "2026-11-18T15:29:17.790Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:c44272f524e3d7cb7c085f96f6ea588c4d6b0f432eb2edc51381c3558e7502df",
+    "source_fingerprint": "sha256:b01e712a7d22aa0dd21bf4122b31bf097aad93404a7eb039889f79d2ace07aa2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f655abf4b96491bf66be1cfcb33f82f5be33807972f7525aa149e900f6857325"
+      "spec.md": "545627564ada73864e09f14b47084c5ced51358b95d47820c7a01199269b9088"
     },
-    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research",
-    "last_active_at": "2026-11-18T07:46:54.357Z"
+    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping",
+    "last_active_at": "2026-11-18T13:45:45.010Z"
   }
 }
