@@ -30,6 +30,16 @@ const {
   parseProfileFlag,
   validateProfile,
 } = require('../lib/ci-profile.cjs');
+const { MANIFEST_PATH, sourceStatus } = require('../agents-md-manifest.cjs');
+
+// The suite ships into consumer repositories, where the committed profile names Skilled and
+// is rightly ignored. The case that pins this repository's own profile is gated on the
+// origin remote naming the shipped manifest's source repository, a signal the profile
+// loader never reads.
+const source = sourceStatus({ root: REPO_ROOT, manifest: JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8')) });
+const NOT_SOURCE = source.isSource
+  ? false
+  : `asserts the Skilled source repository's own state; this host vendors Skilled (${source.reason})`;
 
 const OPENCODE_PROFILE_FILE = REPO_PROFILE_FILE.replace(/^\.skilled\//, '.opencode/');
 
@@ -237,7 +247,7 @@ test('a file that does not parse comes back as an error and no profile', (t) => 
 
 // Deleting the file or dropping an entry would apply the generic default here, which
 // lets a single yes switch off a guard, so the protections are pinned one by one.
-test('this repository commits its CI profile and it keeps every protection', () => {
+test('this repository commits its CI profile and it keeps every protection', { skip: NOT_SOURCE }, () => {
   assert.ok(fs.existsSync(path.join(REPO_ROOT, REPO_PROFILE_FILE)), `${REPO_PROFILE_FILE} is missing`);
   const loaded = loadProfile({ root: REPO_ROOT, git: false });
   assert.equal(loaded.source, 'repo');

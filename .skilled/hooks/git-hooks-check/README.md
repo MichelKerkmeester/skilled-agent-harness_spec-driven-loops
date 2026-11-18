@@ -70,7 +70,7 @@ Claude registers the check in `.claude/settings.json`. Codex registers it in `.c
 
 OpenCode loads plugins through the flat `.opencode/plugins/` glob. `session-cleanup.js` runs this check with its other startup guards.
 
-Pi's extension entry is `.pi/extensions/session-start-advisories.ts`. It re-exports the adapter in the table.
+Pi's extension entry is `.pi/extensions/session-start-advisories.ts`. It imports the adapter in the table.
 
 `.dsh/patches/guards.patch.yml` loads `.dsh/plugins/repo-guards/index.mjs`. The bundle imports the DSH adapter from its `adapters/` directory.
 

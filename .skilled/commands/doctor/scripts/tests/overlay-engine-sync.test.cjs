@@ -1645,3 +1645,89 @@ test('a dropped setKeyOnItem whose value was edited by hand is refused, not remo
   assert.match(applied.output, /dropped setKeyOnItem of extra on the item matching id=B at rows was edited after it was applied/);
   assert.equal(fixture.readLive(), liveBefore);
 });
+
+// A marked block with `insertBefore` lands just before that line rather than at
+// the end, so a closing section such as RELATED RESOURCES stays the last one.
+const PLACED_BASE = '# Header\n\n## Notes\n\nupstream notes\n\n## Related\n\n- link\n';
+const PLACED_BLOCK = '<!-- BEGIN BLOCK -->\n## Overlay\n\nold block\n<!-- END BLOCK -->\n\n';
+
+function createPlacedFixture(t, base = PLACED_BASE) {
+  const fixture = createFixture(t);
+  writeFile(fixture.overlayDir, 'marked/base.md', base);
+  writeFile(fixture.overlayDir, 'marked/block.md', PLACED_BLOCK);
+  writeFile(fixture.tree, 'marked.md', base);
+  const entry = fixture.manifest.overlays.find((item) => item.id === 'marked-block');
+  entry.insertBefore = '## Related';
+  entry.pinnedSha256 = sha256(Buffer.from(base));
+  writeManifest(fixture);
+  return fixture;
+}
+
+function placed(block) {
+  return PLACED_BASE.replace('## Related\n', `${block}## Related\n`);
+}
+
+test('insertBefore places the block before its anchor line and a second apply changes nothing', (t) => {
+  const fixture = createPlacedFixture(t);
+  seedState(fixture);
+  const live = fs.readFileSync(path.join(fixture.tree, 'marked.md'), 'utf8');
+  assert.equal(live, placed(PLACED_BLOCK));
+  assert.ok(live.trimEnd().endsWith('- link'), 'the anchored section must stay last');
+
+  const second = fixture.run(['apply']);
+  assert.equal(second.code, 0, second.output);
+  assert.equal(second.output.trim(), '0 changed');
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+test('an edited placed block is rewritten in place and the anchored tail is kept', (t) => {
+  const fixture = createPlacedFixture(t);
+  seedState(fixture);
+  const newBlock = '<!-- BEGIN BLOCK -->\n## Overlay\n\nnew block\n<!-- END BLOCK -->\n\n---\n\n';
+  writeFile(fixture.overlayDir, 'marked/block.md', newBlock);
+
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'marked.md'), 'utf8'), placed(newBlock));
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+test('capture of a placed block takes the span apply writes, up to the anchor line', (t) => {
+  const fixture = createPlacedFixture(t);
+  seedState(fixture);
+  const handBlock = '<!-- BEGIN BLOCK -->\n## Overlay\n\nhand-edited block\n<!-- END BLOCK -->\n\n';
+  writeFile(fixture.tree, 'marked.md', placed(handBlock));
+
+  const captured = fixture.run(['apply', '--capture', 'marked.md']);
+  assert.equal(captured.code, 0, captured.output);
+  assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'marked/block.md'), 'utf8'), handBlock);
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+test('a missing insertBefore line refuses the block instead of appending it', (t) => {
+  const base = '# Header\n\nno closing section here\n';
+  const fixture = createPlacedFixture(t, base);
+  const applied = fixture.run(['apply']);
+  assert.notEqual(applied.code, 0, applied.output);
+  assert.match(applied.output, /marked\.md has no line "## Related" for the block to go before; rebase the overlay/);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'marked.md'), 'utf8'), base);
+});
+
+test('naming an anchor moves a block that an earlier apply appended at the end', (t) => {
+  const fixture = createFixture(t);
+  writeFile(fixture.overlayDir, 'marked/base.md', PLACED_BASE);
+  writeFile(fixture.tree, 'marked.md', PLACED_BASE);
+  const entry = fixture.manifest.overlays.find((item) => item.id === 'marked-block');
+  entry.pinnedSha256 = sha256(Buffer.from(PLACED_BASE));
+  writeManifest(fixture);
+  seedState(fixture);
+  assert.match(fs.readFileSync(path.join(fixture.tree, 'marked.md'), 'utf8'), /- link\n\n<!-- BEGIN BLOCK -->/);
+
+  writeFile(fixture.overlayDir, 'marked/block.md', PLACED_BLOCK);
+  entry.insertBefore = '## Related';
+  writeManifest(fixture);
+  const moved = fixture.run(['apply']);
+  assert.equal(moved.code, 0, moved.output);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'marked.md'), 'utf8'), placed(PLACED_BLOCK));
+  assert.equal(fixture.run(['status']).code, 0);
+});

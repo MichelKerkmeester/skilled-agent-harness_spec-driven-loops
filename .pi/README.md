@@ -9,7 +9,7 @@ trigger_phrases:
 
 # Pi CLI in Skilled
 
-> Pi runs the same guard cores as the other runtimes. Each one reaches Pi through a one-line TypeScript extension that re-exports an adapter under `.skilled/`.
+> Pi runs the same guard cores as the other runtimes. Each one reaches Pi through a small TypeScript entry that imports an adapter under `.skilled/`.
 
 ---
 
@@ -28,7 +28,7 @@ trigger_phrases:
 
 Pi reads the root [`AGENTS.md`](../AGENTS.md) from the working directory and the folders above it, so the shared rules arrive without a copy in this folder. It also discovers the extensions in `extensions/` and the prompt templates in `prompts/`. The `code_mode` server comes from `mcp.json`.
 
-The guard layer is TypeScript, not a hooks file. Pi calls the default export of each top-level entry. That entry re-exports an adapter under `.skilled/`. The adapter registers the handler and calls the core that owns the policy. An entry holds no policy of its own, so a behavior change belongs in the adapter or in the core it calls.
+The guard layer is TypeScript, not a hooks file. Pi calls the default export of each top-level entry. That entry imports an adapter under `.skilled/` and hands Pi to it. The adapter registers the handler and calls the core that owns the policy. An entry holds no policy of its own, so a behavior change belongs in the adapter or in the core it calls. When the adapter cannot load, because the Skilled checkout is missing or out of date, the entry turns its hook off and Pi shows one notice for the session that names the entries and says to run git pull in that checkout, then `/doctor:setup`.
 
 A handler that throws returns `undefined` and the call continues. `git-message-gate` is the one exception. It refuses a command when the sk-git rulebook exists but cannot be read.
 
@@ -64,7 +64,7 @@ Each command stub names its canonical file under `.skilled/commands/` and passes
 | `agents/*.md` | Generated | `sync-agents-pi.cjs` writes them from `.skilled/agents/` |
 | `prompts/*.md` | Generated | `sync-prompts-pi.cjs` writes one stub per command |
 | `prompts/goal-pi.md` | Authored | The fallback behind the registered `/goal-pi` command |
-| `extensions/*.ts` | Re-exports | One line each, pointing at an adapter under `.skilled/` |
+| `extensions/*.ts` | Rendered | `sync-hook-registrations.cjs` writes each from one template that imports an adapter under `.skilled/` |
 | `extensions/lib/claude-hook-adapter.ts` | Link | Points into the spec-kit hook library |
 | `extensions/pi-cache-optimizer/`, `extensions/pi-fast-mode-w-subagent-support/` | Local packages | Loaded from the `packages` list in `settings.json` |
 | `skills`, `repo-rules` | Links | The skill library and the repo rule set |
@@ -99,7 +99,7 @@ The [runtime mirrors check](./prompts/doctor-runtime-mirrors.md) (`/doctor-runti
 
 - **The agent mirror is one way.** The permission map loses what Pi has no tool for, so `.skilled/agents/` stays the source.
 - **No surface loads the agents.** Pi has no agent flag, so `agents/` is a checked mirror with no reader today.
-- **The extensions have no behavioral drift check.** `sync-hook-registrations.cjs --check` confirms each entry is a re-export of an adapter that exists. A change in a shared core shows up in the Pi adapter suites under `.skilled/hooks/*/pi/`, which [the extensions README](./extensions/README.md) lists, at run time or in the manual testing playbook.
+- **The extensions have no behavioral drift check.** `sync-hook-registrations.cjs --check` confirms each entry matches the template and names an adapter that exists. A change in a shared core shows up in the Pi adapter suites under `.skilled/hooks/*/pi/`, which [the extensions README](./extensions/README.md) lists, at run time or in the manual testing playbook.
 - **The goal fallback cannot act.** If the goal extension does not load, `prompts/goal-pi.md` refuses to bind a session and says so.
 
 ---

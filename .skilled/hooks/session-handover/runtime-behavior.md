@@ -24,7 +24,7 @@ This document covers how each runtime adapter starts a handover. It lists the se
 | Runtime | Trigger | Relaunch seed syntax | Model carry | Mirror form | Verdict |
 |---|---|---|---|---|---|
 | Claude | automatic | `claude [--model <model>] "<seed>" [--name <name>]` | `--model`, `--model=` | [.claude/settings.json](../../../.claude/settings.json) hook entries | AUTO |
-| Pi | automatic | `pi [--provider <p>] [--model <model>] [-ne] [-e <path>] [--name <name>] "<seed>"` | `--model`, `--provider`, extension flags | `.pi/extensions/` one-line entry file that re-exports `pi/session-handover.ts` | AUTO |
+| Pi | automatic | `pi [--provider <p>] [--model <model>] [-ne] [-e <path>] [--name <name>] "<seed>"` | `--model`, `--provider`, extension flags | `.pi/extensions/` entry file that imports `pi/session-handover.ts` | AUTO |
 | OpenCode | automatic | `opencode [-m <model>] --prompt "<seed>"`, and on OpenCode 2 `opencode --standalone --prompt "<seed>"` | `-m`, `--model`, `--model=` on OpenCode 1; on OpenCode 2 a hop carries the model in `OPENCODE_CONFIG_CONTENT` | `.opencode/plugins/` plugin plus `opencode/` browsability symlink | AUTO |
 | Codex | automatic | `codex --no-daemon [-m <model>] "<seed>"` | `-m`, `--model`, `--model=` | [.codex/hooks.json](../../../.codex/hooks.json) hook entries plus `.codex/hooks/` symlinks | AUTO |
 | Cursor | `/speckit-handoff` | `cursor-agent [--model <model>] "<seed>"` | `--model`, `--model=` | [.cursor/commands/speckit-handoff.md](../../../.cursor/commands/speckit-handoff.md) symlink | COMMAND-ONLY |

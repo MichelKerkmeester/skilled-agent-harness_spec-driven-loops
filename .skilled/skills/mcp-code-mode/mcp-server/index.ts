@@ -423,8 +423,18 @@ async function initializeUtcpClient(): Promise<CodeModeUtcpClient> {
     }
 
     const safeRawConfig = typeof rawConfig === "object" && rawConfig !== null
-        ? rawConfig as Record<string, unknown>
+        ? { ...(rawConfig as Record<string, unknown>) }
         : {};
+
+    // A manual marked "disabled": true stays out of startup registration. OAuth-backed
+    // remotes open a browser sign-in tab when they register without a cached token, so
+    // they wait until a workflow asks the user and calls register_manual with the entry.
+    if (Array.isArray(safeRawConfig.manual_call_templates)) {
+        safeRawConfig.manual_call_templates = safeRawConfig.manual_call_templates.filter(
+            (template: unknown) => !(typeof template === "object" && template !== null
+                && (template as Record<string, unknown>).disabled === true),
+        );
+    }
 
     const clientConfig = new UtcpClientConfigSerializer().validateDict(safeRawConfig);
 

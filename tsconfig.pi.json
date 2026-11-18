@@ -6,9 +6,13 @@
     "noEmit": true,
     "strict": false,
     "skipLibCheck": true,
-    "allowJs": true
+    "allowJs": true,
+    "allowImportingTsExtensions": true
   },
   "include": [
+    ".pi/extensions/session-handover.ts",
+    ".pi/extensions/spec-gate-classify.ts",
+    ".pi/extensions/spec-gate-enforce.ts",
     ".skilled/hooks/session-handover/pi/session-handover.ts",
     ".skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-classify.ts",
     ".skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-enforce.ts",

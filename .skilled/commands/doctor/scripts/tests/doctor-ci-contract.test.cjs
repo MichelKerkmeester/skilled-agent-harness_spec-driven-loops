@@ -20,6 +20,7 @@ const path = require('node:path');
 const test = require('node:test');
 const { parse: parseYaml } = require('yaml');
 const { REPO_PROFILE_FILE, REPO_ROOT } = require('../lib/ci-profile.cjs');
+const { MANIFEST_PATH, sourceStatus } = require('../agents-md-manifest.cjs');
 
 const DOCTOR = path.resolve(__dirname, '..', '..');
 const ASSETS = path.join(DOCTOR, 'assets');
@@ -36,7 +37,15 @@ const PRESENTATION = asset('doctor-ci-presentation.txt');
 const REPORT_YAML = asset('doctor-ci-report.yaml');
 const SCAFFOLD_YAML = asset('doctor-ci-scaffold.yaml');
 const TOGGLE_YAML = asset('doctor-ci-toggle.yaml');
-const WORKFLOWS_README = read(path.join(REPO_ROOT, '.github', 'workflows', 'README.md'));
+// The workflows README belongs to this repository and never ships with the command, so
+// it is read only where the origin remote names the shipped manifest's source repository.
+// The gate is the identity, not whether the file exists, so this repository still fails
+// loudly if its README goes missing.
+const source = sourceStatus({ root: REPO_ROOT, manifest: JSON.parse(read(MANIFEST_PATH)) });
+const NOT_SOURCE = source.isSource
+  ? false
+  : `asserts the Skilled source repository's own workflows README; this host vendors Skilled (${source.reason})`;
+const WORKFLOWS_README = NOT_SOURCE ? null : read(path.join(REPO_ROOT, '.github', 'workflows', 'README.md'));
 
 const TARGETS = ['report', 'scaffold', 'toggle'];
 const SWITCH_VARIABLES = [
@@ -230,7 +239,7 @@ test('this repository commits the CI profile that keeps its protections', () => 
   assert.ok(profile.protected.some((entry) => entry.file === 'message-contract.yml'));
 });
 
-test('the workflows README still carries the sentence the toggle enforces', () => {
+test('the workflows README still carries the sentence the toggle enforces', { skip: NOT_SOURCE }, () => {
   assert.ok(WORKFLOWS_README.includes(PROHIBITION));
   for (const name of SWITCH_VARIABLES) assert.ok(WORKFLOWS_README.includes(name), name);
 });

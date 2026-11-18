@@ -46,7 +46,7 @@ Run the command from the repository root.
 (cd .skilled/skills/system-spec-kit && npx vitest run --project root runtime/tests/hook-adapter-path-parity.vitest.ts)
 ```
 
-Expected result: every test passes and the command exits 0. The suite follows each re-export entry in `.pi/extensions/`, this adapter's included, and fails when the file it re-exports is missing.
+Expected result: every test passes and the command exits 0. The suite follows each entry's adapter import in `.pi/extensions/`, this adapter's included, and fails when the adapter it imports is missing.
 
 ---
 

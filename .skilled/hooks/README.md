@@ -173,7 +173,7 @@ A folder that holds no real code is still useful. It holds a relative link per r
 
 Each runtime points at those files in its own way.
 
-- Pi discovers `.pi/extensions/`, whose one-line entry files re-export the adapters under `<concern>/pi/` here or under the owning skill's `pi/` folder. Each adapter therefore loads from its own folder, and the imports Pi resolves are relative to that folder.
+- Pi discovers `.pi/extensions/`, whose entry files import the adapters under `<concern>/pi/` here or under the owning skill's `pi/` folder. Each adapter therefore loads from its own folder, and the imports Pi resolves are relative to that folder.
 - OpenCode loads real modules from `.opencode/plugins/`. The `<concern>/opencode/` folder holds a relative link back into it for browsability, and nothing loads through that link, because the loader scans only its own folder.
 - DSH reaches the adapters through `.dsh/plugins/repo-guards/adapters/`, which holds one relative link per adapter. The bundle entry imports each adapter through its link.
 - Vibe runs the entries in `.vibe/hooks.toml`, which start the scripts in `.vibe/plugins/repo-guards/` and the adapters under `<concern>/vibe/`.

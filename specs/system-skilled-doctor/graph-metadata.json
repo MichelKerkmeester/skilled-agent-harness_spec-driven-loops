@@ -7,7 +7,8 @@
     "system-skilled-doctor/001-skill-and-overlay-build",
     "system-skilled-doctor/002-symlink-first-link",
     "system-skilled-doctor/003-removed-folder-classification",
-    "system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes"
+    "system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes",
+    "system-skilled-doctor/005-barter-upstream-fixes"
   ],
   "manual": {
     "depends_on": [],

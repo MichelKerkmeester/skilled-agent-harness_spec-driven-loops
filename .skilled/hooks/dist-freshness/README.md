@@ -64,7 +64,7 @@ The plugin writes diagnostics to `.skilled/logs/dist-freshness-guard.log`. The a
 
 The shared registry gives the shell check the ID `check-dist-staleness`. It maps the startup commands in `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json` and `.devin/hooks.v1.json`. Each command runs the Python checker with `--all`. The timeout is 5 seconds except for Cursor, which uses 10 seconds.
 
-OpenCode loads the plugin through the flat `.opencode/plugins/*.js` glob. Pi loads `.pi/extensions/session-start-advisories.ts`, which re-exports its adapter. The DSH bundle in `.dsh/plugins/repo-guards/index.mjs` registers the session-start adapter.
+OpenCode loads the plugin through the flat `.opencode/plugins/*.js` glob. Pi loads `.pi/extensions/session-start-advisories.ts`, which imports its adapter. The DSH bundle in `.dsh/plugins/repo-guards/index.mjs` registers the session-start adapter.
 
 Vibe registers its `session_start` hook and two `post_tool` checks in `.vibe/hooks.toml`. The session-start entry runs `.skilled/hooks/session-lifecycle/vibe/session-start.mjs`. The post-tool entries run `.vibe/plugins/repo-guards/dist-freshness.mjs`.
 

@@ -114,7 +114,7 @@ These are not shipped in the checkout. A sandbox also blocks ordinary work, so i
 | DSH | `tools/pre-execute`, `tools/post-execute` | `dsh/env-secret-guard.mjs` | `.skilled/hooks/env-secret-guard/dsh/env-secret-guard.mjs` | `{ kind: 'deny', reason }`, else an additional context |
 | Vibe | `pre_tool` | `vibe/env-secret-guard.mjs` | `.vibe/plugins/repo-guards/env-secret-guard.mjs` | `{ decision: 'deny', reason }` on stdout, exit 0 |
 
-Claude Code, Codex, Cursor and Devin are registered in `hook-registry.json`. The renderer writes `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json` and `.devin/hooks.v1.json`. OpenCode loads the plugin from its own plugin folder. Pi loads a one-line entry file in `.pi/extensions/`. DSH registers the adapter in `.dsh/plugins/repo-guards/index.mjs`. Vibe registers the hook in `.vibe/hooks.toml` as a strict `pre_tool` hook matching `re:bash|process_start|process_write|read_file|write_file|edit`.
+Claude Code, Codex, Cursor and Devin are registered in `hook-registry.json`. The renderer writes `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json` and `.devin/hooks.v1.json`. OpenCode loads the plugin from its own plugin folder. Pi loads an entry file in `.pi/extensions/` that imports the adapter. DSH registers the adapter in `.dsh/plugins/repo-guards/index.mjs`. Vibe registers the hook in `.vibe/hooks.toml` as a strict `pre_tool` hook matching `re:bash|process_start|process_write|read_file|write_file|edit`.
 
 Claude Code denies with `permissionDecision: deny` and judges `Read`, `Write`, `Edit`, `MultiEdit`, `NotebookEdit`, `Grep` and `Bash`. Codex denies with `permissionDecision: deny` and judges `exec`, `Bash`, `apply_patch`, `edit` and `read_file`. Cursor judges every tool in the core and denies with `permission: deny` and exit 2, chosen by `hook_event_name: preToolUse`, `conversation_id` or `workspace_roots`. Devin denies with `permissionDecision: deny` and judges `read`, `edit`, `write`, `multiedit`, `patch`, `apply_patch`, `apply-patch`, `grep`, `exec`, `bash`, `run-command` and `run_command`.
 
@@ -166,7 +166,7 @@ env-secret-guard/
 │   ├── env-secret-guard.cjs        # Claude Code, Codex, Cursor and Devin, before a call
 │   └── env-secret-guard-after.cjs  # the same adapter under its own path, for the after-call registration
 ├── pi/
-│   └── env-secret-guard.ts         # re-exported by a one-line entry in .pi/extensions/
+│   └── env-secret-guard.ts         # imported by an entry in .pi/extensions/
 ├── dsh/
 │   └── env-secret-guard.mjs        # linked into .dsh/plugins/repo-guards/adapters/
 ├── opencode/

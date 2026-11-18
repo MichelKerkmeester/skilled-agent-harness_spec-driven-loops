@@ -51,7 +51,7 @@ Claude and Devin register in `.claude/settings.json` and `.devin/hooks.v1.json`.
 
 The DSH adapter screens accepted `web_fetch` and `web_search` results. It also screens tool names that start with `mcp__`.
 
-OpenCode discovers top-level plugins through the flat `.opencode/plugins/` glob. Pi loads `.pi/extensions/classifier-injection-screen.ts`, which re-exports the adapter. The DSH bundle entry `.dsh/plugins/repo-guards/index.mjs` registers its linked adapter. Vibe registers `classifier-injection-screen` in `.vibe/hooks.toml`.
+OpenCode discovers top-level plugins through the flat `.opencode/plugins/` glob. Pi loads `.pi/extensions/classifier-injection-screen.ts`, which imports the adapter. The DSH bundle entry `.dsh/plugins/repo-guards/index.mjs` registers its linked adapter. Vibe registers `classifier-injection-screen` in `.vibe/hooks.toml`.
 
 Claude and Devin exit 0 with no output when the screen produces no advisory. OpenCode catches screen errors and writes no terminal output. Pi returns no replacement result after a screen error. DSH logs a warning through `ctx.logger.warn` and returns its accepted result. Vibe lets the call continue and writes a screen error to stderr.
 

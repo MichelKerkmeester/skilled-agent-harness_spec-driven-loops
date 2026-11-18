@@ -6,7 +6,7 @@ trigger_phrases:
   - "pi prompt advisor extension"
   - "pi advisor extension"
   - "SPECKIT_PI_ADVISOR_DEBUG"
-version: 0.1.4.0
+version: 0.1.5.0
 ---
 
 # Pi Prompt Advisor Extension
@@ -15,7 +15,7 @@ version: 0.1.4.0
 
 A Pi extension that surfaces the skill advisor's brief at prompt time in-process, without spawning the advisor as a subprocess.
 
-`hooks/pi/prompt-advisor.ts` is the real file that the `.pi/extensions/prompt-advisor.ts` one-line entry file re-exports. Pi awaits input handlers before agent processing, so the extension calls the shared advisor lifecycle module directly and appends the returned context below the user's prompt text.
+`hooks/pi/prompt-advisor.ts` is the real file that the `.pi/extensions/prompt-advisor.ts` entry file imports. Pi awaits input handlers before agent processing, so the extension calls the shared advisor lifecycle module directly and appends the returned context below the user's prompt text.
 
 ---
 

@@ -60,7 +60,7 @@ Render one row per leg, in the workflow's order.
 | runtime-mirrors | `/doctor:runtime-mirrors` |
 | advisor | Stale build: `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`. Other FAIL or DEGRADED results: `/doctor:skill-advisor rebuild`. |
 | embedder | `/doctor:skill-advisor embedder` |
-| delivery | Missing hook: /doctor:runtime-mirrors, or /doctor:symlink check in a linked project. Unapproved Codex hook: the repair line the check prints, which opens /hooks in a Codex session. Absent Codex advisor entry: the repair line the check prints |
+| delivery | Missing hook: /doctor:runtime-mirrors, or /doctor:symlink check in a linked project. Broken Pi extension: the repair line the check prints, which is git pull in the Skilled checkout this project uses, then /doctor:symlink check. Unapproved Codex hook: the repair line the check prints, which opens /hooks in a Codex session. Absent Codex advisor entry: the repair line the check prints |
 
 ## 4. Result Templates
 

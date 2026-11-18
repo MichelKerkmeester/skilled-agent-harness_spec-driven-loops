@@ -12,8 +12,15 @@
 // was never added, and then the advisor is silent with no error at session start.
 // This check names the runtime and the file to repair.
 //
-// Never writes. Exit 0 when every installed runtime carries its entry, 1 when one
-// is missing, 2 on a bad argument or a missing root.
+// It also proves each Pi extension entry can load. Pi resolves an entry to its
+// real path before it follows the adapter's relative imports, so an entry that
+// looks right from the project can still import a file that does not exist. Pi
+// then fails at session start with one error per entry, or, for an entry that
+// imports its adapter lazily, turns that hook off with one notice.
+//
+// Never writes. Exit 0 when every installed runtime carries its entry and every
+// Pi entry loads, 1 when one is missing or broken, 2 on a bad argument or a
+// missing root.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -75,6 +82,15 @@ const RUNTIMES = [
     format: 'toml',
   },
 ];
+
+// Pi loads every .ts file directly in this folder. An entry is a plain file that
+// names its adapter in a single relative import, a one-line re-export or a lazy
+// import inside the factory, or, in older trees, a symlink to the adapter.
+const PI_EXTENSIONS_DIR = path.join('.pi', 'extensions');
+const PI_RELATIVE_IMPORT = /\b(?:from\s*|import\s*\(\s*)(['"])(\.\.?\/[^'"\n]+)\1/g;
+// A broken entry almost always means the shared tree predates the re-export
+// layout, so the repair is to update that tree and recheck the links.
+const PI_REPAIR = 'repair: the Skilled checkout this project uses is likely out of date; run git pull in that checkout, then /doctor:symlink check';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -392,6 +408,75 @@ function inspect(runtime, root) {
   return { runtime: runtime.id, file: runtime.file, status: wired ? 'ok' : 'hook-missing' };
 }
 
+function displayPath(root, file) {
+  const relative = path.relative(root, file);
+  return relative.startsWith('..') || path.isAbsolute(relative) ? file : relative;
+}
+
+// Node and Pi resolve a relative import from the file's real directory, not from
+// the symlinked path it was reached through, so both the adapter and its imports
+// are resolved from real paths here. The reported adapter path stays the one the
+// project sees, because that is the path a person can open.
+function inspectPiEntry(root, name) {
+  const entry = path.join(root, PI_EXTENSIONS_DIR, name);
+  const label = path.join(PI_EXTENSIONS_DIR, name);
+  const broken = (missing, from) => ({ entry: name, status: 'broken', adapter: from, missing });
+  let adapter = entry;
+  let realAdapter;
+  if (fs.lstatSync(entry).isSymbolicLink()) {
+    const target = fs.readlinkSync(entry);
+    adapter = path.resolve(path.dirname(entry), target);
+    try {
+      realAdapter = fs.realpathSync(entry);
+    } catch {
+      return broken([target], label);
+    }
+  } else {
+    realAdapter = fs.realpathSync(entry);
+    const specifiers = new Set([...fs.readFileSync(realAdapter, 'utf8').matchAll(PI_RELATIVE_IMPORT)].map((match) => match[2]));
+    if (specifiers.size === 1) {
+      const [target] = specifiers;
+      adapter = path.resolve(path.dirname(entry), target);
+      try {
+        realAdapter = fs.realpathSync(path.resolve(path.dirname(realAdapter), target));
+      } catch {
+        return broken([target], label);
+      }
+    }
+  }
+  let source;
+  try {
+    source = fs.readFileSync(realAdapter, 'utf8');
+  } catch {
+    return broken([displayPath(root, adapter)], label);
+  }
+  const missing = [];
+  for (const match of source.matchAll(PI_RELATIVE_IMPORT)) {
+    const specifier = match[2];
+    if (!missing.includes(specifier) && !fs.existsSync(path.resolve(path.dirname(realAdapter), specifier))) {
+      missing.push(specifier);
+    }
+  }
+  if (missing.length > 0) return broken(missing, displayPath(root, adapter));
+  return { entry: name, status: 'ok', adapter: displayPath(root, adapter), missing };
+}
+
+// A project without a Pi extensions folder has nothing for Pi to load.
+function inspectPiExtensions(root) {
+  const dir = path.join(root, PI_EXTENSIONS_DIR);
+  let entries;
+  try {
+    entries = fs.readdirSync(dir, { withFileTypes: true });
+  } catch {
+    return [];
+  }
+  return entries
+    .filter((dirent) => dirent.name.endsWith('.ts') && !dirent.isDirectory())
+    .map((dirent) => dirent.name)
+    .sort()
+    .map((name) => inspectPiEntry(root, name));
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
@@ -404,17 +489,24 @@ function main(argv) {
     }
     return inspect(runtime, opts.root);
   });
+  const piExtensions = inspectPiExtensions(opts.root);
+  const piBroken = piExtensions.filter((extension) => extension.status === 'broken');
 
   if (opts.json) {
-    process.stdout.write(`${JSON.stringify({ root: opts.root, checks }, null, 2)}\n`);
+    const repair = piBroken.length > 0 ? PI_REPAIR : null;
+    process.stdout.write(`${JSON.stringify({ root: opts.root, checks, piExtensions, repair }, null, 2)}\n`);
   } else {
     for (const check of checks) {
       if (check.status === 'ok') process.stdout.write(`ok ${check.runtime}\n`);
       else if (check.status === 'hook-missing') process.stdout.write(`hook-missing ${check.runtime} ${check.file}\n`);
     }
+    for (const extension of piBroken) {
+      process.stdout.write(`pi-extension-broken ${extension.entry}: ${extension.missing.join(', ')} not found from ${extension.adapter}\n`);
+    }
+    if (piBroken.length > 0) process.stdout.write(`${PI_REPAIR}\n`);
   }
 
-  return checks.some((check) => check.status === 'hook-missing') ? 1 : 0;
+  return checks.some((check) => check.status === 'hook-missing') || piBroken.length > 0 ? 1 : 0;
 }
 
 if (require.main === module) {

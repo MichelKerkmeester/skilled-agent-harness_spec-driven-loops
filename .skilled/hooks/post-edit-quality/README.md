@@ -54,7 +54,7 @@ OpenCode stashes the edited path on `tool.execute.before` and checks it on `tool
 
 Claude registers its `PostToolUse` command for `Write|Edit` in `.claude/settings.json`. Codex registers `PostToolUse` for `apply_patch|edit` in `.codex/hooks.json`. Devin registers `PostToolUse` for `^(edit|write)$` in `.devin/hooks.v1.json`. These command entries use a 10-second timeout.
 
-Cursor registers the proxy under `postToolUse` in `.cursor/hooks.json` with a 10-second timeout. OpenCode loads plugins through the flat `.opencode/plugins/*.js` glob. Pi loads `.pi/extensions/post-edit-quality.ts`, which re-exports the adapter. The DSH guard bundle registers it through `.dsh/plugins/repo-guards/index.mjs`. Vibe registers `post_tool` in `.vibe/hooks.toml`.
+Cursor registers the proxy under `postToolUse` in `.cursor/hooks.json` with a 10-second timeout. OpenCode loads plugins through the flat `.opencode/plugins/*.js` glob. Pi loads `.pi/extensions/post-edit-quality.ts`, which imports the adapter. The DSH guard bundle registers it through `.dsh/plugins/repo-guards/index.mjs`. Vibe registers `post_tool` in `.vibe/hooks.toml`.
 
 ---
 
