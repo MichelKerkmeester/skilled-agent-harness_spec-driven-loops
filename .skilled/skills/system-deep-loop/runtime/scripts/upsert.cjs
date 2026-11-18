@@ -321,7 +321,9 @@ function classifySourceLocation(value, classes) {
   const extension = path.extname(fileName).toLowerCase();
   if (segments.length < 2 && !extension) return classes.UNCLASSIFIED;
   if (TEST_FILE_PATTERN.test(fileName) || segments.some((segment) => TEST_DIR_NAMES.has(segment))) return classes.REPO_TEST;
-  if (extension === '.jsonl' || /ledger/i.test(fileName)) return classes.LEDGER_STATE;
+  // Only a state file is ledger state. A code or doc file whose name mentions a
+  // ledger is still code or docs, or citing it would add a source kind.
+  if (extension === '.jsonl' || (extension === '.json' && /ledger/i.test(fileName))) return classes.LEDGER_STATE;
   if (segments[0] === 'specs') return classes.REPO_SPEC;
   if (DOC_EXTENSIONS.has(extension)) return classes.SKILL_DOC;
   return classes.REPO_CODE;
