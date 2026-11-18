@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6932,
-    "ok": 19884,
+    "ok": 19889,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28443,
+  "documentsScanned": 28448,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "9a17b6508434cdd0f7155487661ed69b10f1d59074db854e774da6209445f46d",
+  "manifestHash": "13bd52800dcea3d322aeb752119078f170b640621513458dad088d67ef6bc0df",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45201,
+      "ok": 45209,
       "prose-sentence": 22,
       "single-token": 150,
       "stop-word-only": 1,
@@ -61982,6 +61982,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/005-barter-upstream-fixes/scratch",
       "reason": "excluded directory"
     },
     {

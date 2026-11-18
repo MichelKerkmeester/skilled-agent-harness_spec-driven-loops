@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b7f36753711afa07871565f897f4eb09a01e59ad3a1bc1412cbcb71886357d8b",
+  "corpusHash": "e259041397e5b0fb1cda71658efb340f5dd32b8baa6b65c34ce63081bb15298b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28443,
+  "includedPathCount": 28448,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -19867,6 +19867,11 @@
     "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/plan.md",
     "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/spec.md",
     "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/tasks.md",
+    "specs/system-skilled-doctor/005-barter-upstream-fixes/acceptance-criteria.md",
+    "specs/system-skilled-doctor/005-barter-upstream-fixes/implementation-summary.md",
+    "specs/system-skilled-doctor/005-barter-upstream-fixes/plan.md",
+    "specs/system-skilled-doctor/005-barter-upstream-fixes/spec.md",
+    "specs/system-skilled-doctor/005-barter-upstream-fixes/tasks.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -28475,7 +28480,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9a17b6508434cdd0f7155487661ed69b10f1d59074db854e774da6209445f46d",
+  "manifestHash": "13bd52800dcea3d322aeb752119078f170b640621513458dad088d67ef6bc0df",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -37431,6 +37436,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/005-barter-upstream-fixes/scratch",
       "reason": "excluded directory"
     },
     {

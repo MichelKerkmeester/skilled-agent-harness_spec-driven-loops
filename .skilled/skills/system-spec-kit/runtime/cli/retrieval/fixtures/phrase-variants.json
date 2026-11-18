@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9a17b6508434cdd0f7155487661ed69b10f1d59074db854e774da6209445f46d",
+  "manifestHash": "13bd52800dcea3d322aeb752119078f170b640621513458dad088d67ef6bc0df",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14545,6 +14545,21 @@
     "barter symlinks readme": [
       "barter symlinks readme"
     ],
+    "barter upstream fixes": [
+      "barter upstream fixes"
+    ],
+    "barter upstream fixes acceptance criteria": [
+      "barter upstream fixes acceptance criteria"
+    ],
+    "barter upstream fixes implementation summary": [
+      "barter upstream fixes implementation summary"
+    ],
+    "barter upstream fixes plan": [
+      "barter upstream fixes plan"
+    ],
+    "barter upstream fixes tasks": [
+      "barter upstream fixes tasks"
+    ],
     "base manifest recording": [
       "base manifest recording"
     ],
@@ -27027,6 +27042,9 @@
     ],
     "code mode contracts outcome": [
       "code mode contracts outcome"
+    ],
+    "code mode disabled manual startup": [
+      "code mode disabled manual startup"
     ],
     "code mode doc contract": [
       "code mode doc contract"
@@ -68328,6 +68346,9 @@
     ],
     "markdown reference sweep tasks": [
       "markdown reference sweep tasks"
+    ],
+    "marked section insertbefore": [
+      "marked section insertBefore"
     ],
     "marker deletion validation failure": [
       "marker deletion validation failure"
@@ -131450,6 +131471,9 @@
     ],
     "upstream delta tasks": [
       "upstream delta tasks"
+    ],
+    "upstream fixes so barter can drop four overlays": [
+      "upstream fixes so barter can drop four overlays"
     ],
     "upstream package baseline": [
       "upstream package baseline"
