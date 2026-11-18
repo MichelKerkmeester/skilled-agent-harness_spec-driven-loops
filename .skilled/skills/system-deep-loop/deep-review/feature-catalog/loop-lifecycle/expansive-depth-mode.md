@@ -6,14 +6,14 @@ trigger_phrases:
   - "expansive depth review"
   - "review frontier mode"
   - "review frontier-nodes"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
 
 ## 1. OVERVIEW
 
-`--depth-mode` takes `default` or `expansive`. A review without the flag is unchanged. `expansive` seeds depth-one sub-target nodes from the review target before iteration 1, admits leaf `frontier_proposal` rows under the same caps as research, keeps node status in `review/frontier-nodes.jsonl`, and holds open nodes as `searchDebt`. One live review pilot ran. Its depth-1 budget check passed, but its stop criterion failed: the root fan-out cap of 6, since raised to 8 for a review seed, pruned a seventh depth-1 node, and three of six lineages stopped on `maxIterationsReached`. This page describes the shipped code and its tests.
+`--depth-mode` takes `default` or `expansive`. A review without the flag is unchanged. `expansive` seeds depth-one sub-target nodes from the review target before iteration 1, admits leaf `frontier_proposal` rows under the same caps as research, keeps node status in `review/frontier-nodes.jsonl`, and holds open nodes as `searchDebt`. Two live review pilots ran. In the first the depth-1 budget check passed but the stop criterion failed: the root fan-out cap of 6, since raised to 8 for a review seed, pruned a seventh depth-1 node, and three of six lineages stopped on `maxIterationsReached`. The second, at `maxIterations` 16, seeded eight depth-1 nodes and answered all eight, and the merged frontier ended with 0 open and 0 active nodes under a passing partition guard, which met the amended pilot criterion. This page describes the shipped code and its tests.
 
 ---
 
@@ -37,7 +37,7 @@ The divergent review pivot runs only once the frontier is terminal. It seeds fro
 
 ### Fan-Out
 
-Fan-out lineages receive a share of the seeded nodes. `runtime/scripts/fanout-merge.cjs` returns the merged review frontier and runs the review fan-in guard over the recorded partition.
+Fan-out lineages receive a share of the seeded nodes. `runtime/scripts/fanout-merge.cjs` returns the merged review frontier and runs the review fan-in guard over the recorded partition. Each fan-out CLI lineage keeps its coverage graph in `graph-db/` inside its own directory: `fanout-run.cjs` exports `DEEP_LOOP_COVERAGE_DB_DIR` to it, so the graph steps stay inside the lineage write surface instead of the shared runtime database.
 
 ---
 

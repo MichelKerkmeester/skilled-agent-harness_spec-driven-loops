@@ -1,7 +1,7 @@
 ---
 title: "DRV-076 -- Expansive depth flag and default byte identity"
 description: "This scenario validates that `--depth-mode` defaults to `default`, that a review run without the flag matches the pre-change baseline on every compared artifact and that only the expansive-only agent paragraph differs on CLI lineage prompts, for `DRV-076`."
-version: 1.13.2.0
+version: 1.13.3.0
 ---
 
 # DRV-076 -- Expansive depth flag and default byte identity
@@ -18,7 +18,7 @@ This scenario validates the `--depth-mode` flag on `/deep:review` and its defaul
 
 The expansive mode must stay opt-in. An operator who never passes the flag should see no change in what the review writes or decides. That promise lets the mode ship without a migration of existing review runs.
 
-An operator who does pass `--depth-mode=expansive` should know its budget rule. Admission caps the live frontier at half of `maxIterations`, and the seed counts toward that cap, so growth past depth 1 needs `maxIterations` above twice the live node count. At the default budget of 7 an expansive run works its seeds only; raise `--max-iterations`, as the pilots did at 16, to reach depths 2 and 3.
+An operator who does pass `--depth-mode=expansive` should know its budget rule. Admission caps the live frontier at half of `maxIterations`, and the seed counts toward that cap. When `--max-iterations` is left at its default, the run sizes its budget from the seed, `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D configured dimensions, and the seed step prints the derived budget. An explicit `--max-iterations` always wins, even below the derived value, and the seed warns when it leaves no room past depth 1.
 
 ---
 

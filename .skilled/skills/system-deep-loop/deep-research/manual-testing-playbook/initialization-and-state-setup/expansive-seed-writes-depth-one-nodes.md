@@ -1,7 +1,7 @@
 ---
 title: "DR-069 -- Expansive seed writes depth-one nodes before iteration one"
 description: "This scenario validates that the expansive seed step runs before the fan-out spawn and after config creation, and that a repeated seed does not decompose the topic a second time, for `DR-069`."
-version: 1.16.2.0
+version: 1.16.3.0
 ---
 
 # DR-069 -- Expansive seed writes depth-one nodes before iteration one
@@ -28,7 +28,7 @@ Operators run the exact commands below and confirm the order of the seed step in
 - Real user request: Start an expansive research run and tell me the frontier already holds open nodes before the first iteration.
 - Prompt: `Check that expansive depth mode seeds its depth-one frontier nodes before iteration one, on the fan-out path and on the single-executor path, and that a second seed does not decompose the topic again. Return a PASS or FAIL verdict with the reason.`
 - Expected execution process: Read the step order in the workflow file, run the ordering cases of the YAML contract suite and run the seed cases of the admission suite by file stem.
-- Expected signals: The root `step_frontier_seed` line precedes `step_fanout_spawn`. The `phase_init` copy of `step_frontier_seed` follows `step_create_config`. Two YAML contract cases pass. Two admission cases pass, one showing that a seeded node keeps root as its parent and one showing that a second seed call adds nothing.
+- Expected signals: The root `step_frontier_seed` line precedes `step_fanout_spawn`. The `phase_init` copy of `step_frontier_seed` follows `step_create_config`. Four YAML contract cases pass, two for research and two for review. Two admission cases pass, one showing that a seeded node keeps root as its parent and one showing that a second seed call adds nothing.
 - Desired user-visible outcome: The operator can say the first iteration starts from open depth-one nodes, and a repeated launch cannot add a second decomposition.
 - Pass/fail: PASS if the step order and all four named cases pass; FAIL if the seed runs after the spawn, after the iteration starts, or adds nodes on a repeated call.
 

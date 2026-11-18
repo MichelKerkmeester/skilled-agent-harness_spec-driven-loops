@@ -9,7 +9,7 @@ trigger_phrases:
   - "review iteration file structure"
 importance_tier: important
 contextType: implementation
-version: 1.11.8.0
+version: 1.11.9.0
 ---
 
 # Deep Review State Format
@@ -35,7 +35,7 @@ The deep review loop uses 9 state files under the resolved `{artifact_dir}/` own
 
 | File | Format | Mutability |
 |------|--------|------------|
-| `deep-review-config.json` | JSON | Immutable after init, except the terminal `status: complete` flip |
+| `deep-review-config.json` | JSON | Immutable after init, except the terminal `status: complete` flip and the `--extend=N` rewrite of `maxIterations`, `maxDurationMinutes`, `lineageMode` and `continuedFromRun` |
 | `deep-review-state.jsonl` | JSON Lines | Append-only |
 | `deep-review-findings-registry.json` | JSON | Auto-generated reducer state |
 | `deep-review-strategy.md` | Markdown | Updated each iteration |
@@ -71,7 +71,7 @@ Example (subsequent run with prior content for a different target): `003-gate-c-
 
 ## 2. CONFIG FILE (deep-review-config.json)
 
-Created during initialization. Not modified after creation.
+Created during initialization. After that only the terminal `status: complete` flip and an `--extend=N` extension rewrite it.
 
 ```json
 {

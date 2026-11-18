@@ -7,7 +7,7 @@ trigger_phrases:
   - "initialize coverage graph"
   - "sqlite namespace scoping"
   - "node edge crud graph"
-version: 1.4.0.4
+version: 1.4.1.0
 ---
 
 # Coverage graph DB
@@ -25,6 +25,8 @@ This feature belongs to the coverage graph group and is catalogued as F011 in th
 ## 2. HOW IT WORKS
 
 Schema v2, node and edge CRUD, snapshots, stats, composite namespace keys, and DB lifecycle.
+
+Each fan-out CLI lineage keeps its coverage graph in `graph-db/` inside its own directory: `fanout-run.cjs` exports `DEEP_LOOP_COVERAGE_DB_DIR` to it, so the graph steps stay inside the lineage write surface instead of the shared runtime database.
 
 The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 

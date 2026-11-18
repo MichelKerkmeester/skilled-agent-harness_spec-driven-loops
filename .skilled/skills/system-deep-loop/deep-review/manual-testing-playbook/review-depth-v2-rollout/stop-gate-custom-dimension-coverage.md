@@ -1,7 +1,7 @@
 ---
 title: "DRV-075 -- Covered custom dimension reaches the all-dimensions-clean stop"
 description: "This scenario validates that a configured custom review dimension, once covered, lets the review reach its clean stop for `DRV-075`. It focuses on the all_dimensions_clean reason and on the review pivot seeding no unswept-dimension for the covered name."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DRV-075 -- Covered custom dimension reaches the all-dimensions-clean stop
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates the clean-stop gate for a custom review dimension for `DRV-075`. It focuses on a review run that names `performance` next to the four canonical dimensions: once `performance` is covered, the convergence check must stop the run with `all_dimensions_clean`, and the review pivot must not hold a candidate for `performance` open.
+This scenario validates the clean-stop gate for a custom review dimension for `DRV-075`. It focuses on a review run configured with `correctness` and `performance`: once `performance` is covered, the convergence check must stop the run with `all_dimensions_clean`, and the review pivot must not hold a candidate for `performance` open.
 
 ### Why This Matters
 
