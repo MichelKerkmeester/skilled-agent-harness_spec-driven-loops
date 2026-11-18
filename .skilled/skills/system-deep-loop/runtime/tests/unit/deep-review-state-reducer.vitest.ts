@@ -1246,12 +1246,28 @@ describe('reduceReviewState expansive frontier', () => {
     const frontier = readFrontier(result);
     const section = sectionAfter(result.dashboard, '## 10B. FRONTIER', '<!--');
 
-    expect(section).toContain('- Frontier size: 2 nodes (1 open, 0 active, 0 answered, 0 exhausted, 0 blocked)');
+    expect(section).toContain('- Frontier size: 2 nodes (1 open, 0 active, 0 answered, 0 exhausted, 0 blocked, 0 abstained)');
     expect(section).toContain('- Pruned nodes: 1');
     expect(section).toContain('- Revisits: 1');
     expect(section).toContain('- Budget depth1: 2 of 5 iterations spent');
     expect(section).toContain('- Active node: F-1-001 (security)');
     expect(frontier.budget.depth1).toEqual({ allotted: 5, spent: 2 });
+  });
+
+  // The size line's per-status counts have to add up to its total, so a node an
+  // operator closed as abstained is counted beside the other closed states.
+  it('counts an abstained node in the dashboard frontier size line', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    writeStore(reviewDir, [
+      nodeRow({ nodeId: 'F-1-001', iteration: 1 }),
+      nodeRow({ nodeId: 'F-1-002', status: 'abstained', reason: 'out of reach', iteration: 1 }),
+    ]);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const section = sectionAfter(result.dashboard, '## 10B. FRONTIER', '<!--');
+
+    expect(section).toContain('- Frontier size: 2 nodes (1 open, 0 active, 0 answered, 0 exhausted, 0 blocked, 1 abstained)');
   });
 
   // A node owes one pass per configured dimension, so a partly reviewed node must

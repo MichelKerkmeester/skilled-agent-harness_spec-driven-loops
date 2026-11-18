@@ -2543,7 +2543,7 @@ function renderFrontierSection(frontier) {
   return [
     '<!-- ANCHOR:frontier -->',
     '## 10B. FRONTIER',
-    `- Frontier size: ${stats.total} nodes (${stats.open} open, ${stats.active} active, ${stats.answered} answered, ${stats.exhausted} exhausted, ${stats.blocked} blocked)`,
+    `- Frontier size: ${stats.total} nodes (${stats.open} open, ${stats.active} active, ${stats.answered} answered, ${stats.exhausted} exhausted, ${stats.blocked} blocked, ${stats.abstained} abstained)`,
     `- Pruned nodes: ${stats.pruned}`,
     `- Revisits: ${revisits}`,
     ...(budgetEntries.length
