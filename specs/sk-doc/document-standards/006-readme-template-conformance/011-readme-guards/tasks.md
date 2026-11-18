@@ -59,7 +59,7 @@ contextType: "general"
 
 - [x] T011 Run the repository gates. Verify: each passes. Evidence: `all sk-doc script tests passed` exit 0, `PARITY PASS`, `0 broken markdown links`, the 184 program files `VALID` with `hard blockers: 0`.
 - [x] T012 Validate the program. Verify: `validate.sh --recursive --strict` prints `RESULT: PASSED`. Evidence: `RESULT: PASSED` on the parent and every phase.
-- [ ] T013 Commit, merge origin/main and push under sk-git. Verify: the phase commit is an ancestor of origin/main.
+- [x] T013 Commit, merge origin/main and push under sk-git. Verify: the phase commit is an ancestor of origin/main. Evidence: commit `09279f9490a`, pushed to main as a fast-forward.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -67,7 +67,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed: every changed README line was read against its change list
 <!-- /ANCHOR:completion -->

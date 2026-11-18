@@ -34,7 +34,7 @@
       "only"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Phase 010 changed only the sk-create-readme templates, so the parent-skill README template still asks for a Mermaid diagram and carries one, and the `SKILL.md` template still says to use Mermaid",
     "created_at": "2026-11-18T12:04:34Z",
-    "last_save_at": "2026-11-18T12:29:18.371Z",
+    "last_save_at": "2026-11-18T12:30:34.542Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8ae91adac6c4ef369f3b0d543a678e8cd5f1cb19de41e29c31485b269203b2b",
+    "source_fingerprint": "sha256:ca1c183363b6f7783385384bdf0de9ee121070207e2f02480c51facfa0ab15ae",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ef1d95ae566b8198fb1623a1dcd2ea7cb74fb95af0124bf56050faf7ae9a32b1",
       "plan.md": "bb86e74d8080976ebe14891c4453decf5c9d218843a486bc12c2331f9b0b278d",
-      "tasks.md": "84ce5e094aa553936ffe804e18dd734eaedddad6fdb55bec1c0fb8e45b682641",
+      "tasks.md": "2c37efd0de98405187462c95d378b041ba0401fc43e9b6beae0745cb0470cfe5",
       "implementation-summary.md": "b9977145a8f13a309d0aeefe22850aa3ee095ccc5ab09a23b5deb99ed38e3483"
     },
     "last_active_at": null

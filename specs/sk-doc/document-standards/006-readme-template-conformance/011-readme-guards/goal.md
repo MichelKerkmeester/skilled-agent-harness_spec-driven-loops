@@ -56,7 +56,7 @@ Frozen choices. Changing one is an amendment.
 
 - [x] Both README checkers print `fail=0` on the 19 files, and `rg -n -i mermaid` over the sk-doc template assets prints only lines that rule it out
 - [x] `test_structure_validation.py` passes with the two new tests, and the check flags 0 tracked READMEs
-- [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED` and the phase commit is on origin/main
+- [x] `validate.sh --strict` on this phase prints `RESULT: PASSED` and the phase commit is on origin/main
 <!-- /ANCHOR:completion -->
 
 ---
