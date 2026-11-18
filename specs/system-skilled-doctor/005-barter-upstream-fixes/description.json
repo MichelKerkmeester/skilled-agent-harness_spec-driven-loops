@@ -23,16 +23,17 @@
     "anchor",
     "placement"
   ],
-  "lastUpdated": "2026-11-18T16:39:29.055Z",
+  "lastUpdated": "2026-11-18T16:59:37.170Z",
   "specId": "005",
   "folderSlug": "barter-upstream-fixes",
   "parentChain": [
     "system-skilled-doctor"
   ],
-  "memorySequence": 3,
+  "memorySequence": 4,
   "memoryNameHistory": [
     "18-11-26_15-23__rehearsed-the-consumer-re-pin-with-its-own.md",
     "18-11-26_17-32__barter-upstream-fixes-closeout-round-closed-every.md",
-    "18-11-26_17-39__barter-upstream-fixes-closeout-recorded-the-final.md"
+    "18-11-26_17-39__barter-upstream-fixes-closeout-recorded-the-final.md",
+    "18-11-26_17-59__barter-upstream-fixes-closeout-landed-five.md"
   ]
 }

@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/005-barter-upstream-fixes"
-    last_updated_at: "2026-11-18T16:39:29Z"
+    last_updated_at: "2026-11-18T16:59:37Z"
     last_updated_by: "generate-context"
-    recent_action: "Recorded final gates and set status Complete"
-    next_safe_action: "Run strict validation, then commit and fast-forward main"
+    recent_action: "Landed the closeout on main and recorded CI"
+    next_safe_action: "Hand the Barter reply to Barter with the new main SHA"
     packet_purpose: "Purpose: A consumer re-pins Skilled and drops its Code Mode, Pi and Mobbin/Refero overlays, its doctor tests pass on the vendored tree, and a marked block can sit before a closing section."
     blockers: []
     key_files:
@@ -21,14 +21,14 @@ _memory:
       - ".skilled/skills/mcp-tooling/mcp-mobbin/INSTALL-GUIDE.md"
       - ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
     session_dedup:
-      fingerprint: "sha256:faa41dc843de8a50f1f4ddfa9ddb16aa8730d7a5f15795e32554d53c45439def"
+      fingerprint: "sha256:f57b50fff39253a58ecd134c19e955b40dc5bb59517e9c5e3be87747421f48be"
       session_id: "scaffold-005-barter-upstream-fixes"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "9d5d9117-89f5-4e61-8c2d-ddc8639dd5d1"
-      workspace: "/Users/michelkerkmeester/worktrees/public/473-barter-upstream-fixes"
-      savedAt: "2026-11-18T16:39:29Z"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-18T16:59:37Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -179,7 +179,7 @@ Every symptom was reproduced first on a scratch copy of the consumer's vendored 
 | `run-all.sh` in the worktree after the follow-ups | `7 suite(s) passed, 0 failed`, node:test tests 1332, pass 1332, fail 0, skipped 0, exit 0 |
 | spec-kit vitest, cli project, after the follow-ups | 209 files passed, 3 skipped. 2592 tests passed, 20 skipped, 0 failed, exit 0. The first-round codex router failure is closed |
 | Main after the closeout merge | Fast-forward to `d7e1ec9440e`, trigger index rebuilt as `6c2a19d9f44`, `--check` exit 0. `run-all.sh` `7 suite(s) passed, 0 failed`, 1332 pass. Strict validation `RESULT: PASSED` |
-| GitHub Actions on `6c2a19d9f44` | Pi Entry Checks run 44351163891 success. Eighteen other workflows green. A Dependabot `uv` update run on the same commit failed, which this packet does not touch. Three red ones failed the same way on main before this packet: Hook Vitest Suites (one session-handover Pi test, also red at `538d2f789ec`), Routing Registry Drift Guard (the corpus gate and the sk-doc hub-vocabulary step, also red at `067d72028ef`) and Skill Advisor Stress Tests (`vibe-prompt-advisor.vitest.ts`, also red at `838b9862e51`) |
+| GitHub Actions on `6c2a19d9f44` | Pi Entry Checks run 44351163891 success. Eighteen other workflows green. A Dependabot `uv` update run on the same commit failed, which this packet does not touch. Three red ones failed the same way on main before this packet's first push range (`ee54e3183db..`): Hook Vitest Suites (one session-handover Pi test, also red at `538d2f789ec`), Routing Registry Drift Guard (the corpus gate and the sk-doc hub-vocabulary step with the same `"security policy"` drift line, also red at `09279f9490a`) and Skill Advisor Stress Tests (`vibe-prompt-advisor.vitest.ts`, also red at `838b9862e51`) |
 <!-- /ANCHOR:verification -->
 
 ---
