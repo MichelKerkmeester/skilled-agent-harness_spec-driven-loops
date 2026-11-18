@@ -39,6 +39,7 @@ type FrontierProjection = {
   budget: Record<string, { allotted: number; spent: number }>;
   activeNodeId: string | null;
   activeNextDimension: string | null;
+  warnings?: Array<{ file: string; line: number; raw: string; error: string }>;
 };
 
 const nodeRequire = createRequire(import.meta.url);
@@ -1028,6 +1029,22 @@ describe('reduceReviewState expansive frontier', () => {
     expect(result.registry.candidateCoverage.deferred.filter((bugClass) => bugClass.startsWith('frontier:'))).toEqual([]);
     expect(result.registry.candidateCoverage.blocked.filter((bugClass) => bugClass.startsWith('frontier:'))).toEqual([]);
     expect(result.registry.candidateCoverage.covered).toContain('frontier:F-1-002');
+  });
+
+  it('reports a torn store row instead of dropping its node silently', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    writeFileSync(
+      join(reviewDir, 'frontier-nodes.jsonl'),
+      `${JSON.stringify(nodeRow({ nodeId: 'F-1-001' }))}\n{"nodeId":"F-1-002","parentId":null,"dep\n`,
+    );
+
+    const frontier = readFrontier(reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }));
+
+    expect(frontier.nodes.map((node) => node.nodeId)).toEqual(['F-1-001']);
+    expect(frontier.warnings).toEqual([
+      expect.objectContaining({ file: 'frontier-nodes.jsonl', line: 2 }),
+    ]);
   });
 
   it('attributes a reworded focus through the store and keeps a longer node id out', () => {

@@ -1846,6 +1846,7 @@ describe('deep-research reduce-state expansive frontier', () => {
     nodes: FrontierNode[];
     stats: Record<string, number>;
     budget?: Record<string, { allotted: number; spent: number }>;
+    warnings?: Array<{ file: string; line: number; raw: string; error: string }>;
   };
   type FrontierKeyQuestion = {
     text: string;
@@ -2054,6 +2055,24 @@ describe('deep-research reduce-state expansive frontier', () => {
     // depth-2 band and six visits stay inside 3.5 + 3 instead of exhausting it.
     expect(frontier.nodes.find((entry) => entry.nodeId === 'F-2-002')?.status).toBe('open');
     expect(frontier.budget?.depth2.allotted).toBe(6.5);
+  });
+
+  it('reports a torn store row instead of dropping its node silently', () => {
+    const specFolder = expansiveSpec();
+    writeFileSync(
+      join(specFolder, 'research', 'frontier-nodes.jsonl'),
+      `${JSON.stringify(node('F-1-001', 1, 'root', 'Which module owns admission?'))}\n{"nodeId":"F-2-002","dep\n`,
+      'utf8',
+    );
+    writeState(specFolder, stateOf([]));
+
+    const { registry } = reduceResearchState(specFolder, { write: false });
+    const frontier = frontierOf(registry);
+
+    expect(frontier.nodes.map((entry) => entry.nodeId)).toEqual(['F-1-001']);
+    expect(frontier.warnings).toEqual([
+      expect.objectContaining({ file: 'frontier-nodes.jsonl', line: 2 }),
+    ]);
   });
 
   it('never rolls a share up: a spent depth-1 band closes its open node as budget-exhausted', () => {

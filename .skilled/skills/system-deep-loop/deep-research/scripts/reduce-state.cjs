@@ -2420,14 +2420,15 @@ function getTimestampValue(timestamp) {
 }
 
 // The frontier node store is append-only and the last row per node wins, so a
-// reduce rebuilds the same node list every time it reads the same file.
-function readFrontierNodeStore(storePath) {
+// reduce rebuilds the same node list every time it reads the same file. A row that
+// does not parse is skipped but reported into warnings: when it was a node's only
+// row, the node leaves the frontier, and the warning is the one trace of it.
+function readFrontierNodeStore(storePath, warnings = []) {
   if (!fs.existsSync(storePath)) return [];
   const byId = new Map();
-  for (const line of readUtf8(storePath).split('\n')) {
-    if (!line.trim()) continue;
-    let row;
-    try { row = JSON.parse(line); } catch { continue; }
+  const { records, corruptionWarnings } = parseJsonlDetailed(readUtf8(storePath));
+  for (const warning of corruptionWarnings) warnings.push({ ...warning, file: path.basename(storePath) });
+  for (const row of records) {
     if (!row || typeof row !== 'object' || typeof row.nodeId !== 'string' || !row.nodeId) continue;
     byId.set(row.nodeId, row);
   }
@@ -2459,7 +2460,12 @@ function buildFrontierProjection(frontierInput, keyedQuestions) {
   });
   const stats = { total: nodes.length };
   for (const status of FRONTIER_STATUSES) stats[status] = nodes.filter((node) => node.status === status).length;
-  return { nodes, stats, ...(frontierInput.budget ? { budget: frontierInput.budget } : {}) };
+  return {
+    nodes,
+    stats,
+    ...(frontierInput.budget ? { budget: frontierInput.budget } : {}),
+    ...(Array.isArray(frontierInput.warnings) && frontierInput.warnings.length > 0 ? { warnings: frontierInput.warnings } : {}),
+  };
 }
 
 // The frontier focus leads with a `Frontier node <id>` marker before the question
@@ -2648,15 +2654,18 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
   // The budget runs after the iteration evidence, so a node whose question is
   // already answered is never closed as budget-exhausted.
   const frontierState = reducerState.frontier
-    ? applyFrontierBudget(
-      reducerState.frontier.nodes,
-      iterationRecords,
-      reducerState.frontier.maxIterations,
-      reducerState.frontier.budgetSplit,
-      new Set(strategyQuestions
-        .filter((question, index) => question.inboxId && (question.checked || resolutionRecords[index]))
-        .map((question) => normalizeQuestionId(question.inboxId))),
-    )
+    ? {
+      ...applyFrontierBudget(
+        reducerState.frontier.nodes,
+        iterationRecords,
+        reducerState.frontier.maxIterations,
+        reducerState.frontier.budgetSplit,
+        new Set(strategyQuestions
+          .filter((question, index) => question.inboxId && (question.checked || resolutionRecords[index]))
+          .map((question) => normalizeQuestionId(question.inboxId))),
+      ),
+      warnings: reducerState.frontier.warnings,
+    }
     : null;
 
   // A frontier node that closed without an answer (exhausted, blocked, abstained,
@@ -3374,6 +3383,7 @@ function reduceResearchState(specFolder, options = {}) {
     continuedFromRun: lineage.continuedFromRun,
   };
   const status = deriveDashboardStatus(config, records, events, terminalStop);
+  const frontierWarnings = [];
   const registry = buildRegistry(questionInputs, iterationFiles, records, events, {
     lineage,
     terminalStop,
@@ -3383,12 +3393,16 @@ function reduceResearchState(specFolder, options = {}) {
     minIdeaObservations: resolveMinIdeaObservations(config),
     frontier: config?.antiConvergence?.depthMode === 'expansive'
       ? {
-        nodes: readFrontierNodeStore(path.join(researchDir, 'frontier-nodes.jsonl')),
+        nodes: readFrontierNodeStore(path.join(researchDir, 'frontier-nodes.jsonl'), frontierWarnings),
         maxIterations: Number(config.maxIterations),
         budgetSplit: config.expansiveDepth?.budgetSplit,
+        warnings: frontierWarnings,
       }
       : null,
   });
+  for (const warning of frontierWarnings) {
+    console.warn(`[deep-research] skipped ${warning.file} line ${warning.line}: ${warning.error}`);
+  }
   // Expose corruptionWarnings as a top-level registry field for parity with
   // deep-review.
   registry.corruptionWarnings = corruptionWarnings;

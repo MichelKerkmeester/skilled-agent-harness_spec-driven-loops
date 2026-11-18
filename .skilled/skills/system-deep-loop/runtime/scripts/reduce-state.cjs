@@ -1902,15 +1902,16 @@ function buildSearchLedgerState(iterationRecords) {
 // The frontier node store is append-only and the last row per node wins, so a
 // reduce rebuilds the same node list every time it reads the same file. The
 // history keeps every valid row in file order: a status a node has since left
-// still has to attribute the iterations it spent there.
+// still has to attribute the iterations it spent there. A row that does not parse
+// is skipped but reported: when it was a node's only row, the node leaves the
+// frontier, and the warning is the one trace that pending depth went missing.
 function readReviewFrontierStore(storePath) {
-  if (!fs.existsSync(storePath)) return { nodes: [], history: [] };
+  if (!fs.existsSync(storePath)) return { nodes: [], history: [], warnings: [] };
   const byId = new Map();
   const history = [];
-  for (const line of readUtf8(storePath).split('\n')) {
-    if (!line.trim()) continue;
-    let row;
-    try { row = JSON.parse(line); } catch { continue; }
+  const { records, corruptionWarnings } = parseJsonlDetailed(readUtf8(storePath));
+  const warnings = corruptionWarnings.map((warning) => ({ ...warning, file: path.basename(storePath) }));
+  for (const row of records) {
     if (!row || typeof row !== 'object' || typeof row.nodeId !== 'string' || !row.nodeId) continue;
     byId.set(row.nodeId, row);
     history.push(row);
@@ -1918,6 +1919,7 @@ function readReviewFrontierStore(storePath) {
   return {
     nodes: [...byId.values()].sort((left, right) => left.nodeId.localeCompare(right.nodeId)),
     history,
+    warnings,
   };
 }
 
@@ -2050,6 +2052,7 @@ function buildReviewFrontier(storeData, iterationRecords, config) {
     budget: budgeted.budget,
     activeNodeId: chosen ? chosen.nodeId : null,
     activeNextDimension: chosen ? chosen.nextDimension : null,
+    ...(Array.isArray(storeData?.warnings) && storeData.warnings.length > 0 ? { warnings: storeData.warnings } : {}),
   };
 }
 
@@ -3023,6 +3026,9 @@ if (require.main === module) {
     });
     if (result.strategyWarning) {
       process.stderr.write(`[deep-review] warning: ${result.strategyWarning}\n`);
+    }
+    for (const warning of result.registry?.frontier?.warnings || []) {
+      process.stderr.write(`[deep-review] warning: skipped ${warning.file} line ${warning.line}: ${warning.error}\n`);
     }
     process.stdout.write(
       `${JSON.stringify(
