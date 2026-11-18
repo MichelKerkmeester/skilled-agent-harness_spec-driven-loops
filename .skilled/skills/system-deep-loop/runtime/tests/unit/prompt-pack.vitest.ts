@@ -177,10 +177,7 @@ describe('prompt-pack', () => {
 
 const nodeRequire = createRequire(import.meta.url);
 const deepLoopRootDir = join(import.meta.dirname, '..', '..', '..');
-// The env override lets a scratch copy of the pack stand in, which is how the
-// lockstep case is shown to fail when a pack line goes missing.
-const researchPackPath = process.env.DEEP_RESEARCH_PACK_TEMPLATE
-  ?? join(deepLoopRootDir, 'deep-research', 'assets', 'prompt-pack-iteration.md.tmpl');
+const researchPackPath = join(deepLoopRootDir, 'deep-research', 'assets', 'prompt-pack-iteration.md.tmpl');
 const reviewPackPath = join(deepLoopRootDir, 'deep-review', 'assets', 'prompt-pack-iteration.md.tmpl');
 const researchAgentPath = join(deepLoopRootDir, '..', '..', 'agents', 'deep-research.md');
 
@@ -249,8 +246,12 @@ function reviewBindings(reviewDimensionsList: string, frontierBlock = ''): Recor
 
 describe('research prompt pack and agent definition lockstep', () => {
   it('agent definition and research pack both carry the progressive-synthesis write rule and the Recommended Next Focus heading', () => {
+    // The env override lets a scratch copy of the pack stand in, which is how
+    // this case is shown to fail when a pack line goes missing. Only this case
+    // reads it, so a drifted copy fails here and nowhere else.
+    const lockstepPackPath = process.env.DEEP_RESEARCH_PACK_TEMPLATE ?? researchPackPath;
     const agent = readFileSync(researchAgentPath, 'utf8');
-    const pack = readFileSync(researchPackPath, 'utf8');
+    const pack = readFileSync(lockstepPackPath, 'utf8');
     expect(hasSynthesisWriteRule(agent)).toBe(true);
     expect(hasSynthesisWriteRule(pack)).toBe(true);
     expect(agent).toContain('Recommended Next Focus');
