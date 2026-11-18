@@ -763,6 +763,19 @@ function qualifyFrontierId(label, nodeId) {
   return typeof nodeId === 'string' && nodeId !== '' && nodeId !== 'root' ? `${label}:${nodeId}` : nodeId;
 }
 
+// The merged frontier is built when any lineage reports one, or when the fan-out
+// recorded a partition with at least one dealt node. A partition whose every
+// lineage died before writing a frontier is the case the guard exists for, so
+// it must not go silent there.
+function shouldMergeFrontier(lineageData, frontierPartition) {
+  const lineageHasFrontier = lineageData.some(
+    ({ registry }) => registry && registry.frontier && Array.isArray(registry.frontier.nodes),
+  );
+  if (lineageHasFrontier) return true;
+  if (!frontierPartition || typeof frontierPartition !== 'object') return false;
+  return Object.values(frontierPartition).some((ids) => Array.isArray(ids) && ids.length > 0);
+}
+
 function mergeResearchFrontier(lineageData, frontierPartition) {
   const nodes = [];
   for (const { label, registry } of [...lineageData].sort((left, right) => compareText(left.label, right.label))) {
@@ -872,7 +885,7 @@ function mergeResearchRegistries(lineageData, options = {}) {
         lineageData.length
       : 0;
 
-  const hasFrontier = lineageData.some(({ registry }) => registry && registry.frontier && Array.isArray(registry.frontier.nodes));
+  const hasFrontier = shouldMergeFrontier(lineageData, options.frontierPartition);
 
   return {
     mergedFrom: lineageData.map(({ label }) => label).sort(),
@@ -1137,9 +1150,7 @@ function mergeReviewRegistries(lineageData, options = {}) {
 
   // Both loops number their frontier nodes per lineage and split them the same way, so the
   // review fan-in reuses the same merge and partition guard rather than re-deriving them.
-  const hasFrontier = lineageData.some(
-    ({ registry }) => registry && registry.frontier && Array.isArray(registry.frontier.nodes),
-  );
+  const hasFrontier = shouldMergeFrontier(lineageData, options.frontierPartition);
 
   // Search debt is one obligation per bug class the search path still owes, so a class
   // two lineages both owe is one debt rather than two; the first lineage's record of it

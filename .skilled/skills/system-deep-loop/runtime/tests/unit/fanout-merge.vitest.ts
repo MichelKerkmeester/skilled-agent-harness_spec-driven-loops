@@ -2142,6 +2142,22 @@ describe('research frontier merge', () => {
     expect(frontier.partitionGuard).toEqual({ passed: true, missing: [] });
   });
 
+  it('fails the guard when a partition was recorded but no lineage reports a frontier', () => {
+    const merged = mergeResearchRegistries([withoutFrontier(lineageA), withoutFrontier(lineageB)], {
+      frontierPartition: { a: ['F-1-001'], b: ['F-1-002'] },
+    });
+    const frontier = merged.frontier as { nodes: unknown[]; partitionGuard?: { passed: boolean; missing: string[] } };
+    expect(frontier.nodes).toEqual([]);
+    expect(frontier.partitionGuard).toEqual({ passed: false, missing: ['F-1-001', 'F-1-002'] });
+  });
+
+  it('adds no frontier key for an empty partition when no lineage has a frontier', () => {
+    const merged = mergeResearchRegistries([withoutFrontier(lineageA), withoutFrontier(lineageB)], {
+      frontierPartition: { a: [], b: [] },
+    });
+    expect(Object.prototype.hasOwnProperty.call(merged, 'frontier')).toBe(false);
+  });
+
   it('fails the guard when a partitioned node is missing from every lineage', () => {
     const merged = mergeResearchRegistries([lineageA, lineageB], {
       frontierPartition: { a: ['F-1-001', 'F-1-004'], b: ['F-1-002'] },
@@ -2225,6 +2241,15 @@ describe('review frontier merge', () => {
     expect(child).toBeDefined();
     expect(ids).toContain(child?.parentId);
     expect(frontier.partitionGuard).toEqual({ passed: true, missing: [] });
+  });
+
+  it('fails the guard when a partition was recorded but no review lineage reports a frontier', () => {
+    const merged = mergeReviewRegistries([withoutFrontier(lineageA), withoutFrontier(lineageB)], {
+      frontierPartition: { a: ['F-1-001'], b: ['F-1-002'] },
+    });
+    const frontier = merged.frontier as { nodes: unknown[]; partitionGuard?: { passed: boolean; missing: string[] } };
+    expect(frontier.nodes).toEqual([]);
+    expect(frontier.partitionGuard).toEqual({ passed: false, missing: ['F-1-001', 'F-1-002'] });
   });
 
   it('adds no frontier key when no review lineage has one', () => {
