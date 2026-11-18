@@ -1,0 +1,391 @@
+[
+  {
+    "id": "A-1",
+    "source_id": "A-1",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    "line": "3834",
+    "issue": "partitionFrontierNodes is called twice with identical arguments. budgetPartition (line 3749) is built from expandedLineages labels and frontierPartition (line 3834) from cliLineages labels, but cliLineages is allLineages, which expansiveLineageBudgets derives from expandedLineages without changing labels or order. When both are computed the second call re-reads frontier-nodes.jsonl and rebuilds the same partition. The two gates differ (expansiveBudgets also requires ACTIVE_FANOUT_LOOP_TYPES.has(loopType)), so frontierPartition cannot simply be deleted, but it can reuse budgetPartition when that is non-null. Case: a fan-out run with --depth-mode=expansive on a research or review loop type reads the node store twice and builds the same label-to-node map twice. Impact is a duplicated read and a second source of truth for the same partition, not a wrong result.",
+    "evidence": null,
+    "fix": null,
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A-2",
+    "source_id": "A-2",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+    "line": "313",
+    "issue": "The new frontier-unanswered seed embeds the node's scope path list into its focus text, and seedViolatesReadOnlyBoundary (line 174) then scans that focus for mutation verbs. A review target whose paths contain 'mutation', 'modify' or 'rewrite' therefore trips the read-only guard and the seed is silently dropped into boundaryRejections instead of becoming a pivot candidate. Every other seed source embeds a short label (dimension, bugClass, protocol); this is the first to embed a file path, so the guard misfires on a path rather than on an instruction. Case: an expansive review run whose frontier node is scoped to src/mutation or src/modify-record.ts and closes exhausted; the direction the code comment promises to seed is dropped. Impact is a lost pivot candidate, not a wrong verdict, and the drop is visible in boundaryRejections.",
+    "evidence": {
+      "cmd": "node -e 'const fs=require(\"node:fs\");const src=fs.readFileSync(\".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts\",\"utf8\");const block=src.slice(src.indexOf(\"function seedViolatesReadOnlyBoundary\"),src.indexOf(\"function ledgerMethods\"));const patterns=[...block.matchAll(/\\/(?:\\\\\\\\.|\\[[^\\]]*\\]|[^\\/\\n])+\\/[a-z]*/g)].map(m=>m[0]);const focus=s=>`Read-only review of the exhausted frontier sub-target frontier-002 (${s}) and report findings without expanding the review target.`;for(const s of [\"src/cache, src/scheduler\",\"src/mutation\",\"src/modify-record.ts\",\"src/rewrite-engine\"]){const m=focus(s).toLowerCase();const hit=patterns.filter(p=>new RegExp(p.replace(/^\\/|\\/[a-z]*$/g,\"\"),\"u\").test(m));console.log(JSON.stringify(s)+\" -> \"+(hit.length?\"DROPPED by \"+hit.join(\" \"):\"kept\"))}'",
+      "exit": 0,
+      "out": "\"src/cache, src/scheduler\" -> kept\n\"src/mutation\" -> DROPPED by /\\bmutat(?:e|ion)\\b/u\n\"src/modify-record.ts\" -> DROPPED by /\\bmodify\\b/u\n\"src/rewrite-engine\" -> DROPPED by /\\brewrite\\b/u"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "E-2",
+    "source_id": "E-2",
+    "lane": "critic",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    "line": "111",
+    "issue": "hasScope accepts any non-empty array, while scopeEntries drops non-string and blank entries. A proposal with scope [\"   \"], [123] or [null] therefore passes the relevance check at line 403. On a review run the review-target containment check then runs over an empty scope list and passes vacuously, so a node scoped nowhere is admitted, counted toward the frontier, and can never be answered by a finding. The other required fields (question, evidence) are rejected when blank; scope is not. Case: a leaf emits \"scope\": [\"  \"] and the node is admitted instead of pruned relevance.",
+    "evidence": {
+      "cmd": "node -e 'const {checkProposal}=require(\"./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs\"); const caps={maxDepth:3,maxChildrenPerNode:6,maxRootChildren:8,maxFrontierNodes:10}; const reviewConfig={reviewTargetType:\"files\",reviewTarget:\"src/app.ts\"}; for (const scope of [[\"   \"],[123],[null],[\"src/app.ts\"]]) { const r=checkProposal({question:\"q\",evidence:\"e\",scope,parentId:\"root\"},new Map(),caps,[],{reviewConfig}); console.log(JSON.stringify(scope),\"->\",r===null?\"ADMITTED\":\"pruned:\"+r); }'",
+      "exit": 0,
+      "out": "[\"   \"] -> ADMITTED\n[123] -> ADMITTED\n[null] -> ADMITTED\n[\"src/app.ts\"] -> ADMITTED"
+    },
+    "fix": {
+      "old": "return Array.isArray(scope) && scope.length > 0;",
+      "new": "return Array.isArray(scope) && scope.some((entry) => typeof entry === 'string' && entry.trim() !== '');"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "E-4",
+    "source_id": "E-4",
+    "lane": "critic",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    "line": "278",
+    "issue": "The expansiveBudget comment says the ceiling 'binds for a four-dimension review from two seeds on', but the function returns 24 at one seed: 2 x 4 x (1 + 3 - 1) = 24. The test at frontier-admit-review.vitest.ts:571 asserts 24 for one seed while its name repeats the same claim. B-08 reports the docs sentence and the test name; this is the code comment that seeded the wording, and it is the only place the claim sits next to the formula.",
+    "evidence": {
+      "cmd": "node -e 'const {expansiveBudget}=require(\"./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs\"); for (const s of [1,2]) console.log(\"S=\"+s+\" -> \"+expansiveBudget({target:\"review\",seeded:s,maxDepth:3,dimensions:4,loopDefault:7}))'",
+      "exit": 0,
+      "out": "S=1 -> 24\nS=2 -> 24"
+    },
+    "fix": {
+      "old": "// review from two seeds on. Twice the node count keeps the half-budget node cap",
+      "new": "// review from one seed on. Twice the node count keeps the half-budget node cap"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-05",
+    "source_id": "B-05",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
+    "line": "227",
+    "issue": "The README states the playbook holds 71 deterministic scenarios; the shipped corpus holds 72. The root playbook itself says 72 and validate-playbook-package.cjs derives 72, so the README is the stale copy. This change raised the count from 54 to 71 but the corpus gained one more scenario than the README records.",
+    "evidence": {
+      "cmd": "grep -n '71 deterministic scenarios' .skilled/skills/system-deep-loop/deep-research/README.md; find .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook -mindepth 2 -name '*.md' ! -name 'README.md' | wc -l",
+      "exit": 0,
+      "out": "227:`manual-testing-playbook/manual-testing-playbook.md` holds 71 deterministic scenarios across 9 categories.\n72"
+    },
+    "fix": {
+      "old": "holds 71 deterministic scenarios across 9 categories",
+      "new": "holds 72 deterministic scenarios across 9 categories"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-06",
+    "source_id": "B-06",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
+    "line": "265",
+    "issue": "The package-map row repeats the same stale count: 71 scenarios where the corpus holds 72. Same cause as B-05.",
+    "evidence": {
+      "cmd": "grep -n '71 scenarios' .skilled/skills/system-deep-loop/deep-research/README.md",
+      "exit": 0,
+      "out": "265:| [`manual-testing-playbook/`](./manual-testing-playbook/) | 71 scenarios with expected signals and verdict rules |"
+    },
+    "fix": {
+      "old": "| 71 scenarios with expected signals and verdict rules |",
+      "new": "| 72 scenarios with expected signals and verdict rules |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-07",
+    "source_id": "B-07",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/README.md",
+    "line": "235",
+    "issue": "The README states the playbook carries 69 deterministic scenarios; the shipped corpus carries 70. The root playbook says 70 and validate-playbook-package.cjs derives 70. This change raised the count from 56 to 69 but the corpus gained one more scenario than the README records.",
+    "evidence": {
+      "cmd": "grep -n '69 deterministic scenarios' .skilled/skills/system-deep-loop/deep-review/README.md; find .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook -mindepth 2 -name '*.md' ! -name 'README.md' | wc -l",
+      "exit": 0,
+      "out": "235:The skill ships a feature catalog and a manual testing playbook. ... The playbook carries 69 deterministic scenarios across ten categories.\n70"
+    },
+    "fix": {
+      "old": "The playbook carries 69 deterministic scenarios across ten categories.",
+      "new": "The playbook carries 70 deterministic scenarios across ten categories."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-08",
+    "source_id": "B-08",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    "line": "238",
+    "issue": "The derived-budget prose says 'With the four canonical dimensions the ceiling of 24 binds from two seeds on'. The shipped formula binds the ceiling at the first seed: expansiveBudget({target:'review',seeded:1,maxDepth:3,dimensions:4,loopDefault:7}) returns 24, because 2 x 4 x (1 + 3 - 1) = 24. The same sentence is repeated in four more shipped docs, so an operator sizing a one-seed review reads a budget the code does not produce. Other locations: deep-review/README.md:167, deep-review/references/convergence/convergence.md:105, deep-review/references/protocol/loop-protocol.md:459, deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md:28. The unit test name at runtime/tests/unit/frontier-admit-review.vitest.ts:571 carries the same wrong threshold while asserting 24 for one seed.",
+    "evidence": {
+      "cmd": "node -e 'const {expansiveBudget}=require(\"./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs\"); for (const s of [1,2,3]) console.log(\"review S=\"+s+\" -> \"+expansiveBudget({target:\"review\",seeded:s,maxDepth:3,dimensions:4,loopDefault:7}))'",
+      "exit": 0,
+      "out": "review S=1 -> 24\nreview S=2 -> 24\nreview S=3 -> 24"
+    },
+    "fix": {
+      "old": "With the four canonical dimensions the ceiling of 24 binds from two seeds on",
+      "new": "With the four canonical dimensions the ceiling of 24 binds from the first seed on"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-01",
+    "source_id": "B-01",
+    "lane": "B",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+    "line": "487",
+    "issue": "The 'Expansive depth mode' root entry freezes a pilot-run measurement and a criterion-amendment history into current-state catalog prose: 'Two live research pilots ran on one topic, and both failed the criterion that a stop candidate forms before the iteration cap ... The criterion was then amended to a frontier drain before the cap, which the second run met: its frontier showed 0 open nodes from the check before iteration 15 of 16.' The standard forbids freezing measured counts or dated snapshots in catalog prose and forbids mutable spec or phase packet history in runtime docs. The entry should state the shipped veto and drain behavior; the pilot that ratified the criterion belongs in the spec packet, not the catalog.",
+    "evidence": {
+      "cmd": "rg -n 'Two live research pilots' .skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+      "exit": 0,
+      "out": "487:`default` is the value when the flag is absent and runs unchanged. ... Two live research pilots ran on one topic, and both failed the criterion that a stop candidate forms before the iteration cap: each run stopped on `maxIterationsReached`. The criterion was then amended to a frontier drain before the cap, which the second run met: its frontier showed 0 open nodes from the check before iteration 15 of 16."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-02",
+    "source_id": "B-02",
+    "lane": "B",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+    "line": "16",
+    "issue": "The leaf repeats the same frozen pilot measurement and criterion-amendment history in its OVERVIEW: 'Two live research pilots ran on one topic, and both failed the criterion ... The criterion was then amended to a frontier drain before the cap, which the second run met: its frontier showed 0 open nodes from the check before iteration 15 of 16.' Same rule as B-01: catalog prose must not freeze measured snapshots or change history.",
+    "evidence": {
+      "cmd": "rg -n 'Two live research pilots' .skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+      "exit": 0,
+      "out": "16:`--depth-mode` takes `default` or `expansive`. ... Two live research pilots ran on one topic, and both failed the criterion that a stop candidate forms before the iteration cap: each run stopped on `maxIterationsReached`. The criterion was then amended to a frontier drain before the cap, which the second run met: its frontier showed 0 open nodes from the check before iteration 15 of 16. This page describes the shipped code and its tests."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-03",
+    "source_id": "B-03",
+    "lane": "B",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+    "line": "224",
+    "issue": "The 'Expansive depth mode' root entry freezes a two-pilot measurement and a cap-change history into current-state prose: 'Two live review pilots ran. In the first the depth-1 budget check passed but the stop criterion failed: the root fan-out cap of 6, since raised to 8 for a review seed, pruned a seventh depth-1 node, and three of six lineages stopped on `maxIterationsReached`. The second, at `maxIterations` 16, seeded eight depth-1 nodes and answered all eight ...'. 'since raised to 8' is change history and the run counts are a dated snapshot; both are what the standard's volatile-measurement-snapshot and packet-history rules exclude from catalog prose.",
+    "evidence": {
+      "cmd": "rg -n 'Two live review pilots' .skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+      "exit": 0,
+      "out": "224:Node status lives in `review/frontier-nodes.jsonl`, open nodes count as `searchDebt`, and the divergent pivot waits for a terminal frontier. Two live review pilots ran. In the first the depth-1 budget check passed but the stop criterion failed: the root fan-out cap of 6, since raised to 8 for a review seed, pruned a seventh depth-1 node, and three of six lineages stopped on `maxIterationsReached`. The second, at `maxIterations` 16, seeded eight depth-1 nodes and answered all eight, and the merged frontier ended with 0 open and 0 active nodes under a passing partition guard, which met the amended pilot criterion."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-04",
+    "source_id": "B-04",
+    "lane": "B",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+    "line": "16",
+    "issue": "The leaf repeats the same frozen two-pilot measurement and cap-change history in its OVERVIEW. Same rule as B-03.",
+    "evidence": {
+      "cmd": "rg -n 'Two live review pilots' .skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+      "exit": 0,
+      "out": "16:`--depth-mode` takes `default` or `expansive`. ... Two live review pilots ran. In the first the depth-1 budget check passed but the stop criterion failed: the root fan-out cap of 6, since raised to 8 for a review seed, pruned a seventh depth-1 node, and three of six lineages stopped on `maxIterationsReached`. The second, at `maxIterations` 16, seeded eight depth-1 nodes and answered all eight, and the merged frontier ended with 0 open and 0 active nodes under a passing partition guard, which met the amended pilot criterion. This page describes the shipped code and its tests."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "E-3",
+    "source_id": "E-3",
+    "lane": "critic",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+    "line": "29",
+    "issue": "The runtime catalog's script-entry-points group has no entry for frontier-admit.cjs, the new 938-line script with a CLI (seed, admit, close, graph, block) that deep-research.yaml and deep-review.yaml invoke directly. The group lists five entries (append-mode-event, convergence, query, status, upsert) and the table row names four scripts, none of them frontier-admit. The research and review catalogs describe the feature from the mode side, and fanout-run.md mentions the script only as a dependency, so the runtime inventory omits a new script entry point. Case: a reader of the runtime catalog cannot find the script that owns the frontier store, admission checks and graph projection.",
+    "evidence": {
+      "cmd": "ls .skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/; grep -rn 'frontier-admit' .skilled/skills/system-deep-loop/runtime/feature-catalog/",
+      "exit": 0,
+      "out": "append-mode-event-script.md\nconvergence-script.md\nquery-script.md\nstatus-script.md\nupsert-script.md\nfanout/fanout-run.md:104: ... expansiveBudget in frontier-admit.cjs.\nfanout/fanout-run.md:122: | scripts/frontier-admit.cjs | readNodeStore, expansiveBudget ... |"
+    },
+    "fix": {
+      "old": "| [script-entry-points](../feature-catalog/script-entry-points) | 5 features | `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/query.cjs`, `scripts/status.cjs` |",
+      "new": "| [script-entry-points](../feature-catalog/script-entry-points) | 6 features | `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/query.cjs`, `scripts/status.cjs`, `scripts/frontier-admit.cjs` |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "E-5",
+    "source_id": "E-5",
+    "lane": "critic",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+    "line": "28",
+    "issue": "The prose says 'A node needs one iteration per dimension in its universe, the four canonical dimensions plus any custom name', but configuredReviewDimensionCount in frontier-admit.cjs counts only the configured reviewDimensions list. For reviewDimensions [\"correctness\",\"performance\"] the code uses D=2 and derives 12 iterations, while the reducer's universe is five dimensions and the prose implies 24. The test at frontier-admit-review.vitest.ts:565 asserts 10 for [\"correctness\"] with three seeds, confirming the code's configured-count behavior. The same sentence is in .skilled/commands/deep/review.md:100. Case: a custom-dimension review is sized for two dimensions while the doc tells the operator to fund five.",
+    "evidence": {
+      "cmd": "mkdir -p /tmp/fa-custom && printf '%s\\n' '{\"maxIterations\":7,\"reviewDimensions\":[\"correctness\",\"performance\"],\"expansiveDepth\":{\"maxDepth\":3}}' > /tmp/fa-custom/deep-review-config.json && printf '%s\\n' '{\"nodeId\":\"F-1-001\",\"parentId\":\"root\",\"depth\":1,\"scope\":[\"src/app.ts\"],\"question\":\"q\",\"status\":\"open\",\"reason\":null,\"iteration\":0,\"dedupeKey\":\"q\"}' > /tmp/fa-custom/frontier-nodes.jsonl && node -e 'const {seedBudget}=require(\"./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs\"); console.log(JSON.stringify(seedBudget({artifactDir:\"/tmp/fa-custom\",target:\"review\",maxIterationsSource:\"default\"})))'",
+      "exit": 0,
+      "out": "{\"derivedMaxIterations\":12,\"growthSlots\":5}"
+    },
+    "fix": {
+      "old": "A node needs one iteration per dimension in its universe, the four canonical dimensions plus any custom name.",
+      "new": "A node needs one iteration per configured dimension, the four canonical dimensions by default plus any custom name."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "E-1",
+    "source_id": "E-1",
+    "lane": "critic",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "229",
+    "issue": "The new Section 9 MODE PACKAGE INDEXES table states 71 deep-research scenarios and 69 deep-review scenarios. The package playbooks state 72 and 70, and the folders hold 72 and 70 scenario files. The scope added this table and copied the stale package-README counts, so the hub index now contradicts the package indexes it links to. Case: a reader planning release coverage from the hub playbook budgets for 71 and 69 scenarios where the packages require 72 and 70.",
+    "evidence": {
+      "cmd": "find .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook -mindepth 2 -name '*.md' ! -name 'README.md' | wc -l; find .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook -mindepth 2 -name '*.md' ! -name 'README.md' | wc -l; grep -n 'deep-research.*71\\|deep-review.*69' .skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+      "exit": 0,
+      "out": "72\n70\n229:| `deep-research` | 71 | 9 | ...\n230:| `deep-review` | 69 | 10 | ..."
+    },
+    "fix": {
+      "old": "| `deep-research` | 71 | 9 | ...\n| `deep-review` | 69 | 10 | ...",
+      "new": "| `deep-research` | 72 | 9 | ...\n| `deep-review` | 70 | 10 | ..."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D-3",
+    "source_id": "D-3",
+    "lane": "D",
+    "surface": "S7",
+    "standard": ".skilled/repo-rules/skill-hub-routing.md",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    "line": "94",
+    "issue": "The new Expansive Depth Mode bullet names the inbox (\"Admitted nodes land in `research/inbox.jsonl` with `origin: \"frontier\"`\") but never names the node store `research/frontier-nodes.jsonl`, which `frontier-admit.cjs` writes and `reduce-state.cjs` reads via `readFrontierNodeStore(path.join(researchDir, 'frontier-nodes.jsonl'))`. The deep-review counterpart names its store (`review/frontier-nodes.jsonl`), and the research packet's own `references/state/state-format.md:81` documents it, so a reader of the research SKILL.md alone cannot find the store's name. The state-file list at line 169 omits it too.",
+    "evidence": {
+      "cmd": "grep -c \"frontier-nodes\" .skilled/skills/system-deep-loop/deep-research/SKILL.md .skilled/skills/system-deep-loop/deep-review/SKILL.md",
+      "exit": 0,
+      "out": ".skilled/skills/system-deep-loop/deep-research/SKILL.md:0\n.skilled/skills/system-deep-loop/deep-review/SKILL.md:1"
+    },
+    "fix": {
+      "old": "Admitted nodes land in `research/inbox.jsonl` with `origin: \"frontier\"`.",
+      "new": "Admitted nodes land in `research/inbox.jsonl` with `origin: \"frontier\"`, and node status lives in `research/frontier-nodes.jsonl`, written by `frontier-admit.cjs` and, for each fan-out lineage's starting store, by `fanout-run.cjs`."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "BAT-01",
+    "source_id": "S9-command-references",
+    "lane": "battery",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "S9-command-references failed (exit 1).",
+    "evidence": {
+      "cmd": "node .skilled/commands/scripts/validate-command-references.cjs",
+      "exit": 1,
+      "out": "FAIL  1 unresolved command reference(s):\n  .skilled/commands/speckit/assets/speckit-resume.yaml:104  [skill-asset]  .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json  - path does not exist on disk",
+      "ci_gated": false,
+      "ci_workflows": []
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Same cause as D-03. Owner: commands/scripts/validate-command-references.cjs:134, a file this program did not change; speckit-resume.yaml:104 names a gitignored runtime path (.gitignore:431)."
+    }
+  }
+]

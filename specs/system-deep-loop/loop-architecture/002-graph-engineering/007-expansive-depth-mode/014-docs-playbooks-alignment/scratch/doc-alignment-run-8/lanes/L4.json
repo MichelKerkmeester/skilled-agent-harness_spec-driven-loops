@@ -1,0 +1,77 @@
+{
+  "lane": "L4",
+  "findings": [
+    {
+      "id": "L4-1",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+      "line": 16,
+      "issue": "The page enumerates the admission caps as \"depth, fan-out, budget, dedupe and cycle\". `checkProposal` runs six checks in one fixed order and records the first failing check's name as the prune reason: relevance (frontier-admit.cjs:398), dedupe (:411), depth (:425), fan-out (:429), budget (:439), cycle (:447). The list omits the first check and puts dedupe after budget, so a proposal with no `evidence` or no `scope`, or one whose parent is unknown or pruned, is pruned `relevance`, not `dedupe` or `depth`. The same page states the correct order at line 24, so it contradicts itself.",
+      "evidence": {
+        "cmd": "rg -o \"admits leaf .frontier_proposal. rows as nodes under [a-z, -]+ caps\" .skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md; rg -n \"^  // [1-6]\\. \" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+        "exit": 0,
+        "out": "admits leaf `frontier_proposal` rows as nodes under depth, fan-out, budget, dedupe and cycle caps\n398:  // 1. relevance\n411:  // 2. dedupe\n425:  // 3. depth\n429:  // 4. fan-out\n439:  // 5. budget\n447:  // 6. cycle"
+      },
+      "fix": {
+        "old": "under depth, fan-out, budget, dedupe and cycle caps",
+        "new": "under relevance, dedupe, depth, fan-out, budget and cycle caps"
+      }
+    },
+    {
+      "id": "L4-2",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+      "line": 38,
+      "issue": "The list of gates that decide before the frontier veto omits the consecutive-failure halt. convergence.cjs returns STOP/error/`consecutiveFailures` once the count reaches `CONSECUTIVE_FAILURE_LIMIT` (3, line 53) at line 1148, and that check sits above the `frontierOpen` veto at line 1211, so a run that fails three iterations in a row stops even with open frontier nodes. research.md:107 and review.md:100 already name \"consecutive failures\" in the same list.",
+      "evidence": {
+        "cmd": "rg -o \"The iteration cap, the anti-convergence floor, stuck recovery, pause,\" .skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md; rg -n \"CONSECUTIVE_FAILURE_LIMIT = 3|'consecutiveFailures'|'frontierOpen'\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "The iteration cap, the anti-convergence floor, stuck recovery, pause,\n53:const CONSECUTIVE_FAILURE_LIMIT = 3;\n1148:    return emit('STOP', 'error', 'consecutiveFailures', gatesAt(false), []);\n1211:    return emit('CONTINUE', null, 'frontierOpen', gatesAt(false), []);"
+      },
+      "fix": {
+        "old": "The iteration cap, the anti-convergence floor, stuck recovery, pause,",
+        "new": "The iteration cap, consecutive failures, the anti-convergence floor, stuck recovery, pause,"
+      }
+    },
+    {
+      "id": "L4-3",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+      "line": 487,
+      "issue": "The catalog's `--depth-mode` summary lists the gates that decide before the frontier veto as \"the iteration cap, the floor, stuck recovery, pause, convergence off and the max-iterations policy\" and omits the consecutive-failure halt. convergence.cjs stops on `consecutiveFailures` at line 1148 once `CONSECUTIVE_FAILURE_LIMIT` (3, line 53) is reached, before the `frontierOpen` veto at line 1211, so three failed iterations end an expansive run with open nodes.",
+      "evidence": {
+        "cmd": "rg -o \"the iteration cap, the floor, stuck recovery, pause, convergence off and the max-iterations policy decide before the frontier veto\" .skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md; rg -n \"CONSECUTIVE_FAILURE_LIMIT = 3|'consecutiveFailures'|'frontierOpen'\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "the iteration cap, the floor, stuck recovery, pause, convergence off and the max-iterations policy decide before the frontier veto\n53:const CONSECUTIVE_FAILURE_LIMIT = 3;\n1148:    return emit('STOP', 'error', 'consecutiveFailures', gatesAt(false), []);\n1211:    return emit('CONTINUE', null, 'frontierOpen', gatesAt(false), []);"
+      },
+      "fix": {
+        "old": "the iteration cap, the floor, stuck recovery, pause, convergence off and the max-iterations policy decide before the frontier veto",
+        "new": "the iteration cap, consecutive failures, the floor, stuck recovery, pause, convergence off and the max-iterations policy decide before the frontier veto"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/70materia/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/anacuna/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/base44/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/elementor/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/flatfile/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/speakeasy/DESIGN.md",
+    ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/anti-convergence-floor.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/initialization.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/anti-convergence-floor.md"
+  ]
+}

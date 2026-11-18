@@ -1,0 +1,98 @@
+{
+  "lane": "C",
+  "findings": [
+    {
+      "id": "C-1",
+      "surface": "S5",
+      "standard": "sk-doc/sk-create-readme",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
+      "line": 227,
+      "issue": "The README states the playbook holds 71 deterministic scenarios. The playbook it links to states 72, and the folder holds 72 scenario files across 9 categories. The scope raised this line from 54 to 71 and stopped one short, so the README now contradicts its own playbook index. Case: a reader planning release coverage from the README budgets for 71 scenarios and the playbook requires 72.",
+      "evidence": {
+        "cmd": "find .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook -name '*.md' ! -name 'README.md' ! -name 'manual-testing-playbook.md' | wc -l",
+        "exit": 0,
+        "out": "72"
+      },
+      "fix": {
+        "old": "holds 71 deterministic scenarios across 9 categories",
+        "new": "holds 72 deterministic scenarios across 9 categories"
+      }
+    },
+    {
+      "id": "C-2",
+      "surface": "S5",
+      "standard": "sk-doc/sk-create-readme",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
+      "line": 265,
+      "issue": "The related-documents table repeats the same stale count, 71 scenarios, against 72 on disk. The scope edited this row in the same commit as line 227, so both carry the same off-by-one. Case: a reader scanning the file table takes 71 as the playbook size.",
+      "evidence": {
+        "cmd": "find .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook -name '*.md' ! -name 'README.md' ! -name 'manual-testing-playbook.md' | wc -l",
+        "exit": 0,
+        "out": "72"
+      },
+      "fix": {
+        "old": "| 71 scenarios with expected signals and verdict rules |",
+        "new": "| 72 scenarios with expected signals and verdict rules |"
+      }
+    },
+    {
+      "id": "C-3",
+      "surface": "S5",
+      "standard": "sk-doc/sk-create-readme",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/README.md",
+      "line": 235,
+      "issue": "The README states the playbook carries 69 deterministic scenarios across ten categories. The playbook states 70, and the folder holds 70 scenario files across 10 categories. The scope raised this line from 56 to 69 and stopped one short. Case: a reader planning release coverage from the README budgets for 69 scenarios and the playbook requires 70.",
+      "evidence": {
+        "cmd": "find .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook -name '*.md' ! -name 'README.md' ! -name 'manual-testing-playbook.md' | wc -l",
+        "exit": 0,
+        "out": "70"
+      },
+      "fix": {
+        "old": "The playbook carries 69 deterministic scenarios across ten categories.",
+        "new": "The playbook carries 70 deterministic scenarios across ten categories."
+      }
+    }
+  ],
+  "reviewed": [
+    "README.md",
+    ".skilled/skills/system-deep-loop/README.md",
+    ".skilled/skills/system-deep-loop/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-research/README.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/README.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.0.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.1.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.2.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.3.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.4.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.5.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.6.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.17.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.12.0.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    ".skilled/changelog/skilled/v4.1.0.0.md",
+    ".env.example",
+    ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+    ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md"
+  ]
+}

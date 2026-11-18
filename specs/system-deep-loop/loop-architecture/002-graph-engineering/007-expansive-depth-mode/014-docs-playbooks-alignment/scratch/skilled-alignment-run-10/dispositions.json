@@ -1,0 +1,7 @@
+[
+  {
+    "id": "BAT-01",
+    "status": "handed_off",
+    "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Same cause as D-03. Owner: commands/scripts/validate-command-references.cjs:134, a file this program did not change; speckit-resume.yaml:104 names a gitignored runtime path (.gitignore:431)."
+  }
+]

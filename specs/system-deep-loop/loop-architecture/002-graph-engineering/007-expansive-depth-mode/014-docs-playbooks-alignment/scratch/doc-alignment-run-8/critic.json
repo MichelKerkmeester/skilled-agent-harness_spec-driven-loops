@@ -1,0 +1,66 @@
+{
+  "findings": [
+    {
+      "id": "C1",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/commands/deep/assets/deep-review.yaml",
+      "line": 2612,
+      "issue": "The NEVER list forbids `modify_config_after_initialization` outright, but this workflow rewrites the config after init in the two steps this topic adds: `step_extend_completed_run` writes `maxIterations: newMaxIterations` (line 571) and `step_frontier_budget` writes `maxIterations: budget.derivedMaxIterations` (line 950). The runtime then reads the rewritten value: `seedBudget` takes the floor from `config.maxIterations` (frontier-admit.cjs:308) and `convergence.cjs` takes the iteration cap from `config.maxIterations` (convergence.cjs:1397). The same package's SKILL.md rule 6 already names the three permitted writes, so the rule here contradicts both the workflow and the skill doc. L2 recorded this class for deep-research.yaml only; L3 reviewed this file and missed it.",
+      "evidence": {
+        "cmd": "rg -n \"modify_config_after_initialization|maxIterations: newMaxIterations|maxIterations: budget.derivedMaxIterations\" .skilled/commands/deep/assets/deep-review.yaml; rg -n \"Modify config after init\" .skilled/skills/system-deep-loop/deep-review/SKILL.md",
+        "exit": 0,
+        "out": "571:              maxIterations: newMaxIterations,\n950:              fs.writeFileSync(tmp, JSON.stringify({ ...config, maxIterations: budget.derivedMaxIterations }, null, 2) + \"\\n\");\n2612:    - modify_config_after_initialization\n270:6. **Modify config after init**, review parameters in `deep-review-config.json` are read-only after initialization. The workflow makes three permitted writes: the terminal `step_update_config_status` flip to `status: complete`, the `--extend=N` rewrite, and `step_frontier_budget` setting `maxIterations` from the seed for an expansive run with a defaulted budget."
+      },
+      "fix": {
+        "old": "    - modify_config_after_initialization",
+        "new": "    - modify_config_after_initialization_except_the_terminal_status_flip_the_extend_rewrite_and_the_derived_expansive_budget"
+      }
+    },
+    {
+      "id": "C2",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
+      "line": 302,
+      "issue": "The review Frontier Node Store row shape is given as a closed list that omits `budget`, but `admitProposals` writes an optional `budget` field onto an admitted row for either target and the budget admission check reads it back from the stored parent. Without the field on the row, no later child could be held to its parent's budget, so the schema description is incomplete. L6 recorded this omission for the research state-format.md only; L7 reviewed this file and missed the review copy.",
+      "evidence": {
+        "cmd": "rg -n -F \"{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey}\" .skilled/skills/system-deep-loop/deep-review/references/state/state-format.md; rg -n \"Number.isFinite\\(proposal.budget\\)\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+        "exit": 0,
+        "out": "302:Rows are append-only and carry `{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey}`.\n441:  if (Number.isFinite(proposal.budget) && parent && Number.isFinite(parent.budget)) {\n505:      ...(Number.isFinite(proposal.budget) ? { budget: proposal.budget } : {}),"
+      },
+      "fix": {
+        "old": "{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey}",
+        "new": "{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey} plus an optional `budget`"
+      }
+    },
+    {
+      "id": "C3",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
+      "line": 122,
+      "issue": "The README tells the reader the legal-stop gates check \"that one weak source does not carry a finding\", but `evaluateResearchQualityGuards` hardcodes `singleWeakSource = guardOutcome('notEvaluated', [])` and the suite pins that with the case `always leaves single weak source not evaluated`, so the guard can never fail. The guard that does run is `sourceDiversity`, which counts distinct SOURCE nodes behind the findings that answer each QUESTION. L1 recorded this stale claim for the three agent definitions only; L5 reviewed this README and missed it.",
+      "evidence": {
+        "cmd": "rg -n \"singleWeakSource = guardOutcome|always leaves single weak source not evaluated\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs .skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts",
+        "exit": 0,
+        "out": "convergence.cjs:907:  const singleWeakSource = guardOutcome('notEvaluated', []);\nstop-decision.vitest.ts:514:  it('always leaves single weak source not evaluated', () => {"
+      },
+      "fix": {
+        "old": "that sources are diverse and that one weak source does not carry a finding",
+        "new": "that sources are diverse, counting the distinct sources behind the findings that answer each question"
+      }
+    }
+  ],
+  "untouched": [],
+  "overrides": [
+    {
+      "id": "L6-1",
+      "verdict": "refuted",
+      "note": "The sentence is scoped to leaf `frontier_proposal` rows, and for those the caps are identical across targets. `checkProposal` reaches `childCapFor(proposal.parentId, caps)` (frontier-admit.cjs:429), which returns `maxRootChildren` only when `parentId === 'root'` (frontier-admit.cjs:352-354); a leaf proposal's parent is the frontier node the block named, so it is bounded by `maxChildrenPerNode` (6 for both targets). `maxDepth` (3), `maxChildrenPerNode` (6) and the `maxFrontierNodes` derivation from `maxIterations` are target-independent in `readCaps` (frontier-admit.cjs:255-272). The 6-vs-8 `ROOT_CHILDREN_FLOOR` difference applies only to the seed, which the same paragraph already separates when it says the root cap was raised to 8 for a review seed. No contradiction with the code or with the rest of the page."
+    }
+  ]
+}

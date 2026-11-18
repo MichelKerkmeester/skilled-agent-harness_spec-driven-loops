@@ -1,0 +1,49 @@
+{
+  "lane": "L7",
+  "findings": [
+    {
+      "id": "L7-1",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md",
+      "line": 43,
+      "issue": "The section 2 PACKET FILES table lists eight packet files and has no row for `frontier-nodes.jsonl`, the node store an expansive run keeps. The doc's own description calls it the reference for deep-review packet files, and the sibling state reference counts the store as the tenth state file that `--depth-mode=expansive` adds (state-format.md:34), while quick-reference.md:99 and README.md:140 both carry a frontier row. A reader checking what an expansive run left in its packet finds nothing here.",
+      "evidence": {
+        "cmd": "rg -c \"frontier-nodes\" .skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md; rg -n \"adds a tenth\" .skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
+        "exit": 0,
+        "out": "exit=1\n34:The deep review loop uses 9 state files under the resolved `{artifact_dir}/` owned by the target spec, and a run started with `--depth-mode=expansive` adds a tenth, `frontier-nodes.jsonl`:"
+      }
+    },
+    {
+      "id": "L7-2",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+      "line": 463,
+      "issue": "The sentence says `step_read_state` sets `next_dimension` to the active frontier node's next uncovered dimension, with no exception. The workflow puts a traceability branch ahead of the frontier branch: when `max_iterations >= 2`, `current_iteration == max_iterations` and `unfinished_core_protocols` is non-empty, `next_dimension` is `'traceability'` and the frontier node's dimension is not used. The doc states the frontier rule as unconditional and never records that override anywhere in the file.",
+      "evidence": {
+        "cmd": "rg -n \"next_dimension: \\\"When max_iterations\" .skilled/commands/deep/assets/deep-review.yaml | cut -c1-260",
+        "exit": 0,
+        "out": "1157:          - next_dimension: \"When max_iterations >= 2, current_iteration == max_iterations and unfinished_core_protocols is non-empty, 'traceability': the last iteration under the cap finishes those core protocols. Otherwise, when depth_mode == 'expansive"
+      },
+      "fix": {
+        "old": "and sets `next_dimension` to that node's next uncovered dimension, so the iteration reviews depth the node has not spent yet.",
+        "new": "and, unless the last iteration under the cap still owes core traceability protocols, sets `next_dimension` to that node's next uncovered dimension, so the iteration reviews depth the node has not spent yet."
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/review-depth-v2-rollout/stop-gate-custom-dimension-coverage.md",
+    ".skilled/skills/system-deep-loop/deep-review/README.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/completed-run-extension-flag.md",
+    ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md"
+  ]
+}

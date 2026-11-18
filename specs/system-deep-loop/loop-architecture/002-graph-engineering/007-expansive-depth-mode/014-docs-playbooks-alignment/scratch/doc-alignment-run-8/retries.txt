@@ -1,0 +1,5 @@
+2026-11-18T13:31:44Z L5 failed (timeout: killed at the 20-minute lane limit); attempt files moved to lanes/attempt-timeout-L5-0/ and the lane was rerun once with the same prompt.
+2026-11-18T13:39:13Z Coordinator ruling: the L5 rerun already running at 20 minutes finishes as launched; any further L5 retry gets 40 minutes, the L4 limit.
+2026-11-18T13:40:24Z L1 failed (timeout: killed at the 20-minute lane limit); attempt files moved to lanes/attempt-timeout-L1-0/ and the lane was rerun once with the same prompt at the 40-minute limit.
+2026-11-18T13:45:04Z L2 failed (timeout: killed at the 20-minute lane limit); attempt files moved to lanes/attempt-timeout-L2-0/ and the lane was rerun once with the same prompt at the 40-minute limit.
+2026-11-18T13:48:04Z L3 failed (timeout: killed at the 20-minute lane limit); attempt files moved to lanes/attempt-timeout-L3-0/ and the lane was rerun once with the same prompt at the 40-minute limit.

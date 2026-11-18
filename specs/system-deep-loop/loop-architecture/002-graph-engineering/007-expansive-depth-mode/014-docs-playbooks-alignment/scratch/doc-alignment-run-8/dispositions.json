@@ -1,0 +1,22 @@
+[
+  {
+    "id": "L1-1",
+    "status": "handed_off",
+    "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: deep-research source-diversity guards. The singleWeakSource guard is hardcoded notEvaluated at runtime/scripts/convergence.cjs:907 (commit d9a4cec88a3, pre-program), and .claude/agents/deep-research.md:165 (commit e23154af674) describes a flag the code never raises."
+  },
+  {
+    "id": "L1-2",
+    "status": "handed_off",
+    "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: deep-research source-diversity guards. The singleWeakSource guard is hardcoded notEvaluated at runtime/scripts/convergence.cjs:907 (commit d9a4cec88a3, pre-program), and .pi/agents/deep-research.md:173 (commit 74f5988ba28) describes a flag the code never raises."
+  },
+  {
+    "id": "L1-3",
+    "status": "handed_off",
+    "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: deep-research source-diversity guards. The singleWeakSource guard is hardcoded notEvaluated at runtime/scripts/convergence.cjs:907 (commit d9a4cec88a3, pre-program), and .skilled/agents/deep-research.md:181 (commit e23154af674) describes a flag the code never raises."
+  },
+  {
+    "id": "C3",
+    "status": "handed_off",
+    "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: deep-research source-diversity guards. The singleWeakSource guard is hardcoded notEvaluated at runtime/scripts/convergence.cjs:907 (commit d9a4cec88a3, pre-program), and deep-research/README.md:122 (commit 096fe534033) names the same unevaluated guard among the legal-stop checks."
+  }
+]

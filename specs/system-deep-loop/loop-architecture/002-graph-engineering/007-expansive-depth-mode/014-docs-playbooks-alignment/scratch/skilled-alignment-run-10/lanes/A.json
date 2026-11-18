@@ -1,0 +1,49 @@
+{
+  "lane": "A",
+  "findings": [
+    {
+      "id": "A-1",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "line": 3834,
+      "issue": "partitionFrontierNodes is called twice with identical arguments. budgetPartition (line 3749) is built from expandedLineages labels and frontierPartition (line 3834) from cliLineages labels, but cliLineages is allLineages, which expansiveLineageBudgets derives from expandedLineages without changing labels or order. When both are computed the second call re-reads frontier-nodes.jsonl and rebuilds the same partition. The two gates differ (expansiveBudgets also requires ACTIVE_FANOUT_LOOP_TYPES.has(loopType)), so frontierPartition cannot simply be deleted, but it can reuse budgetPartition when that is non-null. Case: a fan-out run with --depth-mode=expansive on a research or review loop type reads the node store twice and builds the same label-to-node map twice. Impact is a duplicated read and a second source of truth for the same partition, not a wrong result."
+    },
+    {
+      "id": "A-2",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+      "line": 313,
+      "issue": "The new frontier-unanswered seed embeds the node's scope path list into its focus text, and seedViolatesReadOnlyBoundary (line 174) then scans that focus for mutation verbs. A review target whose paths contain 'mutation', 'modify' or 'rewrite' therefore trips the read-only guard and the seed is silently dropped into boundaryRejections instead of becoming a pivot candidate. Every other seed source embeds a short label (dimension, bugClass, protocol); this is the first to embed a file path, so the guard misfires on a path rather than on an instruction. Case: an expansive review run whose frontier node is scoped to src/mutation or src/modify-record.ts and closes exhausted; the direction the code comment promises to seed is dropped. Impact is a lost pivot candidate, not a wrong verdict, and the drop is visible in boundaryRejections.",
+      "evidence": {
+        "cmd": "node -e 'const fs=require(\"node:fs\");const src=fs.readFileSync(\".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts\",\"utf8\");const block=src.slice(src.indexOf(\"function seedViolatesReadOnlyBoundary\"),src.indexOf(\"function ledgerMethods\"));const patterns=[...block.matchAll(/\\/(?:\\\\\\\\.|\\[[^\\]]*\\]|[^\\/\\n])+\\/[a-z]*/g)].map(m=>m[0]);const focus=s=>`Read-only review of the exhausted frontier sub-target frontier-002 (${s}) and report findings without expanding the review target.`;for(const s of [\"src/cache, src/scheduler\",\"src/mutation\",\"src/modify-record.ts\",\"src/rewrite-engine\"]){const m=focus(s).toLowerCase();const hit=patterns.filter(p=>new RegExp(p.replace(/^\\/|\\/[a-z]*$/g,\"\"),\"u\").test(m));console.log(JSON.stringify(s)+\" -> \"+(hit.length?\"DROPPED by \"+hit.join(\" \"):\"kept\"))}'",
+        "exit": 0,
+        "out": "\"src/cache, src/scheduler\" -> kept\n\"src/mutation\" -> DROPPED by /\\bmutat(?:e|ion)\\b/u\n\"src/modify-record.ts\" -> DROPPED by /\\bmodify\\b/u\n\"src/rewrite-engine\" -> DROPPED by /\\brewrite\\b/u"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+    ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+    ".skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/review-depth-mode-golden.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "lane": "L1",
+  "findings": [
+    {
+      "id": "L1-1",
+      "surface": "D1",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".claude/agents/deep-research.md",
+      "line": 165,
+      "issue": "The doc tells the leaf that the orchestrator flags single-weak-source answers during convergence quality checks. The code never evaluates that guard: `evaluateResearchQualityGuards` hardcodes `singleWeakSource = guardOutcome('notEvaluated', [])`, so it can never fail or flag anything. The guard that does run is `sourceDiversity`, and it counts distinct SOURCE nodes behind the findings that answer each QUESTION (a question with fewer than 2 sources is a violation), not sources per finding as the doc states.",
+      "evidence": {
+        "cmd": "rg -n \"singleWeakSource = guardOutcome|count < 2\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "878:      return typeof count !== 'number' || !Number.isFinite(count) || count < 2;\n907:  const singleWeakSource = guardOutcome('notEvaluated', []);"
+      },
+      "fix": {
+        "old": "**Source diversity**: Aim for >=2 independent sources per key finding. The orchestrator flags single-weak-source answers during convergence quality checks.",
+        "new": "**Source diversity**: Aim for >=2 independent sources per answered question. The source-diversity guard fails a question whose answering findings cite fewer than 2 distinct sources; the single-weak-source guard is not evaluated."
+      }
+    },
+    {
+      "id": "L1-2",
+      "surface": "D2",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".pi/agents/deep-research.md",
+      "line": 173,
+      "issue": "Same stale source-diversity claim as the .claude mirror: the doc says the orchestrator flags single-weak-source answers, but `evaluateResearchQualityGuards` hardcodes `singleWeakSource = guardOutcome('notEvaluated', [])` and never evaluates it. The live `sourceDiversity` guard counts distinct SOURCE nodes per answered QUESTION, not sources per finding.",
+      "evidence": {
+        "cmd": "rg -n \"singleWeakSource = guardOutcome|count < 2\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "878:      return typeof count !== 'number' || !Number.isFinite(count) || count < 2;\n907:  const singleWeakSource = guardOutcome('notEvaluated', []);"
+      },
+      "fix": {
+        "old": "**Source diversity**: Aim for >=2 independent sources per key finding. The orchestrator flags single-weak-source answers during convergence quality checks.",
+        "new": "**Source diversity**: Aim for >=2 independent sources per answered question. The source-diversity guard fails a question whose answering findings cite fewer than 2 distinct sources; the single-weak-source guard is not evaluated."
+      }
+    },
+    {
+      "id": "L1-3",
+      "surface": "D3",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/agents/deep-research.md",
+      "line": 181,
+      "issue": "The canonical agent definition carries the same stale claim: it says the orchestrator flags single-weak-source answers, but `evaluateResearchQualityGuards` hardcodes `singleWeakSource = guardOutcome('notEvaluated', [])` and never evaluates it. The live `sourceDiversity` guard counts distinct SOURCE nodes per answered QUESTION, not sources per finding.",
+      "evidence": {
+        "cmd": "rg -n \"singleWeakSource = guardOutcome|count < 2\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "878:      return typeof count !== 'number' || !Number.isFinite(count) || count < 2;\n907:  const singleWeakSource = guardOutcome('notEvaluated', []);"
+      },
+      "fix": {
+        "old": "**Source diversity**: Aim for >=2 independent sources per key finding. The orchestrator flags single-weak-source answers during convergence quality checks.",
+        "new": "**Source diversity**: Aim for >=2 independent sources per answered question. The source-diversity guard fails a question whose answering findings cite fewer than 2 distinct sources; the single-weak-source guard is not evaluated."
+      }
+    }
+  ],
+  "reviewed": [
+    ".claude/agents/deep-research.md",
+    ".claude/agents/deep-review.md",
+    ".pi/agents/deep-research.md",
+    ".pi/agents/deep-review.md",
+    ".skilled/agents/deep-research.md",
+    ".skilled/agents/deep-review.md"
+  ]
+}

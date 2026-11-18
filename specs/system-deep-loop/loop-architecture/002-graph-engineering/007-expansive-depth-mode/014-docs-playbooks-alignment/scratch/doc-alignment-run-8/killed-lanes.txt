@@ -1,0 +1,4 @@
+2026-11-18T13:31:06Z doc-alignment-run-8 lanes-L5 past 20 minutes (1203s): TERM sent to process group 60203 (60203 ) under runner 60124
+2026-11-18T13:39:46Z doc-alignment-run-8 lanes-L1 past 20 minutes (1203s): TERM sent to process group 26254 (26254 ) under runner 26233
+2026-11-18T13:44:22Z doc-alignment-run-8 lanes-L2 past 20 minutes (1203s): TERM sent to process group 80488 (80488 ) under runner 80462
+2026-11-18T13:47:40Z doc-alignment-run-8 lanes-L3 past 20 minutes (1203s): TERM sent to process group 20584 (20584 ) under runner 20560

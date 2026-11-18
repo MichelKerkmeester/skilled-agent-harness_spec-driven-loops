@@ -1,0 +1,31 @@
+{
+  "lane": "L8",
+  "findings": [
+    {
+      "id": "L8-1",
+      "surface": "D5",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/convergence-script.md",
+      "line": 43,
+      "issue": "The Minimum Iterations Floor section states the floor unconditionally: \"Once a stop candidate exists, a run below `minIterations` returns CONTINUE with `reasonDetail` `minIterationsNotReached`.\" The code guards the check with `minIterations > 1` (convergence.cjs:1195), so a configured floor of 0 or 1 is a no-op and a run below it falls through to the legal-stop gates instead of returning CONTINUE. Verified by calling `buildStopDecision` with a clean review candidate: `minIterations=1, iterationCount=0` returns `BLOCKED evidenceDensityGate`, while `minIterations=2, iterationCount=0` returns `CONTINUE minIterationsNotReached`. The shipped defaults (2 for review, 3 for research) are above the guard, so the omission only bites a config that lowers the floor to 0 or 1.",
+      "evidence": {
+        "cmd": "rg -n \"minIterations > 1\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "1195:  if (minIterations > 1 && iterationCount < minIterations) {"
+      },
+      "fix": {
+        "old": "Once a stop candidate exists, a run below `minIterations` returns CONTINUE with `reasonDetail` `minIterationsNotReached`.",
+        "new": "Once a stop candidate exists, a run below `minIterations` returns CONTINUE with `reasonDetail` `minIterationsNotReached`; the check runs only when `minIterations` is above 1, so a floor of 0 or 1 never holds a run."
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-merge.md",
+    ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md",
+    ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/convergence-script.md",
+    "README.md"
+  ]
+}

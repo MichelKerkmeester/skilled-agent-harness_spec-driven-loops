@@ -1,0 +1,28 @@
+[
+  {
+    "id": "L6-1",
+    "source_id": "L6-1",
+    "lane": "L6",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+    "line": "16",
+    "issue": "The overview says expansive review \"admits leaf `frontier_proposal` rows under the same caps as research\", but the root-children cap differs by target: `ROOT_CHILDREN_FLOOR` is 6 for research and 8 for review, and `readCaps` sets `maxRootChildren` to that floor. The same paragraph later says the review root cap was raised to 8, so the sentence contradicts both the code and the rest of the doc. Only `maxDepth`, `maxChildrenPerNode` and `maxFrontierNodes` are shared.",
+    "evidence": {
+      "cmd": "rg -n \"ROOT_CHILDREN_FLOOR\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "exit": 0,
+      "out": "61:const ROOT_CHILDREN_FLOOR = Object.freeze({ research: 6, review: 8 });\n269:    maxRootChildren: Math.max(maxChildrenPerNode, ROOT_CHILDREN_FLOOR[target]),"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "The sentence is scoped to leaf `frontier_proposal` rows, and for those the caps are identical across targets. `checkProposal` reaches `childCapFor(proposal.parentId, caps)` (frontier-admit.cjs:429), which returns `maxRootChildren` only when `parentId === 'root'` (frontier-admit.cjs:352-354); a leaf proposal's parent is the frontier node the block named, so it is bounded by `maxChildrenPerNode` (6 for both targets). `maxDepth` (3), `maxChildrenPerNode` (6) and the `maxFrontierNodes` derivation from `maxIterations` are target-independent in `readCaps` (frontier-admit.cjs:255-272). The 6-vs-8 `ROOT_CHILDREN_FLOOR` difference applies only to the seed, which the same paragraph already separates when it says the root cap was raised to 8 for a review seed. No contradiction with the code or with the rest of the page.",
+      "lane_severity": "P2"
+    }
+  }
+]

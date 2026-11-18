@@ -1,0 +1,135 @@
+{
+  "findings": [
+    {
+      "id": "E-1",
+      "surface": "S4",
+      "standard": "sk-doc/sk-create-manual-testing-playbook",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 229,
+      "issue": "The new Section 9 MODE PACKAGE INDEXES table states 71 deep-research scenarios and 69 deep-review scenarios. The package playbooks state 72 and 70, and the folders hold 72 and 70 scenario files. The scope added this table and copied the stale package-README counts, so the hub index now contradicts the package indexes it links to. Case: a reader planning release coverage from the hub playbook budgets for 71 and 69 scenarios where the packages require 72 and 70.",
+      "evidence": {
+        "cmd": "find .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook -mindepth 2 -name '*.md' ! -name 'README.md' | wc -l; find .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook -mindepth 2 -name '*.md' ! -name 'README.md' | wc -l; grep -n 'deep-research.*71\\|deep-review.*69' .skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+        "exit": 0,
+        "out": "72\n70\n229:| `deep-research` | 71 | 9 | ...\n230:| `deep-review` | 69 | 10 | ..."
+      },
+      "fix": {
+        "old": "| `deep-research` | 71 | 9 | ...\n| `deep-review` | 69 | 10 | ...",
+        "new": "| `deep-research` | 72 | 9 | ...\n| `deep-review` | 70 | 10 | ..."
+      }
+    },
+    {
+      "id": "E-2",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "line": 111,
+      "issue": "hasScope accepts any non-empty array, while scopeEntries drops non-string and blank entries. A proposal with scope [\"   \"], [123] or [null] therefore passes the relevance check at line 403. On a review run the review-target containment check then runs over an empty scope list and passes vacuously, so a node scoped nowhere is admitted, counted toward the frontier, and can never be answered by a finding. The other required fields (question, evidence) are rejected when blank; scope is not. Case: a leaf emits \"scope\": [\"  \"] and the node is admitted instead of pruned relevance.",
+      "evidence": {
+        "cmd": "node -e 'const {checkProposal}=require(\"./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs\"); const caps={maxDepth:3,maxChildrenPerNode:6,maxRootChildren:8,maxFrontierNodes:10}; const reviewConfig={reviewTargetType:\"files\",reviewTarget:\"src/app.ts\"}; for (const scope of [[\"   \"],[123],[null],[\"src/app.ts\"]]) { const r=checkProposal({question:\"q\",evidence:\"e\",scope,parentId:\"root\"},new Map(),caps,[],{reviewConfig}); console.log(JSON.stringify(scope),\"->\",r===null?\"ADMITTED\":\"pruned:\"+r); }'",
+        "exit": 0,
+        "out": "[\"   \"] -> ADMITTED\n[123] -> ADMITTED\n[null] -> ADMITTED\n[\"src/app.ts\"] -> ADMITTED"
+      },
+      "fix": {
+        "old": "return Array.isArray(scope) && scope.length > 0;",
+        "new": "return Array.isArray(scope) && scope.some((entry) => typeof entry === 'string' && entry.trim() !== '');"
+      }
+    },
+    {
+      "id": "E-3",
+      "surface": "S3",
+      "standard": "sk-doc/sk-create-feature-catalog",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+      "line": 29,
+      "issue": "The runtime catalog's script-entry-points group has no entry for frontier-admit.cjs, the new 938-line script with a CLI (seed, admit, close, graph, block) that deep-research.yaml and deep-review.yaml invoke directly. The group lists five entries (append-mode-event, convergence, query, status, upsert) and the table row names four scripts, none of them frontier-admit. The research and review catalogs describe the feature from the mode side, and fanout-run.md mentions the script only as a dependency, so the runtime inventory omits a new script entry point. Case: a reader of the runtime catalog cannot find the script that owns the frontier store, admission checks and graph projection.",
+      "evidence": {
+        "cmd": "ls .skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/; grep -rn 'frontier-admit' .skilled/skills/system-deep-loop/runtime/feature-catalog/",
+        "exit": 0,
+        "out": "append-mode-event-script.md\nconvergence-script.md\nquery-script.md\nstatus-script.md\nupsert-script.md\nfanout/fanout-run.md:104: ... expansiveBudget in frontier-admit.cjs.\nfanout/fanout-run.md:122: | scripts/frontier-admit.cjs | readNodeStore, expansiveBudget ... |"
+      },
+      "fix": {
+        "old": "| [script-entry-points](../feature-catalog/script-entry-points) | 5 features | `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/query.cjs`, `scripts/status.cjs` |",
+        "new": "| [script-entry-points](../feature-catalog/script-entry-points) | 6 features | `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/query.cjs`, `scripts/status.cjs`, `scripts/frontier-admit.cjs` |"
+      }
+    },
+    {
+      "id": "E-4",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "line": 278,
+      "issue": "The expansiveBudget comment says the ceiling 'binds for a four-dimension review from two seeds on', but the function returns 24 at one seed: 2 x 4 x (1 + 3 - 1) = 24. The test at frontier-admit-review.vitest.ts:571 asserts 24 for one seed while its name repeats the same claim. B-08 reports the docs sentence and the test name; this is the code comment that seeded the wording, and it is the only place the claim sits next to the formula.",
+      "evidence": {
+        "cmd": "node -e 'const {expansiveBudget}=require(\"./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs\"); for (const s of [1,2]) console.log(\"S=\"+s+\" -> \"+expansiveBudget({target:\"review\",seeded:s,maxDepth:3,dimensions:4,loopDefault:7}))'",
+        "exit": 0,
+        "out": "S=1 -> 24\nS=2 -> 24"
+      },
+      "fix": {
+        "old": "// review from two seeds on. Twice the node count keeps the half-budget node cap",
+        "new": "// review from one seed on. Twice the node count keeps the half-budget node cap"
+      }
+    },
+    {
+      "id": "E-5",
+      "surface": "S3",
+      "standard": "sk-doc/sk-create-feature-catalog",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+      "line": 28,
+      "issue": "The prose says 'A node needs one iteration per dimension in its universe, the four canonical dimensions plus any custom name', but configuredReviewDimensionCount in frontier-admit.cjs counts only the configured reviewDimensions list. For reviewDimensions [\"correctness\",\"performance\"] the code uses D=2 and derives 12 iterations, while the reducer's universe is five dimensions and the prose implies 24. The test at frontier-admit-review.vitest.ts:565 asserts 10 for [\"correctness\"] with three seeds, confirming the code's configured-count behavior. The same sentence is in .skilled/commands/deep/review.md:100. Case: a custom-dimension review is sized for two dimensions while the doc tells the operator to fund five.",
+      "evidence": {
+        "cmd": "mkdir -p /tmp/fa-custom && printf '%s\\n' '{\"maxIterations\":7,\"reviewDimensions\":[\"correctness\",\"performance\"],\"expansiveDepth\":{\"maxDepth\":3}}' > /tmp/fa-custom/deep-review-config.json && printf '%s\\n' '{\"nodeId\":\"F-1-001\",\"parentId\":\"root\",\"depth\":1,\"scope\":[\"src/app.ts\"],\"question\":\"q\",\"status\":\"open\",\"reason\":null,\"iteration\":0,\"dedupeKey\":\"q\"}' > /tmp/fa-custom/frontier-nodes.jsonl && node -e 'const {seedBudget}=require(\"./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs\"); console.log(JSON.stringify(seedBudget({artifactDir:\"/tmp/fa-custom\",target:\"review\",maxIterationsSource:\"default\"})))'",
+        "exit": 0,
+        "out": "{\"derivedMaxIterations\":12,\"growthSlots\":5}"
+      },
+      "fix": {
+        "old": "A node needs one iteration per dimension in its universe, the four canonical dimensions plus any custom name.",
+        "new": "A node needs one iteration per configured dimension, the four canonical dimensions by default plus any custom name."
+      }
+    }
+  ],
+  "untouched": [
+    ".dsh/agents/deep-research.patch.yml",
+    ".dsh/agents/deep-review.patch.yml",
+    ".vibe/agents/deep-research.toml",
+    ".vibe/agents/deep-review.toml",
+    ".gitignore",
+    ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-research-default/lineage-prompt.txt"
+  ],
+  "overrides": [
+    {
+      "id": "C-1",
+      "verdict": "duplicate",
+      "note": "Same file, line and fix as B-05: deep-research/README.md:227 says 71 scenarios where the corpus holds 72."
+    },
+    {
+      "id": "C-2",
+      "verdict": "duplicate",
+      "note": "Same file, line and fix as B-06: deep-research/README.md:265 says 71 scenarios where the corpus holds 72."
+    },
+    {
+      "id": "C-3",
+      "verdict": "duplicate",
+      "note": "Same file, line and fix as B-07: deep-review/README.md:235 says 69 scenarios where the corpus holds 70."
+    },
+    {
+      "id": "D-1",
+      "verdict": "duplicate",
+      "note": "Same file and line as B-08's first location: deep-review/SKILL.md:238 says the ceiling binds from two seeds; expansiveBudget returns 24 at one seed."
+    },
+    {
+      "id": "D-2",
+      "verdict": "duplicate",
+      "note": "Same wrong sentence as B-08 at a location B-08 does not list: commands/deep/review.md:100. Fix it with B-08's six-location sweep."
+    }
+  ],
+  "upheld_probes": []
+}

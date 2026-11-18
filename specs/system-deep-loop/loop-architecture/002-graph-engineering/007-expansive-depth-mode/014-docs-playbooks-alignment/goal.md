@@ -97,6 +97,7 @@ and findings belong here.
 | Handed to follow-up | Done | Ruling 'Fix ours, hand off rest': 25 open findings in doc run-6 and skilled run-8 handed off to 010, 011 or the docs follow-up (dispositions.json) |
 | Reclassified | Ours | Hand-offs of text this program wrote were misclassified; they are fixed by class now; only pre-base text stays handed off |
 | Pair 1 (Vibe) | Not final | doc run-7 24 open (L4 timed out twice), skilled run-9 20 open; own findings fixed before pair 2 |
+| Pair 2 (Vibe, last) | Not met | doc run-8 12 open (4 handed off), all 8 lanes ok after reruns; skilled run-10 16 open (1 handed off); own findings reported, not fixed |
 
 ### Deviations and findings
 

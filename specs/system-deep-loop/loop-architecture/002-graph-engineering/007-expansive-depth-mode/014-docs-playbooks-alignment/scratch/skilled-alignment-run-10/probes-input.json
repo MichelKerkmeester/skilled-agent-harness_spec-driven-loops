@@ -1,0 +1,68 @@
+[
+ {
+  "prompt": "Run an expansive deep research loop on the skill advisor routing layer",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Start a deep research session with expansive depth so follow-up questions branch",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Grow a depth-capped frontier of follow-up questions during a deep research run",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Research the topic across multiple rounds with a research loop",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Run an expansive deep review of the command validator scripts",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Audit the routing registries with an expansive depth review loop",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Enable expansive depth mode on the review loop",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Run a deep review with expansive depth so sub-targets branch",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Audit the diff for severity findings until findings stop changing",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Fan out a deep review across lineages and merge the partitions",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Review this pull request for security issues",
+  "expect": "sk-code"
+ },
+ {
+  "prompt": "Run a code review on the new module",
+  "expect": "sk-code"
+ },
+ {
+  "prompt": "Write a new skill for the hub",
+  "expect": "sk-doc"
+ },
+ {
+  "prompt": "Commit these changes with a conventional message",
+  "expect": "sk-git"
+ }
+]

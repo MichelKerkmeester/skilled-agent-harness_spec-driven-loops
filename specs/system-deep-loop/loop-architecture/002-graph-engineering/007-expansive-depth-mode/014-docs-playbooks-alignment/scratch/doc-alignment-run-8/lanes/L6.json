@@ -1,0 +1,98 @@
+{
+  "lane": "L6",
+  "findings": [
+    {
+      "id": "L6-1",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+      "line": 16,
+      "issue": "The overview says expansive review \"admits leaf `frontier_proposal` rows under the same caps as research\", but the root-children cap differs by target: `ROOT_CHILDREN_FLOOR` is 6 for research and 8 for review, and `readCaps` sets `maxRootChildren` to that floor. The same paragraph later says the review root cap was raised to 8, so the sentence contradicts both the code and the rest of the doc. Only `maxDepth`, `maxChildrenPerNode` and `maxFrontierNodes` are shared.",
+      "evidence": {
+        "cmd": "rg -n \"ROOT_CHILDREN_FLOOR\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+        "exit": 0,
+        "out": "61:const ROOT_CHILDREN_FLOOR = Object.freeze({ research: 6, review: 8 });\n269:    maxRootChildren: Math.max(maxChildrenPerNode, ROOT_CHILDREN_FLOOR[target]),"
+      }
+    },
+    {
+      "id": "L6-2",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+      "line": 63,
+      "issue": "The Validation table credits `runtime/tests/unit/frontier-admit-review.vitest.ts` with \"Review admission into the node store and debt entries\", but that file contains no debt or `searchDebt` assertion at all. Debt entries are produced by the reducer (`mergeFrontierIntoSearchLedger` in `runtime/scripts/reduce-state.cjs`), not by `frontier-admit.cjs`, so the test cannot cover them.",
+      "evidence": {
+        "cmd": "rg -c \"searchDebt|debt\" .skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts || echo \"0 matches in frontier-admit-review.vitest.ts\"",
+        "exit": 0,
+        "out": "0 matches in frontier-admit-review.vitest.ts"
+      },
+      "fix": {
+        "old": "Review admission into the node store and debt entries.",
+        "new": "Review admission into the node store."
+      }
+    },
+    {
+      "id": "L6-3",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/state-management/config-management.md",
+      "line": 25,
+      "issue": "The doc says the config records \"the four configured dimensions\", but `reviewDimensions` is written from `{review_dimensions_normalized}`, which is the canonical four plus every configured custom name (the `review_dimensions` input explicitly accepts \"custom names\"). A run set up with `review_dimensions: correctness,performance` records five dimensions, so the count is not fixed at four.",
+      "evidence": {
+        "cmd": "rg -n \"review_dimensions: |reviewDimensions: \" .skilled/commands/deep/assets/deep-review.yaml",
+        "exit": 0,
+        "out": "54:  review_dimensions: \"[all|correctness,security,traceability,maintainability|custom names] - Dimensions to check. The four canonical dimensions are correctness, security, traceability and maintainability; any other name is a custom dimension, reviewed after the canonical four in configured order. Default: all.\"\n868:          reviewDimensions: \"{review_dimensions_normalized}\""
+      },
+      "fix": {
+        "old": "the four configured dimensions",
+        "new": "the configured dimensions"
+      }
+    },
+    {
+      "id": "L6-4",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
+      "line": 81,
+      "issue": "The frontier node store row shape is given as a closed list that omits `budget`, but `admitProposals` writes an optional `budget` field onto an admitted row and the budget admission check reads it back from the stored parent. Without the field on the row, no later child could be held to its parent's budget, so the schema description is incomplete.",
+      "evidence": {
+        "cmd": "rg -n \"Number.isFinite\\(proposal.budget\\)\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+        "exit": 0,
+        "out": "441:  if (Number.isFinite(proposal.budget) && parent && Number.isFinite(parent.budget)) {\n505:      ...(Number.isFinite(proposal.budget) ? { budget: proposal.budget } : {}),"
+      },
+      "fix": {
+        "old": "{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey}",
+        "new": "{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey} plus an optional `budget`"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/min-iterations-floor.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/custom-review-dimensions.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/cross-mode-anti-convergence-contract.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/state-management/config-management.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/cross-mode-anti-convergence-contract.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-drained-stops-review.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-review-stop.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-min-iterations-floor.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/extend-completed-review-run.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/custom-dimension-setup-and-universe.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-and-node-dimension-coverage.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md"
+  ]
+}
