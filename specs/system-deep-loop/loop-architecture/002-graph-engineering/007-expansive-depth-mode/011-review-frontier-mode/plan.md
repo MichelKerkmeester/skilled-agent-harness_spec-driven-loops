@@ -88,6 +88,8 @@ This phase is a feature, but it edits shared default-path files, so each surface
 | `step_read_state` `next_dimension` rule and `render_prompt_pack.variables` | Pick the dispatched dimension and fill the pack | update, flag-gated case | `stop-decision-yaml-contract` wording case; golden pack with the flag off |
 | Review template and every caller that renders it (`deep-review.yaml`, `prompt-pack.vitest.ts`, `deep-review-marker-scan.vitest.ts`, `tests/fanout-review-focus.vitest.ts`) | Renders every review prompt | update, one empty-by-default `{frontier_block}` token | Golden pack; each caller passes the variable |
 | `commands/deep/assets/compiled/deep-review.contract.markdown` | Digests the review command doc, presentation, YAML, template and agent | regenerate | `check-contract-drift.vitest.ts` |
+| `runtime/scripts/fanout-run.cjs` lineage dispatch env | Sets the env every fan-out lineage runs with | update, not flag-gated: named defect fix REQ-016 for both loop types | `fanout-run.vitest.ts` graph-store case for a research and a review lineage |
+| Graph-writing steps in `deep-review.yaml` and `deep-research.yaml` | Seed, upsert and evaluate the coverage graph | update, not flag-gated: the lineage-local store instruction (REQ-016) | `stop-decision-yaml-contract.vitest.ts` graph-store cases; both compiled contracts regenerated |
 
 Required inventories:
 - Same-class producers: `rg -n 'addCandidateClass|searchDebt|nextFocus' .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`.
@@ -288,3 +290,22 @@ The operator accepted ADR-001 to ADR-004 as proposed on 2026-11-17 (T000). The b
 
 **Alternatives Rejected**:
 - Rewrite `dimension_queue` in the strategy file from the reducer: changes a default-path writer and mixes nodes into a dimension list.
+
+### ADR-006: Drained-partition review candidate and lineage-local graph store (amendment, 2026-11-18)
+
+**Status**: Accepted (operator, 2026-11-18). Decision-record Q003 chose a partition-drained stop; after the replay below, the operator ruled option 3: fix the missing lineage graph first, then add the drained candidate behind every gate, with no gate weakened. This amends the stop order REQ-003 and D-011-02 describe; REQ-010 and SC-002 stay the target.
+
+**Context**: In the first live pilot, pi-2, pi-5 and pi-6 answered their node by iteration 4 and ran to the cap of 16. A replay of `convergence.cjs --stop-decision` on each lineage's recorded state showed `noStopCandidate` for pi-2 and pi-6 and, for pi-5, a candidate `BLOCKED` by `hotspotSaturationGate` alone. Five of six lineages were graphless: the graph store defaulted to the shared runtime database outside the lineage write surface, so every compliant leaf skipped the graph steps, and `hotspotSaturationGate` cannot pass without a graph. pi-3, which pointed `DEEP_LOOP_COVERAGE_DB_DIR` into its lineage itself, replays as `STOP converged all_dimensions_clean`, matching its live run.
+
+**Decision**:
+- Every fan-out lineage keeps its graph in `graph-db/` inside its directory (REQ-016, a named defect fix that also changes default fan-out runs).
+- Under the flag, a frontier with at least one node and none open or active forms the hard candidate `frontier_drained` when neither `all_dimensions_clean` nor the composite vote forms (REQ-017). It is hard because a soft candidate passes `convergenceGate` only at a weighted score of 0.60 or more, where the composite vote has already formed a candidate (D-011-07). The other eight gates and the graph decision still decide it.
+
+**Consequences**:
+- A drained lineage with clean gates and a graph that allows the stop now stops before its cap with `converged` and reasonDetail `frontier_drained`.
+- A drained lineage with an active P0, unsettled traceability or a missing graph is still `BLOCKED` and still reaches the cap. The pilot rerun decides AC-011.
+- Default fan-out runs also write their graph inside each lineage; nothing reads a lineage graph from the shared database.
+
+**Alternatives Rejected**:
+- A drained stop that records gate failures without letting them veto, modeled on the cap: rejected by the operator, because it stops a lineage past a failed quality gate.
+- A soft `frontier_drained` candidate: it adds no stop the composite vote does not already give.
