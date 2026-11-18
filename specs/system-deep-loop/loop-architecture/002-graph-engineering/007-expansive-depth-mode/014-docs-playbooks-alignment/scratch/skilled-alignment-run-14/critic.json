@@ -1,0 +1,78 @@
+{
+ "findings": [
+  {
+   "id": "CR-1",
+   "surface": "S15",
+   "standard": ".github/workflows",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".github/workflows/deep-loop-runtime.yml",
+   "line": 90,
+   "issue": "Several selected workflows have blocking steps that no battery row replays. I sorted them by whether they could fail for this scope. (1) deep-loop-runtime.yml, step 'Run the deep-loop runtime suites' (npm --prefix .opencode/skills/system-deep-loop/runtime test): this is the step most likely to fail here. S15-ci-contract-drift replays only the workflow's first step. No lane ran the suite: the lanes read test files and ran targeted probes. I did not run it, because vitest's default cache sits under node_modules inside the repository and this critic may not write there. (2) skill-advisor-stress.yml is path-matched on skill-graph.json, which this scope changed. Its stress suite and its default suite (npm test) are not replayed. S15-ci-divergence-ratchet and S15-ci-routing-drift-guard run only three advisor vitest files. (3) advisory-checks.yml 'Gate-critical node suites' is not replayed. Its sync-agents-dsh and sync-agents-vibe tests use tmp fixtures, so I ran the real checks by hand: sync-agents-dsh.cjs --check and sync-agents-vibe.cjs --check both PASS with 11 agents. (4) hook-vitest-suites.yml, opencode-plugin-tests.yml and opencode-dual-version.yml are not replayed. The scope changes no hook or plugin source, and their path match is only the deep-research and deep-review agent bodies, so a failure from this scope is unlikely. Out of reach or excused: trigger-index-rebuild.yml runs on a push to main, dependabot-auto-merge.yml acts only on Dependabot PRs, and the lens excuses naming-standard-guard, the sk-doc script-test loop and the spec-kit-check suites. Case: a failing case in the five new runtime unit files (frontier-admit, frontier-admit-review, research- and review-depth-mode-golden, divergent-pivot-seat-scope), or in the 492 lines fanout-run.vitest.ts grew in this range, would block the PR in CI unseen by this run. Fix: add the deep-loop runtime suite and the advisor default suite as battery rows for this scope, or record their passes from the merge gate.",
+   "evidence": {
+    "cmd": "node -e (list S15-ci-* row cmd and ci_matches from battery.json); grep -n -E '^\\s+- name:' over the unreplayed workflows; node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check; node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs --check",
+    "exit": 0,
+    "out": "S15-ci-contract-drift -> 'deep-loop-runtime.yml > Refuse a stale compiled command contract before the full suite' (no row matches 'Run the deep-loop runtime suites', skill-advisor-stress, advisory-checks, hook-vitest-suites, opencode-plugin-tests or opencode-dual-version) | [dsh-agent-sync] PASS: 11 agent patches are in sync. | [vibe-agent-sync] PASS: 11 agent profiles are in sync."
+   }
+  },
+  {
+   "id": "CR-2",
+   "surface": "S9",
+   "standard": "sk-doc/sk-create-command",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/commands/speckit/assets/speckit-resume.yaml",
+   "line": 104,
+   "issue": "The S9-command-references battery failure has no lane finding. Its cause is outside this scope and predates it. speckit-resume.yaml is unchanged between 21c4b325b5a and 102558edb44, and the path it names, .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json, is gitignored runtime state (.gitignore:431), so it is absent on a fresh worktree. The validator flags a runtime-created file as a missing asset. No action is needed for this scope. The validator could skip paths that git check-ignore matches. Case: every fresh worktree fails this row whatever the change.",
+   "evidence": {
+    "cmd": "git -c core.fsmonitor=false diff --quiet 21c4b325b5a 102558edb44 -- .skilled/commands/speckit/assets/speckit-resume.yaml; git -c core.fsmonitor=false check-ignore -v .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json",
+    "exit": 0,
+    "out": "yaml unchanged (diff exit 0); .gitignore:431:.skilled/skills/system-spec-kit/runtime/database/ matches; runtime/database/ does not exist in this worktree"
+   }
+  }
+ ],
+ "untouched": [
+  ".dsh/agents/deep-research.patch.yml (generated runtime mirror; does not matter: numstat 6/1 matches .skilled/agents/deep-research.md, and sync-agents-dsh.cjs --check, run by hand, PASS with 11 agents; S15-ci-agent-mirror-sync does not compare dsh)",
+  ".dsh/agents/deep-review.patch.yml (generated runtime mirror; does not matter: numstat 9/3 matches the canonical file, the frontier_proposal, configured-custom-dimension and Custom (configured) phrase counts match, and sync-agents-dsh.cjs --check PASS)",
+  ".vibe/agents/deep-research.toml (generated runtime mirror; does not matter: sync-agents-vibe.cjs --check, run by hand, PASS with 11 agents, and the single instructions line carries frontier_proposal)",
+  ".vibe/agents/deep-review.toml (generated runtime mirror; does not matter: sync-agents-vibe.cjs --check PASS, and the instructions line carries frontier_proposal, configured custom dimension and Custom (configured))",
+  "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-deep-loop/manifest.json (archive twin; does not matter: byte-identical (cmp) to .skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json, which Lane D reviewed and the S7 compiled-route rows passed)",
+  "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/001-completed-run-extension/ (packet folder entry: goal.md plus 4 scratch files; low: goal durable slice 2502 chars, under the 4000 limit)",
+  "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/002-research-claude-config-dir/ (packet folder entry: goal.md plus 13 scratch files; low: goal slice 2044 chars)",
+  "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor/ (packet folder entry: goal.md plus 10 scratch files; low: goal slice 2594 chars)",
+  "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix/ (packet folder entry: goal.md plus 25 scratch files; low: goal slice 3321 chars)",
+  "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/005-prompt-pack-contract-alignment/ (packet folder entry: goal.md plus 7 scratch files; low: goal slice 3146 chars)",
+  "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields/ (packet folder entry: goal.md plus 40 scratch files; low: goal slice 3611 chars)",
+  "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/007-source-diversity-quality-class/ (packet folder entry: goal.md plus 15 scratch files; low: goal slice 3354 chars)",
+  "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/008-review-dimension-coverage/ (packet folder entry: goal.md plus 8 scratch files; low: goal slice 2843 chars)",
+  "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/009-fanout-review-coverage-merge/ (packet folder entry: goal.md plus 8 scratch files; low: goal slice 2684 chars)",
+  "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/ (packet folder entry: goal.md plus 2 scratch files; low: goal slice 3745 chars, completion criteria now marked [x])",
+  "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/ (packet folder entry: goal.md plus 2 scratch files; low: goal slice 3765 chars)",
+  "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/ (packet folder entry: goal.md plus 25 scratch files; low: goal slice 2517 chars)",
+  "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/ (packet folder entry: goal.md plus 11 scratch files; low: goal slice 2266 chars)",
+  "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/ (packet folder entry: goal.md plus 1257 scratch files: 1256 committed artifacts of earlier doc-alignment and skilled-alignment runs, and this run's own untracked skilled-alignment-run-14/executors.json; low: goal slice 3674 chars, and committed scratch is the repository pattern, with 39380 scratch files under specs/ at base)"
+ ],
+ "overrides": [
+  {
+   "id": "C2-2",
+   "verdict": "duplicate",
+   "note": "Duplicate of B2-7: same file (deep-review/changelog/v1.13.0.0.md:203), same 'seven new scenarios' line and the same old/new fix. I read line 203 and it still reads 'PASS, with the seven new scenarios.'"
+  },
+  {
+   "id": "C3-2",
+   "verdict": "duplicate",
+   "note": "Duplicate of B3-3: same file (system-deep-loop/manual-testing-playbook/manual-testing-playbook.md:225), same 'three mode packages' line and the same fix. I read line 225 and it is unchanged."
+  },
+  {
+   "id": "B1-5",
+   "verdict": "pre-existing",
+   "note": "Base 21c4b325b5a has the same heading order: git show 21c4b325b5a:.../deep-research/manual-testing-playbook/manual-testing-playbook.md gives 762 '## 14. FAN-OUT', 807 '## 16.', 920 '## 15.', 927 '## 15.'."
+  },
+  {
+   "id": "C3-4",
+   "verdict": "pre-existing",
+   "note": ".skilled/skills/system-skill-advisor/README.md is unchanged in 21c4b325b5a..102558edb44 (git diff --quiet exits 0) and is not in scope.json, so the S5-derived-counts failure predates this scope."
+  }
+ ],
+ "upheld_probes": []
+}

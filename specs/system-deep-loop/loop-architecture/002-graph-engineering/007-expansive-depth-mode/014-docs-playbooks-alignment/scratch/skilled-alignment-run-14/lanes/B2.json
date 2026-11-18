@@ -1,0 +1,145 @@
+{
+ "lane": "B2",
+ "findings": [
+  {
+   "id": "B2-1",
+   "surface": "S2",
+   "standard": "sk-doc/sk-create-skill",
+   "severity": "P1",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md",
+   "line": 11,
+   "issue": "The generated contract snapshot was hand-edited. Its frontmatter version was bumped to 1.11.3.0, but the generator's hardcoded SNAPSHOT_FRONTMATTER (render-contract-snapshot.cjs line 47) still emits 1.11.2.0. As a result the contract's own render-verify validation check (review-mode-contract.yaml line 499-500: 'node render-contract-snapshot.cjs --check ... fail on drift') fails. The rendered body is otherwise byte-identical: the version stamp is the only drifted line. A plain regeneration would also silently roll the stamp back to 1.11.2.0. Fix by bumping SNAPSHOT_FRONTMATTER in render-contract-snapshot.cjs to version 1.11.3.0 so generator and artifact agree (or revert the snapshot to 1.11.2.0), then confirm with --check. Reach: the documented verification path, running render-contract-snapshot.cjs --check. Rendering through the script exports (renderSnapshot(loadContractDocument())) and diffing against the shipped file shows a single changed line: 11c11, shipped \"version: 1.11.3.0\" vs rendered \"version: 1.11.2.0\".",
+   "evidence": {
+    "cmd": "node .skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs --check",
+    "exit": 1,
+    "out": "[render-contract-snapshot] drift detected: .skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md is stale. Run without --check to regenerate."
+   }
+  },
+  {
+   "id": "B2-2",
+   "surface": "S3",
+   "standard": "sk-doc/sk-create-feature-catalog",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+   "line": 366,
+   "issue": "The Review Dimensions section intro still says its entries capture 'the four canonical audit dimensions', but the section now holds five entries, including the new Custom review dimensions entry. The census row at the top already says 5 features.",
+   "fix": {
+    "old": "These entries capture the four canonical audit dimensions that define loop coverage and shape findings, convergence, and the strategy checklist.",
+    "new": "These entries capture the four canonical audit dimensions, plus any configured custom dimension, that define loop coverage and shape findings, convergence, and the strategy checklist."
+   }
+  },
+  {
+   "id": "B2-3",
+   "surface": "S3",
+   "standard": "sk-doc/sk-create-feature-catalog",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+   "line": 28,
+   "issue": "The entry tells the operator to 'fund the depth-1 band with at least 2 * ceil(nodes / lineages) * dimensions'. That figure is the maxIterations a lineage needs, not the size of the band: the depth-1 band is 0.5 of maxIterations and must hold ceil(nodes / lineages) * dimensions. loop-protocol.md line 469 states it correctly ('50% of each lineage's maxIterations should reach ceil(nodes / lineages) * 4'). As written, the catalog overstates the band requirement by a factor of 2. Reword it to say maxIterations should be at least 2 * ceil(nodes / lineages) * dimensions, so the depth-1 band holds ceil(nodes / lineages) * dimensions."
+  },
+  {
+   "id": "B2-4",
+   "surface": "S4",
+   "standard": "sk-doc/sk-create-manual-testing-playbook",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+   "line": 503,
+   "issue": "The DRV-020 root summary still says the dimension coverage signal requires all 4 dimensions. This change made coverage span every configured dimension, custom names included (convergence.md, loop-protocol.md and quick-reference.md were all updated to say so), so the scenario summary is pinned to superseded behavior. Note: the per-feature DRV-020 file is outside this lane.",
+   "fix": {
+    "old": "Verify dimension coverage signal (weight 0.45) requires all 4 dimensions + minStabilizationPasses >= 1.",
+    "new": "Verify dimension coverage signal (weight 0.45) requires every configured dimension (the four by default) + minStabilizationPasses >= 1."
+   }
+  },
+  {
+   "id": "B2-5",
+   "surface": "S4",
+   "standard": "sk-doc/sk-create-manual-testing-playbook",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+   "line": 508,
+   "issue": "DRV-020 expected signals still list 'all 4 dimensions required'. The coverage signal now requires every configured dimension, which is the canonical four by default, plus any custom name. Note: the per-feature DRV-020 file is outside this lane.",
+   "fix": {
+    "old": "Expected signals: Weight 0.45, all 4 dimensions required,",
+    "new": "Expected signals: Weight 0.45, every configured dimension required (the four by default),"
+   }
+  },
+  {
+   "id": "B2-6",
+   "surface": "S2",
+   "standard": "sk-doc/sk-create-skill",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+   "line": 182,
+   "issue": "Phase 2 Step 2 'Check Convergence' still gives the old abbreviated stop order: max iterations, stuck, composite, otherwise CONTINUE. This change rewrote convergence.md Decision Priority into ten steps, adding consecutive failures, convergence-mode off, stop-policy max-iterations, the minIterations floor (minIterationsNotReached), the frontier veto (frontierOpen) and the frontier_drained candidate. The loop protocol's own Step 2 omits the floor and the depth-mode branches. A reader following the protocol would miss that a candidate below minIterations, or under an open frontier, continues. Point Step 2 at convergence.md Decision Priority, or add the floor and frontier veto lines in their order."
+  },
+  {
+   "id": "B2-7",
+   "surface": "S2",
+   "standard": "sk-doc/sk-create-skill",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+   "line": 203,
+   "issue": "The release's Tests and scenarios list says the playbook validator passed 'with the seven new scenarios'. The changelog was added in 7ab0b52 with seven scenarios (DRV-076..082). DRV-083 (frontier-drained-stops-review.md) was added later in 3bbb82c, and the changelog was then updated to describe frontier_drained (line 131) without updating the count. The release now ships eight expansive scenarios, DRV-076 through DRV-083, which the feature catalog's expansive-depth-mode.md also lists.",
+   "evidence": {
+    "cmd": "git -c core.fsmonitor=false log --diff-filter=A --format='%h %s' 21c4b325b5a..102558edb44 -- .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-drained-stops-review.md .skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    "exit": 0,
+    "out": "3bbb82c9d7f docs(system-deep-loop): catalog and test the expansive script changes | 7ab0b520296 docs(system-deep-loop): add review frontier playbooks and changelog"
+   },
+   "fix": {
+    "old": "- Review playbook validator: PASS, with the seven new scenarios.",
+    "new": "- Review playbook validator: PASS, with the eight new scenarios."
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/deep-review/README.md",
+  ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+  ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
+  ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md",
+  ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md",
+  ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
+  ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md",
+  ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+  ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md",
+  ".skilled/skills/system-deep-loop/deep-review/changelog/v1.12.0.0.md",
+  ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/min-iterations-floor.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/custom-review-dimensions.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/cross-mode-anti-convergence-contract.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/state-management/config-management.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/state-management/focus-hijack-guard.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-drained-stops-review.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-review-stop.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-min-iterations-floor.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/extend-completed-review-run.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fan-out-merged-coverage-surfaces.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/custom-dimension-setup-and-universe.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-and-node-dimension-coverage.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/review-next-focus-first-uncovered-dimension.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/review-depth-v2-rollout/stop-gate-custom-dimension-coverage.md",
+  ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+  ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+  ".skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+  ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
+  ".skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md",
+  ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts"
+ ],
+ "not_reviewed": []
+}

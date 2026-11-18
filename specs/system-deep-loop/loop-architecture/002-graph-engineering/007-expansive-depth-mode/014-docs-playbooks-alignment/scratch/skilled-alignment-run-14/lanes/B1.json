@@ -1,0 +1,119 @@
+{
+ "lane": "B1",
+ "findings": [
+  {
+   "id": "B1-1",
+   "surface": "S3",
+   "standard": "sk-doc/sk-create-feature-catalog",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+   "line": 62,
+   "issue": "The Validation And Tests table backs only admission (frontier-admit.vitest) plus DR-068 and DR-072. The leaf also claims the stop veto, the fan-out round-robin deal and partition guard, the frontier graph mirror and the reducer focus pick, but cites none of the suites that prove them: stop-decision.vitest, stop-decision-yaml-contract.vitest, fanout-run.vitest, fanout-merge.vitest, deep-research-reduce-state.vitest, research-depth-mode-golden.vitest. It also omits DR-069, DR-070, DR-071, DR-073 and DR-074, although each of those scenarios names this leaf as its catalog entry. The standard requires 'source-file and validation anchors for every feature claim' (SKILL.md section 8 ALWAYS rule 7). Case: a maintainer checks the fan-out partition claim in section 2 Fan-Out, and the leaf gives no test or scenario that proves it.",
+   "evidence": {
+    "cmd": "grep -rn 'feature-catalog/convergence/expansive-depth-mode.md' .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/*/ ; grep -n 'vitest\\|DR-0' .skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+    "exit": 0,
+    "out": "7 scenarios (DR-068..DR-074) name this leaf as their catalog entry; the leaf's validation table lists frontier-admit.vitest, DR-068 and DR-072 only"
+   }
+  },
+  {
+   "id": "B1-2",
+   "surface": "S3",
+   "standard": "sk-doc/sk-create-feature-catalog",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+   "line": 36,
+   "issue": "HOW IT WORKS leaves out shipped reducer behavior from this diff, although it lists reduce-state.cjs as a source. applyFrontierBudget closes a spent depth band's open nodes as exhausted with reason budget, and rolls an unspent share down but never up. pickFrontierFocus breaks depth ties by fewest visits and then the oldest node, and writes the 'Frontier node <id> (depth N, scope S): <question>' line. renderDashboard adds a '## 6B. FRONTIER' section that shows size, pruned count, revisits and per-band budget. The leaf says only 'a 50/35/15 iteration budget across depths' and 'Next Focus steers to the shallowest open node'. state-format.md and loop-protocol.md describe all three, and so does the v1.16.0.0 changelog, so the catalog entry is the one current-state surface that leaves them out. Case: an operator reads the catalog to find out why open nodes closed as exhausted with reason budget, and the catalog does not explain it.",
+   "evidence": {
+    "cmd": "git -c core.fsmonitor=false diff 21c4b325b5a 102558edb44 -- .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs | grep -n 'applyFrontierBudget\\|6B. FRONTIER\\|pickFrontierFocus'",
+    "exit": 0,
+    "out": "applyFrontierBudget (band close reason budget, roll-down), pickFrontierFocus (depth, visits, iteration, nodeId), '## 6B. FRONTIER' dashboard section all added in this diff"
+   }
+  },
+  {
+   "id": "B1-3",
+   "surface": "S4",
+   "standard": "sk-doc/sk-create-manual-testing-playbook",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+   "line": 87,
+   "issue": "DR-065 links back only to feature-catalog/loop-lifecycle/initialization.md. The matching catalog entry is loop-lifecycle/completed-run-extension.md, which this same diff added and which cites DR-065 as its validation scenario. The cross-reference rule says 'Playbooks should link back to the matching catalog entry when one exists' (sk-create-feature-catalog SKILL.md section 7). Every other new scenario in this lane links its own entry. Case: an operator following DR-065 to the feature's catalog page lands on initialization.md, which covers the lineage modes only.",
+   "evidence": {
+    "cmd": "grep -n -i 'feature-catalog' .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+    "exit": 0,
+    "out": "87:| `../../feature-catalog/loop-lifecycle/initialization.md` | Feature-catalog source describing the lineage modes the config accepts |"
+   },
+   "fix": {
+    "old": "| `../../feature-catalog/loop-lifecycle/initialization.md` | Feature-catalog source describing the lineage modes the config accepts |",
+    "new": "| `../../feature-catalog/loop-lifecycle/completed-run-extension.md` | Feature-catalog entry for completed-run extension |\n| `../../feature-catalog/loop-lifecycle/initialization.md` | Feature-catalog source describing the lineage modes the config accepts |"
+   }
+  },
+  {
+   "id": "B1-4",
+   "surface": "S4",
+   "standard": "sk-doc/sk-create-manual-testing-playbook",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+   "line": 479,
+   "issue": "Two user-visible expansive features in this diff have no scenario. The first is the depth-band budget roll-down: an unspent share rolls down, never up, and an answered node keeps its share rolling. The second is the dashboard '## 6B. FRONTIER' section and its absence on a default run. The v1.16.0.0 changelog headlines both ('See the frontier on the dashboard', 'Budget is shared across three depth bands'), and deep-research-reduce-state.vitest covers both at lines 2033-2175. Yet no DR scenario and no playbook file names 6B, roll-down or applyFrontierBudget. DR-071 reaches the budget only through a reworded visit that ends exhausted. The playbook lens requires that a new feature has a scenario. Case: a release-readiness pass over the playbook never checks the 6B dashboard section or the roll-down rule.",
+   "evidence": {
+    "cmd": "grep -rln -E '6B|roll(s)? down|applyFrontierBudget' .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook; grep -n -E \"rolls an unspent|never rolls a share up|6B. FRONTIER\" .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+    "exit": 0,
+    "out": "playbook grep: no files; tests: 2033 rolls an unspent depth-1 share down to depth 2, 2059 never rolls a share up, 2163/2175 6B. FRONTIER present on expansive and absent on default"
+   }
+  },
+  {
+   "id": "B1-5",
+   "surface": "S4",
+   "standard": "sk-doc/sk-create-manual-testing-playbook",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+   "line": 937,
+   "issue": "The root's numbered H2 sections run 14 FAN-OUT, 16 INTRA ROUTING RECALL, 15 AUTOMATED TEST CROSS-REFERENCE, 15 FEATURE CATALOG CROSS-REFERENCE INDEX: one number out of order and one duplicated. This predates the diff (the base has the same headings), but the diff rewrote the body of the second section 15 and left the numbering alone. The package validator does not flag it. Case: a reader or tool that addresses the root by section number finds two section 15s and a 16 placed before them.",
+   "evidence": {
+    "cmd": "grep -n -E '^## 1[4-6]\\.' .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+    "exit": 0,
+    "out": "879:## 14. FAN-OUT\n937:## 16. INTRA ROUTING RECALL\n1050:## 15. AUTOMATED TEST CROSS-REFERENCE\n1057:## 15. FEATURE CATALOG CROSS-REFERENCE INDEX"
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/deep-research/README.md",
+  ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+  ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
+  ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
+  ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+  ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md",
+  ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.17.0.md",
+  ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/initialization.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/focus-hijack-guard.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/leaf-field-gates.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/focus-alignment-and-findings-gate-read-leaf-fields.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-graph-mirror-closes-unanswered-nodes.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/next-focus-ignores-answered-free-text.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
+  ".skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts",
+  ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs"
+ ],
+ "not_reviewed": []
+}

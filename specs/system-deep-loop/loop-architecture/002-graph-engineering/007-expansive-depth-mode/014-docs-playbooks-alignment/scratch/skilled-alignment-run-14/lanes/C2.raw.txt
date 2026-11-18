@@ -1,0 +1,98 @@
+{
+ "lane": "C2",
+ "findings": [
+  {
+   "id": "C2-1",
+   "surface": "S6",
+   "standard": "sk-doc/sk-create-changelog",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+   "line": 138,
+   "issue": "The v1.13.0.0 entry fails the changelog shape gate that sk-create-changelog SKILL.md validation check 11 requires to pass: line 138 holds a 31-word sentence, line 139 a 24-word sentence (ceiling 22), and the entry averages 10.6 words a sentence (ceiling 10). The sibling entries v1.11.18.0 and v1.12.0.0 pass the same gate.",
+   "evidence": {
+    "cmd": "python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    "exit": 1,
+    "out": "FAIL ... [sentence-max] line 138: a sentence of 31 words, ceiling 22. Split it | [sentence-max] line 139: a sentence of 24 words, ceiling 22. Split it | [sentence-mean] 10.6 words a sentence on average, ceiling 10"
+   }
+  },
+  {
+   "id": "C2-2",
+   "surface": "S6",
+   "standard": "sk-doc/sk-create-changelog",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+   "line": 203,
+   "issue": "The test summary says the playbook validator passed 'with the seven new scenarios', but the release ships eight expansive scenarios, DRV-076 to DRV-083, as the root playbook's overview says. The line was written in 7ab0b520296. DRV-083 (frontier-drained-stops-review.md) came later in 3bbb82c9d7f, and the entry was then extended to describe frontier_drained (line 131) without updating this count.",
+   "evidence": {
+    "cmd": "grep -l -E '^title: \"DRV-0(7[6-9]|8[0-3])' -r .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook | wc -l; git log --oneline --diff-filter=A 21c4b325b5a..102558edb44 -- .../frontier-drained-stops-review.md",
+    "exit": 0,
+    "out": "8 scenario files DRV-076..DRV-083; DRV-083 added in 3bbb82c9d7f, after the changelog line from 7ab0b520296"
+   },
+   "fix": {
+    "old": "- Review playbook validator: PASS, with the seven new scenarios.",
+    "new": "- Review playbook validator: PASS, with the eight new scenarios."
+   }
+  },
+  {
+   "id": "C2-3",
+   "surface": "S6",
+   "standard": "sk-doc/sk-create-changelog",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/changelog/skilled/v4.1.0.0.md",
+   "line": 1,
+   "issue": "No root release note describes the user-visible review capabilities this scope adds: --depth-mode=expansive, --extend=N / completed-continue, custom review dimensions, and the review minIterations floor. The newest root note, v4.1.0.0, is already tagged at 05dbe23f023, and that tag is not an ancestor of HEAD 102558edb44. Under sk-create-changelog SKILL.md line 198, tagging the open release starts a new one, so this work needs a new open root entry before or at merge. The root README section (lines 253-255) does describe all four.",
+   "evidence": {
+    "cmd": "rg -l -- 'depth-mode|expansive depth|completed-continue|minIterationsNotReached|custom review dimension' .skilled/changelog/skilled/; git merge-base --is-ancestor v4.1.0.0 102558edb44",
+    "exit": 1,
+    "out": "no root release note matches; v4.1.0.0 tag is not an ancestor of HEAD"
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/deep-review/README.md",
+  ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+  ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
+  ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md",
+  ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md",
+  ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
+  ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md",
+  ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+  ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md",
+  ".skilled/skills/system-deep-loop/deep-review/changelog/v1.12.0.0.md",
+  ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/min-iterations-floor.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/custom-review-dimensions.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/cross-mode-anti-convergence-contract.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/state-management/config-management.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/state-management/focus-hijack-guard.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-drained-stops-review.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-review-stop.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-min-iterations-floor.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/extend-completed-review-run.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fan-out-merged-coverage-surfaces.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/custom-dimension-setup-and-universe.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-and-node-dimension-coverage.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/review-next-focus-first-uncovered-dimension.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/review-depth-v2-rollout/stop-gate-custom-dimension-coverage.md",
+  ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+  ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+  ".skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+  ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
+  ".skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md",
+  ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts"
+ ],
+ "not_reviewed": []
+}

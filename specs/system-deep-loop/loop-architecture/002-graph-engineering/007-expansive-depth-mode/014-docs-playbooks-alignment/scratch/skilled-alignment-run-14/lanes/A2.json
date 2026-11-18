@@ -1,0 +1,76 @@
+{
+ "lane": "A2",
+ "findings": [
+  {
+   "id": "A2-1",
+   "surface": "S1",
+   "standard": "sk-code",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+   "line": 1963,
+   "issue": "The review reducer's derived budget close in applyReviewFrontierBudget has no test: no test reaches a band's share and closes its open nodes as exhausted/budget, and none covers the unspent-share roll-down to the next band. The only review test with an exhausted node (deep-review-state-reducer.vitest.ts:1009) writes status 'exhausted', reason 'budget' straight into the store, so the projection path never runs. The research twin applyFrontierBudget has both tests in deep-research-reduce-state.vitest.ts ('never rolls a share up...', 'rolls an unspent depth-1 share down to depth 2'). The behavior is correct today, as the probe shows, but nothing pins it. Case: an expansive review with maxIterations 4 and two completed visits to one depth-1 node; F-1-001 should close as exhausted/budget, and no test asserts it.",
+   "evidence": {
+    "cmd": "cd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && node /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/skilled-alignment-run-14/A2/probe-budget.cjs; rg -n 'budget|exhausted' .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts",
+    "exit": 0,
+    "out": "[[\"F-1-001\",\"exhausted\",\"budget\"],[\"F-2-002\",\"open\",null]] {\"depth1\":{\"allotted\":2,\"spent\":2},\"depth2\":{\"allotted\":1.4,\"spent\":0},\"depth3\":{\"allotted\":0.6,\"spent\":0}} F-2-002; the test file has only store-written exhausted rows (:1009, :1133) and a dashboard budget assertion (:1194)"
+   }
+  },
+  {
+   "id": "A2-2",
+   "surface": "S1",
+   "standard": "sk-code",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts",
+   "line": 1025,
+   "issue": "The 'extension-budget' rule checks only that the six fields are present and are uint32. It never checks them against each other or against the payload's continuedFromRun. Both reducers then adopt newMaxIterations as the run's maxIterations unconditionally (deep-research-reducer.ts:516, deep-review-reducer.ts:504), so a recorded extension can lower the ceiling or raise it to any uint32. The same gap is in deep-review-ledger-schema.ts:891. Both producers derive newMaxIterations = continuedFromRun + addedIterations (deep-research.yaml:522, deep-review.yaml:550). The invariant to enforce is therefore newMaxIterations === continuedFromRun + addedIterations, not priorMaxIterations + addedIterations, which would reject a legitimate extension of a run that stopped before its cap. Kept at P2: the schema comment claims to reject a missing or malformed field and does reject that class. It makes no consistency claim, and the only producers are the workflow YAMLs, so no out-of-contract caller is in reach. Case: a run_extended row with continuedFromRun 4, addedIterations 3, newMaxIterations 1000 validates and projects maxIterations 1000.",
+   "evidence": {
+    "cmd": "cd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration/.skilled/skills/system-deep-loop/runtime && npx tsx /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/skilled-alignment-run-14/A2/probe.mts",
+    "exit": 0,
+    "out": "consistent ACCEPTED newMaxIterations=7\nlowered ACCEPTED newMaxIterations=1\noverextended ACCEPTED newMaxIterations=1000"
+   }
+  },
+  {
+   "id": "A2-3",
+   "surface": "S1",
+   "standard": "sk-code",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+   "line": 1906,
+   "issue": "readReviewFrontierStore swallows a malformed frontier-nodes.jsonl row with a bare catch and has no warning channel: it returns only {nodes, history}. The same reducer reports corruptionWarnings for a torn state-log line (parseJsonlDetailed, line 165). A torn row that was a node's only row silently removes that node: it leaves the frontier, it is never filed as open search debt, and the dashboard's frontier size drops with no trace, so the run can treat pending depth as done. The research twin readFrontierNodeStore (deep-research/scripts/reduce-state.cjs:2424) has the same silent skip. Case: a crash mid-append in frontier-admit leaves a truncated last line for a freshly admitted node.",
+   "evidence": {
+    "cmd": "cd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && node /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/skilled-alignment-run-14/A2/probe-store.cjs",
+    "exit": 0,
+    "out": "keys=nodes,history nodes=F-1-001 (the store held F-1-001 and a truncated F-1-002 row; F-1-002 vanished with no warning)"
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reducers.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-reducers.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-graph-upsert.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-legacy-seam.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/coverage-graph-signals.vitest.ts"
+ ],
+ "not_reviewed": []
+}

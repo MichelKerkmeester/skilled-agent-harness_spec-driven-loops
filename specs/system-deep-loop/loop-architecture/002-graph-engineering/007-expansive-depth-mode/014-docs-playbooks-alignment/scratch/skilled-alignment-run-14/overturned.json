@@ -1,0 +1,60 @@
+[
+  {
+    "id": "C3-2",
+    "source_id": "C3-2",
+    "lane": "C3",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "225",
+    "issue": "The new Section 9 calls deep-research, deep-review and runtime 'the three mode packages'. The hub has two modes, and runtime/ is the shared infrastructure layer. Line 65 of the same playbook says mode-registry.json holds exactly 2 active modes, and SKILL.md says the same. The scenario and category counts in the table are correct: 72/9, 70/10 and 56/12 match the package indexes.",
+    "evidence": {
+      "cmd": "grep -n \"three mode packages\\|exactly 2 active modes\" .skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+      "exit": 0,
+      "out": "65:4. `.skilled/skills/system-deep-loop/mode-registry.json` contains exactly 2 active modes in its `modes` array.\n225:The three mode packages hold the remaining operator scenarios for this skill."
+    },
+    "fix": {
+      "old": "The three mode packages hold the remaining operator scenarios for this skill.",
+      "new": "The two mode packages and the shared runtime package hold the remaining operator scenarios for this skill."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "duplicate",
+      "note": "Duplicate of B3-3: same file (system-deep-loop/manual-testing-playbook/manual-testing-playbook.md:225), same 'three mode packages' line and the same fix. I read line 225 and it is unchanged.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "C2-2",
+    "source_id": "C2-2",
+    "lane": "C2",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    "line": "203",
+    "issue": "The test summary says the playbook validator passed 'with the seven new scenarios', but the release ships eight expansive scenarios, DRV-076 to DRV-083, as the root playbook's overview says. The line was written in 7ab0b520296. DRV-083 (frontier-drained-stops-review.md) came later in 3bbb82c9d7f, and the entry was then extended to describe frontier_drained (line 131) without updating this count.",
+    "evidence": {
+      "cmd": "grep -l -E '^title: \"DRV-0(7[6-9]|8[0-3])' -r .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook | wc -l; git log --oneline --diff-filter=A 21c4b325b5a..102558edb44 -- .../frontier-drained-stops-review.md",
+      "exit": 0,
+      "out": "8 scenario files DRV-076..DRV-083; DRV-083 added in 3bbb82c9d7f, after the changelog line from 7ab0b520296"
+    },
+    "fix": {
+      "old": "- Review playbook validator: PASS, with the seven new scenarios.",
+      "new": "- Review playbook validator: PASS, with the eight new scenarios."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "duplicate",
+      "note": "Duplicate of B2-7: same file (deep-review/changelog/v1.13.0.0.md:203), same 'seven new scenarios' line and the same old/new fix. I read line 203 and it still reads 'PASS, with the seven new scenarios.'",
+      "lane_severity": "P2"
+    }
+  }
+]

@@ -1,0 +1,58 @@
+{
+ "lane": "A4",
+ "findings": [
+  {
+   "id": "A4-1",
+   "surface": "S1",
+   "standard": "sk-code",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+   "line": 111,
+   "issue": "Battery S1-package-check failure cause. The @spec-kit/cli dist (entry default) was attested on the source tree just before commit 0d41845988f (2026-11-17 21:59). That commit is inside 21c4b325b5a..102558edb44 and is the only later commit to change a watched cli input: optimizer/optimizer-manifest.json, which adds antiConvergence.depthMode to lockedFields and to the anti-convergence lockedFields list. So the stale source is in this run's scope, and the fix is a local rebuild. dist/ is gitignored (.gitignore:60), so no committed artifact is wrong. The manifest is also the only watched file whose mtime (22:15) is later than dist/tsconfig.tsbuildinfo and the attestation record (19:34). No build was run.",
+   "evidence": {
+    "cmd": "node .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs check --package system-spec-kit/runtime/cli --entry default --json --no-write; then recompute the helper's sorted hashSourceFiles over the watched files at git HEAD and at 0d41845988f^",
+    "exit": 69,
+    "out": "status=stale, 'source content differs from the attested build'; sorted source hash at 0d41845988f^ = bb938a46... (equals the stored attestation sourceHash); at HEAD = cd3d9e72... (equals the current worktree; every watched file is identical to HEAD); manifest is the only watched file newer than the build"
+   }
+  },
+  {
+   "id": "A4-2",
+   "surface": "S1",
+   "standard": "sk-code",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts",
+   "line": 97,
+   "issue": "The regex /\\n  depth_mode: \"\\[default|expansive\\]/ has an unescaped '|', so it parses as the alternation ('\\n  depth_mode: \"[default' OR 'expansive]'), not the literal '[default|expansive]' it means to pin. Case: if the depth_mode user_inputs line is removed and any other 'expansive]' text exists anywhere in the YAML, the assertion still passes. Neither YAML has such text today, so the check currently catches removal: a latent weakness. The same pattern is at line 135 (deep-review); apply the same fix there.",
+   "evidence": {
+    "cmd": "node: strip the depth_mode user_inputs line from deep-research.yaml and deep-review.yaml, then test the loose and escaped regexes",
+    "exit": 0,
+    "out": "literal present: true; loose regex with the line removed: false; escaped regex with the line removed: false (latent only)"
+   },
+   "fix": {
+    "old": "expect(yaml).toMatch(/\\n  depth_mode: \"\\[default|expansive\\]/);",
+    "new": "expect(yaml).toMatch(/\\n  depth_mode: \"\\[default\\|expansive\\]/);"
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/continuity-thread.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-projections-contract.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-deltas-contract.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/loop-heartbeat.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/optimizer-manifest-anti-convergence.vitest.ts",
+  ".skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts",
+  ".skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-contract-parity.vitest.ts",
+  ".skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-reducer-schema.vitest.ts"
+ ],
+ "not_reviewed": []
+}
