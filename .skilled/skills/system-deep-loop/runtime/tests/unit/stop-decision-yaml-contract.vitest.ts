@@ -114,6 +114,14 @@ describe('deep-research binds depth_mode beside convergence_mode', () => {
     expect(presentation).toContain('|-- --depth-mode=default|expansive -> antiConvergence.depthMode = value');
     expect(presentation).toContain('- depth_mode = [from flag, marker, or default `default`');
   });
+
+  it('names the depth keys config creation writes in the Tier-1 shape and the defaults line', () => {
+    const tier1 = presentation.split('\n').find((line) => line.includes('**Tier 1')) ?? '';
+    expect(tier1).toContain('`antiConvergence.depthMode`');
+    expect(tier1).toContain('`expansiveDepth.*`');
+    const defaults = presentation.split('\n').find((line) => line.includes('+-- Defaults:')) ?? '';
+    expect(defaults).toContain('antiConvergence.depthMode=`default`');
+  });
 });
 
 // The review loop binds the same opt-in depth mode on every surface the
@@ -143,6 +151,22 @@ describe('deep-review binds depth_mode beside convergence_mode', () => {
     expect(presentation).toContain('| `depth_mode`');
     expect(presentation).toContain('|-- --depth-mode=default|expansive -> antiConvergence.depthMode = value');
     expect(presentation).toContain('- depth_mode = [from flag, marker, or default `default`');
+  });
+
+  it('names the depth keys config creation writes in the Tier-1 shape and the defaults line', () => {
+    const tier1 = presentation.split('\n').find((line) => line.includes('**Tier 1')) ?? '';
+    expect(tier1).toContain('`antiConvergence.depthMode`');
+    expect(tier1).toContain('`expansiveDepth.*`');
+    const defaults = presentation.split('\n').find((line) => line.includes('+-- Defaults:')) ?? '';
+    expect(defaults).toContain('antiConvergence.depthMode=`default`');
+  });
+
+  it('samples the review default iteration cap and the frontier_scope marker fan-out writes', () => {
+    const marker = presentation.slice(presentation.indexOf('PRE-BOUND SETUP ANSWERS:\n'));
+    const block = marker.slice(0, marker.indexOf('```'));
+    expect(block).toMatch(/\n  maxIterations: 7\n/);
+    expect(block).toContain('frontier_scope:');
+    expect(presentation).toContain('| `frontier_scope`');
   });
 
   it('passes the depth mode to the review fan-out runner', () => {
@@ -303,5 +327,46 @@ describe('deep-review wires the expansive frontier steps', () => {
     const contract =
       wf.phase_loop.steps.step_handle_convergence.if_stop.if_divergent_eligible.eligibility_contract;
     expect(contract.frontier_gate).toContain('no open or active node');
+  });
+});
+
+// The prose order in step_check_convergence is what an operator reads to learn
+// why a run kept going, so it must name every branch convergence.cjs takes, in
+// the order the script takes them.
+describe.each(FILES)('%s stop-order prose follows the script', (file) => {
+  const text = readFileSync(resolve(ASSETS, file), 'utf8');
+  const step = stepText(text, 'step_check_convergence');
+
+  it('names the frontierOpen veto after the floor and before the guards or gates', () => {
+    const floor = step.indexOf('minIterationsNotReached');
+    const veto = step.indexOf('frontierOpen');
+    const after = file === 'deep-review.yaml'
+      ? step.indexOf('legal-stop gates run on a candidate')
+      : step.indexOf('qualityGuardFailed');
+    expect(floor).toBeGreaterThan(-1);
+    expect(veto).toBeGreaterThan(floor);
+    expect(after).toBeGreaterThan(veto);
+  });
+});
+
+describe('deep-review gate rows cover every legal-stop gate', () => {
+  it('lists all nine gates convergence.cjs evaluates in gate_results_array_json', () => {
+    const text = readFileSync(resolve(ASSETS, 'deep-review.yaml'), 'utf8');
+    const line = text.split('\n').find((entry) => entry.includes('- gate_results_array_json:')) ?? '';
+    for (const gate of [
+      'convergenceGate', 'dimensionCoverageGate', 'p0ResolutionGate', 'evidenceDensityGate',
+      'hotspotSaturationGate', 'claimAdjudicationGate', 'fixCompletenessReplayGate',
+      'candidateCoverageGate', 'graphlessFallbackGate',
+    ]) {
+      expect(line).toContain(gate);
+    }
+  });
+});
+
+describe('deep-research snapshot path pattern', () => {
+  it('keys the synthesis snapshot by generation and continuedFromRun, as the snapshot step writes it', () => {
+    const text = readFileSync(resolve(ASSETS, 'deep-research.yaml'), 'utf8');
+    expect(text).toContain('synthesis_snapshot_pattern: "{artifact_dir}/synthesis-v{generation}-r{continuedFromRun}.md"');
+    expect(text).toContain('synthesis-v${GENERATION}-r{continued_from_run}.md');
   });
 });

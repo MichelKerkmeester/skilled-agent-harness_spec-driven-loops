@@ -573,7 +573,8 @@ workflow:
             };
             fs.writeFileSync(path.join(workDir, "event.json"), JSON.stringify(event));
             fs.writeFileSync(path.join(workDir, "config.json"), JSON.stringify(next, null, 2) + "\n");
-            const stopPolicy = config.antiConvergence && config.antiConvergence.stopPolicy || "convergence";
+            // Config creation writes the stop policy at the top level, beside maxIterations.
+            const stopPolicy = config.stopPolicy || "convergence";
             // Review has no question inbox, so under convergence an unchanged dimension set
             // can re-stop on all_dimensions_clean before the new budget is used.
             const warning = stopPolicy === "convergence"
@@ -1242,6 +1243,7 @@ workflow:
           3a. if stop_policy == "max-iterations" AND iteration_count < max_iterations: the vote is telemetry only and the decision is CONTINUE.
           4. a STOP candidate exists when every dimension is clean (all_dimensions_clean) or the weighted vote passes (composite_converged). The vote cutoffs follow the configured convergenceThreshold.
           4a. if iteration_count < min_iterations: CONTINUE (minIterationsNotReached). min_iterations is config.minIterations, else antiConvergence.minIterations, capped at max_iterations; like research, the floor runs on a candidate before the legal-stop gates.
+          4b. if depth_mode == "expansive" and the frontier still holds an open or active node: CONTINUE (frontierOpen). It vetoes every review candidate, all_dimensions_clean included, and never creates a stop.
           5. the nine legal-stop gates run on a candidate: convergenceGate, dimensionCoverageGate, p0ResolutionGate, evidenceDensityGate, hotspotSaturationGate, claimAdjudicationGate, fixCompletenessReplayGate, candidateCoverageGate, graphlessFallbackGate. Any failed gate gives BLOCKED (blockedStop).
           6. the graph decision settles the candidate: STOP_ALLOWED keeps STOP, STOP_BLOCKED gives BLOCKED, CONTINUE or a missing graph decision gives CONTINUE.
           Bind the outputs from stop_decision, where G is stop_decision.gates and I is stop_decision.inputs.review:
@@ -1316,7 +1318,7 @@ workflow:
           - graph_blockers_csv: "Comma-separated graph blocker summary"
           - recovery_strategy: "One-line hint describing the next review action when decision == BLOCKED or STUCK_RECOVERY"
           - recovery_strategy_code: "Slug form of recovery_strategy for the ledger code fields"
-          - gate_results_array_json: "One {gateId,status,reasonCode,evidenceDigest} row per legal-stop gate (convergenceGate, dimensionCoverageGate, evidenceDensityGate, hotspotSaturationGate, claimAdjudicationGate, fixCompletenessReplayGate, candidateCoverageGate, graphlessFallbackGate), with at least one fail row when decision == BLOCKED"
+          - gate_results_array_json: "One {gateId,status,reasonCode,evidenceDigest} row per legal-stop gate (convergenceGate, dimensionCoverageGate, p0ResolutionGate, evidenceDensityGate, hotspotSaturationGate, claimAdjudicationGate, fixCompletenessReplayGate, candidateCoverageGate, graphlessFallbackGate), with at least one fail row when decision == BLOCKED"
           - active_total_count: "p0_count + p1_count + p2_count, the active findings total"
 
       step_emit_blocked_stop:
