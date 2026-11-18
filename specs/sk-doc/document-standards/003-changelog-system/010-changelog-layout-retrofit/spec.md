@@ -110,7 +110,7 @@ Every skill and release changelog, and every GitHub release body, reads in the v
 | 2 | 002-skilled-release-line/ | 62 Skilled release entries | Complete |
 | 3 | 003-sk-doc-changelogs/ | 306 sk-doc changelogs | Complete |
 | 4 | 004-cli-external-orchestration-changelogs/ | 216 cli-external-orchestration changelogs | Complete |
-| 5 | 005-sk-code-changelogs/ | 205 sk-code changelogs | Pending |
+| 5 | 005-sk-code-changelogs/ | 205 sk-code changelogs | Complete |
 | 6 | 006-mcp-tooling-changelogs/ | 171 mcp-tooling changelogs | Pending |
 | 7 | 007-system-spec-kit-changelogs/ | 169 system-spec-kit changelogs | Pending |
 | 8 | 008-system-deep-loop-changelogs/ | 148 system-deep-loop changelogs | Pending |
