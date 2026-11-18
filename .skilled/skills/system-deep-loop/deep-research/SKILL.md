@@ -2,7 +2,7 @@
 name: deep-research
 description: "Autonomous deep-research loop: iterative investigation, externalized state, convergence detection, fresh context per pass."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
-argument-hint: "[topic] [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
+argument-hint: "[topic] [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--depth-mode=default|expansive] [--extend=N]"
 version: 1.16.0.0
 ---
 

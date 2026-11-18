@@ -10,7 +10,7 @@ trigger_phrases:
   - "research synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.14.19.0
+version: 1.14.20.0
 ---
 
 # Loop Protocol Reference
@@ -220,7 +220,7 @@ This summary is prepended to the dispatch context (Step 3) to ensure the agent h
 
 #### Step 2c: Quality Guard Check
 
-When the convergence script forms a STOP candidate, it evaluates the quality guards itself (see convergence.md §2, Decision Priority steps 8 and 9):
+When the convergence script forms a STOP candidate, it evaluates the quality guards itself (see convergence.md §3, Decision Order steps 8 and 9):
 1. The guards are `sourceDiversity`, `focusAlignment` and `singleWeakSource`
 2. If **all guards pass**: the graph decision settles the stop
 3. If **any guard fails**: the decision becomes CONTINUE with reasonDetail `qualityGuardFailed`, and `blockedBy` names the failed guards

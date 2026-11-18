@@ -7,14 +7,14 @@ trigger_phrases:
   - "legal-stop bundle"
   - "source diversity check"
   - "blocked-stop event"
-version: 1.14.2.0
+version: 1.14.3.0
 ---
 
 # Quality guards
 
 ## 1. OVERVIEW
 
-Blocks premature stops until source diversity, focus alignment, and weak-source checks all pass.
+Blocks premature stops until source diversity and focus alignment pass. The bundle also carries a reserved single-weak-source entry that reports `notEvaluated`.
 
 Quality guards sit after the convergence vote and before synthesis. They make sure a statistically quiet loop still has enough evidence quality and enough question coverage to stop safely.
 
@@ -22,7 +22,7 @@ Quality guards sit after the convergence vote and before synthesis. They make su
 
 ## 2. HOW IT WORKS
 
-The legal-stop bundle is explicit. convergence.cjs checks that each key question has evidence-backed coverage, that research stayed aligned with the original question set, and that the answered set is not leaning on a single tentative source. A stop is legal only when both the convergence gate and these guard checks pass together.
+The legal-stop bundle is explicit. convergence.cjs checks that each key question has evidence-backed coverage and that research stayed aligned with the key question list in the latest iteration record. The bundle also carries a reserved single-weak-source entry that reports `notEvaluated`. A stop is legal only when both the convergence gate and these guard checks pass together.
 
 Guard failures are visible in the stop decision, not quiet side effects. convergence.cjs reports the failed guard as `qualityGuardFailed` and names it in `stop_decision.blockedBy`, and the workflow logs the failed guard names when it continues. A failed guard writes no event, neither `guard_violation` nor `blocked_stop`. Only a graph `STOP_BLOCKED` records `blocked_stop`, and that event carries gate results, blockers, recovery guidance, session identifier, and generation so the reducer and dashboard can show why the loop had to continue.
 
@@ -34,7 +34,7 @@ Guard failures are visible in the stop decision, not quiet side effects. converg
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Reference | Defines the legal-stop gate bundle and the source-diversity, focus-alignment, and weak-source rules. |
+| `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Reference | Defines the legal-stop gate bundle and the source-diversity and focus-alignment rules. |
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Defines when the guards run and how blocked-stop events are persisted. |
 | `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Persists `blocked_stop` events and logs failed guard names. Confirm mode adds approval gates. |
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Surfaces blocked-stop history and recovery hints into strategy and dashboard outputs. |

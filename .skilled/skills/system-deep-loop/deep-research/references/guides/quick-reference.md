@@ -10,7 +10,7 @@ trigger_phrases:
   - "research progress visualization"
 importance_tier: normal
 contextType: general
-version: 1.14.11.0
+version: 1.14.12.0
 ---
 
 # Deep Research Quick Reference
@@ -57,6 +57,8 @@ Operator contract source of truth for this page:
 | `--max-iterations` | 10 | Maximum loop iterations |
 | `--convergence` | 0.05 | Stop when avg newInfoRatio below this |
 | `--depth-mode` | default | `expansive` grows a depth-capped frontier of follow-up questions and vetoes a convergence stop while nodes stay open. A defaulted `--max-iterations` is sized from the seed, up to 24; an explicit one always wins |
+| `--extend` | none | Reopens a completed run in place for N more iterations under lineage mode `completed-continue`. Keeps the `sessionId` and generation, records one `run_extended` event and keeps the prior synthesis as `research/synthesis-v{generation}-r{continuedFromRun}.md`. Refused with fan-out |
+| `--extend-minutes` | prior budget | Minutes added to the duration budget on an extension. The new budget is `max(prior, elapsed) + M`. Valid only with `--extend` |
 | `--spec-folder` | auto | Target spec folder path |
 | `progressiveSynthesis` | true | Allow incremental `research/research.md` updates before final synthesis |
 

@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.16.4.0
+version: 1.16.5.0
 ---
 
 # deep-research: Manual Testing Playbook
@@ -603,10 +603,10 @@ Expected signals: the STOP candidate becomes `CONTINUE` with reasonDetail `quali
 ### DR-021 | Quality Guard — Focus Alignment
 
 #### Description
-Verify that convergence STOP is blocked when answered questions don't map to original key questions.
+Verify that convergence STOP is blocked when an iteration answers a question its key question list does not hold.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the focus alignment quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard compares answered questions against the original key questions from initialization, and that a mismatch turns the decision into CONTINUE with reasonDetail qualityGuardFailed and focusAlignment in blockedBy, and writes no event. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
+Prompt summary: As a manual-testing orchestrator, validate the focus alignment quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard compares the answered questions against the key questions in the latest iteration record that names both lists, and that a mismatch turns the decision into CONTINUE with reasonDetail qualityGuardFailed and focusAlignment in blockedBy, and writes no event. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
 
 Expected signals: the STOP candidate becomes `CONTINUE` with reasonDetail `qualityGuardFailed` and `focusAlignment` in blockedBy, and no event is written, misaligned question flagged in violation detail.
 
@@ -616,12 +616,12 @@ Expected signals: the STOP candidate becomes `CONTINUE` with reasonDetail `quali
 ### DR-022 | Quality Guard — No Single-Weak-Source
 
 #### Description
-Verify that convergence STOP is blocked when an answered question relies solely on a tentative source.
+Verify that a question backed by a single source cannot close the loop and that the reserved singleWeakSource guard reports notEvaluated.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the no-single-weak-source quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard checks each answered question backed by exactly one source for sourceStrength == "tentative", and that a violation turns the decision into CONTINUE with reasonDetail qualityGuardFailed and singleWeakSource in blockedBy, and writes no event. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
+Prompt summary: As a manual-testing orchestrator, validate the no-single-weak-source quality guard entry for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the source diversity guard refuses an answered question with fewer than two sources, that the decision becomes CONTINUE with reasonDetail qualityGuardFailed and sourceDiversity in blockedBy, that no event is written, and that the reserved singleWeakSource entry reports notEvaluated. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
 
-Expected signals: the STOP candidate becomes `CONTINUE` with reasonDetail `qualityGuardFailed` and `singleWeakSource` in blockedBy, and no event is written, violated question targeted for stronger sourcing in next iteration.
+Expected signals: the STOP candidate becomes `CONTINUE` with reasonDetail `qualityGuardFailed` and `sourceDiversity` in blockedBy, no event is written, the single-source question is targeted for stronger sourcing in the next iteration, and `singleWeakSource` reports `notEvaluated`.
 
 #### Test Execution
 > **Feature File:** [DR-022](../manual-testing-playbook/convergence-and-recovery/quality-guard-no-single-weak-source.md)
@@ -632,7 +632,7 @@ Expected signals: the STOP candidate becomes `CONTINUE` with reasonDetail `quali
 Verify the full override path: composite score >0.60 triggers STOP, quality guards check fires, guard fails, decision overridden to CONTINUE.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the convergence-guard override path for deep-research. Trace the full sequence: composite convergence votes STOP (score >0.60), then evaluateResearchQualityGuards runs, then a guard violation is detected, then the STOP is overridden to CONTINUE and the loop resumes against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify this flow exists in convergence.md Decision Priority step 8, convergence.cjs, and loop-protocol.md Step 2c. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
+Prompt summary: As a manual-testing orchestrator, validate the convergence-guard override path for deep-research. Trace the full sequence: composite convergence votes STOP (score >0.60), then evaluateResearchQualityGuards runs, then a guard violation is detected, then the STOP is overridden to CONTINUE and the loop resumes against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify this flow exists in convergence.md Decision Order step 8, convergence.cjs, and loop-protocol.md Step 2c. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
 
 Expected signals: a weighted stop score above 0.60 nominates STOP, the failed guard turns it into `CONTINUE` with reasonDetail `qualityGuardFailed` and the failed guards in blockedBy, the workflow logs `Quality guard failed: <guards>. Continuing.` and writes no event, and the loop resumes.
 
