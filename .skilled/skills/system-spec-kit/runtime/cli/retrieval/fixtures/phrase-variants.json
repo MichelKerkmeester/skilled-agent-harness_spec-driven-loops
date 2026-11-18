@@ -1,5 +1,5 @@
 {
-  "manifestHash": "537a5c9d01fc8977047d5ef1f479d28e54790fa814711267c4ccced1a94df347",
+  "manifestHash": "9a17b6508434cdd0f7155487661ed69b10f1d59074db854e774da6209445f46d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8405,6 +8405,9 @@
     "additive migration": [
       "additive migration"
     ],
+    "additive skill advertising advisor": [
+      "additive skill advertising advisor"
+    ],
     "additive validator change plan": [
       "additive validator change plan"
     ],
@@ -8898,6 +8901,9 @@
     ],
     "advisor compatibility export": [
       "advisor compatibility export"
+    ],
+    "advisor confidence threshold daemon start": [
+      "advisor confidence threshold daemon start"
     ],
     "advisor consumer cutover": [
       "advisor consumer cutover"
@@ -9451,6 +9457,9 @@
     "advisor parity verdict": [
       "advisor parity verdict"
     ],
+    "advisor pasted reply flips route": [
+      "advisor pasted reply flips route"
+    ],
     "advisor path migration": [
       "advisor path migration"
     ],
@@ -10000,6 +10009,9 @@
     ],
     "advisor trust state vocabulary unification": [
       "advisor trust-state vocabulary unification"
+    ],
+    "advisor unhandled hook exception fallback": [
+      "advisor unhandled hook exception fallback"
     ],
     "advisor unification": [
       "advisor unification"
@@ -30098,6 +30110,9 @@
     "confidence floor 0 82": [
       "confidence floor 0.82"
     ],
+    "confidence floor counter": [
+      "confidence floor counter"
+    ],
     "confidence reranker weight removal": [
       "confidence reranker weight removal"
     ],
@@ -32253,6 +32268,21 @@
     ],
     "crash loop guard launcher": [
       "crash loop guard launcher"
+    ],
+    "crash path fallback": [
+      "crash path fallback"
+    ],
+    "crash path fallback goal": [
+      "crash path fallback goal"
+    ],
+    "crash path fallback implementation summary": [
+      "crash path fallback implementation summary"
+    ],
+    "crash path fallback plan": [
+      "crash path fallback plan"
+    ],
+    "crash path fallback tasks": [
+      "crash path fallback tasks"
     ],
     "crash safe json state": [
       "crash-safe JSON state"
@@ -35089,6 +35119,9 @@
     ],
     "decision gate not implementation": [
       "decision gate not implementation"
+    ],
+    "decision model skill picker": [
+      "decision model skill picker"
     ],
     "decision prefix registry": [
       "decision prefix registry"
@@ -53108,6 +53141,21 @@
     "follow up review fixes tasks": [
       "follow up review fixes tasks"
     ],
+    "follow up routing benchmark": [
+      "follow-up routing benchmark"
+    ],
+    "follow up routing benchmark goal": [
+      "follow-up routing benchmark goal"
+    ],
+    "follow up routing benchmark implementation summary": [
+      "follow-up routing benchmark implementation summary"
+    ],
+    "follow up routing benchmark plan": [
+      "follow-up routing benchmark plan"
+    ],
+    "follow up routing benchmark tasks": [
+      "follow-up routing benchmark tasks"
+    ],
     "followable spec templates": [
       "followable spec templates"
     ],
@@ -67494,6 +67542,9 @@
     "luna sol rename plan": [
       "luna sol rename plan"
     ],
+    "luna swarm advisor refinement": [
+      "luna swarm advisor refinement"
+    ],
     "machine and consumer cutover implementation summary": [
       "machine and consumer cutover implementation summary"
     ],
@@ -81704,6 +81755,21 @@
     "past due tasks": [
       "past-due tasks"
     ],
+    "pasted context stripping": [
+      "pasted context stripping"
+    ],
+    "pasted context stripping goal": [
+      "pasted context stripping goal"
+    ],
+    "pasted context stripping implementation summary": [
+      "pasted context stripping implementation summary"
+    ],
+    "pasted context stripping plan": [
+      "pasted context stripping plan"
+    ],
+    "pasted context stripping tasks": [
+      "pasted context stripping tasks"
+    ],
     "patch a notion page s properties": [
       "patch a Notion page's properties"
     ],
@@ -83997,6 +84063,9 @@
     "phase 2 parent goal budget": [
       "phase 2 parent goal budget"
     ],
+    "phase 2 pasted context stripping": [
+      "phase 2 pasted context stripping"
+    ],
     "phase 2 path extraction fix": [
       "phase 2 path extraction fix"
     ],
@@ -84501,6 +84570,9 @@
     "phase 3 feature catalog findings": [
       "phase 3 feature catalog findings"
     ],
+    "phase 3 follow up routing benchmark": [
+      "phase 3 follow-up routing benchmark"
+    ],
     "phase 3 frontend content": [
       "phase 3 frontend content"
     ],
@@ -84815,6 +84887,9 @@
     ],
     "phase 4 convert plain skill": [
       "phase 4 convert plain skill"
+    ],
+    "phase 4 crash path fallback": [
+      "phase 4 crash path fallback"
     ],
     "phase 4 debt report and hermes gate": [
       "phase 4 debt report and hermes gate"
@@ -86857,6 +86932,31 @@
     "pi completion evidence": [
       "pi completion evidence"
     ],
+    "pi context decisions": [
+      "pi-context-decisions"
+    ],
+    "pi context decisions deep research": [
+      "pi context decisions deep research"
+    ],
+    "pi context decisions delegation strategy": [
+      "pi-context-decisions delegation strategy"
+    ],
+    "pi context decisions plan check": [
+      "pi-context-decisions plan check"
+    ],
+    "pi context decisions research": [
+      "pi context decisions research",
+      "pi-context-decisions research"
+    ],
+    "pi context decisions research plan": [
+      "pi-context-decisions research plan"
+    ],
+    "pi context decisions research summary": [
+      "pi-context-decisions research summary"
+    ],
+    "pi context decisions research tasks": [
+      "pi-context-decisions research tasks"
+    ],
     "pi contract pin": [
       "pi contract pin"
     ],
@@ -87985,6 +88085,21 @@
     ],
     "plan time parent gate": [
       "plan-time parent gate"
+    ],
+    "plan validation research": [
+      "plan validation research"
+    ],
+    "plan validation research goal": [
+      "plan validation research goal"
+    ],
+    "plan validation research implementation summary": [
+      "plan validation research implementation summary"
+    ],
+    "plan validation research plan": [
+      "plan validation research plan"
+    ],
+    "plan validation research tasks": [
+      "plan validation research tasks"
     ],
     "planned not built": [
       "planned not built"
@@ -115640,6 +115755,9 @@
     "skgit advisory skip": [
       "SKGIT_ADVISORY_SKIP"
     ],
+    "skill advertisement filtering research": [
+      "skill advertisement filtering research"
+    ],
     "skill advisor": [
       "skill advisor"
     ],
@@ -116038,6 +116156,9 @@
     ],
     "skill advisor refinement": [
       "skill advisor refinement"
+    ],
+    "skill advisor refinement from pi context decisions": [
+      "skill advisor refinement from pi-context-decisions"
     ],
     "skill advisor regression py": [
       "skill_advisor_regression.py"
@@ -123109,6 +123230,9 @@
     ],
     "strip processing tag": [
       "strip processing tag"
+    ],
+    "strip reported speech before scoring": [
+      "strip reported speech before scoring"
     ],
     "strip yaml frontmatter": [
       "strip yaml frontmatter"
@@ -134567,6 +134691,9 @@
     ],
     "wave transitions hotspot scoring": [
       "wave transitions hotspot scoring"
+    ],
+    "weak follow up guard": [
+      "weak follow-up guard"
     ],
     "weak model authoring baseline": [
       "weak model authoring baseline"
