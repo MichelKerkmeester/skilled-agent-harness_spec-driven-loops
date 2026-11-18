@@ -33,7 +33,7 @@ trigger_phrases:
   - "vibe advisor adapter"
 importance_tier: normal
 contextType: reference
-version: 3.6.22.0
+version: 3.6.23.0
 ---
 
 # Skill Advisor: Prompt Routing Context
@@ -54,7 +54,7 @@ The concern key is `skill-advisor`. Its switch is `SYSTEM_SKILL_ADVISOR_DISABLED
 
 The exported `handleClaudeUserPromptSubmit` accepts a prompt payload. It checks `skippedAdvisorResultFor` before calling `buildSkillAdvisorBriefFromCli`. `renderAdvisorBrief` formats a recommendation. `renderAdvisorFallbackDirective` supplies context when no brief is available.
 
-`decideDirectiveLifecycleDelivery` reduces repeated context for a known session. It keeps the brief head and drops the repeated `Directives:` block. The handler returns `hookSpecificOutput.additionalContext`. It returns `{}` when its switch is off. It also returns `{}` when input is invalid or an exception escapes.
+`decideDirectiveLifecycleDelivery` reduces repeated context for a known session. It keeps the brief head and drops the repeated `Directives:` block. The handler returns `hookSpecificOutput.additionalContext`. It returns `{}` when its switch is off. It also returns `{}` when input is invalid. When its own code throws, it returns the outage fallback, or the skipped fallback for a skipped prompt, and returns `{}` only if that fallback cannot be rendered.
 
 Pi calls the shared handler from its input extension. DSH calls it from the repo-guards adapter. Vibe's turn-start composer calls `buildAdvisorPart`. The OpenCode plugin handles its own `experimental.chat.system.transform` event.
 

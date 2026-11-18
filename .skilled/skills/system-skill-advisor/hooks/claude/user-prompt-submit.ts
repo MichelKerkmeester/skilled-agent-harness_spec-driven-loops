@@ -303,6 +303,85 @@ export function parseClaudeUserPromptSubmitInput(raw: string): ClaudeUserPromptS
 // 6. CORE LOGIC
 // ───────────────────────────────────────────────────────────────
 
+// Directive-lifecycle dedup delivers the full brief on the first message
+// and after lifecycle boundaries or transcript shrink. On proven repeats,
+// it keeps the head and drops the constant directive block. A headed
+// fallback reduces like a brief; unknown sessions and the kill switch get
+// the full text. A fault inside dedup keeps the full text, and a crash
+// elsewhere in the hook dedups its fallback like any headed fallback.
+function applyDirectiveLifecycle(
+  emitted: string,
+  input: ClaudeUserPromptSubmitInput,
+  dependencies: UserPromptSubmitDependencies,
+): { effectiveEmitted: string; commitFullReceipt?: (() => boolean) | undefined } {
+  try {
+    const sessionId = typeof input.session_id === 'string' && input.session_id.trim().length > 0
+      ? input.session_id
+      : undefined;
+    const sessionConfirmed = input.session_identity_confirmed
+      ?? (Boolean(sessionId) && input.session_identity_ambiguous !== true);
+    const transcriptPath = typeof input.transcript_path === 'string' && input.transcript_path.length > 0
+      ? input.transcript_path
+      : null;
+    let transcriptBytes: number | null = null;
+    if (transcriptPath) {
+      try {
+        transcriptBytes = statSync(transcriptPath).size;
+      } catch {
+        transcriptBytes = null;
+      }
+    }
+    const decision = decideDirectiveLifecycleDelivery(emitted, {
+      state: dependencies.directiveLifecycleStore ?? defaultDirectiveLifecycleStore(),
+      sessionId,
+      sessionConfirmed,
+      lifecycleEvent: lifecycleEventFor(input),
+      transcriptPath,
+      transcriptBytes,
+      enabled: isDirectiveLifecycleDedupEnabled(),
+      deferFullReceipt: dependencies.deferDirectiveReceipt === true,
+    });
+    return {
+      effectiveEmitted: decision.suppressed && decision.reducedContext ? decision.reducedContext : emitted,
+      commitFullReceipt: decision.commitFullReceipt,
+    };
+  } catch {
+    // Directive dedup is advisory; on any failure keep the full brief.
+    return { effectiveEmitted: emitted };
+  }
+}
+
+// Builds the hook output, attaches the deferred receipt when there is one and
+// records the emitted policy once, so a normal turn and a crash deliver alike.
+function finishAdvisorDelivery(
+  additionalContext: string,
+  commitFullReceipt: (() => boolean) | undefined,
+  deliveryState: ShadowDeliveryRenderOptions,
+  runtime: AdvisorRuntime,
+): ClaudeUserPromptSubmitOutput {
+  const output: ClaudeUserPromptSubmitOutput = {
+    hookSpecificOutput: {
+      hookEventName: 'UserPromptSubmit',
+      additionalContext,
+    },
+  };
+  if (commitFullReceipt) {
+    Object.defineProperty(output, DIRECTIVE_RECEIPT_COMMIT, {
+      configurable: true,
+      enumerable: false,
+      value: commitFullReceipt,
+    });
+  }
+  observeEmittedAdvisorPolicy(additionalContext, {
+    ...deliveryState,
+    // Claude keeps its display label and every other caller is recorded under
+    // the runtime it named, so no other runtime's delivery is counted as Claude's.
+    runtime: runtime === 'claude' ? 'Claude Code' : runtime,
+    candidate: OBSERVED_ADVISOR_POLICY_CANDIDATE,
+  });
+  return output;
+}
+
 export async function handleClaudeUserPromptSubmit(
   input: ClaudeUserPromptSubmitInput | null,
   dependencies: UserPromptSubmitDependencies = {},
@@ -310,8 +389,19 @@ export async function handleClaudeUserPromptSubmit(
   const environmentRuntime = process.env.SPECKIT_RUNTIME;
   const runtime = dependencies.runtime
     ?? (isAdvisorRuntime(environmentRuntime) ? environmentRuntime : 'claude');
-  const startedAt = dependencies.now?.() ?? performance.now();
-  const elapsed = (): number => Number(((dependencies.now?.() ?? performance.now()) - startedAt).toFixed(3));
+  let startedAt: number | null = null;
+  const elapsed = (): number => {
+    try {
+      const now = dependencies.now?.() ?? performance.now();
+      return startedAt === null ? 0 : Number((now - startedAt).toFixed(3));
+    } catch {
+      return 0;
+    }
+  };
+  let prompt: string | null = null;
+  let workspaceRoot: string | undefined;
+  let skippedResult: AdvisorHookResult | null = null;
+  let deliveryState: ShadowDeliveryRenderOptions = {};
   const writeDiagnostic = dependencies.writeDiagnostic;
 
   try {
@@ -341,8 +431,9 @@ export async function handleClaudeUserPromptSubmit(
       return {};
     }
 
-    const prompt = normalizePrompt(input.prompt);
-    const workspaceRoot = workspaceRootFor(input);
+    startedAt = dependencies.now?.() ?? performance.now();
+    prompt = normalizePrompt(input.prompt);
+    workspaceRoot = workspaceRootFor(input);
     if (prompt === null) {
       emitDiagnostic({
         runtime,
@@ -363,13 +454,14 @@ export async function handleClaudeUserPromptSubmit(
     // CLI call; injected full producers stay ungated for producer-level tests.
     const injectedBrief = dependencies.buildBrief;
     const buildCliBrief = dependencies.buildCliBrief ?? buildSkillAdvisorBriefFromCli;
+    skippedResult = injectedBrief ? null : skippedAdvisorResultFor(prompt);
     let result = injectedBrief
       ? await injectedBrief(prompt, {
         runtime,
         workspaceRoot,
         subprocessTimeoutMs: claudeHookTimeoutMs(),
       })
-      : skippedAdvisorResultFor(prompt) ?? await buildCliBrief(prompt, {
+      : skippedResult ?? await buildCliBrief(prompt, {
         runtime,
         workspaceRoot,
         timeoutMs: claudeHookTimeoutMs(),
@@ -384,52 +476,11 @@ export async function handleClaudeUserPromptSubmit(
         durationMs: elapsed(),
       },
     };
-    const deliveryState = deliveryStateOptionsFor(input);
+    deliveryState = deliveryStateOptionsFor(input);
     const brief = renderBrief(result, { deliveryState });
     const renderOptions = { deliveryState, setupWording: !brief && SETUP_WORDING.test(prompt) };
     const emitted = brief ?? renderAdvisorFallbackDirective(renderOptions, result);
-    // Directive-lifecycle dedup delivers the full brief on the first message
-    // and after lifecycle boundaries or transcript shrink. On proven repeats,
-    // it keeps the head and drops the constant directive block. A headed
-    // fallback reduces like a brief; unknown sessions, the kill switch, and
-    // thrown errors still get the full text.
-    let effectiveEmitted = emitted;
-    let commitFullReceipt: (() => boolean) | undefined;
-    try {
-      const sessionId = typeof input.session_id === 'string' && input.session_id.trim().length > 0
-        ? input.session_id
-        : undefined;
-      const sessionConfirmed = input.session_identity_confirmed
-        ?? (Boolean(sessionId) && input.session_identity_ambiguous !== true);
-      const transcriptPath = typeof input.transcript_path === 'string' && input.transcript_path.length > 0
-        ? input.transcript_path
-        : null;
-      let transcriptBytes: number | null = null;
-      if (transcriptPath) {
-        try {
-          transcriptBytes = statSync(transcriptPath).size;
-        } catch {
-          transcriptBytes = null;
-        }
-      }
-      const decision = decideDirectiveLifecycleDelivery(emitted, {
-        state: dependencies.directiveLifecycleStore ?? defaultDirectiveLifecycleStore(),
-        sessionId,
-        sessionConfirmed,
-        lifecycleEvent: lifecycleEventFor(input),
-        transcriptPath,
-        transcriptBytes,
-        enabled: isDirectiveLifecycleDedupEnabled(),
-        deferFullReceipt: dependencies.deferDirectiveReceipt === true,
-      });
-      commitFullReceipt = decision.commitFullReceipt;
-      if (decision.suppressed && decision.reducedContext) {
-        effectiveEmitted = decision.reducedContext;
-      }
-    } catch {
-      // Directive dedup is advisory; on any failure keep the full brief.
-      effectiveEmitted = emitted;
-    }
+    const { effectiveEmitted, commitFullReceipt } = applyDirectiveLifecycle(emitted, input, dependencies);
     emitDiagnostic({
       runtime,
       workspaceRoot,
@@ -445,47 +496,35 @@ export async function handleClaudeUserPromptSubmit(
       directivesSuppressed: effectiveEmitted !== emitted,
     }, writeDiagnostic);
 
-    const output: ClaudeUserPromptSubmitOutput = {
-      hookSpecificOutput: {
-        hookEventName: 'UserPromptSubmit',
-        additionalContext: effectiveEmitted,
-      },
-    };
-    if (commitFullReceipt) {
-      Object.defineProperty(output, DIRECTIVE_RECEIPT_COMMIT, {
-        configurable: true,
-        enumerable: false,
-        value: commitFullReceipt,
-      });
-    }
-    observeEmittedAdvisorPolicy(effectiveEmitted, {
-      ...deliveryState,
-      // Claude keeps its display label and every other caller is recorded under
-      // the runtime it named, so no other runtime's delivery is counted as Claude's.
-      runtime: runtime === 'claude' ? 'Claude Code' : runtime,
-      candidate: OBSERVED_ADVISOR_POLICY_CANDIDATE,
-    });
-    return output;
+    return finishAdvisorDelivery(effectiveEmitted, commitFullReceipt, deliveryState, runtime);
   } catch {
-    emitDiagnostic({
-      runtime,
-      workspaceRoot: input ? workspaceRootFor(input) : process.cwd(),
-      status: 'fail_open',
-      freshness: 'unavailable',
-      durationMs: elapsed(),
-      cacheHit: false,
-      errorCode: 'UNKNOWN',
-      errorDetails: 'Unhandled UserPromptSubmit hook exception',
-    }, writeDiagnostic);
-    // A crash still shows the model the outage line and directives, as a timeout does.
-    // If rendering that line throws as well, there is nothing safe left to show.
+    // process.cwd() throws when the working directory was removed, and a lost
+    // diagnostic must not cost the model its fallback.
     try {
-      return {
-        hookSpecificOutput: {
-          hookEventName: 'UserPromptSubmit',
-          additionalContext: renderAdvisorTimeoutFallback(),
-        },
-      };
+      emitDiagnostic({
+        runtime,
+        workspaceRoot: workspaceRoot ?? process.cwd(),
+        status: 'fail_open',
+        freshness: 'unavailable',
+        durationMs: elapsed(),
+        cacheHit: false,
+        errorCode: 'UNKNOWN',
+        errorDetails: 'Unhandled UserPromptSubmit hook exception',
+      }, writeDiagnostic);
+    } catch {
+      // Diagnostics are best effort; the fallback below still runs.
+    }
+    // A crash shows the model what a timeout would show for this turn, deduplicated the
+    // same way. If any of that throws as well, there is nothing safe left to show.
+    try {
+      const renderOptions = { deliveryState, setupWording: prompt !== null && SETUP_WORDING.test(prompt) };
+      const emitted = skippedResult
+        ? renderAdvisorFallbackDirective(renderOptions, skippedResult)
+        : renderAdvisorTimeoutFallback(renderOptions);
+      const delivery = input
+        ? applyDirectiveLifecycle(emitted, input, dependencies)
+        : { effectiveEmitted: emitted };
+      return finishAdvisorDelivery(delivery.effectiveEmitted, delivery.commitFullReceipt, deliveryState, runtime);
     } catch {
       return {};
     }
