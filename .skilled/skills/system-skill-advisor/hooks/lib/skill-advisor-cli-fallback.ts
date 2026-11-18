@@ -17,6 +17,7 @@ import type {
   AdvisorRuntime,
   SkillAdvisorBriefOptions,
 } from '../../runtime/lib/skill-advisor-brief.js';
+import { stripLeadingPastedReply } from '../../runtime/lib/prompt-policy.js';
 import type { AdvisorRecommendation } from '../../runtime/lib/subprocess.js';
 import { ADVISOR_PROMPT_MAX_CHARS } from '../../runtime/schemas/advisor-tool-schemas.js';
 
@@ -226,8 +227,10 @@ function runCliRecommend(args: {
   readonly timeoutMs: number;
 }): Promise<CliProcessResult> {
   const payload = {
-    // The CLI refuses a longer prompt, so a longer one is sent as its head.
-    prompt: args.prompt.slice(0, ADVISOR_PROMPT_MAX_CHARS),
+    // The CLI refuses a longer prompt, so a longer one is sent as its head. A
+    // pasted earlier reply is dropped first, or a long paste would push the task
+    // past the cut and the CLI would route the paste alone.
+    prompt: stripLeadingPastedReply(args.prompt).slice(0, ADVISOR_PROMPT_MAX_CHARS),
     options: {
       topK: 3,
       includeAttribution: false,
@@ -387,6 +390,9 @@ function recommendationFromCli(value: unknown, thresholds: { readonly confidence
     // A hub that held back its command for want of a mode keeps that signal, so
     // the head can say why no command came with it.
     ...(value.needsMode === true ? { needsMode: true } : {}),
+    // A floored route is held back against the session's earlier route, so the
+    // floor has to survive the trip from the CLI.
+    ...(value.confidenceFloored === true ? { confidenceFloored: true as const } : {}),
   };
 }
 

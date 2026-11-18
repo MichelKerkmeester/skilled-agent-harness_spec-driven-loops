@@ -1,0 +1,93 @@
+I've completed the lane-4 pass. Here is the handback.
+
+---
+
+FINDINGS: 3
+
+[P2] Phase 002's Known Limitations section records three defects that phases 006, 007 and 008 fixed, so the packet's own summaries still list open bugs the code no longer has.
+Where: `specs/.../016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping/implementation-summary.md:123`, `:124`, `:125`, `:126`
+Scenario: a reader (or 012's closeout, which sets the parent Status to Complete) takes 002's Known Limitations at face value and believes the Python fallback still mis-routes a pasted reply, compiled routes still read the raw prompt, and the strip rule still drops a `>`-quoted requirement. All three are fixed at HEAD.
+Evidence:
+- `:123` "**The Python local scorer does not get the strip.** … In that window a pasted reply can still flip the route." — `runtime/scripts/skill_advisor.py:4842` is `prompt = strip_leading_pasted_reply(prompt)`, the first statement of `analyze_request` after the empty check (function at `:4819`, `analyze_request` at `:4833`). Phase 007's own summary says "The Python scorer the CLI falls back to now drops a pasted earlier reply the same way the native scorer does." The same line's "The divergence ledger records this for `rr-paste-208`" is also false: `grep -c rr-paste-208 runtime/tests/parity/fixtures/local-native-approved-divergences.json` prints `0`, and the ledger holds 72 entries, not 73.
+- `:124` "**Compiled routes still read the raw prompt.** `enrichCompiledRoutes` gets `input.prompt`" — `runtime/handlers/advisor-recommend.ts:568` and `:646` both pass `scoredPrompt`, and `grep -c 'input\.prompt'` on that file prints `1`, the strip at `:539`.
+- `:125` "A user's own `>`-quoted requirement followed by `Task:` is dropped as if pasted. A reply that itself holds `Task:` or `Now:` is cut at that first marker … Headers such as `Assistant response:` are not cues." — `runtime/lib/prompt-policy.ts:247` `PASTED_REPLY_CUE` has no quote alternative and does match `(?:the\s+)?(?:assistant|claude)\s+(?:response|reply|answer)`; `TASK_MARKER` at `:248` is `/gi` and `stripPastedReplyOnce` at `:252` takes `markers[markers.length - 1]`.
+- `:126` "… sends the CLI to the local scorer (`degraded: true`, `source: local-scorer`), which does not strip." — same contradiction as `:123`.
+Confidence: confirmed (each cited line read at HEAD; each fix traced to the phase that made it).
+
+[P2] Phase 004's Known Limitations section records two defects that phase 009 fixed.
+Where: `specs/.../016-pi-context-decisions-based-research-refinement/004-crash-path-fallback/implementation-summary.md:110`, `:111`
+Scenario: a reader believes a crashing hook still loses the setup hint, shows a skipped prompt as an outage, repeats the directive block every turn and records no policy, and that `ENV-REFERENCE.md` still carries a false `confidenceOnly` clause. None holds at HEAD.
+Evidence:
+- `:110` "**The crash fallback renders with default options.** A setup prompt loses its `/doctor:setup` hint, a prompt the policy would skip is shown as an outage, the directive block is not deduplicated across repeated crashing turns, and the policy observation carries no session." — `hooks/claude/user-prompt-submit.ts:622` is `const renderOptions = { deliveryState, setupWording: prompt !== null && SETUP_WORDING.test(prompt) };`, `:624` is `? renderAdvisorFallbackDirective(renderOptions, skippedResult)`, `:627` is `? applyDirectiveLifecycle(emitted, input, dependencies)`, and the return goes through `finishAdvisorDelivery`, which calls `observeEmittedAdvisorPolicy`. Phase 009's summary states this amends 004's decision at `004-.../implementation-summary.md:80`.
+- `:111` "its existing clause about `confidenceOnly` is wrong" — `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:382` now reads "and `confidenceOnly` mode skips only the uncertainty check", which is the correction 009's Files Changed row claims.
+Confidence: confirmed.
+
+[P2] Phase 007's Known Limitation 1 records a defect that phase 008 fixed, and its second `file:line` citation has drifted.
+Where: `specs/.../016-pi-context-decisions-based-research-refinement/007-python-scorer-strip-parity/implementation-summary.md:113`
+Scenario: a reader believes the degraded CLI path still checks the raw prompt for a typed command, so a command named only in a pasted reply still attaches to the task when the daemon is down.
+Evidence: `:113` "**The degraded path still reads the raw prompt for typed commands.** `degradedRecommendations` checks the raw prompt for a command row's bare command (`runtime/skill-advisor-cli.ts:1498`, passed at `:1585`)." — `runtime/skill-advisor-cli.ts:1490` is `const task = stripLeadingPastedReply(prompt);` and `:1498` is `if (row && task.includes(row.command.split(' ')[0])) {`, so the check reads the stripped task. The call site the line names as `:1585` is at `:1588` (`recommendations: degradedRecommendations(recommendations, prompt),`), moved by 008's own edit to that file.
+Confidence: confirmed.
+
+Not checked: `node` execution was denied by the approval callback, so the quality-gate `--explain` resolver, the two report checkers (`check-review-final-line.js`, `check-review-findings.js`), and every `vitest`, bench and `validate.sh` command could not be run. Surface evidence is `SKILLED` applied from the baseline (this is the hub's own checkout), not from the resolver. Every measured number in the summaries (test counts, Brier/ECE, `H`/`C`, daemon pids) is therefore unverified against a live run; I checked only that the pinned values the summaries name are the values the committed files hold. `spec.md`, `plan.md`, `tasks.md` and `goal.md` of 002, 003, 004, 006, 007, 008, 009, 011 and 013 were read only where a summary claim pointed into them, not end to end.
+
+FILES READ:
+- `.skilled/skills/sk-code/SKILL.md`
+- `.skilled/skills/sk-code/sk-code-review/SKILL.md`
+- `.skilled/skills/sk-code/sk-code-review/references/review-core.md`
+- `specs/.../016-pi-context-decisions-based-research-refinement/goal.md`
+- `specs/.../016-pi-context-decisions-based-research-refinement/spec.md`
+- `specs/.../016-pi-context-decisions-based-research-refinement/delegation-strategy.md`
+- `specs/.../002-pasted-context-stripping/implementation-summary.md`
+- `specs/.../002-pasted-context-stripping/goal.md`
+- `specs/.../003-follow-up-routing-benchmark/implementation-summary.md`
+- `specs/.../004-crash-path-fallback/implementation-summary.md`
+- `specs/.../006-strip-rule-boundary-edges/implementation-summary.md`
+- `specs/.../007-python-scorer-strip-parity/implementation-summary.md`
+- `specs/.../008-handler-scored-prompt-consumers/implementation-summary.md`
+- `specs/.../009-crash-fallback-edge-cases/implementation-summary.md`
+- `specs/.../010-route-receipts-research/implementation-summary.md`
+- `specs/.../010-route-receipts-research/research/research.md` (sections 7 to 10)
+- `specs/.../011-route-receipts-build/implementation-summary.md`
+- `specs/.../011-route-receipts-build/spec.md`
+- `specs/.../012-plan-text-and-goal-closeout/tasks.md`
+- `specs/.../012-plan-text-and-goal-closeout/implementation-summary.md`
+- `specs/.../013-drift-guard-probe-script-errors/implementation-summary.md`
+- `specs/.../001-deep-research/research/research.md` (grep)
+- `specs/.../001-deep-research/research/review-overengineering-opus-high.md` (lines 40 to 70)
+- `specs/.../005-plan-validation-research/research/research.md` (grep)
+- `.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` (grep)
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`
+- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts`
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`
+- `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts` (grep)
+- `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` (grep)
+- `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`
+- `.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts`
+- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts`
+- `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts` (grep)
+- `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts` (grep)
+- `.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs`
+- `.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md` (grep)
+- `.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts` (grep)
+- `.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration-baseline.json` (grep)
+- `.skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-parity.vitest.ts` (grep)
+- `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-compiled-route-option.vitest.ts` (grep)
+- `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` (lines 2530 to 2600)
+- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json` (grep)
+- `.skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json` (grep)
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl` (grep)
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json` (grep)
+- `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` (grep)
+- `.skilled/hooks/session-lifecycle/codex/compact-inject.ts`
+
+---
+
+What held up, so the orchestrator does not re-check it: every Files Changed table matches `git log --name-only -1` for its phase's commits (002 eight files, 003 one, 004 three across `31469e5ee4e` and `cfad65c7c72`, 006 four, 007 seven, 008 four, 009 four, 011 fifteen, 013 ten). Every `file:line` citation in those summaries resolves to the code the text describes, apart from 007's `:1585`. The test-coverage claims are real: 006's fixture holds 23 rows and the policy test reads each plus a second pass; 007's `test_pasted_reply_strip_parity` reads the same 23 rows with the entry check and two batch-trim assertions; 008's leak and equality tests exist at `advisor-recommend-compiled-route-option.vitest.ts:250` and `:271`; 009's nine hook tests exist; 011's route-receipt file holds 40 cases and the hook replay 11, three on unconfirmed or ambiguous identities. 005's C1 to C15 are all applied or recorded as deviations, 010's design reached 011 with all six corrections named, and 001's 1 ADOPT / 7 ADAPT / 14 REJECT and its cut reasons match `review-overengineering-opus-high.md`. The parent goal's criteria 3 and 4 already pass at HEAD; criteria 1, 2, 5 and 6 are 012's T020/T021 to run on `main`, and 012's T022 is what moves the parent spec's rows 6 to 13 off `Planned`, so I did not report those as false.
+
+One deviation from the review-mode contract, named rather than absorbed: the handback format you specified ends on `FILES READ:`, so this report carries no `Review status:` final line and the two report checkers could not run in any case.

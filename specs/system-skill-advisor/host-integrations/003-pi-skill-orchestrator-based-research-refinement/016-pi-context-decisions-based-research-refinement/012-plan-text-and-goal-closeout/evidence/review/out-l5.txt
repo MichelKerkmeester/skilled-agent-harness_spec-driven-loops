@@ -1,0 +1,56 @@
+FINDINGS: 2
+
+[P2] The tests for "strip before folding to one line" pass whichever order the code runs in, so the case this fix exists for has no test.
+  Where: .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts:136, and .skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json:122
+  Scenario: Revert `skill-advisor-brief.ts:478` to strip after folding, `stripLeadingPastedReply(policy.canonicalPrompt).slice(0, ADVISOR_PROMPT_MAX_CHARS)` -> both new brief tests still pass. The failing input is a pasted line with no end punctuation before a line-start marker, such as `Earlier you replied: I committed it with sk-git\nNow: implement feature X`. Folding turns that into `... sk-git Now: implement feature X`, and `TASK_MARKER` no longer matches there. The paste is then routed whole, and no test covers this input.
+  Evidence: prompt-policy.ts:92 `canonicalFold(prompt).replace(/\s+/g, ' ').trim()` folds newlines into spaces. prompt-policy.ts:246 `TASK_MARKER = /(?:^|[.!?\n]\s*)(?:now|task)\s*:\s*/gi` matches after a `.` as well as after `\n`. The test input is `'...committed the change.\nNow: implement feature X'`, and the fixture row is `"...committed it with sk-git.\nNow: Refactor..."`. Both put a period before the newline, so `. Now:` still matches after folding. For the same reason the fixture row would also pass with `\n` removed from `TASK_MARKER`.
+  Confidence: confirmed. I traced the regex against both inputs before and after folding. I did not run the tests, because the brief forbids it.
+
+[P2] Nothing tests that a degraded turn removes a held receipt for a different skill, so losing that removal would go unnoticed.
+  Where: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:406-409, and .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:1157
+  Scenario: Split the branch so that `if (result.metrics.degraded === true) return;` runs before the floored-removal block -> every new test still passes. In use, the session holds an `sk-doc` receipt, the advisor goes down and a degraded `sk-code` brief is shown. The `sk-doc` receipt is not removed. Once the advisor is back, a floored `sk-code` weak follow-up such as "fix that too" is withheld (`Advisor: prompt skipped.`) against a route the session has already left.
+  Evidence: The only degraded test starts from `freshStores()` and only checks `expect(stores.receipts.read('receipt-session')).toBeNull()`, which covers the skipped write. The removal is tested only for a floored turn, in "delivers a weak follow-up on the topic a floored turn moved the session to". No test holds a receipt and then sends a degraded turn for another skill.
+  Confidence: confirmed from the diff and the test bodies.
+
+**Changes checked with no defect found:**
+- **CLI fallback strip:** the strip runs before the 10,000-character cut, and its test fails if the change is reverted. The new import resolves in the built output at `runtime/dist/runtime/lib/prompt-policy.js`.
+- **Brief strip and cache key:** the strip runs before the cut. The cache key now uses the stripped prompt, but only the result types read `metalinguisticMention` and `skillNameSuppressions`, so a shared cache entry changes no output.
+- **Python native path:** `recommend_with_native_advisor` is called from one place, line 5560. The strip can safely run twice, and the new test fails if the change is reverted.
+- **`remove()` on the receipt store:**
+  - Every implementation of the interface has it, including the throwing test double.
+  - A missing folder or file returns true, because the ENOENT error is caught.
+  - It uses the same file name as `read` and `write`.
+- **Receipts while `directive-lifecycle` is off:**
+  - `SYSTEM_DIRECTIVE_LIFECYCLE_DISABLED` follows `hook-flags.cjs`'s default `SYSTEM_<CONCERN>_DISABLED` pattern, and the boundary hook checks the same concern.
+  - The test fails if the change is reverted.
+  - A receipt from before the switch went off is already Known Limitation 8.
+- **Delivery state set early:** a policy observation with no session is dropped (`resolveConfirmedSessionId` in `policy-plan.ts`), so the `length > 0` check fails if the change is reverted.
+- **Crash path with no prompt string:** it returns `{}`, and the test fails if the change is reverted.
+- **`writeHookOutput`:**
+  - It has one caller, `main()`.
+  - `process.stdout` fits the optional stream type.
+  - The deferred receipt commits only when the write reports no error, and the test fails if the change is reverted.
+- **DSH clock log:** `advanceDirectiveLifecycleBoundary` returns false only when the write fails (`FileDirectiveLifecycleStore.advance`), so a false return for a named session is a real failure. The named-session test fails if the change is reverted. The two other new tests ("keeps the receipt when a floored turn routes to the same skill" and "a session with no id logs no unmoved clock") pass either way, which is expected because they check that nothing is removed or logged by mistake.
+
+Not checked: I did not run the test suites or `tsc`, because the brief forbids running tests and builds. I did not run `quality-gate.cjs --explain`; I reviewed against sk-code-review's baseline rules only.
+
+FILES READ:
+- .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
+- .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs
+- .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts
+- .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts (diff)
+- .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts
+- .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/render.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/policy-plan.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/compat/contract.ts
+- .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py
+- .skilled/skills/system-skill-advisor/runtime/dist/hooks/lib/skill-advisor-cli-fallback.js (imports)
+- .skilled/hooks/shared/hook-flags.cjs
+- all test diffs under .skilled/skills/system-skill-advisor/runtime/tests and hooks/tests/dsh-prompt-advisor.test.mjs
+- the Known Limitations sections of phases 002, 004, 007, 009 and 011 implementation-summary.md
+- .skilled/skills/sk-code/sk-code-review/SKILL.md
+
+Review status: REQUESTED_CHANGES is not warranted. Neither finding is P0 or P1, so the review status is COMMENTED.

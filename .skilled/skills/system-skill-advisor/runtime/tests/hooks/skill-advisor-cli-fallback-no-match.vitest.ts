@@ -124,6 +124,32 @@ describe('skill advisor CLI fallback no-match diagnostics', () => {
     }
   });
 
+  it('sends the task behind a pasted reply longer than the advisor prompt limit', async () => {
+    let child: ReturnType<typeof mockCliChild> | undefined;
+    mockedChild.spawn.mockImplementation(() => {
+      child = mockCliChild(JSON.stringify({ data: { freshness: 'live', recommendations: [] } }));
+      return child;
+    });
+    const task = 'Refactor the session store module to remove duplicated locking code';
+    const prompt = `Earlier you replied: ${'I updated the README with sk-doc conventions. '.repeat(300)}Now: ${task}`;
+    expect(prompt.length).toBeGreaterThan(10_000);
+
+    try {
+      await buildSkillAdvisorBriefFromCli(
+        prompt,
+        { workspaceRoot: process.cwd(), runtime: 'pi', timeoutMs: 1_000 },
+        { env: {}, now: () => 1 },
+      );
+
+      expect(child).toBeDefined();
+      if (!child) return;
+      const payload = JSON.parse(child.stdin.written) as { prompt?: string };
+      expect(payload.prompt).toBe(task);
+    } finally {
+      mockedChild.spawn.mockReset();
+    }
+  });
+
   it('reports a live advisor with nothing to recommend as a no-match, not an outage', () => {
     const result = build({ freshness: 'live', recommendations: [] });
 

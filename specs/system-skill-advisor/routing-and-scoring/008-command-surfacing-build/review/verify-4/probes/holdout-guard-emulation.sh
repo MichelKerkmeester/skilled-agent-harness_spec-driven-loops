@@ -3,6 +3,7 @@
 # which one holdout id has been published in .rows. Ids only; no prompt is read.
 # Usage: holdout-guard-emulation.sh <live-capture.json> <all-holdout-ids.txt> <plain-holdout-ids.txt>
 # The leaked id is the first plain holdout id, so the live fit- prefix check cannot catch it.
+set -uo pipefail
 RAD=/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy
 HID=$(head -1 "$3")
 jq --arg h "$HID" '.rows[$h] = {expected_command: null, top: "x", top1: false, top3: false, offered: false}' "$1" > "$1.leaked"

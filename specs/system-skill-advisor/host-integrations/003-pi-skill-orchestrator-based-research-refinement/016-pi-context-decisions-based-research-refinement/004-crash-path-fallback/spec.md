@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-18 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -129,7 +129,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: One edit in the shared handler covers Claude, Pi, DSH and Vibe, because the three adapters pass `additionalContext` through (`hooks/pi/prompt-advisor.ts:316-317`, `hooks/dsh/prompt-advisor.mjs:174`, `hooks/vibe/prompt-advisor.mjs:241`).
-- **SC-002**: `git diff --stat` lists exactly the three files in Files to Change.
+- **SC-002**: The phase's own commits, `31469e5ee4e` and `cfad65c7c72`, change exactly the three files in Files to Change: `git show --name-only --format= 31469e5ee4e cfad65c7c72` prints only those three paths. A whole-worktree `git diff --stat` taken during the build also showed phase 002's uncommitted files, so it is not the check.
 <!-- /ANCHOR:success-criteria -->
 
 ---

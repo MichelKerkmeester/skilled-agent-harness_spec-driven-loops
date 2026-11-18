@@ -33,6 +33,7 @@ fixtures/
 |   `-- index.ts                          # Lifecycle metadata fixture exports
 +-- affordance-injection-fixtures.json    # Injection, benign and privacy phrases
 +-- errors.ts                             # MemoryError and buildErrorResponse
++-- pasted-reply-strip-cases.json         # Pasted-reply strip inputs and outputs
 +-- skill-graph-db.ts                     # writeGraphMetadata helper
 `-- README.md
 ```
@@ -45,6 +46,7 @@ fixtures/
 |---|---|
 | `lifecycle/index.ts` | Exports `lifecycleFixtures` for redirect, archive, future and version-mix scenarios. |
 | `affordance-injection-fixtures.json` | Injection phrases that must be dropped, benign phrases that must survive normalization, and privacy phrases. Read by `affordance-normalizer.test.ts` and `python/test_skill_advisor.py`, so both sanitizers stay row-for-row identical. |
+| `pasted-reply-strip-cases.json` | Pasted-reply inputs and the text the strip rule must leave for scoring. Read by `legacy/advisor-prompt-policy.vitest.ts` and `python/test_skill_advisor.py`. A row with an `ideal` field is a known miss of the shipped rule. |
 | `errors.ts` | `MemoryError` (a named error with a `code` and `context`) and `buildErrorResponse(toolName, error, input)`, which redacts the raw prompt out of the message, context and echoed input. Used by `handlers/advisor-recommend.vitest.ts`. |
 | `skill-graph-db.ts` | `writeGraphMetadata()`, which writes skill graph metadata files for tests that build a graph database. |
 

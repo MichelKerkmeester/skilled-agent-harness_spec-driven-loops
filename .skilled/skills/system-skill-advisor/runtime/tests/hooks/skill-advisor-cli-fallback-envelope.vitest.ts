@@ -117,4 +117,23 @@ describe('skill advisor CLI fallback envelope', () => {
     expect(rendered).not.toBeNull();
     expect(rendered?.split('\n')[0]).toContain('use system-deep-loop (needs a mode)');
   });
+
+  it('keeps the confidence-floor flag from the CLI row', () => {
+    const result = resultFromCliData({
+      data: {
+        freshness: 'live',
+        recommendations: [
+          { skillId: 'sk-code', confidence: 0.82, uncertainty: 0.2, confidenceFloored: true },
+          { skillId: 'sk-doc', confidence: 0.9, uncertainty: 0.1 },
+        ],
+      },
+      options: { maxTokens: 80 } as never,
+      startedAt: 0,
+      now: () => 1,
+    });
+
+    const bySkill = new Map(result.recommendations.map((recommendation) => [recommendation.skill, recommendation]));
+    expect(bySkill.get('sk-code')).toHaveProperty('confidenceFloored', true);
+    expect(bySkill.get('sk-doc')).not.toHaveProperty('confidenceFloored');
+  });
 });

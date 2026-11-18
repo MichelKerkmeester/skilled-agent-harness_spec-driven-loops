@@ -329,6 +329,10 @@ export const AdvisorRecommendationSchema = z.object({
   // Set only when a hub held back its command because the prompt names no
   // single mode, so the head can say so.
   needsMode: z.literal(true).optional(),
+  // Set only when the confidence was raised to the task-intent floor rather
+  // than earned by the recommendation's own evidence, so a hook can tell a
+  // floored route from a confident one.
+  confidenceFloored: z.literal(true).optional(),
 }).strict();
 
 export const AdvisorRecommendOutputSchema = z.object({

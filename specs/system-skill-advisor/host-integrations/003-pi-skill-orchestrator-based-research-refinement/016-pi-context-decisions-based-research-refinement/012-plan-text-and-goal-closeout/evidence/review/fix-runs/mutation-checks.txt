@@ -1,0 +1,10 @@
+Mutation checks for the three tests added after the fix-diff review lane.
+Each mutant was copied over the source, the named test run, and the source restored and checked with cmp.
+
+mutant A, strip after the newline fold in skill-advisor-brief.ts:
+  x routes the task behind a pasted reply whose marker starts a new line   (Tests 1 failed | 20 skipped)
+mutant B, degraded turn returns before the receipt removal in user-prompt-submit.ts:
+  x clears a held receipt when a degraded turn shows another skill        (Tests 1 failed | 68 skipped)
+mutant C, newline dropped from TASK_MARKER in prompt-policy.ts:
+  x newline-marker                                                        (Tests 1 failed | 29 passed)
+restore: cmp on both prepared files exited 0, git diff --quiet on prompt-policy.ts exited 0

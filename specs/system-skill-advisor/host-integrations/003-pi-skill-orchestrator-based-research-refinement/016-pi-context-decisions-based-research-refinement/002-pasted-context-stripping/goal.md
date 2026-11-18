@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "db37536c-37e4-472c-8a05-521b8fec328d"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,10 +56,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] The Measured Behavior command in `spec.md` prints `sk-code` first on both lines, from a daemon started after the rebuild
-- [ ] `SPECKIT_RUN_BENCHES=true npx vitest run tests/parity tests/legacy/advisor-corpus-parity.vitest.ts tests/prompt-policy-gold-replay.vitest.ts bench/scorer-calibration.bench.ts` exits 0 from the advisor runtime folder
-- [ ] The new corpus row routes `sk-doc` before the change and `sk-code` after it
-- [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED`
+- [x] The Measured Behavior command in `spec.md` prints `sk-code` first on both lines, from a daemon started after the rebuild - evidence: phase 012 run printed `sk-code 0.82, sk-doc 0.82, cli-external-orchestration 0.82` on both lines from worktree daemon pid 73015, started 23:25:55 after the 23:19:24 build
+- [x] `SPECKIT_RUN_BENCHES=true npx vitest run tests/parity tests/legacy/advisor-corpus-parity.vitest.ts tests/prompt-policy-gold-replay.vitest.ts bench/scorer-calibration.bench.ts` exits 0 from the advisor runtime folder - evidence: phase 012 run exited 0, 11 files and 67 tests passed
+- [x] The new corpus row routes `sk-doc` before the change and `sk-code` after it - evidence: `implementation-summary.md` Verification rows T001 and New corpus row: `sk-doc 0.9268` first before the change (160 correct), `sk-code` after (161 correct)
+- [x] `validate.sh --strict` on this phase prints `RESULT: PASSED` - evidence: phase 012 run after the metadata repair printed `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---

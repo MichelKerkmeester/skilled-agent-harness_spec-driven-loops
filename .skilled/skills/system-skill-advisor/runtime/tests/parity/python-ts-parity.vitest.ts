@@ -266,12 +266,15 @@ describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () => 
     // reference follows them, so it answers three more prompts correctly; the
     // native scorer keeps two of the three. rr-iter3-105 is the one it loses.
     // 112 -> 113: the Python fallback now also answers rr-iter3-076 correctly.
-    expect(pythonCorrect).toBe(113);
+    // 113 -> 114 and 108 -> 109: the Python reference now drops a pasted earlier
+    // reply before scoring, as the native scorer does, so the pasted-reply row
+    // reaches its gold on both.
+    expect(pythonCorrect).toBe(114);
     // 103 -> 104: a negated write verb no longer awards the sk-doc write-surface
     // boost, so rr-iter3-146 reaches its sk-code gold.
     // 104 -> 105: the hyphenated deep-review and deep-research workflow names are
     // system-deep-loop lexical hints, so rr-iter3-166 returns to its deep-loop gold.
-    expect(tsAlsoCorrect).toBe(108);
+    expect(tsAlsoCorrect).toBe(109);
     expect(regressions).toBe(ACCEPTED_PARITY_REGRESSION_IDS.length);
     expect(regressionIds).toEqual(ACCEPTED_PARITY_REGRESSION_IDS);
     expect(tsAbstainsOnPythonCorrect).toBe(0);

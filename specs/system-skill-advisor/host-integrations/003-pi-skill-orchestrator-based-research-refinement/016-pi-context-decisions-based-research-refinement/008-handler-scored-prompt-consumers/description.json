@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/008-handler-scored-prompt-consumers",
+  "description": "Phase 8: handler-scored-prompt-consumers",
+  "keywords": [
+    "phase",
+    "handler-scored-prompt-consumers"
+  ],
+  "lastUpdated": "2026-11-18T15:49:29.849Z",
+  "specId": "008",
+  "folderSlug": "handler-scored-prompt-consumers",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

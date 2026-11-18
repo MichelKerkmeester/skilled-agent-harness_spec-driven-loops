@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-18 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -108,6 +108,7 @@ These outputs came from the build in place before a merge at 12:27 the same day 
 | `runtime/scripts/routing-accuracy/scorer-eval-baseline.json` | Modify | Recapture for the new corpus hash and counts |
 | `runtime/bench/scorer-calibration-baseline.json` | Modify | Rewrite for the new corpus hash and row count |
 | `runtime/tests/parity/fixtures/local-native-approved-divergences.json` | Modify | Recapture only if the new row diverges between the Python and TypeScript scorers |
+| `runtime/tests/legacy/advisor-corpus-parity.vitest.ts` | Modify | Amended 2026-11-18 by the operator: the corpus size pin at `:114` and the size named in the describe title and two comments move from 195 to 196. The pin was missed in planning |
 <!-- /ANCHOR:scope -->
 
 ---

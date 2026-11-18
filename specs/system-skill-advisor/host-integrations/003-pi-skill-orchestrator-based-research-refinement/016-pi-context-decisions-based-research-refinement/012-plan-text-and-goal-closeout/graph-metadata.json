@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout",
+  "spec_folder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout",
+  "parent_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "plan text and goal closeout",
+      "phase 12 plan text and goal closeout",
+      "pi-context-decisions packet closeout",
+      "advisor socket dir caveat",
+      "plan text and goal closeout plan",
+      "plan text and goal closeout tasks",
+      "plan text and goal closeout goal",
+      "012-plan-text-and-goal-closeout operator decisions",
+      "plan text and goal closeout implementation summary"
+    ],
+    "key_topics": [
+      "plan",
+      "text",
+      "goal",
+      "closeout",
+      "phase",
+      "pi-context-decisions",
+      "packet",
+      "advisor",
+      "socket",
+      "dir",
+      "caveat",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/bin/skill-advisor.cjs",
+      "evidence/review/run.sh",
+      "evidence/review/vibe-run.sh",
+      ".skilled/commands/speckit/save.md",
+      ".skilled/skills/system-spec-kit/references/memory/save-workflow.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run.sh",
+        "kind": "script",
+        "path": "evidence/review/run.sh",
+        "source": "derived"
+      },
+      {
+        "name": "vibe-run.sh",
+        "kind": "script",
+        "path": "evidence/review/vibe-run.sh",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "save-workflow.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plan Text",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Closeout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Conductor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four pieces of packet text are wrong or missing",
+    "created_at": "2026-11-18T15:49:36Z",
+    "last_save_at": "2026-11-18T22:51:38.946Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bbb3a4fe7c3462dfaca912851977c40cdfeb91cd098a81b6bdf9039900d9f18d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8902913f374cdefdb236018708a98248e5de3279f4228297a8570006fb725a9e",
+      "plan.md": "5da40034015bb2842efa85bbeae0800b3e9c0672b5d5f9176447ed201c2558ab",
+      "tasks.md": "11777703dd1c5bcfd6c6af0f01054e93067e86a06fcc5a8dd649eaf741fab9f0",
+      "decision-record.md": "dc519f756ff48d936f2d4d3f2ff1506ca3fb20763a8227172b51d95e0029502e",
+      "implementation-summary.md": "d3bccdc87efd02a5db4b66bd06ef6c4ea8bf8a0596d04d337a478cb64e06d4b6"
+    },
+    "last_active_at": null
+  }
+}

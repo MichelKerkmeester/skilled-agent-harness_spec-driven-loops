@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/009-crash-fallback-edge-cases",
+  "spec_folder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/009-crash-fallback-edge-cases",
+  "parent_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "crash fallback edge cases",
+      "phase 9 crash fallback edge cases",
+      "advisor hook crash setup wording skipped prompt",
+      "crash fallback directive dedup policy observation",
+      "confidenceOnly threshold doc clause",
+      "crash fallback edge cases plan",
+      "crash fallback edge cases tasks",
+      "crash fallback edge cases goal",
+      "crash fallback edge cases implementation summary"
+    ],
+    "key_topics": [
+      "crash",
+      "fallback",
+      "edge",
+      "cases",
+      "phase",
+      "advisor",
+      "hook",
+      "setup",
+      "wording",
+      "skipped",
+      "prompt",
+      "directive"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "hooks/claude/user-prompt-submit.ts",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      "tmp/p004-briefs/last-refute.txt",
+      "scratch/probe.mjs",
+      "scratch/probe2.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": "hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "last-refute.txt",
+        "kind": "file",
+        "path": "tmp/p004-briefs/last-refute.txt",
+        "source": "derived"
+      },
+      {
+        "name": "probe.mjs",
+        "kind": "file",
+        "path": "scratch/probe.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "probe2.mjs",
+        "kind": "file",
+        "path": "scratch/probe2.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fallback Edge Cases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 004 made the outer catch of `handleClaudeUserPromptSubmit` (`hooks/claude/user-prompt-submit.ts:469-492`) return `renderAdvisorTimeoutFallback()` with default options inside a nested try (`:483-491`)",
+    "created_at": "2026-11-18T15:49:30Z",
+    "last_save_at": "2026-11-18T22:50:05.982Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:22d3b1c583048797051cb8bd5cea9b8d67cc9d76593ce518b1b282db792b9736",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a5be6737a54ca6f489b223ff0d4248bba2408faf33a46205764d196f2bd136c1",
+      "plan.md": "836b52610e65be29b6f242cde137d6793498a67570ca95b911f0160544e71df6",
+      "tasks.md": "fe7968f237756f8c81dbd1cbeb7113467b9c84f7ad1e4783c8bb5d07aac60c74",
+      "implementation-summary.md": "44e4946a686cb9a9d20bee0a94903327c98f42f8439dcbeaf55f32f9922dffa7"
+    },
+    "last_active_at": null
+  }
+}

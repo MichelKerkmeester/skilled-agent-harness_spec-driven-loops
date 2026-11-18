@@ -2,6 +2,7 @@
 # Sweeps a non-holdout corpus (arg 1) and prints, by row id only, each row where the
 # first passing recommendation is not row 0, with that head's command under the
 # top-only request and under the every-row request. Prompts are never printed.
+set -uo pipefail
 cd /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research || exit 2
 call() {
   env -u AI_SESSION_CHILD node .skilled/bin/skill-advisor.cjs advisor_recommend \

@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research",
+  "spec_folder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research",
+  "parent_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "route receipts research",
+      "phase 10 route receipts research",
+      "stored route receipts design",
+      "weak follow-up session receipt",
+      "route receipts research plan",
+      "route receipts research tasks",
+      "route receipts research goal",
+      "route receipts research implementation summary"
+    ],
+    "key_topics": [
+      "route",
+      "receipts",
+      "research",
+      "phase",
+      "stored",
+      "design",
+      "weak",
+      "follow-up",
+      "session",
+      "receipt",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/deep-research-config.json",
+      "hooks/claude/user-prompt-submit.ts",
+      "hooks/claude/directive-lifecycle-boundary.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/codex/user-prompt-submit.ts",
+      ".opencode/plugins/system-skill-advisor.js",
+      "research/deep-research-state.jsonl",
+      ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts",
+      ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts",
+      ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts",
+      ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
+      "runtime/hooks/codex/shared.ts",
+      ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": "hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "directive-lifecycle-boundary.ts",
+        "kind": "code",
+        "path": "hooks/claude/directive-lifecycle-boundary.ts",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-policy.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scorer-calibration.bench.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts",
+        "source": "derived"
+      },
+      {
+        "name": "directive-lifecycle.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shared.ts",
+        "kind": "code",
+        "path": "runtime/hooks/codex/shared.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compaction-context.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Route Receipts Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five of nine weak follow-ups route away from their session task, and the simple guard that would stop them also hides 19 correct corpus routes",
+    "created_at": "2026-11-18T15:49:32Z",
+    "last_save_at": "2026-11-18T19:30:41.313Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:6a87343f70bdef05be0702c9b9c6ea10b98564330c6c4094c9e4ff20fb45ec04",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ded803a643e79f3205a57a47bf02dc2b9d7d09f39f4de621d9a143decc5f238a",
+      "plan.md": "e8fc187f93e9bf38055ac7d3d71bb3f3ebd723ee2213c94abb86085daa3a55bd",
+      "tasks.md": "e853a11f5dd8ed9be3212908eb0642fb00a48d24e97bd054ada4e6e3ebc6ad9c",
+      "implementation-summary.md": "2fd60bb1861fd6c79d6304d7ed8d41bf4019e426b30476d24f58b27fe6abbd6b",
+      "research/research.md": "728b4b77be1cf969c75bf086836c54d09d11bf8251ade915704748a08a164d8d"
+    },
+    "last_active_at": null
+  }
+}

@@ -35,7 +35,7 @@
       "goal"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "A three-word follow-up such as \"fix that too\" fires the work-intent policy rule (`runtime/lib/prompt-policy.ts:182-185`), and three skills pass at exactly the 0.82 confidence floor",
     "created_at": "2026-11-18T11:32:35Z",
-    "last_save_at": "2026-11-18T13:29:17.132Z",
+    "last_save_at": "2026-11-18T22:29:49.530Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:61e0bd49ae36d17398be0faa3260ee913fcc3b05ff45b2406eb34fde61458eca",
+    "source_fingerprint": "sha256:b0663cd681c1356d80658598f19b1a4f16140ae6cba6eef5b984d527dacfbcde",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9cf710e91917f04ba29b9eb28981e6a22a6242756281892e3ff3a87727ae209e",
-      "plan.md": "2a492e0ae821333b7ee5e5a549a9fe477d53c06804961c0232f0e5a20c2f39e0",
-      "tasks.md": "975d7d978274e56e573dba7c62a134e738f3d174a35157fdf152f9a1fd1d48cb",
-      "implementation-summary.md": "2ed6afc9edf5f42a04da107baf938e563eb3630a3abddcede9a89772c7632ad3"
+      "spec.md": "5452167c26ca483408c4fb5a96c2381c2f5ec4e3ec08b06b3c27cda80ece962f",
+      "plan.md": "be992d4357404a097a0f7e5503523fbca38149e85aeaa4838c96982ee1d30e0e",
+      "tasks.md": "866e8e70f5885749ac02c6d727769eebb1b9f588ab3151b87a990810793cae94",
+      "implementation-summary.md": "7860d3d5cfa70313a88e024b9f889a2695abdb17f993ea1c6fb2487e1dd2a995"
     },
     "last_active_at": null
   }

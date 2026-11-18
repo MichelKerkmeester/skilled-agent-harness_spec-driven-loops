@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "db37536c-37e4-472c-8a05-521b8fec328d"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,10 +56,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `SPECKIT_RUN_BENCHES=true npx vitest run bench/scorer-calibration.bench.ts` exits 0 from the advisor runtime folder and prints the floor counts and the `advisor-follow-up-routing` line
-- [ ] `implementation-summary.md` records `N`, `H`, `C`, `Hsame`, the ids of the `C` rows and the branch of the rule taken
-- [ ] On a ship decision only, `npx vitest run tests/hooks tests/schemas tests/handlers` exits 0 from the advisor runtime folder
-- [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED`
+- [x] `SPECKIT_RUN_BENCHES=true npx vitest run bench/scorer-calibration.bench.ts --reporter=verbose` exits 0 from the advisor runtime folder and prints the floor counts and the `advisor-follow-up-routing` line - evidence: phase 012 run exited 0 and printed `advisor-scorer-calibration` with the floor counts and `advisor-follow-up-routing`
+- [x] `implementation-summary.md` records `N`, `H`, `C`, `Hsame`, the ids of the `C` rows and the branch of the rule taken - evidence: `rg -n 'Decision rule outcome'` prints line 80, `N` = 9, `H` = 5, `C` = 19, branch over-suppresses
+- [x] On a ship decision only, `npx vitest run tests/hooks tests/schemas tests/handlers` exits 0 from the advisor runtime folder - evidence: not applicable, the rule took over-suppresses (`implementation-summary.md:80`); the same command still exited 0 in phase 012 with 379 passed
+- [x] `validate.sh --strict` on this phase prints `RESULT: PASSED` - evidence: phase 012 run after the metadata repair printed `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---

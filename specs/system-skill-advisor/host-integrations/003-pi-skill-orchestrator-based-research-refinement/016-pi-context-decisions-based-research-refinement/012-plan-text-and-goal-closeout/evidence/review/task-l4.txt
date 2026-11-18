@@ -1,0 +1,18 @@
+TASK: review lane 4, every phase's docs against the code (phases 001 to 013).
+The packet P has thirteen phase folders. Each phase's spec.md, tasks.md, goal.md and
+implementation-summary.md make claims: what was built, which file and line holds it, which
+command proves it, what a test covers, what a measured number was, and what is a known
+limitation. The parent P/goal.md, P/spec.md and P/delegation-strategy.md summarize them.
+Check those claims against the code at HEAD and the git history
+(`git log --oneline 538d2f789ecfdc2ce162396cd96c7a4c2edeffe4..HEAD`).
+Priority order:
+  1. Every `file:line` citation in the implementation-summary.md files of 002, 003, 004, 006,
+     007, 008, 009, 011 and 013: does the cited line hold what the text says?
+  2. Every "Files Changed" table: does it match `git show --name-only` for that phase's commits?
+  3. Every claim that a test covers a behavior: does a test with that assertion exist?
+  4. The research phases 001, 005 and 010: did the build phases implement what their
+     research.md recommended, and is every departure recorded as a correction or deviation?
+  5. P/goal.md completion criteria and P/spec.md phase map: does each describe the code as it is?
+Phase 012 is not finished yet; report only claims in it that are already false.
+A finding here is a doc claim that the code or history contradicts, or a recommendation that
+was silently dropped. Wording, style and missing detail are not findings.

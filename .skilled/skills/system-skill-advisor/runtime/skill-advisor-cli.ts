@@ -21,6 +21,7 @@ import {
 
 import { disabledRecommendOutput } from './lib/advisor-disabled.js';
 import { commandRowFor } from './lib/command-attach.js';
+import { stripLeadingPastedReply } from './lib/prompt-policy.js';
 import { SKILL_ADVISOR_COMPAT_CONTRACT } from './lib/compat/contract.js';
 import { runAdvisorSubprocess, type AdvisorRecommendation } from './lib/subprocess.js';
 
@@ -1485,6 +1486,8 @@ export function degradedRecommendations(
 ): Array<Record<string, unknown>> {
   const offeredSkills = new Set<string>();
   const recommendations: Array<Record<string, unknown>> = [];
+  // A command named only in a pasted earlier reply is not one the user typed.
+  const task = stripLeadingPastedReply(prompt);
 
   for (const entry of entries) {
     if (entry.passes_threshold !== true) continue;
@@ -1495,7 +1498,7 @@ export function degradedRecommendations(
     };
     const row = commandRowFor(entry.skill);
 
-    if (row && prompt.includes(row.command.split(' ')[0])) {
+    if (row && task.includes(row.command.split(' ')[0])) {
       recommendations.push({
         skillId: entry.skill,
         kind: 'command',

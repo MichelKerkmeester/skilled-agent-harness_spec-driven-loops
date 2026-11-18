@@ -35,13 +35,14 @@
       "scoring"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      "tmp/p002-briefs/rule.cjs",
       ".skilled/bin/skill-advisor.cjs"
     ],
     "entities": [
@@ -73,6 +74,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "rule.cjs",
+        "kind": "file",
+        "path": "tmp/p002-briefs/rule.cjs",
         "source": "derived"
       },
       {
@@ -182,18 +189,12 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "When a user pastes an earlier reply in front of a task, the advisor scores the pasted text as if it were the task",
     "created_at": "2026-11-18T11:32:34Z",
-    "last_save_at": "2026-11-18T13:29:15.751Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-18T22:29:47.974Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -202,13 +203,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:be95b1bc9bbf4205c2c8d9b645e71aaa1175693833a6808dd61a808dad045c92",
+    "source_fingerprint": "sha256:04a436334e7d08f2a207263caf7ecb2c5f52da67ab73d5dd768e39df4b57a807",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "381cf75913fd22f2a703d566a02b0f97d3ef6148caa30e30e47c6b38397b5642",
-      "plan.md": "389b0096c642248a3165e84b0c38ecfcdb757f115ce2462fa6731c4e6a788715",
-      "tasks.md": "15412bd384c1644e7fa42968c31835a7a692e4aa7d8028cb8ed732eec8c5d470",
-      "implementation-summary.md": "14608b1a31302bdb238a9749eaff71153b2f45aa20b6347b3783605e7238ff6a"
+      "spec.md": "4fdb3ded1cc0647a07a54c050480095d24315b21ba8f1af00a6214bc60e5a0e7",
+      "plan.md": "859a5d9541ff17e913769cd3dd073cedaaf37bba3efbd1de63c52231c570865a",
+      "tasks.md": "e5fbc35692f2d2409f6e6729fe2915b73981d7a29d67d73f7a7ab9310edc3d86",
+      "implementation-summary.md": "b1c2ab67717ae713d49757b5f0b641120331da8bd7948390e56b5ce3743746a3"
     },
     "last_active_at": null
   }

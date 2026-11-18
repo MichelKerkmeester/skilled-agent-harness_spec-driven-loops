@@ -1,0 +1,57 @@
+FINDINGS: 3
+
+[P1] The deferred full-delivery receipt is committed when the stdout write fails, so a turn the model never received is recorded as delivered and the next turn suppresses the directive block.
+Where: `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:660-666` (the write callback at `:662-665`), with the contract it breaks declared at `:196` and the sibling pattern at `.skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:233-243`.
+Scenario: the CLI entry runs with `deferDirectiveReceipt: true` (`:679-682`), so `finishAdvisorDelivery` attaches `commitFullReceipt` to the output (`:452-459`). The stdout pipe is closed or errors before the write flushes (EPIPE, or any stream error) -> Node invokes the write callback with that error -> the callback ignores it, calls `commitClaudeDirectiveDeliveryReceipt(output)`, and resolves -> the durable store records the full brief as delivered -> the next turn of the same session returns the head alone, so the model never sees the `Directives:` block for the rest of the session.
+Evidence: `process.stdout.write(\`${JSON.stringify(output)}\n\`, () => { commitClaudeDirectiveDeliveryReceipt(output); resolvePromise(); });` — the callback takes no error parameter, while the type doc it implements says `/** Delay a full-delivery receipt until the process handoff acknowledges stdout. */` (`:196`). The repository's own sibling hook treats the same callback as a failure: `process.stdout.write(output, (error) => { if (error) { rejectPromise(error); return; } resolvePromise(); })` (`session-prime.ts:235-242`). Node's `writable.write` contract is "Callback when this method is called and the data is flushed, or if an error occurs", so the callback firing is not proof of delivery.
+Confidence: confirmed for the code path (the error is discarded and the commit runs unconditionally); the host scenario is plausible — a test that stubs `process.stdout.write` to invoke its callback with an `EPIPE` error and asserts `commitClaudeDirectiveDeliveryReceipt` was not called would confirm it.
+
+[P2] The test that names the deferred-receipt handoff never exercises the handoff, so it stays green if the commit moves before the write or keeps ignoring the write error.
+Where: `.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:906-937` (the test at `:928`), against `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:660-666`.
+Scenario: change `writeHookOutput` to call `commitClaudeDirectiveDeliveryReceipt(output)` before `process.stdout.write`, or leave the error ignored as it is today -> `commits the crash fallback receipt only after the output handoff` still passes, because its only handoff step is `expect(commitClaudeDirectiveDeliveryReceipt(first.output)).toBe(true);` (`:928`), which calls the commit directly.
+Evidence: `writeHookOutput` is module-private and no test spawns the CLI entry. `grep -rn "writeHookOutput"` over the package returns only the definition at `:660`, its two call sites at `:680` and `:694`, and no test reference; the only test references to the receipt are the two direct `commitClaudeDirectiveDeliveryReceipt(...)` calls at `:691` and `:928`. The whole CLI entry (`readStdin`, `IS_CLI_ENTRY`, `main`, `writeHookOutput`) is untested, so the P1 above has no test that would catch it.
+Confidence: confirmed.
+
+[P2] The crash path records no policy observation when the crash happens before the delivery state is built, so the "records the policy observation once" claim holds only for a crash after the brief build.
+Where: `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:504` (`let deliveryState: ShadowDeliveryRenderOptions = {};`), `:580` (the only assignment), `:629` (the crash-path use), with `.skilled/skills/system-skill-advisor/runtime/lib/policy-plan.ts:840-843`.
+Scenario: `buildCliBrief` throws (a subprocess fault) -> the catch runs with `deliveryState` still `{}` -> `finishAdvisorDelivery` calls `observeEmittedAdvisorPolicy(additionalContext, { ...{}, runtime, candidate })` with no `sessionId` -> `recordObservedPolicyDelivery` returns null at `resolveConfirmedSessionId` -> zero records, where the timeout path records two for the same input shape.
+Evidence: `deliveryState = deliveryStateOptionsFor(input);` sits at `:580`, after the brief build at `:558-576`, so any throw in that build leaves the hoisted default. `recordObservedPolicyDelivery` returns null when no confirmed session resolves: `const sessionIdentity = resolveConfirmedSessionId(input); if (!sessionIdentity) { return null; }` (`policy-plan.ts:840-843`). The test that names this behavior (`:958-992`) uses `renderBrief: throwingRender`, which throws at `:581` — after `:580` — so it stays green while a crash in the brief build records nothing. `009-crash-fallback-edge-cases/implementation-summary.md` Known Limitations records only the disabled-hook-in-removed-cwd case, not this one.
+Confidence: confirmed.
+
+Not checked: the three commits (`31469e5ee4e`, `cfad65c7c72`, `98a58b6245b`) and the merge-base diff — every `git` invocation was refused by the approval callback, so this review reads HEAD state only and cannot show a regression against `538d2f7`. The `quality-gate.cjs --explain` resolver was likewise refused (`node` denied), so the surface labels and `## Rule overrides` rows are unresolved and the review ran against the sk-code-review baseline plus the conventions this repository declares in its own files. The `check-review-final-line.js` and `check-review-findings.js` report checkers were not run, because the dispatched handback format carries no `Review status:` line for them to parse. No test, build or daemon command was run, so every claim above is from reading code, not from execution.
+
+FILES READ:
+- `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`
+- `.skilled/skills/system-skill-advisor/hooks/claude/README.md`
+- `.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md`
+- `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts`
+- `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts`
+- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts`
+- `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts`
+- `.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs`
+- `.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs`
+- `.skilled/skills/system-skill-advisor/runtime/lib/render.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/compat/contract.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/policy-plan.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/utils/workspace-root.ts`
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`
+- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts`
+- `.skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js`
+- `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md`
+- `.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts`
+- `.skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts`
+- `.skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts`
+- `.skilled/skills/system-spec-kit/runtime/hooks/codex/user-prompt-submit.ts`
+- `.opencode/plugins/system-skill-advisor.js`
+- `.skilled/skills/sk-code/SKILL.md`
+- `.skilled/skills/sk-code/sk-code-review/SKILL.md`
+- `.skilled/skills/sk-code/sk-code-review/references/review-core.md`
+- `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/004-crash-path-fallback/spec.md`
+- `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/004-crash-path-fallback/implementation-summary.md`
+- `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/009-crash-fallback-edge-cases/spec.md`
+- `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/009-crash-fallback-edge-cases/implementation-summary.md`
