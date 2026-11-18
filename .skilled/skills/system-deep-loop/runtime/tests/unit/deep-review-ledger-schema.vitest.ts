@@ -754,6 +754,19 @@ describe('deep-review typed ledger schema', () => {
     }
   });
 
+  it('refuses an extension whose new ceiling is not the continued run plus the added iterations', () => {
+    const registry = createDeepReviewEventRegistry();
+    const input = eventInput('deep_review.run_extended', 2, '0'.repeat(64));
+    const withCeiling = (newMaxIterations: number) => ({
+      ...input,
+      data: { ...input.data, extension: { ...input.data.extension, newMaxIterations } },
+    }) as typeof input;
+    expect(() => prepareDeepReviewEvent(input, registry)).not.toThrow();
+    for (const newMaxIterations of [1, 1000]) {
+      expect(() => prepareDeepReviewEvent(withCeiling(newMaxIterations), registry)).toThrow();
+    }
+  });
+
   it('rejects missing base and event-specific scope identities', () => {
     const registry = createDeepReviewEventRegistry();
     const candidate = eventInput(

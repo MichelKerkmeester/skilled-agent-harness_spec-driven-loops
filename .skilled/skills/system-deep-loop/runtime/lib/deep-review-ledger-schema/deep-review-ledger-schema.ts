@@ -946,6 +946,12 @@ function isData(stem: DeepReviewEventStem, value: unknown): boolean {
     return value.passNumber !== 0
       && (value.targetRefs as unknown[]).length > 0;
   }
+  // The reducer adopts the new ceiling as the run's cap, and the extend step derives
+  // it from the run it continues, so a ceiling that disagrees is never recorded.
+  if (stem === 'deep_review.run_extended') {
+    const extension = value.extension as Record<string, number>;
+    return extension.newMaxIterations === (value.continuedFromRun as number) + extension.addedIterations;
+  }
   if (stem === 'deep_review.finding_candidate_emitted') {
     return (value.targetRefs as unknown[]).length > 0
       && (value.evidenceRefs as unknown[]).length > 0;

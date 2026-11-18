@@ -1084,6 +1084,11 @@ function isFieldValue(rule: DataFieldRule, value: unknown): boolean {
   }
 }
 
+function isConsistentExtension(value: Record<string, unknown>): boolean {
+  const extension = value.extension as Record<string, number>;
+  return extension.newMaxIterations === (value.continuedFromRun as number) + extension.addedIterations;
+}
+
 function isData(stem: DeepResearchEventStem, value: unknown): boolean {
   if (!isObject(value) || hasForbiddenMutableField(value)) return false;
   const rules = DATA_FIELD_RULES[stem];
@@ -1100,6 +1105,9 @@ function isData(stem: DeepResearchEventStem, value: unknown): boolean {
     return value.priorClaimVersionId !== value.successorClaimVersionId;
   }
   if (stem === 'deep_research.convergence_blocked') return value.decision === 'blocked';
+  // The reducer adopts the new ceiling as the run's cap, and the extend step derives
+  // it from the run it continues, so a ceiling that disagrees is never recorded.
+  if (stem === 'deep_research.run_extended') return isConsistentExtension(value);
   if (stem === 'deep_research.next_focus_selected') {
     return (value.chosenBranchId === null) !== (value.chosenQuestionId === null);
   }

@@ -1093,6 +1093,24 @@ describe('deep-research typed ledger schema', () => {
     )).toThrow();
   });
 
+  it('refuses an extension whose new ceiling is not the continued run plus the added iterations', () => {
+    const registry = createDeepResearchEventRegistry();
+    const extension = {
+      addedIterations: 3, priorMaxIterations: 10, newMaxIterations: 10,
+      priorMaxDurationMinutes: 120, newMaxDurationMinutes: 420, elapsedMinutesAtExtension: 300,
+    };
+    expect(() => prepareDeepResearchEvent(
+      eventInputWithDataField('deep_research.run_extended', 2, 'extension', extension),
+      registry,
+    )).not.toThrow();
+    for (const newMaxIterations of [1, 1000]) {
+      expect(() => prepareDeepResearchEvent(
+        eventInputWithDataField('deep_research.run_extended', 2, 'extension', { ...extension, newMaxIterations }),
+        registry,
+      )).toThrow();
+    }
+  });
+
   // The research leaf writes one iteration row with every field an operator reads
   // back from the state log. The stem lists those fields, so one it does not list
   // still fails closed instead of entering the ledger.
