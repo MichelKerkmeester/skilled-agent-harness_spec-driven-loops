@@ -504,6 +504,37 @@ describe('frontier-admit', () => {
     const output = JSON.parse(String(result.stdout).trim()) as AdmissionResult;
     expect(output.admitted).toHaveLength(1);
   });
+
+  // A torn delta line may have been a proposal, and the store keeps no row for
+  // it, so stderr is the one trace that it existed.
+  it('the CLI admit command names a delta line it could not parse and admits the rest', () => {
+    const artifactDir = makeArtifactDir();
+    const deltaPath = join(artifactDir, 'delta.jsonl');
+    writeFileSync(
+      deltaPath,
+      [
+        JSON.stringify({ type: 'frontier_proposal', ...makeProposal('what does the torn delta probe show') }),
+        '{"type":"frontier_proposal","question":"a proposal cut off mid-wr',
+      ].join('\n'),
+      'utf8',
+    );
+
+    const result = spawnSync(process.execPath, [
+      FRONTIER_ADMIT_SCRIPT,
+      'admit',
+      '--artifact-dir',
+      artifactDir,
+      '--iteration',
+      '1',
+      '--input',
+      deltaPath,
+    ], { encoding: 'utf8' });
+
+    expect(result.status).toBe(0);
+    expect(String(result.stderr)).toMatch(/^\[frontier-admit\] warning: skipped delta\.jsonl line 2: /);
+    const output = JSON.parse(String(result.stdout).trim()) as AdmissionResult;
+    expect(output.admitted).toHaveLength(1);
+  });
 });
 
 // ───────────────────────────────────────────────────────────────────

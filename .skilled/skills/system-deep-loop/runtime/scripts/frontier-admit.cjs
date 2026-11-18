@@ -1007,20 +1007,29 @@ function readProposalRows(filePath) {
     throw new Error(`cannot read input file ${filePath}: ${error instanceof Error ? error.message : String(error)}`);
   }
 
+  // A torn line does not stop the rows after it, but it is reported: it may
+  // have been a proposal, and the store keeps no row for it.
   const proposals = [];
-  for (const line of content.split('\n')) {
-    const trimmed = line.trim();
+  const warnings = [];
+  const lines = content.split('\n');
+  for (let index = 0; index < lines.length; index += 1) {
+    const trimmed = lines[index].trim();
     if (!trimmed) continue;
     let row;
     try {
       row = JSON.parse(trimmed);
-    } catch {
+    } catch (error) {
+      warnings.push({
+        file: path.basename(filePath),
+        line: index + 1,
+        error: error instanceof Error ? error.message : String(error),
+      });
       continue;
     }
     if (!isPlainObject(row) || row.type !== 'frontier_proposal') continue;
     proposals.push(isPlainObject(row.proposal) ? row.proposal : row);
   }
-  return proposals;
+  return { proposals, warnings };
 }
 
 function runCli(argv) {
@@ -1072,7 +1081,10 @@ function runCli(argv) {
   }
 
   if (command === 'admit') {
-    const proposals = readProposalRows(requireFlag(args, 'input', 'input'));
+    const { proposals, warnings } = readProposalRows(requireFlag(args, 'input', 'input'));
+    for (const warning of warnings) {
+      process.stderr.write(`[frontier-admit] warning: skipped ${warning.file} line ${warning.line}: ${warning.error}\n`);
+    }
     return admitProposals({ artifactDir, iteration, proposals, knownTexts, target });
   }
 
