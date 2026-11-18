@@ -6880,3 +6880,37 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
     }
   });
 });
+
+// Under expansive depth a lineage the matrix gave no iterations is sized from its
+// own share of the seed, with the budget it would have had as the floor: 12 for a
+// native lineage, the workflow default for a CLI one. A matrix value always wins.
+describe('fanout-run.cjs — per-lineage expansive budget', () => {
+  const { expansiveLineageBudgets } = requireCjs(fanoutRunScript) as {
+    expansiveLineageBudgets: (
+      lineages: Array<Record<string, unknown>>,
+      options: { loopType: string; partition: Record<string, unknown[]> },
+    ) => Array<Record<string, unknown>>;
+  };
+  const nodes = (count: number) => Array.from({ length: count }, (_, index) => ({ nodeId: `F-1-00${index + 1}` }));
+
+  it('sizes each research lineage from its own share of the seed', () => {
+    const lineages = expansiveLineageBudgets(
+      [
+        { label: 'a', kind: 'cli-opencode' },
+        { label: 'b', kind: 'cli-opencode' },
+        { label: 'c', kind: 'native' },
+        { label: 'd', kind: 'cli-opencode', iterations: 5 },
+      ],
+      { loopType: 'research', partition: { a: nodes(4), b: nodes(1), c: nodes(1), d: nodes(6) } },
+    );
+    expect(lineages.map((lineage) => lineage.iterations)).toEqual([12, 10, 12, 5]);
+  });
+
+  it('scales a review lineage by the four dimensions it reviews and stops at the ceiling', () => {
+    const lineages = expansiveLineageBudgets(
+      [{ label: 'a', kind: 'cli-pi' }, { label: 'b', kind: 'cli-pi' }],
+      { loopType: 'review', partition: { a: nodes(2), b: nodes(0) } },
+    );
+    expect(lineages.map((lineage) => lineage.iterations)).toEqual([24, 16]);
+  });
+});

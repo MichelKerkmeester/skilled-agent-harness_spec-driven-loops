@@ -620,3 +620,79 @@ describe('frontier node cap', () => {
     expect(capsFor({ maxIterations: 16, expansiveDepth: { maxFrontierNodes: 12 } }).maxFrontierNodes).toBe(12);
   });
 });
+
+// A defaulted expansive budget is sized from the seed: two iterations per node on
+// every level the frontier may still grow, times the iterations one node costs,
+// never below the loop default and never above the ceiling. An explicit budget
+// always wins, and growthSlots says how many nodes past depth 1 the node cap
+// still leaves.
+describe('expansive budget sized from the seed', () => {
+  const { expansiveBudget } = require(FRONTIER_ADMIT_SCRIPT) as {
+    expansiveBudget: (options: {
+      target: string;
+      seeded: number;
+      maxDepth?: number;
+      dimensions?: number;
+      loopDefault: number;
+    }) => number;
+  };
+  type SeedBudget = AdmissionResult & { derivedMaxIterations: number; growthSlots: number; warning?: string };
+  const seedWithBudget = seedNodes as unknown as (options: {
+    artifactDir: string;
+    iteration?: number;
+    candidates: unknown[];
+    maxIterationsSource?: string;
+  }) => SeedBudget;
+
+  const table: Array<[string, number, number, number, number]> = [
+    // target, seeded, dimensions, loopDefault, expected
+    ['research', 1, 1, 10, 10],
+    ['research', 3, 1, 10, 10],
+    ['research', 4, 1, 10, 12],
+    ['research', 6, 1, 10, 16],
+    ['review', 1, 4, 7, 24],
+    ['review', 2, 4, 7, 24],
+    ['review', 8, 4, 7, 24],
+    ['review', 3, 1, 7, 10],
+    ['research', 2, 1, 12, 12],
+  ];
+
+  it.each(table)('%s with %i seeds and %i dimensions over a default of %i gives %i', (target, seeded, dimensions, loopDefault, expected) => {
+    expect(expansiveBudget({ target, seeded, maxDepth: 3, dimensions, loopDefault })).toBe(expected);
+  });
+
+  function dirWithBudget(maxIterations: number): string {
+    const dir = mkdtempSync(join(tmpdir(), 'frontier-admit-budget-'));
+    tempDirs.push(dir);
+    writeFileSync(join(dir, 'deep-research-config.json'), JSON.stringify({ maxIterations, expansiveDepth: { maxDepth: 3 } }), 'utf8');
+    return dir;
+  }
+
+  const seeds = (count: number) => Array.from({ length: count }, (_, index) => ({
+    parentId: 'root',
+    question: `which research seed number ${index + 1} holds`,
+    scope: `src/seed-${index + 1}`,
+    evidence: `src/seed-${index + 1}/index.ts:1`,
+  }));
+
+  it('derives the budget and the growth slots for a defaulted budget', () => {
+    const result = seedWithBudget({ artifactDir: dirWithBudget(10), candidates: seeds(6), maxIterationsSource: 'default' });
+    expect(result.admitted).toHaveLength(6);
+    expect(result.derivedMaxIterations).toBe(16);
+    expect(result.growthSlots).toBe(2);
+    expect(result.warning).toBeUndefined();
+  });
+
+  it('never goes below the loop default', () => {
+    const result = seedWithBudget({ artifactDir: dirWithBudget(10), candidates: seeds(1), maxIterationsSource: 'default' });
+    expect(result.derivedMaxIterations).toBe(10);
+    expect(result.growthSlots).toBe(4);
+  });
+
+  it('lets an explicit budget win, even below the derived one, and warns when no growth slot is left', () => {
+    const result = seedWithBudget({ artifactDir: dirWithBudget(6), candidates: seeds(3), maxIterationsSource: 'flag' });
+    expect(result.derivedMaxIterations).toBe(6);
+    expect(result.growthSlots).toBe(0);
+    expect(result.warning).toMatch(/no growth slot/);
+  });
+});

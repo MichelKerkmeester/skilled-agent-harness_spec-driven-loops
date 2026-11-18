@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "cd75d19b60da376996a52ca8c1104f1918d4fc0e79b2db1795e562e9576598f5",
+      "sha256": "a684d2dad400ff21d59b6e4507f42a2b37df50fd92e0e0ed4a875901c06f1d3c",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research.yaml",
-      "sha256": "3185ee5ce524413b7614912bdf8a67511cc34275d65c7fa7bd809c724e146076",
+      "sha256": "c254aa095ec055329d64e7c47ff21e5e0bf57fbf0544f493b15ab40d7b0c3813",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "fcb29590047007a87ed205f4fea9d598de468b3d38dfd8a63f463fbfc2145990"
+  "compiledBodyDigest": "a15a8f5c63f1e0c6bf1dd8e10245f8db2c66bfa75ba82cbe333179a738046d7b"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -210,7 +210,7 @@ Rules: see `auto-mode-contract.md` §2 (unspecified fields fall back to default;
 | `research_topic`        | Y        | `$ARGUMENTS` positional topic, or marker `research_topic`                                                                                                                                              | none                               | N                                                       |
 | `spec_folder`           | Y        | flag `--spec-folder`, marker `spec_folder`, `scope-extract` → a spec-folder path named in the topic/`$ARGUMENTS` that resolves to an existing folder (auto-bound + stripped, per `auto_mode_contract` §1 source 3), or targeted choice among suggested existing/new/update-related/phase folder | none | Y, ONLY when topic is present, names no resolvable spec folder, and the folder choice is ambiguous |
 | `execution_mode`        | Y        | attached suffix `:auto` or marker `execution_mode`                                                                                                                                                     | `AUTONOMOUS` under `:auto`         | N                                                       |
-| `maxIterations`         | Y        | flag `--max-iterations`, marker `maxIterations`, or default                                                                                                                                            | `10`                               | N                                                       |
+| `maxIterations`         | Y        | flag `--max-iterations`, marker `maxIterations`, or default; the setup-only binding `max_iterations_source` names which (`flag`, `marker`, `setup`, `matrix` or `default`) and is never written to the config. Under `--depth-mode=expansive` a `default` budget is resized after the seed step to `min(24, max(10, 2·c·(S + maxDepth − 1)))`, with S the depth-1 nodes the seed admitted and c 1; any other source is kept as given                                                                                                                                            | `10`                               | N                                                       |
 | `convergenceThreshold`  | Y        | flag `--convergence`, marker `convergenceThreshold`, or default                                                                                                                                        | `0.05`                             | N                                                       |
 | `convergence_mode`      | Y        | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default                                                                                                  | `default`                          | N                                                       |
 | `depth_mode`            | Y        | flag `--depth-mode=default|expansive`, marker `depth_mode`, or default `default`                                                                                                                       | `default`                          | N                                                       |
@@ -259,7 +259,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    +-- Empty -> include Q0
 
 3. PARSE optional flags from $ARGUMENTS:
-   |-- --max-iterations=N -> maxIterations = N
+   |-- --max-iterations=N -> maxIterations = N, max_iterations_source = flag
    |-- --convergence=N -> convergenceThreshold = N
    |-- --convergence-mode=default|off|sliding-window|divergent -> antiConvergence.convergenceMode = value
    |-- --depth-mode=default|expansive -> antiConvergence.depthMode = value
@@ -282,10 +282,10 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |
    |   Fan-out default policy:
    |   - 0 or 1 --executor (no --executors, no count>1): write config.executor (single, unchanged)
-   |   - --executors matrix that expands to exactly one lineage (one entry, count 1 or absent): write config.executor from that entry (kind, model, configDir, reasoningEffort, serviceTier, timeoutSeconds); its iterations value binds to config.maxIterations, and leave config.fanout unset
+   |   - --executors matrix that expands to exactly one lineage (one entry, count 1 or absent): write config.executor from that entry (kind, model, configDir, reasoningEffort, serviceTier, timeoutSeconds); its iterations value binds to config.maxIterations with max_iterations_source = matrix, and leave config.fanout unset
    |   - 2+ --executor flags, an --executors matrix that expands to two or more lineages, or any count>1: write config.fanout
    |
-   +-- Defaults: maxIterations=10, convergenceThreshold=0.05, antiConvergence.convergenceMode=`default`, antiConvergence.depthMode=`default`, antiConvergence.divergent=`{}`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
+   +-- Defaults: maxIterations=10 (max_iterations_source=`default`), convergenceThreshold=0.05, antiConvergence.convergenceMode=`default`, antiConvergence.depthMode=`default`, antiConvergence.divergent=`{}`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
 
    Executor precedence for setup resolution:
    - CLI flag > config file > schema defaults
@@ -355,7 +355,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - spec_choice = [A/B/C from Q1]
    - spec_path = [derived path]
    - execution_mode = [AUTONOMOUS/INTERACTIVE]
-   - maxIterations = [from Q3 or flag or default 10]
+   - maxIterations = [from Q3 or flag or default 10]; a Q3 answer that changes the offered value sets max_iterations_source = setup, a marker sets it to marker, and accepting the default keeps it default
    - convergenceThreshold = [from flag or default 0.05]
    - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]
    - depth_mode = [from flag, marker, or default `default`; one of `default`, `expansive`]

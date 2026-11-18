@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "78652f578314be71cf708ee43993a8ef7625e9c8d0927430359c620d00d04e9f",
+      "sha256": "8fae20864f52e4f06af73c346e1f60a5fc1d6352b03decdfda12b96d0b5c1bcc",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "6eeb39133c64703301337699179823ce958380e3c0ee5351685a7b464fd349f6",
+      "sha256": "9b94172d95558c90754154db5efdbd5c98e495ded7a82e90fcecf8dda3193486",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "42e3139127e34a7ac715e34408e0d028cbb28a6fdec724aa6dd194ac68375d97"
+  "compiledBodyDigest": "bb029e46a0e467a3dcddb88a8c730901ee9370b2715542e526e2ab12bfa57991"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -213,7 +213,7 @@ Rules:
 | `lineage_mode` | Y | flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default | `auto` | N |
 | `extend` | N | flag `--extend=N` (positive integer); sets `lineage_mode=completed-continue` on a completed run; refused with fan-out | none | N |
 | `extend_minutes` | N | flag `--extend-minutes=M` (positive integer), valid only with `--extend` | the prior `maxDurationMinutes` | N |
-| `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default | `7` | N |
+| `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default; the setup-only binding `max_iterations_source` names which (`flag`, `marker`, `setup`, `matrix` or `default`) and is never written to the config. Under `--depth-mode=expansive` a `default` budget is resized after the seed step to `min(24, max(7, 2·c·(S + maxDepth − 1)))`, with S the depth-1 nodes the seed admitted and c the configured dimension count; any other source is kept as given | `7` | N |
 | `convergenceThreshold` | Y | flag `--convergence`, marker `convergenceThreshold`, or default | `0.10` | N |
 | `convergence_mode` | Y | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default | `default` | N |
 | `depth_mode` | Y | flag `--depth-mode=default|expansive`, marker `depth_mode`, or default `default` | `default` | N |
@@ -264,7 +264,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    +-- Empty -> include Q0
 
 3. PARSE optional flags from $ARGUMENTS:
-   |-- --max-iterations=N -> maxIterations = N
+   |-- --max-iterations=N -> maxIterations = N, max_iterations_source = flag
    |-- --convergence=N -> convergenceThreshold = N
    |-- --convergence-mode=default|off|sliding-window|divergent -> antiConvergence.convergenceMode = value
    |-- --depth-mode=default|expansive -> antiConvergence.depthMode = value
@@ -290,11 +290,11 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |
    |   Fan-out default policy:
    |   - 0 or 1 --executor (no --executors, no count>1): write config.executor (single, unchanged)
-   |   - --executors matrix that expands to exactly one lineage (one entry, count 1 or absent): write config.executor from that entry (kind, model, configDir, reasoningEffort, serviceTier, timeoutSeconds); its iterations value binds to config.maxIterations, and leave config.fanout unset
+   |   - --executors matrix that expands to exactly one lineage (one entry, count 1 or absent): write config.executor from that entry (kind, model, configDir, reasoningEffort, serviceTier, timeoutSeconds); its iterations value binds to config.maxIterations with max_iterations_source = matrix, and leave config.fanout unset
    |   - 2+ --executor flags, an --executors matrix that expands to two or more lineages, or any count>1: write config.fanout
    |   - Review fan-out verdict: strongest-restriction (any lineage active P0 → merged FAIL)
    |
-   +-- Defaults: maxIterations=7, convergenceThreshold=0.10, antiConvergence.convergenceMode=`default`, antiConvergence.depthMode=`default`, antiConvergence.divergent=`{}`, stop_policy=`convergence`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
+   +-- Defaults: maxIterations=7 (max_iterations_source=`default`), convergenceThreshold=0.10, antiConvergence.convergenceMode=`default`, antiConvergence.depthMode=`default`, antiConvergence.divergent=`{}`, stop_policy=`convergence`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
 
    Executor precedence for setup resolution:
    - CLI flag > config file > schema defaults
@@ -382,7 +382,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - execution_mode = [AUTONOMOUS/INTERACTIVE]
    - lineage_mode = [auto/resume/restart from flag, marker, or default auto; completed-continue from --extend=N]
    - extend = [N from --extend=N, else unset]
-   - maxIterations = [from Q3 or flag or default 7]
+   - maxIterations = [from Q3 or flag or default 7]; a Q3 answer that changes the offered value sets max_iterations_source = setup, a marker sets it to marker, and accepting the default keeps it default
    - convergenceThreshold = [from flag or default 0.10]
    - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]
    - depth_mode = [from flag, marker, or default `default`; one of `default`, `expansive`]

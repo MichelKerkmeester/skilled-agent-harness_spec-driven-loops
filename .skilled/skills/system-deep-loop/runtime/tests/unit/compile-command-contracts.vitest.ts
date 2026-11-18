@@ -143,7 +143,8 @@ const REQUIRED_INPUT_ALIASES: Record<string, string> = {
 };
 
 // The runtime binds these inputs itself, so no operator flag names them.
-const RUNTIME_BOUND_INPUTS = new Set(['session_id', 'config.fanout_lineage_artifact_dir']);
+// max_iterations_source is the setup's record of where max_iterations came from.
+const RUNTIME_BOUND_INPUTS = new Set(['session_id', 'config.fanout_lineage_artifact_dir', 'max_iterations_source']);
 
 function flagKey(flag: string): string {
   return FLAG_KEY_ALIASES[flag] ?? flag.replace(/^--/u, '').replace(/-/gu, '_');

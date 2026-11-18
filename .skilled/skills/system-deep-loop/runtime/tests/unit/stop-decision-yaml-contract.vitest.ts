@@ -422,3 +422,33 @@ describe('deep-review graph upsert derives finding evidence from the iteration r
     expect(step).toContain('EVIDENCE_FOR');
   });
 });
+
+// A defaulted expansive budget is resized once the seed is known. The step must
+// run only for a defaulted budget, rebind max_iterations for the loop, and never
+// put the setup-only source binding into the config.
+describe.each(FILES)('%s sizes a defaulted expansive budget after the seed', (file) => {
+  const text = readFileSync(resolve(ASSETS, file), 'utf8');
+  const initSeed = text.indexOf('      step_frontier_seed:\n');
+  const budget = stepText(text, 'step_frontier_budget');
+
+  it('places step_frontier_budget right after the phase_init seed step', () => {
+    expect(initSeed).toBeGreaterThan(-1);
+    expect(budget.length).toBeGreaterThan(0);
+    const between = text.slice(initSeed, text.indexOf('      step_frontier_budget:\n'));
+    expect(between.match(/\n      step_[a-z_]+:\n/g) ?? []).toHaveLength(0);
+  });
+
+  it('runs only for a defaulted expansive budget and rebinds max_iterations', () => {
+    expect(budget).toContain("depth_mode == 'expansive'");
+    expect(budget).toContain("max_iterations_source == 'default'");
+    expect(budget).toContain('extension_pending');
+    expect(budget).toContain('seedBudget');
+    expect(budget).toMatch(/- max_iterations: /);
+  });
+
+  it('passes the source to the seed and keeps it out of the config', () => {
+    expect(stepText(text, 'step_frontier_seed')).toContain('--max-iterations-source "{max_iterations_source}"');
+    expect(text).toMatch(/\n  max_iterations_source: /);
+    expect(stepText(text, 'step_create_config')).not.toContain('max_iterations_source');
+  });
+});

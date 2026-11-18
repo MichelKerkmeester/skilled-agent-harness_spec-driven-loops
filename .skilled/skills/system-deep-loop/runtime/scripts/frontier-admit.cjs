@@ -59,6 +59,13 @@ const DEFAULT_MAX_FRONTIER_NODES = 10;
 // come from config alone.
 const ROOT_CHILDREN_FLOOR = Object.freeze({ research: 6, review: 8 });
 
+// The iteration budget each workflow uses when no flag, marker, setup answer or
+// fan-out matrix value sets one, and the ceiling a budget derived from the seed may
+// reach. Four is the canonical review dimension count a fan-out lineage reviews.
+const LOOP_DEFAULT_MAX_ITERATIONS = Object.freeze({ research: 10, review: 7 });
+const EXPANSIVE_BUDGET_CEILING = 24;
+const CANONICAL_REVIEW_DIMENSIONS = 4;
+
 const NODE_STATUSES = Object.freeze([
   'open',
   'active',
@@ -248,6 +255,60 @@ function readCaps(artifactDir, target = 'research') {
     maxChildrenPerNode,
     maxRootChildren: Math.max(maxChildrenPerNode, ROOT_CHILDREN_FLOOR[target]),
     maxFrontierNodes: runCap,
+  };
+}
+
+// A defaulted expansive budget is sized from the seed: two iterations for each node
+// on every level the frontier may still reach (the seeded nodes plus one node per
+// level below depth 1), times the iterations one node costs, which is one for
+// research and one per configured dimension for review. It never drops below the
+// loop default and never passes the ceiling, which binds for a four-dimension
+// review from two seeds on. Twice the node count keeps the half-budget node cap
+// above the seed, so the frontier can still grow.
+function expansiveBudget({ target, seeded, maxDepth = DEFAULT_MAX_DEPTH, dimensions = CANONICAL_REVIEW_DIMENSIONS, loopDefault }) {
+  const perNode = assertTarget(target) === 'review' ? Math.max(1, Math.floor(dimensions) || 1) : 1;
+  const floor = capValue(loopDefault, LOOP_DEFAULT_MAX_ITERATIONS[target]);
+  const nodes = Math.max(0, Math.floor(seeded) || 0) + Math.max(1, Math.floor(maxDepth) || 1) - 1;
+  return Math.min(EXPANSIVE_BUDGET_CEILING, Math.max(floor, 2 * perNode * nodes));
+}
+
+function configuredReviewDimensionCount(config) {
+  const raw = config.reviewDimensions;
+  const list = Array.isArray(raw)
+    ? raw
+    : typeof raw === 'string' && raw.trim() && raw.trim() !== 'all' ? raw.split(',') : [];
+  const names = list.filter((name) => typeof name === 'string' && name.trim());
+  return names.length > 0 ? names.length : CANONICAL_REVIEW_DIMENSIONS;
+}
+
+// The budget the run uses after the seed step, and how many nodes past depth 1 the
+// node cap still leaves. Only a defaulted budget is derived; a flag, marker, setup
+// answer or fan-out matrix value is kept as given, even below the derived value.
+function seedBudget({ artifactDir, target = 'research', maxIterationsSource = 'default' }) {
+  const mode = assertTarget(target);
+  const config = readTargetConfig(artifactDir, mode);
+  const source = isPlainObject(config) ? config : {};
+  const expansive = isPlainObject(source.expansiveDepth) ? source.expansiveDepth : {};
+  const configured = capValue(Number(source.maxIterations), LOOP_DEFAULT_MAX_ITERATIONS[mode]);
+  const seeded = [...readNodeStore(path.join(artifactDir, NODE_STORE_FILE)).values()]
+    .filter((node) => node.depth === 1 && node.status !== 'pruned').length;
+  const derivedMaxIterations = maxIterationsSource === 'default'
+    ? expansiveBudget({
+      target: mode,
+      seeded,
+      maxDepth: capValue(expansive.maxDepth, DEFAULT_MAX_DEPTH),
+      dimensions: mode === 'review' ? configuredReviewDimensionCount(source) : 1,
+      loopDefault: configured,
+    })
+    : configured;
+  const nodeCap = capValue(expansive.maxFrontierNodes, Math.max(1, Math.floor(derivedMaxIterations / 2)));
+  const growthSlots = Math.max(0, nodeCap - seeded);
+  return {
+    derivedMaxIterations,
+    growthSlots,
+    ...(growthSlots === 0
+      ? { warning: `no growth slot past depth 1: the ${seeded} seeded nodes fill the node cap of ${nodeCap} at a budget of ${derivedMaxIterations} iterations` }
+      : {}),
   };
 }
 
@@ -441,7 +502,7 @@ function admitProposals({ artifactDir, iteration, proposals, knownTexts = [], ta
   return { admitted, pruned };
 }
 
-function seedNodes({ artifactDir, iteration = 0, candidates, knownTexts = [], target = 'research' }) {
+function seedNodes({ artifactDir, iteration = 0, candidates, knownTexts = [], target = 'research', maxIterationsSource = 'default' }) {
   // Every seeded node sits at depth 1 against the run's synthetic root: the seed
   // sees only the topic, so it cannot justify a deeper placement on its own.
   // A run is seeded once. A re-run of the seed step (a restart that kept the
@@ -488,7 +549,11 @@ function seedNodes({ artifactDir, iteration = 0, candidates, knownTexts = [], ta
 
   const result = admitProposals({ artifactDir, iteration, proposals, knownTexts, target: mode, seeding: true });
 
-  return { admitted: result.admitted, pruned: [...pruned, ...result.pruned] };
+  return {
+    admitted: result.admitted,
+    pruned: [...pruned, ...result.pruned],
+    ...seedBudget({ artifactDir, target: mode, maxIterationsSource }),
+  };
 }
 
 function closeNode({ artifactDir, nodeId, status, reason = null, iteration }) {
@@ -649,6 +714,7 @@ function writeFrontierGraph({ artifactDir, output }) {
 
 const VALUE_FLAGS = new Set([
   'artifact-dir',
+  'max-iterations-source',
   'iteration',
   'input',
   'known-texts',
@@ -788,7 +854,18 @@ function runCli(argv) {
 
   if (command === 'seed') {
     const candidates = readSeedCandidates(requireFlag(args, 'input', 'input'));
-    return seedNodes({ artifactDir, iteration, candidates, knownTexts, target });
+    const result = seedNodes({
+      artifactDir,
+      iteration,
+      candidates,
+      knownTexts,
+      target,
+      maxIterationsSource: args.maxIterationsSource === undefined ? 'default' : args.maxIterationsSource,
+    });
+    if (result.derivedMaxIterations !== undefined) {
+      process.stderr.write(`frontier-admit: budget after seed ${result.derivedMaxIterations} iterations, ${result.growthSlots} growth slots${result.warning ? `; warning: ${result.warning}` : ''}\n`);
+    }
+    return result;
   }
 
   if (command === 'admit') {
@@ -822,6 +899,10 @@ if (require.main === module) {
 
 module.exports = {
   NODE_STATUSES,
+  EXPANSIVE_BUDGET_CEILING,
+  LOOP_DEFAULT_MAX_ITERATIONS,
+  expansiveBudget,
+  seedBudget,
   dedupeKey,
   readNodeStore,
   readCaps,

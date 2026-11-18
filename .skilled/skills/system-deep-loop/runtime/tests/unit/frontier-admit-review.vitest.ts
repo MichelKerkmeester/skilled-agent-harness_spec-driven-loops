@@ -536,3 +536,43 @@ describe('frontier block review target', () => {
     expect(renderFrontierBlock({ artifactDir, nodeId, dimension: 'error handling', target: 'review' })).toBe('');
   });
 });
+
+// A review node costs one iteration per configured dimension, so its derived
+// budget scales with the dimension count and reaches the ceiling fast.
+describe('review expansive budget scales with the dimension count', () => {
+  type SeedBudget = AdmissionResult & { derivedMaxIterations: number; growthSlots: number };
+  const seedWithBudget = seedNodes as unknown as (options: {
+    artifactDir: string;
+    iteration?: number;
+    candidates: unknown[];
+    target: string;
+    maxIterationsSource?: string;
+  }) => SeedBudget;
+
+  function reviewDir(reviewDimensions: string[]): string {
+    const dir = mkdtempSync(join(tmpdir(), 'frontier-admit-review-budget-'));
+    tempDirs.push(dir);
+    writeFileSync(join(dir, REVIEW_CONFIG_FILE), JSON.stringify({ maxIterations: 7, reviewDimensions, expansiveDepth: { maxDepth: 3 } }), 'utf8');
+    return dir;
+  }
+
+  const parts = (count: number) => Array.from({ length: count }, (_, index) => ({
+    question: `what does review part ${index + 1} hide`,
+    scope: `src/part-${index + 1}`,
+    evidence: `src/part-${index + 1}/index.ts:1`,
+  }));
+
+  it('one dimension sizes the budget like research', () => {
+    const result = seedWithBudget({ artifactDir: reviewDir(['correctness']), candidates: parts(3), target: 'review', maxIterationsSource: 'default' });
+    expect(result.derivedMaxIterations).toBe(10);
+    expect(result.growthSlots).toBe(2);
+  });
+
+  it('four dimensions hit the ceiling of 24 from two seeds on', () => {
+    const one = seedWithBudget({ artifactDir: reviewDir(['correctness', 'security', 'traceability', 'maintainability']), candidates: parts(1), target: 'review', maxIterationsSource: 'default' });
+    expect(one.derivedMaxIterations).toBe(24);
+    const two = seedWithBudget({ artifactDir: reviewDir(['correctness', 'security', 'traceability', 'maintainability']), candidates: parts(2), target: 'review', maxIterationsSource: 'default' });
+    expect(two.derivedMaxIterations).toBe(24);
+    expect(two.growthSlots).toBe(10);
+  });
+});

@@ -59,6 +59,7 @@ user_inputs:
   extend: "[EXTEND] - Positive integer N from --extend=N. Sets lineage_mode to completed-continue and adds N iterations to a completed run. Default: unset."
   extend_minutes: "[EXTEND_MINUTES] - Positive integer M from --extend-minutes=M, the minutes added to the duration budget on an extension. Only valid with --extend. Default: unset, which adds the prior maxDurationMinutes."
   max_iterations: 7
+  max_iterations_source: "[default|flag|marker|setup|matrix] - Where max_iterations came from: default when no --max-iterations flag, maxIterations marker, setup answer or single-lineage matrix iterations value set it. A setup binding only, never written to the config. Default: default."
   convergence_threshold: 0.10
   convergence_mode: "[default|off|sliding-window|divergent] - Convergence policy modifier. Default: default."
   depth_mode: "[default|expansive] - Opt-in frontier growth. expansive seeds depth-1 sub-target nodes, admits leaf frontier_proposal rows and vetoes a review stop candidate while nodes stay open. Default: default."
@@ -880,7 +881,7 @@ workflow:
           expansiveDepth.maxDepth: 3
           expansiveDepth.maxChildrenPerNode: 6
           expansiveDepth.budgetSplit: { depth1: 0.5, depth2: 0.35, depth3: 0.15 }
-          # Null derives the run-wide node cap at admission as half the iteration budget, so the frontier cannot claim every iteration; the depth-1 seed answers only to the root-children cap but counts toward this one, so growth past depth 1 needs maxIterations above twice the live node count.
+          # Null derives the run-wide node cap at admission as half the iteration budget, so the frontier cannot claim every iteration; the depth-1 seed answers only to the root-children cap but counts toward this one. A defaulted budget is resized from the seed by step_frontier_budget so the cap keeps room past depth 1; an explicit budget is kept as given and may leave none.
           expansiveDepth.maxFrontierNodes: null
           antiConvergence.divergent: {}
           stopPolicy: "{stop_policy}"
@@ -915,11 +916,45 @@ workflow:
           run the command. frontier-admit.cjs is the only writer of the node
           store; never write that file by hand, and never queue or hand-expand
           the admitted nodes yourself.
-        command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --target review --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json"'
+        command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --target review --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json" --max-iterations-source "{max_iterations_source}"'
         working_directory: "{repo_root}"
         outputs:
           - frontier_seed_json: "The JSON line the command prints: admitted node ids and pruned {nodeId, reason} rows"
         on_failure: "Halt with the command's stderr line. A run that asked for expansive depth must not start without its seeded frontier."
+
+      step_frontier_budget:
+        description: "Size a defaulted expansive budget from the seed before the loop reads max_iterations"
+        enabled_when: "depth_mode == 'expansive' and max_iterations_source == 'default'"
+        skip_when: "extension_pending == true or config.fanout_lineage_artifact_dir is present"
+        skip_reason: "An explicit budget always wins, an extension already set its own budget, and a fan-out lineage gets its budget from fanout-run.cjs."
+        dry_run_boundary: "state-mutation"
+        note: |
+          The seed decides how many nodes the frontier starts with, so a defaulted budget
+          is sized only now: min(24, max(loop default, 2 x c x (seeded nodes + maxDepth - 1))),
+          where c is 1 for research and the configured dimension count for review. The
+          node cap stays half the final budget. A default-mode run never reaches this step,
+          so its config gains no key.
+        command: |
+          node -e '
+            const fs = require("fs"), path = require("path");
+            const { seedBudget } = require("./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs");
+            const [artifactDir] = process.argv.slice(1);
+            const configPath = path.join(artifactDir, "deep-review-config.json");
+            const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+            const budget = seedBudget({ artifactDir, target: "review", maxIterationsSource: "default" });
+            if (config.maxIterations !== budget.derivedMaxIterations) {
+              const tmp = configPath + ".tmp";
+              fs.writeFileSync(tmp, JSON.stringify({ ...config, maxIterations: budget.derivedMaxIterations }, null, 2) + "\n");
+              fs.renameSync(tmp, configPath);
+            }
+            console.log(JSON.stringify(budget));
+          ' "{artifact_dir}"
+        working_directory: "{repo_root}"
+        outputs:
+          - max_iterations: "derivedMaxIterations from the JSON output; it replaces the command default so the loop cap, the strategy and the convergence script read the same ceiling"
+          - frontier_growth_slots: "growthSlots from the JSON output"
+        on_success: "Print 'Expansive budget: <derivedMaxIterations> iterations, <growthSlots> growth slots past depth 1', and print the warning when the output carries one."
+        on_failure: "Halt with the command's stderr line. The config keeps the defaulted budget."
 
       step_create_state_log:
         action: "Open the run in the ledger: record deep_review.run_initialized through the append gateway, which writes the state log's first row"

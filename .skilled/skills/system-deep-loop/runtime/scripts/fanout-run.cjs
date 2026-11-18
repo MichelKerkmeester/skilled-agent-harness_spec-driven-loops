@@ -321,6 +321,25 @@ function partitionFrontierNodes(baseArtifactDir, labels) {
   return partition;
 }
 
+// Under expansive depth a lineage the matrix gave no iterations is sized from its own
+// share of the seed, the way a single-executor run is sized after its seed step. The
+// floor is the budget that lineage would otherwise have run: 12 for a native lineage,
+// the workflow default for a CLI one. A review lineage reviews the canonical four
+// dimensions. A matrix iterations value is explicit and always kept.
+function expansiveLineageBudgets(lineages, { loopType, partition }) {
+  const { expansiveBudget, LOOP_DEFAULT_MAX_ITERATIONS } = require('./frontier-admit.cjs');
+  return lineages.map((lineage) => {
+    if (Number.isInteger(lineage.iterations) && lineage.iterations > 0) return lineage;
+    const share = partition && Array.isArray(partition[lineage.label]) ? partition[lineage.label].length : 0;
+    const iterations = expansiveBudget({
+      target: loopType,
+      seeded: share,
+      loopDefault: lineage.kind === 'native' ? 12 : LOOP_DEFAULT_MAX_ITERATIONS[loopType],
+    });
+    return { ...lineage, iterations };
+  });
+}
+
 // A lineage starts from its own store and inbox. They are written only when the
 // lineage has no store yet, so a resumed lineage keeps the nodes it already closed.
 // Review carries no inbox: its nodes reach the leaf through the FRONTIER block, so
@@ -3702,7 +3721,17 @@ async function main() {
   const lineageBudgetGuards = normalizeLineageBudgetGuards(rawGuardConfig);
   const guardedAssignment = applyFlatPoolAssignmentGuard(parsedFanoutConfig);
   const fanoutConfig = guardedAssignment.config;
-  const allLineages = expandLineages(fanoutConfig);
+  const expandedLineages = expandLineages(fanoutConfig);
+  const allLineages = depthMode === 'expansive' && ACTIVE_FANOUT_LOOP_TYPES.has(loopType)
+    ? expansiveLineageBudgets(expandedLineages, {
+      loopType,
+      partition: partitionFrontierNodes(baseArtifactDir, expandedLineages.map((lineage) => lineage.label)),
+    })
+    : expandedLineages;
+  allLineages.forEach((lineage, index) => {
+    if (lineage === expandedLineages[index]) return;
+    process.stderr.write(`fanout-run: lineage ${lineage.label} budget ${lineage.iterations} iterations, derived from its seed share\n`);
+  });
   // One lineage is not a fan-out. A caller who lands here with one lineage has left the
   // workflow that owns the packet init, synthesis and save phases, and a CLI lineage
   // would then run every iteration in one process.
@@ -4712,6 +4741,7 @@ if (require.main === module && isTsxLoaded) {
 }
 
 module.exports = {
+  expansiveLineageBudgets,
   runLineageProcess,
   forcedDepthIterationViolation,
   retainIterationRecords,
