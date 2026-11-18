@@ -50,6 +50,7 @@
       ".skilled/commands/deep/assets/deep-review.yaml",
       ".skilled/agents/deep-review.md",
       ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+      "scratch/pilot-run-2.md",
       "scratch/pilot-run-1.md",
       ".skilled/commands/deep/review.md",
       ".skilled/commands/deep/assets/deep-review-presentation.txt",
@@ -58,8 +59,7 @@
       ".claude/agents/deep-review.md",
       ".codex/agents/deep-review.toml",
       ".pi/agents/deep-review.md",
-      ".vibe/agents/deep-review.toml",
-      ".dsh/agents/deep-review.patch.yml"
+      ".vibe/agents/deep-review.toml"
     ],
     "entities": [
       {
@@ -123,6 +123,12 @@
         "source": "derived"
       },
       {
+        "name": "pilot-run-2.md",
+        "kind": "doc",
+        "path": "scratch/pilot-run-2.md",
+        "source": "derived"
+      },
+      {
         "name": "pilot-run-1.md",
         "kind": "doc",
         "path": "scratch/pilot-run-1.md",
@@ -156,12 +162,6 @@
         "name": "deep-review.toml",
         "kind": "file",
         "path": ".codex/agents/deep-review.toml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.patch.yml",
-        "kind": "config",
-        "path": ".dsh/agents/deep-review.patch.yml",
         "source": "derived"
       },
       {
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The review coverage universe is `reviewDimensions`, normalized once at init and locked, and the review reducer has no `inbox`, `keyQuestions` or `openQuestions` surface, so nothing a leaf discovers can become counted review work",
     "created_at": "2026-11-17T14:34:38Z",
-    "last_save_at": "2026-11-18T05:54:45.933Z",
+    "last_save_at": "2026-11-18T06:40:17.519Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4bd30ff45df2e2071af28a3eddf742bea75b1708655cc0b3eae8e518a59cce55",
+    "source_fingerprint": "sha256:5786db2537db2899c4e5165f19ef794a967aa9b497f92db3fff3bbfbc613c18e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c1fb5a36e06a5190366596a7fc30e819a42cf0baf46b818b21ad30d3b6cd3193",
-      "plan.md": "2a5492769a4b59070b50e31f256cb66ab71a55e99c4c651e81654f2a9fb361d6",
-      "tasks.md": "e28f1dd11fe76ae8ff4aad69bd0d0cde27dc0f8b5134b201c0081a6b5eae875b",
-      "decision-record.md": "8fa35b3a36d25b57c2f50c619eb6d932349ac8a6ac87ef86e05f80b03dc46002",
-      "implementation-summary.md": "fcd6d72125baed862983ca4bd6c839e5e6b4717d8cb133974cd892ec2707581a"
+      "spec.md": "5adfb6798969ac5c9223d6e0d4314f83a7d959fc9198658971712b21e4c5c8eb",
+      "plan.md": "23d54735d1015fee05fdaa2b6efa379e113ae969ea0a2e7903c101d90e586c25",
+      "tasks.md": "dc0f86880dc8b14072dd949ceae8b1f01e5e08abe9d151c264bdd21c862dd5e4",
+      "decision-record.md": "afcea6541ac06664891cf2cfc9a6f2e24cc027272f70eee60cdbdc0cd7bae5ee",
+      "implementation-summary.md": "71145720c1ba6935f0d65f861b8f32ec7e33e79cc9069bb0b86e2f4bf7c34f42"
     },
     "last_active_at": null
   }

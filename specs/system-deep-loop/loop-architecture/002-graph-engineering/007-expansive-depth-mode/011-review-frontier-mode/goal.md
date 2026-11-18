@@ -61,7 +61,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `cd .skilled/skills/system-deep-loop/runtime && npm test -- tests/unit/deep-review-state-reducer.vitest.ts` exits 0 with the reduce-twice, close, per-node dimension and focus-precedence cases, with no frontier-owned `searchDebt` entry left and no node written as a `deferred` or `blocked` disposition once every node is terminal.
 - [x] `cd .skilled/skills/system-deep-loop/runtime && npm test -- tests/unit/deep-review-deltas-contract.vitest.ts tests/integration/divergent-pivot.vitest.ts tests/unit/check-contract-drift.vitest.ts` exits 0 with a `frontier_proposal` case, the gating case and the regenerated review contract.
 - [x] `cd .skilled/skills/system-deep-loop/runtime && npm test -- tests/unit/fanout-run.vitest.ts tests/unit/fanout-merge.vitest.ts` exits 0 with seven seeded depth-1 nodes written to the lineage stores before spawn and assigned round-robin across three lineages beside `review_focus`, a merged `frontier` and a failing merge guard for a missing node.
-- [ ] On the target-1 pilot, `jq '.frontier.stats'` over the merged registry shows seven depth-1 nodes, zero open and zero active, and its stop reason is not `maxIterationsReached`.
+- [x] On the target-1 pilot, the merged registry holds the seven subsystem depth-1 nodes plus the determinism node, and `jq '.frontier.stats'` shows zero open and zero active with every node terminal.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -84,6 +84,7 @@ and findings belong here.
 | T001 dependencies | Done | Merged on this branch (git branch --contains lists 469 for each): 003 c898b3ad9a3, 004 227d594603e, 008 4d0b12723eb, 009 7cb4f32d305, 010 5e583331cc9, 012 79ae240955e. |
 | T003 golden baseline | Done | Seven baselines in runtime/tests/fixtures/golden-review-default/ captured on 5e583331cc9 before any review depth-mode code; review-depth-mode-golden.vitest passed 14/14 on two reruns with the same sha256 per file; grep -c /Users/ prints 0 for every file (checkout path tokenized as <CWD>). |
 | T026, T027 playbook and changelog | Done 2026-11-18 | DRV-076 to DRV-082 added to the deep-review playbook. The index counts 69 scenarios across 10 categories, and the validator prints PASS with violations 0. Changelog v1.13.0.0 written and shape-checked. Deep-review SKILL.md at 1.13.0.0, and the parent-skill doctor prints OK. Compiled contracts regenerated. Full named suites on this worktree: golden 14/14, review admission 18/18, reducer 32/32, stop decision 92/92, stop YAML contract 34/34, divergent pivot 26/26, fan-out runner 207/207, fan-out merge 88/88. No completion criterion became met in this pass: criterion 1 stays open under the persona waiver, and criterion 7 waits on the pilot, which has not run. |
+| AC-011 amended and met | Done 2026-11-18 | Operator ruling Q008. Pilot run 2 (scratch/pilot-run-2.md) at cee8682a6c9: 8 depth-1 nodes answered (7 subsystems + determinism), merged stats 22 total, 0 open, 0 active, merge guard passed, a lineage-local graph with EVIDENCE_FOR edges in all 6 lineages; pi-2 capped behind dimensionCoverageGate, pi-6 converged. Leaf-written stop reasons (pi-1, pi-3, pi-4, pi-5) recorded as outside this phase. |
 
 ### Deviations and findings
 

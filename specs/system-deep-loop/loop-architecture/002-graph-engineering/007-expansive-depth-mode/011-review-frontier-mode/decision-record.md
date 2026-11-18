@@ -38,6 +38,10 @@ _memory:
 | Q002 | Decouple the frontier node cap from the iteration cap and rerun the pilots. | Not stated. | None | AC-011, deep-review.yaml, frontier-admit.cjs |
 | Q003 | Add an expansive-only stop rule: a fan-out lineage whose partition is fully answered becomes a stop candidate, then rerun the review pilot. | Not stated. The review pilot used 12 of 16 node slots; it failed because answered lineages kept running to the iteration cap. | Q002 for the review pilot | AC-011, REQ-010, goal.md completion criteria |
 | Q004 | Ratify ADR-005: the golden review lineage-prompt check strips the one expansive-only persona paragraph. | Not stated. | None | ADR-005, AC-001, review-depth-mode-golden.vitest.ts |
+| Q005 | Fix the missing lineage-local coverage graph in fan-out lineages first, then add the drained-partition candidate behind every gate; no gate is weakened. | Not stated. A replay showed a drained candidate would be BLOCKED in pi-2, pi-5 and pi-6, mainly by the hotspot gate that cannot pass without a graph. | Q003 design detail | REQ-016, REQ-017, AC-017, AC-018, fanout-run.cjs, convergence.cjs |
+| Q006 | Make the standard graph upsert derive EVIDENCE_FOR links from each finding's file reference, as a named default-run defect fix, before the pilot rerun. | Not stated. With graphs present, evidence density stayed 0 because the standard upsert never wrote evidence links. | None | REQ-018, AC-019, upsert.cjs |
+| Q007 | Keep frontier_drained as a hard stop candidate (D-011-07); every quality gate and the graph decision still apply. | Not stated. A soft candidate could never add a stop, since the composite candidate forms at the score the convergence gate needs. | None | D-011-07, REQ-017 |
+| Q008 | Amend AC-011 to seven subsystem depth-1 nodes plus the determinism node, zero open and zero active, every node terminal, with the stop-reason clause dropped; record the four stop-integrity defects outside this packet. | Not stated. Pilot run 2 drained every lineage frontier, but pi-2 capped on real spec_code traceability the fixture cannot satisfy, and leaf-written stop reasons are unchecked. | The stop-reason clause of AC-011, REQ-010 and SC-002 | AC-011, REQ-010, SC-002, T030, goal.md completion criteria |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -143,6 +147,86 @@ Reject both
 Answer:
 ```text
 Ratify both (Recommended)
+```
+
+### Q005
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01MALQzKqe4JjaiRQRSvwzQr:0 -->
+
+Question:
+```text
+Review partition-drained stop: I replayed the pilot lineages. In pi-2, pi-5 and pi-6, a drained-partition candidate would be BLOCKED by review quality gates on every iteration, and a blocked stop just continues to the cap. The failing gates: hotspotSaturationGate always fails when a lineage has no coverage graph (5 of 6 had none), pi-2 has an active P0, and partial spec_code traceability fails dimensionCoverageGate. Which design?
+```
+
+Options:
+```text
+Drained stops like the cap
+Fix lineage graph, then gate
+Gated candidate + amend AC-011
+Amend AC-011 only
+```
+
+Answer:
+```text
+Fix lineage graph, then gate
+```
+
+### Q006
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01LDqruFvN9Ax8ncL2p5aeua:0 -->
+
+Question:
+```text
+The lineage-graph fix and the gated frontier_drained candidate are committed (full suite: 3414 passed, 0 failed). A replay still predicts 3 of 6 review pilot lineages cap-stopping. The graph decision stays CONTINUE because evidence density is 0: the standard graph upsert never creates EVIDENCE_FOR links (only pi-3's leaf sent any). pi-2 and pi-6 are also blocked by real findings (an active P0, partial spec_code traceability). How do I close AC-011?
+```
+
+Options:
+```text
+Rerun now, then decide
+Add evidence links first
+Amend AC-011 + rerun
+```
+
+Answer:
+```text
+Add evidence links first
+```
+
+### Q007
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01LDqruFvN9Ax8ncL2p5aeua:1 -->
+
+Question:
+```text
+The agent made frontier_drained a HARD stop candidate (like all_dimensions_clean), so it skips the convergence-score gate but still faces all nine quality gates and the graph decision. A soft one could never add a stop, because the composite candidate already forms at the score the gate needs. Keep it hard?
+```
+
+Options:
+```text
+Keep hard (Recommended)
+Veto: make it soft
+```
+
+Answer:
+```text
+Keep hard (Recommended)
+```
+
+### Q008
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01Wjx69nuK2C3ABzL8tSZQsF:0 -->
+
+Question:
+```text
+Review pilot rerun (28 min, all 6 lineages got working graphs): AC-011 FAILs. Zero open and zero active: met (22 nodes: 12 answered, 7 exhausted, 3 pruned). But (1) the seed has 8 depth-1 nodes: 7 subsystems + the determinism node T030 requires; (2) pi-2 still hit the cap, blocked by real spec_code traceability that this commit-range fixture's placeholder spec can't satisfy; (3) only pi-6's stop was legal and script-computed: pi-1, pi-3, pi-4 and pi-5 leaves wrote stop reasons themselves (one invented maxDurationReached; one went to synthesis on BLOCKED), and nothing checks a leaf's stop reason. How should AC-011 close?
+```
+
+Options:
+```text
+Amend AC-011, log defects
+Fix stop integrity, rerun
+Leave Unmet
+```
+
+Answer:
+```text
+Amend AC-011, log defects
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

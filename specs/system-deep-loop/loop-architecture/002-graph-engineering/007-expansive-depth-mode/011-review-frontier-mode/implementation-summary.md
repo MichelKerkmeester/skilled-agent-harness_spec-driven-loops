@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Built on branch 469: the opt-in review --depth-mode=expansive frontier with its golden default-path baseline. The target-1 pilot ran and failed AC-011."
+description: "Built on branch 469: the opt-in review --depth-mode=expansive frontier with its golden default-path baseline. The target-1 pilot ran twice; AC-011 was amended and run 2 meets it."
 trigger_phrases:
   - "review frontier mode implementation summary"
 importance_tier: "normal"
@@ -37,7 +37,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 011-review-frontier-mode |
-| **Completed** | Built 2026-11-17 on `worktrees/469-ed-011-review-frontier-mode`; the playbook and the changelog were written 2026-11-18; the target-1 pilot ran 2026-11-17 to 2026-11-18 and failed AC-011; not closed: the full suite runs at integration |
+| **Completed** | Built 2026-11-17 on `worktrees/469-ed-011-review-frontier-mode`; the playbook and the changelog were written 2026-11-18; the target-1 pilot ran twice on 2026-11-17 and 2026-11-18; AC-011 met under the amended criterion (decision-record Q008) on run 2 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -116,7 +116,7 @@ Setup ran natively: dependency merges confirmed, the golden review baseline capt
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
-1. **The pilot ran once and failed AC-011.** The target-1 run reviewed 400 commits with 6 lineages of up to 16 iterations each, on a throwaway fixture (`scratch/pilot-run-1.md`). The T031 budget check passed: half of the 16-iteration cap is 8, which meets the 8 it needs. AC-011 failed for two reasons. The root cap of 6 pruned the seventh depth-1 node, and 3 of 6 lineages stopped on `maxIterationsReached`. The frontier still ended with no open or active node, and the merge guard passed. Four defects were fixed in `43eb6d47b8e` with fail-first tests. One stays open for the operator: a lineage keeps running after its node is answered.
+1. **The pilot ran twice; AC-011 was amended.** Run 2 (`scratch/pilot-run-2.md`, at `cee8682a6c9`) drained every lineage frontier to zero open and zero active, with 8 depth-1 nodes answered and a lineage-local graph in every lineage. pi-2 still stopped on the cap behind real `spec_code` traceability, so the operator dropped the stop-reason clause. Run 1 follows. The target-1 run reviewed 400 commits with 6 lineages of up to 16 iterations each, on a throwaway fixture (`scratch/pilot-run-1.md`). The T031 budget check passed: half of the 16-iteration cap is 8, which meets the 8 it needs. AC-011 failed for two reasons. The root cap of 6 pruned the seventh depth-1 node, and 3 of 6 lineages stopped on `maxIterationsReached`. The frontier still ended with no open or active node, and the merge guard passed. Four defects were fixed in `43eb6d47b8e` with fail-first tests. One stays open for the operator: a lineage keeps running after its node is answered.
 2. **AC-001 waived.** The default CLI lineage prompt now carries the expansive-only leaf-contract paragraph in its embedded persona (ADR-005), ratified by the operator on 2026-11-18 together with 010's ADR-006.
 3. **Research golden on this base.** `research-depth-mode-golden` lineage-prompt fails on this branch's base because its baseline holds worktree 467's path; integration fixed it in `2c9405692a1`.
 <!-- /ANCHOR:limitations -->
