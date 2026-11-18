@@ -20,6 +20,7 @@ import {
   getSnapshots,
   getStats,
 } from './coverage-graph-db.js';
+import { SOURCE_QUALITY_CLASS } from './coverage-graph-query.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
@@ -678,7 +679,10 @@ export function computeResearchSourceDiversityFromData(
     for (const findingId of answeringFindings.get(questionId) ?? []) {
       for (const sourceId of citedSources.get(findingId) ?? []) {
         const qualityClass = sourceMetadataById.get(sourceId)?.quality_class;
-        if (typeof qualityClass === 'string' && qualityClass.length > 0) {
+        // An unclassified source names no location, so it is not evidence of a
+        // second kind of source and does not raise diversity.
+        if (typeof qualityClass === 'string' && qualityClass.length > 0
+          && qualityClass !== SOURCE_QUALITY_CLASS.UNCLASSIFIED) {
           qualityClasses.add(qualityClass);
         }
       }

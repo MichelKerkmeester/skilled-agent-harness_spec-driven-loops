@@ -754,6 +754,22 @@ describe('convergence profile parity pins', () => {
       dependencyCompleteness: 1,
     });
   });
+
+  it('does not count an unclassified source as a distinct source kind', () => {
+    const nodes = [
+      { id: 'question-1', kind: 'QUESTION' },
+      { id: 'finding-1', kind: 'FINDING' },
+      { id: 'source-code', kind: 'SOURCE', metadata: { quality_class: 'repo-code' } },
+      { id: 'source-free', kind: 'SOURCE', metadata: { quality_class: 'unclassified' } },
+    ] as Parameters<typeof computeResearchSourceDiversityFromData>[0];
+    const edges = [
+      { id: 'answer-1', sourceId: 'finding-1', targetId: 'question-1', relation: 'ANSWERS' },
+      { id: 'cite-code', sourceId: 'finding-1', targetId: 'source-code', relation: 'CITES' },
+      { id: 'cite-free', sourceId: 'finding-1', targetId: 'source-free', relation: 'CITES' },
+    ] as Parameters<typeof computeResearchSourceDiversityFromData>[1];
+
+    expect(computeResearchSourceDiversityFromData(nodes, edges)).toBe(1);
+  });
 });
 
 describe('convergence.cjs stop-decision', () => {
