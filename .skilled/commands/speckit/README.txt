@@ -436,7 +436,7 @@ For the free-text lane, you do not: `rg` reads the files directly, so an edit is
 
 | Document | Purpose |
 |----------|---------|
-| [Parent: OpenCode Commands](../README.txt) | Overview of all command groups |
+| [Parent: Skilled Commands](../README.txt) | Overview of all command groups |
 | [system-spec-kit SKILL.md](../../skills/system-spec-kit/SKILL.md) | Spec folder workflow, documentation levels, packet continuity |
 | [AGENTS.md](../../../AGENTS.md) | Gate system, agent routing, spec folder requirements |
 | [Ripgrep Retrieval Conventions](../../skills/system-spec-kit/references/retrieval/retrieval-conventions.md) | The recipes, scoping rules, exit-status mapping and ranking tuple behind `search` |

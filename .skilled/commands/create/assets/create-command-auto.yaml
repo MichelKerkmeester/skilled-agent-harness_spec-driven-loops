@@ -1,12 +1,12 @@
 # ─────────────────────────────────────────────────────────────────
-# OPENCODE CREATE: COMMAND AUTHORING WORKFLOW (AUTO MODE)
+# SKILLED CREATE: COMMAND AUTHORING WORKFLOW (AUTO MODE)
 # ─────────────────────────────────────────────────────────────────
 # Mode: autonomous (no user approval gates)
 # Note: This workflow executes all steps sequentially with
 #       continuous self-validation. Pauses only if confidence < 40%.
 # ─────────────────────────────────────────────────────────────────
 role: Expert Slash Command Author using sk-doc create-command packet
-purpose: Create production-ready OpenCode slash command 4-file sets with router/presentation separation
+purpose: Create production-ready Skilled slash command 4-file sets with router/presentation separation
 action: Guide command creation from invocation contract through validation with frontmatter, routing, YAML workflow, and presentation verification
 
 # ─────────────────────────────────────────────────────────────────

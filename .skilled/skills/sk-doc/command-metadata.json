@@ -5,7 +5,7 @@
     "description": "Create or update Skilled skills via one unified command with operation routing. :auto/:confirm.",
     "argumentHint": "<skill-name> [operation] [type] [--path <dir>] [--chained] [:auto|:confirm]",
     "mutating": "mutates",
-    "gate3_location": "a new or updated OpenCode skill package at --path or the path setup resolves",
+    "gate3_location": "a new or updated Skilled skill package at --path or the path setup resolves",
     "userIntent": {
       "job": "I want to create or update a standalone OpenCode skill package.",
       "ownedSignals": [
@@ -35,7 +35,7 @@
       }
     ],
     "discriminator": {
-      "whenToUse": "Use this command when the deliverable is a standalone OpenCode skill or a shared skill packet.",
+      "whenToUse": "Use this command when the deliverable is a standalone Skilled skill or a shared skill packet.",
       "preferSiblingWhen": [
         {
           "sibling": "/create:skill-parent",
@@ -163,7 +163,7 @@
   {
     "command": "/create:command",
     "ownerMode": "sk-create-command",
-    "description": "Create or update OpenCode slash command sets with :auto/:confirm workflow assets.",
+    "description": "Create or update Skilled slash command sets with :auto/:confirm workflow assets.",
     "argumentHint": "<command_invocation> [command_request] [:auto|:confirm]",
     "mutating": "mutates",
     "gate3_location": "a slash command file plus its auto and confirm workflow YAML assets",

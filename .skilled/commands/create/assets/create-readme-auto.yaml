@@ -1,5 +1,5 @@
 # ─────────────────────────────────────────────────────────────────
-# OPENCODE CREATE: README WORKFLOW (AUTO MODE)
+# SKILLED CREATE: README WORKFLOW (AUTO MODE)
 # ─────────────────────────────────────────────────────────────────
 # Mode: autonomous (no user approval gates)
 # Operations: README creation
@@ -327,7 +327,7 @@ readme_types:
     - "How do I configure it?"
 
   skill:
-    scope: "OpenCode skill"
+    scope: "Skilled skill"
     sections:
     # Full canonical 9-section set from readme-template.md §13
     - "OVERVIEW"
@@ -416,7 +416,7 @@ readme_workflow:
       project: "Entire project - overview, installation, configuration, usage"
       component: "Module/package - purpose, API, usage examples, integration"
       feature: "Specific feature - what it does, how it works, configuration"
-      skill: "OpenCode skill - triggers, commands, MCP tools, architecture"
+      skill: "Skilled skill - triggers, commands, MCP tools, architecture"
     outputs:
     - target_confirmed
     - type_confirmed

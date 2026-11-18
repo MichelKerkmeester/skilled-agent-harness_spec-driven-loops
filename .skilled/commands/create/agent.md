@@ -10,7 +10,7 @@ This command is a thin router. It separates execution routing from user-facing p
 
 ## 1. ROUTER CONTRACT
 
-Route /create:agent to its presentation contract and workflow YAML for creating an OpenCode agent with frontmatter, tool permissions, and behavioral rules.
+Route /create:agent to its presentation contract and workflow YAML for creating a Skilled agent with frontmatter, tool permissions, and behavioral rules.
 
 - Do not dispatch agents from this router.
 - Do not edit workflow YAML while executing this command.

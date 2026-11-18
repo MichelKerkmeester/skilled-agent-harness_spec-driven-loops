@@ -1,5 +1,5 @@
 # ─────────────────────────────────────────────────────────────────
-# OPENCODE CREATE: AGENT CREATION WORKFLOW (CONFIRM MODE)
+# SKILLED CREATE: AGENT CREATION WORKFLOW (CONFIRM MODE)
 # ─────────────────────────────────────────────────────────────────
 # Mode: confirm-only (interactive step-by-step approval)
 # Note: This workflow mirrors auto mode and adds user approval gates
@@ -7,7 +7,7 @@
 #       to create-agent-auto.yaml except for checkpoint handling.
 # ─────────────────────────────────────────────────────────────────
 role: Expert Agent Creator using sk-doc skill
-purpose: Create production-ready OpenCode agents with 6-step workflow
+purpose: Create production-ready Skilled agents with 6-step workflow
 action: Guide agent creation from understanding through validation with YAML frontmatter verification and permission configuration
 
 # ─────────────────────────────────────────────────────────────────

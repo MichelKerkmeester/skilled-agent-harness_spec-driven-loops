@@ -89,7 +89,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     family: 'system',
     category: 'command',
     name: 'create:agent',
-    description: 'Create command bridge for /create:agent OpenCode agent scaffolding.',
+    description: 'Create command bridge for /create:agent Skilled agent scaffolding.',
     keywords: ['/create:agent', 'create new agent', 'create agent', 'new agent', 'make new agent'],
     domains: ['create', 'agent', 'command'],
     intentSignals: ['/create:agent', 'create new agent', 'create agent', 'new agent', 'make new agent'],

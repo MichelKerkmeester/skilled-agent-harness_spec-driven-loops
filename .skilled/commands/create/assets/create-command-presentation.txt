@@ -88,7 +88,7 @@ Ask only the applicable questions, together in one turn, through the question to
 Before proceeding, please answer:
 
 Q0. Command Invocation (if not provided)
-What OpenCode slash command should be created or updated?
+What Skilled slash command should be created or updated?
 Format: /command or /namespace:action, for example /create:widget or /doctor:cache.
 
 Q1. Command Workflow
