@@ -33,7 +33,7 @@
       "written"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -189,8 +189,8 @@
     ],
     "causal_summary": "The 75 system-skill-advisor changelogs were written before the v4.1.0.0 layout",
     "created_at": "2026-11-17T18:13:08Z",
-    "last_save_at": "2026-11-17T22:19:16.092Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-18T04:29:10.886Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -199,13 +199,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a8af9fcf654b96689a625cbf353f94c4d60d6774877c7fb2f8d81f255444effa",
+    "source_fingerprint": "sha256:e524855fe43124a137c4520dbc209e43e296ecf6687c9d50b0d33015bb23da5c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7c71418a660e6c3760a8eff2db77f1c5634e63f9ce73e855a67033db2eef5d41",
+      "spec.md": "c982b95b58b9a07d657a80ddefb074d9d51a29a2349f5b51317c36750a8d6925",
       "plan.md": "1f9af4eba0cf6eb35706e2f614c9a18d229b6133c12c410bf9c2565643f6ca1f",
-      "tasks.md": "293bec5bd47fa8ebfa5615b43830e58f65555f279e7141c16554d899423cdfa4",
-      "implementation-summary.md": "34698300c923974ae3217001282eee155f91a8988e7d3cdcc81ba4dc03d1409e"
+      "tasks.md": "31a563ac6fea3301244aea7caa28c83ae8d0353a784df55b5ea494bd2796e925",
+      "implementation-summary.md": "035327c41a50eaade6f4ec86fce970effc34ddb7262f11e739ca5d36bcc17aed"
     },
     "last_active_at": null
   }
