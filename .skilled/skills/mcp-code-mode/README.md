@@ -7,7 +7,7 @@ trigger_phrases:
   - "mcp tools"
   - "tool orchestration"
   - "context reduction"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # mcp-code-mode
@@ -94,13 +94,36 @@ A healthy install prints three `PASS` lines and `Doctor done.`, then exits 0.
 
 One request follows the same route. The router loads the reference files for the intent. Discovery resolves the tool name and `tool_info` resolves its interface. `call_tool_chain` then runs the code in a V8 isolate and returns one envelope.
 
-```mermaid
-flowchart TD
-  Request["A request that names an external service"] --> Route["Router loads the matching reference"]
-  Route --> Discover["search_tools or list_tools returns names"]
-  Discover --> Inspect["tool_info returns the interface"]
-  Inspect --> Execute["call_tool_chain runs the TypeScript"]
-  Execute --> Result["Result, logs and a success flag"]
+```text
+┌──────────────────────────────────────────┐
+│ A request that names an external service │
+└──────────────────────────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────┐
+│ Router loads workflows.md, then the      │
+│ matched reference                        │
+└──────────────────────────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────┐
+│ search_tools or list_tools returns names │
+└──────────────────────────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────┐
+│ tool_info returns the interface          │
+└──────────────────────────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────┐
+│ call_tool_chain runs the TypeScript      │
+└──────────────────────────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────┐
+│ Result, logs and a success flag          │
+└──────────────────────────────────────────┘
 ```
 
 ### The Naming Rule

@@ -8,7 +8,7 @@ trigger_phrases:
   - "composer"
   - "delegate to cursor"
   - "second opinion"
-version: 1.4.7.0
+version: 1.4.8.0
 ---
 
 # cli-cursor
@@ -94,14 +94,44 @@ An answer prints and no file changes. `--mode plan` and `--mode ask` stay read-o
 
 A dispatch starts when the calling assistant decides a task belongs at Cursor. The skill scores the request and loads the references that match. It then confirms `cursor-agent` is on PATH before it builds a command. For a research or review lineage the shared runtime takes over: `fanout-run.cjs` runs with executor kind `cli-cursor` and owns process construction. A single build or doc dispatch uses the child envelope in the models reference instead.
 
-```mermaid
-flowchart TD
-  Request["Task in the calling runtime"] --> Route["Router picks the intent and its references"]
-  Route --> Probe["Availability probe, then the account check"]
-  Probe --> Guard["Self-invocation guard"]
-  Guard --> Dispatch["cursor-agent -p with a model and an approval mode"]
-  Dispatch --> Read["Caller reads the output text"]
-  Read --> Integrate["Caller validates and integrates the result"]
+```text
+┌──────────────────────────────┐
+│ Task in the calling runtime  │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ Router picks the intent      │
+│ and its references           │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ Availability probe, then     │
+│ the account check            │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ Self-invocation guard        │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ cursor-agent -p with a model │
+│ and an approval mode         │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ Caller reads the output text │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ Caller validates and         │
+│ integrates the result        │
+└──────────────────────────────┘
 ```
 
 ### The Two Silent Traps

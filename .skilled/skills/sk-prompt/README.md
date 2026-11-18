@@ -7,7 +7,7 @@ trigger_phrases:
   - "framework"
   - "CLEAR scoring"
   - "/prompt:improve"
-version: 4.0.4.0
+version: 4.0.5.0
 ---
 
 # sk-prompt
@@ -87,14 +87,39 @@ It prints `PASSED 19/19 fixtures` and exits 0.
 
 A run moves through five stages. The first detects the mode from the command prefix or from your own words. It sets a pasted prompt aside so its text never picks the mode. The request is checked once against the ten rows. A prompt that already passes comes back unchanged or with the smallest edit you asked for. Otherwise the draft is written from the default skeleton or a named preset. The draft is checked once against its own success criteria, screened with CLEAR and delivered with the open items and the change report.
 
-```mermaid
-flowchart TD
-  Request["Your request"] --> Mode["Detect the mode and set a pasted prompt aside"]
-  Mode --> Check["Check the ten rows once"]
-  Check -->|Passes| Early["Return it unchanged or lightly edited"]
-  Check -->|Missing rows| Write["Write from the skeleton or a named preset"]
-  Write --> Screen["Self-check and CLEAR screen"]
-  Screen --> Deliver["Delivered prompt and change report"]
+```text
+                           ┌──────────────────────────────────────────┐
+                           │ Your request                             │
+                           └────────────────────┬─────────────────────┘
+                                                │
+                                                ▼
+                           ┌──────────────────────────────────────────┐
+                           │ Detect the mode and set a pasted         │
+                           │ prompt aside                             │
+                           └────────────────────┬─────────────────────┘
+                                                │
+                                                ▼
+                           ┌──────────────────────────────────────────┐
+                           │ Check the ten rows once                  │
+                           └────────────────────┬─────────────────────┘
+                                                │
+                        ┬───────────────────────┴─────────────────────────┬
+                        │                                                 │
+                        ▼ Passes                                          ▼ Missing rows
+  ┌──────────────────────────────────────────┐      ┌──────────────────────────────────────────┐
+  │ Return it unchanged or                   │      │ Write from the skeleton or               │
+  │ lightly edited                           │      │ a named preset                           │
+  └──────────────────────────────────────────┘      └─────────────────────┬────────────────────┘
+                                                                          │
+                                                                          ▼
+                                                    ┌──────────────────────────────────────────┐
+                                                    │ Self-check and CLEAR screen              │
+                                                    └─────────────────────┬────────────────────┘
+                                                                          │
+                                                                          ▼
+                                                    ┌──────────────────────────────────────────┐
+                                                    │ Delivered prompt and change report       │
+                                                    └──────────────────────────────────────────┘
 ```
 
 ### The One-Pass Checklist

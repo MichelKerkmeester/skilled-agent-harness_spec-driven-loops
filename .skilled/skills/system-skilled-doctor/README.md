@@ -5,7 +5,7 @@ trigger_phrases:
   - "system-skilled-doctor readme"
   - "skilled doctor commands"
   - "put skilled into my project"
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # system-skilled-doctor
@@ -77,15 +77,28 @@ It prints one line per setup leg and names the command that repairs each failing
 
 A request about Skilled inside a project selects this skill. The skill matches it to one command from the table. When nothing matches clearly, `/doctor:helper` ranks the commands that fit. That command runs its own workflow and shows its result. A command that changes a project prints its plan first and changes nothing until you approve it. Read the command's output and its exit status before you report what it found.
 
-```mermaid
-flowchart TD
-  Request["Request about Skilled in a project"] --> Match["Match one owned command"]
-  Match -->|"no clear match"| Helper["/doctor:helper ranks the commands that fit"]
-  Helper --> Run
-  Match --> Run["Run the command's own workflow"]
-  Run -->|"read-only"| Report["Check report"]
-  Run -->|"writes"| Plan["Plan shown first"]
-  Plan -->|"you approve"| Apply["Change applied"]
+```text
+┌──────────────────────────────┐
+│ Request about Skilled        │
+│ in a project                 │
+└────────────────┬─────────────┘
+                │
+                ▼
+┌────────────────┬─────────────┐                        ┌──────────────────────────────┐
+│ Match one owned command      ├────no clear match─────▶├ /doctor:helper ranks the     │
+└────────────────┬─────────────┘                        │ commands that fit            │
+                │                                       └────────────────┬─────────────┘
+                │         ──────────────────────────────────────────────┘
+                ▼         ▼
+┌────────────────┬─────────┬───┐                        ┌──────────────────────────────┐
+│ Run the command's own        ├───────read-only───────▶├ Check report                 │
+│ workflow                     │                        └──────────────────────────────┘
+└────────────────┬─────────────┘
+                │ writes
+                ▼
+┌────────────────┬─────────────┐                        ┌──────────────────────────────┐
+│ Plan shown first             ├──────you approve──────▶├ Change applied               │
+└──────────────────────────────┘                        └──────────────────────────────┘
 ```
 
 ### The Plan Before The Write

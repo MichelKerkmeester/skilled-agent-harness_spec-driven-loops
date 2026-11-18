@@ -137,6 +137,7 @@ Per-phase file lists and their baselines live in each child's `plan.md`.
 | 7 | 007-hook-code-folder-readmes/ | Rewrite the 31 hook code folder READMEs and the hooks library README to the code-folder template | Complete |
 | 8 | 008-readme-html-conventions/ | Write the README rule for GitHub alerts and folded tables, block a broken fold in the validator and pilot both on four files | Complete |
 | 9 | 009-repo-rules-readme/ | Write the repo-rules folder README under the alert and fold rule, and make the repo-rules checker and card builder skip it | Complete |
+| 10 | 010-readme-text-diagrams/ | Redraw the 55 Mermaid diagrams in READMEs as box-drawing text, and make the skill README template ask for a text diagram | Complete |
 
 ### Phase Transition Rules
 
@@ -157,6 +158,7 @@ Per-phase file lists and their baselines live in each child's `plan.md`.
 | 006-runtime-folder-readmes | 007-hook-code-folder-readmes | All 16 runtime folder files meet the checks, including the new `.vibe/README.md` | `validate.sh --strict` on 006 prints `RESULT: PASSED` |
 | 007-hook-code-folder-readmes | 008-readme-html-conventions | Every README in the program is on its template, so a rule on top of the templates has a stable base | `validate.sh --strict` on 007 prints `RESULT: PASSED` |
 | 008-readme-html-conventions | 009-repo-rules-readme | The alert and fold rule is written and piloted, so a new README can follow it | `validate.sh --strict` on 008 prints `RESULT: PASSED` |
+| 009-repo-rules-readme | 010-readme-text-diagrams | The repo-rules README is pushed, so the next phase starts from a clean program | `validate.sh --strict` on 009 prints `RESULT: PASSED` |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -9,7 +9,7 @@ trigger_phrases:
   - "code review"
   - "second opinion"
   - "cross-validate"
-version: 1.9.8.0
+version: 1.9.9.0
 ---
 
 # cli-codex
@@ -100,17 +100,40 @@ A dispatch starts when the hub routes a request here or when a caller reads the 
 
 Then one of two paths runs the work. A single build or doc task goes out through the child dispatch envelope in [`references/providers-and-models.md`](./references/providers-and-models.md). A research or review lineage goes to the shared deep-loop runtime at [`fanout-run.cjs`](../../system-deep-loop/runtime/scripts/fanout-run.cjs), which accepts only those two loop types with executor kind `cli-codex`. The output returns to the caller, which validates it before integrating.
 
-```mermaid
-flowchart TD
-  Request["A request that names Codex"] --> Route["The hub routes it to cli-codex"]
-  Route --> Guard{"Binary present and OAuth live?"}
-  Guard -- no --> Ask["Surface the install or codex login"]
-  Guard -- yes --> Shape["Caller sets prompt, model, effort and sandbox"]
-  Shape --> Single["Child dispatch envelope"]
-  Shape --> Loop["Deep-loop runtime for research or review"]
-  Single --> Back["Output returns to the caller"]
-  Loop --> Back
-  Back --> Verify["Caller validates and integrates"]
+```text
+        ┌──────────────────────────────┐
+        │ A request that names Codex   │
+        └───────────────┬──────────────┘
+                        │
+                        ▼
+        ┌──────────────────────────────┐
+        │ The hub routes it to         │
+        │ cli-codex                    │
+        └───────────────┬──────────────┘
+                        │
+                        ▼
+        ┌──────────────────────────────┐        ┌──────────────────────────────┐
+        │ Binary present and           │ [NO] ─▶│ Surface the install or       │
+        │ OAuth live?                  │        │ codex login                  │
+        └───────────┬──────────────────┘        └──────────────────────────────┘
+                    │[YES]
+                    │
+                    ▼
+        ┌──────────────────────────────┐        ┌──────────────────────────────┐
+        │ Caller sets prompt, model,   │───────▶│ Deep-loop runtime for        │
+        │ effort and sandbox           │        │ research or review           │
+        └───────────────┬──────────────┘        └───────────────┬──────────────┘
+                        │                                       │
+                        ▼                                       ▼
+        ┌──────────────────────────────┐        ┌──────────────────────────────┐
+        │ Child dispatch envelope      │───────▶│ Output returns to the caller │
+        └──────────────────────────────┘        └───────────────┬──────────────┘
+                                                                │
+                                                                ▼
+                                                ┌──────────────────────────────┐
+                                                │ Caller validates and         │
+                                                │ integrates                   │
+                                                └──────────────────────────────┘
 ```
 
 ### The Packet Layout

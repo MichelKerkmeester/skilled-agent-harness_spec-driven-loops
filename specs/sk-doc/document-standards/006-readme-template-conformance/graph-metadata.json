@@ -12,7 +12,8 @@
     "sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes",
     "sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes",
     "sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions",
-    "sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme"
+    "sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme",
+    "sk-doc/document-standards/006-readme-template-conformance/010-readme-text-diagrams"
   ],
   "manual": {
     "depends_on": [],
@@ -191,6 +192,12 @@
         "source": "derived"
       },
       {
+        "name": "Flash Free",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "that",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -198,12 +205,6 @@
       },
       {
         "name": "origin",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "its",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -217,7 +218,7 @@
     ],
     "causal_summary": "The root README and its five root guides now read in a plain human voice, and the `sk-create-readme` templates were rewritten to match",
     "created_at": "2026-11-16T15:20:12Z",
-    "last_save_at": "2026-11-18T08:58:31.773Z",
+    "last_save_at": "2026-11-18T11:25:10.655Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -225,11 +226,11 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:c5a5591e580c07a7b625011bb357fad7077e3654c78a98b08003ab4e69691656",
+    "source_fingerprint": "sha256:1113e31a84a1184858498d1c3d96135264ed4ff836e4def99211b5bad43b7e43",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "02e0ff6103959646e36bcfd37b60a6ec1ec1a8466cb385d61449989536cce021",
-      "decision-record.md": "ada7182ab08a329e0e79da08aa2928311456fb7a6c4114b9aeb73208b95312e4"
+      "spec.md": "939ad710ea0524ac30f059717a9c6eb50cef255f7efb8c90977176e25a5af75f",
+      "decision-record.md": "ae766744c96d6997165f4329b3d5b722d4470d4b31b9e64b759e5183b90e5a13"
     },
     "last_active_child_id": "sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes",
     "last_active_at": "2026-11-17T17:07:56.519Z"

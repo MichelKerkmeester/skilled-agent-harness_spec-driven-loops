@@ -6,7 +6,7 @@ trigger_phrases:
   - "dsh headless"
   - "delegate to dsh"
   - "deepseek harness cli"
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
 # cli-deepseek-harness
@@ -101,13 +101,39 @@ The model is not on the command line. `dsh` builds its runtime from layered YAML
 
 Completion is a pair of signals. A run is complete only on exit 0 plus a last `final` event whose `reason.kind` is `completed`. A parseable stream proves nothing on its own: the keyless probe produced a valid `final` event with `reason.kind` `error` and exited 1.
 
-```mermaid
-flowchart TD
-  Request["One scoped task"] --> Probe["Probe dsh and the pinned version"]
-  Probe --> Compose["Compose the route patch with the lineage and guards patches"]
-  Compose --> Dispatch["Dispatch headless with the prompt on stdin"]
-  Dispatch --> Stream["Read the exit code and the final event"]
-  Stream --> Check["Check the returned changes and the tests"]
+```text
+┌──────────────────────────────────┐
+│ One scoped task                  │
+└──────────────────────────────────┘
+                 │
+                 ▼
+┌──────────────────────────────────┐
+│ Probe dsh and the pinned version │
+└──────────────────────────────────┘
+                 │
+                 ▼
+┌──────────────────────────────────┐
+│ Compose the route patch with the │
+│ lineage and guards patches       │
+└──────────────────────────────────┘
+                 │
+                 ▼
+┌──────────────────────────────────┐
+│ Dispatch headless with the       │
+│ prompt on stdin                  │
+└──────────────────────────────────┘
+                 │
+                 ▼
+┌──────────────────────────────────┐
+│ Read the exit code and the final │
+│ event                            │
+└──────────────────────────────────┘
+                 │
+                 ▼
+┌──────────────────────────────────┐
+│ Check the returned changes and   │
+│ the tests                        │
+└──────────────────────────────────┘
 ```
 
 ### What the Caller Owns

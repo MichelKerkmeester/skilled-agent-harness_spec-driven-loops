@@ -8,7 +8,7 @@ trigger_phrases:
   - "extended thinking"
   - "deep reasoning"
   - "anthropic"
-version: 1.5.7.0
+version: 1.5.8.0
 ---
 
 # cli-claude-code
@@ -111,15 +111,47 @@ The calling AI stays the conductor. It classifies the task and composes a prompt
 
 The packet owns routing, the `command -v claude` probe, prompt construction and the self-invocation guard. For a research or review lineage, `../../system-deep-loop/runtime/scripts/fanout-run.cjs` owns process construction and execution under executor kind `cli-claude-code`. A single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5. No packet-local wrapper sits between the two.
 
-```mermaid
-flowchart TD
-  Task["Task in the calling runtime"] --> Route["Hub selects cli-claude-code"]
-  Route --> Probe["Availability probe and self-invocation guard"]
-  Probe --> Auth["OAuth pre-flight"]
-  Auth --> Build["Prompt, model and effort selection"]
-  Build --> Run["claude -p dispatch"]
-  Run --> Check["Caller validates the output"]
-  Check --> Apply["Integrate the result"]
+```text
+┌──────────────────────────────┐
+│ Task in the calling runtime  │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ Hub selects cli-claude-code  │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ Availability probe and       │
+│ self-invocation guard        │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ OAuth pre-flight             │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ Prompt, model and effort     │
+│ selection                    │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ claude -p dispatch           │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ Caller validates the output  │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ Integrate the result         │
+└──────────────────────────────┘
 ```
 
 ### The Self-Invocation Guard

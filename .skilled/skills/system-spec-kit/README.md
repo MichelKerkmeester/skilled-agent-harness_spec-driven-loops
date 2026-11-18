@@ -9,7 +9,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.48.0
+version: 2.7.49.0
 ---
 
 # System Spec Kit
@@ -90,12 +90,28 @@ The run exits 0 and prints one JSON object. `results` lists each candidate with 
 
 Work begins at Gate 3. The gate names the folder before the first write. A new folder is scaffolded from the Level contract rather than copied by hand. During the work, `tasks.md` carries the checklist. At Level 2 and above, `acceptance-criteria.md` carries the closure verdict. Level 1 keeps its criteria inline in `spec.md`. At the end, a full-auto `/speckit:save` runs `generate-context.js`, which refreshes the packet's continuity surfaces. A later session runs `/speckit:resume`, which prefers `handover.md` and falls back through the packet's own continuity state to the packet docs.
 
-```mermaid
-flowchart TD
-  Request["A request that writes a file"] --> Gate["Gate 3 picks the spec folder"]
-  Gate --> Packet["The packet records the plan and the decisions"]
-  Packet --> Save["A save writes the continuity state"]
-  Save --> Resume["The next session reads it back"]
+```text
+Session starts
+  └─► Gate 3 asks: "Which spec folder?"
+       ├─► Option A: Use existing folder
+       ├─► Option B: Create new folder (create.sh)
+       ├─► Option C: Use a related folder
+       └─► Option D: Skip documentation
+            │
+            ▼
+  AI modifies files, tracks tasks in tasks.md
+            │
+            ▼
+  Session ends
+  └─► generate-context.js updates canonical continuity surfaces
+       └─► regenerate the trigger index when frontmatter changed
+            │
+            ▼
+  Next session starts
+  └─► /speckit:resume prefers handover.md, then _memory.continuity, then falls
+      back to the packet docs
+       └─► the bounded context recipe adds context when needed
+       └─► AI resumes with context from the packet
 ```
 
 ### Documentation Levels

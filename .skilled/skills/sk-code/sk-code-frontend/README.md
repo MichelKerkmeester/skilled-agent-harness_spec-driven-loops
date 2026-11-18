@@ -4,7 +4,7 @@ description: "Stack-agnostic web frontend practice with a five-pass Figma check,
 trigger_phrases:
   - "web frontend practice"
   - "figma to code check"
-version: 1.0.9.0
+version: 1.0.10.0
 ---
 
 # sk-code-frontend
@@ -60,17 +60,52 @@ Inside the packet the core loads first. `references/frontend-practice.md` holds 
 
 The packet never edits a file. A project mode that changes a core or web-layer statement records the change under a `Frontend overrides` heading in its own `SKILL.md` with the action and the reason. The workflow references are symlinks to the hub's shared doctrine, and no intent maps them. The [phase guide](../shared/references/phase-detection.md) names the file that owns each phase. When no workflow mode scores, the acting agent applies the guidance and hands the author gates to `sk-code-quality` before it claims completion.
 
-```mermaid
-flowchart TD
-  Request["Frontend request"] --> Hub["sk-code hub scores the vocabulary"]
-  Hub --> Bundle{"A workflow mode scores?"}
-  Bundle -->|yes| Lead["Quality or review mode leads"]
-  Bundle -->|no| Alone["Frontend packet routes alone"]
-  Lead --> Core["frontend-practice.md loads"]
-  Alone --> Core
-  Core --> Add["Web layer or mapped topic files load"]
-  Add --> Apply["Acting agent applies the guidance"]
-  Apply --> Gate["sk-code-quality applies the author gates"]
+```text
+                         ┌───────────────────────────────┐
+                         │ Frontend request              │
+                         └───────────────┬───────────────┘
+                                         │
+                                         ▼
+                         ┌───────────────────────────────┐
+                         │ sk-code hub scores the        │
+                         │ vocabulary                    │
+                         └───────────────┬───────────────┘
+                                         │
+                                         ▼
+                         ┌───────────────────────────────┐
+                         │ A workflow mode scores?       │
+                         └───────────────┬───────────────┘
+                                         │
+                     ────────────────────┼────────────────────
+               [YES] │                                  [NO] │
+                     ▼                                       ▼
+     ┌───────────────────────────────┐       ┌───────────────────────────────┐
+     │ Quality or review mode leads  │       │ Frontend packet routes alone  │
+     └───────────────┬───────────────┘       └───────────────┬───────────────┘
+                     │                                       │
+                     └───────────────────┬───────────────────┘
+                                         ▼
+                         ┌───────────────────────────────┐
+                         │ frontend-practice.md loads    │
+                         └───────────────┬───────────────┘
+                                         │
+                                         ▼
+                         ┌───────────────────────────────┐
+                         │ Web layer or mapped topic     │
+                         │ files load                    │
+                         └───────────────┬───────────────┘
+                                         │
+                                         ▼
+                         ┌───────────────────────────────┐
+                         │ Acting agent applies the      │
+                         │ guidance                      │
+                         └───────────────┬───────────────┘
+                                         │
+                                         ▼
+                         ┌───────────────────────────────┐
+                         │ sk-code-quality applies the   │
+                         │ author gates                  │
+                         └───────────────────────────────┘
 ```
 
 ### The File Map

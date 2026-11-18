@@ -4,7 +4,7 @@ description: "Local, Git-free before/after review of an edited document, rendere
 trigger_phrases:
   - "before after document review"
   - "document diff report"
-version: 1.1.5.0
+version: 1.1.6.0
 ---
 
 # create-diff
@@ -99,15 +99,32 @@ The lifecycle has one hard rule: capture the baseline before the edit. Once a fi
 
 The renderer refuses to overwrite an existing report. Without `--report`, the file lands in the working directory as `<source-slug>.diff.html`, where the slug is lowercase kebab-case derived from the file stem.
 
-```mermaid
-flowchart TD
-  Ask["Review an edited document"] --> Shape{"Baseline captured before the edit?"}
-  Shape -->|Yes| Snap["snapshot, then compare"]
-  Shape -->|No| Pair["compare-pair with --before and --after"]
-  Snap --> Diff["Extract, normalize and diff"]
-  Pair --> Diff
-  Diff --> Report["One self-contained HTML report"]
-  Report --> Check["validate_report.py"]
+```text
+                       ┌────────────────────────────────────────┐
+                       │ Review an edited document              │
+                       └────────────────────────────────────────┘
+                                           ▼
+                       ┌────────────────────────────────────────┐
+                       │ Baseline captured before the edit?     │
+                       └────────────────────────────────────────┘
+                                 │[YES]              │[NO]
+                                 ▼                   ▼
+┌────────────────────────────────────────┐    ┌────────────────────────────────────────┐
+│ snapshot, then compare                 │    │ compare-pair with --before and --after │
+└────────────────────────────────────────┘    └────────────────────────────────────────┘
+                                 │                   │
+                                 ▼                   ▼
+                       ┌────────────────────────────────────────┐
+                       │ Extract, normalize and diff            │
+                       └────────────────────────────────────────┘
+                                           ▼
+                       ┌────────────────────────────────────────┐
+                       │ One self-contained HTML report         │
+                       └────────────────────────────────────────┘
+                                           ▼
+                       ┌────────────────────────────────────────┐
+                       │ validate_report.py                     │
+                       └────────────────────────────────────────┘
 ```
 
 ### Key Concept: One Report, Many Files

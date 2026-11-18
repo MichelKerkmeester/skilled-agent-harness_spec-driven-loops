@@ -8,7 +8,7 @@ trigger_phrases:
   - "goal chat slice"
 importance_tier: normal
 contextType: general
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # sk-create-goal
@@ -96,15 +96,45 @@ A phase parent gets one more step. Its binding table needs exactly one row for e
 
 Last, the checker runs and the packet report supplies the slice. A finding stops the run with `STATUS=FAIL` and no `chat_slice`.
 
-```mermaid
-flowchart TD
-  Request["Goal request"] --> Route["Four pre-write decisions"]
-  Route --> Template["Template for the goal kind"]
-  Template --> Fill["Objective, decisions, criteria"]
-  Fill --> Bind["Binding rows for a phase parent"]
-  Bind --> Check["check-goal.cjs"]
-  Check --> Slice["goal.cjs packet"]
-  Slice --> Handoff["chat_slice for the operator"]
+```text
+┌─────────────────────────────────┐
+│ Goal request                    │
+└────────────────┬────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐
+│ Four pre-write decisions        │
+└────────────────┬────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐
+│ Template for the goal kind      │
+└────────────────┬────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐
+│ Objective, decisions, criteria  │
+└────────────────┬────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐
+│ Binding rows for a phase parent │
+└────────────────┬────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐
+│ check-goal.cjs                  │
+└────────────────┬────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐
+│ goal.cjs packet                 │
+└────────────────┬────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐
+│ chat_slice for the operator     │
+└─────────────────────────────────┘
 ```
 
 ### The Five Checks

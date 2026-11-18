@@ -10,7 +10,7 @@ trigger_phrases:
   - "why was my rule refused"
 importance_tier: normal
 contextType: general
-version: 1.1.4.0
+version: 1.1.5.0
 ---
 
 # create-repo-rule
@@ -74,17 +74,49 @@ Eleven `PASS` lines print and the final line reads `[repo-rules-check] RESULT: P
 
 The hub routes a repo-rule request here, and the operation decides which resources load after the decision tests. `references/decision-tests.md` loads first on every path, including retire, because whether a rule should exist and whether it should still exist are the same four questions.
 
-```mermaid
-flowchart TD
-  Request["A failure, a rule change or a missing router"] --> Tests["Run the four decision tests"]
-  Tests -->|Refused| Refusal["Name the failed test and the destination"]
-  Tests -->|Admitted| Router{"Does REPO RULES.md exist?"}
-  Router -->|No| Emit["Emit the router from its template"]
-  Router -->|Yes| Write["Write the rule from the template"]
-  Emit --> Write
-  Write --> Reader["Five reader tests"]
-  Reader --> Wire["Trigger row, index row, AGENTS.md pointer"]
-  Wire --> Check["check-repo-rules.cjs"]
+```text
+                                            ┌──────────────────────────────┐
+                                            │ A failure, a rule change or  │
+                                            │ a missing router             │
+                                            └───────────────┬──────────────┘
+                                                            │
+                                                            ▼
+  ┌──────────────────────────────┐  Refused ┌──────────────────────────────┐
+  │ Name the failed test and     │  ◀─      │ Run the four                 │
+  │ the destination              │          │ decision tests               │
+  └──────────────────────────────┘          └───────────────┬──────────────┘
+                                                            │
+                                                            │ Admitted
+                                                            ▼
+                                            ┌──────────────────────────────┐
+                                            │ Does REPO RULES.md exist?    │
+                                    [NO]    └───────────────┬──────────────┘
+                  ┬─────────────────────────────────────────┤
+                  │                                         │ [YES]
+                  │                                         │
+                  ▼                                         ▼
+  ┌──────────────────────────────┐          ┌──────────────────────────────┐
+  │ Emit the router from         │       ─▶ │ Write the rule from          │
+  │ its template                 │          │ the template                 │
+  └──────────────────────────────┘          └───────────────┬──────────────┘
+                                                            │
+                                                            │
+                                                            ▼
+                                            ┌──────────────────────────────┐
+                                            │ Five reader tests            │
+                                            └───────────────┬──────────────┘
+                                                            │
+                                                            ▼
+                                            ┌──────────────────────────────┐
+                                            │ Trigger row, index row,      │
+                                            │ AGENTS.md pointer            │
+                                            └───────────────┬──────────────┘
+                                                            │
+                                                            │
+                                                            ▼
+                                            ┌──────────────────────────────┐
+                                            │ check-repo-rules.cjs         │
+                                            └──────────────────────────────┘
 ```
 
 | Request | What loads after the tests |

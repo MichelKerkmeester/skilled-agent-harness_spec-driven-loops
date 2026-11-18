@@ -4,7 +4,7 @@ description: "Turns a finished benchmark run into documentation an operator can 
 trigger_phrases:
   - "benchmark-report.md"
   - "behavior benchmark"
-version: 1.6.7.0
+version: 1.6.8.0
 ---
 
 # create-benchmark
@@ -72,18 +72,52 @@ The MCP promotion family runs one fixed sequence. Confirm the gate first: an acc
 
 The behavior family authors a package rather than a report. The package holds an index that lists each scenario against its contract file, plus a baseline for the Claude leg. Fixtures and run evidence stay in the spec-packet phase that executes the round.
 
-```mermaid
-flowchart TD
-  Request["Benchmark request"] --> Router["Family table in ROUTER.md"]
-  Router --> Gate["Confirm the promotion gate"]
-  Gate --> Folder["Create the run folder"]
-  Folder --> Report["Write benchmark-report.md"]
-  Report --> Source["Write source.md"]
-  Source --> Index["Update the benchmarks index"]
-  Router --> Package["Copy the behavior templates"]
-  Index --> Check["Validate the authored markdown"]
-  Package --> Check
-  Check --> Done["Authored files in the skill tree"]
+```text
+┌──────────────────────┐    ┌──────────────────────┐    ┌──────────────────────┐
+│ Benchmark request    │ ─▶ │ Family table in      │ ─▶ │ Copy the behavior    │
+└──────────────────────┘    │ ROUTER.md            │    │ templates            │
+                            └──────────┬───────────┘    └───┬──────────────────┘
+                                       │                    │
+                                       ▼                    │
+                            ┌──────────────────────┐        │
+                            │ Confirm the          │        │
+                            │ promotion gate       │        │
+                            └──────────┬───────────┘        │
+                                       │                    │
+                                       ▼                    │
+                            ┌──────────────────────┐        │
+                            │ Create the run       │        │
+                            │ folder               │        │
+                            └──────────┬───────────┘        │
+                                       │                    │
+                                       ▼                    │
+                            ┌──────────────────────┐        │
+                            │ Write                │        │
+                            │ benchmark-report.md  │        │
+                            └──────────┬───────────┘        │
+                                       │                    │
+                                       ▼                    │
+                            ┌──────────────────────┐        │
+                            │ Write source.md      │        │
+                            └──────────┬───────────┘        │
+                                       │                    │
+                                       ▼                    │
+                            ┌──────────────────────┐        │
+                            │ Update the           │        │
+                            │ benchmarks index     │        │
+                            └─────────────────┬────┘        │
+                                              │             │
+                                              ▼             ▼
+                                          ┌──────────────────────┐
+                                          │ Validate the         │
+                                          │ authored markdown    │
+                                          └──────────┬───────────┘
+                                                     │
+                                                     ▼
+                                          ┌──────────────────────┐
+                                          │ Authored files in    │
+                                          │ the skill tree       │
+                                          └──────────────────────┘
 ```
 
 ### Key Concept: The Report Answers, the Pointer Routes

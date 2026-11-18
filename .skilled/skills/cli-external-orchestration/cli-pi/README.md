@@ -7,7 +7,7 @@ trigger_phrases:
   - "pi.dev cli"
   - "delegate to pi"
   - "pi coding agent"
-version: 1.5.6.0
+version: 1.5.7.0
 ---
 
 # cli-pi
@@ -96,16 +96,48 @@ Expect one JSON object per line on stdout. The first record is a session header,
 
 A dispatch runs in one direction. The caller probes the binary, picks the output contract, composes a scoped prompt and names a model from the roster. The shared runtime launches the command. The caller reads the output text, checks the diff, runs the tests and records the result.
 
-```mermaid
-flowchart TD
-  Request["A request that names Pi"] --> Probe["command -v pi"]
-  Probe -->|no path| Stop["Stop and name the missing binary"]
-  Probe -->|path| Pick["Pick print, JSON, RPC or a read-only review"]
-  Pick --> Roster["Name a roster model and an effort tier"]
-  Roster --> Run["The shared runtime launches the guarded command"]
-  Run --> Read["Read stdout and stderr"]
-  Read -->|provider error in the text| Fail["Report the failure, with the exit code as a weak signal"]
-  Read -->|answer| Check["Check the diff and run the tests"]
+```text
+  ┌──────────────────────┐
+  │ A request that       │
+  │ names Pi             │
+  └──────────┬───────────┘
+             │
+             ▼
+  ┌──────────────────────┐           no path           ┌──────────────────────┐
+  │ command -v pi        ├────────────────────────────▶│ Stop and name the    │
+  └──────────┬───────────┘                             │ missing binary       │
+             │ path                                    └──────────────────────┘
+             ▼
+  ┌──────────────────────┐
+  │ Pick print, JSON,    │
+  │ RPC or a             │
+  │ read-only review     │
+  └──────────┬───────────┘
+             │
+             ▼
+  ┌──────────────────────┐
+  │ Name a roster model  │
+  │ and an effort tier   │
+  └──────────┬───────────┘
+             │
+             ▼
+  ┌──────────────────────┐
+  │ The shared runtime   │
+  │ launches the         │
+  │ guarded command      │
+  └──────────┬───────────┘
+             │
+             ▼
+  ┌──────────────────────┐  provider error in the text ┌──────────────────────┐
+  │ Read stdout and      ├────────────────────────────▶│ Report the failure,  │
+  │ stderr               │                             │ with the exit code   │
+  └──────────┬───────────┘                             │ as a weak signal     │
+             │ answer                                  └──────────────────────┘
+             ▼
+  ┌──────────────────────┐
+  │ Check the diff and   │
+  │ run the tests        │
+  └──────────────────────┘
 ```
 
 ### The Guarded Dispatch Line

@@ -7,7 +7,7 @@ trigger_phrases:
   - "capture website css"
   - "design tokens from url"
   - "validate design.md"
-version: 1.1.8.0
+version: 1.1.9.0
 ---
 
 # sk-design-md-generator
@@ -94,15 +94,45 @@ The report opens with `=== DESIGN.md Validation ===`. It lists the checks that p
 
 The packet runs one sequence from a live URL to a checked file. A crawl reads the live page at five viewport widths and keeps the computed styles it can see, covering colors, type, shadows, radii, spacing and CSS custom properties. The cluster step groups values that are near-identical and stamps each token with a stability class. A deterministic renderer builds the value tables from the tokens, and the writer adds prose around them. The validator reads the finished file against `tokens.json` before anyone calls it done.
 
-```mermaid
-flowchart TD
-  Url["Live URL"] --> Crawl["extract.ts crawls five viewports"]
-  Crawl --> Cluster["cluster.ts groups values and stamps L1 to L4"]
-  Cluster --> Tokens["tokens.json"]
-  Tokens --> Render["formatters-v3.ts renders the value sections"]
-  Render --> Prompt["build-write-prompt.ts prints the prompt and FACTS block"]
-  Prompt --> Design["DESIGN.md"]
-  Design --> Check["validate.ts checks hex, sections and Quick Start"]
+```text
+┌──────────────────────────────────────────────────────────┐
+│ Live URL                                                 │
+└─────────────────────────────┬────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────┐
+│ extract.ts crawls five viewports                         │
+└─────────────────────────────┬────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────┐
+│ cluster.ts groups values and stamps L1 to L4             │
+└─────────────────────────────┬────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────┐
+│ tokens.json                                              │
+└─────────────────────────────┬────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────┐
+│ formatters-v3.ts renders the value sections              │
+└─────────────────────────────┬────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────┐
+│ build-write-prompt.ts prints the prompt and FACTS block  │
+└─────────────────────────────┬────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────┐
+│ DESIGN.md                                                │
+└─────────────────────────────┬────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────┐
+│ validate.ts checks hex, sections and Quick Start         │
+└──────────────────────────────────────────────────────────┘
 ```
 
 The report phase is optional. `proof.ts` compares rendered output against the live page. `report-gen.ts` writes `report.html`, and `preview-gen.ts` writes `preview.html`. Each one reads an existing token file and refuses to overwrite a previous artifact unless you pass `--force`.

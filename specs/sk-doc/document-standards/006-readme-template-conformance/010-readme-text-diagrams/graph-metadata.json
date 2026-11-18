@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/document-standards/006-readme-template-conformance/010-readme-text-diagrams",
+  "spec_folder": "sk-doc/document-standards/006-readme-template-conformance/010-readme-text-diagrams",
+  "parent_id": "sk-doc/document-standards/006-readme-template-conformance",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "readme text diagrams",
+      "phase 10 readme text diagrams",
+      "mermaid to text diagram readme",
+      "readme text diagrams plan",
+      "readme text diagrams tasks",
+      "readme text diagrams acceptance criteria",
+      "readme text diagrams goal",
+      "readme text diagrams implementation summary"
+    ],
+    "key_topics": [
+      "readme",
+      "text",
+      "diagrams",
+      "phase",
+      "mermaid",
+      "diagram",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-readme/assets/skill-readme-template.md",
+      ".skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md",
+      ".skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      ".skilled/hooks/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/assets/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "writing-patterns.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "quality-and-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flash Free",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill README template created on 2026-11-16 asks every multi-step skill for \"a small Mermaid diagram\", and 55 READMEs now carry one",
+    "created_at": "2026-11-18T10:21:37Z",
+    "last_save_at": "2026-11-18T11:25:09.184Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:55149ee43ba76762f35312d9eaf289416693fce3ca2586f0d7e41cc5537b9a44",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e613d0e3e7543caad63caa0c54f8e055caf82fb83d4d516f2452506fba866861",
+      "plan.md": "ba903241eeb4e98c8f6d9086a065225afab323e7f50c635a01469aee4f1a0cae",
+      "tasks.md": "d7849a26821335df0ea6de1ac9123403b55d1eccc0f5d4632e15cf6757d6ead0",
+      "implementation-summary.md": "9797685dac700b5e5375abf4db1648152f789e8c881171257fbbadb7a1e53fa3"
+    },
+    "last_active_at": null
+  }
+}

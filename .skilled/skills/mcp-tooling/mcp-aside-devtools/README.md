@@ -7,7 +7,7 @@ trigger_phrases:
   - "aside cli"
   - "aside mcp"
   - "browser agent task"
-version: 1.1.6.0
+version: 1.1.7.0
 ---
 
 # mcp-aside-devtools
@@ -99,15 +99,28 @@ The call returns `{ success, result, logs }`. `result` holds the object your cod
 
 Browser work enters through the `mcp-tooling` hub mode signal. A weighted intent scorer reads the request text, picks the lane, then loads only the reference files the router maps to that choice.
 
-```mermaid
-flowchart TD
-  Request["Browser request"] --> Route["Weighted intent scoring"]
-  Route --> Task["aside task lane"]
-  Route --> Repl["aside repl lane"]
-  Route --> Mcp["Aside MCP repl via Code Mode"]
-  Task --> Answer["Task answer"]
-  Repl --> Evidence["Screenshot, PDF or snapshot"]
-  Mcp --> Result["Chained tool result"]
+```text
+                            ┌──────────────────────┐
+                            │ Browser request      │
+                            └──────────┬───────────┘
+                                       │
+                                       ▼
+                            ┌──────────────────────┐
+                            │ Weighted intent      │
+                            │ scoring              │
+                            └──────────┬───────────┘
+                                       │
+           ┬───────────────────────────┼───────────────────────────┬
+           │                           │                           │
+           ▼                           ▼                           ▼
+│ aside task lane      │    │ aside repl lane      │    │ Aside MCP repl via   │
+│                      │    │                      │    │ Code Mode            │
+└──────────┬───────────┘    └──────────┬───────────┘    └──────────┬───────────┘
+           │                           │                           │
+           ▼                           ▼                           ▼
+│ Task answer          │    │ Screenshot, PDF or   │    │ Chained tool result  │
+│                      │    │ snapshot             │    │                      │
+└──────────────────────┘    └──────────────────────┘    └──────────────────────┘
 ```
 
 ### The Routing Rule

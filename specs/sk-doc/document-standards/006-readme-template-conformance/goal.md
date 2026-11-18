@@ -47,8 +47,8 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | Each file follows its template's section model, keeps `---` before every numbered H2 and carries no emoji in a heading. |
 | D2 | A session that did not write a README checks every path, command and count in it against the code before it is committed. |
-| D3 | Out of scope: the root README and root guides, `local-webflow`, code-folder READMEs outside `.skilled/hooks/`, and any change to the templates, the validator or the voice scanner, apart from phases 008 and 009, which add the alert and fold rule, a fold check and a README skip in the repo-rules scripts. README versions and changelogs are never edited by hand. |
-| D4 | Writers and reviewers run one README per session on the executor the operator chose, recorded as Q003 to Q009 in `decision-record.md`. The main session reruns every check before it trusts a result. |
+| D3 | Out of scope: the root README and root guides, `local-webflow`, code-folder READMEs outside `.skilled/hooks/`, and any change to the templates, the validator or the voice scanner beyond what phases 008 to 010 name. README versions and changelogs are never edited by hand. |
+| D4 | Writers and reviewers run one README per session on the executor the operator chose, recorded as Q003 to Q012 in `decision-record.md`. The main session reruns every check before it trusts a result. |
 | D5 | Phases run in order. Each phase is committed, merged with origin/main and pushed under sk-git before the next one starts, and the operator's own uncommitted files are never staged. |
 
 <!-- /ANCHOR:directive -->
@@ -73,6 +73,7 @@ phase and binds as if written here.
 | 007-hook-code-folder-readmes | `007-hook-code-folder-readmes/goal.md` |
 | 008-readme-html-conventions | `008-readme-html-conventions/goal.md` |
 | 009-repo-rules-readme | `009-repo-rules-readme/goal.md` |
+| 010-readme-text-diagrams | `010-readme-text-diagrams/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -87,7 +88,7 @@ string, not these files.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `validate.sh specs/sk-doc/document-standards/006-readme-template-conformance --recursive --strict` prints `RESULT: PASSED` for the parent and all 7 phase folders.
+- [ ] `validate.sh specs/sk-doc/document-standards/006-readme-template-conformance --recursive --strict` prints `RESULT: PASSED` for the parent and all 10 phase folders.
 - [ ] `validate_document.py` prints `VALID` and `hvr_scan.py` reports `hard blockers: 0` for each of the 184 files in scope.
 - [ ] `check-markdown-links.cjs` exits 0 and reports 0 broken links across the repository.
 - [ ] `test_readme_verdict_parity.py` prints `PARITY PASS` and the sk-doc `run-script-tests.sh` suite exits 0.
@@ -120,4 +121,5 @@ and findings belong here.
 | Binding rows | Phases 002 to 007 are unplanned scaffolds with placeholder acceptance criteria, so no child goal can be derived yet. `check-goal.cjs` needs every row and strict validation rejects a row whose target is missing, so this file passes both only after all seven child goals exist. Phases 002 to 007 are planned first, their child goals are written, and then this goal is committed and sent. |
 | D3 amendment | On 2026-11-18 the operator placed the README alert and fold work in this program as phase 008. It touches the README writing reference and `validate_document.py`, which D3 had kept out of scope, so D3 now names the exception |
 | Second D3 amendment | On 2026-11-18 the operator asked for a README in `.skilled/repo-rules/` under the new rule, placed as phase 009. The repo-rules checker and card builder read any README there as a rule, so D3 also names their README skip |
+| Third D3 amendment | On 2026-11-18 the operator asked to go back to plain-text diagrams, placed as phase 010. It changes the skill README template, so D3 now points at what phases 008 to 010 name. The operator chose Hy4 Flash Free at high as its writer and reviewer, recorded as Q012 |
 <!-- /ANCHOR:log -->

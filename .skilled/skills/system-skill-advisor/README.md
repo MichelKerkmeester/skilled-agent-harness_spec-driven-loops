@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.23.0
+version: 0.12.24.0
 ---
 
 # system-skill-advisor
@@ -89,14 +89,25 @@ The daemon watches every `SKILL.md`, `ROUTER.md` and `graph-metadata.json` under
 
 When the daemon cannot be reached, the CLI calls the Python scorer at `runtime/scripts/skill_advisor.py`, marks the answer degraded and returns it. A degraded answer is stale, not missing. The prompt still proceeds.
 
-```mermaid
-flowchart TD
-  Prompt["Prompt from a hook or a caller"] --> CLI["skill-advisor.cjs"]
-  CLI --> Daemon["Advisor daemon"]
-  CLI --> Local["Python scorer"]
-  Daemon --> Score["Five-lane score"]
-  Score --> Result["Ranked recommendations and trust state"]
-  Local --> Result
+```text
+┌──────────────────────────────────────────┐
+│ Prompt from a hook or a caller           │
+└─────────────────────┬────────────────────┘
+                      │
+                      ▼
+┌─────────────────────┬────────────────────┐      ┌──────────────────────────────────────────┐
+│ skill-advisor.cjs                        │ ───▶ │ Python scorer                            │
+└─────────────────────┬────────────────────┘      └─────────────────────┬────────────────────┘
+                      │                                                 │
+                      ▼                                                 │
+┌─────────────────────┬────────────────────┐                            │
+│ Advisor daemon                           │                            │
+└─────────────────────┬────────────────────┘                            │
+                      │                                                 │
+                      ▼                                                 ▼
+┌─────────────────────┬────────────────────┐      ┌─────────────────────┬────────────────────┐
+│ Five-lane score                          │ ───▶ │ Ranked recommendations and trust state   │
+└──────────────────────────────────────────┘      └──────────────────────────────────────────┘
 ```
 
 ### Trust States

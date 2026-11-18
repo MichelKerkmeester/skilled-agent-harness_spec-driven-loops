@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill readme scaffold"
 importance_tier: normal
 contextType: general
-version: 1.3.5.0
+version: 1.3.6.0
 ---
 
 # Skill README Template
@@ -60,7 +60,7 @@ A skill README uses numbered ALL-CAPS H2 sections with `---` dividers between th
 |---|---------|---------|-----------|
 | 1 | OVERVIEW | The At a Glance table a reader scans in five seconds, then what the skill is and what the reader gets, then the optional problem narrative | Always (required by the validator) |
 | 2 | QUICK START | The fastest path to a first result | Skill has commands, scripts or a workflow |
-| 3 | HOW IT WORKS | The main workflow in prose, with a small Mermaid diagram for multi-step flows | Skill has non-obvious behavior worth explaining |
+| 3 | HOW IT WORKS | The main workflow in prose, with a small text diagram for multi-step flows | Skill has non-obvious behavior worth explaining |
 | 4 | INTEGRATION & NAVIGATION | When to use it, plus how it hands off to sibling skills | Readers can confuse it with a neighbor |
 | 5 | TROUBLESHOOTING | The failure modes operators actually hit | Predictable issues exist |
 | 6 | FAQ | The two to five questions readers keep asking | High-value answers exist |
@@ -244,13 +244,24 @@ Use an analogy only when it clarifies the mechanism.]
 
 [Narrate the lifecycle or main workflow as prose: the sequence of steps, the decision points and the outputs. A reader should finish this section understanding the shape of the skill.]
 
-[For any skill with a multi-step flow, include a small Mermaid diagram that shows how the pieces connect. Keep it to the boxes a reader needs. Drop the diagram for a genuinely linear one-step skill.]
+[For any skill with a multi-step flow, include a small text diagram that shows how the pieces connect. Draw the boxes with box-drawing characters in a `text` fence, never Mermaid, at one box width. Keep it to the boxes a reader needs. Drop the diagram for a genuinely linear one-step skill.]
 
-```mermaid
-flowchart TD
-  Request["[request]"] --> Route["[the routing or decision step]"]
-  Route --> Work["[the surface that does the work]"]
-  Work --> Output["[the output the reader gets]"]
+```text
+┌──────────────────────────────────┐
+│ [request]                        │
+└────────────────┬─────────────────┘
+                 ▼
+┌──────────────────────────────────┐
+│ [the routing or decision step]   │
+└────────────────┬─────────────────┘
+                 ▼
+┌──────────────────────────────────┐
+│ [the surface that does the work] │
+└────────────────┬─────────────────┘
+                 ▼
+┌──────────────────────────────────┐
+│ [the output the reader gets]     │
+└──────────────────────────────────┘
 ```
 
 ### [Key Concept]
@@ -328,7 +339,7 @@ Each check has a pass criterion. A check only passes when its criterion holds, n
 | 8 | Validator | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <readme> --type readme` reports zero issues |
 | 9 | Optional sections | Sections without real content were removed and the rest renumbered |
 | 10 | Optional problem context | When `### Why This Skill Exists` is present, it names the reader's current problem and the skill's outcome |
-| 11 | Connection diagram | A multi-step skill includes a small Mermaid diagram of how the pieces connect |
+| 11 | Connection diagram | A multi-step skill includes a small text diagram of how the pieces connect |
 
 Pass criteria in full:
 
@@ -344,7 +355,7 @@ Pass criteria in full:
 | 8 | The command exits 0 and reports zero issues. |
 | 9 | The final section numbers run in order with no gaps. |
 | 10 | Optional problem context names the reader's current problem and the skill's outcome in two to four short sentences. |
-| 11 | Skills with more than one step in HOW IT WORKS carry a Mermaid diagram. A single-step utility skill is exempt. |
+| 11 | Skills with more than one step in HOW IT WORKS carry a box-drawing text diagram in a `text` fence, never Mermaid. A single-step utility skill is exempt. |
 
 > The validator is a floor, not a proxy for this checklist. It enforces a numbered ALL-CAPS H2 named OVERVIEW and little else. It does not check the pitch, the At a Glance table, command outputs, links or HVR. A green run means the file cleared the floor, not that it passed the eleven checks above.
 

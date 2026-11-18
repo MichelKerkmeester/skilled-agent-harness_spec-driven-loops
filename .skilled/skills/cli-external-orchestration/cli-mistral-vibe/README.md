@@ -6,7 +6,7 @@ trigger_phrases:
   - "vibe print mode"
   - "delegate to vibe"
   - "vibe cli"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # cli-mistral-vibe
@@ -80,13 +80,35 @@ Expected output: `0 finished`. Any other pair is a failure, whatever stdout said
 
 A dispatch runs in one direction. The caller composes a prompt, and Vibe runs it once from a scratch directory. Then the caller reads the record.
 
-```mermaid
-flowchart TD
-  Request["A bounded task that names Vibe"] --> Compose["Compose the prompt: child preamble, persona, task"]
-  Compose --> Home["Fresh VIBE_HOME: config.toml plus rendered hooks.toml"]
-  Home --> Run["vibe -p TEXT --model alias --output-dir DIR"]
-  Run --> Record["Read DIR/export.json: exit_code and outcome"]
-  Record --> Verdict["Check the diff and the tests, then keep or reject the work"]
+```text
+┌────────────────────────────────────────────────────────────┐
+│ A bounded task that names Vibe                             │
+└────────────────────────────┬───────────────────────────────┘
+                             │
+                             ▼
+┌────────────────────────────────────────────────────────────┐
+│ Compose the prompt: child preamble, persona, task          │
+└────────────────────────────┬───────────────────────────────┘
+                             │
+                             ▼
+┌────────────────────────────────────────────────────────────┐
+│ Fresh VIBE_HOME: config.toml plus rendered hooks.toml      │
+└────────────────────────────┬───────────────────────────────┘
+                             │
+                             ▼
+┌────────────────────────────────────────────────────────────┐
+│ vibe -p TEXT --model alias --output-dir DIR                │
+└────────────────────────────┬───────────────────────────────┘
+                             │
+                             ▼
+┌────────────────────────────────────────────────────────────┐
+│ Read DIR/export.json: exit_code and outcome                │
+└────────────────────────────┬───────────────────────────────┘
+                             │
+                             ▼
+┌────────────────────────────────────────────────────────────┐
+│ Check the diff and the tests, then keep or reject the work │
+└────────────────────────────────────────────────────────────┘
 ```
 
 ### The Conductor Keeps the Verdict

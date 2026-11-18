@@ -7,7 +7,7 @@ trigger_phrases:
   - "bdg"
   - "screenshot"
   - "browser automation"
-version: 1.0.21.0
+version: 1.0.22.0
 ---
 
 # mcp-chrome-devtools
@@ -112,13 +112,27 @@ Expected: the block returns the screenshot object. Close the page in a `finally`
 
 A browser request reaches this skill from the `mcp-tooling` hub, which scores the request text and picks a path. The CLI path opens one Chrome session and works through it. The MCP path launches a Code Mode manual and calls typed tools inside a chain. Both paths produce files or values a caller can check.
 
-```mermaid
-flowchart TD
-  Request["Browser request"] --> Score["Weighted intent scoring"]
-  Score --> CLI["bdg CLI session"]
-  Score --> MCP["Code Mode manual"]
-  CLI --> Files["PNG, HAR or console JSON"]
-  MCP --> Result["Typed tool result"]
+```text
+                        ┌────────────────────────────┐
+                        │ Browser request            │
+                        └──────────────┬─────────────┘
+                                       │
+                                       ▼
+                        ┌────────────────────────────┐
+                        │ Weighted intent scoring    │
+                        └──────────────┬─────────────┘
+                                       │
+                   ────────────────────┴────────────────────
+                   │                                       │
+                   ▼                                       ▼
+    ┌────────────────────────────┐          ┌────────────────────────────┐
+    │ bdg CLI session            │          │ Code Mode manual           │
+    └──────────────┬─────────────┘          └──────────────┬─────────────┘
+                   │                                       │
+                   ▼                                       ▼
+    ┌────────────────────────────┐          ┌────────────────────────────┐
+    │ PNG, HAR or console JSON   │          │ Typed tool result          │
+    └────────────────────────────┘          └────────────────────────────┘
 ```
 
 ### How the path is chosen

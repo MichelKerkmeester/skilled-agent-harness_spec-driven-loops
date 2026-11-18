@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 847,
+  "derived_count": 848,
   "directories": [
     ".",
     ".claude",
@@ -152,6 +152,7 @@
     ".skilled/hooks/subagent-dispatch-guard/tests",
     ".skilled/logs",
     ".skilled/manual-testing-playbook/doctor-commands",
+    ".skilled/repo-rules",
     ".skilled/scripts",
     ".skilled/scripts/git-hooks",
     ".skilled/scripts/git-hooks/lib",

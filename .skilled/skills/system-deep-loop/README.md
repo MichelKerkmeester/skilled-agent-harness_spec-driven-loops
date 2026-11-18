@@ -6,7 +6,7 @@ trigger_phrases:
   - "deep loop workflows"
   - "deep research review"
   - "deep-loop hub routing"
-version: 1.6.10.0
+version: 1.6.11.0
 ---
 
 # system-deep-loop
@@ -58,15 +58,35 @@ Expected output: one JSON decision with `"action":"route"` and a target where `"
 
 Routing runs in two stages. Stage one picks the mode: the hub scores the request against the vocabulary classes in `hub-router.json`. The winning `workflowMode` selects one entry in `mode-registry.json`. Stage two picks the leaves: `ROUTER.md` maps the request's intent to packet-qualified reference files. Each path resolves to a canonical pair in `leaf-manifest.json`. The packet then runs its loop. It initializes state, dispatches one fresh agent per iteration, checks convergence and synthesizes its artifact. The hub only routes, so per-mode logic stays in the packet.
 
-```mermaid
-flowchart TD
-  Request["Deep-loop request"] --> Hub["Hub scores the request"]
-  Hub -->|research| Research["deep-research/ packet"]
-  Hub -->|review| Review["deep-review/ packet"]
-  Hub -->|no mode| Defer["defer: ask for the mode"]
-  Research --> Runtime["runtime/"]
-  Review --> Runtime
-  Runtime --> Output["Artifacts and convergence state"]
+```text
+                            ┌──────────────────────┐
+                            │ Deep-loop request    │
+                            └──────────┬───────────┘
+                                       │
+                                       ▼
+                            ┌──────────────────────┐
+                            │ Hub scores the       │
+                            │ request              │
+                            └──────────┬───────────┘
+                                       │
+           ┬───────────────────────────┼───────────────────────────┬
+           ▼ research                  ▼ review                    ▼ no mode
+┌──────────────────────┐    ┌──────────────────────┐    ┌──────────────────────┐
+│ deep-research/       │    │ deep-review/         │    │ defer: ask for       │
+│ packet               │    │ packet               │    │ the mode             │
+└──────────┬───────────┘    └──────────┬───────────┘    └──────────────────────┘
+           │                           │
+           └───────────────────────┐   │
+                                   ▼   ▼
+                            ┌──────────────────────┐
+                            │ runtime/             │
+                            └──────────┬───────────┘
+                                       │
+                                       ▼
+                            ┌──────────────────────┐
+                            │ Artifacts and        │
+                            │ convergence state    │
+                            └──────────────────────┘
 ```
 
 ### The Three-Tier Discriminator

@@ -20,7 +20,7 @@ trigger_phrases:
   - "delegate to vibe"
   - "cli dispatch"
   - "cross-ai delegation"
-version: 1.8.7.0
+version: 1.8.8.0
 ---
 
 # cli-external-orchestration
@@ -103,12 +103,34 @@ The run prints `PASS` and `INFO` lines and ends with `OK: parent-skill-check`. I
 
 Routing runs in two stages. The hub scores the request against the vocabulary in `hub-router.json` and picks a workflow mode. `ROUTER.md` then maps that mode's intent to the leaf files the packet loads. The hub never emits a leaf path, and the surface router never picks a mode.
 
-```mermaid
-flowchart TD
-  Request["Request"] --> Hub["hub-router.json<br/>scores the vocabulary"]
-  Hub --> Registry["mode-registry.json<br/>names the packet"]
-  Registry --> Surface["ROUTER.md<br/>maps the mode's leaves"]
-  Surface --> Packet["Selected packet<br/>runs the CLI session"]
+```text
+┌────────────────────────┐
+│ Request                │
+└────────────────────────┘
+             │
+             ▼
+┌────────────────────────┐
+│ hub-router.json        │
+│ scores the vocabulary  │
+└────────────────────────┘
+             │
+             ▼
+┌────────────────────────┐
+│ mode-registry.json     │
+│ names the packet       │
+└────────────────────────┘
+             │
+             ▼
+┌────────────────────────┐
+│ ROUTER.md              │
+│ maps the mode's leaves │
+└────────────────────────┘
+             │
+             ▼
+┌────────────────────────┐
+│ Selected packet        │
+│ runs the CLI session   │
+└────────────────────────┘
 ```
 
 ### The Outcomes

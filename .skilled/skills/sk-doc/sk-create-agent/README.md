@@ -4,7 +4,7 @@ description: "Scaffolds or updates one runtime agent markdown file with runtime-
 trigger_phrases:
   - "create agent"
   - "agent frontmatter"
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # create-agent
@@ -66,14 +66,40 @@ The body carries eight required sections under the frontmatter: illegal nesting,
 
 A file under `.skilled/agents/` then receives its registry record. The record holds `name`, `tier`, `priority`, `dispatchers`, `taskType`, `skills`, `notes` plus `summary`. A required section the role leaves out is declared under `templateExceptions` with the section and a reason.
 
-```mermaid
-flowchart TD
-  Request["Agent request"] --> Choice["Component choice"]
-  Choice --> Placement["Runtime directory and filename"]
-  Placement --> Frontmatter["Frontmatter for that runtime"]
-  Frontmatter --> Body["Boundary and the required body sections"]
-  Body --> Validate["Document validation"]
-  Validate --> Registry["Registry record and roster check"]
+```text
+┌─────────────────────────────────────────┐
+│ Agent request                           │
+└─────────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│ Component choice                        │
+└─────────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│ Runtime directory and filename          │
+└─────────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│ Frontmatter for that runtime            │
+└─────────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│ Boundary and the required body sections │
+└─────────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│ Document validation                     │
+└─────────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│ Registry record and roster check        │
+└─────────────────────────────────────────┘
 ```
 
 ### Key Concept: The Schema Follows the Directory

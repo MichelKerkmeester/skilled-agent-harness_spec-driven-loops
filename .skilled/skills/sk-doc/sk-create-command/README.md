@@ -4,7 +4,7 @@ description: "Turns a repeatable workflow into a validated OpenCode slash comman
 trigger_phrases:
   - "create command"
   - "slash command"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # create-command
@@ -92,17 +92,51 @@ The workflow starts before the file exists. Decide first whether a command is th
 
 From there the shape follows the type. Author the frontmatter first, then add the gate for every required argument, then write the body as executable steps. A command with several entry points gets an argument routing tree. A command with `:auto` and `:confirm` gets mode detection and a realized target for each mode. A destructive command gets confirmation by default, an affected-state display, execution logging and recovery guidance whatever its type.
 
-```mermaid
-flowchart TD
-  Request["Request"] --> Decide["Decide a command is the right component"]
-  Decide --> Classify["Classify the type and resolve the path"]
-  Classify --> Front["Author frontmatter and the required-input gate"]
-  Front --> Body["Write the executable body"]
-  Body --> Split{"Does display text outgrow the file?"}
-  Split -->|yes| Router["Router plus owned presentation asset"]
-  Split -->|no| Keep["One command file"]
-  Router --> Gate["validate_document.py --type command"]
-  Keep --> Gate
+```text
+                    ┌──────────────────────────────┐
+                    │ Request                      │
+                    └──────────────┬───────────────┘
+                                   │
+                                   ▼
+                    ┌──────────────────────────────┐
+                    │ Decide a command is the      │
+                    │ right component              │
+                    └──────────────┬───────────────┘
+                                   │
+                                   ▼
+                    ┌──────────────────────────────┐
+                    │ Classify the type and        │
+                    │ resolve the path             │
+                    └──────────────┬───────────────┘
+                                   │
+                                   ▼
+                    ┌──────────────────────────────┐
+                    │ Author frontmatter and the   │
+                    │ required-input gate          │
+                    └──────────────┬───────────────┘
+                                   │
+                                   ▼
+                    ┌──────────────────────────────┐
+                    │ Write the executable body    │
+                    └──────────────┬───────────────┘
+                                   │
+                                   ▼
+                    ┌──────────────────────────────┐
+                    │ Does display text outgrow    │
+                    │ the file?                    │
+                    └────┬────────────────────┬────┘
+                         │                    │
+                   [YES] ▼                    ▼ [NO]
+┌──────────────────────────────┐        ┌──────────────────────────────┐
+│ Router plus owned            │        │ One command file             │
+│ presentation asset           │        └─────┬────────────────────────┘
+└────────────────────────┬─────┘              │
+                         │                    │
+                         ▼                    ▼
+                    ┌──────────────────────────────┐
+                    │ validate_document.py         │
+                    │ --type command               │
+                    └──────────────────────────────┘
 ```
 
 A hint in angle brackets is a promise that the command cannot run without that input. The gate sits after the H1 and its purpose line. It runs before mode routing and before the first workflow step, and no asset loads ahead of it. It checks `$ARGUMENTS` for real content, ignores a mode suffix, stops, asks a specific question and waits. It must not read a missing value out of open files or earlier conversation.

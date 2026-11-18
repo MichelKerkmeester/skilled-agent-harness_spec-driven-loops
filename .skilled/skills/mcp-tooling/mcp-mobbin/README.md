@@ -7,7 +7,7 @@ trigger_phrases:
   - "app design research"
   - "screen examples"
   - "ux flow references"
-version: 1.1.7.0
+version: 1.1.8.0
 ---
 
 # mcp-mobbin
@@ -98,12 +98,34 @@ Cite every record you use by `mobbin_url`. When the work also needs a measured S
 
 A request arrives as an intent, not as a tool name. The packet reads the wiring state, confirms the callable in the live session and then calls one search tool with a query built from the user's own words. Results come back as metadata plus inline images. Every selected record is cited by its `mobbin_url`. A missing image is reported as partial success rather than dropped.
 
-```mermaid
-flowchart TD
-  Request["Mobbin request"] --> Doctor["doctor.sh reads the manual state"]
-  Doctor --> Confirm["tool_info confirms the callable"]
-  Confirm --> Search["one search tool runs the intent"]
-  Search --> Cite["cited evidence by mobbin_url"]
+```text
+┌────────────────────┐
+│ Mobbin request     │
+└──────────┬─────────┘
+           │
+           ▼
+┌────────────────────┐
+│ doctor.sh reads    │
+│ the manual state   │
+└──────────┬─────────┘
+           │
+           ▼
+┌────────────────────┐
+│ tool_info confirms │
+│ the callable       │
+└──────────┬─────────┘
+           │
+           ▼
+┌────────────────────┐
+│ one search tool    │
+│ runs the intent    │
+└──────────┬─────────┘
+           │
+           ▼
+┌────────────────────┐
+│ cited evidence by  │
+│ mobbin_url         │
+└────────────────────┘
 ```
 
 ### The Registered Manual

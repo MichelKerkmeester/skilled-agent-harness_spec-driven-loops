@@ -7,7 +7,7 @@ trigger_phrases:
   - "design reference"
   - "ui reference search"
   - "real app screens"
-version: 1.1.7.0
+version: 1.1.8.0
 ---
 
 # mcp-refero
@@ -97,12 +97,30 @@ Cite styles by `record.url` and screens by `record.refero_url`. When the work al
 
 A request arrives as a design-reference question. The agent reads the wiring state, confirms the callable in the live session and then searches one layer at a time. Metadata is compared before any detail is fetched. A screenshot is the last request. Every record used is cited by its source URL.
 
-```mermaid
-flowchart TD
-  Request["Design-reference request"] --> Doctor["doctor.sh reads the manual state"]
-  Doctor --> Confirm["tool_info confirms the callable"]
-  Confirm --> Funnel["styles, then screens, then flows"]
-  Funnel --> Cite["cited evidence by url or refero_url"]
+```text
+┌───────────────────────────────────────┐
+│       Design-reference request        │
+└───────────────────────────────────────┘
+                    │
+                    ▼
+┌───────────────────────────────────────┐
+│   doctor.sh reads the manual state    │
+└───────────────────────────────────────┘
+                    │
+                    ▼
+┌───────────────────────────────────────┐
+│    tool_info confirms the callable    │
+└───────────────────────────────────────┘
+                    │
+                    ▼
+┌───────────────────────────────────────┐
+│   styles, then screens, then flows    │
+└───────────────────────────────────────┘
+                    │
+                    ▼
+┌───────────────────────────────────────┐
+│  cited evidence by url or refero_url  │
+└───────────────────────────────────────┘
 ```
 
 ### The Research Funnel

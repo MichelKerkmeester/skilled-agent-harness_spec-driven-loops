@@ -7,7 +7,7 @@ trigger_phrases:
   - "task management"
   - "time tracking"
   - "click up"
-version: 1.1.7.0
+version: 1.1.8.0
 ---
 
 # mcp-click-up
@@ -108,14 +108,31 @@ Expected: one JSON line carrying `document_id` and `document_url`. Restart the A
 
 A request names ClickUp or `cupt` and carries an action such as list, done, note, time or tag. The skill scores that wording, picks one intent and loads only the reference files the intent names. The intent also decides which surface runs the work. A request that matches no intent loads nothing and returns a disambiguation checklist instead.
 
-```mermaid
-flowchart TD
-  Request["ClickUp request"] --> Router["Score the intent"]
-  Router --> Cupt["cupt CLI: daily task work"]
-  Router --> Mcp["Official MCP: creation, documents, search"]
-  Router --> Setup["Install guide and troubleshooting"]
-  Cupt --> Change["Status, timer, note or tag change"]
-  Mcp --> Change
+```text
+                              ┌──────────────────────────┐
+                              │ ClickUp request          │
+                              └─────────────┬────────────┘
+                                            │
+                                            ▼
+                              ┌──────────────────────────┐
+                              │ Score the intent         │
+                              └─────────────┬────────────┘
+                                            │
+              ┬─────────────────────────────┼─────────────────────────────┬
+              │                             │                             │
+              ▼                             ▼                             ▼
+┌──────────────────────────┐  ┌──────────────────────────┐  ┌──────────────────────────┐
+│ cupt CLI:                │  │ Official MCP: creation,  │  │ Install guide and        │
+│ daily task work          │  │ documents, search        │  │ troubleshooting          │
+└─────────────┬────────────┘  └─────────────┬────────────┘  └──────────────────────────┘
+              │                             │
+              └──────────────┬──────────────┘
+                             │
+                             ▼
+               ┌──────────────────────────┐
+               │ Status, timer, note or   │
+               │ tag change               │
+               └──────────────────────────┘
 ```
 
 ### The Operation Router

@@ -45,6 +45,8 @@ _memory:
 | Q009 | Writers and reviewers run DeepSeek V4.1 Flash at max through cli-opencode on the OpenCode Go route (`opencode-go/deepseek-v4.1-flash#max`). | Not stated. | Q006 | ../goal.md D4, 004-hook-runtime-readmes/plan.md Key Components |
 | Q010 | The README alert and fold conventions run as phase 008 of this program, not as a new packet. | Not stated. | None | ../goal.md D3, 008-readme-html-conventions/spec.md |
 | Q011 | The repo-rules folder README runs as phase 009 of this program, and the repo-rules checker and card builder skip a README in that folder so it can exist. | Not stated. | None | ../goal.md D3, 009-repo-rules-readme/spec.md |
+| Q012 | Phase 010 writers and reviewers run Hy4 Flash Free at high through cli-opencode (`opencode-go/hy4-flash-free#high`), one README per session. The operator named it in chat as "Hy4 flash high free". | Not stated. | Q009 for phase 010 | ../goal.md D4, 010-readme-text-diagrams/plan.md Key Components |
+| Q013 | README diagrams go back to box-drawing text, run as phase 010 of this program. The skill README template and the README rules ask for a text diagram and rule out Mermaid, and the 55 Mermaid blocks are redrawn. The operator asked to "revert to like we always did markdown diagrams". | Not stated. | None | ../goal.md D3, 010-readme-text-diagrams/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---

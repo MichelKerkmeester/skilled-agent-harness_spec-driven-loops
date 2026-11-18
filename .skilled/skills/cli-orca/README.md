@@ -7,7 +7,7 @@ trigger_phrases:
   - "official orca skills package"
 importance_tier: normal
 contextType: general
-version: 0.1.9.0
+version: 0.1.10.0
 ---
 
 # cli-orca
@@ -81,14 +81,36 @@ Orca work arrives as a request rather than a command. The advisor matches Orca-q
 
 `SKILL.md` stays in context for the whole task. The selected lane loads one reference. The guide from the binary supplies the flags. A request that matches no lane returns `UNKNOWN_FALLBACK` and defers. A request that belongs to `sk-git` or another owner goes to that owner.
 
-```mermaid
-flowchart TD
-  Request["Orca-qualified request"] --> Route["Lane router in ROUTER.md"]
-  Route --> Lane["One lane reference"]
-  Route --> Guide["orca-cli guide from the binary"]
-  Lane --> Run["orca commands"]
-  Guide --> Run
-  Run --> Receipt["Receipt, exit status and escalation"]
+```text
+                     ┌──────────────────────────────┐
+                     │ Orca-qualified request       │
+                     └──────────────┬───────────────┘
+                                    │
+                                    ▼
+                     ┌──────────────────────────────┐
+                     │ Lane router in ROUTER.md     │
+                     └──────────────┬───────────────┘
+                                    │
+               ┬────────────────────┴────────────────────┬
+               │                                         │
+               ▼                                         ▼
+┌──────────────────────────────┐          ┌──────────────────────────────┐
+│ One lane                     │          │ orca-cli guide from the      │
+│ reference                    │          │ binary                       │
+└──────────────┬───────────────┘          └──────────────┬───────────────┘
+               │                                         │
+               ┴────────────────────┬────────────────────┴
+                                    │
+                                    ▼
+                     ┌──────────────────────────────┐
+                     │ orca commands                │
+                     └──────────────┬───────────────┘
+                                    │
+                                    ▼
+                     ┌──────────────────────────────┐
+                     │ Receipt, exit status and     │
+                     │ escalation                   │
+                     └──────────────────────────────┘
 ```
 
 ### One Lane, One Reference

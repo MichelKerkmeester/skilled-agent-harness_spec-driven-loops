@@ -4,7 +4,7 @@ description: "Author current-state folder READMEs from real files, for anyone wr
 trigger_phrases:
   - "create readme"
   - "write a readme"
-version: 1.1.6.0
+version: 1.1.7.0
 ---
 
 # create-readme
@@ -110,13 +110,35 @@ Expected output is a JSON summary. It reports `readmes_total`, `template_valid`,
 
 A run moves through four stages. The order is the contract. It reads local evidence first, routes by artifact type, drafts from the matching template, then validates the markdown and every local link. A claim with no file behind it never reaches the draft.
 
-```mermaid
-flowchart TD
-  Request["README request"] --> Read["Read the folder, nearby docs and commands"]
-  Read --> Route["Pick the artifact type and template"]
-  Route --> Draft["Draft from the scaffold"]
-  Draft --> Check["Validate the markdown and the links"]
-  Check --> Out["README.md, a root guide, SYNC.md or ARCHITECTURE.md"]
+```text
+┌─────────────────────────────────────────────────────┐
+│ README request                                      │
+└──────────────────────────┬──────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────┐
+│ Read the folder, nearby docs and commands           │
+└──────────────────────────┬──────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────┐
+│ Pick the artifact type and template                 │
+└──────────────────────────┬──────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────┐
+│ Draft from the scaffold                             │
+└──────────────────────────┬──────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────┐
+│ Validate the markdown and the links                 │
+└──────────────────────────┬──────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────┐
+│ README.md, a root guide, SYNC.md or ARCHITECTURE.md │
+└─────────────────────────────────────────────────────┘
 ```
 
 The evidence rule is the part readers notice. A command appears only after it ran. A path appears only after it opened. A count appears only after the folder proved it. That is why a refresh costs more than a copy edit. The old text is a claim to check, not a source.

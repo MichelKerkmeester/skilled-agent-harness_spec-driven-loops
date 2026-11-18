@@ -8,7 +8,7 @@ trigger_phrases:
   - "pull request"
   - "security review"
   - "code-review"
-version: 1.7.17.0
+version: 1.7.18.0
 ---
 
 # sk-code-review mode
@@ -123,13 +123,35 @@ It prints `OK: all rule invariants present (8 exact-string file(s) + 2 Iron Law 
 
 A review starts with scope. The reviewer reads the diff, the staged set, the file list or the commit range, then resolves the rules for the reviewed paths in one call. That call returns each file's surfaces, checklists and parsed override rows. With those rules loaded, the review checks the change. It ranks the findings and writes the report. All findings arrive in one message with a next-action prompt, because the mode is single-pass. Findings never drip across turns.
 
-```mermaid
-flowchart TD
-  Request["Review request"] --> Scope["Scope the change"]
-  Scope --> Resolve["Resolve rules with quality-gate.cjs --explain"]
-  Resolve --> Check["Security and correctness first"]
-  Check --> Rank["Rank findings by severity"]
-  Rank --> Report["Report with Not checked line and status line"]
+```text
+┌────────────────────────────────────────────────┐
+│ Review request                                 │
+└────────────────────────┬───────────────────────┘
+                         │
+                         ▼
+┌────────────────────────────────────────────────┐
+│ Scope the change                               │
+└────────────────────────┬───────────────────────┘
+                         │
+                         ▼
+┌────────────────────────────────────────────────┐
+│ Resolve rules with quality-gate.cjs --explain  │
+└────────────────────────┬───────────────────────┘
+                         │
+                         ▼
+┌────────────────────────────────────────────────┐
+│ Security and correctness first                 │
+└────────────────────────┬───────────────────────┘
+                         │
+                         ▼
+┌────────────────────────────────────────────────┐
+│ Rank findings by severity                      │
+└────────────────────────┬───────────────────────┘
+                         │
+                         ▼
+┌────────────────────────────────────────────────┐
+│ Report with Not checked line and status line   │
+└────────────────────────────────────────────────┘
 ```
 
 ### The Analysis Order

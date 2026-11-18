@@ -4,7 +4,7 @@ description: "Scaffold, validate and package standalone Skilled skills and two-a
 trigger_phrases:
   - "create skill"
   - "parent hub"
-version: 1.2.11.0
+version: 1.2.12.0
 ---
 
 # create-skill
@@ -109,13 +109,35 @@ On the standalone path, each piece of reusable content gets one home. Determinis
 
 On the parent path, the scaffolder writes the hub root and one `<hub>-primary` workflow packet. The registry holds a single `modes[]` array. Every mode names its `workflowMode` and `packetKind`, and the registry schema lists the rest of the required fields. `routerPolicy.tieBreak` lists each mode once, with workflow modes before surface packets. The root `ROUTER.md` starts at `stage1-only`, with empty stage-two maps. Promotion to `active` is an authored act that fills `INTENT_SIGNALS` and `RESOURCE_MAP` with paths that resolve on disk. No nested packet carries a `graph-metadata.json`.
 
-```mermaid
-flowchart TD
-  Request["Skill or hub request"] --> Mode["Choose create-skill or create-skill-parent"]
-  Mode --> Scaffold["init_skill.py writes the folder and its metadata"]
-  Scaffold --> Author["Replace the TODOs and author SKILL.md and ROUTER.md"]
-  Author --> Gate["validate_skill_package.py --strict"]
-  Gate --> Package["package_skill.py writes the zip"]
+```text
+┌──────────────────────────────────────────────────────┐
+│ Skill or hub request                                 │
+└──────────────────────────┬───────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────┐
+│ Choose create-skill or create-skill-parent           │
+└──────────────────────────┬───────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────┐
+│ init_skill.py writes the folder and its metadata     │
+└──────────────────────────┬───────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────┐
+│ Replace the TODOs and author SKILL.md and ROUTER.md  │
+└──────────────────────────┬───────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────┐
+│ validate_skill_package.py --strict                   │
+└──────────────────────────┬───────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────┐
+│ package_skill.py writes the zip                      │
+└──────────────────────────────────────────────────────┘
 ```
 
 ### What Each Mode Writes

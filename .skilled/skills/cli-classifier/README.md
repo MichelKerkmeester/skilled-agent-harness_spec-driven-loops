@@ -5,7 +5,7 @@ trigger_phrases:
   - "cli-classifier hub"
   - "typed judgment hub"
   - "jev judgment hub"
-version: 0.8.8.0
+version: 0.8.9.0
 ---
 
 # cli-classifier
@@ -71,13 +71,35 @@ Routing happens in two stages. The hub picks the mode and the router picks the l
 
 `routerPolicy.defaultMode` is `null`, so an unclear request or one that names only the hub asks for clarification. It never guesses a backend. The compiled route returns `route` with its targets. `clarify` and `defer` ask for a clearer request. `reject` refuses.
 
-```mermaid
-flowchart TD
-  Request["A request that names Jev"] --> Advisor["Advisor resolves cli-classifier"]
-  Advisor --> StageOne["hub-router.json picks the mode"]
-  StageOne --> StageTwo["ROUTER.md picks the leaves"]
-  StageTwo --> Packet["cli-jev packet"]
-  Packet --> Value["One typed value and an exit code"]
+```text
+┌──────────────────────────────────┐
+│ A request that names Jev         │
+└─────────────────┬────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────┐
+│ Advisor resolves cli-classifier  │
+└─────────────────┬────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────┐
+│ hub-router.json picks the mode   │
+└─────────────────┬────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────┐
+│ ROUTER.md picks the leaves       │
+└─────────────────┬────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────┐
+│ cli-jev packet                   │
+└─────────────────┬────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────┐
+│ One typed value and an exit code │
+└──────────────────────────────────┘
 ```
 
 ### The Transport Axis

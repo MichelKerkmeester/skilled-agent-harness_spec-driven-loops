@@ -7,7 +7,7 @@ trigger_phrases:
   - "notion workspace"
   - "notion database"
   - "notion page"
-version: 0.1.4.0
+version: 0.1.5.0
 ---
 
 # mcp-notion
@@ -76,15 +76,28 @@ Expected output: the bot user object for your integration, which proves the toke
 
 A Notion request enters the skill and gets scored against weighted intent signals. A page or block request loads the MCP catalog. A schema or relation request loads the schema references before any write. An upload or view request loads the gap recipes. The router then picks a path and a backend, and the call runs.
 
-```mermaid
-flowchart TD
-  Ask["Notion request"] --> Route["Route by intent"]
-  Route --> Ref["Load matched references"]
-  Route --> Path{"Covered by the MCP?"}
-  Path -->|yes| MCP["Call the tool over Code Mode"]
-  Path -->|no| API["Call the REST API directly"]
-  Ref --> MCP
-  Ref --> API
+```text
+        ┌──────────────────────────────┐
+        │ Notion request               │
+        └───────────────┬──────────────┘
+                        │
+                        ▼
+        ┌──────────────────────────────┐
+        │ Route by intent              │
+        └────────┬─────────────┬───────┘
+                 │
+                 │             └─────────────────────────────────────────────┬
+                 ▼                                                           ▼
+        ┌──────────────────────────────┐              ┌──────────────────────────────┐
+        │ Covered by the MCP?          │              │ Load matched references      │
+        └──────┬─────────────────┬─────┘              └──────┬───────────────┬───────┘
+          [YES]│             [NO]│                           │               │
+               │                 └───────────────────────────┼─────────┬     │
+               │          ┬──────────────────────────────────┘         │     │
+               ▼          ▼                                            ▼     ▼
+        ┌──────────────────────────────┐              ┌──────────────────────────────┐
+        │ Call the tool over Code Mode │              │ Call the REST API directly   │
+        └──────────────────────────────┘              └──────────────────────────────┘
 ```
 
 ### The Operation Router

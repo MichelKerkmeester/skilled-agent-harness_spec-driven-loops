@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.30.0
+version: 1.4.31.0
 ---
 
 # cli-opencode
@@ -126,15 +126,33 @@ Expect the shell prompt to return at once and the run to appear under its own `s
 
 The caller composes a prompt for the task and picks the use case the smart router matches. It loads the references that match, then the caller builds one `opencode run` command with an explicit model, effort level, format and working directory. OpenCode starts a fresh session that loads the project runtime. The caller reads the event stream as it arrives, validates the work and integrates the result. The round trip is non-interactive: send the prompt, read the events, exit.
 
-```mermaid
-flowchart TD
-  Task["A task that needs the project runtime"] --> Route["The smart router picks the use case"]
-  Route --> Guard{"Is the caller already inside OpenCode?"}
-  Guard -->|No| Run["opencode run"]
-  Guard -->|Yes, a parallel request| Run
-  Guard -->|Yes| Refuse["Refuse and name a sibling skill or a fresh shell"]
-  Run --> Events["JSON events with a sessionID on every line"]
-  Events --> Back["The caller parses, validates and integrates"]
+```text
+┌────────────────────────────────────────┐    ┌────────────────────────────────────────┐
+│ A task that needs the project runtime  │ ─▶ │ The smart router picks the use case    │
+└────────────────────────────────────────┘    └─┬──────────────────────────────────────┘
+                                                │
+                                                ▼
+          ┌────────────────────────────────────────┐
+          │ Is the caller already inside OpenCode? │
+          └───────┬─────────────────┬───────────┬──┘
+             [NO] │                 │           │ [YES]
+                  │                 │ [YES] a parallel request
+                  ▼                 ▼           ▼
+┌────────────────────────────────────────┐    ┌────────────────────────────────────────┐
+│ opencode run                           │    │ Refuse and name a sibling              │
+└───────────────────┬────────────────────┘    │ skill or a fresh shell                 │
+                    │                         └────────────────────────────────────────┘
+                    ▼
+┌────────────────────────────────────────┐
+│ JSON events with a sessionID           │
+│ on every line                          │
+└───────────────────┬────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────┐
+│ The caller parses, validates           │
+│ and integrates                         │
+└────────────────────────────────────────┘
 ```
 
 Each run is stateless by default. Keep every fact the session needs in the prompt, or continue an earlier session with `--continue` or `--session <id>`.

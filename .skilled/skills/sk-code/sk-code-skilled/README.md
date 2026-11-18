@@ -5,7 +5,7 @@ trigger_phrases:
   - "skilled system code"
   - "skilled surface authoring"
   - "system code standards"
-version: 1.0.10.0
+version: 1.0.11.0
 ---
 
 # sk-code-skilled
@@ -75,15 +75,35 @@ A specific surface is a hub packet whose `surfaceDetection` block in `../mode-re
 
 Language selection reads the file extensions and local markers in the task. A parity task that holds a Rust module to its TypeScript oracle loads both language sets plus the shared tier, because the module must match its oracle byte for byte. For any other task the slice stays the set of touched languages.
 
-```mermaid
-flowchart TD
-  Request["A task in system code"] --> Detect["Surface detection"]
-  Detect --> Specific["A specific surface leads"]
-  Detect --> Fallback["SKILLED leads when none matched"]
-  Specific --> Slice["Language slice, plus the shared tier"]
-  Fallback --> Slice
-  Slice --> Guard["Drift guards"]
-  Guard --> Apply["The acting agent applies the evidence"]
+```text
+                      ┌───────────────────────────────────────┐
+                      │ A task in system code                 │
+                      └───────────────────┬───────────────────┘
+                                          │
+                                          ▼
+                      ┌───────────────────────────────────────┐
+                      │ Surface detection                     │
+                      └───────┬───────────────────┬───────────┘
+                              │                   │
+                              ▼                   ▼
+┌───────────────────────────────────────┐   ┌───────────────────────────────────────┐
+│ A specific surface leads              │   │ SKILLED leads when none matched       │
+└─────────────────────────────┬─────────┘   └─────┬─────────────────────────────────┘
+                              │                   │
+                              ▼                   ▼
+                      ┌───────────────────────────────────────┐
+                      │ Language slice, plus the shared tier  │
+                      └───────────────────┬───────────────────┘
+                                          │
+                                          ▼
+                      ┌───────────────────────────────────────┐
+                      │ Drift guards                          │
+                      └───────────────────┬───────────────────┘
+                                          │
+                                          ▼
+                      ┌───────────────────────────────────────┐
+                      │ The acting agent applies the evidence │
+                      └───────────────────────────────────────┘
 ```
 
 ### The Drift Guards

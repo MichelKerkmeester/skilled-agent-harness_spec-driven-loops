@@ -12,7 +12,7 @@ trigger_phrases:
   - "typed judgment transport"
 importance_tier: "important"
 contextType: "general"
-version: 0.1.5.0
+version: 0.1.6.0
 ---
 
 # cli-jev
@@ -87,14 +87,41 @@ A dispatch has three phases. Availability comes first, where `command -v jev` de
 
 Read the exit code before the payload. A judgment error prints one JSON object on stderr as `{"ok": false, "error": "<message>"}` and leaves stdout empty. A malformed command prints usage text instead. Exit 0 is the only signal that a judgment exists.
 
-```mermaid
-flowchart TD
-  Request["One question and one state"] --> Preflight["command -v jev and jev auth status"]
-  Preflight --> Dispatch["jev noul, choice, score or run"]
-  Dispatch --> Provider["The selected provider scores the state"]
-  Provider --> Answer["A typed answer on stdout"]
-  Answer --> Exit["Exit 0 or an error class on stderr"]
-  Exit --> Caller["The caller branches under its own rules"]
+```text
+┌─────────────────────────────────────────┐
+│ One question and one state              │
+└────────────────────┬────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│ command -v jev and jev auth status      │
+└────────────────────┬────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│ jev noul, choice, score or run          │
+└────────────────────┬────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│ The selected provider scores the state  │
+└────────────────────┬────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│ A typed answer on stdout                │
+└────────────────────┬────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│ Exit 0, or a JSON error on stderr with  │
+│ the exit code carrying its class        │
+└────────────────────┬────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│ The caller branches under its own rules │
+└─────────────────────────────────────────┘
 ```
 
 ### The Dispatch Rules

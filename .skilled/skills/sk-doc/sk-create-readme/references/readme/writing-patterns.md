@@ -9,7 +9,7 @@ trigger_phrases:
   - "readme heading hierarchy"
 importance_tier: normal
 contextType: implementation
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # README Writing Patterns
@@ -132,6 +132,10 @@ Fold a table in `<details>` when it holds 15 rows or more and a reader looks one
 ```
 
 No other HTML belongs in a README, apart from `<br>` inside a table cell.
+
+### Diagrams
+
+Draw a diagram as text in a `text` fence, with boxes made of `┌ ─ ┐ │ └ ┘` and arrows made of `▼` and `─▶`, at one box width. Never use a Mermaid fence: a text diagram reads the same in a terminal, an editor and on GitHub. Avoid the tree markers `├──` and `└──` in a flow diagram, because `check_readme_references.py` reads a tree line as a file path.
 
 ### Blockquote Tagline
 

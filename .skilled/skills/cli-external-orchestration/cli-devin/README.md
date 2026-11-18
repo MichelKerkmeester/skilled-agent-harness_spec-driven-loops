@@ -9,7 +9,7 @@ trigger_phrases:
   - "subagent delegation"
   - "second opinion"
   - "cross-validate"
-version: 1.4.9.0
+version: 1.4.10.0
 ---
 
 # cli-devin
@@ -90,14 +90,40 @@ For long-running work, start a session with `devin -- "prompt"` and type `/hando
 
 A dispatch starts with the router. It scores the request against weighted intent signals such as generation, review, research or handoff, then loads only the matching references. `references/cli-reference.md` and `assets/prompt-quality-card.md` load on every invocation. Before any process is built, the skill runs the `command -v devin` probe and the self-invocation check. The prompt is then composed with a model and a permission mode, and the work runs through the deep-loop runtime or as a direct print-mode call.
 
-```mermaid
-flowchart TD
-  Request["Request"] --> Router["Smart router scores the intent"]
-  Router --> Load["Load the matched references"]
-  Load --> Probe["Run the availability probe and the self-invocation guard"]
-  Probe --> Prompt["Compose the model, permission mode and prompt"]
-  Prompt --> Run["Run through the deep-loop runtime or a direct print-mode call"]
-  Run --> Result["Check the result in the calling runtime"]
+```text
+┌──────────────────────────────────────────────────────────────────┐
+│ Request                                                          │
+└────────────────────────────────┬─────────────────────────────────┘
+                                 │
+                                 ▼
+┌──────────────────────────────────────────────────────────────────┐
+│ Smart router scores the intent                                   │
+└────────────────────────────────┬─────────────────────────────────┘
+                                 │
+                                 ▼
+┌──────────────────────────────────────────────────────────────────┐
+│ Load the matched references                                      │
+└────────────────────────────────┬─────────────────────────────────┘
+                                 │
+                                 ▼
+┌──────────────────────────────────────────────────────────────────┐
+│ Run the availability probe and the self-invocation guard         │
+└────────────────────────────────┬─────────────────────────────────┘
+                                 │
+                                 ▼
+┌──────────────────────────────────────────────────────────────────┐
+│ Compose the model, permission mode and prompt                    │
+└────────────────────────────────┬─────────────────────────────────┘
+                                 │
+                                 ▼
+┌──────────────────────────────────────────────────────────────────┐
+│ Run through the deep-loop runtime or the child dispatch envelope │
+└────────────────────────────────┬─────────────────────────────────┘
+                                 │
+                                 ▼
+┌──────────────────────────────────────────────────────────────────┐
+│ Check the result in the calling runtime                          │
+└──────────────────────────────────────────────────────────────────┘
 ```
 
 ### Permission Modes
