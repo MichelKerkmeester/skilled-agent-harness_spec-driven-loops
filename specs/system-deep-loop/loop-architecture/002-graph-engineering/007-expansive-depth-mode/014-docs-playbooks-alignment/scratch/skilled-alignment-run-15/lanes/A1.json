@@ -1,0 +1,35 @@
+{
+ "lane": "A1",
+ "findings": [
+  {
+   "id": "A1-1",
+   "surface": "S1",
+   "standard": "sk-code",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+   "line": 580,
+   "issue": "The comment in admitProposals says a 'missing or unreadable' review config gives the no-target object and admits every scope. An unreadable or unparsable config does not do that. readTargetConfig (lines 271-277) throws on it, and readCaps on line 579 calls it before the review options are built, so the CLI fails closed with exit 2. Only a missing config, or one that parses to a non-object such as null or [], falls through '?? {}' and isPlainObject to the admit-every-scope path. The comment contradicts the fail-closed rule the module's own readTargetConfig comment states, and it could lead a later edit to swallow the error to match it.",
+   "evidence": {
+    "cmd": "printf '{not json' > <dir>/deep-review-config.json; node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs admit --artifact-dir <dir> --input <one frontier_proposal row> --target review",
+    "exit": 2,
+    "out": "[frontier-admit] cannot read deep-review-config.json: Expected property name or '}' in JSON at position 1 (line 1 column 2)"
+   },
+   "fix": {
+    "old": "  // A missing or unreadable review config gives the no-target object, which",
+    "new": "  // A missing review config, or one that holds no JSON object, gives the no-target object, which"
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/review-depth-mode-golden.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+  ".skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts"
+ ],
+ "not_reviewed": []
+}

@@ -1,0 +1,43 @@
+{
+ "lane": "A4",
+ "findings": [
+  {
+   "id": "A4-1",
+   "surface": "S1",
+   "standard": "sk-code",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts",
+   "line": 798,
+   "issue": "The test titled '... extends under the lock, before classification ...' compares extendAt against lockAt without first asserting the step_acquire_lock anchor was found. If step_acquire_lock is renamed, re-indented or removed from deep-research.yaml or deep-review.yaml, indexOf returns -1 and expect(extendAt).toBeGreaterThan(lockAt) still passes, so the 'under the lock' half of the contract cannot fail (sk-code-review test quality: an assertion that cannot fail; review.correctness-minimums, test-quality section 4). The sibling test at line 784 guards its first anchor with toBeGreaterThan(-1), and the twin check in system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts guards lockIndex too, so this one is the outlier. Reach: any edit to the lock step's key or indentation in either workflow asset. P2 because the assets are correct today; the gap only hides a future regression.",
+   "evidence": {
+    "cmd": "node -e '...indexOf(\"\\n      step_acquire_lock:\\n\") and indexOf(\"\\n      step_extend_completed_run:\\n\") on .skilled/commands/deep/assets/deep-{research,review}.yaml'",
+    "exit": 0,
+    "out": "deep-research.yaml lockAt 27554 extendAt 30314; deep-review.yaml lockAt 31070 extendAt 33830; extendAt > -1 in both, so with lockAt = -1 the ordering assertion would still pass"
+   },
+   "fix": {
+    "old": "      expect(extendAt).toBeGreaterThan(lockAt);",
+    "new": "      expect(lockAt).toBeGreaterThan(-1);\n      expect(extendAt).toBeGreaterThan(lockAt);"
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/continuity-thread.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-projections-contract.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-deltas-contract.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/loop-heartbeat.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/optimizer-manifest-anti-convergence.vitest.ts",
+  ".skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts",
+  ".skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-contract-parity.vitest.ts",
+  ".skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-reducer-schema.vitest.ts"
+ ],
+ "not_reviewed": []
+}

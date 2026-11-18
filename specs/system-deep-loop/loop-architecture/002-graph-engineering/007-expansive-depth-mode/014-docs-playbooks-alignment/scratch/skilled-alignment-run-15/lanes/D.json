@@ -1,0 +1,181 @@
+{
+ "lane": "D",
+ "findings": [
+  {
+   "id": "D-1",
+   "surface": "S9",
+   "standard": "sk-doc/sk-create-command",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/commands/deep/research.md",
+   "line": 43,
+   "issue": "The router's setup list says lineage_mode stays `auto` unless --lineage-mode or --restart is present. It omits --extend=N, which the presentation binds to lineage_mode=completed-continue (deep-research-presentation.txt:118) and the YAML's user_inputs.extend describes the same way. The router summary therefore disagrees with the presentation binding. That matters because the YAML preflight (deep-research.yaml:413 extend_values) accepts extend with lineage_mode `auto`, while step_extend_completed_run skips unless lineage_mode is completed-continue, and no step promotes auto to completed-continue. A setup that follows this list alone skips the extension and halts on the completed run.",
+   "evidence": {
+    "cmd": "grep -n \"lineage_mode. (default\\|lineage_mode = completed-continue\" .skilled/commands/deep/research.md .skilled/commands/deep/assets/deep-research-presentation.txt",
+    "exit": 0,
+    "out": ".skilled/commands/deep/research.md:43:>    - `lineage_mode` (default `auto` unless `--lineage-mode` or `--restart` is present)\n.skilled/commands/deep/assets/deep-research-presentation.txt:118:   |-- --extend=N -> extend = N, lineage_mode = completed-continue (positive integer only; a completed run only; refused with fan-out)"
+   },
+   "fix": {
+    "old": "- `lineage_mode` (default `auto` unless `--lineage-mode` or `--restart` is present)",
+    "new": "- `lineage_mode` (default `auto` unless `--lineage-mode` or `--restart` is present; `--extend=N` sets `completed-continue`)"
+   }
+  },
+  {
+   "id": "D-2",
+   "surface": "S9",
+   "standard": "sk-doc/sk-create-command",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/commands/deep/review.md",
+   "line": 43,
+   "issue": "The router's setup list says lineage_mode stays `auto` unless --lineage-mode or --restart is present. It omits --extend=N, which the presentation binds to lineage_mode=completed-continue (deep-review-presentation.txt:131) and the YAML's user_inputs.extend describes the same way. The router summary therefore disagrees with the presentation binding. That matters because the YAML preflight (deep-review.yaml:407 extend_values) accepts extend with lineage_mode `auto`, while step_extend_completed_run skips unless lineage_mode is completed-continue, and no step promotes auto to completed-continue. A setup that follows this list alone skips the extension and halts on the completed run.",
+   "evidence": {
+    "cmd": "grep -n \"lineage_mode. (default\\|lineage_mode = completed-continue\" .skilled/commands/deep/review.md .skilled/commands/deep/assets/deep-review-presentation.txt",
+    "exit": 0,
+    "out": ".skilled/commands/deep/review.md:43:>    - `lineage_mode` (default `auto` unless `--lineage-mode` or `--restart` is present)\n.skilled/commands/deep/assets/deep-review-presentation.txt:131:   |-- --extend=N -> extend = N, lineage_mode = completed-continue (positive integer only; a completed run only; refused with fan-out)"
+   },
+   "fix": {
+    "old": "- `lineage_mode` (default `auto` unless `--lineage-mode` or `--restart` is present)",
+    "new": "- `lineage_mode` (default `auto` unless `--lineage-mode` or `--restart` is present; `--extend=N` sets `completed-continue`)"
+   }
+  },
+  {
+   "id": "D-3",
+   "surface": "S7",
+   "standard": ".skilled/repo-rules/skill-hub-routing.md",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/graph-metadata.json",
+   "line": 73,
+   "issue": "The diff adds `depth-capped frontier` to the hub's stage-one intent_signals, but neither stage-two surface (ROUTER.md INTENT_SIGNALS, hub-router.json vocabularyClasses) carries it. skill-hub-routing.md §1 says a stage-one hit with no stage-two intent means the two stages disagree. A request whose only routing phrase is this one reaches the hub with no mode signal, and hub-router.json sets defaultMode null. The phrase fits both research and review, so the fix is a judgment: drop it from intent_signals, or accept it as hub-only vocabulary and record why. The intent-signal generator's --check passes because it detects only router phrases missing from the advisor, not advisor-only phrases.",
+   "evidence": {
+    "cmd": "grep -n \"depth-capped\" .skilled/skills/system-deep-loop/ROUTER.md .skilled/skills/system-deep-loop/hub-router.json .skilled/skills/system-deep-loop/graph-metadata.json",
+    "exit": 0,
+    "out": ".skilled/skills/system-deep-loop/graph-metadata.json:73:    \"depth-capped frontier\","
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+  ".skilled/skills/system-deep-loop/ROUTER.md",
+  ".skilled/skills/system-deep-loop/SKILL.md",
+  ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+  ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+  ".skilled/skills/system-deep-loop/description.json",
+  ".skilled/skills/system-deep-loop/graph-metadata.json",
+  ".skilled/skills/system-deep-loop/hub-router.json",
+  ".skilled/skills/system-deep-loop/mode-registry.json",
+  ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+  ".skilled/skills/system-spec-kit/SKILL.md",
+  ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+  ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+  ".skilled/commands/deep/assets/deep-research-presentation.txt",
+  ".skilled/commands/deep/assets/deep-research.yaml",
+  ".skilled/commands/deep/assets/deep-review-presentation.txt",
+  ".skilled/commands/deep/assets/deep-review.yaml",
+  ".skilled/commands/deep/research.md",
+  ".skilled/commands/deep/review.md",
+  ".claude/agents/deep-research.md",
+  ".claude/agents/deep-review.md",
+  ".codex/agents/deep-research.toml",
+  ".codex/agents/deep-review.toml",
+  ".pi/agents/deep-research.md",
+  ".pi/agents/deep-review.md",
+  ".skilled/agents/deep-research.md",
+  ".skilled/agents/deep-review.md"
+ ],
+ "not_reviewed": [],
+ "probes": [
+  {
+   "prompt": "Run an expansive deep research loop on the routing architecture, keeping a depth-capped frontier of follow-up questions",
+   "expect": "system-deep-loop",
+   "expectMode": "research"
+  },
+  {
+   "prompt": "Enable expansive depth mode on this research run",
+   "expect": "system-deep-loop",
+   "expectMode": "research"
+  },
+  {
+   "prompt": "Seed a depth-capped frontier of follow-up questions for this research run",
+   "expect": "system-deep-loop",
+   "expectMode": "research"
+  },
+  {
+   "prompt": "Run an expansive deep review of this diff, expanding the review target into a depth-capped frontier of sub-targets",
+   "expect": "system-deep-loop",
+   "expectMode": "review"
+  },
+  {
+   "prompt": "Expand the review target into sub-targets to depth 3",
+   "expect": "system-deep-loop",
+   "expectMode": "review"
+  },
+  {
+   "prompt": "Turn on expansive depth mode for the review loop",
+   "expect": "system-deep-loop",
+   "expectMode": "review"
+  },
+  {
+   "prompt": "Review this one file for bugs and report findings",
+   "expect": "sk-code"
+  },
+  {
+   "prompt": "Implement the frontier admission check in the reducer",
+   "expect": "sk-code"
+  },
+  {
+   "prompt": "Update the deep-research README to document the expansive depth flag",
+   "expect": "sk-doc"
+  },
+  {
+   "prompt": "Extend the completed deep research run by 5 more iterations in the same session",
+   "expect": "system-deep-loop",
+   "expectMode": "research"
+  },
+  {
+   "prompt": "Extend the finished deep review loop by 4 iterations without restarting it",
+   "expect": "system-deep-loop",
+   "expectMode": "review"
+  },
+  {
+   "prompt": "Continue the completed research loop and add 60 minutes to its duration budget",
+   "expect": "system-deep-loop",
+   "expectMode": "research"
+  },
+  {
+   "prompt": "Size the expansive deep review budget from the seeded sub-targets and all review dimensions",
+   "expect": "system-deep-loop",
+   "expectMode": "review"
+  },
+  {
+   "prompt": "Stop the deep review loop once every frontier sub-target node is drained",
+   "expect": "system-deep-loop",
+   "expectMode": "review"
+  },
+  {
+   "prompt": "Run a deep review loop with a custom performance dimension beside the four standard ones",
+   "expect": "system-deep-loop",
+   "expectMode": "review"
+  },
+  {
+   "prompt": "Check the review target file for injection bugs and report findings",
+   "expect": "sk-code"
+  },
+  {
+   "prompt": "Run an expansive deep review with the whole repo root as the review target and seed its sub-targets",
+   "expect": "system-deep-loop",
+   "expectMode": "review"
+  },
+  {
+   "prompt": "Run an expansive deep review over a glob target like src/**/*.ts and expand it into sub-targets",
+   "expect": "system-deep-loop",
+   "expectMode": "review"
+  },
+  {
+   "prompt": "Stop the expansive deep research loop when it hits its max duration even though frontier nodes are still open",
+   "expect": "system-deep-loop",
+   "expectMode": "research"
+  }
+ ]
+}

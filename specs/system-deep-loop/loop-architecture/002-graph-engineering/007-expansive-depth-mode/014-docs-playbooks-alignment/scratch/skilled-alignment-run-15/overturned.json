@@ -1,0 +1,115 @@
+[
+  {
+    "id": "C3-1",
+    "source_id": "C3-1",
+    "lane": "C3",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "106",
+    "issue": "The runtime playbook's release gate says 'all 56 scenarios' while line 39 of the same file says 58, and the package holds 58 scenario files at HEAD. The diff raised line 39 from 51 to 58 but set the release-gate line to 56, so the gate count does not match what shipped.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false ls-tree -r --name-only 83af96cb5af .skilled/skills/system-deep-loop/runtime/manual-testing-playbook | grep -v 'manual-testing-playbook/manual-testing-playbook.md$' | grep -vi readme.md | grep -c '\\.md$'",
+      "exit": 0,
+      "out": "58"
+    },
+    "fix": {
+      "old": "Release is cleared only when all 56 scenarios are `PASS`",
+      "new": "Release is cleared only when all 58 scenarios are `PASS`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "duplicate",
+      "note": "Duplicate of B3-1: same file (runtime/manual-testing-playbook/manual-testing-playbook.md), same line 106, same 56 vs 58 mismatch.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "C3-2",
+    "source_id": "C3-2",
+    "lane": "C3",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "231",
+    "issue": "The new Mode Package Indexes table in the hub playbook gives the runtime package 56 scenarios. The runtime package index says 58, and 58 scenario files exist at HEAD.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false ls-tree -r --name-only 83af96cb5af .skilled/skills/system-deep-loop/runtime/manual-testing-playbook | grep -v 'manual-testing-playbook/manual-testing-playbook.md$' | grep -vi readme.md | grep -c '\\.md$'",
+      "exit": 0,
+      "out": "58"
+    },
+    "fix": {
+      "old": "| `runtime` | 56 | 12 |",
+      "new": "| `runtime` | 58 | 12 |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "duplicate",
+      "note": "Duplicate of B3-3: hub manual-testing-playbook.md:231 runtime row says 56; confirmed at HEAD.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "C3-3",
+    "source_id": "C3-3",
+    "lane": "C3",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "229",
+    "issue": "The same table gives the deep-research package 72 scenarios. Its package index says 'provides 74 deterministic scenarios across 9 categories', and 74 scenario files exist at HEAD, not counting command-flow-stress-tests/README.md. The deep-review row, 70, is correct.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false ls-tree -r --name-only 83af96cb5af .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook | grep -v 'manual-testing-playbook/manual-testing-playbook.md$' | grep -vi readme.md | grep -c '\\.md$'",
+      "exit": 0,
+      "out": "74"
+    },
+    "fix": {
+      "old": "| `deep-research` | 72 | 9 |",
+      "new": "| `deep-research` | 74 | 9 |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "duplicate",
+      "note": "Duplicate of B3-2: hub manual-testing-playbook.md:229 deep-research row says 72; confirmed at HEAD.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "C2-4",
+    "source_id": "C2-4",
+    "lane": "C2",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/changelog/skilled/v4.1.0.0.md",
+    "line": "1",
+    "issue": "This file is outside the lane's assigned list, but the S6 lens names it. The newest root release notes at HEAD 83af96cb5af are v4.1.0.0, which is already tagged on origin, so the release is published and closed. The entry does not describe this scope's user-visible deep-review additions: --depth-mode=expansive, --extend=N for review, custom review dimensions and the review minIterations floor. The root README section at line 255 does describe them. No open root release entry carries them, so they reach no release notes until the operator opens a new skilled entry. Per sk-create-changelog section 6 rule 7, a changed path never selects the skilled line, so opening that entry is the operator's call rather than a defect in a scope file.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false ls-remote --exit-code --tags origin refs/tags/v4.1.0.0; grep -c -i -E 'depth-mode|expansive|--extend|custom dimension|minIterations' .skilled/changelog/skilled/v4.1.0.0.md",
+      "exit": 1,
+      "out": "93e875708d0e63bd128f5538a237f32ae40cce1e\trefs/tags/v4.1.0.0\n0"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range",
+    "critic_override": {
+      "verdict": "duplicate",
+      "note": "Duplicate of C4-1: same file (.skilled/changelog/skilled/v4.1.0.0.md) and same gap (closed root release notes do not record this scope). C4-1 carries the fuller evidence; confirmed tag v4.1.0.0 is not an ancestor of 83af96cb5af (merge-base --is-ancestor exit=1).",
+      "lane_severity": "P2"
+    }
+  }
+]

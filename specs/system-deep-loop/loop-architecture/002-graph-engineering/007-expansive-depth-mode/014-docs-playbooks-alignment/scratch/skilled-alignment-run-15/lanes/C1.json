@@ -1,0 +1,62 @@
+{
+ "lane": "C1",
+ "findings": [
+  {
+   "id": "C1-1",
+   "surface": "S6",
+   "standard": "sk-doc/sk-create-changelog",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+   "line": 1,
+   "issue": "This range makes completed-run extension (--extend=N, --extend-minutes=M, lineage mode completed-continue) live inside the deep-research packet. The packet's SKILL.md lineage table and rule 6, README FAQ, assets/deep-research-config.json allowedModes, references and a new catalog feature (loop-lifecycle/completed-run-extension.md) all change for it. None of the three new deep-research changelog entries (v1.15.16.0, v1.15.17.0, v1.16.0.0) names it. Only the hub parent changelog system-deep-loop v2.1.0.0 records it, so a reader of the deep-research changelog line cannot see that completed-continue moved from deferred to live in this skill.",
+   "evidence": {
+    "cmd": "grep -rln -- \"--extend\\|completed-continue\\|run_extended\" .skilled/skills/system-deep-loop/deep-research/changelog/ ; git -c core.fsmonitor=false show 21c4b325b5a:.skilled/commands/deep/research.md | grep -c -- '--extend'",
+    "exit": 0,
+    "out": "only v1.4.0.0, v1.5.0.0, v1.6.1.0, v1.6.2.0 match (pre-range entries describing it as deferred); base command doc has 0 --extend matches, so the feature is new in this range"
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/deep-research/README.md",
+  ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+  ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
+  ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
+  ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+  ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md",
+  ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.17.0.md",
+  ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/initialization.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/focus-hijack-guard.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/leaf-field-gates.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/focus-alignment-and-findings-gate-read-leaf-fields.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-graph-mirror-closes-unanswered-nodes.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/next-focus-ignores-answered-free-text.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
+  ".skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts",
+  ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/quality-guards.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/convergence-passes-guard-fails-override.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-focus-alignment.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-no-single-weak-source.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-source-diversity.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-band-budget-rolls-down.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-dashboard-section.md"
+ ],
+ "not_reviewed": []
+}

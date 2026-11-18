@@ -1,0 +1,1187 @@
+[
+  {
+    "id": "A2-1",
+    "source_id": "A2-1",
+    "lane": "A2",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+    "line": "324",
+    "issue": "classifySourceLocation runs `if (extension === '.jsonl' || /ledger/i.test(fileName)) return classes.LEDGER_STATE;` before its repo-code fallback, so any source file whose name contains 'ledger' is classed as ledger state. That includes deep-research-ledger-schema.ts and check-ledger-stem-producers.cjs. This contradicts the declared contract in runtime/feature-catalog/coverage-graph/source-quality-class.md section 1, that the class comes 'from where the source lives' so a leaf cannot raise source diversity, and the only ledger-state fixture (upsert-script.vitest.ts:268,280) is a .jsonl state file. Reach: computeResearchSourceDiversityFromData (coverage-graph-signals.ts:674-688) counts distinct quality_class values per question, and convergence.cjs:447-451 makes sourceDiversity >= 1.5 a blocking STOP guard. Case: an honest research leaf studying this runtime cites only code, convergence.cjs and deep-research-ledger-schema.ts, and gets diversity 2. The guard passes when the true diversity is 1 and the guard should block. Before this diff the leaf supplied quality_class freely, so this is incomplete hardening of the new derivation, not a regression. It is still in reach, because the code now claims to derive the class. Fix: apply the ledger rule only to state files (.jsonl/.json, or a state/ledger artifact directory), not to every file name that contains 'ledger', and add a fixture showing that a code file named *ledger*.ts classes as repo-code.",
+    "evidence": {
+      "cmd": "sed -n '302,332p' .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs > classify.js; node -e '<define upsert.cjs constants; eval classify.js; print classifySourceLocation(p, SOURCE_QUALITY_CLASS) for 4 paths>'",
+      "exit": 0,
+      "out": "ledger-state .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts\nledger-state .skilled/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs\nrepo-code .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs\nledger-state specs/x/deep-research-state.jsonl"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C4-1",
+    "source_id": "C4-1",
+    "lane": "C4",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/changelog/skilled/v4.1.0.0.md",
+    "line": "1",
+    "issue": "No open root release notes describe the user-visible capabilities this scope adds: --depth-mode=expansive with its frontier node store (frontier-admit.cjs, the convergence.cjs frontier veto and frontier_drained stop), --extend=N / --extend-minutes=M, custom review dimensions, and the review minIterations floor (convergence.cjs now applies minIterations to review as well as research). The newest root notes, v4.1.0.0.md, are a closed release: tag v4.1.0.0 exists and is not an ancestor of HEAD 83af96cb5af, so this branch's work shipped in no release, and that file has no mention of any of these capabilities. sk-create-changelog SKILL.md section 7 step 3 says a tagged release is closed and new work numbers a new entry. The S6-release-coverage battery row passed only because it matched skill names in the closed v4.1.0.0 notes (required=4 missing=0), so that pass is a false green for this scope. The root README (line 255) and the component and mode changelogs (system-deep-loop v2.1.0.0 and v2.1.7.0, deep-review v1.11.18.0 and v1.12.0.0) do cover these capabilities; only the root release record is missing.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false merge-base --is-ancestor v4.1.0.0 83af96cb5af; echo \"is-ancestor exit=$?\"; grep -c -i -E 'expansive|depth-mode|--extend|frontier|custom dimension' .skilled/changelog/skilled/v4.1.0.0.md; echo \"grep exit=$?\"",
+      "exit": 1,
+      "out": "is-ancestor exit=1\n0\ngrep exit=1"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range",
+    "disposition": {
+      "status": "handed_off",
+      "note": "Owner: operator (root release notes). The gap is that the root .skilled/changelog/skilled/v4.1.0.0.md does not describe this program's new deep-loop features (expansive depth mode, --extend, custom review dimensions, the review minIterations floor). Opening or amending the root release record is the release owner's call, made when this branch lands. The critic folded C2-4 into this finding as a duplicate."
+    }
+  },
+  {
+    "id": "A1-1",
+    "source_id": "A1-1",
+    "lane": "A1",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    "line": "580",
+    "issue": "The comment in admitProposals says a 'missing or unreadable' review config gives the no-target object and admits every scope. An unreadable or unparsable config does not do that. readTargetConfig (lines 271-277) throws on it, and readCaps on line 579 calls it before the review options are built, so the CLI fails closed with exit 2. Only a missing config, or one that parses to a non-object such as null or [], falls through '?? {}' and isPlainObject to the admit-every-scope path. The comment contradicts the fail-closed rule the module's own readTargetConfig comment states, and it could lead a later edit to swallow the error to match it.",
+    "evidence": {
+      "cmd": "printf '{not json' > <dir>/deep-review-config.json; node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs admit --artifact-dir <dir> --input <one frontier_proposal row> --target review",
+      "exit": 2,
+      "out": "[frontier-admit] cannot read deep-review-config.json: Expected property name or '}' in JSON at position 1 (line 1 column 2)"
+    },
+    "fix": {
+      "old": "  // A missing or unreadable review config gives the no-target object, which",
+      "new": "  // A missing review config, or one that holds no JSON object, gives the no-target object, which"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A2-2",
+    "source_id": "A2-2",
+    "lane": "A2",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+    "line": "453",
+    "issue": "Every research SOURCE node now gets a derived quality_class, including 'unclassified' when no field names a location. The diversity signal counts any non-empty class string (coverage-graph-signals.ts:680-683), so 'unclassified' counts as a distinct source kind. Case: a finding that cites one repo file and one free-text source named 'Maintainer interview' gets {repo-code, unclassified} = 2, which clears the 1.5 STOP guard. This is P2, not P1 like A2-1, because storing 'unclassified' is the declared and tested contract (source-quality-class.md section 2; upsert-script.vitest.ts:270,283). The open question is whether the signal should count it, and that is a design call the declared docs do not settle. Fix: have the diversity count skip 'unclassified', or leave quality_class unset when no location is found.",
+    "evidence": {
+      "cmd": "node -e '<same harness over upsert.cjs lines 302-332>' on 'Maintainer interview' and convergence.cjs",
+      "exit": 0,
+      "out": "unclassified Maintainer interview\nrepo-code .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A2-3",
+    "source_id": "A2-3",
+    "lane": "A2",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts",
+    "line": "662",
+    "issue": "The new fail-closed branch that refuses a legacy 'extended' row whose extension budget has a missing or non-integer field (reason run-extended-budget-missing) has no test. append-mode-event-legacy-seam.vitest.ts covers only the happy-path upcast of a complete extended row. Case: a legacy extended row without extension.newMaxIterations is never exercised, so a regression that defaulted the ceiling instead of refusing the row would pass the suite. The lens requires a test for each changed behavior. Fix: add a seam test that sends an extended row with an incomplete extension object and asserts the refusal and its reason.",
+    "evidence": {
+      "cmd": "grep -rn run-extended-budget-missing .skilled/skills/system-deep-loop/runtime/tests",
+      "exit": 1,
+      "out": ""
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A3-1",
+    "source_id": "A3-1",
+    "lane": "A3",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+    "line": "875",
+    "issue": "The fan-in partition guard runs only when at least one lineage registry carries a frontier (hasFrontier at :875 for research and :1139 for review). When fanout-run recorded a frontier_partition but no lineage registry has a frontier, the merge returns no frontier key, no partitionGuard, no frontier_partition_guard output field and no stderr warning, although every dealt node is unreported. A registry with no frontier reaches the merge when a lineage has no registry file and the merge rebuilds one: reconstructReviewRegistryFromState (:1630) projects no frontier, and neither does reconstructResearchRegistryFromState. The case where every lineage of an expansive fan-out lands there (each died before its reducer wrote a registry) is plausible but not proven end to end, so this stays P2. Both loop protocols (deep-review loop-protocol.md:474, deep-research loop-protocol.md:419) promise the guard names any dealt node no lineage reports, and D-010-03 keeps it report-only, so the guard goes silent in exactly the case where every lineage lost its nodes. Fix: build the merged frontier whenever any lineage has one or the recorded partition holds at least one id, so an all-missing partition yields partitionGuard {passed: false, missing: [...]} and the warning. The existing no-frontier, no-partition tests stay unchanged.",
+    "evidence": {
+      "cmd": "node -e 'const m=require(\"./.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs\"); const v=m.mergeReviewRegistries([{label:\"a\",registry:{openFindings:[],resolvedFindings:[]}},{label:\"b\",registry:{openFindings:[],resolvedFindings:[]}}],{frontierPartition:{a:[\"F-1-001\"],b:[\"F-1-002\"]}}); console.log(JSON.stringify({hasFrontier:\"frontier\" in v, guard:v.frontier&&v.frontier.partitionGuard||null}))'",
+      "exit": 0,
+      "out": "{\"hasFrontier\":false,\"guard\":null} (mergeResearchRegistries with the same partition and frontier-less registries prints the same)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A3-2",
+    "source_id": "A3-2",
+    "lane": "A3",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+    "line": "556",
+    "issue": "The diff rewrote the step-2 comment (:500-504) to say the projected state row now carries the route-proof fields and the delta is only a fallback for older rows, but the step-4 comment it governs still says the delta is read 'before the projection dropped it' (:555-556). The two comments now contradict each other about whether the projection drops the route-proof fields, so the WHY a reader takes from step 4 is stale.",
+    "evidence": null,
+    "fix": {
+      "old": "  // before the projection dropped it. Only a mismatch in BOTH is a failure.",
+      "new": "  // for a state row written before the projection carried it. Only a mismatch in BOTH is a failure."
+    },
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A3-3",
+    "source_id": "A3-3",
+    "lane": "A3",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+    "line": "568",
+    "issue": "The reworded warning says the state row 'lacked route proof', but stateRouteReason comes from checkRouteProof (:256-273), which returns ROUTE_PROOF_MISMATCH as well as ROUTE_PROOF_MISSING. A state row that carries mode/target_agent with wrong values, rescued by a valid delta, is reported as lacking the fields, which points an operator at the wrong cause. No test pins this text (the only reference, verify-iteration.vitest.ts:1063, asserts its absence).",
+    "evidence": null,
+    "fix": {
+      "old": "the ${stateLogName} state row lacked route proof, so the delta carried it",
+      "new": "the ${stateLogName} state row failed route proof (${stateRouteReason}), so the delta carried it"
+    },
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A3-4",
+    "source_id": "A3-4",
+    "lane": "A3",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+    "line": "178",
+    "issue": "seedViolatesReadOnlyBoundary now removes quotedScope from the focus before it runs the mutation-verb guard (:178), on the docstring premise that the scope is path data (:35). For a frontier-unanswered seed, the scope is the node scope that a leaf proposed. frontier-admit.cjs scopeInsideReviewTarget returns true for any review target that is not a file list (:484), and fan-out binds review_target_type spec-folder by default, so for those runs the scope is unvalidated free text. A scope such as \"implement the fix in src/x\" passes the guard and is spliced verbatim into the seed focus, which becomes the next review focus. The template wording (Read-only review of ...) and the leaf read-only rules still apply, so this is hardening rather than a reachable write. Fix: exempt only path-shaped scope entries, such as those with no whitespace or that pass the same path test frontier-admit uses, and keep running the guard on any other scope text. The case at divergent-pivot.vitest.ts (keeps a frontier seed whose scope path happens to name a mutation verb) still passes, because its scope is a path.",
+    "evidence": null,
+    "fix": null,
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A4-1",
+    "source_id": "A4-1",
+    "lane": "A4",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts",
+    "line": "798",
+    "issue": "The test titled '... extends under the lock, before classification ...' compares extendAt against lockAt without first asserting the step_acquire_lock anchor was found. If step_acquire_lock is renamed, re-indented or removed from deep-research.yaml or deep-review.yaml, indexOf returns -1 and expect(extendAt).toBeGreaterThan(lockAt) still passes, so the 'under the lock' half of the contract cannot fail (sk-code-review test quality: an assertion that cannot fail; review.correctness-minimums, test-quality section 4). The sibling test at line 784 guards its first anchor with toBeGreaterThan(-1), and the twin check in system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts guards lockIndex too, so this one is the outlier. Reach: any edit to the lock step's key or indentation in either workflow asset. P2 because the assets are correct today; the gap only hides a future regression.",
+    "evidence": {
+      "cmd": "node -e '...indexOf(\"\\n      step_acquire_lock:\\n\") and indexOf(\"\\n      step_extend_completed_run:\\n\") on .skilled/commands/deep/assets/deep-{research,review}.yaml'",
+      "exit": 0,
+      "out": "deep-research.yaml lockAt 27554 extendAt 30314; deep-review.yaml lockAt 31070 extendAt 33830; extendAt > -1 in both, so with lockAt = -1 the ordering assertion would still pass"
+    },
+    "fix": {
+      "old": "      expect(extendAt).toBeGreaterThan(lockAt);",
+      "new": "      expect(lockAt).toBeGreaterThan(-1);\n      expect(extendAt).toBeGreaterThan(lockAt);"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B1-1",
+    "source_id": "B1-1",
+    "lane": "B1",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
+    "line": "228",
+    "issue": "The README scenario count was updated in this diff to 72, but the shipped playbook holds 74 scenarios across 9 categories. The root playbook itself says 74, and the validator derives 74.",
+    "evidence": {
+      "cmd": "node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook; grep -n 72 .skilled/skills/system-deep-loop/deep-research/README.md",
+      "exit": 0,
+      "out": "PASS package=system-deep-loop/deep-research tier=FAIL_CLOSED scenarios=74 categories=9 ... | README.md:228 holds 72 deterministic scenarios across 9 categories"
+    },
+    "fix": {
+      "old": "holds 72 deterministic scenarios across 9 categories",
+      "new": "holds 74 deterministic scenarios across 9 categories"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B1-2",
+    "source_id": "B1-2",
+    "lane": "B1",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
+    "line": "266",
+    "issue": "The README resource table repeats the stale playbook count of 72. The playbook ships 74 scenarios.",
+    "evidence": {
+      "cmd": "grep -n '72 scenarios' .skilled/skills/system-deep-loop/deep-research/README.md",
+      "exit": 0,
+      "out": "266:| [`manual-testing-playbook/`](./manual-testing-playbook/) | 72 scenarios with expected signals and verdict rules |"
+    },
+    "fix": {
+      "old": "| 72 scenarios with expected signals and verdict rules |",
+      "new": "| 74 scenarios with expected signals and verdict rules |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B1-3",
+    "source_id": "B1-3",
+    "lane": "B1",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+    "line": "223",
+    "issue": "The Step 2c rewrite added in this diff points to 'convergence.md §2, Decision Priority steps 8 and 9'. convergence.md section 2 is STOP CONTRACT, and the numbered list lives under '## 3. LIVE ALGORITHM' > '### Decision Order'. No 'Decision Priority' heading exists. Steps 8 (quality guards) and 9 (graph) are numbered correctly.",
+    "evidence": {
+      "cmd": "grep -n '^#' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+      "exit": 0,
+      "out": "90:## 2. STOP CONTRACT / 121:## 3. LIVE ALGORITHM / 123:### Decision Order (no 'Decision Priority' heading)"
+    },
+    "fix": {
+      "old": "(see convergence.md §2, Decision Priority steps 8 and 9)",
+      "new": "(see convergence.md §3, Decision Order steps 8 and 9)"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B2-3",
+    "source_id": "B2-3",
+    "lane": "B2",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+    "line": "51",
+    "issue": "SKILL.md says this quick reference loads first on every invocation. This run added the --depth-mode row to its Parameters table but no row for the other new operator flags, --extend and --extend-minutes, which the command doc defines (.skilled/commands/deep/review.md:107-108) and the command argument-hint advertises. They appear only inside the lifecycle-mode table, so the flag table no longer lists every shipped flag.",
+    "evidence": {
+      "cmd": "sed -n 44,51p .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md; grep -n '^| `--extend' .skilled/commands/deep/review.md",
+      "exit": 0,
+      "out": "Parameters rows: --max-iterations, --convergence, --depth-mode, --stop-policy, --spec-folder, --restart; command doc rows 107 `--extend`, 108 `--extend-minutes`"
+    },
+    "fix": {
+      "old": "| `--restart` | off | Archive the current review packet and start a fresh lineage |",
+      "new": "| `--restart` | off | Archive the current review packet and start a fresh lineage |\n| `--extend` | off | `--extend=N` reopens a completed run for N more iterations in the same session and generation (`completed-continue`); refused with fan-out |\n| `--extend-minutes` | prior budget | Minutes added to the later of the prior duration budget and the time already elapsed; valid only with `--extend` |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B2-4",
+    "source_id": "B2-4",
+    "lane": "B2",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    "line": "4",
+    "issue": "The SKILL.md body now documents --depth-mode=expansive (section 3 Expansive Depth Mode) and --extend=N (Lifecycle modes), but the frontmatter argument-hint still lists only the pre-change flags. The skill's advertised invocation shape therefore omits both new capabilities. sk-doc sets no argument-hint rule, so this is a current-state accuracy gap, not a standard violation.",
+    "evidence": {
+      "cmd": "grep -n 'argument-hint' .skilled/skills/system-deep-loop/deep-review/SKILL.md",
+      "exit": 0,
+      "out": "4:argument-hint: \"[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--stop-policy=convergence|max-iterations]\""
+    },
+    "fix": {
+      "old": "argument-hint: \"[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--stop-policy=convergence|max-iterations]\"",
+      "new": "argument-hint: \"[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--stop-policy=convergence|max-iterations] [--depth-mode=default|expansive] [--extend=N]\""
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B2-5",
+    "source_id": "B2-5",
+    "lane": "B2",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md",
+    "line": "44",
+    "issue": "The packet-artifact table gained frontier-nodes.jsonl but not frontier-seed.json. README.md and state-format.md, changed in the same range, both list frontier-seed.json as an expansive-run packet file written once by the seed step, so this reference disagrees with its siblings on the expansive artifact set.",
+    "evidence": {
+      "cmd": "grep -n 'frontier-seed.json' .skilled/skills/system-deep-loop/deep-review/README.md .skilled/skills/system-deep-loop/deep-review/references/state/state-format.md .skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md",
+      "exit": 0,
+      "out": "README.md and state-format.md each list frontier-seed.json; state-outputs.md has no match"
+    },
+    "fix": {
+      "old": "| `frontier-nodes.jsonl` | Frontier admission | Append-only, expansive runs only | Frontier node store |",
+      "new": "| `frontier-nodes.jsonl` | Frontier admission | Append-only, expansive runs only | Frontier node store |\n| `frontier-seed.json` | Workflow seed step | Written once, expansive runs only | Depth-1 sub-target input that `frontier-admit.cjs seed` reads |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B3-11",
+    "source_id": "B3-11",
+    "lane": "B3",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/tests/unit/README.md",
+    "line": "101",
+    "issue": "The rows for research-depth-mode-golden.vitest.ts (line 101) and review-depth-mode-golden.vitest.ts (line 103) say a default run 'keeps its pre-expansive output byte for byte'. Both golden tests first strip the expansive-only persona paragraph from the CLI lineage prompt, then compare, as the tests' own header comments and deep-research SKILL.md line 91 say. The rows should name that strip, for example: '... keeps its pre-expansive output, apart from the expansive-only persona paragraph the test strips from the lineage prompt.' changelog/v2.1.7.0.md 'How It Was Checked' ('keep a default run's output byte for byte') overstates it the same way.",
+    "evidence": {
+      "cmd": "grep -n 'stripped before\\|alone is removed' .skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts; grep -n 'byte for byte' .skilled/skills/system-deep-loop/runtime/tests/unit/README.md",
+      "exit": 0,
+      "out": "10: applies only to expansive runs. That paragraph alone is stripped before the; 214: alone is removed before comparison; README 101/103: ... keeps its pre-expansive output byte for byte."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "CR-1",
+    "source_id": "CR-1",
+    "lane": "critic",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    "line": "5",
+    "issue": "Cross-lane miss: lane B2 reported (B2-4) that the deep-review SKILL.md argument-hint omits --depth-mode and --extend, but lane B1 reviewed the deep-research SKILL.md and left the identical gap. Its frontmatter hint still reads '[topic] [:auto|:confirm] [--max-iterations=N] [--convergence=N]' while the body documents --depth-mode=expansive and --extend=N (lifecycle completed-continue). Whatever B2-4's fix is should be applied to both leaves so the two modes stay symmetric. sk-doc sets no argument-hint rule for a skill SKILL.md, so this is a current-state accuracy gap, as B2-4 says, not a standard violation.",
+    "evidence": {
+      "cmd": "grep -n 'argument-hint' .skilled/skills/system-deep-loop/deep-research/SKILL.md .skilled/skills/system-deep-loop/deep-review/SKILL.md",
+      "exit": 0,
+      "out": "deep-research/SKILL.md:5:argument-hint: \"[topic] [:auto|:confirm] [--max-iterations=N] [--convergence=N]\"\ndeep-review/SKILL.md:4:argument-hint: \"[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--stop-policy=convergence|max-iterations]\""
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "CR-2",
+    "source_id": "CR-2",
+    "lane": "critic",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+    "line": "59",
+    "issue": "Cross-lane miss mirroring B2-3: this scope added a --depth-mode row to the deep-research quick reference Parameters table (line 59) but no row for --extend=N or --extend-minutes=M, which the command defines and its argument-hint advertises. They appear only in the lifecycle note at line 107, so the flag table no longer lists every operator flag the mode added. Lane B1 reviewed this file without reporting it; B2-3 reported the same gap only for deep-review.",
+    "evidence": {
+      "cmd": "grep -n 'extend\\|depth-mode' .skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+      "exit": 0,
+      "out": "59:| `--depth-mode` | default | `expansive` grows a depth-capped frontier ...\n105:| Frontier | `research/frontier-nodes.jsonl` | ...\n107:> **Live lifecycle branches:** `new`, `resume`, `restart`, and `completed-continue` through `--extend=N`, with `--extend-minutes=M` ..."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B3-5",
+    "source_id": "B3-5",
+    "lane": "B3",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/feature-catalog/prompt-rendering/research-prompt-pack-contract.md",
+    "line": "44",
+    "issue": "A role cell in the source table records change history ('Checked, not edited by this change.'). A feature catalog describes current shipped behavior, and this sentence goes stale once the change is no longer the latest one.",
+    "evidence": {
+      "cmd": "grep -nF 'Checked, not edited by this change.' .skilled/skills/system-deep-loop/runtime/feature-catalog/prompt-rendering/research-prompt-pack-contract.md",
+      "exit": 0,
+      "out": "44:| `.skilled/agents/deep-research.md` | Agent contract | The rule the rendered pack must match. Checked, not edited by this change. |"
+    },
+    "fix": {
+      "old": "The rule the rendered pack must match. Checked, not edited by this change. |",
+      "new": "The rule the rendered pack must match. |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B3-6",
+    "source_id": "B3-6",
+    "lane": "B3",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/convergence-script.md",
+    "line": "43",
+    "issue": "Current-state catalog text uses change-history wording ('The floor now applies to review as well as research').",
+    "evidence": {
+      "cmd": "grep -nF 'The floor now applies to review as well as research.' .skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/convergence-script.md",
+      "exit": 0,
+      "out": "43:... The floor now applies to review as well as research. ..."
+    },
+    "fix": {
+      "old": "The floor now applies to review as well as research.",
+      "new": "The floor applies to review as well as research."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B3-7",
+    "source_id": "B3-7",
+    "lane": "B3",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+    "line": "604",
+    "issue": "The convergence.cjs root entry uses change-history wording ('now applies to review as well as research') in a current-state catalog.",
+    "evidence": {
+      "cmd": "grep -nF 'now applies to review as well as research.' .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+      "exit": 0,
+      "out": "604:... The `minIterations` floor (`minIterationsNotReached`) now applies to review as well as research."
+    },
+    "fix": {
+      "old": "The `minIterations` floor (`minIterationsNotReached`) now applies to review as well as research.",
+      "new": "The `minIterations` floor (`minIterationsNotReached`) applies to review as well as research."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B3-8",
+    "source_id": "B3-8",
+    "lane": "B3",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md",
+    "line": "74",
+    "issue": "The per-feature HOW IT WORKS text uses change-history wording ('Each CLI lineage now keeps its coverage graph').",
+    "evidence": {
+      "cmd": "grep -nF 'Each CLI lineage now keeps its coverage graph in' .skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md",
+      "exit": 0,
+      "out": "74:the write limit would skip every graph step. Each CLI lineage now keeps its coverage graph in"
+    },
+    "fix": {
+      "old": "Each CLI lineage now keeps its coverage graph in",
+      "new": "Each CLI lineage keeps its coverage graph in"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B4-1",
+    "source_id": "B4-1",
+    "lane": "B4",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/leaf-field-gates.md",
+    "line": "44",
+    "issue": "The diff to runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts (iteration_completed now admits target_agent, agent_definition_loaded, resolved_route, findingsCount, keyQuestions and the telemetry fields, line 671) and runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts (optionalLeafFields keeps those fields through the upcast, lines 496 and 712) is what lets the projected state-log row carry the leaf fields. The findings gate and focusAlignment checks this entry describes depend on that. The entry's Implementation table anchors only the projection, the scripts and the prompt template. Its Validation table leaves out the tests that pin the persistence step: deep-research-ledger-schema.vitest.ts 'accepts an iteration_completed event carrying the leaf fields' and append-mode-event-legacy-seam.vitest.ts 'carries the leaf dispatch, gate and telemetry fields of a legacy iteration row through the gateway'. The standard asks for source and test anchors for every feature claim. No catalog entry in the tree cites legacy-compatibility.ts.",
+    "evidence": {
+      "cmd": "bash -c 'R=.skilled/skills/system-deep-loop; grep -rl legacy-compatibility.ts $R/feature-catalog $R/deep-research/feature-catalog $R/deep-review/feature-catalog $R/runtime/feature-catalog | wc -l | tr -d \" \"'",
+      "exit": 0,
+      "out": "0"
+    },
+    "fix": {
+      "old": "| `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts` | Shared | Conditional copies of the leaf keys into the projected iteration row. |",
+      "new": "| `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts` | Shared | Conditional copies of the leaf keys into the projected iteration row. |\n| `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts` | Shared | Admits the leaf keys on the `iteration_completed` event so the ledger keeps them. |\n| `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts` | Shared | Carries the leaf keys of a legacy iteration row through the upcast, leaving out a key of the wrong shape. |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B4-2",
+    "source_id": "B4-2",
+    "lane": "B4",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md",
+    "line": "57",
+    "issue": "The entry claims the schema refuses a run_extended event whose newMaxIterations is not continuedFromRun plus addedIterations, and it states the budget, fan-out refusal and precondition rules. Its Validation table anchors only deep-research-reducers.vitest.ts and the DR-065 playbook. The tests that pin those claims are missing from it: deep-research-ledger-schema.vitest.ts ('refuses an extension whose new ceiling is not the continued run plus the added iterations', 'upcasts a legacy extended row into run_extended and refuses one without a full budget') and workflow-restart-lifecycle.vitest.ts (the 'completed-run extension' group: fan-out refusal, not-complete refusal, positive-integer flags, --extend-minutes budget). The DR-065 playbook already runs workflow-restart-lifecycle.vitest, so only the catalog omits it.",
+    "evidence": {
+      "cmd": "grep -c 'workflow-restart-lifecycle\\|deep-research-ledger-schema.vitest' .skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md",
+      "exit": 1,
+      "out": "0"
+    },
+    "fix": {
+      "old": "| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reducers.vitest.ts` | Vitest | Reducer routing for the run lifecycle event stems. |",
+      "new": "| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reducers.vitest.ts` | Vitest | Reducer routing for the run lifecycle event stems. |\n| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts` | Vitest | Refuses a `run_extended` ceiling that disagrees with the continued run, and upcasts a legacy `extended` row. |\n| `.skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts` | Vitest | The `completed-run extension` group: flag binding, fan-out and not-complete refusal, and the iteration and duration budget. |\n| `.skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-legacy-seam.vitest.ts` | Vitest | Appends `run_extended` after the run opens and projects an `extended` row into the state log. |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B4-3",
+    "source_id": "B4-3",
+    "lane": "B4",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md",
+    "line": "57",
+    "issue": "The entry claims the deep-review reducer routes run_extended and adopts the new ceiling as the run's cap, and it states the budget and refusal rules. Its Validation table anchors only deep-review-ledger-schema.vitest.ts and the DRV-070 playbook. Two tests are missing from it: deep-review-reducers.vitest.ts ('run_extended' group: 'raises the projected iteration ceiling and keeps the run live') and workflow-restart-lifecycle.vitest.ts ('review: an extension raises the cap from the counted runs and the budget from the time spent' and the shared fan-out and lock cases).",
+    "evidence": {
+      "cmd": "grep -c 'deep-review-reducers.vitest\\|workflow-restart-lifecycle' .skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md",
+      "exit": 1,
+      "out": "0"
+    },
+    "fix": {
+      "old": "| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts` | Vitest | Ledger schema coverage for the review lifecycle event stems. |",
+      "new": "| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts` | Vitest | Ledger schema coverage for the review lifecycle event stems. |\n| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-reducers.vitest.ts` | Vitest | `run_extended` raises the projected iteration ceiling and keeps the run live. |\n| `.skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts` | Vitest | The `completed-run extension` group: fan-out refusal, the lock ordering and the review cap and duration budget. |\n| `.skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-legacy-seam.vitest.ts` | Vitest | Appends `run_extended` after the run opens and projects an `extended` row into the state log. |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B4-4",
+    "source_id": "B4-4",
+    "lane": "B4",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+    "line": "30",
+    "issue": "runtime/scripts/reduce-state.cjs (renderFrontierSection, lines 2529-2558) adds a `## 10B. FRONTIER` section to the review dashboard on an expansive run only. The section shows frontier size by status, pruned nodes, revisits (visits that covered no new dimension), spent and allotted iterations per budget band, and the active node with its next dimension. deep-review-state-reducer.vitest.ts pins it ('reports frontier size, pruned nodes, revisits and per-band budget on the dashboard', and line 1303 asserts a default run omits it). The review catalog entry never mentions this dashboard output, and its deep-review-state-reducer test row names only the projection, band close and torn-row warning. The research counterpart (deep-research/feature-catalog/convergence/expansive-depth-mode.md line 40, 'Budget And Dashboard') documents its `## 6B. FRONTIER` section, so the two packets differ. The DRV-079 playbook already covers the review dashboard, so only the catalog is missing it.",
+    "evidence": {
+      "cmd": "bash -c 'grep -rln \"10B\\|Frontier size\\|ANCHOR:frontier\" .skilled/skills/system-deep-loop/deep-review --include=*.md | grep -v changelog | wc -l | tr -d \" \"'",
+      "exit": 0,
+      "out": "0"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B4-5",
+    "source_id": "B4-5",
+    "lane": "B4",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md",
+    "line": "50",
+    "issue": "runtime/lib/legacy-projections/deep-research-contract.ts now projects a deep_research.run_extended ledger event into the state-log row {event: 'extended', lineageMode: 'completed-continue', continuedFromRun, extension}. The entry's own claim depends on that row: 'The lifecycle event filters in deep-research/scripts/reduce-state.cjs read the same event'. The Implementation table never names the projection, so nothing anchors how the ledger event reaches the reducer's filters.",
+    "evidence": {
+      "cmd": "grep -c 'legacy-projections\\|append-mode-event-legacy-seam' .skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md .skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md",
+      "exit": 1,
+      "out": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md:0\n.skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md:0"
+    },
+    "fix": {
+      "old": "| `.skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts` | Shared | Routes the `run_extended` stem. |",
+      "new": "| `.skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts` | Shared | Routes the `run_extended` stem. |\n| `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts` | Shared | Projects the `run_extended` event into the `extended` state-log row the lifecycle filters read. |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B4-6",
+    "source_id": "B4-6",
+    "lane": "B4",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md",
+    "line": "50",
+    "issue": "runtime/lib/legacy-projections/deep-review-state-contract.ts now projects a deep_review.run_extended event into an 'extended' state-log row (lineageMode 'completed-continue', continuedFromRun, extension). The entry says runtime/scripts/reduce-state.cjs reads the extension through its live lineage modes, and that reading depends on this row. The Implementation table omits the projection, and no catalog or playbook file in the tree cites deep-review-state-contract.ts.",
+    "evidence": {
+      "cmd": "grep -c 'legacy-projections\\|append-mode-event-legacy-seam' .skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md .skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md",
+      "exit": 1,
+      "out": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md:0\n.skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md:0"
+    },
+    "fix": {
+      "old": "| `.skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts` | Shared | Routes the `run_extended` stem. |",
+      "new": "| `.skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts` | Shared | Routes the `run_extended` stem. |\n| `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts` | Shared | Projects the `run_extended` event into the `extended` state-log row the reducer's lineage modes read. |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B1-4",
+    "source_id": "B1-4",
+    "lane": "B1",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/convergence-passes-guard-fails-override.md",
+    "line": "52",
+    "issue": "DR-023 was rewritten in this diff to trace the qualityGuardFailed path, but its command sequence still pins line ranges that print unrelated text. 'sed -n 218,247p deep-research.yaml' prints no convergence step; step_check_convergence is at line 1209 and the qualityGuardFailed rule at 1223/1243. 'sed -n 97,107p loop-protocol.md' prints the init Outputs list, while Step 2c is at line 221. 'sed -n 165,175p convergence.md' prints ROUTED REFERENCES. The scenario also cites a 'Decision Priority' list and a '§2.4 Quality Guard Protocol' (lines 30, 33, 62, 66, 70, 87) that convergence.md no longer has; it has '§3 Decision Order' and '§4 LEGAL STOP GATES'. An operator running the exact commands cannot capture the evidence the scenario requires. The pins were already off at base (Step 2c was at line 202, step_check_convergence at 963), and this diff moved both anchors further. Replace the line pins with heading-anchored rg commands and rename the cited sections.",
+    "evidence": {
+      "cmd": "sed -n '97,107p' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md; grep -n 'Step 2c' .../loop-protocol.md; grep -n 'step_check_convergence:\\|qualityGuardFailed' .skilled/commands/deep/assets/deep-research.yaml",
+      "exit": 0,
+      "out": "97-107 prints init Outputs and Auto-Resume Protocol; 221:#### Step 2c: Quality Guard Check; 1209: step_check_convergence:; 1223/1243 qualityGuardFailed"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B1-5",
+    "source_id": "B1-5",
+    "lane": "B1",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-source-diversity.md",
+    "line": "50",
+    "issue": "DR-020 was edited in this diff to the no-event guard contract, but its commands still pin 'sed -n 97,107p loop-protocol.md' (init Outputs, not Step 2c at line 221) and 'sed -n 236,243p deep-research.yaml' (gate_defaults, not step_check_convergence at 1209). Line 56 still asks for 'the state_format event schema example', which no longer applies now that a failed guard writes no event. Lines 60 and 76 cite a 'convergence.md §2.4 Quality Guard Protocol' that does not exist; the quality gate row is in '§4 LEGAL STOP GATES'. Anchor the commands on headings and rewrite the stale evidence and section references.",
+    "evidence": {
+      "cmd": "sed -n '236,243p' .skilled/commands/deep/assets/deep-research.yaml",
+      "exit": 0,
+      "out": "gate_defaults: after_gate_refresh_lock: ... (no quality-guard text)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B1-6",
+    "source_id": "B1-6",
+    "lane": "B1",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-focus-alignment.md",
+    "line": "50",
+    "issue": "DR-021 was edited in this diff, but it keeps the same stale pins as DR-020: loop-protocol.md 97-107 (init Outputs; Step 2c is at 221) and deep-research.yaml 236-243 (gate_defaults; step_check_convergence is at 1209). Line 56 still asks for 'the state_format supported guard values list', which state-format.md no longer carries for a no-event guard. Lines 60 and 76 cite a nonexistent 'convergence.md §2.4 Quality Guard Protocol'.",
+    "evidence": {
+      "cmd": "sed -n '97,107p' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+      "exit": 0,
+      "out": "- In **auto mode**: accept the charter ... ### Outputs ... ### Auto-Resume Protocol"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B1-7",
+    "source_id": "B1-7",
+    "lane": "B1",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-no-single-weak-source.md",
+    "line": "50",
+    "issue": "DR-022 was edited in this diff, but its step 3 'sed -n 183,195p state-format.md' prints nothing because state-format.md is 155 lines, so the sourceStrength evidence it asks for cannot be captured. Steps 5 and 6 keep the stale loop-protocol 97-107 and deep-research.yaml 236-243 pins. Lines 61 and 77 cite a nonexistent 'convergence.md §2.4 Quality Guard Protocol'.",
+    "evidence": {
+      "cmd": "wc -l .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md; sed -n '183,195p' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
+      "exit": 0,
+      "out": "155 lines; sed prints empty output"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B2-1",
+    "source_id": "B2-1",
+    "lane": "B2",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fan-out-merged-coverage-surfaces.md",
+    "line": "82",
+    "issue": "DRV-071 records a catalog exception ('No dedicated fan-out catalog entry exists for deep-review yet'), but this run added runtime/feature-catalog/fanout/fanout-review-coverage-merge.md, which documents exactly these six merged surfaces and anchors DRV-071 back. deep-review's own catalog also has loop-lifecycle/fanout-dispatch.md. The playbook standard (ALWAYS 6/7) says to link the matching catalog entry when one exists and to record an exception only when none does, so the exception is false and the link runs one way only.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false diff --name-status 21c4b325b5a 83af96cb5af -- .skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-review-coverage-merge.md; grep -n 'fan-out-merged' .skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-review-coverage-merge.md",
+      "exit": 0,
+      "out": "A .skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-review-coverage-merge.md; 53:| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fan-out-merged-coverage-surfaces.md` | Manual playbook | DRV-071: a merged two-lineage review keeps its coverage surfaces. |"
+    },
+    "fix": {
+      "old": "| `feature-catalog/` | No dedicated fan-out catalog entry exists for `deep-review` yet; the implementation anchors below are the contract |",
+      "new": "| `feature-catalog/` | `.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-review-coverage-merge.md` covers the merged review coverage surfaces; the implementation anchors below are the contract |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B2-2",
+    "source_id": "B2-2",
+    "lane": "B2",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "31",
+    "issue": "The root overview says the expansive-only agent paragraph 'is waived pending operator ratification', and DRV-076 (entry-points-and-modes/expansive-depth-flag-and-default-identity.md:34) repeats it. That is a temporary governance status, not current runtime behavior, in a doc the standard binds to evergreen current-state wording (sk-doc/shared/references/evergreen-packet-id-rule.md: describe the current runtime, not the packet history). Once the waiver is decided, both lines go stale with nothing to flag them. The shipped behavior is that the golden comparison strips that paragraph. State that, and move the ratification status to the packet's implementation-summary. Which wording is right depends on whether the waiver has been ratified.",
+    "evidence": {
+      "cmd": "grep -rn 'ratification' .skilled/skills/system-deep-loop/deep-review/ | grep -v changelog",
+      "exit": 0,
+      "out": "manual-testing-playbook/manual-testing-playbook.md:31: ... Default runs differ from the pre-change baseline only by the expansive-only agent paragraph, which is waived pending operator ratification. ...; manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md:34: ... That paragraph is waived pending operator ratification, and the comparison strips it."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B3-1",
+    "source_id": "B3-1",
+    "lane": "B3",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "106",
+    "issue": "The runtime playbook's release-clearance rule still names 56 scenarios after this diff added DLR-060 to DLR-066. The overview at line 39 says 58, the category counts sum to 58, and there are 58 scenario files. Read literally, the rule clears a release with two scenarios unrun.",
+    "evidence": {
+      "cmd": "for c in $(find .skilled/skills/system-deep-loop/runtime/manual-testing-playbook -mindepth 1 -maxdepth 1 -type d); do ls $c/*.md; done | wc -l; grep -n 'provides 58\\|all 56 scenarios' .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+      "exit": 0,
+      "out": "58 scenario files; 39: This playbook provides 58 deterministic scenarios across 12 categories ...; 106: Release is cleared only when all 56 scenarios are `PASS` ..."
+    },
+    "fix": {
+      "old": "Release is cleared only when all 56 scenarios are",
+      "new": "Release is cleared only when all 58 scenarios are"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "severity",
+      "note": "Lanes disagree on the same line: B3-1 grades runtime manual-testing-playbook.md:106 (all 56 scenarios vs 58 at line 39, confirmed at HEAD) P1, while C3-1 grades the identical line P2. Every sibling stale-count finding in this run (B1-1, B1-2, B3-2, B3-3, C3-2, C3-3) is P2, and this one is the same kind of prose count drift with a literal one-number fix, so P2 keeps the grading consistent.",
+      "lane_severity": "P1"
+    }
+  },
+  {
+    "id": "B3-10",
+    "source_id": "B3-10",
+    "lane": "B3",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/divergent-council-quorum-retry.md",
+    "line": "19",
+    "issue": "The 'Why This Matters' section of DLR-062 describes earlier behavior ('A quorum miss used to end a pivot for good. A resumed or later pivot could also be refused ...'). Restate it as the risk the scenario guards against, for example: 'Without the retry, one missed seat round ends a pivot; without the per-pivot cap, a later pivot is refused for seats an earlier one spent.'",
+    "evidence": {
+      "cmd": "grep -nF 'used to end a pivot' .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/divergent-council-quorum-retry.md",
+      "exit": 0,
+      "out": "19:A quorum miss used to end a pivot for good. A resumed or later pivot could also be refused because an earlier pivot had spent seats. ..."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B3-2",
+    "source_id": "B3-2",
+    "lane": "B3",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "229",
+    "issue": "The new section 9 package index gives deep-research 72 scenarios. The deep-research package root says 74, and the package holds 74 scenario files (75 .md files minus the command-flow-stress-tests README).",
+    "evidence": {
+      "cmd": "grep -n 'provides 74' .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md; find .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook -mindepth 2 -name '*.md' | wc -l",
+      "exit": 0,
+      "out": "30: This playbook provides 74 deterministic scenarios across 9 categories ...; 75 (includes command-flow-stress-tests/README.md)"
+    },
+    "fix": {
+      "old": "| `deep-research` | 72 | 9 |",
+      "new": "| `deep-research` | 74 | 9 |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B3-3",
+    "source_id": "B3-3",
+    "lane": "B3",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "231",
+    "issue": "The new section 9 package index gives runtime 56 scenarios. The runtime package root overview says 58, and the package holds 58 scenario files.",
+    "evidence": {
+      "cmd": "grep -n 'provides 58' .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md; find .skilled/skills/system-deep-loop/runtime/manual-testing-playbook -mindepth 2 -name '*.md' | wc -l",
+      "exit": 0,
+      "out": "39: This playbook provides 58 deterministic scenarios across 12 categories ...; 58"
+    },
+    "fix": {
+      "old": "| `runtime` | 56 | 12 |",
+      "new": "| `runtime` | 58 | 12 |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B3-4",
+    "source_id": "B3-4",
+    "lane": "B3",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "678",
+    "issue": "This diff edits the FAN-OUT category intro, and the edited line keeps the packet-history phrase 'added in packet 124'. The evergreen packet-id rule (sk-doc shared/references/evergreen-packet-id-rule.md) gives 'Added in packet 033' as its example violation.",
+    "evidence": {
+      "cmd": "grep -nF 'added in packet 124' .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+      "exit": 0,
+      "out": "678:This category covers 12 scenarios validating the opt-in multi-executor fan-out layer added in packet 124: ..."
+    },
+    "fix": {
+      "old": "validating the opt-in multi-executor fan-out layer added in packet 124:",
+      "new": "validating the opt-in multi-executor fan-out layer:"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B3-9",
+    "source_id": "B3-9",
+    "lane": "B3",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/coverage-graph/source-quality-class-derivation.md",
+    "line": "19",
+    "issue": "DLR-061 frames its rationale as change history. Line 19 says 'Before this change no producer set `quality_class`', and line 15 says the signal 'now reads those derived classes ... instead of only on fixtures'. Both should say what the behavior protects today, for example: 'If no producer sets quality_class, the source-diversity guard has nothing real to read.'",
+    "evidence": {
+      "cmd": "grep -nE 'Before this change|now reads' .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/coverage-graph/source-quality-class-derivation.md",
+      "exit": 0,
+      "out": "15: ... the `sourceDiversity` signal now reads those derived classes on normal runs instead of only on fixtures that typed one in.; 19:Before this change no producer set `quality_class`, ..."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "BAT-01",
+    "source_id": "S5-derived-counts",
+    "lane": "battery",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "S5-derived-counts failed (exit 1).",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py .skilled/bin/README.md .skilled/skills/system-deep-loop/README.md .skilled/skills/system-deep-loop/deep-research/README.md .skilled/skills/system-deep-loop/deep-review/README.md .skilled/skills/system-skill-advisor/README.md .skilled/skills/system-spec-kit/README.md README.md",
+      "exit": 1,
+      "out": "PASS .skilled/bin/README.md: claims=1 failures=0\nPASS .skilled/skills/system-deep-loop/README.md: claims=0 failures=0\nPASS .skilled/skills/system-deep-loop/deep-research/README.md: claims=0 failures=0\nPASS .skilled/skills/system-deep-loop/deep-review/README.md: claims=0 failures=0\n  line 141: numeric count for 'files': | `trustState` reads `absent` | The SQLite database file is missing | Run `advisor_rebuild --trusted`. If that fails, delete the `skill-graph.sqlite` database and its two sidecar files under `runtime/database/`, then rebuild with `--trusted --force` |\nFAIL .skilled/skills/system-skill-advisor/README.md: claims=1 failures=1\nPASS .skilled/skills/system-spec-kit/README.md: claims=0 failures=0\nPASS README.md: claims=1 failures=0\nSUMMARY files=7 pass=6 fail=1",
+      "ci_gated": false,
+      "ci_workflows": []
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Owner: check_derived_readme_counts.py owner. The S5-derived-counts row fails only on .skilled/skills/system-skill-advisor/README.md line 141, where the checker reads 'its two sidecar files' in a troubleshooting row as a numeric file-count claim. That is a false positive in the checker, not README drift, and the same row was handed off in earlier runs."
+    }
+  },
+  {
+    "id": "C2-3",
+    "source_id": "C2-3",
+    "lane": "C2",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/README.md",
+    "line": "143",
+    "issue": "The skill README adds --extend=N and --extend-minutes=M but leaves out two operator-facing limits. First, the extension keeps the run's stop policy, so under the default policy an extended run can re-stop at its first convergence check. Second, --extend refuses fan-out. The root README (line 255) and references/protocol/loop-protocol.md (Completed-run extension, Convergence window) state both, so the skill README is the one surface describing the flag without them. Add a sentence saying the extension is single-executor only, and that a run meant to be extended should be created with --convergence-mode=off or --stop-policy=max-iterations.",
+    "evidence": {
+      "cmd": "grep -c -i 're-stop\\|refuses fan-out' .skilled/skills/system-deep-loop/deep-review/README.md; grep -n -o 'It keeps the stop policy the run was created with, so under the default policy it can re-stop at once' README.md",
+      "exit": 0,
+      "out": "0\n255:It keeps the stop policy the run was created with, so under the default policy it can re-stop at once"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C4-2",
+    "source_id": "C4-2",
+    "lane": "C4",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+    "line": "33",
+    "issue": "The section 3 FILES table has no row for divergent-pivot.cjs or dispatch-iteration.cjs, and this scope changed both (divergent-pivot.cjs: pivot seat scoping and quorum retry, recorded in system-deep-loop v2.1.4.0; dispatch-iteration.cjs: research runs now validate and pass the configured Claude config dir as CLAUDE_CONFIG_DIR, recorded in v2.1.6.0). The table also lacks nine other scripts that this scope did not touch. The README makes no completeness claim, so this is a navigation gap, not a false statement. Add a responsibility row for each of the two changed scripts.",
+    "evidence": {
+      "cmd": "S=.skilled/skills/system-deep-loop/runtime/scripts; for f in $S/*.cjs; do b=$(basename $f); grep -q \"\\`$b\\`\" $S/README.md || echo \"missing: $b\"; done",
+      "exit": 0,
+      "out": "missing: check-ledger-stem-producers.cjs\nmissing: check-projection-coverage.cjs\nmissing: dispatch-iteration.cjs\nmissing: divergent-pivot.cjs\nmissing: iteration-graph-upsert.cjs\nmissing: loop-heartbeat.cjs\nmissing: review-verdict.cjs\nmissing: run-now-sentinel.cjs\nmissing: runtime-bootstrap.cjs\nmissing: terminal-gates.cjs\nmissing: verify-authority.cjs"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C1-1",
+    "source_id": "C1-1",
+    "lane": "C1",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+    "line": "1",
+    "issue": "This range makes completed-run extension (--extend=N, --extend-minutes=M, lineage mode completed-continue) live inside the deep-research packet. The packet's SKILL.md lineage table and rule 6, README FAQ, assets/deep-research-config.json allowedModes, references and a new catalog feature (loop-lifecycle/completed-run-extension.md) all change for it. None of the three new deep-research changelog entries (v1.15.16.0, v1.15.17.0, v1.16.0.0) names it. Only the hub parent changelog system-deep-loop v2.1.0.0 records it, so a reader of the deep-research changelog line cannot see that completed-continue moved from deferred to live in this skill.",
+    "evidence": {
+      "cmd": "grep -rln -- \"--extend\\|completed-continue\\|run_extended\" .skilled/skills/system-deep-loop/deep-research/changelog/ ; git -c core.fsmonitor=false show 21c4b325b5a:.skilled/commands/deep/research.md | grep -c -- '--extend'",
+      "exit": 0,
+      "out": "only v1.4.0.0, v1.5.0.0, v1.6.1.0, v1.6.2.0 match (pre-range entries describing it as deferred); base command doc has 0 --extend matches, so the feature is new in this range"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C2-1",
+    "source_id": "C2-1",
+    "lane": "C2",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    "line": "129",
+    "issue": "The bullet lists the stop paths that outrank the frontierOpen veto, but it leaves out pause and the max-duration stop. SKILL.md section 3, README.md line 164, references/convergence/convergence.md, references/protocol/quick-reference.md, references/protocol/loop-protocol.md and the depthMode description in assets/review-mode-contract.yaml all name both. A reader of the release entry could think an open sub-target holds a paused or time-capped run.",
+    "evidence": {
+      "cmd": "grep -n 'still decide first' .skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md; grep -c 'pause, the max-duration stop' .skilled/skills/system-deep-loop/deep-review/README.md .skilled/skills/system-deep-loop/deep-review/SKILL.md",
+      "exit": 0,
+      "out": "129:- The iteration cap, consecutive failures, stuck recovery, the off setting, the max-iterations policy and the review floor still decide first.\n.skilled/skills/system-deep-loop/deep-review/SKILL.md:1\n.skilled/skills/system-deep-loop/deep-review/README.md:1"
+    },
+    "fix": {
+      "old": "- The iteration cap, consecutive failures, stuck recovery, the off setting, the max-iterations policy and the review floor still decide first.",
+      "new": "- The iteration cap, consecutive failures, stuck recovery, the off setting, the max-iterations policy and the review floor still decide first.\n- Pause and the max-duration stop still decide first."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C2-2",
+    "source_id": "C2-2",
+    "lane": "C2",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    "line": "100",
+    "issue": "The entry says fan-out caps each parent at six children. For a review, the root takes up to eight depth-1 children: readCaps sets maxRootChildren to max(maxChildrenPerNode, ROOT_CHILDREN_FLOOR.review), and ROOT_CHILDREN_FLOOR.review is 8. feature-catalog/loop-lifecycle/expansive-depth-mode.md:16 states the root cap of 8, so the changelog contradicts the catalog for the same release.",
+    "evidence": {
+      "cmd": "grep -n 'ROOT_CHILDREN_FLOOR = \\|maxRootChildren: Math' .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "exit": 0,
+      "out": "61:const ROOT_CHILDREN_FLOOR = Object.freeze({ research: 6, review: 8 });\n310:    maxRootChildren: Math.max(maxChildrenPerNode, ROOT_CHILDREN_FLOOR[target]),"
+    },
+    "fix": {
+      "old": "- Fan-out caps each parent at six children and caps the total count.",
+      "new": "- Fan-out caps the review root at eight children, every other parent at six, and the total count."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C3-4",
+    "source_id": "C3-4",
+    "lane": "C3",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-spec-kit/changelog/v2.13.5.0.md",
+    "line": "2",
+    "issue": "The entry says the lock covers only research: the title reads 'locks the research depth mode', and line 15 says only deep research gained the mode and that its switch lives in the research config. But the anti-convergence-floor group that gains the lock lists products ['deep-research','deep-review'], and the review presentation contract binds --depth-mode to antiConvergence.depthMode in the review config too (deep-review v1.13.0.0 shipped review expansive mode). So the entry understates what the lock protects. Reword the title and line 15 to name both loops.",
+    "evidence": {
+      "cmd": "rg -n '\"products\"|antiConvergence.depthMode' .skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json; rg -n 'depth-mode.*antiConvergence.depthMode' .skilled/commands/deep/assets/deep-review-presentation.txt",
+      "exit": 0,
+      "out": "\"products\": [\"deep-research\", \"deep-review\"] ... \"lockedFields\": [..., \"antiConvergence.depthMode\"]; review presentation: --depth-mode=default|expansive -> antiConvergence.depthMode = value"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D-3",
+    "source_id": "D-3",
+    "lane": "D",
+    "surface": "S7",
+    "standard": ".skilled/repo-rules/skill-hub-routing.md",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/graph-metadata.json",
+    "line": "73",
+    "issue": "The diff adds `depth-capped frontier` to the hub's stage-one intent_signals, but neither stage-two surface (ROUTER.md INTENT_SIGNALS, hub-router.json vocabularyClasses) carries it. skill-hub-routing.md §1 says a stage-one hit with no stage-two intent means the two stages disagree. A request whose only routing phrase is this one reaches the hub with no mode signal, and hub-router.json sets defaultMode null. The phrase fits both research and review, so the fix is a judgment: drop it from intent_signals, or accept it as hub-only vocabulary and record why. The intent-signal generator's --check passes because it detects only router phrases missing from the advisor, not advisor-only phrases.",
+    "evidence": {
+      "cmd": "grep -n \"depth-capped\" .skilled/skills/system-deep-loop/ROUTER.md .skilled/skills/system-deep-loop/hub-router.json .skilled/skills/system-deep-loop/graph-metadata.json",
+      "exit": 0,
+      "out": ".skilled/skills/system-deep-loop/graph-metadata.json:73:    \"depth-capped frontier\","
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "BAT-02",
+    "source_id": "S9-command-references",
+    "lane": "battery",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "S9-command-references failed (exit 1).",
+    "evidence": {
+      "cmd": "node .skilled/commands/scripts/validate-command-references.cjs",
+      "exit": 1,
+      "out": "FAIL  1 unresolved command reference(s):\n  .skilled/commands/speckit/assets/speckit-resume.yaml:104  [skill-asset]  .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json  - path does not exist on disk",
+      "ci_gated": false,
+      "ci_workflows": []
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Owner: validate-command-references.cjs owner. The S9-command-references row fails only on .skilled/commands/speckit/assets/speckit-resume.yaml:104, which names system-spec-kit/runtime/database/access-telemetry.json, a gitignored runtime file the YAML falls back from. The YAML is right; the checker needs a runtime-state exemption. Same cause as the hand-off in earlier runs."
+    }
+  },
+  {
+    "id": "D-1",
+    "source_id": "D-1",
+    "lane": "D",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/deep/research.md",
+    "line": "43",
+    "issue": "The router's setup list says lineage_mode stays `auto` unless --lineage-mode or --restart is present. It omits --extend=N, which the presentation binds to lineage_mode=completed-continue (deep-research-presentation.txt:118) and the YAML's user_inputs.extend describes the same way. The router summary therefore disagrees with the presentation binding. That matters because the YAML preflight (deep-research.yaml:413 extend_values) accepts extend with lineage_mode `auto`, while step_extend_completed_run skips unless lineage_mode is completed-continue, and no step promotes auto to completed-continue. A setup that follows this list alone skips the extension and halts on the completed run.",
+    "evidence": {
+      "cmd": "grep -n \"lineage_mode. (default\\|lineage_mode = completed-continue\" .skilled/commands/deep/research.md .skilled/commands/deep/assets/deep-research-presentation.txt",
+      "exit": 0,
+      "out": ".skilled/commands/deep/research.md:43:>    - `lineage_mode` (default `auto` unless `--lineage-mode` or `--restart` is present)\n.skilled/commands/deep/assets/deep-research-presentation.txt:118:   |-- --extend=N -> extend = N, lineage_mode = completed-continue (positive integer only; a completed run only; refused with fan-out)"
+    },
+    "fix": {
+      "old": "- `lineage_mode` (default `auto` unless `--lineage-mode` or `--restart` is present)",
+      "new": "- `lineage_mode` (default `auto` unless `--lineage-mode` or `--restart` is present; `--extend=N` sets `completed-continue`)"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D-2",
+    "source_id": "D-2",
+    "lane": "D",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/deep/review.md",
+    "line": "43",
+    "issue": "The router's setup list says lineage_mode stays `auto` unless --lineage-mode or --restart is present. It omits --extend=N, which the presentation binds to lineage_mode=completed-continue (deep-review-presentation.txt:131) and the YAML's user_inputs.extend describes the same way. The router summary therefore disagrees with the presentation binding. That matters because the YAML preflight (deep-review.yaml:407 extend_values) accepts extend with lineage_mode `auto`, while step_extend_completed_run skips unless lineage_mode is completed-continue, and no step promotes auto to completed-continue. A setup that follows this list alone skips the extension and halts on the completed run.",
+    "evidence": {
+      "cmd": "grep -n \"lineage_mode. (default\\|lineage_mode = completed-continue\" .skilled/commands/deep/review.md .skilled/commands/deep/assets/deep-review-presentation.txt",
+      "exit": 0,
+      "out": ".skilled/commands/deep/review.md:43:>    - `lineage_mode` (default `auto` unless `--lineage-mode` or `--restart` is present)\n.skilled/commands/deep/assets/deep-review-presentation.txt:131:   |-- --extend=N -> extend = N, lineage_mode = completed-continue (positive integer only; a completed run only; refused with fan-out)"
+    },
+    "fix": {
+      "old": "- `lineage_mode` (default `auto` unless `--lineage-mode` or `--restart` is present)",
+      "new": "- `lineage_mode` (default `auto` unless `--lineage-mode` or `--restart` is present; `--extend=N` sets `completed-continue`)"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  }
+]

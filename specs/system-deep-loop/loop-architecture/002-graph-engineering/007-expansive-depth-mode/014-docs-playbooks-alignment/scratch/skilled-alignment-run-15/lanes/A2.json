@@ -1,0 +1,76 @@
+{
+ "lane": "A2",
+ "findings": [
+  {
+   "id": "A2-1",
+   "surface": "S1",
+   "standard": "sk-code",
+   "severity": "P1",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+   "line": 324,
+   "issue": "classifySourceLocation runs `if (extension === '.jsonl' || /ledger/i.test(fileName)) return classes.LEDGER_STATE;` before its repo-code fallback, so any source file whose name contains 'ledger' is classed as ledger state. That includes deep-research-ledger-schema.ts and check-ledger-stem-producers.cjs. This contradicts the declared contract in runtime/feature-catalog/coverage-graph/source-quality-class.md section 1, that the class comes 'from where the source lives' so a leaf cannot raise source diversity, and the only ledger-state fixture (upsert-script.vitest.ts:268,280) is a .jsonl state file. Reach: computeResearchSourceDiversityFromData (coverage-graph-signals.ts:674-688) counts distinct quality_class values per question, and convergence.cjs:447-451 makes sourceDiversity >= 1.5 a blocking STOP guard. Case: an honest research leaf studying this runtime cites only code, convergence.cjs and deep-research-ledger-schema.ts, and gets diversity 2. The guard passes when the true diversity is 1 and the guard should block. Before this diff the leaf supplied quality_class freely, so this is incomplete hardening of the new derivation, not a regression. It is still in reach, because the code now claims to derive the class. Fix: apply the ledger rule only to state files (.jsonl/.json, or a state/ledger artifact directory), not to every file name that contains 'ledger', and add a fixture showing that a code file named *ledger*.ts classes as repo-code.",
+   "evidence": {
+    "cmd": "sed -n '302,332p' .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs > classify.js; node -e '<define upsert.cjs constants; eval classify.js; print classifySourceLocation(p, SOURCE_QUALITY_CLASS) for 4 paths>'",
+    "exit": 0,
+    "out": "ledger-state .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts\nledger-state .skilled/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs\nrepo-code .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs\nledger-state specs/x/deep-research-state.jsonl"
+   }
+  },
+  {
+   "id": "A2-2",
+   "surface": "S1",
+   "standard": "sk-code",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+   "line": 453,
+   "issue": "Every research SOURCE node now gets a derived quality_class, including 'unclassified' when no field names a location. The diversity signal counts any non-empty class string (coverage-graph-signals.ts:680-683), so 'unclassified' counts as a distinct source kind. Case: a finding that cites one repo file and one free-text source named 'Maintainer interview' gets {repo-code, unclassified} = 2, which clears the 1.5 STOP guard. This is P2, not P1 like A2-1, because storing 'unclassified' is the declared and tested contract (source-quality-class.md section 2; upsert-script.vitest.ts:270,283). The open question is whether the signal should count it, and that is a design call the declared docs do not settle. Fix: have the diversity count skip 'unclassified', or leave quality_class unset when no location is found.",
+   "evidence": {
+    "cmd": "node -e '<same harness over upsert.cjs lines 302-332>' on 'Maintainer interview' and convergence.cjs",
+    "exit": 0,
+    "out": "unclassified Maintainer interview\nrepo-code .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs"
+   }
+  },
+  {
+   "id": "A2-3",
+   "surface": "S1",
+   "standard": "sk-code",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts",
+   "line": 662,
+   "issue": "The new fail-closed branch that refuses a legacy 'extended' row whose extension budget has a missing or non-integer field (reason run-extended-budget-missing) has no test. append-mode-event-legacy-seam.vitest.ts covers only the happy-path upcast of a complete extended row. Case: a legacy extended row without extension.newMaxIterations is never exercised, so a regression that defaulted the ceiling instead of refusing the row would pass the suite. The lens requires a test for each changed behavior. Fix: add a seam test that sends an extended row with an incomplete extension object and asserts the refusal and its reason.",
+   "evidence": {
+    "cmd": "grep -rn run-extended-budget-missing .skilled/skills/system-deep-loop/runtime/tests",
+    "exit": 1,
+    "out": ""
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reducers.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-reducers.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-graph-upsert.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-legacy-seam.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/coverage-graph-signals.vitest.ts"
+ ],
+ "not_reviewed": []
+}
