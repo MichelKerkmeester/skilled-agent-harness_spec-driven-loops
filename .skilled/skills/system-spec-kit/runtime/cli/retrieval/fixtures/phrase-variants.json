@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2f4a8d23746550f19eaa6ac4f7e66372e4628b1e9dbc680d788edec581ac76d7",
+  "manifestHash": "ffc9af0a0028aa51b93de6ed79ba4ebdfc6f6b0c100d4a40f9e962443e43eb2d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -2815,6 +2815,9 @@
     ],
     "011 spec memory rerank decision arc rollup": [
       "011-spec-memory-rerank-decision-arc rollup"
+    ],
+    "011 surfacing scorer follow ups operator decisions": [
+      "011-surfacing-scorer-follow-ups operator decisions"
     ],
     "011 tasks": [
       "011 tasks"
@@ -52362,6 +52365,9 @@
     "fix duplicate anchors": [
       "fix duplicate anchors"
     ],
+    "fix eight skill and command surfacing gaps": [
+      "fix eight skill and command surfacing gaps"
+    ],
     "fix investigation deferred p2s for behavior and api changes changelog": [
       "fix investigation deferred p2s for behavior and api changes changelog"
     ],
@@ -64063,6 +64069,9 @@
     ],
     "keep or untrack research folders": [
       "keep or untrack research folders"
+    ],
+    "keep route proof fields in the deep research": [
+      "keep route proof fields in the deep research"
     ],
     "keep rules as docs": [
       "keep rules as docs"
@@ -122179,6 +122188,21 @@
     "state log leaf fields tasks": [
       "state log leaf fields tasks"
     ],
+    "state log route proof": [
+      "state log route proof"
+    ],
+    "state log route proof goal": [
+      "state log route proof goal"
+    ],
+    "state log route proof implementation summary": [
+      "state log route proof implementation summary"
+    ],
+    "state log route proof plan": [
+      "state log route proof plan"
+    ],
+    "state log route proof tasks": [
+      "state log route proof tasks"
+    ],
     "state log unattributed": [
       "state log unattributed"
     ],
@@ -123824,6 +123848,24 @@
     ],
     "surface verification adr": [
       "surface verification adr"
+    ],
+    "surfacing scorer follow ups": [
+      "surfacing scorer follow ups"
+    ],
+    "surfacing scorer follow ups acceptance criteria": [
+      "surfacing scorer follow ups acceptance criteria"
+    ],
+    "surfacing scorer follow ups goal": [
+      "surfacing scorer follow ups goal"
+    ],
+    "surfacing scorer follow ups implementation summary": [
+      "surfacing scorer follow ups implementation summary"
+    ],
+    "surfacing scorer follow ups plan": [
+      "surfacing scorer follow ups plan"
+    ],
+    "surfacing scorer follow ups tasks": [
+      "surfacing scorer follow ups tasks"
     ],
     "surgical fix vs runtime refactor": [
       "surgical fix vs runtime refactor"
