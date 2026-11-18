@@ -189,11 +189,12 @@ function dedupeKey(text) {
   if (typeof text !== 'string') return '';
 
   // A leading question id carries no meaning for equivalence, so it is dropped
-  // before punctuation collapses. Only id-shaped prefixes qualify: an ordinary
-  // word followed by a number and a colon is part of the question.
+  // before punctuation collapses. Only id-shaped prefixes qualify, written with
+  // no space inside them (Q3, RQ-12, F-1-001): an ordinary word followed by a
+  // space, a number and a colon is part of the question.
   return text
     .toLowerCase()
-    .replace(/^[a-z]{1,2}[-\s]?\d+(?:[-\s]\d+)*\s*:\s*/, '')
+    .replace(/^[a-z]{1,2}-?\d+(?:-\d+)*\s*:\s*/, '')
     .replace(/[^a-z0-9]+/g, ' ')
     .trim();
 }

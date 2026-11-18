@@ -298,6 +298,13 @@ describe('frontier-admit', () => {
     expect(pruned).toEqual([expect.objectContaining({ reason: 'budget' })]);
   });
 
+  it('drops an id-shaped question prefix but keeps an ordinary word, number and colon', () => {
+    const { dedupeKey } = require(FRONTIER_ADMIT_SCRIPT) as { dedupeKey: (text: string) => string };
+    expect(dedupeKey('Q3: which seed holds')).toBe('which seed holds');
+    expect(dedupeKey('F-1-001: which seed holds')).toBe('which seed holds');
+    expect(dedupeKey('We 2: how does the loop stop')).toBe('we 2 how does the loop stop');
+  });
+
   it('records a pruned proposal in the store without an inbox row', () => {
     const artifactDir = makeArtifactDir();
     const question = 'how does the frontier hand off a duplicate';
