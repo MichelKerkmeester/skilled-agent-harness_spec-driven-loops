@@ -1,5 +1,5 @@
 {
-  "manifestHash": "299379299734fd587bc2ac85a82fdcf3106111a280881ebf56e920289ebac03a",
+  "manifestHash": "72f00f23c78d2f11d92b2cdd0a7713917c72b63dd734d9eaf4962de370ba6bf8",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -73333,6 +73333,9 @@
     "mermaid import": [
       "Mermaid import"
     ],
+    "mermaid to text diagram readme": [
+      "mermaid to text diagram readme"
+    ],
     "message contract": [
       "message contract"
     ],
@@ -83177,6 +83180,9 @@
     ],
     "phase 10 reachability and attribution": [
       "phase 10 reachability and attribution"
+    ],
+    "phase 10 readme text diagrams": [
+      "phase 10 readme text diagrams"
     ],
     "phase 10 real pipeline tests": [
       "phase 10 real pipeline tests"
@@ -93088,6 +93094,24 @@
     ],
     "readme templates set a descriptive default": [
       "README Templates Set a Descriptive Default"
+    ],
+    "readme text diagrams": [
+      "readme text diagrams"
+    ],
+    "readme text diagrams acceptance criteria": [
+      "readme text diagrams acceptance criteria"
+    ],
+    "readme text diagrams goal": [
+      "readme text diagrams goal"
+    ],
+    "readme text diagrams implementation summary": [
+      "readme text diagrams implementation summary"
+    ],
+    "readme text diagrams plan": [
+      "readme text diagrams plan"
+    ],
+    "readme text diagrams tasks": [
+      "readme text diagrams tasks"
     ],
     "readme toc anchor fix": [
       "README TOC anchor fix"
