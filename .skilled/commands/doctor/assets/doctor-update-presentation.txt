@@ -29,7 +29,7 @@ Accepted flags by action:
 | apply | `--decisions=<path>`, `--dry-run`, `--release=<tag>`, `--scope=all|<unit-key,...>`, `--include-prerelease`, `--offline`, `--remote=<name-or-url>` |
 | compat | `--dry-run`, `--offline` |
 | rollback | `--run=<runDir>`, `--dry-run` |
-| record-base | `--release=<tag>`, `--remote=<name-or-url>`, `--scope=all|<unit-key,...>`, `--offline`, `--include-prerelease`, `--trust-release`, `--dry-run` |
+| record-base | `--release=<tag>` or `--pin=<full-sha>`, `--remote=<name-or-url>`, `--scope=all|<unit-key,...>`, `--offline`, `--include-prerelease`, `--trust-release`, `--dry-run` |
 
 Latest-upstream resolution takes stable `vN.N.N.N` tags only. `--include-prerelease` also admits `vN.N.N.N-<pre>` tags. Both compare version segments as numbers. A tag named with `--release` is used as given.
 
@@ -92,6 +92,7 @@ When the report's `baseRecording.needed` is true, add:
 [count] unit(s) have no verified recorded base, so their status rests on an inferred or unverified base. This is normal right after copying or installing .skilled/.
 Record-base refuses a release that is farther from this tree than another release, and names the nearest one. Record the release this tree was installed from, with your approval, by running:
 /doctor:update record-base --release=<installed-release> [--remote=<framework-remote>]
+If the tree was copied from a framework commit between release tags, pass --pin=<full-sha> in place of --release.
 It writes the ignored local record at .skilled/skills/.state/doctor-update/base.json. No commit is needed; run /doctor:update again.
 ```
 

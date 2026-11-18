@@ -956,3 +956,151 @@ test('a re-pin stops before the backup when a json-entry file it leaves in place
   assert.equal(treeDigest(fixture.tree), before);
   assert.equal(fs.existsSync(fixture.runsDir), false);
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. UPSTREAM CONTENT AN OVERLAY WRITES OVER
+// ─────────────────────────────────────────────────────────────────────────────
+
+// A re-pin copies upstream's change in and the overlay writes over it at once,
+// so the report is the only place the loss can show before the next re-pin.
+
+function addJsonOverlay(fixture, id, destination, oldText, operations) {
+  const source = `json/${id}.json`;
+  writeFile(fixture.overlayDir, source, JSON.stringify({
+    target: destination,
+    style: { indent: 2, primitiveArrays: 'inline' },
+    operations,
+  }, null, 2) + '\n');
+  const entry = { id, scope: 'json-entry', source, destination, pinnedSha256: sha256(Buffer.from(oldText)) };
+  fixture.manifest.overlays.push(entry);
+  writeManifest(fixture);
+  const seeded = fixture.run(['apply']);
+  assert.equal(seeded.code, 0, seeded.output);
+  return entry;
+}
+
+function stageReport(stageDir) {
+  const runsDir = path.join(stageDir, 'skilled-overlays', 'repin-runs');
+  const [runId] = fs.readdirSync(runsDir);
+  return readJson(path.join(runsDir, runId, 'report.json'));
+}
+
+test('a re-pin names each upstream change a json-entry set or setKeyOnItem writes over', (t) => {
+  const destination = '.codex/list.json';
+  const oldText = JSON.stringify({ rows: ['a', 'b'], name: 'v1', keep: 'k', items: [{ id: 'A', top: 'a' }] }, null, 2) + '\n';
+  const newText = JSON.stringify({ rows: ['a', 'b', 'c'], name: 'v2', keep: 'k', items: [{ id: 'A', top: 'a2' }] }, null, 2) + '\n';
+  const fixture = createRepinFixture(t, { oldEntries: { [destination]: oldText }, newEntries: { [destination]: newText } });
+  const entry = addJsonOverlay(fixture, 'list-set', destination, oldText, [
+    { op: 'set', path: ['rows'], value: ['a', 'project'] },
+    { op: 'set', path: ['name'], value: 'project' },
+    { op: 'set', path: ['keep'], value: 'mine' },
+    { op: 'setKeyOnItem', path: ['items'], identityKey: 'id', match: { id: 'A' }, key: 'top', value: 'mine' },
+  ]);
+  // The entry set is rebased onto the new pin, so nothing blocks the re-pin.
+  entry.pinnedSha256 = sha256(Buffer.from(newText));
+  writeManifest(fixture);
+
+  const stageDir = path.join(fixture.workspace, 'stage');
+  const staged = fixture.repin(['--stage', stageDir]);
+
+  assert.equal(staged.code, 0, staged.output);
+  assert.match(staged.output, /^RESULT: STAGED$/m);
+  const lost = staged.output.split('\n').filter((line) => line.startsWith('upstream-lost '));
+  // "b" left the array at the old pin already and "keep" did not move upstream,
+  // so neither is a loss this re-pin causes.
+  assert.deepEqual(lost, [
+    'upstream-lost list-set: set at rows drops "c", which upstream added to .codex/list.json; add it to the set\'s value if it applies',
+    'upstream-lost list-set: set at name overwrites the value upstream changed in .codex/list.json; carry the change into the set if it applies',
+    'upstream-lost list-set: setKeyOnItem of top on the item matching id=A at items overwrites the value upstream changed in .codex/list.json; carry the change into the operation if it applies',
+  ]);
+  assert.equal(stageReport(stageDir).upstreamLost.length, 3);
+});
+
+test('a re-pin names each upstream file a directory overlay removes after the copy', (t) => {
+  const fixture = createRepinFixture(t, {
+    oldEntries: { '.skilled/skills/owned/keep.md': 'upstream keep\n', '.skilled/skills/owned/gone.md': 'gone v1\n' },
+    newEntries: { '.skilled/skills/owned/sub/f.md': 'upstream addition\n', '.skilled/skills/owned/gone.md': 'gone v2\n' },
+  });
+  // The checkout lets the first apply tell its own removal of gone.md apart from a hand delete.
+  fixture.manifest.pin.checkout = fixture.upstream;
+  writeFile(fixture.overlayDir, 'owned/keep.md', 'overlay keep\n');
+  fixture.manifest.overlays.push({ id: 'owned-dir', scope: 'directory', source: 'owned', destination: '.skilled/skills/owned' });
+  writeManifest(fixture);
+  const seeded = fixture.run(['apply']);
+  assert.equal(seeded.code, 0, seeded.output);
+
+  const stageDir = path.join(fixture.workspace, 'stage');
+  const staged = fixture.repin(['--stage', stageDir]);
+
+  assert.equal(staged.code, 0, staged.output);
+  assert.equal(fs.existsSync(path.join(stageDir, '.skilled/skills/owned/sub/f.md')), false);
+  assert.deepEqual(staged.output.split('\n').filter((line) => line.startsWith('upstream-lost ')), [
+    'upstream-lost owned-dir: the directory overlay removes .skilled/skills/owned/gone.md, which upstream changed; add it to skilled-overlays/owned if it applies',
+    'upstream-lost owned-dir: the directory overlay removes .skilled/skills/owned/sub/f.md, which upstream added; add it to skilled-overlays/owned if it applies',
+  ]);
+  assert.equal(stageReport(stageDir).upstreamLost.length, 2);
+});
+
+test('a re-pin notes an insert whose before anchor upstream removed', (t) => {
+  const destination = '.codex/anchor.json';
+  const oldText = JSON.stringify({ rows: [{ id: 'A' }, { id: 'B' }] }, null, 2) + '\n';
+  const newText = JSON.stringify({ rows: [{ id: 'B' }] }, null, 2) + '\n';
+  const fixture = createRepinFixture(t, { oldEntries: { [destination]: oldText }, newEntries: { [destination]: newText } });
+  const entry = addJsonOverlay(fixture, 'anchor-set', destination, oldText, [
+    { op: 'insertItems', path: ['rows'], identityKey: 'id', before: { id: 'A' }, items: [{ id: 'X' }] },
+  ]);
+  entry.pinnedSha256 = sha256(Buffer.from(newText));
+  writeManifest(fixture);
+
+  const stageDir = path.join(fixture.workspace, 'stage');
+  const staged = fixture.repin(['--stage', stageDir]);
+
+  assert.equal(staged.code, 0, staged.output);
+  assert.match(staged.output, /^NOTE {5}anchor-set: insertItems before "A" at rows finds no such item, so its items go at the end of the array; point before at an item the file holds$/m);
+  assert.deepEqual(readJson(path.join(stageDir, destination)).rows, [{ id: 'B' }, { id: 'X' }]);
+});
+
+test('a re-pin names each upstream file a skill-root overlay removes from a folder it replaces', (t) => {
+  const root = '.skilled/skills/sr';
+  const fixture = createRepinFixture(t, {
+    oldEntries: {
+      [`${root}/SKILL.md`]: 'upstream skill\n',
+      [`${root}/docs/a.md`]: 'upstream a\n',
+      [`${root}/docs/gone.md`]: 'gone v1\n',
+      [`${root}/docs/vendor.md`]: 'vendor v1\n',
+    },
+    newEntries: {
+      [`${root}/docs/new.md`]: 'upstream addition\n',
+      [`${root}/docs/gone.md`]: 'gone v2\n',
+      [`${root}/docs/vendor.md`]: 'vendor v2\n',
+    },
+  });
+  // The checkout lets the first apply tell its own removal of gone.md apart from a hand delete.
+  fixture.manifest.pin.checkout = fixture.upstream;
+  writeFile(fixture.overlayDir, 'sr/SKILL.md', 'project skill\n');
+  writeFile(fixture.overlayDir, 'sr/docs/a.md', 'project a\n');
+  fixture.manifest.overlays.push({
+    id: 'sr-root',
+    scope: 'skill-root',
+    source: 'sr',
+    destination: root,
+    replace: ['SKILL.md', 'docs'],
+    remove: [],
+    retained: [{ path: 'docs/vendor.md' }],
+  });
+  writeManifest(fixture);
+  const seeded = fixture.run(['apply']);
+  assert.equal(seeded.code, 0, seeded.output);
+
+  const stageDir = path.join(fixture.workspace, 'stage');
+  const staged = fixture.repin(['--stage', stageDir]);
+
+  assert.equal(staged.code, 0, staged.output);
+  assert.equal(fs.existsSync(path.join(stageDir, root, 'docs/new.md')), false);
+  // A retained file is kept as upstream ships it, so its change is not a loss.
+  assert.deepEqual(staged.output.split('\n').filter((line) => line.startsWith('upstream-lost ')), [
+    'upstream-lost sr-root: the skill-root overlay removes .skilled/skills/sr/docs/gone.md, which upstream changed; add it to skilled-overlays/sr/docs if it applies',
+    'upstream-lost sr-root: the skill-root overlay removes .skilled/skills/sr/docs/new.md, which upstream added; add it to skilled-overlays/sr/docs if it applies',
+  ]);
+  assert.equal(stageReport(stageDir).upstreamLost.length, 2);
+});
