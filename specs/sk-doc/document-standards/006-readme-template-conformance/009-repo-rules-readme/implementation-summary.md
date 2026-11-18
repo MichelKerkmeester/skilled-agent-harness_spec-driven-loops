@@ -11,14 +11,14 @@ _memory:
     last_updated_at: "2026-11-18T08:48:50Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Built and verified the README and the checker skip"
-    next_safe_action: "None: the phase is complete"
+    next_safe_action: "Push the measurer fix and tick T013"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-009-repo-rules-readme"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -60,6 +60,8 @@ The README is the first one written from nothing under the alert and fold rule. 
 | `.skilled/skills/sk-doc/sk-create-repo-rule/scripts/build-rule-cards.cjs` | Modified | Skips the README when listing rules |
 | `.skilled/skills/sk-doc/scripts/tests/test_check_repo_rules.py` | Modified | README fixture test |
 | `.skilled/skills/sk-doc/scripts/tests/test_build_rule_cards.py` | Modified | README fixture test |
+| `.skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py` | Modified | Skips the README when building rule markers |
+| `.skilled/skills/sk-doc/scripts/tests/test_measure_rule_compliance.py` | Modified | README fixture test |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -90,7 +92,7 @@ A stub README showed the checker failing 7 of 11 checks. The two tests failed fi
 | Check | Result |
 |-------|--------|
 | Tests before the fix | FAIL as expected: `2 failed` |
-| Repo-rules Python tests after | PASS: `36 passed` |
+| Repo-rules Python tests after | PASS: `37 passed`, with the measurer test that failed first |
 | README validator | PASS: `VALID`, type `readme`, 0 issues |
 | Voice scan | PASS: 0 hard blockers, ceiling 100/100 |
 | README checkers | PASS: `references=37 unresolved=0`, `claims=0 failures=0` |

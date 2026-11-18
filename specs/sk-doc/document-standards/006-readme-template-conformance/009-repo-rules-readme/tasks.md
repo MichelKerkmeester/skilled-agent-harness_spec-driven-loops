@@ -58,6 +58,8 @@ contextType: "general"
 - [x] T009 Run the wider gates. Verify: each exits 0. Evidence: doctor `agents-md-check` 44 pass, `agents-md-embed` 43, `overlay-engine-repin` 30, `doctor-agents-md-contract` 39, `typo-flags` 17. `all sk-doc script tests passed`, `PARITY PASS`, `0 broken markdown links`.
 - [x] T010 Validate the phase. Verify: `validate.sh --strict` prints `RESULT: PASSED`. Evidence: `RESULT: PASSED` on the program recursively.
 - [x] T011 Commit, merge origin/main and push under sk-git. Verify: the phase commit is an ancestor of origin/main. Evidence: commit `c958cf99914`, pushed inside merge `09067be7079`. The merge was built with `git merge-tree` because another session had files staged in the checkout, which blocks `git merge`.
+- [x] T012 Skip the README in the compliance measurer too (`$S/measure-rule-compliance.py`, `$T/test_measure_rule_compliance.py`). Verify: the new test fails first, then the five repo-rules test files pass. Evidence: a session that read the README was credited with a rule named `README.md`, because a file with no rule section matches on its title alone. `1 failed` before the skip, `37 passed` after. Found after the first push, by checking the claim that the measurer built no marker for the README.
+- [ ] T013 Push the measurer fix. Verify: the fix commit is an ancestor of origin/main.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,7 +67,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]`
+- [ ] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed: the GitHub render shows the alert and no fold
 <!-- /ANCHOR:completion -->

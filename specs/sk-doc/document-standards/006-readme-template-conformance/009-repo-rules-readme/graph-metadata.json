@@ -34,7 +34,7 @@
       "reader"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -45,7 +45,9 @@
       ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
       ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/build-rule-cards.cjs",
       ".skilled/skills/sk-doc/scripts/tests/test_check_repo_rules.py",
-      ".skilled/skills/sk-doc/scripts/tests/test_build_rule_cards.py"
+      ".skilled/skills/sk-doc/scripts/tests/test_build_rule_cards.py",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_measure_rule_compliance.py"
     ],
     "entities": [
       {
@@ -106,6 +108,18 @@
         "name": "test_build_rule_cards.py",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/scripts/tests/test_build_rule_cards.py",
+        "source": "derived"
+      },
+      {
+        "name": "measure-rule-compliance.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_measure_rule_compliance.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_measure_rule_compliance.py",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A reader who opens `.skilled/repo-rules/` finds ten rule files and nothing that says how they load or how to add one",
     "created_at": "2026-11-18T08:48:49Z",
-    "last_save_at": "2026-11-18T09:02:05.010Z",
+    "last_save_at": "2026-11-18T09:05:45.159Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1be64b21e604902f48ef82cfe2812f3ad4a986f5be467481a824643c46182e14",
+    "source_fingerprint": "sha256:49121f964a77a98313c0f63f215b79942ecc2c70b2c77cb53098e87292a0d61a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6e5427f77788efbb3dd1e34cf676541227034ee0a55c36914d2a1b5a57f41b1f",
+      "spec.md": "4a48d4f2f09852193403e84c4cd1c6d85c00569636ca0eb6c86a667cc2c71fcc",
       "plan.md": "4ecb3fb4d5bba03a59582dc47f0e2faa931811d70a6ee9a2d74bf763eb36d652",
-      "tasks.md": "8d3790bcacf7e00a20b4c2f76c1f274f7eaa985f42f43f08aeeaca17b32c8511",
-      "implementation-summary.md": "b831d74bd36f284bd1e200bbeb7ce5de7a6d677073c4f243b976ab490cfa48de"
+      "tasks.md": "9c07f2f10990e55bb8de36f232ff3d1a46da1cbc781b65cb39e6c2f5ea579ef7",
+      "implementation-summary.md": "ff8b7406b82abddfe3767b1c1dbc6b562604b9ad174d6612b8c3654405be2a15"
     },
     "last_active_at": null
   }

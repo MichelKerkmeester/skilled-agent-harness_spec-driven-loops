@@ -60,7 +60,7 @@ The folder is flat. The router's index gives each rule's summary, and the table 
 Create, revise or retire a rule with `/create:repo-rule`. It writes the rule file and wires its rows into `REPO RULES.md` in one pass.
 
 > [!WARNING]
-> A rule file with no row in the `REPO RULES.md` trigger table never loads. Agents read only the rules the router names, so add the trigger row and the index row with the file.
+> A rule file added by hand never loads until it has a row in the `REPO RULES.md` trigger table. Agents read only the rules the router names, so add the trigger row and the index row with the file.
 
 Run the checker after any change to a rule or to the router:
 

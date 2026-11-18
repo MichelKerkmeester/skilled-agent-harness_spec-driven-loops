@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 9: repo-rules-readme"
-description: "The repo-rules folder has no README, and the repo-rules checker and card builder read any README there as an eleventh rule and fail. This phase skips the README in both scripts and writes the folder README under the alert and fold rule."
+description: "The repo-rules folder has no README, and the repo-rules checker, card builder and compliance measurer read any README there as a rule. This phase skips the README in all three scripts and writes the folder README under the alert and fold rule."
 trigger_phrases:
   - "repo rules readme"
   - "phase 9 repo rules readme"
@@ -81,14 +81,14 @@ $ node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/build-rule-cards.cjs -
 ## 3. SCOPE
 
 ### In Scope
-- Skip a case-insensitive `readme.md` where the checker and the card builder list rule files, the same match the document validator uses
+- Skip a case-insensitive `readme.md` where the checker, the card builder and the compliance measurer list rule files, the same match the document validator uses
 - Add one test per script with a README in the fixture folder
 - Write `.skilled/repo-rules/README.md` from the general README template, applying the alert and fold rule as written
 
 ### Out of Scope
 - A row for the README in `REPO RULES.md` - the router holds routes to rule files only
 - Cards for the ten rules - the repository has never generated them, and `--check` reports the same 10 missing cards before and after this phase
-- `measure-rule-compliance.py` and `rule-experiment.py` - both glob the folder, but a README carries no marker and copying it into a fixture is inert, and their tests pass unchanged
+- `rule-experiment.py` - it copies every `.md` file into an experiment fixture, and a README there is never routed, so it changes nothing an arm loads
 
 ### Files to Change
 
@@ -99,6 +99,8 @@ $ node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/build-rule-cards.cjs -
 | `.skilled/skills/sk-doc/sk-create-repo-rule/scripts/build-rule-cards.cjs` | Modify | Skip the README when listing rules |
 | `.skilled/skills/sk-doc/scripts/tests/test_check_repo_rules.py` | Modify | README fixture test |
 | `.skilled/skills/sk-doc/scripts/tests/test_build_rule_cards.py` | Modify | README fixture test |
+| `.skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py` | Modify | Skip the README when building rule markers |
+| `.skilled/skills/sk-doc/scripts/tests/test_measure_rule_compliance.py` | Modify | README fixture test |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -112,7 +114,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | The checker ignores a README in the rules folder | With the README in place, `check-repo-rules.cjs` prints `files=10` and `RESULT: PASSED (11/11 checks)` |
-| REQ-002 | The card builder ignores a README in the rules folder | The new builder test writes only `alpha.md` and `--check` exits 0 |
+| REQ-002 | The card builder and the compliance measurer ignore a README in the rules folder | The new builder test writes only `alpha.md` and `--check` exits 0, and the new measurer test credits no `README.md` rule |
 | REQ-003 | The README passes the README gates | `validate_document.py` prints `VALID` as type `readme`, 0 hard voice blockers, and both README checkers pass |
 
 ### P1 - Required (complete OR user-approved deferral)

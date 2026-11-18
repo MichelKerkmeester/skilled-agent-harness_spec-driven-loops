@@ -11,14 +11,14 @@ _memory:
     last_updated_at: "2026-11-18T08:48:50Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Built and verified the README and the checker skip"
-    next_safe_action: "None: the phase is complete"
+    next_safe_action: "Push the measurer fix and tick T013"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-009-repo-rules-readme"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -54,7 +54,7 @@ Frozen choices. Changing one is an amendment.
 
 - [x] `check-repo-rules.cjs` prints `files=10` and `RESULT: PASSED (11/11 checks)` with the README in place
 - [x] `validate_document.py` prints `VALID` for the README, and `gh api markdown` shows one alert and no fold
-- [x] `validate.sh --strict` on this phase prints `RESULT: PASSED` and the phase commit is on origin/main
+- [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED` and the phase commit is on origin/main
 <!-- /ANCHOR:completion -->
 
 ---
@@ -71,6 +71,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Checker and builder skip | Done | `2 failed` before, `36 passed` after |
+| Measurer skip | Done | `1 failed` before, `37 passed` after, found after the first push |
 | README and gates | Done | `VALID`, ceiling 100/100, 11/11 checks, 1 alert and 0 folds rendered |
 
 ### Deviations and findings
