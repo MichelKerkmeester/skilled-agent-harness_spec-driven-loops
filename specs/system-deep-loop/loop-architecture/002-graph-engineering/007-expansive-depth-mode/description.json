@@ -8,7 +8,7 @@
     "deep-research",
     "deep-review"
   ],
-  "lastUpdated": "2026-11-17T16:56:11.448Z",
+  "lastUpdated": "2026-11-18T03:05:46.979Z",
   "specId": "007",
   "folderSlug": "expansive-depth-mode",
   "parentChain": [
@@ -16,10 +16,18 @@
     "loop-architecture",
     "002-graph-engineering"
   ],
-  "memorySequence": 3,
+  "memorySequence": 11,
   "memoryNameHistory": [
     "17-11-26_09-40__deep-research-on-the-expansive-depth-sub-mode.md",
     "17-11-26_12-51__deep-research-generation-2-5-cli-devin-swe-2-max.md",
-    "17-11-26_17-56__ran-deep-research-generation-2-5-cli-devin-swe-2.md"
+    "17-11-26_17-56__ran-deep-research-generation-2-5-cli-devin-swe-2.md",
+    "17-11-26_20-07__the-001-fork-is-still-making-progress-so-i-m.md",
+    "18-11-26_04-00__manual-context-save.md",
+    "18-11-26_04-01__expansive-depth-mode-build-for-deep-research-and.md",
+    "18-11-26_04-05__the-goal-is-still-not-met-i-reran-the-checks-just.md",
+    "18-11-26_04-05__the-goal-is-still-not-met-the-checks-i-reran-a.md",
+    "18-11-26_04-05__the-goal-is-still-not-met-ac-014-and-ac-011-are.md",
+    "18-11-26_04-05__still-not-met-and-i-m-still-holding-for-your.md",
+    "18-11-26_04-05__the-goal-is-still-not-met-ac-014-and-ac-011-are.md"
   ]
 }

@@ -225,7 +225,7 @@
     ],
     "causal_summary": "The deep-research and deep-review loops converge on the three to five questions seeded at init and stop once novelty drops, so a broad target such as \"research the last 100 commits for bugs, drift and improvements\" or \"analyze system-skill-advisor for chat-time auto-utilization\" gets a narrow, shallow answer",
     "created_at": "2026-11-17T07:53:58Z",
-    "last_save_at": "2026-11-17T18:31:05.018Z",
+    "last_save_at": "2026-11-18T03:03:01.061Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -237,13 +237,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:1348411cb2b0b1e618147f67615fb28887b9ea4d69f06abd2a23808f7b005895",
+    "source_fingerprint": "sha256:de839a0deb9d95ff4ee3f11f45324a5199b02d38a7ac5a673fd61ba86ff00644",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bd09633818cec3f1f06bb870c6dbb7d096cace055177e69f7f636c42056803ed",
       "plan.md": "6a56a3aaa01f0331b6c583bb878c61d031938abfeddad6ebb39c9e3ea0cac9fd",
       "tasks.md": "2bd96d25454ae3e7bf9fea94cadc73dac0e5379c35aaeb83792afd7a17257727",
-      "decision-record.md": "3412a35e38ba63aa2749a328052d083fadecbdffa74aa4aa6c0977af62beb05a",
+      "decision-record.md": "0f9582eeb43733b995a6a31bdb8fba55180fc674d8ea0d98db8cd0a2ad35008b",
       "implementation-summary.md": "2088c1e4437f3061bd63975059960c6ebb10e14588be75e53898d13f9a592446",
       "research/research.md": "61dd84d418760ab868525bb8721fa08de577e7b052ac9e894296fe0ea9bf78d6"
     },

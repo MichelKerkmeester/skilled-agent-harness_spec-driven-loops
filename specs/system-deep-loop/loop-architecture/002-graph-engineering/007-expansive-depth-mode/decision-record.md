@@ -39,6 +39,11 @@ _memory:
 | Q003 | Allow up to 8 concurrent DeepSeek V4.1 flash max dispatches across cli-pi llmgateway, cli-vibe and cli-opencode Go. | Not stated. | None | scratch/orchestration-strategy.md |
 | Q004 | Each phase writes its own manual testing playbook scenarios through /create:manual-testing-playbook; 014 only verifies and aligns. | Not stated. | None | each phase tasks.md, 014-docs-playbooks-alignment/spec.md |
 | Q005 | Goal D2 is flag-scoped: the expansive flag adds nothing to a run, and default runs change only through named, tested defect fixes. | Not stated. | None | goal.md D2 |
+| Q006 | Create the five wave-1 worktrees through the sk-git allocator and start dispatching at once. | Not stated. | None | goal.md log (operator decisions row), worktrees 456-46x |
+| Q007 | Standing yes for local commits on the phase and integration branches and for merges into integration; pushes and any merge into main still need a separate yes. | Not stated. | None | goal.md log (operator decisions row), integration branch worktrees/455-expansive-depth-integration |
+| Q008 | Close AC-010 by amending REQ-010 so its grep drops the generated .vibe/agents mirrors. | Not stated. | None | 001-completed-run-extension REQ-010, AC-010, decision-record.md OD-005 |
+| Q009 | Add a handed-off status to the operator-local alignment aggregator and rerun both alignment lanes for phase 014. | Not stated. | None | 014 goal.md criterion 5, local-skilled-alignment/aggregate-findings.cjs (operator-local) |
+| Q010 | Hold the integration-to-main merge; close the criteria on the integration branch only and leave the merge to the operator. | Not stated. | None | Parent goal.md, integration branch worktrees/455-expansive-depth-integration |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -144,6 +149,101 @@ Keep strict
 Answer:
 ```text
 Flag-scoped (Recommended)
+```
+
+### Q006
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01C9pEU6CFff6Z3yWBgiFH7E:2 -->
+
+Question:
+```text
+May I create the five wave-1 worktrees now through the sk-git allocator under ~/worktrees/public, one each for phases 001, 003, 005, 007 and 009, and start dispatching? The lanes are Pi for 001 and 007, OpenCode Go for 005 and 009, and Vibe for 003. All three lanes passed the probes.
+```
+
+Options:
+```text
+Yes, create and start (Recommended)
+Create worktrees, wait
+```
+
+Answer:
+```text
+Yes, create and start (Recommended)
+```
+
+### Q007
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_011ov8krrVYGVdHBWMSir2xK:0 -->
+
+Question:
+```text
+Each phase needs to commit in its own worktree branch (worktrees/456-ed-001-..., etc.) and then merge, in build order, into the integration branch worktrees/455-expansive-depth-integration. There the compiled contracts are regenerated and the full suite runs. Do you give a standing yes for local commits on the phase branches and the integration branch, and for merges into the integration branch? It would not cover pushes or any merge into main, which still need your yes each time. To undo: `git reset --hard <pre-merge sha>` on the integration branch, or `git branch -D` on a phase branch.
+```
+
+Options:
+```text
+Standing yes, local only (Recommended)
+Ask me per phase
+```
+
+Answer:
+```text
+Standing yes, local only (Recommended)
+```
+
+### Q008
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_016x3CugdvkP84aGgAahkAKv:0 -->
+
+Question:
+```text
+Phase 001's acceptance row AC-010 (REQ-010) checks that no doc line containing `completed-continue` also says 'deferred', 'reserved' or similar. Every real doc passes. It still fails on `.vibe/agents/deep-research.toml` and `deep-review.toml`, because the Vibe generator writes each whole agent body as one TOML line. That line contains `completed-continue` alongside unrelated wording such as 'deferred tangents' and 'no fourth tier is reserved'. Those mirrors are generated from the `.skilled/agents` sources, which pass, and `sync-agents-vibe.cjs --check` confirms they are in sync. 001's spec scope is frozen, so this needs your yes. How should AC-010 close?
+```
+
+Options:
+```text
+Amend REQ-010, drop .vibe (Recommended)
+Reword the agent sources
+```
+
+Answer:
+```text
+Amend REQ-010, drop .vibe (Recommended)
+```
+
+### Q009
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_0124XY7BsyfxrDhCww4fnWY1:2 -->
+
+Question:
+```text
+Phase 014 alignment criterion (zero open findings): the alignment aggregator counts handed-off and rebutted findings as open because it has no such status. It lives in your untracked operator-local tooling under .skilled/commands/assets/local-*-alignment. How should I close it?
+```
+
+Options:
+```text
+Accept counted findings (Recommended)
+Add handed-off status
+```
+
+Answer:
+```text
+Add handed-off status
+```
+
+### Q010
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_0124XY7BsyfxrDhCww4fnWY1:3 -->
+
+Question:
+```text
+Integration branch worktrees/455-expansive-depth-integration (tip 9f174a8c8df, 3383 passed / 0 failed) and the uncommitted parent packet files on main: what about main?
+```
+
+Options:
+```text
+Hold the merge
+Merge locally, no push
+```
+
+Answer:
+```text
+Hold the merge
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
