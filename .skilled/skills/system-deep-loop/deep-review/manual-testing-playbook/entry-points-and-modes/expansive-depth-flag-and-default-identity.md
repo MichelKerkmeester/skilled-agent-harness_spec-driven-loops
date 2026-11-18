@@ -1,7 +1,7 @@
 ---
 title: "DRV-076 -- Expansive depth flag and default byte identity"
 description: "This scenario validates that `--depth-mode` defaults to `default`, that a review run without the flag matches the pre-change baseline on every compared artifact and that only the expansive-only agent paragraph differs on CLI lineage prompts, for `DRV-076`."
-version: 1.13.6.0
+version: 1.13.7.0
 ---
 
 # DRV-076 -- Expansive depth flag and default byte identity
@@ -18,7 +18,7 @@ This scenario validates the `--depth-mode` flag on `/deep:review` and its defaul
 
 The expansive mode must stay opt-in. An operator who never passes the flag should see no change in what the review writes or decides. That promise lets the mode ship without a migration of existing review runs.
 
-An operator who does pass `--depth-mode=expansive` should know its budget rule. Admission caps the live frontier at half of `maxIterations`, and the seed counts toward that cap. When `--max-iterations` is left at its default, the run sizes its budget from the seed, `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D names in the config's `reviewDimensions` list (four when it names none), or 7 when every seed was pruned, and the seed step prints the derived budget. An explicit `--max-iterations` always wins, even below the derived value, and the seed warns when it leaves no room past depth 1.
+An operator who does pass `--depth-mode=expansive` should know its budget rule. Admission caps the live frontier at half of `maxIterations`, and the seed counts toward that cap. When `--max-iterations` is left at its default, the run sizes its budget from the seed, `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D the four canonical dimensions plus each custom name the config's `reviewDimensions` list adds, each counted once, or 7 when every seed was pruned, and the seed step prints the derived budget. An explicit `--max-iterations` always wins, even below the derived value, and the seed warns when it leaves no room past depth 1.
 
 ---
 
