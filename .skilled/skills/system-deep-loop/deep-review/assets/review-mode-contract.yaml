@@ -505,7 +505,7 @@ validation:
     - id: jsonl-parity
       description: Ensure JSONL iteration and synthesis-event fields match the outputs contract.
     - id: lifecycle-parity
-      description: "Ensure lifecycle mode docs and workflow branches agree on the three supported modes: new, resume, and restart."
+      description: "Ensure lifecycle mode docs and workflow branches agree on the four supported modes: new, resume, restart, and completed-continue, with fork deferred."
     - id: reducer-contract
       description: Ensure reducer inputs, outputs, and findings-registry metrics are documented consistently across assets and runtime mirrors.
     - id: duplicate-literal-lint

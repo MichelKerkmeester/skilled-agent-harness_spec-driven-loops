@@ -1,6 +1,6 @@
 ---
 title: "Completed-run extension flags (--extend, --extend-minutes)"
-description: "The --extend=N flag on /deep:research and /deep:review reopens a completed single-executor run in place, and --extend-minutes=M, valid only with --extend, adds minutes to that run's duration budget. Neither flag changes the registry-driven workflowMode, runtimeLoopType and backendKind classification."
+description: "The --extend=N flag on /deep:research and /deep:review reopens a completed single-executor run in place, and --extend-minutes=M, valid only with --extend, adds minutes to the later of that run's duration budget and the time already elapsed since createdAt. Neither flag changes the registry-driven workflowMode, runtimeLoopType and backendKind classification."
 trigger_phrases:
   - "--extend"
   - "--extend-minutes"

@@ -1,12 +1,12 @@
 ---
 title: "Review minIterations floor"
-description: "A review run with a configured minIterations floor returns CONTINUE with minIterationsNotReached until its iteration count reaches the floor, so no stop candidate ends a review before the floor. The iteration cap and the halt after three consecutive failed iterations are checked first and can still stop it earlier."
+description: "A review run with a configured minIterations floor turns a stop candidate into CONTINUE with minIterationsNotReached until its iteration count reaches the floor, so no stop candidate ends a review before the floor. The iteration cap and the halt after three consecutive failed iterations are checked first and can still stop it earlier."
 trigger_phrases:
   - "review minIterations"
   - "minIterationsNotReached"
   - "review iteration floor"
   - "antiConvergence minIterations review"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Review minIterations floor
@@ -21,7 +21,7 @@ The review convergence check holds a stop below the configured floor. `config.mi
 
 ### Floor Check
 
-`runtime/scripts/convergence.cjs` returns `CONTINUE` with the reason `minIterationsNotReached` while the iteration count is below the floor. A stop candidate below the floor never ends the review. The iteration cap and the three-failure halt come earlier in the stop order, so either can still end a run below the floor.
+`runtime/scripts/convergence.cjs` returns `CONTINUE` with the reason `minIterationsNotReached` when a stop candidate forms while the iteration count is below a floor above 1. Below the floor with no candidate the reason stays `noStopCandidate`, and stuck recovery, `convergenceModeOff` and `stopPolicyMaxIterations` return before the floor is checked. A stop candidate below the floor never ends the review. The iteration cap and the three-failure halt come earlier in the stop order, so either can still end a run below the floor.
 
 ### Stop Order
 

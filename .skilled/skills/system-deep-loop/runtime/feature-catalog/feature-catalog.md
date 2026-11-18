@@ -5,7 +5,7 @@ trigger_phrases:
   - "runtime/ feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
-version: 1.4.8.0
+version: 1.4.9.0
 ---
 
 # runtime/: Feature Catalog
@@ -601,7 +601,7 @@ Computes graph-aware CONTINUE, STOP_ALLOWED, or STOP_BLOCKED decisions for a ses
 
 #### How It Works
 
-Direct replacement for `deep_loop_graph_convergence`; emits graph decision bindings. `depthMode` comes from `--depth-mode` or `antiConvergence.depthMode`. Under `--depth-mode=expansive`, an open or active frontier node turns a stop candidate into CONTINUE with `frontierOpen`, and an expansive review whose frontier is drained with at least one node answered forms the hard candidate `frontier_drained`. The `minIterations` floor (`minIterationsNotReached`) now applies to review as well as research.
+Direct replacement for `deep_loop_graph_convergence`; emits graph decision bindings. `depthMode` comes from `--depth-mode expansive` (or `--depth_mode`; the script does not split a `--flag=value` form) or `antiConvergence.depthMode`. Under expansive depth, an open or active frontier node turns a stop candidate into CONTINUE with `frontierOpen`, and an expansive review whose frontier is drained with at least one node answered forms the hard candidate `frontier_drained`. The `minIterations` floor (`minIterationsNotReached`) now applies to review as well as research.
 
 #### Source Files
 
@@ -765,9 +765,10 @@ sub-packet, with per-kind state-dir isolation and a post-subprocess salvage swee
 #### How It Works
 
 Each lineage keeps its coverage graph in `graph-db/` inside its own directory through
-`DEEP_LOOP_COVERAGE_DB_DIR`. Under `--depth-mode=expansive`, `partitionFrontierNodes` deals the
+`DEEP_LOOP_COVERAGE_DB_DIR`. Under `--depth-mode expansive` (the script takes the flag and its
+value as two arguments and rejects `--depth-mode=expansive`), `partitionFrontierNodes` deals the
 open depth-1 frontier nodes round-robin in node-id order, `writeLineageFrontierStore` writes
-each lineage's share, the prompt binds `depthMode` and `frontier_scope`, and the split is
+the share of each lineage dealt a node that has no store yet, the prompt binds `depthMode` and `frontier_scope`, and the split is
 recorded as `frontier_partition` in `orchestration-summary.json`. `expansiveLineageBudgets`
 sizes a lineage with no matrix `iterations` from its seed share, and a lineage dealt no seed
 node runs at its loop default: 12 native, 7 CLI review, 10 CLI research.

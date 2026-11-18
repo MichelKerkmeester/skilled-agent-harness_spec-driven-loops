@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "b3b87ffc965745cfc849f9d172c69ee30472982b613162be52bbb2d4cb61f2af",
+      "sha256": "9de38d9b1e88a3acdfdd08348c95c9d2ccd69309c1c1d1cfc5bdf153a373cba5",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "2cc0791ae1e1437fafe9c0659f729b609a7329c8fe2a5d1989fe07bfeb66fa64",
+      "sha256": "defbf3cccd6b71e712d015be495f3074c3db8cff1582d0817fb98b036fcc9218",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "a3e292a8e269ae53a34d847558bb4930a3af6bf877c017042e2ee80c53a40d70",
+      "sha256": "bbdda974a2c9b84d921fb68f554f69904dae69d1ed965d4d59879c3d3e1a1b06",
       "section": "full"
     },
     {
@@ -37,27 +37,27 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "5ea7ef581866079c1ad90132532b5dd5b2d49dca6ab5db32b778354f52c81d90",
+      "sha256": "876f9f2aeada71acb49d8823f3d42c4f4469071f0a20301a512ac3d8a548f252",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "93603413c0be8206865809c3ee60aa399020ac624d12e222cc2c6a2b98dd7fc1",
+      "sha256": "47ac8c90f25233f64e58147d669b72b6fad94487513da135088168caa65d2a2a",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "sha256": "f05d297466aed13b79c5cd85ab55436b20f732d625b9a33a3d7366b112069fff",
+      "sha256": "292b5bba3d7fad48dee4cde293c81d3cccaad006bd3d6945c6087484d3e9e6bf",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
-      "sha256": "cbff5a0205899fd17f058d051064720c1dc409a91478c353c63a439ed42fa7e3",
+      "sha256": "f2ef2e8d57a88a81f0e0f12be82ee84835efe9b88b6c44af502723b621d46ccb",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "ed3c7b62e790dd81dd53b11ab1894638f4535f51c213c98be60f63336dd48fd5",
+      "sha256": "e54ff30d1621a223a767dda1ba64bfb68ec4b3b9f27be88b01cabbd1ed9ea65e",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "c8386dd03562bb55b69c79a91f0b9f72b1e82397b93730192e81b58800214408"
+  "compiledBodyDigest": "d31297082d2b5bf1357e00cecb55809adfbc3cea682d120f862f17e22c386c60"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -169,13 +169,13 @@ The dispatched prompt body may contain one structured marker block. Parse it bef
 PRE-BOUND SETUP ANSWERS:
   review_target: <spec-folder>
   review_target_type: spec-folder  # one of: spec-folder | skill | agent | track | files
-  review_dimensions: all  # or comma-separated list: any of correctness, security, traceability, maintainability, plus custom names that follow them
+  review_dimensions: all  # or comma-separated list: any of correctness, security, traceability, maintainability, plus custom names that follow them; a fan-out run reviews all four in every lineage
   review_focus: ""  # optional free text every iteration covers in addition to its dimension
   spec_folder: existing  # one of: existing | new | update-related | phase-folder, or an explicit specs/.opencode/specs path
   execution_mode: AUTONOMOUS  # from :auto suffix
  lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
  extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
- extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the duration budget, default the prior budget
+ extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the later of the prior budget and the minutes elapsed, default the prior budget
   maxIterations: 7
   convergenceThreshold: 0.10
   convergence_mode: default  # default | off | sliding-window | divergent
@@ -206,14 +206,14 @@ Rules:
 |-------|----------|--------------|---------|------------------|
 | `review_target` | Y | `$ARGUMENTS` first positional target, or marker `review_target` | none | N |
 | `review_target_type` | Y | marker `review_target_type`, or auto-detect from `review_target` | inferred only | Y, when target is present but ambiguous |
-| `review_dimensions` | Y | marker `review_dimensions`, the dimensions answer, or default | `"all"` | N |
+| `review_dimensions` | Y | marker `review_dimensions`, the dimensions answer, or default. A fan-out run binds `all` in every lineage, so a subset or a custom name applies only to a single-executor run | `"all"` | N |
 | `review_focus` | N | flag `--review-focus="TEXT"`, marker `review_focus`, or default. Control characters and whitespace runs collapse to one space, an empty result is absent, and more than 1000 characters fails setup | empty (dimensions only) | N |
 | `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, `scope-extract` → a target/scope path that resolves to an existing spec folder (auto-bound, per `auto_mode_contract` §1 source 3), or target path when target is a spec folder | none | Y, when target is not a spec folder |
 | `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
 | `lineage_mode` | Y | flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default | `auto` | N |
 | `extend` | N | flag `--extend=N` (positive integer); sets `lineage_mode=completed-continue` on a completed run; refused with fan-out | none | N |
 | `extend_minutes` | N | flag `--extend-minutes=M` (positive integer), valid only with `--extend` | the prior `maxDurationMinutes` | N |
-| `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default; the setup-only binding `max_iterations_source` names which (`flag`, `marker`, `setup`, `matrix` or `default`) and is never written to the config. Under `--depth-mode=expansive` a `default` budget is resized after the seed step to `min(24, max(7, 2·c·(S + maxDepth − 1)))`, with S the depth-1 nodes the seed admitted and c the four canonical dimensions plus any custom name, each counted once, and kept at `7` when S is 0; any other source is kept as given | `7` | N |
+| `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default; the setup-only binding `max_iterations_source` names which (`flag`, `marker`, `setup`, `matrix` or `default`) and is never written to the config. Under `--depth-mode=expansive` a `default` budget is resized after the seed step to `min(24, max(7, 2·c·(S + maxDepth − 1)))`, with S the depth-1 nodes the seed admitted and c the four canonical dimensions plus any custom name, each counted once, and kept at `7` when S is 0. That is the single-executor budget: a fan-out lineage with no matrix `iterations` value is sized from its own seed share with c fixed at four, 24 once it is dealt a node and its loop default of 12 native or 7 CLI when it is dealt none; any other source is kept as given | `7` | N |
 | `convergenceThreshold` | Y | flag `--convergence`, marker `convergenceThreshold`, or default | `0.10` | N |
 | `convergence_mode` | Y | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default | `default` | N |
 | `depth_mode` | Y | flag `--depth-mode=default|expansive`, marker `depth_mode`, or default `default` | `default` | N |
@@ -340,6 +340,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      All: correctness, security, traceability, maintainability
      Or specify a subset (e.g., "correctness, security")
      Or add custom names after them (e.g., "correctness, performance"); a custom dimension is reviewed after the canonical four
+     A subset or a custom name applies to a single-executor run only; a fan-out run reviews all four in every lineage
 
    Q1. Spec Folder (required):
      A) Use existing [suggest if found]

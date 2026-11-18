@@ -7,14 +7,14 @@ trigger_phrases:
   - "extend completed research run"
   - "run_extended"
   - "--extend-minutes"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Completed-run extension (--extend)
 
 ## 1. OVERVIEW
 
-`--extend=N` reopens a completed research run in the same session and generation and adds `N` iterations. The run keeps its `sessionId` and generation, records one `run_extended` ledger event, and keeps the prior synthesis as `research/synthesis-v{generation}-r{continuedFromRun}.md`. `--extend-minutes=M` adds minutes to the duration budget of the same extension.
+`--extend=N` reopens a completed research run in the same session and generation and adds `N` iterations. The run keeps its `sessionId` and generation, records one `run_extended` ledger event, and keeps the prior synthesis as `research/synthesis-v{generation}-r{continuedFromRun}.md`. `--extend-minutes=M` sets the same extension's duration budget to the later of the prior budget and the minutes already elapsed since `createdAt`, plus M.
 
 ---
 
@@ -30,7 +30,7 @@ The iteration cap rises by `N` over the prior count. `--extend-minutes=M` is val
 
 ### Stop Interaction
 
-Under `stopPolicy: convergence`, an extension with nothing new can stop again at once on `all_questions_answered`. Pass `--convergence-mode=off`, use `stopPolicy: max-iterations`, or add questions to `research/inbox.jsonl`.
+Under `stopPolicy: convergence`, an extension with nothing new can stop again at once on `all_questions_answered`. The extension keeps the stop policy and convergence mode the run was created with, and a flag passed beside `--extend` does not change them. Add questions to `research/inbox.jsonl` before you extend, or create a run you mean to extend with `--convergence-mode=off` or `stopPolicy: max-iterations`.
 
 ### Ledger And Reducer Routing
 

@@ -6,14 +6,14 @@ trigger_phrases:
   - "expansive depth review"
   - "review frontier mode"
   - "review frontier-nodes"
-version: 1.0.9.0
+version: 1.0.10.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
 
 ## 1. OVERVIEW
 
-`--depth-mode` takes `default` or `expansive`. A review without the flag is unchanged. `expansive` seeds depth-one sub-target nodes from the review target before iteration 1, admits leaf `frontier_proposal` rows under the same caps as research, keeps node status in `review/frontier-nodes.jsonl`, and holds open nodes as `searchDebt`. This page describes the shipped code and its tests.
+`--depth-mode` takes `default` or `expansive`. A review without the flag is unchanged. `expansive` seeds depth-one sub-target nodes from the review target before iteration 1, admits leaf `frontier_proposal` rows under the research caps with two differences, a root-children cap of at least 8 against research's 6 and a relevance check that prunes a proposal scoped outside a file-list review target, keeps node status in `review/frontier-nodes.jsonl`, and holds open nodes as `searchDebt`. This page describes the shipped code and its tests.
 
 ---
 
@@ -21,11 +21,11 @@ version: 1.0.9.0
 
 ### Seeding And Admission
 
-The expansive run seeds depth-one sub-target nodes from the review target before iteration 1. Leaf `frontier_proposal` rows are admitted under relevance, dedupe, depth, fan-out, budget and cycle checks, in that order. Merge commits are pruned as `merge-no-own-diff`, and index rebuilds are pruned as `generated-artifact`.
+The expansive run seeds depth-one sub-target nodes from the review target before iteration 1. Leaf `frontier_proposal` rows are admitted under relevance, dedupe, depth, fan-out, budget and cycle checks, in that order. On a commit-range target, the seed prunes a merge commit with no diff of its own as `merge-no-own-diff` and a generated index rebuild as `generated-artifact`.
 
 ### Dimension Coverage
 
-The active node's next uncovered dimension is dispatched, apart from the last iteration under the cap while a core traceability protocol is unfinished, which reviews `traceability`. A node needs one iteration per dimension in its universe, the four canonical dimensions plus any custom name. Each depth band starts from its `budgetSplit` share of `--max-iterations` (0.5, 0.35 and 0.15), plus any share an earlier band left unspent once that band holds no open node, so fund the depth-1 band with at least `2 * ceil(nodes / lineages) * dimensions`. The run-wide `maxFrontierNodes` cap defaults to half of `maxIterations`, and every seed that is not pruned counts toward it. When `--max-iterations` is left at its default, the run sizes its budget from the seed: `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D the four canonical dimensions plus each custom name the config's `reviewDimensions` list adds, each counted once, and the seed step prints the derived budget. Since D is never below four, the ceiling of 24 binds from the first seed, so one run cannot fund every node at every depth of a wide review; split a wide review with fan-out, where each lineage sizes its own budget from its share of the seed. A lineage dealt no seed node, or a run whose seeds were all pruned, runs at its loop default instead: 12 iterations for a native lineage and 7 for a CLI one or a single run. The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker or fan-out matrix `iterations` value always wins, even below the derived value, and the seed warns when it leaves no room past depth 1. At about seven to eight minutes an iteration, a 24-iteration review can reach `maxDurationMinutes` (120) before its iteration cap.
+The active node's next uncovered dimension is dispatched, apart from the last iteration under the cap while a core traceability protocol is unfinished, which reviews `traceability`. A node needs one iteration per dimension in its universe, the four canonical dimensions plus any custom name. Each depth band starts from its `budgetSplit` share of `--max-iterations` (0.5, 0.35 and 0.15), plus any share an earlier band left unspent once that band holds no open node, so fund the depth-1 band with at least `2 * ceil(nodes / lineages) * dimensions`. The run-wide `maxFrontierNodes` cap defaults to half of `maxIterations`, and every seed that is not pruned counts toward it. When `--max-iterations` is left at its default, the run sizes its budget from the seed: `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D the four canonical dimensions plus each custom name the config's `reviewDimensions` list adds, each counted once, and the seed step prints the derived budget. Since D is never below four, the ceiling of 24 binds from the first seed, so one run cannot fund every node at every depth of a wide review; split a wide review with fan-out, where each lineage with no matrix `iterations` value sizes its own budget from its share of the seed, with D fixed at the canonical four because a lineage reviews only those. A lineage dealt no seed node, or a run whose seeds were all pruned, runs at its loop default instead: 12 iterations for a native lineage and 7 for a CLI one or a single run. The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value, and the seed warns when it leaves no room past depth 1. At about seven to eight minutes an iteration, a 24-iteration review can reach `maxDurationMinutes` (120) before its iteration cap.
 
 ### Stop Behavior
 

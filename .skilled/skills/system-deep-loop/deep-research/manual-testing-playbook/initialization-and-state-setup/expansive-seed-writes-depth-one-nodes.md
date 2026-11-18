@@ -1,7 +1,7 @@
 ---
 title: "DR-069 -- Expansive seed writes depth-one nodes before iteration one"
 description: "This scenario validates that the expansive seed step runs before the fan-out spawn and after config creation, and that a repeated seed does not decompose the topic a second time, for `DR-069`."
-version: 1.16.3.0
+version: 1.16.4.0
 ---
 
 # DR-069 -- Expansive seed writes depth-one nodes before iteration one
@@ -67,7 +67,7 @@ Command 1 prints four lines in file order. The first `step_frontier_seed` line c
 
 ### Failure Triage
 
-- The seed step sits after the spawn: check the root workflow order, because a fan-out lineage skips `phase_init` and would start with no nodes.
+- The seed step sits after the spawn: check the root workflow order, because the fan-out parent jumps from `step_fanout_spawn` to `phase_synthesis` without reaching `phase_init`, and each lineage skips its own seed step, so the lineages would start with no nodes.
 - The single-executor seed is missing: check the `phase_init` copy, which must follow `step_create_config`.
 - A repeated seed adds nodes: check the already-seeded guard in the admission helper.
 

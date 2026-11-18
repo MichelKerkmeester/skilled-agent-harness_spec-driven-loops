@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "7ac9cf72fea2a6ea0feb733d07b9441a5f5b779dbb7bd22e4a147ac6bb552760",
+      "sha256": "86d1a8f8564a71d3a6249de3e6618651507374150776d1e4d1dc40858f3fac65",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "d2724dcbf5c8927b7c0fa73133941e4e8c8fd2313edac798285cf0e97451b904",
+      "sha256": "4ef0df43bc5c564dd47f1fc78864830c6641615bcbde3761fb43d4a8010e3556",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research.yaml",
-      "sha256": "ebf43168dad7874c5581437e15eef4d575fe0a3a6c464dad063f2db230f29ffc",
+      "sha256": "1ed04335bb78197e94720c66e2cc011569aa1aa5abc83c5c4aa3e5dac3823260",
       "section": "full"
     },
     {
@@ -37,12 +37,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "5ba07c13c09dddeb480c2d6fb58aeb5db71c69dd2b916f475f9e5750b75e5419",
+      "sha256": "86eec42c5c9301caa1de3f76a634000f5668244fc6e028b217dca5ae8d52fd47",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "4ef93677d01d4567e64d56e7da697557e761379604880a5da5d11f312c76a6f1",
+      "sha256": "8508769b437729b4719aff01e64167cfd46155168d9bee7222a593cacd254ba0",
       "section": "full"
     },
     {
@@ -52,12 +52,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
-      "sha256": "07516d15fd90d2f011d035fe0f2d81e326b7e774c58396cf852966de5985957c",
+      "sha256": "ec5e471e7bcc4b28a0ff18a16face5c5ed4f6ad3cb9248dc516bf3cf362835a3",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
-      "sha256": "7726669377f9ae9df68e3c1c503f93346efe5cde6e08369780f8a01daecea749",
+      "sha256": "26bc58f00a063c58ae2fdaba0e4859d12e961e75e267bc91706ca343db9e65ee",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "3ec7bce1285b3bba0d531895f841b3fa71ae81842c0ff662acd9b62079d993aa"
+  "compiledBodyDigest": "693dc3c89708ae0ebc1e63eb2409232875ec76eb9e385acf3db65c85639718c6"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -191,7 +191,7 @@ PRE-BOUND SETUP ANSWERS:
   frontier_scope: none  # internal, written by fan-out for an expansive lineage: comma-separated frontier node ids, or none
   lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
   extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
-  extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the duration budget, default the prior budget
+  extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the later of the prior budget and the minutes elapsed, default the prior budget
   executor: native  # native | cli-codex | cli-claude-code | cli-opencode | cli-cursor | cli-devin | cli-pi | cli-deepseek-harness | cli-mistral-vibe, the last one fan-out only (`EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`)
   executor_model: ""  # optional executor-specific model id (cli-opencode e.g. llmgateway/glm-5.3-flash, minimax-coding-plan/MiniMax-M2.7-highspeed)
   executor_config_dir: ""  # optional, cli-claude-code only; maps to CLAUDE_CONFIG_DIR

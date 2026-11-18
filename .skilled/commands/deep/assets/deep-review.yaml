@@ -51,13 +51,13 @@ mode_overrides:
 user_inputs:
   review_target: "[REVIEW_TARGET] - What to review. REQUIRED."
   review_target_type: "[spec-folder|skill|agent|track|files] - Target type for scope derivation. REQUIRED."
-  review_dimensions: "[all|correctness,security,traceability,maintainability|custom names] - Dimensions to check. The four canonical dimensions are correctness, security, traceability and maintainability; any other name is a custom dimension, reviewed after the canonical four in configured order. Default: all."
+  review_dimensions: "[all|correctness,security,traceability,maintainability|custom names] - Dimensions to check. The four canonical dimensions are correctness, security, traceability and maintainability; any other name is a custom dimension, reviewed after the canonical four in configured order. A single-executor run applies the list; a fan-out run binds all in every lineage, so a subset or a custom name is not applied there. Default: all."
   review_focus: "[optional free text] - Operator review focus that every iteration covers in addition to its dimension. Default: empty, which leaves the prompt unchanged."
   spec_folder: "[SPEC_FOLDER] - Spec folder path for state files. REQUIRED."
   session_id: "[SESSION_ID] - Optional caller-supplied session id for fan-out lineages. Default: timestamp."
   lineage_mode: "[auto|resume|restart|completed-continue] - Session lifecycle intent. Default: auto. The runtime persists lineage events for `resume` (same sessionId, no archive), `restart` (new sessionId, generation+1, prior review/ archived) and `completed-continue` (from --extend=N: a completed run extended in place by N iterations, same sessionId and generation). `fork` is not accepted. See deep-review/references/protocol/loop-protocol.md §Lifecycle Branches."
   extend: "[EXTEND] - Positive integer N from --extend=N. Sets lineage_mode to completed-continue and adds N iterations to a completed run. Default: unset."
-  extend_minutes: "[EXTEND_MINUTES] - Positive integer M from --extend-minutes=M, the minutes added to the duration budget on an extension. Only valid with --extend. Default: unset, which adds the prior maxDurationMinutes."
+  extend_minutes: "[EXTEND_MINUTES] - Positive integer M from --extend-minutes=M, the minutes an extension adds to the later of the prior maxDurationMinutes and the minutes already elapsed since createdAt. Only valid with --extend. Default: unset, which adds the prior maxDurationMinutes, and a run with no duration budget keeps none."
   max_iterations: 7
   max_iterations_source: "[default|flag|marker|setup|matrix] - Where max_iterations came from: default when no --max-iterations flag, maxIterations marker, setup answer or single-lineage matrix iterations value set it. A setup binding only, never written to the config. Default: default."
   convergence_threshold: 0.10
@@ -336,7 +336,8 @@ workflow:
       {"question": "what to review in it", "scope": "<paths inside the review
       target>", "evidence": "<path or commit that grounds it>"}. Then run the
       command. frontier-admit.cjs writes the node store, and fanout-run.cjs
-      writes each lineage's starting store before it spawns; never write that
+      writes the starting store of each lineage it deals a node to before it
+      spawns; never write that
       file by hand, and never queue or hand-expand the admitted nodes
       yourself.
     command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --target review --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json"'
@@ -916,7 +917,8 @@ workflow:
           {"question": "what to review in it", "scope": "<paths inside the
           review target>", "evidence": "<path or commit that grounds it>"}. Then
           run the command. frontier-admit.cjs writes the node store, and
-          fanout-run.cjs writes each lineage's starting store before it spawns;
+          fanout-run.cjs writes the starting store of each lineage it deals a
+          node to before it spawns;
           never write that file by hand, and never queue or hand-expand
           the admitted nodes yourself.
         command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --target review --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json" --max-iterations-source "{max_iterations_source}"'

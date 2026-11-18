@@ -48,7 +48,7 @@ PRE-BOUND SETUP ANSWERS:
   frontier_scope: none  # internal, written by fan-out for an expansive lineage: comma-separated frontier node ids, or none
   lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
   extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
-  extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the duration budget, default the prior budget
+  extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the later of the prior budget and the minutes elapsed, default the prior budget
   executor: native  # native | cli-codex | cli-claude-code | cli-opencode | cli-cursor | cli-devin | cli-pi | cli-deepseek-harness | cli-mistral-vibe, the last one fan-out only (`EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`)
   executor_model: ""  # optional executor-specific model id (cli-opencode e.g. llmgateway/glm-5.3-flash, minimax-coding-plan/MiniMax-M2.7-highspeed)
   executor_config_dir: ""  # optional, cli-claude-code only; maps to CLAUDE_CONFIG_DIR

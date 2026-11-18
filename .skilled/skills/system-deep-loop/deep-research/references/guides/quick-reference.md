@@ -10,7 +10,7 @@ trigger_phrases:
   - "research progress visualization"
 importance_tier: normal
 contextType: general
-version: 1.14.9.0
+version: 1.14.10.0
 ---
 
 # Deep Research Quick Reference
@@ -104,7 +104,7 @@ Operator contract source of truth for this page:
 | Output | `research/research.md` | Markdown | Workflow-owned progressive synthesis output |
 | Frontier | `research/frontier-nodes.jsonl` | JSONL | Expansive node store (only under `--depth-mode=expansive`) |
 
-> **Live lifecycle branches:** `new`, `resume`, `restart`, and `completed-continue` through `--extend=N`, with `--extend-minutes=M` for the minutes added to the duration budget.
+> **Live lifecycle branches:** `new`, `resume`, `restart`, and `completed-continue` through `--extend=N`, with `--extend-minutes=M` for the minutes added to the later of the prior duration budget and the time already elapsed.
 > `fork` is deferred and not runtime-wired. `progressiveSynthesis` defaults to `true`, so `research/research.md` is updated during the loop and finalized at synthesis.
 
 > **Path contract:** root-spec runs write directly to `{spec_folder}/research/`; child-phase and sub-phase first runs use the local `{spec_folder}/research/` directory directly, with `{ownerSlug}-pt-NN` allocated only when prior non-matching content already exists.

@@ -1,7 +1,7 @@
 ---
 title: "DRV-070 -- Completed-run extension with --extend"
 description: "This scenario validates `--extend=N` on a completed deep-review run for `DRV-070`. It focuses on same-session continuation, the `run_extended` ledger event and the review report snapshot taken before re-synthesis."
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # DRV-070 -- Completed-run extension with --extend
@@ -26,7 +26,7 @@ Operators run this as a real orchestrator-led check against a completed fixture 
 
 - Objective: Verify that `--extend=3` on a completed review run adds exactly three iterations in the same session and generation, records one `run_extended` event, and snapshots the prior review report.
 - Real user request: The review finished at its iteration cap, and one dimension still has open questions. Give the same review three more iterations.
-- Prompt: `Extend the completed deep-review run in the fixture spec folder by three iterations with --extend=3 --convergence-mode=off, so the converged run cannot re-stop at once, then confirm the original session identifier, the single run_extended event and the review report snapshot.`
+- Prompt: `Extend the completed deep-review run in the fixture spec folder, a run created with --convergence-mode=off so the extension keeps that mode and cannot re-stop at once, by three iterations with --extend=3, then confirm the original session identifier, the single run_extended event and the review report snapshot.`
 - Expected execution process: Read the completed fixture config under `{artifact_dir}`, run the review command with `--extend=3` against that spec folder, then read the state log, the config and the snapshot after the run finishes.
 - Expected signals: Exactly one `run_extended` event appears, projected as one `extended` row in `deep-review-state.jsonl`. The config keeps the original `sessionId` and generation 1, `maxIterations` equals the prior iteration count plus 3, and the lineage mode is `completed-continue`. No `resumed` row is written for the extension. A file matching `review-report-v*-r*.md` holds the prior report, and exactly three new iteration files are written under `iterations/`.
 - Desired user-visible outcome: The user is told the review was extended by three iterations, that the same session continues, and where the prior report was kept.
@@ -38,14 +38,14 @@ Operators run this as a real orchestrator-led check against a completed fixture 
 
 ### Prompt
 
-- Prompt: `Extend the completed deep-review run in the fixture spec folder by three iterations with --extend=3 --convergence-mode=off, so the converged run cannot re-stop at once, then confirm the original session identifier, the single run_extended event and the review report snapshot.`
+- Prompt: `Extend the completed deep-review run in the fixture spec folder, a run created with --convergence-mode=off so the extension keeps that mode and cannot re-stop at once, by three iterations with --extend=3, then confirm the original session identifier, the single run_extended event and the review report snapshot.`
 
 ### Commands
 
 1. `rg -n -- '--extend' .skilled/commands/deep/review.md .skilled/commands/deep/assets/deep-review.yaml`
 2. `rg -n 'run_extended' .skilled/skills/system-deep-loop/runtime/lib`
 3. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run append-mode-event-legacy-seam.vitest workflow-restart-lifecycle.vitest`
-4. `/deep:review "<fixture target>" :auto --spec-folder=<completed-fixture-spec-folder> --extend=3 --convergence-mode=off`
+4. `/deep:review "<fixture target>" :auto --spec-folder=<completed-fixture-spec-folder> --extend=3`
 5. `rg -c '"event":"extended"' <artifact_dir>/deep-review-state.jsonl` (the `run_extended` stem lives in the ledger, and the state log carries its projected `extended` row)
 6. `jq '{sessionId, generation, maxIterations, lineageMode}' <artifact_dir>/deep-review-config.json`
 7. `find <artifact_dir> -name 'review-report-v*-r*.md'`

@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.16.0
+version: 1.14.17.0
 ---
 
 # deep-research
@@ -133,7 +133,7 @@ While a node stays open, the frontier vetoes a soft convergence stop. The veto n
 
 When `--max-iterations` is left at its default, the run sizes its budget from the seed. The budget is `min(24, max(10, 2 × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes, 16 at the full six seeds. The seed step prints the derived budget. A native fan-out lineage uses 12 in place of 10, so one dealt no seed node runs 12 iterations.
 
-The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker or fan-out matrix `iterations` value always wins, even below the derived value. The seed warns when it leaves no room past depth 1.
+The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value. The seed warns when it leaves no room past depth 1.
 
 ### Stop Reasons
 
@@ -205,7 +205,7 @@ A: Each round writes `{spec_folder}/research/iterations/iteration-NNN.md` and a 
 
 **Q: What is the difference between resume and restart?**
 
-A: `resume` keeps the same `sessionId` and appends a `resumed` event. `restart` archives the current `research/` tree under `research_archive/`, mints a fresh `sessionId`, increments `generation` and appends a `restarted` event. `completed-continue` comes from `--extend=N`, with `--extend-minutes=M` for the minutes added to the duration budget. It reopens a completed run in the same session, raises the cap to the runs so far plus N, snapshots the prior synthesis and appends an `extended` event.
+A: `resume` keeps the same `sessionId` and appends a `resumed` event. `restart` archives the current `research/` tree under `research_archive/`, mints a fresh `sessionId`, increments `generation` and appends a `restarted` event. `completed-continue` comes from `--extend=N`, with `--extend-minutes=M` for the minutes added to the later of the prior duration budget and the time already elapsed. It reopens a completed run in the same session, raises the cap to the runs so far plus N, snapshots the prior synthesis and appends an `extended` event.
 `fork` is declared in the lifecycle vocabulary but not wired.
 
 **Q: Can I run each iteration through a CLI executor?**

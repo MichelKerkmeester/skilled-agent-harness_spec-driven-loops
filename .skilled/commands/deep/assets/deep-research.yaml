@@ -67,7 +67,7 @@ user_inputs:
   spec_folder: "[SPEC_FOLDER] - Spec folder path. REQUIRED."
   lineage_mode: "[auto|resume|restart|completed-continue] - Session lifecycle intent. Default: auto. `resume` keeps the same sessionId and archives nothing. `restart` opens a new sessionId at generation+1 and archives the prior research/ packet. `completed-continue` comes from --extend=N and extends a completed run in place by N iterations, same sessionId and generation."
   extend: "[EXTEND] - Positive integer N from --extend=N. Sets lineage_mode to completed-continue and adds N iterations to a completed run. Default: unset."
-  extend_minutes: "[EXTEND_MINUTES] - Positive integer M from --extend-minutes=M, the minutes added to the duration budget on an extension. Only valid with --extend. Default: unset, which adds the prior maxDurationMinutes."
+  extend_minutes: "[EXTEND_MINUTES] - Positive integer M from --extend-minutes=M, the minutes an extension adds to the later of the prior maxDurationMinutes and the minutes already elapsed since createdAt. Only valid with --extend. Default: unset, which adds the prior maxDurationMinutes, and a run with no duration budget keeps none."
   max_iterations: "[MAX_ITERATIONS] - Maximum loop iterations. Default: 10."
   max_iterations_source: "[default|flag|marker|setup|matrix] - Where max_iterations came from: default when no --max-iterations flag, maxIterations marker, setup answer or single-lineage matrix iterations value set it. A setup binding only, never written to the config. Default: default."
   convergence_threshold: "[CONVERGENCE_THRESHOLD] - Stop threshold. Default: 0.05."
@@ -354,8 +354,8 @@ workflow:
       one object per sub-question: {"question": "...", "scope": "<path, module or
       area>", "evidence": "<repo path or topic phrase that grounds it>"}. Then run
       the command. frontier-admit.cjs writes the node store and the
-      frontier inbox rows, and fanout-run.cjs writes each lineage's starting store
-      before it spawns; never write either file by hand.
+      frontier inbox rows, and fanout-run.cjs writes the starting store of each
+      lineage it deals a node to before it spawns; never write either file by hand.
     command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json"'
     working_directory: "{repo_root}"
     outputs:
@@ -764,8 +764,8 @@ workflow:
           one object per sub-question: {"question": "...", "scope": "<path, module or
           area>", "evidence": "<repo path or topic phrase that grounds it>"}. Then run
           the command. frontier-admit.cjs writes the node store and the
-          frontier inbox rows, and fanout-run.cjs writes each lineage's starting
-          store before it spawns; never write either file by hand.
+          frontier inbox rows, and fanout-run.cjs writes the starting store of
+          each lineage it deals a node to before it spawns; never write either file by hand.
         command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json" --max-iterations-source "{max_iterations_source}"'
         working_directory: "{repo_root}"
         outputs:

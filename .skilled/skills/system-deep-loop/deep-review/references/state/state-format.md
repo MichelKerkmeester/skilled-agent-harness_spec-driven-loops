@@ -9,7 +9,7 @@ trigger_phrases:
   - "review iteration file structure"
 importance_tier: important
 contextType: implementation
-version: 1.11.12.0
+version: 1.11.13.0
 ---
 
 # Deep Review State Format
@@ -152,7 +152,7 @@ Created during initialization. After that only the terminal `status: complete` f
 | fileProtection | object | -- | Mutability declarations (see protection levels below) |
 | reducer | object | -- | Canonical reducer inputs, outputs, and metrics names |
 | antiConvergence | object | `{ minIterations: 2, convergenceMode: "default", depthMode: "default", stopPolicy: "fail-closed" }` | Anti-convergence settings: the review iteration floor, the convergence mode and the depth mode |
-| expansiveDepth | object | `{ maxDepth: 3, maxChildrenPerNode: 6, budgetSplit: {depth1: 0.5, depth2: 0.35, depth3: 0.15}, maxFrontierNodes }` | Caps for `--depth-mode=expansive`; `maxFrontierNodes` defaults to half of `maxIterations` unless the config sets a number. Under a defaulted budget the seed step rewrites `maxIterations` itself to the budget derived from the seed and adds no other key |
+| expansiveDepth | object | `{ maxDepth: 3, maxChildrenPerNode: 6, budgetSplit: {depth1: 0.5, depth2: 0.35, depth3: 0.15}, maxFrontierNodes }` | Caps for `--depth-mode=expansive`; `maxFrontierNodes` defaults to half of `maxIterations` unless the config sets a number. Under a defaulted budget `step_frontier_budget` rewrites `maxIterations` itself to the budget derived from the seed and adds no other key |
 
 ### File Protection Levels
 
@@ -299,7 +299,7 @@ When JSONL parses cleanly, `corruptionWarnings: []`.
 
 ### Frontier Node Store (expansive depth only)
 
-`review/frontier-nodes.jsonl` is the node-status store for a run started with `--depth-mode=expansive`; a default run never creates it. Rows are append-only and carry `{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey}`, plus an optional `budget` on an admitted row whose proposal named one. The last row per `nodeId` wins, so a status change is one more row rather than an edit, and `runtime/scripts/frontier-admit.cjs --target review` writes it for seed, admit and close. `runtime/scripts/fanout-run.cjs` writes each fan-out lineage's starting store before the lineage spawns.
+`review/frontier-nodes.jsonl` is the node-status store for a run started with `--depth-mode=expansive`; a default run never creates it. Rows are append-only and carry `{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey}`, plus an optional `budget` on an admitted row whose proposal named one. The last row per `nodeId` wins, so a status change is one more row rather than an edit, and `runtime/scripts/frontier-admit.cjs --target review` writes it for seed, admit and close. `runtime/scripts/fanout-run.cjs` writes the starting store of each fan-out lineage dealt at least one node before the lineage spawns, unless the lineage already has one; a lineage dealt no node gets no store.
 
 The reducer projects the store as `registry.frontier`: `nodes`, each with its `coveredDimensions`, `nextDimension` and `visits`; `stats`; `budget`; `activeNodeId`; and `activeNextDimension`. A node is `answered` once every dimension in its universe is covered for it. The universe always holds the four canonical dimensions, then each configured custom name, so a node in a run configured with a subset still needs all four. An iteration counts toward a node by its `frontierNodeId`, by the `Frontier node <id>` focus marker anywhere in the focus, or by the store's `active` row for that iteration.
 

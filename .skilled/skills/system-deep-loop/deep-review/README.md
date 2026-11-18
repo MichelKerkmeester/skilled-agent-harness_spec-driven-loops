@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.22.0
+version: 1.11.23.0
 ---
 
 # deep-review
@@ -42,7 +42,7 @@ This skill splits the audit by dimension and puts the stop decision on a weighte
 
 ### The Review Dimensions
 
-The four canonical dimensions are configured by default. Every configured dimension is required for coverage, so the loop can stop clean only after each one has been audited. A custom dimension you configure, such as `performance`, is reviewed after the canonical four. Correctness and security are the two the mode contract marks as required for severity coverage.
+The four canonical dimensions are configured by default. Every configured dimension is required for coverage, so the loop can stop clean only after each one has been audited. A custom dimension you configure, such as `performance`, is reviewed after the canonical four. A subset or a custom dimension applies to a single-executor run only: a fan-out run binds `all` in every lineage, so each lineage reviews the canonical four. Correctness and security are the two the mode contract marks as required for severity coverage.
 
 | Dimension | What the skill audits |
 |---|---|
@@ -139,7 +139,7 @@ The packet lives under `{spec_folder}/review/`. A root-spec target writes there 
 | `iterations/iteration-NNN.md` | One write-once file per iteration |
 | `frontier-nodes.jsonl` | Node store an expansive run keeps, absent on a default run |
 
-The lineage block carries `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun` and `releaseReadinessState`. A first run is mode `new`. `resume` continues the same lineage without changing generation. `restart` opens a new generation and archives the prior packet. `completed-continue` is set by `--extend=N`, which reopens a completed run in the same session and generation and records `continuedFromRun`. `--extend-minutes=M` sets the minutes the extension adds to the duration budget.
+The lineage block carries `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun` and `releaseReadinessState`. A first run is mode `new`. `resume` continues the same lineage without changing generation. `restart` opens a new generation and archives the prior packet. `completed-continue` is set by `--extend=N`, which reopens a completed run in the same session and generation and records `continuedFromRun`. `--extend-minutes=M` sets the minutes the extension adds to the later of the prior duration budget and the time already elapsed.
 `fork` is reserved and deferred, so the runtime neither emits nor accepts it. `releaseReadinessState` starts at `in-progress`. It moves to `release-blocking` while any unresolved P0 remains. It moves to `converged` when the run stops converged with a PASS or CONDITIONAL verdict.
 
 ### Convergence and the Stop Gates
@@ -164,9 +164,9 @@ The frontier veto never outranks the iteration cap, consecutive failures, stuck 
 
 The caps are `maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget split and `maxFrontierNodes`, which defaults to half of `maxIterations`. When `--max-iterations` is left at its default, the run sizes its budget from the seed. The budget is `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D the four canonical dimensions plus each custom name the config's `reviewDimensions` list adds, each counted once. The seed step prints the derived budget.
 
-Since D is never below four, the ceiling of 24 binds from the first seed. One run then cannot fund every node at every depth of a wide review. Split a wide review with fan-out, where each lineage sizes its own budget from its share of the seed. A lineage dealt no seed node, or a run whose seeds were all pruned, runs at its loop default instead. That is 12 iterations for a native lineage and 7 for a CLI one or a single run.
+Since D is never below four, the ceiling of 24 binds from the first seed. One run then cannot fund every node at every depth of a wide review. Split a wide review with fan-out, where each lineage with no matrix `iterations` value sizes its own budget from its share of the seed, with D fixed at the canonical four because a lineage reviews only those. A lineage dealt no seed node, or a run whose seeds were all pruned, runs at its loop default instead. That is 12 iterations for a native lineage and 7 for a CLI one or a single run.
 
-The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker or fan-out matrix `iterations` value always wins, even below the derived value. The seed warns when it leaves no room past depth 1. At about seven to eight minutes an iteration, a 24-iteration review can reach `maxDurationMinutes` (120) before its iteration cap.
+The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value. The seed warns when it leaves no room past depth 1. At about seven to eight minutes an iteration, a 24-iteration review can reach `maxDurationMinutes` (120) before its iteration cap.
 
 ### Fan-out and Merged Verdicts
 

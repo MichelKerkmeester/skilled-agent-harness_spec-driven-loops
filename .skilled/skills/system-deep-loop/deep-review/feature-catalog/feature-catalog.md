@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-review review-loop system."
-version: 1.11.7.0
+version: 1.11.8.0
 ---
 
 # deep-review: Feature Catalog
@@ -201,11 +201,11 @@ See [`loop-lifecycle/completed-run-extension.md`](loop-lifecycle/completed-run-e
 
 #### Description
 
-A review run with a configured minIterations floor returns CONTINUE with minIterationsNotReached until its iteration count reaches the floor, so no stop candidate ends a review before the floor. The iteration cap and the halt after three consecutive failed iterations are checked first and can still stop it earlier.
+A review run with a configured minIterations floor turns a stop candidate into CONTINUE with minIterationsNotReached until its iteration count reaches the floor, so no stop candidate ends a review before the floor. The iteration cap and the halt after three consecutive failed iterations are checked first and can still stop it earlier.
 
 #### How It Works
 
-`convergence.cjs` returns `CONTINUE` with `minIterationsNotReached` below the floor, and the command's fixed stop order checks the floor before the gates. The shipped default is 2.
+`convergence.cjs` returns `CONTINUE` with `minIterationsNotReached` when a stop candidate forms below the floor, and the command's fixed stop order checks the floor before the gates. The shipped default is 2.
 
 #### Source Files
 
@@ -437,7 +437,7 @@ A review run accepts configured custom dimensions after the four canonical ones,
 
 #### How It Works
 
-Custom names are ordered after the four canonical dimensions, judged by their own name and not required for severity coverage.
+Custom names are ordered after the four canonical dimensions, judged by their own name and not required for severity coverage. They apply to a single-executor run only, since a fan-out run binds `review_dimensions: all` in every lineage.
 
 #### Source Files
 

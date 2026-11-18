@@ -1,7 +1,7 @@
 ---
 title: "DR-073 -- Fan-out deals seeded frontier nodes round-robin"
 description: "This scenario validates that a fan-out run under the expansive mode deals the seeded depth-one nodes round-robin across its lineages, writes each lineage store before spawn and fails the merge guard when a partitioned node is missing, for `DR-073`."
-version: 1.16.2.0
+version: 1.16.3.0
 ---
 
 # DR-073 -- Fan-out deals seeded frontier nodes round-robin
@@ -24,7 +24,7 @@ Each lineage works only the nodes it holds. A node that no lineage receives is n
 
 Operators run the exact commands below and confirm the partition, the store write before spawn, the merge guard and the default path.
 
-- Objective: Confirm that the depth-one nodes are dealt round-robin, that each lineage store exists before its lineage spawns, that the merge guard fails on a missing partitioned node and that a default run writes no lineage store.
+- Objective: Confirm that the depth-one nodes are dealt round-robin, that each lineage dealt at least one node has its store before it spawns, that the merge guard fails on a missing partitioned node and that a default run writes no lineage store.
 - Real user request: Split this research across three lineages, and tell me whether every seeded sub-question reached one of them.
 - Prompt: `Check that a fan-out research run under expansive depth mode deals the seeded depth-one nodes round-robin across its lineages, writes each lineage store before spawn, and fails the merge guard when a partitioned node is missing. Return a PASS or FAIL verdict with the reason.`
 - Expected execution process: Run the partition, store-before-spawn, default-path and merge-guard cases by file stem, then read the partition helpers in the fan-out runner.

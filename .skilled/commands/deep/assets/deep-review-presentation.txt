@@ -32,13 +32,13 @@ The dispatched prompt body may contain one structured marker block. Parse it bef
 PRE-BOUND SETUP ANSWERS:
   review_target: <spec-folder>
   review_target_type: spec-folder  # one of: spec-folder | skill | agent | track | files
-  review_dimensions: all  # or comma-separated list: any of correctness, security, traceability, maintainability, plus custom names that follow them
+  review_dimensions: all  # or comma-separated list: any of correctness, security, traceability, maintainability, plus custom names that follow them; a fan-out run reviews all four in every lineage
   review_focus: ""  # optional free text every iteration covers in addition to its dimension
   spec_folder: existing  # one of: existing | new | update-related | phase-folder, or an explicit specs/.opencode/specs path
   execution_mode: AUTONOMOUS  # from :auto suffix
  lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
  extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
- extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the duration budget, default the prior budget
+ extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the later of the prior budget and the minutes elapsed, default the prior budget
   maxIterations: 7
   convergenceThreshold: 0.10
   convergence_mode: default  # default | off | sliding-window | divergent
@@ -69,14 +69,14 @@ Rules:
 |-------|----------|--------------|---------|------------------|
 | `review_target` | Y | `$ARGUMENTS` first positional target, or marker `review_target` | none | N |
 | `review_target_type` | Y | marker `review_target_type`, or auto-detect from `review_target` | inferred only | Y, when target is present but ambiguous |
-| `review_dimensions` | Y | marker `review_dimensions`, the dimensions answer, or default | `"all"` | N |
+| `review_dimensions` | Y | marker `review_dimensions`, the dimensions answer, or default. A fan-out run binds `all` in every lineage, so a subset or a custom name applies only to a single-executor run | `"all"` | N |
 | `review_focus` | N | flag `--review-focus="TEXT"`, marker `review_focus`, or default. Control characters and whitespace runs collapse to one space, an empty result is absent, and more than 1000 characters fails setup | empty (dimensions only) | N |
 | `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, `scope-extract` → a target/scope path that resolves to an existing spec folder (auto-bound, per `auto_mode_contract` §1 source 3), or target path when target is a spec folder | none | Y, when target is not a spec folder |
 | `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
 | `lineage_mode` | Y | flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default | `auto` | N |
 | `extend` | N | flag `--extend=N` (positive integer); sets `lineage_mode=completed-continue` on a completed run; refused with fan-out | none | N |
 | `extend_minutes` | N | flag `--extend-minutes=M` (positive integer), valid only with `--extend` | the prior `maxDurationMinutes` | N |
-| `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default; the setup-only binding `max_iterations_source` names which (`flag`, `marker`, `setup`, `matrix` or `default`) and is never written to the config. Under `--depth-mode=expansive` a `default` budget is resized after the seed step to `min(24, max(7, 2·c·(S + maxDepth − 1)))`, with S the depth-1 nodes the seed admitted and c the four canonical dimensions plus any custom name, each counted once, and kept at `7` when S is 0; any other source is kept as given | `7` | N |
+| `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default; the setup-only binding `max_iterations_source` names which (`flag`, `marker`, `setup`, `matrix` or `default`) and is never written to the config. Under `--depth-mode=expansive` a `default` budget is resized after the seed step to `min(24, max(7, 2·c·(S + maxDepth − 1)))`, with S the depth-1 nodes the seed admitted and c the four canonical dimensions plus any custom name, each counted once, and kept at `7` when S is 0. That is the single-executor budget: a fan-out lineage with no matrix `iterations` value is sized from its own seed share with c fixed at four, 24 once it is dealt a node and its loop default of 12 native or 7 CLI when it is dealt none; any other source is kept as given | `7` | N |
 | `convergenceThreshold` | Y | flag `--convergence`, marker `convergenceThreshold`, or default | `0.10` | N |
 | `convergence_mode` | Y | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default | `default` | N |
 | `depth_mode` | Y | flag `--depth-mode=default|expansive`, marker `depth_mode`, or default `default` | `default` | N |
@@ -195,6 +195,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      All: correctness, security, traceability, maintainability
      Or specify a subset (e.g., "correctness, security")
      Or add custom names after them (e.g., "correctness, performance"); a custom dimension is reviewed after the canonical four
+     A subset or a custom name applies to a single-executor run only; a fan-out run reviews all four in every lineage
 
    Q1. Spec Folder (required):
      A) Use existing [suggest if found]
