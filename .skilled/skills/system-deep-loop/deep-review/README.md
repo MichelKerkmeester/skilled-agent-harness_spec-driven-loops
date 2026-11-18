@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.20.0
+version: 1.11.21.0
 ---
 
 # deep-review
@@ -156,7 +156,7 @@ The weighted score has to reach `compositeStopScore`, which defaults to 0.60, be
 
 Any new P0 forces another iteration. The override sets `newFindingsRatio` to at least 0.50, so a fresh blocker cannot be averaged away. The shipped config adds `antiConvergence.minIterations` of 2 and a `stopPolicy` of `fail-closed`, and the runtime capability loader rejects a missing or permissive stop policy. The floor holds a review run at `CONTINUE` with reason `minIterationsNotReached` until its iteration count reaches `minIterations`, even when every dimension is clean.
 
-`--depth-mode=expansive` is the one stop-path change that grows work instead of ending it. A seed step writes the depth-1 sub-target nodes before iteration 1. The active node's next uncovered dimension steers each iteration.
+`--depth-mode=expansive` changes the stop path so that a run grows its work instead of ending it. A seed step writes the depth-1 sub-target nodes before iteration 1. The active node's next uncovered dimension steers each iteration.
 
 An admission step runs before the reducer. It applies six checks in order: relevance, dedupe, depth, fan-out, budget and cycle. The first failure prunes the proposal. Node status lives in `review/frontier-nodes.jsonl`, which no default run creates. An open node is filed as open search debt, so the run spends the iteration that node still needs.
 
