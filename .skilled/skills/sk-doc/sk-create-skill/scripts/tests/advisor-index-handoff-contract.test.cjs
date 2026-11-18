@@ -17,9 +17,9 @@ const test = require('node:test');
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..', '..');
 const HANDOFF_DOC = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'references', 'shared', 'advisor-index-handoff.md');
 
-const STANDALONE_AUTO = path.join(REPO_ROOT, '.skilled', 'commands', 'create', 'assets', 'create-skill-auto.yaml');
-const STANDALONE_CONFIRM = path.join(REPO_ROOT, '.skilled', 'commands', 'create', 'assets', 'create-skill-confirm.yaml');
-const STANDALONE_PRESENTATION = path.join(REPO_ROOT, '.skilled', 'commands', 'create', 'assets', 'create-skill-presentation.txt');
+const STANDALONE_AUTO = path.join(REPO_ROOT, '.skilled', 'commands', 'create', 'assets', 'create-sk-skill-auto.yaml');
+const STANDALONE_CONFIRM = path.join(REPO_ROOT, '.skilled', 'commands', 'create', 'assets', 'create-sk-skill-confirm.yaml');
+const STANDALONE_PRESENTATION = path.join(REPO_ROOT, '.skilled', 'commands', 'create', 'assets', 'create-sk-skill-presentation.txt');
 
 const PARENT_AUTO = path.join(REPO_ROOT, '.skilled', 'commands', 'create', 'assets', 'create-skill-parent-auto.yaml');
 const PARENT_CONFIRM = path.join(REPO_ROOT, '.skilled', 'commands', 'create', 'assets', 'create-skill-parent-confirm.yaml');

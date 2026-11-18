@@ -32,7 +32,7 @@ STATUS=FAIL ERROR="Markdown agent required"
 
 ## 2. Auto Setup Resolution
 
-For `:auto`, resolve setup using the system auto-mode contract, then load `create-skill-auto.yaml` only when every required field is available.
+For `:auto`, resolve setup using the system auto-mode contract, then load `create-sk-skill-auto.yaml` only when every required field is available.
 
 Pre-bound setup schema:
 

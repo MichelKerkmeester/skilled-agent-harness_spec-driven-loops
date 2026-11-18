@@ -43,18 +43,18 @@ CLASSIFICATION_STATES = [
 ACTION_TOKENS = ["create", "migrate", "unchanged"]
 ACTION_LINE = "ROUTER.md: create|migrate|unchanged"
 
-STANDALONE_AUTO_YAML = ASSET_ROOT / "create-skill-auto.yaml"
-STANDALONE_CONFIRM_YAML = ASSET_ROOT / "create-skill-confirm.yaml"
+STANDALONE_AUTO_YAML = ASSET_ROOT / "create-sk-skill-auto.yaml"
+STANDALONE_CONFIRM_YAML = ASSET_ROOT / "create-sk-skill-confirm.yaml"
 
 # The moved canon surfaces that state the routing shape: the four create
 # workflows, the presentation summary, and the reference docs. A stale
 # packet-prohibition phrase here would teach the old rule back to authors.
 CANON_SURFACES = [
-    ASSET_ROOT / "create-skill-auto.yaml",
-    ASSET_ROOT / "create-skill-confirm.yaml",
+    ASSET_ROOT / "create-sk-skill-auto.yaml",
+    ASSET_ROOT / "create-sk-skill-confirm.yaml",
     ASSET_ROOT / "create-skill-parent-auto.yaml",
     ASSET_ROOT / "create-skill-parent-confirm.yaml",
-    ASSET_ROOT / "create-skill-presentation.txt",
+    ASSET_ROOT / "create-sk-skill-presentation.txt",
     REPO_ROOT / ".skilled/skills/sk-doc/sk-create-skill/references/shared/validation-and-packaging.md",
     REPO_ROOT / ".skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md",
     REPO_ROOT / ".skilled/skills/sk-doc/sk-create-skill/references/shared/common-pitfalls.md",

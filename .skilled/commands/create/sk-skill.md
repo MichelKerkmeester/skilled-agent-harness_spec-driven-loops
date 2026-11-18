@@ -21,9 +21,9 @@ Route /create:sk-skill to its presentation contract and workflow YAML for creati
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation contract | `.skilled/commands/create/assets/create-skill-presentation.txt` |
-| Auto workflow | `.skilled/commands/create/assets/create-skill-auto.yaml` |
-| Confirm workflow | `.skilled/commands/create/assets/create-skill-confirm.yaml` |
+| Presentation contract | `.skilled/commands/create/assets/create-sk-skill-presentation.txt` |
+| Auto workflow | `.skilled/commands/create/assets/create-sk-skill-auto.yaml` |
+| Confirm workflow | `.skilled/commands/create/assets/create-sk-skill-confirm.yaml` |
 
 ---
 
@@ -32,7 +32,7 @@ Route /create:sk-skill to its presentation contract and workflow YAML for creati
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
 
-1. Read `.skilled/commands/create/assets/create-skill-presentation.txt`.
+1. Read `.skilled/commands/create/assets/create-sk-skill-presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Resolve operation from setup: `full-create`, `full-update`, `reference-only`, or `asset-only`.
 4. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
@@ -46,14 +46,14 @@ Route /create:sk-skill to its presentation contract and workflow YAML for creati
 
 | Mode | Target |
 |------|--------|
-| `:auto` | `.skilled/commands/create/assets/create-skill-auto.yaml` |
-| `:confirm` or omitted mode | `.skilled/commands/create/assets/create-skill-confirm.yaml` |
+| `:auto` | `.skilled/commands/create/assets/create-sk-skill-auto.yaml` |
+| `:confirm` or omitted mode | `.skilled/commands/create/assets/create-sk-skill-confirm.yaml` |
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.skilled/commands/create/assets/create-skill-presentation.txt`:
+The following content lives only in `.skilled/commands/create/assets/create-sk-skill-presentation.txt`:
 
 - Startup questions, Phase 0 verification, setup dashboard, operation display, status display, completion template, and next-step text.
 
@@ -63,7 +63,7 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 ## 6. WORKFLOW SUMMARY
 
-The bound workflow YAML (`create-skill-auto.yaml` for `:auto`, `create-skill-confirm.yaml` for `:confirm` or an omitted mode) runs the unified skill workflow step by step after Phase 0 verification and setup resolution, then routes to the resolved `full-create`, `full-update`, `reference-only`, or `asset-only` operation branch to create or update OpenCode skills.
+The bound workflow YAML (`create-sk-skill-auto.yaml` for `:auto`, `create-sk-skill-confirm.yaml` for `:confirm` or an omitted mode) runs the unified skill workflow step by step after Phase 0 verification and setup resolution, then routes to the resolved `full-create`, `full-update`, `reference-only`, or `asset-only` operation branch to create or update OpenCode skills.
 `:auto` executes autonomously.
 `:confirm` runs the same steps as an interactive checkpointed workflow.
 All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.

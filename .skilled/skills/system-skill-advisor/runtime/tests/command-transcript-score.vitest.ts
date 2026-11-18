@@ -1316,13 +1316,13 @@ describe('followedBeforeWrite', () => {
     expect(followedBeforeWrite(events, '/create:readme')).toBe(false);
   });
 
-  // The command was renamed and the confirm workflow it ships kept the asset name it
-  // had before, so a late read of that asset still fails the run.
+  // The command was renamed and its confirm workflow took the new name with it, so a
+  // late read of that asset still fails the run.
   it('fails a late confirm read for the renamed skill command', () => {
     const events = [
       { seq: 0, kind: 'read', path: '.skilled/commands/create/sk-skill.md', command: null, text: null },
       { seq: 1, kind: 'write', path: 'x.md', command: null, text: null },
-      { seq: 2, kind: 'read', path: '.skilled/commands/create/assets/create-skill-confirm.yaml', command: null, text: null },
+      { seq: 2, kind: 'read', path: '.skilled/commands/create/assets/create-sk-skill-confirm.yaml', command: null, text: null },
     ];
 
     expect(followedBeforeWrite(events, '/create:sk-skill')).toBe(false);

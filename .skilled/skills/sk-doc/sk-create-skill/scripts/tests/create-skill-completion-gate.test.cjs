@@ -16,8 +16,8 @@ const test = require('node:test');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..', '..');
 
-const STANDALONE_AUTO = path.join(REPO_ROOT, '.skilled', 'commands', 'create', 'assets', 'create-skill-auto.yaml');
-const STANDALONE_CONFIRM = path.join(REPO_ROOT, '.skilled', 'commands', 'create', 'assets', 'create-skill-confirm.yaml');
+const STANDALONE_AUTO = path.join(REPO_ROOT, '.skilled', 'commands', 'create', 'assets', 'create-sk-skill-auto.yaml');
+const STANDALONE_CONFIRM = path.join(REPO_ROOT, '.skilled', 'commands', 'create', 'assets', 'create-sk-skill-confirm.yaml');
 
 const WORKFLOWS = [STANDALONE_AUTO, STANDALONE_CONFIRM];
 

@@ -30,7 +30,7 @@
       {
         "order": 3,
         "skill": "create-skill",
-        "resource": ".skilled/commands/create/assets/create-skill-presentation.txt",
+        "resource": ".skilled/commands/create/assets/create-sk-skill-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ],
