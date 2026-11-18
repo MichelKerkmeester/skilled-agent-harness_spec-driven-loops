@@ -2473,13 +2473,16 @@ function buildFrontierProjection(frontierInput, keyedQuestions) {
 // all count visits the same way.
 const FRONTIER_FAILED_STATUSES = new Set(['error', 'failed', 'failure', 'timeout']);
 
-function frontierNodeVisits(nodeId, iterationRecords) {
+function frontierNodeVisitRecords(nodeId, iterationRecords) {
   const escaped = String(nodeId).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const marker = new RegExp(`(?:^|[^\\w-])Frontier node ${escaped}(?![\\w-])`);
   return (Array.isArray(iterationRecords) ? iterationRecords : [])
     .filter((record) => !FRONTIER_FAILED_STATUSES.has(String(record?.status || '').toLowerCase()))
-    .filter((record) => typeof record?.focus === 'string' && marker.test(record.focus))
-    .length;
+    .filter((record) => typeof record?.focus === 'string' && marker.test(record.focus));
+}
+
+function frontierNodeVisits(nodeId, iterationRecords) {
+  return frontierNodeVisitRecords(nodeId, iterationRecords).length;
 }
 
 function pickFrontierFocus(frontier, iterationRecords) {
@@ -2504,7 +2507,8 @@ function pickFrontierFocus(frontier, iterationRecords) {
 // exhausted with reason budget, so the run stops waiting on work it cannot fund.
 // An open node whose question an iteration already answered is marked answered
 // first: the budget closes only work still outstanding, and an answered node
-// never holds its band open against the roll-down.
+// never holds its band open against the roll-down. A budget close exists only in
+// this projection, so it is dated from the band's last counted visit.
 function applyFrontierBudget(nodes, iterationRecords, maxIterations, budgetSplit, answeredNodeIds = new Set()) {
   const split = budgetSplit && typeof budgetSplit === 'object' ? budgetSplit : {};
   const shares = [
@@ -2515,9 +2519,15 @@ function applyFrontierBudget(nodes, iterationRecords, maxIterations, budgetSplit
   const cap = Number.isFinite(maxIterations) && maxIterations > 0 ? maxIterations : 10;
   const bandOf = (depth) => (depth <= 1 ? 0 : depth === 2 ? 1 : 2);
   const spent = [0, 0, 0];
+  const lastVisit = [null, null, null];
   for (const node of nodes) {
-    const visits = frontierNodeVisits(node.nodeId, iterationRecords);
-    spent[bandOf(node.depth)] += visits;
+    const visits = frontierNodeVisitRecords(node.nodeId, iterationRecords);
+    const band = bandOf(node.depth);
+    spent[band] += visits.length;
+    for (const record of visits) {
+      const run = readIterationNumber(record);
+      if (run !== null && (lastVisit[band] === null || run > lastVisit[band])) lastVisit[band] = run;
+    }
   }
   let result = nodes.map((node) => ((node.status === 'open' || node.status === 'active') && answeredNodeIds.has(node.nodeId)
     ? { ...node, status: 'answered', reason: null }
@@ -2528,7 +2538,7 @@ function applyFrontierBudget(nodes, iterationRecords, maxIterations, budgetSplit
     const allotted = cap * shares[band] + carry;
     if (spent[band] >= allotted) {
       result = result.map((node) => (bandOf(node.depth) === band && (node.status === 'open' || node.status === 'active')
-        ? { ...node, status: 'exhausted', reason: 'budget' }
+        ? { ...node, status: 'exhausted', reason: 'budget', closedAtIteration: lastVisit[band] }
         : node));
     }
     const bandOpen = result.some((node) => bandOf(node.depth) === band && (node.status === 'open' || node.status === 'active'));
@@ -2681,7 +2691,8 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
       ...(conflictId ? { conflictId } : {}),
       addedAtIteration: injectedAtIteration,
       resolvedAtIteration: resolved
-        ? readIterationNumber(resolutionRecord) ?? (frontierClose ? normalizeQuestionIteration(frontierClose.iteration) : 0)
+        ? readIterationNumber(resolutionRecord)
+          ?? (frontierClose ? normalizeQuestionIteration(frontierClose.closedAtIteration ?? frontierClose.iteration) : 0)
         : null,
       ...(frontierClose ? { frontierStatus: frontierClose.status } : {}),
       resolved,

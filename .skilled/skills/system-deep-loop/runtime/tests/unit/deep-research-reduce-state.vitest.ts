@@ -2148,6 +2148,9 @@ describe('deep-research reduce-state expansive frontier', () => {
       .toEqual(['F-1-001:answered:null', 'F-2-002:answered:null', 'F-2-003:exhausted:budget']);
     const closed = keyQuestionsOf(registry).find((entry) => entry.text === limits);
     expect(closed?.frontierStatus).toBe('exhausted');
+    // The close lives only in the projection, so it dates from the band's last
+    // counted visit, not from the iteration the node was admitted at.
+    expect(closed?.resolvedAtIteration).toBe(9);
     expect(registry.openQuestions?.some((question) => question.text === limits)).toBe(false);
   });
 
