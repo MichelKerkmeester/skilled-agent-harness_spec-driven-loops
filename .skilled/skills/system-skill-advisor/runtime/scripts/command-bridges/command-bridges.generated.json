@@ -16,14 +16,14 @@
       "ownerMode": "sk-create-agent",
       "description": "Create a new Skilled agent with frontmatter, tool permissions, behavioral rules. Modes :auto, :confirm.",
       "ownedSignals": [
-        "create an OpenCode agent",
+        "create a Skilled agent",
         "define agent permissions",
         "write an agent persona"
       ],
       "standalone": false,
       "mutating": "mutates",
       "source": ".skilled/skills/sk-doc/command-metadata.json",
-      "embeddingText": "I want to create an OpenCode agent with explicit permissions and behavioral rules. create an OpenCode agent. define agent permissions. write an agent persona",
+      "embeddingText": "I want to create a Skilled agent with explicit permissions and behavioral rules. create a Skilled agent. define agent permissions. write an agent persona",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -337,7 +337,7 @@
       "ownerMode": "sk-create-skill",
       "description": "Create or update Skilled skills via one unified command with operation routing. :auto/:confirm.",
       "ownedSignals": [
-        "create an OpenCode skill",
+        "create a Skilled skill",
         "scaffold a skill package",
         "update a skill definition"
       ],

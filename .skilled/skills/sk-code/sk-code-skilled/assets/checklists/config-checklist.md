@@ -2,7 +2,7 @@
 title: Config File Quality Checklist
 description: Quality validation checklist for JSON and JSONC configuration files in the OpenCode development environment.
 trigger_phrases:
-  - "opencode config checklist"
+  - "skilled config checklist"
   - "json config validation checklist"
   - "jsonc quality checks"
   - "config file quality checklist"

@@ -2,7 +2,7 @@
 title: Rust Quick Reference
 description: Copy-paste boundary templates, naming conventions, deterministic recipes, and Cargo commands for Rust development in OpenCode.
 trigger_phrases:
-  - "opencode rust quick reference"
+  - "skilled rust quick reference"
   - "rust boundary module template"
   - "napi-rs wasm template"
   - "rust determinism recipes"

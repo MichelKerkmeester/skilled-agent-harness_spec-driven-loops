@@ -2,7 +2,7 @@
 title: Config Quick Reference
 description: Fast lookup for JSON/JSONC configuration patterns and common structures in OpenCode.
 trigger_phrases:
-  - "opencode config quick reference"
+  - "skilled config quick reference"
   - "jsonc file template"
   - "config naming conventions"
   - "json section headers"

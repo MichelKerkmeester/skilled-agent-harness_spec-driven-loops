@@ -2,7 +2,7 @@
 title: Rust Quality Standards
 description: Ownership, safety, interop, error handling, async patterns, Cargo baseline, and byte-for-byte TypeScript parity standards for Rust in the OpenCode development environment.
 trigger_phrases:
-  - "opencode rust quality standards"
+  - "skilled rust quality standards"
   - "owned vs borrowed rust decision"
   - "rust safety and interop policies"
   - "cargo verification baseline"

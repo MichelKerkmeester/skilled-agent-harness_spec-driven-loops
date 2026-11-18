@@ -2,7 +2,7 @@
 title: Universal Patterns - Cross-Language Code Standards
 description: Patterns applicable to ALL languages in OpenCode system code including naming principles, commenting philosophy, and reference comment patterns.
 trigger_phrases:
-  - "opencode universal patterns"
+  - "skilled universal patterns"
   - "cross language naming principles"
   - "commenting philosophy why"
   - "reference comment patterns"

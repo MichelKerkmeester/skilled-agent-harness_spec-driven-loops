@@ -2,7 +2,7 @@
 title: JavaScript Quality Standards
 description: Module organization, error handling, documentation, and security patterns for JavaScript files.
 trigger_phrases:
-  - "opencode javascript quality standards"
+  - "skilled javascript quality standards"
   - "javascript module organization"
   - "commonjs export pattern"
   - "javascript error handling standards"

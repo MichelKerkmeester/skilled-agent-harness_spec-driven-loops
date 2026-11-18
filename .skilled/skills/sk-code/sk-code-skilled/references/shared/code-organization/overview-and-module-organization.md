@@ -2,7 +2,7 @@
 title: Code Organization - File Structure and Module Principles
 description: File structure principles, module organization concepts, and import ordering standards for OpenCode system code.
 trigger_phrases:
-  - "opencode code organization"
+  - "skilled code organization"
   - "file structure principles"
   - "module organization standards"
   - "import ordering rules"

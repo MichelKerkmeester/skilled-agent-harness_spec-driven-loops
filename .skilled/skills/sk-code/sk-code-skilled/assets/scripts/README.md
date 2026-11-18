@@ -4,7 +4,7 @@ description: "Code-facing README for .skilled/skills/sk-code/sk-code-skilled/ass
 trigger_phrases:
   - "sk-code assets/scripts"
   - "code readme"
-  - "opencode script maintenance"
+  - "skilled script maintenance"
 importance_tier: normal
 contextType: implementation
 version: 1.0.7.0

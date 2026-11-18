@@ -2,7 +2,7 @@
 title: Directory & Test File Conventions
 description: Where skill, server and script files sit, how test files are named and placed, and where a test may write temporary files.
 trigger_phrases:
-  - "directory conventions opencode"
+  - "directory conventions skilled"
   - "test file conventions"
   - "mcp server structure"
   - "script directory structure"

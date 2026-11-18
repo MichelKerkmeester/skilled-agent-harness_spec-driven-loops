@@ -23,7 +23,7 @@ expected_resources:
   - references/rust/quick-reference/collections-imports-and-errors.md
   - references/rust/quick-reference/rustdoc-and-cargo.md
   - references/rust/quick-reference/determinism-parity-and-related.md
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # OC-009: Rust standards routing
@@ -51,12 +51,12 @@ resource set without contradictory evidence.
 
 - Objective: confirm the exact prompt routes to surface `SKILLED`, intent `RUST`, and every path in
   `expected_resources`.
-- Real user request: `For an OpenCode Rust napi-rs or WASM module, apply the Rust standards and TypeScript parity contracts before I implement a feature.`
-- Prompt: `For an OpenCode Rust napi-rs or WASM module, apply the Rust standards and TypeScript parity contracts before I implement a feature.`
+- Real user request: `For a Skilled Rust napi-rs or WASM module, apply the Rust standards and TypeScript parity contracts before I implement a feature.`
+- Prompt: `For a Skilled Rust napi-rs or WASM module, apply the Rust standards and TypeScript parity contracts before I implement a feature.`
 
 **Exact prompt**:
 ```text
-For an OpenCode Rust napi-rs or WASM module, apply the Rust standards and TypeScript parity contracts before I implement a feature.
+For a Skilled Rust napi-rs or WASM module, apply the Rust standards and TypeScript parity contracts before I implement a feature.
 ```
 
 - Expected execution process: the hub detects `SKILLED` (work under `.skilled/`), the `RUST`
@@ -75,7 +75,7 @@ For an OpenCode Rust napi-rs or WASM module, apply the Rust standards and TypeSc
 
 ### Prompt
 
-- Prompt: `For an OpenCode Rust napi-rs or WASM module, apply the Rust standards and TypeScript parity contracts before I implement a feature.`
+- Prompt: `For a Skilled Rust napi-rs or WASM module, apply the Rust standards and TypeScript parity contracts before I implement a feature.`
 
 ### Commands
 

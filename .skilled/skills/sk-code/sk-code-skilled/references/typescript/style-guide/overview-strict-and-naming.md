@@ -2,7 +2,7 @@
 title: TypeScript Style Guide
 description: Formatting standards and naming conventions for TypeScript files in the OpenCode development environment.
 trigger_phrases:
-  - "opencode typescript style guide"
+  - "skilled typescript style guide"
   - "typescript file header format"
   - "typescript formatting standards"
   - "typescript strict mode style"

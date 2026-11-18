@@ -3,7 +3,7 @@ title: Skill Authoring Checklist
 description: Checklist for authoring or modifying Skilled skills with correct metadata, parent-hub files, resources, and validation.
 trigger_phrases:
   - "skill authoring checklist"
-  - "opencode skill metadata"
+  - "skilled skill metadata"
   - "skill resource layout"
   - "skill validation path"
 importance_tier: normal

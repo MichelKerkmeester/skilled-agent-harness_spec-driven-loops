@@ -2,7 +2,7 @@
 title: JavaScript Quick Reference
 description: Copy-paste templates, naming cheat sheet, and common patterns for JavaScript development.
 trigger_phrases:
-  - "opencode javascript quick reference"
+  - "skilled javascript quick reference"
   - "javascript file template"
   - "javascript naming cheat sheet"
   - "jsdoc template pattern"

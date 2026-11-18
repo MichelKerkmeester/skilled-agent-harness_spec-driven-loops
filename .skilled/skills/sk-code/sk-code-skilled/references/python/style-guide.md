@@ -2,7 +2,7 @@
 title: Python Style Guide
 description: Coding conventions and formatting standards for Python scripts in the OpenCode development environment.
 trigger_phrases:
-  - "opencode python style guide"
+  - "skilled python style guide"
   - "python formatting standards"
   - "python shebang header"
   - "python naming conventions"

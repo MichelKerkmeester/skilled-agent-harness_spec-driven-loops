@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5151bc5cae15af00a4d98b9ecb8dc905e52cb8d3d6bc2b0069cf17d6361761fd",
+  "manifestHash": "46e647418e9af58201eadb42b6750ad8de6ba180b58129ba8d19273750145fab",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -64312,7 +64312,7 @@
     "directory allowlist not for modes": [
       9621
     ],
-    "directory conventions opencode": [
+    "directory conventions skilled": [
       1468
     ],
     "directory overlay upstream moved after rebase": [
@@ -103702,12 +103702,6 @@
     "opencode agent slug selection": [
       502
     ],
-    "opencode agent template": [
-      1805
-    ],
-    "opencode alignment checks": [
-      1467
-    ],
     "opencode anchor bypass": [
       18002
     ],
@@ -103762,12 +103756,6 @@
     "opencode cli reference": [
       503
     ],
-    "opencode code organization": [
-      1470
-    ],
-    "opencode command scaffold": [
-      1890
-    ],
     "opencode compat link shape": [
       18572
     ],
@@ -103785,18 +103773,6 @@
     ],
     "opencode completion sentinel": [
       82
-    ],
-    "opencode config checklist": [
-      1384
-    ],
-    "opencode config quality standards": [
-      1440
-    ],
-    "opencode config quick reference": [
-      1441
-    ],
-    "opencode config style guide": [
-      1442
     ],
     "opencode context budget": [
       504
@@ -103900,9 +103876,6 @@
     "opencode dual version remediation list": [
       4454
     ],
-    "opencode export patterns": [
-      1469
-    ],
     "opencode full runtime dispatch": [
       508
     ],
@@ -104005,18 +103978,6 @@
     ],
     "opencode integration patterns": [
       507
-    ],
-    "opencode javascript checklist": [
-      1385
-    ],
-    "opencode javascript quality standards": [
-      1443
-    ],
-    "opencode javascript quick reference": [
-      1445
-    ],
-    "opencode javascript style guide": [
-      1446
     ],
     "opencode json registration comment stale": [
       15367
@@ -104257,18 +104218,6 @@
     "opencode providers and models": [
       510
     ],
-    "opencode python checklist": [
-      1390
-    ],
-    "opencode python quality standards": [
-      1447
-    ],
-    "opencode python quick reference": [
-      1448
-    ],
-    "opencode python style guide": [
-      1449
-    ],
     "opencode quality plugin": [
       133
     ],
@@ -104305,24 +104254,6 @@
     "opencode runtime scenario validation": [
       15816
     ],
-    "opencode rust checklist": [
-      1391
-    ],
-    "opencode rust quality standards": [
-      1454
-    ],
-    "opencode rust quick reference": [
-      1458
-    ],
-    "opencode rust style guide": [
-      1465
-    ],
-    "opencode script maintenance": [
-      1399
-    ],
-    "opencode security patterns": [
-      1473
-    ],
     "opencode self invocation guard": [
       507,
       511
@@ -104341,26 +104272,11 @@
     "opencode share flag discontinued": [
       4500
     ],
-    "opencode shell checklist": [
-      1395
-    ],
-    "opencode shell quality standards": [
-      1475
-    ],
-    "opencode shell quick reference": [
-      1478
-    ],
-    "opencode shell style guide": [
-      1479
-    ],
     "opencode side by side": [
       506
     ],
     "opencode side by side install": [
       4681
-    ],
-    "opencode skill metadata": [
-      1396
     ],
     "opencode skill singular typo": [
       13436,
@@ -104444,23 +104360,8 @@
     "opencode tui worker plugin2": [
       14870
     ],
-    "opencode typescript checklist": [
-      1397
-    ],
-    "opencode typescript quality standards": [
-      1481
-    ],
-    "opencode typescript quick reference": [
-      1485
-    ],
-    "opencode typescript style guide": [
-      1487
-    ],
     "opencode unique capabilities": [
       508
-    ],
-    "opencode universal patterns": [
-      1472
     ],
     "opencode upgrade major": [
       506
@@ -104517,9 +104418,6 @@
       503,
       510
     ],
-    "opencode verification reality": [
-      1474
-    ],
     "opencode version detection": [
       506
     ],
@@ -104540,9 +104438,6 @@
     ],
     "opencode worker wrote into the main checkout": [
       4685
-    ],
-    "opencode workflow guardrails": [
-      1474
     ],
     "opencode worktree confinement": [
       501,
@@ -145121,14 +145016,38 @@
     "skill vector refresh": [
       12391
     ],
+    "skilled agent template": [
+      1805
+    ],
+    "skilled alignment checks": [
+      1467
+    ],
     "skilled canary smoke plan": [
       18620
     ],
     "skilled changelog": [
       0
     ],
+    "skilled code organization": [
+      1470
+    ],
+    "skilled command scaffold": [
+      1890
+    ],
     "skilled commitid": [
       5786
+    ],
+    "skilled config checklist": [
+      1384
+    ],
+    "skilled config quality standards": [
+      1440
+    ],
+    "skilled config quick reference": [
+      1441
+    ],
+    "skilled config style guide": [
+      1442
     ],
     "skilled contract components goal": [
       18588
@@ -145162,6 +145081,9 @@
     ],
     "skilled doctor commands": [
       2890
+    ],
+    "skilled export patterns": [
+      1469
     ],
     "skilled framework release notes": [
       9943
@@ -145205,6 +145127,18 @@
     ],
     "skilled integration commands get their own skill": [
       2894
+    ],
+    "skilled javascript checklist": [
+      1385
+    ],
+    "skilled javascript quality standards": [
+      1443
+    ],
+    "skilled javascript quick reference": [
+      1445
+    ],
+    "skilled javascript style guide": [
+      1446
     ],
     "skilled layout options": [
       18578
@@ -145391,6 +145325,18 @@
     "skilled push tasks": [
       18622
     ],
+    "skilled python checklist": [
+      1390
+    ],
+    "skilled python quality standards": [
+      1447
+    ],
+    "skilled python quick reference": [
+      1448
+    ],
+    "skilled python style guide": [
+      1449
+    ],
     "skilled reference map": [
       18567
     ],
@@ -145475,10 +145421,43 @@
     "skilled root discovery": [
       18591
     ],
+    "skilled rust checklist": [
+      1391
+    ],
+    "skilled rust quality standards": [
+      1454
+    ],
+    "skilled rust quick reference": [
+      1458
+    ],
+    "skilled rust style guide": [
+      1465
+    ],
+    "skilled script maintenance": [
+      1399
+    ],
+    "skilled security patterns": [
+      1473
+    ],
     "skilled setup guide": [
       61,
       2896,
       12798
+    ],
+    "skilled shell checklist": [
+      1395
+    ],
+    "skilled shell quality standards": [
+      1475
+    ],
+    "skilled shell quick reference": [
+      1478
+    ],
+    "skilled shell style guide": [
+      1479
+    ],
+    "skilled skill metadata": [
+      1396
     ],
     "skilled skills sk code sk code quality repository quality json": [
       1335
@@ -145509,6 +145488,21 @@
     ],
     "skilled trustrepochecks": [
       1231
+    ],
+    "skilled typescript checklist": [
+      1397
+    ],
+    "skilled typescript quality standards": [
+      1481
+    ],
+    "skilled typescript quick reference": [
+      1485
+    ],
+    "skilled typescript style guide": [
+      1487
+    ],
+    "skilled universal patterns": [
+      1472
     ],
     "skilled v1 0 0 0": [
       1
@@ -145705,8 +145699,14 @@
     "skilled verification plan": [
       18620
     ],
+    "skilled verification reality": [
+      1474
+    ],
     "skilled verification tasks": [
       18622
+    ],
+    "skilled workflow guardrails": [
+      1474
     ],
     "skillmd references assets cleanup phase": [
       16725

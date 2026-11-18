@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5151bc5cae15af00a4d98b9ecb8dc905e52cb8d3d6bc2b0069cf17d6361761fd",
+  "manifestHash": "46e647418e9af58201eadb42b6750ad8de6ba180b58129ba8d19273750145fab",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -42067,8 +42067,8 @@
     "directory allowlist not for modes": [
       "directory allowlist not for modes"
     ],
-    "directory conventions opencode": [
-      "directory conventions opencode"
+    "directory conventions skilled": [
+      "directory conventions skilled"
     ],
     "directory overlay upstream moved after rebase": [
       "directory overlay upstream-moved after rebase"
@@ -78336,12 +78336,6 @@
     "opencode agent slug selection": [
       "opencode agent slug selection"
     ],
-    "opencode agent template": [
-      "opencode agent template"
-    ],
-    "opencode alignment checks": [
-      "opencode alignment checks"
-    ],
     "opencode anchor bypass": [
       "opencode anchor bypass"
     ],
@@ -78396,12 +78390,6 @@
     "opencode cli reference": [
       "opencode cli reference"
     ],
-    "opencode code organization": [
-      "opencode code organization"
-    ],
-    "opencode command scaffold": [
-      "opencode command scaffold"
-    ],
     "opencode compat link shape": [
       "opencode compat link shape"
     ],
@@ -78419,18 +78407,6 @@
     ],
     "opencode completion sentinel": [
       "opencode completion sentinel"
-    ],
-    "opencode config checklist": [
-      "opencode config checklist"
-    ],
-    "opencode config quality standards": [
-      "opencode config quality standards"
-    ],
-    "opencode config quick reference": [
-      "opencode config quick reference"
-    ],
-    "opencode config style guide": [
-      "opencode config style guide"
     ],
     "opencode context budget": [
       "opencode context budget"
@@ -78534,9 +78510,6 @@
     "opencode dual version remediation list": [
       "opencode dual version remediation list"
     ],
-    "opencode export patterns": [
-      "opencode export patterns"
-    ],
     "opencode full runtime dispatch": [
       "opencode full runtime dispatch"
     ],
@@ -78636,18 +78609,6 @@
     ],
     "opencode integration patterns": [
       "opencode integration patterns"
-    ],
-    "opencode javascript checklist": [
-      "opencode javascript checklist"
-    ],
-    "opencode javascript quality standards": [
-      "opencode javascript quality standards"
-    ],
-    "opencode javascript quick reference": [
-      "opencode javascript quick reference"
-    ],
-    "opencode javascript style guide": [
-      "opencode javascript style guide"
     ],
     "opencode json registration comment stale": [
       "opencode.json registration comment stale"
@@ -78880,18 +78841,6 @@
     "opencode providers and models": [
       "opencode providers and models"
     ],
-    "opencode python checklist": [
-      "opencode python checklist"
-    ],
-    "opencode python quality standards": [
-      "opencode python quality standards"
-    ],
-    "opencode python quick reference": [
-      "opencode python quick reference"
-    ],
-    "opencode python style guide": [
-      "opencode python style guide"
-    ],
     "opencode quality plugin": [
       "opencode quality plugin"
     ],
@@ -78928,24 +78877,6 @@
     "opencode runtime scenario validation": [
       "opencode runtime scenario validation"
     ],
-    "opencode rust checklist": [
-      "opencode rust checklist"
-    ],
-    "opencode rust quality standards": [
-      "opencode rust quality standards"
-    ],
-    "opencode rust quick reference": [
-      "opencode rust quick reference"
-    ],
-    "opencode rust style guide": [
-      "opencode rust style guide"
-    ],
-    "opencode script maintenance": [
-      "opencode script maintenance"
-    ],
-    "opencode security patterns": [
-      "opencode security patterns"
-    ],
     "opencode self invocation guard": [
       "opencode self-invocation guard"
     ],
@@ -78962,26 +78893,11 @@
     "opencode share flag discontinued": [
       "opencode share flag discontinued"
     ],
-    "opencode shell checklist": [
-      "opencode shell checklist"
-    ],
-    "opencode shell quality standards": [
-      "opencode shell quality standards"
-    ],
-    "opencode shell quick reference": [
-      "opencode shell quick reference"
-    ],
-    "opencode shell style guide": [
-      "opencode shell style guide"
-    ],
     "opencode side by side": [
       "opencode side by side"
     ],
     "opencode side by side install": [
       "opencode side by side install"
-    ],
-    "opencode skill metadata": [
-      "opencode skill metadata"
     ],
     "opencode skill singular typo": [
       "opencode skill singular typo"
@@ -79061,23 +78977,8 @@
     "opencode tui worker plugin2": [
       "opencode tui worker plugin2"
     ],
-    "opencode typescript checklist": [
-      "opencode typescript checklist"
-    ],
-    "opencode typescript quality standards": [
-      "opencode typescript quality standards"
-    ],
-    "opencode typescript quick reference": [
-      "opencode typescript quick reference"
-    ],
-    "opencode typescript style guide": [
-      "opencode typescript style guide"
-    ],
     "opencode unique capabilities": [
       "opencode unique capabilities"
-    ],
-    "opencode universal patterns": [
-      "opencode universal patterns"
     ],
     "opencode upgrade major": [
       "opencode upgrade major"
@@ -79133,9 +79034,6 @@
     "opencode variant reasoning effort": [
       "opencode variant reasoning effort"
     ],
-    "opencode verification reality": [
-      "opencode verification reality"
-    ],
     "opencode version detection": [
       "opencode version detection"
     ],
@@ -79156,9 +79054,6 @@
     ],
     "opencode worker wrote into the main checkout": [
       "opencode worker wrote into the main checkout"
-    ],
-    "opencode workflow guardrails": [
-      "opencode workflow guardrails"
     ],
     "opencode worktree confinement": [
       "opencode worktree confinement"
@@ -117463,14 +117358,38 @@
     "skill vector refresh": [
       "skill vector refresh"
     ],
+    "skilled agent template": [
+      "skilled agent template"
+    ],
+    "skilled alignment checks": [
+      "skilled alignment checks"
+    ],
     "skilled canary smoke plan": [
       "skilled canary smoke plan"
     ],
     "skilled changelog": [
       "skilled changelog"
     ],
+    "skilled code organization": [
+      "skilled code organization"
+    ],
+    "skilled command scaffold": [
+      "skilled command scaffold"
+    ],
     "skilled commitid": [
       "skilled.commitId"
+    ],
+    "skilled config checklist": [
+      "skilled config checklist"
+    ],
+    "skilled config quality standards": [
+      "skilled config quality standards"
+    ],
+    "skilled config quick reference": [
+      "skilled config quick reference"
+    ],
+    "skilled config style guide": [
+      "skilled config style guide"
     ],
     "skilled contract components goal": [
       "skilled contract components goal"
@@ -117504,6 +117423,9 @@
     ],
     "skilled doctor commands": [
       "skilled doctor commands"
+    ],
+    "skilled export patterns": [
+      "skilled export patterns"
     ],
     "skilled framework release notes": [
       "skilled framework release notes"
@@ -117546,6 +117468,18 @@
     ],
     "skilled integration commands get their own skill": [
       "skilled integration commands get their own skill"
+    ],
+    "skilled javascript checklist": [
+      "skilled javascript checklist"
+    ],
+    "skilled javascript quality standards": [
+      "skilled javascript quality standards"
+    ],
+    "skilled javascript quick reference": [
+      "skilled javascript quick reference"
+    ],
+    "skilled javascript style guide": [
+      "skilled javascript style guide"
     ],
     "skilled layout options": [
       "skilled layout options"
@@ -117727,6 +117661,18 @@
     "skilled push tasks": [
       "skilled push tasks"
     ],
+    "skilled python checklist": [
+      "skilled python checklist"
+    ],
+    "skilled python quality standards": [
+      "skilled python quality standards"
+    ],
+    "skilled python quick reference": [
+      "skilled python quick reference"
+    ],
+    "skilled python style guide": [
+      "skilled python style guide"
+    ],
     "skilled reference map": [
       "skilled reference map"
     ],
@@ -117805,8 +117751,41 @@
     "skilled root discovery": [
       "skilled root discovery"
     ],
+    "skilled rust checklist": [
+      "skilled rust checklist"
+    ],
+    "skilled rust quality standards": [
+      "skilled rust quality standards"
+    ],
+    "skilled rust quick reference": [
+      "skilled rust quick reference"
+    ],
+    "skilled rust style guide": [
+      "skilled rust style guide"
+    ],
+    "skilled script maintenance": [
+      "skilled script maintenance"
+    ],
+    "skilled security patterns": [
+      "skilled security patterns"
+    ],
     "skilled setup guide": [
       "skilled setup guide"
+    ],
+    "skilled shell checklist": [
+      "skilled shell checklist"
+    ],
+    "skilled shell quality standards": [
+      "skilled shell quality standards"
+    ],
+    "skilled shell quick reference": [
+      "skilled shell quick reference"
+    ],
+    "skilled shell style guide": [
+      "skilled shell style guide"
+    ],
+    "skilled skill metadata": [
+      "skilled skill metadata"
     ],
     "skilled skills sk code sk code quality repository quality json": [
       ".skilled/skills/sk-code/sk-code-quality/repository/quality.json"
@@ -117837,6 +117816,21 @@
     ],
     "skilled trustrepochecks": [
       "skilled.trustRepoChecks"
+    ],
+    "skilled typescript checklist": [
+      "skilled typescript checklist"
+    ],
+    "skilled typescript quality standards": [
+      "skilled typescript quality standards"
+    ],
+    "skilled typescript quick reference": [
+      "skilled typescript quick reference"
+    ],
+    "skilled typescript style guide": [
+      "skilled typescript style guide"
+    ],
+    "skilled universal patterns": [
+      "skilled universal patterns"
     ],
     "skilled v1 0 0 0": [
       "skilled v1.0.0.0"
@@ -118033,8 +118027,14 @@
     "skilled verification plan": [
       "skilled verification plan"
     ],
+    "skilled verification reality": [
+      "skilled verification reality"
+    ],
     "skilled verification tasks": [
       "skilled verification tasks"
+    ],
+    "skilled workflow guardrails": [
+      "skilled workflow guardrails"
     ],
     "skillmd references assets cleanup phase": [
       "skillmd references assets cleanup phase"
