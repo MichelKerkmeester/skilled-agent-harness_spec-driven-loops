@@ -16,7 +16,7 @@ trigger_phrases:
 
 This folder contains the per-module unit test surface for the runtime. Each file isolates a runtime contract or compatibility boundary so failures identify the owning module before the integration suites are run.
 
-The table lists the runtime contracts that carry a written entry. It is not the complete direct-file inventory; list the folder for every test file. Test names are the public navigation surface for this folder.
+The table lists the runtime contracts that carry a written entry. It is not the complete direct-file inventory. List the folder for every test file. Test names are the public navigation surface for this folder.
 
 ---
 
