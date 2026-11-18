@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.14.0
+version: 1.14.15.0
 ---
 
 # deep-research
@@ -105,7 +105,7 @@ Every run keeps continuity under `{spec_folder}/research/`. A root spec writes t
 | `research.md` | Workflow | The canonical synthesis of the run |
 | `resource-map.md` | Workflow | The optional evidence-derived map of cited files |
 | `.deep-research-pause` | Operator | The pause sentinel checked before each dispatch |
-| `frontier-nodes.jsonl` | `frontier-admit.cjs` | The node store an expansive run keeps, absent on a default run |
+| `frontier-nodes.jsonl` | Frontier admission | The node store an expansive run keeps, absent on a default run |
 
 The workflow owns the config and the synthesis. The agent writes its iteration file and delta, plus any progressive synthesis contribution the config allows. The reducer owns the strategy sections and the registry. It redraws the dashboard. Because every artifact is on disk, a crashed run resumes from the packet files.
 
