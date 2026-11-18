@@ -2173,6 +2173,58 @@ describe('deep-research reduce-state expansive frontier', () => {
     expect(registry.openQuestions?.some((question) => question.text === limits)).toBe(false);
   });
 
+  // The workflow reduces with write every iteration, so a budget close must
+  // survive its own write-back instead of reading back as an answer.
+  function overspentDepthTwo(): { specFolder: string; limits: string } {
+    const specFolder = expansiveSpec();
+    const admission = 'Which module owns admission?';
+    const caps = 'Which caps does admission read?';
+    const limits = 'Which limits does admission skip?';
+    writeInbox(specFolder, [
+      { id: 'F-1-001', text: admission, source: 'frontier', origin: 'frontier', injectedAtIteration: 1 },
+      { id: 'F-2-002', text: caps, source: 'frontier', origin: 'frontier', injectedAtIteration: 1 },
+      { id: 'F-2-003', text: limits, source: 'frontier', origin: 'frontier', injectedAtIteration: 1 },
+    ]);
+    writeNodes(specFolder, [...twoOpen(), node('F-2-003', 2, 'F-1-001', limits)]);
+    writeState(specFolder, stateOf([
+      ...[1, 2, 3, 4].map((run) => iterationRow(run, visit('F-1-001', 1, admission))),
+      iterationRow(5, visit('F-1-001', 1, admission), [admission]),
+      ...[6, 7, 8].map((run) => iterationRow(run, visit('F-2-002', 2, caps))),
+      iterationRow(9, visit('F-2-002', 2, caps), [caps]),
+    ]));
+    return { specFolder, limits };
+  }
+
+  it('keeps a budget-closed node exhausted after the reduce writes it back', () => {
+    const { specFolder, limits } = overspentDepthTwo();
+
+    reduceResearchState(specFolder, { write: true });
+    const strategy = readFileSync(join(specFolder, 'research', 'deep-research-strategy.md'), 'utf8');
+    const answeredSection = strategy.split('<!-- ANCHOR:answered-questions -->')[1]?.split('<!-- /ANCHOR:answered-questions -->')[0] ?? '';
+    expect(answeredSection).not.toContain(limits);
+
+    const { registry } = reduceResearchState(specFolder, { write: false });
+    const frontier = frontierOf(registry);
+    expect(frontier.nodes.map((entry) => `${entry.nodeId}:${entry.status}:${entry.reason}`))
+      .toEqual(['F-1-001:answered:null', 'F-2-002:answered:null', 'F-2-003:exhausted:budget']);
+    expect(frontier.stats.exhausted).toBe(1);
+    expect(keyQuestionsOf(registry).find((entry) => entry.text === limits)?.frontierStatus).toBe('exhausted');
+  });
+
+  it('reopens a budget-closed node once an extension raises the cap', () => {
+    const { specFolder, limits } = overspentDepthTwo();
+    reduceResearchState(specFolder, { write: true });
+
+    const configPath = join(specFolder, 'research', 'deep-research-config.json');
+    const config = JSON.parse(readFileSync(configPath, 'utf8'));
+    writeFileSync(configPath, `${JSON.stringify({ ...config, maxIterations: 24 }, null, 2)}\n`, 'utf8');
+
+    const { registry } = reduceResearchState(specFolder, { write: false });
+    const reopened = frontierOf(registry).nodes.find((entry) => entry.nodeId === 'F-2-003');
+    expect(reopened?.status).toBe('open');
+    expect(registry.openQuestions?.some((question) => question.text === limits)).toBe(true);
+  });
+
   it('renders the frontier metrics on an expansive dashboard only', () => {
     const expansiveFolder = expansiveSpec();
     writeNodes(expansiveFolder, twoOpen());

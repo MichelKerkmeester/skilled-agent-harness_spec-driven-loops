@@ -116,6 +116,11 @@ const LEGACY_IMPORT_ORIGIN = 'legacy-import';
 const LEGACY_IMPORT_SOURCE = 'key-questions';
 const QUESTION_CONFLICT_EVENT = 'question_conflict';
 const DEFAULT_QUESTION_DECISION = 'needs_decision';
+// A frontier node closed with one of these never answered its question. The
+// question leaves the open set, but it is not an answer, so its persisted
+// resolved flag must not read back as checked: the budget would then mark the
+// node answered on the next reduce, and an extension could never reopen it.
+const FRONTIER_UNANSWERED_STATUSES = new Set(['blocked', 'exhausted', 'abstained', 'pruned']);
 const MAX_REJECTED_PATTERNS = 100;
 const REJECTED_PATTERN_CANDIDATE_FIELDS = ['text', 'focus', 'nextFocus', 'pattern', 'idea', 'title'];
 const REJECTED_PATTERN_EVENT_FIELDS = ['pattern', 'idea', 'text', 'candidate'];
@@ -1216,8 +1221,9 @@ function normalizeRegistryQuestion(question, index) {
   const operatorDecision = normalizeQuestionDecision(question.operatorDecision)
     || normalizeQuestionDecision(question.questionDecision);
 
+  const closedUnanswered = FRONTIER_UNANSWERED_STATUSES.has(question.frontierStatus);
   return {
-    checked: Boolean(question.checked || question.resolved),
+    checked: Boolean(question.checked || (question.resolved && !closedUnanswered)),
     id,
     inboxId,
     text,
@@ -2935,7 +2941,9 @@ function upsertAnchorSectionBefore(content, anchorId, heading, body, beforeAncho
 }
 
 function updateStrategyContent(strategyContent, registry, iterationFiles, iterationRecords) {
-  const answeredTexts = registry.resolvedQuestions.map((question) => question.text);
+  const answeredTexts = registry.resolvedQuestions
+    .filter((question) => !FRONTIER_UNANSWERED_STATUSES.has(question.frontierStatus))
+    .map((question) => question.text);
   const rewrittenQuestionLines = registry.keyQuestions.map((question) =>
     `- [${question.resolved ? 'x' : ' '}] ${question.text}`,
   );
