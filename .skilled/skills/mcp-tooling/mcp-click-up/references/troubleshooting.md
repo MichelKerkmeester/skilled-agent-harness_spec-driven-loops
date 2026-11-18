@@ -11,7 +11,7 @@ trigger_phrases:
   - "extra blank line under divider"
 importance_tier: "normal"
 contextType: "general"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # mcp-click-up Troubleshooting Guide
@@ -264,7 +264,7 @@ cat .utcp_config.json | grep -A10 '"clickup_official"'
 **Fix:**
 1. Run `bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh --mcp-only` to print the manual snippet
 2. Add it to `.utcp_config.json` under `manual_call_templates`, then restart the AI client
-3. Reconnect Code Mode, approve the OAuth prompt in the browser, and verify that the stdio server starts
+3. Register the manual with Code Mode's `register_manual` through the ask step, approve the OAuth prompt in the browser and verify that the stdio server starts
 
 When the manual is configured but lists no tools, the OAuth approval is missing or lapsed. Registration then waits about a minute and ends with `MCP error -32001: Request timed out`, and an approval given after that writes no token. Follow the first-use readiness check in `references/mcp-tools.md` section 3: tell the user a consent tab is about to open, register the manual again with Code Mode's `register_manual`, and let them approve while it waits.
 

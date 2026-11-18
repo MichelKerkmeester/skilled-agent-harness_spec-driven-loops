@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-mobbin routing"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -67,7 +67,7 @@ TASK CONTEXT
     +- STEP 0: Verify wiring state (mobbin manual registered; presence expected — absence is a failure to escalate)
     +- STEP 1: Score intent -> APPS | SCREENS | FLOWS | ELEMENTS | WIRING_AUTH | TROUBLESHOOT
     +- Phase 1: Measured Style Reference also wanted? -> pair sk-design-md-generator (extracted design tokens); retrieval stays here
-    +- Phase 2: Discovery (list_tools / tool_info confirms the callable name)   [MANDATORY; needs a fresh Code Mode session]
+    +- Phase 2: Discovery (list_tools / tool_info confirms the callable name)   [MANDATORY; needs the manual registered with register_manual]
     +- Phase 3: Retrieval (search_screens with intent-shaped query; limit 5; platform ios|web)
     +- Phase 4: Verify (evidence cited by mobbin_url; failed[] reported; unknowns preserved; no invented tools)
 ```

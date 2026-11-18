@@ -9,7 +9,7 @@ trigger_phrases:
   - "refero tools not resolving"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Refero Troubleshooting
@@ -34,7 +34,7 @@ Open this when a Refero call fails, stalls or returns less than expected: match 
 |---|---|---|
 | HTTP 401 (Bearer advertised, scope `files:read`) | The endpoint requires authentication; the empty manual `env` is not anonymous access | **Operator-only:** complete the browser OAuth on a Pro (or higher) account, or wire the env-backed Bearer alternative. The agent surfaces the step and waits; it never handles credentials |
 | Access denied on a Free account | Free has **no MCP access at all** (denial, not a reduced tool set) | Report the entitlement denial verbatim and stop. Do not retry, and do not model a smaller Free tool list |
-| `refero.*` tools do not resolve in Code Mode | The manual was not loaded at Code Mode startup, or OAuth has not been completed | Reconnect Code Mode so manuals reload; confirm the `refero` manual is present in `.utcp_config.json` (read-only grep or `scripts/doctor.sh`); escalate the OAuth step to the operator |
+| `refero.*` tools do not resolve in Code Mode | The manual ships disabled and the ask step has not registered it in this session, or OAuth has not been completed | Run the ask step so `register_manual` registers the manual; confirm the `refero` manual is present in `.utcp_config.json` (read-only grep or `scripts/doctor.sh`); escalate the OAuth step to the operator |
 | A callable name fails (`refero.refero_search_styles` not found) | Single-prefix name used; the convention doubles the prefix for tools already named `refero_*` | Use `refero.refero_refero_<tool>(...)`, and confirm the exact callable with `tool_info` first. Never hard-code either form as ground truth |
 | Every call returns `-32000 Connection closed` and Code Mode drops | Code Mode is running on Node 25 (isolated-vm has no Node 25 build; `call_tool_chain` SIGSEGVs) | **Operator-side:** run Code Mode on Node 24. This is current local operational evidence, not a server property |
 | `await is only valid in async functions...` | Top-level `await` in the `call_tool_chain` body | Call synchronously inside the body, no `await`, per the live-verified pattern |

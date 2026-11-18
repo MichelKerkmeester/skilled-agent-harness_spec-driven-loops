@@ -1,7 +1,7 @@
 ---
 title: "PLATFORM-001 -- Platform Filter Discipline (ios vs web)"
 description: "This scenario validates platform-filter behavior for `PLATFORM-001`. It focuses on the platform enum being exactly ios or web, inferred from app context or asked when unclear, never guessed silently and never invented beyond the documented enum, with cross-platform comparison run as one call per platform value."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # PLATFORM-001 -- Platform Filter Discipline (ios vs web)
@@ -44,7 +44,7 @@ Operators run the exact sequence for `PLATFORM-001` and confirm the expected sig
 4. Compare the observed output against the desired user-visible outcome.
 5. Return a concise final answer that a real user would understand.
 
-PRE: Requires DISCOVER-001's live branch PASS (fresh Code Mode session, operator OAuth on a paid account). Otherwise SKIP with the blocker documented; the infer-or-ask contract half is still gradable from the agent's plan.
+PRE: Requires DISCOVER-001's live branch PASS (manual registered through the ask step, operator OAuth on a paid account). Otherwise SKIP with the blocker documented; the infer-or-ask contract half is still gradable from the agent's plan.
 
 1. `tool_info` confirmation of the live callable  # -> schema on the live name
 2. `mobbin.mobbin_search_screens({ query: "subscription paywall", platform: "ios", limit: 5 })`  # -> ios screens[] + failed[]

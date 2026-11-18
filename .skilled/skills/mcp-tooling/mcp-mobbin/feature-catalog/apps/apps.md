@@ -6,7 +6,7 @@ trigger_phrases:
   - "mobbin app research"
   - "mobbin app comparison"
   - "mobbin category research"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Apps (app-intent queries over search_screens)
@@ -21,7 +21,7 @@ The capability is READ-ONLY. Multiple results are evidence for comparison, never
 
 ## 2. HOW IT WORKS
 
-Compose the query from the app/company/category and the comparison goal — for example `"banking apps onboarding identity verification"` — plus `platform: "ios"` or `"web"` inferred from context (ask when unclear), starting at `limit: 5`. The inferred callable is `mobbin.mobbin_search_screens({ query, platform, limit? })` (confirm with `tool_info` in a fresh Code Mode session; the name has never been observed live). Compare the returned `screens[]` records through `app_name`, `platform`, structure, and visible patterns; correlate each inline image to its record by `index`; cite every reference used by its `mobbin_url`; and report `failed[]` entries as partial success. Widening beyond ~15 results needs an explicit ask first.
+Compose the query from the app/company/category and the comparison goal — for example `"banking apps onboarding identity verification"` — plus `platform: "ios"` or `"web"` inferred from context (ask when unclear), starting at `limit: 5`. The inferred callable is `mobbin.mobbin_search_screens({ query, platform, limit? })` (confirm with `tool_info` once the ask step has registered the manual; the name has never been observed live). Compare the returned `screens[]` records through `app_name`, `platform`, structure, and visible patterns; correlate each inline image to its record by `index`; cite every reference used by its `mobbin_url`; and report `failed[]` entries as partial success. Widening beyond ~15 results needs an explicit ask first.
 
 ### Query-intent recipes
 

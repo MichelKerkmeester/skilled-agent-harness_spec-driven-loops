@@ -5,7 +5,7 @@ trigger_phrases:
   - "mobbin mcp server"
   - "mobbin mcp-remote"
   - "mobbin code mode"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # mobbin-mcp
@@ -18,13 +18,13 @@ version: 1.0.0.0
 
 The Mobbin MCP is a **remote, paid, hosted** design-research service at `https://api.mobbin.com/mcp` (provider transport: **Streamable HTTP**), exposing one publicly documented tool, `search_screens`. The official repository (`mobbin/mobbin-mcp-server`, manifest identity `com.mobbin/mobbin` v1.0.1) contains registration and metadata artifacts only, README, `mcp.json`, `server.json`, `rules/`, `.cursor-plugin/`, so there is no server to clone, build, or install, and this folder holds only this pointer.
 
-The local wiring is **registered**: a `mobbin` manual launching `npx -y mcp-remote https://api.mobbin.com/mcp` over stdio with an empty `env`, applied to `.utcp_config.json` on 2026-07-16 (operator-owned; reference shape kept in [`../../assets/utcp-mobbin-manual.md`](../../assets/utcp-mobbin-manual.md)). Discovery pends a fresh Code Mode session; OAuth pends the operator. Access is plan-gated (Pro, Team, or Enterprise; Free has no MCP access) and authenticated by **browser OAuth only**: no API key exists for MCP; unauthenticated requests return HTTP 401. Auth state persists under `~/.mcp-auth` and is never touched by the skill. The service enforces 60 requests per 60 seconds per user.
+The local wiring is **registered**: a `mobbin` manual launching `npx -y mcp-remote https://api.mobbin.com/mcp` over stdio with an empty `env`, applied to `.utcp_config.json` on 2026-07-16 (operator-owned; reference shape kept in [`../../assets/utcp-mobbin-manual.md`](../../assets/utcp-mobbin-manual.md)). Discovery pends the ask step registering the manual in the session. OAuth pends the operator. Access is plan-gated (Pro, Team, or Enterprise; Free has no MCP access) and authenticated by **browser OAuth only**: no API key exists for MCP; unauthenticated requests return HTTP 401. Auth state persists under `~/.mcp-auth` and is never touched by the skill. The service enforces 60 requests per 60 seconds per user.
 
 ---
 
 ## 2. QUICK START
 
-This provider needs no local install. In a fresh Code Mode session (manuals load at startup), confirm it is reachable through Code Mode instead:
+This provider needs no local install. Once the ask step has registered the manual in the session, confirm it is reachable through Code Mode instead:
 
 ```ts
 // Discover the live tool set before calling anything
@@ -40,7 +40,7 @@ Expected result: `list_tools()` includes the `mobbin` manual's tools, and `tool_
 
 | Option | Value | Notes |
 |---|---|---|
-| Manual name | `mobbin` | REGISTERED in `.utcp_config.json` (2026-07-16); discovery pends a fresh Code Mode session; OAuth pends the operator |
+| Manual name | `mobbin` | REGISTERED in `.utcp_config.json` (2026-07-16); discovery pends the ask step registering it in the session; OAuth pends the operator |
 | Transport | stdio, `npx -y mcp-remote https://api.mobbin.com/mcp` | Local bridge to the hosted Streamable HTTP provider; HTTP-first, SSE fallback only after a 404; `mcp-remote` unpinned/experimental; Node 18+ |
 | Auth | Browser OAuth only (DCR RFC 7591, PKCE S256, `openid`) | Operator-only; **no API key or auth env var exists**; `env` stays empty; state in `~/.mcp-auth`; end-to-end OAuth Inferred |
 | Call syntax | `mobbin.mobbin_search_screens` (also `_search_flows`, `_search_sections`) | CONFIRMED 2026-07-16 (registry names dotted `mobbin.mobbin.<tool>`; fixture `references/discovery-fixture-2026-07-16.json`); re-confirm via `tool_info` per session |
@@ -52,7 +52,7 @@ Expected result: `list_tools()` includes the `mobbin` manual's tools, and `tool_
 
 | What You See | Cause | Fix |
 |---|---|---|
-| No `mobbin.*` tools in Code Mode | Session predates the registration (manuals load at startup), OAuth incomplete, or the registration broke | Reconnect Code Mode in a fresh session, then re-run discovery; a missing manual is escalated to the operator |
+| No `mobbin.*` tools in Code Mode | The manual ships disabled and the ask step has not registered it in this session, OAuth incomplete, or the registration broke | Run the ask step so `register_manual` registers the manual, then re-run discovery; a missing manual is escalated to the operator |
 | HTTP 401 on every call | Not authenticated; the empty `env` is correct, not the problem | Operator completes browser OAuth on a paid account. Never add an API key, none exists |
 | Callable name differs from the fixture baseline | Provider surface drift since the 2026-07-16 discovery | Use the name `tool_info` returns; fail closed, save a fresh dated fixture, and update the packet docs |
 | HTTP 429 | 60 requests / 60 seconds / user exceeded | Honor `Retry-After`, then exponential backoff with jitter |

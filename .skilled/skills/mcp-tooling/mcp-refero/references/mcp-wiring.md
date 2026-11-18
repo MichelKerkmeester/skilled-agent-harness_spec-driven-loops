@@ -9,7 +9,7 @@ trigger_phrases:
   - "refero code mode"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Refero MCP Wiring (via Code Mode)
@@ -125,7 +125,7 @@ call_tool_chain({
 
 Notes:
 
-- Manuals load at Code Mode startup, so a freshly registered manual needs a reconnect before its tools resolve.
+- The `refero` manual ships with `"disabled": true`, so Code Mode skips it at startup. Its tools resolve only after the ask step calls `register_manual` with the manual's entry from `.utcp_config.json`.
 - Allowlist exactly the **eight** underlying tools; if the live catalog is missing, renamed, or expanded, report the drift and stop. New provider tools require a reviewed packet update.
 - Wrap multi-call chains defensively and never turn a partial multi-call failure into a successful design result. Bounded timeouts: about 30s for a simple call, 60s for a multi-call chain.
 

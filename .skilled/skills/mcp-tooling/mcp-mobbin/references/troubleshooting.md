@@ -9,7 +9,7 @@ trigger_phrases:
   - "mobbin tools not resolving"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Mobbin Troubleshooting
@@ -20,7 +20,7 @@ Root-cause reference for diagnosing Mobbin transport failures.
 
 ### Purpose
 
-Failure modes for the `mcp-mobbin` transport, ordered roughly by how often they block first use. Every fix stays inside the transport's read-only boundary: no config edits, no auth-state repair, no invented retry policies beyond the documented rate-limit contract. Remember the packet's registered state: the `mobbin` manual **is registered** in `.utcp_config.json` (2026-07-16), so "no tools resolve" now means a stale Code Mode session (manuals load at startup), incomplete operator OAuth, or a broken registration — never an expected baseline.
+Failure modes for the `mcp-mobbin` transport, ordered roughly by how often they block first use. Every fix stays inside the transport's read-only boundary: no config edits, no auth-state repair, no invented retry policies beyond the documented rate-limit contract. Remember the packet's registered state: the `mobbin` manual **is registered** in `.utcp_config.json` (2026-07-16), so "no tools resolve" now means the ask step has not yet registered the manual in this session (it ships disabled), incomplete operator OAuth, or a broken registration.
 
 ### When to Use
 
@@ -34,7 +34,7 @@ Match the observed symptom to the table, keep all fixes within the read-only bou
 |---|---|---|
 | HTTP 401 before any authorization | The **expected** protected-resource challenge: the endpoint requires browser OAuth, and the empty manual `env` is not anonymous access **[CONFIRMED: live probe]** | Complete browser OAuth (operator-only); **do not add an API key** — none exists for Mobbin MCP |
 | Browser/OAuth callback fails | Headless session, blocked localhost callback port, or callback timeout **[INFERRED]** | Move to an interactive, browser-capable session; never ask the user to paste a token — no token-paste path exists |
-| No `mobbin.*` tools in Code Mode | Code Mode session predates the registration (manuals load at startup), manual load failure, incomplete OAuth, plan ineligibility, or a broken/reverted registration (`doctor.sh` reports absence as ERR) | Validate the manual JSON read-only, confirm Node/npx, reconnect Code Mode, escalate the OAuth step, then check plan eligibility — in that order; a missing manual is escalated to the operator, never re-added from this packet |
+| No `mobbin.*` tools in Code Mode | The manual ships disabled and the ask step has not registered it in this session, manual load failure, incomplete OAuth, plan ineligibility, or a broken/reverted registration (`doctor.sh` reports absence as ERR) | Validate the manual JSON read-only, confirm Node/npx, run the ask step so `register_manual` registers the manual, escalate the OAuth step, then check plan eligibility — in that order; a missing manual is escalated to the operator, never re-added from this packet |
 | Callable name or schema mismatch at discovery | Provider or adapter drift against the 2026-07-16 fixture baseline (`mobbin.mobbin_search_screens` + `search_flows` + `search_sections`, confirmed in `discovery-fixture-2026-07-16.json`) | Re-run discovery; **fail closed**; save a fresh dated fixture and update the reviewed packet docs rather than improvising a call |
 | HTTP 429 | The 60 requests / 60 seconds / user window was exceeded **[CONFIRMED: docs.mobbin.com/rate-limits]** | Honor `Retry-After`, then exponential backoff with jitter; do not invent finer-grained burst or concurrency contracts |
 | Free account blocked | Entitlement boundary: MCP is documented for Pro, Team, and Enterprise only **[CONFIRMED]**; the exact denial status/payload/UX is **[UNVERIFIED]** | Explain that MCP starts at Pro; do not guess or fabricate the exact denial semantics; report the provider's message verbatim |

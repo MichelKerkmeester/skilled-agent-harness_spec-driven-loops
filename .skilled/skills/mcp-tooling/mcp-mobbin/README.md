@@ -7,7 +7,7 @@ trigger_phrases:
   - "app design research"
   - "screen examples"
   - "ux flow references"
-version: 1.1.8.0
+version: 1.1.9.0
 ---
 
 # mcp-mobbin
@@ -173,7 +173,7 @@ Skip it when the work is measured extraction, which is `sk-design-md-generator`'
 
 | What you see | Why | Fix |
 |---|---|---|
-| No `mobbin.*` tools resolve in Code Mode | The session started before the registration (manuals load at startup), OAuth is incomplete or the registration broke | Reconnect Code Mode in a fresh session and run the doctor script. A missing manual goes to the operator |
+| No `mobbin.*` tools resolve in Code Mode | The manual ships disabled and has not been registered in this session, OAuth is incomplete or the registration broke | Run the ask step so `register_manual` registers the manual, then run the doctor script. A missing manual goes to the operator |
 | HTTP 401 before any authorization | The expected protected-resource challenge. The empty `env` is not anonymous access | Operator only: complete browser OAuth on a paid account. Never add an API key, none exists |
 | The browser or OAuth callback fails | Headless session, blocked localhost callback port or timeout | Move to an interactive browser-capable session. No token-paste path exists |
 | The callable name differs from the fixture | Provider or adapter drift since the dated discovery | Use the name `tool_info` returns, fail closed and record a fresh dated fixture |
@@ -191,7 +191,7 @@ No. Mobbin MCP has no API key and no auth env var. Authentication is browser OAu
 
 ### Why do no `mobbin.*` tools resolve in Code Mode?
 
-The `mobbin` manual is registered, but manuals load at Code Mode startup, so a session opened before the registration cannot see it. Operator OAuth is still pending too. Reconnect Code Mode in a fresh session and run the doctor script. When the doctor reports the manual missing, the registration broke and the operator owns the fix.
+The `mobbin` manual is in `.utcp_config.json` with `"disabled": true`, so Code Mode skips it at startup and its tools do not exist yet. They appear only after the ask step calls `register_manual` with the `mobbin` entry, which also opens the browser sign-in tab. Operator OAuth is still pending too. Run the doctor script to check the entry. When the doctor reports the manual missing, the registration broke and the operator owns the fix.
 
 ### How do I research a flow or a website section?
 

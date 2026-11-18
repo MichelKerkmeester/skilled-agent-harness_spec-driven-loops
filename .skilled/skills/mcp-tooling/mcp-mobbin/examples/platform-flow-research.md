@@ -1,7 +1,7 @@
 ---
 title: "Example: Platform-Filtered Flow-Pattern Research"
 description: "A worked mcp-mobbin flow-research walkthrough: tool_info re-confirmation of the discovery-confirmed callables, a journey-shaped query through the live search_flows tool (search_screens fallback) on platform web, returned-ordering discipline, and mobbin_url citations throughout."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Example: Platform-Filtered Flow-Pattern Research
@@ -14,8 +14,8 @@ Research how real products run a **forgot-password recovery on the web** — the
 
 ## 2. PRECONDITIONS
 
-- `doctor.sh` reports `OK 'mobbin' manual registered`; fresh Code Mode session.
-- **Operator OAuth completed** on a paid plan. If not: record `SKIP: operator OAuth pending — trigger any first mobbin.* call in a fresh Code Mode session and complete the browser authorization`, and stop. SKIP is a valid result.
+- `doctor.sh` reports `OK 'mobbin' manual registered`; the ask step has registered it in this session.
+- **Operator OAuth completed** on a paid plan. If not: record `SKIP: operator OAuth pending — register the manual through the ask step and complete the browser authorization`, and stop. SKIP is a valid result.
 
 ---
 

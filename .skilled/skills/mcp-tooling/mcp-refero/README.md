@@ -7,7 +7,7 @@ trigger_phrases:
   - "design reference"
   - "ui reference search"
   - "real app screens"
-version: 1.1.8.0
+version: 1.1.9.0
 ---
 
 # mcp-refero
@@ -178,7 +178,7 @@ Skip it when the work is the design judgment itself. Skip Mobbin research for `m
 |---|---|---|
 | HTTP 401 on every call | The endpoint requires authentication. The empty manual `env` is not anonymous access | Operator only: complete browser OAuth on a Pro (or higher) account or wire the documented Bearer alternative. The agent surfaces the step and waits |
 | Access denied on a Free account | The Free plan has no MCP access at all, so this is a denial rather than a smaller tool list | Report the entitlement denial verbatim and stop |
-| `refero.*` tools do not resolve | The manual was not loaded at Code Mode startup or OAuth is incomplete | Reconnect Code Mode in a fresh session, verify the manual with the doctor script and escalate auth to the operator |
+| `refero.*` tools do not resolve | The manual ships disabled and has not been registered in this session or OAuth is incomplete | Run the ask step so `register_manual` registers the manual, verify it with the doctor script and escalate auth to the operator |
 | `refero.refero_search_styles` not found | A single-prefix name was used. The convention doubles the prefix for tools already named `refero_*` | Use `refero.refero_refero_<tool>(...)` and confirm the exact callable with `tool_info` first |
 | `-32000 Connection closed` on every call | Code Mode runs on Node 25 or newer, where isolated-vm has no build and `call_tool_chain` crashes | Operator side: run Code Mode on Node 24 |
 | A `get_style` or `get_screen` batch fails | Full styles run about 10-15k characters each, so a large batch is too big | Retry with fewer IDs, 3-4 styles per batch |

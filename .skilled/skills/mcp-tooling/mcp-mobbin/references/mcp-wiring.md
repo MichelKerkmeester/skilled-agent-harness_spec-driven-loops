@@ -9,7 +9,7 @@ trigger_phrases:
   - "mobbin code mode"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Mobbin MCP Wiring (via Code Mode)
@@ -145,7 +145,7 @@ call_tool_chain({
 
 Notes:
 
-- Manuals load at Code Mode startup, so a freshly registered manual needs a reconnect before its tools resolve.
+- The `mobbin` manual ships with `"disabled": true`, so Code Mode skips it at startup. Its tools resolve only after the ask step calls `register_manual` with the manual's entry from `.utcp_config.json`.
 - Allowlist exactly the verified read/search tools; if the live catalog contains a mutation-capable tool, refuse it and report the surface expansion — the read-only guarantee is an authorization boundary, not an observation.
 - Whether `call_tool_chain` faithfully passes the inline image content blocks is **[UNKNOWN]**; verify at install and plan a side-channel for visual inspection if needed.
 

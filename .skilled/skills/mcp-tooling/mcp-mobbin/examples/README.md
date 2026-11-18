@@ -1,7 +1,7 @@
 ---
 title: "mcp-mobbin Examples"
 description: "Worked Code Mode walkthroughs for the mcp-mobbin transport: a limit-1 smoke search, a platform-filtered flow-pattern research pass, and an element-intent query, each opening with the mandatory tool_info confirmation of the discovery-confirmed callables (2026-07-16 fixture) and keeping the OAuth steps SKIP-valid with exact commands."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # mcp-mobbin Examples
@@ -38,7 +38,7 @@ bash .skilled/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh
 
 **Step B, OAuth (operator-only; SKIP-valid until completed):**
 
-There is no agent-side command. The operator triggers any first `mobbin.*` call in a fresh Code Mode session and completes the browser authorization on a paid account (auth state persists under `~/.mcp-auth`). Record `SKIP: operator OAuth pending` when it has not happened.
+The ask step in `SKILL.md` calls `register_manual` with the `mobbin` entry once the operator picks Ready, and that call opens the browser tab. The operator completes the authorization on a paid account (auth state persists under `~/.mcp-auth`). Record `SKIP: operator OAuth pending` when it has not happened.
 
 **Step C: callable confirmation (inside Code Mode; MANDATORY before any call):**
 
