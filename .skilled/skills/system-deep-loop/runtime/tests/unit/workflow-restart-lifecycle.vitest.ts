@@ -645,15 +645,19 @@ function minutesAgo(minutes: number): string {
   return new Date(Date.now() - minutes * 60_000).toISOString();
 }
 
-function readJson(path: string): Record<string, any> {
-  return JSON.parse(readFileSync(path, 'utf8')) as Record<string, any>;
+type JsonObject = Record<string, unknown>;
+
+// The extension cases read a few fields of the config and the registry, so a
+// caller that reads a nested field names the shape it expects.
+function readJson<T = JsonObject>(path: string): T {
+  return JSON.parse(readFileSync(path, 'utf8')) as T;
 }
 
-function stateRows(stateLog: string): Array<Record<string, any>> {
+function stateRows(stateLog: string): JsonObject[] {
   return readFileSync(stateLog, 'utf8')
     .split('\n')
     .filter(Boolean)
-    .map((line) => JSON.parse(line) as Record<string, any>);
+    .map((line) => JSON.parse(line) as JsonObject);
 }
 
 interface ExtensionRun {
@@ -1307,10 +1311,13 @@ describe('expansive frontier graph mirror', () => {
     const reduce = runShell(reduceCommand);
     expect(reduce.status, String(reduce.stderr)).toBe(0);
 
-    const frontier = readJson(registryPath).frontier ?? {};
-    expect(frontier.activeNodeId).toBe('F-1-001');
-    expect(typeof frontier.activeNextDimension).toBe('string');
-    expect(frontier.activeNextDimension).not.toBe('');
+    const frontier = readJson<{ frontier?: { activeNodeId?: string; activeNextDimension?: string } }>(registryPath)
+      .frontier;
+    const activeNodeId = frontier?.activeNodeId ?? '';
+    const activeNextDimension = frontier?.activeNextDimension ?? '';
+    expect(activeNodeId).toBe('F-1-001');
+    expect(typeof frontier?.activeNextDimension).toBe('string');
+    expect(activeNextDimension).not.toBe('');
 
     const block = spawnSync(process.execPath, [
       resolve(RUNTIME_ROOT, 'scripts', 'frontier-admit.cjs'),
@@ -1320,9 +1327,9 @@ describe('expansive frontier graph mirror', () => {
       '--artifact-dir',
       artifactDir,
       '--node-id',
-      frontier.activeNodeId,
+      activeNodeId,
       '--dimension',
-      frontier.activeNextDimension,
+      activeNextDimension,
     ], { encoding: 'utf8' });
     expect(block.status, String(block.stderr)).toBe(0);
     expect(String(block.stdout)).toContain('F-1-001');
