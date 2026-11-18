@@ -6914,6 +6914,26 @@ describe('fanout-run.cjs — per-lineage expansive budget', () => {
     expect(lineages.map((lineage) => lineage.iterations)).toEqual([24, 7]);
   });
 
+  it('names an empty seed share and warns once when lineages outnumber the open seeds', () => {
+    const { expansiveLineageBudgetNotes } = requireCjs(fanoutRunScript) as {
+      expansiveLineageBudgetNotes: (
+        expanded: Array<Record<string, unknown>>,
+        budgeted: Array<Record<string, unknown>>,
+        partition: Record<string, unknown[]>,
+      ) => string[];
+    };
+    const expanded = [{ label: 'a', kind: 'cli-pi' }, { label: 'b', kind: 'cli-pi' }, { label: 'c', kind: 'cli-pi', iterations: 3 }];
+    const partition = { a: nodes(1), b: [], c: [] };
+    const budgeted = expansiveLineageBudgets(expanded, { loopType: 'review', partition });
+    const notes = expansiveLineageBudgetNotes(expanded, budgeted, partition);
+
+    expect(notes).toEqual([
+      'fanout-run: 3 lineages share 1 open seed node, so 2 lineages get no seed share',
+      'fanout-run: lineage a budget 24 iterations, derived from its seed share',
+      'fanout-run: lineage b got no seed share and runs at its loop default of 7 iterations',
+    ]);
+  });
+
   it('runs a lineage with no seed share at its loop default', () => {
     const lineages = expansiveLineageBudgets(
       [{ label: 'a', kind: 'native' }, { label: 'b', kind: 'native' }, { label: 'c', kind: 'cli-opencode' }],

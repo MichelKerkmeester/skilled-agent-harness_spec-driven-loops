@@ -324,7 +324,9 @@ function partitionFrontierNodes(baseArtifactDir, labels) {
 // Under expansive depth a lineage the matrix gave no iterations is sized from its own
 // share of the seed, the way a single-executor run is sized after its seed step. The
 // floor is the budget that lineage would otherwise have run: 12 for a native lineage,
-// the workflow default for a CLI one. A review lineage reviews the canonical four
+// the workflow default for a CLI one, and a lineage dealt no seed node runs at that
+// floor. Every such lineage gets an explicit iteration count, so a max-iterations
+// stop policy never finds it uncapped. A review lineage reviews the canonical four
 // dimensions. A matrix iterations value is explicit and always kept.
 function expansiveLineageBudgets(lineages, { loopType, partition }) {
   const { expansiveBudget, LOOP_DEFAULT_MAX_ITERATIONS } = require('./frontier-admit.cjs');
@@ -338,6 +340,27 @@ function expansiveLineageBudgets(lineages, { loopType, partition }) {
     });
     return { ...lineage, iterations };
   });
+}
+
+// The stderr lines that explain each derived lineage budget. A lineage dealt no seed
+// node is named as such, and one warning says when there are more lineages than open
+// seed nodes, since the extra lineages have no frontier to work.
+function expansiveLineageBudgetNotes(expanded, budgeted, partition) {
+  const shareOf = (label) => (partition && Array.isArray(partition[label]) ? partition[label].length : 0);
+  const seedCount = expanded.reduce((total, lineage) => total + shareOf(lineage.label), 0);
+  const notes = [];
+  if (expanded.length > seedCount) {
+    const idle = expanded.length - seedCount;
+    notes.push(`fanout-run: ${expanded.length} lineages share ${seedCount} open seed node${seedCount === 1 ? '' : 's'}, `
+      + `so ${idle} lineage${idle === 1 ? '' : 's'} get${idle === 1 ? 's' : ''} no seed share`);
+  }
+  budgeted.forEach((lineage, index) => {
+    if (lineage === expanded[index]) return;
+    notes.push(shareOf(lineage.label) === 0
+      ? `fanout-run: lineage ${lineage.label} got no seed share and runs at its loop default of ${lineage.iterations} iterations`
+      : `fanout-run: lineage ${lineage.label} budget ${lineage.iterations} iterations, derived from its seed share`);
+  });
+  return notes;
 }
 
 // A lineage starts from its own store and inbox. They are written only when the
@@ -3722,16 +3745,18 @@ async function main() {
   const guardedAssignment = applyFlatPoolAssignmentGuard(parsedFanoutConfig);
   const fanoutConfig = guardedAssignment.config;
   const expandedLineages = expandLineages(fanoutConfig);
-  const allLineages = depthMode === 'expansive' && ACTIVE_FANOUT_LOOP_TYPES.has(loopType)
-    ? expansiveLineageBudgets(expandedLineages, {
-      loopType,
-      partition: partitionFrontierNodes(baseArtifactDir, expandedLineages.map((lineage) => lineage.label)),
-    })
+  const expansiveBudgets = depthMode === 'expansive' && ACTIVE_FANOUT_LOOP_TYPES.has(loopType);
+  const budgetPartition = expansiveBudgets
+    ? partitionFrontierNodes(baseArtifactDir, expandedLineages.map((lineage) => lineage.label))
+    : null;
+  const allLineages = expansiveBudgets
+    ? expansiveLineageBudgets(expandedLineages, { loopType, partition: budgetPartition })
     : expandedLineages;
-  allLineages.forEach((lineage, index) => {
-    if (lineage === expandedLineages[index]) return;
-    process.stderr.write(`fanout-run: lineage ${lineage.label} budget ${lineage.iterations} iterations, derived from its seed share\n`);
-  });
+  if (expansiveBudgets) {
+    for (const note of expansiveLineageBudgetNotes(expandedLineages, allLineages, budgetPartition)) {
+      process.stderr.write(`${note}\n`);
+    }
+  }
   // One lineage is not a fan-out. A caller who lands here with one lineage has left the
   // workflow that owns the packet init, synthesis and save phases, and a CLI lineage
   // would then run every iteration in one process.
@@ -4742,6 +4767,7 @@ if (require.main === module && isTsxLoaded) {
 
 module.exports = {
   expansiveLineageBudgets,
+  expansiveLineageBudgetNotes,
   runLineageProcess,
   forcedDepthIterationViolation,
   retainIterationRecords,
