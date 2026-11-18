@@ -1603,6 +1603,10 @@ workflow:
             then_command: "node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors"
             working_directory: "{repo_root}"
             log: "Stuck on frontier node {active_frontier_node}; closed it as exhausted and moved to the next open node."
+            note_rebind: "active_frontier_node was bound before this close. Rebind it from the refreshed registry so step_frontier_activate and the dispatch name the next open node, not the one just closed, which close now refuses to reopen."
+            set:
+              active_frontier_node: "registry.frontier.activeNodeId from the refreshed {state_paths.findings_registry}; an empty string when it is null"
+              next_dimension: "registry.frontier.activeNextDimension from the refreshed {state_paths.findings_registry} when the rebound active_frontier_node is non-empty; else keep the RECOVERY value set above"
           if_no_open_node:
             action: "Fall through to the global recovery below."
         if_continue:

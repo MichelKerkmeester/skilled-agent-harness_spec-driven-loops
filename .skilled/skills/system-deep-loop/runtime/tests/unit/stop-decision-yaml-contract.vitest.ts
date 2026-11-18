@@ -314,6 +314,14 @@ describe('deep-review wires the expansive frontier steps', () => {
     expect(stuck.if_expansive_open_node.command).toContain('--status exhausted');
   });
 
+  // The loop bound active_frontier_node before the stuck close. Without a rebind
+  // the activate step and the dispatch would still name the node just closed.
+  it('rebinds the active frontier node after the stuck close', () => {
+    const branch = wf.phase_loop.steps.step_handle_convergence.if_stuck_recovery.if_expansive_open_node;
+    expect(branch.set?.active_frontier_node).toContain('registry.frontier.activeNodeId');
+    expect(branch.set?.next_dimension).toContain('registry.frontier.activeNextDimension');
+  });
+
   it('takes the next dimension from the active frontier node under expansive depth', () => {
     const extract = extracts();
     expect(extract.active_frontier_node).toContain('registry.frontier.activeNodeId');

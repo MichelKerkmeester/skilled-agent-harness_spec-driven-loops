@@ -99,6 +99,13 @@ const UNANSWERED_CLOSE_STATUSES = new Set([
   'abstained',
 ]);
 
+// A node closed with one of these is settled. A re-close may repeat the status but
+// never move it: a revived node would count as open again and veto the stop.
+const SETTLED_CLOSE_STATUSES = new Set([
+  'answered',
+  ...UNANSWERED_CLOSE_STATUSES,
+]);
+
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ───────────────────────────────────────────────────────────────────
@@ -723,7 +730,8 @@ function seedNodes({ artifactDir, iteration = 0, candidates, knownTexts = [], ta
  * @param {string|null} [options.reason=null] - Why the node closed.
  * @param {number} options.iteration - The iteration that closed it.
  * @returns {Object} The appended row.
- * @throws {Error} On an unknown status or node, or a pruned node closed as anything but pruned.
+ * @throws {Error} On an unknown status or node, a pruned node closed as anything but pruned, or a
+ *   settled node (answered, blocked, exhausted, abstained) moved to another status.
  */
 function closeNode({ artifactDir, nodeId, status, reason = null, iteration }) {
   if (!CLOSE_STATUSES.has(status)) {
@@ -738,6 +746,9 @@ function closeNode({ artifactDir, nodeId, status, reason = null, iteration }) {
   // it toward the caps, project it to the graph and let it satisfy a drained stop.
   if (node.status === 'pruned' && status !== 'pruned') {
     throw new Error(`frontier node ${nodeId} was pruned; it cannot be closed as ${status}`);
+  }
+  if (SETTLED_CLOSE_STATUSES.has(node.status) && status !== node.status) {
+    throw new Error(`frontier node ${nodeId} was closed as ${node.status}; it cannot be closed as ${status}`);
   }
 
   const row = {

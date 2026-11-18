@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "1232c07ba4e5e85d970518e885f8bbf76bdf23ef3c19b74772ae24d1a8f757d3",
+      "sha256": "da8ced00858ff2e0291da82adb17a73808b14424a0eff1b1bd908e1ed8870dcd",
       "section": "full"
     },
     {

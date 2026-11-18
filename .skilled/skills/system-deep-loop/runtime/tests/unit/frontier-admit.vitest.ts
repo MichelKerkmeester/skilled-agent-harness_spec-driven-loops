@@ -441,6 +441,33 @@ describe('frontier-admit', () => {
     expect(readNodeStore(storePath).get(nodeId)?.status).toBe('pruned');
   });
 
+  // Review stuck recovery closes a node as exhausted and the activate step can
+  // still name it in the same pass; reopening it would let it cycle to the cap.
+  it.each(['answered', 'blocked', 'exhausted', 'abstained'])(
+    'closeNode refuses to move a node closed as %s to another status',
+    (closed) => {
+      const artifactDir = makeArtifactDir();
+      const storePath = join(artifactDir, STORE_FILE);
+      const { admitted } = admitProposals({
+        artifactDir,
+        iteration: 1,
+        proposals: [makeProposal(`what does the ${closed} reopen probe show`)],
+      });
+      const nodeId = admitted[0];
+      closeNode({ artifactDir, nodeId, status: 'active', iteration: 2 });
+      closeNode({ artifactDir, nodeId, status: closed, reason: 'stuck', iteration: 3 });
+
+      for (const status of ['active', 'answered', 'exhausted', 'pruned'].filter((next) => next !== closed)) {
+        expect(() => closeNode({ artifactDir, nodeId, status, iteration: 4 }))
+          .toThrow(new RegExp(`closed as ${closed}`));
+      }
+      expect(readNodeStore(storePath).get(nodeId)?.status).toBe(closed);
+
+      closeNode({ artifactDir, nodeId, status: closed, reason: 'stuck', iteration: 4 });
+      expect(readNodeStore(storePath).get(nodeId)?.status).toBe(closed);
+    },
+  );
+
   it('the CLI admit command reads frontier_proposal rows from a delta file', () => {
     const artifactDir = makeArtifactDir();
     const deltaPath = join(artifactDir, 'delta.jsonl');
