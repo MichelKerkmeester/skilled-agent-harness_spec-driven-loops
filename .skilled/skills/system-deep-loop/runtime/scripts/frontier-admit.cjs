@@ -403,9 +403,19 @@ function isCommitRange(value) {
 
 // A commit range names no paths itself; the files it touches are its scope, and
 // scope discovery records them. A proposal is relevant when every entry is one of
-// those files or a directory holding one.
+// those files or a directory holding one. The config records them as one list, or
+// as named lists once a review splits its target by kind, the two spellings the
+// terminal gates read; an unread spelling would leave no files and admit every scope.
+function touchedFileList(touchedFiles) {
+  if (Array.isArray(touchedFiles)) return touchedFiles;
+  if (isPlainObject(touchedFiles)) {
+    return Object.values(touchedFiles).filter(Array.isArray).flat();
+  }
+  return splitTargetPaths(touchedFiles);
+}
+
 function scopeInsideTouchedFiles(scope, touchedFiles) {
-  const files = (Array.isArray(touchedFiles) ? touchedFiles : splitTargetPaths(touchedFiles))
+  const files = touchedFileList(touchedFiles)
     .filter((entry) => typeof entry === 'string')
     .map(normalizeTargetPath)
     .filter((entry) => entry !== '');

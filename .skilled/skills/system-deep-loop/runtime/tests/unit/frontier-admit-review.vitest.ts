@@ -516,6 +516,18 @@ describe('frontier-admit review root cap and commit-range scope', () => {
     expect(scopeInsideReviewTarget('lib/x', { reviewTargetType: 'files', reviewTarget: RANGE })).toBe(true);
   });
 
+  it('reads named lists of touched files the way the terminal gates do', () => {
+    const config = {
+      reviewTargetType: 'files',
+      reviewTarget: RANGE,
+      reviewScopeFiles: { code: RANGE_SCOPE_FILES.slice(0, 1), docs: RANGE_SCOPE_FILES.slice(1) },
+    };
+
+    expect(scopeInsideReviewTarget(RANGE_SCOPE_FILES[0], config)).toBe(true);
+    expect(scopeInsideReviewTarget(RANGE_SCOPE_FILES[RANGE_SCOPE_FILES.length - 1], config)).toBe(true);
+    expect(scopeInsideReviewTarget('lib/x', config)).toBe(false);
+  });
+
   it('admits depth-2 proposals a commit-range lineage scoped inside the touched files', () => {
     const artifactDir = makeBareArtifactDir();
     writeFileSync(
