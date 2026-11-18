@@ -31,7 +31,7 @@ Executes ONE review iteration within an autonomous review loop: read externalize
 **NOT INTERCHANGEABLE with siblings:**
 - `deep-research` uses 0.05 default on newInfoRatio (negative-knowledge emphasis)
 
-Carrying threshold expectations across siblings will cause unexpected iteration counts. Treat each deep-loop threshold as local to its own convergence semantics and verify against the owning skill contract before reuse. A review stop candidate is also held at CONTINUE with `minIterationsNotReached` until the run reaches its iteration floor, `antiConvergence.minIterations` (2 by default), even when every dimension is clean.
+Carrying threshold expectations across siblings will cause unexpected iteration counts. Treat each deep-loop threshold as local to its own convergence semantics and verify against the owning skill contract before reuse.
 
 ---
 
