@@ -442,6 +442,8 @@ describe.each(FILES)('%s sizes a defaulted expansive budget after the seed', (fi
   it('places step_frontier_budget right after the phase_init seed step', () => {
     expect(initSeed).toBeGreaterThan(-1);
     expect(budget.length).toBeGreaterThan(0);
+    // Without this the slice below is empty when budget sits above seed, and passes.
+    expect(text.indexOf('      step_frontier_budget:\n')).toBeGreaterThan(initSeed);
     const between = text.slice(initSeed, text.indexOf('      step_frontier_budget:\n'));
     expect(between.match(/\n      step_[a-z_]+:\n/g) ?? []).toHaveLength(0);
   });
