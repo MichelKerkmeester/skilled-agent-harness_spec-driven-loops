@@ -89,6 +89,7 @@ This phase is a feature, but it edits shared default-path files, so each surface
 | Review template and every caller that renders it (`deep-review.yaml`, `prompt-pack.vitest.ts`, `deep-review-marker-scan.vitest.ts`, `tests/fanout-review-focus.vitest.ts`) | Renders every review prompt | update, one empty-by-default `{frontier_block}` token | Golden pack; each caller passes the variable |
 | `commands/deep/assets/compiled/deep-review.contract.markdown` | Digests the review command doc, presentation, YAML, template and agent | regenerate | `check-contract-drift.vitest.ts` |
 | `runtime/scripts/fanout-run.cjs` lineage dispatch env | Sets the env every fan-out lineage runs with | update, not flag-gated: named defect fix REQ-016 for both loop types | `fanout-run.vitest.ts` graph-store case for a research and a review lineage |
+| `runtime/scripts/upsert.cjs` and the review `step_graph_upsert` | Write coverage graph nodes and edges for every loop | update, not flag-gated: named defect fix REQ-018 (review evidence edges; the undeclared-endpoint skip applies to every loop type) | `upsert-script.vitest.ts` evidence cases; `stop-decision-yaml-contract.vitest.ts` step case; review compiled contract regenerated |
 | Graph-writing steps in `deep-review.yaml` and `deep-research.yaml` | Seed, upsert and evaluate the coverage graph | update, not flag-gated: the lineage-local store instruction (REQ-016) | `stop-decision-yaml-contract.vitest.ts` graph-store cases; both compiled contracts regenerated |
 
 Required inventories:
@@ -309,3 +310,5 @@ The operator accepted ADR-001 to ADR-004 as proposed on 2026-11-17 (T000). The b
 **Alternatives Rejected**:
 - A drained stop that records gate failures without letting them veto, modeled on the cap: rejected by the operator, because it stops a lineage past a failed quality gate.
 - A soft `frontier_drained` candidate: it adds no stop the composite vote does not already give.
+
+**Amendment, 2026-11-18 (evidence edges)**: The operator kept `frontier_drained` as a hard candidate (D-011-07) and ruled that the review graph upsert derive evidence edges before the pilot rerun (REQ-018, D-011-09). A replay with a rebuilt graph had shown pi-5 forming `all_dimensions_clean` with all nine gates passing and the graph decision still `CONTINUE`, because evidence density was 0: the canonical projection made no `EVIDENCE_FOR` edge, and only pi-3's leaf sent any. With the edges derived from each finding's `file:line` ref, the same replay gives pi-5 `STOP converged all_dimensions_clean` at iteration 5 with the graph at `STOP_ALLOWED`.
