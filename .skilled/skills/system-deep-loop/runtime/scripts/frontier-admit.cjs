@@ -577,9 +577,10 @@ function admitProposals({ artifactDir, iteration, proposals, knownTexts = [], ta
   const inboxPath = path.join(artifactDir, INBOX_FILE);
   const nodes = readNodeStore(storePath);
   const caps = readCaps(artifactDir, mode);
-  // A missing or unreadable review config gives the no-target object, which
-  // admits every scope the way a prose target does: the target check can only
-  // narrow when a file-list target is on record.
+  // A missing review config, or one that holds no JSON object, gives the
+  // no-target object, which admits every scope the way a prose target does: the
+  // target check can only narrow when a file-list target is on record. An
+  // unparsable config has already failed closed in readCaps above.
   const reviewOptions = {
     ...(mode === 'review' ? { reviewConfig: readTargetConfig(artifactDir, mode) ?? {} } : {}),
     seeding: seeding === true,
