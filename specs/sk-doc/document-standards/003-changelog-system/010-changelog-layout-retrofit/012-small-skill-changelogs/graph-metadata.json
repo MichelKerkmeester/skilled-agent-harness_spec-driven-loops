@@ -33,7 +33,7 @@
       "layout"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -189,8 +189,8 @@
     ],
     "causal_summary": "The 99 small-skill changelogs were written before the v4.1.0.0 layout",
     "created_at": "2026-11-17T18:13:11Z",
-    "last_save_at": "2026-11-17T22:19:29.479Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-18T05:34:53.842Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -199,13 +199,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f05fa3b0352677a23e5626784d31a50f0fea86a82908a045b74051e5410c2ca6",
+    "source_fingerprint": "sha256:ca31cc4dbf66467090556823090736b8b163969d886679f8dca3471e8220f539",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "93b9e6299fc99b312f2e6633ddac391db8b42dac00f0d27f0f050b9cbb80c6da",
+      "spec.md": "80e80910e1513f6ef61b9814a364af5aaba19b4677a3e343a88482a489db0e76",
       "plan.md": "89148b87d8a56f12b174f6f71f89baaf65ba92bd63ab57b32783be878543802c",
-      "tasks.md": "2764e1c68f993fdd5fa68062e347d271bd7f7156fc19278ff5e22a71c8a55a3f",
-      "implementation-summary.md": "352fad78ed8a3013951894568a97a249fa793dae8e1c8bc478fa9bd54cc761f2"
+      "tasks.md": "102df40d76a1b1cc237dfe3d3184d73ab8746fb71b4025a813a48430d22a66b3",
+      "implementation-summary.md": "82159525ac11b85e8930e39cd2bcb132fbf572bdf39dcb629307833fa916588c"
     },
     "last_active_at": null
   }
