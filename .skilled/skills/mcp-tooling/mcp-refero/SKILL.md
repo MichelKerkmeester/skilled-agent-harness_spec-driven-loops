@@ -73,7 +73,9 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 
 ### First Step (Always): confirm wiring, then discover
 
-The `refero` manual is **already registered** in this repo's `.utcp_config.json` (`npx -y mcp-remote https://api.refero.design/mcp`, stdio, empty env). Verify it is present (read-only grep, or `scripts/doctor.sh`), never re-add it, and never edit it. Then discover the live callables through Code Mode before any call:
+The `refero` manual is **already registered** in this repo's `.utcp_config.json` (`npx -y mcp-remote https://api.refero.design/mcp`, stdio, empty env). Verify it is present (read-only grep, or `scripts/doctor.sh`), never re-add it, and never edit it.
+The entry carries `"disabled": true`, so Code Mode does not register it at startup and no Refero sign-in tab opens on its own. Register it only when the task needs Refero. When `list_tools()` shows no `refero.` tools, ask: "Refero needs a one-time approval. When you pick Ready, a Refero sign-in tab opens in your browser. Approve it within about a minute." Offer **Ready** and **Skip Refero for now**. On Ready, call Code Mode's `register_manual` with the `refero` entry from `.utcp_config.json`. The call waits for the approval and succeeds once it lists tools. On skip, say the Refero step was skipped.
+Then discover the live callables through Code Mode before any call:
 
 ```typescript
 // Discovery names appear dotted: refero.refero.refero_search_styles
