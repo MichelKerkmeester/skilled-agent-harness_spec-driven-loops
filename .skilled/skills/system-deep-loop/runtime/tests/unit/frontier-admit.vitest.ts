@@ -278,6 +278,26 @@ describe('frontier-admit', () => {
     expect(node?.depth).toBe(1);
   });
 
+  it('stores an admitted budget, so a child that claims more than its parent prunes on budget', () => {
+    const artifactDir = makeArtifactDir();
+    const first = admitProposals({
+      artifactDir,
+      iteration: 1,
+      proposals: [{ ...makeProposal('which branch holds a narrow budget'), budget: 2 }],
+    });
+    const parentId = first.admitted[0];
+    expect(readNodeStore(join(artifactDir, STORE_FILE)).get(parentId)?.budget).toBe(2);
+
+    const { admitted, pruned } = admitProposals({
+      artifactDir,
+      iteration: 2,
+      proposals: [{ ...makeProposal('which follow-up would spend the wider budget'), parentId, budget: 5 }],
+    });
+
+    expect(admitted).toEqual([]);
+    expect(pruned).toEqual([expect.objectContaining({ reason: 'budget' })]);
+  });
+
   it('records a pruned proposal in the store without an inbox row', () => {
     const artifactDir = makeArtifactDir();
     const question = 'how does the frontier hand off a duplicate';

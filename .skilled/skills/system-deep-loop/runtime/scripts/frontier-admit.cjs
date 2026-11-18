@@ -496,6 +496,9 @@ function admitProposals({ artifactDir, iteration, proposals, knownTexts = [], ta
       reason: null,
       iteration: iterationValue,
       dedupeKey: dedupeKey(proposal.question),
+      // The budget check compares a child with its stored parent, so an admitted
+      // budget is kept on the row or no later child could ever be held to it.
+      ...(Number.isFinite(proposal.budget) ? { budget: proposal.budget } : {}),
     };
     appendJsonlRow(storePath, row);
     nodes.set(nodeId, row);
