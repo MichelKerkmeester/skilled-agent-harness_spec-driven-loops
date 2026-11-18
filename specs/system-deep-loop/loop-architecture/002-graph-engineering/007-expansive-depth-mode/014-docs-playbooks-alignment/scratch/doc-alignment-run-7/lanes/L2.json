@@ -1,0 +1,37 @@
+{
+  "lane": "L2",
+  "findings": [
+    {
+      "id": "L2-1",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      "line": 210,
+      "issue": "The section is headed \"Parse response and store ALL results\" but its list stops at depth_mode and omits lineage_mode and extend, the two bindings the completed-run extension sets. The review presentation doc's equivalent list carries both (deep-review-presentation.txt:238-239), and the yaml's preflight requires lineage_mode (required_values_present at deep-research.yaml:407), so a reader following this list as complete would not carry lineage_mode=completed-continue into the workflow.",
+      "evidence": {
+        "cmd": "rg -n \"lineage_mode = |extend = \" .skilled/commands/deep/assets/deep-review-presentation.txt .skilled/commands/deep/assets/deep-research-presentation.txt; rg -n \"required_values_present\" .skilled/commands/deep/assets/deep-research.yaml",
+        "exit": 0,
+        "out": ".skilled/commands/deep/assets/deep-review-presentation.txt:238:   - lineage_mode = [auto/resume/restart from flag, marker, or default auto; completed-continue from --extend=N]\n.skilled/commands/deep/assets/deep-review-presentation.txt:239:   - extend = [N from --extend=N, else unset]\n---\n407:          - required_values_present: [research_topic, spec_folder, lineage_mode, max_iterations, convergence_threshold, convergence_mode, depth_mode, stop_policy]"
+      }
+    },
+    {
+      "id": "L2-2",
+      "surface": "D2",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/commands/deep/assets/deep-research.yaml",
+      "line": 356,
+      "issue": "Both copies of step_frontier_seed (fan-out at line 356, init at line 765) state \"frontier-admit.cjs is the only writer of the node store and the frontier inbox rows\", but fanout-run.cjs's writeLineageFrontierStore writes frontier-nodes.jsonl and appends the frontier inbox rows for each lineage (fanout-run.cjs:370-378), so the claim is false on the fan-out path the same step describes.",
+      "evidence": {
+        "cmd": "rg -n \"function writeLineageFrontierStore\" -A 9 .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "exit": 0,
+        "out": "370:function writeLineageFrontierStore(lineageDir, nodes, options = {}) {\n371-  const storePath = path.join(lineageDir, 'frontier-nodes.jsonl');\n372-  if (fs.existsSync(storePath) || nodes.length === 0) return false;\n373-  fs.mkdirSync(lineageDir, { recursive: true });\n374-  fs.writeFileSync(storePath, nodes.map((node) => `${JSON.stringify(node)}\\n`).join(''), 'utf8');\n375-  if (options.inbox === false) return true;\n376-  const inboxRows = nodes.map((node) => JSON.stringify({ id: node.nodeId, text: node.question, source: 'frontier', origin: 'frontier', injectedAtIteration: 0 }));\n377-  fs.appendFileSync(path.join(lineageDir, 'inbox.jsonl'), `${inboxRows.join('\\n')}\\n`, 'utf8');\n378-  return true;\n379-}"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/commands/deep/assets/deep-research-presentation.txt",
+    ".skilled/commands/deep/assets/deep-research.yaml"
+  ]
+}

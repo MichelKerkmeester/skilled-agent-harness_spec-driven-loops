@@ -1,0 +1,138 @@
+{
+  "lane": "D",
+  "findings": [
+    {
+      "id": "D-01",
+      "surface": "S7",
+      "standard": ".skilled/repo-rules/skill-hub-routing.md",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/SKILL.md",
+      "line": 45,
+      "issue": "The hub's stage-one routing prose asserts that three sources are checked against hub-router.json vocabularyClasses: the mode-registry aliases, each packet's `Keyword triggers:` line, and the root ROUTER.md intents. Two of the three hold. The packet Keyword triggers do not: 5 of deep-research's 8 declared triggers and 7 of deep-review's 12 are absent from vocabularyClasses, so a phrase the packet advertises as its own trigger never reaches the hub. skill-hub-routing.md section 1 requires the two sides to agree on the same phrasing and section 2 says registered is not routed; the sentence as written tells an author that adding a packet trigger is enough. Reproducing case: an operator asks 'Verify cross-references across the docs' (a deep-review Keyword Trigger) and the advisor returns sk-doc@0.63316 with action defer, never system-deep-loop; 'Audit this spec folder for completeness' returns system-spec-kit@0.888763.",
+      "evidence": {
+        "cmd": "node -e 'compare mode-registry aliases and each packet Keyword triggers line against hub-router.json vocabularyClasses'",
+        "exit": 0,
+        "out": "registry aliases missing from hub vocabulary [research]: []\nregistry aliases missing from hub vocabulary [review]: []\ndeep-research Keyword triggers (8): [\"autoresearch\",\"deep research\",\"autonomous research\",\"research loop\",\"iterative research\",\"multi-round research\",\"deep investigation\",\"comprehensive research\"]\ndeep-research MISSING from hub vocabulary (5): [\"autonomous research\",\"iterative research\",\"multi-round research\",\"deep investigation\",\"comprehensive research\"]\ndeep-review Keyword Triggers (12): [\"deep review\",\"convergence review\",\"iterative review\",\"review loop\",\"release readiness\",\"spec folder review\",\"convergence detection\",\"quality audit\",\"find misalignments\",\"verify cross-references\",\"pre-release review\",\"audit spec folder\"]\ndeep-review MISSING from hub vocabulary (7): [\"spec folder review\",\"convergence detection\",\"quality audit\",\"find misalignments\",\"verify cross-references\",\"pre-release review\",\"audit spec folder\"]"
+      }
+    },
+    {
+      "id": "D-02",
+      "surface": "S7",
+      "standard": ".skilled/repo-rules/skill-hub-routing.md",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/hub-router.json",
+      "line": 37,
+      "issue": "review-aliases carries the generic phrase 'review request', which skill-hub-routing.md section 4 names as the failure shape: a term that also matches unrelated work captures traffic the hub cannot serve. Three of four out-of-domain prompts route to system-deep-loop with action route, ahead of sk-code, so an operator asking about a customer or marketplace review request is offered /deep:review and an iterative review loop over nothing. The same list's 'audit the diff' also takes 'Audit the diff for injection risks' (system-deep-loop@0.5912 route over sk-code@0.501095), which deep-review's own 'When NOT to Use' sends to sk-code as a single-pass review. Blast radius is bounded because the attached command policy is 'ask', so the operator is asked before the loop starts.",
+      "evidence": {
+        "cmd": "printf '%s' '{\"prompt\":\"<prompt>\"}' | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json",
+        "exit": 0,
+        "out": "Respond to the review request on our marketplace listing -> system-deep-loop@0.62012[route]  sk-code@0.618456[route]\nSend the review request email to the customer -> system-deep-loop@0.62012[route]  sk-code@0.608804[route]\nReview request: please approve the vendor contract -> system-deep-loop@0.62012[route]  sk-code@0.619171[route]\nHandle the review request from the customer and reply -> system-deep-loop@0.62012[route]  sk-code@0.613308[route]\nAudit the diff for injection risks -> system-deep-loop@0.5912[route]  sk-code@0.501095[defer]"
+      }
+    },
+    {
+      "id": "D-03",
+      "surface": "S9",
+      "standard": "sk-doc/sk-create-command",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/scripts/validate-command-references.cjs",
+      "line": 134,
+      "issue": "Confirmed cause of the S9-command-references battery failure, and it is not in the eight S9 scope files: the validator's gitignored-runtime-state skip list exempts .skilled/skills/.state/ and .skilled/skills/system-deep-loop/runtime/database/*.sqlite, but not .skilled/skills/system-spec-kit/runtime/database/, which .gitignore:431 ignores wholesale. speckit-resume.yaml:104 therefore names a path that can never exist in a clean checkout or CI, and the S9 gate is permanently red. The eight deep command files resolve every path they name; the compiled contracts regenerate byte-identical to the checked-in copies.",
+      "evidence": {
+        "cmd": "node .skilled/commands/scripts/validate-command-references.cjs; git -c core.fsmonitor=false check-ignore -v .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json",
+        "exit": 1,
+        "out": "FAIL  1 unresolved command reference(s):\n  .skilled/commands/speckit/assets/speckit-resume.yaml:104  [skill-asset]  .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json  - path does not exist on disk\n.gitignore:431:.skilled/skills/system-spec-kit/runtime/database/\t.skilled/skills/system-spec-kit/runtime/database/access-telemetry.json"
+      },
+      "fix": {
+        "old": "      if (/^\\.skilled\\/skills\\/system-deep-loop\\/runtime\\/database\\/[^/]+\\.sqlite$/.test(token)) continue;",
+        "new": "      if (/^\\.skilled\\/skills\\/system-deep-loop\\/runtime\\/database\\/[^/]+\\.sqlite$/.test(token)) continue;\n      // The spec-kit index-layer store is gitignored whole, so a clean checkout never holds it.\n      if (/^\\.skilled\\/skills\\/system-spec-kit\\/runtime\\/database\\//.test(token)) continue;"
+      }
+    }
+  ],
+  "probes": [
+    {
+      "prompt": "Run the deep research loop with --depth-mode=expansive so it seeds sub-questions and keeps going while the frontier is open",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Run a deep research loop that expands into sub-questions instead of stopping at the first convergence",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Turn on expansive depth mode for the deep review so it admits sub-targets under the depth cap",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Run a deep review that keeps a convergence stop open while frontier nodes stay open",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Split the expansive deep review across fan-out lineages and merge the frontier partitions",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Extend the completed deep review run by five more iterations",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Continue a finished deep research run with more iterations",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Start an autoresearch session that keeps iterating until new information converges",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Run an iterative deep review loop over the auth module and report P0/P1/P2 findings",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Review this single file for null-deref bugs",
+      "expect": "sk-code"
+    },
+    {
+      "prompt": "Write a new skill for changelog generation",
+      "expect": "sk-doc"
+    },
+    {
+      "prompt": "Commit these changes and open a pull request",
+      "expect": "sk-git"
+    }
+  ],
+  "reviewed": [
+    ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+    ".skilled/skills/system-deep-loop/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/description.json",
+    ".skilled/skills/system-deep-loop/hub-router.json",
+    ".skilled/skills/system-deep-loop/mode-registry.json",
+    ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+    ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+    ".skilled/commands/deep/assets/deep-research-presentation.txt",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md",
+    ".claude/agents/deep-research.md",
+    ".claude/agents/deep-review.md",
+    ".codex/agents/deep-research.toml",
+    ".codex/agents/deep-review.toml",
+    ".pi/agents/deep-research.md",
+    ".pi/agents/deep-review.md",
+    ".skilled/agents/deep-research.md",
+    ".skilled/agents/deep-review.md"
+  ]
+}

@@ -1,0 +1,4 @@
+Let me exercise the documented commands against the real scripts in a temp dir.
+
+
+Stopped: terminated

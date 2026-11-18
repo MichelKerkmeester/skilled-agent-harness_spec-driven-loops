@@ -1,0 +1,1 @@
+spawn error: ENOTEMPTY, Directory not empty: '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/doc-alignment-run-7/L6/.vibe-home'

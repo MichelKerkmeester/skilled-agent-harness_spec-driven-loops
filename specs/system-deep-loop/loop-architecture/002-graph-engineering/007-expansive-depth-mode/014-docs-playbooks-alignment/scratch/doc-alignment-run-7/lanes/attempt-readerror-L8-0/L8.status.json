@@ -1,0 +1,11 @@
+{
+  "id": "L8",
+  "exitCode": 2,
+  "signal": null,
+  "reason": "exit 2",
+  "startedAt": "2026-11-18T11:29:09.688Z",
+  "endedAt": "2026-11-18T11:47:09.180Z",
+  "seconds": 1079.492,
+  "scratch": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/doc-alignment-run-7/L8",
+  "sessions": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/doc-alignment-run-7/L8/sessions"
+}

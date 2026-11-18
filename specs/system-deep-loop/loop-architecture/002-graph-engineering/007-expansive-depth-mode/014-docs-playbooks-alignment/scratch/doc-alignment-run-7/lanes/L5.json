@@ -1,0 +1,107 @@
+{
+  "lane": "L5",
+  "findings": [
+    {
+      "id": "L5-1",
+      "surface": "D6",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+      "line": 415,
+      "issue": "The doc says the FRONTIER block allowance is computed only from the node's remaining child slots. `renderFrontierBlock` takes the minimum of two bounds: the node's remaining child slots (`maxChildrenPerNode - countLiveChildren`) and the run-wide headroom (`maxFrontierNodes - countLiveNodes`). A leaf whose own child slots are free still gets an empty block once the run-wide node cap is reached, so the doc's single-bound description misstates when a leaf may propose.",
+      "evidence": {
+        "cmd": "rg -n \"const slots = Math.max\" -A 4 .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+        "exit": 0,
+        "out": "621:  const slots = Math.max(0, Math.min(\n622-    caps.maxChildrenPerNode - countLiveChildren(nodes, resolvedId),\n623-    caps.maxFrontierNodes - countLiveNodes(nodes),\n624-  ));"
+      },
+      "fix": {
+        "old": "computes from the node's remaining child slots",
+        "new": "computes from the node's remaining child slots and the run-wide frontier node cap"
+      }
+    },
+    {
+      "id": "L5-2",
+      "surface": "D5",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 868,
+      "issue": "The section 14 blurb says the category covers 4 scenarios but names only three, omitting DR-073 (`Fan-out deals seeded frontier nodes round-robin`), which is the expansive-depth fan-out partition scenario and the one scenario in this category that exercises the topic. The count 4 is right; the enumeration is stale.",
+      "evidence": {
+        "cmd": "rg -n \"^### DR-0(5[0-9]|7[0-9])\" .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+        "exit": 0,
+        "out": "870:### DR-052 | Fan-out research with two CLI lineages\n883:### DR-053 | Fan-out native sequential research dispatch\n896:### DR-054 | Fan-out single-executor parity for research loop\n909:### DR-073 | Fan-out deals seeded frontier nodes round-robin"
+      },
+      "fix": {
+        "old": "CLI lineage pool dispatch, native sequential agent dispatch, and single-executor parity",
+        "new": "CLI lineage pool dispatch, native sequential agent dispatch, single-executor parity, and round-robin frontier partition"
+      }
+    },
+    {
+      "id": "L5-3",
+      "surface": "D5",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
+      "line": 107,
+      "issue": "The Packet Files table is presented as the inventory of on-disk artifacts but omits `frontier-nodes.jsonl`, the node store that `frontier-admit.cjs` reads and writes for every expansive run (seed, admit, close, block, graph). The string `frontier-nodes` does not appear anywhere in the README, so a reader following the table cannot account for the file that carries the whole frontier state.",
+      "evidence": {
+        "cmd": "rg -c \"frontier-nodes\" .skilled/skills/system-deep-loop/deep-research/README.md; rg -n \"NODE_STORE_FILE = \" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+        "exit": 1,
+        "out": "(no matches in README.md)\n42:const NODE_STORE_FILE = 'frontier-nodes.jsonl';"
+      },
+      "fix": {
+        "old": "| `.deep-research-pause` | Operator | The pause sentinel checked before each dispatch |",
+        "new": "| `.deep-research-pause` | Operator | The pause sentinel checked before each dispatch |\n| `frontier-nodes.jsonl` | Runtime | The frontier node store written by `frontier-admit.cjs` under `--depth-mode=expansive` |"
+      }
+    },
+    {
+      "id": "L5-4",
+      "surface": "D5",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
+      "line": 127,
+      "issue": "The derived-budget formula `min(24, max(10, 2 × (S + maxDepth − 1)))` is stated as the general rule, but the floor is not a constant 10: `fanout-run.cjs:339` passes `loopDefault: lineage.kind === 'native' ? 12 : LOOP_DEFAULT_MAX_ITERATIONS[loopType]`, so a native fan-out lineage dealt no seed nodes gets 12, not 10. Calling `expansiveBudget({target:'research',seeded:0,loopDefault:12})` returns 12. The doc's own worked value of 16 at six seeds is correct, so only the S=0 floor is wrong.",
+      "evidence": {
+        "cmd": "node -e \"const m=require('./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs'); console.log(m.expansiveBudget({target:'research',seeded:0,loopDefault:12})); console.log(m.expansiveBudget({target:'research',seeded:6,loopDefault:10}))\"",
+        "exit": 0,
+        "out": "12\n16"
+      }
+    },
+    {
+      "id": "L5-5",
+      "surface": "D5",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+      "line": 106,
+      "issue": "The note enumerates the live lifecycle branches as `resume`, `restart` and `completed-continue`, then names `fork` as the deferred one, which reads as the complete live set. `new` is also live: the config template's `lineage.allowedModes` is `[\"new\", \"resume\", \"restart\", \"completed-continue\"]` with only `fork` in `deferredModes`, and `loop-protocol.md` states the runtime supports four lineage modes.",
+      "evidence": {
+        "cmd": "rg -n \"allowedModes\" -A 6 .skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
+        "exit": 0,
+        "out": "38:    \"allowedModes\": [\n39-      \"new\",\n40-      \"resume\",\n41-      \"restart\",\n42-      \"completed-continue\"\n43-    ],"
+      },
+      "fix": {
+        "old": "> **Live lifecycle branches:** `resume`, `restart`, and `completed-continue` through `--extend=N`.",
+        "new": "> **Live lifecycle branches:** `new`, `resume`, `restart`, and `completed-continue` through `--extend=N`."
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/initialization.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/anti-convergence-floor.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/deep-research/README.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md"
+  ]
+}

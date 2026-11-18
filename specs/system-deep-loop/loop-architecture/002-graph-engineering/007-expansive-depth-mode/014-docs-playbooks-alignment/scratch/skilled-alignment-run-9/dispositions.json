@@ -1,0 +1,27 @@
+[
+ {
+  "id": "C-05",
+  "status": "handed_off",
+  "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: the operator, who writes skilled release entries. .skilled/changelog/skilled/v4.1.0.0.md (commit 4672913c901) is tagged on origin and cannot be extended; a new release entry is the operator's call."
+ },
+ {
+  "id": "D-01",
+  "status": "handed_off",
+  "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: system-deep-loop hub routing. SKILL.md:45 (commit 9dc9992ed6a) and the packet trigger lists predate the program; the critic overrides it as pre-existing."
+ },
+ {
+  "id": "D-02",
+  "status": "handed_off",
+  "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: system-deep-loop hub routing. hub-router.json:37 review-aliases (commit 7af52ef940f) predate the program; the critic overrides it as pre-existing."
+ },
+ {
+  "id": "D-03",
+  "status": "handed_off",
+  "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: commands/scripts/validate-command-references.cjs:134, a file this program did not change; speckit-resume.yaml:104 names a gitignored runtime path (.gitignore:431)."
+ },
+ {
+  "id": "BAT-01",
+  "status": "handed_off",
+  "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Same cause as D-03. Owner: commands/scripts/validate-command-references.cjs:134, a file this program did not change; speckit-resume.yaml:104 names a gitignored runtime path (.gitignore:431)."
+ }
+]

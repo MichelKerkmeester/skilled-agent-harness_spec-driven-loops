@@ -1,0 +1,17 @@
+[
+ {
+  "id": "L3-1",
+  "status": "handed_off",
+  "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: deep-review command presentation (deep-review-presentation.txt:446, commit 8c2f5e483cc). The 'three binary quality gates' list predates the program; the review stop path checks nine legal-stop gates."
+ },
+ {
+  "id": "L3-2",
+  "status": "handed_off",
+  "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: deep-review workflow YAML (deep-review.yaml:367, commit 7f1d9ac5891). The fan-out spawn step names a phase_main_loop the workflow does not have; predates the program."
+ },
+ {
+  "id": "L7-1",
+  "status": "handed_off",
+  "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: deep-review convergence reference (convergence.md:169, commit 9d02835e467). The keyed gateResults shape predates the program; the producer emits a row array."
+ }
+]

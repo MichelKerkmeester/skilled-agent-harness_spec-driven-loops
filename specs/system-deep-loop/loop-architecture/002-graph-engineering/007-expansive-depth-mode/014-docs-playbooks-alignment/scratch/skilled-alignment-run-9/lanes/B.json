@@ -1,0 +1,115 @@
+{
+  "lane": "B",
+  "findings": [
+    {
+      "id": "B-1",
+      "surface": "S3",
+      "standard": "sk-doc/sk-create-feature-catalog",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+      "line": 49,
+      "issue": "The frontier-to-coverage-graph mirror is a new shipped capability of this change with no feature-catalog entry anywhere in the skill. The deep-research workflow gained a step that runs `frontier-admit.cjs graph` and then `upsert.cjs --events` to mirror the node store into the coverage graph, re-kinding exhausted/blocked/abstained nodes from QUESTION to a closed CLAIM so question coverage and source diversity return to their base values. The expansive-depth-mode entry lists `frontier-admit.cjs` only as 'Seeds, admits and closes frontier nodes' and its HOW IT WORKS sections never mention the graph projection; the runtime catalog has no entry either. The S3 lens requires every new feature in a skill that keeps a feature-catalog/ to have an entry, and this one changes convergence-signal inputs, so it is not internal plumbing.",
+      "evidence": {
+        "cmd": "grep -rn 'frontier-graph\\|Mirror the frontier\\|re-kinded' .skilled/skills/system-deep-loop/{deep-research,deep-review,runtime}/feature-catalog .skilled/skills/system-deep-loop/feature-catalog; grep -n 'frontier-admit.cjs graph' .skilled/commands/deep/assets/deep-research.yaml",
+        "exit": 1,
+        "out": "first grep: no matches (exit 1). second grep: 1911:          node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs graph --artifact-dir \"{artifact_dir}\" --output \"{artifact_dir}/frontier-graph-events.json\""
+      }
+    },
+    {
+      "id": "B-2",
+      "surface": "S4",
+      "standard": "sk-doc/sk-create-manual-testing-playbook",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 909,
+      "issue": "The same new capability has no manual-testing scenario. The deep-research playbook's expansive set stops at DR-073 (fan-out partition): DR-068 covers the flag default, DR-069 the seed, DR-070 admission, DR-071 focus, DR-072 the veto and DR-073 the partition, but nothing exercises the frontier graph mirror, its QUESTION-to-CLAIM re-kinding, or the `skip_second_command_when: nodes 0` guard. The S4 lens requires a new feature to have a scenario, and the behaviour is operator-observable in the coverage graph and in the convergence signals that read it.",
+      "evidence": {
+        "cmd": "grep -rn 'frontier-graph\\|frontier graph\\|DERIVED_FROM' .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook",
+        "exit": 1,
+        "out": "no matches"
+      }
+    },
+    {
+      "id": "B-3",
+      "surface": "S3",
+      "standard": "sk-doc/sk-create-feature-catalog",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+      "line": 620,
+      "issue": "The `upsert.cjs` entry still describes only the pre-change behaviour. This change added 276 lines to `runtime/scripts/upsert.cjs`: the `--state-log`, `--delta-dir` and `--iteration` inputs, `resolveReviewFindingId` id folding, `parseFindingRef`, and `deriveReviewFindingEvidence`, which emits one FINDING node per iteration finding plus an EVIDENCE_FOR edge to the FILE node of its `path:line` ref and reports `rejectedOrphanEdges`. The entry and its leaf `script-entry-points/upsert-script.md` (still version 1.4.0.4) say only 'Stores coverage graph nodes and edges from JSON arrays or iteration graph event files. Direct replacement for `deep_loop_graph_upsert`; validates kinds, relations, and self-loops.' The catalog was actively maintained in this same change (six new entries, counts raised 51 to 57), so this is an omission rather than an untouched file. The S3 lens requires a changed feature's entry to still describe it.",
+      "evidence": {
+        "cmd": "grep -n 'state-log\\|delta-dir\\|EVIDENCE_FOR\\|rejectedOrphanEdges' .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md .skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/upsert-script.md",
+        "exit": 1,
+        "out": "no matches in either file"
+      }
+    },
+    {
+      "id": "B-4",
+      "surface": "S2",
+      "standard": "sk-doc/sk-create-skill",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+      "line": 465,
+      "issue": "The reference contradicts itself on who writes the review node store. Line 465 says `frontier-admit.cjs --target review` 'is its only writer'; line 469 of the same file says 'Each lineage's store is written before it spawns'. `fanout-run.cjs:3960` calls `writeLineageFrontierStore(lineageDir, frontierPartition[lineage.label] || [], { inbox: loopType !== 'review' })`, so a fan-out lineage's `frontier-nodes.jsonl` is seeded by the runner before the lineage's first `frontier-admit.cjs` call. The SKILL.md carries the same unqualified claim at line 240 ('written only by `frontier-admit.cjs`'). The S2 lens asks whether SKILL.md and its references describe the shipped behaviour; here two statements in one file cannot both be true, and a reader debugging a pre-populated lineage store is sent to the wrong writer.",
+      "evidence": {
+        "cmd": "sed -n '465p;469p' .skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md | cut -c1-260; sed -n '3960p' .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs | cut -c1-200",
+        "exit": 0,
+        "out": "465: ... A review run has no inbox, so the store alone queues an admitted node, and `runtime/scripts/frontier-admit.cjs --target review` is its only writer. | 469: On a fan-out run the depth-1 nodes are dealt round-robin in node-id order, ... Each lineage's store is written before it spawns ... | fanout-run.cjs:3960: if (frontierPartition) writeLineageFrontierStore(lineageDir, frontierPartition[lineage.label] || [], { inbox: loopType !== 'review' });"
+      },
+      "fix": {
+        "old": "A review run has no inbox, so the store alone queues an admitted node, and `runtime/scripts/frontier-admit.cjs --target review` is its only writer.",
+        "new": "A review run has no inbox, so the store alone queues an admitted node, and `runtime/scripts/frontier-admit.cjs --target review` is the only writer of node status; a fan-out lineage's store is seeded once by `fanout-run.cjs` before that lineage spawns."
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/SKILL.md",
+    ".skilled/skills/system-deep-loop/README.md",
+    ".skilled/skills/system-deep-loop/description.json",
+    ".skilled/skills/system-deep-loop/hub-router.json",
+    ".skilled/skills/system-deep-loop/mode-registry.json",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.6.0.md",
+    ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md",
+    ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/completed-run-extension-flag.md",
+    ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-research/README.md",
+    ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
+    ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/initialization.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/focus-hijack-guard.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/leaf-field-gates.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/README.md",
+    ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+    ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/min-iterations-floor.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/custom-review-dimensions.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/state-management/focus-hijack-guard.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/cross-mode-anti-convergence-contract.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
+    ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/runtime/feature-catalog/coverage-graph/coverage-graph-db.md",
+    ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/upsert-script.md",
+    ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md"
+  ]
+}

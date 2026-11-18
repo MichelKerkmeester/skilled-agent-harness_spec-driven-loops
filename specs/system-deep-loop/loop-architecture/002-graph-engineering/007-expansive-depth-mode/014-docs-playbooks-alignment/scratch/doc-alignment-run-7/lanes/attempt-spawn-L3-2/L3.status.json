@@ -1,0 +1,11 @@
+{
+  "id": "L3",
+  "exitCode": null,
+  "signal": null,
+  "reason": "spawn error: ENOTEMPTY, Directory not empty: '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/doc-alignment-run-7/L3/.vibe-home'",
+  "startedAt": "2026-11-18T11:52:56.614Z",
+  "endedAt": "2026-11-18T11:53:26.675Z",
+  "seconds": 30.061,
+  "scratch": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/doc-alignment-run-7/L3",
+  "sessions": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/doc-alignment-run-7/L3/sessions"
+}

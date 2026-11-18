@@ -1,0 +1,59 @@
+[
+ {
+  "prompt": "Run the deep research loop with --depth-mode=expansive so it seeds sub-questions and keeps going while the frontier is open",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Run a deep research loop that expands into sub-questions instead of stopping at the first convergence",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Turn on expansive depth mode for the deep review so it admits sub-targets under the depth cap",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Run a deep review that keeps a convergence stop open while frontier nodes stay open",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Split the expansive deep review across fan-out lineages and merge the frontier partitions",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Extend the completed deep review run by five more iterations",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Continue a finished deep research run with more iterations",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Start an autoresearch session that keeps iterating until new information converges",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Run an iterative deep review loop over the auth module and report P0/P1/P2 findings",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Review this single file for null-deref bugs",
+  "expect": "sk-code"
+ },
+ {
+  "prompt": "Write a new skill for changelog generation",
+  "expect": "sk-doc"
+ },
+ {
+  "prompt": "Commit these changes and open a pull request",
+  "expect": "sk-git"
+ }
+]

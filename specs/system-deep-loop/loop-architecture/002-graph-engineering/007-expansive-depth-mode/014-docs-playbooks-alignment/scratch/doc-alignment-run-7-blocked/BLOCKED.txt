@@ -1,0 +1,1 @@
+Blocked before any report: every lane launched from 10:24 UTC on tip 0a845d0d8ef exited with the gateway's billing_error (daily usage cap, resets 2026-11-18T18:18:44Z). The queue and lanes were stopped at 10:35. Not a run; the final pair reruns under this number after the reset.

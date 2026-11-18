@@ -1,0 +1,43 @@
+{
+  "target": "topic expansive-depth",
+  "head": "0a845d0d8ef0b1d3c48a2b14560196358a38d961",
+  "files": 69,
+  "owners": [
+    {
+      "id": "docs:.claude/agents",
+      "kind": "docs",
+      "root": ".claude/agents",
+      "files": 2
+    },
+    {
+      "id": "docs:.pi/agents",
+      "kind": "docs",
+      "root": ".pi/agents",
+      "files": 2
+    },
+    {
+      "id": "docs:.skilled/agents",
+      "kind": "docs",
+      "root": ".skilled/agents",
+      "files": 2
+    },
+    {
+      "id": "docs:.skilled/commands",
+      "kind": "docs",
+      "root": ".skilled/commands",
+      "files": 6
+    },
+    {
+      "id": "docs:.skilled/skills",
+      "kind": "docs",
+      "root": ".skilled/skills",
+      "files": 56
+    },
+    {
+      "id": "docs:README.md",
+      "kind": "docs",
+      "root": "README.md",
+      "files": 1
+    }
+  ]
+}

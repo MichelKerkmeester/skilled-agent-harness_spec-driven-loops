@@ -1,0 +1,72 @@
+{
+  "lane": "A",
+  "findings": [
+    {
+      "id": 1,
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts",
+      "line": 2,
+      "issue": "The file header uses a `// TEST:` marker where the SKILLED TypeScript checklist's P0 File Header item and the TypeScript style guide declare `// MODULE: [Module Name]`. 211 of the 213 test files under runtime/tests use `// MODULE:`; only this file and its review sibling use `// TEST:`, so the marker is a new, undeclared variant rather than an established pattern.",
+      "evidence": {
+        "cmd": "grep -rl '^// MODULE:' .skilled/skills/system-deep-loop/runtime/tests/ | wc -l; grep -rl '^// TEST:' .skilled/skills/system-deep-loop/runtime/tests/ | wc -l; grep -rn '^// TEST:' .skilled/skills/system-deep-loop/runtime/tests/",
+        "exit": 0,
+        "out": "MODULE headers: 211\nTEST headers: 2\n.skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts:2:// TEST: Research default-path golden byte identity\n.skilled/skills/system-deep-loop/runtime/tests/unit/review-depth-mode-golden.vitest.ts:2:// TEST: Review default-path golden byte identity"
+      },
+      "fix": {
+        "old": "// TEST: Research default-path golden byte identity",
+        "new": "// MODULE: Research Default Path Golden Byte Identity"
+      }
+    },
+    {
+      "id": 2,
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "line": 437,
+      "issue": "The admission `budget` check can never prune. It fires only when both `proposal.budget` and `parent.budget` are finite numbers, but no writer ever puts a `budget` field on a node row: `admitProposals` and `seedNodes` write {nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey}, `closeNode` only spreads an existing row, and the FRONTIER block asks the leaf for `question`, `scope`, `evidence` and `parentId` only. The module header (line 15) and the rendered FRONTIER block (lines 647 and 649) both promise a budget prune, so the documented six-check contract is really five checks plus an unreachable branch.",
+      "evidence": {
+        "cmd": "D=$(mktemp -d) && node -e 'const fs=require(\"fs\"),path=require(\"path\");const {seedNodes,admitProposals,readNodeStore}=require(\"./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs\");const dir=process.argv[1];seedNodes({artifactDir:dir,iteration:0,candidates:[{question:\"what is the admission order\",scope:\"runtime/scripts\",evidence:\"frontier-admit.cjs\"}]});const rows=[...readNodeStore(path.join(dir,\"frontier-nodes.jsonl\")).values()];console.log(\"row keys:\",JSON.stringify(Object.keys(rows[0])));console.log(\"has budget field:\",Object.prototype.hasOwnProperty.call(rows[0],\"budget\"));console.log(\"admit with budget 99:\",JSON.stringify(admitProposals({artifactDir:dir,iteration:1,proposals:[{parentId:rows[0].nodeId,question:\"does the budget check ever fire\",scope:\"runtime/scripts\",evidence:\"x\",budget:99}]})));' \"$D\"",
+        "exit": 0,
+        "out": "row keys: [\"nodeId\",\"parentId\",\"depth\",\"scope\",\"question\",\"status\",\"reason\",\"iteration\",\"dedupeKey\"]\nhas budget field: false\nadmit with budget 99: {\"admitted\":[\"F-2-002\"],\"pruned\":[]}"
+      }
+    },
+    {
+      "id": 3,
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "line": 254,
+      "issue": "`readCaps` and `seedBudget` derive the run-wide node cap from the same `maxIterations` value with different coercion, so they disagree whenever the config value is not already a finite positive number. `readCaps` (line 254) passes the raw value to `capValue`, which rejects a numeric string and falls back to DEFAULT_MAX_FRONTIER_NODES (10); `seedBudget` (line 304) wraps it in `Number()` first and derives the cap from the parsed budget. The seed then reports growth slots against a cap that admission does not enforce.",
+      "evidence": {
+        "cmd": "D=$(mktemp -d) && printf '{\"maxIterations\":\"24\",\"antiConvergence\":{\"depthMode\":\"expansive\"},\"expansiveDepth\":{\"maxDepth\":3,\"maxChildrenPerNode\":6,\"maxFrontierNodes\":null}}' > \"$D/deep-research-config.json\" && node -e 'const {readCaps,seedBudget}=require(\"./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs\");const dir=process.argv[1];console.log(\"readCaps:\",JSON.stringify(readCaps(dir,\"research\")));console.log(\"seedBudget:\",JSON.stringify(seedBudget({artifactDir:dir,target:\"research\",maxIterationsSource:\"default\"})));' \"$D\"",
+        "exit": 0,
+        "out": "readCaps: {\"maxDepth\":3,\"maxChildrenPerNode\":6,\"maxRootChildren\":6,\"maxFrontierNodes\":10}\nseedBudget: {\"derivedMaxIterations\":24,\"growthSlots\":12}"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+    ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+    ".skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts"
+  ]
+}

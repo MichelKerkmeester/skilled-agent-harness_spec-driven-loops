@@ -1,0 +1,56 @@
+{
+  "topic": "expansive-depth",
+  "grading": "topic checks from topics.json; a doc-alignment run has no change-scoped battery",
+  "surfaces": [
+    {
+      "id": "D1",
+      "title": "Docs match the topic's current code",
+      "fired": true,
+      "matched": 69,
+      "checks": 0
+    },
+    {
+      "id": "D2",
+      "title": "Topic checks pass",
+      "fired": true,
+      "matched": 0,
+      "checks": 2
+    }
+  ],
+  "counts": {
+    "pass": 2,
+    "fail": 0,
+    "cannot_run": 0,
+    "not_applicable": 0
+  },
+  "rows": [
+    {
+      "id": "D2-contract-drift",
+      "checkId": "D2-contract-drift",
+      "surface": "D2",
+      "standard": "Every deterministic check listed for the topic in topics.json exits 0",
+      "status": "pass",
+      "severity": "P1",
+      "ci_gated": false,
+      "exit": 0,
+      "durationMs": 44,
+      "cmd": "node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs",
+      "outTail": "[CONTRACT DRIFT] OK commands=2",
+      "reason": null
+    },
+    {
+      "id": "D2-doc-facts",
+      "checkId": "D2-doc-facts",
+      "surface": "D2",
+      "standard": "Every deterministic check listed for the topic in topics.json exits 0",
+      "status": "pass",
+      "severity": "P1",
+      "ci_gated": false,
+      "exit": 0,
+      "durationMs": 137,
+      "cmd": "node .skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs --facts",
+      "outTail": "{\n  \"errors\": []\n}",
+      "reason": null
+    }
+  ]
+}

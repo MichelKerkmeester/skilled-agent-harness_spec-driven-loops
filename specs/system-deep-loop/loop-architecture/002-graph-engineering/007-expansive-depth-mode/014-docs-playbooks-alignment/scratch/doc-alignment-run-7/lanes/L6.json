@@ -1,0 +1,95 @@
+{
+  "lane": "L6",
+  "findings": [
+    {
+      "id": "L6-1",
+      "surface": "D1",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
+      "line": 45,
+      "issue": "The file table declares `deep-research-config.json` as \"Created at init; read-only after\", and §4 (line 106) repeats the same claim as the meaning of the `immutable` protection class. The workflow rewrites the config twice after creation: `step_frontier_budget` (deep-research.yaml:773) reserialises it through a tmp file with a new `maxIterations` (line 796), and `step_extend_completed_run` (line 466) rewrites `status`, `maxIterations`, `maxDurationMinutes`, `lineageMode` and `continuedFromRun` (lines 547-549) on a completed run. The sibling deep-review/references/state/state-format.md:38 already carries the corrected wording naming both rewrites; this research doc was not updated with it.",
+      "evidence": {
+        "cmd": "rg -n \"read-only after\" .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md; rg -n \"maxIterations: budget.derivedMaxIterations|maxIterations: newMaxIterations|lineageMode: \\\"completed-continue\\\"\" .skilled/commands/deep/assets/deep-research.yaml",
+        "exit": 0,
+        "out": "45:| `deep-research-config.json` | JSON | Loop parameters and lineage | Created at init; read-only after |\n547:              maxIterations: newMaxIterations,\n549:              lineage: { ...lineage, lineageMode: \"completed-continue\", continuedFromRun },\n796:              fs.writeFileSync(tmp, JSON.stringify({ ...config, maxIterations: budget.derivedMaxIterations }, null, 2) + \"\\n\");"
+      },
+      "fix": {
+        "old": "Created at init; read-only after",
+        "new": "Immutable after init, except the `step_frontier_budget` budget resize and the `--extend=N` rewrite, which resets `status` to `initialized` and sets `maxIterations`, `maxDurationMinutes`, `lineageMode` and `continuedFromRun`"
+      }
+    },
+    {
+      "id": "L6-2",
+      "surface": "D2",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      "line": 228,
+      "issue": "The prohibition list tells the reader that \"Research parameters are read-only after initialization; the terminal `step_update_config_status` flip to `status: complete` is the one permitted write\". Two other writes exist in the shipped workflow: `step_frontier_budget` (deep-research.yaml:773) rewrites `maxIterations` from the seed-derived budget via tmp+rename (line 796), and `step_extend_completed_run` (line 466) rewrites `status`, `maxIterations`, `maxDurationMinutes`, `lineageMode` and `continuedFromRun` (lines 547-549) when `--extend` reopens a completed run. A reader following this line would treat both as violations.",
+      "evidence": {
+        "cmd": "rg -n \"one permitted write\" .skilled/skills/system-deep-loop/deep-research/SKILL.md; rg -n \"step_frontier_budget:|step_extend_completed_run:\" .skilled/commands/deep/assets/deep-research.yaml",
+        "exit": 0,
+        "out": "228:6. **Modify config after init** -- Research parameters are read-only after initialization; the terminal `step_update_config_status` flip to `status: complete` is the one permitted write\n466:      step_extend_completed_run:\n773:      step_frontier_budget:"
+      },
+      "fix": {
+        "old": "Research parameters are read-only after initialization; the terminal `step_update_config_status` flip to `status: complete` is the one permitted write",
+        "new": "Research parameters are read-only after initialization, except the `step_frontier_budget` budget resize and the `--extend=N` rewrite; the terminal `step_update_config_status` flip to `status: complete` is the only other permitted write"
+      }
+    },
+    {
+      "id": "L6-3",
+      "surface": "D3",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/cross-mode-anti-convergence-contract.md",
+      "line": 29,
+      "issue": "The doc enumerates the optimizer manifest's invariant group as locking `antiConvergence.convergenceMode` and `convergenceMode` only. The manifest's group actually locks three fields: `[\"antiConvergence.convergenceMode\", \"convergenceMode\", \"antiConvergence.depthMode\"]` (optimizer-manifest.json:128). `antiConvergence.depthMode` is the expansive-depth lock and is the one entry this doc, whose subject is the cross-mode contract, omits. Line 43 of the same file repeats the two-field summary.",
+      "evidence": {
+        "cmd": "rg -n \"stay locked\" .skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/cross-mode-anti-convergence-contract.md; rg -n '\"lockedFields\": \\[\"antiConvergence' .skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+        "exit": 0,
+        "out": "29:The optimizer manifest carries an invariant group for the same contract: `antiConvergence.convergenceMode` and `convergenceMode` stay locked, and `antiConvergence.minIterations` is tunable only when the paired `minIterations <= maxIterations` constraint holds.\n128:      \"lockedFields\": [\"antiConvergence.convergenceMode\", \"convergenceMode\", \"antiConvergence.depthMode\"],"
+      },
+      "fix": {
+        "old": "`antiConvergence.convergenceMode` and `convergenceMode` stay locked",
+        "new": "`antiConvergence.convergenceMode`, `convergenceMode` and `antiConvergence.depthMode` stay locked"
+      }
+    },
+    {
+      "id": "L6-4",
+      "surface": "D4",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+      "line": 36,
+      "issue": "The doc says the divergent review pivot \"seeds from terminal unanswered nodes\", which reads as every terminal status that left the node unanswered. `divergent-review-pivot.ts:305` seeds only `exhausted` and `blocked`; `abstained` is a terminal, unanswered node status in `NODE_STATUSES` but is filtered out and never becomes a `frontier-unanswered` seed. The workflow gate is precise where this summary is not: deep-review.yaml:1413 says \"The pivot may seed from nodes closed exhausted or blocked.\"",
+      "evidence": {
+        "cmd": "rg -n \"It seeds from terminal unanswered nodes\" .skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md; rg -n \"status !== 'exhausted' && status !== 'blocked'\" .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+        "exit": 0,
+        "out": "36:The divergent review pivot runs only once the frontier is terminal. It seeds from terminal unanswered nodes, and an accepted candidate becomes the next review direction through `restoredFocus`. The pivot writes no frontier node.\n305:    if (status !== 'exhausted' && status !== 'blocked') return;"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/min-iterations-floor.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/custom-review-dimensions.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/cross-mode-anti-convergence-contract.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/cross-mode-anti-convergence-contract.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-review-stop.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-min-iterations-floor.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/extend-completed-review-run.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/custom-dimension-setup-and-universe.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-and-node-dimension-coverage.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md"
+  ]
+}

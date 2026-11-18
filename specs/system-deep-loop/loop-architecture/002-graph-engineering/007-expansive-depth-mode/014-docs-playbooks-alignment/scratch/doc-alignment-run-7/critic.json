@@ -1,0 +1,106 @@
+{
+  "findings": [
+    {
+      "id": "C1",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/research.md",
+      "line": 107,
+      "issue": "The `--depth-mode` row enumerates the admission caps as \"depth, fan-out, budget, dedupe and cycle\", but `checkProposal` runs six checks in one fixed order and records the first failure as the prune reason: relevance (frontier-admit.cjs:396-403), dedupe (:406-419), depth (:422-423), fan-out (:426-433), budget (:435-441), cycle (:444). The row omits relevance entirely — the check that prunes a proposal lacking a question, evidence or scope, or naming a parent the store does not hold — and places dedupe after budget. Every other in-scope doc states the six-check order correctly (deep-research/references/protocol/loop-protocol.md:415, deep-research/README.md:127, deep-research/SKILL.md:94, deep-research/feature-catalog/convergence/expansive-depth-mode.md:24), so this row is the outlier. L4 timed out before reviewing this file, which is why no lane caught it.",
+      "evidence": {
+        "cmd": "rg -n \"under depth, fan-out, budget, dedupe and cycle caps\" .skilled/commands/deep/research.md; rg -n \"applies six checks in order\" .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+        "exit": 0,
+        "out": "107:| `--depth-mode` | ... admits leaf `frontier_proposal` rows as new questions under depth, fan-out, budget, dedupe and cycle caps ...\n415:A leaf may append `frontier_proposal` rows ... `step_frontier_admit` runs before `step_reduce_state` and calls `frontier-admit.cjs admit`, which applies six checks in order: relevance, dedupe, depth, fan-out, budget, cycle."
+      },
+      "fix": {
+        "old": "under depth, fan-out, budget, dedupe and cycle caps",
+        "new": "under relevance, dedupe, depth, fan-out, budget and cycle caps"
+      }
+    },
+    {
+      "id": "C2",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/review.md",
+      "line": 100,
+      "issue": "The `--depth-mode` row enumerates the admission caps as \"depth, fan-out, budget, dedupe and cycle\", omitting relevance and placing dedupe after budget. `checkProposal` runs relevance first (frontier-admit.cjs:396-403), and for a review run relevance is the check that prunes a proposal whose scope falls outside a `files` review target through `scopeInsideReviewTarget` (:402) — the one admission rule that keeps a review node inside the target the run may read. The review packet states the order correctly in three places (deep-review/references/protocol/loop-protocol.md:465, deep-review/README.md:158, deep-review/SKILL.md:240), so this row contradicts its own packet. L4 timed out before reviewing this file.",
+      "evidence": {
+        "cmd": "rg -n \"under depth, fan-out, budget, dedupe and cycle caps\" .skilled/commands/deep/review.md; rg -n \"applies six checks in order\" .skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+        "exit": 0,
+        "out": "100:| `--depth-mode` | ... admits leaf `frontier_proposal` rows under depth, fan-out, budget, dedupe and cycle caps ...\n465:`step_frontier_admit` runs before the reducer and applies six checks in order: relevance, dedupe, depth, fan-out, budget, cycle. Relevance includes a node's scope sitting inside a file-list review target."
+      },
+      "fix": {
+        "old": "under depth, fan-out, budget, dedupe and cycle caps",
+        "new": "under relevance, dedupe, depth, fan-out, budget and cycle caps"
+      }
+    },
+    {
+      "id": "C3",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+      "line": 96,
+      "issue": "The section 5 STATE FILES table presents itself as the packet's file list and omits `frontier-nodes.jsonl`, even though the same cheat sheet documents `--depth-mode=expansive` at line 59 and routes an open frontier node to CONTINUE at line 149. The string `frontier-nodes` does not appear anywhere in the file. `frontier-admit.cjs:42` names it as the node store, `deep-research/references/state/state-format.md:81` documents it as the expansive-only store with its row shape, and `deep-research/scripts/reduce-state.cjs` reads it to project `registry.frontier`, so an operator triaging an expansive run has no row pointing at the file that holds node status. This is the research counterpart of L7-2, which records the same omission in the review quick-reference; L5 reviewed this file but flagged only the lineage-branch line.",
+      "evidence": {
+        "cmd": "rg -n \"frontier-nodes\" .skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md; echo \"doc-exit=$?\"; rg -n \"NODE_STORE_FILE = \" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+        "exit": 1,
+        "out": "doc-exit=1\n42:const NODE_STORE_FILE = 'frontier-nodes.jsonl';"
+      },
+      "fix": {
+        "old": "| Output | `research/research.md` | Markdown | Workflow-owned progressive synthesis output |",
+        "new": "| Output | `research/research.md` | Markdown | Workflow-owned progressive synthesis output |\n| Frontier nodes | `research/frontier-nodes.jsonl` | JSONL | Node store for `--depth-mode=expansive`; a default run never creates it |"
+      }
+    }
+  ],
+  "untouched": [
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/70materia/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/anacuna/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/base44/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/elementor/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/flatfile/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/speakeasy/DESIGN.md",
+    ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/anti-convergence-floor.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md"
+  ],
+  "overrides": [
+    {
+      "id": "L1-1",
+      "verdict": "severity",
+      "note": "P1 -> P2. The budget arm is real and exercised, so the doc is not describing an outcome the code cannot produce: `checkProposal` returns 'budget' at frontier-admit.cjs:435-441, and `frontier-admit.vitest.ts:198-206` drives it with a parent row carrying `budget: 2`; `vitest run tests/unit/frontier-admit.vitest.ts` passes 47/47. The doc's 'checks relevance, dedupe, depth, fan-out, budget and cycle in that order' matches the function exactly, and 'prunes a row that would exceed the budget caps' is a conditional that is never true on pipeline rows, not a false statement. The missing `budget` writer is a code-side gap that run 6's disposition already assigned to the coordinator, so what remains on the doc side is a documentation gap, not the degraded-behavior P1 the lane graded."
+    },
+    {
+      "id": "L1-2",
+      "verdict": "severity",
+      "note": "P1 -> P2. Same reasoning as L1-1: review admission runs the same `checkProposal`, whose budget arm at frontier-admit.cjs:435-441 is covered by `frontier-admit.vitest.ts:198-206` (parent row with `budget: 2`, proposal `budget: 5`, expected reason 'budget') and the suite passes 47/47. The doc's six-check order matches the function; only reachability from pipeline rows is missing, and that is the code-side writer gap run 6 handed to the coordinator. Documentation gap, not degraded behavior."
+    },
+    {
+      "id": "L1-3",
+      "verdict": "severity",
+      "note": "P1 -> P2. The pi mirror states the same six-check order the function implements, and the budget arm exists and is tested (`frontier-admit.vitest.ts:198-206`, 47/47 passing). The lane's own evidence is the `rg -n 'budget'` listing, which shows the arm at :435-441 and the FRONTIER-block text at :647-649 — it does not show the arm failing. Unreachability from pipeline rows is the missing-writer code gap, so the doc-side defect is a documentation gap."
+    },
+    {
+      "id": "L1-4",
+      "verdict": "severity",
+      "note": "P1 -> P2. Same as L1-2 for the pi review mirror: `checkProposal`'s budget arm is implemented at frontier-admit.cjs:435-441 and exercised by `frontier-admit.vitest.ts:198-206` with a budget-bearing parent row; the suite passes 47/47. The doc describes that check accurately. The absent `budget` writer is code-side, so the residual doc issue is a documentation gap rather than a P1."
+    },
+    {
+      "id": "L1-5",
+      "verdict": "severity",
+      "note": "P1 -> P2. The probe in the lane's evidence shows a `budget:999` child admitted under a parent row with no budget, which is true, but it does not show the code cannot produce the prune: `frontier-admit.vitest.ts:198-206` builds a parent row with `budget: 2` and asserts reason 'budget', and the suite passes 47/47. The doc's six-check order matches `checkProposal`. The gap is the missing `budget` writer on node rows — code-side, already handed off in run 6 — so the doc claim is a documentation gap, not P1."
+    },
+    {
+      "id": "L1-6",
+      "verdict": "severity",
+      "note": "P1 -> P2. Same as L1-5 for the canonical review leaf: the budget arm is implemented (frontier-admit.cjs:435-441) and unit-tested with a budget-bearing parent row (frontier-admit.vitest.ts:198-206, 47/47 passing), so 'review admission can only ever prune for relevance, dedupe, depth, fan-out or cycle' overstates the code — it also prunes for budget whenever the store carries one. The doc's check order is correct; the missing writer is code-side. Documentation gap, not P1."
+    }
+  ]
+}
