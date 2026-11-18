@@ -535,6 +535,44 @@ describe('frontier-admit', () => {
     const output = JSON.parse(String(result.stdout).trim()) as AdmissionResult;
     expect(output.admitted).toHaveLength(1);
   });
+
+  // Each of these fails closed: a run that went on would admit against the
+  // wrong inputs, so the CLI exits 2 with one stderr line and prints nothing.
+  it.each([
+    {
+      name: 'a known-texts file that is not an array',
+      files: { 'known-texts.json': '{}', 'delta.jsonl': '' },
+      args: (dir: string) => ['admit', '--artifact-dir', dir, '--input', join(dir, 'delta.jsonl'), '--known-texts', join(dir, 'known-texts.json')],
+      message: '[frontier-admit] --known-texts must hold a JSON array\n',
+    },
+    {
+      name: 'a seed input that is not an array',
+      files: { 'seed.json': '{}' },
+      args: (dir: string) => ['seed', '--artifact-dir', dir, '--input', join(dir, 'seed.json')],
+      message: '[frontier-admit] --input for seed must hold a JSON array of candidates\n',
+    },
+    {
+      name: 'an unknown command',
+      files: {},
+      args: (dir: string) => ['grow', '--artifact-dir', dir],
+      message: '[frontier-admit] unknown command: grow; expected seed, admit, close, graph or block\n',
+    },
+    {
+      name: 'a flag with no value',
+      files: {},
+      args: () => ['admit', '--artifact-dir'],
+      message: '[frontier-admit] --artifact-dir requires a value\n',
+    },
+  ])('the CLI exits 2 on $name', ({ files, args, message }) => {
+    const artifactDir = makeArtifactDir();
+    for (const [name, content] of Object.entries(files)) writeFileSync(join(artifactDir, name), content, 'utf8');
+
+    const result = spawnSync(process.execPath, [FRONTIER_ADMIT_SCRIPT, ...args(artifactDir)], { encoding: 'utf8' });
+
+    expect(result.status).toBe(2);
+    expect(String(result.stderr)).toBe(message);
+    expect(String(result.stdout)).toBe('');
+  });
 });
 
 // ───────────────────────────────────────────────────────────────────
