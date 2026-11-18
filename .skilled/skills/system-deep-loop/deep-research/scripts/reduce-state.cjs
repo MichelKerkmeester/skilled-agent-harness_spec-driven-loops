@@ -2462,15 +2462,22 @@ function buildFrontierProjection(frontierInput, keyedQuestions) {
   return { nodes, stats, ...(frontierInput.budget ? { budget: frontierInput.budget } : {}) };
 }
 
-// The frontier focus names the node and never repeats its question text: a
-// question resolves when an iteration's focus equals its text, so echoing the
-// text would close a node just by visiting it.
+// The frontier focus leads with a `Frontier node <id>` marker before the question
+// text, so it never equals the question text alone. An iteration whose focus
+// equals a question's text resolves that question, so the marker keeps a visit
+// by itself from closing the node; only answeredQuestions evidence does.
 // The leaf writes its own focus line and may reword it, so the node marker counts
 // wherever it appears; the id must end there, so F-1-001 never matches F-1-0010.
+// Only an attempt that produced evidence counts as a visit: an errored or timed
+// out record is retried work, so the focus pick, the budget and the dashboard
+// all count visits the same way.
+const FRONTIER_FAILED_STATUSES = new Set(['error', 'failed', 'failure', 'timeout']);
+
 function frontierNodeVisits(nodeId, iterationRecords) {
   const escaped = String(nodeId).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const marker = new RegExp(`(?:^|[^\\w-])Frontier node ${escaped}(?![\\w-])`);
   return (Array.isArray(iterationRecords) ? iterationRecords : [])
+    .filter((record) => !FRONTIER_FAILED_STATUSES.has(String(record?.status || '').toLowerCase()))
     .filter((record) => typeof record?.focus === 'string' && marker.test(record.focus))
     .length;
 }
@@ -2509,8 +2516,7 @@ function applyFrontierBudget(nodes, iterationRecords, maxIterations, budgetSplit
   const bandOf = (depth) => (depth <= 1 ? 0 : depth === 2 ? 1 : 2);
   const spent = [0, 0, 0];
   for (const node of nodes) {
-    const visits = frontierNodeVisits(node.nodeId, (Array.isArray(iterationRecords) ? iterationRecords : [])
-      .filter((record) => !['error', 'failed', 'failure', 'timeout'].includes(String(record?.status || '').toLowerCase())));
+    const visits = frontierNodeVisits(node.nodeId, iterationRecords);
     spent[bandOf(node.depth)] += visits;
   }
   let result = nodes.map((node) => ((node.status === 'open' || node.status === 'active') && answeredNodeIds.has(node.nodeId)

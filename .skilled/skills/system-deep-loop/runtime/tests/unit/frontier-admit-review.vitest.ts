@@ -485,6 +485,15 @@ describe('frontier block review target', () => {
     expect(block).toContain('Never write review/frontier-nodes.jsonl');
   });
 
+  it('leaves out the research Focus Area instruction, since a review prompt has no Focus Area line', () => {
+    const { artifactDir, nodeId } = admitOneReviewProposal('what does the review block leave out');
+
+    const block = renderFrontierBlock({ artifactDir, nodeId, dimension: 'error handling', target: 'review' });
+
+    expect(block).not.toContain('Copy the Focus Area line');
+    expect(block.match(/"focus"/g)).toHaveLength(1);
+  });
+
   it('falls back to the dispatched dimension when the caller names none', () => {
     const { artifactDir, nodeId } = admitOneReviewProposal('what does the undimensioned review probe show');
 
