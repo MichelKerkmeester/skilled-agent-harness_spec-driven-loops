@@ -42,6 +42,8 @@ The `lib/` child contains CLI-only guards and writer-lock helpers.
 | `codex-dispatch.cjs` | Runs the Codex executor dispatch boundary and records its result. |
 | `compile-command-contracts.cjs` | Compiles command contract inputs into the runtime validation surface. |
 | `convergence.cjs` | Computes typed convergence decisions from graph state. |
+| `dispatch-iteration.cjs` | Dispatches one research or review iteration to a CLI executor and refuses the `native` kind, which runs through the orchestrator instead. A Claude Code dispatch validates the configured config directory before reading the prompt and passes it as `CLAUDE_CONFIG_DIR`. |
+| `divergent-pivot.cjs` | Runs one divergent pivot transaction across process boundaries: `prepare` derives the mode's input and the missing Council seats, `record-seat` records one seat result, and `finalize` completes the pivot from disk. A first-attempt quorum failure is retryable once through a second `prepare`. |
 | `fanout-merge.cjs` | Merges fan-out lineage outputs into deterministic consolidated artifacts. |
 | `fanout-pool.cjs` | Provides the concurrency-capped fan-out worker pool and status ledger. |
 | `fanout-run.cjs` | Runs research or review fan-out lineages through CLI subprocesses. |
