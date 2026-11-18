@@ -35,7 +35,7 @@
       "skip"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "`verify-iteration.cjs` returns `executormissing` only after the narrative, state record and delta checks pass, so that reason means the iteration already landed",
     "created_at": "2026-11-17T14:34:36Z",
-    "last_save_at": "2026-11-17T23:01:42.703Z",
+    "last_save_at": "2026-11-18T23:33:32.392Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cba93b919a53718e9fd776ec496c3c575f244dacf09c1a1d180876540e4a4b11",
+    "source_fingerprint": "sha256:3b2bc1984a99898fac299060b79106748ab014af13a2b75dae2cf5190c294257",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3d3f0c75dd9db62c2142c68f1a41cdcc092a8872441f1806036a8b41696f98d6",
+      "spec.md": "f552b55297e089f1bbc86684a6500cb84bdfcbacbaa62d6ae4b5d23e70300ede",
       "plan.md": "c1204b5df5836691f4dc93101ef1a572e890d8243a9d41fc42967ba812ae7721",
       "tasks.md": "9d0f0ea43419592676505ec0e755bc782705d4d540876db35afd07b24d845196",
       "decision-record.md": "09f8379a6dee6e98e93cd86f27b456c94f18e06a1830696564fb05f5cd28fb27",

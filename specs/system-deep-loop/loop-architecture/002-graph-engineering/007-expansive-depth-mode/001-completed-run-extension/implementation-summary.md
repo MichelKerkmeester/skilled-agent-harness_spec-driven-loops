@@ -45,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-completed-run-extension |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Completed** | Merged into `worktrees/455-expansive-depth-integration` 2026-11-17 (merge `238c4e95ccb`). The merge gate printed 185 files, 3115 passed, 9 skipped, 0 failed. Playbook scenarios DR-065 and DRV-070, the catalog line and changelog `v2.1.0.0` were written by `@markdown` in integration. AC-004 was closed by the DR-065 live walk (`scratch/dr-065-walk.md`), and AC-010 by the OD-005 amendment |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

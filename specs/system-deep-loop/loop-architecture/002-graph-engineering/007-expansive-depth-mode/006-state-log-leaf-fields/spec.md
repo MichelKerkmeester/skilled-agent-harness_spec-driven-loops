@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned. Operator decision recorded in `decision-record.md` (option 1, 2026-11-17) |
+| **Status** | Complete |
 | **Created** | 2026-11-17 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |

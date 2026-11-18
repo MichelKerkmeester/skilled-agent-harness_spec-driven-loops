@@ -33,7 +33,7 @@
       "config"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The review config ships `antiConvergence.minIterations: 2`, and `stopDecisionConfig` reads it for both loop types, but the floor check in `convergence.cjs` runs only when `loopType === 'research'`",
     "created_at": "2026-11-17T14:34:34Z",
-    "last_save_at": "2026-11-17T23:01:30.087Z",
+    "last_save_at": "2026-11-18T23:33:16.232Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f9cb0cf0dd5f4fb42fc52fb5fd84a3c85d13071298efac990de544bbf91d1c1b",
+    "source_fingerprint": "sha256:1e73acb6d43ad150e9dc8ad441ad52fc083162bab727a209a6f05a89afab1ef1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "14ef92db4f15c7699bf04c9808420b162934ac4f9f5c27b79d0189e98bed1682",
+      "spec.md": "2bfc817dbfc9b1a75282983c25f31f8a9111f36f3bdc34e72c22b8bca0c83d84",
       "plan.md": "d5b8408c042028418d4665a7d9106bc7b506aefa753a2f23da87c334584af3d2",
       "tasks.md": "7db6fc2048ed3323c6aa452a4a9ab4061f0f5ece31f1e62629d4adab3e78b484",
       "implementation-summary.md": "1c60677c36cef4c081041091c2e94071627bc43af84b04412eaf47fd0897d57c"

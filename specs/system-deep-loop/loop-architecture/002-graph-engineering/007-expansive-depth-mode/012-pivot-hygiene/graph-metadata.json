@@ -35,7 +35,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The divergent pivot (`runtime/lib/deep-loop/divergent-pivot.ts`) has three hygiene gaps",
     "created_at": "2026-11-17T14:35:15Z",
-    "last_save_at": "2026-11-17T21:17:07.983Z",
+    "last_save_at": "2026-11-18T23:33:30.801Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +217,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:45aec6671b99197b4b685bee57f7fdc96dcc4f1d47fd611e36650145912edd7e",
+    "source_fingerprint": "sha256:f8e560f51ca40e36075bec0fc46dd16ec9480659737318b8a212ece52222d24e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ebf1c332d43131eef03139ebd81136e7cb490998348725184f12d27e5f221d8e",
+      "spec.md": "29ce6a053f9046c99fdd46c6c3831d082b036fc31126883018486dbb8f0ff2ac",
       "plan.md": "cdea7d0802265a334ec5cf678db5d761b7d38b2bfe5f8535dcd25f42c62356b7",
       "tasks.md": "a09883675fd606eb19b820e57638bcbded02198250a58ed83b2d69fe87b34d32",
       "decision-record.md": "e3f10adb8b27592acb914b0618007de803b94a16e164a341653fce13fd85caaa",

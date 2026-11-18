@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The review reducer's `buildDimensionCoverage` (`runtime/scripts/reduce-state.cjs:1223-1250`) seeds and marks only the four `REQUIREDDIMENSIONS` keys, while `convergence.cjs:1541-1556` counts every configured `reviewDimensions` entry as missing until covered",
     "created_at": "2026-11-17T14:35:11Z",
-    "last_save_at": "2026-11-17T21:48:57.790Z",
+    "last_save_at": "2026-11-18T23:33:24.182Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +217,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:00079cb1cbca71c0aade5f739196fa559b98218827f65d063b5855fea7c27c57",
+    "source_fingerprint": "sha256:e8e66518caa173d1874dc743270f7cba228a834b44017866a94c225cfd006f40",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "672340cba796c8ec58aa638b2570ca1e4b55c2db0ffc6af9a466269d6535a491",
+      "spec.md": "1b6863ec15e370a4502583c8a6cde5807065e76deb4f1ac943f9ce0459380c0b",
       "plan.md": "6682b130117f43459cf8338ef3e57672ff1152433b36904ba35455da949e08b1",
       "tasks.md": "c5d9ff016a3811d8699f4ab36e3387d63842e943f926329d3e27879932bd215c",
       "decision-record.md": "11c5aedab0d773a5dd6e562f570e902b93cc42e85ddedb2dc67793f2a9eaa319",

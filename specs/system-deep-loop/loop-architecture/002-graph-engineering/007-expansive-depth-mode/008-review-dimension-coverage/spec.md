@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned. Operator decision recorded in `decision-record.md` (support custom dimensions, 2026-11-17) |
+| **Status** | Complete |
 | **Created** | 2026-11-17 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |

@@ -21,8 +21,8 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 014-docs-playbooks-alignment |
-| **Status** | In progress |
-| **Last updated** | 2026-11-18 |
+| **Status** | Complete |
+| **Last updated** | 2026-11-19 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 

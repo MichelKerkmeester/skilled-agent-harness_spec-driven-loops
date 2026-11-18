@@ -54,8 +54,9 @@
       "feature-catalog/feature-catalog.md",
       "scratch/doc-alignment-run-6/report.md",
       "scratch/skilled-alignment-run-8/report.md",
-      "scratch/doc-alignment-run-1/report.md",
-      "scratch/skilled-alignment-run-3/report.md"
+      "scratch/doc-alignment-run-11/report.md",
+      "scratch/skilled-alignment-run-17/report.md",
+      "scratch/doc-alignment-run-1/report.md"
     ],
     "entities": [
       {
@@ -205,7 +206,7 @@
     ],
     "causal_summary": "Phases 001-013 add `--extend=N`, `--depth-mode=expansive` for deep-research and deep-review, custom review dimensions and defect fixes that change what an operator sees, but no system-deep-loop manual testing playbook or feature catalog mentions any of them",
     "created_at": "2026-11-17T17:06:39Z",
-    "last_save_at": "2026-11-18T15:47:13.646Z",
+    "last_save_at": "2026-11-18T23:32:50.941Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:401cac0539a067195f6d037e07338964b5c404d909267f9f4aac7fb109967a52",
+    "source_fingerprint": "sha256:9a7b200d2ad2611d7b7126395acb52ef5dd4b7f2c1a621fee3926a9a6f9671a6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "455e52f38d743efb089c1b65866496ee8b7bb1b7e841dd5b283ec29993dd0313",
+      "spec.md": "05d6e6ddccfe9cfdcc38ef1866ae2c769b1c15e27a7baccc152ae8b6a7c93e33",
       "plan.md": "0bc696372ff0a83d06ba07692991c924697f73df85a5f0d95630620145771bb8",
-      "tasks.md": "eb888a4e04b5475976f7420828504408b3e9579ed03edd3ff3c4c3865bdd39f8",
-      "implementation-summary.md": "bdeaf1f1e09d4ccdf006408759edd3fc41ff53a53798237b396c0e1a4d40992f"
+      "tasks.md": "782fabb6ac80dec6f01d88dcf96f81a7fb6383d3ee6d5dcbae3154c5c379e10e",
+      "implementation-summary.md": "48b5fbe95c666af236a75b38151e330e15942f38446cbcffe5b1f0fc40a048df"
     },
     "last_active_at": null
   }

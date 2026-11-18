@@ -37,7 +37,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "`computeResearchSourceDiversityFromData` counts distinct `metadata.qualityclass` values on SOURCE nodes cited by each question's answering findings (`runtime/lib/coverage-graph/coverage-graph-signals.ts:653-690`)",
     "created_at": "2026-11-17T14:43:29.967Z",
-    "last_save_at": "2026-11-17T23:01:36.513Z",
+    "last_save_at": "2026-11-18T23:33:22.543Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c9857ffc9e441a68b14d682eda22e6f02448e41105f89110712e4986aeb85f7f",
+    "source_fingerprint": "sha256:0b9f6ad85cd312995c29c52a6271277c24ae7b1bcdbc0622ee505d17349df2c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "75da24d950c24c9e14c413d15a084572d0e11bb918fe5eab909fc94419408733",
+      "spec.md": "a1d8171d5ae2d4e78760fd380fd2326de89ffa86f878153aebd4b214109e7b4e",
       "plan.md": "55e0476191dc9c46bfe48e01e0dbcac2c80350826189f0bb61760b58ccc05efe",
       "tasks.md": "3de1e739968524661a32e6db02b656d8807e66d9d5f473bc9d02942b92368f9f",
       "decision-record.md": "7899e44b9f3785d069df45b9dffb5a7b75f78b1a8167c6653474fcf78b006ecb",

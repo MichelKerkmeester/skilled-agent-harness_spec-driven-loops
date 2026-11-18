@@ -35,7 +35,7 @@
       "heading"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "A research leaf gets two contradicting write rules: `.skilled/agents/deep-research.md:58` allows `research/research.md` when `progressiveSynthesis == true`, while the prompt pack's \"ALLOWED WRITE PATHS\" list (`deep-research/assets/prompt-pack-iteration.md.tmpl:42-45`) names only the iteration narrative, the delta and the gateway writes (defect D6, seen on 12 of 12 iterations across both generations of the parent run)",
     "created_at": "2026-11-17T14:43:29.630Z",
-    "last_save_at": "2026-11-17T23:01:33.343Z",
+    "last_save_at": "2026-11-18T23:33:19.399Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9d206341e4e8baad3c9438f6566e6efc975be665174740f17ada217230736fe9",
+    "source_fingerprint": "sha256:02c28b3b67926d45c264aad7dce719a72d777dfa7ca6553ef83fdf54feae7be2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7c2cf368b5dc6f378cce28854e073a6bcdfd21d20672e6c12bfef74b29c78819",
+      "spec.md": "c618c18ce62eea55e6052987917f4b352c0324a1cc0e6934f3e4268832409777",
       "plan.md": "6e6bcb7e8c05c51a14d6972e6163b56e26bd0efca1bcc2d7f508e88443114102",
       "tasks.md": "eb81f2e0dd2c5bce8cb8c5481911b4935364d75bf134eee68a29c2b8fd029c22",
       "implementation-summary.md": "ea15546099e749902f236c431f25c24ce7d30600c5e2bda45f8e9bfef5f025c4"
