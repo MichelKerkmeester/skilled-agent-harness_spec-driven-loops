@@ -9,7 +9,7 @@ trigger_phrases:
   - "review iteration file structure"
 importance_tier: important
 contextType: implementation
-version: 1.11.11.0
+version: 1.11.12.0
 ---
 
 # Deep Review State Format
@@ -299,7 +299,7 @@ When JSONL parses cleanly, `corruptionWarnings: []`.
 
 ### Frontier Node Store (expansive depth only)
 
-`review/frontier-nodes.jsonl` is the node-status store for a run started with `--depth-mode=expansive`; a default run never creates it. Rows are append-only and carry `{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey}`. The last row per `nodeId` wins, so a status change is one more row rather than an edit, and `runtime/scripts/frontier-admit.cjs --target review` writes it for seed, admit and close. `runtime/scripts/fanout-run.cjs` writes each fan-out lineage's starting store before the lineage spawns.
+`review/frontier-nodes.jsonl` is the node-status store for a run started with `--depth-mode=expansive`; a default run never creates it. Rows are append-only and carry `{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey}`, plus an optional `budget` on an admitted row whose proposal named one. The last row per `nodeId` wins, so a status change is one more row rather than an edit, and `runtime/scripts/frontier-admit.cjs --target review` writes it for seed, admit and close. `runtime/scripts/fanout-run.cjs` writes each fan-out lineage's starting store before the lineage spawns.
 
 The reducer projects the store as `registry.frontier`: `nodes`, each with its `coveredDimensions`, `nextDimension` and `visits`; `stats`; `budget`; `activeNodeId`; and `activeNextDimension`. A node is `answered` once every dimension in its universe is covered for it. The universe always holds the four canonical dimensions, then each configured custom name, so a node in a run configured with a subset still needs all four. An iteration counts toward a node by its `frontierNodeId`, by the `Frontier node <id>` focus marker anywhere in the focus, or by the store's `active` row for that iteration.
 

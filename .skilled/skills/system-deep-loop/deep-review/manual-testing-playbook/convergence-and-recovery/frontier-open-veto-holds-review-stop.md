@@ -1,7 +1,7 @@
 ---
 title: "DRV-080 -- Frontier open veto holds a review stop, hard stops included"
 description: "This scenario validates that under the expansive mode an open or active review frontier node turns a stop candidate into CONTINUE, hard stop candidates included, and that the cap, the floor, stuck recovery, convergence off and the max-iterations policy still decide first, for `DRV-080`."
-version: 1.13.2.0
+version: 1.13.3.0
 ---
 
 # DRV-080 -- Frontier open veto holds a review stop, hard stops included
@@ -70,7 +70,7 @@ The table covers the cap, the floor, stuck recovery, convergence off and the max
 
 1. An open node lets a review stop through: check that the veto reads the expansive flag and the count of open or active nodes from the review facts.
 2. The clean stop escapes the veto: check the `vetoable` guard that command 2 prints. A review loop must stay vetoable whatever the candidate's `hardStop` value.
-3. A hard limit loses to the veto: check the order of the veto and the cap, floor and stuck checks in the decision, since the veto must come after the floor.
+3. A hard limit loses to the veto: check the order of the veto and the cap, consecutive-failure, floor and stuck checks in the decision, since the veto must come after the floor.
 
 ---
 

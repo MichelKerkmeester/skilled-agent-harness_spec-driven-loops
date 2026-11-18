@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-review review-loop system."
-version: 1.11.6.0
+version: 1.11.7.0
 ---
 
 # deep-review: Feature Catalog
@@ -221,7 +221,7 @@ Opt-in --depth-mode=expansive on deep-review seeds depth-one sub-target nodes fr
 
 #### How It Works
 
-Node status lives in `review/frontier-nodes.jsonl`, open nodes count as `searchDebt`, and the divergent pivot waits for a terminal frontier. Two live review pilots ran. In the first the depth-1 budget check passed but the stop criterion failed: the root fan-out cap of 6, since raised to 8 for a review seed, pruned a seventh depth-1 node, and three of six lineages stopped on `maxIterationsReached`. The second, at `maxIterations` 16, seeded eight depth-1 nodes and answered all eight, and the merged frontier ended with 0 open and 0 active nodes under a passing partition guard, which met the amended pilot criterion.
+Node status lives in `review/frontier-nodes.jsonl`, open nodes count as `searchDebt`, and the divergent pivot waits for a terminal frontier.
 
 #### Source Files
 

@@ -7,7 +7,7 @@ trigger_phrases:
   - "check convergence decision"
   - "stop allowed stop blocked"
   - "graph-aware loop convergence"
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # convergence.cjs
@@ -40,7 +40,7 @@ An expansive review forms the hard stop candidate `frontier_drained` when its fr
 
 ### Minimum Iterations Floor
 
-Once a stop candidate exists, a run below `minIterations` returns CONTINUE with `reasonDetail` `minIterationsNotReached`. The floor now applies to review as well as research. It reads `config.minIterations`, then `antiConvergence.minIterations`, and is capped at `maxIterations`.
+Once a stop candidate exists, a run below a `minIterations` above 1 returns CONTINUE with `reasonDetail` `minIterationsNotReached`. A floor of 0 or 1 does nothing. The floor now applies to review as well as research. It reads `config.minIterations`, then `antiConvergence.minIterations`, and is capped at `maxIterations`.
 
 ### frontierOpen Veto
 

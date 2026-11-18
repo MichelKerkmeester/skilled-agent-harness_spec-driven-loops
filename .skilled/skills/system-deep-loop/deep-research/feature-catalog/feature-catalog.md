@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-research autonomous research loop."
-version: 1.14.7.0
+version: 1.14.8.0
 ---
 
 # deep-research: Feature Catalog
@@ -484,7 +484,7 @@ Opt-in --depth-mode=expansive on deep-research seeds depth-one frontier nodes fr
 
 #### How It Works
 
-`default` is the value when the flag is absent and runs unchanged. `frontier-admit.cjs` admits proposals into the node store, and the iteration cap, the floor, stuck recovery, pause, convergence off and the max-iterations policy decide before the frontier veto. Two live research pilots ran on one topic, and both failed the criterion that a stop candidate forms before the iteration cap: each run stopped on `maxIterationsReached`. The criterion was then amended to a frontier drain before the cap, which the second run met: its frontier showed 0 open nodes from the check before iteration 15 of 16.
+`default` is the value when the flag is absent and runs unchanged. `frontier-admit.cjs` admits proposals into the node store, and the iteration cap, consecutive failures, the floor, stuck recovery, pause, convergence off and the max-iterations policy decide before the frontier veto.
 
 #### Source Files
 

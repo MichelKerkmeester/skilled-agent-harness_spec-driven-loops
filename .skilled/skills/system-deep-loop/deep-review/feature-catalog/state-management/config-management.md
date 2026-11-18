@@ -7,7 +7,7 @@ trigger_phrases:
   - "review packet contract"
   - "immutable lineage config"
   - "file-protection map"
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # Config management
@@ -22,7 +22,7 @@ Defines the immutable review-packet contract for the current lineage.
 
 ## 2. HOW IT WORKS
 
-The config file is written during initialization and treated as immutable after that point, apart from three workflow writes: the terminal `status: complete` flip, an `--extend=N` rewrite and the `maxIterations` an expansive run with a defaulted budget derives from its seed. It records `mode: "review"`, the review target and target type, the four configured dimensions, session lineage fields, convergence settings, severity threshold, cross-reference sets, release-readiness state, status, and a file-protection map for every packet artifact.
+The config file is written during initialization and treated as immutable after that point, apart from three workflow writes: the terminal `status: complete` flip, an `--extend=N` rewrite and the `maxIterations` an expansive run with a defaulted budget derives from its seed. It records `mode: "review"`, the review target and target type, the configured review dimensions, custom names included, session lineage fields, convergence settings, severity threshold, cross-reference sets, release-readiness state, status, and a file-protection map for every packet artifact.
 
 The same document also declares reducer IO names and metric names, which makes it the reference point for lifecycle transitions and replay-safe packet interpretation. Resume and restart flows compare later packet files against this config instead of guessing from partial state.
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.19.0
+version: 1.11.20.0
 ---
 
 # deep-review
@@ -162,9 +162,9 @@ An admission step runs before the reducer. It applies six checks in order: relev
 
 The frontier veto never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the floor above. Stuck recovery closes the active node as `exhausted`. Once every node is closed and at least one was answered, a run that forms no other stop candidate gets `frontier_drained`. The legal-stop gates still decide it, so a run whose frontier work is done stops before its cap.
 
-The caps are `maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget split and `maxFrontierNodes`, which defaults to half of `maxIterations`. When `--max-iterations` is left at its default, the run sizes its budget from the seed. The budget is `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D configured dimensions. The seed step prints the derived budget.
+The caps are `maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget split and `maxFrontierNodes`, which defaults to half of `maxIterations`. When `--max-iterations` is left at its default, the run sizes its budget from the seed. The budget is `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D names in the config's `reviewDimensions` list (four when it names none). The seed step prints the derived budget.
 
-With the four canonical dimensions the ceiling of 24 binds from two seeds on. One run then cannot fund every node at every depth of a wide review. Split a wide review with fan-out, where each lineage sizes its own budget from its share of the seed. A lineage dealt no seed node, or a run whose seeds were all pruned, runs at its loop default instead. That is 12 iterations for a native lineage and 7 for a CLI one or a single run.
+With the four canonical dimensions the ceiling of 24 binds from the first seed. One run then cannot fund every node at every depth of a wide review. Split a wide review with fan-out, where each lineage sizes its own budget from its share of the seed. A lineage dealt no seed node, or a run whose seeds were all pruned, runs at its loop default instead. That is 12 iterations for a native lineage and 7 for a CLI one or a single run.
 
 The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker or fan-out matrix `iterations` value always wins, even below the derived value. The seed warns when it leaves no room past depth 1. At about seven to eight minutes an iteration, a 24-iteration review can reach `maxDurationMinutes` (120) before its iteration cap.
 
@@ -232,7 +232,7 @@ A shared context window fills with stale findings, and that drags on reasoning a
 
 ## 7. VERIFICATION
 
-The skill ships a feature catalog and a manual testing playbook. The catalog groups its inventory by loop lifecycle, state management, review dimensions and the severity system. Every entry names the files that implement it. The playbook carries 69 deterministic scenarios across ten categories. Each scenario maps to a feature file with a stated objective, a canonical prompt, expected signals and live source anchors.
+The skill ships a feature catalog and a manual testing playbook. The catalog groups its inventory by loop lifecycle, state management, review dimensions and the severity system. Every entry names the files that implement it. The playbook carries 70 deterministic scenarios across ten categories. Each scenario maps to a feature file with a stated objective, a canonical prompt, expected signals and live source anchors.
 
 | Check | How to run it | A pass looks like |
 |---|---|---|

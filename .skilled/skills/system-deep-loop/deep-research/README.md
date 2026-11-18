@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.15.0
+version: 1.14.16.0
 ---
 
 # deep-research
@@ -224,7 +224,7 @@ The skill ships a feature catalog and a manual testing playbook. The checks belo
 
 ### Manual Testing Playbook
 
-`manual-testing-playbook/manual-testing-playbook.md` holds 71 deterministic scenarios across 9 categories. The playbook states the global preconditions, and each scenario names its expected signals and its verdict rule. Release readiness depends on complete coverage and no unresolved blocking contradiction.
+`manual-testing-playbook/manual-testing-playbook.md` holds 72 deterministic scenarios across 9 categories. The playbook states the global preconditions, and each scenario names its expected signals and its verdict rule. Release readiness depends on complete coverage and no unresolved blocking contradiction.
 
 | Check | Result |
 |---|---|
@@ -262,7 +262,7 @@ The skill ships a feature catalog and a manual testing playbook. The checks belo
 | [`assets/prompt-pack-iteration.md.tmpl`](./assets/prompt-pack-iteration.md.tmpl) | Per-round prompt template dispatched to the agent |
 | [`assets/runtime-capabilities.json`](./assets/runtime-capabilities.json) | Declared capability manifest checked at runtime |
 | [`feature-catalog/`](./feature-catalog/) | 30 features across four categories |
-| [`manual-testing-playbook/`](./manual-testing-playbook/) | 71 scenarios with expected signals and verdict rules |
+| [`manual-testing-playbook/`](./manual-testing-playbook/) | 72 scenarios with expected signals and verdict rules |
 | [`behavior-benchmark/`](./behavior-benchmark/) | Behavior benchmark for the command surface under realistic prompts |
 | [`research.md`](../../../commands/deep/research.md) | The command entry that resolves setup and loads the workflow |
 | [`deep-research.yaml`](../../../commands/deep/assets/deep-research.yaml) | The workflow that owns init, dispatch, convergence and synthesis |
