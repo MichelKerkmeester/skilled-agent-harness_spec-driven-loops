@@ -1035,3 +1035,54 @@ describe('completed-run extension', () => {
     expect(stateRows(stateLog).filter((row) => row.event === 'extended')).toHaveLength(2);
   });
 });
+
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPANSIVE FRONTIER GRAPH MIRROR
+// ───────────────────────────────────────────────────────────────────
+
+// The mirror step hands the frontier projection to the shared graph upsert,
+// which parses one JSON value. A node store with more than one live node is
+// the shape every real run has, so this case renders the step and runs both
+// of its commands against a temp graph database.
+
+describe('expansive frontier graph mirror', () => {
+  function frontierRow(nodeId: string, parentId: string, depth: number, status: string): Record<string, unknown> {
+    const question = `What does frontier node ${nodeId} settle?`;
+    return {
+      nodeId,
+      parentId,
+      depth,
+      scope: 'runtime/lib',
+      question,
+      status,
+      reason: status === 'exhausted' ? 'budget' : null,
+      iteration: 1,
+      dedupeKey: question.toLowerCase(),
+    };
+  }
+
+  it('upserts every node and edge of a multi-node frontier', () => {
+    const artifactDir = join(makeTempDir('frontier-graph-mirror-'), 'research');
+    mkdirSync(artifactDir, { recursive: true });
+    const dbDir = makeTempDir('frontier-graph-db-');
+    writeFileSync(join(artifactDir, 'frontier-nodes.jsonl'), [
+      frontierRow('F-1-001', 'root', 1, 'open'),
+      frontierRow('F-2-002', 'F-1-001', 2, 'exhausted'),
+    ].map((row) => JSON.stringify(row)).join('\n') + '\n');
+
+    const command = render(stepCommand('deep-research.yaml', 'step_frontier_graph_upsert'), {
+      '{artifact_dir}': artifactDir,
+      '{spec_folder}': 'specs/test-frontier-graph-mirror',
+      '{config.lineage.sessionId}': 'frontier-graph-mirror-session',
+    });
+    expect(command).toContain('frontier-admit.cjs graph');
+
+    const result = runShell(`export DEEP_LOOP_COVERAGE_DB_DIR=${JSON.stringify(dbDir)}\nset -e\n${command}`);
+    expect(result.status, String(result.stdout) + String(result.stderr)).toBe(0);
+    const upserted = lastJsonLine(result.stdout) as { status?: string; data?: { insertedNodes?: number; insertedEdges?: number } };
+    expect(upserted.status).toBe('ok');
+    // One QUESTION, one closed CLAIM and the DERIVED_FROM edge between them.
+    expect(upserted.data?.insertedNodes).toBe(2);
+    expect(upserted.data?.insertedEdges).toBe(1);
+  });
+});
