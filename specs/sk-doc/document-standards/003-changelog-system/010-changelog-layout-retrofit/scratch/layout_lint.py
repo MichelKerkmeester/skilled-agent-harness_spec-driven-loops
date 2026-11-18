@@ -25,6 +25,7 @@ ANCHOR_ID = re.compile(r'<a id="([^"]+)"></a>')
 LINK_TARGET = re.compile(r"\]\(#([^)\s]+)\)")
 BLOCK_START = re.compile(r"^\s*(#|\||>|<|&nbsp;\s*$|[-*+]\s|\d+[.)]\s|```|~~~)")
 LIST_ITEM = re.compile(r"^\s*([-*+]|\d+[.)])\s")
+ALERT_TEXT = re.compile(r"^>\s*(?!\[!|\d+[.)]\s|[-*+]\s|$)\S")
 GLANCE = "what's new at a glance"
 # A bullet carries one fact. Two sentences leave room for a fact and its reason.
 # A numbered step may carry its own check, so the limit is for plain bullets.
@@ -102,6 +103,10 @@ def lint(text):
             if LIST_ITEM.match(line):
                 glance_bullets = True
 
+        # Two text lines in a row inside an alert join into one paragraph, and a
+        # release page renders the newline between them as a forced break.
+        if ALERT_TEXT.match(line) and ALERT_TEXT.match(prev) and not re.match(r"^>\s*spec folders?:", prev, re.I):
+            problems.append(f"{where(i)}: two text lines in a row inside an alert, put a bare > line between them")
         kind = "prose"
         if LIST_ITEM.match(line):
             kind = "item"
