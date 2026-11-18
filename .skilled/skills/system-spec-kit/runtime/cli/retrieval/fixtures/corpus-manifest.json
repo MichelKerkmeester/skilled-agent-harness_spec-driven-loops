@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8a9a23dd8d7906179db18f05116f4e2e58347135a9233005d40efd9ae68392cd",
+  "corpusHash": "10fc7fcef9407d2df3051555fae1701b6cf2f0595248eed4ba2d5492639c7524",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28390,
+  "includedPathCount": 28397,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -16363,6 +16363,7 @@
     "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/plan.md",
     "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/decision-record.md",
     "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/goal.md",
     "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/implementation-summary.md",
     "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/plan.md",
@@ -16425,6 +16426,12 @@
     "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/plan.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/spec.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/tasks.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/goal.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/implementation-summary.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/plan.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/spec.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/tasks.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/decision-record.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/goal.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/spec.md",
@@ -28422,7 +28429,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "89759d0fb8aae928fa7b2f2841fec840d725975663de87bbca746292a6460d76",
+  "manifestHash": "e7e4d33a7ffdc6377212b406db6ebacbbff1bc35fbd8e75873933ddb21a2e315",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -35410,6 +35417,10 @@
     },
     {
       "path": "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/scratch",
       "reason": "excluded directory"
     },
     {

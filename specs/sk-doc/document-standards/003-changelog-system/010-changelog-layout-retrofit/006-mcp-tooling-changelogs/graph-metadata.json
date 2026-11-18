@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The 171 mcp-tooling changelogs were written before the v4.1.0.0 layout",
     "created_at": "2026-11-17T18:13:04Z",
-    "last_save_at": "2026-11-18T02:02:33.456Z",
+    "last_save_at": "2026-11-18T07:43:42.270Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10548cee8c8fdc3d3d8a0bec83d2c9e92adc95ce0670b65d863f4da7a37800cc",
+    "source_fingerprint": "sha256:9f1e10eecb6f1a7cff0fc4db7bfef578266682c20746ee5ec9bbb01dd4409362",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f2846d91d12fe7cef1f04309b37e2cba60ec302113f57bf3e9a18fb55bd92f31",
       "plan.md": "d7c643634b10c02a983f17605f99c0a4f60954d846e616268ed71176931762be",
       "tasks.md": "45c0b5f3f1cce5b105ffeb62877184c6dd4cfa561aad9bc277c71de4e1541db0",
-      "implementation-summary.md": "401976e3042fd310f806384cc9fd922d3584db1cf0df9faea6213bf6861db29e"
+      "implementation-summary.md": "b85aefaa268b19f5dceb8d4c98a7c877031964d2fbcbc510653072ffc482bb33"
     },
     "last_active_at": null
   }

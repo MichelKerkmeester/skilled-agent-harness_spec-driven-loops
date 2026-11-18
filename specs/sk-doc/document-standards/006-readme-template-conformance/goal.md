@@ -47,8 +47,8 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | Each file follows its template's section model, keeps `---` before every numbered H2 and carries no emoji in a heading. |
 | D2 | A session that did not write a README checks every path, command and count in it against the code before it is committed. |
-| D3 | Out of scope: the root README and root guides, `local-webflow`, code-folder READMEs outside `.skilled/hooks/`, and any change to the templates, the validator or the voice scanner. README versions and changelogs are never edited by hand. |
-| D4 | Writers and reviewers run one README per session: DeepSeek V4.1 Flash at max through cli-opencode until its daily cap ran out in phase 002, then GPT-6 Luna at max on the fast tier through cli-codex until its usage limit stopped phase 004, then DeepSeek V4.1 Flash Max through cli-devin until its daily quota ran out, then DeepSeek V4.1 Flash at max through cli-opencode on OpenCode Go. The main session reruns every check before it trusts a result. |
+| D3 | Out of scope: the root README and root guides, `local-webflow`, code-folder READMEs outside `.skilled/hooks/`, and any change to the templates, the validator or the voice scanner, apart from phase 008, which adds the README alert and fold rule and a fold check to the validator. README versions and changelogs are never edited by hand. |
+| D4 | Writers and reviewers run one README per session on the executor the operator chose, recorded as Q003 to Q009 in `decision-record.md`. The main session reruns every check before it trusts a result. |
 | D5 | Phases run in order. Each phase is committed, merged with origin/main and pushed under sk-git before the next one starts, and the operator's own uncommitted files are never staged. |
 
 <!-- /ANCHOR:directive -->
@@ -71,6 +71,7 @@ phase and binds as if written here.
 | 005-runtime-plugin-readmes | `005-runtime-plugin-readmes/goal.md` |
 | 006-runtime-folder-readmes | `006-runtime-folder-readmes/goal.md` |
 | 007-hook-code-folder-readmes | `007-hook-code-folder-readmes/goal.md` |
+| 008-readme-html-conventions | `008-readme-html-conventions/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -116,4 +117,5 @@ and findings belong here.
 |------|------|
 | Writer model | The 001 plan named Opus writers. The operator chose DeepSeek V4.1 Flash at max, recorded as D4. When the DevPass daily cap ran out at the end of phase 002, the operator chose GPT-6 Luna at max on the fast tier through cli-codex, and D4 was amended. |
 | Binding rows | Phases 002 to 007 are unplanned scaffolds with placeholder acceptance criteria, so no child goal can be derived yet. `check-goal.cjs` needs every row and strict validation rejects a row whose target is missing, so this file passes both only after all seven child goals exist. Phases 002 to 007 are planned first, their child goals are written, and then this goal is committed and sent. |
+| D3 amendment | On 2026-11-18 the operator placed the README alert and fold work in this program as phase 008. It touches the README writing reference and `validate_document.py`, which D3 had kept out of scope, so D3 now names the exception |
 <!-- /ANCHOR:log -->

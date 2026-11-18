@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The 148 system-deep-loop changelogs were written before the v4.1.0.0 layout",
     "created_at": "2026-11-17T18:13:07Z",
-    "last_save_at": "2026-11-18T03:59:49.330Z",
+    "last_save_at": "2026-11-18T07:43:45.715Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:edf7aed5313666784a50a141651b237d812f3cffd7ca549b76c8138ecc3cd78f",
+    "source_fingerprint": "sha256:386349c6de71525e382864c035affe50b68e34fe44441109a45952b77e2aa7d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4317b74f575813f04e52421f8f7c904796df2df58464ce5b9e3b9c1aa1f654a9",
       "plan.md": "8e91383d75f37b695d1810d264c8793d746337e9ec5e36bf70f4ae967e3ded3a",
       "tasks.md": "b73d488bf1ec381c4e14d62b16213910bfe193a20c9f0f0549d5d03e5dcdbcec",
-      "implementation-summary.md": "517b06ee106f9a2fe8a19e5f87de911a171fa905c5efc3883d69f10ea366a627"
+      "implementation-summary.md": "88ec4357367bdc5d0f8654aa666b77fc269d68549f87dc6ee8340286d3047651"
     },
     "last_active_at": null
   }

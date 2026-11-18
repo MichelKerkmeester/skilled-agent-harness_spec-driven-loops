@@ -61,7 +61,7 @@ All 62 Skilled release changelogs now read in the release-notes layout. 61 were 
 
 ### Phase 2: skilled-release-line
 
-Each file went through the phase 001 driver: Hy4 Flash Free at high thinking wrote the draft, and the draft stayed only after the fact lock, the tier lock, the layout lint, the shape check, the voice scan and Devin's `glm-5-2` fact check passed. A compact entry stayed compact, with its summary as prose and each change as a plain bullet over its facts. An expanded entry gained the opening parts, the linked glance table and an anchor on every item.
+Each file went through the phase 001 driver: Hy4 Flash Free at high thinking wrote the draft, and the draft stayed only after the fact lock, the tier lock, the layout lint, the shape check, the voice scan and a GLM 5.3 Flash fact check passed: the free OpenCode Zen model for 48 files and the opencode-go model for the rest. A compact entry stayed compact, with its summary as prose and each change as a plain bullet over its facts. An expanded entry gained the opening parts, the linked glance table and an anchor on every item.
 
 ### Files Changed
 

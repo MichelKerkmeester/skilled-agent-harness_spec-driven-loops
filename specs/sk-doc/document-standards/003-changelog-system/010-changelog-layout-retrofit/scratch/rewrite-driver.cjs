@@ -67,6 +67,9 @@ const SENTENCE_RULES = new Set(['sentence-max', 'sentence-mean']);
 // Release entries only: the release line, with its v1+/ style subfolders, and
 // every skill's changelog folder. Templates and READMEs there are not entries.
 const ENTRY_RE = /^\.skilled\/(?:changelog\/skilled|skills\/.+\/changelogs?)\/(?:v\d+\+\/)?v\d+(?:\.\d+)+[^/]*\.md$/;
+// A GitHub release body with no entry in the repository is staged here as a
+// file, so it goes through the same gates before it is published.
+const BODY_RE = /^specs\/sk-doc\/document-standards\/003-changelog-system\/010-changelog-layout-retrofit\/scratch\/release-bodies\/v?\d+(?:\.\d+)+\.md$/;
 // A usage limit stops the run instead of retrying into the same wall.
 const LIMIT_RE = /usage limit|rate[ _-]?limit|too many requests|\b429\b|status 402|insufficient[_ ](quota|balance)|quota exceeded|hit your (usage )?limit|budget exhausted|usage quota has been exhausted|daily usage quota|FreeUsageLimit|free (tier|usage) (limit|exhausted)/i;
 
@@ -167,7 +170,7 @@ function facts(text) {
   return { front, fences, specPaths, spans, urls, numbers, plain, body };
 }
 
-function factLock(oldText, newText, allowSpans = []) {
+function factLock(oldText, newText, allowSpans = [], allowNumbers = []) {
   const errors = [];
   const o = facts(oldText);
   const n = facts(newText);
@@ -190,7 +193,7 @@ function factLock(oldText, newText, allowSpans = []) {
   // A number the frontmatter states, such as the version in the title, is not
   // a new fact when the body repeats it in a title line.
   const frontNumbers = new Set(o.front.match(/\d+(?:[.,]\d+)*/g) || []);
-  for (const x of n.numbers) if (!o.numbers.has(x) && !frontNumbers.has(x)) errors.push(`Number not in the original: ${x}.`);
+  for (const x of n.numbers) if (!o.numbers.has(x) && !frontNumbers.has(x) && !allowNumbers.includes(x)) errors.push(`Number not in the original: ${x}.`);
   return errors;
 }
 
@@ -235,7 +238,10 @@ function voiceScan(file) {
 
 function gates(file, oldText, baseline) {
   const newText = read(path.join(ROOT, file));
-  const items = [...factLock(oldText, newText, sanctioned(file).allowSpans || [])];
+  // A release body carries no frontmatter, so its tag names the version a title
+  // line may repeat.
+  const tagVersion = BODY_RE.test(file) ? [path.basename(file, '.md').replace(/^v/, '')] : [];
+  const items = [...factLock(oldText, newText, sanctioned(file).allowSpans || [], tagVersion)];
   const layout = layoutLint(file);
   if (layout.expanded !== baseline.layout.expanded) {
     items.push(baseline.layout.expanded
@@ -367,8 +373,9 @@ async function writeWithGlm(prompt, tag) {
 function withOriginalFrontmatter(draft, oldText) {
   if (!draft) return draft;
   const [front] = splitFrontmatter(oldText);
-  if (!front) return draft;
   const [draftFront, draftBody] = splitFrontmatter(draft);
+  // A release body has no frontmatter, so a block the model adds is dropped.
+  if (!front) return draftFront ? draftBody.replace(/^\n+/, '') : draft;
   return front + (draftFront ? draftBody : draft.replace(/^\n+/, '\n'));
 }
 
@@ -560,7 +567,7 @@ function loadState(stateFile) {
 async function main() {
   const opts = parseArgs(process.argv.slice(2));
   const listed = read(opts.list).split('\n').map((l) => l.trim()).filter(Boolean);
-  const refused = listed.filter((f) => !ENTRY_RE.test(f) || !fs.existsSync(path.join(ROOT, f)));
+  const refused = listed.filter((f) => !(ENTRY_RE.test(f) || BODY_RE.test(f)) || !fs.existsSync(path.join(ROOT, f)));
   const state = loadState(opts.state);
   const queue = listed.filter((f) => !refused.includes(f)).filter((f) => {
     const s = state.get(f);

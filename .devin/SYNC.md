@@ -156,7 +156,9 @@ A pass prints a verdict line. The registration check prints a `[hook-registratio
 
 ## 9. KNOWN GAPS
 
-- **A hand edit to `hooks.v1.json` is lost.** The next registration run renders the file from the registry and the edit is gone. Change `hook-registry.json` instead.
+> [!WARNING]
+> A hand edit to `hooks.v1.json` is lost. The next registration run renders the file from the registry and the edit is gone. Change `hook-registry.json` instead.
+
 - **No strict-YAML gate.** Nothing blocks an unquoted colon in a `description:` line of a canonical agent file. The profile then vanishes from Devin with no message, and the only sign is a missing name.
 - **The whole-folder links have no check.** A link such as `skills` is never read by a script, so a dangling one shows up only when a reader follows it. The same holds for `repo-rules` and the playbook link.
 - **`config.json` and `mcp_config.json` have no drift check.** No generator writes them and no check compares them with a source. A wrong key shows up only inside a session.

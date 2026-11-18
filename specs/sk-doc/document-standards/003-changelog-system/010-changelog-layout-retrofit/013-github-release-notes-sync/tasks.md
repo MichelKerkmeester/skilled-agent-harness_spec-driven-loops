@@ -31,7 +31,7 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Save every body and the tag list (`scratch/release-bodies-before/`). Verify: 152 files and a tag list exist.
+- [x] T001 Save every body and the tag list (`scratch/release-bodies-before/`). Verify: 152 files and a tag list exist.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -39,8 +39,8 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Rebuild the 60 bodies with an entry (`build_release_notes.py`). Verify: each live body equals its rebuilt notes.
-- [ ] T003 Rewrite the 92 bodies without an entry (`../scratch/rewrite-driver.cjs`). Verify: the fact lock reports 0 misses.
+- [x] T002 Rebuild the 60 bodies with an entry (`build_release_notes.py`). Verify: each live body equals its rebuilt notes.
+- [x] T003 Rewrite the 92 bodies without an entry (`../scratch/rewrite-driver.cjs`). Verify: the fact lock reports 0 misses.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -48,8 +48,8 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T004 Compare the tags with the saved list (`git ls-remote --tags origin`). Verify: no tag moved.
-- [ ] T005 Validate the phase (`013-github-release-notes-sync/`). Verify: `validate.sh --strict` prints `RESULT: PASSED`.
+- [x] T004 Compare the tags with the saved list (`git ls-remote --tags origin`). Verify: no tag moved.
+- [x] T005 Validate the phase (`013-github-release-notes-sync/`). Verify: `validate.sh --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -57,9 +57,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

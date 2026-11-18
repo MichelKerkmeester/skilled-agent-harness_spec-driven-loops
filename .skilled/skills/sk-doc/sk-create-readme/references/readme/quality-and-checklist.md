@@ -9,7 +9,7 @@ trigger_phrases:
   - "readme review checklist"
 importance_tier: normal
 contextType: implementation
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # README Quality and Pre-Publish Checklist
@@ -105,6 +105,7 @@ Apply these checks only to sections that fit the README audience and purpose.
 - [ ] Commands in fenced code blocks
 - [ ] Key terms bolded consistently
 - [ ] Emoji use matches the register: decorative section emoji only on the repository front-page README, semantic emoji (✅ ❌ ⚠️ 🔒 🚨) sparingly elsewhere
+- [ ] A `> [!WARNING]` alert marks only a step that loses work or breaks something, and a `<details>` fold holds only a lookup table of 15 rows or more, with its `<summary>` line followed by a blank line
 
 ### HVR Compliance
 

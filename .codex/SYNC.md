@@ -145,7 +145,9 @@ A pass prints a PASS line from each check, and the link check prints a visibilit
 
 ## 9. KNOWN GAPS
 
-- **A hand edit to `hooks.json` is lost.** It is rendered from `hook-registry.json`, so the next registration run overwrites the file. Change the registry file instead.
+> [!WARNING]
+> A hand edit to `hooks.json` is lost. It is rendered from `hook-registry.json`, so the next registration run overwrites the file. Change the registry file instead.
+
 - **`config.toml` has no drift check.** No generator writes it and no drift check compares it with a source. `/doctor:mcp` does check that it registers the Code Mode launcher and the `.utcp_config.json` path.
 - **A top-level folder link is unchecked.** `repo-rules` and `manual-testing-playbook` are relative links and nothing reads them, so a dangling link shows up only when a reader follows it.
 - **The installer check can go silent.** `SYSTEM_HOOKS_DISABLED=1` or `SYSTEM_HOOK_INSTALL_DISABLED=1`, with the legacy `MK_HOOK_INSTALL_DISABLED=1` still read, returns the installer before it reads either file, so `--check` prints nothing and exits 0.

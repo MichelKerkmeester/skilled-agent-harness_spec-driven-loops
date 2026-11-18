@@ -1,5 +1,5 @@
 {
-  "manifestHash": "89759d0fb8aae928fa7b2f2841fec840d725975663de87bbca746292a6460d76",
+  "manifestHash": "e7e4d33a7ffdc6377212b406db6ebacbbff1bc35fbd8e75873933ddb21a2e315",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -3148,6 +3148,9 @@
     ],
     "013 evergreen doc packet id removal resource map": [
       "013-evergreen-doc-packet-id-removal resource map"
+    ],
+    "013 github release notes sync operator decisions": [
+      "013-github-release-notes-sync operator decisions"
     ],
     "013 handover whats next": [
       "013 handover whats next"
@@ -85770,6 +85773,9 @@
     "phase 8 quality packet fixes": [
       "phase 8 quality packet fixes"
     ],
+    "phase 8 readme html conventions": [
+      "phase 8 readme html conventions"
+    ],
     "phase 8 release coverage": [
       "phase 8 release coverage"
     ],
@@ -92570,6 +92576,9 @@
     "readme accuracy tasks": [
       "readme accuracy tasks"
     ],
+    "readme alerts and folded tables": [
+      "readme alerts and folded tables"
+    ],
     "readme alignment plan": [
       "readme alignment plan"
     ],
@@ -92812,6 +92821,24 @@
     ],
     "readme heading hierarchy": [
       "readme heading hierarchy"
+    ],
+    "readme html conventions": [
+      "readme html conventions"
+    ],
+    "readme html conventions acceptance criteria": [
+      "readme html conventions acceptance criteria"
+    ],
+    "readme html conventions goal": [
+      "readme html conventions goal"
+    ],
+    "readme html conventions implementation summary": [
+      "readme html conventions implementation summary"
+    ],
+    "readme html conventions plan": [
+      "readme html conventions plan"
+    ],
+    "readme html conventions tasks": [
+      "readme html conventions tasks"
     ],
     "readme hub paths": [
       "readme hub paths"
@@ -130564,6 +130591,9 @@
     ],
     "unclean shutdown sigkill loop fix plan": [
       "unclean shutdown sigkill loop fix plan"
+    ],
+    "unclosed details fold check": [
+      "unclosed details fold check"
     ],
     "under preserve an out of scope untracked path": [
       "under preserve an out of scope untracked path"
