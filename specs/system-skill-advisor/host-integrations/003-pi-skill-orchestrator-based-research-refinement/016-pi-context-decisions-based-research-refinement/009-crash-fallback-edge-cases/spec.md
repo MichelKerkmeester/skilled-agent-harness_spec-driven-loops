@@ -172,7 +172,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: For any one input, the crash path and the timeout path return the same `additionalContext`, apart from the diagnostic record.
-- **SC-002**: Every call the catch makes is guarded. `emitDiagnostic` has its own try (`hooks/claude/user-prompt-submit.ts:261-273`) and its arguments read only hoisted values and the guarded `elapsed`. Render, dedup and delivery sit in the nested try whose last resort is `{}`.
+- **SC-002**: Every call the catch makes is guarded. `emitDiagnostic` has its own try (`hooks/claude/user-prompt-submit.ts:261-273`), and the catch wraps the call in a second try because its `process.cwd()` argument throws when the working directory was removed (amended at build). Render, dedup and delivery sit in the nested try whose last resort is `{}`.
 - **SC-003**: `git diff --stat` for this phase lists exactly the four files in Files to Change.
 <!-- /ANCHOR:success-criteria -->
 

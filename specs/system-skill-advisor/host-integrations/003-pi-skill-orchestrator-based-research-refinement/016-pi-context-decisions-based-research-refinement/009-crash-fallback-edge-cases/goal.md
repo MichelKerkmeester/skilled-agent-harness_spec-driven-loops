@@ -59,11 +59,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `npx vitest run tests/hooks tests/parity` exits 0 from `.skilled/skills/system-skill-advisor/runtime`, with the eight new tests included
-- [ ] `rg -n 'renderAdvisorTimeoutFallback\(\)' .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` prints nothing
-- [ ] ``rg -n "unless `confidenceOnly`" .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md`` prints nothing, and `rg -n 'daemon starts' .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` prints line 382
-- [ ] `rg -n 'exception escapes' .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md` prints nothing
-- [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED`
+- [x] `npx vitest run tests/hooks tests/parity` exits 0 from `.skilled/skills/system-skill-advisor/runtime`, with the eight new tests included
+- [x] `rg -n 'renderAdvisorTimeoutFallback\(\)' .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` prints nothing
+- [x] ``rg -n "unless `confidenceOnly`" .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md`` prints nothing, and `rg -n 'daemon starts' .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` prints line 382
+- [x] `rg -n 'exception escapes' .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md` prints nothing
+- [x] `validate.sh --strict` on this phase prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,6 +80,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase planned | Done | `spec.md`, `plan.md` and `tasks.md` written 2026-11-18. All five edges measured on the built hook with `scratch/probe.mjs` and `scratch/probe2.mjs` |
+| Phase built | Done | 2026-11-18: hook and parity suites 244/244 with nine new tests, the planning probe shows all five edges fixed. Detail in `implementation-summary.md` |
 
 ### Deviations and findings
 
@@ -87,5 +88,6 @@ and findings belong here.
 |------|------|
 | Catch arguments were unguarded | The 004 catch evaluates `elapsed()` and `workspaceRootFor(input)` before `emitDiagnostic`'s own try, so moving the clock alone would still reject. D2 covers it |
 | Hook doc sentence added | `hooks/skill-advisor-hook.md:57` was outside the brief. It is in Files to Change because this phase changes the behavior it describes |
+| Diagnostic guard added at build | The catch-rewrite leaf found `process.cwd()` evaluated outside any try in the catch. A ninth test and a try around the diagnostic close it |
 | Brief line drift | The brief put the catch at about `:468-497`. It is at `:469-492` |
 <!-- /ANCHOR:log -->

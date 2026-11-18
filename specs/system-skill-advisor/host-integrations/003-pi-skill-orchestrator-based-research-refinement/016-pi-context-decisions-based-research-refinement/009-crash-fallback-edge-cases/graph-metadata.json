@@ -45,8 +45,8 @@
       "implementation-summary.md",
       "hooks/claude/user-prompt-submit.ts",
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
-      "scratch/probe.mjs",
       "tmp/p004-briefs/last-refute.txt",
+      "scratch/probe.mjs",
       "scratch/probe2.mjs"
     ],
     "entities": [
@@ -93,15 +93,15 @@
         "source": "derived"
       },
       {
-        "name": "probe.mjs",
-        "kind": "file",
-        "path": "scratch/probe.mjs",
-        "source": "derived"
-      },
-      {
         "name": "last-refute.txt",
         "kind": "file",
         "path": "tmp/p004-briefs/last-refute.txt",
+        "source": "derived"
+      },
+      {
+        "name": "probe.mjs",
+        "kind": "file",
+        "path": "scratch/probe.mjs",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phase 004 made the outer catch of `handleClaudeUserPromptSubmit` (`hooks/claude/user-prompt-submit.ts:469-492`) return `renderAdvisorTimeoutFallback()` with default options inside a nested try (`:483-491`)",
     "created_at": "2026-11-18T15:49:30Z",
-    "last_save_at": "2026-11-18T16:21:46.321Z",
+    "last_save_at": "2026-11-18T18:46:58.347Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d8ac46ba02b921fc594dd8619da0d2455c068baff9148dc01895cd297e531a8",
+    "source_fingerprint": "sha256:5e4f813d99e63f40426e730fd6ae85af5531601cafcc742cbecd176376bc3d01",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "19b3f41cd7f7166f4cffe7032faf8837518cf7ad99543e1a94b45ef172a0fd9a",
+      "spec.md": "a5be6737a54ca6f489b223ff0d4248bba2408faf33a46205764d196f2bd136c1",
       "plan.md": "836b52610e65be29b6f242cde137d6793498a67570ca95b911f0160544e71df6",
-      "tasks.md": "948d6cedc29d881ef43b0ee1ae96286ba5187e05d037539c647245e2026177cd",
-      "implementation-summary.md": "0bc8dd8913dccae7e485579ea18adf7528f890f9907bcf956e873d99a64281ea"
+      "tasks.md": "fe7968f237756f8c81dbd1cbeb7113467b9c84f7ad1e4783c8bb5d07aac60c74",
+      "implementation-summary.md": "341acc88be98b589643f57fb043ff29e58287d8ed4d86aaad5af5a506185872a"
     },
     "last_active_at": null
   }
