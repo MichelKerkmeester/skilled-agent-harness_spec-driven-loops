@@ -478,6 +478,36 @@ describe('Claude UserPromptSubmit advisor hook', () => {
     expect(diagnostic.errorDetails).toBe('timed out after 1000ms see logs');
   });
 
+  it('emits the outage fallback when the hook itself throws while rendering', async () => {
+    const diagnostics = diagnosticsSink();
+    const buildCliBrief = vi.fn(async () => fixture('livePassingSkill.json'));
+    const renderBrief = vi.fn(() => {
+      throw new Error('render failed');
+    });
+    const output = await handleClaudeUserPromptSubmit({
+      session_id: 's1',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+    }, {
+      buildCliBrief,
+      renderBrief,
+      writeDiagnostic: diagnostics.writeDiagnostic,
+      directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+    });
+
+    expect(renderBrief).toHaveBeenCalledOnce();
+    expect(output).toEqual({
+      hookSpecificOutput: {
+        hookEventName: 'UserPromptSubmit',
+        additionalContext: expectedOutageContext('fail_open'),
+      },
+    });
+    const diagnostic = parseDiagnostic(diagnostics.records.at(-1) ?? '{}');
+    expect(diagnostic.status).toBe('fail_open');
+    expect(diagnostic.errorCode).toBe('UNKNOWN');
+  });
+
   it('emits full fallback context when Python is unavailable', async () => {
     const result = fixture('failOpenTimeout.json');
     result.diagnostics = { errorCode: 'PYTHON_MISSING' };

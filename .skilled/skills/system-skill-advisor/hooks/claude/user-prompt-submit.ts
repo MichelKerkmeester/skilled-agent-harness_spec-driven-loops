@@ -32,6 +32,7 @@ import {
 import {
   renderAdvisorBrief,
   renderAdvisorFallbackDirective,
+  renderAdvisorTimeoutFallback,
   observeEmittedAdvisorPolicy,
 } from '../../runtime/lib/render.js';
 import type { ShadowDeliveryRenderOptions } from '../../runtime/lib/render.js';
@@ -476,7 +477,18 @@ export async function handleClaudeUserPromptSubmit(
       errorCode: 'UNKNOWN',
       errorDetails: 'Unhandled UserPromptSubmit hook exception',
     }, writeDiagnostic);
-    return {};
+    // A crash still shows the model the outage line and directives, as a timeout does.
+    // If rendering that line throws as well, there is nothing safe left to show.
+    try {
+      return {
+        hookSpecificOutput: {
+          hookEventName: 'UserPromptSubmit',
+          additionalContext: renderAdvisorTimeoutFallback(),
+        },
+      };
+    } catch {
+      return {};
+    }
   }
 }
 
