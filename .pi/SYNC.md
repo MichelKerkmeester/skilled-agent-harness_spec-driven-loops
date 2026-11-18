@@ -152,7 +152,7 @@ Each check prints a pass line or one line for each problem it finds. The agents 
 - **The extension check reads shape, not behavior.** `sync-hook-registrations.cjs --check` proves each entry matches the template byte for byte and names an adapter that exists. A change in a shared core shows up at run time or in the Pi suites under `.skilled/hooks/*/pi/`.
 - **A failed adapter import is quiet by design.** An entry whose adapter cannot load registers nothing but the session notice. `/doctor:setup` and `hook-wiring-check.cjs` name the entry and the missing file.
 - **The adapter link has no check.** The two session bridges import the real path under `.skilled/`, so `extensions/lib/claude-hook-adapter.ts` is there for browsing. A moved target leaves a dangling link that no check reports.
-- **The type declarations run in no gate.** No CI workflow or git hook runs `tsc -p tsconfig.pi.json`, so a declaration that falls behind an adapter is caught only by hand. That config checks the entry template through three entries whose adapters it already includes.
+- **The type declarations run in one CI gate.** `pi-entry-checks.yml` runs `tsc -p tsconfig.pi.json` on a change to `.pi/`, the config or a Pi adapter, and no git hook runs it. That config checks the entry template through three entries whose adapters it already includes.
 - **The cache-optimizer config here is not the one the package reads.** `extensions/pi-cache-optimizer/index.ts` reads `pi-cache-optimizer-config.json` from Pi's agent directory, so a change to the copy in this folder has no effect.
 
 ---

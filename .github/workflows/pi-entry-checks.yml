@@ -1,0 +1,75 @@
+name: Pi Entry Checks
+
+# The Pi extension entries import their hook adapters lazily, so a broken adapter or a
+# declaration that falls behind one shows only when Pi starts. This workflow type-checks
+# the entry template through tsconfig.pi.json and proves every runtime's entries resolve.
+on:
+  push:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.pi/**'
+      - 'tsconfig.pi.json'
+      - '.skilled/hooks/**'
+      - '.opencode/hooks/**'
+      - '.skilled/skills/**/pi/**'
+      - '.opencode/skills/**/pi/**'
+      - '.skilled/commands/doctor/scripts/hook-wiring-check.cjs'
+      - '.opencode/commands/doctor/scripts/hook-wiring-check.cjs'
+      - '.github/workflows/pi-entry-checks.yml'
+  pull_request:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.pi/**'
+      - 'tsconfig.pi.json'
+      - '.skilled/hooks/**'
+      - '.opencode/hooks/**'
+      - '.skilled/skills/**/pi/**'
+      - '.opencode/skills/**/pi/**'
+      - '.skilled/commands/doctor/scripts/hook-wiring-check.cjs'
+      - '.opencode/commands/doctor/scripts/hook-wiring-check.cjs'
+      - '.github/workflows/pi-entry-checks.yml'
+
+# Least privilege. Both checks only read the tree.
+permissions:
+  contents: read
+
+# One group per workflow and ref. A superseded pull request run is cancelled and a
+# branch push run is never cancelled.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  pi-entries:
+    name: Pi entries type-check and resolve
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
+    runs-on: ubuntu-latest
+    # The same floor as the provisioned plugin test job, which runs the same setup action.
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Leave no token in the git config, because no step here pushes.
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+
+      # Some Pi adapters import compiled spec-kit runtime code that is not committed, and
+      # the compiler lives in the spec-kit dependency tree, so the repository's own
+      # provisioning installs and builds those trees first.
+      - name: Provision the dependency trees the adapters import
+        uses: ./.github/actions/setup
+        with:
+          cache: 'true'
+
+      - name: Type-check the Pi entry template
+        run: |
+          set -euo pipefail
+          .skilled/skills/system-spec-kit/node_modules/.bin/tsc -p tsconfig.pi.json
+
+      - name: Every runtime's hook entries resolve
+        run: |
+          set -euo pipefail
+          node .skilled/commands/doctor/scripts/hook-wiring-check.cjs --root .
