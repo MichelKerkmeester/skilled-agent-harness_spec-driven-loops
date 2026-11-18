@@ -1031,6 +1031,49 @@ describe('reduceReviewState expansive frontier', () => {
     expect(result.registry.candidateCoverage.covered).toContain('frontier:F-1-002');
   });
 
+  it('closes a depth band\'s open node as exhausted once its visits reach the band share', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    writeStore(reviewDir, [
+      nodeRow({ nodeId: 'F-1-001' }),
+      nodeRow({ nodeId: 'F-2-002', parentId: 'F-1-001', depth: 2, question: 'Does the parser keep its offsets?' }),
+    ]);
+    // Depth 1 holds half of maxIterations 10. One dimension a visit keeps the
+    // node from being derived answered, so only the budget can close it.
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${[1, 2, 3, 4, 5]
+      .map((iteration) => iterationRecord(iteration, `stop path pass ${iteration}`, ['correctness'], { frontierNodeId: 'F-1-001' }))
+      .join('\n')}\n`);
+
+    const frontier = readFrontier(reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }));
+
+    expect(frontier.nodes.map((node) => [node.nodeId, node.status, node.reason])).toEqual([
+      ['F-1-001', 'exhausted', 'budget'],
+      ['F-2-002', 'open', null],
+    ]);
+    expect(frontier.budget?.depth1).toEqual({ allotted: 5, spent: 5 });
+    expect(frontier.budget?.depth2).toEqual({ allotted: 3.5, spent: 0 });
+  });
+
+  it('rolls an unspent depth-1 share down to depth 2 once depth 1 has no open node', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    writeStore(reviewDir, [
+      nodeRow({ nodeId: 'F-1-001', status: 'answered' }),
+      nodeRow({ nodeId: 'F-2-002', parentId: 'F-1-001', depth: 2, question: 'Does the parser keep its offsets?' }),
+    ]);
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${[
+      ...[1, 2].map((iteration) => iterationRecord(iteration, `stop path pass ${iteration}`, ['correctness'], { frontierNodeId: 'F-1-001' })),
+      ...[3, 4, 5, 6, 7, 8].map((iteration) => iterationRecord(iteration, `parser pass ${iteration}`, ['correctness'], { frontierNodeId: 'F-2-002' })),
+    ].join('\n')}\n`);
+
+    const frontier = readFrontier(reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }));
+
+    // Depth 1 spent 2 of its 5 and has no open node, so the unspent 3 join the
+    // depth-2 share of 3.5, and six visits stay inside it.
+    expect(frontier.nodes.find((node) => node.nodeId === 'F-2-002')?.status).toBe('open');
+    expect(frontier.budget?.depth2).toEqual({ allotted: 6.5, spent: 6 });
+  });
+
   it('reports a torn store row instead of dropping its node silently', () => {
     const { specFolder, reviewDir } = makeReviewDir();
     writeExpansiveConfig(reviewDir);
