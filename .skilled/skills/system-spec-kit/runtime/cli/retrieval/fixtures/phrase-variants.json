@@ -1,5 +1,5 @@
 {
-  "manifestHash": "601fb2b9caae59dd64e16bc530906291fc377e3e9b25f5902d52b0cc8cef399c",
+  "manifestHash": "89759d0fb8aae928fa7b2f2841fec840d725975663de87bbca746292a6460d76",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -93605,6 +93605,9 @@
     "record": [
       "record"
     ],
+    "record base in a vendored layout and overlay": [
+      "record base in a vendored layout and overlay"
+    ],
     "record executor audit gateway": [
       "record executor audit gateway"
     ],
@@ -132698,6 +132701,24 @@
     ],
     "vendored overlay adoption": [
       "vendored overlay adoption"
+    ],
+    "vendored record base and overlay loss reports": [
+      "vendored record base and overlay loss reports"
+    ],
+    "vendored record base and overlay loss reports acceptance criteria": [
+      "vendored record base and overlay loss reports acceptance criteria"
+    ],
+    "vendored record base and overlay loss reports goal": [
+      "vendored record base and overlay loss reports goal"
+    ],
+    "vendored record base and overlay loss reports implementation summary": [
+      "vendored record base and overlay loss reports implementation summary"
+    ],
+    "vendored record base and overlay loss reports plan": [
+      "vendored record base and overlay loss reports plan"
+    ],
+    "vendored record base and overlay loss reports tasks": [
+      "vendored record base and overlay loss reports tasks"
     ],
     "vendored reference charting library": [
       "vendored reference charting library"

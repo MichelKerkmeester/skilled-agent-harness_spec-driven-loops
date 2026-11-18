@@ -1,5 +1,5 @@
 {
-  "corpusHash": "08c7b1046361ffaedfbc475aef9a9c181eb290c833d9e10c278f7fb7435b45aa",
+  "corpusHash": "8a9a23dd8d7906179db18f05116f4e2e58347135a9233005d40efd9ae68392cd",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28384,
+  "includedPathCount": 28390,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -19792,6 +19792,12 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/acceptance-criteria.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/goal.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/research.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/spec.md",
     "specs/system-skilled-doctor/002-symlink-first-link/implementation-summary.md",
@@ -28416,7 +28422,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "601fb2b9caae59dd64e16bc530906291fc377e3e9b25f5902d52b0cc8cef399c",
+  "manifestHash": "89759d0fb8aae928fa7b2f2841fec840d725975663de87bbca746292a6460d76",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -37264,6 +37270,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/scratch",
       "reason": "excluded directory"
     },
     {
