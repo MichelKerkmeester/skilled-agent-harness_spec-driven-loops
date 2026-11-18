@@ -36,7 +36,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Four pieces of packet text are wrong or missing",
     "created_at": "2026-11-18T15:49:36Z",
-    "last_save_at": "2026-11-18T22:51:38.946Z",
+    "last_save_at": "2026-11-18T22:57:43.109Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bbb3a4fe7c3462dfaca912851977c40cdfeb91cd098a81b6bdf9039900d9f18d",
+    "source_fingerprint": "sha256:c385892afcdfca609eda09311045f597ce79dbb1d8280b2b73340e4dff3d7c56",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8902913f374cdefdb236018708a98248e5de3279f4228297a8570006fb725a9e",
+      "spec.md": "ecbec579249cb86add7fb54989776a7f3c7a609fc67ee31eedfacde6fe964a52",
       "plan.md": "5da40034015bb2842efa85bbeae0800b3e9c0672b5d5f9176447ed201c2558ab",
-      "tasks.md": "11777703dd1c5bcfd6c6af0f01054e93067e86a06fcc5a8dd649eaf741fab9f0",
+      "tasks.md": "b874a60e839b0185c455278e2b3a41079ea3d1d60927e16382f87ad96696c35e",
       "decision-record.md": "dc519f756ff48d936f2d4d3f2ff1506ca3fb20763a8227172b51d95e0029502e",
-      "implementation-summary.md": "d3bccdc87efd02a5db4b66bd06ef6c4ea8bf8a0596d04d337a478cb64e06d4b6"
+      "implementation-summary.md": "361dd468e27a921e148e7cc0e062c5bdce5161f6146c4dafc6bb20760cb09d41"
     },
     "last_active_at": null
   }

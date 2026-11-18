@@ -67,10 +67,10 @@
       "007-python-scorer-strip-parity/tasks.md",
       "008-handler-scored-prompt-consumers/tasks.md",
       "009-crash-fallback-edge-cases/tasks.md",
+      "010-route-receipts-research/research/research.md",
       "011-route-receipts-build/tasks.md",
       "013-drift-guard-probe-script-errors/tasks.md",
-      "001-deep-research/goal.md",
-      "002-pasted-context-stripping/goal.md"
+      "001-deep-research/goal.md"
     ],
     "entities": [
       {
@@ -110,12 +110,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -134,7 +128,19 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
@@ -160,17 +166,17 @@
     ],
     "causal_summary": "The skill advisor picks skills with a local five-lane scorer and pushes a brief into every prompt",
     "created_at": "2026-11-18T06:49:25Z",
-    "last_save_at": "2026-11-18T22:31:45.859Z",
+    "last_save_at": "2026-11-18T22:57:44.703Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:244598dc9abee69547cd5bd3b624846318d9d426cbfa7f1f705d4769e4aeaab3",
+    "source_fingerprint": "sha256:d74b07c44cdd431593adeceba375c72858a33dd2d9a1c01dcbed34c5a75db969",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "670d222cbd82beb1afe9fe7c878e1b3106d83f5c140274b7bfdedb013b7ff990"
+      "spec.md": "9a343601ea656e6e650bbb36e9730f1afa2bf4a3b55a806736b6cd7bb58fe2d2"
     },
     "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout",
     "last_active_at": "2026-11-18T22:31:45.859Z"

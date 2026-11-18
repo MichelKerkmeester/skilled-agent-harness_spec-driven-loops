@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "db37536c-37e4-472c-8a05-521b8fec328d"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -89,12 +89,12 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `printf '%s' '{"prompt":"Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: Refactor the session store module to remove duplicated locking code"}' | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json` lists `sk-code` first on main after a daemon restart
-- [ ] `npx vitest run tests/hooks tests/parity tests/handlers` exits 0 from `.skilled/skills/system-skill-advisor/runtime`
-- [ ] `rg -n 'daemon starts' .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` prints one line
-- [ ] `rg -n 'Decision rule outcome' specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-*/003-*/implementation-summary.md` prints one line naming ship, over-suppresses or no guard
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-* --recursive --strict --quiet` prints `RESULT: PASSED` for all fourteen folders
-- [ ] `git merge-base --is-ancestor worktrees/474-advisor-pasted-context-and-crash-fallback origin/main` exits 0
+- [x] `printf '%s' '{"prompt":"Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: Refactor the session store module to remove duplicated locking code"}' | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json` lists `sk-code` first on main after a daemon restart
+- [x] `npx vitest run tests/hooks tests/parity tests/handlers` exits 0 from `.skilled/skills/system-skill-advisor/runtime`
+- [x] `rg -n 'daemon starts' .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` prints one line
+- [x] `rg -n 'Decision rule outcome' specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-*/003-*/implementation-summary.md` prints one line naming ship, over-suppresses or no guard
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-* --recursive --strict --quiet` prints `RESULT: PASSED` for all fourteen folders
+- [x] `git merge-base --is-ancestor worktrees/474-advisor-pasted-context-and-crash-fallback origin/main` exits 0
 <!-- /ANCHOR:completion -->
 
 ---
@@ -114,6 +114,9 @@ and findings belong here.
 | 005 plan validation | Done | `005-plan-validation-research/research/research.md`, plan changes C1 to C15 applied |
 | 002, 004, 003 build | Done | Worktree 474, five commits `6c4af5fb5eb` to `84a2d1eb697`; 003 closed on over-suppresses with no guard built |
 | 006 to 013 planned | In Progress | Scaffolded 2026-11-18 by operator directive "Fix all open work leave nothing open or untested" |
+| 006 to 013 built | Done | Phases 006 to 011 and 013 committed in worktree 474; 012 fixed every confirmed review finding test first and closed the docs |
+| Finish | Done | Merged to main as `57d3f5d9159`, advisor rebuilt and its daemon restarted on main, criteria 1 to 5 run on main, pushed to origin/main |
+| Criteria evidence | Done | 1: `sk-code` first, daemon 24672 after the main build; 2: 424 passed on main; 3: line 382; 4: line 80, over-suppresses; 5: 14 of 14 on main; 6: exit 0 after pushing `57d3f5d9159` |
 
 ### Deviations and findings
 

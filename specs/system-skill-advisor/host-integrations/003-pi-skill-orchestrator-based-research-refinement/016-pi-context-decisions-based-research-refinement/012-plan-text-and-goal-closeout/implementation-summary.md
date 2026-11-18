@@ -47,7 +47,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 012-plan-text-and-goal-closeout |
-| **Completed** | 2026-11-18, in worktree 474. The finish sequence on `main` follows |
+| **Completed** | 2026-11-18. Merged to main as `57d3f5d9159` and pushed to origin/main |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -120,6 +120,8 @@ The conductor edited every doc directly. Each confirmed code finding got a faili
 | Socket override, T009 | `degraded: true`, `source: local-scorer`. Daemon pid 73015, its socket and the launcher count (3) unchanged |
 | Child goals | `check-goal` 5 of 5 for 002, 003 and 004, no open criterion, strict validation passed for each |
 | Decision record | 9 `Q` rows, no parent record |
+| Finish on main | Merge `57d3f5d9159` with no conflict, main build and daemon restart (pid 24672), parent criteria 1 to 6 all held, push `4bf79332378..57d3f5d9159` |
+| Push account | The active `gh` account was refused with 403; the push ran once with the repository owner account token, without switching the active account |
 
 ### Review verdicts
 

@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "20078428-5166-43d7-85ac-a68d9210f82f"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -59,13 +59,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `rg -n 'run build' specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-*/002-*/tasks.md` prints the T009 line
-- [ ] `rg -n 'reporter=verbose' specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-*/003-*/goal.md` prints at least one line
-- [ ] `rg -n 'git diff --stat. lists' specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-*/004-*` prints nothing
-- [ ] `grep -c '^- \[ \]' specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-*/00[234]-*/goal.md` prints 0 for all three files
-- [ ] `grep -c '^| Q[0-9]' specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-*/012-*/decision-record.md` prints the number of `answered_questions` lines in the parent `spec.md`, 9 at planning
-- [ ] `grep -c '^- \[ \]' specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-*/goal.md` prints 0
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-* --recursive --strict --quiet` prints `RESULT: PASSED` for all fourteen folders
+- [x] `rg -n 'run build' specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-*/002-*/tasks.md` prints the T009 line - evidence: prints line 68, the T009 line
+- [x] `rg -n 'reporter=verbose' specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-*/003-*/goal.md` prints at least one line - evidence: prints one line
+- [x] `rg -n 'git diff --stat. lists' specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-*/004-*` prints nothing - evidence: prints nothing
+- [x] `grep -c '^- \[ \]' specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-*/00[234]-*/goal.md` prints 0 for all three files - evidence: 0 for all three
+- [x] `grep -c '^| Q[0-9]' specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-*/012-*/decision-record.md` prints the number of `answered_questions` lines in the parent `spec.md`, 9 at planning - evidence: 9 rows, 9 answer lines
+- [x] `grep -c '^- \[ \]' specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-*/goal.md` prints 0 - evidence: parent goal prints 0
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-* --recursive --strict --quiet` prints `RESULT: PASSED` for all fourteen folders - evidence: 14 of 14 on main
 <!-- /ANCHOR:completion -->
 
 ---

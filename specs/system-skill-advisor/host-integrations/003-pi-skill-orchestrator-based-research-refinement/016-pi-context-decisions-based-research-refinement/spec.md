@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "db37536c-37e4-472c-8a05-521b8fec328d"
       parent_session_id: null
-    completion_pct: 25
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Placement, decided by the operator 2026-11-18: a new phase child under 003-pi-skill-orchestrator-based-research-refinement."
@@ -62,7 +62,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress. Phases 001 to 005 are complete and committed in worktree 474; phase 003 closed with the guard not built (over-suppresses). Phases 006 to 013 close the open items that build left |
+| **Status** | Complete. All thirteen phases are done and merged to main as `57d3f5d9159`, then pushed; phase 003 closed with the guard not built (over-suppresses), and phases 010 and 011 built the route receipts instead |
 | **Created** | 2026-11-18 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -139,14 +139,14 @@ Phase 1 writes research artifacts only. Phases 002 to 004 list their exact files
 | 3 | 003-follow-up-routing-benchmark/ | R3 and R5: count floored top-1 passes and score follow-up pairs in the calibration bench. The guard and the `confidenceFloored` pass-through ship only if a rule fixed in advance says so | Complete |
 | 4 | 004-crash-path-fallback/ | R2 shrunk and N1: return the outage fallback from the shared hook's unhandled catch, plus one doc line on when the confidence threshold is read | Complete |
 | 5 | 005-plan-validation-research/ | 3-iteration deep research on Opus 5.5 high through the second Claude account, checking phases 002 to 004 before they are built: all three stay, with plan changes C1 to C15 and the order 002, 004, 003 | Complete |
-| 6 | 006-strip-rule-boundary-edges/ | Strip-rule boundary edges: a `>`-quoted requirement stays, a task marker inside the pasted reply no longer cuts early, and `Assistant response:` style headers count as cues. Red-first tests, 0 changes on the routing corpus | Planned |
-| 7 | 007-python-scorer-strip-parity/ | The Python local scorer strips the same pasted reply, read from one shared case fixture, and the `rr-paste-208` local-native divergence resolves | Planned |
-| 8 | 008-handler-scored-prompt-consumers/ | Compiled routes and typed commands read the stripped prompt on the cache-hit and cache-miss paths, so a command in a pasted reply never attaches to the task | Planned |
-| 9 | 009-crash-fallback-edge-cases/ | Crash-fallback edges in the shared hook: setup wording, skipped prompts, directive dedup, policy observation context and the clock call inside the guard; plus the false `confidenceOnly` clause in `ENV-REFERENCE.md` | Planned |
-| 10 | 010-route-receipts-research/ | Stored route receipts research: rerun the follow-up bench on the final strip rule, then design the receipt store, expiry and runtime reach for Claude, Pi, DSH and Vibe | Planned |
-| 11 | 011-route-receipts-build/ | Stored route receipts build, to the design phase 010 fixes, measured on the nine follow-up pairs in the calibration bench | Planned |
-| 12 | 012-plan-text-and-goal-closeout/ | Packet closeout: plan-text fixes in 002, 003 and 004, the delegation-strategy socket caveat, child goal ticks, the operator answers in a decision record and the parent goal criteria | Planned |
-| 13 | 013-drift-guard-probe-script-errors/ | Drift-guard errors: give the ten old probe scripts under the routing-and-scoring 008 review folders the shebang, strict mode or module header the alignment-drift guard requires | Planned |
+| 6 | 006-strip-rule-boundary-edges/ | Strip-rule boundary edges: a `>`-quoted requirement stays, a task marker inside the pasted reply no longer cuts early, and `Assistant response:` style headers count as cues. Red-first tests, 0 changes on the routing corpus | Complete |
+| 7 | 007-python-scorer-strip-parity/ | The Python local scorer strips the same pasted reply, read from one shared case fixture, and the `rr-paste-208` local-native divergence resolves | Complete |
+| 8 | 008-handler-scored-prompt-consumers/ | Compiled routes and typed commands read the stripped prompt on the cache-hit and cache-miss paths, so a command in a pasted reply never attaches to the task | Complete |
+| 9 | 009-crash-fallback-edge-cases/ | Crash-fallback edges in the shared hook: setup wording, skipped prompts, directive dedup, policy observation context and the clock call inside the guard; plus the false `confidenceOnly` clause in `ENV-REFERENCE.md` | Complete |
+| 10 | 010-route-receipts-research/ | Stored route receipts research: rerun the follow-up bench on the final strip rule, then design the receipt store, expiry and runtime reach for Claude, Pi, DSH and Vibe | Complete |
+| 11 | 011-route-receipts-build/ | Stored route receipts build, to the design phase 010 fixes, measured on the nine follow-up pairs in the calibration bench | Complete |
+| 12 | 012-plan-text-and-goal-closeout/ | Packet closeout: plan-text fixes in 002, 003 and 004, the delegation-strategy socket caveat, child goal ticks, the operator answers in a decision record and the parent goal criteria | Complete |
+| 13 | 013-drift-guard-probe-script-errors/ | Drift-guard errors: give the ten old probe scripts under the routing-and-scoring 008 review folders the shebang, strict mode or module header the alignment-drift guard requires | Complete |
 
 **Build order.** Folder numbers stay as they are. The build order is 001, then 005, then 002, then 004, then 003. Phase 004 builds before 003 because both edit `hooks/claude/user-prompt-submit.ts` and its hook test, and 003's guard would shift every line 004 pins.
 
