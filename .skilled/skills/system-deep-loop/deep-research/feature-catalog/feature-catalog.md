@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-research autonomous research loop."
-version: 1.14.10.0
+version: 1.14.11.0
 ---
 
 # deep-research: Feature Catalog
@@ -67,7 +67,7 @@ Chooses whether the loop continues, enters stuck recovery, or reaches a legal st
 
 #### How It Works
 
-The loop first applies hard stops and the three-signal `shouldContinue()` vote, then runs the legal-stop gate bundle and optional graph convergence check before accepting STOP. When the legal-stop bundle blocks a stop, the workflow records a first-class `blocked_stop` event and keeps the loop running with an explicit recovery hint.
+The loop first applies hard stops and the three-signal `shouldContinue()` vote, then runs the legal-stop gate bundle and optional graph convergence check before accepting STOP. When a gate other than the quality guard blocks a stop, the workflow records a first-class `blocked_stop` event and keeps the loop running with an explicit recovery hint. A failed quality guard instead returns CONTINUE with `qualityGuardFailed` and writes no event.
 
 #### Source Files
 
