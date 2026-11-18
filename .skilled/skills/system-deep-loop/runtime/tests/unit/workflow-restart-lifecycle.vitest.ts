@@ -1155,4 +1155,92 @@ describe('expansive frontier graph mirror', () => {
     expect(block.status, String(block.stderr)).toBe(0);
     expect(String(block.stdout)).toContain('Current node: F-1-001 at depth 1');
   });
+
+  // The review loop binds its frontier node and dimension from the findings
+  // registry, and the init step that creates that registry runs after the seed
+  // and writes no frontier. Only a reduce projects the seeded nodes into it, so
+  // without one between the seed and the loop, iteration 1 has no frontier node.
+  it('gives review iteration 1 a frontier node and block once the seed is reduced', () => {
+    const specFolder = join(makeTempDir('review-frontier-seed-reduce-'), 'spec');
+    const artifactDir = join(specFolder, 'review');
+    mkdirSync(artifactDir, { recursive: true });
+    writeFileSync(join(specFolder, 'spec.md'), '# Review seed reduce\n');
+    const config = join(artifactDir, 'deep-review-config.json');
+    const stateLog = join(artifactDir, 'deep-review-state.jsonl');
+    const registryPath = join(artifactDir, 'deep-review-findings-registry.json');
+    writeFileSync(config, JSON.stringify({
+      topic: 'Review: frontier admission',
+      mode: 'review',
+      sessionId: 'review-seed-reduce',
+      parentSessionId: null,
+      lineageMode: 'new',
+      generation: 1,
+      reviewTarget: 'runtime',
+      reviewTargetType: 'files',
+      reviewDimensions: ['correctness', 'security', 'traceability', 'maintainability'],
+      maxIterations: 10,
+      createdAt: '2026-11-18T00:00:00.000Z',
+      status: 'initialized',
+      antiConvergence: { convergenceMode: 'default', depthMode: 'expansive', divergent: {}, stopPolicy: 'convergence' },
+      expansiveDepth: { maxDepth: 3, maxChildrenPerNode: 6 },
+      stopPolicy: 'convergence',
+    }));
+    const init = runShell(render(stepCommand('deep-review.yaml', 'step_create_state_log'), {
+      '{state_paths.config}': config,
+      '{state_paths.state_log}': stateLog,
+    }));
+    expect(init.status, String(init.stdout) + String(init.stderr)).toBe(0);
+
+    writeFileSync(join(artifactDir, 'frontier-seed.json'), JSON.stringify([
+      { question: 'Does frontier admission prune out-of-target scopes?', scope: 'runtime/scripts', evidence: 'runtime/scripts/frontier-admit.cjs' },
+      { question: 'Does the reducer project the frontier into the registry?', scope: 'runtime/lib', evidence: 'runtime/scripts/reduce-state.cjs' },
+    ]));
+    const seed = runShell(render(phaseStep(fileText('deep-review.yaml'), 'step_frontier_seed').match(/command: '(.*)'/u)?.[1] ?? '', {
+      '{artifact_dir}': artifactDir,
+    }));
+    expect(seed.status, String(seed.stderr)).toBe(0);
+    expect(existsSync(join(artifactDir, 'frontier-nodes.jsonl'))).toBe(true);
+
+    // The registry and strategy the init phase writes after the seed.
+    const registryContent = phaseStep(fileText('deep-review.yaml'), 'step_create_findings_registry').match(/content: '(.*)'/u)?.[1] ?? '';
+    writeFileSync(registryPath, render(registryContent, {
+      '{session_id_init}': 'review-seed-reduce',
+      '{generation_init}': '1',
+      '{lineage_mode_init}': 'new',
+      '{dimension_coverage_custom_seed}': '',
+    }));
+    expect(readJson(registryPath).frontier).toBeUndefined();
+    writeFileSync(
+      join(artifactDir, 'deep-review-strategy.md'),
+      readFileSync(resolve(SKILLS_ROOT, 'skills', 'system-deep-loop', 'deep-review', 'assets', 'deep-review-strategy.md'), 'utf8'),
+    );
+
+    const reduceCommand = render(stepCommand('deep-review.yaml', 'step_frontier_reduce_seed'), {
+      '{spec_folder}': specFolder,
+      '{reducer_artifact_arg}': '',
+    });
+    expect(reduceCommand).toContain('reduce-state.cjs');
+    const reduce = runShell(reduceCommand);
+    expect(reduce.status, String(reduce.stderr)).toBe(0);
+
+    const frontier = readJson(registryPath).frontier ?? {};
+    expect(frontier.activeNodeId).toBe('F-1-001');
+    expect(typeof frontier.activeNextDimension).toBe('string');
+    expect(frontier.activeNextDimension).not.toBe('');
+
+    const block = spawnSync(process.execPath, [
+      resolve(RUNTIME_ROOT, 'scripts', 'frontier-admit.cjs'),
+      'block',
+      '--target',
+      'review',
+      '--artifact-dir',
+      artifactDir,
+      '--node-id',
+      frontier.activeNodeId,
+      '--dimension',
+      frontier.activeNextDimension,
+    ], { encoding: 'utf8' });
+    expect(block.status, String(block.stderr)).toBe(0);
+    expect(String(block.stdout)).toContain('F-1-001');
+  });
 });
