@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 <!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
-With `--depth-mode=expansive`, a review run seeds depth-1 sub-target nodes from its target, keeps their status in `review/frontier-nodes.jsonl`, works the active node's next uncovered dimension each iteration and refuses a stop candidate while any node is open. Without the flag, a review writes what it wrote before, except for one expansive-only paragraph in CLI lineage prompts, which is waived pending operator ratification. A golden test pins seven default-path artifacts to bytes captured before the build.
+With `--depth-mode=expansive`, a review run seeds depth-1 sub-target nodes from its target, keeps their status in `review/frontier-nodes.jsonl`, works the active node's next uncovered dimension each iteration and refuses a stop candidate while any node is open. Without the flag, a review writes what it wrote before, except for one expansive-only paragraph in CLI lineage prompts, which ADR-005 waives; the operator ratified it on 2026-11-18. A golden test pins seven default-path artifacts to bytes captured before the build.
 
 T002, 008's support decision: "Support custom dimensions in `buildDimensionCoverage` (ADR-001, OD-001) | Operator choice: every configured dimension is tracked and can be covered", so the per-node dimension universe is the configured `reviewDimensions` list.
 
@@ -93,7 +93,7 @@ Setup ran natively: dependency merges confirmed, the golden review baseline capt
 | Reuse the phase-010 admission order, budget and veto | One frontier design for both loops keeps the bounds and stop semantics identical |
 | Attribute iterations by record field, bounded marker or store activation row (D-011-01) | A leaf that rewords its focus still spends the node's visit, budget and dimension |
 | Veto review hard stop candidates (D-011-02) | `all_dimensions_clean` is a hard stop, so the research guard would never veto it |
-| Strip the expansive-only persona paragraph from the golden lineage prompt (ADR-005) | The leaf contract must change the persona the lineage prompt embeds; waived pending operator ratification, as 010's ADR-006 |
+| Strip the expansive-only persona paragraph from the golden lineage prompt (ADR-005) | The leaf contract must change the persona the lineage prompt embeds; waived, ratified by the operator on 2026-11-18, as 010's ADR-006 |
 | Pilot keeps all four dimensions and raises `maxIterations` (T000) | Narrowing dimensions would weaken the coverage the review gate checks |
 <!-- /ANCHOR:decisions -->
 
@@ -117,7 +117,7 @@ Setup ran natively: dependency merges confirmed, the golden review baseline capt
 ## Known Limitations
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 1. **The pilot ran once and failed AC-011.** The target-1 run reviewed 400 commits with 6 lineages of up to 16 iterations each, on a throwaway fixture (`scratch/pilot-run-1.md`). The T031 budget check passed: half of the 16-iteration cap is 8, which meets the 8 it needs. AC-011 failed for two reasons. The root cap of 6 pruned the seventh depth-1 node, and 3 of 6 lineages stopped on `maxIterationsReached`. The frontier still ended with no open or active node, and the merge guard passed. Four defects were fixed in `43eb6d47b8e` with fail-first tests. One stays open for the operator: a lineage keeps running after its node is answered.
-2. **AC-001 waived.** The default CLI lineage prompt now carries the expansive-only leaf-contract paragraph in its embedded persona (ADR-005), pending operator ratification together with 010's ADR-006.
+2. **AC-001 waived.** The default CLI lineage prompt now carries the expansive-only leaf-contract paragraph in its embedded persona (ADR-005), ratified by the operator on 2026-11-18 together with 010's ADR-006.
 3. **Research golden on this base.** `research-depth-mode-golden` lineage-prompt fails on this branch's base because its baseline holds worktree 467's path; integration fixed it in `2c9405692a1`.
 <!-- /ANCHOR:limitations -->
 

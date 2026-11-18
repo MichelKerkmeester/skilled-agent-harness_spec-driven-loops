@@ -35,6 +35,9 @@ _memory:
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
 | Q001 | Accept the nine 010 and 011 design ADRs as proposed; the builder may raise an amendment. | Not stated. | None | 010 and 011 plan.md ADRs, T000 |
+| Q002 | Decouple the frontier node cap from the iteration cap and rerun the pilots. | Not stated. | None | AC-014, deep-research.yaml, frontier-admit.cjs |
+| Q003 | Land the cap decoupling with a test, skip the research rerun, and amend AC-014 to require the frontier to drain to zero open and zero active nodes before the iteration cap. | Not stated. The replayed run-2 stop check showed four default-run blockers that D2 freezes (novelty, source diversity, graph coverage, claim verification), so a non-cap stop is not reachable by the cap change alone. | Q002 for the research pilot | AC-014, REQ-012, goal.md completion criteria, frontier-admit.cjs |
+| Q004 | Ratify ADR-006: the golden lineage-prompt check strips the one expansive-only persona paragraph. | Not stated. | None | ADR-006, AC-001, research-depth-mode-golden.vitest.ts |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -47,7 +50,7 @@ Decisions taken during the 2026-11-17 build while the operator was away. Each on
 | ID | Decided | Why | Rollback |
 |----|---------|-----|----------|
 | D-010-01 | An exhausted, blocked or abstained node is re-kinded in the coverage graph to a CLAIM with `verification_status: closed`; a pruned node is never written. | ADR-002 left the target kind open. CLAIM feeds only the claim-verification rate, which counts a closed claim as settled, while FINDING and SOURCE would skew findings counts and source diversity. The graph close case shows coverage and diversity return to their base values. | Change the closed-node branch of `buildFrontierGraphEvents` in `frontier-admit.cjs` to emit nothing, and add a delete path to `upsert.cjs` for nodes already written. |
-| ADR-006 (D-010-02) | The golden lineage-prompt check strips the one expansive-only paragraph of the embedded agent persona before comparing; every other byte still has to match the untouched baseline. | The lineage prompt embeds `.skilled/agents/deep-research.md` verbatim, and the leaf contract row is a required change to that file. The paragraph is inert on a default run, because no FRONTIER block is ever rendered there. | Remove `withoutExpansiveOnlyPersona` from `research-depth-mode-golden.vitest.ts` and accept the persona bytes into the baseline at integration. Needs operator ratification: it waives AC-001's byte identity for the CLI lineage prompt only. |
+| ADR-006 (D-010-02) | The golden lineage-prompt check strips the one expansive-only paragraph of the embedded agent persona before comparing; every other byte still has to match the untouched baseline. | The lineage prompt embeds `.skilled/agents/deep-research.md` verbatim, and the leaf contract row is a required change to that file. The paragraph is inert on a default run, because no FRONTIER block is ever rendered there. | Remove `withoutExpansiveOnlyPersona` from `research-depth-mode-golden.vitest.ts` and accept the persona bytes into the baseline at integration. Ratified by the operator on 2026-11-18 (Q004): it waives AC-001's byte identity for the CLI lineage prompt only. |
 | D-010-03 | The fan-in partition guard reports a missing node, in `registry.frontier.partitionGuard`, the merge output and a stderr warning, instead of aborting the merge. | One crashed lineage would otherwise cost the whole fan-out its synthesis, while the default fan-out tolerates failed lineages. | Throw an input error in `fanout-merge.cjs` main when `partitionGuard.passed` is false. |
 | D-010-04 | The target-2 pilot (T031, T032) runs at the integration merge gate, not on this branch. | A live `/deep:research` loop of 6 to 10 dispatched iterations does not fit the branch's turn budget beside the closing gates. A CLI smoke on a scratch packet exercised seed, admit, block, reduce, graph and the stop decision end to end. | Not applicable: run the pilot and record its registry stats. |
 | D-010-05 | A lineage's node store and inbox rows go at `lineages/<label>/frontier-nodes.jsonl` and `lineages/<label>/inbox.jsonl`. | A lineage binds `artifact_dir` to its lineage directory, and every frontier reader resolves the store under `artifact_dir`, so a nested `research/` folder would never be read. | Change the path in `writeLineageFrontierStore` in `fanout-run.cjs`. |
@@ -79,6 +82,65 @@ Decide at build time
 Answer:
 ```text
 Accept as proposed (Recommended)
+```
+
+### Q002
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_0124XY7BsyfxrDhCww4fnWY1:0 -->
+
+Question:
+```text
+Pilot stop criterion: both live expansive-depth pilots (research 010, review 011) stopped on the iteration cap, so AC-014 (010) and AC-011 (011) are Unmet. Cause: the workflow sets maxFrontierNodes = max_iterations, and default-run quality gates (source diversity, graph STOP_BLOCKED) also block an earlier stop. How should I close these?
+```
+
+Options:
+```text
+Amend the criteria (Recommended)
+Decouple the caps + rerun
+Leave Unmet
+```
+
+Answer:
+```text
+Decouple the caps + rerun
+```
+
+### Q003
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01DZkg8CnttvcpZMfP5Hihip:0 -->
+
+Question:
+```text
+Research pilot: I replayed run 2's final stop check (993 fixture). Decoupling the node cap won't make a non-cap stop reachable, because four default-run blockers that D2 freezes all fired at once: novelty never converged (rolling avg 0.89, MAD stop=false, weighted score 0.35); source diversity was 0.50 vs a 1.5 threshold; graph question coverage was 0.22 (16 uncovered); claim verification was 0. A rerun would cost ~1h and is almost certain to cap-stop again, which would be attempt 3. What now?
+```
+
+Options:
+```text
+Decouple, amend AC-014 (Recommended)
+Decouple and rerun anyway
+Amend only, no code
+```
+
+Answer:
+```text
+Decouple, amend AC-014 (Recommended)
+```
+
+### Q004
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_0124XY7BsyfxrDhCww4fnWY1:1 -->
+
+Question:
+```text
+Golden-test waivers: the default-run golden tests strip one expansive-only persona paragraph from the agent definition. ADR-006 (phase 010) and ADR-005 (phase 011) record this as a waiver, which keeps 011's golden criterion open until ratified. Ratify?
+```
+
+Options:
+```text
+Ratify both (Recommended)
+Reject both
+```
+
+Answer:
+```text
+Ratify both (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

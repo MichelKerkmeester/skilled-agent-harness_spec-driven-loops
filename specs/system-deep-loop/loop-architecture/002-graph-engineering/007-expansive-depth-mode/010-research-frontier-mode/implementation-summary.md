@@ -125,7 +125,7 @@ The golden baseline was captured first, on the untouched tree. Each change then 
 | Separate `--depth-mode` flag, not a fifth `--convergence-mode` value | A convergence-mode value would exclude `divergent` and `sliding-window`, which the frontier must compose with |
 | Frontier data travels through delta and inbox rows | The research state-log upcast drops non-core fields, and widening it would change every research run |
 | Closed nodes become closed CLAIMs in the graph (D-010-01) | They stop lowering question coverage and source diversity while CLAIM touches only claim verification |
-| The golden strips only the expansive-only persona paragraph (D-010-02, ADR-006; AC-001 waived pending operator ratification) | The lineage prompt embeds the agent file, which the leaf contract had to change |
+| The golden strips only the expansive-only persona paragraph (D-010-02, ADR-006; AC-001 waived, ratified by the operator on 2026-11-18) | The lineage prompt embeds the agent file, which the leaf contract had to change |
 | The partition guard reports instead of aborting (D-010-03) | One crashed lineage should not cost the fan-out its synthesis |
 | The pilot runs at the merge gate (D-010-04) | A live loop does not fit the branch's turn budget; the CLI smoke covers the pipeline |
 <!-- /ANCHOR:decisions -->
@@ -158,7 +158,7 @@ The golden baseline was captured first, on the untouched tree. Each change then 
 2. **Playbook and changelog written.** Six scenarios (DR-068 to DR-073) and the v1.16.0.0 changelog entry landed in integration.
 3. **Full suite pending.** The whole deep-loop suite runs at the merge gate (T030). Earlier integration gates showed one unrelated flaky test per run.
 4. **A focus without the node marker is not counted.** Visits match the `Frontier node <id>` marker anywhere in the focus, and the frontier block asks the leaf to copy its Focus Area line. A leaf that drops the marker altogether leaves visits at 0, so the budget does not spend and the stuck close cannot find the node.
-5. **CLI lineage prompt bytes.** A default CLI lineage now carries the expansive-only leaf-contract paragraph in its embedded persona. AC-001 is waived for that one artifact under ADR-006, pending operator ratification.
+5. **CLI lineage prompt bytes.** A default CLI lineage now carries the expansive-only leaf-contract paragraph in its embedded persona. AC-001 is waived for that one artifact under ADR-006, ratified by the operator on 2026-11-18.
 <!-- /ANCHOR:limitations -->
 
 ---
