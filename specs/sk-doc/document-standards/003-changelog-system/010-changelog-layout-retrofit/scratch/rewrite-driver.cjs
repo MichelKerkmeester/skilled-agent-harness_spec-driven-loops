@@ -38,6 +38,9 @@ const LAYOUT_LINT = path.join(HERE, 'layout_lint.py');
 const ORIG_DIR = path.join(HERE, 'orig');
 const FAIL_DIR = path.join(HERE, 'failed');
 const RUN_DIR = path.join(HERE, 'runs');
+// Per-file exceptions, each backed by a source the entry itself does not carry.
+const SANCTIONED_FILE = path.join(HERE, 'sanctioned.json');
+const sanctioned = (file) => (fs.existsSync(SANCTIONED_FILE) ? JSON.parse(fs.readFileSync(SANCTIONED_FILE, 'utf8'))[file] : null) || {};
 const STOP_FILE = path.join(HERE, process.env.DRIVER_STOP || 'STOP');
 
 const WRITERS = {
@@ -164,7 +167,7 @@ function facts(text) {
   return { front, fences, specPaths, spans, urls, numbers, plain, body };
 }
 
-function factLock(oldText, newText) {
+function factLock(oldText, newText, allowSpans = []) {
   const errors = [];
   const o = facts(oldText);
   const n = facts(newText);
@@ -182,7 +185,7 @@ function factLock(oldText, newText) {
   for (const s of o.spans) if (!n.spans.has(s) && !keptAsSpecPath(s)) errors.push(`Inline code span missing: \`${s}\`. Keep it, with its backticks, with the fact it belongs to.`);
   // Putting a name the original wrote in plain text into code is a layout
   // change. A span whose text the original never had is a new fact.
-  for (const s of n.spans) if (!o.spans.has(s) && !o.plain.includes(s)) errors.push(`Inline code span not in the original: \`${s}\`.`);
+  for (const s of n.spans) if (!o.spans.has(s) && !o.plain.includes(s) && !allowSpans.includes(s)) errors.push(`Inline code span not in the original: \`${s}\`.`);
   for (const x of o.numbers) if (!n.numbers.has(x)) errors.push(`Number missing: ${x}. Keep it, written the same way.`);
   // A number the frontmatter states, such as the version in the title, is not
   // a new fact when the body repeats it in a title line.
@@ -232,7 +235,7 @@ function voiceScan(file) {
 
 function gates(file, oldText, baseline) {
   const newText = read(path.join(ROOT, file));
-  const items = [...factLock(oldText, newText)];
+  const items = [...factLock(oldText, newText, sanctioned(file).allowSpans || [])];
   const layout = layoutLint(file);
   if (layout.expanded !== baseline.layout.expanded) {
     items.push(baseline.layout.expanded
@@ -331,8 +334,8 @@ async function writeWithHy4(prompt, tag) {
 const writeWithGlm53 = async (prompt, tag) => ({ ...(await runOpencode(GLM_WRITER, prompt, tag, 'writer-glm', WRITE_TIMEOUT_MS)), family: 'glm', model: GLM_WRITER });
 
 // Returns { verdict, by, limited }. The writer's family never judges its draft.
-async function factCheck(oldText, newText, tag, writerFamily = 'hy4') {
-  const prompt = fillVerify(oldText, newText);
+async function factCheck(oldText, newText, tag, writerFamily = 'hy4', file = '') {
+  const prompt = fillVerify(oldText, newText, file);
   const outputs = [];
   for (const checker of CHECKERS[writerFamily]) {
     const r = checker.startsWith('devin:')
@@ -418,7 +421,7 @@ function templatePart(tier) {
   return `${tierBlock}\n${cut('## 4. WRITING STYLE RULES', '## 5. FORMAT SELECTION GUIDE')}`;
 }
 
-function fillRewrite(oldText, tier, draft, items) {
+function fillRewrite(oldText, tier, draft, items, file) {
   const compactModel = tier === 'compact'
     ? `\nA COMPACT ENTRY IN THE LAYOUT (copy its shape, never its content)\n<<<MODEL\n${read(path.join(ROOT, COMPACT_MODEL)).replace(/\n$/, '')}\nMODEL>>>\n`
     : '';
@@ -427,6 +430,7 @@ function fillRewrite(oldText, tier, draft, items) {
     .replace('{{TIER_RULES}}', () => read(path.join(HERE, `brief-tier-${tier}.md`)).replace(/\n$/, ''))
     .replace('{{TEMPLATE}}', () => templatePart(tier))
     .replace('{{COMPACT_MODEL}}', () => compactModel)
+    .replace('{{SANCTIONED}}', () => sanctioned(file).writer || '')
     .replace('{{ORIGINAL}}', () => oldText.replace(/\n$/, ''));
   if (draft) {
     prompt += `\nPREVIOUS ATTEMPT\nYour previous draft is below. It failed these checks. Fix every item and keep every other line of the draft as it is.\n${items.map((x) => `- ${x}`).join('\n')}\n<<<PREVIOUS DRAFT\n${draft.replace(/\n$/, '')}\nPREVIOUS DRAFT>>>\n`;
@@ -434,7 +438,8 @@ function fillRewrite(oldText, tier, draft, items) {
   return prompt;
 }
 
-const fillVerify = (oldText, newText) => read(path.join(HERE, 'brief-verify.md'))
+const fillVerify = (oldText, newText, file) => read(path.join(HERE, 'brief-verify.md'))
+  .replace('{{SANCTIONED}}', () => sanctioned(file).verifier || '')
   .replace('{{ORIGINAL}}', () => oldText.replace(/\n$/, ''))
   .replace('{{REWRITE}}', () => newText.replace(/\n$/, ''));
 
@@ -477,7 +482,7 @@ async function processFile(file, writer) {
   let items = [];
 
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
-    const prompt = fillRewrite(oldText, tier, draft, items);
+    const prompt = fillRewrite(oldText, tier, draft, items, file);
     const w = writer === 'glm' ? await writeWithGlm(prompt, `${tag}.a${attempt}`)
       : writer === 'glm53' ? await writeWithGlm53(prompt, `${tag}.a${attempt}`)
         : await writeWithHy4(prompt, `${tag}.a${attempt}`);
@@ -505,7 +510,7 @@ async function processFile(file, writer) {
       history.push({ attempt, problem: 'gates', items });
       continue;
     }
-    const v = await factCheck(oldText, text, `${tag}.a${attempt}`, w.family);
+    const v = await factCheck(oldText, text, `${tag}.a${attempt}`, w.family, file);
     tokens.verifyCalls += 1;
     if (v.limited) throw new LimitHit(`both fact checkers hit a usage limit on ${file}`);
     const verdict = v.verdict;
