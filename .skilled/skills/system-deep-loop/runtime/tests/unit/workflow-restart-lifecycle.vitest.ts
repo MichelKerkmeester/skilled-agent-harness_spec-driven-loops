@@ -905,6 +905,23 @@ describe('completed-run extension', () => {
     expect(stateRows(run.stateLog).some((row) => row.event === 'extended')).toBe(false);
   });
 
+  // Only a refused flag or an unfinished run is a usage error. A config the
+  // script cannot parse is a failure, so it must not reach the usage branch.
+  it.each(['deep-research.yaml', 'deep-review.yaml'])('%s: an unreadable config fails the extension without a usage-error exit', (file) => {
+    const dir = makeTempDir('extend-broken-');
+    const config = join(dir, 'config.json');
+    writeFileSync(config, '{ not json');
+    const result = runShell(render(stepCommand(file, 'step_extend_completed_run'), {
+      '{state_paths.config}': config,
+      '{state_paths.state_log}': join(dir, 'state.jsonl'),
+      '{state_paths.packet_dir}': dir,
+      '{extend}': '3',
+      '{extend_minutes}': '',
+    }));
+    expect(result.status, String(result.stderr)).toBe(1);
+    expect(readFileSync(config, 'utf8')).toBe('{ not json');
+  });
+
   it('research: --extend-minutes replaces the default added minutes', () => {
     const sessionId = 'extend-research-minutes';
     const run = openResearchRun(sessionId);

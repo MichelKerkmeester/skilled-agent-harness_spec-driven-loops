@@ -563,7 +563,7 @@ workflow:
               ? "This run stops on convergence and has no pending inbox question, so it may re-stop on all_questions_answered right away. An extension keeps the stop policy and convergence mode it was created with, and a flag passed beside --extend does not change them. Add questions to research/inbox.jsonl before you extend to keep it running."
               : null;
             console.log(JSON.stringify({ continuedFromRun, newMaxIterations, newMaxDurationMinutes, warning }));
-          ' "{state_paths.config}" "{state_paths.state_log}" "{state_paths.packet_dir}/inbox.jsonl" "{extend}" "{extend_minutes}" "$WORK_DIR" > "$WORK_DIR/result.json" || { rm -rf "$WORK_DIR"; exit 2; }
+          ' "{state_paths.config}" "{state_paths.state_log}" "{state_paths.packet_dir}/inbox.jsonl" "{extend}" "{extend_minutes}" "$WORK_DIR" > "$WORK_DIR/result.json" || { STATUS=$?; rm -rf "$WORK_DIR"; exit "$STATUS"; }
           node "$GATEWAY" --mode research --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$WORK_DIR/event.json" || { rm -rf "$WORK_DIR"; exit 1; }
           mv "$WORK_DIR/config.json" "{state_paths.config}" || { rm -rf "$WORK_DIR"; exit 1; }
           cat "$WORK_DIR/result.json"
