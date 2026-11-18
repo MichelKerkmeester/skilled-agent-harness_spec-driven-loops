@@ -7,6 +7,10 @@
 // Renders the shipped sk-code-ci templates twice: with this repository's profile, where
 // every convention the scaffold always carried must still be in the file, and in a
 // foreign repository, where none of this repository's names may appear.
+//
+// Both renders run on a copied tree. The profile this repository commits ships inside the
+// skill folder, so the first render copies it verbatim and names the repository it was
+// written for, and gives the same answer in a host that vendors these files.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS AND FIXTURES
@@ -40,15 +44,15 @@ function writeFile(root, rel, body) {
   fs.writeFileSync(abs, body);
 }
 
-function render(script, args = []) {
+function render(script, args = [], env = {}) {
   const result = spawnSync(process.execPath, [script, ...args], {
     encoding: 'utf8',
-    env: { ...process.env, NODE_PATH: path.join(REPO_ROOT, '.skilled', 'node_modules') },
+    env: { ...process.env, NODE_PATH: path.join(REPO_ROOT, '.skilled', 'node_modules'), ...env },
   });
   return { code: result.status, out: result.stdout, err: result.stderr };
 }
 
-function foreignFixture(t, profile) {
+function foreignFixture(t, profile, env = {}) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'ci-scaffold-'));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   for (const rel of ['ci-scaffold.cjs', 'lib/ci-profile.cjs']) {
@@ -58,18 +62,24 @@ function foreignFixture(t, profile) {
   for (const name of ['workflow-template.yml', 'job-block-template.yml']) {
     writeFile(root, `${ASSETS_RELATIVE}/${name}`, fs.readFileSync(path.join(REPO_ROOT, ASSETS_RELATIVE, name), 'utf8'));
   }
-  if (profile) writeFile(root, PROFILE_RELATIVE, JSON.stringify(profile));
-  return (args) => render(path.join(root, SCRIPTS_RELATIVE, 'ci-scaffold.cjs'), args);
+  if (profile) writeFile(root, PROFILE_RELATIVE, typeof profile === 'string' ? profile : JSON.stringify(profile));
+  return (args) => render(path.join(root, SCRIPTS_RELATIVE, 'ci-scaffold.cjs'), args, env);
 }
 
-const SCRIPT = path.join(SCRIPTS, 'ci-scaffold.cjs');
+// The committed profile, as it ships. The repository it names is set for the render, so a
+// CI job in another repository, which sets its own name, cannot make the copy ignore it.
+const SHIPPED_PROFILE = fs.readFileSync(path.join(REPO_ROOT, PROFILE_RELATIVE), 'utf8');
+
+function skilledFixture(t) {
+  return foreignFixture(t, SHIPPED_PROFILE, { GITHUB_REPOSITORY: JSON.parse(SHIPPED_PROFILE).repository });
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. THIS REPOSITORY
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('here the workflow render keeps every convention the scaffold always carried', () => {
-  const { code, out, err } = render(SCRIPT);
+test('here the workflow render keeps every convention the scaffold always carried', (t) => {
+  const { code, out, err } = skilledFixture(t)([]);
   assert.equal(code, 0, err);
   assert.doesNotMatch(out, UNFILLED_SLOT);
   assert.ok(out.endsWith('\n'));
@@ -95,8 +105,8 @@ test('both templates parse as YAML before they are rendered', () => {
   }
 });
 
-test('here the job render calls the setup action with its input and the chosen group', () => {
-  const { code, out } = render(SCRIPT, ['--job', '--group=FRESHNESS']);
+test('here the job render calls the setup action with its input and the chosen group', (t) => {
+  const { code, out } = skilledFixture(t)(['--job', '--group=FRESHNESS']);
   assert.equal(code, 0);
   const job = YAML.parse(out).jobs.example;
   assert.equal(job.if, "vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'");
@@ -106,7 +116,7 @@ test('here the job render calls the setup action with its input and the chosen g
 });
 
 test('--protected lists the profile protected workflows here and nothing for the generic default', (t) => {
-  const here = render(SCRIPT, ['--protected']);
+  const here = skilledFixture(t)(['--protected']);
   assert.equal(here.code, 0);
   assert.deepEqual(here.out.trim().split('\n'), ['gate-inputs.yml', 'trigger-index-rebuild.yml', 'dispatch-enforcement-guard.yml', 'naming-standard-guard.yml', 'message-contract.yml']);
   const foreign = foreignFixture(t, null)(['--protected']);
@@ -114,8 +124,8 @@ test('--protected lists the profile protected workflows here and nothing for the
   assert.equal(foreign.out, '');
 });
 
-test('an unknown group exits 2 and names the groups the profile has', () => {
-  const { code, err } = render(SCRIPT, ['--group=NIGHTLY']);
+test('an unknown group exits 2 and names the groups the profile has', (t) => {
+  const { code, err } = skilledFixture(t)(['--group=NIGHTLY']);
   assert.equal(code, 2);
   assert.match(err, /--group=NIGHTLY is not a switch group in the CI profile \(SKILLED_CI_TESTS, /);
 });

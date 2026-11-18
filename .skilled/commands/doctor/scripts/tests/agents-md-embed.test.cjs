@@ -225,25 +225,27 @@ function spyOnWrites(record) {
 
 // The shipped rows point into `.skilled/repo-rules`, which arrives with the install. A
 // synthetic repository therefore needs that corpus for its router to be checkable at all,
-// so the case copies the installed rule files in rather than inventing rows for them. The
-// references those rules link to travel with the install too, so each one is resolved and
-// copied to the same relative path.
+// so the case copies the installed rule files in rather than inventing rows for them. Only
+// the files the shipped rows name are copied: a host may keep rules of its own in the same
+// folder, and a router built from the shipped rows does not route those. The references
+// the copied rules link to travel with the install too, so each one is resolved and copied
+// to the same relative path.
 function seedRuleCorpus(dir) {
-  const from = path.join(REPO_ROOT, '.skilled/repo-rules');
-  const to = path.join(dir, '.skilled/repo-rules');
-  fs.mkdirSync(to, { recursive: true });
-  const copied = [];
-  for (const name of fs.readdirSync(from)) {
-    if (!name.endsWith('.md')) continue;
-    fs.copyFileSync(path.join(from, name), path.join(to, name));
-    copied.push(name);
+  const { trigger_rows: trigger, index_rows: index } = shippedRows();
+  const named = new Set();
+  for (const cell of [...trigger, ...index].flat()) {
+    for (const match of cell.matchAll(/\]\(([^)\s]+\.md)\)/gu)) named.add(path.posix.normalize(match[1]));
   }
-  for (const name of copied) {
-    const text = fs.readFileSync(path.join(to, name), 'utf8');
+  for (const rule of named) {
+    fs.mkdirSync(path.dirname(path.join(dir, rule)), { recursive: true });
+    fs.copyFileSync(path.join(REPO_ROOT, rule), path.join(dir, rule));
+  }
+  for (const rule of named) {
+    const text = fs.readFileSync(path.join(dir, rule), 'utf8');
     for (const match of text.matchAll(/\]\(([^)\s]+)\)/gu)) {
       const target = match[1].split('#')[0];
       if (target === '' || /^[a-z][a-z0-9+.-]*:/iu.test(target)) continue;
-      const relative = path.posix.normalize(path.posix.join('.skilled/repo-rules', target));
+      const relative = path.posix.normalize(path.posix.join(path.posix.dirname(rule), target));
       if (fs.existsSync(path.join(dir, relative))) continue;
       const source = path.join(REPO_ROOT, relative);
       if (!fs.existsSync(source)) continue;
@@ -1015,11 +1017,17 @@ test('an ignored output path holds the backup and a non-ignored one falls back',
   assert.ok(backup.startsWith(os.tmpdir() + path.sep), `${backup} is outside the tree`);
   assert.match(planned.out, /backup-fallback: /u);
 
-  // This repository ignores its output directory, so the same question answers with the
-  // path the operator expects there, and the answer creates nothing.
-  const here = embed.backupBase({ root: REPO_ROOT });
+  // A checkout that ignores its output directory answers the same question with the path
+  // the operator expects there, and the answer creates nothing. The checkout is composed
+  // here rather than borrowed from the host, because a host that vendors these files may
+  // not be a git checkout at all.
+  const ignoring = composeTree(t, 'pure');
+  const init = spawnSync('git', ['init', '-q'], { cwd: ignoring, encoding: 'utf8' });
+  assert.equal(init.status, 0, `${init.stdout}${init.stderr}`);
+  writeInside(ignoring, '.gitignore', '.skilled/output/\n');
+  const here = embed.backupBase({ root: ignoring });
   assert.equal(here.fallback, false, here.reason);
-  assert.equal(here.dir, path.join(REPO_ROOT, '.skilled', 'output', 'doctor-agents-md'));
+  assert.equal(here.dir, path.join(ignoring, '.skilled', 'output', 'doctor-agents-md'));
   assert.equal(fs.existsSync(here.dir), false, 'naming a backup location creates nothing');
 });
 
