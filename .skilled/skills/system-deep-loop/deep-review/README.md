@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.24.0
+version: 1.11.25.0
 ---
 
 # deep-review
@@ -140,7 +140,7 @@ The packet lives under `{spec_folder}/review/`. A root-spec target writes there 
 | `frontier-nodes.jsonl` | Node store an expansive run keeps, absent on a default run |
 | `frontier-seed.json` | The seed step's depth-1 sub-targets, the input `frontier-admit.cjs seed` reads, absent on a default run |
 
-The lineage block carries `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun` and `releaseReadinessState`. A first run is mode `new`. `resume` continues the same lineage without changing generation. `restart` opens a new generation and archives the prior packet. `completed-continue` is set by `--extend=N`, which reopens a completed run in the same session and generation and records `continuedFromRun`. `--extend-minutes=M` sets the minutes the extension adds to the later of the prior duration budget and the time already elapsed.
+The lineage block carries `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun` and `releaseReadinessState`. A first run is mode `new`. `resume` continues the same lineage without changing generation. `restart` opens a new generation and archives the prior packet. `completed-continue` is set by `--extend=N`, which reopens a completed run in the same session and generation and records `continuedFromRun`. `--extend-minutes=M` sets the minutes the extension adds to the later of the prior duration budget and the time already elapsed. An extension is single-executor only, since `--extend` refuses fan-out, and it keeps the stop policy and convergence mode the run was created with. Under `stopPolicy: convergence` an extension with nothing new can re-stop on `all_dimensions_clean` at its first convergence check, so create a run you mean to extend with `--convergence-mode=off` or `--stop-policy=max-iterations`.
 `fork` is reserved and deferred, so the runtime neither emits nor accepts it. `releaseReadinessState` starts at `in-progress`. It moves to `release-blocking` while any unresolved P0 remains. It moves to `converged` when the run stops converged with a PASS or CONDITIONAL verdict.
 
 ### Convergence and the Stop Gates

@@ -8,7 +8,7 @@ trigger_phrases:
   - "review report output"
 importance_tier: normal
 contextType: implementation
-version: 1.11.4.0
+version: 1.11.5.0
 ---
 
 # Deep Review State Outputs
@@ -42,6 +42,7 @@ Load this when writing or validating a packet output rather than a JSONL record.
 | `review-report.md` | Synthesis | Final output | Findings-first release-readiness report |
 | `resource-map.md` | Synthesis | Final or disabled | Converged delta evidence map |
 | `frontier-nodes.jsonl` | Frontier admission | Append-only, expansive runs only | Frontier node store |
+| `frontier-seed.json` | Seed step | Written once, expansive runs only | Depth-1 sub-target input to `frontier-admit.cjs seed` |
 
 While the mode's authority record names the legacy writer, the JSONL log is the file the workflow appends to and no ledger backs it. Under ledger authority the append gateway refreshes it as a projection, and a refresh that would drop keys from an existing config row is refused (`ATTRIBUTION_COLLAPSE`) rather than published. The registered ledger vocabulary, the producer census, and what a projection can and cannot reproduce are in `state-format.md` section 11.
 

@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.13.10.0
+version: 1.13.11.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -28,7 +28,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 70 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (51 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (7 scenarios under DRV-058..063 and DRV-075), and §17 covers fan-out dispatch (6 scenarios under DRV-064..067, DRV-071 and DRV-082). DRV-076 to DRV-083 cover the opt-in expansive depth flag for review. Default runs differ from the pre-change baseline only by the expansive-only agent paragraph, which is waived pending operator ratification. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 70 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (51 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (7 scenarios under DRV-058..063 and DRV-075), and §17 covers fan-out dispatch (6 scenarios under DRV-064..067, DRV-071 and DRV-082). DRV-076 to DRV-083 cover the opt-in expansive depth flag for review. Default runs differ from the pre-change baseline only by the expansive-only agent paragraph, which applies only when an iteration prompt holds a `FRONTIER` block and which the golden comparison strips. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 

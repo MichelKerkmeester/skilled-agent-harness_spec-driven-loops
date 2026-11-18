@@ -1,7 +1,7 @@
 ---
 title: "DRV-076 -- Expansive depth flag and default byte identity"
 description: "This scenario validates that `--depth-mode` defaults to `default`, that a review run without the flag matches the pre-change baseline on every compared artifact and that only the expansive-only agent paragraph differs on CLI lineage prompts, for `DRV-076`."
-version: 1.13.7.0
+version: 1.13.8.0
 ---
 
 # DRV-076 -- Expansive depth flag and default byte identity
@@ -31,7 +31,7 @@ Operators run the commands below and confirm that the flag documents `default` a
 - Prompt: `Check that --depth-mode defaults to default and that a review run without the flag matches the pre-change baseline byte for byte, except for the expansive-only agent paragraph. Name any byte that differs. Return a PASS or FAIL verdict with the reason.`
 - Expected execution process: Read the flag row and the config default, read the golden helper that removes one paragraph, then run the golden suite by file stem.
 - Expected signals: The flag row lists `default` as the value when the flag is absent. The config carries `"depthMode": "default"` under `antiConvergence`. The golden suite passes 14 of 14 cases, seven artifacts for each of two variants: the absent key and an explicit `default`. The only text the comparison removes is the expansive-only paragraph of the review persona in the CLI lineage prompt.
-- Desired user-visible outcome: The operator can say a default review run matches the baseline byte for byte, except for one expansive-only paragraph in the embedded agent persona of CLI lineage prompts. That paragraph is waived pending operator ratification, and the comparison strips it.
+- Desired user-visible outcome: The operator can say a default review run matches the baseline byte for byte, except for one expansive-only paragraph in the embedded agent persona of CLI lineage prompts, which applies only when an iteration prompt holds a `FRONTIER` block and which the comparison strips.
 - Pass/fail: PASS if the flag row and the config default both name `default`, the golden suite passes with no failed count and the helper removes only the persona paragraph; FAIL if any other byte differs or any golden case fails.
 
 ---

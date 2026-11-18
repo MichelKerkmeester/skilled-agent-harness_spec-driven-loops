@@ -1,7 +1,7 @@
 ---
 title: "DRV-071 -- Fan-out merged review keeps its coverage surfaces"
 description: "This scenario validates that a merged two-lineage review fan-out keeps its coverage surfaces for `DRV-071`. It focuses on the six surfaces the merge now carries from the lineages instead of dropping them."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DRV-071 -- Fan-out merged review keeps its coverage surfaces
@@ -79,7 +79,7 @@ If a surface is missing, check that `mergeReviewCoverageSurfaces` is wired into 
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `feature-catalog/` | No dedicated fan-out catalog entry exists for `deep-review` yet; the implementation anchors below are the contract |
+| `feature-catalog/` | `feature-catalog/loop-lifecycle/fanout-dispatch.md` covers the review fan-out dispatch; `.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-review-coverage-merge.md` covers the six merged coverage surfaces; the implementation anchors below are the contract |
 
 ### Implementation And Test Anchors
 

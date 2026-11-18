@@ -6,7 +6,7 @@ trigger_phrases:
   - "expansive depth review"
   - "review frontier mode"
   - "review frontier-nodes"
-version: 1.0.12.0
+version: 1.0.13.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
@@ -30,6 +30,10 @@ The active node's next uncovered dimension is dispatched, apart from the last it
 ### Stop Behavior
 
 A review stop candidate becomes another iteration while nodes stay open. The `frontierOpen` veto applies to the review stop candidates, including `all_dimensions_clean` and the composite stop, after the minIterations floor. Once every node is closed and at least one was answered, a run that forms no other stop candidate gets `frontier_drained`, which the legal-stop gates still decide.
+
+### Dashboard
+
+An expansive run adds a `## 10B. FRONTIER` section to its review dashboard, and a default run renders no such section. The section reports the frontier size by status, the pruned count, the revisits that covered no new dimension, each budget band's spent and allotted iterations, and the active node with its next dimension.
 
 ### Pivot
 
@@ -62,7 +66,7 @@ Fan-out lineages receive a share of the seeded nodes. `runtime/scripts/fanout-me
 | File | Type | Role |
 |---|---|---|
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts` | Vitest | Review admission into the node store. |
-| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts` | Vitest | The review frontier projection, the band budget close and its roll-down, and the torn-row warning. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts` | Vitest | The review frontier projection, the dashboard frontier section, the band budget close and its roll-down, and the torn-row warning. |
 | `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md` | Manual playbook | DRV-076: the flag defaults to `default` and a default run matches the baseline. |
 | `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md` | Manual playbook | DRV-077: the seed writes depth-1 sub-target nodes. |
 | `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md` | Manual playbook | DRV-078: admission prunes a proposal with its reason. |

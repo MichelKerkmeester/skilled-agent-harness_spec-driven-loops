@@ -1,7 +1,7 @@
 ---
 name: deep-review
 description: "Autonomous iterative code-review loop with externalized state, convergence detection, P0/P1/P2 findings, fresh context per pass."
-argument-hint: "[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--stop-policy=convergence|max-iterations]"
+argument-hint: "[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--stop-policy=convergence|max-iterations] [--depth-mode=default|expansive] [--extend=N]"
 version: 1.13.0.0
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task]
 ---
