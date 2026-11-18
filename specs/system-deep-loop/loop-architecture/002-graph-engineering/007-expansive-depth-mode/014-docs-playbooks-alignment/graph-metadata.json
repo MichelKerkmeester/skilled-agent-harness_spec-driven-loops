@@ -52,6 +52,8 @@
       ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md",
       "manual-testing-playbook/manual-testing-playbook.md",
       "feature-catalog/feature-catalog.md",
+      "scratch/doc-alignment-run-6/report.md",
+      "scratch/skilled-alignment-run-8/report.md",
       "scratch/doc-alignment-run-1/report.md",
       "scratch/skilled-alignment-run-3/report.md"
     ],
@@ -107,7 +109,7 @@
       {
         "name": "report.md",
         "kind": "doc",
-        "path": "scratch/doc-alignment-run-1/report.md",
+        "path": "scratch/doc-alignment-run-6/report.md",
         "source": "derived"
       },
       {
@@ -203,7 +205,7 @@
     ],
     "causal_summary": "Phases 001-013 add `--extend=N`, `--depth-mode=expansive` for deep-research and deep-review, custom review dimensions and defect fixes that change what an operator sees, but no system-deep-loop manual testing playbook or feature catalog mentions any of them",
     "created_at": "2026-11-17T17:06:39Z",
-    "last_save_at": "2026-11-18T02:59:17.012Z",
+    "last_save_at": "2026-11-18T09:59:47.275Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,12 +215,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fca1f021f05c73640a2be81ddac68f6a9a9ac1d8977d9e1123a85f38cdc48cf4",
+    "source_fingerprint": "sha256:15c0600e3715ccc531af5257ce78b24b0fef4522984b6e49f4f4c258c3f55d07",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2c249a194c56b848de1a14acf4ccefdc88eb2e25fca394a2c2972f8a0ea24039",
       "plan.md": "ea20eb9b2f27cda84da92a416d5f722b78894572294ce6e295911489bd9621aa",
-      "tasks.md": "6ea61d7ae207d4d1c45f009602f03da9f3270d7ec55f3632c96faca1b6bcda37",
+      "tasks.md": "a4e7541a6d13470118601eed226bec90b4fc9dec533f663209ef40a2f546b5c6",
       "implementation-summary.md": "bdeaf1f1e09d4ccdf006408759edd3fc41ff53a53798237b396c0e1a4d40992f"
     },
     "last_active_at": null

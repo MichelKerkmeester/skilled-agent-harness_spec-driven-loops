@@ -92,6 +92,7 @@ and findings belong here.
 | Criterion 6 | Open | Left for the coordinator after commit. The `git diff` check still has no phase commit. Scratch run folders are untracked (see Deviations). |
 | Criteria 1 to 4 | Met 2026-11-18 | Unchanged by this run. |
 | VERIFY 2026-11-18 (first pass) | Superseded | See VERIFY 2026-11-18 (lanes pass) below. The first pass said the scratch JSON fails the no-JSON line; that was wrong, because `scratch/` sits under `specs/` and the line allows JSON there. |
+| Criterion 5 | Not met | Second allowance (doc runs 4-6, skilled runs 6-8) used. Final reports: scratch/doc-alignment-run-6/report.md 'Open findings: 18 (6 handed off, 1 rebutted)' of 25; scratch/skilled-alignment-run-8/report.md 'Open findings: 12 (8 handed off, 0 rebutted)' of 20. Earlier: doc run-4 38 open, run-5 14 open; skilled run-6 16 open, run-7 8 open. A first attempt at the final pair (doc-alignment-run-6-abo... |
 
 ### Deviations and findings
 
