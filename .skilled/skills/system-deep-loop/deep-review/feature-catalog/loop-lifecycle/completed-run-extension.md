@@ -7,7 +7,7 @@ trigger_phrases:
   - "extend completed review run"
   - "review run_extended"
   - "--extend-minutes review"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Completed-run extension (--extend)
@@ -15,6 +15,8 @@ version: 1.0.0.0
 ## 1. OVERVIEW
 
 `--extend=N` reopens a completed review run in the same session and generation and adds `N` iterations. The run keeps its `sessionId` and generation, records one `run_extended` ledger event, and keeps the prior review report as `review/review-report-v{generation}-r{continuedFromRun}.md` before re-synthesis. `--extend-minutes=M` adds minutes to the duration budget of the same extension.
+
+---
 
 ## 2. HOW IT WORKS
 

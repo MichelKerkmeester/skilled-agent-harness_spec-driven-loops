@@ -6,7 +6,7 @@ trigger_phrases:
   - "redispatch once"
   - "executor_missing redispatch"
   - "findings_not_enumerated redispatch"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Landed iteration is not redispatched (redispatch_once)
@@ -14,6 +14,8 @@ version: 1.0.0.0
 ## 1. OVERVIEW
 
 When the mechanical leaf check fails, the workflow may re-run the iteration dispatch once. For three failure reasons the iteration has already landed: the narrative, state record and delta all exist, and a second leaf would refuse to overwrite them. For those reasons the workflow does not redispatch the iteration.
+
+---
 
 ## 2. HOW IT WORKS
 

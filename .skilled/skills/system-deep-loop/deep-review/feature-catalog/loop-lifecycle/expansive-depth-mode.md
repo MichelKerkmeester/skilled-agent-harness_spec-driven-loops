@@ -6,7 +6,7 @@ trigger_phrases:
   - "expansive depth review"
   - "review frontier mode"
   - "review frontier-nodes"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
@@ -14,6 +14,8 @@ version: 1.0.0.0
 ## 1. OVERVIEW
 
 `--depth-mode` takes `default` or `expansive`. A review without the flag is unchanged. `expansive` seeds depth-one sub-target nodes from the review target before iteration 1, admits leaf `frontier_proposal` rows under the same caps as research, keeps node status in `review/frontier-nodes.jsonl`, and holds open nodes as `searchDebt`. The live pilot runs that would show this mode on real targets are still open, so this page describes the shipped code and its tests and records no pilot result.
+
+---
 
 ## 2. HOW IT WORKS
 

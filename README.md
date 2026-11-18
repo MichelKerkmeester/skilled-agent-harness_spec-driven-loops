@@ -779,3 +779,7 @@ It runs as a resident daemon behind one command-line front door, so every runtim
 - **[Release Notes](.skilled/changelog/skilled/)** - every Skilled release, one file per version
 - **[Skills Index](.skilled/skills/README.txt)** - the skill library at a glance
 - **[Spec Kit Feature Catalog](.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md)** - the Spec Kit's shipped features by area
+
+<!-- readme-check
+allow-count two files | the install writes the two Claude Code config files, not files in this folder
+-->

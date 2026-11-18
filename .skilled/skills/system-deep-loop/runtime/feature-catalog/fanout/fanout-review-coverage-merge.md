@@ -6,7 +6,7 @@ trigger_phrases:
   - "mergeReviewRegistries coverage"
   - "review fan-out merged coverage"
   - "candidate dimension search coverage merge"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Fan-out review coverage merge
@@ -14,6 +14,8 @@ version: 1.0.0.0
 ## 1. OVERVIEW
 
 A review fan-out runs its lineages in parallel and merges their registries into one. The merge carries three coverage surfaces forward from the lineages: candidate coverage, dimension coverage and search coverage.
+
+---
 
 ## 2. HOW IT WORKS
 

@@ -6,7 +6,7 @@ trigger_phrases:
   - "expansive depth research"
   - "research frontier mode"
   - "frontier admission research"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
@@ -14,6 +14,8 @@ version: 1.0.0.0
 ## 1. OVERVIEW
 
 `--depth-mode` takes `default` or `expansive`. A run without the flag is unchanged. `expansive` turns on a research frontier: the run seeds depth-one nodes from the topic before iteration 1, admits leaf `frontier_proposal` rows as nodes under depth, fan-out, budget, dedupe and cycle caps, and holds a convergence stop while frontier nodes stay open. The live pilot runs that would show this mode on real topics are still open, so this page describes the shipped code and its tests and records no pilot result.
+
+---
 
 ## 2. HOW IT WORKS
 

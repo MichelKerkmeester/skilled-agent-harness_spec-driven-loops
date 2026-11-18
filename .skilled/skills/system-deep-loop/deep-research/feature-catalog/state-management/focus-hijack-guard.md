@@ -6,7 +6,7 @@ trigger_phrases:
   - "next focus hijack"
   - "answered questions next focus"
   - "Recommended Next Focus"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Next Focus free-text guard
@@ -14,6 +14,8 @@ version: 1.0.0.0
 ## 1. OVERVIEW
 
 The research next focus comes from the carried-forward open questions and the latest leaf. Answered questions and status sentences are dropped from the carried-forward list, and the focus reads the leaf's `Recommended Next Focus`. Free text in a status line does not replace the focus.
+
+---
 
 ## 2. HOW IT WORKS
 

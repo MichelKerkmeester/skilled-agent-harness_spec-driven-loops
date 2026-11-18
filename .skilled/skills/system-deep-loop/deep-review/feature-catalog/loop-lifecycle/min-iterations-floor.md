@@ -6,7 +6,7 @@ trigger_phrases:
   - "minIterationsNotReached"
   - "review iteration floor"
   - "antiConvergence minIterations review"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Review minIterations floor
@@ -14,6 +14,8 @@ version: 1.0.0.0
 ## 1. OVERVIEW
 
 The review convergence check holds a stop below the configured floor. `antiConvergence.minIterations` in the review config sets the floor, and the shipped default is 2. The floor applies to research and review alike.
+
+---
 
 ## 2. HOW IT WORKS
 

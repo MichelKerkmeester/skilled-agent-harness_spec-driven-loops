@@ -6,7 +6,7 @@ trigger_phrases:
   - "depth mode flag"
   - "expansive depth flag"
   - "deep loop depth mode"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Depth mode flag (--depth-mode)
@@ -14,6 +14,8 @@ version: 1.0.0.0
 ## 1. OVERVIEW
 
 `--depth-mode` is a command-level option on `/deep:research` and `/deep:review`. It takes `default` or `expansive`. The flag is not part of `mode-registry.json`, so the hub classifies a request into the same workflow mode with or without it. The behavior the flag turns on lives in the research and review packets.
+
+---
 
 ## 2. HOW IT WORKS
 

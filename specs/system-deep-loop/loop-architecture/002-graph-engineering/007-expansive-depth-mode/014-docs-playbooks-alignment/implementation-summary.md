@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Phase 014 documentation pass: playbook coverage check, index gap fixes, four feature catalog updates. Partial: T001 and T006 onward are open."
+description: "Phase 014 documentation pass: playbook coverage check, index gap fixes, four feature catalog updates, and the first alignment pass. Partial: T001 is open, T006 is blocked by a missing topic, and the skilled alignment ran battery-only."
 trigger_phrases:
   - "docs playbooks alignment summary"
   - "expansive depth playbook coverage"
@@ -88,7 +88,8 @@ The @markdown agent made the edits directly in `:auto` mode, following the `/cre
 ## Known Limitations
 
 1. **T001 is open.** Phase 010 keeps a target-2 pilot open. Phase 011 keeps a golden case, waiting on an operator waiver, and a target-1 pilot open.
-2. **T006 onward not started.** The `/local-doc-alignment` and `/local-skilled-alignment` runs are not done, so goal criteria 5 and 6 stay open.
+2. **Alignment runs are partial.** `/local-doc-alignment` did not run: the topic `expansive depth` is not a key in `topics.json`, so its scope step exits 2. `/local-skilled-alignment` ran battery-only (`--no-lanes`), because its lane and critic steps dispatch other agents, which this LEAF agent may not do. Its second run has one open finding, a YAML reference handed to the coordinator. Goal criteria 5 and 6 stay open.
 3. **No phase commit exists.** The `git diff` part of criterion 6 cannot be evaluated.
 4. **Expansive mode is documented from code and tests.** No live pilot result is recorded as proof.
+5. **Fifteen catalog leaves were edited directly.** Decision D2 routes catalog writes through `/create:feature-catalog`. The leaves got a template separator by a direct edit, and the update YAML was not run. The operator must approve this deviation. The YAML gap that let them ship is that `step_5_validation` runs `validate_document.py` only on the root catalog.
 <!-- /ANCHOR:limitations -->

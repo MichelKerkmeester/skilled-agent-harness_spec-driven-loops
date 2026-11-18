@@ -6,7 +6,7 @@ trigger_phrases:
   - "custom dimension review"
   - "configured review dimension"
   - "review dimension coverage custom"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Custom review dimensions
@@ -14,6 +14,8 @@ version: 1.0.0.0
 ## 1. OVERVIEW
 
 A review normally audits four canonical dimensions: correctness, security, traceability and maintainability. A setup can name more. A configured name outside the canonical four is a custom dimension. It is tracked and covered like the others, ordered after the canonical four, and judged by its own name. It is not required for severity coverage.
+
+---
 
 ## 2. HOW IT WORKS
 

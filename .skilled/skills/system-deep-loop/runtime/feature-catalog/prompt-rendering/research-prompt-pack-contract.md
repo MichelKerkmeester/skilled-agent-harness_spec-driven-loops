@@ -6,7 +6,7 @@ trigger_phrases:
   - "research.md allowed write"
   - "Recommended Next Focus heading"
   - "research prompt pack"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Research prompt pack contract
@@ -14,6 +14,8 @@ version: 1.0.0.0
 ## 1. OVERVIEW
 
 The research prompt pack is the rendered per-iteration instruction set for research runs. It matches the research agent definition on two points: a conditional allowed write for the run's `research/research.md`, and the `Recommended Next Focus` heading that the reducer parses to choose the next focus.
+
+---
 
 ## 2. HOW IT WORKS
 

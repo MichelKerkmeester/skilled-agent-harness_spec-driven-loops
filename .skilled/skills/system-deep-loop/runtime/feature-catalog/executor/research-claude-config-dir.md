@@ -6,7 +6,7 @@ trigger_phrases:
   - "claude-config-dir research"
   - "--claude-config-dir"
   - "research cli-claude-code config dir"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Research Claude config dir (--claude-config-dir)
@@ -14,6 +14,8 @@ version: 1.0.0.0
 ## 1. OVERVIEW
 
 A deep-research run on the `cli-claude-code` executor runs Claude under a configured config dir, the same way review does. The flag is optional for research, and an empty value means no config dir is set. Review still requires the flag on `cli-claude-code`, and every other executor refuses it.
+
+---
 
 ## 2. HOW IT WORKS
 

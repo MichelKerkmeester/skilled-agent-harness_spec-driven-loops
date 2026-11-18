@@ -6,7 +6,7 @@ trigger_phrases:
   - "review next focus hijack"
   - "uncovered dimension next focus"
   - "review Next Focus"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Next Focus free-text guard
@@ -14,6 +14,8 @@ version: 1.0.0.0
 ## 1. OVERVIEW
 
 Review Next Focus is the next dimension the review audits. When the latest leaf's `nextFocus` names no dimension, the first uncovered dimension wins, so free text does not hijack the review focus. The strategy file and the dashboard apply the same rule.
+
+---
 
 ## 2. HOW IT WORKS
 

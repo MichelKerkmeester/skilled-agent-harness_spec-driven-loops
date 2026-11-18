@@ -6,7 +6,7 @@ trigger_phrases:
   - "council quorum retry"
   - "maxCouncilSeatOutputs"
   - "pivot attempt 2"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Divergent pivot seat cap and council retry
@@ -14,6 +14,8 @@ version: 1.0.0.0
 ## 1. OVERVIEW
 
 A divergent pivot runs a council of seats. The seat cap is three per council attempt. When the first attempt misses council quorum in a retryable way, the workflow reopens the pivot once as attempt 2, and that retry is the only re-entry.
+
+---
 
 ## 2. HOW IT WORKS
 

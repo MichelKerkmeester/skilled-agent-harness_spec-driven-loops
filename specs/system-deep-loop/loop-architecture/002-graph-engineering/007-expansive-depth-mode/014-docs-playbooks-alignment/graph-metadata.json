@@ -51,7 +51,10 @@
       ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
       ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md",
       "manual-testing-playbook/manual-testing-playbook.md",
-      "feature-catalog/feature-catalog.md"
+      "feature-catalog/feature-catalog.md",
+      "scratch/skilled-alignment-run-1/report.md",
+      "scratch/skilled-alignment-run-2/report.md",
+      "scratch/skilled-alignment-run-1/findings.json"
     ],
     "entities": [
       {
@@ -100,6 +103,18 @@
         "name": "depth-mode-flag.md",
         "kind": "doc",
         "path": ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md",
+        "source": "derived"
+      },
+      {
+        "name": "report.md",
+        "kind": "doc",
+        "path": "scratch/skilled-alignment-run-1/report.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.json",
+        "kind": "config",
+        "path": "scratch/skilled-alignment-run-1/findings.json",
         "source": "derived"
       },
       {
@@ -185,23 +200,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Every Feature",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phases 001-013 add `--extend=N`, `--depth-mode=expansive` for deep-research and deep-review, custom review dimensions and defect fixes that change what an operator sees, but no system-deep-loop manual testing playbook or feature catalog mentions any of them",
     "created_at": "2026-11-17T17:06:39Z",
-    "last_save_at": "2026-11-17T23:47:19.753Z",
+    "last_save_at": "2026-11-18T00:07:27.756Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:afc116c29d5061f4593c27b9c3c857463e52949889181f355a06d5b5400e52c2",
+    "source_fingerprint": "sha256:9e16eb9e72b91957658ec5be9ced181363963ad84e48414794e51182ff30a982",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2c249a194c56b848de1a14acf4ccefdc88eb2e25fca394a2c2972f8a0ea24039",
       "plan.md": "ea20eb9b2f27cda84da92a416d5f722b78894572294ce6e295911489bd9621aa",
-      "tasks.md": "bd3edbaaa2032cff5c785b5fe773402bb14f014125456a6c381ba3b04006344e",
-      "implementation-summary.md": "b37c131196261be02cc694c2d4c1cd68851a7dc3a004cc32aa661ff7f36c5e9e"
+      "tasks.md": "3b318286d2b1a6581622a03362ae2f9e2483879c58b59cf0343187d64b244eaa",
+      "implementation-summary.md": "bdeaf1f1e09d4ccdf006408759edd3fc41ff53a53798237b396c0e1a4d40992f"
     },
     "last_active_at": null
   }

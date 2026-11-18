@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.10.0
+version: 1.11.11.0
 ---
 
 # deep-review
@@ -258,3 +258,9 @@ The skill ships a feature catalog and a manual testing playbook. The catalog gro
 | [`feature-catalog/`](./feature-catalog/) | Feature inventory by category, with implementation and validation anchors |
 | [`manual-testing-playbook/`](./manual-testing-playbook/) | Deterministic scenarios with preconditions and expected signals |
 | [`behavior-benchmark/`](./behavior-benchmark/) | Scenario set that measures what an executor does at the `/deep:review` surface |
+
+<!-- readme-check
+allow-ref iteration-NNN.md | a review pass writes it inside the run's review folder under the target spec folder
+allow-ref iterations/iteration-NNN.md | one write-once file per pass inside the run's review folder under the target spec folder
+allow-ref resource-map.md | the synthesis writes it inside the run's review folder under the target spec folder
+-->

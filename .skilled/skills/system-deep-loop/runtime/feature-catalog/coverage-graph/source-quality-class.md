@@ -6,7 +6,7 @@ trigger_phrases:
   - "quality_class"
   - "source diversity quality"
   - "source node quality class"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Source quality class (quality_class)
@@ -14,6 +14,8 @@ version: 1.0.0.0
 ## 1. OVERVIEW
 
 The graph upsert sets `quality_class` on each research SOURCE node from where the source lives. A `quality_class` the leaf supplies is overwritten, so a leaf cannot raise source diversity by naming a class. The source-diversity signal reads the derived value.
+
+---
 
 ## 2. HOW IT WORKS
 
