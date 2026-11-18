@@ -657,6 +657,17 @@ export function upcastLegacyDeepResearchRecord(
             && question.trim().length > 0)
           ? { answeredQuestions: input.answeredQuestions }
           : {}),
+        // The route-proof fields travel with the record, so the state log keeps
+        // what the command's route check reads back.
+        ...(typeof input.target_agent === 'string' && input.target_agent.trim().length > 0
+          ? { targetAgent: input.target_agent }
+          : {}),
+        ...(typeof input.agent_definition_loaded === 'boolean'
+          ? { agentDefinitionLoaded: input.agent_definition_loaded }
+          : {}),
+        ...(typeof input.resolved_route === 'string' && input.resolved_route.trim().length > 0
+          ? { resolvedRoute: input.resolved_route }
+          : {}),
       };
       warnings.push('Trusted evidence yield was absent and remains explicitly zero.');
       break;

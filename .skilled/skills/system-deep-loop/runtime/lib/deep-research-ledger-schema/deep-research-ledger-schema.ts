@@ -657,6 +657,9 @@ const OPTIONAL_DATA_FIELD_RULES: Readonly<
   'deep_research.iteration_completed': Object.freeze({
     focus: 'prose',
     answeredQuestions: 'prose-array',
+    targetAgent: 'prose',
+    agentDefinitionLoaded: 'boolean',
+    resolvedRoute: 'prose',
   }),
   // The idea rows are hand-written, so beyond the idea text they carry only the
   // fields their writer gave them; the projection writes back exactly those.

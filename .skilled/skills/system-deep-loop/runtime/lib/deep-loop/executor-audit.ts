@@ -8,7 +8,7 @@ import { randomBytes } from 'node:crypto';
 import { spawn, spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { basename, dirname, join } from 'node:path';
+import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import type { ExecutorConfig, ExecutorKind } from './executor-config.js';
@@ -1159,6 +1159,13 @@ function iterationNamesExecutor(lines: string[], iteration: number): boolean {
   });
 }
 
+// The gateway runs from the checkout that holds this module. Reached through a
+// symlinked .skilled, that is not the caller's project, so a relative state-log
+// path is fixed against the caller's directory before it crosses the spawn.
+export function gatewayRunDirectory(stateLogPath: string): string {
+  return dirname(resolve(stateLogPath));
+}
+
 function appendThroughGateway(mode: 'review' | 'research', stateLogPath: string, record: Record<string, unknown>): void {
   const eventDir = mkdtempSync(join(tmpdir(), 'executor-audit-event-'));
   const eventPath = join(eventDir, 'event.json');
@@ -1167,7 +1174,7 @@ function appendThroughGateway(mode: 'review' | 'research', stateLogPath: string,
     const result = spawnSync(process.execPath, [
       APPEND_GATEWAY_PATH,
       '--mode', mode,
-      '--run-directory', dirname(stateLogPath),
+      '--run-directory', gatewayRunDirectory(stateLogPath),
       '--event-json', eventPath,
     ], { cwd: REPOSITORY_ROOT, encoding: 'utf8', timeout: APPEND_GATEWAY_TIMEOUT_MS });
     if (result.status !== 0) {

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6930,
-    "ok": 19815,
+    "ok": 19827,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28372,
+  "documentsScanned": 28384,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a7bbcbe5fc1f03d4a03af48b73271915048745a2b4884953709fc41fb4eaa127",
+  "manifestHash": "52591c3771ef39af27546452c0c9ceb96ad3fe4a5810c173d02919f669d1b9f1",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45106,
+      "ok": 45120,
       "prose-sentence": 22,
       "single-token": 150,
       "stop-word-only": 1,
@@ -61177,6 +61177,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-deep-loop/loop-architecture/z_archive",
       "reason": "excluded directory"
     },
@@ -61702,6 +61706,10 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {

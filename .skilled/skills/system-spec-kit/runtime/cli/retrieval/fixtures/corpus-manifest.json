@@ -1,5 +1,5 @@
 {
-  "corpusHash": "55462a8fe1cd5c7fee4f803f7b57243c6ed508cabceec554bb15cbd401b8b4ab",
+  "corpusHash": "33dff89ddbd3bce703c068c047fe5760bb9e671cfc2bf4fd6e0f79e73ea4f5d6",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28372,
+  "includedPathCount": 28384,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -18754,6 +18754,11 @@
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up/tasks.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/decision-record.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/spec.md",
+    "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/goal.md",
+    "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/implementation-summary.md",
+    "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/plan.md",
+    "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/spec.md",
+    "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/tasks.md",
     "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/001-review-gateway-iteration-record/acceptance-criteria.md",
     "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/001-review-gateway-iteration-record/implementation-summary.md",
     "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/001-review-gateway-iteration-record/plan.md",
@@ -19612,6 +19617,13 @@
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/decision-record.md",
+    "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/goal.md",
+    "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/implementation-summary.md",
+    "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/tasks.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/implementation-summary.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/plan.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/spec.md",
@@ -28404,7 +28416,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a7bbcbe5fc1f03d4a03af48b73271915048745a2b4884953709fc41fb4eaa127",
+  "manifestHash": "52591c3771ef39af27546452c0c9ceb96ad3fe4a5810c173d02919f669d1b9f1",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36567,6 +36579,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-deep-loop/loop-architecture/z_archive",
       "reason": "excluded directory"
     },
@@ -37092,6 +37108,10 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {
