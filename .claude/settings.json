@@ -37,6 +37,11 @@
   "agentPushNotifEnabled": true,
   "theme": "dark",
   "tui": "fullscreen",
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
   "enabledPlugins": {
     "cache-tax@claude-code-mods": true
   },
