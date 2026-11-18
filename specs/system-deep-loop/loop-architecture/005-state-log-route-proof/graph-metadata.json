@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/005-state-log-route-proof",
+  "spec_folder": "system-deep-loop/loop-architecture/005-state-log-route-proof",
+  "parent_id": "system-deep-loop/loop-architecture",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "state log route proof",
+      "keep route proof fields in the deep research",
+      "state log route proof plan",
+      "state log route proof tasks",
+      "state log route proof goal",
+      "state log route proof implementation summary"
+    ],
+    "key_topics": [
+      "state",
+      "log",
+      "route",
+      "proof",
+      "keep",
+      "fields",
+      "deep",
+      "research",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-audit-run-directory.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+      "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-ledger-schema.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-compatibility.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-contract.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-ledger-schema.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit-run-directory.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-audit-run-directory.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "append-mode-event.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A project that vendors Skilled runs a correct deep-research pass, and the command's route-proof check fails",
+    "created_at": "2026-11-17T20:46:11Z",
+    "last_save_at": "2026-11-17T22:05:26.372Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4043c2c5701150e8a76ee51656e2845320d9a5d56a6653cea1a932df364bd50e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9b3430337a09f49fe3a60b18beb769cb8a035f0c18d728258f173089c761769e",
+      "plan.md": "0e01e341689d41c6b23509f6cced83ad0c33a2467f8fb9779e7b3d1e93778792",
+      "tasks.md": "f3db0a914f953e4a6a4e9c7a2cbc41278b2d8f848abe5e0b2d87fdc62d8afe10",
+      "implementation-summary.md": "7e07e2df4aa64cac91be2d9e5e3193cf766c5282104a1ed016128e22ec80a91f"
+    },
+    "last_active_at": null
+  }
+}

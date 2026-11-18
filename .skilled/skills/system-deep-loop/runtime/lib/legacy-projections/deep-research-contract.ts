@@ -320,6 +320,11 @@ export function createDeepResearchProjectionContract(
           ruledOut: Array.isArray(data.ruledOutApproachRefs) ? data.ruledOutApproachRefs : [],
           focus: typeof data.focus === 'string' ? data.focus : '',
           mode: 'research',
+          ...(typeof data.targetAgent === 'string' ? { target_agent: data.targetAgent } : {}),
+          ...(typeof data.agentDefinitionLoaded === 'boolean'
+            ? { agent_definition_loaded: data.agentDefinitionLoaded }
+            : {}),
+          ...(typeof data.resolvedRoute === 'string' ? { resolved_route: data.resolvedRoute } : {}),
           answeredQuestions: Array.isArray(data.answeredQuestions) ? data.answeredQuestions : [],
           timestamp: occurredAt,
         };

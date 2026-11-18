@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/005-state-log-route-proof",
+  "description": "Keep route-proof fields in the deep-research state log and keep the pre-dispatch audit path inside the packet",
+  "keywords": [
+    "keep",
+    "route-proof",
+    "fields",
+    "deep-research",
+    "state",
+    "log",
+    "pre-dispatch",
+    "audit",
+    "path",
+    "inside",
+    "packet"
+  ],
+  "lastUpdated": "2026-11-17T20:46:11.377Z",
+  "specId": "005",
+  "folderSlug": "state-log-route-proof",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
