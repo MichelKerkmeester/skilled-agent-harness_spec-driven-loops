@@ -10,7 +10,7 @@ trigger_phrases:
   - "research progress visualization"
 importance_tier: normal
 contextType: general
-version: 1.14.12.0
+version: 1.14.13.0
 ---
 
 # Deep Research Quick Reference
@@ -132,7 +132,7 @@ Operator contract source of truth for this page:
 
 ## 7. CONVERGENCE DECISION TREE
 
-Quality guards (source diversity, focus alignment, no single-weak-source) must pass before STOP.
+Quality guards (source diversity, focus alignment) must pass before STOP. The reserved single-weak-source entry reports `notEvaluated` and never blocks a stop.
 
 ```text
 Max iterations reached?

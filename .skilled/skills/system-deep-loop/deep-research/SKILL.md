@@ -210,7 +210,7 @@ Convergence uses newInfoRatio/stuck/question signals; JSONL state remains append
    The loop writes the file itself rather than scaffolding it through `create.sh --level research`, because its body is the synthesis of every iteration and only exists once the loop has run. `create.sh --level research` serves a research packet authored by hand
 10. **Document ruled-out directions per iteration** -- Every iteration must include what was tried and failed
 11. **Report newInfoRatio + 1-sentence novelty justification** -- Every JSONL iteration record must include both
-12. **Quality guards must pass before convergence** -- Source diversity, focus alignment, and no single-weak-source checks must pass before STOP can trigger
+12. **Quality guards must pass before convergence** -- Source diversity and focus alignment checks must pass before STOP can trigger, and the reserved single-weak-source entry reports `notEvaluated` and never blocks a stop
 13. **Respect reducer ownership** -- The workflow reducer, not the agent, is the source of truth for strategy machine-owned sections, dashboard metrics, and findings registry updates
 14. **Use canonical packet names only** -- Write `deep-research-*` artifacts and `research/.deep-research-pause`; legacy names are read-only migration aliases
 15. **Invoke through the command workflow** -- Use `/deep:research:auto` or `/deep:research:confirm`, and let the YAML workflow own dispatch
@@ -282,7 +282,7 @@ Cross-skill alignment: `deep-research` owns iterative investigation; its resourc
 
 ### Quality Gates
 
-Blocking: valid config/strategy/state before loop; iteration markdown + JSONL + reducer refresh per iteration; final `research/research.md` and convergence report after loop; quality guards for source diversity/focus/no weak single source. Continuity save is expected but non-blocking.
+Blocking: valid config/strategy/state before loop; iteration markdown + JSONL + reducer refresh per iteration; final `research/research.md` and convergence report after loop; quality guards for source diversity and focus alignment, with the reserved single-weak-source entry reporting `notEvaluated`. Continuity save is expected but non-blocking.
 
 ### Convergence Report
 
