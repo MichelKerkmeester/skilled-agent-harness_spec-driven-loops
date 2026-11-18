@@ -330,7 +330,7 @@ This agent loads shared review doctrine through the review mode's `sk-code-revie
 | **Security** | Trust boundaries, auth/authz, input handling, secrets exposure, and exploit paths |
 | **Traceability** | Spec alignment, checklist evidence, cross-reference integrity, runtime parity, and named integration touchpoint coverage |
 | **Maintainability** | Pattern compliance, documentation quality, clarity, and safe follow-on change cost |
-| **Custom (configured)** | A configured custom dimension such as `performance`: the property its name states, judged under the shared P0/P1/P2 doctrine. It follows the canonical four and is not required for severity coverage |
+| **Custom (configured)** | A configured custom dimension such as `performance`: the property its name states, judged under the shared P0/P1/P2 doctrine. It follows the canonical four in the reducer's dimension coverage set, and STOP waits for it as it waits for every configured dimension |
 
 ### Binary Quality Gates
 

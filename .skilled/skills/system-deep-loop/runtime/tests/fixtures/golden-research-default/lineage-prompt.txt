@@ -125,7 +125,7 @@ Extract:
 - Remaining key questions
 - Exhausted approaches (DO NOT retry these)
 - Recommended next focus
-- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, `restart`, or `completed-continue` after `--extend=N` reopens a completed run -- see `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md §Lifecycle Branches`)
+- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, `restart`, or `completed-continue` after `--extend=N` reopens a completed run -- see `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md §Lifecycle Branch Contract`)
 - `fork` is deferred and never appears in `lineageMode`
 
 **HARD BLOCK -- Missing or unreadable state**:
