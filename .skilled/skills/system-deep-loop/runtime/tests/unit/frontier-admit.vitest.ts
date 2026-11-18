@@ -260,6 +260,28 @@ describe('frontier-admit', () => {
     expect(checkProposal({ ...proposal, scope: ['   ', 'src/app.ts'] }, new Map(), CAPS, [])).toBeNull();
   });
 
+  it('never reuses a node id when a torn store line hides a row', () => {
+    const artifactDir = makeArtifactDir();
+    const rows = [
+      nodeRow('F-1-001', 'root', 1, 'which seed holds the first branch'),
+      nodeRow('F-1-002', 'root', 1, 'which seed holds the second branch'),
+    ];
+    writeFileSync(join(artifactDir, STORE_FILE), [
+      ...rows.map((row) => JSON.stringify(row)),
+      '{"nodeId":"F-2-003","parentId":"F-1-001","dep',
+      JSON.stringify(nodeRow('F-2-004', 'F-1-001', 2, 'which child the torn row sits beside')),
+    ].join('\n') + '\n', 'utf8');
+
+    const { admitted } = admitProposals({
+      artifactDir,
+      iteration: 3,
+      proposals: [{ ...makeProposal('which child comes after the torn row'), parentId: 'F-1-002' }],
+    });
+
+    expect(admitted).toEqual(['F-2-005']);
+    expect([...readNodeStore(join(artifactDir, STORE_FILE)).keys()]).toEqual(['F-1-001', 'F-1-002', 'F-2-004', 'F-2-005']);
+  });
+
   it('admits a valid proposal: one inbox row with origin frontier and one open store row', () => {
     const artifactDir = makeArtifactDir();
 

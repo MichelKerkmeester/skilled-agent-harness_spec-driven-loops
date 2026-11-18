@@ -202,6 +202,18 @@ function dedupeKey(text) {
     .trim();
 }
 
+// The serial part of a node id keeps counting from the highest id the store
+// holds, not from how many rows it read: a torn line the reader skipped would
+// otherwise hand its successor's id to the next node and overwrite that node.
+function nextNodeSerial(nodes) {
+  let highest = nodes.size;
+  for (const nodeId of nodes.keys()) {
+    const match = /^F-\d+-(\d+)$/.exec(String(nodeId));
+    if (match) highest = Math.max(highest, Number(match[1]));
+  }
+  return String(highest + 1).padStart(3, '0');
+}
+
 function readNodeStore(storePath) {
   const nodes = new Map();
   if (!fs.existsSync(storePath)) return nodes;
@@ -472,7 +484,7 @@ function admitProposals({ artifactDir, iteration, proposals, knownTexts = [], ta
   for (const proposal of list) {
     const accept = checkProposal(proposal, nodes, caps, knownTexts, reviewOptions);
     const depth = depthFor(proposal, nodes);
-    const nodeId = `F-${depth}-${String(nodes.size + 1).padStart(3, '0')}`;
+    const nodeId = `F-${depth}-${nextNodeSerial(nodes)}`;
     const safe = isPlainObject(proposal) ? proposal : {};
 
     if (accept !== null) {
@@ -554,7 +566,7 @@ function seedNodes({ artifactDir, iteration = 0, candidates, knownTexts = [], ta
     // generated artifact, a file with no diff of its own. The seed knows that
     // before any proposal exists, so the row is pruned here rather than through
     // an admission check that would have to reach the same conclusion.
-    const nodeId = `F-1-${String(existing.size + 1).padStart(3, '0')}`;
+    const nodeId = `F-1-${nextNodeSerial(existing)}`;
     const row = {
       nodeId,
       parentId: 'root',
