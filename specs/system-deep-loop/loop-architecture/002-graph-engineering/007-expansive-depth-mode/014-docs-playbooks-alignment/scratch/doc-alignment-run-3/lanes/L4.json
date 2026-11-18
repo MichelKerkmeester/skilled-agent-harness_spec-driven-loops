@@ -1,0 +1,70 @@
+{
+  "lane": "L4",
+  "findings": [
+    {
+      "id": "L4-1",
+      "surface": "D1",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+      "line": 24,
+      "issue": "The page says admission 'applies the depth cap, the fan-out cap, the iteration budget, dedupe and cycle checks' and 'records a reason for each prune'. The code runs six ordered checks - relevance, dedupe, depth, fan-out, monotone budget, cycle - and prunes with the name of the first check that fails (frontier-admit.cjs:313-352). Two things are wrong: (a) the relevance check is missing entirely, yet it is the first one and prunes a proposal with no 'evidence', an empty 'scope', a scope outside the review target, or a parentId that is not in the store; it is its own prune reason, observed below as reason 'relevance'. (b) dedupe is checked second, before the depth and fan-out caps, so a duplicate proposal that also exceeds a cap is pruned as 'dedupe', not 'fanout' (observed below: the parent's cap is already full and the duplicate is still pruned 'dedupe'). 'the iteration budget' also mislabels that check: admission compares a child budget against its parent's (monotone narrowing), while the 50/35/15 iteration bands are applied by the reducer (reduce-state.cjs:2494-2533), not here.",
+      "evidence": {
+        "cmd": "mkdir -p $T/a; echo '{\"maxIterations\":10,\"antiConvergence\":{\"depthMode\":\"expansive\"},\"expansiveDepth\":{\"maxDepth\":3,\"maxChildrenPerNode\":1,\"maxFrontierNodes\":10}}' > $T/a/deep-research-config.json; frontier-admit.cjs seed --artifact-dir $T/a --iteration 0 --input $T/seed.json; frontier-admit.cjs admit --artifact-dir $T/a --iteration 1 --input $T/p.jsonl",
+        "exit": 0,
+        "out": "{\"admitted\":[\"F-2-002\"],\"pruned\":[{\"nodeId\":\"F-2-003\",\"reason\":\"dedupe\"},{\"nodeId\":\"F-2-004\",\"reason\":\"relevance\"}]}"
+      },
+      "fix": {
+        "old": "It applies the depth cap, the fan-out cap, the iteration budget, dedupe and cycle checks, and records a reason for each prune.",
+        "new": "It applies the relevance, dedupe, depth, fan-out, budget and cycle checks in that order, and records the name of the first failing check as the reason for each prune."
+      }
+    },
+    {
+      "id": "L4-2",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+      "line": 32,
+      "issue": "The page narrows the stop veto to 'a composite convergence stop'. For research the veto covers every stop candidate the run would otherwise take: both all_questions_answered and composite_converged are built with hardStop false, and the veto keys on '!candidate.hardStop', so either becomes CONTINUE/frontierOpen while a frontier node is open (convergence.cjs:1170-1173, 1190-1197). Only the cap, consecutive failures, stuck recovery, convergenceMode 'off', stopPolicy 'max-iterations' and the anti-convergence floor pre-empt it, exactly as the page's next sentence says. A run that is about to stop on all_questions_answered with open nodes is told the opposite here, and the overview in section 1 states the general rule ('holds a convergence stop'), so the page contradicts itself. The review loop is wider still - there the veto also holds the hard all_dimensions_clean candidate - which the review command doc states correctly.",
+      "evidence": {
+        "cmd": "sed -n '1170,1173p;1190,1197p' .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "} else if (coverage.total > 0 && coverage.answered >= coverage.total) {\n    candidate = { reasonDetail: 'all_questions_answered', hardStop: false };\n  } else if (signalResult.stopCandidate) {\n    candidate = { reasonDetail: 'composite_converged', hardStop: false };\n  const depthFacts = loopType === 'review' ? review : research;\n  const vetoable = loopType === 'review' || !candidate.hardStop;\n  if (config.depthMode === 'expansive'\n    && vetoable\n    && Number.isFinite(depthFacts.frontierOpen)\n    && depthFacts.frontierOpen > 0) {\n    return emit('CONTINUE', null, 'frontierOpen', gatesAt(false), []);\n  }"
+      }
+    },
+    {
+      "id": "L4-3",
+      "surface": "D1",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
+      "line": 40,
+      "issue": "The inbox row schema enumerates origin as 'one of angle-bank, analyst-strategy, operator, or legacy-import'. The research reducer's VALID_QUESTION_ORIGINS also accepts 'frontier', and that is the value frontier-admit.cjs writes on every inbox row an admitted frontier node queues (frontier-admit.cjs:409-415, origin: 'frontier', source: 'frontier'), i.e. the rows the --depth-mode=expansive frontier injects. An origin outside the set is normalised to 'operator' (reduce-state.cjs:207), so this list is the only statement of what the badge can read; it is one value short, and the value it omits is the one this run's own new mode produces. It also leaves the page's 'Question injection Surface' silent on the fact that a frontier admission on a research run appends to inbox.jsonl at all, which is why 'frontier' is missing.",
+      "evidence": {
+        "cmd": "rg -n -A7 'const VALID_QUESTION_ORIGINS' .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs; rg -n -B1 -A3 \"origin: 'frontier'\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+        "exit": 0,
+        "out": "128:const VALID_QUESTION_ORIGINS = new Set([\n129-  'angle-bank',\n130-  'analyst-strategy',\n131-  'frontier',\n132-  'operator',\n133-  LEGACY_IMPORT_ORIGIN,\n134-]);\n412-        source: 'frontier',\n413:        origin: 'frontier',\n414-        injectedAtIteration: iterationValue,\n415-      });"
+      },
+      "fix": {
+        "old": "- `origin`: one of `angle-bank`, `analyst-strategy`, `operator`, or `legacy-import`",
+        "new": "- `origin`: one of `angle-bank`, `analyst-strategy`, `frontier`, `operator`, or `legacy-import`"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/70materia/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/anacuna/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/base44/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/elementor/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/flatfile/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/speakeasy/DESIGN.md",
+    ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/anti-convergence-floor.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md"
+  ]
+}

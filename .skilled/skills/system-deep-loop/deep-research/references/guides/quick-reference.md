@@ -10,7 +10,7 @@ trigger_phrases:
   - "research progress visualization"
 importance_tier: normal
 contextType: general
-version: 1.14.5.0
+version: 1.14.6.0
 ---
 
 # Deep Research Quick Reference
@@ -135,16 +135,19 @@ Quality guards (source diversity, focus alignment, no single-weak-source) must p
 Max iterations reached?
   Yes --> STOP
 
-All questions answered?
-  Yes --> STOP
+3 consecutive failed iterations?
+  Yes --> STOP (error)
 
 stuckThreshold consecutive no-progress?
   Yes --> STUCK_RECOVERY
     Recovery works? --> CONTINUE
     Recovery fails? --> STOP (with gaps)
 
-Composite convergence (3-signal weighted > 0.60)?
-  Yes --> STOP (converged)
+All questions answered, or composite convergence (3-signal weighted > 0.60)?
+  Yes --> STOP candidate
+    Below minIterations? --> CONTINUE
+    Expansive run with an open frontier node? --> CONTINUE
+    Otherwise --> STOP (converged), once the quality guards pass
 
 Otherwise --> CONTINUE
 ```

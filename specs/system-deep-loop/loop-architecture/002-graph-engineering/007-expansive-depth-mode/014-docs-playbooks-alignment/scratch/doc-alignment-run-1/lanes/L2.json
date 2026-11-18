@@ -1,0 +1,103 @@
+{
+  "lane": "L2",
+  "findings": [
+    {
+      "id": "L2-1",
+      "surface": "D4",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/commands/deep/review.md",
+      "line": 97,
+      "issue": "The row tells the reader \"A node needs one iteration per configured dimension, so set `--max-iterations` to at least `ceil(nodes / lineages) * dimensions` for the depth-1 band.\" That minimum funds only half the band. `applyReviewFrontierBudget` gives the depth-1 band `budgetSplit.depth1` (0.5) of `maxIterations`, counts every depth-1 visit against it, and closes the remaining depth-1 nodes `exhausted` with reason `budget`, so `nodes/lineages * dimensions` iterations leave about half the node-dimension pairs unfunded. The per-node requirement is also the four canonical dimensions plus configured custom names (`buildDimensionUniverse` starts from `REQUIRED_DIMENSIONS`), not just the configured subset, so the formula understates further when a subset is chosen.",
+      "evidence": {
+        "cmd": "rg -n \"REQUIRED_DIMENSIONS =|function buildDimensionUniverse|function applyReviewFrontierBudget|reviewFrontierVisits\\(node.nodeId|allotted = cap\" .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "exit": 0,
+        "out": "24:const REQUIRED_DIMENSIONS = ['correctness', 'security', 'traceability', 'maintainability'];\n1224:function buildDimensionUniverse(config) {\n1963:function applyReviewFrontierBudget(nodes, history, iterationRecords, maxIterations, budgetSplit) {\n1974:    spent[bandOf(node.depth)] += reviewFrontierVisits(node.nodeId, history, iterationRecords);\n1980:    const allotted = cap * shares[band] + carry;"
+      }
+    },
+    {
+      "id": "L2-2",
+      "surface": "D4",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/review.md",
+      "line": 17,
+      "issue": "The YAML START CONDITION says to load the YAML only when ALL required inputs are bound, but the list omits `depth_mode` (and `convergence_mode`). The workflow preflight requires `depth_mode` in `required_values_present` and populates `antiConvergence.depthMode` from it, so an orchestrator that follows this list loads the YAML with `{depth_mode}` unbound. The same incomplete list is repeated in the mode-routing step at line 83.",
+      "evidence": {
+        "cmd": "rg -n \"required_values_present\" .skilled/commands/deep/assets/deep-review.yaml",
+        "exit": 0,
+        "out": ".skilled/commands/deep/assets/deep-review.yaml:399:          - required_values_present: [review_target, review_target_type, review_dimensions, spec_folder, lineage_mode, max_iterations, convergence_threshold, convergence_mode, depth_mode, stop_policy]"
+      },
+      "fix": {
+        "old": "  - `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`, `lineage_mode`",
+        "new": "  - `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `convergence_mode`, `depth_mode`, `stop_policy`, `lineage_mode`"
+      }
+    },
+    {
+      "id": "L2-3",
+      "surface": "D3",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/research.md",
+      "line": 17,
+      "issue": "The YAML START CONDITION says to load the YAML only when ALL required inputs are bound, but the list omits `depth_mode` (and `convergence_mode`). The research workflow preflight requires `depth_mode` in `required_values_present` and populates `antiConvergence.depthMode` from it, so an orchestrator that follows this list loads the YAML with `{depth_mode}` unbound.",
+      "evidence": {
+        "cmd": "rg -n \"required_values_present\" .skilled/commands/deep/assets/deep-research.yaml",
+        "exit": 0,
+        "out": ".skilled/commands/deep/assets/deep-research.yaml:406:          - required_values_present: [research_topic, spec_folder, lineage_mode, max_iterations, convergence_threshold, convergence_mode, depth_mode, stop_policy]"
+      },
+      "fix": {
+        "old": "  - `research_topic`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`, `lineage_mode`",
+        "new": "  - `research_topic`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `convergence_mode`, `depth_mode`, `stop_policy`, `lineage_mode`"
+      }
+    },
+    {
+      "id": "L2-4",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+      "line": 19,
+      "issue": "The Tier-1 persist shape is incomplete for the config the workflow writes on every run: it lists `antiConvergence.convergenceMode` and the reserved `antiConvergence.divergent` but omits `antiConvergence.depthMode` and the `expansiveDepth` block (`maxDepth`, `maxChildrenPerNode`, `budgetSplit`, `maxFrontierNodes`) that `step_create_config` populates unconditionally.",
+      "evidence": {
+        "cmd": "rg -n \"antiConvergence.depthMode|expansiveDepth.maxDepth\" .skilled/commands/deep/assets/deep-review.yaml",
+        "exit": 0,
+        "out": "878:          antiConvergence.depthMode: \"{depth_mode}\"\n879:          expansiveDepth.maxDepth: 3"
+      },
+      "fix": {
+        "old": "`antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`",
+        "new": "`antiConvergence.convergenceMode`, `antiConvergence.depthMode`, `expansiveDepth.*`, reserved `antiConvergence.divergent: {}`"
+      }
+    },
+    {
+      "id": "L2-5",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+      "line": 150,
+      "issue": "The `:confirm` defaults recap omits `antiConvergence.depthMode`, although the Default Resolution Table sets `depth_mode` to `default` and the runtime writes `antiConvergence.depthMode` into every review config. A setup that binds its defaults from this line alone leaves `depth_mode` unresolved.",
+      "evidence": {
+        "cmd": "rg -n \"antiConvergence.depthMode\" .skilled/commands/deep/assets/deep-review.yaml",
+        "exit": 0,
+        "out": "878:          antiConvergence.depthMode: \"{depth_mode}\"\n1140:          - depth_mode: \"Extract antiConvergence.depthMode when it is 'expansive'; any other or missing value is 'default'\""
+      },
+      "fix": {
+        "old": "antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`",
+        "new": "antiConvergence.convergenceMode=`default`, antiConvergence.depthMode=`default`, antiConvergence.divergent=`{}`"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/70materia/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/anacuna/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/base44/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/elementor/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/flatfile/DESIGN.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/speakeasy/DESIGN.md"
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "findings": [
+    {
+      "id": "C1",
+      "surface": "D1",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/assets/deep-review.yaml",
+      "line": 1237,
+      "issue": "The `step_check_convergence` list claims to give the script's fixed order, first match wins, but it jumps from `4a` (the review floor) to `5` (the nine legal-stop gates) and never names the expansive `frontierOpen` veto. `convergence.cjs` returns CONTINUE with reasonDetail `frontierOpen` after the floor (1180-1182) and before the gates (1199) whenever `config.depthMode === 'expansive'` and `review.frontierOpen > 0`, and it deliberately makes every review candidate vetoable, including `all_dimensions_clean`. A reader of this order would expect a clean review to stop with open frontier nodes, which is the behavior the depth mode exists to prevent; the same file's `frontier_gate` note at 1373 says the veto exists.",
+      "evidence": {
+        "cmd": "rg -n \"4a\\.|4b\\.|5\\. the nine legal-stop gates|frontierOpen\" .skilled/commands/deep/assets/deep-review.yaml .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": ".skilled/commands/deep/assets/deep-review.yaml:1244:          4a. if iteration_count < min_iterations: CONTINUE (minIterationsNotReached). ...\n.skilled/commands/deep/assets/deep-review.yaml:1245:          5. the nine legal-stop gates run on a candidate: ...\n.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1192:  if (config.depthMode === 'expansive'\n.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1196:    return emit('CONTINUE', null, 'frontierOpen', gatesAt(false), []);"
+      },
+      "fix": {
+        "old": "          4a. if iteration_count < min_iterations: CONTINUE (minIterationsNotReached). min_iterations is config.minIterations, else antiConvergence.minIterations, capped at max_iterations; like research, the floor runs on a candidate before the legal-stop gates.\n          5. the nine legal-stop gates",
+        "new": "          4a. if iteration_count < min_iterations: CONTINUE (minIterationsNotReached). min_iterations is config.minIterations, else antiConvergence.minIterations, capped at max_iterations; like research, the floor runs on a candidate before the legal-stop gates.\n          4b. if depth_mode == 'expansive' and an open or active frontier node remains: CONTINUE (frontierOpen). This veto covers the clean review candidate too.\n          5. the nine legal-stop gates"
+      }
+    },
+    {
+      "id": "C2",
+      "surface": "D1",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+      "line": 182,
+      "issue": "The live loop step says `All questions answered? STOP` unconditionally, with no `minIterations` floor and no expansive frontier veto. In `convergence.cjs`, `all_questions_answered` is a soft candidate (`hardStop: false`, line 1167) that returns CONTINUE below the floor (1180-1182) and while `frontierOpen > 0` (1192-1196). The same document's expansive section (409-421) never states the veto either, so the protocol cannot explain why an expansive run with every question answered keeps iterating.",
+      "evidence": {
+        "cmd": "nl -ba .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md | sed -n '177,183p' && rg -n \"all_questions_answered|minIterations > 1|frontierOpen\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "177:#### Step 2: Check Convergence\n178-Run the convergence algorithm (see convergence.md):\n179-- Max iterations reached? STOP\n180-- Stuck count >= threshold? STUCK_RECOVERY\n181-- Average newInfoRatio < threshold? STOP candidate: ...\n182-- All questions answered? STOP\n183-- Otherwise: CONTINUE\nconvergence.cjs:1167:    candidate = { reasonDetail: 'all_questions_answered', hardStop: false };\nconvergence.cjs:1180:  if (minIterations > 1 && iterationCount < minIterations) {\nconvergence.cjs:1196:    return emit('CONTINUE', null, 'frontierOpen', gatesAt(false), []);"
+      },
+      "fix": {
+        "old": "- Max iterations reached? STOP\n- Stuck count >= threshold? STUCK_RECOVERY\n- Average newInfoRatio < threshold? STOP candidate: it stops the loop only when the stop policy allows a convergence stop and the quality gates pass\n- All questions answered? STOP\n- Otherwise: CONTINUE",
+        "new": "- Max iterations reached? STOP\n- After 3 consecutive failed iterations (status error or timeout): STOP with stop reason error\n- Stuck count >= threshold? STUCK_RECOVERY\n- All questions answered? STOP candidate, subject to the minIterations floor and the expansive frontierOpen veto\n- Average newInfoRatio < threshold? STOP candidate, subject to the same floor and veto and the quality gates\n- Otherwise: CONTINUE"
+      }
+    },
+    {
+      "id": "C3",
+      "surface": "D1",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+      "line": 126,
+      "issue": "The LIVE ALGORITHM Decision Order block omits the consecutive-failure hard stop, the `minIterations` floor and the `frontierOpen` veto, and places the all-questions candidate (step 2) before stuck detection (step 3), while `buildStopDecision` checks stuck first (1151) and selects the candidate at 1163. A reader following this order cannot predict that a converged run with open frontier nodes continues; the same file's §1 expansive paragraph (line 107) says the veto applies after the floor.",
+      "evidence": {
+        "cmd": "nl -ba .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md | sed -n '123,134p' && rg -n \"consecutiveFailureCount >=|stuckCount >=|minIterations > 1|config.depthMode === 'expansive'\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "126:1. If iteration count >= maxIterations, STOP with maxIterationsReached.\n127:2. If all key questions have evidence-backed answers, nominate STOP.\n128:3. If stuckCount >= stuckThreshold, enter stuck recovery.\n129:4. Compute composite convergence signals.\n130:5. If weighted stop score > 0.60, nominate STOP.\n131:6. Evaluate legal-stop gates for every STOP candidate except hard max-iteration stop.\n(no step for consecutive failures, the floor or frontierOpen)\nconvergence.cjs:1147:  if (consecutiveFailureCount >= CONSECUTIVE_FAILURE_LIMIT) {\nconvergence.cjs:1151:  if (stuckCount >= stuckThreshold) {\nconvergence.cjs:1180:  if (minIterations > 1 && iterationCount < minIterations) {\nconvergence.cjs:1192:  if (config.depthMode === 'expansive'"
+      },
+      "fix": {
+        "old": "1. If iteration count >= maxIterations, STOP with maxIterationsReached.\n2. If all key questions have evidence-backed answers, nominate STOP.\n3. If stuckCount >= stuckThreshold, enter stuck recovery.\n4. Compute composite convergence signals.\n5. If weighted stop score > 0.60, nominate STOP.\n6. Evaluate legal-stop gates for every STOP candidate except hard max-iteration stop.\n7. Block every non-terminal STOP until a graph decision exists.\n8. If gates pass, pivot for an eligible divergent reason or STOP normally; otherwise emit blockedStop and CONTINUE with recovery focus.",
+        "new": "1. If iteration count >= maxIterations, STOP with maxIterationsReached.\n2. After 3 consecutive failed iterations, STOP with stop reason error.\n3. If stuckCount >= stuckThreshold, enter stuck recovery.\n4. If convergenceMode is off, CONTINUE with convergenceModeOff.\n5. If stopPolicy is max-iterations, CONTINUE with stopPolicyMaxIterations.\n6. Nominate a STOP candidate when all key questions are answered or the weighted score passes; otherwise CONTINUE with noStopCandidate.\n7. Below minIterations, CONTINUE with minIterationsNotReached.\n8. Under depthMode expansive with an open or active frontier node, CONTINUE with frontierOpen.\n9. Evaluate legal-stop gates for the candidate; a failed gate gives blockedStop.\n10. Apply the graph decision: STOP_ALLOWED stops, STOP_BLOCKED blocks, CONTINUE or a missing decision continues."
+      }
+    },
+    {
+      "id": "C4",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+      "line": 138,
+      "issue": "The convergence decision tree says `All questions answered? Yes --> STOP` before stuck detection and never mentions the `minIterations` floor or the expansive `frontierOpen` veto. The code nominates `all_questions_answered` as a soft candidate only after the stuck check (1151-1167), then returns CONTINUE below the floor (1180-1182) and while open nodes remain (1192-1196). An operator using this quick reference will expect the loop to stop in exactly the expansive case it must continue.",
+      "evidence": {
+        "cmd": "nl -ba .skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md | sed -n '134,149p' && rg -n \"all_questions_answered|minIterations > 1|frontierOpen\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "134:```text\n135:Max iterations reached?\n136:  Yes --> STOP\n138:All questions answered?\n139:  Yes --> STOP\n141:stuckThreshold consecutive no-progress?\n142:  Yes --> STUCK_RECOVERY\n(no consecutive-failure, minIterations or frontierOpen branch)\nconvergence.cjs:1167:    candidate = { reasonDetail: 'all_questions_answered', hardStop: false };\nconvergence.cjs:1180:  if (minIterations > 1 && iterationCount < minIterations) {\nconvergence.cjs:1192:  if (config.depthMode === 'expansive'"
+      },
+      "fix": {
+        "old": "Max iterations reached?\n  Yes --> STOP\n\nAll questions answered?\n  Yes --> STOP\n\nstuckThreshold consecutive no-progress?\n  Yes --> STUCK_RECOVERY\n    Recovery works? --> CONTINUE\n    Recovery fails? --> STOP (with gaps)\n\nComposite convergence (3-signal weighted > 0.60)?\n  Yes --> STOP (converged)\n\nOtherwise --> CONTINUE",
+        "new": "Max iterations reached?\n  Yes --> STOP\n\n3 consecutive failed iterations?\n  Yes --> STOP (error)\n\nstuckThreshold consecutive no-progress?\n  Yes --> STUCK_RECOVERY\n    Recovery works? --> CONTINUE\n    Recovery fails? --> STOP (with gaps)\n\nAll questions answered or composite convergence (3-signal weighted > 0.60)?\n  Yes --> STOP candidate\n\nBelow minIterations?\n  Yes --> CONTINUE (minIterationsNotReached)\n\nExpansive mode with an open or active frontier node?\n  Yes --> CONTINUE (frontierOpen)\n\nQuality gates pass?\n  Yes --> STOP (converged)\n  No --> CONTINUE (blocked stop)\n\nOtherwise --> CONTINUE"
+      }
+    },
+    {
+      "id": "C5",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+      "line": 38,
+      "issue": "The catalog's Initialization summary says the runtime supports only `new`, `resume` and `restart`, but the same file's Completed-run extension section (line 203) and `deep-research.yaml` (line 68) accept `completed-continue`, which `--extend=N` writes. The sibling `loop-lifecycle/initialization.md` lists all four modes, so this line is the stale outlier.",
+      "evidence": {
+        "cmd": "rg -n \"only exposes|run_extended|completed-continue\" .skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md .skilled/commands/deep/assets/deep-research.yaml",
+        "exit": 0,
+        "out": "feature-catalog.md:38:...only exposes `new`, `resume`, and `restart` as runtime-supported lineage modes.\nfeature-catalog.md:203:A completed deep-research run extends in place by N iterations under --extend=N ... records one run_extended event.\ndeep-research.yaml:68: lineage_mode accepts [auto|resume|restart|completed-continue]"
+      },
+      "fix": {
+        "old": "and only exposes `new`, `resume`, and `restart` as runtime-supported lineage modes.",
+        "new": "and exposes `new`, `resume`, `restart`, and `completed-continue` (set by `--extend=N`) as runtime-supported lineage modes."
+      }
+    },
+    {
+      "id": "C6",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md",
+      "line": 56,
+      "issue": "Both expected test counts are stale. Command 1's `frontierOpen veto` filter now matches the research and review describes and runs 28 cases: `Tests 28 passed | 64 skipped (92)`, not `15 passed | 64 skipped (79)`. Command 2 runs `Tests 1 passed | 91 skipped (92)`, not `1 passed | 78 skipped (79)`. An operator following the scenario records a false failure on a green suite.",
+      "evidence": {
+        "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx vitest run stop-decision.vitest -t \"frontierOpen veto\" --reporter=verbose && npx vitest run stop-decision.vitest -t \"echoes the input unchanged\" --reporter=verbose",
+        "exit": 0,
+        "out": "Test Files  1 passed (1)\n      Tests  28 passed | 64 skipped (92)\n---\n      Tests  1 passed | 91 skipped (92)"
+      },
+      "fix": {
+        "old": "Command 1 prints `Tests  15 passed | 64 skipped (79)`. Those cases include the eight rows of the veto table, each named `expansive composite candidate: <row label>`, and every row passes. Command 2 prints `Tests  1 passed | 78 skipped (79)`, and the case `echoes the input unchanged` passes without edits.",
+        "new": "Command 1 prints `Tests  28 passed | 64 skipped (92)`. Those cases include the eight research rows and the eight review rows of the veto table, and every row passes. Command 2 prints `Tests  1 passed | 91 skipped (92)`, and the case `echoes the input unchanged` passes without edits."
+      }
+    },
+    {
+      "id": "C7",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+      "line": 58,
+      "issue": "All four expected counts are stale: command 1 runs `2 passed | 206 skipped (208)` because two round-robin cases now match, commands 2 and 3 each run `1 passed | 207 skipped (208)`, and command 4 runs `4 passed | 86 skipped (90)`. The document expects `1/202/203` and `2/82/84`, so every command in the scenario reads as a failure even though all tests pass.",
+      "evidence": {
+        "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx vitest run fanout-run.vitest -t \"round-robin\" && npx vitest run fanout-run.vitest -t \"writes the lineage store before spawn\" && npx vitest run fanout-run.vitest -t \"default depth mode\" && npx vitest run fanout-merge.vitest -t \"partitioned node\"",
+        "exit": 0,
+        "out": "1: Tests  2 passed | 206 skipped (208)\n2: Tests  1 passed | 207 skipped (208)\n3: Tests  1 passed | 207 skipped (208)\n4: Tests  4 passed | 86 skipped (90)"
+      },
+      "fix": {
+        "old": "Command 1 prints `Tests  1 passed | 202 skipped (203)`, with the case `deals open depth-1 nodes round-robin in node-id order` passing. Command 2 prints `Tests  1 passed | 202 skipped (203)`, with the case `writes the lineage store before spawn and records the partition` passing. Command 3 prints `Tests  1 passed | 202 skipped (203)`, with the case `a default depth mode writes no lineage store and records no partition` passing. Command 4 prints `Tests  2 passed | 82 skipped (84)`, with the cases `passes the guard when every partitioned node is reported` and `fails the guard when a partitioned node is missing from every lineage` passing.",
+        "new": "Command 1 prints `Tests  2 passed | 206 skipped (208)`, with the two round-robin cases passing. Command 2 prints `Tests  1 passed | 207 skipped (208)`, with the case `writes the lineage store before spawn and records the partition` passing. Command 3 prints `Tests  1 passed | 207 skipped (208)`, with the case `a default depth mode writes no lineage store and records no partition` passing. Command 4 prints `Tests  4 passed | 86 skipped (90)`, with the partition guard cases passing."
+      }
+    },
+    {
+      "id": "C8",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+      "line": 57,
+      "issue": "Command 1 prints 14 lines, not 13. The pattern matches five `relevance` returns, three `dedupe`, one `depth`, two `fanout`, one `budget` and two `cycle` returns; the expected count is one short.",
+      "evidence": {
+        "cmd": "rg -n \"return '(relevance|dedupe|depth|fanout|budget|cycle)'\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs | wc -l",
+        "exit": 0,
+        "out": "14"
+      },
+      "fix": {
+        "old": "Command 1 prints 13 lines.",
+        "new": "Command 1 prints 14 lines."
+      }
+    },
+    {
+      "id": "C9",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+      "line": 57,
+      "issue": "Command 3 prints six lines, not three, because the unrestricted search matches both `research-depth-mode-golden.vitest.ts` and `review-depth-mode-golden.vitest.ts`, each with a comment, a helper definition and a call. Adding the same `--glob 'research-depth-mode-golden.vitest.ts'` restriction the review scenario already uses restores the three-line expectation.",
+      "evidence": {
+        "cmd": "rg -n 'withoutExpansiveOnlyPersona' .skilled/skills/system-deep-loop/runtime/tests | wc -l && rg -n --glob 'research-depth-mode-golden.vitest.ts' 'withoutExpansiveOnlyPersona' .skilled/skills/system-deep-loop/runtime | wc -l",
+        "exit": 0,
+        "out": "without glob: 6\nwith --glob research-depth-mode-golden.vitest.ts: 3"
+      },
+      "fix": {
+        "old": "3. `rg -n 'withoutExpansiveOnlyPersona' .skilled/skills/system-deep-loop/runtime/tests`",
+        "new": "3. `rg -n --glob 'research-depth-mode-golden.vitest.ts' 'withoutExpansiveOnlyPersona' .skilled/skills/system-deep-loop/runtime/tests`"
+      }
+    },
+    {
+      "id": "C10",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+      "line": 28,
+      "issue": "The budgeting formula underfunds by the band share. `applyReviewFrontierBudget` gives the depth-1 band `budgetSplit.depth1` (0.5) of `maxIterations`, depth 2 0.35 and depth 3 0.15, and closes a band's remaining open nodes as `exhausted` with reason `budget` once its spend reaches the share. A node also needs every dimension in `buildDimensionUniverse`, the four canonical dimensions plus any custom name, not only the configured subset. `ceil(nodes / lineages) * dimensions` therefore funds about half of the depth-1 band and progressively less at depth 2 and 3.",
+      "evidence": {
+        "cmd": "rg -n \"function applyReviewFrontierBudget|const shares = \\[|Number.isFinite\\(split.depth1\\)|const allotted = cap \\* shares\" .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "exit": 0,
+        "out": "1963:function applyReviewFrontierBudget(nodes, history, iterationRecords, maxIterations, budgetSplit) {\n1968:    Number.isFinite(split.depth1) ? split.depth1 : 0.5,\n1969:    Number.isFinite(split.depth2) ? split.depth2 : 0.35,\n1970:    Number.isFinite(split.depth3) ? split.depth3 : 0.15,\n1980:    const allotted = cap * shares[band] + carry;\n1982:      result = result.map((node) => (bandOf(node.depth) === band && (node.status === 'open' || node.status === 'active')\n1983:        ? { ...node, status: 'exhausted', reason: 'budget' }"
+      },
+      "fix": {
+        "old": "A node needs one iteration per configured dimension, so `--max-iterations` should be at least `ceil(nodes / lineages) * dimensions` for the depth reached.",
+        "new": "A node needs one iteration per dimension in its universe (the four canonical dimensions plus any custom name), and each depth band receives only its `budgetSplit` share of `--max-iterations` (0.5, 0.35 and 0.15). For the depth-1 band, set `--max-iterations` to at least `2 * ceil(nodes / lineages) * dimensions`; deeper bands need proportionally more."
+      }
+    }
+  ],
+  "untouched": [
+    ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/anti-convergence-floor.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/initialization.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/anti-convergence-floor.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/deep-research/README.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/min-iterations-floor.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/custom-review-dimensions.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/cross-mode-anti-convergence-contract.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/cross-mode-anti-convergence-contract.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-review-stop.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-min-iterations-floor.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/extend-completed-review-run.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md"
+  ],
+  "overrides": []
+}

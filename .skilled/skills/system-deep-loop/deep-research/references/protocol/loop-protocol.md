@@ -10,7 +10,7 @@ trigger_phrases:
   - "research synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.14.11.0
+version: 1.14.12.0
 ---
 
 # Loop Protocol Reference
@@ -177,9 +177,9 @@ Every field in the contract MUST be present on every persisted `resumed` and `re
 #### Step 2: Check Convergence
 Run the convergence algorithm (see convergence.md):
 - Max iterations reached? STOP
+- Three consecutive failed iterations? STOP with stop reason `error`
 - Stuck count >= threshold? STUCK_RECOVERY
-- Average newInfoRatio < threshold? STOP candidate: it stops the loop only when the stop policy allows a convergence stop and the quality gates pass
-- All questions answered? STOP
+- All questions answered, or average newInfoRatio < threshold? STOP candidate. Below the `minIterations` floor it becomes CONTINUE, and so does a `--depth-mode=expansive` run while a frontier node is open or active. Otherwise it stops the loop only when the stop policy allows a convergence stop and the quality gates pass
 - Otherwise: CONTINUE
 
 #### Step 2a: Check Pause Sentinel
@@ -408,7 +408,7 @@ Checkpoint commits provide rollback points: `git log -- research/` shows the las
 
 ### Expansive Depth Frontier (opt-in)
 
-Under `--depth-mode=expansive` the loop keeps a frontier of follow-up questions beside the key questions seeded at init. The flag writes `antiConvergence.depthMode: "expansive"` and the caps in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `budgetSplit` of 0.5/0.35/0.15 per depth, and `maxFrontierNodes`, which defaults to `maxIterations`. A run without the flag keeps the default path and renders the same bytes as before.
+Under `--depth-mode=expansive` the loop keeps a frontier of follow-up questions beside the key questions seeded at init. The flag writes `antiConvergence.depthMode: "expansive"` and the caps in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `budgetSplit` of 0.5/0.35/0.15 per depth, and `maxFrontierNodes`, which defaults to `maxIterations`. A run without the flag keeps the default path and its behavior. The one byte change is the expansive-only persona paragraph in the CLI lineage prompt, which the golden test strips before it compares.
 
 `step_frontier_seed` decomposes the topic into 3 to 6 depth-1 nodes before iteration 1. On a plain run it sits in `phase_init` after `step_create_config`; on a fan-out run it runs before `step_fanout_spawn`. It calls `runtime/scripts/frontier-admit.cjs seed`.
 

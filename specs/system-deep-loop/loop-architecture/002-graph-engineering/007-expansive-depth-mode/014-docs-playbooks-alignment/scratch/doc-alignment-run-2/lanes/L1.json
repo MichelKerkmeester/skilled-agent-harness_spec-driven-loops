@@ -1,0 +1,121 @@
+{
+  "lane": "L1",
+  "findings": [
+    {
+      "id": "L1-1",
+      "surface": "D1",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".claude/agents/deep-research.md",
+      "line": 286,
+      "issue": "The prune enumeration is presented as the complete set of admission outcomes but omits the sixth check. frontier-admit runs the checks in one fixed order — relevance, dedupe, depth, fan-out, budget, then acyclicity — and returns 'cycle' when the parent chain loops, so a proposal that closes onto an ancestor is pruned instead of reaching the inbox. The research workflow's own admission step names all six ('relevance, dedupe, depth, fan-out, budget, cycle'); the doc's list stops at budget.",
+      "evidence": {
+        "cmd": "rg -n \"// [1-6]\\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml",
+        "exit": 0,
+        "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe\n.skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);\n.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,\n.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six"
+      },
+      "fix": {
+        "old": "repeats a known question, or would exceed the depth, fan-out or budget caps.",
+        "new": "repeats a known question, would exceed the depth, fan-out or budget caps, or closes a cycle back onto its own ancestry."
+      }
+    },
+    {
+      "id": "L1-2",
+      "surface": "D2",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".claude/agents/deep-review.md",
+      "line": 253,
+      "issue": "The prune enumeration is presented as the complete set of admission outcomes but omits the sixth check: frontier-admit runs relevance, dedupe, depth, fan-out, budget and then acyclicity for the review target too, pruning with reason 'cycle' when the parent chain loops. The review workflow's own admission step states it runs the six checks in order, so a leaf reading this sentence believes a cycling proposal is admitted when it is pruned.",
+      "evidence": {
+        "cmd": "rg -n \"// [1-6]\\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml",
+        "exit": 0,
+        "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);\n.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,\n.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six"
+      },
+      "fix": {
+        "old": "repeats a known node, or would exceed the depth, fan-out or budget caps.",
+        "new": "repeats a known node, would exceed the depth, fan-out or budget caps, or closes a cycle back onto its own ancestry."
+      }
+    },
+    {
+      "id": "L1-3",
+      "surface": "D3",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".pi/agents/deep-research.md",
+      "line": 294,
+      "issue": "Same omission in the pi mirror: the sentence lists evidence/scope, duplicate and the depth, fan-out and budget caps as the reasons a frontier_proposal is pruned, but frontier-admit's sixth check rejects a proposal whose parent chain loops with reason 'cycle' (the research workflow lists relevance, dedupe, depth, fan-out, budget, cycle).",
+      "evidence": {
+        "cmd": "rg -n \"// [1-6]\\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml",
+        "exit": 0,
+        "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);\n.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,\n.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six"
+      },
+      "fix": {
+        "old": "repeats a known question, or would exceed the depth, fan-out or budget caps.",
+        "new": "repeats a known question, would exceed the depth, fan-out or budget caps, or closes a cycle back onto its own ancestry."
+      }
+    },
+    {
+      "id": "L1-4",
+      "surface": "D4",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".pi/agents/deep-review.md",
+      "line": 260,
+      "issue": "Same omission in the pi mirror of the review leaf contract: the admission step's sixth check (acyclicity, pruning with reason 'cycle') is missing from the list of reasons a frontier_proposal is pruned, while the review workflow states the helper runs the six admission checks in order.",
+      "evidence": {
+        "cmd": "rg -n \"// [1-6]\\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml",
+        "exit": 0,
+        "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);\n.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,\n.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six"
+      },
+      "fix": {
+        "old": "repeats a known node, or would exceed the depth, fan-out or budget caps.",
+        "new": "repeats a known node, would exceed the depth, fan-out or budget caps, or closes a cycle back onto its own ancestry."
+      }
+    },
+    {
+      "id": "L1-5",
+      "surface": "D5",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/agents/deep-research.md",
+      "line": 302,
+      "issue": "The canonical research leaf doc gives the prune list as complete but stops at the budget cap. frontier-admit's fifth and sixth checks are separate: budget is a monotone check against the parent's budget, then checkCycle prunes with reason 'cycle' when the parent chain loops back onto an ancestor. The research workflow's step_frontier_admit names all six checks, so the leaf is told about five.",
+      "evidence": {
+        "cmd": "rg -n \"// [1-6]\\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml",
+        "exit": 0,
+        "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);\n.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,\n.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six"
+      },
+      "fix": {
+        "old": "repeats a known question, or would exceed the depth, fan-out or budget caps.",
+        "new": "repeats a known question, would exceed the depth, fan-out or budget caps, or closes a cycle back onto its own ancestry."
+      }
+    },
+    {
+      "id": "L1-6",
+      "surface": "D6",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/agents/deep-review.md",
+      "line": 267,
+      "issue": "The canonical review leaf doc gives the prune list as complete but stops at the budget cap, omitting the sixth admission check: frontier-admit closes the ordered checks with checkCycle and records 'cycle' as the prune reason when the parent chain loops back onto an ancestor. The review workflow states the helper runs the six admission checks in order, so one behaviour the doc claims to list is missing.",
+      "evidence": {
+        "cmd": "rg -n \"// [1-6]\\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml",
+        "exit": 0,
+        "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);\n.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,\n.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six"
+      },
+      "fix": {
+        "old": "repeats a known node, or would exceed the depth, fan-out or budget caps.",
+        "new": "repeats a known node, would exceed the depth, fan-out or budget caps, or closes a cycle back onto its own ancestry."
+      }
+    }
+  ],
+  "reviewed": [
+    ".claude/agents/deep-research.md",
+    ".claude/agents/deep-review.md",
+    ".pi/agents/deep-research.md",
+    ".pi/agents/deep-review.md",
+    ".skilled/agents/deep-research.md",
+    ".skilled/agents/deep-review.md"
+  ]
+}

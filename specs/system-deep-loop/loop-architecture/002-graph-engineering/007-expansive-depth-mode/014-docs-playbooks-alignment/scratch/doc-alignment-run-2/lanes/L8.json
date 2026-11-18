@@ -1,0 +1,51 @@
+{
+  "lane": "L8",
+  "findings": [
+    {
+      "id": "L8-1",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": "README.md",
+      "line": 255,
+      "issue": "The summary presents `--extend=N` as adding N passes to any finished run, with no fan-out restriction. Both workflows refuse the flag when the config carries fan-out executors: `step_reject_extend_with_fanout` in deep-research.yaml (331-340) and deep-review.yaml (308-317) halts with a usage error before any lineage spawns, and both presentation contracts and both packet catalogs state \"refused with fan-out\". The paragraph immediately after this one advertises fan-out runs, so the unconditional wording is wrong for them.",
+      "evidence": {
+        "cmd": "rg -n \"Refuse --extend on a fan-out|extend-with-fanout|refused with fan-out\" .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/commands/deep/assets/deep-review-presentation.txt",
+        "exit": 0,
+        "out": ".skilled/commands/deep/assets/deep-review-presentation.txt:76:| `extend` | N | flag `--extend=N` (positive integer); sets `lineage_mode=completed-continue` on a completed run; refused with fan-out | none | N |\n.skilled/commands/deep/assets/deep-research-presentation.txt:75:| `extend` | N | flag `--extend=N` (positive integer); sets `lineage_mode=completed-continue` on a completed run; refused with fan-out | none | N |\n.skilled/commands/deep/assets/deep-research.yaml:331:    description: \"Refuse --extend on a fan-out config before any lineage spawns\"\n.skilled/commands/deep/assets/deep-research.yaml:340:    message: \"Usage error (extend-with-fanout): --extend extends a single-executor research run only. This config has fanout executors, so nothing was spawned and the run is unchanged.\"\n.skilled/commands/deep/assets/deep-review.yaml:308:    description: \"Refuse --extend on a fan-out config before any lineage spawns\"\n.skilled/commands/deep/assets/deep-review.yaml:317:    message: \"Usage error (extend-with-fanout): --extend extends a single-executor review run only. This config has fanout executors, so nothing was spawned and the run is unchanged.\""
+      },
+      "fix": {
+        "old": "`--extend=N` adds N passes to a finished run in the same session.",
+        "new": "`--extend=N` adds N passes to a finished single-executor run in the same session."
+      }
+    },
+    {
+      "id": "L8-2",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+      "line": 51,
+      "issue": "The entry says only the expansive value reaches the runtime. The explicit default reaches it too: both workflows write `antiConvergence.depthMode: \"{depth_mode}\"` into the config and pass `--depth-mode \"{depth_mode}\"` to convergence.cjs and fanout-run.cjs, and the default-identity golden test carries a variant named \"explicit --depth-mode=default\" with `depthMode: 'default'` in both the config and the convergence args. Only the behavior change is gated on `expansive` (convergence.cjs:1192, reduce-state.cjs:2176).",
+      "evidence": {
+        "cmd": "rg -n \"explicit --depth-mode=default|depthMode: 'default'|antiConvergence.depthMode\" .skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml",
+        "exit": 0,
+        "out": ".skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts:73:    name: 'explicit --depth-mode=default',\n.skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts:75:      antiConvergence: { convergenceMode: 'default', depthMode: 'default' },\n.skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts:78:    convergenceArgs: { convergenceMode: 'default', depthMode: 'default' },\n.skilled/commands/deep/assets/deep-research.yaml:725:          antiConvergence.depthMode: \"{depth_mode}\"\n.skilled/commands/deep/assets/deep-review.yaml:878:          antiConvergence.depthMode: \"{depth_mode}\""
+      },
+      "fix": {
+        "old": "`mode-registry.json` has no depth field, and only the expansive value reaches the runtime.",
+        "new": "`mode-registry.json` has no depth field, and the runtime acts only on the expansive value."
+      }
+    }
+  ],
+  "reviewed": [
+    "README.md",
+    ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/spec.md"
+  ]
+}

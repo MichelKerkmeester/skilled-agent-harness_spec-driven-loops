@@ -1,0 +1,61 @@
+[
+ {
+  "prompt": "Run a deep research loop on token refresh across the auth service with expansive depth",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Investigate iteratively why the parser drops unicode and keep a depth-capped frontier of follow-up questions",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Start an autoresearch session that seeds frontier nodes before the first iteration",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Run an iterative review loop on the payment module with --depth-mode=expansive",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Audit this spec folder for release readiness and keep a frontier of sub-targets open until they are exhausted",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Run a deep review wave fan-out and deal the frontier nodes round-robin across lineages",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Fan out an expansive deep research run across three executors and merge the frontier partitions",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Continue the deep review loop on the open frontier node at depth 2",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Review this one file quickly against the style guide",
+  "expect": "sk-code",
+  "expectMode": "sk-code-review"
+ },
+ {
+  "prompt": "Commit the review fixes on a new branch",
+  "expect": "sk-git"
+ },
+ {
+  "prompt": "Continue the completed deep research run for five more iterations",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Extend the completed review run by three iterations",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ }
+]

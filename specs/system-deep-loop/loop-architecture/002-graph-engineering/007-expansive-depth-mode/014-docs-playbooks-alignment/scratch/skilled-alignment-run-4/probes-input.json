@@ -1,0 +1,36 @@
+[
+ {
+  "prompt": "Run a deep research loop with expansive depth on how the advisor scores routing metadata",
+  "expect": "system-deep-loop",
+  "expectMode": "deep-research"
+ },
+ {
+  "prompt": "Use depth-mode=expansive for the next deep research run",
+  "expect": "system-deep-loop",
+  "expectMode": "deep-research"
+ },
+ {
+  "prompt": "Start an expansive-depth deep review of the commands validation scripts",
+  "expect": "system-deep-loop",
+  "expectMode": "deep-review"
+ },
+ {
+  "prompt": "Run a deep review with --depth-mode=expansive on the routing scripts",
+  "expect": "system-deep-loop",
+  "expectMode": "deep-review"
+ },
+ {
+  "prompt": "Extend the completed deep research run by five more iterations",
+  "expect": "system-deep-loop",
+  "expectMode": "deep-research"
+ },
+ {
+  "prompt": "Extend the finished deep review run by three iterations",
+  "expect": "system-deep-loop",
+  "expectMode": "deep-review"
+ },
+ {
+  "prompt": "Review the pull request diff for security problems before I merge it",
+  "expect": "sk-code"
+ }
+]

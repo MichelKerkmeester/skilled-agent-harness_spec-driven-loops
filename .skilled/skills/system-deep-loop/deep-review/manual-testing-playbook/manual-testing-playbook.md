@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.13.1.0
+version: 1.13.2.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -173,7 +173,7 @@ Expected signals: Default values of 7 and 0.10 appear consistently across all so
 Verify that `--extend=N` reopens a completed review run in the same session and generation, records one `run_extended` event, and keeps the prior review report as a snapshot before re-synthesis.
 
 #### Scenario Contract
-Prompt: `Extend the completed deep-review run in the fixture spec folder by three iterations with --extend=3, then confirm the original session identifier, the single run_extended event and the review report snapshot.`
+Prompt: `Extend the completed deep-review run in the fixture spec folder by three iterations with --extend=3 --convergence-mode=off, so the converged run cannot re-stop at once, then confirm the original session identifier, the single run_extended event and the review report snapshot.`
 
 Expected signals: One `run_extended` event projected as one `extended` row, the original `sessionId` and generation 1 kept, `maxIterations` at the prior count plus 3, a `completed-continue` lineage, one `review-report-v*-r*.md` snapshot, no `resumed` row and exactly three new iteration files.
 

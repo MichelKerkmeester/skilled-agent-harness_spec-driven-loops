@@ -1,0 +1,502 @@
+[
+  {
+    "id": "N1",
+    "source_id": "N1",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/commands/deep/assets/deep-research.yaml",
+    "line": "1174",
+    "issue": "`step_check_convergence` presents its numbered list as the script's complete order ('The script applies this fixed order, first match wins'), but the list stops at the `minIterations` floor (item 5) and jumps to the quality guards (item 6). `convergence.cjs` runs one more stage between them: when `depthMode` is expansive and `frontierOpen > 0`, the candidate becomes `CONTINUE` with reasonDetail `frontierOpen` (convergence.cjs:1188-1197). The omission is load-bearing because this same file relies on that stage at line 1269 ('The frontierOpen stop veto already returns CONTINUE while one is open, so this gate records the order'), and both research references list the veto (convergence.md:136 item 7, quick-reference.md:120). A reader of the workflow's own ordered list cannot place the expansive stop veto, and the workflow advertises an order that is one stage short.",
+    "evidence": {
+      "cmd": "rg -n \"frontierOpen|if iteration_count < effective_min_iterations\" .skilled/commands/deep/assets/deep-research.yaml .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "exit": 0,
+      "out": ".skilled/commands/deep/assets/deep-research.yaml:1181:          5. if iteration_count < effective_min_iterations: CONTINUE (minIterationsNotReached)\n.skilled/commands/deep/assets/deep-research.yaml:1269:              frontier_gate: \"Under depth_mode == 'expansive' the pivot is eligible only once registry.frontier holds no open or active node. The frontierOpen stop veto already returns CONTINUE while one is open ...\"\n.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1196:    return emit('CONTINUE', null, 'frontierOpen', gatesAt(false), []);"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-3",
+    "source_id": "L1-3",
+    "lane": "L1",
+    "surface": "D2",
+    "standard": "Every deterministic check listed for the topic in topics.json exits 0",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".claude/agents/deep-review.md",
+    "line": "253",
+    "issue": "The doc tells the review leaf that admission prunes a proposal that `sits outside the review target`, stated unconditionally. The code enforces that containment only when the review config's `reviewTargetType` is `files`; for every other target kind `scopeInsideReviewTarget` returns true and every scope stays relevant. The default target type is `spec-folder`, so on a default expansive review run no proposal is ever pruned for scope. The same sentence also omits the `cycle` check that closes the six-check admission order.",
+    "evidence": null,
+    "fix": null,
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L3-1",
+    "source_id": "L3-1",
+    "lane": "L3",
+    "surface": "D2",
+    "standard": "Every deterministic check listed for the topic in topics.json exits 0",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/commands/deep/assets/deep-review.yaml",
+    "line": "1237",
+    "issue": "step_check_convergence promises the script's complete order ('The script applies this fixed order, first match wins') and runs its list 1, 1a, 2, 3, 3a, 4, 4a, 5, 6. convergence.cjs executes one more stage between the floor (4a) and the legal-stop gates (5): when depthMode is expansive and the registry still holds an open or active frontier node, the candidate is turned into CONTINUE with reasonDetail 'frontierOpen' (convergence.cjs:1184-1197). The omission is load-bearing because this same file relies on that veto at line 1373 ('The frontierOpen stop veto already returns CONTINUE while one is open, so this gate records the order'), so a reader of the documented fixed order cannot place the expansive stop veto at all. Proposed insert after the 4a line: '4b. if depth_mode == expansive AND an open or active frontier node remains: CONTINUE (frontierOpen). The cap, failures, stuck recovery, mode-off, max-iterations and the floor above it still win.'",
+    "evidence": {
+      "cmd": "rg -n \"frontierOpen|first match wins\" .skilled/commands/deep/assets/deep-review.yaml .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "exit": 0,
+      "out": "convergence.cjs:1196:    return emit('CONTINUE', null, 'frontierOpen', gatesAt(false), []);\nconvergence.cjs:1468/1634: frontierOpen = the count of registry.frontier nodes with status open or active\ndeep-review.yaml:1237:          The script applies this fixed order, first match wins:\ndeep-review.yaml:1373:              frontier_gate: ... The frontierOpen stop veto already returns CONTINUE while one is open ..."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L3-2",
+    "source_id": "L3-2",
+    "lane": "L3",
+    "surface": "D2",
+    "standard": "Every deterministic check listed for the topic in topics.json exits 0",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/commands/deep/assets/deep-review.yaml",
+    "line": "576",
+    "issue": "step_extend_completed_run derives the extension warning from config.antiConvergence.stopPolicy, but nothing in this workflow ever writes that key: step_create_config populates the top-level stopPolicy (line 885), the shipped template's nested value is the hardcoded string 'fail-closed' (deep-review-config.json:15), and the runtime reads the top-level key (convergence.cjs:1159 and 1396; the workflow's own extract at line 1137 does the same). antiConvergence.stopPolicy is therefore never 'convergence', extension_warning is always null, and an --extend on a convergence-stopping run stays silent where the step says the warning is printed and never refuses the extension.",
+    "evidence": {
+      "cmd": "rg -n \"antiConvergence\\.stopPolicy|\\\"stopPolicy\\\": \\\"fail-closed\\\"|stopPolicy: \\\"\\{stop_policy\\}\\\"|config\\.stopPolicy ===\" .skilled/commands/deep/assets/deep-review.yaml .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "exit": 0,
+      "out": "deep-review-config.json:15:    \"stopPolicy\": \"fail-closed\"\nconvergence.cjs:1159:  if (config.stopPolicy === 'max-iterations') {\nconvergence.cjs:1396:    stopPolicy: config.stopPolicy === 'max-iterations' ? 'max-iterations' : 'convergence',\ndeep-review.yaml:576:            const stopPolicy = config.antiConvergence && config.antiConvergence.stopPolicy || \"convergence\";\ndeep-review.yaml:885:          stopPolicy: \"{stop_policy}\""
+    },
+    "fix": {
+      "old": "            const stopPolicy = config.antiConvergence && config.antiConvergence.stopPolicy || \"convergence\";",
+      "new": "            const stopPolicy = config.stopPolicy === \"max-iterations\" ? \"max-iterations\" : \"convergence\";"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-7",
+    "source_id": "L1-7",
+    "lane": "L1",
+    "surface": "D4",
+    "standard": null,
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".pi/agents/deep-review.md",
+    "line": "260",
+    "issue": "The doc tells the review leaf that admission prunes a proposal that `sits outside the review target`, stated unconditionally. The code enforces that containment only when the review config's `reviewTargetType` is `files`; for every other target kind `scopeInsideReviewTarget` returns true and every scope stays relevant. The default target type is `spec-folder`, so on a default expansive review run no proposal is ever pruned for scope. The same sentence also omits the `cycle` check that closes the six-check admission order.",
+    "evidence": null,
+    "fix": null,
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-11",
+    "source_id": "L1-11",
+    "lane": "L1",
+    "surface": "D6",
+    "standard": null,
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/agents/deep-review.md",
+    "line": "267",
+    "issue": "The doc tells the review leaf that admission prunes a proposal that `sits outside the review target`, stated unconditionally. The code enforces that containment only when the review config's `reviewTargetType` is `files`; for every other target kind `scopeInsideReviewTarget` returns true and every scope stays relevant. The default target type is `spec-folder`, so on a default expansive review run no proposal is ever pruned for scope. The same sentence also omits the `cycle` check that closes the six-check admission order.",
+    "evidence": {
+      "cmd": "grep -n \"reviewTargetType !== 'files'\\|scopeInsideReviewTarget(proposal.scope\\|defaultTargetType\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+      "exit": 0,
+      "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:298:  if (source.reviewTargetType !== 'files') return true;\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:318:  if (reviewConfig !== undefined && !scopeInsideReviewTarget(proposal.scope, reviewConfig)) return 'relevance';\n.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml:19:  defaultTargetType: spec-folder"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-1",
+    "source_id": "L1-1",
+    "lane": "L1",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".claude/agents/deep-research.md",
+    "line": "84",
+    "issue": "The pointer to the research loop protocol names a section that does not exist. deep-research/references/protocol/loop-protocol.md has only `### Lifecycle Branch Contract (current release)`, and the research workflow cites that name; the doc sends the reader to a dead anchor for the `--extend=N` lifecycle contract it is describing.",
+    "evidence": {
+      "cmd": "grep -n \"^##* .*Lifecycle\" .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+      "exit": 0,
+      "out": "119:### Lifecycle Branch Contract (current release)"
+    },
+    "fix": {
+      "old": "§Lifecycle Branches",
+      "new": "§Lifecycle Branch Contract (current release)"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-2",
+    "source_id": "L1-2",
+    "lane": "L1",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".claude/agents/deep-research.md",
+    "line": "286",
+    "issue": "The prune list omits two admission checks the code runs. frontier-admit.cjs runs six checks in one fixed order and the sixth is `cycle`; it also prunes as `relevance` a proposal whose `parentId` the node store does not hold. A row pruned as `cycle` (or for a dangling parent) is therefore undocumented, even though the list is written as the complete set of reasons.",
+    "evidence": {
+      "cmd": "grep -n \"monotone budget, acyclicity\\|// 6. cycle\\|nodes.has(proposal.parentId)\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "exit": 0,
+      "out": "15:// model executes: relevance, dedupe, depth, fan-out, monotone budget, acyclicity.\n319:  if (proposal.parentId !== 'root' && !nodes.has(proposal.parentId)) return 'relevance';\n351:  // 6. cycle"
+    },
+    "fix": {
+      "old": "You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, repeats a known question, or would exceed the depth, fan-out or budget caps.",
+      "new": "You only propose. The workflow's admission step decides, and in one fixed order it prunes a row that lacks evidence or scope, names a parent node the store does not hold, repeats a known question, would exceed the depth, fan-out or budget caps, or would close a parent cycle."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L3-3",
+    "source_id": "L3-3",
+    "lane": "L3",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    "line": "42",
+    "issue": "The PRE-BOUND SETUP ANSWERS sample shows maxIterations: 10, which is the deep-research default. The review default is 7, as this same file states in the Default Resolution Table (line 78), the consolidated defaults line (line 150) and the store step (line 238), and as the shipped review template sets (deep-review-config.json:9). Because marker fields outrank $ARGUMENTS flags (line 59), a caller that copies this block verbatim gets 10 iterations on a review run the doc says defaults to 7.",
+    "evidence": {
+      "cmd": "rg -n -F \"maxIterations: 10\" .skilled/commands/deep/assets/deep-review-presentation.txt; rg -n '\"maxIterations\": 7' .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json; rg -n \"maxIterations=7\" .skilled/commands/deep/assets/deep-review-presentation.txt",
+      "exit": 0,
+      "out": "42:  maxIterations: 10\n9:  \"maxIterations\": 7,\n150:   +-- Defaults: maxIterations=7, convergenceThreshold=0.10, ..."
+    },
+    "fix": {
+      "old": "  maxIterations: 10",
+      "new": "  maxIterations: 7"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L3-4",
+    "source_id": "L3-4",
+    "lane": "L3",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    "line": "19",
+    "issue": "Tier 1 says it persists deep-review-config.json with the given 'shape', and the list carries antiConvergence.convergenceMode and even the reserved antiConvergence.divergent, but omits antiConvergence.depthMode and the whole expansiveDepth block. The workflow writes both (deep-review.yaml:878-883) and the review reducer only projects a frontier at all when config.antiConvergence.depthMode === 'expansive' (reduce-state.cjs:2176, 2887). A --depth-mode=expansive run persisted to this documented shape seeds frontier nodes that the reducer then never reads and never vetoes a stop on, i.e. explicitly requested expansive depth silently becomes a no-op. The shape should name antiConvergence.depthMode and expansiveDepth.maxDepth/maxChildrenPerNode/budgetSplit/maxFrontierNodes.",
+    "evidence": {
+      "cmd": "rg -n \"antiConvergence\\.depthMode|expansiveDepth\\.\" .skilled/commands/deep/assets/deep-review.yaml; rg -n \"antiConvergence\\?\\.depthMode\" .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      "exit": 0,
+      "out": "deep-review.yaml:878:          antiConvergence.depthMode: \"{depth_mode}\"\ndeep-review.yaml:879:          expansiveDepth.maxDepth: 3\ndeep-review.yaml:880:          expansiveDepth.maxChildrenPerNode: 6\ndeep-review.yaml:881:          expansiveDepth.budgetSplit: { depth1: 0.5, depth2: 0.35, depth3: 0.15 }\ndeep-review.yaml:883:          expansiveDepth.maxFrontierNodes: \"{max_iterations}\"\nreduce-state.cjs:2176:  const frontier = config?.antiConvergence?.depthMode === 'expansive'\nreduce-state.cjs:2887:    config?.antiConvergence?.depthMode === 'expansive'"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L3-5",
+    "source_id": "L3-5",
+    "lane": "L3",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    "line": "31",
+    "issue": "The marker block is presented as the complete field set of the PRE-BOUND SETUP ANSWERS block, and it lists the other internal fan-out field (config.fanout_lineage_artifact_dir, line 90 and line 138) but never frontier_scope. fanout-run.cjs writes 'depth_mode: expansive' followed by 'frontier_scope: <ids|none>' into that same block for every expansive fan-out lineage (line 1852, plus the prompt params at 1730/1745), and neither review doc mentions frontier_scope at all, so under the block's own rule ('Unknown fields are warnings, not errors') the only field that names a lineage's dealt frontier nodes is parsed as unknown and the review workflow never binds it. The schema should carry frontier_scope beside review_focus.",
+    "evidence": {
+      "cmd": "rg -n -F \"frontier_scope\" .skilled/commands/deep/assets/deep-review-presentation.txt .skilled/commands/deep/assets/deep-review.yaml || echo \"no frontier_scope in either review doc\"; rg -n -F \"frontier_scope: \" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "exit": 0,
+      "out": "no frontier_scope in either review doc\n1730:    params.push(`  frontier_scope: ${(options.frontierScope || []).join(', ') || 'none'}`);\n1745:          ...(options.depthMode === 'expansive' ? [`frontier_scope: ${(options.frontierScope || []).join(', ') || 'none'}`] : []),\n1852:    ...(options.depthMode === 'expansive' ? ['depth_mode: expansive', `frontier_scope: ${(options.frontierScope || []).join(', ') || 'none'}`] : []),"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L3-6",
+    "source_id": "L3-6",
+    "lane": "L3",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    "line": "432",
+    "issue": "'Each dimension can be individually included or excluded' holds only for the strategy dimension queue and the stop gate (which read config.reviewDimensions). Under --depth-mode=expansive the reducer builds its dimension universe as the four canonical dimensions plus the configured custom names unconditionally (reduce-state.cjs:1225), so an excluded canonical dimension stays in registry.dimensionCoverage, a frontier node is dispatched to nextDimension taken from that universe (reduce-state.cjs:2026), and the node only becomes 'answered' once every dimension of the universe has evidence (reduce-state.cjs:2013-2015). An operator who excludes a canonical dimension therefore still has frontier nodes dispatched to it and keeps the frontier open on it, which the standalone claim does not say.",
+    "evidence": {
+      "cmd": "rg -n \"const universe = |REQUIRED_DIMENSIONS = |coveredDimensions.length === universe.length|nextDimension: universe.find\" .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      "exit": 0,
+      "out": "24:const REQUIRED_DIMENSIONS = ['correctness', 'security', 'traceability', 'maintainability'];\n1225:  const universe = [...REQUIRED_DIMENSIONS];\n2015:    const status = stillOpen && coveredDimensions.length === universe.length ? 'answered' : node.status;\n2026:      nextDimension: universe.find((dimension) => !covered.has(dimension)) ?? null;"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L6-2",
+    "source_id": "L6-2",
+    "lane": "L6",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+    "line": "53",
+    "issue": "The source table credits frontier-admit.cjs with admitting \"open searchDebt entries\". frontier-admit.cjs never mentions searchDebt (rg exits 1); it writes only frontier-nodes.jsonl and, for research, inbox.jsonl. The searchDebt entries are produced later by `mergeFrontierIntoSearchLedger` in runtime/scripts/reduce-state.cjs, which copies each open or active frontier node into `searchLedgerState.searchDebt`. The same wrong attribution is repeated in the Validation And Tests row for frontier-admit-review.vitest.ts (\"Review admission into the node store and debt entries\").",
+    "evidence": {
+      "cmd": "rg -n \"searchDebt\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs || echo \"NO MATCH in frontier-admit.cjs\"; rg -n \"mergeFrontierIntoSearchLedger\\(|searchLedgerState.searchDebt =\" .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      "exit": 0,
+      "out": "NO MATCH in frontier-admit.cjs\n2066:function mergeFrontierIntoSearchLedger(searchLedgerState, frontier) {\n2095:  searchLedgerState.searchDebt = [...debtById.values()]\n2183:  if (frontier) mergeFrontierIntoSearchLedger(searchLedgerState, frontier);"
+    },
+    "fix": {
+      "old": "Admits review proposals as node-store rows and open `searchDebt` entries.",
+      "new": "Admits review proposals as node-store rows; the reducer files the nodes it leaves open as `searchDebt`."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "N2",
+    "source_id": "N2",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+    "line": "24",
+    "issue": "The review feature page says admission applies 'depth, fan-out, budget, dedupe and cycle caps', naming five checks and omitting `relevance`, which the code runs first. `checkProposal` prunes as `relevance` a proposal with no `evidence`, an empty `scope`, a scope outside a file-list review target, or a `parentId` the store does not hold (frontier-admit.cjs:309-319) before any cap is tested. The review packet contradicts itself: SKILL.md:240 and README.md:158 both state six checks in order including relevance, and the research counterpart was corrected to the same six-check sentence. An operator reading only the feature page sees an admission gate that cannot reject an evidence-less or dangling-parent proposal.",
+    "evidence": {
+      "cmd": "rg -n \"relevance, dedupe, depth, fan-out, budget and cycle|admitted under depth, fan-out\" .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md .skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+      "exit": 0,
+      "out": ".skilled/skills/system-deep-loop/deep-review/SKILL.md:240:- `step_frontier_admit` runs before the reducer and prunes a `frontier_proposal` on the first failed check among relevance, dedupe, depth, fan-out, budget and cycle.\n.skilled/skills/system-deep-loop/deep-review/README.md:158:... an admission step before the reducer applies six checks in order, relevance, dedupe, depth, fan-out, budget and cycle ...\n.skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md:24:The expansive run seeds depth-one sub-target nodes ... Leaf `frontier_proposal` rows are admitted under depth, fan-out, budget, dedupe and cycle caps."
+    },
+    "fix": {
+      "old": "Leaf `frontier_proposal` rows are admitted under depth, fan-out, budget, dedupe and cycle caps.",
+      "new": "Leaf `frontier_proposal` rows are admitted under relevance, dedupe, depth, fan-out, budget and cycle checks, in that order."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "N3",
+    "source_id": "N3",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+    "line": "57",
+    "issue": "The Expected section says command 1 (`rg -n -- '--depth-mode' .skilled/commands/deep/research.md`) prints one flag row. It prints two lines: the preflight binding note at research.md:41 ('`depth_mode` (default `default` unless `--depth-mode=expansive` is present)') and the flag table row at research.md:107. An operator running the check as written sees an extra line the document says is not there. This is the research twin of the defect the review playbook carried, which the review doc now states correctly as two lines.",
+    "evidence": {
+      "cmd": "rg -n -- '--depth-mode' .skilled/commands/deep/research.md",
+      "exit": 0,
+      "out": "41:>    - `depth_mode` (default `default` unless `--depth-mode=expansive` is present)\n107:| `--depth-mode` | `default` \\| `expansive` | `default`, the value when the flag is absent, runs exactly as before ..."
+    },
+    "fix": {
+      "old": "Command 1 prints one flag row.",
+      "new": "Command 1 prints two lines: the preflight `depth_mode` binding note and the flag row."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "N4",
+    "source_id": "N4",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+    "line": "31",
+    "issue": "The scenario makes 'exactly three new iteration files' a pass condition (also line 27 'adds exactly three iterations' and line 63 'exactly three new iterations'), but `--extend=N` only raises `maxIterations` to (runs so far + N) and resets `status` to initialized; the next stop decision still sees the prior converged state. Under the default `stopPolicy: convergence` the extension step itself warns the run 'may re-stop on all_questions_answered right away' (deep-research.yaml:560), and command 4 passes no `--convergence-mode=off`, so a cap-stopped run whose questions are already answered can spend zero or one pass and the scenario reports FAIL for correct code. The review counterpart (extend-completed-review-run.md:31) repeats the same unconditional criterion.",
+    "evidence": {
+      "cmd": "rg -n \"may re-stop|adds exactly three iterations|exactly three new iteration files\" .skilled/commands/deep/assets/deep-research.yaml .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+      "exit": 0,
+      "out": ".skilled/commands/deep/assets/deep-research.yaml:560:              ? \"This run stops on convergence and has no pending inbox question, so it may re-stop on all_questions_answered right away. Pass --convergence-mode=off, use stopPolicy max-iterations, or add questions to research/inbox.jsonl to keep it running.\"\n...:27:- Objective: Verify that `--extend=3` on a completed research run adds exactly three iterations ...\n...:31:- Expected signals: ... and exactly three new iteration files are written."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-4",
+    "source_id": "L1-4",
+    "lane": "L1",
+    "surface": "D2",
+    "standard": "Every deterministic check listed for the topic in topics.json exits 0",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".claude/agents/deep-review.md",
+    "line": "329",
+    "issue": "The Custom row says a configured custom dimension `is not required for severity coverage` but never says it still joins the coverage universe. `buildDimensionUniverse` appends every configured non-canonical name, `buildReviewFrontier` derives a node `answered` only when every universe dimension is covered, and the review clean stop requires `missingDimensions` to be empty, so an unaudited custom dimension blocks both the node close and the clean stop.",
+    "evidence": null,
+    "fix": null,
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-5",
+    "source_id": "L1-5",
+    "lane": "L1",
+    "surface": "D3",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".pi/agents/deep-research.md",
+    "line": "92",
+    "issue": "The pointer to the research loop protocol names a section that does not exist. deep-research/references/protocol/loop-protocol.md has only `### Lifecycle Branch Contract (current release)`, and the research workflow cites that name; the doc sends the reader to a dead anchor for the `--extend=N` lifecycle contract it is describing.",
+    "evidence": {
+      "cmd": "grep -n \"^##* .*Lifecycle\" .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+      "exit": 0,
+      "out": "119:### Lifecycle Branch Contract (current release)"
+    },
+    "fix": {
+      "old": "§Lifecycle Branches",
+      "new": "§Lifecycle Branch Contract (current release)"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-6",
+    "source_id": "L1-6",
+    "lane": "L1",
+    "surface": "D3",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".pi/agents/deep-research.md",
+    "line": "294",
+    "issue": "The prune list omits two admission checks the code runs. frontier-admit.cjs runs six checks in one fixed order and the sixth is `cycle`; it also prunes as `relevance` a proposal whose `parentId` the node store does not hold. A row pruned as `cycle` (or for a dangling parent) is therefore undocumented, even though the list is written as the complete set of reasons.",
+    "evidence": {
+      "cmd": "grep -n \"monotone budget, acyclicity\\|// 6. cycle\\|nodes.has(proposal.parentId)\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "exit": 0,
+      "out": "15:// model executes: relevance, dedupe, depth, fan-out, monotone budget, acyclicity.\n319:  if (proposal.parentId !== 'root' && !nodes.has(proposal.parentId)) return 'relevance';\n351:  // 6. cycle"
+    },
+    "fix": {
+      "old": "You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, repeats a known question, or would exceed the depth, fan-out or budget caps.",
+      "new": "You only propose. The workflow's admission step decides, and in one fixed order it prunes a row that lacks evidence or scope, names a parent node the store does not hold, repeats a known question, would exceed the depth, fan-out or budget caps, or would close a parent cycle."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-8",
+    "source_id": "L1-8",
+    "lane": "L1",
+    "surface": "D4",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".pi/agents/deep-review.md",
+    "line": "336",
+    "issue": "The Custom row says a configured custom dimension `is not required for severity coverage` but never says it still joins the coverage universe. `buildDimensionUniverse` appends every configured non-canonical name, `buildReviewFrontier` derives a node `answered` only when every universe dimension is covered, and the review clean stop requires `missingDimensions` to be empty, so an unaudited custom dimension blocks both the node close and the clean stop.",
+    "evidence": null,
+    "fix": null,
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-10",
+    "source_id": "L1-10",
+    "lane": "L1",
+    "surface": "D5",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/agents/deep-research.md",
+    "line": "302",
+    "issue": "The prune list omits two admission checks the code runs. frontier-admit.cjs runs six checks in one fixed order and the sixth is `cycle`; it also prunes as `relevance` a proposal whose `parentId` the node store does not hold. A row pruned as `cycle` (or for a dangling parent) is therefore undocumented, even though the list is written as the complete set of reasons.",
+    "evidence": {
+      "cmd": "grep -n \"monotone budget, acyclicity\\|// 6. cycle\\|nodes.has(proposal.parentId)\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "exit": 0,
+      "out": "15:// model executes: relevance, dedupe, depth, fan-out, monotone budget, acyclicity.\n319:  if (proposal.parentId !== 'root' && !nodes.has(proposal.parentId)) return 'relevance';\n351:  // 6. cycle"
+    },
+    "fix": {
+      "old": "You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, repeats a known question, or would exceed the depth, fan-out or budget caps.",
+      "new": "You only propose. The workflow's admission step decides, and in one fixed order it prunes a row that lacks evidence or scope, names a parent node the store does not hold, repeats a known question, would exceed the depth, fan-out or budget caps, or would close a parent cycle."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-9",
+    "source_id": "L1-9",
+    "lane": "L1",
+    "surface": "D5",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/agents/deep-research.md",
+    "line": "100",
+    "issue": "The pointer to the research loop protocol names a section that does not exist. deep-research/references/protocol/loop-protocol.md has only `### Lifecycle Branch Contract (current release)`, and the research workflow cites that name; the doc sends the reader to a dead anchor for the `--extend=N` lifecycle contract it is describing.",
+    "evidence": {
+      "cmd": "grep -n \"^##* .*Lifecycle\" .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+      "exit": 0,
+      "out": "119:### Lifecycle Branch Contract (current release)"
+    },
+    "fix": {
+      "old": "§Lifecycle Branches",
+      "new": "§Lifecycle Branch Contract (current release)"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-12",
+    "source_id": "L1-12",
+    "lane": "L1",
+    "surface": "D6",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/agents/deep-review.md",
+    "line": "343",
+    "issue": "The Custom row says a configured custom dimension `is not required for severity coverage` but never says it still joins the coverage universe. `buildDimensionUniverse` appends every configured non-canonical name, `buildReviewFrontier` derives a node `answered` only when every universe dimension is covered, and the review clean stop requires `missingDimensions` to be empty, so an unaudited custom dimension blocks both the node close and the clean stop.",
+    "evidence": {
+      "cmd": "grep -n \"const universe = buildDimensionUniverse\\|universe.push(name)\" .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs; grep -n \"missingDimensions.length === 0\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "exit": 0,
+      "out": "1231:      universe.push(name);\n1998:  const universe = buildDimensionUniverse(config);\n940:      pass: missingDimensions.length === 0\n1128:    && missingDimensions.length === 0"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  }
+]

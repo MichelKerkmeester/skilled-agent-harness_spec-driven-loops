@@ -1,0 +1,114 @@
+{
+  "lane": "C",
+  "findings": [
+    {
+      "id": "C-01",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/changelog/v2.1.0.0.md",
+      "line": 25,
+      "issue": "The entry fails the shape gate that sk-create-changelog section 9 requires before writing: line 25 holds a 23-word sentence over the 22-word ceiling, and the entry averages 10.1 words a sentence against a ceiling of 10. The file was added after the checker's last change, so the defect is in the entry, not a later rule change. Split the sentence and shorten the surrounding prose until the gate passes.",
+      "evidence": {
+        "cmd": "python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/system-deep-loop/changelog/v2.1.0.0.md",
+        "exit": 1,
+        "out": "FAIL .skilled/skills/system-deep-loop/changelog/v2.1.0.0.md\n  [sentence-max] line 25: a sentence of 23 words, ceiling 22. Split it\n  [sentence-mean] 10.1 words a sentence on average, ceiling 10. Use more, shorter sentences\nSUMMARY files=1 pass=0 fail=1"
+      }
+    },
+    {
+      "id": "C-02",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/changelog/v2.1.1.0.md",
+      "line": 15,
+      "issue": "The entry fails the shape gate: its prose averages 10.5 words a sentence against the 10-word ceiling in sk-create-changelog section 9. Shorten the opening paragraph and the glance bullets until the gate passes.",
+      "evidence": {
+        "cmd": "python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/system-deep-loop/changelog/v2.1.1.0.md",
+        "exit": 1,
+        "out": "FAIL .skilled/skills/system-deep-loop/changelog/v2.1.1.0.md\n  [sentence-mean] 10.5 words a sentence on average, ceiling 10. Use more, shorter sentences\nSUMMARY files=1 pass=0 fail=1"
+      }
+    },
+    {
+      "id": "C-03",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md",
+      "line": 16,
+      "issue": "The entry fails the shape gate: its prose averages 11.1 words a sentence against the 10-word ceiling in sk-create-changelog section 9. The opening paragraph at line 16 is the longest, so split it and shorten the remaining prose until the gate passes.",
+      "evidence": {
+        "cmd": "python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md",
+        "exit": 1,
+        "out": "FAIL .skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md\n  [sentence-mean] 11.1 words a sentence on average, ceiling 10. Use more, shorter sentences\nSUMMARY files=1 pass=0 fail=1"
+      }
+    },
+    {
+      "id": "C-04",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md",
+      "line": 16,
+      "issue": "The entry fails the shape gate: line 16 holds a 23-word sentence over the 22-word ceiling, and the entry averages 12.1 words a sentence against a ceiling of 10. Split the opening paragraph and shorten the rest until the gate passes.",
+      "evidence": {
+        "cmd": "python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md",
+        "exit": 1,
+        "out": "FAIL .skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md\n  [sentence-max] line 16: a sentence of 23 words, ceiling 22. Split it\n  [sentence-mean] 12.1 words a sentence on average, ceiling 10. Use more, shorter sentences\nSUMMARY files=1 pass=0 fail=1"
+      }
+    },
+    {
+      "id": "C-05",
+      "surface": "S5",
+      "standard": "sk-doc/sk-create-readme",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": "README.md",
+      "line": 253,
+      "issue": "The root README section that covers the deep loops does not reflect the capabilities this scope added. It describes the loops, their stop rules and their fan-out, but names none of `--depth-mode=expansive` on both loops, custom review dimensions, or `--extend=N` for a completed run; a grep for those terms over README.md returns 0 matches. Line 253's stop enumeration also leaves out the frontier hold that keeps an expansive run open while a node remains open. Add one sentence to the section that names the three capabilities and the frontier hold, or point to the Deep Loop README for them.",
+      "evidence": {
+        "cmd": "grep -cE -- \"depth-mode|expansive|--extend|custom dimension|dimensions\" README.md",
+        "exit": 1,
+        "out": "0"
+      }
+    }
+  ],
+  "reviewed": [
+    "README.md",
+    ".skilled/skills/system-deep-loop/README.md",
+    ".skilled/skills/system-deep-loop/deep-review/README.md",
+    ".skilled/skills/system-deep-loop/deep-research/README.md",
+    ".skilled/skills/system-deep-loop/SKILL.md",
+    ".skilled/skills/system-deep-loop/mode-registry.json",
+    ".skilled/skills/system-deep-loop/description.json",
+    ".skilled/skills/system-deep-loop/hub-router.json",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.0.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.1.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.2.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.3.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.4.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.5.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.6.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.17.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.12.0.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".env.example",
+    ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
+  ]
+}

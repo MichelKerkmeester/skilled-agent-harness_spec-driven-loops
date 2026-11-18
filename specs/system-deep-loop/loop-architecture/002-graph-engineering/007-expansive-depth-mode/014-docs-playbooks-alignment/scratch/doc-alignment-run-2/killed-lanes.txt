@@ -1,0 +1,1 @@
+2026-11-18T01:30:32Z doc-alignment-run-2 lanes L3, L4, L6 and L7 ran past 20 minutes and were recorded as timed out. The coordinator terminated their opencode processes 8480, 8482, 8486 and 8488 under runner 8455; this conductor also sent TERM to every process left under runner 8455 at the same mark. run-lanes.cjs recorded all four lanes as exit 143 (SIGTERM).

@@ -1,7 +1,7 @@
 ---
 title: "DR-068 -- Expansive depth flag and default byte identity"
 description: "This scenario validates that --depth-mode defaults to default, that a default run matches the pre-change baseline byte for byte and that only the expansive-only agent paragraph differs on CLI lineage prompts, for `DR-068`."
-version: 1.16.0.0
+version: 1.16.1.0
 ---
 
 # DR-068 -- Expansive depth flag and default byte identity
@@ -49,12 +49,12 @@ Operators run the exact commands below and confirm that the flag documents `defa
 
 1. `rg -n -- '--depth-mode' .skilled/commands/deep/research.md`
 2. `rg -n '"depthMode"' .skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json`
-3. `rg -n 'withoutExpansiveOnlyPersona' .skilled/skills/system-deep-loop/runtime/tests`
+3. `rg -n --glob 'research-depth-mode-golden.vitest.ts' 'withoutExpansiveOnlyPersona' .skilled/skills/system-deep-loop/runtime/tests`
 4. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run research-depth-mode-golden.vitest`
 
 ### Expected
 
-Command 1 prints one flag row. Its value column reads `default`, the value when the flag is absent. Command 2 prints `"depthMode": "default"`. Command 3 prints three lines: a header comment that points at the helper, the helper definition, and its one call, which applies to the CLI lineage prompt. Command 4 prints `Tests  12 passed (12)` with no failed count. The six compared artifacts are the registry, the dashboard, Next Focus, the prompt pack, the lineage prompt and the stop-decision config, and each matches its baseline.
+Command 1 prints two lines: the preflight `depth_mode` binding note and the flag row. Its value column reads `default`, the value when the flag is absent. Command 2 prints `"depthMode": "default"`. Command 3 prints three lines: a header comment that points at the helper, the helper definition, and its one call, which applies to the CLI lineage prompt. Command 4 prints `Tests  12 passed (12)` with no failed count. The six compared artifacts are the registry, the dashboard, Next Focus, the prompt pack, the lineage prompt and the stop-decision config, and each matches its baseline.
 
 ### Evidence
 
@@ -100,4 +100,4 @@ Command 1 prints one flag row. Its value column reads `default`, the value when 
 - Playbook ID: DR-068
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `entry-points-and-modes/expansive-depth-flag-and-default-identity.md`
-- Feature catalog status: No entry in `feature-catalog/` covers the expansive depth mode yet, so this scenario cites none.
+- Feature catalog status: `feature-catalog/convergence/expansive-depth-mode.md` covers the expansive depth mode.

@@ -7,7 +7,7 @@ trigger_phrases:
   - "deep-loop mode classification"
   - "system-deep-loop compiled routing"
 last_updated: "2026-11-18"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # system-deep-loop: Feature Catalog
@@ -48,11 +48,27 @@ The --depth-mode flag on /deep:research and /deep:review selects default or expa
 
 #### How It Works
 
-`mode-registry.json` has no depth field, and only the expansive value reaches the runtime. The behavior is documented in the research and review catalogs.
+`mode-registry.json` has no depth field, and the runtime acts only on the expansive value. The behavior is documented in the research and review catalogs.
 
 #### Source Files
 
 See [`deep-loop-mode-classification/depth-mode-flag.md`](deep-loop-mode-classification/depth-mode-flag.md) for full implementation and validation file listings.
+
+---
+
+### Completed-run extension flags (--extend, --extend-minutes)
+
+#### Description
+
+The --extend=N and --extend-minutes=M flags on /deep:research and /deep:review reopen a completed single-executor run in place, and leave the registry-driven workflowMode, runtimeLoopType and backendKind classification unchanged.
+
+#### How It Works
+
+`mode-registry.json` has no extension field. The extension sets `maxIterations` to the iterations run so far plus N, keeps the session and generation, and is refused with fan-out. The behavior is documented in the research and review catalogs.
+
+#### Source Files
+
+See [`deep-loop-mode-classification/completed-run-extension-flag.md`](deep-loop-mode-classification/completed-run-extension-flag.md) for full implementation and validation file listings.
 
 ---
 

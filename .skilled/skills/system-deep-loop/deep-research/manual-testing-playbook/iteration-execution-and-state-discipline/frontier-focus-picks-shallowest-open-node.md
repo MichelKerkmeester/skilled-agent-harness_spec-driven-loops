@@ -1,7 +1,7 @@
 ---
 title: "DR-071 -- Frontier focus picks the shallowest open node"
 description: "This scenario validates that Next Focus under the expansive mode picks the open node at the lowest depth, that one visit with that focus leaves its question open and that a reworded focus still counts as a visit, for `DR-071`."
-version: 1.16.0.0
+version: 1.16.1.0
 ---
 
 # DR-071 -- Frontier focus picks the shallowest open node
@@ -53,7 +53,7 @@ Operators run the exact commands below and confirm the focus choice, the visit r
 
 ### Expected
 
-Command 1 prints `Tests  1 passed | 48 skipped (49)`, with the case `picks the shallowest open node and a visit does not resolve it` passing. Command 2 prints `Tests  1 passed | 48 skipped (49)`, with the case `counts a visit when the leaf rewords the focus around the node marker` passing. Command 3 prints the marker regex, which matches `Frontier node` anywhere in the focus text, and the focus template that `pickFrontierFocus` returns.
+Command 1 prints `Tests  1 passed | 50 skipped (51)`, with the case `picks the shallowest open node and a visit does not resolve it` passing. Command 2 prints `Tests  1 passed | 50 skipped (51)`, with the case `counts a visit when the leaf rewords the focus around the node marker` passing. Command 3 prints the marker regex, which matches `Frontier node` anywhere in the focus text, and the focus template that `pickFrontierFocus` returns.
 
 ### Evidence
 
@@ -97,4 +97,4 @@ Command 1 prints `Tests  1 passed | 48 skipped (49)`, with the case `picks the s
 - Playbook ID: DR-071
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md`
-- Feature catalog status: No entry in `feature-catalog/` covers the frontier focus branch yet, so this scenario cites none.
+- Feature catalog status: `feature-catalog/convergence/expansive-depth-mode.md` covers the frontier focus branch in its Stop And Next Focus section.

@@ -7,7 +7,7 @@ trigger_phrases:
   - "set up research session"
   - "canonical state files"
   - "lineage mode"
-version: 1.14.2.0
+version: 1.14.3.0
 ---
 
 # Initialization
@@ -24,7 +24,7 @@ Initialization is the workflow-owned entry into a research session. It creates t
 
 The live initialization contract classifies the packet state before it writes anything. It distinguishes fresh state, resumable state, completed-session state, and invalid state. Fresh runs create `research/deep-research-config.json`, the first JSONL line in `research/deep-research-state.jsonl`, `research/deep-research-strategy.md`, and `research/findings-registry.json`. Confirm mode adds a charter review gate before the first iteration continues.
 
-Lineage handling is narrower than some older drafts. The runtime supports `new`, `resume`, `restart`, and `completed-continue`. Resume keeps the same session identifier and appends a typed `resumed` event. Restart archives the old research tree, mints a fresh session identifier, increments generation, and appends a typed `restarted` event. `completed-continue` is live through `--extend=N` on a completed run: it keeps the session identifier and generation, raises `maxIterations` by N, appends a typed `run_extended` event, and copies the prior synthesis to a versioned snapshot before the first new iteration.
+Lineage handling is narrower than some older drafts. The runtime supports `new`, `resume`, `restart`, and `completed-continue`. Resume keeps the same session identifier and appends a typed `resumed` event. Restart archives the old research tree, mints a fresh session identifier, increments generation, and appends a typed `restarted` event. `completed-continue` is live through `--extend=N` on a completed run: it keeps the session identifier and generation, sets `maxIterations` to the iterations run so far plus N, appends a typed `run_extended` event, and copies the prior synthesis to a versioned snapshot before the first new iteration.
 
 `fork` remains deferred and is not exposed as a live mode.
 

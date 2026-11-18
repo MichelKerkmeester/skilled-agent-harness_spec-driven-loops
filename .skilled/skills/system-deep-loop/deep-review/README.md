@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.11.0
+version: 1.11.12.0
 ---
 
 # deep-review
@@ -155,7 +155,7 @@ The weighted score has to reach `compositeStopScore`, which defaults to 0.60, be
 
 Any new P0 forces another iteration. The override sets `newFindingsRatio` to at least 0.50, so a fresh blocker cannot be averaged away. The shipped config adds `antiConvergence.minIterations` of 2 and a `stopPolicy` of `fail-closed`, and the runtime capability loader rejects a missing or permissive stop policy. The floor holds a review run at `CONTINUE` with reason `minIterationsNotReached` until its iteration count reaches `minIterations`, even when every dimension is clean.
 
-`--depth-mode=expansive` is the one stop-path change that grows work instead of ending it. A seed step writes the depth-1 sub-target nodes before iteration 1, the active node's next uncovered dimension steers the iteration, and an admission step before the reducer applies six checks in order, relevance, dedupe, depth, fan-out, budget and cycle, pruning the proposal on the first failure. Node status lives in `review/frontier-nodes.jsonl`, which no default run creates, and an open node is filed as open search debt, so the run spends the iteration that node still needs. The frontier veto never outranks the iteration cap, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the floor above, and stuck recovery closes the active node as `exhausted`. The caps are `maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget split and `maxFrontierNodes`.
+`--depth-mode=expansive` is the one stop-path change that grows work instead of ending it. A seed step writes the depth-1 sub-target nodes before iteration 1, the active node's next uncovered dimension steers the iteration, and an admission step before the reducer applies six checks in order, relevance, dedupe, depth, fan-out, budget and cycle, pruning the proposal on the first failure. Node status lives in `review/frontier-nodes.jsonl`, which no default run creates, and an open node is filed as open search debt, so the run spends the iteration that node still needs. The frontier veto never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the floor above, and stuck recovery closes the active node as `exhausted`. The caps are `maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget split and `maxFrontierNodes`.
 
 ### Fan-out and Merged Verdicts
 
@@ -221,7 +221,7 @@ A shared context window fills with stale findings, and that drags on reasoning a
 
 ## 7. VERIFICATION
 
-The skill ships a feature catalog and a manual testing playbook. The catalog groups its inventory by loop lifecycle, state management, review dimensions and the severity system. Every entry names the files that implement it. The playbook carries 56 deterministic scenarios across ten categories. Each scenario maps to a feature file with a stated objective, a canonical prompt, expected signals and live source anchors.
+The skill ships a feature catalog and a manual testing playbook. The catalog groups its inventory by loop lifecycle, state management, review dimensions and the severity system. Every entry names the files that implement it. The playbook carries 69 deterministic scenarios across ten categories. Each scenario maps to a feature file with a stated objective, a canonical prompt, expected signals and live source anchors.
 
 | Check | How to run it | A pass looks like |
 |---|---|---|

@@ -1,0 +1,109 @@
+[
+  {
+    "id": "L1",
+    "files": [
+      ".claude/agents/deep-research.md",
+      ".claude/agents/deep-review.md",
+      ".pi/agents/deep-research.md",
+      ".pi/agents/deep-review.md",
+      ".skilled/agents/deep-research.md",
+      ".skilled/agents/deep-review.md"
+    ]
+  },
+  {
+    "id": "L2",
+    "files": [
+      ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      ".skilled/commands/deep/assets/deep-research.yaml"
+    ]
+  },
+  {
+    "id": "L3",
+    "files": [
+      ".skilled/commands/deep/assets/deep-review-presentation.txt",
+      ".skilled/commands/deep/assets/deep-review.yaml"
+    ]
+  },
+  {
+    "id": "L4",
+    "files": [
+      ".skilled/commands/deep/research.md",
+      ".skilled/commands/deep/review.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/70materia/DESIGN.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/anacuna/DESIGN.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/base44/DESIGN.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/elementor/DESIGN.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/flatfile/DESIGN.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/speakeasy/DESIGN.md",
+      ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
+      ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/anti-convergence-floor.md",
+      ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md",
+      ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+      ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md"
+    ]
+  },
+  {
+    "id": "L5",
+    "files": [
+      ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md",
+      ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/initialization.md",
+      ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/anti-convergence-floor.md",
+      ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md",
+      ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+      ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+      ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+      ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+      ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+      ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md",
+      ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-deep-loop/deep-research/README.md",
+      ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+      ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+      ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md"
+    ]
+  },
+  {
+    "id": "L6",
+    "files": [
+      ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
+      ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md",
+      ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+      ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/min-iterations-floor.md",
+      ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/custom-review-dimensions.md",
+      ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/cross-mode-anti-convergence-contract.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/cross-mode-anti-convergence-contract.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-review-stop.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-min-iterations-floor.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/extend-completed-review-run.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/custom-dimension-setup-and-universe.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-and-node-dimension-coverage.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md"
+    ]
+  },
+  {
+    "id": "L7",
+    "files": [
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/review-depth-v2-rollout/stop-gate-custom-dimension-coverage.md",
+      ".skilled/skills/system-deep-loop/deep-review/README.md",
+      ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+      ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+      ".skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+      ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
+      ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+      ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md"
+    ]
+  },
+  {
+    "id": "L8",
+    "files": [
+      ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+      "README.md"
+    ]
+  }
+]

@@ -1,0 +1,1 @@
+2026-11-18T00:55:23Z doc-alignment-run-1 lane L3 past 20 minutes: TERM sent to PID tree 5925 (opencode run) 5929 (opencode serve) 7097 (opencode-pty daemon)

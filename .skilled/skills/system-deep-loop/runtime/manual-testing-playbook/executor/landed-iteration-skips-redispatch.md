@@ -1,7 +1,7 @@
 ---
 title: "DLR-063 -- Landed iteration skips the redispatch"
 description: "This scenario validates that a research or review iteration which already landed is not dispatched a second time when its verify check fails with executor_missing, findings_not_enumerated or ledger_backing_missing, for `DLR-063`. It focuses on the redispatch rule in both command workflows."
-version: 2.1.0.0
+version: 2.1.1.0
 ---
 
 # DLR-063 -- Landed iteration skips the redispatch
@@ -99,4 +99,4 @@ Commands 1 and 2 exit 0 with every case passing. The verify suite includes the c
 - Playbook ID: DLR-063
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `executor/landed-iteration-skips-redispatch.md`
-- Feature catalog status: this scenario does not cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/executor/landed-iteration-no-redispatch.md` covers this scenario.

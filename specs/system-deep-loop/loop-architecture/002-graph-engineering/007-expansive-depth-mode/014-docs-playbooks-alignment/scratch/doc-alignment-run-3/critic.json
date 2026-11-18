@@ -1,0 +1,167 @@
+{
+  "findings": [
+    {
+      "id": "N1",
+      "surface": "D1",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/commands/deep/assets/deep-research.yaml",
+      "line": 1174,
+      "issue": "`step_check_convergence` presents its numbered list as the script's complete order ('The script applies this fixed order, first match wins'), but the list stops at the `minIterations` floor (item 5) and jumps to the quality guards (item 6). `convergence.cjs` runs one more stage between them: when `depthMode` is expansive and `frontierOpen > 0`, the candidate becomes `CONTINUE` with reasonDetail `frontierOpen` (convergence.cjs:1188-1197). The omission is load-bearing because this same file relies on that stage at line 1269 ('The frontierOpen stop veto already returns CONTINUE while one is open, so this gate records the order'), and both research references list the veto (convergence.md:136 item 7, quick-reference.md:120). A reader of the workflow's own ordered list cannot place the expansive stop veto, and the workflow advertises an order that is one stage short.",
+      "evidence": {
+        "cmd": "rg -n \"frontierOpen|if iteration_count < effective_min_iterations\" .skilled/commands/deep/assets/deep-research.yaml .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": ".skilled/commands/deep/assets/deep-research.yaml:1181:          5. if iteration_count < effective_min_iterations: CONTINUE (minIterationsNotReached)\n.skilled/commands/deep/assets/deep-research.yaml:1269:              frontier_gate: \"Under depth_mode == 'expansive' the pivot is eligible only once registry.frontier holds no open or active node. The frontierOpen stop veto already returns CONTINUE while one is open ...\"\n.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1196:    return emit('CONTINUE', null, 'frontierOpen', gatesAt(false), []);"
+      }
+    },
+    {
+      "id": "N2",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+      "line": 24,
+      "issue": "The review feature page says admission applies 'depth, fan-out, budget, dedupe and cycle caps', naming five checks and omitting `relevance`, which the code runs first. `checkProposal` prunes as `relevance` a proposal with no `evidence`, an empty `scope`, a scope outside a file-list review target, or a `parentId` the store does not hold (frontier-admit.cjs:309-319) before any cap is tested. The review packet contradicts itself: SKILL.md:240 and README.md:158 both state six checks in order including relevance, and the research counterpart was corrected to the same six-check sentence. An operator reading only the feature page sees an admission gate that cannot reject an evidence-less or dangling-parent proposal.",
+      "evidence": {
+        "cmd": "rg -n \"relevance, dedupe, depth, fan-out, budget and cycle|admitted under depth, fan-out\" .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md .skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+        "exit": 0,
+        "out": ".skilled/skills/system-deep-loop/deep-review/SKILL.md:240:- `step_frontier_admit` runs before the reducer and prunes a `frontier_proposal` on the first failed check among relevance, dedupe, depth, fan-out, budget and cycle.\n.skilled/skills/system-deep-loop/deep-review/README.md:158:... an admission step before the reducer applies six checks in order, relevance, dedupe, depth, fan-out, budget and cycle ...\n.skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md:24:The expansive run seeds depth-one sub-target nodes ... Leaf `frontier_proposal` rows are admitted under depth, fan-out, budget, dedupe and cycle caps."
+      },
+      "fix": {
+        "old": "Leaf `frontier_proposal` rows are admitted under depth, fan-out, budget, dedupe and cycle caps.",
+        "new": "Leaf `frontier_proposal` rows are admitted under relevance, dedupe, depth, fan-out, budget and cycle checks, in that order."
+      }
+    },
+    {
+      "id": "N3",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+      "line": 57,
+      "issue": "The Expected section says command 1 (`rg -n -- '--depth-mode' .skilled/commands/deep/research.md`) prints one flag row. It prints two lines: the preflight binding note at research.md:41 ('`depth_mode` (default `default` unless `--depth-mode=expansive` is present)') and the flag table row at research.md:107. An operator running the check as written sees an extra line the document says is not there. This is the research twin of the defect the review playbook carried, which the review doc now states correctly as two lines.",
+      "evidence": {
+        "cmd": "rg -n -- '--depth-mode' .skilled/commands/deep/research.md",
+        "exit": 0,
+        "out": "41:>    - `depth_mode` (default `default` unless `--depth-mode=expansive` is present)\n107:| `--depth-mode` | `default` \\| `expansive` | `default`, the value when the flag is absent, runs exactly as before ..."
+      },
+      "fix": {
+        "old": "Command 1 prints one flag row.",
+        "new": "Command 1 prints two lines: the preflight `depth_mode` binding note and the flag row."
+      }
+    },
+    {
+      "id": "N4",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+      "line": 31,
+      "issue": "The scenario makes 'exactly three new iteration files' a pass condition (also line 27 'adds exactly three iterations' and line 63 'exactly three new iterations'), but `--extend=N` only raises `maxIterations` to (runs so far + N) and resets `status` to initialized; the next stop decision still sees the prior converged state. Under the default `stopPolicy: convergence` the extension step itself warns the run 'may re-stop on all_questions_answered right away' (deep-research.yaml:560), and command 4 passes no `--convergence-mode=off`, so a cap-stopped run whose questions are already answered can spend zero or one pass and the scenario reports FAIL for correct code. The review counterpart (extend-completed-review-run.md:31) repeats the same unconditional criterion.",
+      "evidence": {
+        "cmd": "rg -n \"may re-stop|adds exactly three iterations|exactly three new iteration files\" .skilled/commands/deep/assets/deep-research.yaml .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+        "exit": 0,
+        "out": ".skilled/commands/deep/assets/deep-research.yaml:560:              ? \"This run stops on convergence and has no pending inbox question, so it may re-stop on all_questions_answered right away. Pass --convergence-mode=off, use stopPolicy max-iterations, or add questions to research/inbox.jsonl to keep it running.\"\n...:27:- Objective: Verify that `--extend=3` on a completed research run adds exactly three iterations ...\n...:31:- Expected signals: ... and exactly three new iteration files are written."
+      }
+    }
+  ],
+  "untouched": [
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/initialization.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/anti-convergence-floor.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/deep-research/README.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md"
+  ],
+  "overrides": [
+    {
+      "id": "L4-1",
+      "verdict": "refuted",
+      "note": "Does not reproduce against the current file: expansive-depth-mode.md:24 now reads 'It applies the relevance, dedupe, depth, fan-out, budget and cycle checks in that order, and records the name of the first failing check as the reason for each prune.' The quoted 'depth cap, fan-out cap, iteration budget, dedupe and cycle' sentence is absent."
+    },
+    {
+      "id": "L4-2",
+      "verdict": "refuted",
+      "note": "Does not reproduce: expansive-depth-mode.md:32 now reads 'a stop candidate, whether `all_questions_answered` or a composite convergence stop, becomes another iteration', which matches convergence.cjs:1170-1197 for research."
+    },
+    {
+      "id": "L4-3",
+      "verdict": "refuted",
+      "note": "Does not reproduce: deep-research-strategy.md:40 now reads '`origin`: one of `angle-bank`, `analyst-strategy`, `frontier`, `operator`, or `legacy-import`', matching VALID_QUESTION_ORIGINS in deep-research/scripts/reduce-state.cjs:128-134."
+    },
+    {
+      "id": "L6-1",
+      "verdict": "refuted",
+      "note": "Does not reproduce: review expansive-depth-mode.md:28 now reads 'Each depth band starts from its `budgetSplit` share of `--max-iterations` (0.5, 0.35 and 0.15), plus any share an earlier band left unspent once that band holds no open node', matching reduce-state.cjs:1980-1987."
+    },
+    {
+      "id": "L6-3",
+      "verdict": "refuted",
+      "note": "Does not reproduce: review min-iterations-floor.md:16 now reads '`config.minIterations` when present, else `antiConvergence.minIterations`, sets the floor, capped at `maxIterations`; the shipped default is 2.'"
+    },
+    {
+      "id": "L6-4",
+      "verdict": "refuted",
+      "note": "Does not reproduce: review expansive-depth-flag-and-default-identity.md:57 now reads 'Command 1 prints two lines: the preflight `depth_mode` binding note and the flag row.', and the same section now states the 14-test golden count."
+    },
+    {
+      "id": "L6-5",
+      "verdict": "refuted",
+      "note": "Does not reproduce: cross-mode-anti-convergence-contract.md:25 now says the optimizer block 'marks `antiConvergence.convergenceMode`, `antiConvergence.depthMode` and `antiConvergence.stopPolicy` as locked fields', matching deep-review-config.json:102 and optimizer-manifest.json:128."
+    },
+    {
+      "id": "L7-1",
+      "verdict": "refuted",
+      "note": "Does not reproduce: deep-review/SKILL.md:243 now reads 'Size each lineage's iteration cap (the `--iters=N` value on its executor entry, which `fanout-run.cjs` passes as that lineage's `--max-iterations`, 12 when unset) so half of it covers `ceil(nodes / lineages) * dimensions`.' The quoted 'Size `--max-iterations`' sentence no longer exists."
+    },
+    {
+      "id": "L7-3",
+      "verdict": "refuted",
+      "note": "Does not reproduce: deep-review/SKILL.md:145 now says 'configure them by the id in parentheses, because any other name counts as a custom dimension', and rows 151-152 carry `traceability` and `maintainability`. The remaining gap is only that customDimensionRule's after-canonical ordering is still unstated."
+    },
+    {
+      "id": "L7-4",
+      "verdict": "refuted",
+      "note": "Does not reproduce: review state-format.md now carries an `antiConvergence` row (line 154) with `{ minIterations: 2, convergenceMode: \"default\", depthMode: \"default\", stopPolicy: \"fail-closed\" }` and an `expansiveDepth` row (line 155) with the caps and the `maxFrontierNodes = maxIterations` rule."
+    },
+    {
+      "id": "L7-5",
+      "verdict": "refuted",
+      "note": "Does not reproduce: review quick-reference.md:161 now includes '`minIterations=2` (review floor, `antiConvergence.minIterations`)' in the Key defaults line."
+    },
+    {
+      "id": "L8-1",
+      "verdict": "refuted",
+      "note": "Does not reproduce: README.md:255 now names `--extend-minutes=M` beside `--extend=N`."
+    },
+    {
+      "id": "L8-2",
+      "verdict": "refuted",
+      "note": "Does not reproduce: README.md:255 now says `--extend=N` reopens the run 'with room for N more passes' and adds 'Under the default stop policy it can re-stop at once, so pair it with `--convergence-mode=off`', which is the caveat the finding asked for."
+    },
+    {
+      "id": "L8-3",
+      "verdict": "refuted",
+      "note": "Does not reproduce: README.md:253 now says 'A review stays open below its minimum iteration count, while a P0 is active or while a required check still fails'."
+    },
+    {
+      "id": "L8-4",
+      "verdict": "refuted",
+      "note": "Does not reproduce: feature-catalog.md:59 now has a 'Completed-run extension flags (--extend, --extend-minutes)' entry describing both flags and the fan-out refusal."
+    },
+    {
+      "id": "L7-2",
+      "verdict": "duplicate",
+      "note": "L3-2 already records the same root cause and the same consequence: deep-review.yaml:576 tests `config.antiConvergence.stopPolicy`, which the shipped template fixes at `fail-closed` (deep-review-config.json:15) while the stop decision reads the top-level `config.stopPolicy` (convergence.cjs:1396), so the warning this paragraph promises is never printed. L3-2's one-line workflow fix makes the protocol paragraph true; fixing this doc alone would document a dead branch."
+    }
+  ]
+}

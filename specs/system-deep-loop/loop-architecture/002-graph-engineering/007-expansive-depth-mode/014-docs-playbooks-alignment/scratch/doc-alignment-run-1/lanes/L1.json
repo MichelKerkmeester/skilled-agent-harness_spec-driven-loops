@@ -1,0 +1,141 @@
+{
+  "lane": "L1",
+  "findings": [
+    {
+      "id": "L1-1",
+      "surface": "D8",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/assets/deep-research.yaml",
+      "line": 1181,
+      "issue": "This step claims to list the script's \"fixed order, first match wins\", but the list omits the expansive frontier veto. convergence.cjs returns CONTINUE with reasonDetail `frontierOpen` when `config.depthMode === 'expansive'` and `research.frontierOpen > 0`, evaluated after the `minIterations` floor (line 1180) and before the quality-guard branch (line 1204). A reader of this order would expect a research run with open frontier nodes to stop on `all_questions_answered` or `composite_converged`, which is the behavior the depth mode exists to prevent; the same file's depth_mode input row (line 74) and frontier_gate note (line 1269) say the veto exists.",
+      "evidence": {
+        "cmd": "rg -n \"minIterations > 1|config.depthMode === 'expansive'|'frontierOpen'|qualityGuardFailed\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "15:// qualityGuardFailed, all_questions_answered, all_dimensions_clean,\n1180:  if (minIterations > 1 && iterationCount < minIterations) {\n1192:  if (config.depthMode === 'expansive'\n1196:    return emit('CONTINUE', null, 'frontierOpen', gatesAt(false), []);\n1204:    return emit('CONTINUE', null, 'qualityGuardFailed', evaluated, failedGuards);"
+      },
+      "fix": {
+        "old": "          5. if iteration_count < effective_min_iterations: CONTINUE (minIterationsNotReached)\n          6. a failed quality guard turns the candidate into CONTINUE (qualityGuardFailed)",
+        "new": "          5. if iteration_count < effective_min_iterations: CONTINUE (minIterationsNotReached)\n          5a. if depth_mode == \"expansive\" and an open or active frontier node remains: CONTINUE (frontierOpen)\n          6. a failed quality guard turns the candidate into CONTINUE (qualityGuardFailed)"
+      }
+    },
+    {
+      "id": "L1-2",
+      "surface": "D5",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/agents/deep-research.md",
+      "line": 100,
+      "issue": "The lifecycle reference names a section that does not exist. The research loop protocol's heading is `### Lifecycle Branch Contract (current release)` (loop-protocol.md:119); there is no `Lifecycle Branches` section, and the workflow cites the correct name at deep-research.yaml:684 and :2093. A reader following the completed-run extension reference lands on nothing.",
+      "evidence": {
+        "cmd": "rg -n \"^### Lifecycle\" .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+        "exit": 0,
+        "out": "119:### Lifecycle Branch Contract (current release)"
+      },
+      "fix": {
+        "old": "§Lifecycle Branches`)",
+        "new": "§Lifecycle Branch Contract`)"
+      }
+    },
+    {
+      "id": "L1-3",
+      "surface": "D6",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/agents/deep-review.md",
+      "line": 267,
+      "issue": "The admission-prune claim is unconditional, but frontier-admit.cjs only narrows a proposal to the review target when `reviewTargetType === 'files'`. For every other target type, including the template default `spec-folder`, `scopeInsideReviewTarget` returns true immediately, so a proposal scoped outside the target is admitted rather than pruned; a commit-range target is checked against `reviewScopeFiles` and also passes when that list is empty.",
+      "evidence": {
+        "cmd": "rg -n -A 6 \"function scopeInsideReviewTarget\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+        "exit": 0,
+        "out": "294:function scopeInsideReviewTarget(scope, config) {\n295-  const source = isPlainObject(config) ? config : {};\n296-  // Any target kind other than a file list is described in prose, so there is no\n297-  // path to be outside of and every scope stays relevant.\n298-  if (source.reviewTargetType !== 'files') return true;\n299-  if (typeof source.reviewTarget !== 'string') return true;\n300-  if (isCommitRange(source.reviewTarget)) return scopeInsideTouchedFiles(scope, source.reviewScopeFiles);"
+      },
+      "fix": {
+        "old": "it prunes a row that lacks evidence or scope, sits outside the review target, repeats a known node, or would exceed the depth, fan-out or budget caps.",
+        "new": "it prunes a row that lacks evidence or scope, sits outside a path-scoped review target (a file list or a commit range), repeats a known node, or would exceed the depth, fan-out or budget caps."
+      }
+    },
+    {
+      "id": "L1-4",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".claude/agents/deep-research.md",
+      "line": 84,
+      "issue": "The lifecycle reference names a section that does not exist. The research loop protocol's heading is `### Lifecycle Branch Contract (current release)` (loop-protocol.md:119); there is no `Lifecycle Branches` section, and the workflow cites the correct name at deep-research.yaml:684 and :2093. A reader following the completed-run extension reference lands on nothing.",
+      "evidence": {
+        "cmd": "rg -n \"^### Lifecycle\" .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+        "exit": 0,
+        "out": "119:### Lifecycle Branch Contract (current release)"
+      },
+      "fix": {
+        "old": "§Lifecycle Branches`)",
+        "new": "§Lifecycle Branch Contract`)"
+      }
+    },
+    {
+      "id": "L1-5",
+      "surface": "D2",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".claude/agents/deep-review.md",
+      "line": 253,
+      "issue": "The admission-prune claim is unconditional, but frontier-admit.cjs only narrows a proposal to the review target when `reviewTargetType === 'files'`. For every other target type, including the template default `spec-folder`, `scopeInsideReviewTarget` returns true immediately, so a proposal scoped outside the target is admitted rather than pruned; a commit-range target is checked against `reviewScopeFiles` and also passes when that list is empty.",
+      "evidence": {
+        "cmd": "rg -n -A 6 \"function scopeInsideReviewTarget\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+        "exit": 0,
+        "out": "294:function scopeInsideReviewTarget(scope, config) {\n295-  const source = isPlainObject(config) ? config : {};\n296-  // Any target kind other than a file list is described in prose, so there is no\n297-  // path to be outside of and every scope stays relevant.\n298-  if (source.reviewTargetType !== 'files') return true;\n299-  if (typeof source.reviewTarget !== 'string') return true;\n300-  if (isCommitRange(source.reviewTarget)) return scopeInsideTouchedFiles(scope, source.reviewScopeFiles);"
+      },
+      "fix": {
+        "old": "it prunes a row that lacks evidence or scope, sits outside the review target, repeats a known node, or would exceed the depth, fan-out or budget caps.",
+        "new": "it prunes a row that lacks evidence or scope, sits outside a path-scoped review target (a file list or a commit range), repeats a known node, or would exceed the depth, fan-out or budget caps."
+      }
+    },
+    {
+      "id": "L1-6",
+      "surface": "D3",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".pi/agents/deep-research.md",
+      "line": 92,
+      "issue": "The lifecycle reference names a section that does not exist. The research loop protocol's heading is `### Lifecycle Branch Contract (current release)` (loop-protocol.md:119); there is no `Lifecycle Branches` section, and the workflow cites the correct name at deep-research.yaml:684 and :2093. A reader following the completed-run extension reference lands on nothing.",
+      "evidence": {
+        "cmd": "rg -n \"^### Lifecycle\" .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+        "exit": 0,
+        "out": "119:### Lifecycle Branch Contract (current release)"
+      },
+      "fix": {
+        "old": "§Lifecycle Branches`)",
+        "new": "§Lifecycle Branch Contract`)"
+      }
+    },
+    {
+      "id": "L1-7",
+      "surface": "D4",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".pi/agents/deep-review.md",
+      "line": 260,
+      "issue": "The admission-prune claim is unconditional, but frontier-admit.cjs only narrows a proposal to the review target when `reviewTargetType === 'files'`. For every other target type, including the template default `spec-folder`, `scopeInsideReviewTarget` returns true immediately, so a proposal scoped outside the target is admitted rather than pruned; a commit-range target is checked against `reviewScopeFiles` and also passes when that list is empty.",
+      "evidence": {
+        "cmd": "rg -n -A 6 \"function scopeInsideReviewTarget\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+        "exit": 0,
+        "out": "294:function scopeInsideReviewTarget(scope, config) {\n295-  const source = isPlainObject(config) ? config : {};\n296-  // Any target kind other than a file list is described in prose, so there is no\n297-  // path to be outside of and every scope stays relevant.\n298-  if (source.reviewTargetType !== 'files') return true;\n299-  if (typeof source.reviewTarget !== 'string') return true;\n300-  if (isCommitRange(source.reviewTarget)) return scopeInsideTouchedFiles(scope, source.reviewScopeFiles);"
+      },
+      "fix": {
+        "old": "it prunes a row that lacks evidence or scope, sits outside the review target, repeats a known node, or would exceed the depth, fan-out or budget caps.",
+        "new": "it prunes a row that lacks evidence or scope, sits outside a path-scoped review target (a file list or a commit range), repeats a known node, or would exceed the depth, fan-out or budget caps."
+      }
+    }
+  ],
+  "reviewed": [
+    ".claude/agents/deep-research.md",
+    ".claude/agents/deep-review.md",
+    ".pi/agents/deep-research.md",
+    ".pi/agents/deep-review.md",
+    ".skilled/agents/deep-research.md",
+    ".skilled/agents/deep-review.md",
+    ".skilled/commands/deep/assets/deep-research-presentation.txt",
+    ".skilled/commands/deep/assets/deep-research.yaml"
+  ]
+}

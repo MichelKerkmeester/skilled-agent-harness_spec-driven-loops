@@ -1,7 +1,7 @@
 ---
 title: "DLR-060 -- Research prompt pack contract"
 description: "This scenario validates the research prompt pack for `DLR-060`. It focuses on the conditional research.md write path and the Recommended Next Focus heading the reducer parses."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DLR-060 -- Research prompt pack contract
@@ -74,6 +74,7 @@ If the lockstep case fails on the real pack, compare the write-path entry and th
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `../../feature-catalog/prompt-rendering/research-prompt-pack-contract.md` | Feature-catalog entry for the research prompt pack contract |
 | `../../feature-catalog/prompt-rendering/prompt-pack.md` | Feature-catalog source for the prompt pack |
 
 ### Implementation And Test Anchors

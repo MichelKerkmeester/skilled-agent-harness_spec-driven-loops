@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.10.0
+version: 1.14.11.0
 ---
 
 # deep-research
@@ -211,16 +211,16 @@ The skill ships a feature catalog and a manual testing playbook. The checks belo
 
 ### Feature Catalog
 
-`feature-catalog/` groups 26 live features by loop lifecycle, state management, convergence and research output. Each file explains how the feature works and lists the implementation and validation files behind it. Start at the [feature catalog index](./feature-catalog/feature-catalog.md).
+`feature-catalog/` groups 30 live features by loop lifecycle, state management, convergence and research output. Each file explains how the feature works and lists the implementation and validation files behind it. Start at the [feature catalog index](./feature-catalog/feature-catalog.md).
 
 ### Manual Testing Playbook
 
-`manual-testing-playbook/manual-testing-playbook.md` holds 54 deterministic scenarios across 8 categories. The playbook states the global preconditions, and each scenario names its expected signals and its verdict rule. Release readiness depends on complete coverage and no unresolved blocking contradiction.
+`manual-testing-playbook/manual-testing-playbook.md` holds 71 deterministic scenarios across 9 categories. The playbook states the global preconditions, and each scenario names its expected signals and its verdict rule. Release readiness depends on complete coverage and no unresolved blocking contradiction.
 
 | Check | Result |
 |---|---|
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-research/README.md --type readme` prints `✅ VALID` and `Total issues: 0` |
-| Workflow script paths | `bash .skilled/skills/system-deep-loop/deep-research/scripts/verify-yaml-script-paths.sh` prints `PASS checked 24 script references across 2 workflow YAMLs` |
+| Workflow script paths | `bash .skilled/skills/system-deep-loop/deep-research/scripts/verify-yaml-script-paths.sh` prints `PASS checked 27 script references across 2 workflow YAMLs` |
 | Packet contract parity | `deep-research-contract-parity.vitest.ts` checks that the primary docs name the canonical state log, the findings registry, the pause sentinel and `completed-continue`, and that both runtime mirrors name all of them except the pause sentinel |
 | Manual scenarios | Every scenario in the playbook returns PASS |
 
@@ -252,8 +252,8 @@ The skill ships a feature catalog and a manual testing playbook. The checks belo
 | [`assets/deep-research-dashboard.md`](./assets/deep-research-dashboard.md) | Dashboard template with the convergence trend |
 | [`assets/prompt-pack-iteration.md.tmpl`](./assets/prompt-pack-iteration.md.tmpl) | Per-round prompt template dispatched to the agent |
 | [`assets/runtime-capabilities.json`](./assets/runtime-capabilities.json) | Declared capability manifest checked at runtime |
-| [`feature-catalog/`](./feature-catalog/) | 26 features across four categories |
-| [`manual-testing-playbook/`](./manual-testing-playbook/) | 54 scenarios with expected signals and verdict rules |
+| [`feature-catalog/`](./feature-catalog/) | 30 features across four categories |
+| [`manual-testing-playbook/`](./manual-testing-playbook/) | 71 scenarios with expected signals and verdict rules |
 | [`behavior-benchmark/`](./behavior-benchmark/) | Behavior benchmark for the command surface under realistic prompts |
 | [`research.md`](../../../commands/deep/research.md) | The command entry that resolves setup and loads the workflow |
 | [`deep-research.yaml`](../../../commands/deep/assets/deep-research.yaml) | The workflow that owns init, dispatch, convergence and synthesis |

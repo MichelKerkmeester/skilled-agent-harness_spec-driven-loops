@@ -14,7 +14,7 @@ Thin router for the deep-review loop. This command verifies the orchestrating ag
 - **ALL** agent dispatching is handled by the YAML workflow steps.
 - **MARKDOWN OWNS SETUP**: resolve setup inputs here first, then hand off to YAML.
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
-  - `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`, `lineage_mode`
+  - `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `convergence_mode`, `depth_mode`, `stop_policy`, `lineage_mode`
   - `dry_run` (default false unless `--dry-run` is present)
 
 ## 1. ROUTER CONTRACT
@@ -37,7 +37,10 @@ Load the presentation contract before showing startup questions, dashboards, che
 >    - `execution_mode`
 >    - `maxIterations`
 >    - `convergenceThreshold`
+>    - `convergence_mode` (default `default` unless `--convergence-mode` is present)
+>    - `depth_mode` (default `default` unless `--depth-mode=expansive` is present)
 >    - `stop_policy` (default `convergence` unless `--stop-policy=max-iterations` is present)
+>    - `lineage_mode` (default `auto` unless `--lineage-mode` or `--restart` is present)
 >    - `dry_run` (default false unless `--dry-run` is present)
 > 2. Load the workflow YAML from `assets/` only after all setup values are resolved: `deep-review.yaml`. The mode binds `execution_mode` to `auto` or `confirm`.
 > 3. Execute the YAML workflow step by step using those resolved values
@@ -80,7 +83,7 @@ This contract is your instruction set. The review target is the bound spec_folde
 3. If `:auto` is present, set `execution_mode = AUTONOMOUS` and resolve required setup inputs through the presentation contract's three-tier auto setup resolution before loading YAML.
 4. If `:confirm` is present, set `execution_mode = INTERACTIVE` and use the presentation contract's consolidated setup prompt before loading YAML.
 5. If no mode suffix is present, set `execution_mode = ASK` and use the presentation contract's consolidated setup prompt to ask for execution mode.
-6. Load the selected workflow asset only after `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`, `lineage_mode` and `dry_run` are bound.
+6. Load the selected workflow asset only after `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `convergence_mode`, `depth_mode`, `stop_policy`, `lineage_mode` and `dry_run` are bound.
 
 ### Workflow Flag Surface
 
@@ -94,7 +97,7 @@ into `config`.
 | `--max-iterations` | `N` | Hard ceiling on loop iterations. |
 | `--convergence` | `N` | Threshold the loop must clear before convergence may stop it. |
 | `--convergence-mode` | `default` \| `off` \| `sliding-window` \| `divergent` | `default` keeps the anti-convergence `minIterations` floor. `off` disables convergence-driven STOP while max-iterations, pause and halt stay active. `sliding-window` scores novelty over a bounded window, five snapshots by default. `divergent` routes an eligible convergence stop into a Council pivot rather than ending the run. |
-| `--depth-mode` | `default` \| `expansive` | `default`, the value when the flag is absent, runs exactly as before. `expansive` is opt-in: the run seeds depth-1 sub-target nodes from the review target before iteration 1 (record the pilot range SHA; merges are pruned as `merge-no-own-diff` and index rebuilds as `generated-artifact`), admits leaf `frontier_proposal` rows under depth, fan-out, budget, dedupe and cycle caps (`expansiveDepth` in the config: `maxDepth` 3, `maxChildrenPerNode` 6, a 50/35/15 iteration budget across depths), keeps node status in `review/frontier-nodes.jsonl`, holds open nodes as `searchDebt`, dispatches the active node's next uncovered dimension, and turns a review stop candidate into another iteration while nodes stay open. A node needs one iteration per configured dimension, so set `--max-iterations` to at least `ceil(nodes / lineages) * dimensions` for the depth-1 band. It never outranks the iteration cap, stuck recovery, pause, `--convergence-mode=off` or `--stop-policy=max-iterations`. Fan-out lineages each get a share of the seeded nodes. |
+| `--depth-mode` | `default` \| `expansive` | `default`, the value when the flag is absent, runs exactly as before. `expansive` is opt-in: the run seeds depth-1 sub-target nodes from the review target before iteration 1 (merges are pruned as `merge-no-own-diff` and index rebuilds as `generated-artifact`), admits leaf `frontier_proposal` rows under depth, fan-out, budget, dedupe and cycle caps (`expansiveDepth` in the config: `maxDepth` 3, `maxChildrenPerNode` 6, a 50/35/15 iteration budget across depths), keeps node status in `review/frontier-nodes.jsonl`, holds open nodes as `searchDebt`, dispatches the active node's next uncovered dimension, and turns a review stop candidate into another iteration while nodes stay open. A node needs one iteration per dimension in its universe, the four canonical dimensions plus any custom name, and the depth-1 band gets only `budgetSplit.depth1` (0.5) of `--max-iterations`, so set `--max-iterations` to at least `2 * ceil(nodes / lineages) * dimensions` to fund the depth-1 band. It never outranks the iteration cap, stuck recovery, pause, `--convergence-mode=off` or `--stop-policy=max-iterations`. Fan-out lineages each get a share of the seeded nodes. |
 | `--lineage-timeout-hours` | `N` | See Lineage Timeout Flag below. |
 | `--stop-policy` | `convergence` \| `max-iterations` | See Stop Policy Flag below. |
 | `--no-resource-map` | no value | Suppresses the resource-map write; the review report still emits. |

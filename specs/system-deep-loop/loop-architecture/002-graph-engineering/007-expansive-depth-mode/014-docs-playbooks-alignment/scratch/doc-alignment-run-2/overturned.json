@@ -1,0 +1,376 @@
+[
+  {
+    "id": "L5-1",
+    "source_id": "L5-1",
+    "lane": "L5",
+    "surface": "D2",
+    "standard": "Every deterministic check listed for the topic in topics.json exits 0",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/initialization.md",
+    "line": "27",
+    "issue": "The doc says a completed-run extension \"raises `maxIterations` by N\". The extension step does not add N to the prior cap: it sets `maxIterations` to `continuedFromRun + N`, where `continuedFromRun` is the number of distinct iteration numbers in the state log. A run that stopped early at 7 of 10 and is extended by 3 ends at 10, not 13, and the new cap can even fall below the prior `maxIterations`. The sibling references state the correct formula (loop-protocol.md:136 \"Sets `maxIterations` to `continuedFromRun + N`\"), so this page is the outlier.",
+    "evidence": {
+      "cmd": "rg -n \"newMaxIterations\" .skilled/commands/deep/assets/deep-research.yaml",
+      "exit": 0,
+      "out": "520:            const newMaxIterations = continuedFromRun + addedIterations;\n536:                  newMaxIterations,\n546:              maxIterations: newMaxIterations,"
+    },
+    "fix": {
+      "old": "raises `maxIterations` by N,",
+      "new": "raises `maxIterations` to the runs so far plus N,"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "Already applied in the working tree. initialization.md:27 now reads 'sets `maxIterations` to the iterations run so far plus N', which matches the extension step's `continuedFromRun + addedIterations` (deep-research.yaml:520). The old string no longer occurs.",
+      "lane_severity": "P1"
+    }
+  },
+  {
+    "id": "L2-3",
+    "source_id": "L2-3",
+    "lane": "L2",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+    "line": "208",
+    "issue": "The step says \"Parse response and store ALL results\", but its binding list carries depth_mode and neither extend nor extend_minutes, which are the two values the extension step consumes (deep-research.yaml:563 passes \"{extend}\" \"{extend_minutes}\"), and the sibling deep-review-presentation.txt list carries lineage_mode and extend. The Phase Output list at line 222 also omits both, so a :confirm setup that follows this contract has no declared binding for the extension flags even though it declares depth_mode.",
+    "evidence": {
+      "cmd": "rg -n \"store ALL results|depth_mode = |\\{extend\\}|\\{extend_minutes\\}\" .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/commands/deep/assets/deep-research.yaml",
+      "exit": 0,
+      "out": ".skilled/commands/deep/assets/deep-research-presentation.txt:200:8. Parse response and store ALL results:\n.skilled/commands/deep/assets/deep-research-presentation.txt:208:   - depth_mode = [from flag, marker, or default `default`; one of `default`, `expansive`]\n.skilled/commands/deep/assets/deep-research.yaml:563:          ' \"{state_paths.config}\" \"{state_paths.state_log}\" \"{state_paths.packet_dir}/inbox.jsonl\" \"{extend}\" \"{extend_minutes}\" \"$WORK_DIR\" > \"$WORK_DIR/result.json\" || { rm -rf \"$WORK_DIR\"; exit 2; }'"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "The binding exists in the same consolidated prompt at step 3: deep-research-presentation.txt:116 binds `--extend=N -> extend = N, lineage_mode = completed-continue` and :117 binds `--extend-minutes=M -> extend_minutes = M`, which are the values the extension step consumes. Step 8 enumerates the answers to Q0-Q3/Q-Exec, so no extension flag reaches the YAML unbound and the Phase Output omission is not a binding gap.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "L8-1",
+    "source_id": "L8-1",
+    "lane": "L8",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": "README.md",
+    "line": "255",
+    "issue": "The summary presents `--extend=N` as adding N passes to any finished run, with no fan-out restriction. Both workflows refuse the flag when the config carries fan-out executors: `step_reject_extend_with_fanout` in deep-research.yaml (331-340) and deep-review.yaml (308-317) halts with a usage error before any lineage spawns, and both presentation contracts and both packet catalogs state \"refused with fan-out\". The paragraph immediately after this one advertises fan-out runs, so the unconditional wording is wrong for them.",
+    "evidence": {
+      "cmd": "rg -n \"Refuse --extend on a fan-out|extend-with-fanout|refused with fan-out\" .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/commands/deep/assets/deep-review-presentation.txt",
+      "exit": 0,
+      "out": ".skilled/commands/deep/assets/deep-review-presentation.txt:76:| `extend` | N | flag `--extend=N` (positive integer); sets `lineage_mode=completed-continue` on a completed run; refused with fan-out | none | N |\n.skilled/commands/deep/assets/deep-research-presentation.txt:75:| `extend` | N | flag `--extend=N` (positive integer); sets `lineage_mode=completed-continue` on a completed run; refused with fan-out | none | N |\n.skilled/commands/deep/assets/deep-research.yaml:331:    description: \"Refuse --extend on a fan-out config before any lineage spawns\"\n.skilled/commands/deep/assets/deep-research.yaml:340:    message: \"Usage error (extend-with-fanout): --extend extends a single-executor research run only. This config has fanout executors, so nothing was spawned and the run is unchanged.\"\n.skilled/commands/deep/assets/deep-review.yaml:308:    description: \"Refuse --extend on a fan-out config before any lineage spawns\"\n.skilled/commands/deep/assets/deep-review.yaml:317:    message: \"Usage error (extend-with-fanout): --extend extends a single-executor review run only. This config has fanout executors, so nothing was spawned and the run is unchanged.\""
+    },
+    "fix": {
+      "old": "`--extend=N` adds N passes to a finished run in the same session.",
+      "new": "`--extend=N` adds N passes to a finished single-executor run in the same session."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "Already applied. README.md:255 now reads '`--extend=N` adds N passes to a finished single-executor run in the same session.'",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "L8-2",
+    "source_id": "L8-2",
+    "lane": "L8",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+    "line": "51",
+    "issue": "The entry says only the expansive value reaches the runtime. The explicit default reaches it too: both workflows write `antiConvergence.depthMode: \"{depth_mode}\"` into the config and pass `--depth-mode \"{depth_mode}\"` to convergence.cjs and fanout-run.cjs, and the default-identity golden test carries a variant named \"explicit --depth-mode=default\" with `depthMode: 'default'` in both the config and the convergence args. Only the behavior change is gated on `expansive` (convergence.cjs:1192, reduce-state.cjs:2176).",
+    "evidence": {
+      "cmd": "rg -n \"explicit --depth-mode=default|depthMode: 'default'|antiConvergence.depthMode\" .skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml",
+      "exit": 0,
+      "out": ".skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts:73:    name: 'explicit --depth-mode=default',\n.skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts:75:      antiConvergence: { convergenceMode: 'default', depthMode: 'default' },\n.skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts:78:    convergenceArgs: { convergenceMode: 'default', depthMode: 'default' },\n.skilled/commands/deep/assets/deep-research.yaml:725:          antiConvergence.depthMode: \"{depth_mode}\"\n.skilled/commands/deep/assets/deep-review.yaml:878:          antiConvergence.depthMode: \"{depth_mode}\""
+    },
+    "fix": {
+      "old": "`mode-registry.json` has no depth field, and only the expansive value reaches the runtime.",
+      "new": "`mode-registry.json` has no depth field, and the runtime acts only on the expansive value."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "Already applied. system-deep-loop/feature-catalog/feature-catalog.md:51 now reads '`mode-registry.json` has no depth field, and the runtime acts only on the expansive value.' The identical claim in depth-mode-flag.md:28 was not fixed and is filed as C4.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "L5-5",
+    "source_id": "L5-5",
+    "lane": "L5",
+    "surface": "D10",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md",
+    "line": "100",
+    "issue": "The scenario claims no feature-catalog entry covers the frontier focus branch, but `feature-catalog/convergence/expansive-depth-mode.md` documents it in its \"Stop And Next Focus\" section (\"Next Focus steers to the shallowest open node\"). The statement is stale.",
+    "evidence": {
+      "cmd": "rg -n \"expansive-depth-mode\" .skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+      "exit": 0,
+      "out": "475:See [`convergence/expansive-depth-mode.md`](../feature-catalog/convergence/expansive-depth-mode.md) for full implementation and validation file listings."
+    },
+    "fix": {
+      "old": "- Feature catalog status: No entry in `feature-catalog/` covers the frontier focus branch yet, so this scenario cites none.",
+      "new": "- Feature catalog status: `feature-catalog/convergence/expansive-depth-mode.md` covers the frontier focus branch in its Stop And Next Focus section."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "Already applied. frontier-focus-picks-shallowest-open-node.md:100 now cites expansive-depth-mode.md's Stop And Next Focus section.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "L5-9",
+    "source_id": "L5-9",
+    "lane": "L5",
+    "surface": "D10",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md",
+    "line": "56",
+    "issue": "The expected summaries for both `deep-research-reduce-state.vitest` commands assume 49 tests in the file. The file registers 51 tests, so the reported lines are `1 passed | 50 skipped (51)`, not `1 passed | 48 skipped (49)`.",
+    "evidence": {
+      "cmd": "rg -c \"^\\s*it\\(\" .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+      "exit": 0,
+      "out": "51"
+    },
+    "fix": {
+      "old": "Command 1 prints `Tests  1 passed | 48 skipped (49)`, with the case `picks the shallowest open node and a visit does not resolve it` passing. Command 2 prints `Tests  1 passed | 48 skipped (49)`, with the case `counts a visit when the leaf rewords the focus around the node marker` passing.",
+      "new": "Command 1 prints `Tests  1 passed | 50 skipped (51)`, with the case `picks the shallowest open node and a visit does not resolve it` passing. Command 2 prints `Tests  1 passed | 50 skipped (51)`, with the case `counts a visit when the leaf rewords the focus around the node marker` passing."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "Already applied. frontier-focus-picks-shallowest-open-node.md:56 now prints `Tests  1 passed | 50 skipped (51)` for both commands, matching the 51 `it(` registrations in deep-research-reduce-state.vitest.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "L5-10",
+    "source_id": "L5-10",
+    "lane": "L5",
+    "surface": "D11",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "232",
+    "issue": "The DR-069 summary says two YAML contract cases pass. The seeded command `stop-decision-yaml-contract.vitest -t \"seeds\"` matches four cases, because the file carries both the research and the review seed-order cases. Repeating the count as two here propagates the stale expectation from the scenario file.",
+    "evidence": {
+      "cmd": "rg -n \"it\\('seeds\" .skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts",
+      "exit": 0,
+      "out": "169:  it('seeds the frontier before fan-out spawns', () => {\n178:  it('seeds the single-executor frontier right after the config exists', () => {\n248:  it('seeds the review frontier before fan-out spawns', () => {\n257:  it('seeds the single-executor review frontier right after the config exists', () => {"
+    },
+    "fix": {
+      "old": "two YAML contract cases pass and two admission cases pass",
+      "new": "four YAML contract cases pass (two research, two review) and two admission cases pass"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "Already applied. manual-testing-playbook.md:232 now reads 'four YAML contract cases pass (two research, two review) and two admission cases pass', matching the four `seeds` cases at stop-decision-yaml-contract.vitest:169,178,248,257.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "L5-6",
+    "source_id": "L5-6",
+    "lane": "L5",
+    "surface": "D4",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md",
+    "line": "100",
+    "issue": "The scenario claims no feature-catalog entry covers the frontier veto, but `feature-catalog/convergence/expansive-depth-mode.md` documents the veto in its \"Stop And Next Focus\" section and cites DR-072 as its manual playbook. The statement is stale.",
+    "evidence": {
+      "cmd": "rg -n \"expansive-depth-mode\" .skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+      "exit": 0,
+      "out": "475:See [`convergence/expansive-depth-mode.md`](../feature-catalog/convergence/expansive-depth-mode.md) for full implementation and validation file listings."
+    },
+    "fix": {
+      "old": "- Feature catalog status: No entry in `feature-catalog/` covers the frontier veto yet, so this scenario cites none.",
+      "new": "- Feature catalog status: `feature-catalog/convergence/expansive-depth-mode.md` covers the frontier veto in its Stop And Next Focus section."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "Already applied. frontier-open-veto-holds-soft-stop.md:100 now cites expansive-depth-mode.md's Stop And Next Focus section.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "L5-2",
+    "source_id": "L5-2",
+    "lane": "L5",
+    "surface": "D5",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+    "line": "103",
+    "issue": "The scenario claims no feature-catalog entry covers the expansive depth mode, but `feature-catalog/convergence/expansive-depth-mode.md` exists, is indexed in feature-catalog.md, and even cites DR-068 as its manual playbook. The statement is stale.",
+    "evidence": {
+      "cmd": "rg -n \"expansive-depth-mode\" .skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+      "exit": 0,
+      "out": "475:See [`convergence/expansive-depth-mode.md`](../feature-catalog/convergence/expansive-depth-mode.md) for full implementation and validation file listings."
+    },
+    "fix": {
+      "old": "- Feature catalog status: No entry in `feature-catalog/` covers the expansive depth mode yet, so this scenario cites none.",
+      "new": "- Feature catalog status: `feature-catalog/convergence/expansive-depth-mode.md` covers the expansive depth mode."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "Already applied. expansive-depth-flag-and-default-identity.md:103 now reads 'Feature catalog status: `feature-catalog/convergence/expansive-depth-mode.md` covers the expansive depth mode.'",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "L5-7",
+    "source_id": "L5-7",
+    "lane": "L5",
+    "surface": "D7",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+    "line": "103",
+    "issue": "The scenario claims no feature-catalog entry covers the fan-out frontier partition, but `feature-catalog/convergence/expansive-depth-mode.md` has a \"Fan-Out\" section that names the partition in fanout-run.cjs and the merge guard in fanout-merge.cjs. The statement is stale.",
+    "evidence": {
+      "cmd": "rg -n \"expansive-depth-mode\" .skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+      "exit": 0,
+      "out": "475:See [`convergence/expansive-depth-mode.md`](../feature-catalog/convergence/expansive-depth-mode.md) for full implementation and validation file listings."
+    },
+    "fix": {
+      "old": "- Feature catalog status: No entry in `feature-catalog/` covers the fan-out frontier partition yet, so this scenario cites none.",
+      "new": "- Feature catalog status: `feature-catalog/convergence/expansive-depth-mode.md` covers the fan-out frontier partition in its Fan-Out section."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "Already applied. fanout-frontier-partition-round-robin.md:103 now cites expansive-depth-mode.md's Fan-Out section.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "L5-3",
+    "source_id": "L5-3",
+    "lane": "L5",
+    "surface": "D8",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+    "line": "101",
+    "issue": "The scenario claims no feature-catalog entry covers the expansive seed step, but `feature-catalog/convergence/expansive-depth-mode.md` documents seeding in its \"Seeding And Admission\" section and lists the seed paths among its source files. The statement is stale.",
+    "evidence": {
+      "cmd": "rg -n \"expansive-depth-mode\" .skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+      "exit": 0,
+      "out": "475:See [`convergence/expansive-depth-mode.md`](../feature-catalog/convergence/expansive-depth-mode.md) for full implementation and validation file listings."
+    },
+    "fix": {
+      "old": "- Feature catalog status: No entry in `feature-catalog/` covers the expansive seed step yet, so this scenario cites none.",
+      "new": "- Feature catalog status: `feature-catalog/convergence/expansive-depth-mode.md` covers the expansive seed step in its Seeding And Admission section."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "Already applied. expansive-seed-writes-depth-one-nodes.md:101 now cites expansive-depth-mode.md's Seeding And Admission section.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "L5-8",
+    "source_id": "L5-8",
+    "lane": "L5",
+    "surface": "D8",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+    "line": "56",
+    "issue": "The expected summary for `vitest run stop-decision-yaml-contract.vitest -t \"seeds\"` is stale. The filter matches four seed cases, not two: the file also holds the two review seed cases, and the suite totals 35 tests (six cases under `describe.each` over the two workflow YAMLs, plus 23 others), not 22. The operator would see `4 passed | 31 skipped (35)` and mark a correct run FAIL.",
+    "evidence": {
+      "cmd": "rg -n \"it\\('seeds\" .skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts",
+      "exit": 0,
+      "out": "169:  it('seeds the frontier before fan-out spawns', () => {\n178:  it('seeds the single-executor frontier right after the config exists', () => {\n248:  it('seeds the review frontier before fan-out spawns', () => {\n257:  it('seeds the single-executor review frontier right after the config exists', () => {"
+    },
+    "fix": {
+      "old": "Command 2 prints `Tests  2 passed | 20 skipped (22)`, with the cases",
+      "new": "Command 2 prints `Tests  4 passed | 31 skipped (35)`, because the filter also matches the two review seed cases, with the cases"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "Already applied, and the lane's total was wrong. stop-decision-yaml-contract.vitest registers 34 tests (research 5 + review 6 under describe.each over the two YAMLs, plus 4+5+7+7 in the four later describes), so the correct summary is `4 passed | 30 skipped (34)`, which the scenario now states. The lane's proposed `31 skipped (35)` would have introduced a false total.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "L5-4",
+    "source_id": "L5-4",
+    "lane": "L5",
+    "surface": "D9",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+    "line": "100",
+    "issue": "The scenario claims no feature-catalog entry covers the expansive admission step, but `feature-catalog/convergence/expansive-depth-mode.md` documents admission (the six caps and the recorded prune reason) in its \"Seeding And Admission\" section. The statement is stale.",
+    "evidence": {
+      "cmd": "rg -n \"expansive-depth-mode\" .skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+      "exit": 0,
+      "out": "475:See [`convergence/expansive-depth-mode.md`](../feature-catalog/convergence/expansive-depth-mode.md) for full implementation and validation file listings."
+    },
+    "fix": {
+      "old": "- Feature catalog status: No entry in `feature-catalog/` covers the expansive admission step yet, so this scenario cites none.",
+      "new": "- Feature catalog status: `feature-catalog/convergence/expansive-depth-mode.md` covers the expansive admission step in its Seeding And Admission section."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "Already applied. frontier-admission-prunes-with-reasons.md:100 now cites expansive-depth-mode.md's Seeding And Admission section.",
+      "lane_severity": "P2"
+    }
+  }
+]

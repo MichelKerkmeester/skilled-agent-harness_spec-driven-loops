@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.16.1.0
+version: 1.16.2.0
 ---
 
 # deep-research: Manual Testing Playbook
@@ -229,7 +229,7 @@ Verify that the expansive seed step runs before the fan-out spawn and after conf
 #### Scenario Contract
 Prompt summary: Check that expansive depth mode seeds its depth-one frontier nodes before iteration one, on the fan-out path and on the single-executor path, and that a second seed does not decompose the topic again. Return a PASS or FAIL verdict with the reason.
 
-Expected signals: The root `step_frontier_seed` precedes `step_fanout_spawn`, the `phase_init` copy follows `step_create_config`, two YAML contract cases pass and two admission cases pass, one showing root parents and one showing that a second seed adds nothing.
+Expected signals: The root `step_frontier_seed` precedes `step_fanout_spawn`, the `phase_init` copy follows `step_create_config`, four YAML contract cases pass (two research, two review) and two admission cases pass, one showing root parents and one showing that a second seed adds nothing.
 
 #### Test Execution
 > **Feature File:** [DR-069](../manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md)

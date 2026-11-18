@@ -6,14 +6,14 @@ trigger_phrases:
   - "expansive depth research"
   - "research frontier mode"
   - "frontier admission research"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
 
 ## 1. OVERVIEW
 
-`--depth-mode` takes `default` or `expansive`. A run without the flag is unchanged. `expansive` turns on a research frontier: the run seeds depth-one nodes from the topic before iteration 1, admits leaf `frontier_proposal` rows as nodes under depth, fan-out, budget, dedupe and cycle caps, and holds a convergence stop while frontier nodes stay open. The live pilot runs that would show this mode on real topics are still open, so this page describes the shipped code and its tests and records no pilot result.
+`--depth-mode` takes `default` or `expansive`. A run without the flag is unchanged. `expansive` turns on a research frontier: the run seeds depth-one nodes from the topic before iteration 1, admits leaf `frontier_proposal` rows as nodes under depth, fan-out, budget, dedupe and cycle caps, and holds a convergence stop while frontier nodes stay open. Two live research pilots ran on one topic, and both failed the criterion that a stop candidate forms before the iteration cap: each run stopped on `maxIterationsReached`. This page describes the shipped code and its tests.
 
 ---
 
@@ -21,7 +21,7 @@ version: 1.0.1.0
 
 ### Seeding And Admission
 
-The expansive run seeds depth-one nodes before iteration 1. Each iteration's leaf `frontier_proposal` rows go through `runtime/scripts/frontier-admit.cjs`, which admits each proposal into the node store. It applies the depth cap, the fan-out cap, the iteration budget, dedupe and cycle checks, and records a reason for each prune.
+The expansive run seeds depth-one nodes before iteration 1. Each iteration's leaf `frontier_proposal` rows go through `runtime/scripts/frontier-admit.cjs`, which admits each proposal into the node store. It applies the relevance, dedupe, depth, fan-out, budget and cycle checks in that order, and records the name of the first failing check as the reason for each prune.
 
 ### Configuration
 
@@ -29,7 +29,7 @@ The expansive run seeds depth-one nodes before iteration 1. Each iteration's lea
 
 ### Stop And Next Focus
 
-While a frontier node is open, a composite convergence stop becomes another iteration. Next Focus steers to the shallowest open node. The iteration cap, the anti-convergence floor, stuck recovery, pause, `--convergence-mode=off` and the max-iterations policy decide before the frontier veto, so the frontier never extends a run past them.
+While a frontier node is open, a stop candidate, whether `all_questions_answered` or a composite convergence stop, becomes another iteration. Next Focus steers to the shallowest open node. The iteration cap, the anti-convergence floor, stuck recovery, pause, `--convergence-mode=off` and the max-iterations policy decide before the frontier veto, so the frontier never extends a run past them.
 
 ### Fan-Out
 

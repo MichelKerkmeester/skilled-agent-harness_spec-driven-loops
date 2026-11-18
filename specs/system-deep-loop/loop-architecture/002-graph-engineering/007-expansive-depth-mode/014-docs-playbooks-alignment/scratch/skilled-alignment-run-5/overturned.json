@@ -1,0 +1,31 @@
+[
+  {
+    "id": "C-04",
+    "source_id": "C-04",
+    "lane": "C",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/changelog/v2.1.0.0.md",
+    "line": "25",
+    "issue": "The scope rewrote this bullet to split its sentences for human-voice compliance but carried a serial comma through the rewrite. `They are a run that is not complete, a fan-out config, and a value that is not a positive integer.` is a three-item list with a comma before `and`. The Human Voice Rules table bans it outright (`Oxford Comma Ban | , and | NEVER use`), and sk-create-changelog section 8.5 restates the ban. The voice gate passes (it counts Oxford commas as a deduction, not a hard blocker), so this is a residual style defect on a line the diff touched, not a gate failure.",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .skilled/skills/system-deep-loop/changelog/v2.1.0.0.md --all",
+      "exit": 0,
+      "out": "25:128  review oxford-comma-candidate , and\n\n  hard blockers:          0\n  mechanical deductions:  -2\n  mechanical ceiling:     98/100"
+    },
+    "fix": {
+      "old": "a fan-out config, and a value",
+      "new": "a fan-out config and a value"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "At HEAD, `.skilled/skills/system-deep-loop/changelog/v2.1.0.0.md:25` reads \"...a fan-out config, or a value...\" — there is no `, and` sentence. The quoted text and the literal `old` string come from an intermediate working-tree rewrite; the current tree's line already reads \"...a fan-out config and a value...\" with no comma. `hvr_scan` on the HEAD blob flags line 25 as a generic `, and` candidate for the `, or` comma, so the finding's quoted evidence and fix do not reproduce.",
+      "lane_severity": "P2"
+    }
+  }
+]

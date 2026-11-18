@@ -9,7 +9,7 @@ trigger_phrases:
   - "composite convergence vote"
 importance_tier: important
 contextType: implementation
-version: 1.11.9.0
+version: 1.11.10.0
 ---
 
 # Deep Review Convergence
@@ -96,13 +96,13 @@ The shared convergence runtime accepts four values. Review legality, security ga
 | Mode | Live Behavior |
 |------|---------------|
 | `default` | Uses normal full-history convergence signals and sends a legal STOP to synthesis and verdict derivation. This is the fallback when no mode is supplied. |
-| `off` | Is accepted and persisted, but the shipped review YAML has no `off` decision branch; review therefore follows the same legal-stop and synthesis path as `default`. Use `stopPolicy: "max-iterations"` when convergence must remain telemetry-only until the iteration ceiling. |
+| `off` | Turns every stop candidate into `CONTINUE` with reason `convergenceModeOff`, as item 4 of the Decision Priority list says. The iteration cap, consecutive failures and stuck recovery still apply, so the run ends at the iteration ceiling. |
 | `sliding-window` | Is accepted and persisted, but windowed graph-novelty telemetry is research-only in the shared runtime; review therefore retains its ordinary full-history signals, legal-stop gates, and synthesis path. |
 | `divergent` | After all review gates pass, translates the eligible `all_dimensions_clean` STOP into a read-only three-seat direction-selection pivot and continues with the selected review direction. |
 
 #### Expansive Depth Mode
 
-`--depth-mode=expansive` grows a depth-capped frontier of sub-target nodes beside the review target. The value lands in `antiConvergence.depthMode`, and the caps live in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `budgetSplit` of 0.5/0.35/0.15 across the depth bands, and `maxFrontierNodes`, which is set to `maxIterations` when the config is created. Both the mode and the block are locked against the optimizer. An absent flag means `default`, which runs exactly as before.
+`--depth-mode=expansive` grows a depth-capped frontier of sub-target nodes beside the review target. The value lands in `antiConvergence.depthMode`, and the caps live in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `budgetSplit` of 0.5/0.35/0.15 across the depth bands, and `maxFrontierNodes`, which is set to `maxIterations` when the config is created. The mode is locked against the optimizer; the `expansiveDepth` block is in neither its tunable nor its locked list. An absent flag means `default`, which runs exactly as before.
 
 After the review floor, an expansive run that still holds an open or active node turns a stop candidate into `CONTINUE` with reasonDetail `frontierOpen`, whichever candidate it was, `all_dimensions_clean` or a composite convergence vote. The veto never creates a stop of its own and never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the `minIterations` floor. Under stuck recovery the handler closes the active node as `exhausted` with reason `stuck`, so a node the run cannot fund stops holding the veto open.
 
@@ -171,14 +171,18 @@ Every pivot dispatches three seats, or six when its first attempt misses quorum,
 
 ### Decision Priority
 
-Checks are evaluated in this order (first match wins):
+Checks are evaluated in this order (first match wins), as `buildStopDecision` in `runtime/scripts/convergence.cjs` runs them:
 
-1. **Max iterations** -- hard cap, always checked first.
-2. **All dimensions covered + clean** -- every configured dimension covered (the four by default), no active P0/P1, stabilization passed, gates passed.
-3. **Stuck detection** -- 2+ consecutive no-progress iterations.
-4. **Composite convergence** -- 3-signal weighted vote with threshold 0.60.
-5. **Legal-stop gate bundle** -- review-specific stop gates. If a stop vote fails any gate, persist `stopReason=blockedStop` and continue.
-6. **Default CONTINUE** -- none of the above triggered.
+1. **Max iterations** -- hard cap, always checked first. It outranks every veto below.
+2. **Consecutive failures** -- three trailing failed iterations stop the run with stop reason `error`.
+3. **Stuck detection** -- `stuckThreshold` (2) consecutive no-progress iterations route to stuck recovery.
+4. **Convergence mode off** -- `convergenceMode: off` returns `CONTINUE` (`convergenceModeOff`).
+5. **Stop policy max-iterations** -- `stopPolicy: max-iterations` returns `CONTINUE` (`stopPolicyMaxIterations`).
+6. **Stop candidate** -- all dimensions covered and clean (every configured dimension covered, the four by default, no active P0/P1, coverage stabilized) is a hard candidate; otherwise the 3-signal composite vote with threshold 0.60 is a soft one. No candidate returns `CONTINUE` (`noStopCandidate`).
+7. **Iteration floor** -- below `minIterations` the candidate returns `CONTINUE` (`minIterationsNotReached`).
+8. **Frontier veto** -- under `--depth-mode=expansive`, an open frontier node turns the candidate into `CONTINUE` (`frontierOpen`).
+9. **Legal-stop gate bundle** -- review-specific stop gates. If the candidate fails any gate, persist `stopReason=blockedStop` and continue.
+10. **Graph decision** -- the candidate is combined with the graph convergence verdict: `STOP_ALLOWED` stops, `STOP_BLOCKED` blocks the stop and `CONTINUE` continues the run.
 
 ---
 
@@ -602,7 +606,7 @@ The following fields are runtime contracts and MUST NOT be modified by the optim
 
 - `stopReason` enum values and semantics
 - `blocked_stop` event structure and gate names
-- Depth mode (`antiConvergence.depthMode`) and the `expansiveDepth` caps
+- Depth mode (`antiConvergence.depthMode`); the `expansiveDepth` caps are in neither the tunable nor the locked list
 - Lineage fields (`sessionId`, `lineageMode`, `generation`)
 - Reducer configuration and file protection policies
 - Review dimensions (`reviewDimensions`) and product mode (`mode`)

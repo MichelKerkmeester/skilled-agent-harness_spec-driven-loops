@@ -1,7 +1,7 @@
 ---
 title: "DLR-062 -- Divergent council quorum retry"
 description: "This scenario validates that a divergent pivot council gets three seats per attempt and one retry after a first-attempt quorum miss, for `DLR-062`. It focuses on the seat budget and the attempt identity that the retry relies on."
-version: 2.1.0.0
+version: 2.1.1.0
 ---
 
 # DLR-062 -- Divergent council quorum retry
@@ -101,4 +101,4 @@ Commands 1 to 3 exit 0 with every case passing. The integration suite includes t
 - Playbook ID: DLR-062
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `council/divergent-council-quorum-retry.md`
-- Feature catalog status: this scenario does not cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/council/divergent-pivot-seat-cap-and-retry.md` covers this scenario.

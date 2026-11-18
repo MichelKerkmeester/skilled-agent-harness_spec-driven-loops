@@ -1,0 +1,44 @@
+[
+  {
+    "id": "P02",
+    "prompt": "Investigate iteratively why the parser drops unicode and keep a depth-capped frontier of follow-up questions",
+    "expect": "system-deep-loop",
+    "expectMode": "research",
+    "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Investigate iteratively why the parser drops unicode and keep a depth-capped frontier of follow-up questions\"}' --format json",
+    "exit": 0,
+    "status": "fail",
+    "reason": "top-1 was nothing",
+    "actual": null,
+    "actualMode": null,
+    "confidence": null,
+    "runnerUp": null
+  },
+  {
+    "id": "P05",
+    "prompt": "Audit this spec folder for release readiness and keep a frontier of sub-targets open until they are exhausted",
+    "expect": "system-deep-loop",
+    "expectMode": "review",
+    "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Audit this spec folder for release readiness and keep a frontier of sub-targets open until they are exhausted\"}' --format json",
+    "exit": 0,
+    "status": "fail",
+    "reason": "top-1 was system-spec-kit",
+    "actual": "system-spec-kit",
+    "actualMode": null,
+    "confidence": 0.95,
+    "runnerUp": "system-deep-loop"
+  },
+  {
+    "id": "P12",
+    "prompt": "Extend the completed review run by three iterations",
+    "expect": "system-deep-loop",
+    "expectMode": "review",
+    "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Extend the completed review run by three iterations\"}' --format json",
+    "exit": 0,
+    "status": "fail",
+    "reason": "top-1 was sk-code/sk-code-review",
+    "actual": "sk-code",
+    "actualMode": "sk-code-review",
+    "confidence": 0.8384,
+    "runnerUp": "system-deep-loop"
+  }
+]

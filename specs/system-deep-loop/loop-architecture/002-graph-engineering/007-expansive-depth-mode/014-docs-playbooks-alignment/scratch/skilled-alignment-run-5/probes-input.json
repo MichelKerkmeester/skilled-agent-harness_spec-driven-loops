@@ -1,0 +1,45 @@
+[
+ {
+  "prompt": "Run a deep research loop on the payments provider and keep a depth-capped frontier of follow-up questions beside the seeded ones",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Investigate the retry policy in expansive depth mode, three levels of follow-up questions deep",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Extend a completed research run by three more iterations in the same session",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Review the payments module in expansive depth mode with a frontier of review sub-targets",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Audit the diff and route the convergence stop into a council pivot instead of ending the loop",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Run the review loop with convergence turned off so only max-iterations can stop it",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Review the release against custom dimensions beyond the four canonical ones",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Review the pull request diff for security problems before I merge it",
+  "expect": "sk-code"
+ },
+ {
+  "prompt": "Commit these changes with a conventional commit message",
+  "expect": "sk-git"
+ }
+]

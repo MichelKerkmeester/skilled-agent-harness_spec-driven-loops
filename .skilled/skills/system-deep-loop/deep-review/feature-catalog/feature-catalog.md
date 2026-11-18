@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-review review-loop system."
-version: 1.11.3.0
+version: 1.11.4.0
 ---
 
 # deep-review: Feature Catalog
@@ -16,9 +16,9 @@ Use this catalog as the canonical inventory for the live `deep-review` feature s
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
-| Loop lifecycle | 9 features | [`SKILL.md`](../SKILL.md), [`references/protocol/loop-protocol.md`](../references/protocol/loop-protocol.md), deep-review workflows, fan-out runtime primitives |
-| State management | 7 features | [`references/state/state-format.md`](../references/state/state-format.md), review packet files, reducer outputs |
-| Review dimensions | 4 features | `assets/review-mode-contract.yaml`, [`assets/deep-review-strategy.md`](../assets/deep-review-strategy.md) |
+| Loop lifecycle | 12 features | [`SKILL.md`](../SKILL.md), [`references/protocol/loop-protocol.md`](../references/protocol/loop-protocol.md), deep-review workflows, fan-out runtime primitives |
+| State management | 8 features | [`references/state/state-format.md`](../references/state/state-format.md), review packet files, reducer outputs |
+| Review dimensions | 5 features | `assets/review-mode-contract.yaml`, [`assets/deep-review-strategy.md`](../assets/deep-review-strategy.md) |
 | Severity system | 9 features | [`references/convergence/convergence.md`](../references/convergence/convergence.md), [`references/state/state-format.md`](../references/state/state-format.md), review contract, divergent review pivots |
 
 ---
@@ -221,7 +221,7 @@ Opt-in --depth-mode=expansive on deep-review seeds depth-one sub-target nodes fr
 
 #### How It Works
 
-Node status lives in `review/frontier-nodes.jsonl`, open nodes count as `searchDebt`, and the divergent pivot waits for a terminal frontier. The live pilot runs are still open, so no pilot result is recorded here.
+Node status lives in `review/frontier-nodes.jsonl`, open nodes count as `searchDebt`, and the divergent pivot waits for a terminal frontier. One live review pilot ran. Its depth-1 budget check passed, but its stop criterion failed: the root fan-out cap of 6, since raised to 8 for a review seed, pruned a seventh depth-1 node, and three of six lineages stopped on `maxIterationsReached`.
 
 #### Source Files
 

@@ -5,7 +5,7 @@ trigger_phrases:
   - "runtime/ feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
-version: 1.4.5.0
+version: 1.4.6.0
 ---
 
 # runtime/: Feature Catalog
@@ -16,19 +16,19 @@ This document combines the current feature inventory for the `runtime/` skill in
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `runtime/` feature surface. The 51 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, `/doctor:deep-loop`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
+Use this catalog as the canonical inventory for the live `runtime/` feature surface. The 57 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, `/doctor:deep-loop`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
-| [executor](executor/) | 4 features | `lib/deep-loop/executor-config.ts`, `lib/deep-loop/executor-audit.ts`, `lib/deep-loop/fallback-router.ts` |
-| [prompt-rendering](../feature-catalog/prompt-rendering) | 1 features | `lib/deep-loop/prompt-pack.ts` |
+| [executor](executor/) | 6 features | `lib/deep-loop/executor-config.ts`, `lib/deep-loop/executor-audit.ts`, `lib/deep-loop/fallback-router.ts` |
+| [prompt-rendering](../feature-catalog/prompt-rendering) | 2 features | `lib/deep-loop/prompt-pack.ts` |
 | [validation](validation/) | 3 features | `lib/deep-loop/post-dispatch-validate.ts`, `.opencode/plugins/system-deep-loop-guard.js` |
 | [state-safety](../feature-catalog/state-safety) | 13 features | `lib/deep-loop/atomic-state.ts`, `lib/deep-loop/jsonl-repair.ts`, `lib/deep-loop/loop-lock.ts`, `lib/deep-loop/permissions-gate.ts` |
 | [scoring](scoring/) | 2 features | `lib/deep-loop/bayesian-scorer.ts` |
-| [coverage-graph](../feature-catalog/coverage-graph) | 6 features | `lib/coverage-graph/coverage-graph-db.ts`, `lib/coverage-graph/coverage-graph-query.ts`, `lib/coverage-graph/coverage-graph-signals.ts` |
+| [coverage-graph](../feature-catalog/coverage-graph) | 7 features | `lib/coverage-graph/coverage-graph-db.ts`, `lib/coverage-graph/coverage-graph-query.ts`, `lib/coverage-graph/coverage-graph-signals.ts` |
 | [script-entry-points](../feature-catalog/script-entry-points) | 5 features | `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/query.cjs`, `scripts/status.cjs` |
-| [council](council/) | 1 feature | `lib/council/multi-seat-dispatch.cjs` |
-| [fanout](fanout/) | 9 features | `scripts/fanout-pool.cjs`, `scripts/fanout-run.cjs`, `scripts/fanout-salvage.cjs`, `scripts/fanout-merge.cjs`, config schema in `lib/deep-loop/executor-config.ts` |
+| [council](council/) | 2 features | `lib/council/multi-seat-dispatch.cjs` |
+| [fanout](fanout/) | 10 features | `scripts/fanout-pool.cjs`, `scripts/fanout-run.cjs`, `scripts/fanout-salvage.cjs`, `scripts/fanout-merge.cjs`, config schema in `lib/deep-loop/executor-config.ts` |
 | [lifecycle](lifecycle/) | 2 features | `lib/deep-loop/sleep.ts`, `lib/deep-loop/lifecycle-taxonomy.cjs` |
 | [observability](observability/) | 3 features | `lib/deep-loop/observability-events.cjs`, `lib/deep-loop/post-dispatch-validate.ts`, `.skilled/commands/deep/assets/deep-research.yaml` |
 | [testing](testing/) | 2 features | `tests/helpers/spawn-cjs.ts`, `tests/integration/convergence-script.vitest.ts`, `tests/unit/fanout-run.vitest.ts` |

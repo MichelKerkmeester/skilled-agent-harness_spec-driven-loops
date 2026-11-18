@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.16.0
+version: 1.11.17.0
 ---
 
 # Deep Review Loop Protocol
@@ -456,7 +456,7 @@ function selectReviewRecoveryStrategy(stuckIterations, state, config):
 
 ### Expansive Depth Frontier (opt-in)
 
-Under `--depth-mode=expansive` the loop keeps a frontier of sub-target nodes beside the review target. The flag writes `antiConvergence.depthMode: "expansive"` and the caps in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `budgetSplit` of 0.5/0.35/0.15 across the depth bands, and `maxFrontierNodes`, set to `maxIterations` at config creation. A run without the flag keeps the default path and runs exactly as before, and both the mode and the caps are locked against the optimizer.
+Under `--depth-mode=expansive` the loop keeps a frontier of sub-target nodes beside the review target. The flag writes `antiConvergence.depthMode: "expansive"` and the caps in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `budgetSplit` of 0.5/0.35/0.15 across the depth bands, and `maxFrontierNodes`, set to `maxIterations` at config creation. A run without the flag keeps the default path and runs exactly as before, and the mode is locked against the optimizer; the `expansiveDepth` caps are in neither its tunable nor its locked list.
 
 `step_frontier_seed` decomposes the review target into depth-1 sub-target nodes before iteration 1, through `runtime/scripts/frontier-admit.cjs seed --target review`. On a plain run it sits in `phase_init` after `step_create_config`; on a fan-out run it runs before `step_fanout_spawn`. A merge that carries no diff of its own is pruned `merge-no-own-diff` and an index rebuild `generated-artifact`, because neither is reviewable work.
 

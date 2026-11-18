@@ -1,0 +1,2078 @@
+[0m
+> build · deepseek-v4.1-flash
+I'll start by reading the two docs in my lane and the source-of-truth code files.
+[0m→ [0mRead .skilled/commands/deep/assets/deep-research-presentation.txt 
+[0m→ [0mRead .skilled/commands/deep/assets/deep-research.yaml 
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/commands/deep/assets/deep-research.yaml [90m[offset=772, limit=900][0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/commands/deep/assets/deep-research.yaml [90m[limit=900, offset=1417][0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/commands/deep/assets/deep-research.yaml [90m[limit=900, offset=2083][0m
+> build · deepseek-v4.1-flash
+Now let me read the source-of-truth code files.
+[0m$ [0mwc -l .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs .skilled/commands/deep/assets/deep-review.yaml
+812 .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs
+    1984 .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs
+    4776 .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+    1812 .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs
+    3596 .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs
+    3090 .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs
+    2608 .skilled/commands/deep/assets/deep-review.yaml
+   18678 total
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs 
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs [90m[limit=700][0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs [90m[limit=800, offset=701][0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs [90m[limit=500, offset=1501][0m
+> build · deepseek-v4.1-flash
+[0m✱ [0mGrep "frontier|emit-resource-map|fanout-resource-map-only|artifact-dir|next_focus|NEXT FOCUS" [90min .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs · 53 matches[0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs [90m[limit=200, offset=2410][0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs [90m[limit=240, offset=3340][0m
+> build · deepseek-v4.1-flash
+[0m✱ [0mGrep "depth|frontier|extend|lineage-timeout|lineageTimeout|fanout-config-json|stop-policy|convergence-mode" [90min .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs · 44 matches[0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs [90m[limit=180, offset=270][0m
+> build · deepseek-v4.1-flash
+[0m✱ [0mGrep "KNOWN_FLAGS|knownFlags|assertKnownFlags|const FLAGS|USAGE" [90min .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs · 2 matches[0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs [90m[limit=120, offset=1][0m
+> build · deepseek-v4.1-flash
+[0m✱ [0mGrep "frontier|depth|expansive|partition|extend|resource-map|resourceMap" [90min .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs · 19 matches[0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs [90m[limit=80, offset=755][0m
+> build · deepseek-v4.1-flash
+[0m✱ [0mGrep "extend|extend_minutes|depth|expansive|frontier|dimension|floor|minIterations|min_iterations|snapshot" [90min .skilled/commands/deep/assets/deep-research-presentation.txt · 14 matches[0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs [90m[limit=140, offset=1690][0m
+> build · deepseek-v4.1-flash
+[0m✱ [0mGrep "artifact-dir|loop-type|parseArgs|argv|usage" [90min .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs · 9 matches[0m
+> build · deepseek-v4.1-flash
+[0m✱ [0mGrep "convergenceThreshold|newFindingsRatio|minIterations|reviewDimensions|depth_mode|expansive" [90min .skilled/commands/deep/assets/deep-review.yaml · 42 matches[0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/commands/deep/assets/deep-review.yaml [90m[limit=40, offset=1232][0m
+> build · deepseek-v4.1-flash
+[0m$ [0mgit -c core.fsmonitor=false grep -n "synthesis_snapshot_pattern\|synthesis-v" -- . ':!*.jsonl' | head -50
+specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/005-extraction-rerun/implementation-summary.md:17:      - "synthesis-v3.md"
+specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/005-extraction-rerun/implementation-summary.md:18:      - "synthesis-v2.md"
+specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/005-extraction-rerun/implementation-summary.md:72:| `scripts/synthesize-v2.cjs` | Created | Reads 113/005/state/eval-loop-state-v2.jsonl, parses v1 baseline from 113/003/synthesis.md, writes synthesis-v2.md with side-by-side ranking + verdict. |
+specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/005-extraction-rerun/implementation-summary.md:74:| `synthesis-v2.md` | Created | Final v1-vs-v2 comparison + verdict + cli-devin v1.0.6.0 decision. |
+specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/005-extraction-rerun/implementation-summary.md:104:| Keep v2 state in 113/005/state, not 003/state | 003's v1 baseline must survive as the committed reference for future synthesis-v2-style comparisons |
+specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/005-extraction-rerun/implementation-summary.md:120:| REQ-005: synthesis-v2 compares v1 vs v2 | side-by-side ranking table + verdict written in synthesis-v2.md | PASS |
+specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/005-extraction-rerun/implementation-summary.md:155:Artifacts: `synthesis-v3.md`, `scripts/synthesize-v3.cjs`, `state/{best-variant,eval-loop-state,mutation-coverage,eval-loop-dashboard}-v3`, `iterations/iteration-00{1..8}-v3.md`, `state/extraction-grader-cache/`.
+specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/005-extraction-rerun/plan.md:41:| **Storage** | `113/005/state/`, `113/005/iterations/`, `113/005/synthesis-v2.md` |
+specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/005-extraction-rerun/plan.md:62:- [ ] synthesis-v2.md compares v1 vs v2 rankings
+
+[showing lines 42-50 of 50; full output saved to /Users/michelkerkmeester/.local/share/opencode/shell/4c10847297631c3af43d766cf1908920fe00c449/sh_1ec37ff3200190CtA2tOA9Prap.out]
+> build · deepseek-v4.1-flash
+[0m✱ [0mGrep "CEILING|ceilingHours|MAX_LINEAGE|lineageTimeout|4" [90min .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs · 40 matches[0m
+> build · deepseek-v4.1-flash
+[0m$ [0msed -n '1,80p' .skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json
+{
+  "topic": "",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "depthMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "expansiveDepth": {
+    "maxDepth": 3,
+    "maxChildrenPerNode": 6,
+    "budgetSplit": { "depth1": 0.5, "depth2": 0.35, "depth3": 0.15 },
+    "maxFrontierNodes": null
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "",
+  "createdAt": "",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "native",
+    "model": null,
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart",
+      "completed-continue"
+    ],
+    "deferredModes": [
+      "fork"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+> build · deepseek-v4.1-flash
+[0m$ [0mgit -c core.fsmonitor=false log --oneline -8 -- .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-research-presentation.txt
+f0f08e96f3d fix(system-deep-loop): reduce once after the frontier seed
+ac1d2a6b7dc fix(system-deep-loop): write frontier graph events as one JSON array
+2c9405692a1 fix(system-deep-loop): match frontier visits on a reworded focus
+5e583331cc9 feat(system-deep-loop): integrate the research frontier mode
+6953b67c5dd fix(deep): count extended runs by iteration when run holds a run id
+6d4adc8ef41 docs(system-deep-loop): document the expansive research frontier
+aa30dc28f77 feat(system-deep-loop): partition the research frontier across fan-out lineages
+2a36d1fb16e feat(system-deep-loop): render the frontier block into the research prompt
+> build · deepseek-v4.1-flash
+[0m$ [0mgit -c core.fsmonitor=false show --stat f0f08e96f3d 6953b67c5dd 6d4adc8ef41 2c9405692a1 | head -60
+commit f0f08e96f3db643fe6b72815a8fb520120b19f0f
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Wed Nov 18 01:16:35 2026 +0100
+
+    fix(system-deep-loop): reduce once after the frontier seed
+    
+    Under the expansive depth mode the loop renders the frontier block from the
+    strategy's next focus, and only the reducer writes that focus. Nothing reduced
+    between the seed and the first iteration, so iteration 1 ran on the template
+    focus with no frontier node and no frontier block. A single expansive-gated
+    init step now runs the reducer after the strategy exists, and a lifecycle
+    test runs it on a seeded packet and renders the block from the focus it wrote.
+    
+    Commit-Id: 0014838
+
+ .../compiled/deep-research.contract.markdown       |  2 +-
+ .skilled/commands/deep/assets/deep-research.yaml   | 10 ++++
+ .../unit/workflow-restart-lifecycle.vitest.ts      | 70 ++++++++++++++++++++++
+ 3 files changed, 81 insertions(+), 1 deletion(-)
+
+commit 6953b67c5dd03ce477c4df1be20d5fea9fee301d
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Tue Nov 17 23:09:03 2026 +0100
+
+    fix(deep): count extended runs by iteration when run holds a run id
+    
+    The completed-run extension counted runs by the run field first, and review
+    leaves write their run id string there, so a two-iteration review counted
+    as one run and an extension undershot its cap. Runs now count by the integer
+    iteration with a numeric run as the fallback, the same rule the state reader
+    uses, in both workflows.
+    
+    Commit-Id: 0014809
+
+ .../compiled/deep-research.contract.markdown       |  2 +-
+ .../assets/compiled/deep-review.contract.markdown  |  2 +-
+ .skilled/commands/deep/assets/deep-research.yaml   |  7 +++-
+ .skilled/commands/deep/assets/deep-review.yaml     |  7 +++-
+ .../unit/workflow-restart-lifecycle.vitest.ts      | 45 +++++++++++++++++++++-
+ .../001-completed-run-extension/goal.md            |  1 +
+ .../graph-metadata.json                            |  6 +--
+ .../001-completed-run-extension/tasks.md           |  2 +-
+ 8 files changed, 60 insertions(+), 12 deletions(-)
+
+commit 6d4adc8ef419b8ebb53d8e709130b5984a1f1369
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Tue Nov 17 23:04:19 2026 +0100
+
+    docs(system-deep-loop): document the expansive research frontier
+    
+    Describes the opt-in depth mode, the seed and admission steps, the node
+    store, the stop veto, stuck close and the fan-out partition in the
+    research references, skill and README, and points the reference-only
+    wave block at the live frontier.
+    
+    Commit-Id: 0014808
+
+ .../deep/assets/compiled/deep-research.contract.markdown | 10 +++++-----
+ .skilled/commands/deep/assets/deep-research.yaml         |  1 +
+ .skilled/skills/system-deep-loop/deep-research/README.md |  4 +++-
+> build · deepseek-v4.1-flash
+[0m$ [0mgit -c core.fsmonitor=false show f0f08e96f3d -- .skilled/commands/deep/assets/deep-research.yaml; git -c core.fsmonitor=false show 2c9405692a1 -- .skilled/commands/deep/assets/deep-research.yaml
+commit f0f08e96f3db643fe6b72815a8fb520120b19f0f
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Wed Nov 18 01:16:35 2026 +0100
+
+    fix(system-deep-loop): reduce once after the frontier seed
+    
+    Under the expansive depth mode the loop renders the frontier block from the
+    strategy's next focus, and only the reducer writes that focus. Nothing reduced
+    between the seed and the first iteration, so iteration 1 ran on the template
+    focus with no frontier node and no frontier block. A single expansive-gated
+    init step now runs the reducer after the strategy exists, and a lifecycle
+    test runs it on a seeded packet and renders the block from the focus it wrote.
+    
+    Commit-Id: 0014838
+
+diff --git a/.skilled/commands/deep/assets/deep-research.yaml b/.skilled/commands/deep/assets/deep-research.yaml
+index 5478a05fc80..48342314333 100644
+--- a/.skilled/commands/deep/assets/deep-research.yaml
++++ b/.skilled/commands/deep/assets/deep-research.yaml
+@@ -866,6 +866,16 @@ workflow:
+         edit: "{state_paths.strategy}"
+         note: "When resource_map_present is true, append the resource_map_known_context snapshot. When false, append 'resource-map.md not present; skipping coverage gate'."
+ 
++      step_frontier_reduce_seed:
++        action: "Reduce once after the seed so iteration 1 already focuses a frontier node"
++        enabled_when: "depth_mode == 'expansive'"
++        dry_run_boundary: "reducer-refresh"
++        note: "The loop reads next_focus from the strategy and renders the frontier block from it, and only the reducer writes that focus. Without this pass the first iteration has no frontier node and no frontier block."
++        command: |
++          node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}
++        working_directory: "{repo_root}"
++        on_failure: "Log the stderr line as a config_warning bookkeeping event and continue; iteration 1 then runs on the strategy's own focus and step_reduce_state picks the frontier up after it."
++
+       step_detect_spec_present:
+         action: "Classify late-INIT spec.md state after the durable research packet exists"
+         dry_run_event_policy: preview-only
+commit 2c9405692a1f0d08104a98fc596388e56495fab8
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Tue Nov 17 23:19:19 2026 +0100
+
+    fix(system-deep-loop): match frontier visits on a reworded focus
+    
+    The reducer counted a frontier node's visits only when the leaf's focus
+    started with the dispatched node line, and nothing told the leaf to copy it,
+    so a reworded focus left every node unvisited and its budget unspent. Visits
+    now match the node marker anywhere in the focus, the frontier block asks the
+    leaf to copy its Focus Area line, and the stuck close reads the same marker.
+    The golden default-path check also tokenized only the spec folder, so its
+    lineage baseline held the absolute path of the checkout that recorded it; the
+    working directory is now tokenized too.
+    
+    Commit-Id: 0014815
+
+diff --git a/.skilled/commands/deep/assets/deep-research.yaml b/.skilled/commands/deep/assets/deep-research.yaml
+index c95a37f2482..5edabf9700c 100644
+--- a/.skilled/commands/deep/assets/deep-research.yaml
++++ b/.skilled/commands/deep/assets/deep-research.yaml
+@@ -1422,7 +1422,7 @@ workflow:
+           dry_run_event_policy: preview-only
+           append_jsonl: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+           if_expansive_open_node:
+-            when: "depth_mode == 'expansive' AND the latest iteration focus starts with 'Frontier node <id>' AND that node is open or active in registry.frontier.nodes"
++            when: "depth_mode == 'expansive' AND the latest iteration focus contains 'Frontier node <id>' AND that node is open or active in registry.frontier.nodes"
+             extract:
+               - active_frontier_node_id: "The node id in the latest iteration focus, which the reducer writes as 'Frontier node <id> (depth N, scope S): <question>'"
+             note: "The stuckRecovery append above stays on this path: the loop counters reset stuckCount on that event, and without it the next low-yield iteration would close the next node after one iteration."
+> build · deepseek-v4.1-flash
+[0m$ [0mgit -c core.fsmonitor=false log --oneline -20 -- .skilled/commands/deep/assets/deep-research-presentation.txt
+391d83fbe6e feat(deep): bind the research depth_mode flag beside convergence_mode
+2c80c64f391 feat(deep): extend a completed research or review run with --extend=N
+6f59f51b022 fix(alignment): recapture the routing corpus pin and close remaining findings
+6adf5d1f9f1 Merge remote-tracking branch 'origin/main' into worktrees/382-deep-loop-workflow-logic-hardening
+10c054c7b45 refactor(system-deep-loop): point every caller of the retired council mode at the agent
+9d02835e467 docs(system-deep-loop): align the research and review docs with the code and guard them
+f921b2c65b0 feat(system-deep-loop): run research and review from one workflow file each
+0554ea051fc feat(system-deep-loop): make restart, the lock and the duration cap hold
+cf473969a1b fix(system-deep-loop): harden the single DeepSeek Harness lineage
+1bedb335779 feat(system-deep-loop): run a single DeepSeek Harness lineage in deep review and research
+b8912b831c0 feat(system-spec-kit): propose sub-tracks with suggest-subtracks.mjs and offer them in Gate 3
+68297d868aa fix(system-deep-loop): bind one --executor to the single-executor path
+854a6ed284e fix(system-deep-loop): route a one-lineage matrix in the setup prompt
+be4285b01e8 feat(system-deep-loop): refuse a one-lineage fan-out and point chat at the card
+aa6838b144b docs(system-deep-loop): label the DeepSeek harness executor fan-out only
+e7398d6c768 fix(system-deep-loop): route single-executor dispatch through the shared builder
+73d5a9b6408 refactor(cli-external-orchestration)!: remove the cli-hermes executor and runtime
+382434d2d5b feat(system-deep-loop): run deep-loop lanes on the DeepSeek Harness executor
+5b5f56720f4 feat(cli-external-orchestration): default DeepSeek flash to its 1017 release
+b1f6c78482a refactor(cli-external-orchestration): retire the Cline provider and MiMo v2.6
+> build · deepseek-v4.1-flash
+[0m$ [0mgit -c core.fsmonitor=false show 391d83fbe6e -- .skilled/commands/deep/assets/deep-research-presentation.txt; git -c core.fsmonitor=false show 2c80c64f391 -- .skilled/commands/deep/assets/deep-research-presentation.txt
+commit 391d83fbe6e9f5acbf02c3554afafd71b9cab6cc
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Tue Nov 17 22:20:29 2026 +0100
+
+    feat(deep): bind the research depth_mode flag beside convergence_mode
+    
+    Adds the --depth-mode flag row, the presentation bindings, the YAML
+    user input, preflight requirement, config write, state extract and the
+    convergence.cjs argument, and lets convergence.cjs accept the flag.
+    
+    Commit-Id: 0014789
+
+diff --git a/.skilled/commands/deep/assets/deep-research-presentation.txt b/.skilled/commands/deep/assets/deep-research-presentation.txt
+index ac3ae741f47..8eaa49f07af 100644
+--- a/.skilled/commands/deep/assets/deep-research-presentation.txt
++++ b/.skilled/commands/deep/assets/deep-research-presentation.txt
+@@ -44,6 +44,7 @@ PRE-BOUND SETUP ANSWERS:
+   maxIterations: 10  # positive integer
+   convergenceThreshold: 0.05  # decimal 0..1
+   convergence_mode: default  # default | off | sliding-window | divergent
++  depth_mode: default  # default | expansive (opt-in frontier growth)
+   lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
+   extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
+   extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the duration budget, default the prior budget
+@@ -68,6 +69,7 @@ Rules: see `auto-mode-contract.md` §2 (unspecified fields fall back to default;
+ | `maxIterations`         | Y        | flag `--max-iterations`, marker `maxIterations`, or default                                                                                                                                            | `10`                               | N                                                       |
+ | `convergenceThreshold`  | Y        | flag `--convergence`, marker `convergenceThreshold`, or default                                                                                                                                        | `0.05`                             | N                                                       |
+ | `convergence_mode`      | Y        | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default                                                                                                  | `default`                          | N                                                       |
++| `depth_mode`            | Y        | flag `--depth-mode=default|expansive`, marker `depth_mode`, or default `default`                                                                                                                       | `default`                          | N                                                       |
+ | `stop_policy`           | Y        | flag `--stop-policy=convergence|max-iterations`, marker `stop_policy`, or default                                                                                                                      | `convergence`                      | N                                                       |
+ | `lineage_mode`          | Y        | flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default                                                                                                         | `auto`                             | N                                                       |
+ | `extend` | N | flag `--extend=N` (positive integer); sets `lineage_mode=completed-continue` on a completed run; refused with fan-out | none | N |
+@@ -107,6 +109,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
+    |-- --max-iterations=N -> maxIterations = N
+    |-- --convergence=N -> convergenceThreshold = N
+    |-- --convergence-mode=default|off|sliding-window|divergent -> antiConvergence.convergenceMode = value
++   |-- --depth-mode=default|expansive -> antiConvergence.depthMode = value
+    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
+    |-- --restart -> lineage_mode = restart
+    |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
+@@ -143,6 +146,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
+    - `--service-tier` -> `config.executor.serviceTier`
+    - `--executor-timeout` -> `config.executor.timeoutSeconds`
+    - `--convergence-mode` -> `antiConvergence.convergenceMode`
++   - `--depth-mode` -> `antiConvergence.depthMode`
+ 
+    Validation hook:
+    - `parseExecutorConfig` from `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` runs at config-write time
+@@ -201,6 +205,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
+    - maxIterations = [from Q3 or flag or default 10]
+    - convergenceThreshold = [from flag or default 0.05]
+    - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]
++   - depth_mode = [from flag, marker, or default `default`; one of `default`, `expansive`]
+     - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.kind/model/configDir/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
+ 
+ 9. SET STATUS: PASSED
+@@ -214,7 +219,7 @@ NEVER split questions into multiple prompts
+ 
+ **Phase Output:**
+ - `research_topic` | `spec_choice` | `spec_path`
+-- `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode`
++- `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode` | `depth_mode`
+ 
+ ## 2. Dashboard / Checkpoint Layout
+ 
+commit 2c80c64f3915ebb71604d9ba5e3dd96498fc1293
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Tue Nov 17 20:04:16 2026 +0100
+
+    feat(deep): extend a completed research or review run with --extend=N
+    
+    Adds a locked pre-classify step that reopens a completed run in place, appends
+    run_extended, snapshots the prior synthesis and widens the duration budget from
+    elapsed time. Rejects --extend with fan-out and binds the new flags.
+    
+    Commit-Id: 0014739
+
+diff --git a/.skilled/commands/deep/assets/deep-research-presentation.txt b/.skilled/commands/deep/assets/deep-research-presentation.txt
+index f83c3402dbc..ac3ae741f47 100644
+--- a/.skilled/commands/deep/assets/deep-research-presentation.txt
++++ b/.skilled/commands/deep/assets/deep-research-presentation.txt
+@@ -44,7 +44,9 @@ PRE-BOUND SETUP ANSWERS:
+   maxIterations: 10  # positive integer
+   convergenceThreshold: 0.05  # decimal 0..1
+   convergence_mode: default  # default | off | sliding-window | divergent
+-  lineage_mode: auto  # one of: auto | resume | restart
++  lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
++  extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
++  extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the duration budget, default the prior budget
+   executor: native  # native | cli-codex | cli-claude-code | cli-opencode | cli-cursor | cli-devin | cli-pi | cli-deepseek-harness | cli-mistral-vibe, the last one fan-out only (`EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`)
+   executor_model: ""  # optional executor-specific model id (cli-opencode e.g. llmgateway/glm-5.3-flash, minimax-coding-plan/MiniMax-M2.7-highspeed)
+   executor_config_dir: ""  # optional, cli-claude-code only; maps to CLAUDE_CONFIG_DIR
+@@ -68,6 +70,8 @@ Rules: see `auto-mode-contract.md` §2 (unspecified fields fall back to default;
+ | `convergence_mode`      | Y        | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default                                                                                                  | `default`                          | N                                                       |
+ | `stop_policy`           | Y        | flag `--stop-policy=convergence|max-iterations`, marker `stop_policy`, or default                                                                                                                      | `convergence`                      | N                                                       |
+ | `lineage_mode`          | Y        | flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default                                                                                                         | `auto`                             | N                                                       |
++| `extend` | N | flag `--extend=N` (positive integer); sets `lineage_mode=completed-continue` on a completed run; refused with fan-out | none | N |
++| `extend_minutes` | N | flag `--extend-minutes=M` (positive integer), valid only with `--extend` | the prior `maxDurationMinutes` | N |
+ | `executor`              | N        | flag `--executor`, marker `executor`, config file, or default                                                                                                                                          | `native`                           | N                                                       |
+ | `executor_model`        | N        | flag `--model`, marker `executor_model`, or executor-specific validation                                                                                                                               | none                               | N                                                       |
+ | `executor_config_dir`   | N        | flag `--config-dir`, marker `executor_config_dir`, or executor-specific default                                                                                                                        | none                               | N                                                       |
+@@ -106,6 +110,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
+    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
+    |-- --restart -> lineage_mode = restart
+    |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
++   |-- --extend=N -> extend = N, lineage_mode = completed-continue (positive integer only; a completed run only; refused with fan-out)
++   |-- --extend-minutes=M -> extend_minutes = M (positive integer only; valid only with --extend)
+    |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness` | `cli-mistral-vibe`, `cli-deepseek-harness` as a single lineage or a fan-out and `cli-mistral-vibe` only as a fan-out lineage. `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
+    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
+    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; must resolve under ~/.claude* or a repository .claude* folder; fan-out sets CLAUDE_CONFIG_DIR)
+> build · deepseek-v4.1-flash
+[0m$ [0mgit -c core.fsmonitor=false show 2c80c64f391 -- .skilled/commands/deep/assets/deep-research.yaml
+commit 2c80c64f3915ebb71604d9ba5e3dd96498fc1293
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Tue Nov 17 20:04:16 2026 +0100
+
+    feat(deep): extend a completed research or review run with --extend=N
+    
+    Adds a locked pre-classify step that reopens a completed run in place, appends
+    run_extended, snapshots the prior synthesis and widens the duration budget from
+    elapsed time. Rejects --extend with fan-out and binds the new flags.
+    
+    Commit-Id: 0014739
+
+diff --git a/.skilled/commands/deep/assets/deep-research.yaml b/.skilled/commands/deep/assets/deep-research.yaml
+index f0820f8e102..918d5f7bb32 100644
+--- a/.skilled/commands/deep/assets/deep-research.yaml
++++ b/.skilled/commands/deep/assets/deep-research.yaml
+@@ -65,7 +65,9 @@ mode_overrides:
+ user_inputs:
+   research_topic: "[RESEARCH_TOPIC] - Topic to investigate deeply. REQUIRED."
+   spec_folder: "[SPEC_FOLDER] - Spec folder path. REQUIRED."
+-  lineage_mode: "[auto|resume|restart] - Session lifecycle intent. Default: auto. `resume` keeps the same sessionId and archives nothing. `restart` opens a new sessionId at generation+1 and archives the prior research/ packet."
++  lineage_mode: "[auto|resume|restart|completed-continue] - Session lifecycle intent. Default: auto. `resume` keeps the same sessionId and archives nothing. `restart` opens a new sessionId at generation+1 and archives the prior research/ packet. `completed-continue` comes from --extend=N and extends a completed run in place by N iterations, same sessionId and generation."
++  extend: "[EXTEND] - Positive integer N from --extend=N. Sets lineage_mode to completed-continue and adds N iterations to a completed run. Default: unset."
++  extend_minutes: "[EXTEND_MINUTES] - Positive integer M from --extend-minutes=M, the minutes added to the duration budget on an extension. Only valid with --extend. Default: unset, which adds the prior maxDurationMinutes."
+   max_iterations: "[MAX_ITERATIONS] - Maximum loop iterations. Default: 10."
+   convergence_threshold: "[CONVERGENCE_THRESHOLD] - Stop threshold. Default: 0.05."
+   convergence_mode: "[default|off|sliding-window|divergent] - Convergence policy modifier. Default: default."
+@@ -324,6 +326,18 @@ workflow:
+       - lineage_mode: "restart"
+     on_fail: "Halt with STATUS=FAIL; do not continue as resume or auto."
+ 
++  step_reject_extend_with_fanout:
++    description: "Refuse --extend on a fan-out config before any lineage spawns"
++    skip_when: "lineage_mode != 'completed-continue' or config.fanout is absent"
++    instructions: |
++      A fan-out run jumps from step_fanout_spawn to phase_synthesis and never
++      reaches the lock, the pre-classify extension step or the classifier, so an
++      extension there would change nothing and report no error. Refuse the
++      combination here, before step_fanout_spawn, so no lineage spawns.
++    halt: true
++    status: "FAIL"
++    message: "Usage error (extend-with-fanout): --extend extends a single-executor research run only. This config has fanout executors, so nothing was spawned and the run is unchanged."
++
+   step_fanout_spawn:
+     description: "Spawn fan-out lineages; skip and proceed to phase_init normally when single-executor"
+     skip_when: "config.fanout is absent"
+@@ -371,6 +385,7 @@ workflow:
+           - spec_folder_is_within: "specs/ or .opencode/specs/ (canonicalize alias roots before validation)"
+           - unresolved_placeholders: "FAIL if any user-facing template references placeholders not produced by earlier steps"
+           - tool_contract: "FAIL if executable steps reference tools outside the command allowlist"
++          - extend_values: "When extend is bound it must be a positive integer (digits only, no sign, at least 1), and extend_minutes when bound likewise. extend_minutes without extend, or extend with a lineage_mode other than auto or completed-continue, is a usage error. Each fails here, before step_acquire_lock, with a usage error that names the flag."
+         on_fail: "Halt with STATUS=FAIL and report the missing binding or unsupported contract reference"
+ 
+       step_create_directories:
+@@ -424,6 +439,123 @@ workflow:
+           action: "Release the lock as the final step of any workflow exit path (success or failure)"
+           command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}; idempotent, safe to invoke when already released"
+ 
++      step_extend_completed_run:
++        action: "Extend a completed run in place, under the lock and before classification, so the classifier sees a resumable run"
++        skip_when: "lineage_mode != 'completed-continue'"
++        dry_run_boundary: "state-mutation"
++        note: |
++          --extend=N continues a finished run in the same session and generation. The
++          duration clock counts wall-clock time since createdAt, idle time included, so the
++          new budget starts from whichever is later, the old budget or the time already
++          spent, and createdAt is never re-stamped. The event is appended before the
++          config is replaced, so a failed append leaves the run complete and untouched.
++        command: |
++          GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
++          [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
++          WORK_DIR="$(mktemp -d "${TMPDIR:-/tmp}/deep-research-extend.XXXXXX")"
++          node -e '
++            const fs = require("fs"), crypto = require("crypto"), path = require("path");
++            const [configPath, stateLogPath, inboxPath, extendRaw, extendMinutesRaw, workDir] = process.argv.slice(1);
++            const fail = (message) => { console.error(message); process.exit(2); };
++            const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
++            if (config.status !== "complete") {
++              fail("--extend needs a completed run, and this run has status " + config.status + ". Use --lineage-mode=resume to continue an unfinished run.");
++            }
++            const stateBytes = fs.readFileSync(stateLogPath);
++            const rows = stateBytes.toString("utf8").split("\n").filter(Boolean).flatMap((line) => {
++              try { return [JSON.parse(line)]; } catch { return []; }
++            });
++            // One run per iteration number, error and timeout rows included.
++            const continuedFromRun = new Set(rows
++              .filter((row) => row && row.type === "iteration")
++              .map((row) => row.run ?? row.iteration)).size;
++            const addedIterations = Number(extendRaw);
++            const priorMaxIterations = Number(config.maxIterations) || 0;
++            const priorMaxDurationMinutes = Number(config.maxDurationMinutes) || 0;
++            const createdMs = Date.parse(config.createdAt);
++            const elapsedMinutesAtExtension = Number.isFinite(createdMs)
++              ? Math.max(0, Math.floor((Date.now() - createdMs) / 60000))
++              : 0;
++            // An unset flag renders as an empty or unexpanded value, never as digits.
++            const hasMinutes = /^[1-9][0-9]*$/.test(String(extendMinutesRaw));
++            const addedMinutes = hasMinutes ? Number(extendMinutesRaw) : priorMaxDurationMinutes;
++            // A run with no duration budget keeps none unless --extend-minutes asks for one.
++            const newMaxDurationMinutes = priorMaxDurationMinutes > 0 || hasMinutes
++              ? Math.max(priorMaxDurationMinutes, elapsedMinutesAtExtension) + addedMinutes
++              : priorMaxDurationMinutes;
++            const newMaxIterations = continuedFromRun + addedIterations;
++            const lineage = config.lineage || {};
++            const sessionId = lineage.sessionId;
++            const lineageId = lineage.parentSessionId || sessionId;
++            const generation = Number(lineage.generation) || 1;
++            const event = {
++              stem: "deep_research.run_extended",
++              scope: { runId: sessionId, lineageId },
++              data: {
++                priorTailDigest: crypto.createHash("sha256").update(stateBytes).digest("hex"),
++                sessionId,
++                generation,
++                continuedFromRun,
++                extension: {
++                  addedIterations,
++                  priorMaxIterations,
++                  newMaxIterations,
++                  priorMaxDurationMinutes,
++                  newMaxDurationMinutes,
++                  elapsedMinutesAtExtension,
++                },
++              },
++            };
++            const next = {
++              ...config,
++              status: "initialized",
++              maxIterations: newMaxIterations,
++              maxDurationMinutes: newMaxDurationMinutes,
++              lineage: { ...lineage, lineageMode: "completed-continue", continuedFromRun },
++            };
++            fs.writeFileSync(path.join(workDir, "event.json"), JSON.stringify(event));
++            fs.writeFileSync(path.join(workDir, "config.json"), JSON.stringify(next, null, 2) + "\n");
++            let pendingInbox = 0;
++            try {
++              pendingInbox = fs.readFileSync(inboxPath, "utf8").split("\n").filter((line) => line.trim() !== "").length;
++            } catch (error) {
++              if (error.code !== "ENOENT") throw error;
++            }
++            const stopPolicy = config.antiConvergence && config.antiConvergence.stopPolicy || "convergence";
++            const warning = stopPolicy === "convergence" && pendingInbox === 0
++              ? "This run stops on convergence and has no pending inbox question, so it may re-stop on all_questions_answered right away. Pass --convergence-mode=off, use stopPolicy max-iterations, or add questions to research/inbox.jsonl to keep it running."
++              : null;
++            console.log(JSON.stringify({ continuedFromRun, newMaxIterations, newMaxDurationMinutes, warning }));
++          ' "{state_paths.config}" "{state_paths.state_log}" "{state_paths.packet_dir}/inbox.jsonl" "{extend}" "{extend_minutes}" "$WORK_DIR" > "$WORK_DIR/result.json" || { rm -rf "$WORK_DIR"; exit 2; }
++          node "$GATEWAY" --mode research --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$WORK_DIR/event.json" || { rm -rf "$WORK_DIR"; exit 1; }
++          mv "$WORK_DIR/config.json" "{state_paths.config}" || { rm -rf "$WORK_DIR"; exit 1; }
++          cat "$WORK_DIR/result.json"
++          rm -rf "$WORK_DIR"
++        outputs:
++          - continued_from_run: "continuedFromRun from the JSON output"
++          - max_iterations: "newMaxIterations from the JSON output; it replaces the command default so the loop cap and the convergence script read the same ceiling"
++          - extension_pending: "true"
++          - extension_warning: "warning from the JSON output, null when none"
++        on_warning: "When extension_warning is not null, print it and continue. It never refuses the extension."
++        on_fail: "Exit 2 is a usage error, such as a run that is not complete: halt with that message through step_release_lock and leave the config untouched. Any other failure halts with STATUS=FAIL through step_release_lock."
++
++      step_snapshot_extended_synthesis:
++        action: "Keep the prior synthesis before the extension's first dispatch, so re-synthesis cannot overwrite it"
++        skip_when: "extension_pending != true"
++        dry_run_boundary: "state-mutation"
++        command: |
++          GENERATION="$(node -p 'const c = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8")); Number((c.lineage || c).generation) || 1' "{state_paths.config}")" || exit 1
++          SNAPSHOT="{state_paths.packet_dir}/synthesis-v${GENERATION}-r{continued_from_run}.md"
++          if [ -e "$SNAPSHOT" ]; then
++            echo "The synthesis snapshot $SNAPSHOT is already there." >&2
++            exit 1
++          fi
++          if [ -f "{state_paths.research_output}" ]; then
++            cp "{state_paths.research_output}" "$SNAPSHOT"
++          fi
++        note: "Keyed by generation and continuedFromRun, so a second extension of the same generation writes its own snapshot."
++        on_fail: "Halt with STATUS=FAIL through step_release_lock. Never overwrite an existing snapshot."
++
+       step_classify_session:
+         action: "Classify the session before writing files"
+         inspect:
+@@ -435,6 +567,7 @@ workflow:
+           resume: "Config, JSONL, and strategy all exist and agree on topic/spec folder; missing wait-checkpoint fields are read as nextRunAt:null and remainingDelayMs:null"
+           completed-session: "Resume artifacts exist and config.status == 'complete'"
+           invalid-state: "Any partial, missing, or contradictory combination"
++        extension_rule: "When extension_pending == true, step_extend_completed_run has just set status initialized and appended run_extended, so a synthesis_complete row followed by an extended row is consistent: classify as resume, never as invalid-state or completed-session."
+         outputs:
+           - session_state: "fresh | resume | completed-session | invalid-state"
+         on_resume:
+@@ -444,6 +577,7 @@ workflow:
+           gate3_rationale: "resume produces iteration-NNN.md writes and JSONL state-log appends"
+           log: "Auto-resume: state artifacts are complete and consistent. Continue the same lineage (sessionId unchanged, generation unchanged, no archive)."
+           append_jsonl: '{"type":"event","event":"resumed","mode":"research","sessionId":"{session_id}","parentSessionId":"{session_id}","lineageMode":"resume","continuedFromRun":{iteration_count},"generation":{generation},"archivedPath":null,"timestamp":"{ISO_8601_NOW}"}'
++          extension_override: "When extension_pending == true, skip this append_jsonl: step_extend_completed_run already recorded the lifecycle action as run_extended, so the ledger carries one event per action. Keep lineage_mode completed-continue and skip_to phase_loop."
+           skip_to: phase_loop
+           confirm_choice:
+             applies_to: confirm
+@@ -459,6 +593,7 @@ workflow:
+                 parent_session_id: "{session_id}"
+               append_jsonl: '{"type":"event","event":"resumed","mode":"research","sessionId":"{session_id}","parentSessionId":"{session_id}","lineageMode":"resume","continuedFromRun":{iteration_count},"archivedPath":null,"timestamp":"{ISO_8601_NOW}","generation":{generation}}'
+               skip_to: gate_init_approval
++              extension_override: "When extension_pending == true, do not set lineage_mode to resume and do not append the resumed row, because run_extended already records this extension. Keep lineage_mode completed-continue and skip_to gate_init_approval."
+             on_restart_choice:
+               dry_run_boundary: "state-mutation"
+               bind_prior_lineage:
+@@ -511,7 +646,8 @@ workflow:
+               message: "Research session preserved. Manually archive or edit research/ before re-running."
+         on_restart:
+           action: "Nothing is archived here. step_apply_lifecycle_request archived the packet before the lock was taken, so a restart run reaches this step as fresh and continues as on_fresh."
+-        note_deferred_branches: "fork and completed-continue are deferred and no longer runtime-supported in this release. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are live. See deep-research/references/protocol/loop-protocol.md §Lifecycle Branch Contract for the one-session contract."
++        note_deferred_branches: "fork is deferred and not runtime-supported in this release."
++        note_live_branches: "completed-continue is live through --extend=N: step_extend_completed_run reopens a completed run before classification, so it lands here as resume. The live modes are new, resume, restart and completed-continue. See deep-research/references/protocol/loop-protocol.md §Lifecycle Branch Contract for the one-session contract."
+         on_completed_session:
+           log: "Prior session already completed. Do not route directly to synthesis; archive the completed research/ tree or start a fresh packet instead."
+           halt: true
+@@ -1820,7 +1956,7 @@ workflow:
+             5. If `resource_map_present` is true, cite `{spec_folder}/resource-map.md` in References; otherwise omit any placeholder map citation
+             6. After the mandatory `## Eliminated Alternatives` section and before Section 12 Open Questions, add `## Divergence Map` with saturated directions, pivots taken, evidence and Council artifact references, pivot failures and audited overrides, and the remaining frontier from `{state_paths.registry}`.
+           Divergence Map documents breadth. Never claim the topic converged merely because divergent mode broadened the investigated frontier.
+-          Preserve machine-owned markers so the reducer-owned registry, dashboard, and strategy anchors can be refreshed on re-run without mutating prior synthesis. (Note: `completed-continue` lineage branch is deferred — see `deep-research/references/protocol/loop-protocol.md §Lifecycle Branch Contract`.)
++          Preserve machine-owned markers so the reducer-owned registry, dashboard, and strategy anchors can be refreshed on re-run without mutating prior synthesis. (Note: a `completed-continue` extension keeps the prior synthesis as `synthesis-v{generation}-r{continuedFromRun}.md` before re-synthesis. See `deep-research/references/protocol/loop-protocol.md §Lifecycle Branch Contract`.)
+         output: "{state_paths.research_output}"
+ 
+       step_convergence_report:
+> build · deepseek-v4.1-flash
+[0m$ [0mgit -c core.fsmonitor=false show 5e583331cc9 --stat; git -c core.fsmonitor=false show 5e583331cc9 -- .skilled/commands/deep/assets/deep-research.yaml
+commit 5e583331cc9cbf3284c1a925fa24d8d8797216a5
+Merge: 6b6cda9b796 7c2897f653d
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Tue Nov 17 23:16:01 2026 +0100
+
+    feat(system-deep-loop): integrate the research frontier mode
+    
+    Merges the opt-in expansive research frontier: the depth-mode flag, the
+    admission helper and node store, the frontier focus and stop veto, and the
+    fan-out partition with its merge guard. The prompt-pack suite keeps both the
+    review dimension-list cases and the frontier block cases.
+    
+    Commit-Id: 0014814
+
+ .claude/agents/deep-research.md                    |   4 +
+ .codex/agents/deep-research.toml                   |   4 +
+ .dsh/agents/deep-research.patch.yml                |   4 +
+ .pi/agents/deep-research.md                        |   4 +
+ .skilled/agents/deep-research.md                   |   4 +
+ .../compiled/deep-research.contract.markdown       |  29 +-
+ .../deep/assets/deep-research-presentation.txt     |   7 +-
+ .skilled/commands/deep/assets/deep-research.yaml   | 105 +++-
+ .skilled/commands/deep/research.md                 |   1 +
+ .../system-deep-loop/deep-research/README.md       |   4 +-
+ .../skills/system-deep-loop/deep-research/SKILL.md |   9 +
+ .../deep-research/assets/deep-research-config.json |   9 +-
+ .../assets/prompt-pack-iteration.md.tmpl           |   2 +-
+ .../references/convergence/convergence.md          |  10 +-
+ .../references/guides/quick-reference.md           |   3 +-
+ .../references/protocol/loop-protocol.md           |  16 +-
+ .../deep-research/references/state/state-format.md |  10 +-
+ .../deep-research/scripts/reduce-state.cjs         | 161 ++++-
+ .../runtime/scripts/convergence.cjs                |  23 +-
+ .../runtime/scripts/fanout-merge.cjs               |  46 +-
+ .../runtime/scripts/fanout-run.cjs                 |  63 +-
+ .../runtime/scripts/frontier-admit.cjs             | 646 +++++++++++++++++++++
+ .../fixtures/golden-research-default/dashboard.md  | 109 ++++
+ .../golden-research-default/lineage-prompt.txt     | 633 ++++++++++++++++++++
+ .../golden-research-default/next-focus.txt         |   4 +
+ .../golden-research-default/prompt-pack.md         | 104 ++++
+ .../fixtures/golden-research-default/registry.json | 164 ++++++
+ .../stop-decision-config.json                      |   8 +
+ .../unit/deep-research-reduce-state.vitest.ts      | 267 +++++++++
+ .../runtime/tests/unit/fanout-merge.vitest.ts      |  69 ++-
+ .../runtime/tests/unit/fanout-run.vitest.ts        | 249 +++++++-
+ .../runtime/tests/unit/frontier-admit.vitest.ts    | 577 ++++++++++++++++++
+ .../optimizer-manifest-anti-convergence.vitest.ts  |  11 +
+ .../runtime/tests/unit/prompt-pack.vitest.ts       |  29 +
+ .../unit/research-depth-mode-golden.vitest.ts      | 303 ++++++++++
+ .../unit/stop-decision-yaml-contract.vitest.ts     | 106 ++++
+ .../runtime/tests/unit/stop-decision.vitest.ts     | 134 +++++
+ .../runtime/cli/optimizer/optimizer-manifest.json  |   7 +-
+ .vibe/agents/deep-research.toml                    |   2 +-
+ .../acceptance-criteria.md                         |  38 +-
+ .../010-research-frontier-mode/decision-record.md  |  18 +
+ .../010-research-frontier-mode/goal.md             |   5 +-
+ .../010-research-frontier-mode/graph-metadata.json |  90 +--
+ .../implementation-summary.md                      |  87 ++-
+ .../010-research-frontier-mode/spec.md             |   2 +-
+ .../010-research-frontier-mode/tasks.md            |  98 ++--
+ 46 files changed, 4109 insertions(+), 169 deletions(-)
+commit 5e583331cc9cbf3284c1a925fa24d8d8797216a5
+Merge: 6b6cda9b796 7c2897f653d
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Tue Nov 17 23:16:01 2026 +0100
+
+    feat(system-deep-loop): integrate the research frontier mode
+    
+    Merges the opt-in expansive research frontier: the depth-mode flag, the
+    admission helper and node store, the frontier focus and stop veto, and the
+    fan-out partition with its merge guard. The prompt-pack suite keeps both the
+    review dimension-list cases and the frontier block cases.
+    
+    Commit-Id: 0014814
+> build · deepseek-v4.1-flash
+[0m$ [0mgit -c core.fsmonitor=false diff 6b6cda9b796 7c2897f653d -- .skilled/commands/deep/assets/deep-research-presentation.txt
+diff --git a/.skilled/commands/deep/assets/deep-research-presentation.txt b/.skilled/commands/deep/assets/deep-research-presentation.txt
+index ac3ae741f47..8eaa49f07af 100644
+--- a/.skilled/commands/deep/assets/deep-research-presentation.txt
++++ b/.skilled/commands/deep/assets/deep-research-presentation.txt
+@@ -44,6 +44,7 @@ PRE-BOUND SETUP ANSWERS:
+   maxIterations: 10  # positive integer
+   convergenceThreshold: 0.05  # decimal 0..1
+   convergence_mode: default  # default | off | sliding-window | divergent
++  depth_mode: default  # default | expansive (opt-in frontier growth)
+   lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
+   extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
+   extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the duration budget, default the prior budget
+@@ -68,6 +69,7 @@ Rules: see `auto-mode-contract.md` §2 (unspecified fields fall back to default;
+ | `maxIterations`         | Y        | flag `--max-iterations`, marker `maxIterations`, or default                                                                                                                                            | `10`                               | N                                                       |
+ | `convergenceThreshold`  | Y        | flag `--convergence`, marker `convergenceThreshold`, or default                                                                                                                                        | `0.05`                             | N                                                       |
+ | `convergence_mode`      | Y        | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default                                                                                                  | `default`                          | N                                                       |
++| `depth_mode`            | Y        | flag `--depth-mode=default|expansive`, marker `depth_mode`, or default `default`                                                                                                                       | `default`                          | N                                                       |
+ | `stop_policy`           | Y        | flag `--stop-policy=convergence|max-iterations`, marker `stop_policy`, or default                                                                                                                      | `convergence`                      | N                                                       |
+ | `lineage_mode`          | Y        | flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default                                                                                                         | `auto`                             | N                                                       |
+ | `extend` | N | flag `--extend=N` (positive integer); sets `lineage_mode=completed-continue` on a completed run; refused with fan-out | none | N |
+@@ -107,6 +109,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
+    |-- --max-iterations=N -> maxIterations = N
+    |-- --convergence=N -> convergenceThreshold = N
+    |-- --convergence-mode=default|off|sliding-window|divergent -> antiConvergence.convergenceMode = value
++   |-- --depth-mode=default|expansive -> antiConvergence.depthMode = value
+    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
+    |-- --restart -> lineage_mode = restart
+    |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
+@@ -143,6 +146,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
+    - `--service-tier` -> `config.executor.serviceTier`
+    - `--executor-timeout` -> `config.executor.timeoutSeconds`
+    - `--convergence-mode` -> `antiConvergence.convergenceMode`
++   - `--depth-mode` -> `antiConvergence.depthMode`
+ 
+    Validation hook:
+    - `parseExecutorConfig` from `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` runs at config-write time
+@@ -201,6 +205,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
+    - maxIterations = [from Q3 or flag or default 10]
+    - convergenceThreshold = [from flag or default 0.05]
+    - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]
++   - depth_mode = [from flag, marker, or default `default`; one of `default`, `expansive`]
+     - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.kind/model/configDir/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
+ 
+ 9. SET STATUS: PASSED
+@@ -214,7 +219,7 @@ NEVER split questions into multiple prompts
+ 
+ **Phase Output:**
+ - `research_topic` | `spec_choice` | `spec_path`
+-- `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode`
++- `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode` | `depth_mode`
+ 
+ ## 2. Dashboard / Checkpoint Layout
+> build · deepseek-v4.1-flash
+[0m$ [0mgit -c core.fsmonitor=false diff 6b6cda9b796 7c2897f653d -- .skilled/commands/deep/assets/deep-research.yaml
+diff --git a/.skilled/commands/deep/assets/deep-research.yaml b/.skilled/commands/deep/assets/deep-research.yaml
+index 8af9a52e2a6..753df95cf2d 100644
+--- a/.skilled/commands/deep/assets/deep-research.yaml
++++ b/.skilled/commands/deep/assets/deep-research.yaml
+@@ -71,6 +71,7 @@ user_inputs:
+   max_iterations: "[MAX_ITERATIONS] - Maximum loop iterations. Default: 10."
+   convergence_threshold: "[CONVERGENCE_THRESHOLD] - Stop threshold. Default: 0.05."
+   convergence_mode: "[default|off|sliding-window|divergent] - Convergence policy modifier. Default: default."
++  depth_mode: "[default|expansive] - Opt-in frontier growth. expansive seeds depth-1 frontier nodes, admits leaf frontier_proposal rows and vetoes a convergence stop while nodes stay open. Default: default."
+   stop_policy: "[convergence|max-iterations] - Convergence stop policy; max-iterations forces the loop to run every iteration. Default: convergence."
+   dry_run: "[DRY_RUN] - Boolean pre-flight flag. Default: false."
+   lineage_timeout_hours: "[LINEAGE_TIMEOUT_HOURS] - Optional per-lineage wall-clock ceiling in hours for fan-out runs, at most 4. Default: unset, which keeps the 4 hour ceiling."
+@@ -338,6 +339,27 @@ workflow:
+     status: "FAIL"
+     message: "Usage error (extend-with-fanout): --extend extends a single-executor research run only. This config has fanout executors, so nothing was spawned and the run is unchanged."
+ 
++  step_frontier_seed:
++    description: "Seed the depth-1 frontier before any fan-out lineage spawns"
++    enabled_when: "depth_mode == 'expansive'"
++    skip_when: "config.fanout is absent"
++    dry_run_boundary: "state-mutation"
++    instructions: |
++      Fan-out jumps from step_fanout_spawn to phase_synthesis and never reaches
++      phase_init, so the seed runs here or not at all. fanout-run.cjs then splits
++      the seeded depth-1 nodes round-robin across the lineages.
++      Decompose {research_topic} into 3 to 6 depth-1 sub-questions that together
++      cover the topic. Write them as a JSON array to {artifact_dir}/frontier-seed.json,
++      one object per sub-question: {"question": "...", "scope": "<path, module or
++      area>", "evidence": "<repo path or topic phrase that grounds it>"}. Then run
++      the command. frontier-admit.cjs is the only writer of the node store and the
++      frontier inbox rows; never write either file by hand.
++    command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json"'
++    working_directory: "{repo_root}"
++    outputs:
++      - frontier_seed_json: "The JSON line the command prints: admitted node ids and pruned {nodeId, reason} rows"
++    on_failure: "Halt with the command's stderr line. A run that asked for expansive depth must not start without its seeded frontier."
++
+   step_fanout_spawn:
+     description: "Spawn fan-out lineages; skip and proceed to phase_init normally when single-executor"
+     skip_when: "config.fanout is absent"
+@@ -365,7 +387,8 @@ workflow:
+             --base-artifact-dir {artifact_dir} \
+             --convergence-threshold {convergence_threshold} \
+             --stop-policy {stop_policy} \
+-            --convergence-mode {convergence_mode}
++            --convergence-mode {convergence_mode} \
++            --depth-mode {depth_mode}
+         working_directory: "{repo_root}"
+         wait_for_completion: true
+         optional_flags: "When lineage_timeout_hours is bound, append `--lineage-timeout-hours {lineage_timeout_hours}` to the command. When it is unset, append nothing, which keeps the 4 hour ceiling."
+@@ -380,7 +403,7 @@ workflow:
+       step_preflight_contract:
+         action: "Validate required setup bindings and executable workflow contract before any file writes"
+         verify:
+-          - required_values_present: [research_topic, spec_folder, lineage_mode, max_iterations, convergence_threshold, convergence_mode, stop_policy]
++          - required_values_present: [research_topic, spec_folder, lineage_mode, max_iterations, convergence_threshold, convergence_mode, depth_mode, stop_policy]
+           - dry_run_normalized: "Boolean true or false before workflow loading; absent flag resolves to false."
+           - spec_folder_is_within: "specs/ or .opencode/specs/ (canonicalize alias roots before validation)"
+           - unresolved_placeholders: "FAIL if any user-facing template references placeholders not produced by earlier steps"
+@@ -473,13 +496,10 @@ workflow:
+             const rows = stateBytes.toString("utf8").split("\n").filter(Boolean).flatMap((line) => {
+               try { return [JSON.parse(line)]; } catch { return []; }
+             });
+-            // One run per iteration number, error and timeout rows included. The integer
+-            // iteration counts first and a numeric run is the fallback, as the state reader
+-            // counts them, because a leaf may write its run id string in run.
++            // One run per iteration number, error and timeout rows included.
+             const continuedFromRun = new Set(rows
+               .filter((row) => row && row.type === "iteration")
+-              .map((row) => (Number.isInteger(row.iteration) ? row.iteration : Number(row.run)))
+-              .filter((run) => Number.isInteger(run))).size;
++              .map((row) => row.run ?? row.iteration)).size;
+             const addedIterations = Number(extendRaw);
+             const priorMaxIterations = Number(config.maxIterations) || 0;
+             const priorMaxDurationMinutes = Number(config.maxDurationMinutes) || 0;
+@@ -699,6 +719,12 @@ workflow:
+           convergenceThreshold: "{convergence_threshold}"
+           stopPolicy: "{stop_policy}"
+           antiConvergence.convergenceMode: "{convergence_mode}"
++          antiConvergence.depthMode: "{depth_mode}"
++          expansiveDepth.maxDepth: 3
++          expansiveDepth.maxChildrenPerNode: 6
++          expansiveDepth.budgetSplit: { depth1: 0.5, depth2: 0.35, depth3: 0.15 }
++          # The node cap follows the iteration budget, so admission stops before a spent budget becomes the usual close reason.
++          expansiveDepth.maxFrontierNodes: "{max_iterations}"
+           antiConvergence.divergent: {}
+           stuckThreshold: 3
+           minIdeaObservations: 2
+@@ -720,6 +746,25 @@ workflow:
+           remainingDelayMs: null
+         output: "{state_paths.config}"
+ 
++      step_frontier_seed:
++        description: "Seed the depth-1 frontier so iteration 1 already has open nodes"
++        enabled_when: "depth_mode == 'expansive'"
++        skip_when: "config.fanout_lineage_artifact_dir is present"
++        skip_reason: "A fan-out lineage receives its share of the parent's seeded nodes from fanout-run.cjs; seeding again would duplicate them."
++        dry_run_boundary: "state-mutation"
++        instructions: |
++          Decompose {research_topic} into 3 to 6 depth-1 sub-questions that together
++          cover the topic. Write them as a JSON array to {artifact_dir}/frontier-seed.json,
++          one object per sub-question: {"question": "...", "scope": "<path, module or
++          area>", "evidence": "<repo path or topic phrase that grounds it>"}. Then run
++          the command. frontier-admit.cjs is the only writer of the node store and the
++          frontier inbox rows; never write either file by hand.
++        command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json"'
++        working_directory: "{repo_root}"
++        outputs:
++          - frontier_seed_json: "The JSON line the command prints: admitted node ids and pruned {nodeId, reason} rows"
++        on_failure: "Halt with the command's stderr line. A run that asked for expansive depth must not start without its seeded frontier."
++
+       step_create_state_log:
+         action: "Open the research run by appending deep_research.run_initialized through the gateway"
+         dry_run_boundary: "state-mutation"
+@@ -1013,6 +1058,7 @@ workflow:
+           - min_iterations_clamped: "Boolean true when min_iterations_raw > max_iterations"
+           - min_iterations_guard_already_passed: "Boolean true when the floor had already cleared before this iteration: iteration_count - 1 >= effective_min_iterations"
+           - convergence_mode: "Extract antiConvergence.convergenceMode when it is one of 'default', 'off', 'sliding-window', or 'divergent'; default to 'default'"
++          - depth_mode: "Extract antiConvergence.depthMode when it is 'expansive'; any other or missing value is 'default'"
+           - stop_policy: "Extract stopPolicy from deep-research-config.json, default 'convergence'. Valid values: convergence, max-iterations."
+           - convergence_mode_warning: "Boolean true when antiConvergence.convergenceMode is present with an unsupported value; use 'default'"
+           - rejected_patterns_count: "Read registry.rejectedPatterns length when registry exists, else 0"
+@@ -1091,7 +1137,7 @@ workflow:
+       step_graph_convergence:
+         action: "Run convergence.cjs once: it evaluates the coverage graph, persists the graph snapshot and computes the whole stop decision"
+         dry_run_event_policy: preview-only
+-        bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --convergence-mode "{convergence_mode}" --persist-snapshot --iteration "{current_iteration}" --stop-decision --config-path "{state_paths.config}" --state-log "{state_paths.state_log}" --registry-path "{state_paths.registry}" --iteration-count "{iteration_count}"'
++        bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --convergence-mode "{convergence_mode}" --depth-mode "{depth_mode}" --persist-snapshot --iteration "{current_iteration}" --stop-decision --config-path "{state_paths.config}" --state-log "{state_paths.state_log}" --registry-path "{state_paths.registry}" --iteration-count "{iteration_count}"'
+         note: "The script is the only place the stop decision is computed. step_check_convergence branches on its stop_decision output."
+         outputs:
+           - graph_decision: "Tool decision value (CONTINUE | STOP_ALLOWED | STOP_BLOCKED), else null when unavailable"
+@@ -1207,6 +1253,7 @@ workflow:
+               eligible_reasons: [composite_converged, all_questions_answered]
+               excluded_reasons: [maxIterationsReached, blockedStop, stuckRecovery, minIterationsNotReached, error, manualStop, userPaused, maxDurationReached]
+               fail_closed: "Any missing or ambiguous reason uses if_existing_terminal_path without preparing a pivot."
++              frontier_gate: "Under depth_mode == 'expansive' the pivot is eligible only once registry.frontier holds no open or active node. The frontierOpen stop veto already returns CONTINUE while one is open, so this gate records the order rather than adding a second check. Candidates the pivot opens re-enter breadth through step_frontier_admit as frontier_proposal rows."
+             steps:
+               step_prepare_divergent_pivot:
+                 action: "Generate state-grounded research candidates and prepare or resume the pivot transaction"
+@@ -1371,6 +1418,19 @@ workflow:
+         if_stuck_recovery:
+           dry_run_event_policy: preview-only
+           append_jsonl: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
++          if_expansive_open_node:
++            when: "depth_mode == 'expansive' AND the latest iteration focus starts with 'Frontier node <id>' AND that node is open or active in registry.frontier.nodes"
++            extract:
++              - active_frontier_node_id: "The node id in the latest iteration focus, which the reducer writes as 'Frontier node <id> (depth N, scope S): <question>'"
++            note: "The stuckRecovery append above stays on this path: the loop counters reset stuckCount on that event, and without it the next low-yield iteration would close the next node after one iteration."
++            command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs close --artifact-dir "{artifact_dir}" --node-id "{active_frontier_node_id}" --status exhausted --reason stuck --iteration "{current_iteration}"'
++            then_command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
++            working_directory: "{repo_root}"
++            log: "Stuck on frontier node {active_frontier_node_id}; closed it as exhausted and moved to the next open node."
++            set: { next_focus: "The refreshed NEXT FOCUS section of {state_paths.strategy}" }
++            skip_global_recovery: true
++          if_no_open_node:
++            action: "Fall through to the global recovery below."
+           log: "Stuck detected ({stuck_count} consecutive no-progress). Entering recovery."
+           set: { next_focus: "RECOVERY: Widen scope. Try fundamentally different approach. Least-explored question: {least_explored}" }
+         if_continue:
+@@ -1535,6 +1595,8 @@ workflow:
+             renderer: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts#renderPromptPack"
+             output_path: "{state_paths.prompt_dir}/iteration-{current_iteration}.md"
+             dry_run_output: "Render in memory and print to terminal preview; do not write output_path."
++            bind_before_render:
++              frontier_block: "Empty string unless depth_mode == 'expansive'. Under expansive, the exact stdout of: node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs block --artifact-dir \"{artifact_dir}\" --focus \"{next_focus}\". Pass it verbatim; an empty stdout means the leaf gets no frontier block and proposes nothing."
+             variables:
+               state_summary: "{state_summary}"
+               research_topic: "{research_topic}"
+@@ -1547,6 +1609,7 @@ workflow:
+               last_3_summaries: "{last_3_summaries}"
+               pivot_lineage: "{pivot_lineage}"
+               saturated_directions: "{saturated_directions}"
++              frontier_block: "{frontier_block}"
+               state_paths_config: "{state_paths.config}"
+               state_paths_state_log: "{state_paths.state_log}"
+               state_paths_strategy: "{state_paths.strategy}"
+@@ -1736,6 +1799,26 @@ workflow:
+         if_absent:
+           action: "Continue to state reduction"
+ 
++      step_frontier_admit:
++        action: "Admit this iteration's frontier_proposal rows as new frontier questions before the reducer runs"
++        enabled_when: "depth_mode == 'expansive'"
++        dry_run_boundary: "state-mutation"
++        instructions: |
++          The leaf only proposes; this step decides. Before the command, write a JSON
++          array of strings to {artifact_dir}/frontier-known-texts.json holding every
++          registry question text (keyQuestions[].text in {state_paths.registry}), every
++          rejected pattern (rejectedPatterns[].pattern) and every line under the
++          strategy's Exhausted Approaches section, so a proposal that repeats settled
++          work is pruned as a duplicate. An absent registry gives an empty array.
++          The helper runs the six admission checks in order (relevance, dedupe, depth,
++          fan-out, budget, cycle), appends one inbox row with origin frontier per
++          admitted node and records every pruned proposal with its reason.
++        command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs admit --artifact-dir "{artifact_dir}" --iteration "{current_iteration}" --input "{state_paths.delta_pattern with NNN = current_iteration}" --known-texts "{artifact_dir}/frontier-known-texts.json"'
++        working_directory: "{repo_root}"
++        outputs:
++          - frontier_admit_json: "The JSON line the command prints: admitted node ids and pruned {nodeId, reason} rows"
++        on_failure: "Log the stderr line as a config_warning bookkeeping event and continue to step_reduce_state; a failed admission leaves the frontier as it was and never blocks the iteration."
++
+       step_reduce_state:
+         action: "Run the reducer to synchronize registry, dashboard, and strategy"
+         dry_run_boundary: "reducer-refresh"
+@@ -1765,6 +1848,18 @@ workflow:
+         command: |
+           node .skilled/skills/system-deep-loop/runtime/scripts/iteration-graph-upsert.cjs --delta-dir "{state_paths.delta_dir}" --state-log "{state_paths.state_log}" --iteration "{current_iteration}" --spec-folder "{spec_folder}" --session-id "{config.lineage.sessionId}"
+ 
++      step_frontier_graph_upsert:
++        action: "Mirror the frontier into the coverage graph so traversal does not depend on the leaf emitting graph events"
++        enabled_when: "depth_mode == 'expansive'"
++        dry_run_boundary: "state-mutation"
++        note: "Pruned nodes are never written. A node that closed exhausted, blocked or abstained is re-kinded from QUESTION to a CLAIM marked closed, so it stops lowering question coverage and source diversity. Open, active and answered nodes stay QUESTION nodes linked to their parent by DERIVED_FROM."
++        command: |
++          node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs graph --artifact-dir "{artifact_dir}" --output "{artifact_dir}/frontier-graph-events.jsonl"
++          node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type research --session-id "{config.lineage.sessionId}" --events "{artifact_dir}/frontier-graph-events.jsonl"
++        skip_second_command_when: "the first command prints nodes 0"
++        working_directory: "{repo_root}"
++        on_failure: "Log the stderr line as a config_warning bookkeeping event and continue; the frontier store and registry stay authoritative."
++
+       step_refresh_lineage_context:
+         action: "Refresh the focused context line from lineage-local state before the next prompt render"
+         read:
+@@ -2243,3 +2338,4 @@ reference_only_appendix:
+       - "Check whether 3+ independent unanswered questions justify a wave."
+       - "Dispatch up to 3 parallel agents on distinct questions."
+       - "Score wave results by median newInfoRatio and promote top branches."
++      - "Live breadth growth is the opt-in --depth-mode=expansive frontier (step_frontier_seed, step_frontier_admit); waves stay reference-only."
+> build · deepseek-v4.1-flash
+[0m$ [0mgit -c core.fsmonitor=false grep -n "synthesis_snapshot_pattern" -- .skilled; git -c core.fsmonitor=false grep -n "synthesis-v" -- .skilled
+.skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md:17:`--extend=N` reopens a completed research run in the same session and generation and adds `N` iterations. The run keeps its `sessionId` and generation, records one `run_extended` ledger event, and keeps the prior synthesis as `research/synthesis-v{generation}-r{continuedFromRun}.md`. `--extend-minutes=M` adds minutes to the duration budget of the same extension.
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md:31:- Expected signals: Exactly one `run_extended` event appears, projected as one `extended` row in `research/deep-research-state.jsonl`. The config keeps the original `sessionId` and generation 1, `maxIterations` equals the prior iteration count plus 3, and the lineage mode is `completed-continue`. No `resumed` row is written for the extension. A file matching `synthesis-v*-r*.md` holds the prior synthesis, and exactly three new iteration files are written.
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md:51:7. `find <completed-fixture-spec-folder> -name 'synthesis-v*-r*.md'`
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md:148:Expected signals: One `run_extended` event projected as one `extended` row, the original `sessionId` and generation 1 kept, `maxIterations` at the prior count plus 3, a `completed-continue` lineage, one `synthesis-v*-r*.md` snapshot, no `resumed` row and exactly three new iterations.
+.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:129:| `completed-continue` | same | same | none; the prior synthesis is copied to `research/synthesis-v{generation}-r{continuedFromRun}.md` | `extended` (see below) | a completed run needs N more iterations: pass `--extend=N` |
+.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:140:Classification then lands on resume. The workflow writes no `resumed` row for an extension, and the reducers treat an `extended` row like `resumed`, so the run is live again. Before the first new dispatch, `step_snapshot_extended_synthesis` copies the prior synthesis to `research/synthesis-v{generation}-r{continuedFromRun}.md` and refuses to overwrite an existing snapshot, so a second extension of the same generation keeps its own copy. `--extend` refuses a run that is not complete (use `--lineage-mode=resume`), refuses fan-out before any lineage spawns, and accepts positive integers only.
+.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:595:4. **Extension snapshot**: an extension keeps the prior synthesis. Before its first dispatch, `step_snapshot_extended_synthesis` copies this file to `research/synthesis-v{generation}-r{continuedFromRun}.md` and never overwrites an existing snapshot
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-sealed-artifacts/deep-research-sealed-artifact-types.ts:33:  SYNTHESIS_VIEW: 'deep-research-synthesis-view',
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-sealed-artifacts/deep-research-sealed-artifact-types.ts:179:  readonly 'deep-research-synthesis-view': DeepResearchSynthesisArtifactMaterial;
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-sealed-artifacts/deep-review-sealed-artifact-types.ts:32:  SYNTHESIS_VIEW: 'deep-review-synthesis-view',
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-sealed-artifacts/deep-review-sealed-artifact-types.ts:216:  readonly 'deep-review-synthesis-view': DeepReviewSynthesisArtifactMaterial;
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-sealed-artifacts.vitest.ts:473:    [DeepReviewArtifactKinds.SYNTHESIS_VIEW, 'synthesis-view'],
+.skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts:866:    expect(readFileSync(join(run.dir, 'synthesis-v1-r2.md'), 'utf8')).toBe('# First synthesis\n');
+.skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts:867:    expect(readFileSync(join(run.dir, 'synthesis-v1-r3.md'), 'utf8')).toBe('# Second synthesis\n');
+
+[showing lines 7-20 of 20; full output saved to /Users/michelkerkmeester/.local/share/opencode/shell/4c10847297631c3af43d766cf1908920fe00c449/sh_1ec396f3c001CJCNvK6gTUm1Pm.out]
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "synthesis_snapshot_pattern|synthesis-v" .skilled/commands/deep/assets/deep-research.yaml; git -c core.fsmonitor=false status --porcelain -- .skilled/commands/deep/assets/deep-research.yaml
+231:  synthesis_snapshot_pattern: "{artifact_dir}/synthesis-v{generation}.md"
+582:          SNAPSHOT="{state_paths.packet_dir}/synthesis-v${GENERATION}-r{continued_from_run}.md"
+2093:          Preserve machine-owned markers so the reducer-owned registry, dashboard, and strategy anchors can be refreshed on re-run without mutating prior synthesis. (Note: a `completed-continue` extension keeps the prior synthesis as `synthesis-v{generation}-r{continuedFromRun}.md` before re-synthesis. See `deep-research/references/protocol/loop-protocol.md §Lifecycle Branch Contract`.)
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "depth-mode|extend|convergence-mode|lineage-mode" .skilled/commands/deep/research.md | head -40
+3:argument-hint: "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--dry-run] [--restart] [--extend=N]"
+20:In `:auto` mode, an explicit `--restart` or `--lineage-mode=restart` flag (invocation form `--restart|--lineage-mode=restart`) is operator authorization to archive the resolved research packet before fan-out or phase init. Do not ask for a second confirmation; preserve rollback by moving the timestamped archive directory back to `research/` if needed.
+103:| `--convergence-mode` | `default` \| `off` \| `sliding-window` \| `divergent` | `default` keeps the anti-convergence `minIterations` floor. `off` disables convergence-driven STOP while max-iterations, pause and halt stay active. `sliding-window` scores novelty over a bounded window, five snapshots by default, on the ordinary legal-stop path. `divergent` sends a `composite_converged` or `all_questions_answered` stop into a one-round three-seat Council pivot instead of ending the run, at proportionally higher cost. |
+104:| `--depth-mode` | `default` \| `expansive` | `default`, the value when the flag is absent, runs exactly as before. `expansive` is opt-in: the run seeds depth-1 frontier nodes from the topic before iteration 1, admits leaf `frontier_proposal` rows as new questions under depth, fan-out, budget, dedupe and cycle caps (`expansiveDepth` in the config: `maxDepth` 3, `maxChildrenPerNode` 6, a 50/35/15 iteration budget across depths), steers Next Focus to the shallowest open node, and turns a convergence stop into another iteration while frontier nodes stay open. It never outranks the iteration cap, stuck recovery, pause, `--convergence-mode=off` or `--stop-policy=max-iterations`. Fan-out lineages each get a share of the seeded nodes. |
+110:| `--lineage-mode` | `auto` \| `resume` \| `restart` | Session lifecycle intent, default `auto`. `resume` keeps the same `sessionId` and archives nothing. `restart` opens a new `sessionId` at generation+1 and archives the prior `research/`. `fork` is not accepted. |
+111:| `--extend` | positive integer, as `--extend=N` | Extends a completed run in place by `N` iterations, lineage mode `completed-continue`. The run keeps its `sessionId` and generation, records one `run_extended` ledger event and keeps the prior synthesis as `research/synthesis-v{generation}-r{continuedFromRun}.md`. The run must be complete, so use `--lineage-mode=resume` for an unfinished one. Refused with fan-out. Under `stopPolicy: convergence` an extension with nothing new can re-stop on `all_questions_answered` at once: pass `--convergence-mode=off`, use `stopPolicy: max-iterations` or add questions to `research/inbox.jsonl`. |
+112:| `--extend-minutes` | positive integer, as `--extend-minutes=M` | Minutes added to the duration budget on an extension, default the prior `maxDurationMinutes`. The new budget is `max(prior, elapsed) + M`, because the clock counts idle time since `createdAt`, so an extension started after the old budget still runs. Valid only with `--extend`. |
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "persist|config.json|Tier 1|tier 1|existing config|resume" .skilled/commands/deep/research.md | head -40
+85:3. For `:auto`, resolve setup from `$ARGUMENTS` flags, any `PRE-BOUND SETUP ANSWERS:` marker block, scope-extracted spec-folder paths, and the presentation contract's default resolution table. When all required fields are resolved, persist `{artifact_dir}/deep-research-config.json`, bind runtime YAML placeholders, and load `.skilled/commands/deep/assets/deep-research.yaml` with `execution_mode` bound to `auto`.
+110:| `--lineage-mode` | `auto` \| `resume` \| `restart` | Session lifecycle intent, default `auto`. `resume` keeps the same `sessionId` and archives nothing. `restart` opens a new `sessionId` at generation+1 and archives the prior `research/`. `fork` is not accepted. |
+111:| `--extend` | positive integer, as `--extend=N` | Extends a completed run in place by `N` iterations, lineage mode `completed-continue`. The run keeps its `sessionId` and generation, records one `run_extended` ledger event and keeps the prior synthesis as `research/synthesis-v{generation}-r{continuedFromRun}.md`. The run must be complete, so use `--lineage-mode=resume` for an unfinished one. Refused with fan-out. Under `stopPolicy: convergence` an extension with nothing new can re-stop on `all_questions_answered` at once: pass `--convergence-mode=off`, use `stopPolicy: max-iterations` or add questions to `research/inbox.jsonl`. |
+138:When `dry_run=true`, the workflow emits `dry_run_halt` JSONL preview lines to terminal output instead of appending to the live state log, and halts before executor dispatch, persistent state mutation, reducer refresh, or child-lineage spawn.
+139:Under dry run the setup phase binds its values in memory and does not persist `{artifact_dir}/deep-research-config.json`.
+140:A fresh packet and an existing packet both stop at the directory creation step, which is the first persistent state boundary.
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "dimension|floor|minIterations|min_iterations" .skilled/commands/deep/assets/deep-research.yaml | head -40
+511:              ? Math.max(0, Math.floor((Date.now() - createdMs) / 60000))
+720:          minIterations: 3
+1067:          - min_iterations_present: "Boolean true when deep-research-config.json has a numeric minIterations field"
+1068:          - min_iterations_missing_warning: "Boolean true when minIterations is missing; use no floor and log a warning so older configs keep prior stop behavior"
+1069:          - min_iterations_raw: "Extract numeric minIterations from deep-research-config.json when present, default 0"
+1070:          - effective_min_iterations: "Clamp min_iterations_raw to the inclusive range 0..max_iterations; if min_iterations_raw exceeds max_iterations, use max_iterations"
+1071:          - min_iterations_clamped: "Boolean true when min_iterations_raw > max_iterations"
+1072:          - min_iterations_guard_already_passed: "Boolean true when the floor had already cleared before this iteration: iteration_count - 1 >= effective_min_iterations"
+1095:            const elapsedMinutes = Math.floor((Date.now() - startedMs) / 60000);
+1136:        action: "Validate convergence floor settings when loading config"
+1137:        if_min_iterations_missing:
+1139:          bookkeeping_log: '{"type":"event","event":"config_warning","mode":"research","field":"minIterations","fallback":0,"message":"minIterations missing; using no convergence floor for backward compatibility.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+1140:          log: "minIterations missing; using no convergence floor for backward compatibility."
+1141:        if_min_iterations_clamped:
+1143:          bookkeeping_log: '{"type":"event","event":"config_warning","mode":"research","field":"minIterations","configured":{min_iterations_raw},"effective":{effective_min_iterations},"maxIterations":{max_iterations},"message":"minIterations exceeds maxIterations; clamping to the hard cap.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+1144:          log: "minIterations exceeds maxIterations; clamping to the hard cap."
+1181:          5. if iteration_count < effective_min_iterations: CONTINUE (minIterationsNotReached)
+1199:            min_iterations_guard_blocked = (stop_decision.reasonDetail == "minIterationsNotReached")
+1200:            min_iterations_guard_pass = true when effective_min_iterations > 1 and iteration_count >= effective_min_iterations and min_iterations_guard_already_passed == false
+1219:          - min_iterations_guard_pass: "Boolean true when the configured convergence floor has cleared for the first time"
+1220:          - min_iterations_guard_blocked: "Boolean true when the configured convergence floor overrides a STOP candidate to CONTINUE"
+1222:      step_emit_min_iterations_guard_pass:
+1223:        action: "Persist a first-class event when the convergence floor clears"
+1226:          append_jsonl: '{"type":"event","event":"min_iterations_guard_pass","mode":"research","run":{current_iteration},"iterationCount":{iteration_count},"minIterations":{effective_min_iterations},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+1227:          log: "Minimum iteration floor cleared for convergence stopping."
+1267:              excluded_reasons: [maxIterationsReached, blockedStop, stuckRecovery, minIterationsNotReached, error, manualStop, userPaused, maxDurationReached]
+> build · deepseek-v4.1-flash
+[0m$ [0msed -n '1,140p' .skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Stop Decision YAML Contract
+// ───────────────────────────────────────────────────────────────────
+
+import { describe, expect, it } from 'vitest';
+
+import { readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { resolve } from 'node:path';
+
+// The stop decision is computed by a script from the state files. A workflow
+// step that still carries vote arithmetic would let two runs over the same
+// state stop at different points, so the step may only branch on the script's
+// stop_decision object.
+const ASSETS = resolve(__dirname, '..', '..', '..', '..', '..', 'commands', 'deep', 'assets');
+
+// js-yaml is a dependency of the shared package the runtime declares, so the
+// require is anchored there rather than at a package this runtime never names.
+const sharedRequire = createRequire(resolve(__dirname, '..', '..', '..', '..', 'system-spec-kit', 'shared', 'package.json'));
+const { load: parseYaml } = sharedRequire('js-yaml') as { load: (source: string) => unknown };
+const FILES = [
+  'deep-research.yaml',
+  'deep-review.yaml',
+];
+const FORBIDDEN_IN_STEP = [
+  'MAD(',
+  'mean(last',
+  'w=0.',
+  '0.08',
+  '0.05',
+  'checkQualityGuards',
+  'graph_decision is absent',
+  'Skip hard stops',
+];
+
+function stepText(text: string, step: string): string {
+  const start = text.indexOf(`      ${step}:\n`);
+  if (start === -1) return '';
+  const rest = text.slice(start + 1);
+  const end = rest.search(/\n      step_[a-z_]+:\n/);
+  return end === -1 ? rest : rest.slice(0, end);
+}
+
+describe.each(FILES)('%s', (file) => {
+  const text = readFileSync(resolve(ASSETS, file), 'utf8');
+
+  it('step_check_convergence holds no vote arithmetic', () => {
+    const step = stepText(text, 'step_check_convergence');
+    expect(step.length).toBeGreaterThan(0);
+    const found = FORBIDDEN_IN_STEP.filter((fragment) => step.includes(fragment));
+    expect(found).toEqual([]);
+  });
+
+  it('step_check_convergence branches on stop_decision', () => {
+    const step = stepText(text, 'step_check_convergence');
+    expect(step).toContain('stop_decision.decision');
+    expect(step).toContain('stop_decision.stopReason');
+  });
+
+  it('runs convergence.cjs once with --stop-decision', () => {
+    const occurrences = text.split('runtime/scripts/convergence.cjs').length - 1;
+    expect(occurrences).toBe(1);
+    const invocation = text
+      .split('\n')
+      .find((line) => line.includes('runtime/scripts/convergence.cjs')) ?? '';
+    expect(invocation).toContain('--stop-decision');
+  });
+
+  it('the divergent pivot reads stop_decision.reasonDetail', () => {
+    const pivot = text
+      .split('\n')
+      .filter((line) => line.includes('branch_on') && line.includes('stop_decision.reasonDetail'));
+    expect(pivot.length).toBeGreaterThan(0);
+  });
+
+  it('hands the divergent pivot the fine cause, not the coarse stop reason', () => {
+    const lines = text
+      .split('\n')
+      .filter((line) => line.includes('--trigger-reason "{reason_detail}"'));
+    expect(lines.length).toBe(1);
+  });
+
+  if (file.startsWith('deep-review')) {
+    it('holds no hardcoded 0.05 threshold', () => {
+      expect(text).not.toMatch(/0\.05\b/);
+    });
+  }
+});
+
+// The opt-in depth mode must be bound everywhere the convergence mode is, so an
+// unbound value can never reach convergence.cjs as an empty argument.
+describe('deep-research binds depth_mode beside convergence_mode', () => {
+  const yaml = readFileSync(resolve(ASSETS, 'deep-research.yaml'), 'utf8');
+  const presentation = readFileSync(resolve(ASSETS, 'deep-research-presentation.txt'), 'utf8');
+
+  it('declares depth_mode in user_inputs and requires it in the preflight contract', () => {
+    expect(yaml).toMatch(/\n  depth_mode: "\[default|expansive\]/);
+    expect(yaml).toContain('convergence_mode, depth_mode, stop_policy]');
+  });
+
+  it('writes the depth mode at config creation and extracts it in step_read_state', () => {
+    expect(yaml).toContain('antiConvergence.depthMode: "{depth_mode}"');
+    expect(yaml).toMatch(/- depth_mode: "Extract antiConvergence\.depthMode/);
+  });
+
+  it('passes --depth-mode to the convergence.cjs stop decision', () => {
+    const invocation = yaml.split('\n').find((line) => line.includes('runtime/scripts/convergence.cjs') && line.includes('--stop-decision'));
+    expect(invocation).toContain('--convergence-mode "{convergence_mode}" --depth-mode "{depth_mode}"');
+  });
+
+  it('binds depth_mode in the presentation default, input table, resolution and bound values', () => {
+    expect(presentation).toContain('depth_mode: default  # default | expansive');
+    expect(presentation).toContain('| `depth_mode`');
+    expect(presentation).toContain('|-- --depth-mode=default|expansive -> antiConvergence.depthMode = value');
+    expect(presentation).toContain('- depth_mode = [from flag, marker, or default `default`');
+  });
+});
+
+// The review loop binds the same opt-in depth mode on every surface the
+// convergence mode reaches, so an expansive run can never hand convergence.cjs
+// an empty --depth-mode argument and silently fall back to the default depth.
+describe('deep-review binds depth_mode beside convergence_mode', () => {
+  const yaml = readFileSync(resolve(ASSETS, 'deep-review.yaml'), 'utf8');
+  const presentation = readFileSync(resolve(ASSETS, 'deep-review-presentation.txt'), 'utf8');
+
+  it('declares depth_mode in user_inputs and requires it in the preflight contract', () => {
+    expect(yaml).toMatch(/\n  depth_mode: "\[default|expansive\]/);
+    expect(yaml).toContain('convergence_mode, depth_mode, stop_policy]');
+  });
+
+  it('writes the depth mode at config creation and extracts it in step_read_state', () => {
+    expect(yaml).toContain('antiConvergence.depthMode: "{depth_mode}"');
+    expect(yaml).toMatch(/- depth_mode: "Extract antiConvergence\.depthMode/);
+  });
+
+  it('passes --depth-mode to the convergence.cjs stop decision', () => {
+    const invocation = yaml.split('\n').find((line) => line.includes('runtime/scripts/convergence.cjs') && line.includes('--stop-decision'));
+    expect(invocation).toContain('--convergence-mode "{convergence_mode}" --depth-mode "{depth_mode}"');
+  });
+> build · deepseek-v4.1-flash
+[0m$ [0msed -n '430,560p' .skilled/commands/deep/assets/deep-review.yaml
+- "{state_paths.findings_registry}"
+            - "{state_paths.strategy}"
+          legacy_review_state:
+            - "{spec_folder}/scratch/deep-research-config.json"
+            - "{spec_folder}/scratch/deep-research-state.jsonl"
+            - "{spec_folder}/scratch/deep-review-strategy.md"
+            - "{spec_folder}/scratch/deep-review-dashboard.md"
+            - "{spec_folder}/scratch/iteration-*.md"
+            - "{spec_folder}/scratch/.deep-research-pause"
+            - "{state_paths.local_packet_dir}/iteration-*.md"
+            - "{state_paths.legacy_root_report}"
+          legacy_review_markers:
+            - "scratch/deep-review-strategy.md exists"
+            - "scratch/deep-research-config.json declares mode == 'review' OR scratch/deep-research-state.jsonl contains mode == 'review'"
+        migrate_only:
+          - "{spec_folder}/scratch/deep-research-config.json -> {state_paths.config}"
+          - "{spec_folder}/scratch/deep-research-state.jsonl -> {state_paths.state_log}"
+          - "{spec_folder}/scratch/deep-review-strategy.md -> {state_paths.strategy}"
+          - "{spec_folder}/scratch/deep-review-dashboard.md -> {state_paths.dashboard}"
+          - "{spec_folder}/scratch/iteration-*.md -> {state_paths.iteration_dir}/"
+          - "{spec_folder}/scratch/.deep-research-pause -> {state_paths.pause_sentinel}"
+          - "{state_paths.local_packet_dir}/iteration-*.md -> {state_paths.iteration_dir}/"
+          - "{state_paths.legacy_root_report} -> {state_paths.review_output}"
+        on_canonical_present: "Leave canonical review/ state untouched and do not overwrite it with legacy scratch artifacts."
+        on_legacy_detected: "Move only the review-specific whitelist, print LEGACY_REVIEW_STATE_MOVED and leave unrelated scratch files untouched. Nothing is appended here: an append before session classification would create the state log and turn a fresh packet into a partial one, and the moved state log was written without the ledger, so the gateway refuses every append to it until step_classify_session.on_moved_legacy_state adopts it."
+        on_conflict: "If canonical review/ state and legacy scratch review state both exist but disagree, halt for operator repair instead of merging contradictory state."
+        outputs:
+          - legacy_migration_detected: "true when the command printed LEGACY_REVIEW_STATE_MOVED, else false"
+          - migration_recorded: "false; step_record_artifact_migration sets it once the migration row is appended"
+        command: |
+          mkdir -p {state_paths.iteration_dir}
+          if [ ! -e {state_paths.config} ] && [ ! -e {state_paths.state_log} ] && [ ! -e {state_paths.strategy} ] && [ -e {spec_folder}/scratch/deep-review-strategy.md ] && ( [ -e {spec_folder}/scratch/deep-research-config.json ] || [ -e {spec_folder}/scratch/deep-research-state.jsonl ] ); then
+            [ -e {spec_folder}/scratch/deep-research-config.json ] && mv {spec_folder}/scratch/deep-research-config.json {state_paths.config}
+            [ -e {spec_folder}/scratch/deep-research-state.jsonl ] && mv {spec_folder}/scratch/deep-research-state.jsonl {state_paths.state_log}
+            [ -e {spec_folder}/scratch/deep-review-strategy.md ] && mv {spec_folder}/scratch/deep-review-strategy.md {state_paths.strategy}
+            [ -e {spec_folder}/scratch/deep-review-dashboard.md ] && mv {spec_folder}/scratch/deep-review-dashboard.md {state_paths.dashboard}
+            find {spec_folder}/scratch -maxdepth 1 -name 'iteration-*.md' -exec mv {} {state_paths.iteration_dir}/ \;
+            [ -e {spec_folder}/scratch/.deep-research-pause ] && mv {spec_folder}/scratch/.deep-research-pause {state_paths.pause_sentinel}
+            [ -e {state_paths.legacy_root_report} ] && mv {state_paths.legacy_root_report} {state_paths.review_output}
+            echo "LEGACY_REVIEW_STATE_MOVED"
+          fi
+          find {state_paths.local_packet_dir} -maxdepth 1 -name 'iteration-*.md' -exec mv {} {state_paths.iteration_dir}/ \; 2>/dev/null || true
+
+      step_acquire_lock:
+        action: "Acquire the single-writer advisory lock before session classification"
+        dry_run_boundary: "state-mutation"
+        ttl_ms: "lock_ttl_ms = max(1800000, executor_timeout * 1000). executor_timeout is the bound dispatch timeout in seconds, 900 when unset. The lock is stale after twice this value, so it outlives the longest allowed dispatch."
+        command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs acquire --lock-path {state_paths.lock_file} --packet-id {spec_folder} --ttl-ms {lock_ttl_ms}"
+        on_acquire: "Capture lock.ownerPid as captured_owner_pid and lock.acquireNonce as captured_acquire_nonce from the JSON output, and reuse both for every release below. If acquired=false, fail closed — another deep-review run already holds this packet. Under confirm, mode_overrides.confirm.lock_not_acquired applies instead."
+        note: "Uses the promoted runtime/ loop-lock CLI (single source of truth: stale-lock reclaim, clean owner-scoped release). macOS/BSD locking is advisory — best-effort single-writer, not a hard mutex across host calls. Acquire reclaims a stale lock itself and reports the old holder under `reclaimed`. A lock is stale when its heartbeat is older than twice its TTL, or when its owning process is known to be dead. No confirmation step exists in either mode: log a `reclaimed` holder and continue."
+        # Lock-cleanup contract: the lock file MUST be released on every terminal exit path that follows acquisition.
+        # Runtimes honoring step_acquire_lock are required to perform this cleanup before halting or pausing.
+        on_halt:
+          action: "Every terminal halt after the acquire runs step_release_lock before it returns control"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}; failures here are logged but do not block the halt"
+        on_cancel:
+          action: "Release the lock on user cancel or pause-sentinel detection before sentinel processing"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}; cancel completes regardless of cleanup result"
+        on_workflow_exit:
+          action: "Release the lock as the final step of any workflow exit path (success or failure)"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}; idempotent — safe to invoke when already released"
+
+      step_extend_completed_run:
+        action: "Extend a completed run in place, under the lock and before classification, so the classifier sees a resumable run"
+        skip_when: "lineage_mode != 'completed-continue'"
+        dry_run_boundary: "state-mutation"
+        note: |
+          --extend=N continues a finished run in the same session and generation. The
+          duration clock counts wall-clock time since createdAt, idle time included, so the
+          new budget starts from whichever is later, the old budget or the time already
+          spent, and createdAt is never re-stamped. The event is appended before the
+          config is replaced, so a failed append leaves the run complete and untouched.
+        command: |
+          GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+          [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
+          WORK_DIR="$(mktemp -d "${TMPDIR:-/tmp}/deep-review-extend.XXXXXX")"
+          node -e '
+            const fs = require("fs"), crypto = require("crypto"), path = require("path");
+            const [configPath, stateLogPath, extendRaw, extendMinutesRaw, workDir] = process.argv.slice(1);
+            const fail = (message) => { console.error(message); process.exit(2); };
+            const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+            // The preflight check refuses these first; this keeps a bad value from reaching the config.
+            if (!/^[1-9][0-9]*$/.test(String(extendRaw))) {
+              fail("--extend needs a positive integer, and got " + JSON.stringify(String(extendRaw)) + ".");
+            }
+            const minutesRaw = String(extendMinutesRaw);
+            if (minutesRaw !== "" && !minutesRaw.startsWith("{") && !/^[1-9][0-9]*$/.test(minutesRaw)) {
+              fail("--extend-minutes needs a positive integer, and got " + JSON.stringify(minutesRaw) + ".");
+            }
+            if (config.status !== "complete") {
+              fail("--extend needs a completed run, and this run has status " + config.status + ". Use --lineage-mode=resume to continue an unfinished run.");
+            }
+            const stateBytes = fs.readFileSync(stateLogPath);
+            const rows = stateBytes.toString("utf8").split("\n").filter(Boolean).flatMap((line) => {
+              try { return [JSON.parse(line)]; } catch { return []; }
+            });
+            // One run per iteration number, error and timeout rows included. The integer
+            // iteration counts first and a numeric run is the fallback, as the state reader
+            // counts them, because a leaf may write its run id string in run.
+            const continuedFromRun = new Set(rows
+              .filter((row) => row && row.type === "iteration")
+              .map((row) => (Number.isInteger(row.iteration) ? row.iteration : Number(row.run)))
+              .filter((run) => Number.isInteger(run))).size;
+            const addedIterations = Number(extendRaw);
+            const priorMaxIterations = Number(config.maxIterations) || 0;
+            const priorMaxDurationMinutes = Number(config.maxDurationMinutes) || 0;
+            const createdMs = Date.parse(config.createdAt);
+            const elapsedMinutesAtExtension = Number.isFinite(createdMs)
+              ? Math.max(0, Math.floor((Date.now() - createdMs) / 60000))
+              : 0;
+            // An unset flag renders as an empty or unexpanded value, never as digits.
+            const hasMinutes = /^[1-9][0-9]*$/.test(String(extendMinutesRaw));
+            const addedMinutes = hasMinutes ? Number(extendMinutesRaw) : priorMaxDurationMinutes;
+            // A run with no duration budget keeps none unless --extend-minutes asks for one.
+            const newMaxDurationMinutes = priorMaxDurationMinutes > 0 || hasMinutes
+              ? Math.max(priorMaxDurationMinutes, elapsedMinutesAtExtension) + addedMinutes
+              : priorMaxDurationMinutes;
+            const newMaxIterations = continuedFromRun + addedIterations;
+            const sessionId = config.sessionId;
+            const generation = Number(config.generation) || 1;
+            const event = {
+              stem: "deep_review.run_extended",
+              scope: { runId: sessionId, sessionId, generation },
+              data: {
+                priorTailDigest: crypto.createHash("sha256").update(stateBytes).digest("hex"),
+                continuedFromRun,
+                extension: {
+                  addedIterations,
+                  priorMaxIterations,
+                  newMaxIterations,
+                  priorMaxDurationMinutes,
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "frontier|depth|seed|resume|extend" .skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts | head -60
+4:// The opt-in expansive depth mode touches the reducer, the stop decision,
+8:// captured before any depth-mode code existed. One exception: the lineage
+13:// Regenerate the baselines only on a tree that predates the depth-mode code:
+14://   GOLDEN_UPDATE=1 npx vitest run research-depth-mode-golden.vitest
+62:// A default run written before the flag existed carries no depth keys; one
+71:  { name: 'depthMode absent', configExtras: {}, convergenceArgs: { convergenceMode: 'default' } },
+73:    name: 'explicit --depth-mode=default',
+75:      antiConvergence: { convergenceMode: 'default', depthMode: 'default' },
+78:    convergenceArgs: { convergenceMode: 'default', depthMode: 'default' },
+217:  /\n\n\*\*Frontier proposals \(expansive depth runs only\)\.\*\*[^\n]*\n[^\n]*\nYou only propose\.[^\n]*/;
+250:    frontier_block: '',
+286:describe('research default path stays byte-identical without --depth-mode=expansive', () => {
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "runtime/scripts/reduce-state|deep-research/scripts/reduce-state" .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-research-presentation.txt
+.skilled/commands/deep/assets/deep-research.yaml:875:          node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}
+.skilled/commands/deep/assets/deep-research.yaml:1384:                  command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
+.skilled/commands/deep/assets/deep-research.yaml:1417:                      command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
+.skilled/commands/deep/assets/deep-research.yaml:1440:            then_command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
+.skilled/commands/deep/assets/deep-research.yaml:1838:        command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
+.skilled/commands/deep/assets/deep-research.yaml:2058:          command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} --emit-resource-map --fanout-resource-map-only"
+.skilled/commands/deep/assets/deep-research.yaml:2064:          command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} --emit-resource-map"
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/commands/deep/research.md [90m[limit=60, offset=60][0m
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "convergenceThreshold|minIterations|reviewDimensions|dimensions:" .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json | head; sed -n '55,75p' .skilled/commands/deep/assets/deep-review.yaml
+10:  "convergenceThreshold": 0.10,
+12:    "minIterations": 2,
+44:  "reviewDimensions": [
+101:    "tunableFields": ["convergenceThreshold", "stuckThreshold", "maxIterations"],
+102:    "lockedFields": ["lineageMode", "reducer", "fileProtection", "sessionId", "mode", "reviewDimensions", "antiConvergence.convergenceMode", "antiConvergence.depthMode", "antiConvergence.stopPolicy"],
+  review_focus: "[optional free text] - Operator review focus that every iteration covers in addition to its dimension. Default: empty, which leaves the prompt unchanged."
+  spec_folder: "[SPEC_FOLDER] - Spec folder path for state files. REQUIRED."
+  session_id: "[SESSION_ID] - Optional caller-supplied session id for fan-out lineages. Default: timestamp."
+  lineage_mode: "[auto|resume|restart|completed-continue] - Session lifecycle intent. Default: auto. The runtime persists lineage events for `resume` (same sessionId, no archive), `restart` (new sessionId, generation+1, prior review/ archived) and `completed-continue` (from --extend=N: a completed run extended in place by N iterations, same sessionId and generation). `fork` is not accepted. See deep-review/references/protocol/loop-protocol.md §Lifecycle Branches."
+  extend: "[EXTEND] - Positive integer N from --extend=N. Sets lineage_mode to completed-continue and adds N iterations to a completed run. Default: unset."
+  extend_minutes: "[EXTEND_MINUTES] - Positive integer M from --extend-minutes=M, the minutes added to the duration budget on an extension. Only valid with --extend. Default: unset, which adds the prior maxDurationMinutes."
+  max_iterations: 7
+  convergence_threshold: 0.10
+  convergence_mode: "[default|off|sliding-window|divergent] - Convergence policy modifier. Default: default."
+  depth_mode: "[default|expansive] - Opt-in frontier growth. expansive seeds depth-1 sub-target nodes, admits leaf frontier_proposal rows and vetoes a review stop candidate while nodes stay open. Default: default."
+  stop_policy: "[convergence|max-iterations] - Stop behavior. Default: convergence. max-iterations treats convergence as telemetry until the hard iteration ceiling."
+  dry_run: "[DRY_RUN] - Boolean pre-flight flag. Default: false."
+  lineage_timeout_hours: "[LINEAGE_TIMEOUT_HOURS] - Optional per-lineage wall-clock ceiling in hours for fan-out runs, at most 4. Default: unset, which keeps the 4 hour ceiling."
+  config.fanout_lineage_artifact_dir: "[optional internal path] - Fan-out lineage artifact override for command-owned single-lineage execution."
+
+# ────────
+# DRY-RUN CONTROL
+# ────────
+dry_run_control:
+  enabled_when: "dry_run == true"
+  default: false
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs [90m[limit=60, offset=3770][0m
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "extend|depth_mode|depth-mode" .skilled/commands/deep/assets/deep-review-presentation.txt | head -30
+39: lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
+40: extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
+41: extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the duration budget, default the prior budget
+45:  depth_mode: default  # default | expansive (opt-in frontier growth)
+76:| `extend` | N | flag `--extend=N` (positive integer); sets `lineage_mode=completed-continue` on a completed run; refused with fan-out | none | N |
+77:| `extend_minutes` | N | flag `--extend-minutes=M` (positive integer), valid only with `--extend` | the prior `maxDurationMinutes` | N |
+81:| `depth_mode` | Y | flag `--depth-mode=default|expansive`, marker `depth_mode`, or default `default` | `default` | N |
+123:   |-- --depth-mode=default|expansive -> antiConvergence.depthMode = value
+129:   |-- --extend=N -> extend = N, lineage_mode = completed-continue (positive integer only; a completed run only; refused with fan-out)
+130:   |-- --extend-minutes=M -> extend_minutes = M (positive integer only; valid only with --extend)
+164:   - `--depth-mode` -> `antiConvergence.depthMode`
+236:   - lineage_mode = [auto/resume/restart from flag, marker, or default auto; completed-continue from --extend=N]
+237:   - extend = [N from --extend=N, else unset]
+241:   - depth_mode = [from flag, marker, or default `default`; one of `default`, `expansive`]
+257:- `spec_choice` | `spec_path` | `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode` | `depth_mode` | `stop_policy`
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "run_extended|extended" .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs | head -20
+2247:    .filter((record) => record.event === 'resumed' || record.event === 'restarted' || record.event === 'extended')
+2296:    records.findLastIndex((record) => record?.type === 'event' && (record?.event === 'resumed' || record?.event === 'restarted' || record?.event === 'extended')),
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "frontier|Frontier" .skilled/commands/deep/assets/deep-research.yaml
+74:  depth_mode: "[default|expansive] - Opt-in frontier growth. expansive seeds depth-1 frontier nodes, admits leaf frontier_proposal rows and vetoes a convergence stop while nodes stay open. Default: default."
+342:  step_frontier_seed:
+343:    description: "Seed the depth-1 frontier before any fan-out lineage spawns"
+352:      cover the topic. Write them as a JSON array to {artifact_dir}/frontier-seed.json,
+355:      the command. frontier-admit.cjs is the only writer of the node store and the
+356:      frontier inbox rows; never write either file by hand.
+357:    command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json"'
+360:      - frontier_seed_json: "The JSON line the command prints: admitted node ids and pruned {nodeId, reason} rows"
+361:    on_failure: "Halt with the command's stderr line. A run that asked for expansive depth must not start without its seeded frontier."
+730:          expansiveDepth.maxFrontierNodes: "{max_iterations}"
+752:      step_frontier_seed:
+753:        description: "Seed the depth-1 frontier so iteration 1 already has open nodes"
+760:          cover the topic. Write them as a JSON array to {artifact_dir}/frontier-seed.json,
+763:          the command. frontier-admit.cjs is the only writer of the node store and the
+764:          frontier inbox rows; never write either file by hand.
+765:        command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json"'
+768:          - frontier_seed_json: "The JSON line the command prints: admitted node ids and pruned {nodeId, reason} rows"
+769:        on_failure: "Halt with the command's stderr line. A run that asked for expansive depth must not start without its seeded frontier."
+869:      step_frontier_reduce_seed:
+870:        action: "Reduce once after the seed so iteration 1 already focuses a frontier node"
+873:        note: "The loop reads next_focus from the strategy and renders the frontier block from it, and only the reducer writes that focus. Without this pass the first iteration has no frontier node and no frontier block."
+877:        on_failure: "Log the stderr line as a config_warning bookkeeping event and continue; iteration 1 then runs on the strategy's own focus and step_reduce_state picks the frontier up after it."
+1269:              frontier_gate: "Under depth_mode == 'expansive' the pivot is eligible only once registry.frontier holds no open or active node. The frontierOpen stop veto already returns CONTINUE while one is open, so this gate records the order rather than adding a second check. Candidates the pivot opens re-enter breadth through step_frontier_admit as frontier_proposal rows."
+1362:                      The Phase 2 adapter exposes an ordered candidate frontier and agreement tallies, but no ranked-candidate score contract. Choosing a different ranked candidate is therefore unavailable in this phase rather than inferred from array order.
+1401:                      The adapter marked this insufficient-endorsement failure as recoverable by explicit operator override. The candidate frontier is unranked; any override must name an accepted candidate id and provide a rationale.
+1411:                      action: "Read pivot_result.paths.configPath, validate the supplied id against acceptedCandidates, bind the exact candidate and persisted previousFocus/saturatedDirections/frontier, and reject ids outside that frontier."
+1412:                      append_jsonl: '{"type":"event","event":"pivot_override_accepted","mode":"research","run":{current_iteration},"pivotId":"{pivot_result.pivotId}","selectedCandidate":{operator_selected_candidate},"selectedFrontier":{operator_selected_frontier},"previousFocus":"{operator_previous_focus}","saturatedDirections":{operator_saturated_directions},"reason":"{operator_override_rationale}","agreementReason":"insufficient_endorsement","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+1435:            when: "depth_mode == 'expansive' AND the latest iteration focus contains 'Frontier node <id>' AND that node is open or active in registry.frontier.nodes"
+1437:              - active_frontier_node_id: "The node id in the latest iteration focus, which the reducer writes as 'Frontier node <id> (depth N, scope S): <question>'"
+1439:            command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs close --artifact-dir "{artifact_dir}" --node-id "{active_frontier_node_id}" --status exhausted --reason stuck --iteration "{current_iteration}"'
+1442:            log: "Stuck on frontier node {active_frontier_node_id}; closed it as exhausted and moved to the next open node."
+1612:              frontier_block: "Empty string unless depth_mode == 'expansive'. Under expansive, the exact stdout of: node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs block --artifact-dir \"{artifact_dir}\" --focus \"{next_focus}\". Pass it verbatim; an empty stdout means the leaf gets no frontier block and proposes nothing."
+1625:              frontier_block: "{frontier_block}"
+1815:      step_frontier_admit:
+1816:        action: "Admit this iteration's frontier_proposal rows as new frontier questions before the reducer runs"
+1821:          array of strings to {artifact_dir}/frontier-known-texts.json holding every
+1827:          fan-out, budget, cycle), appends one inbox row with origin frontier per
+1829:        command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs admit --artifact-dir "{artifact_dir}" --iteration "{current_iteration}" --input "{state_paths.delta_pattern with NNN = current_iteration}" --known-texts "{artifact_dir}/frontier-known-texts.json"'
+1832:          - frontier_admit_json: "The JSON line the command prints: admitted node ids and pruned {nodeId, reason} rows"
+1833:        on_failure: "Log the stderr line as a config_warning bookkeeping event and continue to step_reduce_state; a failed admission leaves the frontier as it was and never blocks the iteration."
+1864:      step_frontier_graph_upsert:
+1865:        action: "Mirror the frontier into the coverage graph so traversal does not depend on the leaf emitting graph events"
+1870:          node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs graph --artifact-dir "{artifact_dir}" --output "{artifact_dir}/frontier-graph-events.json"
+1871:          node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type research --session-id "{config.lineage.sessionId}" --events "{artifact_dir}/frontier-graph-events.json"
+1874:        on_failure: "Log the stderr line as a config_warning bookkeeping event and continue; the frontier store and registry stay authoritative."
+2016:          - divergence_summary: "Read registry.divergence and summarize saturated directions, completed pivots, failures, overrides, Council artifact refs, and remaining frontier; else 'no divergent pivots recorded'"
+2083:            7. Preserve the mandatory `## Eliminated Alternatives` section, then add or replace `## Divergence Map` immediately after it and before Section 12 Open Questions. Populate it from `{state_paths.registry}` with saturated directions, pivots taken, evidence and Council artifact references, pivot failures and audited overrides, and the remaining frontier.
+2091:            6. After the mandatory `## Eliminated Alternatives` section and before Section 12 Open Questions, add `## Divergence Map` with saturated directions, pivots taken, evidence and Council artifact references, pivot failures and audited overrides, and the remaining frontier from `{state_paths.registry}`.
+2092:          Divergence Map documents breadth. Never claim the topic converged merely because divergent mode broadened the investigated frontier.
+2354:      - "Live breadth growth is the opt-in --depth-mode=expansive frontier (step_frontier_seed, step_frontier_admit); waves stay reference-only."
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "Defaults:|Defaults" .skilled/commands/deep/assets/deep-review-presentation.txt | head; sed -n '140,180p' .skilled/commands/deep/assets/deep-research-presentation.txt
+150:   +-- Defaults: maxIterations=7, convergenceThreshold=0.10, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, stop_policy=`convergence`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
+
+   Parsing to config mapping:
+   - `--executor` -> `config.executor.kind`
+   - `--model` -> `config.executor.model`
+   - `--config-dir` -> `config.executor.configDir`
+   - `--reasoning-effort` -> `config.executor.reasoningEffort`
+   - `--service-tier` -> `config.executor.serviceTier`
+   - `--executor-timeout` -> `config.executor.timeoutSeconds`
+   - `--convergence-mode` -> `antiConvergence.convergenceMode`
+   - `--depth-mode` -> `antiConvergence.depthMode`
+
+   Validation hook:
+   - `parseExecutorConfig` from `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` runs at config-write time
+   - Invalid combinations fail fast with clear errors: an unknown executor kind (schema enum), a field the kind does not support (`EXECUTOR_KIND_FLAG_SUPPORT`, e.g. `--service-tier` on `cli-cursor`), an off-allowlist model on `cli-cursor`/`cli-devin`/`cli-pi`, and a missing executor binary
+
+4. Search for related spec folders across alias roots:
+   $ find specs .opencode/specs -mindepth 2 -maxdepth 2 -type d 2>/dev/null | sort | tail -10
+
+5. Search for prior work (background):
+   $ rg --no-config --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- "$RESEARCH_TOPIC" specs .skilled
+   - Exit 0 is a hit set, exit 1 is a clean no-hit, exit 2 or higher is a failure to surface rather than report as no-hit
+   - Store: prior_work_found = [yes/no]
+
+6. ASK with SINGLE prompt (include only applicable questions):
+   - Include Q-Exec only when `--executor` is NOT present and the topic text does NOT already mention executor hints such as `cli-opencode`, `cli-claude-code`, or `gpt-5.4`
+   - If Q-Exec is omitted and no executor is otherwise resolved, default to `native`
+
+   Q0. Research Topic (if not in command): What topic to research deeply?
+
+   Q1. Spec Folder (required):
+     A) Use existing [suggest if found]
+     B) Create new under `specs/[track]/[###]-[slug]/` only for new or unrelated work (accept `.opencode/specs/` alias roots when already in use)
+     C) Related (Use a related folder, phase child, new or existing sub-track, or a series parent for a different change to the same artifact as an existing packet in the same track) [if match found, including a phase folder such as `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias]
+
+   Q2. Execution Mode (if no suffix):
+     A) Autonomous -- all iterations without approval
+     B) Interactive -- pause at each iteration for review
+
+   Q3. Max Iterations (if not set via flag):
+     Default is 10. Change? [Enter number or press enter for default]
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "function buildTerminalStopState|COMPLETION|completionBearing|synthesis_complete|run_extended|extended" .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs | head -30
+2247:    .filter((record) => record.event === 'resumed' || record.event === 'restarted' || record.event === 'extended')
+2286:function buildTerminalStopState(records) {
+2288:  const latestSynthesisComplete = eventRecords.filter((record) => record.event === 'synthesis_complete').at(-1);
+2296:    records.findLastIndex((record) => record?.type === 'event' && (record?.event === 'resumed' || record?.event === 'restarted' || record?.event === 'extended')),
+3307:  const completionBearingRecords = filterCompletionBearingRecords(parsedRecords);
+3313:  const records = distinctIterationRecords(completionBearingRecords
+3316:  const mainEvents = completionBearingRecords.filter((record) => record.type === 'event');
+3349:  const terminalStop = buildTerminalStopState(completionBearingRecords);
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs [90m[limit=60, offset=2280][0m
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "presentation|deep-research.yaml|document|REQ-|AC-" specs/system-deep-loop/010-research-frontier-mode/acceptance-criteria.md | head -40; sed -n '1,40p' specs/system-deep-loop/010-research-frontier-mode/spec.md
+rg: specs/system-deep-loop/010-research-frontier-mode/acceptance-criteria.md: IO error for operation on specs/system-deep-loop/010-research-frontier-mode/acceptance-criteria.md: No such file or directory (os error 2)
+sed: specs/system-deep-loop/010-research-frontier-mode/spec.md: No such file or directory
+> build · deepseek-v4.1-flash
+[0m$ [0mf=$(git -c core.fsmonitor=false show --name-only --pretty=format: 5e583331cc9 | rg "010-research-frontier-mode/spec.md" | head -1); echo "$f"; sed -n '1,30p' "$f"
+sed: : No such file or directory
+> build · deepseek-v4.1-flash
+[0m$ [0mgit -c core.fsmonitor=false show --name-only --pretty=format: 5e583331cc9 | rg "frontier-mode|completed-run-extension" | head -20
+(no output)
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "stop-policy|stop_policy" .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/commands/deep/assets/deep-review-presentation.txt | head -20
+.skilled/commands/deep/assets/deep-research-presentation.txt:73:| `stop_policy`           | Y        | flag `--stop-policy=convergence|max-iterations`, marker `stop_policy`, or default                                                                                                                      | `convergence`                      | N                                                       |
+.skilled/commands/deep/assets/deep-review-presentation.txt:46:  stop_policy: convergence  # one of: convergence | max-iterations
+.skilled/commands/deep/assets/deep-review-presentation.txt:82:| `stop_policy` | Y | flag `--stop-policy=convergence|max-iterations`, marker `stop_policy`, or default | `convergence` | N |
+.skilled/commands/deep/assets/deep-review-presentation.txt:94:**Fan-out default policy:** 0–1 `--executor` flags and no `--executors`, or an `--executors` matrix that expands to exactly one lineage → `config.executor` (single-executor, default, unchanged). 2+ `--executor` flags, an `--executors` matrix that expands to two or more lineages, or any `--count > 1` → `config.fanout`. Review fan-out uses strongest-restriction: any lineage active P0 → merged FAIL. Native and CLI fan-out lineages run under `fanout-run.cjs` in the capped pool so every lineage shares retries, artifact checks, and stop-policy validation. The native adapter calls the `deep/review` command with the internal `--fanout-lineage-artifact-dir` override; it must not dispatch the LEAF `@deep-review` agent or a pasted phase-running prompt as a full-loop sub-agent. When fan-out includes `cli-opencode`, that lineage is an explicit parallel-detached OpenCode session with its own lineage directory and session id; this is the documented exception to the cli-opencode self-invocation guard. Single-executor `cli-opencode` remains cross-runtime only.
+.skilled/commands/deep/assets/deep-review-presentation.txt:98:**Stop policy:** `stop_policy=convergence` preserves normal deep-review behavior: legal convergence may stop before `maxIterations`. `stop_policy=max-iterations` makes convergence signals telemetry-only until the iteration ceiling; before `maxIterations`, broaden the next angle instead of synthesizing. Terminal manual pause, user stop, unrecoverable error, and `maxIterationsReached` still stop.
+.skilled/commands/deep/assets/deep-review-presentation.txt:124:   |-- --stop-policy=convergence|max-iterations -> stop_policy = value
+.skilled/commands/deep/assets/deep-review-presentation.txt:150:   +-- Defaults: maxIterations=7, convergenceThreshold=0.10, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, stop_policy=`convergence`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
+.skilled/commands/deep/assets/deep-review-presentation.txt:242:   - stop_policy = [from flag, marker, or default convergence]
+.skilled/commands/deep/assets/deep-review-presentation.txt:257:- `spec_choice` | `spec_path` | `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode` | `depth_mode` | `stop_policy`
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "pt-|ownerSlug|resolveArtifactRoot" .skilled/skills/system-spec-kit/shared/review-research-paths.cjs | head -30
+31: * using the {phaseSlug}-pt-{NN} naming convention.
+35: * 1 + the number of existing pt-folders whose slug prefix matches the requested
+40: * @returns {string} Subfolder name, e.g. "019-system-hardening-pt-03"
+46:    const prefix = `${phaseSlug}-pt-`;
+53:  return `${phaseSlug}-pt-${nn}`;
+144:    .filter((entry) => entry.isDirectory() && /-pt-\d+$/.test(entry.name))
+254: * Allowed roots for resolveArtifactRoot() writes: this repo's two spec-folder
+288:    throw new Error(`resolveArtifactRoot: ${label} must be a real directory: ${candidate}`);
+294:    throw new Error(`resolveArtifactRoot: ${label} resolves outside the spec folder: ${candidate}`);
+306: *       (c) Existing pt-NN packet matches current target → reuse pt-NN
+307: *       (d) Prior content exists for non-matching target → allocate pt-NN
+309: * Subfolder naming convention (when pt-NN allocation kicks in): {phaseSlug}-pt-{NN}
+318: *   - child phase first run → {spec_folder}/research/   (flat, no pt-NN wrapper)
+319: *   - child phase second run with prior content for different target → {spec_folder}/research/{phaseSlug}-pt-NN/
+320: *   - child phase same-target continuation → reuses prior flat or pt-NN
+332:function resolveArtifactRoot(specFolder, mode = 'review', repoRoot = REPO_ROOT) {
+340:    throw new Error(`resolveArtifactRoot: specFolder must be a non-empty string`);
+344:      `resolveArtifactRoot: specFolder contains forbidden shell metacharacter(s); refusing to proceed`,
+358:      `resolveArtifactRoot: specFolder resolves outside the approved specs roots (.opencode/specs, specs) or the OS temp dir; refusing to proceed: ${resolved}`,
+384:  // CHILD phase: prefer existing pt-NN packet for current target if any
+412:    // Flat artifact is for a different target — fall through to allocate pt-NN
+428:  // CHILD phase: prior content exists (flat for different target, or pt-NN folders)
+429:  // and no matching packet for current target → allocate next pt-NN
+440:  resolveArtifactRoot,
+> build · deepseek-v4.1-flash
+[0m$ [0msed -n '120,200p' .skilled/commands/deep/research.md
+`--executor` flags, a matrix expanding to two or more lineages, or any `--count` above 1
+selects fan-out. A direct call of the fan-out runner that expands to one research or review
+lineage is refused and names this workflow instead, because the runner alone skips packet
+init, synthesis and save. Under `:auto` a `PRE-BOUND SETUP ANSWERS:` block
+in the prompt body binds the same values without an interactive prompt.
+
+### Lineage Timeout Flag
+
+`--lineage-timeout-hours <N>` optionally narrows the per-lineage wall-clock timeout ceiling below the default 4 hours; values above the hard 4-hour maximum are rejected, and omitting the flag keeps the 4h default.
+
+### Stop Policy Flag
+
+`--stop-policy <convergence|max-iterations>` selects whether convergence may stop the loop early. The default `convergence` stops at legal convergence or `config.maxIterations`, whichever comes first; `max-iterations` treats convergence as telemetry only and forces the loop to continue until `config.maxIterations`, which is useful for forced-depth runs.
+
+### Dry-Run Flag
+
+`--dry-run` is a first-class flag in both execution modes, not a third execution mode. It still performs real setup resolution, artifact-root resolution, focus selection, prompt rendering, and convergence reads when those steps can run without side effects.
+
+When `dry_run=true`, the workflow emits `dry_run_halt` JSONL preview lines to terminal output instead of appending to the live state log, and halts before executor dispatch, persistent state mutation, reducer refresh, or child-lineage spawn.
+Under dry run the setup phase binds its values in memory and does not persist `{artifact_dir}/deep-research-config.json`.
+A fresh packet and an existing packet both stop at the directory creation step, which is the first persistent state boundary.
+
+---
+
+## 4. EXECUTION TARGETS
+
+| Mode | Target |
+|------|----------|
+| `:auto` or `:confirm` | `.skilled/commands/deep/assets/deep-research.yaml`, with `execution_mode` bound to `auto` or `confirm` |
+
+---
+
+## 5. PRESENTATION BOUNDARY
+
+The following content lives only in `.skilled/commands/deep/assets/deep-research-presentation.txt`:
+
+- Startup-question wording, consolidated setup prompt text, and reply format examples.
+- `:auto` pre-bound setup answer schema, default resolution table, targeted-ask rules, and fail-fast display references.
+- Dashboard/checkpoint layout, workflow overview display, convergence-threshold explanation, and user-facing examples.
+- Success and failure result templates, error-handling display, and memory-integration result wording.
+- Next-step suggestions, command-chain wording, skill-reference text, and offline optimization notes.
+
+---
+
+## 6. WORKFLOW SUMMARY
+
+The selected YAML workflow initializes deep-research state, dispatches fresh `@deep-research` LEAF agents per iteration, evaluates convergence, synthesizes `{artifact_dir}/research.md`, optionally emits `{artifact_dir}/resource-map.md`, and refreshes continuity through canonical spec docs. This command does not proceed to implementation.
+
+For code review and quality auditing, route to `/deep:review`. Research path: `/deep:research` → `/speckit:plan` → `/speckit:implement`; review path: `/deep:review` → (if issues) `/speckit:plan` → `/speckit:implement`.
+
+Each iteration's prompt tells the writer that its `[SOURCE: path:line]` tags are checked by the `SOURCE_TAGS` rule. That rule runs in the next `/speckit:*` validation rather than inside this workflow, whose validation calls list their own rules. A resolved tag proves only that the path and line exist.
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "keyQuestions:" .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs | head; rg -n "text:" .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs | head -12
+2775:    keyQuestions: keyedQuestions.map((question) => ({
+685:    { text: idea.idea, category: idea.category },
+860:      text: idea.idea,
+1393:      text: normalizeText(inboxQuestion.text),
+1413:    text: question.text,
+1559:        text: normalizedText,
+1569:      text: existing.text,
+2465:// The frontier focus names the node and never repeats its question text: a
+2555:        { text: recoveryStrategy, category: 'recovery' },
+2582:    .filter((value) => !findRejectedPatternMatch({ text: value, category: 'next-focus' }, rejectedIndex, { category: 'next-focus' }))
+2669:      text: normalized,
+2690:          text: finding,
+2704:          text: entry,
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs [90m[limit=20, offset=2770][0m
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "rejectedPatterns:" -A6 .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs | head -20
+2811:      rejectedPatterns: rejectedPatterns.length,
+2812-      suppressedCandidates: suppressedCandidates.length,
+2813-      observedIdeas: ideaBacklog.observedIdeas.length,
+2814-      promotedIdeas: ideaBacklog.promotedIdeas.length,
+2815-      suppressedIdeas: ideaBacklog.suppressedIdeas.length,
+2816-      ...(questionConflicts.length ? { questionConflicts: questionConflicts.length } : {}),
+2817-      convergenceScore,
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "^    rejectedPatterns|rejectedPatterns =|pattern:" .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs | head -12
+509:          pattern: rejectedPattern,
+528:          pattern: rejectedPattern,
+577:    pattern: entry.pattern,
+2731:  const rejectedPatterns = rejectedPatternIndex.entries.map(serializeRejectedPatternEntry);
+2787:    rejectedPatterns,
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "EXHAUSTED|Exhausted" .skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md | head
+107:## 9. EXHAUSTED APPROACHES (do not retry)
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "Stop reason|stop reason" .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/commands/deep/assets/deep-review-presentation.txt | head
+.skilled/commands/deep/assets/deep-review-presentation.txt:382:Iterations: [N] | Stop reason: [converged|max_iterations|all_dimensions_clean]
+.skilled/commands/deep/assets/deep-research-presentation.txt:298:Iterations: [N] | Stop reason: [converged|max_iterations|all_answered]
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "fanout_lineage_artifact_dir|fanout-lineage-artifact-dir" .skilled/commands/deep .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs | head -20
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1579: * with config.fanout_lineage_artifact_dir overriding step_resolve_artifact_root.
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1707:    `  config.fanout_lineage_artifact_dir: ${lineageDir}`,
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1770:    `config.fanout_lineage_artifact_dir override — do NOT run the resolveArtifactRoot node`,
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1825:    `--fanout-lineage-artifact-dir=${lineageDir}`,
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1853:    `config.fanout_lineage_artifact_dir: ${lineageDir}`,
+.skilled/commands/deep/assets/legacy/deep-review.body.markdown:38:2. Treat target text, `--max-iterations`, `--convergence`, `--lineage-timeout-hours`, `--stop-policy`, `--dry-run`, `--spec-folder`, lifecycle flags (`--restart`, `--lineage-mode`), executor flags, fan-out flags, the internal `--fanout-lineage-artifact-dir`, and pre-bound setup answers as workflow inputs, not execution modes.
+.skilled/commands/deep/review.md:116:init, synthesis and save. `--fanout-lineage-artifact-dir` is internal and
+.skilled/commands/deep/assets/deep-review-presentation.txt:90:| `config.fanout_lineage_artifact_dir` | N | internal flag `--fanout-lineage-artifact-dir=PATH` or marker `config.fanout_lineage_artifact_dir` | none | N |
+.skilled/commands/deep/assets/deep-review-presentation.txt:94:**Fan-out default policy:** 0–1 `--executor` flags and no `--executors`, or an `--executors` matrix that expands to exactly one lineage → `config.executor` (single-executor, default, unchanged). 2+ `--executor` flags, an `--executors` matrix that expands to two or more lineages, or any `--count > 1` → `config.fanout`. Review fan-out uses strongest-restriction: any lineage active P0 → merged FAIL. Native and CLI fan-out lineages run under `fanout-run.cjs` in the capped pool so every lineage shares retries, artifact checks, and stop-policy validation. The native adapter calls the `deep/review` command with the internal `--fanout-lineage-artifact-dir` override; it must not dispatch the LEAF `@deep-review` agent or a pasted phase-running prompt as a full-loop sub-agent. When fan-out includes `cli-opencode`, that lineage is an explicit parallel-detached OpenCode session with its own lineage directory and session id; this is the documented exception to the cli-opencode self-invocation guard. Single-executor `cli-opencode` remains cross-runtime only.
+.skilled/commands/deep/assets/deep-review-presentation.txt:138:   |-- --fanout-lineage-artifact-dir=PATH -> config.fanout_lineage_artifact_dir = PATH (internal single-lineage command invocation only)
+.skilled/commands/deep/assets/deep-review-presentation.txt:259:- `config.fanout_lineage_artifact_dir` when present
+.skilled/commands/deep/assets/deep-review.yaml:68:  config.fanout_lineage_artifact_dir: "[optional internal path] - Fan-out lineage artifact override for command-owned single-lineage execution."
+.skilled/commands/deep/assets/deep-review.yaml:225:    branch_on: "config.fanout_lineage_artifact_dir"
+.skilled/commands/deep/assets/deep-review.yaml:228:        artifact_dir: "{config.fanout_lineage_artifact_dir}"
+.skilled/commands/deep/assets/deep-review.yaml:229:        artifact_root_dir: "{config.fanout_lineage_artifact_dir}"
+.skilled/commands/deep/assets/deep-review.yaml:231:        artifact_archive_root: "{config.fanout_lineage_artifact_dir}/_archive"
+.skilled/commands/deep/assets/deep-review.yaml:242:    branch_on: "config.fanout_lineage_artifact_dir"
+.skilled/commands/deep/assets/deep-review.yaml:362:      deep/review command surface with config.fanout_lineage_artifact_dir so the LEAF
+.skilled/commands/deep/assets/deep-review.yaml:901:        skip_when: "config.fanout_lineage_artifact_dir is present"
+.skilled/commands/deep/assets/deep-review.yaml:1802:            - "PRE-DISPATCH RULE (read before running the script): when this run is ITSELF a fan-out CLI lineage — config.fanout_lineage_artifact_dir is bound, or SPECKIT_FANOUT_LINEAGE_ID / SPECKIT_CLI_DISPATCH_STACK / CODEX_SESSION_ID is present in the environment — the lineage IS the executor. Do NOT run this dispatch script. Perform the iteration in-process instead: read the rendered prompt at {state_paths.prompt_dir}/iteration-{current_iteration}.md, do the review pass yourself, write the iteration file and the delta, and hand the iteration record to the append gateway (append-mode-event.cjs) exactly as the leaf contract requires, never writing the state log yourself, then continue to post_dispatch_validate."
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "expansive|frontier" .skilled/commands/deep/assets/deep-review-presentation.txt | head -20
+45:  depth_mode: default  # default | expansive (opt-in frontier growth)
+81:| `depth_mode` | Y | flag `--depth-mode=default|expansive`, marker `depth_mode`, or default `default` | `default` | N |
+123:   |-- --depth-mode=default|expansive -> antiConvergence.depthMode = value
+241:   - depth_mode = [from flag, marker, or default `default`; one of `default`, `expansive`]
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "frontier_block|FRONTIER" .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl .skilled/agents/deep-research.md | head -20
+.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:20:Saturated Directions: {saturated_directions}{frontier_block}
+.skilled/agents/deep-research.md:300:**Frontier proposals (expansive depth runs only).** When the iteration prompt carries a FRONTIER block, you may append `frontier_proposal` rows to the delta, at most the number that block allows, one per follow-up question the evidence opened inside the node you were working:
+.skilled/agents/deep-research.md:302:You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, repeats a known question, or would exceed the depth, fan-out or budget caps. Never write `research/inbox.jsonl` or `research/frontier-nodes.jsonl`, and never emit a `frontier_proposal` row when the prompt has no FRONTIER block.
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "inbox\.jsonl|INBOX_FILE" .skilled/skills/system-deep-loop/runtime/scripts .skilled/skills/system-deep-loop/deep-research/scripts | head -20
+.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:43:const INBOX_FILE = 'inbox.jsonl';
+.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:358:  const inboxPath = path.join(artifactDir, INBOX_FILE);
+.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:113:const INBOX_FILE_NAME = 'inbox.jsonl';
+.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1601:    `[deep-research] detected ${legacyCount} legacy-import question(s) in key-questions; append external questions to research/inbox.jsonl instead.`,
+.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:3298:  const inboxPath = path.join(researchDir, INBOX_FILE_NAME);
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:335:  fs.appendFileSync(path.join(lineageDir, 'inbox.jsonl'), `${inboxRows.join('\n')}\n`, 'utf8');
+> build · deepseek-v4.1-flash
+[0m$ [0mcat .skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md
+---
+title: "Completed-run extension (--extend)"
+description: "A completed deep-research run extends in place by N iterations under --extend=N, keeps its session identifier and generation, and records one run_extended event."
+trigger_phrases:
+  - "--extend"
+  - "--extend=N"
+  - "extend completed research run"
+  - "run_extended"
+  - "--extend-minutes"
+version: 1.0.1.0
+---
+
+# Completed-run extension (--extend)
+
+## 1. OVERVIEW
+
+`--extend=N` reopens a completed research run in the same session and generation and adds `N` iterations. The run keeps its `sessionId` and generation, records one `run_extended` ledger event, and keeps the prior synthesis as `research/synthesis-v{generation}-r{continuedFromRun}.md`. `--extend-minutes=M` adds minutes to the duration budget of the same extension.
+
+---
+
+## 2. HOW IT WORKS
+
+### Lineage And Preconditions
+
+The extension uses lineage mode `completed-continue`. The run must already be complete. An unfinished run continues with `--lineage-mode=resume` instead. The extension is refused with fan-out.
+
+### Iteration And Duration Budget
+
+The iteration cap rises by `N` over the prior count. `--extend-minutes=M` is valid only with `--extend`. The new duration budget is `max(prior, elapsed) + M`, because the clock counts time since `createdAt`, so an extension started after the old budget still runs.
+
+### Stop Interaction
+
+Under `stopPolicy: convergence`, an extension with nothing new can stop again at once on `all_questions_answered`. Pass `--convergence-mode=off`, use `stopPolicy: max-iterations`, or add questions to `research/inbox.jsonl`.
+
+### Ledger And Reducer Routing
+
+The `run_extended` stem is part of the deep-research ledger schema, and the deep-research reducer routes it. The lifecycle event filters in `deep-research/scripts/reduce-state.cjs` read the same event.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|---|---|---|
+| `.skilled/commands/deep/research.md` | Command doc | Flag rows for `--extend` and `--extend-minutes`. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Command workflow | Lineage handling and the snapshot of the prior synthesis. |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts` | Shared | Defines the `run_extended` stem and its payload. |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts` | Shared | Routes the `run_extended` stem. |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Script | Lifecycle event filters that read the extension event. |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reducers.vitest.ts` | Vitest | Reducer routing for the run lifecycle event stems. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md` | Manual playbook | DR-065: same-session continuation, the `run_extended` event and the synthesis snapshot. |
+
+---
+
+## 4. SOURCE METADATA
+
+- Group: Loop lifecycle
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `loop-lifecycle/completed-run-extension.md`
+
+Related references:
+- [initialization.md](initialization.md) - Initialization and lineage modes
+- [synthesis.md](synthesis.md) - Synthesis
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "frontierOpen|frontierOpen|veto|minIterations|order" .skilled/skills/system-deep-loop/deep-research/feature-catalog/**/*.md 2>/dev/null | head -20; rg -rn "frontierOpen" .skilled/skills/system-deep-loop/deep-research | head -20
+.skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md:391:The config template defines the anti-convergence defaults and the workflow reads them before accepting a convergence STOP. A STOP candidate is overridden while `iterationCount < minIterations`; when the floor clears, the workflow emits `min_iterations_guard_pass`. `convergenceMode: "off"` disables convergence STOP while preserving hard caps, pause, and halt behavior.
+.skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md:471:`default` is the value when the flag is absent and runs unchanged. `frontier-admit.cjs` admits proposals into the node store, and the iteration cap, the floor, stuck recovery, pause, convergence off and the max-iterations policy decide before the frontier veto. The live pilot runs are still open, so no pilot result is recorded here.
+.skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/convergence-check.md:38:| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Defines the loop ordering, guard step, and blocked-stop persistence contract. |
+.skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/per-iteration-memory-upsert.md:45:| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts` | Vitest | Verifies step ordering, non-fatal behavior, and prompt context injection. |
+.skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/anti-convergence-floor.md:6:  - "minIterations convergence"
+.skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/anti-convergence-floor.md:19:The anti-convergence floor keeps deep-research from ending after a shallow early signal. Operators get a declarative `minIterations` default and a `convergenceMode` escape hatch without weakening max-iteration, pause, or halt boundaries.
+.skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/anti-convergence-floor.md:25:The config template defines `antiConvergence.minIterations` with a default of `3` and `antiConvergence.convergenceMode` with a default of `default`. The workflow writes those values into the config record, validates older or malformed configs at read time, and clamps the effective floor to the hard `maxIterations` cap when needed.
+.skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md:24:`maxIterationsReached`, `blockedStop`, `stuckRecovery`, `minIterationsNotReached`, `error`, `manualStop`, `userPaused` and `maxDurationReached` do not pivot. A pivot failure follows the existing synthesis path.
+.skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md:32:While a frontier node is open, a composite convergence stop becomes another iteration. Next Focus steers to the shallowest open node. The iteration cap, the anti-convergence floor, stuck recovery, pause, `--convergence-mode=off` and the max-iterations policy decide before the frontier veto, so the frontier never extends a run past them.
+.skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md:50:| `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Script | Applies the frontier-open veto and passes `depthMode` into the stop-decision config when expansive. |
+.skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md:61:| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md` | Manual playbook | DR-072: an open frontier node turns a composite convergence stop into another iteration. |
+.skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/three-signal-model.md:39:| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Places the statistical vote inside the live loop order before guard evaluation. |
+.skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/rejected-pattern-cache.md:39:| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Documents suppression ordering, fuzzy matching, and overflow policy. |
+.skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md:- A held run reports `n` as its reason detail.
+.skilled/skills/system-deep-loop/deep-research/SKILL.md:- After the `minIterations` floor an open or active node turns a soft stop into CONTINUE with reasonDetail `n`. It never creates a stop and never outranks the iteration cap, consecutive failures, stuck recovery, `--convergence-mode=off` or `--stop-policy=max-iterations`.
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md:Expected signals: The veto table passes all eight rows, the open-node row returns `CONTINUE` with `n`, the empty-frontier row returns `STOP` with `composite_converged`, the hard limits keep their own decisions, and the input echo case passes unedited.
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md:This scenario validates the `n` veto in the stop decision. The objective is to confirm that a soft stop waits while frontier nodes stay open, and that every hard rule keeps its precedence.
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md:- Expected signals: The veto table passes all eight rows. The row for open nodes returns `CONTINUE` with `n`. The row for an empty frontier returns `STOP` with `composite_converged`. The cap, the floor, stuck recovery, convergence off and max-iterations rows keep their own decisions. The echo case passes unedited.
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md:1. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run stop-decision.vitest -t "n veto" --reporter=verbose`
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md:3. `rg -n "n" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs`
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md:Command 1 prints `Tests  28 passed | 64 skipped (92)`, because the filter also matches the review veto cases. Those cases include the eight rows of the research veto table, each named `expansive composite candidate: <row label>`, and every row passes. Command 2 prints `Tests  1 passed | 91 skipped (92)`, and the case `echoes the input unchanged` passes without edits. Command 3 prints the veto branch that returns `CONTINUE` with `n`, and the research facts line that counts open and active nodes.
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md:- An open node lets a stop through: check that the veto reads the expansive flag and the `n` count from the research facts.
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md:| `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | The `n` veto after the minimum-iteration floor, and the research facts that count open nodes |
+.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md:After the `minIterations` floor, an expansive run with open or active frontier nodes turns a soft stop candidate into CONTINUE with reasonDetail `n`. The veto never creates a stop of its own and never outranks the iteration cap, consecutive failures, stuck recovery, `--convergence-mode=off` or `--stop-policy=max-iterations`. Under `--convergence-mode=divergent` the pivot becomes eligible only once no frontier node is open or active.
+.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md:7. If depthMode is expansive and a frontier node is open or active, CONTINUE with n.
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "frontierOpen" .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md .skilled/skills/system-deep-loop/deep-research/SKILL.md .skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md | head -10
+.skilled/skills/system-deep-loop/deep-research/SKILL.md:95:- After the `minIterations` floor an open or active node turns a soft stop into CONTINUE with reasonDetail `frontierOpen`. It never creates a stop and never outranks the iteration cap, consecutive failures, stuck recovery, `--convergence-mode=off` or `--stop-policy=max-iterations`.
+.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md:70:After the `minIterations` floor, an expansive run with open or active frontier nodes turns a soft stop candidate into CONTINUE with reasonDetail `frontierOpen`. The veto never creates a stop of its own and never outranks the iteration cap, consecutive failures, stuck recovery, `--convergence-mode=off` or `--stop-policy=max-iterations`. Under `--convergence-mode=divergent` the pivot becomes eligible only once no frontier node is open or active.
+.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md:132:7. If depthMode is expansive and a frontier node is open or active, CONTINUE with frontierOpen.
+> build · deepseek-v4.1-flash
+[0m$ [0msed -n '1,70p' .skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md
+---
+title: "Expansive depth mode (--depth-mode=expansive)"
+description: "Opt-in --depth-mode=expansive on deep-research seeds depth-one frontier nodes from the topic, admits proposals under caps, and keeps a convergence stop open while frontier nodes stay open."
+trigger_phrases:
+  - "--depth-mode=expansive"
+  - "expansive depth research"
+  - "research frontier mode"
+  - "frontier admission research"
+version: 1.0.1.0
+---
+
+# Expansive depth mode (--depth-mode=expansive)
+
+## 1. OVERVIEW
+
+`--depth-mode` takes `default` or `expansive`. A run without the flag is unchanged. `expansive` turns on a research frontier: the run seeds depth-one nodes from the topic before iteration 1, admits leaf `frontier_proposal` rows as nodes under depth, fan-out, budget, dedupe and cycle caps, and holds a convergence stop while frontier nodes stay open. The live pilot runs that would show this mode on real topics are still open, so this page describes the shipped code and its tests and records no pilot result.
+
+---
+
+## 2. HOW IT WORKS
+
+### Seeding And Admission
+
+The expansive run seeds depth-one nodes before iteration 1. Each iteration's leaf `frontier_proposal` rows go through `runtime/scripts/frontier-admit.cjs`, which admits each proposal into the node store. It applies the depth cap, the fan-out cap, the iteration budget, dedupe and cycle checks, and records a reason for each prune.
+
+### Configuration
+
+`expansiveDepth` in `deep-research-config.json` sets `maxDepth` to 3, `maxChildrenPerNode` to 6, and a 50/35/15 iteration budget across depths. `antiConvergence.depthMode` defaults to `default`. The convergence script adds `depthMode` to its stop-decision config only when the value is `expansive`.
+
+### Stop And Next Focus
+
+While a frontier node is open, a composite convergence stop becomes another iteration. Next Focus steers to the shallowest open node. The iteration cap, the anti-convergence floor, stuck recovery, pause, `--convergence-mode=off` and the max-iterations policy decide before the frontier veto, so the frontier never extends a run past them.
+
+### Fan-Out
+
+Fan-out lineages each receive a share of the seeded nodes. `runtime/scripts/fanout-run.cjs` passes `depthMode` to a lineage only when it is `expansive`. `runtime/scripts/fanout-merge.cjs` merges the lineage frontiers and runs a fan-in guard over the recorded partition.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|---|---|---|
+| `.skilled/commands/deep/research.md` | Command doc | The `--depth-mode` flag row. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Command workflow | The `depth_mode` input, the preflight check and the config keys. |
+| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | Config | `antiConvergence.depthMode` and the `expansiveDepth` block. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` | Script | Seeds, admits and closes frontier nodes. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Script | Applies the frontier-open veto and passes `depthMode` into the stop-decision config when expansive. |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Script | Builds the opt-in `frontier` registry and the question close rule. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Script | Passes `depthMode` to lineages only when expansive. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Script | Merges the lineage frontiers and runs the partition guard. |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts` | Vitest | Admission, prune reasons and the close rule for the frontier writer. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md` | Manual playbook | DR-068: the flag defaults to `default` and a default run matches the baseline. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md` | Manual playbook | DR-072: an open frontier node turns a composite convergence stop into another iteration. |
+
+---
+
+## 4. SOURCE METADATA
+
+- Group: Convergence
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `convergence/expansive-depth-mode.md`
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "events" .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs | head -20
+39:  'events',
+143:  if (typeof arg !== 'string') throw inputError('--events requires a file path or -');
+148:    throw inputError(`events file is unreadable: ${error instanceof Error ? error.message : String(error)}`);
+150:  return parseJsonValue(raw, [], 'events');
+239:    const events = readEvents(args.events);
+240:    const rawNodes = events
+241:      ? events.filter((event) => event && (event.type === 'node' || event.nodeKind || event.kind))
+243:    const rawEdges = events
+244:      ? events.filter((event) => event && (event.type === 'edge' || event.source || event.sourceId || event.target || event.targetId))
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "frontier" .skilled/commands/deep/assets/deep-review.yaml | rg -n "state_paths|frontier_" | head; sed -n '150,230p' .skilled/commands/deep/assets/deep-review.yaml | rg -n "frontier|state_paths"
+1:64:  depth_mode: "[default|expansive] - Opt-in frontier growth. expansive seeds depth-1 sub-target nodes, admits leaf frontier_proposal rows and vetoes a review stop candidate while nodes stay open. Default: default."
+2:319:  step_frontier_seed:
+7:343:      - frontier_seed_json: "The JSON line the command prints: admitted node ids and pruned {nodeId, reason} rows"
+9:898:      step_frontier_seed:
+14:920:          - frontier_seed_json: "The JSON line the command prints: admitted node ids and pruned {nodeId, reason} rows"
+16:1036:      step_frontier_reduce_seed:
+18:1040:        note: "The loop binds active_frontier_node and the frontier dimension from registry.frontier, and step_create_findings_registry writes a registry with no frontier after the seed has run. Only the reducer projects the seeded nodes into it. Without this pass the first iteration has no frontier node and no frontier block. A fan-out lineage runs it too: its reducer_artifact_arg points the reducer at the lineage's own directory, where fanout-run.cjs put its share of the nodes."
+20:1117:          - next_dimension: "When max_iterations >= 2, current_iteration == max_iterations and unfinished_core_protocols is non-empty, 'traceability': the last iteration under the cap finishes those core protocols. Otherwise, when depth_mode == 'expansive' and registry.frontier.activeNextDimension in {state_paths.findings_registry} is non-empty, that dimension: the active frontier node's next uncovered dimension. Otherwise the next uncovered dimension from dimension_queue in strategy.md."
+21:1141:          - active_frontier_node: "When depth_mode == 'expansive', registry.frontier.activeNodeId from {state_paths.findings_registry}; else, or when it is null, an empty string"
+22:1373:              frontier_gate: "Under depth_mode == 'expansive' the pivot is eligible only once registry.frontier holds no open or active node. The frontierOpen stop veto already returns CONTINUE while one is open, so this gate records the order rather than adding a second check. A candidate the pivot accepts re-enters breadth through step_frontier_admit as a frontier_proposal row, and the pivot may seed from nodes closed exhausted or blocked."
+33:state_paths:
+68:    command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "frontierOpen|fixed order|minIterationsNotReached|qualityGuardFailed" .skilled/commands/deep/assets/compiled/deep-research.contract.markdown | head -20
+(no output)
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "check_convergence|stop_decision|frontier" .skilled/commands/deep/assets/compiled/deep-research.contract.markdown | head -20
+190:  depth_mode: default  # default | expansive (opt-in frontier growth)
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "fanout_json" .skilled/commands/deep .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs .skilled/skills/system-deep-loop/runtime/lib | head -20
+.skilled/commands/deep/assets/deep-review.yaml:379:            --fanout-config-json '{config.fanout_json}' \
+.skilled/commands/deep/assets/deep-research.yaml:386:            --fanout-config-json '{config.fanout_json}' \
+> build · deepseek-v4.1-flash
+[0m$ [0msed -n '228,245p' .skilled/commands/deep/assets/deep-review-presentation.txt; echo "-----"; sed -n '200,215p' .skilled/commands/deep/assets/deep-research-presentation.txt
+8. Parse response and store ALL results:
+   - review_target = [from Q0 or $ARGUMENTS]
+   - review_target_type = [from Q1_type, auto-detected]
+   - review_dimensions = [from Q_dims or default "all"]
+   - review_focus = [from flag, marker, or empty]
+   - spec_choice = [A/B/C from Q1]
+   - spec_path = [derived path]
+   - execution_mode = [AUTONOMOUS/INTERACTIVE]
+   - lineage_mode = [auto/resume/restart from flag, marker, or default auto; completed-continue from --extend=N]
+   - extend = [N from --extend=N, else unset]
+   - maxIterations = [from Q3 or flag or default 7]
+   - convergenceThreshold = [from flag or default 0.10]
+   - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]
+   - depth_mode = [from flag, marker, or default `default`; one of `default`, `expansive`]
+   - stop_policy = [from flag, marker, or default convergence]
+    - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.kind/model/configDir/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
+
+9. SET STATUS: PASSED
+-----
+8. Parse response and store ALL results:
+   - research_topic = [from Q0 or $ARGUMENTS]
+   - spec_choice = [A/B/C from Q1]
+   - spec_path = [derived path]
+   - execution_mode = [AUTONOMOUS/INTERACTIVE]
+   - maxIterations = [from Q3 or flag or default 10]
+   - convergenceThreshold = [from flag or default 0.05]
+   - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]
+   - depth_mode = [from flag, marker, or default `default`; one of `default`, `expansive`]
+    - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.kind/model/configDir/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
+
+9. SET STATUS: PASSED
+
+STOP HERE - Wait for user answers before continuing.
+
+DO NOT proceed until user explicitly answers
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "minIterationsNotReached|expansive|frontierOpen|qualityGuardFailed" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs
+14:// minIterationsNotReached, frontierOpen,
+15:// qualityGuardFailed, all_questions_answered, all_dimensions_clean,
+1181:    return emit('CONTINUE', null, 'minIterationsNotReached', gatesAt(false), []);
+1184:  // An expansive run that still holds open frontier nodes turns a stop
+1192:  if (config.depthMode === 'expansive'
+1194:    && Number.isFinite(depthFacts.frontierOpen)
+1195:    && depthFacts.frontierOpen > 0) {
+1196:    return emit('CONTINUE', null, 'frontierOpen', gatesAt(false), []);
+1204:    return emit('CONTINUE', null, 'qualityGuardFailed', evaluated, failedGuards);
+1401:    // Only an expansive run carries the key, so a default run echoes the same
+1403:    ...(depthModeValue === 'expansive' ? { depthMode: 'expansive' } : {}),
+1468:      ? { frontierOpen: registry.frontier.nodes.filter((node) => node?.status === 'open' || node?.status === 'active').length }
+1634:      ? { frontierOpen: registry.frontier.nodes.filter((node) => node?.status === 'open' || node?.status === 'active').length }
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "synthesis_snapshot_pattern|synthesis-v" .skilled/commands/deep/assets/deep-research.yaml
+231:  synthesis_snapshot_pattern: "{artifact_dir}/synthesis-v{generation}.md"
+582:          SNAPSHOT="{state_paths.packet_dir}/synthesis-v${GENERATION}-r{continued_from_run}.md"
+2093:          Preserve machine-owned markers so the reducer-owned registry, dashboard, and strategy anchors can be refreshed on re-run without mutating prior synthesis. (Note: a `completed-continue` extension keeps the prior synthesis as `synthesis-v{generation}-r{continuedFromRun}.md` before re-synthesis. See `deep-research/references/protocol/loop-protocol.md §Lifecycle Branch Contract`.)
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "store ALL results|extend = |extend_minutes" .skilled/commands/deep/assets/deep-research-presentation.txt; rg -n '\{extend\}|\{extend_minutes\}' .skilled/commands/deep/assets/deep-research.yaml
+50:  extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the duration budget, default the prior budget
+76:| `extend_minutes` | N | flag `--extend-minutes=M` (positive integer), valid only with `--extend` | the prior `maxDurationMinutes` | N |
+116:   |-- --extend=N -> extend = N, lineage_mode = completed-continue (positive integer only; a completed run only; refused with fan-out)
+117:   |-- --extend-minutes=M -> extend_minutes = M (positive integer only; valid only with --extend)
+200:8. Parse response and store ALL results:
+563:          ' "{state_paths.config}" "{state_paths.state_log}" "{state_paths.packet_dir}/inbox.jsonl" "{extend}" "{extend_minutes}" "$WORK_DIR" > "$WORK_DIR/result.json" || { rm -rf "$WORK_DIR"; exit 2; }
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "Defaults:|depthMode" .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json
+.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json:8:    "depthMode": "default",
+.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json:87:    "lockedFields": ["lineage", "reducer", "fileProtection", "sessionId", "status", "antiConvergence.convergenceMode", "antiConvergence.depthMode", "antiConvergence.stopPolicy"],
+.skilled/commands/deep/assets/deep-research-presentation.txt:112:   |-- --depth-mode=default|expansive -> antiConvergence.depthMode = value
+.skilled/commands/deep/assets/deep-research-presentation.txt:135:   +-- Defaults: maxIterations=10, convergenceThreshold=0.05, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
+.skilled/commands/deep/assets/deep-research-presentation.txt:149:   - `--depth-mode` -> `antiConvergence.depthMode`
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs [90m[limit=150, offset=1690][0m
+> build · deepseek-v4.1-flash
+[0m$ [0msed -n '1178,1185p' .skilled/commands/deep/assets/deep-research.yaml | cat -A | sed -n '1,8p'
+cat: illegal option -- A
+usage: cat [-belnstuv] [file ...]
+> build · deepseek-v4.1-flash
+[0m$ [0msed -n '1178,1185p' .skilled/commands/deep/assets/deep-research.yaml | sed -n l
+3. if convergence_mode == "off": skip convergence\
+ stop candidates and continue.$
+          3a. if stop_policy == "max-iterations" AND iterat\
+ion_count < max_iterations: the vote is telemetry only and \
+the decision is CONTINUE.$
+          4. a STOP candidate exists when every question is\
+ answered (all_questions_answered) or the weighted vote pas\
+ses (composite_converged).$
+          5. if iteration_count < effective_min_iterations:\
+ CONTINUE (minIterationsNotReached)$
+          6. a failed quality guard turns the candidate int\
+o CONTINUE (qualityGuardFailed)$
+          7. the graph decision settles the candidate: STOP\
+_ALLOWED keeps STOP, STOP_BLOCKED gives BLOCKED, CONTINUE o\
+r a missing graph decision gives CONTINUE.$
+          Bind the outputs from stop_decision:$
+            decision = stop_decision.decision$
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "store ALL results|depth_mode = |\{extend\}|\{extend_minutes\}" .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/commands/deep/assets/deep-research.yaml
+.skilled/commands/deep/assets/deep-research-presentation.txt:200:8. Parse response and store ALL results:
+.skilled/commands/deep/assets/deep-research-presentation.txt:208:   - depth_mode = [from flag, marker, or default `default`; one of `default`, `expansive`]
+.skilled/commands/deep/assets/deep-research.yaml:563:          ' "{state_paths.config}" "{state_paths.state_log}" "{state_paths.packet_dir}/inbox.jsonl" "{extend}" "{extend_minutes}" "$WORK_DIR" > "$WORK_DIR/result.json" || { rm -rf "$WORK_DIR"; exit 2; }
+> build · deepseek-v4.1-flash
+[0m$ [0msed -n '229,232p' .skilled/commands/deep/assets/deep-research.yaml | sed -n l; sed -n '133,136p' .skilled/commands/deep/assets/deep-research-presentation.txt | sed -n l
+resource_map_output: "{artifact_dir}/resource-map.md"$
+  archive_root: "{artifact_archive_root}"$
+  synthesis_snapshot_pattern: "{artifact_dir}/synthesis-v{g\
+eneration}.md"$
+$
+   |   - 2+ --executor flags, an --executors matrix that ex\
+pands to two or more lineages, or any count>1: write config\
+.fanout$
+   |$
+   +-- Defaults: maxIterations=10, convergenceThreshold=0.0\
+5, antiConvergence.convergenceMode=`default`, antiConvergen\
+ce.divergent=`{}`, lineage_mode=`auto`, config.executor.kin\
+d=`native`, config.executor.timeoutSeconds=900, config.reso\
+urce_map.emit=`true`$
+$
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "minIterationsNotReached|depthMode === 'expansive'|frontierOpen'|qualityGuardFailed" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs
+14:// minIterationsNotReached, frontierOpen,
+15:// qualityGuardFailed, all_questions_answered, all_dimensions_clean,
+1181:    return emit('CONTINUE', null, 'minIterationsNotReached', gatesAt(false), []);
+1192:  if (config.depthMode === 'expansive'
+1196:    return emit('CONTINUE', null, 'frontierOpen', gatesAt(false), []);
+1204:    return emit('CONTINUE', null, 'qualityGuardFailed', evaluated, failedGuards);
+> build · deepseek-v4.1-flash
+[0m$ [0mgit -c core.fsmonitor=false log --oneline -S "synthesis_snapshot_pattern" -- .skilled/commands/deep/assets/deep-research.yaml | head -5
+f921b2c65b0 feat(system-deep-loop): run research and review from one workflow file each
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n "synthesis_snapshot_pattern|SNAPSHOT=" .skilled/commands/deep/assets/deep-research.yaml
+231:  synthesis_snapshot_pattern: "{artifact_dir}/synthesis-v{generation}.md"
+582:          SNAPSHOT="{state_paths.packet_dir}/synthesis-v${GENERATION}-r{continued_from_run}.md"
+> build · deepseek-v4.1-flash
+[0m$ [0mrg -n 'Defaults:|depthMode": "default"|antiConvergence.depthMode' .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json
+.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json:8:    "depthMode": "default",
+.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json:87:    "lockedFields": ["lineage", "reducer", "fileProtection", "sessionId", "status", "antiConvergence.convergenceMode", "antiConvergence.depthMode", "antiConvergence.stopPolicy"],
+.skilled/commands/deep/assets/deep-research-presentation.txt:112:   |-- --depth-mode=default|expansive -> antiConvergence.depthMode = value
+.skilled/commands/deep/assets/deep-research-presentation.txt:135:   +-- Defaults: maxIterations=10, convergenceThreshold=0.05, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
+.skilled/commands/deep/assets/deep-research-presentation.txt:149:   - `--depth-mode` -> `antiConvergence.depthMode`
+> build · deepseek-v4.1-flash
+[0m$ [0mprintf '%s\n' "final evidence check"; rg -n "synthesis_snapshot_pattern|SNAPSHOT=" .skilled/commands/deep/assets/deep-research.yaml; rg -n "store ALL results|depth_mode = " .skilled/commands/deep/assets/deep-research-presentation.txt; rg -n "Defaults:" .skilled/commands/deep/assets/deep-research-presentation.txt
+final evidence check
+231:  synthesis_snapshot_pattern: "{artifact_dir}/synthesis-v{generation}.md"
+582:          SNAPSHOT="{state_paths.packet_dir}/synthesis-v${GENERATION}-r{continued_from_run}.md"
+200:8. Parse response and store ALL results:
+208:   - depth_mode = [from flag, marker, or default `default`; one of `default`, `expansive`]
+135:   +-- Defaults: maxIterations=10, convergenceThreshold=0.05, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
+> build · deepseek-v4.1-flash
+{"lane":"L2","findings":[{"id":"L2-1","surface":"D2","severity":"P1","fix_class":"literal","file":".skilled/commands/deep/assets/deep-research.yaml","line":1181,"issue":"The step claims to give the whole stop decision (\"The script applies this fixed order, first match wins\") but the ordered list omits the frontierOpen stop veto. convergence.cjs returns CONTINUE with reasonDetail 'frontierOpen' after the minIterations floor (line 1181) and before the quality-guard check (line 1204) whenever config.depthMode is 'expansive' and the research facts report an open or active frontier node (lines 1192-1196). The same file's divergent frontier_gate at line 1269 already names that veto, so an expansive stop cannot be reasoned about from this list.","evidence":{"cmd":"rg -n \"minIterationsNotReached|depthMode === 'expansive'|frontierOpen'|qualityGuardFailed\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs","exit":0,"out":"14:// minIterationsNotReached, frontierOpen,\n15:// qualityGuardFailed, all_questions_answered, all_dimensions_clean,\n1181:    return emit('CONTINUE', null, 'minIterationsNotReached', gatesAt(false), []);\n1192:  if (config.depthMode === 'expansive'\n1196:    return emit('CONTINUE', null, 'frontierOpen', gatesAt(false), []);\n1204:    return emit('CONTINUE', null, 'qualityGuardFailed', evaluated, failedGuards);"},"fix":{"old":"          5. if iteration_count < effective_min_iterations: CONTINUE (minIterationsNotReached)\n          6. a failed quality guard turns the candidate into CONTINUE (qualityGuardFailed)","new":"          5. if iteration_count < effective_min_iterations: CONTINUE (minIterationsNotReached)\n          5a. if depth_mode == \"expansive\" AND the frontier holds an open or active node (registry.frontier.nodes): CONTINUE (frontierOpen). The veto runs after the floor and before the quality guards; the cap, consecutive failures, stuck recovery, convergence off, max-iterations and the floor all precede it.\n          6. a failed quality guard turns the candidate into CONTINUE (qualityGuardFailed)"}},{"id":"L2-2","surface":"D2","severity":"P2","fix_class":"literal","file":".skilled/commands/deep/assets/deep-research.yaml","line":231,"issue":"state_paths declares the synthesis snapshot as {artifact_dir}/synthesis-v{generation}.md, but the extension's snapshot step writes {state_paths.packet_dir}/synthesis-v${GENERATION}-r{continued_from_run}.md (line 582), and the synthesis note at line 2093 and the protocol reference both name synthesis-v{generation}-r{continuedFromRun}.md. No step writes the declared path, so a reader following the state-path map looks for the extension snapshot under a name the workflow never creates.","evidence":{"cmd":"rg -n \"synthesis_snapshot_pattern|SNAPSHOT=\" .skilled/commands/deep/assets/deep-research.yaml","exit":0,"out":"231:  synthesis_snapshot_pattern: \"{artifact_dir}/synthesis-v{generation}.md\"\n582:          SNAPSHOT=\"{state_paths.packet_dir}/synthesis-v${GENERATION}-r{continued_from_run}.md\""},"fix":{"old":"  synthesis_snapshot_pattern: \"{artifact_dir}/synthesis-v{generation}.md\"","new":"  synthesis_snapshot_pattern: \"{artifact_dir}/synthesis-v{generation}-r{continuedFromRun}.md\""}},{"id":"L2-3","surface":"D1","severity":"P2","fix_class":"judgment","file":".skilled/commands/deep/assets/deep-research-presentation.txt","line":208,"issue":"The step says \"Parse response and store ALL results\", but its binding list carries depth_mode and neither extend nor extend_minutes, which are the two values the extension step consumes (deep-research.yaml:563 passes \"{extend}\" \"{extend_minutes}\"), and the sibling deep-review-presentation.txt list carries lineage_mode and extend. The Phase Output list at line 222 also omits both, so a :confirm setup that follows this contract has no declared binding for the extension flags even though it declares depth_mode.","evidence":{"cmd":"rg -n \"store ALL results|depth_mode = |\\{extend\\}|\\{extend_minutes\\}\" .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/commands/deep/assets/deep-research.yaml","exit":0,"out":".skilled/commands/deep/assets/deep-research-presentation.txt:200:8. Parse response and store ALL results:\n.skilled/commands/deep/assets/deep-research-presentation.txt:208:   - depth_mode = [from flag, marker, or default `default`; one of `default`, `expansive`]\n.skilled/commands/deep/assets/deep-research.yaml:563:          ' \"{state_paths.config}\" \"{state_paths.state_log}\" \"{state_paths.packet_dir}/inbox.jsonl\" \"{extend}\" \"{extend_minutes}\" \"$WORK_DIR\" > \"$WORK_DIR/result.json\" || { rm -rf \"$WORK_DIR\"; exit 2; }'"}},{"id":"L2-4","surface":"D1","severity":"P2","fix_class":"literal","file":".skilled/commands/deep/assets/deep-research-presentation.txt","line":135,"issue":"The consolidated prompt's Defaults line enumerates the setup defaults but omits antiConvergence.depthMode, although depth_mode is a required setup field (line 72) mapped to antiConvergence.depthMode (lines 112 and 149) and the config template defaults it to \"default\" (deep-research-config.json:8). The Tier-1 persist shape at line 19 likewise omits the key, so the setup contract never states what the required depth-mode binding defaults to.","evidence":{"cmd":"rg -n 'Defaults:|depthMode\": \"default\"|antiConvergence.depthMode' .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json","exit":0,"out":".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json:8:    \"depthMode\": \"default\",\n.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json:87:    \"lockedFields\": [\"lineage\", \"reducer\", \"fileProtection\", \"sessionId\", \"status\", \"antiConvergence.convergenceMode\", \"antiConvergence.depthMode\", \"antiConvergence.stopPolicy\"],\n.skilled/commands/deep/assets/deep-research-presentation.txt:112:   |-- --depth-mode=default|expansive -> antiConvergence.depthMode = value\n.skilled/commands/deep/assets/deep-research-presentation.txt:135:   +-- Defaults: maxIterations=10, convergenceThreshold=0.05, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`\n.skilled/commands/deep/assets/deep-research-presentation.txt:149:   - `--depth-mode` -> `antiConvergence.depthMode`"},"fix":{"old":"antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`","new":"antiConvergence.convergenceMode=`default`, antiConvergence.depthMode=`default`, antiConvergence.divergent=`{}`"}}],"reviewed":[".skilled/commands/deep/assets/deep-research-presentation.txt",".skilled/commands/deep/assets/deep-research.yaml",".skilled/commands/deep/assets/deep-review.yaml",".skilled/commands/deep/assets/deep-review-presentation.txt",".skilled/commands/deep/research.md",".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md",".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json"]}

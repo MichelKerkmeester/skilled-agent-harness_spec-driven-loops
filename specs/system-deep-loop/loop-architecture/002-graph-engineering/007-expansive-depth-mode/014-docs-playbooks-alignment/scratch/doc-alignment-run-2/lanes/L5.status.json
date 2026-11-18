@@ -1,0 +1,11 @@
+{
+  "id": "L5",
+  "exitCode": 0,
+  "signal": null,
+  "reason": "ok",
+  "startedAt": "2026-11-18T01:10:08.877Z",
+  "endedAt": "2026-11-18T01:26:42.095Z",
+  "seconds": 993.218,
+  "scratch": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/doc-alignment-run-2/L5",
+  "sessions": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/doc-alignment-run-2/L5/sessions"
+}

@@ -1,7 +1,7 @@
 ---
 title: "DR-065 -- Completed-run extension with --extend"
 description: "This scenario validates `--extend=N` on a completed deep-research run for `DR-065`. It focuses on same-session continuation, the `run_extended` ledger event and the synthesis snapshot taken before the first new dispatch."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # DR-065 -- Completed-run extension with --extend
@@ -26,7 +26,7 @@ Operators run this as a real orchestrator-led check against a completed fixture 
 
 - Objective: Verify that `--extend=3` on a completed research run adds exactly three iterations in the same session and generation, records one `run_extended` event, and snapshots the prior synthesis.
 - Real user request: The research run finished at its iteration cap. Give it three more iterations without starting a new session.
-- Prompt: `Extend the completed deep-research run in the fixture spec folder by three iterations with --extend=3, then confirm the original session identifier, the single run_extended event and the synthesis snapshot.`
+- Prompt: `Extend the completed deep-research run in the fixture spec folder by three iterations with --extend=3 --convergence-mode=off, so the converged run cannot re-stop at once, then confirm the original session identifier, the single run_extended event and the synthesis snapshot.`
 - Expected execution process: Read the completed fixture config, run the research command with `--extend=3` against that spec folder, then read the state log, the config and the snapshot folder after the run finishes.
 - Expected signals: Exactly one `run_extended` event appears, projected as one `extended` row in `research/deep-research-state.jsonl`. The config keeps the original `sessionId` and generation 1, `maxIterations` equals the prior iteration count plus 3, and the lineage mode is `completed-continue`. No `resumed` row is written for the extension. A file matching `synthesis-v*-r*.md` holds the prior synthesis, and exactly three new iteration files are written.
 - Desired user-visible outcome: The user is told the run was extended by three iterations, that the same session continues, and where the prior synthesis was kept.
@@ -38,14 +38,14 @@ Operators run this as a real orchestrator-led check against a completed fixture 
 
 ### Prompt
 
-- Prompt: `Extend the completed deep-research run in the fixture spec folder by three iterations with --extend=3, then confirm the original session identifier, the single run_extended event and the synthesis snapshot.`
+- Prompt: `Extend the completed deep-research run in the fixture spec folder by three iterations with --extend=3 --convergence-mode=off, so the converged run cannot re-stop at once, then confirm the original session identifier, the single run_extended event and the synthesis snapshot.`
 
 ### Commands
 
 1. `rg -n -- '--extend' .skilled/commands/deep/research.md .skilled/commands/deep/assets/deep-research.yaml`
 2. `rg -n 'run_extended' .skilled/skills/system-deep-loop/runtime/lib`
 3. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run append-mode-event-legacy-seam.vitest workflow-restart-lifecycle.vitest`
-4. `/deep:research "<fixture topic>" :auto --spec-folder=<completed-fixture-spec-folder> --extend=3`
+4. `/deep:research "<fixture topic>" :auto --spec-folder=<completed-fixture-spec-folder> --extend=3 --convergence-mode=off`
 5. `rg -c '"event":"extended"' <completed-fixture-spec-folder>/research/deep-research-state.jsonl` (the `run_extended` stem lives in the ledger, and the state log carries its projected `extended` row)
 6. `jq '{maxIterations, sessionId: .lineage.sessionId, generation: .lineage.generation, lineageMode: .lineage.lineageMode, continuedFromRun: .lineage.continuedFromRun}' <completed-fixture-spec-folder>/research/deep-research-config.json` (research keeps the lineage fields under `.lineage`)
 7. `find <completed-fixture-spec-folder> -name 'synthesis-v*-r*.md'`

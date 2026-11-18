@@ -1,0 +1,11 @@
+{
+  "id": "critic",
+  "exitCode": 0,
+  "signal": null,
+  "reason": "ok",
+  "startedAt": "2026-11-18T00:55:38.357Z",
+  "endedAt": "2026-11-18T01:08:12.545Z",
+  "seconds": 754.188,
+  "scratch": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/doc-alignment-run-1/critic",
+  "sessions": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/doc-alignment-run-1/critic/sessions"
+}

@@ -9,7 +9,7 @@ trigger_phrases:
   - "research convergence decision order"
 importance_tier: important
 contextType: implementation
-version: 1.14.4.0
+version: 1.14.5.0
 ---
 
 # Convergence Detection Reference
@@ -65,7 +65,7 @@ The shared convergence runtime accepts four values. The workflow keeps hard term
 
 #### Expansive Depth Mode
 
-`--depth-mode=expansive` grows a frontier of follow-up questions beside the questions seeded at init. The value lands in `antiConvergence.depthMode`, and the caps live in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, `budgetSplit` 0.5/0.35/0.15 for depths 1, 2 and 3, and `maxFrontierNodes`, which defaults to `maxIterations`. An absent flag means `default`, which renders the same bytes as before; `research-depth-mode-golden.vitest` proves it.
+`--depth-mode=expansive` grows a frontier of follow-up questions beside the questions seeded at init. The value lands in `antiConvergence.depthMode`, and the caps live in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, `budgetSplit` 0.5/0.35/0.15 for depths 1, 2 and 3, and `maxFrontierNodes`, which defaults to `maxIterations`. An absent flag means `default`, which keeps the default behavior; `research-depth-mode-golden.vitest` proves it after stripping the expansive-only persona paragraph from the CLI lineage prompt, the one byte change.
 
 After the `minIterations` floor, an expansive run with open or active frontier nodes turns a soft stop candidate into CONTINUE with reasonDetail `frontierOpen`. The veto never creates a stop of its own and never outranks the iteration cap, consecutive failures, stuck recovery, `--convergence-mode=off` or `--stop-policy=max-iterations`. Under `--convergence-mode=divergent` the pivot becomes eligible only once no frontier node is open or active.
 
@@ -124,13 +124,15 @@ Legacy labels are normalized before persistence:
 
 ```text
 1. If iteration count >= maxIterations, STOP with maxIterationsReached.
-2. If all key questions have evidence-backed answers, nominate STOP.
+2. After 3 consecutive failed iterations, STOP with stop reason error.
 3. If stuckCount >= stuckThreshold, enter stuck recovery.
-4. Compute composite convergence signals.
-5. If weighted stop score > 0.60, nominate STOP.
-6. Evaluate legal-stop gates for every STOP candidate except hard max-iteration stop.
-7. Block every non-terminal STOP until a graph decision exists.
-8. If gates pass, pivot for an eligible divergent reason or STOP normally; otherwise emit blockedStop and CONTINUE with recovery focus.
+4. If convergenceMode is off or stopPolicy is max-iterations, CONTINUE.
+5. If all key questions have evidence-backed answers, nominate STOP. Otherwise compute composite convergence signals and nominate STOP when the weighted stop score > 0.60. With no candidate, CONTINUE.
+6. If iteration count < minIterations, CONTINUE with minIterationsNotReached.
+7. If depthMode is expansive and a frontier node is open or active, CONTINUE with frontierOpen.
+8. Evaluate the quality guards for every STOP candidate except hard max-iteration stop. A failed guard returns CONTINUE with qualityGuardFailed and emits no blocked_stop event.
+9. Block every non-terminal STOP until a graph decision exists. A graph STOP_BLOCKED emits blockedStop and continues with recovery focus.
+10. If the guards pass and the graph allows the stop, pivot for an eligible divergent reason or STOP normally.
 ```
 
 ### Composite Signal Weights
@@ -153,7 +155,7 @@ Every non-terminal STOP candidate must pass the gate bundle before the workflow 
 |------|------|---------|
 | Convergence Gate | Low novelty holds for the required consecutive evidence iterations | Emit `blocked_stop`, continue |
 | Coverage Gate | Every key question has an evidence-backed answer | Emit `blocked_stop`, continue |
-| Quality Gate | Source diversity, focus alignment, and no single weak-source dominance pass | Emit `blocked_stop`, continue |
+| Quality Gate | Source diversity, focus alignment, and no single weak-source dominance pass | `CONTINUE` with `qualityGuardFailed`, no `blocked_stop` event |
 | Graph Gate | A graph decision exists and graph coverage has no STOP blockers | Emit `graph_convergence`/`blocked_stop`, continue |
 
 The reducer surfaces legal-stop evidence through the findings registry and dashboard. The JSONL event shapes live in `../state/state-jsonl.md`.

@@ -1,0 +1,109 @@
+{
+  "generatedAt": "2026-11-18T01:34:16.255Z",
+  "probes": "/Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration/specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/scratch/skilled-alignment-run-4/probes-input.json",
+  "counts": {
+    "pass": 1,
+    "fail": 6,
+    "cannot_run": 0
+  },
+  "rows": [
+    {
+      "id": "P01",
+      "prompt": "Run a deep research loop with expansive depth on how the advisor scores routing metadata",
+      "expect": "system-deep-loop",
+      "expectMode": "deep-research",
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Run a deep research loop with expansive depth on how the advisor scores routing metadata\"}' --format json",
+      "exit": 0,
+      "status": "fail",
+      "reason": "top-1 was system-deep-loop/research",
+      "actual": "system-deep-loop",
+      "actualMode": "research",
+      "confidence": 0.9242,
+      "runnerUp": "cli-external-orchestration"
+    },
+    {
+      "id": "P02",
+      "prompt": "Use depth-mode=expansive for the next deep research run",
+      "expect": "system-deep-loop",
+      "expectMode": "deep-research",
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Use depth-mode=expansive for the next deep research run\"}' --format json",
+      "exit": 0,
+      "status": "fail",
+      "reason": "top-1 was system-deep-loop/research",
+      "actual": "system-deep-loop",
+      "actualMode": "research",
+      "confidence": 0.8826,
+      "runnerUp": "cli-external-orchestration"
+    },
+    {
+      "id": "P03",
+      "prompt": "Start an expansive-depth deep review of the commands validation scripts",
+      "expect": "system-deep-loop",
+      "expectMode": "deep-review",
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Start an expansive-depth deep review of the commands validation scripts\"}' --format json",
+      "exit": 0,
+      "status": "fail",
+      "reason": "top-1 was system-deep-loop/review",
+      "actual": "system-deep-loop",
+      "actualMode": "review",
+      "confidence": 0.9204,
+      "runnerUp": "system-spec-kit"
+    },
+    {
+      "id": "P04",
+      "prompt": "Run a deep review with --depth-mode=expansive on the routing scripts",
+      "expect": "system-deep-loop",
+      "expectMode": "deep-review",
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Run a deep review with --depth-mode=expansive on the routing scripts\"}' --format json",
+      "exit": 0,
+      "status": "fail",
+      "reason": "top-1 was system-deep-loop/review",
+      "actual": "system-deep-loop",
+      "actualMode": "review",
+      "confidence": 0.9332,
+      "runnerUp": "sk-code"
+    },
+    {
+      "id": "P05",
+      "prompt": "Extend the completed deep research run by five more iterations",
+      "expect": "system-deep-loop",
+      "expectMode": "deep-research",
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Extend the completed deep research run by five more iterations\"}' --format json",
+      "exit": 0,
+      "status": "fail",
+      "reason": "top-1 was system-deep-loop/research",
+      "actual": "system-deep-loop",
+      "actualMode": "research",
+      "confidence": 0.8737,
+      "runnerUp": "cli-external-orchestration"
+    },
+    {
+      "id": "P06",
+      "prompt": "Extend the finished deep review run by three iterations",
+      "expect": "system-deep-loop",
+      "expectMode": "deep-review",
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Extend the finished deep review run by three iterations\"}' --format json",
+      "exit": 0,
+      "status": "fail",
+      "reason": "top-1 was system-deep-loop/review",
+      "actual": "system-deep-loop",
+      "actualMode": "review",
+      "confidence": 0.9286,
+      "runnerUp": "sk-code"
+    },
+    {
+      "id": "P07",
+      "prompt": "Review the pull request diff for security problems before I merge it",
+      "expect": "sk-code",
+      "expectMode": null,
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Review the pull request diff for security problems before I merge it\"}' --format json",
+      "exit": 0,
+      "status": "pass",
+      "reason": null,
+      "actual": "sk-code",
+      "actualMode": "sk-code-review",
+      "confidence": 0.8939,
+      "runnerUp": "sk-git"
+    }
+  ]
+}

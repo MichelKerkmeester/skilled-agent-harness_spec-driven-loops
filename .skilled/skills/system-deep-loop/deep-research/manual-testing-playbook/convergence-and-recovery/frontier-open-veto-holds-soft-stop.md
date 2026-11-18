@@ -1,7 +1,7 @@
 ---
 title: "DR-072 -- Frontier open veto holds a soft stop"
 description: "This scenario validates that under the expansive mode an open frontier node turns a composite convergence stop into CONTINUE, and that the cap, the floor, stuck recovery, convergence off and the max-iterations policy still decide first, for `DR-072`."
-version: 1.16.0.0
+version: 1.16.1.0
 ---
 
 # DR-072 -- Frontier open veto holds a soft stop
@@ -53,7 +53,7 @@ Operators run the exact commands below and confirm the veto precedence table and
 
 ### Expected
 
-Command 1 prints `Tests  15 passed | 64 skipped (79)`. Those cases include the eight rows of the veto table, each named `expansive composite candidate: <row label>`, and every row passes. Command 2 prints `Tests  1 passed | 78 skipped (79)`, and the case `echoes the input unchanged` passes without edits. Command 3 prints the veto branch that returns `CONTINUE` with `frontierOpen`, and the research facts line that counts open and active nodes.
+Command 1 prints `Tests  28 passed | 64 skipped (92)`, because the filter also matches the review veto cases. Those cases include the eight rows of the research veto table, each named `expansive composite candidate: <row label>`, and every row passes. Command 2 prints `Tests  1 passed | 91 skipped (92)`, and the case `echoes the input unchanged` passes without edits. Command 3 prints the veto branch that returns `CONTINUE` with `frontierOpen`, and the research facts line that counts open and active nodes.
 
 ### Evidence
 
@@ -97,4 +97,4 @@ Command 1 prints `Tests  15 passed | 64 skipped (79)`. Those cases include the e
 - Playbook ID: DR-072
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/frontier-open-veto-holds-soft-stop.md`
-- Feature catalog status: No entry in `feature-catalog/` covers the frontier veto yet, so this scenario cites none.
+- Feature catalog status: `feature-catalog/convergence/expansive-depth-mode.md` covers the frontier veto in its Stop And Next Focus section.

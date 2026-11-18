@@ -1,0 +1,998 @@
+[0m
+> build · deepseek-v4.1-flash
+I'll start by reading the code sources and docs.
+[0m⚙ [0mexecute {"code":"const r = await tools.exec_command ? null : null;"} 
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs 
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs 
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs [90m[offset=1186, limit=900][0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs 
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs [90m[offset=1285, limit=900][0m
+> build · deepseek-v4.1-flash
+[0m✱ [0mGrep "depthMode|expansive|frontier|extend|extendMinutes" [90min .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs · 28 matches[0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs [90m[offset=3600, limit=500][0m
+> build · deepseek-v4.1-flash
+[0m✱ [0mGrep "frontier|expansive|depth|F-\d|partition" [90min .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs · 20 matches[0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs [90m[limit=120, offset=750][0m
+> build · deepseek-v4.1-flash
+[0m✱ [0mGrep "frontier|expansive|depthMode|extend|extendMinutes|minIterations" [90min .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs · 47 matches[0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs [90m[limit=140, offset=3330][0m
+> build · deepseek-v4.1-flash
+[0m✱ [0mGrep "extend|depth_mode|depth-mode|expansive|frontier|extend_minutes" [90min .skilled/commands/deep/assets/deep-research.yaml · 91 matches[0m
+> build · deepseek-v4.1-flash
+[0m✱ [0mGrep "extend|depth_mode|depth-mode|expansive|frontier|dimension|iteration floor|min_iterations|minIterations" [90min .skilled/commands/deep/assets/deep-review.yaml · 100 matches[0m
+> build · deepseek-v4.1-flash
+[0m✱ [0mGrep "floor|min-iterations|min_iterations|The floor|iteration floor" [90min .skilled/commands/deep/assets/deep-review.yaml · 4 matches[0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/commands/deep/assets/deep-review.yaml [90m[limit=70, offset=1225][0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/agents/deep-research.md 
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/agents/deep-review.md 
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && for f in .claude/agents/deep-research.md .claude/agents/deep-review.md .pi/agents/deep-research.md .pi/agents/deep-review.md; do echo "$f $(wc -l < $f)"; done; echo '--- diffs vs .skilled ---'; diff .skilled/agents/deep-research.md .claude/agents/deep-research.md | head -60; echo '=== review claude ==='; diff .skilled/agents/deep-review.md .claude/agents/deep-review.md | head -60; echo '=== pi research ==='; diff .skilled/agents/deep-research.md .pi/agents/deep-research.md | head -80; echo '=== pi review ==='; diff .skilled/agents/deep-review.md .pi/agents/deep-review.md | head -80
+.claude/agents/deep-research.md      554
+.claude/agents/deep-review.md      578
+.pi/agents/deep-research.md      562
+.pi/agents/deep-review.md      585
+--- diffs vs .skilled ---
+4,20c4
+< mode: subagent
+< temperature: 0.1
+< permission:
+<   read: allow
+<   write: allow
+<   edit: allow
+<   bash: allow
+<   grep: allow
+<   glob: allow
+<   webfetch: allow
+<   websearch: allow
+<   chrome_devtools: deny
+<   browser: deny
+<   task: deny
+<   list: allow
+<   patch: deny
+<   external_directory: allow
+---
+> tools: Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch
+27c11
+< **Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
+---
+> **Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
+=== review claude ===
+4,18c4
+< mode: subagent
+< temperature: 0.1
+< permission:
+<   read: allow
+<   write: allow
+<   edit: allow
+<   bash: allow
+<   grep: allow
+<   glob: allow
+<   webfetch: deny
+<   chrome_devtools: deny
+<   browser: deny
+<   task: deny
+<   list: allow
+<   patch: deny
+---
+> tools: Read, Write, Edit, Bash, Grep, Glob
+25c11
+< **Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
+---
+> **Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
+591,592c577,578
+< - `.skilled/agents/review.md` — the separate non-iterative reviewer this agent must not delegate to.
+< - `.skilled/agents/deep-research.md` — the separate research-iteration agent this agent must not delegate review work to.
+---
+> - `.claude/agents/review.md` — the separate non-iterative reviewer this agent must not delegate to.
+> - `.claude/agents/deep-research.md` — the separate research-iteration agent this agent must not delegate review work to.
+=== pi research ===
+2c2
+< name: deep-research
+---
+> name: "deep-research"
+4,20c4,12
+< mode: subagent
+< temperature: 0.1
+< permission:
+<   read: allow
+<   write: allow
+<   edit: allow
+<   bash: allow
+<   grep: allow
+<   glob: allow
+<   webfetch: allow
+<   websearch: allow
+<   chrome_devtools: deny
+<   browser: deny
+<   task: deny
+<   list: allow
+<   patch: deny
+<   external_directory: allow
+---
+> tools:
+>   - read
+>   - write
+>   - edit
+>   - bash
+>   - grep
+>   - find
+>   - ls
+> # Unmapped OpenCode permission keys: webfetch, websearch, external_directory
+=== pi review ===
+2c2
+< name: deep-review
+---
+> name: "deep-review"
+4,18c4,11
+< mode: subagent
+< temperature: 0.1
+< permission:
+<   read: allow
+<   write: allow
+<   edit: allow
+<   bash: allow
+<   grep: allow
+<   glob: allow
+<   webfetch: deny
+<   chrome_devtools: deny
+<   browser: deny
+<   task: deny
+<   list: allow
+<   patch: deny
+---
+> tools:
+>   - read
+>   - write
+>   - edit
+>   - bash
+>   - grep
+>   - find
+>   - ls
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && grep -n "Path Convention" .pi/agents/deep-research.md .pi/agents/deep-review.md .claude/agents/deep-research.md .claude/agents/deep-review.md .skilled/agents/deep-research.md .skilled/agents/deep-review.md
+.pi/agents/deep-research.md:19:**Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
+.pi/agents/deep-review.md:18:**Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
+.claude/agents/deep-research.md:11:**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
+.claude/agents/deep-review.md:11:**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
+.skilled/agents/deep-research.md:27:**Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
+.skilled/agents/deep-review.md:25:**Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && grep -n -i "extend\|floor\|min.iter\|minIter\|expansive\|frontier\|depth" .claude/agents/deep-research.md .claude/agents/deep-review.md .pi/agents/deep-research.md .pi/agents/deep-review.md .skilled/agents/deep-research.md .skilled/agents/deep-review.md
+.claude/agents/deep-research.md:84:- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, `restart`, or `completed-continue` after `--extend=N` reopens a completed run -- see `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md §Lifecycle Branches`)
+.claude/agents/deep-research.md:284:**Frontier proposals (expansive depth runs only).** When the iteration prompt carries a FRONTIER block, you may append `frontier_proposal` rows to the delta, at most the number that block allows, one per follow-up question the evidence opened inside the node you were working:
+.claude/agents/deep-research.md:285:`{"type":"frontier_proposal","parentId":"<the node id the prompt named>","question":"<one new question, not a restatement of an existing one>","scope":"<path, module or area>","evidence":"<file:line or URL that opened it>","budget":<optional positive integer, never above the parent's>}`
+.claude/agents/deep-research.md:286:You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, repeats a known question, or would exceed the depth, fan-out or budget caps. Never write `research/inbox.jsonl` or `research/frontier-nodes.jsonl`, and never emit a `frontier_proposal` row when the prompt has no FRONTIER block.
+.claude/agents/deep-review.md:223:- For explicit review-depth v2 records, include the complete `reviewDepthApplicability`, `targetSelection`, `searchCoverage`, and `searchLedger` contract from the rendered iteration prompt.
+.claude/agents/deep-review.md:251:**Frontier proposals (expansive depth runs only).** When the iteration prompt carries a FRONTIER block, you may append `frontier_proposal` rows to the delta, at most the number that block allows, one per sub-target the evidence opened inside the node you were reviewing:
+.claude/agents/deep-review.md:252:`{"type":"frontier_proposal","parentId":"<the node id the prompt named>","question":"<what to review, not a restatement of an existing node>","scope":"<paths inside the review target>","evidence":"<file:line that opened it>","budget":<optional positive integer, never above the parent's>}`
+.claude/agents/deep-review.md:253:You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, sits outside the review target, repeats a known node, or would exceed the depth, fan-out or budget caps. Never write `review/frontier-nodes.jsonl`, `searchDebt` or any coverage surface, and never emit a `frontier_proposal` row when the prompt has no FRONTIER block. When the block names a node, add `"frontierNodeId"` to the iteration record as the block says.
+.claude/agents/deep-review.md:376:- The workflow owns the lifecycle branches (`new`, `resume`, `restart`, and `completed-continue` after `--extend=N` reopens a completed run) and writes their events.
+.pi/agents/deep-research.md:92:- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, `restart`, or `completed-continue` after `--extend=N` reopens a completed run -- see `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md §Lifecycle Branches`)
+.pi/agents/deep-research.md:292:**Frontier proposals (expansive depth runs only).** When the iteration prompt carries a FRONTIER block, you may append `frontier_proposal` rows to the delta, at most the number that block allows, one per follow-up question the evidence opened inside the node you were working:
+.pi/agents/deep-research.md:293:`{"type":"frontier_proposal","parentId":"<the node id the prompt named>","question":"<one new question, not a restatement of an existing one>","scope":"<path, module or area>","evidence":"<file:line or URL that opened it>","budget":<optional positive integer, never above the parent's>}`
+.pi/agents/deep-research.md:294:You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, repeats a known question, or would exceed the depth, fan-out or budget caps. Never write `research/inbox.jsonl` or `research/frontier-nodes.jsonl`, and never emit a `frontier_proposal` row when the prompt has no FRONTIER block.
+.pi/agents/deep-review.md:230:- For explicit review-depth v2 records, include the complete `reviewDepthApplicability`, `targetSelection`, `searchCoverage`, and `searchLedger` contract from the rendered iteration prompt.
+.pi/agents/deep-review.md:258:**Frontier proposals (expansive depth runs only).** When the iteration prompt carries a FRONTIER block, you may append `frontier_proposal` rows to the delta, at most the number that block allows, one per sub-target the evidence opened inside the node you were reviewing:
+.pi/agents/deep-review.md:259:`{"type":"frontier_proposal","parentId":"<the node id the prompt named>","question":"<what to review, not a restatement of an existing node>","scope":"<paths inside the review target>","evidence":"<file:line that opened it>","budget":<optional positive integer, never above the parent's>}`
+.pi/agents/deep-review.md:260:You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, sits outside the review target, repeats a known node, or would exceed the depth, fan-out or budget caps. Never write `review/frontier-nodes.jsonl`, `searchDebt` or any coverage surface, and never emit a `frontier_proposal` row when the prompt has no FRONTIER block. When the block names a node, add `"frontierNodeId"` to the iteration record as the block says.
+.pi/agents/deep-review.md:383:- The workflow owns the lifecycle branches (`new`, `resume`, `restart`, and `completed-continue` after `--extend=N` reopens a completed run) and writes their events.
+.skilled/agents/deep-research.md:100:- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, `restart`, or `completed-continue` after `--extend=N` reopens a completed run -- see `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md §Lifecycle Branches`)
+.skilled/agents/deep-research.md:300:**Frontier proposals (expansive depth runs only).** When the iteration prompt carries a FRONTIER block, you may append `frontier_proposal` rows to the delta, at most the number that block allows, one per follow-up question the evidence opened inside the node you were working:
+.skilled/agents/deep-research.md:301:`{"type":"frontier_proposal","parentId":"<the node id the prompt named>","question":"<one new question, not a restatement of an existing one>","scope":"<path, module or area>","evidence":"<file:line or URL that opened it>","budget":<optional positive integer, never above the parent's>}`
+.skilled/agents/deep-research.md:302:You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, repeats a known question, or would exceed the depth, fan-out or budget caps. Never write `research/inbox.jsonl` or `research/frontier-nodes.jsonl`, and never emit a `frontier_proposal` row when the prompt has no FRONTIER block.
+.skilled/agents/deep-review.md:237:- For explicit review-depth v2 records, include the complete `reviewDepthApplicability`, `targetSelection`, `searchCoverage`, and `searchLedger` contract from the rendered iteration prompt.
+.skilled/agents/deep-review.md:265:**Frontier proposals (expansive depth runs only).** When the iteration prompt carries a FRONTIER block, you may append `frontier_proposal` rows to the delta, at most the number that block allows, one per sub-target the evidence opened inside the node you were reviewing:
+.skilled/agents/deep-review.md:266:`{"type":"frontier_proposal","parentId":"<the node id the prompt named>","question":"<what to review, not a restatement of an existing node>","scope":"<paths inside the review target>","evidence":"<file:line that opened it>","budget":<optional positive integer, never above the parent's>}`
+.skilled/agents/deep-review.md:267:You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, sits outside the review target, repeats a known node, or would exceed the depth, fan-out or budget caps. Never write `review/frontier-nodes.jsonl`, `searchDebt` or any coverage surface, and never emit a `frontier_proposal` row when the prompt has no FRONTIER block. When the block names a node, add `"frontierNodeId"` to the iteration record as the block says.
+.skilled/agents/deep-review.md:390:- The workflow owns the lifecycle branches (`new`, `resume`, `restart`, and `completed-continue` after `--extend=N` reopens a completed run) and writes their events.
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n "completed-continue" --glob '!*.md' .skilled/skills/system-deep-loop .skilled/commands/deep 2>/dev/null | head -50
+.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:36:const LIVE_LINEAGE_MODES = new Set(['new', 'resume', 'restart', 'completed-continue']);
+.skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-review-default/lineage-prompt.txt:414:- The workflow owns the lifecycle branches (`new`, `resume`, `restart`, and `completed-continue` after `--extend=N` reopens a completed run) and writes their events.
+.skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts:770:      expect(presentation).toContain('--extend=N -> extend = N, lineage_mode = completed-continue');
+.skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts:788:      expect(guard).toContain('skip_when: "lineage_mode != \'completed-continue\' or config.fanout is absent"');
+.skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts:826:    expect(after.lineage).toMatchObject({ lineageMode: 'completed-continue', continuedFromRun: 7, sessionId, generation: 1 });
+.skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts:834:      lineageMode: 'completed-continue',
+.skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts:997:      lineageMode: 'completed-continue',
+.skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-research-default/lineage-prompt.txt:128:- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, `restart`, or `completed-continue` after `--extend=N` reopens a completed run -- see `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md §Lifecycle Branches`)
+.skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-legacy-seam.vitest.ts:261:      lineageMode: 'completed-continue',
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts:1826:      { type: 'event', event: 'extended', sessionId: 's-1', generation: 1, lineageMode: 'completed-continue', continuedFromRun: 2, timestamp: '2026-11-17T01:00:00Z' },
+
+[showing lines 41-50 of 50; full output saved to /Users/michelkerkmeester/.local/share/opencode/shell/4c10847297631c3af43d766cf1908920fe00c449/sh_1ec36de79001glbtMa1DcX5f0K.out]
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/commands/deep/assets/deep-review.yaml [90m[limit=120, offset=795][0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/commands/deep/assets/deep-research.yaml [90m[limit=120, offset=460][0m
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n "not required for severity|severity coverage" --glob '!**/node_modules/**' . | head -20
+./specs/cli-classifier/003-cli-jev-workflow-integration/029-p0-reread-order/scratch/w4-build/design.md:9:| `.skilled/skills/system-deep-loop/deep-review/references/protocol/completion-criteria.md:61-63` | ok — severity coverage, advisory `riskScore`, adversarial replay |
+./specs/cli-classifier/003-cli-jev-workflow-integration/029-p0-reread-order/goal.md:103:| Seam check (2026-09-29) | Every R10 citation resolves with no drift: `deep-review/references/protocol/completion-criteria.md:61-63` (severity coverage, `riskScore`, adversarial replay), `:75` (verdict logic) and `runtime/lib/blinded-adjudication/mode-adapters.ts:59` (`legacy-canonical-shadow-only`), `:63-72` (`createDeepReviewAdjudicationRequest`) |
+./.skilled/agents/deep-review.md:343:| **Custom (configured)** | A configured custom dimension such as `performance`: the property its name states, judged under the shared P0/P1/P2 doctrine. It follows the canonical four and is not required for severity coverage |
+./.skilled/commands/deep/assets/deep-review.yaml:2598:      - { priority: 5, name: "<custom>", checks: "A configured custom dimension: review the target for the property its name states, under the shared P0-P2 doctrine. It follows the canonical four in configured order and is not required for severity coverage." }
+./.skilled/skills/system-deep-loop/deep-review/README.md:45:The four canonical dimensions are configured by default. Every configured dimension is required for coverage, so the loop can stop clean only after each one has been audited. A custom dimension you configure, such as `performance`, is reviewed after the canonical four. Correctness and security are the two the mode contract marks as required for severity coverage.
+./.skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/security.md:25:The review contract ranks security second, immediately after correctness, and marks it as required for severity coverage. Its checks explicitly cover trust boundaries, authentication and authorization behavior, input handling, secrets exposure, and exploit paths.
+./.skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/security.md:37:| `assets/review-mode-contract.yaml` | Contract | Declares security as dimension `2`, defines its checks, and marks it as required for severity coverage. |
+./.skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/correctness.md:25:The review contract ranks correctness first in the default dimension order. It is required for severity coverage and is one of the dimensions that must be examined before a clean stop is possible. The loop uses this dimension for logic errors, broken state transitions, off-by-one mistakes, wrong return behavior, and other direct behavior mismatches.
+./.skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/correctness.md:37:| `assets/review-mode-contract.yaml` | Contract | Declares correctness as dimension `1`, labels its checks, and marks it as required for severity coverage. |
+./.skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/maintainability.md:25:The contract ranks maintainability fourth and does not mark it as required for severity coverage, but it is still part of the mandatory four-dimension coverage model. The dimension's checks focus on codebase patterns, documentation quality, clarity, and ease of safe follow-on changes.
+./.skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/custom-review-dimensions.md:16:A review normally audits four canonical dimensions: correctness, security, traceability and maintainability. A setup can name more. A configured name outside the canonical four is a custom dimension. It is tracked and covered like the others, ordered after the canonical four, and judged by its own name. It is not required for severity coverage.
+./.skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md:376:Correctness is the first-priority dimension, covers logic and state transitions and edge cases, and is required for severity coverage and for a legal clean stop. It leads the default dimension ordering in both the strategy template and the review contract.
+./.skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md:440:Custom names are ordered after the four canonical dimensions, judged by their own name and not required for severity coverage.
+./.skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-review-default/lineage-prompt.txt:367:| **Custom (configured)** | A configured custom dimension such as `performance`: the property its name states, judged under the shared P0/P1/P2 doctrine. It follows the canonical four and is not required for severity coverage |
+./specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/research/006-peck-source-deep-mining/prompts/iteration-003.out:6:[F-003-03] Peck’s `±2 for context` is the most useful delta because it formalizes downgrade/upgrade discretion; spec-kit requires evidence, assumptions, adversarial replay for P0, and exact severity coverage, but does not give reviewers a bounded adjustment rule. Peck: `specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/code-reviewer.md:68`; spec-kit: `.opencode/skills/sk-code-review/SKILL.md:370`, `.opencode/skills/deep-review/SKILL.md:382`, `.opencode/skills/deep-review/SKILL.md:383`, `.opencode/skills/deep-review/SKILL.md:451`, `.opencode/skills/deep-review/SKILL.md:452`. GAP: real. VERDICT ADAPT. EFFORT M. RISK med. BLAST-RADIUS: reviewer prompt contracts and validation examples.
+./specs/system-deep-loop/z_archive/030-deep-loop-unification/007-comprehensive-deep-review/review/iterations/iteration-012.md:67:| Named quality gates in completion criteria | PASS with note | The expected criteria are present: config validity, strategy initialization, state consistency, iteration completeness, severity coverage, advisory numeric score, adversarial replay, coverage threshold, acceptance coverage, plus the conditional security-sensitive override at `completion_criteria.md:57-66`. |
+./specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/scratch/skilled-alignment-run-3/lanes/C.raw.txt:1164:-All four dimensions are configured by default. All four are required for coverage, so the loop can stop clean only after each one has been audited. Correctness and security are the two the mode contract marks as required for severity coverage.
+./specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/scratch/skilled-alignment-run-3/lanes/C.raw.txt:1165:+The four canonical dimensions are configured by default. Every configured dimension is required for coverage, so the loop can stop clean only after each one has been audited. A custom dimension you configure, such as `performance`, is reviewed after the canonical four. Correctness and security are the two the mode contract marks as required for severity coverage.
+./specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/scratch/skilled-alignment-run-3/lanes/C.raw.txt:2838:45:The four canonical dimensions are configured by default. Every configured dimension is required for coverage, so the loop can stop clean only after each one has been audited. A custom dimension you configure, such as `performance`, is reviewed after the canonical four. Correctness and security are the two the mode contract marks as required for severity coverage.
+./specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/scratch/skilled-alignment-run-3/lanes/B.raw.txt:1508:+| **Custom (configured)** | A configured custom dimension such as `performance`: the property its name states, judged under the shared P0/P1/P2 doctrine. It follows the canonical four and is not required for severity coverage |
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n "max-iterations|maxIterations|stopPolicy|stop_policy|convergence-mode|convergenceMode" .skilled/agents/deep-research.md .skilled/agents/deep-review.md .claude/agents/deep-research.md .claude/agents/deep-review.md .pi/agents/deep-research.md .pi/agents/deep-review.md
+.claude/agents/deep-review.md:95:BINDING: maxIterations=<integer>
+.pi/agents/deep-review.md:102:BINDING: maxIterations=<integer>
+.skilled/agents/deep-review.md:109:BINDING: maxIterations=<integer>
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false log --oneline -8 -- .skilled/agents/deep-research.md .skilled/agents/deep-review.md .claude/agents/deep-review.md .pi/agents/deep-review.md | cat
+0ed468b7659 feat(deep): wire the expansive review frontier into the review workflow
+5e583331cc9 feat(system-deep-loop): integrate the research frontier mode
+13c893a4e5d feat(system-deep-loop): let the research leaf propose frontier questions
+8b44a506edb feat(system-deep-loop): describe and prove custom review dimensions
+ac4151f027f docs(system-deep-loop): document completed-run extension as a live mode
+f795476e720 fix(agents): make the roster check and playbook sandboxes able to fail
+6adf5d1f9f1 Merge remote-tracking branch 'origin/main' into worktrees/382-deep-loop-workflow-logic-hardening
+b697ae5d08f fix(agents): give the research record its run identity and let read bindings follow the read
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show --stat 0ed468b7659 | cat; echo ---; git -c core.fsmonitor=false show 0ed468b7659 -- .skilled/agents/deep-review.md | cat
+commit 0ed468b76597207882e65eee51588a064a67983e
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Tue Nov 17 23:43:50 2026 +0100
+
+    feat(deep): wire the expansive review frontier into the review workflow
+    
+    The review workflow now seeds depth-1 sub-target nodes before fan-out or after config creation, marks the dispatched node active, admits leaf frontier proposals before the reducer, steers next_dimension to the active node, closes a stuck node as exhausted and gates the pivot on a terminal frontier. The review leaf contract and its runtime mirrors carry the frontier_proposal row, and the review fan-in merges lineage frontiers behind a partition guard.
+    
+    Commit-Id: 0014823
+
+ .claude/agents/deep-review.md                      |  4 +
+ .codex/agents/deep-review.toml                     |  4 +
+ .dsh/agents/deep-review.patch.yml                  |  4 +
+ .pi/agents/deep-review.md                          |  4 +
+ .skilled/agents/deep-review.md                     |  4 +
+ .../assets/compiled/deep-review.contract.markdown  | 14 ++--
+ .skilled/commands/deep/assets/deep-review.yaml     | 92 +++++++++++++++++++++-
+ .../runtime/scripts/fanout-merge.cjs               | 14 +++-
+ .../unit/deep-review-deltas-contract.vitest.ts     | 44 +++++++++++
+ .../runtime/tests/unit/fanout-merge.vitest.ts      | 58 +++++++++++++-
+ .../tests/unit/review-depth-mode-golden.vitest.ts  | 21 ++++-
+ .../unit/stop-decision-yaml-contract.vitest.ts     | 80 +++++++++++++++++++
+ .vibe/agents/deep-review.toml                      |  2 +-
+ .../acceptance-criteria.md                         |  2 +-
+ .../011-review-frontier-mode/decision-record.md    |  1 +
+ .../011-review-frontier-mode/graph-metadata.json   |  8 +-
+ .../011-review-frontier-mode/tasks.md              | 12 +--
+ 17 files changed, 343 insertions(+), 25 deletions(-)
+---
+commit 0ed468b76597207882e65eee51588a064a67983e
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Tue Nov 17 23:43:50 2026 +0100
+
+    feat(deep): wire the expansive review frontier into the review workflow
+    
+    The review workflow now seeds depth-1 sub-target nodes before fan-out or after config creation, marks the dispatched node active, admits leaf frontier proposals before the reducer, steers next_dimension to the active node, closes a stuck node as exhausted and gates the pivot on a terminal frontier. The review leaf contract and its runtime mirrors carry the frontier_proposal row, and the review fan-in merges lineage frontiers behind a partition guard.
+    
+    Commit-Id: 0014823
+
+diff --git a/.skilled/agents/deep-review.md b/.skilled/agents/deep-review.md
+index 22a9aa1e375..62961defce3 100644
+--- a/.skilled/agents/deep-review.md
++++ b/.skilled/agents/deep-review.md
+@@ -262,6 +262,10 @@ Never fall back to a direct write of the projection file.
+ - Append structured finding, classification, traceability-check, graph-event, and ruled-out records after it, one JSON object per line.
+ - Never overwrite an existing delta file.
+ 
++**Frontier proposals (expansive depth runs only).** When the iteration prompt carries a FRONTIER block, you may append `frontier_proposal` rows to the delta, at most the number that block allows, one per sub-target the evidence opened inside the node you were reviewing:
++`{"type":"frontier_proposal","parentId":"<the node id the prompt named>","question":"<what to review, not a restatement of an existing node>","scope":"<paths inside the review target>","evidence":"<file:line that opened it>","budget":<optional positive integer, never above the parent's>}`
++You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, sits outside the review target, repeats a known node, or would exceed the depth, fan-out or budget caps. Never write `review/frontier-nodes.jsonl`, `searchDebt` or any coverage surface, and never emit a `frontier_proposal` row when the prompt has no FRONTIER block. When the block names a node, add `"frontierNodeId"` to the iteration record as the block says.
++
+ #### Step 11: Verify Outputs
+ 
+ - Verify the narrative contains focus, finding severity sections, traceability checks, edge cases, ruled-out section, and next focus.
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n "depth-1|sub-question|sub-target|seed|node|nodeId|frontier_proposal|FRONTIER" .skilled/agents/deep-research.md .skilled/agents/deep-review.md
+.skilled/agents/deep-research.md:273:node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
+.skilled/agents/deep-research.md:300:**Frontier proposals (expansive depth runs only).** When the iteration prompt carries a FRONTIER block, you may append `frontier_proposal` rows to the delta, at most the number that block allows, one per follow-up question the evidence opened inside the node you were working:
+.skilled/agents/deep-research.md:301:`{"type":"frontier_proposal","parentId":"<the node id the prompt named>","question":"<one new question, not a restatement of an existing one>","scope":"<path, module or area>","evidence":"<file:line or URL that opened it>","budget":<optional positive integer, never above the parent's>}`
+.skilled/agents/deep-research.md:302:You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, repeats a known question, or would exceed the depth, fan-out or budget caps. Never write `research/inbox.jsonl` or `research/frontier-nodes.jsonl`, and never emit a `frontier_proposal` row when the prompt has no FRONTIER block.
+.skilled/agents/deep-research.md:358:Keyed lookup runs `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`.
+.skilled/agents/deep-review.md:246:node <deep-loop>/runtime/scripts/append-mode-event.cjs \
+.skilled/agents/deep-review.md:265:**Frontier proposals (expansive depth runs only).** When the iteration prompt carries a FRONTIER block, you may append `frontier_proposal` rows to the delta, at most the number that block allows, one per sub-target the evidence opened inside the node you were reviewing:
+.skilled/agents/deep-review.md:266:`{"type":"frontier_proposal","parentId":"<the node id the prompt named>","question":"<what to review, not a restatement of an existing node>","scope":"<paths inside the review target>","evidence":"<file:line that opened it>","budget":<optional positive integer, never above the parent's>}`
+.skilled/agents/deep-review.md:267:You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, sits outside the review target, repeats a known node, or would exceed the depth, fan-out or budget caps. Never write `review/frontier-nodes.jsonl`, `searchDebt` or any coverage surface, and never emit a `frontier_proposal` row when the prompt has no FRONTIER block. When the block names a node, add `"frontierNodeId"` to the iteration record as the block says.
+.skilled/agents/deep-review.md:292:  Where the runtime installed the system-spec-kit skill, keyed lookup runs its `runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` (in this repository: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`).
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/commands/deep/assets/deep-review.yaml [90m[limit=120, offset=1370][0m
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n -B2 -A6 "frontier_proposal" .skilled/commands/deep/assets/compiled/deep-review.contract.markdown | head -60
+(no output)
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n "frontier" .skilled/commands/deep/assets/compiled/deep-review.contract.markdown | head -30; echo ---; git -c core.fsmonitor=false show 0ed468b7659 -- .skilled/commands/deep/assets/compiled/deep-review.contract.markdown | head -60
+182:  depth_mode: default  # default | expansive (opt-in frontier growth)
+---
+commit 0ed468b76597207882e65eee51588a064a67983e
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Tue Nov 17 23:43:50 2026 +0100
+
+    feat(deep): wire the expansive review frontier into the review workflow
+    
+    The review workflow now seeds depth-1 sub-target nodes before fan-out or after config creation, marks the dispatched node active, admits leaf frontier proposals before the reducer, steers next_dimension to the active node, closes a stuck node as exhausted and gates the pivot on a terminal frontier. The review leaf contract and its runtime mirrors carry the frontier_proposal row, and the review fan-in merges lineage frontiers behind a partition guard.
+    
+    Commit-Id: 0014823
+
+diff --git a/.skilled/commands/deep/assets/compiled/deep-review.contract.markdown b/.skilled/commands/deep/assets/compiled/deep-review.contract.markdown
+index e9d772cc9a5..477757c77f8 100644
+--- a/.skilled/commands/deep/assets/compiled/deep-review.contract.markdown
++++ b/.skilled/commands/deep/assets/compiled/deep-review.contract.markdown
+@@ -22,7 +22,7 @@
+     },
+     {
+       "path": ".skilled/commands/deep/assets/deep-review.yaml",
+-      "sha256": "0de7a61cb5a59bb65c72c5ca3361bdde4cf3c59ce0e97d7f065a9adf73da5693",
++      "sha256": "286843f8b5ac0c24bad90e7958cb589b8570c30f3d574bda48f7415d981ec29b",
+       "section": "full"
+     },
+     {
+@@ -37,27 +37,27 @@
+     },
+     {
+       "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+-      "sha256": "8f42b0a06def05413f69a1d92dc7b6e231b5464026b87c759b5325f4684db53d",
++      "sha256": "54c93de980304b60758f8a857474b096d5ca86193ffb8c549edc7a9a39eb88fd",
+       "section": "full"
+     },
+     {
+       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+-      "sha256": "2b9fc8c5b861d5fab6ca5ae580f4b74369c06e665579a7acc62211b43a6ec0aa",
++      "sha256": "304fecbc7bfc7117bb816f28c64e637e2971e8798d6c185f1a3bca8f61db5603",
+       "section": "full"
+     },
+     {
+       "path": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
+-      "sha256": "aa9ebc442e8192f25a79706a40455f089a0a4946749f0d78450ea999491d923e",
++      "sha256": "d34693f1ece4afc81e1d4e2503df45c6957bb2f8c330e91439930218c8ae23f6",
+       "section": "full"
+     },
+     {
+       "path": ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+-      "sha256": "b542890dd094fbdae7f29b0c3d37262f2f17220e4030a1d2a5ce19d9a9ea7de0",
++      "sha256": "e14b36c96dd7945a9a147ff8a8c407c3ca3940af5b04619347ed71c034c59f61",
+       "section": "full"
+     },
+     {
+       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+-      "sha256": "b354c09a15433af3fbc799db3d6fd54ad0c7d8943075c254bc338e38e4c1842e",
++      "sha256": "991d5858aa201ad13a65c4ed6cbf424d33dab6be015f31232345bc07f4902ebf",
+       "section": "full"
+     },
+     {
+@@ -72,7 +72,7 @@
+     },
+     {
+       "path": ".skilled/agents/deep-review.md",
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && for f in .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs .skilled/commands/deep/assets/deep-review.yaml .skilled/commands/deep/assets/deep-research.yaml; do echo "== $f"; git -c core.fsmonitor=false log --oneline -4 -- $f | cat; done
+== .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs
+1642d622a3b feat(system-deep-loop): integrate the research frontier pilot fixes
+9e0b02c49a6 fix(system-deep-loop): repair expansive review frontier defects from the pilot
+ac1d2a6b7dc fix(system-deep-loop): write frontier graph events as one JSON array
+adedc72e930 feat(system-deep-loop): integrate the review frontier mode
+== .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs
+26c0321b468 feat(system-deep-loop): project the review frontier and veto open nodes
+ab7312fe467 feat(system-deep-loop): veto a soft research stop while frontier nodes stay open
+391d83fbe6e feat(deep): bind the research depth_mode flag beside convergence_mode
+dbeddaf20ba fix(system-deep-loop): carry research leaf fields to the state log
+== .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+18d9cccb4d4 feat(system-deep-loop): partition the review frontier across fan-out lineages
+aa30dc28f77 feat(system-deep-loop): partition the research frontier across fan-out lineages
+1e6742548a2 Merge remote-tracking branch 'origin/main' into worktrees/383-mistral-vibe-runtime
+36ddad5062d feat(cli-external-orchestration): add Mistral Vibe as a runtime mode
+== .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs
+9e0b02c49a6 fix(system-deep-loop): repair expansive review frontier defects from the pilot
+0ed468b7659 feat(deep): wire the expansive review frontier into the review workflow
+965b88ca150 feat(system-deep-loop): merge lineage frontiers and guard the partition
+1cb3cb0d011 fix(system-deep-loop): carry review coverage through the fan-out merge
+== .skilled/commands/deep/assets/deep-review.yaml
+33b6f92ac14 fix(system-deep-loop): reduce the review frontier once after the seed
+0ed468b7659 feat(deep): wire the expansive review frontier into the review workflow
+f4975f8a409 feat(system-deep-loop): steer review focus and render the frontier block
+8fda03e7135 feat(deep): bind the review depth_mode flag beside convergence_mode
+== .skilled/commands/deep/assets/deep-research.yaml
+f0f08e96f3d fix(system-deep-loop): reduce once after the frontier seed
+ac1d2a6b7dc fix(system-deep-loop): write frontier graph events as one JSON array
+2c9405692a1 fix(system-deep-loop): match frontier visits on a reworded focus
+5e583331cc9 feat(system-deep-loop): integrate the research frontier mode
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show --stat 9e0b02c49a6 | cat; echo ===; git -c core.fsmonitor=false show 9e0b02c49a6 -- .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs | head -120
+commit 9e0b02c49a6178776643ea85c9d1c9aada99d3f4
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Wed Nov 18 01:18:47 2026 +0100
+
+    fix(system-deep-loop): repair expansive review frontier defects from the pilot
+    
+    A live expansive review pilot over a 400-commit range found four defects on
+    the frontier path. The root shared the per-node children cap, so a review seed
+    admitted six depth-1 sub-targets although the workflow promises three to eight;
+    the root cap is now the top of each loop's documented seed range (eight for
+    review, six for research) and never below the per-node cap, which stays as it
+    was. A commit-range target typed as a file list made the range string the only
+    allowed path, so every depth-2 proposal pruned as irrelevant; relevance now
+    intersects a range target with the files scope discovery recorded for it.
+    Merged frontier nodes kept lineage-local ids, so three lineages each reported
+    F-2-002; merged ids and parent links are now lineage-qualified, with the local
+    id kept beside them for the partition guard. The review docs now name the
+    frontier_partition key the runner records in orchestration-summary.json.
+    
+    Every change sits on the expansive path; both depth-mode golden suites pass.
+    
+    Commit-Id: 0014839
+
+ .../assets/compiled/deep-review.contract.markdown  |   4 +-
+ .../skills/system-deep-loop/deep-review/SKILL.md   |   2 +-
+ .../references/protocol/loop-protocol.md           |   4 +-
+ .../runtime/scripts/fanout-merge.cjs               |  29 ++++--
+ .../runtime/scripts/frontier-admit.cjs             |  40 +++++++-
+ .../runtime/tests/unit/fanout-merge.vitest.ts      |  39 +++++++-
+ .../runtime/tests/unit/fanout-run.vitest.ts        |  10 ++
+ .../tests/unit/frontier-admit-review.vitest.ts     | 108 ++++++++++++++++++++-
+ .../011-review-frontier-mode/graph-metadata.json   |   6 +-
+ .../011-review-frontier-mode/spec.md               |   4 +-
+ 10 files changed, 223 insertions(+), 23 deletions(-)
+===
+commit 9e0b02c49a6178776643ea85c9d1c9aada99d3f4
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Wed Nov 18 01:18:47 2026 +0100
+
+    fix(system-deep-loop): repair expansive review frontier defects from the pilot
+    
+    A live expansive review pilot over a 400-commit range found four defects on
+    the frontier path. The root shared the per-node children cap, so a review seed
+    admitted six depth-1 sub-targets although the workflow promises three to eight;
+    the root cap is now the top of each loop's documented seed range (eight for
+    review, six for research) and never below the per-node cap, which stays as it
+    was. A commit-range target typed as a file list made the range string the only
+    allowed path, so every depth-2 proposal pruned as irrelevant; relevance now
+    intersects a range target with the files scope discovery recorded for it.
+    Merged frontier nodes kept lineage-local ids, so three lineages each reported
+    F-2-002; merged ids and parent links are now lineage-qualified, with the local
+    id kept beside them for the partition guard. The review docs now name the
+    frontier_partition key the runner records in orchestration-summary.json.
+    
+    Every change sits on the expansive path; both depth-mode golden suites pass.
+    
+    Commit-Id: 0014839
+
+diff --git a/.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs b/.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs
+index dfdc7a91408..87be5766a5b 100644
+--- a/.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs
++++ b/.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs
+@@ -52,6 +52,13 @@ const DEFAULT_MAX_DEPTH = 3;
+ const DEFAULT_MAX_CHILDREN_PER_NODE = 6;
+ const DEFAULT_MAX_FRONTIER_NODES = 10;
+ 
++// The seed step decomposes a target into a documented number of depth-1 nodes:
++// 3 to 6 sub-questions for research, 3 to 8 sub-targets for review. The root's
++// children are those nodes, so its cap is the top of that range, never below the
++// per-node cap. A fan-out parent seeds before any config exists, so this cannot
++// come from config alone.
++const ROOT_CHILDREN_FLOOR = Object.freeze({ research: 6, review: 8 });
++
+ const NODE_STATUSES = Object.freeze([
+   'open',
+   'active',
+@@ -226,13 +233,20 @@ function readCaps(artifactDir, target = 'research') {
+   const expansive = isPlainObject(source.expansiveDepth) ? source.expansiveDepth : {};
+   const runCap = capValue(expansive.maxFrontierNodes, capValue(source.maxIterations, DEFAULT_MAX_FRONTIER_NODES));
+ 
++  const maxChildrenPerNode = capValue(expansive.maxChildrenPerNode, DEFAULT_MAX_CHILDREN_PER_NODE);
++
+   return {
+     maxDepth: capValue(expansive.maxDepth, DEFAULT_MAX_DEPTH),
+-    maxChildrenPerNode: capValue(expansive.maxChildrenPerNode, DEFAULT_MAX_CHILDREN_PER_NODE),
++    maxChildrenPerNode,
++    maxRootChildren: Math.max(maxChildrenPerNode, ROOT_CHILDREN_FLOOR[target]),
+     maxFrontierNodes: runCap,
+   };
+ }
+ 
++function childCapFor(parentId, caps) {
++  return parentId === 'root' && Number.isFinite(caps.maxRootChildren) ? caps.maxRootChildren : caps.maxChildrenPerNode;
++}
++
+ // A review target is a file list, and only those paths can hold a finding. The
+ // './' prefix and trailing '/' a caller writes carry no meaning, so both sides
+ // of the comparison are normalized before containment is tested.
+@@ -256,12 +270,34 @@ function scopeEntries(scope) {
+     .filter((entry) => entry !== '');
+ }
+ 
++// A git revision range (base..tip or base...tip) is not a path. The dots must sit
++// between two revision characters, so a '../' path segment never reads as one.
++function isCommitRange(value) {
++  return typeof value === 'string' && /[^\s/.]\.\.\.?[^\s/.]/.test(value) && splitTargetPaths(value).length === 1;
++}
++
++// A commit range names no paths itself; the files it touches are its scope, and
++// scope discovery records them. A proposal is relevant when every entry is one of
++// those files or a directory holding one.
++function scopeInsideTouchedFiles(scope, touchedFiles) {
++  const files = (Array.isArray(touchedFiles) ? touchedFiles : splitTargetPaths(touchedFiles))
++    .filter((entry) => typeof entry === 'string')
++    .map(normalizeTargetPath)
++    .filter((entry) => entry !== '');
++  if (files.length === 0) return true;
++
++  return scopeEntries(scope).every((entry) => files.some((file) => (
++    file === entry || file.startsWith(`${entry}/`) || entry.startsWith(`${file}/`)
++  )));
++}
++
+ function scopeInsideReviewTarget(scope, config) {
+   const source = isPlainObject(config) ? config : {};
+   // Any target kind other than a file list is described in prose, so there is no
+   // path to be outside of and every scope stays relevant.
+   if (source.reviewTargetType !== 'files') return true;
+   if (typeof source.reviewTarget !== 'string') return true;
++  if (isCommitRange(source.reviewTarget)) return scopeInsideTouchedFiles(scope, source.reviewScopeFiles);
+ 
+   const allowed = splitTargetPaths(source.reviewTarget);
+   if (allowed.length === 0) return true;
+@@ -301,7 +337,7 @@ function checkProposal(proposal, nodes, caps, knownTexts, options = {}) {
+   if (depth > caps.maxDepth) return 'depth';
+ 
+   // 4. fan-out
+-  if (countLiveChildren(nodes, proposal.parentId) >= caps.maxChildrenPerNode) return 'fanout';
++  if (countLiveChildren(nodes, proposal.parentId) >= childCapFor(proposal.parentId, caps)) return 'fanout';
+   if (countLiveNodes(nodes) >= caps.maxFrontierNodes) return 'fanout';
+ 
+   // 5. budget
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show --stat 1642d622a3b | cat; echo ===; git -c core.fsmonitor=false show 1642d622a3b -- .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs | head -200
+commit 1642d622a3b1f8383f84b9273e44cd3bf8041052
+Merge: 43eb6d47b8e f0f08e96f3d
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Wed Nov 18 01:25:57 2026 +0100
+
+    feat(system-deep-loop): integrate the research frontier pilot fixes
+    
+    Merges the research frontier pilot fixes phase branch into the expansive depth integration branch
+    and regenerates both compiled command contracts on the merged tree.
+    
+    Commit-Id: 0014843
+
+ .../compiled/deep-research.contract.markdown       |   2 +-
+ .skilled/commands/deep/assets/deep-research.yaml   |  14 ++-
+ .../deep-research/scripts/reduce-state.cjs         |  63 +++++++----
+ .../runtime/scripts/frontier-admit.cjs             |   4 +-
+ .../unit/deep-research-reduce-state.vitest.ts      |  60 ++++++++++
+ .../runtime/tests/unit/frontier-admit.vitest.ts    |  11 +-
+ .../unit/workflow-restart-lifecycle.vitest.ts      | 121 +++++++++++++++++++++
+ 7 files changed, 246 insertions(+), 29 deletions(-)
+===
+commit 1642d622a3b1f8383f84b9273e44cd3bf8041052
+Merge: 43eb6d47b8e f0f08e96f3d
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Wed Nov 18 01:25:57 2026 +0100
+
+    feat(system-deep-loop): integrate the research frontier pilot fixes
+    
+    Merges the research frontier pilot fixes phase branch into the expansive depth integration branch
+    and regenerates both compiled command contracts on the merged tree.
+    
+    Commit-Id: 0014843
+> build · deepseek-v4.1-flash
+[0m✱ [0mGrep "CANONICAL_DIMENSION|reviewDimensions|dimensionCoverage|custom dimension|dimension" [90min .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs · 74 matches[0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs [90m[limit=70, offset=1975][0m
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs [90m[limit=60, offset=1215][0m
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && for a in .skilled/agents/deep-review.md .claude/agents/deep-review.md .pi/agents/deep-review.md; do echo "== $a"; sed -n '/Frontier proposals/,+2p' $a; echo; sed -n '/Custom (configured)/p' $a; done
+== .skilled/agents/deep-review.md
+**Frontier proposals (expansive depth runs only).** When the iteration prompt carries a FRONTIER block, you may append `frontier_proposal` rows to the delta, at most the number that block allows, one per sub-target the evidence opened inside the node you were reviewing:
+`{"type":"frontier_proposal","parentId":"<the node id the prompt named>","question":"<what to review, not a restatement of an existing node>","scope":"<paths inside the review target>","evidence":"<file:line that opened it>","budget":<optional positive integer, never above the parent's>}`
+You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, sits outside the review target, repeats a known node, or would exceed the depth, fan-out or budget caps. Never write `review/frontier-nodes.jsonl`, `searchDebt` or any coverage surface, and never emit a `frontier_proposal` row when the prompt has no FRONTIER block. When the block names a node, add `"frontierNodeId"` to the iteration record as the block says.
+
+| **Custom (configured)** | A configured custom dimension such as `performance`: the property its name states, judged under the shared P0/P1/P2 doctrine. It follows the canonical four and is not required for severity coverage |
+== .claude/agents/deep-review.md
+**Frontier proposals (expansive depth runs only).** When the iteration prompt carries a FRONTIER block, you may append `frontier_proposal` rows to the delta, at most the number that block allows, one per sub-target the evidence opened inside the node you were reviewing:
+`{"type":"frontier_proposal","parentId":"<the node id the prompt named>","question":"<what to review, not a restatement of an existing node>","scope":"<paths inside the review target>","evidence":"<file:line that opened it>","budget":<optional positive integer, never above the parent's>}`
+You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, sits outside the review target, repeats a known node, or would exceed the depth, fan-out or budget caps. Never write `review/frontier-nodes.jsonl`, `searchDebt` or any coverage surface, and never emit a `frontier_proposal` row when the prompt has no FRONTIER block. When the block names a node, add `"frontierNodeId"` to the iteration record as the block says.
+
+| **Custom (configured)** | A configured custom dimension such as `performance`: the property its name states, judged under the shared P0/P1/P2 doctrine. It follows the canonical four and is not required for severity coverage |
+== .pi/agents/deep-review.md
+**Frontier proposals (expansive depth runs only).** When the iteration prompt carries a FRONTIER block, you may append `frontier_proposal` rows to the delta, at most the number that block allows, one per sub-target the evidence opened inside the node you were reviewing:
+`{"type":"frontier_proposal","parentId":"<the node id the prompt named>","question":"<what to review, not a restatement of an existing node>","scope":"<paths inside the review target>","evidence":"<file:line that opened it>","budget":<optional positive integer, never above the parent's>}`
+You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, sits outside the review target, repeats a known node, or would exceed the depth, fan-out or budget caps. Never write `review/frontier-nodes.jsonl`, `searchDebt` or any coverage surface, and never emit a `frontier_proposal` row when the prompt has no FRONTIER block. When the block names a node, add `"frontierNodeId"` to the iteration record as the block says.
+
+| **Custom (configured)** | A configured custom dimension such as `performance`: the property its name states, judged under the shared P0/P1/P2 doctrine. It follows the canonical four and is not required for severity coverage |
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n "frontier_block|frontier-admit.cjs block|active_frontier_node" .skilled/commands/deep/assets/deep-review.yaml .skilled/commands/deep/assets/deep-research.yaml
+.skilled/commands/deep/assets/deep-research.yaml:1437:              - active_frontier_node_id: "The node id in the latest iteration focus, which the reducer writes as 'Frontier node <id> (depth N, scope S): <question>'"
+.skilled/commands/deep/assets/deep-research.yaml:1439:            command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs close --artifact-dir "{artifact_dir}" --node-id "{active_frontier_node_id}" --status exhausted --reason stuck --iteration "{current_iteration}"'
+.skilled/commands/deep/assets/deep-research.yaml:1442:            log: "Stuck on frontier node {active_frontier_node_id}; closed it as exhausted and moved to the next open node."
+.skilled/commands/deep/assets/deep-research.yaml:1612:              frontier_block: "Empty string unless depth_mode == 'expansive'. Under expansive, the exact stdout of: node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs block --artifact-dir \"{artifact_dir}\" --focus \"{next_focus}\". Pass it verbatim; an empty stdout means the leaf gets no frontier block and proposes nothing."
+.skilled/commands/deep/assets/deep-research.yaml:1625:              frontier_block: "{frontier_block}"
+.skilled/commands/deep/assets/deep-review.yaml:1040:        note: "The loop binds active_frontier_node and the frontier dimension from registry.frontier, and step_create_findings_registry writes a registry with no frontier after the seed has run. Only the reducer projects the seeded nodes into it. Without this pass the first iteration has no frontier node and no frontier block. A fan-out lineage runs it too: its reducer_artifact_arg points the reducer at the lineage's own directory, where fanout-run.cjs put its share of the nodes."
+.skilled/commands/deep/assets/deep-review.yaml:1141:          - active_frontier_node: "When depth_mode == 'expansive', registry.frontier.activeNodeId from {state_paths.findings_registry}; else, or when it is null, an empty string"
+.skilled/commands/deep/assets/deep-review.yaml:1555:            when: "depth_mode == 'expansive' AND active_frontier_node is non-empty"
+.skilled/commands/deep/assets/deep-review.yaml:1557:            command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs close --target review --artifact-dir "{artifact_dir}" --node-id "{active_frontier_node}" --status exhausted --reason stuck --iteration "{current_iteration}"'
+.skilled/commands/deep/assets/deep-review.yaml:1560:            log: "Stuck on frontier node {active_frontier_node}; closed it as exhausted and moved to the next open node."
+.skilled/commands/deep/assets/deep-review.yaml:1656:        enabled_when: "depth_mode == 'expansive' AND active_frontier_node is non-empty"
+.skilled/commands/deep/assets/deep-review.yaml:1659:        command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs close --target review --artifact-dir "{artifact_dir}" --node-id "{active_frontier_node}" --status active --iteration "{current_iteration}"'
+.skilled/commands/deep/assets/deep-review.yaml:1701:              frontier_block: "Empty string unless depth_mode == 'expansive' and active_frontier_node is non-empty. Under expansive, the exact stdout of: node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs block --target review --artifact-dir \"{artifact_dir}\" --node-id \"{active_frontier_node}\" --dimension \"{next_dimension}\". Pass it verbatim; an empty stdout means the leaf gets no frontier block and proposes nothing."
+.skilled/commands/deep/assets/deep-review.yaml:1716:              frontier_block: "{frontier_block}"
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && ls .skilled/skills/system-deep-loop/deep-research/references/protocol/ 2>&1 | head; echo ---; rg -n "Lifecycle Branch" .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md .skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md | head
+context-snapshot.md
+loop-protocol.md
+spec-check-protocol.md
+---
+.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:608:### Lifecycle Branches (current release)
+.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:119:### Lifecycle Branch Contract (current release)
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n -i "dimension" .skilled/agents/deep-review.md
+3:description: "LEAF deep-review iteration agent: one dimension/pass, P0/P1/P2 findings, JSONL state."
+23:Executes ONE review iteration within an autonomous review loop: read externalized state, review one focused dimension, produce P0/P1/P2 findings with file:line evidence, record edge cases and integration touchpoints, and update state for the next iteration.
+112:BINDING: dimensions=<comma-separated-list>
+127:3. DETERMINE FOCUS ──► Select dimension from strategy "Next Focus"
+154:- Extract current iteration number, completed/remaining dimensions, prior findings and counts, exhausted approaches, next focus, stuck count, required protocols, release-readiness constraints, and unresolved edge cases.
+161:- Use strategy "Next Focus"; if empty, pick the first unchecked dimension.
+162:- If no dimensions remain, perform cross-reference analysis and record that fallback as an edge case.
+163:- In RECOVERY mode, change approach, granularity, or dimension strategy; escalate P2 only with evidence.
+170:- Review one dimension: correctness, security, traceability, maintainability, or a configured custom dimension named in the `dimensions` binding. A custom dimension follows the canonical four, and you review the target for the property its name states.
+189:- Use shared `P0` / `P1` / `P2` definitions and tag each finding with `correctness`, `security`, `traceability`, `maintainability`, or the configured custom dimension the iteration reviewed.
+218:- `## Next Focus` keeps only these fields: dimension, focus area, reason, rotation status, blocked/productive carry-forward, required evidence, recovery note when applicable.
+223:- Mark reviewed dimensions as completed with score.
+235:- Required review data includes `run`, `status`, `focus`, `dimensions`, `filesReviewed`, `findingsCount`, `findingsSummary`, `findingsNew`, `findingDetails`, `traceabilityChecks`, `newFindingsRatio`, `noveltyJustification`, `sessionId`, `generation`, `lineageMode`, `timestamp`, and `durationMs`.
+272:- Verify strategy contains updated dimension status, running counts, edge-case carry-forward when applicable, and next focus.
+335:### Review Dimensions
+337:| Dimension | Use It For |
+343:| **Custom (configured)** | A configured custom dimension such as `performance`: the property its name states, judged under the shared P0/P1/P2 doctrine. It follows the canonical four and is not required for severity coverage |
+351:| **Coverage** | Required dimensions and traceability protocols are covered before STOP |
+481:3. Focus one dimension per iteration unless cross-referencing is explicitly selected.
+552:- Dimensions completed / remaining
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n -i "at least|minimum|floor|two iterations|second iteration" .skilled/agents/deep-review.md .skilled/agents/deep-research.md .claude/agents/deep-review.md .pi/agents/deep-review.md | head -20
+.skilled/agents/deep-review.md:173:- Do not fabricate findings to satisfy the action minimum; record clean, blocked, partial, or stuck honestly.
+.skilled/agents/deep-research.md:154:- Use `complete` when enough cited evidence answers at least one in-scope question despite minor missing sources.
+.skilled/agents/deep-research.md:525:[ ] Research actions executed (3-5 actions minimum) or status explicitly justifies a narrower evidence path
+.pi/agents/deep-review.md:166:- Do not fabricate findings to satisfy the action minimum; record clean, blocked, partial, or stuck honestly.
+.claude/agents/deep-review.md:159:- Do not fabricate findings to satisfy the action minimum; record clean, blocked, partial, or stuck honestly.
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show f0f08e96f3d --stat | cat; echo ===; git -c core.fsmonitor=false show f0f08e96f3d -- .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs | cat
+commit f0f08e96f3db643fe6b72815a8fb520120b19f0f
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Wed Nov 18 01:16:35 2026 +0100
+
+    fix(system-deep-loop): reduce once after the frontier seed
+    
+    Under the expansive depth mode the loop renders the frontier block from the
+    strategy's next focus, and only the reducer writes that focus. Nothing reduced
+    between the seed and the first iteration, so iteration 1 ran on the template
+    focus with no frontier node and no frontier block. A single expansive-gated
+    init step now runs the reducer after the strategy exists, and a lifecycle
+    test runs it on a seeded packet and renders the block from the focus it wrote.
+    
+    Commit-Id: 0014838
+
+ .../compiled/deep-research.contract.markdown       |  2 +-
+ .skilled/commands/deep/assets/deep-research.yaml   | 10 ++++
+ .../unit/workflow-restart-lifecycle.vitest.ts      | 70 ++++++++++++++++++++++
+ 3 files changed, 81 insertions(+), 1 deletion(-)
+===
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n -A22 "step_frontier_admit:" .skilled/commands/deep/assets/deep-review.yaml | head -40
+1979:      step_frontier_admit:
+1980-        action: "Admit this iteration's review frontier_proposal rows as sub-target nodes before the reducer runs"
+1981-        enabled_when: "depth_mode == 'expansive'"
+1982-        dry_run_boundary: "state-mutation"
+1983-        instructions: |
+1984-          The review leaf only proposes; this step decides. Before the command, write a
+1985-          JSON array of strings to {artifact_dir}/frontier-known-texts.json holding every
+1986-          frontier node question already in registry.frontier.nodes and every ruled-out
+1987-          candidate rationale, so a proposal that repeats settled work is pruned as a
+1988-          duplicate. An absent registry gives an empty array. The helper runs the six
+1989-          admission checks in order and writes only node-store rows: a review run queues
+1990-          its nodes from that store alone, with no separate question queue to append.
+1991-        command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs admit --target review --artifact-dir "{artifact_dir}" --iteration "{current_iteration}" --input "{state_paths.delta_pattern with NNN = current_iteration}" --known-texts "{artifact_dir}/frontier-known-texts.json"'
+1992-        working_directory: "{repo_root}"
+1993-        outputs:
+1994-          - frontier_admit_json: "The JSON line the command prints: admitted node ids and pruned {nodeId, reason} rows"
+1995-        on_failure: "Log the stderr line as a config_warning bookkeeping event and continue to step_reduce_review_state; a failed admission leaves the frontier as it was and never blocks the iteration."
+1996-
+1997-      step_reduce_review_state:
+1998-        action: "Run reducer to refresh the canonical findings registry before dashboard generation"
+1999-        dry_run_boundary: "reducer-refresh"
+2000-        command: "node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors"
+2001-        read:
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/commands/deep/assets/deep-research.yaml [90m[limit=25, offset=1813][0m
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n "reduce-state|reduce_state|findings-registry|frontier" .skilled/agents/deep-research.md .skilled/agents/deep-review.md .claude/agents/*.md .pi/agents/*.md | rg -v "node\b" | head -30
+.skilled/agents/deep-research.md:60:- Reducer-owned files (`research/deep-research-strategy.md`, `research/findings-registry.json`, `research/deep-research-dashboard.md`) are read-only for this agent.
+.skilled/agents/deep-research.md:92:- `research/findings-registry.json` (if exists) -- open/resolved questions and key findings
+.skilled/agents/deep-research.md:237:Do not use `research/deep-research-strategy.md`, `research/findings-registry.json`, or `research/deep-research-dashboard.md` as primary write targets. Instead:
+.skilled/agents/deep-research.md:302:You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, repeats a known question, or would exceed the depth, fan-out or budget caps. Never write `research/inbox.jsonl` or `research/frontier-nodes.jsonl`, and never emit a `frontier_proposal` row when the prompt has no FRONTIER block.
+.skilled/agents/deep-research.md:411:| Findings registry | `research/findings-registry.json` | Read only |
+.skilled/agents/deep-research.md:491:- workflow reducer refreshes research/deep-research-strategy.md, research/findings-registry.json, and research/deep-research-dashboard.md
+.skilled/agents/deep-review.md:81:- `review/deep-review-findings-registry.json`
+.skilled/agents/deep-review.md:398:- `review/deep-review-findings-registry.json` is reducer-owned canonical finding state.
+.skilled/agents/deep-review.md:399:- `runtime/scripts/reduce-state.cjs` in the system-deep-loop skill (in this repository: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`) owns registry/dashboard/report refresh.
+.skilled/agents/deep-review.md:415:| Findings registry | `review/deep-review-findings-registry.json` | Read only |
+.skilled/agents/deep-review.md:590:- `runtime/scripts/reduce-state.cjs` in that same skill (in this repository: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`): the reducer this agent's iterations feed.
+.claude/agents/deep-research.md:44:- Reducer-owned files (`research/deep-research-strategy.md`, `research/findings-registry.json`, `research/deep-research-dashboard.md`) are read-only for this agent.
+.claude/agents/deep-research.md:76:- `research/findings-registry.json` (if exists) -- open/resolved questions and key findings
+.claude/agents/deep-research.md:221:Do not use `research/deep-research-strategy.md`, `research/findings-registry.json`, or `research/deep-research-dashboard.md` as primary write targets. Instead:
+.claude/agents/deep-research.md:286:You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, repeats a known question, or would exceed the depth, fan-out or budget caps. Never write `research/inbox.jsonl` or `research/frontier-nodes.jsonl`, and never emit a `frontier_proposal` row when the prompt has no FRONTIER block.
+.claude/agents/deep-research.md:395:| Findings registry | `research/findings-registry.json` | Read only |
+.claude/agents/deep-research.md:475:- workflow reducer refreshes research/deep-research-strategy.md, research/findings-registry.json, and research/deep-research-dashboard.md
+.claude/agents/deep-review.md:67:- `review/deep-review-findings-registry.json`
+.claude/agents/deep-review.md:384:- `review/deep-review-findings-registry.json` is reducer-owned canonical finding state.
+.claude/agents/deep-review.md:385:- `runtime/scripts/reduce-state.cjs` in the system-deep-loop skill (in this repository: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`) owns registry/dashboard/report refresh.
+.claude/agents/deep-review.md:401:| Findings registry | `review/deep-review-findings-registry.json` | Read only |
+.claude/agents/deep-review.md:576:- `runtime/scripts/reduce-state.cjs` in that same skill (in this repository: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`): the reducer this agent's iterations feed.
+.pi/agents/deep-review.md:74:- `review/deep-review-findings-registry.json`
+.pi/agents/deep-review.md:391:- `review/deep-review-findings-registry.json` is reducer-owned canonical finding state.
+.pi/agents/deep-review.md:392:- `runtime/scripts/reduce-state.cjs` in the system-deep-loop skill (in this repository: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`) owns registry/dashboard/report refresh.
+.pi/agents/deep-review.md:408:| Findings registry | `review/deep-review-findings-registry.json` | Read only |
+.pi/agents/deep-review.md:583:- `runtime/scripts/reduce-state.cjs` in that same skill (in this repository: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`): the reducer this agent's iterations feed.
+.pi/agents/deep-research.md:52:- Reducer-owned files (`research/deep-research-strategy.md`, `research/findings-registry.json`, `research/deep-research-dashboard.md`) are read-only for this agent.
+.pi/agents/deep-research.md:84:- `research/findings-registry.json` (if exists) -- open/resolved questions and key findings
+.pi/agents/deep-research.md:229:Do not use `research/deep-research-strategy.md`, `research/findings-registry.json`, or `research/deep-research-dashboard.md` as primary write targets. Instead:
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n "frontierNodeId" --glob '!**/node_modules/**' --glob '!specs/**' . | head -20
+./.skilled/agents/deep-review.md:267:You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, sits outside the review target, repeats a known node, or would exceed the depth, fan-out or budget caps. Never write `review/frontier-nodes.jsonl`, `searchDebt` or any coverage surface, and never emit a `frontier_proposal` row when the prompt has no FRONTIER block. When the block names a node, add `"frontierNodeId"` to the iteration record as the block says.
+./.skilled/commands/deep/assets/deep-review.yaml:1661:        on_failure: "Log the stderr line as a config_warning bookkeeping event and continue; the leaf's frontierNodeId and focus marker still attribute the iteration."
+./.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md:302:The reducer projects the store as `registry.frontier`: `nodes`, each with its `coveredDimensions`, `nextDimension` and `visits`; `stats`; `budget`; `activeNodeId`; and `activeNextDimension`. A node is `answered` once every configured dimension is covered for it. An iteration counts toward a node by its `frontierNodeId`, by the `Frontier node <id>` focus marker anywhere in the focus, or by the store's `active` row for that iteration.
+./.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1944:    if (record.frontierNodeId === nodeId) return true;
+./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:536:    lines.push(`Set this iteration record's "focus" to "Frontier node ${resolvedId}: ${dimensionLabel}" and add "frontierNodeId":"${resolvedId}" to it, so the run can tell which node this iteration worked.`);
+./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:570:      frontierNodeId: row.nodeId,
+./.skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts:475:  it('renders a review block from the node id, its dimension and the frontierNodeId instruction', () => {
+./.skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts:483:    expect(block).toContain('"frontierNodeId":"F-1-001"');
+./.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts:1015:      iterationRecord(1, 'parser pass one', ['correctness', 'security'], { frontierNodeId: 'F-1-002' }),
+./.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts:1016:      iterationRecord(2, 'parser pass two', ['traceability', 'maintainability'], { frontierNodeId: 'F-1-002' }),
+./.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts:1181:      iterationRecord(1, 'Frontier node F-1-001: correctness', ['correctness'], { frontierNodeId: 'F-1-001' }),
+./.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts:1182:      iterationRecord(2, 'Frontier node F-1-001: correctness again', ['correctness'], { frontierNodeId: 'F-1-001' }),
+> build · deepseek-v4.1-flash
+[0m→ [0mRead .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs [90m[limit=45, offset=2462][0m
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n "// [1-6]\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|function checkCycle" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs; echo "exit=$?"
+157:function checkCycle(parentId, nodes, caps) {
+313:  // 1. relevance
+321:  // 2. dedupe
+335:  // 3. depth
+339:  // 4. fan-out
+343:  // 5. budget
+351:  // 6. cycle
+352:  return checkCycle(proposal.parentId, nodes, caps);
+exit=0
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n "six admission checks|fan-out, budget, cycle" .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml; echo "exit=$?"; rg -n "if \(source.reviewTargetType !== 'files'\) return true;|if \(source.reviewTargetType !== 'files'\)" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs; echo "exit=$?"
+.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,
+.skilled/commands/deep/assets/deep-research.yaml:1827:          fan-out, budget, cycle), appends one inbox row with origin frontier per
+exit=0
+298:  if (source.reviewTargetType !== 'files') return true;
+exit=0
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n "six admission checks" .skilled/commands/deep/assets/deep-review.yaml; echo "exit=$?"; for f in .skilled/agents/deep-research.md .claude/agents/deep-research.md .pi/agents/deep-research.md; do echo "-- $f"; rg -c "repeats a known question, or would exceed the depth, fan-out or budget caps\." $f; done; for f in .skilled/agents/deep-review.md .claude/agents/deep-review.md .pi/agents/deep-review.md; do echo "-- $f"; rg -c "repeats a known node, or would exceed the depth, fan-out or budget caps\." $f; done
+exit=1
+-- .skilled/agents/deep-research.md
+1
+-- .claude/agents/deep-research.md
+1
+-- .pi/agents/deep-research.md
+1
+-- .skilled/agents/deep-review.md
+1
+-- .claude/agents/deep-review.md
+1
+-- .pi/agents/deep-review.md
+1
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n "review_target_type|review-target-type|spec-folder" .skilled/commands/deep/review.md | head -15
+3:argument-hint: "<target> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--dry-run] [--restart] [--extend=N]"
+17:  - `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `convergence_mode`, `depth_mode`, `stop_policy`, `lineage_mode`
+34:>    - `review_target_type`
+83:6. Load the selected workflow asset only after `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `convergence_mode`, `depth_mode`, `stop_policy`, `lineage_mode` and `dry_run` are bound.
+93:| `--spec-folder` | `PATH` | Binds the packet that owns this run's writes. |
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n -B3 -A6 "review_target_type" .skilled/commands/deep/review.md | sed -n '1,60p'
+14-- **ALL** agent dispatching is handled by the YAML workflow steps.
+15-- **MARKDOWN OWNS SETUP**: resolve setup inputs here first, then hand off to YAML.
+16-- **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
+17:  - `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `convergence_mode`, `depth_mode`, `stop_policy`, `lineage_mode`
+18-  - `dry_run` (default false unless `--dry-run` is present)
+19-
+20-## 1. ROUTER CONTRACT
+21-
+22-Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, and artifact-writing behavior are owned by the workflow YAML assets.
+23-
+--
+31-> **YOUR FIRST ACTION (HARD-BLOCK gate — do not skip):**
+32-> 1. Run the Unified Setup Phase (BLOCKED gate) through the presentation contract and resolve:
+33->    - `review_target`
+34:>    - `review_target_type`
+35->    - `review_dimensions`
+36->    - `spec_folder`
+37->    - `execution_mode`
+38->    - `maxIterations`
+39->    - `convergenceThreshold`
+40->    - `stop_policy` (default `convergence` unless `--stop-policy=max-iterations` is present)
+--
+80-3. If `:auto` is present, set `execution_mode = AUTONOMOUS` and resolve required setup inputs through the presentation contract's three-tier auto setup resolution before loading YAML.
+81-4. If `:confirm` is present, set `execution_mode = INTERACTIVE` and use the presentation contract's consolidated setup prompt before loading YAML.
+82-5. If no mode suffix is present, set `execution_mode = ASK` and use the presentation contract's consolidated setup prompt to ask for execution mode.
+83:6. Load the selected workflow asset only after `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `convergence_mode`, `depth_mode`, `stop_policy`, `lineage_mode` and `dry_run` are bound.
+84-
+85-### Workflow Flag Surface
+86-
+87-The argument hint names the invocation shape; the whole flag surface is here. Every flag below
+88-is a workflow input, never an execution mode, and the presentation asset owns how each one binds
+89-into `config`.
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && for spec in ".skilled/agents/deep-research.md:302" ".claude/agents/deep-research.md:286" ".pi/agents/deep-research.md:294" ".skilled/agents/deep-review.md:267" ".claude/agents/deep-review.md:253" ".pi/agents/deep-review.md:260"; do f=${spec%:*}; n=${spec##*:}; echo "[$f:$n]"; sed -n "${n}p" "$f" | cut -c1-220; done
+[.skilled/agents/deep-research.md:302]
+You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, repeats a known question, or would exceed the depth, fan-out or budget caps. Never write `research/inbox.jsonl` o
+[.claude/agents/deep-research.md:286]
+You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, repeats a known question, or would exceed the depth, fan-out or budget caps. Never write `research/inbox.jsonl` o
+[.pi/agents/deep-research.md:294]
+You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, repeats a known question, or would exceed the depth, fan-out or budget caps. Never write `research/inbox.jsonl` o
+[.skilled/agents/deep-review.md:267]
+You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, sits outside the review target, repeats a known node, or would exceed the depth, fan-out or budget caps. Never wr
+[.claude/agents/deep-review.md:253]
+You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, sits outside the review target, repeats a known node, or would exceed the depth, fan-out or budget caps. Never wr
+[.pi/agents/deep-review.md:260]
+You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, sits outside the review target, repeats a known node, or would exceed the depth, fan-out or budget caps. Never wr
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n -i "follow-up|breadth|deeper|sub-target|sub-question|frontier" .skilled/agents/deep-research.md .skilled/agents/deep-review.md | rg -v "frontier_proposal|frontier-nodes|FRONTIER block" 
+.skilled/agents/deep-review.md:227:- Preserve unresolved ambiguity, contradictions, missing dependencies, partial-success limits, and integration follow-up.
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n "// [1-6]\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|six admission checks" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml; echo "exit=$?"
+.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance
+.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe
+.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth
+.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out
+.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget
+.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle
+.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);
+.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,
+exit=0
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n -A6 "function scopeInsideReviewTarget" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs; echo "exit=$?"
+294:function scopeInsideReviewTarget(scope, config) {
+295-  const source = isPlainObject(config) ? config : {};
+296-  // Any target kind other than a file list is described in prose, so there is no
+297-  // path to be outside of and every scope stays relevant.
+298-  if (source.reviewTargetType !== 'files') return true;
+299-  if (typeof source.reviewTarget !== 'string') return true;
+300-  if (isCommitRange(source.reviewTarget)) return scopeInsideTouchedFiles(scope, source.reviewScopeFiles);
+exit=0
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n "return \{ target: specFolder, type: type \|\| 'spec-folder' \}|reviewTargetType = loopType === 'review' && options.reviewTargetType" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs; echo "exit=$?"
+238:    return { target: specFolder, type: type || 'spec-folder' };
+1813:  const reviewTargetType = loopType === 'review' && options.reviewTargetType
+exit=0
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n "searchDebt" .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs | head -20
+1796:  const searchDebtByBugClass = new Map();
+1850:        searchDebtByBugClass.set(bugClass, {
+1855:        searchDebtByBugClass.delete(bugClass);
+1876:  const searchDebt = [...searchDebtByBugClass.values()]
+1879:    const debt = searchDebtByBugClass.get(bugClass);
+1895:    searchDebt,
+2069:    (Array.isArray(searchLedgerState.searchDebt) ? searchLedgerState.searchDebt : [])
+2095:  searchLedgerState.searchDebt = [...debtById.values()]
+2236:    searchDebt: searchLedgerState.searchDebt,
+2263:  const debt = Array.isArray(registry.searchDebt) ? registry.searchDebt : [];
+2788:        lines.push(`- ${registry.searchDebt.length} search-debt obligation(s) remain deferred or blocked. Verdict is CONDITIONAL until they are covered or ruled out.`);
+3037:          searchDebtCount: Array.isArray(result.registry.searchDebt) ? result.registry.searchDebt.length : 0,
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && ls -d .codex/agents .vibe/agents .dsh/agents .opencode/agent 2>/dev/null; rg -l "frontier_proposal" --glob '!**/node_modules/**' --glob '!specs/**' . | head -20
+.codex/agents
+.dsh/agents
+.vibe/agents
+./.skilled/commands/deep/assets/deep-review.yaml
+./.skilled/commands/deep/assets/deep-research.yaml
+./.skilled/commands/deep/review.md
+./.skilled/commands/deep/research.md
+./.skilled/agents/deep-research.md
+./.skilled/agents/deep-review.md
+./.skilled/skills/system-deep-loop/deep-review/SKILL.md
+./.skilled/skills/system-deep-loop/deep-research/SKILL.md
+./.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md
+./.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md
+./.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md
+./.skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md
+./.skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md
+./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs
+./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+./.skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts
+./.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-deltas-contract.vitest.ts
+./.skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n -B3 -A8 "frontier_proposal" .skilled/skills/system-deep-loop/deep-research/SKILL.md | head -50
+90-
+91-- `--depth-mode=expansive` keeps a depth-capped frontier of follow-up questions beside the seeded key questions. An absent flag means `default`, which renders the same bytes as before.
+92-- `step_frontier_seed` writes 3 to 6 depth-1 nodes before iteration 1 through `runtime/scripts/frontier-admit.cjs seed`, after `step_create_config`, or before `step_fanout_spawn` on a fan-out run.
+93:- `step_frontier_admit` runs before `step_reduce_state` and prunes a `frontier_proposal` on the first failed check among relevance, dedupe, depth, fan-out, budget and cycle. Admitted nodes land in `research/inbox.jsonl` with `origin: "frontier"`.
+94-- Next Focus reads the shallowest open node first, then the least visited, then the oldest, and writes `Frontier node <id> (depth N, scope S): <question>`.
+95-- After the `minIterations` floor an open or active node turns a soft stop into CONTINUE with reasonDetail `frontierOpen`. It never creates a stop and never outranks the iteration cap, consecutive failures, stuck recovery, `--convergence-mode=off` or `--stop-policy=max-iterations`.
+96-- A fan-out run deals the seeded depth-1 nodes round-robin across lineages and merges them back under a partition guard, so no dealt node goes unreported.
+97-
+98-### Invocation Contract
+99-
+100-This skill is invoked exclusively through `/deep:research:auto` or `/deep:research:confirm` -- the command YAML owns state, dispatch, convergence, and synthesis. Never simulate the loop with ad hoc shell dispatch, nested CLI loops, direct `@deep-research` Task dispatch, `/tmp` prompt files, or state outside the resolved local research packet.
+101-
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n -B2 -A8 "frontier_proposal" .skilled/skills/system-deep-loop/deep-review/SKILL.md | head -60
+238-- The flag writes `antiConvergence.depthMode` and the caps in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget split across the depth bands, and `maxFrontierNodes`, set to `maxIterations` at config creation. Both are locked against the optimizer.
+239-- `step_frontier_seed` writes the depth-1 nodes before iteration 1 through `runtime/scripts/frontier-admit.cjs seed --target review`, after `step_create_config` or before `step_fanout_spawn` on a fan-out run. A merge with no diff of its own is pruned `merge-no-own-diff` and an index rebuild `generated-artifact`.
+240:- `step_frontier_admit` runs before the reducer and prunes a `frontier_proposal` on the first failed check among relevance, dedupe, depth, fan-out, budget and cycle. Node status lives in `review/frontier-nodes.jsonl`, written only by `frontier-admit.cjs`; review has no inbox.
+241-- `step_read_state` reads the active node and sets `next_dimension` to its next uncovered dimension, `step_frontier_activate` marks it active before dispatch, and the prompt pack's `{frontier_block}` names the node. Next Focus takes the blocked stop, then the pivot, then the node, then the leaf focus, then the first uncovered dimension.
+242-- While a node stays open the frontier veto turns a stop candidate into `CONTINUE` with reasonDetail `frontierOpen`. It never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the review floor, and stuck recovery closes the active node `exhausted`.
+243-- A fan-out run deals the depth-1 nodes round-robin in node-id order, binds `frontier_scope:` beside `review_focus:`, records the partition as `frontier_partition` in `orchestration-summary.json` and returns a partition guard for any node no lineage reports. Size `--max-iterations` so half of it covers `ceil(nodes / lineages) * dimensions`.
+244-
+245----
+246-
+247-## 4. RULES
+248-
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && head -6 .skilled/commands/deep/research.md; rg -n "extend" .skilled/commands/deep/research.md | head -10
+---
+description: "Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm."
+argument-hint: "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--dry-run] [--restart] [--extend=N]"
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch
+---
+
+3:argument-hint: "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--dry-run] [--restart] [--extend=N]"
+111:| `--extend` | positive integer, as `--extend=N` | Extends a completed run in place by `N` iterations, lineage mode `completed-continue`. The run keeps its `sessionId` and generation, records one `run_extended` ledger event and keeps the prior synthesis as `research/synthesis-v{generation}-r{continuedFromRun}.md`. The run must be complete, so use `--lineage-mode=resume` for an unfinished one. Refused with fan-out. Under `stopPolicy: convergence` an extension with nothing new can re-stop on `all_questions_answered` at once: pass `--convergence-mode=off`, use `stopPolicy: max-iterations` or add questions to `research/inbox.jsonl`. |
+112:| `--extend-minutes` | positive integer, as `--extend-minutes=M` | Minutes added to the duration budget on an extension, default the prior `maxDurationMinutes`. The new budget is `max(prior, elapsed) + M`, because the clock counts idle time since `createdAt`, so an extension started after the old budget still runs. Valid only with `--extend`. |
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n -A1 "six admission checks" .skilled/commands/deep/assets/deep-review.yaml; echo "exit=$?"; rg -n "// 6. cycle|return checkCycle" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs; echo "exit=$?"
+exit=1
+351:  // 6. cycle
+352:  return checkCycle(proposal.parentId, nodes, caps);
+exit=0
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n -A2 "helper runs the six" .skilled/commands/deep/assets/deep-review.yaml .skilled/commands/deep/assets/deep-research.yaml; echo "exit=$?"
+.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six
+.skilled/commands/deep/assets/deep-review.yaml-1989-          admission checks in order and writes only node-store rows: a review run queues
+.skilled/commands/deep/assets/deep-review.yaml-1990-          its nodes from that store alone, with no separate question queue to append.
+--
+.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,
+.skilled/commands/deep/assets/deep-research.yaml-1827-          fan-out, budget, cycle), appends one inbox row with origin frontier per
+.skilled/commands/deep/assets/deep-research.yaml-1828-          admitted node and records every pruned proposal with its reason.
+exit=0
+> build · deepseek-v4.1-flash
+[0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && rg -n "// [1-6]\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml; echo "exit=$?"
+.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance
+.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe
+.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth
+.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out
+.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget
+.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle
+.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);
+.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,
+.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six
+exit=0
+> build · deepseek-v4.1-flash
+{"lane": "L1", "findings": [{"id": "L1-1", "surface": "D1", "severity": "P1", "fix_class": "literal", "file": ".claude/agents/deep-research.md", "line": 286, "issue": "The prune enumeration is presented as the complete set of admission outcomes but omits the sixth check. frontier-admit runs the checks in one fixed order — relevance, dedupe, depth, fan-out, budget, then acyclicity — and returns 'cycle' when the parent chain loops, so a proposal that closes onto an ancestor is pruned instead of reaching the inbox. The research workflow's own admission step names all six ('relevance, dedupe, depth, fan-out, budget, cycle'); the doc's list stops at budget.", "evidence": {"cmd": "rg -n \"// [1-6]\\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml", "exit": 0, "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe\n.skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);\n.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,\n.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six"}, "fix": {"old": "repeats a known question, or would exceed the depth, fan-out or budget caps.", "new": "repeats a known question, would exceed the depth, fan-out or budget caps, or closes a cycle back onto its own ancestry."}}, {"id": "L1-2", "surface": "D2", "severity": "P1", "fix_class": "literal", "file": ".claude/agents/deep-review.md", "line": 253, "issue": "The prune enumeration is presented as the complete set of admission outcomes but omits the sixth check: frontier-admit runs relevance, dedupe, depth, fan-out, budget and then acyclicity for the review target too, pruning with reason 'cycle' when the parent chain loops. The review workflow's own admission step states it runs the six checks in order, so a leaf reading this sentence believes a cycling proposal is admitted when it is pruned.", "evidence": {"cmd": "rg -n \"// [1-6]\\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml", "exit": 0, "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);\n.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,\n.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six"}, "fix": {"old": "repeats a known node, or would exceed the depth, fan-out or budget caps.", "new": "repeats a known node, would exceed the depth, fan-out or budget caps, or closes a cycle back onto its own ancestry."}}, {"id": "L1-3", "surface": "D3", "severity": "P1", "fix_class": "literal", "file": ".pi/agents/deep-research.md", "line": 294, "issue": "Same omission in the pi mirror: the sentence lists evidence/scope, duplicate and the depth, fan-out and budget caps as the reasons a frontier_proposal is pruned, but frontier-admit's sixth check rejects a proposal whose parent chain loops with reason 'cycle' (the research workflow lists relevance, dedupe, depth, fan-out, budget, cycle).", "evidence": {"cmd": "rg -n \"// [1-6]\\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml", "exit": 0, "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);\n.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,\n.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six"}, "fix": {"old": "repeats a known question, or would exceed the depth, fan-out or budget caps.", "new": "repeats a known question, would exceed the depth, fan-out or budget caps, or closes a cycle back onto its own ancestry."}}, {"id": "L1-4", "surface": "D4", "severity": "P1", "fix_class": "literal", "file": ".pi/agents/deep-review.md", "line": 260, "issue": "Same omission in the pi mirror of the review leaf contract: the admission step's sixth check (acyclicity, pruning with reason 'cycle') is missing from the list of reasons a frontier_proposal is pruned, while the review workflow states the helper runs the six admission checks in order.", "evidence": {"cmd": "rg -n \"// [1-6]\\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml", "exit": 0, "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);\n.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,\n.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six"}, "fix": {"old": "repeats a known node, or would exceed the depth, fan-out or budget caps.", "new": "repeats a known node, would exceed the depth, fan-out or budget caps, or closes a cycle back onto its own ancestry."}}, {"id": "L1-5", "surface": "D5", "severity": "P1", "fix_class": "literal", "file": ".skilled/agents/deep-research.md", "line": 302, "issue": "The canonical research leaf doc gives the prune list as complete but stops at the budget cap. frontier-admit's fifth and sixth checks are separate: budget is a monotone check against the parent's budget, then checkCycle prunes with reason 'cycle' when the parent chain loops back onto an ancestor. The research workflow's step_frontier_admit names all six checks, so the leaf is told about five.", "evidence": {"cmd": "rg -n \"// [1-6]\\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml", "exit": 0, "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);\n.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,\n.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six"}, "fix": {"old": "repeats a known question, or would exceed the depth, fan-out or budget caps.", "new": "repeats a known question, would exceed the depth, fan-out or budget caps, or closes a cycle back onto its own ancestry."}}, {"id": "L1-6", "surface": "D6", "severity": "P1", "fix_class": "literal", "file": ".skilled/agents/deep-review.md", "line": 267, "issue": "The canonical review leaf doc gives the prune list as complete but stops at the budget cap, omitting the sixth admission check: frontier-admit closes the ordered checks with checkCycle and records 'cycle' as the prune reason when the parent chain loops back onto an ancestor. The review workflow states the helper runs the six admission checks in order, so one behaviour the doc claims to list is missing.", "evidence": {"cmd": "rg -n \"// [1-6]\\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml", "exit": 0, "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);\n.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,\n.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six"}, "fix": {"old": "repeats a known node, or would exceed the depth, fan-out or budget caps.", "new": "repeats a known node, would exceed the depth, fan-out or budget caps, or closes a cycle back onto its own ancestry."}}], "reviewed": [".claude/agents/deep-research.md", ".claude/agents/deep-review.md", ".pi/agents/deep-research.md", ".pi/agents/deep-review.md", ".skilled/agents/deep-research.md", ".skilled/agents/deep-review.md"]}

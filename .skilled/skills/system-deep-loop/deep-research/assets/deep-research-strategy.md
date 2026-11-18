@@ -10,7 +10,7 @@ trigger_phrases:
   - "ruled out research directions"
 importance_tier: normal
 contextType: planning
-version: 1.14.1.0
+version: 1.14.2.0
 ---
 
 # Deep Research Strategy - Session Tracking Template
@@ -37,7 +37,7 @@ Use `{spec_folder}/research/inbox.jsonl` to append external questions during an 
 - `id`: stable inbox record identifier
 - `text`: question text to promote
 - `source`: concrete source label, such as an angle bank entry, analyst strategy, or operator note
-- `origin`: one of `angle-bank`, `analyst-strategy`, `operator`, or `legacy-import`
+- `origin`: one of `angle-bank`, `analyst-strategy`, `frontier`, `operator`, or `legacy-import`
 - `injectedAtIteration`: iteration number when the question was introduced
 - `promotedQuestionId`: promoted registry question id, or `null` until promotion
 

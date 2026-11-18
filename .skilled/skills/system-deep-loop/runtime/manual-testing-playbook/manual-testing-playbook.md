@@ -1,7 +1,7 @@
 ---
 title: "runtime/: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the runtime/ skill."
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # runtime/: Manual Testing Playbook
@@ -36,7 +36,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 56 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file, except DLR-062 to DLR-064, which have no catalog entry yet with objective, prompt, execution steps, source anchors, and verdict criteria.
+This playbook provides 56 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria. DLR-060 to DLR-064 map to catalog entries that carry no F-number.
 
 ### REALISTIC TEST MODEL
 
@@ -103,7 +103,7 @@ Scenario verdict — three outcomes only:
 - `FAIL`: expected behavior is missing, output contradicts the contract, a critical check failed, or the core behavior worked but the required evidence or metadata is incomplete. An outcome another operator cannot reproduce from the captured evidence is a `FAIL`, not a partial pass.
 - `SKIP`: a concrete sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevented execution, and the run record names it
 
-Release is cleared only when all 51 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
+Release is cleared only when all 56 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
 
 ---
 
@@ -992,8 +992,8 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 | DLR-054 | [F052 Torn-tail recovery marker ordering](../feature-catalog/state-safety/torn-tail-recovery-marker-ordering.md) | [state-safety/torn-tail-recovery-marker-ordering.md](../manual-testing-playbook/state-safety/torn-tail-recovery-marker-ordering.md) |
 | DLR-055 | [F051 append-mode-event.cjs](../feature-catalog/script-entry-points/append-mode-event-script.md) | [script-entry-points/append-mode-event-script.md](../manual-testing-playbook/script-entry-points/append-mode-event-script.md) |
 | DLR-059 | [F059 Fan-out pair replay](../feature-catalog/fanout/fanout-pair-replay.md) | [fanout/fanout-pair-replay.md](../manual-testing-playbook/fanout/fanout-pair-replay.md) |
-| DLR-060 | [F004 Prompt pack](../feature-catalog/prompt-rendering/prompt-pack.md) | [prompt-rendering/research-prompt-pack-contract.md](../manual-testing-playbook/prompt-rendering/research-prompt-pack-contract.md) |
-| DLR-061 | [F013 Coverage graph signals](../feature-catalog/coverage-graph/coverage-graph-signals.md) | [coverage-graph/source-quality-class-derivation.md](../manual-testing-playbook/coverage-graph/source-quality-class-derivation.md) |
-| DLR-062 | No dedicated catalog entry | [council/divergent-council-quorum-retry.md](../manual-testing-playbook/council/divergent-council-quorum-retry.md) |
-| DLR-063 | No dedicated catalog entry | [executor/landed-iteration-skips-redispatch.md](../manual-testing-playbook/executor/landed-iteration-skips-redispatch.md) |
-| DLR-064 | No dedicated catalog entry | [executor/research-claude-config-dir.md](../manual-testing-playbook/executor/research-claude-config-dir.md) |
+| DLR-060 | [Research prompt pack contract](../feature-catalog/prompt-rendering/research-prompt-pack-contract.md) | [prompt-rendering/research-prompt-pack-contract.md](../manual-testing-playbook/prompt-rendering/research-prompt-pack-contract.md) |
+| DLR-061 | [Source quality class](../feature-catalog/coverage-graph/source-quality-class.md) | [coverage-graph/source-quality-class-derivation.md](../manual-testing-playbook/coverage-graph/source-quality-class-derivation.md) |
+| DLR-062 | [Divergent pivot seat cap and council retry](../feature-catalog/council/divergent-pivot-seat-cap-and-retry.md) | [council/divergent-council-quorum-retry.md](../manual-testing-playbook/council/divergent-council-quorum-retry.md) |
+| DLR-063 | [Landed iteration is not redispatched](../feature-catalog/executor/landed-iteration-no-redispatch.md) | [executor/landed-iteration-skips-redispatch.md](../manual-testing-playbook/executor/landed-iteration-skips-redispatch.md) |
+| DLR-064 | [Research Claude config dir](../feature-catalog/executor/research-claude-config-dir.md) | [executor/research-claude-config-dir.md](../manual-testing-playbook/executor/research-claude-config-dir.md) |

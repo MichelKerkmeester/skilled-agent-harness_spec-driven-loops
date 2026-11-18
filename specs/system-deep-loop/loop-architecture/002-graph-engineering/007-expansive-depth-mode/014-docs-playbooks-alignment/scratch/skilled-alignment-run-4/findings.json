@@ -1,0 +1,394 @@
+[
+  {
+    "id": "B-S3-01",
+    "source_id": "B-S3-01",
+    "lane": "B",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+    "line": "16",
+    "issue": "The review and research expansive-depth entries, and both root catalogs, still say the live pilot runs 'are still open' and that no pilot result is recorded. The branch records three pilots, all reporting FAIL on the non-cap stop criterion: `010-research-frontier-mode/scratch/pilot-run-1.md`, `010-research-frontier-mode/scratch/pilot-run-2.md`, and `011-review-frontier-mode/scratch/pilot-run-1.md` (recorded by commit 70be3187a9f). The canonical inventory therefore misstates the current reality of the feature this change ships. The other occurrences are `deep-research/feature-catalog/convergence/expansive-depth-mode.md:16`, `deep-review/feature-catalog/feature-catalog.md:224`, and `deep-research/feature-catalog/feature-catalog.md:471`.",
+    "evidence": {
+      "cmd": "rg -n \"live pilot runs\" .skilled/skills/system-deep-loop/deep-research/feature-catalog .skilled/skills/system-deep-loop/deep-review/feature-catalog",
+      "exit": 0,
+      "out": "4 matches: deep-review/feature-catalog/feature-catalog.md:224, deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md:16, deep-research/feature-catalog/feature-catalog.md:471, deep-research/feature-catalog/convergence/expansive-depth-mode.md:16"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-S4-01",
+    "source_id": "B-S4-01",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/custom-dimension-setup-and-universe.md",
+    "line": "80",
+    "issue": "Three deep-review scenarios declare that no feature-catalog entry exists for their capability, but the entries added in this change exist and cite these very scenarios. `review-dimensions/custom-review-dimensions.md` cites DRV-074 at line 57 and DRV-075 at line 58; `loop-lifecycle/min-iterations-floor.md` cites DRV-072 at line 49. The same false status sits at `review-depth-v2-rollout/stop-gate-custom-dimension-coverage.md:79` and `convergence-and-recovery/review-min-iterations-floor.md:79`. An operator following the scenario's `feature-catalog/` row is told to skip the entry that documents the feature.",
+    "evidence": {
+      "cmd": "rg -n \"No dedicated catalog entry|No dedicated convergence catalog entry\" .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook",
+      "exit": 0,
+      "out": "custom-dimension-setup-and-universe.md:80: ...No dedicated catalog entry exists for custom review dimensions yet... | stop-gate-custom-dimension-coverage.md:79: same | review-min-iterations-floor.md:79: ...No dedicated convergence catalog entry exists for deep-review floor behavior yet..."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-S4-02",
+    "source_id": "B-S4-02",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "65",
+    "issue": "Global precondition 4 requires `mode-registry.json` to contain exactly 3 active modes, but the registry has 2 (`research`, `review`), so no hub scenario can clear its own precondition. Line 35 also pins the coverage note to version `2.0.0.0` while the registry is `2.1.6.0`, the version stamp this branch superseded. The file is in scope and the new Section 9 was added to it; the precondition and version were not updated.",
+    "evidence": {
+      "cmd": "node -e 'const r=require(\"./.skilled/skills/system-deep-loop/mode-registry.json\"); console.log(JSON.stringify({version:r.version,modeCount:r.modes.length,modes:r.modes.map(m=>m.workflowMode)}));'",
+      "exit": 0,
+      "out": "{\"version\":\"2.1.6.0\",\"modeCount\":2,\"modes\":[\"research\",\"review\"]}"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "F1",
+    "source_id": "F1",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts",
+    "line": "167",
+    "issue": "The suite's stated invariant (header lines 5-9: 'A run that never asks for it must render the same bytes') cannot fail for the default-path next-focus change this branch lands. writeFixture writes spec.md, the config, the strategy, the state log and the inbox, and never creates research/iterations/iteration-NNN.md, so parseIterationFile yields nothing and the leafNextFocus signal reduce-state.cjs now passes into deriveNextFocusFromContinuity (reduce-state.cjs:2589) is always empty in this fixture; the only input that drives the new path is absent. Case: a config with no antiConvergence key at all plus one leaf iteration markdown carrying '## Recommended Next Focus' renders that line as NEXT FOCUS, where the merge-base reducer rendered the first open machine question. Because next-focus.txt is one of the six compared artifacts and the docs cite this suite by name as the proof that a run without the flag renders the same bytes, the guard reports green for the one default-path behavior this branch changes. Recommended fix: add a leaf iteration markdown to the fixture and regenerate the baselines on a pre-change tree, or narrow the header's claim to the inputs the fixture actually renders.",
+    "evidence": {
+      "cmd": "node leaf-focus-probe.cjs",
+      "exit": 0,
+      "out": "NEXT FOCUS section => \"## 11. NEXT FOCUS\\nRe-read the branch dispatch table\"\nwithout leafNextFocus => \"How does the reducer pick the next focus?\"\nwith leafNextFocus    => \"Re-read the branch dispatch table\""
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "F2",
+    "source_id": "F2",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    "line": "363",
+    "issue": "The comment at 361-362 promises a fail-safe the code does not implement: 'An unreadable review config must not silently widen the relevance check to every path, so it degrades to the no-target object rather than being skipped.' readTargetConfig returns null for a missing or unparseable deep-review-config.json, and `?? {}` hands scopeInsideReviewTarget an empty object, which returns true for every scope because reviewTargetType is undefined. The degraded value and the skipped value behave identically, so the guard the comment describes is inert. Case: a review artifact dir whose deep-review-config.json is unreadable at admit time still admits a proposal scoped outside the review target, which is exactly the outcome the comment says is prevented and the outcome frontier-admit.cjs:316-318 exists to stop. Recommended fix: for target 'review', throw when the config cannot be read (the narrowing cannot be applied), or replace the comment with what the code does.",
+    "evidence": {
+      "cmd": "node admit-probe.cjs",
+      "exit": 0,
+      "out": "review config {} (what the code degrades to) => true\nreview config files/target => false\nreview config null => true"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "F3",
+    "source_id": "F3",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    "line": "2465",
+    "issue": "The comment above frontierNodeVisits states a property the focus does not have and explains the wrong mechanism: 'The frontier focus names the node and never repeats its question text: a question resolves when an iteration's focus equals its text, so echoing the text would close a node just by visiting it.' pickFrontierFocus at 2491 returns `Frontier node ${nodeId} (depth d, scope s): ${chosen.question}` — the question verbatim. What actually keeps a visit from resolving the question is the marker prefix (the registry's equality test at 2628 compares the whole line, not a suffix), so a reader who trusts the comment will assume the question text is omitted and can delete the prefix on that basis. The comment also sits on the wrong function: it describes the shape of the focus, not frontierNodeVisits' marker match. Recommended fix: reword to state that the marker prefix keeps a visit from matching the question text, and move it onto pickFrontierFocus.",
+    "evidence": {
+      "cmd": "node admit-probe.cjs",
+      "exit": 0,
+      "out": "pickFrontierFocus => \"Frontier node F-1-001 (depth 1, scope runtime/lib): Which module owns admission?\"\nquestion echoed verbatim in focus => true"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "F4",
+    "source_id": "F4",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    "line": "341",
+    "issue": "The run-wide node cap is pruned with reason 'fanout', so a store row cannot be read as naming the bound it hit. The module header (lines 12-17) enumerates the checks as relevance, dedupe, depth, fan-out, monotone budget and acyclicity, and 340 is the fan-out check; 341 is a different bound — the total live-node count — reported under the same word. Case: two answered depth-1 nodes, maxFrontierNodes 2, a proposal whose parent has 0 of its 6 child slots used — the fan-out check passes and the proposal is still pruned 'fanout'. The playbook for this step tells the operator each reason names its bound, so this is the one case where it does not. Recommended fix: give the total-node bound its own reason (or reuse 'budget'), or say in the header and the dashboard that 'fanout' covers both the per-parent fan-out and the run-wide node cap.",
+    "evidence": {
+      "cmd": "node cap-probe.cjs",
+      "exit": 0,
+      "out": "live children of F-1-001: 0 child cap: 6\ntotal live nodes: 2 node cap: 2\ncheckProposal reason => \"fanout\""
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "F5",
+    "source_id": "F5",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    "line": "3573",
+    "issue": "Five of the exports added to this file have no consumer anywhere in the repository — not a script, not a lib module, not a test: applyFrontierBudget (3573), buildFrontierProjection (3574), frontierNodeVisits (3586), pickFrontierFocus (3590) and readFrontierNodeStore (3591). Every other name in the same exports block has at least three external references, so this is speculative API surface rather than house style. Case: the internal call sites are all in this file; the reducer test suite destructures only buildTerminalStopState, deriveRejectedPatternIndex, filterRejectedIdeaCandidates, emitFanoutResourceMap, parseIterationFile and reduceResearchState, so the five names are unexercised contracts that must be kept stable for no caller. Recommended fix: delete the five export entries (the definitions stay, all used internally).",
+    "evidence": {
+      "cmd": "for n in applyFrontierBudget buildFrontierProjection frontierNodeVisits pickFrontierFocus readFrontierNodeStore; do grep -rl \"\\b$n\\b\" --include=*.cjs --include=*.ts --include=*.js --include=*.mjs .skilled/ | grep -v node_modules | grep -vc 'deep-research/scripts/reduce-state.cjs'; done",
+      "exit": 0,
+      "out": "applyFrontierBudget=0 buildFrontierProjection=0 frontierNodeVisits=0 pickFrontierFocus=0 readFrontierNodeStore=0"
+    },
+    "fix": {
+      "old": "  applyFrontierBudget,\n  buildFrontierProjection,\n  buildGraphConvergenceRollup,\n",
+      "new": "  buildGraphConvergenceRollup,\n"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-S2-01",
+    "source_id": "B-S2-01",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    "line": "238",
+    "issue": "The new expansive section claims `antiConvergence.depthMode` and the `expansiveDepth` caps are 'both ... locked against the optimizer'. The optimizer manifest lists only `antiConvergence.depthMode` in `lockedFields`; `expansiveDepth.*` appears in neither `tunableFields` nor `lockedFields`, and the config's `_optimizerManaged.lockedFields` does not include it either. The claim is repeated at `references/convergence/convergence.md:105` and `references/protocol/loop-protocol.md:459`. Either lock the caps in the manifest/config or stop claiming they are locked.",
+    "evidence": {
+      "cmd": "node -e 'const m=require(\"./.skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json\"); console.log(JSON.stringify({expansiveDepthInTunable:m.tunableFields.some(f=>String(f.name).startsWith(\"expansiveDepth\")),expansiveDepthInLocked:m.lockedFields.some(f=>String(f.name).startsWith(\"expansiveDepth\")),depthModeInLocked:m.lockedFields.some(f=>f.name===\"antiConvergence.depthMode\")}));'",
+      "exit": 0,
+      "out": "{\"expansiveDepthInTunable\":false,\"expansiveDepthInLocked\":false,\"depthModeInLocked\":true}"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-S2-02",
+    "source_id": "B-S2-02",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    "line": "91",
+    "issue": "The absent-flag claim is too strong: research says `default` 'renders the same bytes as before' and review says it 'runs exactly as before' (`deep-review/SKILL.md:237`; also `deep-research/references/convergence/convergence.md:68`, `deep-research/references/protocol/loop-protocol.md:411`, `deep-review/references/convergence/convergence.md:105`, `deep-review/references/protocol/loop-protocol.md:459`, and `deep-review/assets/review-mode-contract.yaml:177`). The golden tests pass only after `withoutExpansiveOnlyPersona()` strips the new expansive-only persona paragraph from the CLI lineage prompt; the baseline fixtures contain zero occurrences of it. Both playbooks and the review README document that paragraph as the one waived difference, so the SKILL wording should carry the same exception.",
+    "evidence": {
+      "cmd": "rg -n \"withoutExpansiveOnlyPersona\" .skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts",
+      "exit": 0,
+      "out": "11: comment; 219: function definition; 281: one call \"withoutExpansiveOnlyPersona(lineagePrompt.split(...))\" - the helper removes the expansive-only persona paragraph before comparing to the baseline"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-S2-03",
+    "source_id": "B-S2-03",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+    "line": "99",
+    "issue": "The convergence-mode table says the shipped review YAML has no `off` decision branch and that review therefore follows `default`. The workflow's `step_check_convergence` item 3 (`deep-review.yaml:1241`) and `convergence.cjs`'s `convergenceMode === 'off'` branch return CONTINUE/`convergenceModeOff` for review, and the same file's decision order at line 179 says exactly that. DRV-080 also exercises 'convergence mode off still wins' for review, so the row is contradicted by the shipped behaviour and by the file itself.",
+    "evidence": {
+      "cmd": "rg -n \"has no .off. decision branch|Convergence mode off\" .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+      "exit": 0,
+      "out": "99: | `off` | ... the shipped review YAML has no `off` decision branch ... | ; 179: 4. **Convergence mode off** -- `convergenceMode: off` returns `CONTINUE` (`convergenceModeOff`)."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-S2-04",
+    "source_id": "B-S2-04",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+    "line": "135",
+    "issue": "Decision-order item 10 says a failed gate 'emit[s] blockedStop'. That is the review branch of `buildStopDecision` (`convergence.cjs:1201`); the research branch returns `CONTINUE` with reasonDetail `qualityGuardFailed` (`convergence.cjs:1204`), and the research workflow logs that reason (`deep-research.yaml:1182,1202`). The §4 gate table repeats the blockedStop claim in its Failure column, so the research reference describes the review gate failure path as its own.",
+    "evidence": {
+      "cmd": "rg -n \"emit blockedStop and CONTINUE with recovery focus|emit\\('CONTINUE', null, 'qualityGuardFailed'\" .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "exit": 0,
+      "out": "convergence.md:135: ... otherwise emit blockedStop and CONTINUE with recovery focus. | convergence.cjs:1204: return emit('CONTINUE', null, 'qualityGuardFailed', evaluated, failedGuards);"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-S2-05",
+    "source_id": "B-S2-05",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    "line": "127",
+    "issue": "The table titled 'Runtime-supported lifecycle modes:' lists only `new`, `resume` and `restart`, while the paragraph immediately below (line 135) says `completed-continue` is set by `--extend=N`, and the research config's `lineage.allowedModes` now includes `completed-continue` with `fork` as the only deferred mode. The review SKILL lists `completed-continue` among its lifecycle modes. Add the fourth row so the table matches the shipped contract this change introduces.",
+    "evidence": {
+      "cmd": "rg -n \"Runtime-supported lifecycle modes|completed-continue. is set by\" .skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      "exit": 0,
+      "out": "127: Runtime-supported lifecycle modes: ; 135: `completed-continue` is set by `--extend=N`: it reopens a completed run ..."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-S4-03",
+    "source_id": "B-S4-03",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/executor/research-claude-config-dir.md",
+    "line": "102",
+    "issue": "The new runtime scenarios do not reach the catalog entries added for them. DLR-062, DLR-063 and DLR-064 still end with 'this scenario does not cite a specific catalog entry' although `council/divergent-pivot-seat-cap-and-retry.md`, `executor/landed-iteration-no-redispatch.md` and `executor/research-claude-config-dir.md` exist and the playbook table now links them. DLR-060 and DLR-061 carry no feature-catalog row at all, and the cross-reference table maps them to generic F004/F013 instead of the dedicated `prompt-rendering/research-prompt-pack-contract.md` and `coverage-graph/source-quality-class.md` (table lines 995-996).",
+    "evidence": {
+      "cmd": "rg -n \"does not cite a specific catalog entry|DLR-060|DLR-061\" .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/executor/research-claude-config-dir.md .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/executor/landed-iteration-skips-redispatch.md .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/divergent-council-quorum-retry.md .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+      "exit": 0,
+      "out": "research-claude-config-dir.md:102, landed-iteration-skips-redispatch.md:102, divergent-council-quorum-retry.md:104: 'does not cite a specific catalog entry'; playbook lines 995-996: DLR-060 -> F004 prompt-pack, DLR-061 -> F013 coverage-graph-signals"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D3",
+    "source_id": "D3",
+    "lane": "D",
+    "surface": "S7",
+    "standard": ".skilled/repo-rules/skill-hub-routing.md",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    "line": "131",
+    "issue": "The table headed 'Runtime-supported lifecycle modes' lists new, resume and restart, and the sentence directly below it declares completed-continue a live mode set by --extend=N, so the section contradicts itself and the table is the wrong one. The sibling deep-review/SKILL.md was updated to list completed-continue inline, which makes the research table the only stale copy of the lifecycle set. Reproducer: an operator asks which lifecycle modes /deep:research supports and reads the table; completed-continue does not appear in it. Impact: a reader planning an --extend run is told the mode does not exist in the one place built to answer the question, and may fall back to a restart that archives the packet instead.",
+    "evidence": {
+      "cmd": "sed -n '127,135p' .skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      "exit": 0,
+      "out": "Runtime-supported lifecycle modes:\n\n| Mode | Meaning |\n|------|---------|\n| `new` | First run against the spec folder |\n| `resume` | Continue the active lineage and append a typed `resumed` JSONL event |\n| `restart` | Archive the existing research tree, mint a fresh `sessionId`, increment `generation`, and append a typed `restarted` event |\n\n`completed-continue` is set by `--extend=N`: it reopens a completed run in the same session and generation, raises the iteration cap to the runs so far plus N, and appends a typed `run_extended` event."
+    },
+    "fix": {
+      "old": "| `restart` | Archive the existing research tree, mint a fresh `sessionId`, increment `generation`, and append a typed `restarted` event |",
+      "new": "| `restart` | Archive the existing research tree, mint a fresh `sessionId`, increment `generation`, and append a typed `restarted` event |\n| `completed-continue` | Reopen a completed run in the same session and generation, raise the iteration cap to the runs so far plus N, and append a typed `run_extended` event (set by `--extend=N`) |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "BAT-01",
+    "source_id": "S9-command-references",
+    "lane": "battery",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "S9-command-references failed (exit 1).",
+    "evidence": {
+      "cmd": "node .skilled/commands/scripts/validate-command-references.cjs",
+      "exit": 1,
+      "out": "FAIL  1 unresolved command reference(s):\n  .skilled/commands/speckit/assets/speckit-resume.yaml:104  [skill-asset]  .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json  - path does not exist on disk",
+      "ci_gated": false,
+      "ci_workflows": []
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D1",
+    "source_id": "D1",
+    "lane": "D",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/deep/research.md",
+    "line": "33",
+    "issue": "The HARD-BLOCK 'YOUR FIRST ACTION' gate tells the executor to resolve 7 setup values, but the same file's YAML START CONDITION at line 17 now requires 9, including convergence_mode, depth_mode and lineage_mode. The branch added convergence_mode and depth_mode to line 17 (diff hunk at line 14) and left this list untouched, so the two binding surfaces in one file disagree. Reproducer: /deep:research:confirm --depth-mode=expansive; an executor that follows the first-action list literally binds no depth_mode and then meets a start condition that says the YAML may not load without it, while the command standard forbids inferring missing input. Impact: the operator's depth-mode flag can be silently dropped to the default, which disables the feature they asked for with no error. Fix: name the three missing bindings in the gate list, or replace the list with a pointer to the YAML START CONDITION.",
+    "evidence": {
+      "cmd": "sed -n '17p;33,41p' .skilled/commands/deep/research.md",
+      "exit": 0,
+      "out": "  - `research_topic`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `convergence_mode`, `depth_mode`, `stop_policy`, `lineage_mode`\n> **YOUR FIRST ACTION (HARD-BLOCK gate — do not skip):**\n> 1. Run the Unified Setup Phase (BLOCKED gate) through the presentation contract and resolve:\n>    - `research_topic`\n>    - `spec_folder`\n>    - `execution_mode`\n>    - `maxIterations`\n>    - `convergenceThreshold`\n>    - `stop_policy` (default `convergence` unless `--stop-policy=max-iterations` is present)\n>    - `dry_run` (default false unless `--dry-run` is present)"
+    },
+    "fix": {
+      "old": ">    - `stop_policy` (default `convergence` unless `--stop-policy=max-iterations` is present)\n>    - `dry_run` (default false unless `--dry-run` is present)",
+      "new": ">    - `convergence_mode` (default `default` unless `--convergence-mode` is present)\n>    - `depth_mode` (default `default` unless `--depth-mode=expansive` is present)\n>    - `stop_policy` (default `convergence` unless `--stop-policy=max-iterations` is present)\n>    - `lineage_mode` (default `auto` unless `--lineage-mode` or `--restart` is present)\n>    - `dry_run` (default false unless `--dry-run` is present)"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D2",
+    "source_id": "D2",
+    "lane": "D",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/deep/review.md",
+    "line": "31",
+    "issue": "Same divergence as D1, in the review router: the HARD-BLOCK gate lists 9 setup values without convergence_mode, depth_mode or lineage_mode, while line 17 of the same file requires 12. The branch edited the neighbouring Step 6 list at line 83 to add convergence_mode and depth_mode, and the start condition at line 17, so the omission here is now the only stale copy and it contradicts both. Reproducer: /deep:review:confirm --depth-mode=expansive; following the gate literally resolves no depth_mode, and the start condition then blocks YAML load on the missing binding. Impact: expansive depth is dropped to default with no message, and the gate cannot be satisfied without inferring input the command standard forbids inferring.",
+    "evidence": {
+      "cmd": "sed -n '17p;31,41p' .skilled/commands/deep/review.md",
+      "exit": 0,
+      "out": "  - `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `convergence_mode`, `depth_mode`, `stop_policy`, `lineage_mode`\n> **YOUR FIRST ACTION (HARD-BLOCK gate — do not skip):**\n> 1. Run the Unified Setup Phase (BLOCKED gate) through the presentation contract and resolve:\n>    - `review_target`\n>    - `review_target_type`\n>    - `review_dimensions`\n>    - `spec_folder`\n>    - `execution_mode`\n>    - `maxIterations`\n>    - `convergenceThreshold`\n>    - `stop_policy` (default `convergence` unless `--stop-policy=max-iterations` is present)\n>    - `dry_run` (default false unless `--dry-run` is present)"
+    },
+    "fix": {
+      "old": ">    - `stop_policy` (default `convergence` unless `--stop-policy=max-iterations` is present)\n>    - `dry_run` (default false unless `--dry-run` is present)",
+      "new": ">    - `convergence_mode` (default `default` unless `--convergence-mode` is present)\n>    - `depth_mode` (default `default` unless `--depth-mode=expansive` is present)\n>    - `stop_policy` (default `convergence` unless `--stop-policy=max-iterations` is present)\n>    - `lineage_mode` (default `auto` unless `--lineage-mode` or `--restart` is present)\n>    - `dry_run` (default false unless `--dry-run` is present)"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  }
+]

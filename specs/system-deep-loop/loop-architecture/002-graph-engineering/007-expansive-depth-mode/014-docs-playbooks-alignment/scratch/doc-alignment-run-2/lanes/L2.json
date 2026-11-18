@@ -1,0 +1,84 @@
+{
+  "lane": "L2",
+  "findings": [
+    {
+      "id": "L2-1",
+      "surface": "D2",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/assets/deep-research.yaml",
+      "line": 1181,
+      "issue": "The step claims to give the whole stop decision (\"The script applies this fixed order, first match wins\") but the ordered list omits the frontierOpen stop veto. convergence.cjs returns CONTINUE with reasonDetail 'frontierOpen' after the minIterations floor (line 1181) and before the quality-guard check (line 1204) whenever config.depthMode is 'expansive' and the research facts report an open or active frontier node (lines 1192-1196). The same file's divergent frontier_gate at line 1269 already names that veto, so an expansive stop cannot be reasoned about from this list.",
+      "evidence": {
+        "cmd": "rg -n \"minIterationsNotReached|depthMode === 'expansive'|frontierOpen'|qualityGuardFailed\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "14:// minIterationsNotReached, frontierOpen,\n15:// qualityGuardFailed, all_questions_answered, all_dimensions_clean,\n1181:    return emit('CONTINUE', null, 'minIterationsNotReached', gatesAt(false), []);\n1192:  if (config.depthMode === 'expansive'\n1196:    return emit('CONTINUE', null, 'frontierOpen', gatesAt(false), []);\n1204:    return emit('CONTINUE', null, 'qualityGuardFailed', evaluated, failedGuards);"
+      },
+      "fix": {
+        "old": "          5. if iteration_count < effective_min_iterations: CONTINUE (minIterationsNotReached)\n          6. a failed quality guard turns the candidate into CONTINUE (qualityGuardFailed)",
+        "new": "          5. if iteration_count < effective_min_iterations: CONTINUE (minIterationsNotReached)\n          5a. if depth_mode == \"expansive\" AND the frontier holds an open or active node (registry.frontier.nodes): CONTINUE (frontierOpen). The veto runs after the floor and before the quality guards; the cap, consecutive failures, stuck recovery, convergence off, max-iterations and the floor all precede it.\n          6. a failed quality guard turns the candidate into CONTINUE (qualityGuardFailed)"
+      }
+    },
+    {
+      "id": "L2-2",
+      "surface": "D2",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/assets/deep-research.yaml",
+      "line": 231,
+      "issue": "state_paths declares the synthesis snapshot as {artifact_dir}/synthesis-v{generation}.md, but the extension's snapshot step writes {state_paths.packet_dir}/synthesis-v${GENERATION}-r{continued_from_run}.md (line 582), and the synthesis note at line 2093 and the protocol reference both name synthesis-v{generation}-r{continuedFromRun}.md. No step writes the declared path, so a reader following the state-path map looks for the extension snapshot under a name the workflow never creates.",
+      "evidence": {
+        "cmd": "rg -n \"synthesis_snapshot_pattern|SNAPSHOT=\" .skilled/commands/deep/assets/deep-research.yaml",
+        "exit": 0,
+        "out": "231:  synthesis_snapshot_pattern: \"{artifact_dir}/synthesis-v{generation}.md\"\n582:          SNAPSHOT=\"{state_paths.packet_dir}/synthesis-v${GENERATION}-r{continued_from_run}.md\""
+      },
+      "fix": {
+        "old": "  synthesis_snapshot_pattern: \"{artifact_dir}/synthesis-v{generation}.md\"",
+        "new": "  synthesis_snapshot_pattern: \"{artifact_dir}/synthesis-v{generation}-r{continuedFromRun}.md\""
+      }
+    },
+    {
+      "id": "L2-3",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      "line": 208,
+      "issue": "The step says \"Parse response and store ALL results\", but its binding list carries depth_mode and neither extend nor extend_minutes, which are the two values the extension step consumes (deep-research.yaml:563 passes \"{extend}\" \"{extend_minutes}\"), and the sibling deep-review-presentation.txt list carries lineage_mode and extend. The Phase Output list at line 222 also omits both, so a :confirm setup that follows this contract has no declared binding for the extension flags even though it declares depth_mode.",
+      "evidence": {
+        "cmd": "rg -n \"store ALL results|depth_mode = |\\{extend\\}|\\{extend_minutes\\}\" .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/commands/deep/assets/deep-research.yaml",
+        "exit": 0,
+        "out": ".skilled/commands/deep/assets/deep-research-presentation.txt:200:8. Parse response and store ALL results:\n.skilled/commands/deep/assets/deep-research-presentation.txt:208:   - depth_mode = [from flag, marker, or default `default`; one of `default`, `expansive`]\n.skilled/commands/deep/assets/deep-research.yaml:563:          ' \"{state_paths.config}\" \"{state_paths.state_log}\" \"{state_paths.packet_dir}/inbox.jsonl\" \"{extend}\" \"{extend_minutes}\" \"$WORK_DIR\" > \"$WORK_DIR/result.json\" || { rm -rf \"$WORK_DIR\"; exit 2; }'"
+      }
+    },
+    {
+      "id": "L2-4",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      "line": 135,
+      "issue": "The consolidated prompt's Defaults line enumerates the setup defaults but omits antiConvergence.depthMode, although depth_mode is a required setup field (line 72) mapped to antiConvergence.depthMode (lines 112 and 149) and the config template defaults it to \"default\" (deep-research-config.json:8). The Tier-1 persist shape at line 19 likewise omits the key, so the setup contract never states what the required depth-mode binding defaults to.",
+      "evidence": {
+        "cmd": "rg -n 'Defaults:|depthMode\": \"default\"|antiConvergence.depthMode' .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
+        "exit": 0,
+        "out": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json:8:    \"depthMode\": \"default\",\n.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json:87:    \"lockedFields\": [\"lineage\", \"reducer\", \"fileProtection\", \"sessionId\", \"status\", \"antiConvergence.convergenceMode\", \"antiConvergence.depthMode\", \"antiConvergence.stopPolicy\"],\n.skilled/commands/deep/assets/deep-research-presentation.txt:112:   |-- --depth-mode=default|expansive -> antiConvergence.depthMode = value\n.skilled/commands/deep/assets/deep-research-presentation.txt:135:   +-- Defaults: maxIterations=10, convergenceThreshold=0.05, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`\n.skilled/commands/deep/assets/deep-research-presentation.txt:149:   - `--depth-mode` -> `antiConvergence.depthMode`"
+      },
+      "fix": {
+        "old": "antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`",
+        "new": "antiConvergence.convergenceMode=`default`, antiConvergence.depthMode=`default`, antiConvergence.divergent=`{}`"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/commands/deep/assets/deep-research-presentation.txt",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    ".skilled/commands/deep/research.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md",
+    ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json"
+  ]
+}

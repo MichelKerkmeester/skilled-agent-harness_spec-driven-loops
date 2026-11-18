@@ -1,7 +1,7 @@
 ---
 title: "DRV-072 -- Review run holds below its minIterations floor"
 description: "This scenario validates that a review run never stops before its configured minIterations floor for `DRV-072`. It focuses on a stop candidate below the floor returning CONTINUE with minIterationsNotReached."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DRV-072 -- Review run holds below its minIterations floor
@@ -76,7 +76,7 @@ If the run releases at iteration 2, check that the floor check in `convergence.c
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `feature-catalog/` | No dedicated convergence catalog entry exists for `deep-review` floor behavior yet; the implementation anchors below are the contract |
+| `feature-catalog/` | `feature-catalog/loop-lifecycle/min-iterations-floor.md` covers the `deep-review` floor behavior; the implementation anchors below are the contract |
 
 ### Implementation And Test Anchors
 

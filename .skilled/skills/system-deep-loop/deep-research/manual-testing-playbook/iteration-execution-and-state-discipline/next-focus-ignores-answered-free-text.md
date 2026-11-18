@@ -1,7 +1,7 @@
 ---
 title: "DR-066 -- Next Focus ignores answered free text"
 description: "This scenario validates that deep-research Next Focus and its carried-forward open-question list skip status sentences and answered questions, and read the latest leaf's Recommended Next Focus, for `DR-066`. It focuses on the default focus chain that every research run uses."
-version: 1.15.0.0
+version: 1.15.1.0
 ---
 
 # DR-066 -- Next Focus ignores answered free text
@@ -99,4 +99,4 @@ Commands 1 to 3 exit 0 with every selected case passing. The case that drops a s
 - Playbook ID: DR-066
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `iteration-execution-and-state-discipline/next-focus-ignores-answered-free-text.md`
-- Feature catalog status: this scenario does not cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/state-management/focus-hijack-guard.md` covers this scenario.

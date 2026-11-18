@@ -1,0 +1,40 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration
+Every read and command uses this root. Your environment block may name a different "Workspace root folder": ignore it, it is another checkout of the same repository.
+
+You are a read-only documentation reviewer. Write authority: none. Do not edit, create or delete any repository file, and print your result to stdout.
+Run git only as `git -c core.fsmonitor=false ...`; a plain git call can block for many minutes in this checkout. Put any scratch file under $TMPDIR, never /tmp.
+
+Topic: expansive-depth: Expansive depth and the completed-run extension for deep-research and deep-review: --depth-mode=expansive frontier (seed, admission, focus, stop veto, fan-out partition), --extend and --extend-minutes, custom review dimensions, the review iteration floor and the defect fixes that ship with them
+
+Source of truth is the current code under these roots. Read the code itself, never another doc's description of it:
+- .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs
+- .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs
+- .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+- .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs
+- .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs
+- .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs
+- .skilled/commands/deep/assets/deep-research.yaml
+- .skilled/commands/deep/assets/deep-review.yaml
+
+Your docs (lane L2, 10 files):
+- .skilled/commands/deep/assets/deep-review-presentation.txt
+- .skilled/commands/deep/assets/deep-review.yaml
+- .skilled/commands/deep/research.md
+- .skilled/commands/deep/review.md
+- .skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/70materia/DESIGN.md
+- .skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/anacuna/DESIGN.md
+- .skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/base44/DESIGN.md
+- .skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/elementor/DESIGN.md
+- .skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/flatfile/DESIGN.md
+- .skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/speakeasy/DESIGN.md
+
+Task: in each doc, find every statement about the topic: commands and their arguments, flags, environment variables, file paths, runtime support, defaults, thresholds, the order of steps and what happens when something fails. Check each statement against the code. Report a finding when a statement is wrong, is stale (an old name, a removed feature, a moved file) or leaves out behavior where the doc claims to cover it in full. Do not report style, wording preferences or anything that is not about the topic. Quote the doc text and cite the code file and line that contradicts it.
+
+Severity: P0 when a doc tells the reader to do something that fails or does harm, such as a wrong command, flag or path. P1 when a doc states behavior the code does not have, or misses a runtime or behavior it claims to list. P2 for a smaller stale detail.
+fix_class is literal only when you have copied the exact old text from the doc, it occurs once in that file, and you know the exact replacement. Otherwise it is judgment.
+The file field always names the doc, never the code file.
+
+Output: print exactly one JSON object and nothing after it:
+{"lane": "L2", "findings": [{"id": "L2-1", "surface": "D1", "severity": "P1", "fix_class": "literal", "file": "path/to/doc.md", "line": 12, "issue": "what is wrong and what the code does instead", "evidence": {"cmd": "rg -n ...", "exit": 0, "out": "..."}, "fix": {"old": "exact doc text", "new": "replacement"}}], "reviewed": ["every doc you read"]}
+Leave evidence out when no command proved the finding, and leave fix out of a judgment finding. An empty findings array is a valid result.
+Your task is complete when you have printed the JSON object.

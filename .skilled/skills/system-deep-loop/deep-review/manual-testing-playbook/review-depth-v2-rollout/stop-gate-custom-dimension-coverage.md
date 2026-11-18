@@ -1,7 +1,7 @@
 ---
 title: "DRV-075 -- Covered custom dimension reaches the all-dimensions-clean stop"
 description: "This scenario validates that a configured custom review dimension, once covered, lets the review reach its clean stop for `DRV-075`. It focuses on the all_dimensions_clean reason and on the review pivot seeding no unswept-dimension for the covered name."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DRV-075 -- Covered custom dimension reaches the all-dimensions-clean stop
@@ -76,7 +76,7 @@ If command 1 fails, check that the reducer marks the configured custom name as c
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `feature-catalog/` | No dedicated catalog entry exists for custom review dimensions yet; the implementation anchors below are the contract |
+| `feature-catalog/` | `feature-catalog/review-dimensions/custom-review-dimensions.md` covers custom review dimensions; the implementation anchors below are the contract |
 
 ### Implementation And Test Anchors
 

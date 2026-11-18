@@ -1,7 +1,7 @@
 ---
 title: "DR-067 -- focusAlignment and the findings gate read leaf fields"
 description: "This scenario validates that the deep-research findings gate and the focusAlignment guard run on the leaf fields that the state log keeps, for `DR-067`. It focuses on the default research run, where both checks now apply."
-version: 1.15.0.0
+version: 1.15.1.0
 ---
 
 # DR-067 -- focusAlignment and the findings gate read leaf fields
@@ -101,4 +101,4 @@ Commands 1 to 3 exit 0 with every case passing. The verify suite includes the fi
 - Playbook ID: DR-067
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `iteration-execution-and-state-discipline/focus-alignment-and-findings-gate-read-leaf-fields.md`
-- Feature catalog status: this scenario does not cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/state-management/leaf-field-gates.md` covers this scenario.

@@ -54,7 +54,7 @@ Use deep-research for multi-round technical investigation, source triangulation,
 
 ## 2. SMART ROUTING
 
-The `system-deep-loop` hub routes the `research` mode here: the request names autoresearch, a deep research loop, iterative investigation, a convergence check or a research state packet, and the hub's `research` signal selects this packet.
+The `system-deep-loop` hub routes the `research` mode here: the request names autoresearch, a deep research loop, iterative investigation, research convergence or a research state packet, and the hub's `research` signal selects this packet.
 `/deep:research:auto` or `/deep:research:confirm` is the entry, and the command YAML owns state, dispatch, convergence and synthesis.
 
 `references/guides/quick-reference.md` loads first on every invocation.
@@ -88,7 +88,7 @@ Carrying threshold expectations across siblings will cause unexpected iteration 
 
 ### Expansive Depth Mode
 
-- `--depth-mode=expansive` keeps a depth-capped frontier of follow-up questions beside the seeded key questions. An absent flag means `default`, which renders the same bytes as before.
+- `--depth-mode=expansive` keeps a depth-capped frontier of follow-up questions beside the seeded key questions. An absent flag means `default`, which keeps the default behavior. The one byte change is the expansive-only persona paragraph in the CLI lineage prompt, which the golden test strips before it compares.
 - `step_frontier_seed` writes 3 to 6 depth-1 nodes before iteration 1 through `runtime/scripts/frontier-admit.cjs seed`, after `step_create_config`, or before `step_fanout_spawn` on a fan-out run.
 - `step_frontier_admit` runs before `step_reduce_state` and prunes a `frontier_proposal` on the first failed check among relevance, dedupe, depth, fan-out, budget and cycle. Admitted nodes land in `research/inbox.jsonl` with `origin: "frontier"`.
 - Next Focus reads the shallowest open node first, then the least visited, then the oldest, and writes `Frontier node <id> (depth N, scope S): <question>`.
@@ -131,8 +131,7 @@ Runtime-supported lifecycle modes:
 | `new` | First run against the spec folder |
 | `resume` | Continue the active lineage and append a typed `resumed` JSONL event |
 | `restart` | Archive the existing research tree, mint a fresh `sessionId`, increment `generation`, and append a typed `restarted` event |
-
-`completed-continue` is set by `--extend=N`: it reopens a completed run in the same session and generation, raises the iteration cap to the runs so far plus N, and appends a typed `run_extended` event.
+| `completed-continue` | Set by `--extend=N`: reopen a completed run in the same session and generation, raise the iteration cap to the runs so far plus N, and append a typed `run_extended` event |
 
 The deferred mode `fork` is reserved but not runtime-supported.
 

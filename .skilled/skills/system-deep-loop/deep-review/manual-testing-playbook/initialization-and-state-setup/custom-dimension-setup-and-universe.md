@@ -1,7 +1,7 @@
 ---
 title: "DRV-074 -- Configured custom dimension joins the review dimension set"
 description: "This scenario validates that a custom review dimension named at setup joins the dimension set for `DRV-074`. It focuses on the normalized name list, the canonical-first order and the review prompt line."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DRV-074 -- Configured custom dimension joins the review dimension set
@@ -77,7 +77,7 @@ If command 1 shows no custom-name wording, the workflow input or normalize rule 
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `feature-catalog/` | No dedicated catalog entry exists for custom review dimensions yet; the implementation anchors below are the contract |
+| `feature-catalog/` | `feature-catalog/review-dimensions/custom-review-dimensions.md` covers custom review dimensions; the implementation anchors below are the contract |
 
 ### Implementation And Test Anchors
 

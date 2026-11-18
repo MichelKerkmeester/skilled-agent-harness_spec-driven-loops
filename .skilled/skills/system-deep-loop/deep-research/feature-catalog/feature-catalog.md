@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-research autonomous research loop."
-version: 1.14.5.0
+version: 1.14.6.0
 ---
 
 # deep-research: Feature Catalog
@@ -16,9 +16,9 @@ Use this catalog as the canonical inventory for the live `deep-research` feature
 
 | Category | Coverage | Primary Runtime Surface |
 |---|---:|---|
-| Loop lifecycle | 10 features | [`.skilled/commands/deep/research.md`](../../../../commands/deep/research.md), the `deep-research.yaml` workflow across both execution modes, fan-out runtime primitives, operator controls |
-| State management | 8 features | `research/deep-research-*.json`, `research/findings-registry.json`, reducer-owned strategy and dashboard surfaces |
-| Convergence | 6 features | [`references/convergence/convergence.md`](../references/convergence/convergence.md), workflow legal-stop gates, graph convergence hooks, minimum-iteration floor, divergent pivots |
+| Loop lifecycle | 11 features | [`.skilled/commands/deep/research.md`](../../../../commands/deep/research.md), the `deep-research.yaml` workflow across both execution modes, fan-out runtime primitives, operator controls |
+| State management | 10 features | `research/deep-research-*.json`, `research/findings-registry.json`, reducer-owned strategy and dashboard surfaces |
+| Convergence | 7 features | [`references/convergence/convergence.md`](../references/convergence/convergence.md), workflow legal-stop gates, graph convergence hooks, minimum-iteration floor, divergent pivots |
 | Research output | 2 features | the research synthesis under `research/`, iteration files, reducer-backed negative knowledge surfaces |
 
 ---
@@ -35,7 +35,7 @@ Sets up a research packet and locks the lineage contract before the first iterat
 
 #### How It Works
 
-Initialization classifies the packet as fresh, resume, completed-session, or invalid-state before writing anything. It then creates canonical `deep-research-*` artifacts, seeds the reducer-owned findings registry, validates the research charter sections, and only exposes `new`, `resume`, and `restart` as runtime-supported lineage modes.
+Initialization classifies the packet as fresh, resume, completed-session, or invalid-state before writing anything. It then creates canonical `deep-research-*` artifacts, seeds the reducer-owned findings registry, validates the research charter sections, and exposes `new`, `resume`, `restart`, and `completed-continue` (set by `--extend=N`) as runtime-supported lineage modes.
 
 #### Source Files
 
@@ -360,6 +360,22 @@ See [`state-management/focus-hijack-guard.md`](../feature-catalog/state-manageme
 
 ---
 
+### Findings gate and focusAlignment read leaf fields
+
+#### Description
+
+The deep-research findings gate and the focusAlignment guard judge the leaf fields the projected state-log row keeps, so both checks fire on every default research run.
+
+#### How It Works
+
+The findings gate reads the projected `findingsCount` and fails with `findings_not_enumerated` when nothing is enumerated. The `focusAlignment` guard judges only the latest record that carries both question lists, so a later aligned iteration clears one off-focus iteration.
+
+#### Source Files
+
+See [`state-management/leaf-field-gates.md`](../feature-catalog/state-management/leaf-field-gates.md) for full implementation and validation file listings.
+
+---
+
 ## 4. CONVERGENCE
 
 These entries cover the stop logic, recovery logic, guard rails, and graph-aware extension that control when research can end.
@@ -468,7 +484,7 @@ Opt-in --depth-mode=expansive on deep-research seeds depth-one frontier nodes fr
 
 #### How It Works
 
-`default` is the value when the flag is absent and runs unchanged. `frontier-admit.cjs` admits proposals into the node store, and the iteration cap, the floor, stuck recovery, pause, convergence off and the max-iterations policy decide before the frontier veto. The live pilot runs are still open, so no pilot result is recorded here.
+`default` is the value when the flag is absent and runs unchanged. `frontier-admit.cjs` admits proposals into the node store, and the iteration cap, the floor, stuck recovery, pause, convergence off and the max-iterations policy decide before the frontier veto. Two live research pilots ran on one topic, and both failed the criterion that a stop candidate forms before the iteration cap: each run stopped on `maxIterationsReached`.
 
 #### Source Files
 

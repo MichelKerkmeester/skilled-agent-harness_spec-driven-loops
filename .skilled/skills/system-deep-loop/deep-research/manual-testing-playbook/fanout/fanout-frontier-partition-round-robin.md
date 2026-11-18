@@ -1,7 +1,7 @@
 ---
 title: "DR-073 -- Fan-out deals seeded frontier nodes round-robin"
 description: "This scenario validates that a fan-out run under the expansive mode deals the seeded depth-one nodes round-robin across its lineages, writes each lineage store before spawn and fails the merge guard when a partitioned node is missing, for `DR-073`."
-version: 1.16.0.0
+version: 1.16.1.0
 ---
 
 # DR-073 -- Fan-out deals seeded frontier nodes round-robin
@@ -55,7 +55,7 @@ Operators run the exact commands below and confirm the partition, the store writ
 
 ### Expected
 
-Command 1 prints `Tests  1 passed | 202 skipped (203)`, with the case `deals open depth-1 nodes round-robin in node-id order` passing. Command 2 prints `Tests  1 passed | 202 skipped (203)`, with the case `writes the lineage store before spawn and records the partition` passing. Command 3 prints `Tests  1 passed | 202 skipped (203)`, with the case `a default depth mode writes no lineage store and records no partition` passing. Command 4 prints `Tests  2 passed | 82 skipped (84)`, with the cases `passes the guard when every partitioned node is reported` and `fails the guard when a partitioned node is missing from every lineage` passing. Command 5 prints the partition helper, the store writer and the `frontier_scope` binding.
+Command 1 prints `Tests  2 passed | 206 skipped (208)`, with the cases `deals open depth-1 nodes round-robin in node-id order` and `deals seven review frontier nodes over three seats round-robin` passing. Command 2 prints `Tests  1 passed | 207 skipped (208)`, with the case `writes the lineage store before spawn and records the partition` passing. Command 3 prints `Tests  1 passed | 207 skipped (208)`, with the case `a default depth mode writes no lineage store and records no partition` passing. Command 4 prints `Tests  4 passed | 86 skipped (90)`, with the cases `passes the guard when every partitioned node is reported` and `fails the guard when a partitioned node is missing from every lineage` passing under both the research and the review frontier merge. Command 5 prints the partition helper, the store writer and the `frontier_scope` binding.
 
 ### Evidence
 
@@ -100,4 +100,4 @@ Command 1 prints `Tests  1 passed | 202 skipped (203)`, with the case `deals ope
 - Playbook ID: DR-073
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `fanout/fanout-frontier-partition-round-robin.md`
-- Feature catalog status: No entry in `feature-catalog/` covers the fan-out frontier partition yet, so this scenario cites none.
+- Feature catalog status: `feature-catalog/convergence/expansive-depth-mode.md` covers the fan-out frontier partition in its Fan-Out section.

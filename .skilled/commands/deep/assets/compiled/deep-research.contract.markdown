@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "c7d16b837af6187ad17d2dc73454933fdfaffdfde069e22c1abe36cb1e339c56",
+      "sha256": "e93965450782636df72a177b06fff64ef4414539e72abd51cdde9ac36eec2ed8",
       "section": "full"
     },
     {
@@ -37,12 +37,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "5938226bb72d7d9f7ae9247ea41514c11f371b174a58ec1158cdcd3ace3b8f4d",
+      "sha256": "34eefbd5c6838f81d436efaa923460959c3b43ed762f72c0d36792c5d5eb8817",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "e5aa5ea7531a49f097685cf821521cd2eaf81fdec17578b9fe4273d7785085e7",
+      "sha256": "ed701405c950f72891e2bf62150335362d74e89061f439a467833e86eb06e897",
       "section": "full"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
-      "sha256": "ae4ffa50477e05ad88c9e805e03db93067ed189703be870d0e92105d66a612f0",
+      "sha256": "698d118e4a5b3d4a0c7f331378f0a4d98d5328abc8f4514fc8c40ec8cc6b3604",
       "section": "full"
     },
     {
@@ -67,7 +67,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
-      "sha256": "b4dba395133d0edfb869f9d93fdb7ea656514ce4e935e57345de10b911508fb9",
+      "sha256": "7c7eebef1ad7be3fdd24a95df5aaed354b9e3edd6e3adc07c39c7e0696816304",
       "section": "full"
     },
     {

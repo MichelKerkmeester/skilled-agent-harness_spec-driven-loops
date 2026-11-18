@@ -1,0 +1,175 @@
+{
+  "lane": "D",
+  "findings": [
+    {
+      "id": "D1",
+      "surface": "S7",
+      "standard": ".skilled/repo-rules/skill-hub-routing.md",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/hub-router.json",
+      "line": 33,
+      "issue": "The branch adds expansive depth mode, completed-run extension (completed-continue via --extend) and custom review dimensions, edits the convergence-mode docs, and documents them in the packet SKILL.md files and command flag tables, but the hub's only authored mode vocabulary carries no feature term. The branch's only change to this file is the version bump 2.0.2.0 -> 2.1.6.0. A probe that names a feature without also naming its mode takes the defer outcome (evidence), so the hub asks the operator to disambiguate a request it could serve. Stage two (ROUTER.md INTENT_SIGNALS) carries the same 12/17 terms with no feature term, so both stages agree on the wrong vocabulary, and every router gate stays green because none of them scores feature phrases. Fix: author feature terms in research-aliases and review-aliases (expansive depth, depth mode, review sub-targets, completed-continue, extend a research run, custom dimensions), mirror them in ROUTER.md INTENT_SIGNALS, and regenerate. Do not add the packet's generic phrases such as 'review code quality': the packet's own When NOT to Use sends those to sk-code, and the S8 lens requires that a phrase fix not steal another skill's prompts.",
+      "evidence": {
+        "cmd": "node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt \"Investigate the retry policy in expansive depth mode, three levels of follow-up questions deep\"",
+        "exit": 0,
+        "out": "{\"hubId\":\"system-deep-loop\",\"action\":\"defer\",\"selectionKind\":null,\"targets\":[],\"effectivePolicyHash\":\"c6b62457fa5db8f1c3545095977dd006c852dc2c0021407a94bd2fbcbcb713b6\",\"generation\":4}"
+      }
+    },
+    {
+      "id": "D2",
+      "surface": "S7",
+      "standard": ".skilled/repo-rules/skill-hub-routing.md",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      "line": 57,
+      "issue": "The routing prose names 'a convergence check' as one of the requests that fires the hub's research signal, but the hub vocabulary carries 'research convergence', not 'convergence check', so the documented phrase takes the defer outcome. Reproducer in evidence; the same sentence's other four phrases route. Fix the doc to the phrase the router carries, or add 'convergence check' to research-aliases and ROUTER.md INTENT_SIGNALS. The proposed literal edit was replayed: 'Run a research convergence check on the advisor routing metadata' routes to research mode.",
+      "evidence": {
+        "cmd": "node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt \"Run a convergence check on the advisor routing metadata\"",
+        "exit": 0,
+        "out": "{\"hubId\":\"system-deep-loop\",\"action\":\"defer\",\"selectionKind\":null,\"targets\":[],\"effectivePolicyHash\":\"c6b62457fa5db8f1c3545095977dd006c852dc2c0021407a94bd2fbcbcb713b6\",\"generation\":4}"
+      },
+      "fix": {
+        "old": "the request names autoresearch, a deep research loop, iterative investigation, a convergence check or a research state packet, and the hub's `research` signal selects this packet.",
+        "new": "the request names autoresearch, a deep research loop, iterative investigation, a research convergence check or a research state packet, and the hub's `research` signal selects this packet."
+      }
+    },
+    {
+      "id": "D3",
+      "surface": "S7",
+      "standard": ".skilled/repo-rules/skill-hub-routing.md",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+      "line": 83,
+      "issue": "The routing prose names 'a spec-folder audit' as a request that fires the hub's review signal, but neither 'spec-folder audit' nor 'spec folder audit' is in review-aliases, so the documented phrase defers. The advisor gives the same wording to system-spec-kit ('Audit the spec folder for completeness' -> system-spec-kit 0.889), so adding the phrase to review-aliases would steal spec-validation traffic; fix the doc to the phrases the router carries instead.",
+      "evidence": {
+        "cmd": "node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt \"Do a spec-folder audit before release\"; printf %s \"{\\\"prompt\\\":\\\"Audit the spec folder for completeness\\\"}\" | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json | node -e 'let s=\"\";process.stdin.on(\"data\",d=>s+=d).on(\"end\",()=>{const j=JSON.parse(s);const r=(j.data.recommendations||[])[0];console.log(\"advisor top=\"+r.skillId+\" \"+r.score.toFixed(3))})'",
+        "exit": 0,
+        "out": "{\"hubId\":\"system-deep-loop\",\"action\":\"defer\",\"selectionKind\":null,\"targets\":[],\"effectivePolicyHash\":\"c6b62457fa5db8f1c3545095977dd006c852dc2c0021407a94bd2fbcbcb713b6\",\"generation\":4}\nadvisor top=system-spec-kit 0.889"
+      },
+      "fix": {
+        "old": "The signal fires when a request names a deep review, a convergence review, a review loop, a release readiness check or a spec-folder audit.",
+        "new": "The signal fires when a request names a deep review, a convergence review, a review loop or a release readiness check."
+      }
+    },
+    {
+      "id": "D4",
+      "surface": "S8",
+      "standard": "system-skill-advisor",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/description.json",
+      "line": 6,
+      "issue": "The hub's advisor-facing vocabulary carries no term for the branch's new features. The keywords here and graph-metadata.json's intent_signals - the array the advisor actually scores, per skill_advisor.py's _extend_signal_map call - stop at the mode names, so a request that names a feature without its mode is not scored to the hub. 'Review the payments module in expansive depth mode with a frontier of review sub-targets' ranks sk-code first with system-deep-loop absent from the ranking (evidence), 'Review the release against custom dimensions beyond the four canonical ones' ranks sk-code first, and 'Investigate the retry policy in expansive depth mode...' returns no recommendation at all. Fix: add the feature terms to graph-metadata.json intent_signals, mirror them in this keywords list, then rebuild the advisor graph so the projected triggers carry them; the same terms must land in hub-router.json and ROUTER.md for the compiled route.",
+      "evidence": {
+        "cmd": "printf '%s' '{\"prompt\":\"Review the payments module in expansive depth mode with a frontier of review sub-targets\"}' | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json | node -e 'let s=\"\";process.stdin.on(\"data\",d=>s+=d).on(\"end\",()=>{const j=JSON.parse(s);const recs=j.data.recommendations||[];console.log(\"top=\"+(recs[0]?recs[0].skillId+\" \"+recs[0].score.toFixed(3):\"NONE\"),\"count=\"+recs.length,\"hasDeepLoop=\"+recs.some(r=>r.skillId===\"system-deep-loop\"))})'",
+        "exit": 0,
+        "out": "top=sk-code 0.592 count=1 hasDeepLoop=false"
+      }
+    },
+    {
+      "id": "D5",
+      "surface": "S9",
+      "standard": "sk-doc/sk-create-command",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/review.md",
+      "line": 100,
+      "issue": "The --depth-mode row was rewritten on this branch (commit 8fda03e7135 introduced it) but kept a pilot-testing chore in shipped command text: '(record the pilot range SHA; ...)'. The command standard's Step 8 forbids development notes in the command body, the phrase names no flag, config field or workflow step, and a repository-wide search finds it in no skill doc or playbook, so an executor that follows it has to invent a write. Fix: drop the chore and keep the pruning behavior it was attached to.",
+      "evidence": {
+        "cmd": "grep -rn \"pilot range SHA\" .skilled/commands/deep .skilled/skills/system-deep-loop/deep-review",
+        "exit": 0,
+        "out": ".skilled/commands/deep/review.md:100:| `--depth-mode` | `default` \\| `expansive` | `default`, the value when the flag is absent, runs exactly as before. `expansive` is opt-in: the run seeds depth-1 sub-target nodes from the review target before iteration 1 (record the pilot range SHA; merges are pruned as `merge-no-own-diff` and index rebuilds as `generated-artifact`), ..."
+      },
+      "fix": {
+        "old": "before iteration 1 (record the pilot range SHA; merges are pruned as `merge-no-own-diff` and index rebuilds as `generated-artifact`),",
+        "new": "before iteration 1 (merges are pruned as `merge-no-own-diff` and index rebuilds as `generated-artifact`),"
+      }
+    },
+    {
+      "id": "D6",
+      "surface": "S9",
+      "standard": "sk-doc/sk-create-command",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/scripts/validate-command-references.cjs",
+      "line": 134,
+      "issue": "The S9 battery row is red because the checker resolves a runtime-generated path as a missing file. config.ts resolves TELEMETRY_STORE_DIR to <skill root>/runtime/database and access-telemetry.ts writes access-telemetry.json there on first use; .gitignore line 431 ignores the directory, so a clean checkout and this worktree hold no file. The checker already exempts the same class for .skilled/skills/.state/ and the deep-loop sqlite stores, but not the spec-kit telemetry store, so speckit-resume.yaml:104's reference fails pre-flight even though the command handles a missing pointer. Fix: extend the runtime-generated skip list.",
+      "evidence": {
+        "cmd": "node .skilled/commands/scripts/validate-command-references.cjs",
+        "exit": 1,
+        "out": "FAIL  1 unresolved command reference(s):\n  .skilled/commands/speckit/assets/speckit-resume.yaml:104  [skill-asset]  .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json  - path does not exist on disk"
+      },
+      "fix": {
+        "old": "      if (/^\\.skilled\\/skills\\/system-deep-loop\\/runtime\\/database\\/[^/]+\\.sqlite$/.test(token)) continue;",
+        "new": "      if (/^\\.skilled\\/skills\\/system-deep-loop\\/runtime\\/database\\/[^/]+\\.sqlite$/.test(token)) continue;\n      // The spec-kit access-telemetry store is written on first use under a gitignored directory, so a clean checkout never holds it, like the deep-loop databases.\n      if (/^\\.skilled\\/skills\\/system-spec-kit\\/runtime\\/database\\//.test(token)) continue;"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+    ".skilled/skills/system-deep-loop/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/description.json",
+    ".skilled/skills/system-deep-loop/hub-router.json",
+    ".skilled/skills/system-deep-loop/mode-registry.json",
+    ".skilled/skills/system-deep-loop/ROUTER.md",
+    ".skilled/skills/system-deep-loop/graph-metadata.json",
+    ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+    ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md",
+    ".skilled/commands/scripts/validate-command-references.cjs",
+    ".skilled/commands/speckit/assets/speckit-resume.yaml"
+  ],
+  "probes": [
+    {
+      "prompt": "Run a deep research loop on the payments provider and keep a depth-capped frontier of follow-up questions beside the seeded ones",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Investigate the retry policy in expansive depth mode, three levels of follow-up questions deep",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Extend a completed research run by three more iterations in the same session",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Review the payments module in expansive depth mode with a frontier of review sub-targets",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Audit the diff and route the convergence stop into a council pivot instead of ending the loop",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Run the review loop with convergence turned off so only max-iterations can stop it",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Review the release against custom dimensions beyond the four canonical ones",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Review the pull request diff for security problems before I merge it",
+      "expect": "sk-code"
+    },
+    {
+      "prompt": "Commit these changes with a conventional commit message",
+      "expect": "sk-git"
+    }
+  ]
+}

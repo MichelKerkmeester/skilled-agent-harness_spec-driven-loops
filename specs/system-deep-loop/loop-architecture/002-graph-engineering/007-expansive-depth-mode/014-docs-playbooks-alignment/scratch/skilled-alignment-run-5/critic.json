@@ -1,0 +1,145 @@
+{
+  "findings": [
+    {
+      "id": "X-1",
+      "surface": "S4",
+      "standard": "sk-doc/sk-create-manual-testing-playbook",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 35,
+      "issue": "The hub playbook's coverage note pins the routing it validates to version `2.0.0.0`, but this branch bumps `mode-registry.json`, `hub-router.json`, `description.json` and `SKILL.md` to 2.1.6.0. A reader cannot tell whether the playbook validates the shipped routing or an older one; this is the version stamp the S4 lens says must not survive a superseding change.",
+      "evidence": {
+        "cmd": "grep -n '2\\.0\\.0\\.0' .skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md; node -e \"const r=require('./.skilled/skills/system-deep-loop/mode-registry.json');const h=require('./.skilled/skills/system-deep-loop/hub-router.json');console.log(r.version,h.version)\"",
+        "exit": 0,
+        "out": "manual-testing-playbook.md:35:Coverage note: the playbook covers the hub's registry-driven routing at version `2.0.0.0`. It exercises:\n2.1.6.0 2.1.6.0"
+      },
+      "fix": {
+        "old": "Coverage note: the playbook covers the hub's registry-driven routing at version `2.0.0.0`.",
+        "new": "Coverage note: the playbook covers the hub's registry-driven routing at version `2.1.6.0`."
+      }
+    },
+    {
+      "id": "X-2",
+      "surface": "S3",
+      "standard": "sk-doc/sk-create-feature-catalog",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/focus-alignment-and-findings-gate-read-leaf-fields.md",
+      "line": 104,
+      "issue": "Phase 006's user-visible fix (the `findings_not_enumerated` gate and the `focusAlignment` guard read real leaf fields) is the only one of the 13 Feature to Playbook Map rows with no feature-catalog entry, and this scenario still records that absence. The 014 packet's purpose is to give every user-visible feature and fix a catalog entry; the nearest deep-research entry, `convergence/quality-guards.md`, describes the guards but not the leaf-field widening. The catalog pass added 15 leaves and skipped this one.",
+      "evidence": {
+        "cmd": "grep -rn -i \"leaf field\\|findings_not_enumerated\\|focusAlignment\" .skilled/skills/system-deep-loop/deep-research/feature-catalog; grep -n \"Feature catalog status\" .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/focus-alignment-and-findings-gate-read-leaf-fields.md",
+        "exit": 0,
+        "out": "(no catalog hits)\n104:- Feature catalog status: this scenario does not cite a specific catalog entry."
+      },
+      "fix": {
+        "recommendation": "Add a deep-research catalog entry for the leaf-field findings gate and focusAlignment guard (or extend `convergence/quality-guards.md`) and cite it from the scenario's Feature catalog status line."
+      }
+    },
+    {
+      "id": "X-3",
+      "surface": "S4",
+      "standard": "sk-doc/sk-create-manual-testing-playbook",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+      "line": 48,
+      "issue": "`--extend-minutes=M` is a new user-visible flag in phase 001 (command rows, both packet catalog entries, REQ-005/AC-005), but no manual scenario exercises it: both extend scenarios pass only `--extend=3`, and a search of all four playbook packages finds no mention. Its duration-budget behavior is covered only by `workflow-restart-lifecycle.vitest`, so the S4 lens's rule that a new feature has a scenario is unmet.",
+      "evidence": {
+        "cmd": "grep -rn -- \"extend-minutes\" .skilled/skills/system-deep-loop/*/manual-testing-playbook; grep -n -- \"--extend=3\" .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+        "exit": 0,
+        "out": "(no playbook hits)\n48:4. `/deep:research \"<fixture topic>\" :auto --spec-folder=<completed-fixture-spec-folder> --extend=3 --convergence-mode=off`"
+      },
+      "fix": {
+        "recommendation": "Add a step to both extend scenarios (or a sibling scenario) that passes `--extend-minutes=M` with `--extend=N` and asserts `maxDurationMinutes` becomes `max(prior, elapsed) + M`, mirroring AC-005."
+      }
+    },
+    {
+      "id": "X-4",
+      "surface": "S2",
+      "standard": "sk-doc/sk-create-skill",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+      "line": 238,
+      "issue": "The review Expansive Depth Mode bullet lists `maxChildrenPerNode` 6 as the cap but omits the root seed floor: `frontier-admit.cjs` sets `maxRootChildren = max(6, 8)` for a review seed (`ROOT_CHILDREN_FLOOR` is `{ research: 6, review: 8 }`), so a review seeds 3 to 8 depth-1 sub-targets while research seeds 3 to 6. The feature catalog page records the raised review root cap, but SKILL.md, `references/convergence/convergence.md` and `references/protocol/loop-protocol.md` all list only 6, so the shipped behavior is absent from the skill's main doc.",
+      "evidence": {
+        "cmd": "sed -n '56,60p' .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs; grep -n 'maxChildrenPerNode' .skilled/skills/system-deep-loop/deep-review/SKILL.md; grep -n 'raised to 8' .skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+        "exit": 0,
+        "out": "const ROOT_CHILDREN_FLOOR = Object.freeze({ research: 6, review: 8 });\nSKILL.md:238:... `maxDepth` 3, `maxChildrenPerNode` 6 ...\nexpansive-depth-mode.md:16:... the root fan-out cap of 6, since raised to 8 for a review seed, ..."
+      },
+      "fix": {
+        "old": "`maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget split across the depth bands",
+        "new": "`maxDepth` 3, `maxChildrenPerNode` 6 (the root seed is capped at 8, so a review seeds 3 to 8 depth-1 sub-targets), a `0.5/0.35/0.15` budget split across the depth bands"
+      }
+    },
+    {
+      "id": "X-5",
+      "surface": "S14",
+      "standard": ".github/workflows/changed-packet-validation.yml",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/implementation-summary.md",
+      "line": 157,
+      "issue": "The implementation summary still says \"Pilot not run on the branch\" and the completion row says \"pilot and full suite open\", but the committed goal log records two live target-2 runs: pilot-run-1 FAIL and pilot-run-2 FAIL on the fixed tree, both on AC-014 (`goal.md:95-96`). `acceptance-criteria.md:102` repeats \"the target-2 pilot has not run\", and `tasks.md:108` still describes the rerun as pending. The AC-014 status \"Unmet\" is right; the evidence and limitation text are false at HEAD, so the packet's records disagree about whether the pilot happened.",
+      "evidence": {
+        "cmd": "grep -n \"Pilot not run\\|pilot has not run\" specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/implementation-summary.md specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/acceptance-criteria.md; head -3 specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/scratch/pilot-run-2.md",
+        "exit": 0,
+        "out": "implementation-summary.md:157:1. **Pilot not run on the branch.** ...\nacceptance-criteria.md:102:No. AC-014 is unmet: the target-2 pilot has not run, so its registry stats do not exist yet.\npilot-run-2.md:1:# Target-2 research pilot, rerun on the fixed tree (FAIL on AC-014)"
+      },
+      "fix": {
+        "recommendation": "Update the limitation and metadata row, the AC-014 evidence and T031 to record both live runs, the two FAIL results and the operator decision AC-014 now needs; leave the status Unmet until that decision."
+      }
+    },
+    {
+      "id": "X-6",
+      "surface": "S14",
+      "standard": ".github/workflows/changed-packet-validation.yml",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/implementation-summary.md",
+      "line": 119,
+      "issue": "The summary still says \"Pilot not run\" and its `_memory` block is the untouched scaffold (`completion_pct: 0`, `recent_action: Authored the planned phase docs`, `next_safe_action: Wait for phases 008-010, then start T001`), while the goal log records the live target-1 pilot: AC-011 FAIL, T031 PASS (`goal.md:99`), and `acceptance-criteria.md:99` still says the pilot \"runs at integration after merge\". The packet shipped DRV-076 to DRV-082 and the v1.13.0.0 changelog per its own goal, so the 0% continuity state and the \"not run\" limitation contradict the packet's own record.",
+      "evidence": {
+        "cmd": "grep -n \"Pilot not run\" specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/implementation-summary.md; sed -n '/_memory:/,/^---$/p' specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/implementation-summary.md; head -3 specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/scratch/pilot-run-1.md",
+        "exit": 0,
+        "out": "implementation-summary.md:119:1. **Pilot not run.** ...\ncompletion_pct: 0 / next_safe_action: \"Wait for phases 008-010, then start T001\"\npilot-run-1.md:1:# Target-1 review pilot (FAIL on AC-011, T031 PASS)"
+      },
+      "fix": {
+        "recommendation": "Replace the scaffold `_memory` fields, the limitation and the AC-011 evidence with the live run and its FAIL; keep AC-011 Unmet until the operator rules on the stop criterion."
+      }
+    }
+  ],
+  "untouched": [
+    "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-deep-loop/manifest.json"
+  ],
+  "overrides": [
+    {
+      "id": "C-04",
+      "verdict": "refuted",
+      "note": "At HEAD, `.skilled/skills/system-deep-loop/changelog/v2.1.0.0.md:25` reads \"...a fan-out config, or a value...\" — there is no `, and` sentence. The quoted text and the literal `old` string come from an intermediate working-tree rewrite; the current tree's line already reads \"...a fan-out config and a value...\" with no comma. `hvr_scan` on the HEAD blob flags line 25 as a generic `, and` candidate for the `, or` comma, so the finding's quoted evidence and fix do not reproduce."
+    },
+    {
+      "id": "B-3",
+      "verdict": "pre-existing",
+      "note": "`git show 21c4b325b5a:.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md | grep -c MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT` prints 0. The marker is absent at the merge base, while the hub and runtime roots already carry it at base; the scope touched this file but did not introduce the gap. The fix is still consistent with the standard."
+    },
+    {
+      "id": "B-4",
+      "verdict": "pre-existing",
+      "note": "Same check on the deep-review root playbook prints 0 at 21c4b325b5a. The marker is missing at the merge base, so this is pre-existing debt in a file the scope touched, not a regression introduced by the range."
+    },
+    {
+      "id": "D6",
+      "verdict": "pre-existing",
+      "note": "`git show 21c4b325b5a:.skilled/commands/speckit/assets/speckit-resume.yaml | grep -n access-telemetry` already reports line 104, and the 014 goal records the same reference as BAT-18, present at base and handed to the coordinator. Both the YAML and the checker are outside the 378-file scope; the S9 failure is baseline debt, not a change in this range."
+    }
+  ],
+  "upheld_probes": [
+    "P02",
+    "P03",
+    "P04",
+    "P07"
+  ]
+}

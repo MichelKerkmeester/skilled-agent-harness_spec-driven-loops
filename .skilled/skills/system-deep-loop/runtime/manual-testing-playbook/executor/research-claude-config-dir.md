@@ -1,7 +1,7 @@
 ---
 title: "DLR-064 -- Research honors the configured Claude config dir"
 description: "This scenario validates that a deep-research iteration on cli-claude-code runs Claude under the configured config dir and records that dir in its audit, for `DLR-064`. It focuses on the --claude-config-dir flag on the research path."
-version: 2.1.0.0
+version: 2.1.1.0
 ---
 
 # DLR-064 -- Research honors the configured Claude config dir
@@ -99,4 +99,4 @@ Commands 1 and 2 exit 0. Outside a Claude session, every dispatch case runs and 
 - Playbook ID: DLR-064
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `executor/research-claude-config-dir.md`
-- Feature catalog status: this scenario does not cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/executor/research-claude-config-dir.md` covers this scenario.

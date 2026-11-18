@@ -80,7 +80,7 @@ This skill is invoked EXCLUSIVELY through the `/deep:review` command. The comman
 ## 2. SMART ROUTING
 
 The `system-deep-loop` hub routes an iterative review loop here, and its `review` mode signal selects this packet.
-The signal fires when a request names a deep review, a convergence review, a review loop, a release readiness check or a spec-folder audit.
+The signal fires when a request names a deep review, a convergence review, a review loop, a release readiness check or a request to audit the diff.
 The loop runs only through `/deep:review`, whose workflow owns state, dispatch and convergence.
 
 `references/protocol/quick-reference.md` loads first on every invocation.
@@ -142,20 +142,20 @@ Each agent dispatch gets a fresh context window; state continuity comes from fil
 
 ### Review Dimensions
 
-The four primary review dimensions (configured in `assets/review-mode-contract.yaml`):
+The four primary review dimensions (configured in `assets/review-mode-contract.yaml`; configure them by the id in parentheses, because any other name counts as a custom dimension):
 
 | Dimension | Focus | Key Questions |
 |-----------|-------|---------------|
-| **Correctness** | Logic, behavior, error handling | Behavior matches claims? Edge cases handled? |
-| **Security** | Vulnerabilities, exposure, trust boundaries | Inputs validated? Credentials exposed? |
-| **Spec-Alignment / Traceability** | Spec vs. implementation fidelity | Code matches spec.md? Planned items present? |
-| **Completeness / Maintainability** | Coverage, dead code, documentation | TODOs resolved? Code self-documenting? |
+| **Correctness** (`correctness`) | Logic, behavior, error handling | Behavior matches claims? Edge cases handled? |
+| **Security** (`security`) | Vulnerabilities, exposure, trust boundaries | Inputs validated? Credentials exposed? |
+| **Spec-Alignment / Traceability** (`traceability`) | Spec vs. implementation fidelity | Code matches spec.md? Planned items present? |
+| **Completeness / Maintainability** (`maintainability`) | Coverage, dead code, documentation | TODOs resolved? Code self-documenting? |
 
 ### Lifecycle + Reducer Contract
 
 Review mode is lineage-aware.
 
-- **Lifecycle modes:** `new`, `resume`, and `restart`.
+- **Lifecycle modes:** `new`, `resume`, `restart`, and `completed-continue` (set by `--extend=N` on a completed run).
 - **Required lineage fields:** `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, and `releaseReadinessState`.
 - **Reducer contract:** consumes the latest JSONL delta, the new iteration file, and prior reduced state, then emits finding registry, dashboard metrics, and strategy updates.
 
@@ -235,12 +235,12 @@ Each pass also compares `maxDurationMinutes` with the config `createdAt`. When t
 ### Expansive Depth Mode
 
 - `--depth-mode=expansive` keeps a depth-capped frontier of sub-target nodes beside the review target. An absent flag means `default`, which runs exactly as before.
-- The flag writes `antiConvergence.depthMode` and the caps in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget split across the depth bands, and `maxFrontierNodes`, set to `maxIterations` at config creation. Both are locked against the optimizer.
+- The flag writes `antiConvergence.depthMode` and the caps in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6 (the review root seed takes up to 8 depth-1 sub-targets, against 6 for research), a `0.5/0.35/0.15` budget split across the depth bands, and `maxFrontierNodes`, set to `maxIterations` at config creation. `antiConvergence.depthMode` is locked against the optimizer; the `expansiveDepth` caps are in neither its tunable nor its locked list.
 - `step_frontier_seed` writes the depth-1 nodes before iteration 1 through `runtime/scripts/frontier-admit.cjs seed --target review`, after `step_create_config` or before `step_fanout_spawn` on a fan-out run. A merge with no diff of its own is pruned `merge-no-own-diff` and an index rebuild `generated-artifact`.
 - `step_frontier_admit` runs before the reducer and prunes a `frontier_proposal` on the first failed check among relevance, dedupe, depth, fan-out, budget and cycle. Node status lives in `review/frontier-nodes.jsonl`, written only by `frontier-admit.cjs`; review has no inbox.
 - `step_read_state` reads the active node and sets `next_dimension` to its next uncovered dimension, `step_frontier_activate` marks it active before dispatch, and the prompt pack's `{frontier_block}` names the node. Next Focus takes the blocked stop, then the pivot, then the node, then the leaf focus, then the first uncovered dimension.
 - While a node stays open the frontier veto turns a stop candidate into `CONTINUE` with reasonDetail `frontierOpen`. It never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the review floor, and stuck recovery closes the active node `exhausted`.
-- A fan-out run deals the depth-1 nodes round-robin in node-id order, binds `frontier_scope:` beside `review_focus:`, records the partition as `frontier_partition` in `orchestration-summary.json` and returns a partition guard for any node no lineage reports. Size `--max-iterations` so half of it covers `ceil(nodes / lineages) * dimensions`.
+- A fan-out run deals the depth-1 nodes round-robin in node-id order, binds `frontier_scope:` beside `review_focus:`, records the partition as `frontier_partition` in `orchestration-summary.json` and returns a partition guard for any node no lineage reports. Size each lineage's iteration cap (the `--iters=N` value on its executor entry, which `fanout-run.cjs` passes as that lineage's `--max-iterations`, 12 when unset) so half of it covers `ceil(nodes / lineages) * dimensions`.
 
 ---
 

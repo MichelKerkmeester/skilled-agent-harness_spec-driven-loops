@@ -14,7 +14,7 @@ Thin router for the deep-research loop. This command verifies the runtime agent,
 - **ALL** agent dispatching is handled by the YAML workflow steps.
 - **MARKDOWN OWNS SETUP**: resolve setup inputs here first, then hand off to YAML.
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
-  - `research_topic`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`, `lineage_mode`
+  - `research_topic`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `convergence_mode`, `depth_mode`, `stop_policy`, `lineage_mode`
   - `dry_run` is normalized to `true` or `false`; absence means `false`
 
 In `:auto` mode, an explicit `--restart` or `--lineage-mode=restart` flag (invocation form `--restart|--lineage-mode=restart`) is operator authorization to archive the resolved research packet before fan-out or phase init. Do not ask for a second confirmation; preserve rollback by moving the timestamped archive directory back to `research/` if needed.
@@ -37,7 +37,10 @@ Load the presentation contract before showing startup questions, dashboards, che
 >    - `execution_mode`
 >    - `maxIterations`
 >    - `convergenceThreshold`
+>    - `convergence_mode` (default `default` unless `--convergence-mode` is present)
+>    - `depth_mode` (default `default` unless `--depth-mode=expansive` is present)
 >    - `stop_policy` (default `convergence` unless `--stop-policy=max-iterations` is present)
+>    - `lineage_mode` (default `auto` unless `--lineage-mode` or `--restart` is present)
 >    - `dry_run` (default false unless `--dry-run` is present)
 > 2. Load the workflow YAML from `assets/` only after all setup values are resolved: `deep-research.yaml`. The mode binds `execution_mode` to `auto` or `confirm`.
 > 3. Execute the YAML workflow step by step using those resolved values

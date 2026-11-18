@@ -1,0 +1,656 @@
+[
+  {
+    "id": "C-01",
+    "source_id": "C-01",
+    "lane": "C",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
+    "line": "223",
+    "issue": "The VERIFICATION table's expected output is contradicted by the command it documents. The row says the script prints `PASS checked 24 script references across 2 workflow YAMLs`; it prints 27 (14 unique .cjs references in deep-research.yaml plus 13 in deep-review.yaml). The count grew when the expansive-depth steps (step_frontier_seed, step_frontier_admit, step_frontier_activate) added script references to the YAMLs, and the README's number was never carried forward. An operator running the documented proof path sees 27 where the doc promises 24 and cannot tell doc drift from a real regression. Same file already had its other derived counts corrected in this scope (29 features, 71 scenarios, 9 categories), so this row is the one count left behind.",
+    "evidence": {
+      "cmd": "bash .skilled/skills/system-deep-loop/deep-research/scripts/verify-yaml-script-paths.sh",
+      "exit": 0,
+      "out": "PASS checked 27 script references across 2 workflow YAMLs"
+    },
+    "fix": {
+      "old": "PASS checked 24 script references across 2 workflow YAMLs",
+      "new": "PASS checked 27 script references across 2 workflow YAMLs"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-01",
+    "source_id": "P02",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P02 \"Investigate the retry policy in expansive depth mode, three levels of follow-up questions deep\" expected system-deep-loop/research; top-1 was nothing.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Investigate the retry policy in expansive depth mode, three levels of follow-up questions deep\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was nothing"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-02",
+    "source_id": "P03",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P03 \"Extend a completed research run by three more iterations in the same session\" expected system-deep-loop/research; top-1 was system-deep-loop.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Extend a completed research run by three more iterations in the same session\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was system-deep-loop"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-03",
+    "source_id": "P04",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P04 \"Review the payments module in expansive depth mode with a frontier of review sub-targets\" expected system-deep-loop/review; top-1 was sk-code/sk-code-review.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Review the payments module in expansive depth mode with a frontier of review sub-targets\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was sk-code/sk-code-review"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-04",
+    "source_id": "P07",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P07 \"Review the release against custom dimensions beyond the four canonical ones\" expected system-deep-loop/review; top-1 was sk-code/sk-code-review.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Review the release against custom dimensions beyond the four canonical ones\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was sk-code/sk-code-review"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A-1",
+    "source_id": "1",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    "line": "532",
+    "issue": "renderFrontierBlock emits the research-only focus instruction (\"Copy the Focus Area line exactly into this iteration record's \\\"focus\\\"\") for the review target too, immediately before the review-specific instruction added at line 536. A review prompt has no Focus Area line; prompt-pack-iteration.md.tmpl:14 owns that line for research only, and deep-review's iteration prompt carries the dimension instead. The leaf is told two different things about one field, and the second sentence repeats the first's reason clause verbatim.",
+    "evidence": {
+      "cmd": "node ${TMPDIR:-/tmp}/local-skilled-alignment-scratch/skilled-alignment-run-5/A/block-review.cjs  (seed target=review, then renderFrontierBlock({target:'review', dimension:'correctness'}))",
+      "exit": 0,
+      "out": "Current node: F-1-001 at depth 1 of 3, scope src/auth.ts. Review dimension for this node: correctness.\\nCopy the Focus Area line exactly into this iteration record's \"focus\", so the run can tell which node this iteration worked.\\nSet this iteration record's \"focus\" to \"Frontier node F-1-001: correctness\" and add \"frontierNodeId\":\"F-1-001\" to it, so the run can tell which node this iteration worked."
+    },
+    "fix": {
+      "old": "    `Copy the Focus Area line exactly into this iteration record's \"focus\", so the run can tell which node this iteration worked.`,\n  ];\n\n  if (mode === 'review') {",
+      "new": "    ...(mode === 'review'\n      ? []\n      : [`Copy the Focus Area line exactly into this iteration record's \"focus\", so the run can tell which node this iteration worked.`]),\n  ];\n\n  if (mode === 'review') {"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A-2",
+    "source_id": "2",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    "line": "2465",
+    "issue": "The comment above frontierNodeVisits states the frontier focus \"never repeats its question text\", but pickFrontierFocus at line 2491 appends \"): ${chosen.question}\" after the marker. What actually keeps a visit from resolving the question is the `Frontier node <id>` prefix meeting the equality matcher (buildRegistry line 2628, record.focus === question text), not the absence of the text - the durable WHY the comment was written to record is now false, and a maintainer who trusts it cannot see which property is load-bearing.",
+    "evidence": null,
+    "fix": {
+      "old": "// The frontier focus names the node and never repeats its question text: a\n// question resolves when an iteration's focus equals its text, so echoing the\n// text would close a node just by visiting it.",
+      "new": "// The frontier focus starts with the node marker and a question resolves only when\n// an iteration's focus equals its text, so the marker keeps a visit from closing\n// the node it visited even though the node's question text follows it."
+    },
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A-3",
+    "source_id": "3",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts",
+    "line": "167",
+    "issue": "The suite's stated invariant (header: \"A run that never asks for it must render the same bytes\") cannot fail for the one default-path behavior this branch changes. writeFixture writes spec.md, the config, the strategy, the state log and the inbox, and creates no research/iterations/iteration-NNN.md, so parseIterationFile yields no iterationFiles and the leafNextFocus the reducer now passes into deriveNextFocusFromContinuity (reduce-state.cjs:2578-2590) is always empty. next-focus.txt is one of the six compared artifacts and deep-research/references/convergence/convergence.md:68 cites this suite by name as the proof that an absent flag keeps the default behavior.",
+    "evidence": {
+      "cmd": "node ${TMPDIR:-/tmp}/local-skilled-alignment-scratch/skilled-alignment-run-5/A/leaf-focus-probe.cjs  (reduceResearchState on the golden fixture, with and without an iterations/iteration-002.md carrying '## Recommended Next Focus')",
+      "exit": 0,
+      "out": "leaf iteration markdown present=false => NEXT FOCUS \"## 11. NEXT FOCUS\\nQ1: Which module owns the stop decision?\"\nleaf iteration markdown present=true => NEXT FOCUS \"## 11. NEXT FOCUS\\nRe-read the branch dispatch table\""
+    },
+    "fix": {
+      "recommendation": "Add an iterations/iteration-002.md carrying '## Recommended Next Focus' to writeFixture and regenerate the baselines on a tree that predates the depth-mode code, so next-focus.txt actually exercises the leaf signal; or narrow the header and convergence.md:68 to the inputs the fixture renders."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A-4",
+    "source_id": "4",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    "line": "2484",
+    "issue": "One file, two definitions of a node visit. pickFrontierFocus (line 2484) and the dashboard Revisits metric (line 3097) count every iteration record whose focus carries the marker, while applyFrontierBudget (lines 2512-2514) drops records whose status is error/failed/failure/timeout before counting. The review twin states the rule the budget follows - \"Only an attempt that produced evidence counts as a visit: an errored or timed out record is retried work\" (runtime/scripts/reduce-state.cjs:1951) - so a node whose only dispatch failed reads as visited for focus ranking and for Revisits while spending no budget, and the two consumers disagree about the same attempt.",
+    "evidence": null,
+    "fix": {
+      "recommendation": "Give the file one visit helper: pass the already-filtered records (or a filtered flag) into pickFrontierFocus and the Revisits line so ranking, the metric and the budget all count the same attempts."
+    },
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "X-5",
+    "source_id": "X-5",
+    "lane": "critic",
+    "surface": "S14",
+    "standard": ".github/workflows/changed-packet-validation.yml",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/implementation-summary.md",
+    "line": "157",
+    "issue": "The implementation summary still says \"Pilot not run on the branch\" and the completion row says \"pilot and full suite open\", but the committed goal log records two live target-2 runs: pilot-run-1 FAIL and pilot-run-2 FAIL on the fixed tree, both on AC-014 (`goal.md:95-96`). `acceptance-criteria.md:102` repeats \"the target-2 pilot has not run\", and `tasks.md:108` still describes the rerun as pending. The AC-014 status \"Unmet\" is right; the evidence and limitation text are false at HEAD, so the packet's records disagree about whether the pilot happened.",
+    "evidence": {
+      "cmd": "grep -n \"Pilot not run\\|pilot has not run\" specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/implementation-summary.md specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/acceptance-criteria.md; head -3 specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/scratch/pilot-run-2.md",
+      "exit": 0,
+      "out": "implementation-summary.md:157:1. **Pilot not run on the branch.** ...\nacceptance-criteria.md:102:No. AC-014 is unmet: the target-2 pilot has not run, so its registry stats do not exist yet.\npilot-run-2.md:1:# Target-2 research pilot, rerun on the fixed tree (FAIL on AC-014)"
+    },
+    "fix": {
+      "recommendation": "Update the limitation and metadata row, the AC-014 evidence and T031 to record both live runs, the two FAIL results and the operator decision AC-014 now needs; leave the status Unmet until that decision."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "X-6",
+    "source_id": "X-6",
+    "lane": "critic",
+    "surface": "S14",
+    "standard": ".github/workflows/changed-packet-validation.yml",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/implementation-summary.md",
+    "line": "119",
+    "issue": "The summary still says \"Pilot not run\" and its `_memory` block is the untouched scaffold (`completion_pct: 0`, `recent_action: Authored the planned phase docs`, `next_safe_action: Wait for phases 008-010, then start T001`), while the goal log records the live target-1 pilot: AC-011 FAIL, T031 PASS (`goal.md:99`), and `acceptance-criteria.md:99` still says the pilot \"runs at integration after merge\". The packet shipped DRV-076 to DRV-082 and the v1.13.0.0 changelog per its own goal, so the 0% continuity state and the \"not run\" limitation contradict the packet's own record.",
+    "evidence": {
+      "cmd": "grep -n \"Pilot not run\" specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/implementation-summary.md; sed -n '/_memory:/,/^---$/p' specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/implementation-summary.md; head -3 specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/scratch/pilot-run-1.md",
+      "exit": 0,
+      "out": "implementation-summary.md:119:1. **Pilot not run.** ...\ncompletion_pct: 0 / next_safe_action: \"Wait for phases 008-010, then start T001\"\npilot-run-1.md:1:# Target-1 review pilot (FAIL on AC-011, T031 PASS)"
+    },
+    "fix": {
+      "recommendation": "Replace the scaffold `_memory` fields, the limitation and the AC-011 evidence with the live run and its FAIL; keep AC-011 Unmet until the operator rules on the stop criterion."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "X-4",
+    "source_id": "X-4",
+    "lane": "critic",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    "line": "238",
+    "issue": "The review Expansive Depth Mode bullet lists `maxChildrenPerNode` 6 as the cap but omits the root seed floor: `frontier-admit.cjs` sets `maxRootChildren = max(6, 8)` for a review seed (`ROOT_CHILDREN_FLOOR` is `{ research: 6, review: 8 }`), so a review seeds 3 to 8 depth-1 sub-targets while research seeds 3 to 6. The feature catalog page records the raised review root cap, but SKILL.md, `references/convergence/convergence.md` and `references/protocol/loop-protocol.md` all list only 6, so the shipped behavior is absent from the skill's main doc.",
+    "evidence": {
+      "cmd": "sed -n '56,60p' .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs; grep -n 'maxChildrenPerNode' .skilled/skills/system-deep-loop/deep-review/SKILL.md; grep -n 'raised to 8' .skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+      "exit": 0,
+      "out": "const ROOT_CHILDREN_FLOOR = Object.freeze({ research: 6, review: 8 });\nSKILL.md:238:... `maxDepth` 3, `maxChildrenPerNode` 6 ...\nexpansive-depth-mode.md:16:... the root fan-out cap of 6, since raised to 8 for a review seed, ..."
+    },
+    "fix": {
+      "old": "`maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget split across the depth bands",
+      "new": "`maxDepth` 3, `maxChildrenPerNode` 6 (the root seed is capped at 8, so a review seeds 3 to 8 depth-1 sub-targets), a `0.5/0.35/0.15` budget split across the depth bands"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "X-2",
+    "source_id": "X-2",
+    "lane": "critic",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/focus-alignment-and-findings-gate-read-leaf-fields.md",
+    "line": "104",
+    "issue": "Phase 006's user-visible fix (the `findings_not_enumerated` gate and the `focusAlignment` guard read real leaf fields) is the only one of the 13 Feature to Playbook Map rows with no feature-catalog entry, and this scenario still records that absence. The 014 packet's purpose is to give every user-visible feature and fix a catalog entry; the nearest deep-research entry, `convergence/quality-guards.md`, describes the guards but not the leaf-field widening. The catalog pass added 15 leaves and skipped this one.",
+    "evidence": {
+      "cmd": "grep -rn -i \"leaf field\\|findings_not_enumerated\\|focusAlignment\" .skilled/skills/system-deep-loop/deep-research/feature-catalog; grep -n \"Feature catalog status\" .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/focus-alignment-and-findings-gate-read-leaf-fields.md",
+      "exit": 0,
+      "out": "(no catalog hits)\n104:- Feature catalog status: this scenario does not cite a specific catalog entry."
+    },
+    "fix": {
+      "recommendation": "Add a deep-research catalog entry for the leaf-field findings gate and focusAlignment guard (or extend `convergence/quality-guards.md`) and cite it from the scenario's Feature catalog status line."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-1",
+    "source_id": "B-1",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/next-focus-ignores-answered-free-text.md",
+    "line": "102",
+    "issue": "The scenario still declares it has no catalogue entry, but the curated entry `deep-research/feature-catalog/state-management/focus-hijack-guard.md` names DR-066 as the scenario that proves it, and this change updated eleven sibling scenarios to cite their entry. The exception recorded in the ALWAYS rule §8.7 is now false, so the catalog→playbook pair is one-directional.",
+    "evidence": {
+      "cmd": "rg -n \"Feature catalog status\" <scenario>; rg -n \"next-focus-ignores-answered-free-text\" .skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/focus-hijack-guard.md",
+      "exit": 0,
+      "out": "next-focus-ignores-answered-free-text.md:102:- Feature catalog status: this scenario does not cite a specific catalog entry.\nfocus-hijack-guard.md:47:| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/next-focus-ignores-answered-free-text.md` | Manual playbook | DR-066: Next Focus skips answered free text and status sentences. |"
+    },
+    "fix": {
+      "old": "- Feature catalog status: this scenario does not cite a specific catalog entry.",
+      "new": "- Feature catalog status: `feature-catalog/state-management/focus-hijack-guard.md` covers the Next Focus free-text guard."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-2",
+    "source_id": "B-2",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/review-next-focus-first-uncovered-dimension.md",
+    "line": "99",
+    "issue": "Same stale exception on the review side: `deep-review/feature-catalog/state-management/focus-hijack-guard.md` names DRV-073 as its manual-playbook proof, so the scenario's claim that it cites no catalogue entry is wrong and the link only works in one direction.",
+    "evidence": {
+      "cmd": "rg -n \"Feature catalog status\" <scenario>; rg -n \"review-next-focus-first-uncovered-dimension\" .skilled/skills/system-deep-loop/deep-review/feature-catalog/state-management/focus-hijack-guard.md",
+      "exit": 0,
+      "out": "review-next-focus-first-uncovered-dimension.md:99:- Feature catalog status: this scenario does not cite a specific catalog entry.\nfocus-hijack-guard.md:41:| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/review-next-focus-first-uncovered-dimension.md` | Manual playbook | DRV-073: Review Next Focus names the first uncovered dimension. |"
+    },
+    "fix": {
+      "old": "- Feature catalog status: this scenario does not cite a specific catalog entry.",
+      "new": "- Feature catalog status: `feature-catalog/state-management/focus-hijack-guard.md` covers the review Next Focus free-text guard."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-3",
+    "source_id": "B-3",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "9",
+    "issue": "The root playbook was edited by this change but still lacks the result-persistence completion marker the playbook standard §4 anchors a run's PASS/FAIL/SKIP outcome, reason and evidence paths to; the operator validator reports it as an advisory warning, and the hub root and the runtime root already carry the block, so this root is the odd one out in the same skill.",
+    "evidence": {
+      "cmd": "node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook; grep -c MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT <root>",
+      "exit": 0,
+      "out": "PASS package=system-deep-loop/deep-research tier=FAIL_CLOSED scenarios=71 categories=9 operator=71 routing_gold_excluded=0 violations=0 warnings=2\n  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker\n(grep: 0 matches, exit 1; the hub root matches once)"
+    },
+    "fix": {
+      "old": "# deep-research: Manual Testing Playbook\n\n> **EXECUTION POLICY**:",
+      "new": "# deep-research: Manual Testing Playbook\n\n<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->\n> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`\n> outcome and reason are persisted into\n> `.skilled/skills/system-deep-loop/benchmark/reports/<dated-run-label>/`.\n\n> **EXECUTION POLICY**:"
+    },
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "pre-existing (critic)",
+    "critic_override": {
+      "verdict": "pre-existing",
+      "note": "`git show 21c4b325b5a:.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md | grep -c MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT` prints 0. The marker is absent at the merge base, while the hub and runtime roots already carry it at base; the scope touched this file but did not introduce the gap. The fix is still consistent with the standard.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "B-4",
+    "source_id": "B-4",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "9",
+    "issue": "The deep-review root playbook has the same gap: no result-persistence marker, so the standard's run-record contract has no declared home in this package even though the shared benchmark tree and the two sibling roots define one. The validator reports the missing marker as an advisory warning, and this change already touches the package root playbook.",
+    "evidence": {
+      "cmd": "node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook; grep -c MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT <root>",
+      "exit": 0,
+      "out": "PASS package=system-deep-loop/deep-review tier=FAIL_CLOSED scenarios=69 categories=10 operator=69 routing_gold_excluded=0 violations=0 warnings=3\n  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker\n(grep: 0 matches, exit 1)"
+    },
+    "fix": {
+      "old": "# deep-review: Manual Testing Playbook\n\n> **EXECUTION POLICY**:",
+      "new": "# deep-review: Manual Testing Playbook\n\n<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->\n> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`\n> outcome and reason are persisted into\n> `.skilled/skills/system-deep-loop/benchmark/reports/<dated-run-label>/`.\n\n> **EXECUTION POLICY**:"
+    },
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "pre-existing (critic)",
+    "critic_override": {
+      "verdict": "pre-existing",
+      "note": "Same check on the deep-review root playbook prints 0 at 21c4b325b5a. The marker is missing at the merge base, so this is pre-existing debt in a file the scope touched, not a regression introduced by the range.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "X-1",
+    "source_id": "X-1",
+    "lane": "critic",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "35",
+    "issue": "The hub playbook's coverage note pins the routing it validates to version `2.0.0.0`, but this branch bumps `mode-registry.json`, `hub-router.json`, `description.json` and `SKILL.md` to 2.1.6.0. A reader cannot tell whether the playbook validates the shipped routing or an older one; this is the version stamp the S4 lens says must not survive a superseding change.",
+    "evidence": {
+      "cmd": "grep -n '2\\.0\\.0\\.0' .skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md; node -e \"const r=require('./.skilled/skills/system-deep-loop/mode-registry.json');const h=require('./.skilled/skills/system-deep-loop/hub-router.json');console.log(r.version,h.version)\"",
+      "exit": 0,
+      "out": "manual-testing-playbook.md:35:Coverage note: the playbook covers the hub's registry-driven routing at version `2.0.0.0`. It exercises:\n2.1.6.0 2.1.6.0"
+    },
+    "fix": {
+      "old": "Coverage note: the playbook covers the hub's registry-driven routing at version `2.0.0.0`.",
+      "new": "Coverage note: the playbook covers the hub's registry-driven routing at version `2.1.6.0`."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "X-3",
+    "source_id": "X-3",
+    "lane": "critic",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+    "line": "48",
+    "issue": "`--extend-minutes=M` is a new user-visible flag in phase 001 (command rows, both packet catalog entries, REQ-005/AC-005), but no manual scenario exercises it: both extend scenarios pass only `--extend=3`, and a search of all four playbook packages finds no mention. Its duration-budget behavior is covered only by `workflow-restart-lifecycle.vitest`, so the S4 lens's rule that a new feature has a scenario is unmet.",
+    "evidence": {
+      "cmd": "grep -rn -- \"extend-minutes\" .skilled/skills/system-deep-loop/*/manual-testing-playbook; grep -n -- \"--extend=3\" .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+      "exit": 0,
+      "out": "(no playbook hits)\n48:4. `/deep:research \"<fixture topic>\" :auto --spec-folder=<completed-fixture-spec-folder> --extend=3 --convergence-mode=off`"
+    },
+    "fix": {
+      "recommendation": "Add a step to both extend scenarios (or a sibling scenario) that passes `--extend-minutes=M` with `--extend=N` and asserts `maxDurationMinutes` becomes `max(prior, elapsed) + M`, mirroring AC-005."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-02",
+    "source_id": "C-02",
+    "lane": "C",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+    "line": "186",
+    "issue": "The `## How It Was Checked` before-and-after row now records a number no run reproduces: `git grep -c -- '--depth-mode'` on `.skilled/commands/deep/research.md` returns 2, not the recorded 1. This scope's own edit added the second occurrence at research.md line 41 (`depth_mode` (default `default` unless `--depth-mode=expansive` is present)), turning the release entry's stated evidence into an un-reproducible claim. The changelog standard requires the How It Was Checked rows to hold what a real run produced.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false grep -c -- '--depth-mode' -- .skilled/commands/deep/research.md .skilled/commands/deep/review.md",
+      "exit": 0,
+      "out": ".skilled/commands/deep/research.md:2\n.skilled/commands/deep/review.md:2"
+    },
+    "fix": {
+      "old": "| `git grep -c -- '--depth-mode'` on the research command reference | No match, exit 1 | One match, the flag row |",
+      "new": "| `git grep -c -- '--depth-mode'` on the research command reference | No match, exit 1 | Two matches, the setup default line and the flag row |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-03",
+    "source_id": "C-03",
+    "lane": "C",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    "line": "174",
+    "issue": "Same drift as C-02 in the review entry: the before-and-after row states `--depth-mode` appears once in `.skilled/commands/deep/review.md`, and the scope's edit of review.md added a second occurrence at line 41. The recorded evidence no longer matches what a run returns.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false grep -c -- '--depth-mode' -- .skilled/commands/deep/research.md .skilled/commands/deep/review.md",
+      "exit": 0,
+      "out": ".skilled/commands/deep/research.md:2\n.skilled/commands/deep/review.md:2"
+    },
+    "fix": {
+      "old": "| Count of `--depth-mode` in the review command reference | 0 matches at the baseline commit | 1 match, the flag row |",
+      "new": "| Count of `--depth-mode` in the review command reference | 0 matches at the baseline commit | 2 matches, the setup default line and the flag row |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D1",
+    "source_id": "D1",
+    "lane": "D",
+    "surface": "S7",
+    "standard": ".skilled/repo-rules/skill-hub-routing.md",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/hub-router.json",
+    "line": "33",
+    "issue": "The branch adds expansive depth mode, completed-run extension (completed-continue via --extend) and custom review dimensions, edits the convergence-mode docs, and documents them in the packet SKILL.md files and command flag tables, but the hub's only authored mode vocabulary carries no feature term. The branch's only change to this file is the version bump 2.0.2.0 -> 2.1.6.0. A probe that names a feature without also naming its mode takes the defer outcome (evidence), so the hub asks the operator to disambiguate a request it could serve. Stage two (ROUTER.md INTENT_SIGNALS) carries the same 12/17 terms with no feature term, so both stages agree on the wrong vocabulary, and every router gate stays green because none of them scores feature phrases. Fix: author feature terms in research-aliases and review-aliases (expansive depth, depth mode, review sub-targets, completed-continue, extend a research run, custom dimensions), mirror them in ROUTER.md INTENT_SIGNALS, and regenerate. Do not add the packet's generic phrases such as 'review code quality': the packet's own When NOT to Use sends those to sk-code, and the S8 lens requires that a phrase fix not steal another skill's prompts.",
+    "evidence": {
+      "cmd": "node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt \"Investigate the retry policy in expansive depth mode, three levels of follow-up questions deep\"",
+      "exit": 0,
+      "out": "{\"hubId\":\"system-deep-loop\",\"action\":\"defer\",\"selectionKind\":null,\"targets\":[],\"effectivePolicyHash\":\"c6b62457fa5db8f1c3545095977dd006c852dc2c0021407a94bd2fbcbcb713b6\",\"generation\":4}"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D2",
+    "source_id": "D2",
+    "lane": "D",
+    "surface": "S7",
+    "standard": ".skilled/repo-rules/skill-hub-routing.md",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    "line": "57",
+    "issue": "The routing prose names 'a convergence check' as one of the requests that fires the hub's research signal, but the hub vocabulary carries 'research convergence', not 'convergence check', so the documented phrase takes the defer outcome. Reproducer in evidence; the same sentence's other four phrases route. Fix the doc to the phrase the router carries, or add 'convergence check' to research-aliases and ROUTER.md INTENT_SIGNALS. The proposed literal edit was replayed: 'Run a research convergence check on the advisor routing metadata' routes to research mode.",
+    "evidence": {
+      "cmd": "node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt \"Run a convergence check on the advisor routing metadata\"",
+      "exit": 0,
+      "out": "{\"hubId\":\"system-deep-loop\",\"action\":\"defer\",\"selectionKind\":null,\"targets\":[],\"effectivePolicyHash\":\"c6b62457fa5db8f1c3545095977dd006c852dc2c0021407a94bd2fbcbcb713b6\",\"generation\":4}"
+    },
+    "fix": {
+      "old": "the request names autoresearch, a deep research loop, iterative investigation, a convergence check or a research state packet, and the hub's `research` signal selects this packet.",
+      "new": "the request names autoresearch, a deep research loop, iterative investigation, a research convergence check or a research state packet, and the hub's `research` signal selects this packet."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D3",
+    "source_id": "D3",
+    "lane": "D",
+    "surface": "S7",
+    "standard": ".skilled/repo-rules/skill-hub-routing.md",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    "line": "83",
+    "issue": "The routing prose names 'a spec-folder audit' as a request that fires the hub's review signal, but neither 'spec-folder audit' nor 'spec folder audit' is in review-aliases, so the documented phrase defers. The advisor gives the same wording to system-spec-kit ('Audit the spec folder for completeness' -> system-spec-kit 0.889), so adding the phrase to review-aliases would steal spec-validation traffic; fix the doc to the phrases the router carries instead.",
+    "evidence": {
+      "cmd": "node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt \"Do a spec-folder audit before release\"; printf %s \"{\\\"prompt\\\":\\\"Audit the spec folder for completeness\\\"}\" | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json | node -e 'let s=\"\";process.stdin.on(\"data\",d=>s+=d).on(\"end\",()=>{const j=JSON.parse(s);const r=(j.data.recommendations||[])[0];console.log(\"advisor top=\"+r.skillId+\" \"+r.score.toFixed(3))})'",
+      "exit": 0,
+      "out": "{\"hubId\":\"system-deep-loop\",\"action\":\"defer\",\"selectionKind\":null,\"targets\":[],\"effectivePolicyHash\":\"c6b62457fa5db8f1c3545095977dd006c852dc2c0021407a94bd2fbcbcb713b6\",\"generation\":4}\nadvisor top=system-spec-kit 0.889"
+    },
+    "fix": {
+      "old": "The signal fires when a request names a deep review, a convergence review, a review loop, a release readiness check or a spec-folder audit.",
+      "new": "The signal fires when a request names a deep review, a convergence review, a review loop or a release readiness check."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D4",
+    "source_id": "D4",
+    "lane": "D",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/description.json",
+    "line": "6",
+    "issue": "The hub's advisor-facing vocabulary carries no term for the branch's new features. The keywords here and graph-metadata.json's intent_signals - the array the advisor actually scores, per skill_advisor.py's _extend_signal_map call - stop at the mode names, so a request that names a feature without its mode is not scored to the hub. 'Review the payments module in expansive depth mode with a frontier of review sub-targets' ranks sk-code first with system-deep-loop absent from the ranking (evidence), 'Review the release against custom dimensions beyond the four canonical ones' ranks sk-code first, and 'Investigate the retry policy in expansive depth mode...' returns no recommendation at all. Fix: add the feature terms to graph-metadata.json intent_signals, mirror them in this keywords list, then rebuild the advisor graph so the projected triggers carry them; the same terms must land in hub-router.json and ROUTER.md for the compiled route.",
+    "evidence": {
+      "cmd": "printf '%s' '{\"prompt\":\"Review the payments module in expansive depth mode with a frontier of review sub-targets\"}' | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json | node -e 'let s=\"\";process.stdin.on(\"data\",d=>s+=d).on(\"end\",()=>{const j=JSON.parse(s);const recs=j.data.recommendations||[];console.log(\"top=\"+(recs[0]?recs[0].skillId+\" \"+recs[0].score.toFixed(3):\"NONE\"),\"count=\"+recs.length,\"hasDeepLoop=\"+recs.some(r=>r.skillId===\"system-deep-loop\"))})'",
+      "exit": 0,
+      "out": "top=sk-code 0.592 count=1 hasDeepLoop=false"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "BAT-01",
+    "source_id": "S9-command-references",
+    "lane": "battery",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "S9-command-references failed (exit 1).",
+    "evidence": {
+      "cmd": "node .skilled/commands/scripts/validate-command-references.cjs",
+      "exit": 1,
+      "out": "FAIL  1 unresolved command reference(s):\n  .skilled/commands/speckit/assets/speckit-resume.yaml:104  [skill-asset]  .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json  - path does not exist on disk",
+      "ci_gated": false,
+      "ci_workflows": []
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D5",
+    "source_id": "D5",
+    "lane": "D",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/deep/review.md",
+    "line": "100",
+    "issue": "The --depth-mode row was rewritten on this branch (commit 8fda03e7135 introduced it) but kept a pilot-testing chore in shipped command text: '(record the pilot range SHA; ...)'. The command standard's Step 8 forbids development notes in the command body, the phrase names no flag, config field or workflow step, and a repository-wide search finds it in no skill doc or playbook, so an executor that follows it has to invent a write. Fix: drop the chore and keep the pruning behavior it was attached to.",
+    "evidence": {
+      "cmd": "grep -rn \"pilot range SHA\" .skilled/commands/deep .skilled/skills/system-deep-loop/deep-review",
+      "exit": 0,
+      "out": ".skilled/commands/deep/review.md:100:| `--depth-mode` | `default` \\| `expansive` | `default`, the value when the flag is absent, runs exactly as before. `expansive` is opt-in: the run seeds depth-1 sub-target nodes from the review target before iteration 1 (record the pilot range SHA; merges are pruned as `merge-no-own-diff` and index rebuilds as `generated-artifact`), ..."
+    },
+    "fix": {
+      "old": "before iteration 1 (record the pilot range SHA; merges are pruned as `merge-no-own-diff` and index rebuilds as `generated-artifact`),",
+      "new": "before iteration 1 (merges are pruned as `merge-no-own-diff` and index rebuilds as `generated-artifact`),"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D6",
+    "source_id": "D6",
+    "lane": "D",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/scripts/validate-command-references.cjs",
+    "line": "134",
+    "issue": "The S9 battery row is red because the checker resolves a runtime-generated path as a missing file. config.ts resolves TELEMETRY_STORE_DIR to <skill root>/runtime/database and access-telemetry.ts writes access-telemetry.json there on first use; .gitignore line 431 ignores the directory, so a clean checkout and this worktree hold no file. The checker already exempts the same class for .skilled/skills/.state/ and the deep-loop sqlite stores, but not the spec-kit telemetry store, so speckit-resume.yaml:104's reference fails pre-flight even though the command handles a missing pointer. Fix: extend the runtime-generated skip list.",
+    "evidence": {
+      "cmd": "node .skilled/commands/scripts/validate-command-references.cjs",
+      "exit": 1,
+      "out": "FAIL  1 unresolved command reference(s):\n  .skilled/commands/speckit/assets/speckit-resume.yaml:104  [skill-asset]  .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json  - path does not exist on disk"
+    },
+    "fix": {
+      "old": "      if (/^\\.skilled\\/skills\\/system-deep-loop\\/runtime\\/database\\/[^/]+\\.sqlite$/.test(token)) continue;",
+      "new": "      if (/^\\.skilled\\/skills\\/system-deep-loop\\/runtime\\/database\\/[^/]+\\.sqlite$/.test(token)) continue;\n      // The spec-kit access-telemetry store is written on first use under a gitignored directory, so a clean checkout never holds it, like the deep-loop databases.\n      if (/^\\.skilled\\/skills\\/system-spec-kit\\/runtime\\/database\\//.test(token)) continue;"
+    },
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "pre-existing (critic)",
+    "critic_override": {
+      "verdict": "pre-existing",
+      "note": "`git show 21c4b325b5a:.skilled/commands/speckit/assets/speckit-resume.yaml | grep -n access-telemetry` already reports line 104, and the 014 goal records the same reference as BAT-18, present at base and handed to the coordinator. Both the YAML and the checker are outside the 378-file scope; the S9 failure is baseline debt, not a change in this range.",
+      "lane_severity": "P2"
+    }
+  }
+]

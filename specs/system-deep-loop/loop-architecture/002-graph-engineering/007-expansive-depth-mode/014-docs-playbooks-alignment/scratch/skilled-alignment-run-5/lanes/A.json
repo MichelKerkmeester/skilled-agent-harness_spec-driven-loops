@@ -1,0 +1,77 @@
+{
+  "lane": "A",
+  "findings": [
+    {
+      "id": 1,
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "line": 532,
+      "issue": "renderFrontierBlock emits the research-only focus instruction (\"Copy the Focus Area line exactly into this iteration record's \\\"focus\\\"\") for the review target too, immediately before the review-specific instruction added at line 536. A review prompt has no Focus Area line; prompt-pack-iteration.md.tmpl:14 owns that line for research only, and deep-review's iteration prompt carries the dimension instead. The leaf is told two different things about one field, and the second sentence repeats the first's reason clause verbatim.",
+      "evidence": {
+        "cmd": "node ${TMPDIR:-/tmp}/local-skilled-alignment-scratch/skilled-alignment-run-5/A/block-review.cjs  (seed target=review, then renderFrontierBlock({target:'review', dimension:'correctness'}))",
+        "exit": 0,
+        "out": "Current node: F-1-001 at depth 1 of 3, scope src/auth.ts. Review dimension for this node: correctness.\\nCopy the Focus Area line exactly into this iteration record's \"focus\", so the run can tell which node this iteration worked.\\nSet this iteration record's \"focus\" to \"Frontier node F-1-001: correctness\" and add \"frontierNodeId\":\"F-1-001\" to it, so the run can tell which node this iteration worked."
+      },
+      "fix": {
+        "old": "    `Copy the Focus Area line exactly into this iteration record's \"focus\", so the run can tell which node this iteration worked.`,\n  ];\n\n  if (mode === 'review') {",
+        "new": "    ...(mode === 'review'\n      ? []\n      : [`Copy the Focus Area line exactly into this iteration record's \"focus\", so the run can tell which node this iteration worked.`]),\n  ];\n\n  if (mode === 'review') {"
+      }
+    },
+    {
+      "id": 2,
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      "line": 2465,
+      "issue": "The comment above frontierNodeVisits states the frontier focus \"never repeats its question text\", but pickFrontierFocus at line 2491 appends \"): ${chosen.question}\" after the marker. What actually keeps a visit from resolving the question is the `Frontier node <id>` prefix meeting the equality matcher (buildRegistry line 2628, record.focus === question text), not the absence of the text - the durable WHY the comment was written to record is now false, and a maintainer who trusts it cannot see which property is load-bearing.",
+      "fix": {
+        "old": "// The frontier focus names the node and never repeats its question text: a\n// question resolves when an iteration's focus equals its text, so echoing the\n// text would close a node just by visiting it.",
+        "new": "// The frontier focus starts with the node marker and a question resolves only when\n// an iteration's focus equals its text, so the marker keeps a visit from closing\n// the node it visited even though the node's question text follows it."
+      }
+    },
+    {
+      "id": 3,
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts",
+      "line": 167,
+      "issue": "The suite's stated invariant (header: \"A run that never asks for it must render the same bytes\") cannot fail for the one default-path behavior this branch changes. writeFixture writes spec.md, the config, the strategy, the state log and the inbox, and creates no research/iterations/iteration-NNN.md, so parseIterationFile yields no iterationFiles and the leafNextFocus the reducer now passes into deriveNextFocusFromContinuity (reduce-state.cjs:2578-2590) is always empty. next-focus.txt is one of the six compared artifacts and deep-research/references/convergence/convergence.md:68 cites this suite by name as the proof that an absent flag keeps the default behavior.",
+      "evidence": {
+        "cmd": "node ${TMPDIR:-/tmp}/local-skilled-alignment-scratch/skilled-alignment-run-5/A/leaf-focus-probe.cjs  (reduceResearchState on the golden fixture, with and without an iterations/iteration-002.md carrying '## Recommended Next Focus')",
+        "exit": 0,
+        "out": "leaf iteration markdown present=false => NEXT FOCUS \"## 11. NEXT FOCUS\\nQ1: Which module owns the stop decision?\"\nleaf iteration markdown present=true => NEXT FOCUS \"## 11. NEXT FOCUS\\nRe-read the branch dispatch table\""
+      },
+      "fix": {
+        "recommendation": "Add an iterations/iteration-002.md carrying '## Recommended Next Focus' to writeFixture and regenerate the baselines on a tree that predates the depth-mode code, so next-focus.txt actually exercises the leaf signal; or narrow the header and convergence.md:68 to the inputs the fixture renders."
+      }
+    },
+    {
+      "id": 4,
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      "line": 2484,
+      "issue": "One file, two definitions of a node visit. pickFrontierFocus (line 2484) and the dashboard Revisits metric (line 3097) count every iteration record whose focus carries the marker, while applyFrontierBudget (lines 2512-2514) drops records whose status is error/failed/failure/timeout before counting. The review twin states the rule the budget follows - \"Only an attempt that produced evidence counts as a visit: an errored or timed out record is retried work\" (runtime/scripts/reduce-state.cjs:1951) - so a node whose only dispatch failed reads as visited for focus ranking and for Revisits while spending no budget, and the two consumers disagree about the same attempt.",
+      "fix": {
+        "recommendation": "Give the file one visit helper: pass the already-filtered records (or a filtered flag) into pickFrontierFocus and the Revisits line so ranking, the metric and the budget all count the same attempts."
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts"
+  ]
+}

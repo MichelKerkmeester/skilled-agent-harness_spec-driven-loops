@@ -7,7 +7,7 @@ trigger_phrases:
   - "fail-closed stop policy"
   - "runtime capability stopPolicy"
   - "optimizer invariant group"
-version: 1.11.0.6
+version: 1.11.1.0
 ---
 
 # Cross-Mode Anti-Convergence Contract
@@ -22,7 +22,7 @@ For review mode, the shipped config sets `antiConvergence.minIterations` to `2`,
 
 ## 2. HOW IT WORKS
 
-The review config declares the floor in `assets/deep-review-config.json`. Its optimizer-managed block marks `antiConvergence.convergenceMode` and `antiConvergence.stopPolicy` as locked fields while keeping the review loop's ordinary tunables (`convergenceThreshold`, `stuckThreshold`, `maxIterations`) separate.
+The review config declares the floor in `assets/deep-review-config.json`. Its optimizer-managed block marks `antiConvergence.convergenceMode`, `antiConvergence.depthMode` and `antiConvergence.stopPolicy` as locked fields while keeping the review loop's ordinary tunables (`convergenceThreshold`, `stuckThreshold`, `maxIterations`) separate.
 
 The runtime capability matrix declares `stopPolicy: "fail-closed"`. The shared runtime capability resolver rejects any matrix where `stopPolicy` is absent or not `fail-closed`, so callers cannot silently fall back to permissive stop behavior.
 

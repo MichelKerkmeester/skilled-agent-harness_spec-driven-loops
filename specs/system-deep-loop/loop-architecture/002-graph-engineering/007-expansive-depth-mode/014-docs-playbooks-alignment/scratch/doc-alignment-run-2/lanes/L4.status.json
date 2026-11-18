@@ -1,0 +1,11 @@
+{
+  "id": "L4",
+  "exitCode": 143,
+  "signal": null,
+  "reason": "exit 143",
+  "startedAt": "2026-11-18T01:10:08.875Z",
+  "endedAt": "2026-11-18T01:30:27.236Z",
+  "seconds": 1218.361,
+  "scratch": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/doc-alignment-run-2/L4",
+  "sessions": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/doc-alignment-run-2/L4/sessions"
+}

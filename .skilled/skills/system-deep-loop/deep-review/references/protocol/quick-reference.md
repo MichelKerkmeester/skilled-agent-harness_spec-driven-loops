@@ -9,7 +9,7 @@ trigger_phrases:
   - "review loop troubleshooting"
 importance_tier: normal
 contextType: general
-version: 1.11.6.0
+version: 1.11.7.0
 ---
 
 # Deep Review Quick Reference
@@ -158,7 +158,7 @@ Review mode stores its packet under the resolved local review path rooted at `{s
 | MAD Noise Floor | 0.25 | Latest ratio within noise floor |
 | Dimension Coverage | 0.45 | Every configured dimension (the four by default) plus required traceability protocols covered, with `minStabilizationPasses >= 1` |
 
-**Key defaults:** `maxIterations=7`, `convergenceThreshold=0.10`, `rollingStopThreshold=0.08`, `noProgressThreshold=0.05`, `stuckThreshold=2`, `minStabilizationPasses=1`
+**Key defaults:** `maxIterations=7`, `convergenceThreshold=0.10`, `rollingStopThreshold=0.08`, `noProgressThreshold=0.05`, `stuckThreshold=2`, `minIterations=2` (review floor, `antiConvergence.minIterations`), `minStabilizationPasses=1`
 
 **P0 override:** Any new P0 finding sets `newFindingsRatio >= 0.50`, blocking convergence.
 
@@ -201,7 +201,7 @@ Each @deep-review iteration:
 | Deeper review | Lower convergence (0.05), raise max iterations (10) |
 | Forced iteration ceiling | Set `--stop-policy=max-iterations` with the desired `--max-iterations` |
 | Faster completion | Raise convergence (0.15), lower max iterations (5) |
-| Focus on security | Specify `--dimensions security,correctness` |
+| Focus on security | Bind `review_dimensions` to `security,correctness` at setup (the setup answer or the `review_dimensions` marker); the command has no dimensions flag |
 | Broad coverage | Use all 4 default dimensions and allow the stabilization pass to run |
 
 ---

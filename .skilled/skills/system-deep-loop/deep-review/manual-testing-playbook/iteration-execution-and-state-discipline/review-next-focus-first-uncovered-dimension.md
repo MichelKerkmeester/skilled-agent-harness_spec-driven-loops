@@ -1,7 +1,7 @@
 ---
 title: "DRV-073 -- Review Next Focus names the first uncovered dimension"
 description: "This scenario validates that deep-review Next Focus, in the strategy and in the dashboard, names the first uncovered required dimension when the latest leaf's free text names no dimension, for `DRV-073`. It focuses on the review focus pick."
-version: 1.11.0.0
+version: 1.11.1.0
 ---
 
 # DRV-073 -- Review Next Focus names the first uncovered dimension
@@ -96,4 +96,4 @@ Command 1 exits 0 with the first-uncovered-dimension case passing. Command 2 exi
 - Playbook ID: DRV-073
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `iteration-execution-and-state-discipline/review-next-focus-first-uncovered-dimension.md`
-- Feature catalog status: this scenario does not cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/state-management/focus-hijack-guard.md` covers this scenario.

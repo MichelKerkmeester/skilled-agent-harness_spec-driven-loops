@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "2a951e14e05569fe5ae326a2b5482985cd668f94e3181a72b2d534beee5cf5e0",
+      "sha256": "6ab4b4aec79a6a34c006e69ed084d23ced6b5b11643f8ba4ca779aa1bca621b2",
       "section": "full"
     },
     {
@@ -37,17 +37,17 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "478762d7b6976a3a07b44bd8c2da76ec3f4d1004ef435fd618a7ef02635dbce3",
+      "sha256": "ba0a3f32702a0e2245a107bed68956ec9be5e3c0ebcb5e1d4aab06b0bfaebe1d",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "f8692fea76034cf72106e40d35d1f12c0dfeb007d9db1781c24abfeee57f07e9",
+      "sha256": "411f55b5d347ee562dfb14f075655ed763b29644516b157ae9d71b62c687ef01",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "sha256": "d34693f1ece4afc81e1d4e2503df45c6957bb2f8c330e91439930218c8ae23f6",
+      "sha256": "2d0de88c746f2b26e6db504308e66e0ac0007b9c791bdb2519a0f086597f241d",
       "section": "full"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "991d5858aa201ad13a65c4ed6cbf424d33dab6be015f31232345bc07f4902ebf",
+      "sha256": "6fa625d6568b3ebb4544ed361925fd8573059b324d1d6d5ab852693e115cca40",
       "section": "full"
     },
     {

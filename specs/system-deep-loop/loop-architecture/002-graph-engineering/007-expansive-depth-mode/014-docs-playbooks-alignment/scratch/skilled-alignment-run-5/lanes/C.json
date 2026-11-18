@@ -1,0 +1,145 @@
+{
+  "lane": "C",
+  "findings": [
+    {
+      "id": "C-01",
+      "surface": "S5",
+      "standard": "sk-doc/sk-create-readme",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
+      "line": 223,
+      "issue": "The VERIFICATION table's expected output is contradicted by the command it documents. The row says the script prints `PASS checked 24 script references across 2 workflow YAMLs`; it prints 27 (14 unique .cjs references in deep-research.yaml plus 13 in deep-review.yaml). The count grew when the expansive-depth steps (step_frontier_seed, step_frontier_admit, step_frontier_activate) added script references to the YAMLs, and the README's number was never carried forward. An operator running the documented proof path sees 27 where the doc promises 24 and cannot tell doc drift from a real regression. Same file already had its other derived counts corrected in this scope (29 features, 71 scenarios, 9 categories), so this row is the one count left behind.",
+      "evidence": {
+        "cmd": "bash .skilled/skills/system-deep-loop/deep-research/scripts/verify-yaml-script-paths.sh",
+        "exit": 0,
+        "out": "PASS checked 27 script references across 2 workflow YAMLs"
+      },
+      "fix": {
+        "old": "PASS checked 24 script references across 2 workflow YAMLs",
+        "new": "PASS checked 27 script references across 2 workflow YAMLs"
+      }
+    },
+    {
+      "id": "C-02",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+      "line": 186,
+      "issue": "The `## How It Was Checked` before-and-after row now records a number no run reproduces: `git grep -c -- '--depth-mode'` on `.skilled/commands/deep/research.md` returns 2, not the recorded 1. This scope's own edit added the second occurrence at research.md line 41 (`depth_mode` (default `default` unless `--depth-mode=expansive` is present)), turning the release entry's stated evidence into an un-reproducible claim. The changelog standard requires the How It Was Checked rows to hold what a real run produced.",
+      "evidence": {
+        "cmd": "git -c core.fsmonitor=false grep -c -- '--depth-mode' -- .skilled/commands/deep/research.md .skilled/commands/deep/review.md",
+        "exit": 0,
+        "out": ".skilled/commands/deep/research.md:2\n.skilled/commands/deep/review.md:2"
+      },
+      "fix": {
+        "old": "| `git grep -c -- '--depth-mode'` on the research command reference | No match, exit 1 | One match, the flag row |",
+        "new": "| `git grep -c -- '--depth-mode'` on the research command reference | No match, exit 1 | Two matches, the setup default line and the flag row |"
+      }
+    },
+    {
+      "id": "C-03",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+      "line": 174,
+      "issue": "Same drift as C-02 in the review entry: the before-and-after row states `--depth-mode` appears once in `.skilled/commands/deep/review.md`, and the scope's edit of review.md added a second occurrence at line 41. The recorded evidence no longer matches what a run returns.",
+      "evidence": {
+        "cmd": "git -c core.fsmonitor=false grep -c -- '--depth-mode' -- .skilled/commands/deep/research.md .skilled/commands/deep/review.md",
+        "exit": 0,
+        "out": ".skilled/commands/deep/research.md:2\n.skilled/commands/deep/review.md:2"
+      },
+      "fix": {
+        "old": "| Count of `--depth-mode` in the review command reference | 0 matches at the baseline commit | 1 match, the flag row |",
+        "new": "| Count of `--depth-mode` in the review command reference | 0 matches at the baseline commit | 2 matches, the setup default line and the flag row |"
+      }
+    },
+    {
+      "id": "C-04",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/changelog/v2.1.0.0.md",
+      "line": 25,
+      "issue": "The scope rewrote this bullet to split its sentences for human-voice compliance but carried a serial comma through the rewrite. `They are a run that is not complete, a fan-out config, and a value that is not a positive integer.` is a three-item list with a comma before `and`. The Human Voice Rules table bans it outright (`Oxford Comma Ban | , and | NEVER use`), and sk-create-changelog section 8.5 restates the ban. The voice gate passes (it counts Oxford commas as a deduction, not a hard blocker), so this is a residual style defect on a line the diff touched, not a gate failure.",
+      "evidence": {
+        "cmd": "python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .skilled/skills/system-deep-loop/changelog/v2.1.0.0.md --all",
+        "exit": 0,
+        "out": "25:128  review oxford-comma-candidate , and\n\n  hard blockers:          0\n  mechanical deductions:  -2\n  mechanical ceiling:     98/100"
+      },
+      "fix": {
+        "old": "a fan-out config, and a value",
+        "new": "a fan-out config and a value"
+      }
+    }
+  ],
+  "reviewed": [
+    "README.md",
+    ".skilled/skills/system-deep-loop/README.md",
+    ".skilled/skills/system-deep-loop/SKILL.md",
+    ".skilled/skills/system-deep-loop/description.json",
+    ".skilled/skills/system-deep-loop/hub-router.json",
+    ".skilled/skills/system-deep-loop/mode-registry.json",
+    ".skilled/skills/system-deep-loop/deep-research/README.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/README.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.0.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.1.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.2.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.3.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.4.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.5.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.6.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.17.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.12.0.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/completed-run-extension-flag.md",
+    ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md",
+    ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+    ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+    ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
+    ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+    ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
+    ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
+    ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/deep-research/scripts/verify-yaml-script-paths.sh",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts",
+    ".skilled/skills/system-spec-kit/runtime/cli/tests/deep-research-contract-parity.vitest.ts",
+    ".skilled/changelog/skilled/v4.1.0.0.md",
+    ".env.example",
+    ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+    ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+    ".skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md"
+  ]
+}

@@ -1,7 +1,7 @@
 ---
 title: "DLR-061 -- Source quality class derivation"
 description: "This scenario validates the derived quality_class on research SOURCE nodes for `DLR-061`. It focuses on the path-first classification at upsert and on the source-diversity signal that reads it."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DLR-061 -- Source quality class derivation
@@ -77,6 +77,7 @@ If the classification is wrong, check the order in `classifySourceLocation` firs
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `../../feature-catalog/coverage-graph/source-quality-class.md` | Feature-catalog entry for the derived source class |
 | `../../feature-catalog/coverage-graph/coverage-graph-signals.md` | Feature-catalog source for the signals that read the class |
 
 ### Implementation And Test Anchors

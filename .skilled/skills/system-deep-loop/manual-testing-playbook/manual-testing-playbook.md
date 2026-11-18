@@ -1,7 +1,7 @@
 ---
 title: "system-deep-loop: Manual Testing Playbook"
 description: "Operator-facing reference for manually validating system-deep-loop hub routing, advisor integration, backend discrimination, state discipline, and per-mode artifact ownership against the live skill registry."
-version: "1.2.3.0"
+version: "1.2.4.0"
 ---
 
 # system-deep-loop: Manual Testing Playbook
@@ -32,7 +32,7 @@ Canonical package artifacts:
 
 This playbook validates the `system-deep-loop` parent-skill hub through the operator-scenario set enumerated in Section 6 (Category Index) and Section 8 (Scenario Directory), which are the source of truth for the current scenario and category totals. Each scenario keeps its stable `{PREFIX}-NNN` ID in a dedicated per-scenario file whose YAML frontmatter carries the typed routing gold and whose body holds the full execution contract. A separate `compiled-routing/` directory carries one routing-gold bundle (`DL-CR-001`) outside this operator-scenario set; it is exempt from this playbook's contract and scored elsewhere.
 
-Coverage note: the playbook covers the hub's registry-driven routing at version `2.0.0.0`. It exercises:
+Coverage note: the playbook covers the hub's registry-driven routing at version `2.1.6.0`. It exercises:
 - Dominant-intent routing for the lexical modes: `research` and `review`.
 - Explicit mode-hint override routing, such as `research: <request>`.
 - Advisor integration: the single advisor identity `system-deep-loop`, lexical scoring, and no false fire on ordinary code-edit prompts.
@@ -62,7 +62,7 @@ Coverage note: the playbook covers the hub's registry-driven routing at version 
 1. Working directory is the repository root.
 2. The hub skill is present at `.skilled/skills/system-deep-loop/`.
 3. `.skilled/skills/system-deep-loop/SKILL.md` states that `mode-registry.json` is the single source of truth and that the hub holds no per-mode convergence, state, or synthesis logic.
-4. `.skilled/skills/system-deep-loop/mode-registry.json` contains exactly 3 active modes in its `modes` array.
+4. `.skilled/skills/system-deep-loop/mode-registry.json` contains exactly 2 active modes in its `modes` array.
 5. The skill advisor at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` is callable when advisor scenarios are executed.
 6. The orchestrator runtime can invoke `Skill(system-deep-loop)` and can run `/deep:*` command prompts, or the operator can capture equivalent dry-run routing transcripts.
 7. Operator evidence is written under `/tmp/dlw-<SCENARIO-ID>/` and never into project source paths unless a scenario explicitly states the mode's real artifact-root contract.

@@ -1,7 +1,7 @@
 ---
 title: "DR-070 -- Frontier admission prunes each proposal with its reason"
 description: "This scenario validates that each failing admission check prunes a leaf proposal with that check's own reason and that only an admitted proposal reaches the research inbox, for `DR-070`."
-version: 1.16.0.0
+version: 1.16.1.0
 ---
 
 # DR-070 -- Frontier admission prunes each proposal with its reason
@@ -54,7 +54,7 @@ Operators run the exact commands below and confirm the six reasons, the prune ca
 
 ### Expected
 
-Command 1 prints 13 lines. Every one of the six reason strings appears, because some reasons are returned from more than one guard. Command 2 prints `Tests  7 passed | 17 skipped (24)`, with seven prune rows: two for `relevance`, and one each for `dedupe`, `depth`, `fanout`, `budget` and `cycle`. Command 3 prints `Tests  1 passed | 23 skipped (24)`, and that case asserts one inbox row with `origin: "frontier"` and one open store row. Command 4 prints `Tests  1 passed | 23 skipped (24)`, and that case asserts a store row with no inbox line.
+Command 1 prints 14 lines. Every one of the six reason strings appears, because some reasons are returned from more than one guard. Command 2 prints `Tests  7 passed | 17 skipped (24)`, with seven prune rows: two for `relevance`, and one each for `dedupe`, `depth`, `fanout`, `budget` and `cycle`. Command 3 prints `Tests  1 passed | 23 skipped (24)`, and that case asserts one inbox row with `origin: "frontier"` and one open store row. Command 4 prints `Tests  1 passed | 23 skipped (24)`, and that case asserts a store row with no inbox line.
 
 ### Evidence
 
@@ -97,4 +97,4 @@ Command 1 prints 13 lines. Every one of the six reason strings appears, because 
 - Playbook ID: DR-070
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md`
-- Feature catalog status: No entry in `feature-catalog/` covers the expansive admission step yet, so this scenario cites none.
+- Feature catalog status: `feature-catalog/convergence/expansive-depth-mode.md` covers the expansive admission step in its Seeding And Admission section.

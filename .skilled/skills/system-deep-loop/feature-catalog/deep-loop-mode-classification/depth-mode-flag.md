@@ -6,7 +6,7 @@ trigger_phrases:
   - "depth mode flag"
   - "expansive depth flag"
   - "deep loop depth mode"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Depth mode flag (--depth-mode)
@@ -25,7 +25,7 @@ version: 1.0.1.0
 
 ### Flag Routing
 
-The command workflow reads `--depth-mode` and binds it as `depth_mode`. Only the value `expansive` reaches the runtime. `runtime/scripts/convergence.cjs` adds `depthMode` to its stop-decision config only when the value is `expansive`, and `runtime/scripts/fanout-run.cjs` passes `depthMode` to fan-out lineages only when the value is `expansive`. A default run carries no depth key in either place.
+The command workflow reads `--depth-mode` and binds it as `depth_mode`. The runtime acts only on the value `expansive`. `runtime/scripts/convergence.cjs` adds `depthMode` to its stop-decision config only when the value is `expansive`, and `runtime/scripts/fanout-run.cjs` passes `depthMode` to fan-out lineages only when the value is `expansive`. A default run carries no depth key in either place.
 
 ### Packet Behavior
 

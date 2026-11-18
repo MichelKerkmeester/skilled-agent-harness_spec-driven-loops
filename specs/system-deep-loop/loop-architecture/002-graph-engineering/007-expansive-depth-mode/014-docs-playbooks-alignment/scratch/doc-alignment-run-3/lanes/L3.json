@@ -1,0 +1,111 @@
+{
+  "lane": "L3",
+  "findings": [
+    {
+      "id": "L3-1",
+      "surface": "D2",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/commands/deep/assets/deep-review.yaml",
+      "line": 1237,
+      "issue": "step_check_convergence promises the script's complete order ('The script applies this fixed order, first match wins') and runs its list 1, 1a, 2, 3, 3a, 4, 4a, 5, 6. convergence.cjs executes one more stage between the floor (4a) and the legal-stop gates (5): when depthMode is expansive and the registry still holds an open or active frontier node, the candidate is turned into CONTINUE with reasonDetail 'frontierOpen' (convergence.cjs:1184-1197). The omission is load-bearing because this same file relies on that veto at line 1373 ('The frontierOpen stop veto already returns CONTINUE while one is open, so this gate records the order'), so a reader of the documented fixed order cannot place the expansive stop veto at all. Proposed insert after the 4a line: '4b. if depth_mode == expansive AND an open or active frontier node remains: CONTINUE (frontierOpen). The cap, failures, stuck recovery, mode-off, max-iterations and the floor above it still win.'",
+      "evidence": {
+        "cmd": "rg -n \"frontierOpen|first match wins\" .skilled/commands/deep/assets/deep-review.yaml .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "convergence.cjs:1196:    return emit('CONTINUE', null, 'frontierOpen', gatesAt(false), []);\nconvergence.cjs:1468/1634: frontierOpen = the count of registry.frontier nodes with status open or active\ndeep-review.yaml:1237:          The script applies this fixed order, first match wins:\ndeep-review.yaml:1373:              frontier_gate: ... The frontierOpen stop veto already returns CONTINUE while one is open ..."
+      }
+    },
+    {
+      "id": "L3-2",
+      "surface": "D2",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/assets/deep-review.yaml",
+      "line": 576,
+      "issue": "step_extend_completed_run derives the extension warning from config.antiConvergence.stopPolicy, but nothing in this workflow ever writes that key: step_create_config populates the top-level stopPolicy (line 885), the shipped template's nested value is the hardcoded string 'fail-closed' (deep-review-config.json:15), and the runtime reads the top-level key (convergence.cjs:1159 and 1396; the workflow's own extract at line 1137 does the same). antiConvergence.stopPolicy is therefore never 'convergence', extension_warning is always null, and an --extend on a convergence-stopping run stays silent where the step says the warning is printed and never refuses the extension.",
+      "evidence": {
+        "cmd": "rg -n \"antiConvergence\\.stopPolicy|\\\"stopPolicy\\\": \\\"fail-closed\\\"|stopPolicy: \\\"\\{stop_policy\\}\\\"|config\\.stopPolicy ===\" .skilled/commands/deep/assets/deep-review.yaml .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "deep-review-config.json:15:    \"stopPolicy\": \"fail-closed\"\nconvergence.cjs:1159:  if (config.stopPolicy === 'max-iterations') {\nconvergence.cjs:1396:    stopPolicy: config.stopPolicy === 'max-iterations' ? 'max-iterations' : 'convergence',\ndeep-review.yaml:576:            const stopPolicy = config.antiConvergence && config.antiConvergence.stopPolicy || \"convergence\";\ndeep-review.yaml:885:          stopPolicy: \"{stop_policy}\""
+      },
+      "fix": {
+        "old": "            const stopPolicy = config.antiConvergence && config.antiConvergence.stopPolicy || \"convergence\";",
+        "new": "            const stopPolicy = config.stopPolicy === \"max-iterations\" ? \"max-iterations\" : \"convergence\";"
+      }
+    },
+    {
+      "id": "L3-3",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+      "line": 42,
+      "issue": "The PRE-BOUND SETUP ANSWERS sample shows maxIterations: 10, which is the deep-research default. The review default is 7, as this same file states in the Default Resolution Table (line 78), the consolidated defaults line (line 150) and the store step (line 238), and as the shipped review template sets (deep-review-config.json:9). Because marker fields outrank $ARGUMENTS flags (line 59), a caller that copies this block verbatim gets 10 iterations on a review run the doc says defaults to 7.",
+      "evidence": {
+        "cmd": "rg -n -F \"maxIterations: 10\" .skilled/commands/deep/assets/deep-review-presentation.txt; rg -n '\"maxIterations\": 7' .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json; rg -n \"maxIterations=7\" .skilled/commands/deep/assets/deep-review-presentation.txt",
+        "exit": 0,
+        "out": "42:  maxIterations: 10\n9:  \"maxIterations\": 7,\n150:   +-- Defaults: maxIterations=7, convergenceThreshold=0.10, ..."
+      },
+      "fix": {
+        "old": "  maxIterations: 10",
+        "new": "  maxIterations: 7"
+      }
+    },
+    {
+      "id": "L3-4",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+      "line": 19,
+      "issue": "Tier 1 says it persists deep-review-config.json with the given 'shape', and the list carries antiConvergence.convergenceMode and even the reserved antiConvergence.divergent, but omits antiConvergence.depthMode and the whole expansiveDepth block. The workflow writes both (deep-review.yaml:878-883) and the review reducer only projects a frontier at all when config.antiConvergence.depthMode === 'expansive' (reduce-state.cjs:2176, 2887). A --depth-mode=expansive run persisted to this documented shape seeds frontier nodes that the reducer then never reads and never vetoes a stop on, i.e. explicitly requested expansive depth silently becomes a no-op. The shape should name antiConvergence.depthMode and expansiveDepth.maxDepth/maxChildrenPerNode/budgetSplit/maxFrontierNodes.",
+      "evidence": {
+        "cmd": "rg -n \"antiConvergence\\.depthMode|expansiveDepth\\.\" .skilled/commands/deep/assets/deep-review.yaml; rg -n \"antiConvergence\\?\\.depthMode\" .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "exit": 0,
+        "out": "deep-review.yaml:878:          antiConvergence.depthMode: \"{depth_mode}\"\ndeep-review.yaml:879:          expansiveDepth.maxDepth: 3\ndeep-review.yaml:880:          expansiveDepth.maxChildrenPerNode: 6\ndeep-review.yaml:881:          expansiveDepth.budgetSplit: { depth1: 0.5, depth2: 0.35, depth3: 0.15 }\ndeep-review.yaml:883:          expansiveDepth.maxFrontierNodes: \"{max_iterations}\"\nreduce-state.cjs:2176:  const frontier = config?.antiConvergence?.depthMode === 'expansive'\nreduce-state.cjs:2887:    config?.antiConvergence?.depthMode === 'expansive'"
+      }
+    },
+    {
+      "id": "L3-5",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+      "line": 31,
+      "issue": "The marker block is presented as the complete field set of the PRE-BOUND SETUP ANSWERS block, and it lists the other internal fan-out field (config.fanout_lineage_artifact_dir, line 90 and line 138) but never frontier_scope. fanout-run.cjs writes 'depth_mode: expansive' followed by 'frontier_scope: <ids|none>' into that same block for every expansive fan-out lineage (line 1852, plus the prompt params at 1730/1745), and neither review doc mentions frontier_scope at all, so under the block's own rule ('Unknown fields are warnings, not errors') the only field that names a lineage's dealt frontier nodes is parsed as unknown and the review workflow never binds it. The schema should carry frontier_scope beside review_focus.",
+      "evidence": {
+        "cmd": "rg -n -F \"frontier_scope\" .skilled/commands/deep/assets/deep-review-presentation.txt .skilled/commands/deep/assets/deep-review.yaml || echo \"no frontier_scope in either review doc\"; rg -n -F \"frontier_scope: \" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "exit": 0,
+        "out": "no frontier_scope in either review doc\n1730:    params.push(`  frontier_scope: ${(options.frontierScope || []).join(', ') || 'none'}`);\n1745:          ...(options.depthMode === 'expansive' ? [`frontier_scope: ${(options.frontierScope || []).join(', ') || 'none'}`] : []),\n1852:    ...(options.depthMode === 'expansive' ? ['depth_mode: expansive', `frontier_scope: ${(options.frontierScope || []).join(', ') || 'none'}`] : []),"
+      }
+    },
+    {
+      "id": "L3-6",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+      "line": 432,
+      "issue": "'Each dimension can be individually included or excluded' holds only for the strategy dimension queue and the stop gate (which read config.reviewDimensions). Under --depth-mode=expansive the reducer builds its dimension universe as the four canonical dimensions plus the configured custom names unconditionally (reduce-state.cjs:1225), so an excluded canonical dimension stays in registry.dimensionCoverage, a frontier node is dispatched to nextDimension taken from that universe (reduce-state.cjs:2026), and the node only becomes 'answered' once every dimension of the universe has evidence (reduce-state.cjs:2013-2015). An operator who excludes a canonical dimension therefore still has frontier nodes dispatched to it and keeps the frontier open on it, which the standalone claim does not say.",
+      "evidence": {
+        "cmd": "rg -n \"const universe = |REQUIRED_DIMENSIONS = |coveredDimensions.length === universe.length|nextDimension: universe.find\" .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "exit": 0,
+        "out": "24:const REQUIRED_DIMENSIONS = ['correctness', 'security', 'traceability', 'maintainability'];\n1225:  const universe = [...REQUIRED_DIMENSIONS];\n2015:    const status = stillOpen && coveredDimensions.length === universe.length ? 'answered' : node.status;\n2026:      nextDimension: universe.find((dimension) => !covered.has(dimension)) ?? null;"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
+    ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
+    ".skilled/commands/deep/review.md",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/commands/deep/assets/deep-research-presentation.txt"
+  ]
+}

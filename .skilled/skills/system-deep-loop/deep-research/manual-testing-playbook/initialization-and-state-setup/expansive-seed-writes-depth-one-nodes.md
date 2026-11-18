@@ -1,7 +1,7 @@
 ---
 title: "DR-069 -- Expansive seed writes depth-one nodes before iteration one"
 description: "This scenario validates that the expansive seed step runs before the fan-out spawn and after config creation, and that a repeated seed does not decompose the topic a second time, for `DR-069`."
-version: 1.16.0.0
+version: 1.16.1.0
 ---
 
 # DR-069 -- Expansive seed writes depth-one nodes before iteration one
@@ -53,7 +53,7 @@ Operators run the exact commands below and confirm the order of the seed step in
 
 ### Expected
 
-Command 1 prints four lines in file order. The first `step_frontier_seed` line comes before the `step_fanout_spawn` line, and the second `step_frontier_seed` line comes after the `step_create_config` line. Command 2 prints `Tests  2 passed | 20 skipped (22)`, with the cases `seeds the frontier before fan-out spawns` and `seeds the single-executor frontier right after the config exists` passing. Command 3 prints `Tests  2 passed | 22 skipped (24)`, with the cases `seedNodes forces root parents` and `seedNodes seeds a run once and skips a second decomposition` passing.
+Command 1 prints four lines in file order. The first `step_frontier_seed` line comes before the `step_fanout_spawn` line, and the second `step_frontier_seed` line comes after the `step_create_config` line. Command 2 prints `Tests  4 passed | 30 skipped (34)`, because the filter also matches the two review seed cases. The research cases `seeds the frontier before fan-out spawns` and `seeds the single-executor frontier right after the config exists` pass. Command 3 prints `Tests  2 passed | 22 skipped (24)`, with the cases `seedNodes forces root parents` and `seedNodes seeds a run once and skips a second decomposition` passing.
 
 ### Evidence
 
@@ -98,4 +98,4 @@ Command 1 prints four lines in file order. The first `step_frontier_seed` line c
 - Playbook ID: DR-069
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md`
-- Feature catalog status: No entry in `feature-catalog/` covers the expansive seed step yet, so this scenario cites none.
+- Feature catalog status: `feature-catalog/convergence/expansive-depth-mode.md` covers the expansive seed step in its Seeding And Admission section.

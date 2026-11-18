@@ -1,0 +1,3 @@
+2026-11-18T00:57:48Z skilled-alignment-run-3 lanes A and B past 20 minutes: TERM sent to PID trees A 50463/50478/52313 and B 50465/50477/51890; lane D finished on its own at 1223s just before its TERM (its PIDs were already gone)
+2026-11-18T01:18:27Z skilled-alignment-run-3 critic past 20 minutes: TERM sent to the critic PID tree under runner 93966: 29790 86538 32992 24997 30336 26833 90151 94679 81307 33106 32715 16590 27334 84019 35906 25569 36785 93991 94433 4852 35487 29303 36884 36887 32873 33319 94007 34216 10577 32008 
+2026-11-18T01:20:39Z critic opencode run 93991 ignored TERM; KILL sent

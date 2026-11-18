@@ -6,14 +6,14 @@ trigger_phrases:
   - "expansive depth review"
   - "review frontier mode"
   - "review frontier-nodes"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
 
 ## 1. OVERVIEW
 
-`--depth-mode` takes `default` or `expansive`. A review without the flag is unchanged. `expansive` seeds depth-one sub-target nodes from the review target before iteration 1, admits leaf `frontier_proposal` rows under the same caps as research, keeps node status in `review/frontier-nodes.jsonl`, and holds open nodes as `searchDebt`. The live pilot runs that would show this mode on real targets are still open, so this page describes the shipped code and its tests and records no pilot result.
+`--depth-mode` takes `default` or `expansive`. A review without the flag is unchanged. `expansive` seeds depth-one sub-target nodes from the review target before iteration 1, admits leaf `frontier_proposal` rows under the same caps as research, keeps node status in `review/frontier-nodes.jsonl`, and holds open nodes as `searchDebt`. One live review pilot ran. Its depth-1 budget check passed, but its stop criterion failed: the root fan-out cap of 6, since raised to 8 for a review seed, pruned a seventh depth-1 node, and three of six lineages stopped on `maxIterationsReached`. This page describes the shipped code and its tests.
 
 ---
 
@@ -21,11 +21,11 @@ version: 1.0.1.0
 
 ### Seeding And Admission
 
-The expansive run seeds depth-one sub-target nodes from the review target before iteration 1. Leaf `frontier_proposal` rows are admitted under depth, fan-out, budget, dedupe and cycle caps. Merge commits are pruned as `merge-no-own-diff`, and index rebuilds are pruned as `generated-artifact`.
+The expansive run seeds depth-one sub-target nodes from the review target before iteration 1. Leaf `frontier_proposal` rows are admitted under relevance, dedupe, depth, fan-out, budget and cycle checks, in that order. Merge commits are pruned as `merge-no-own-diff`, and index rebuilds are pruned as `generated-artifact`.
 
 ### Dimension Coverage
 
-The active node's next uncovered dimension is dispatched. A node needs one iteration per configured dimension, so `--max-iterations` should be at least `ceil(nodes / lineages) * dimensions` for the depth reached.
+The active node's next uncovered dimension is dispatched. A node needs one iteration per dimension in its universe, the four canonical dimensions plus any custom name. Each depth band starts from its `budgetSplit` share of `--max-iterations` (0.5, 0.35 and 0.15), plus any share an earlier band left unspent once that band holds no open node, so fund the depth-1 band with at least `2 * ceil(nodes / lineages) * dimensions`.
 
 ### Stop Behavior
 
@@ -50,7 +50,7 @@ Fan-out lineages receive a share of the seeded nodes. `runtime/scripts/fanout-me
 | `.skilled/commands/deep/review.md` | Command doc | The `--depth-mode` flag row. |
 | `.skilled/commands/deep/assets/deep-review.yaml` | Command workflow | The `depth_mode` input, the frontier seed step and the config keys. |
 | `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json` | Config | `antiConvergence.depthMode`, the `expansiveDepth` block and the locked `depthMode` field. |
-| `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` | Script | Admits review proposals as node-store rows and open `searchDebt` entries. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` | Script | Admits review proposals as node-store rows; the reducer files the nodes it leaves open as `searchDebt`. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Script | Reads the review frontier, the close rule and the per-node dimension cover. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Script | Applies the frontier-open veto to review stop candidates. |
 | `.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` | Script | Pivots only once the frontier is terminal. |

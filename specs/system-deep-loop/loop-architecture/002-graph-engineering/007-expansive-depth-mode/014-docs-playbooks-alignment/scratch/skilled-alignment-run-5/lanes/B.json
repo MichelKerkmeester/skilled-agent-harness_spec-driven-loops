@@ -1,0 +1,140 @@
+{
+  "lane": "B",
+  "findings": [
+    {
+      "id": "B-1",
+      "surface": "S4",
+      "standard": "sk-doc/sk-create-manual-testing-playbook",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/next-focus-ignores-answered-free-text.md",
+      "line": 102,
+      "issue": "The scenario still declares it has no catalogue entry, but the curated entry `deep-research/feature-catalog/state-management/focus-hijack-guard.md` names DR-066 as the scenario that proves it, and this change updated eleven sibling scenarios to cite their entry. The exception recorded in the ALWAYS rule §8.7 is now false, so the catalog→playbook pair is one-directional.",
+      "evidence": {
+        "cmd": "rg -n \"Feature catalog status\" <scenario>; rg -n \"next-focus-ignores-answered-free-text\" .skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/focus-hijack-guard.md",
+        "exit": 0,
+        "out": "next-focus-ignores-answered-free-text.md:102:- Feature catalog status: this scenario does not cite a specific catalog entry.\nfocus-hijack-guard.md:47:| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/next-focus-ignores-answered-free-text.md` | Manual playbook | DR-066: Next Focus skips answered free text and status sentences. |"
+      },
+      "fix": {
+        "old": "- Feature catalog status: this scenario does not cite a specific catalog entry.",
+        "new": "- Feature catalog status: `feature-catalog/state-management/focus-hijack-guard.md` covers the Next Focus free-text guard."
+      }
+    },
+    {
+      "id": "B-2",
+      "surface": "S4",
+      "standard": "sk-doc/sk-create-manual-testing-playbook",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/review-next-focus-first-uncovered-dimension.md",
+      "line": 99,
+      "issue": "Same stale exception on the review side: `deep-review/feature-catalog/state-management/focus-hijack-guard.md` names DRV-073 as its manual-playbook proof, so the scenario's claim that it cites no catalogue entry is wrong and the link only works in one direction.",
+      "evidence": {
+        "cmd": "rg -n \"Feature catalog status\" <scenario>; rg -n \"review-next-focus-first-uncovered-dimension\" .skilled/skills/system-deep-loop/deep-review/feature-catalog/state-management/focus-hijack-guard.md",
+        "exit": 0,
+        "out": "review-next-focus-first-uncovered-dimension.md:99:- Feature catalog status: this scenario does not cite a specific catalog entry.\nfocus-hijack-guard.md:41:| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/review-next-focus-first-uncovered-dimension.md` | Manual playbook | DRV-073: Review Next Focus names the first uncovered dimension. |"
+      },
+      "fix": {
+        "old": "- Feature catalog status: this scenario does not cite a specific catalog entry.",
+        "new": "- Feature catalog status: `feature-catalog/state-management/focus-hijack-guard.md` covers the review Next Focus free-text guard."
+      }
+    },
+    {
+      "id": "B-3",
+      "surface": "S4",
+      "standard": "sk-doc/sk-create-manual-testing-playbook",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 9,
+      "issue": "The root playbook was edited by this change but still lacks the result-persistence completion marker the playbook standard §4 anchors a run's PASS/FAIL/SKIP outcome, reason and evidence paths to; the operator validator reports it as an advisory warning, and the hub root and the runtime root already carry the block, so this root is the odd one out in the same skill.",
+      "evidence": {
+        "cmd": "node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook; grep -c MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT <root>",
+        "exit": 0,
+        "out": "PASS package=system-deep-loop/deep-research tier=FAIL_CLOSED scenarios=71 categories=9 operator=71 routing_gold_excluded=0 violations=0 warnings=2\n  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker\n(grep: 0 matches, exit 1; the hub root matches once)"
+      },
+      "fix": {
+        "old": "# deep-research: Manual Testing Playbook\n\n> **EXECUTION POLICY**:",
+        "new": "# deep-research: Manual Testing Playbook\n\n<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->\n> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`\n> outcome and reason are persisted into\n> `.skilled/skills/system-deep-loop/benchmark/reports/<dated-run-label>/`.\n\n> **EXECUTION POLICY**:"
+      }
+    },
+    {
+      "id": "B-4",
+      "surface": "S4",
+      "standard": "sk-doc/sk-create-manual-testing-playbook",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 9,
+      "issue": "The deep-review root playbook has the same gap: no result-persistence marker, so the standard's run-record contract has no declared home in this package even though the shared benchmark tree and the two sibling roots define one. The validator reports the missing marker as an advisory warning, and this change already touches the package root playbook.",
+      "evidence": {
+        "cmd": "node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook; grep -c MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT <root>",
+        "exit": 0,
+        "out": "PASS package=system-deep-loop/deep-review tier=FAIL_CLOSED scenarios=69 categories=10 operator=69 routing_gold_excluded=0 violations=0 warnings=3\n  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker\n(grep: 0 matches, exit 1)"
+      },
+      "fix": {
+        "old": "# deep-review: Manual Testing Playbook\n\n> **EXECUTION POLICY**:",
+        "new": "# deep-review: Manual Testing Playbook\n\n<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->\n> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`\n> outcome and reason are persisted into\n> `.skilled/skills/system-deep-loop/benchmark/reports/<dated-run-label>/`.\n\n> **EXECUTION POLICY**:"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/README.md",
+    ".skilled/skills/system-deep-loop/SKILL.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.0.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.1.0.md",
+    ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md",
+    ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/deep-research/README.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/initialization.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/focus-hijack-guard.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/quality-guards.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/next-focus-ignores-answered-free-text.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/focus-alignment-and-findings-gate-read-leaf-fields.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+    ".skilled/skills/system-deep-loop/deep-review/README.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/state-management/focus-hijack-guard.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-review-stop.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-min-iterations-floor.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/custom-dimension-setup-and-universe.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-and-node-dimension-coverage.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/review-next-focus-first-uncovered-dimension.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/review-depth-v2-rollout/stop-gate-custom-dimension-coverage.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
+    ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/divergent-council-quorum-retry.md",
+    ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/coverage-graph/source-quality-class-derivation.md",
+    ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/executor/landed-iteration-skips-redispatch.md",
+    ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/executor/research-claude-config-dir.md",
+    ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/prompt-rendering/research-prompt-pack-contract.md"
+  ]
+}

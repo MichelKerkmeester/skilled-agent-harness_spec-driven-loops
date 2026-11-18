@@ -9,7 +9,7 @@ trigger_phrases:
   - "review iteration file structure"
 importance_tier: important
 contextType: implementation
-version: 1.11.4.0
+version: 1.11.5.0
 ---
 
 # Deep Review State Format
@@ -31,7 +31,7 @@ The review packet is reproduced from disk on every resume, so each file's format
 - Debugging JSONL reducer output or auditing schema-version transitions.
 - Authoring fixtures that need to round-trip through the reducer.
 
-The deep review loop uses 9 state files under the resolved `{artifact_dir}/` owned by the target spec:
+The deep review loop uses 9 state files under the resolved `{artifact_dir}/` owned by the target spec, and a run started with `--depth-mode=expansive` adds a tenth, `frontier-nodes.jsonl`:
 
 | File | Format | Mutability |
 |------|--------|------------|
@@ -44,6 +44,7 @@ The deep review loop uses 9 state files under the resolved `{artifact_dir}/` own
 | `resource-map.md` | Markdown | Emitted once at synthesis unless `resource_map.emit` is false |
 | `review-report.md` | Markdown | Updated at synthesis |
 | `iterations/iteration-NNN.md` | Markdown | Write-once |
+| `frontier-nodes.jsonl` | JSON Lines | Append-only, expansive depth only (see Frontier Node Store) |
 
 ```text
 {artifact_dir}/
@@ -138,7 +139,7 @@ Created during initialization. Not modified after creation.
 | parentSessionId | string \| null | `null` | Parent lineage reference for restart flows |
 | lineageMode | string | `"new"` | `new`, `resume`, `restart`, `completed-continue` (set by `--extend=N`). The current runtime never emits `fork` |
 | generation | number | 1 | Lineage generation number, incremented on `restart`, unchanged on `resume` |
-| continuedFromRun | number \| null | `null` | Count of completed iteration records at the lifecycle boundary (set on `resume` and `restart`) |
+| continuedFromRun | number \| null | `null` | Count of completed iteration records when `--extend=N` reopened a completed run (`completed-continue`). A new run or a restart writes `null`, and a resume keeps the stored value |
 | maxIterations | number | 7 | Hard cap on loop iterations |
 | convergenceThreshold | number | 0.10 | Stop when severity-weighted new findings ratio below this |
 | stuckThreshold | number | 2 | Consecutive no-progress iterations before recovery |
@@ -150,6 +151,8 @@ Created during initialization. Not modified after creation.
 | releaseReadinessState | string | `"in-progress"` | `in-progress`, `converged`, `release-blocking` |
 | fileProtection | object | -- | Mutability declarations (see protection levels below) |
 | reducer | object | -- | Canonical reducer inputs, outputs, and metrics names |
+| antiConvergence | object | `{ minIterations: 2, convergenceMode: "default", depthMode: "default", stopPolicy: "fail-closed" }` | Anti-convergence settings: the review iteration floor, the convergence mode and the depth mode |
+| expansiveDepth | object | `{ maxDepth: 3, maxChildrenPerNode: 6, budgetSplit: {depth1: 0.5, depth2: 0.35, depth3: 0.15}, maxFrontierNodes }` | Caps for `--depth-mode=expansive`; `maxFrontierNodes` is set to `maxIterations` at config creation |
 
 ### File Protection Levels
 

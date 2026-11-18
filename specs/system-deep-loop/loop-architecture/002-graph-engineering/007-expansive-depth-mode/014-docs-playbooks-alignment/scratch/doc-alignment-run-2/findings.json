@@ -1,0 +1,362 @@
+[
+  {
+    "id": "C1",
+    "source_id": "C1",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/commands/deep/assets/deep-review.yaml",
+    "line": "1244",
+    "issue": "The review workflow's stop-order list claims to give the whole decision (\"the script applies this fixed order, first match wins\") but stops at the floor and jumps to the legal-stop gates. convergence.cjs applies the frontierOpen veto to every review candidate after minIterations and before the gates (lines 1192-1196), and because a review clean candidate is a hard stop that veto is the one that matters most. The file's own divergent frontier_gate at line 1373 states the veto already returns CONTINUE while a node is open, so a reader of the ordered list believes an open frontier cannot hold a clean review stop when it does.",
+    "evidence": {
+      "cmd": "rg -n \"frontierOpen|4a\\. if iteration_count|5\\. the nine legal-stop gates\" .skilled/commands/deep/assets/deep-review.yaml .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "exit": 0,
+      "out": ".skilled/commands/deep/assets/deep-review.yaml:1244:          4a. if iteration_count < min_iterations: CONTINUE (minIterationsNotReached). ...\n.skilled/commands/deep/assets/deep-review.yaml:1245:          5. the nine legal-stop gates run on a candidate: convergenceGate, ...\n.skilled/commands/deep/assets/deep-review.yaml:1373:              frontier_gate: \"Under depth_mode == 'expansive' the pivot is eligible only once registry.frontier holds no open or active node. The frontierOpen stop veto already returns CONTINUE while one is open ...\"\n.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1196:    return emit('CONTINUE', null, 'frontierOpen', gatesAt(false), []);"
+    },
+    "fix": {
+      "old": "          4a. if iteration_count < min_iterations: CONTINUE (minIterationsNotReached). min_iterations is config.minIterations, else antiConvergence.minIterations, capped at max_iterations; like research, the floor runs on a candidate before the legal-stop gates.",
+      "new": "          4a. if iteration_count < min_iterations: CONTINUE (minIterationsNotReached). min_iterations is config.minIterations, else antiConvergence.minIterations, capped at max_iterations; like research, the floor runs on a candidate before the legal-stop gates.\n          4b. if depth_mode == \"expansive\" and registry.frontier holds an open or active node: CONTINUE (frontierOpen). The veto covers every review candidate, all_dimensions_clean included, and runs after the floor and before the legal-stop gates."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-1",
+    "source_id": "L1-1",
+    "lane": "L1",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".claude/agents/deep-research.md",
+    "line": "286",
+    "issue": "The prune enumeration is presented as the complete set of admission outcomes but omits the sixth check. frontier-admit runs the checks in one fixed order — relevance, dedupe, depth, fan-out, budget, then acyclicity — and returns 'cycle' when the parent chain loops, so a proposal that closes onto an ancestor is pruned instead of reaching the inbox. The research workflow's own admission step names all six ('relevance, dedupe, depth, fan-out, budget, cycle'); the doc's list stops at budget.",
+    "evidence": {
+      "cmd": "rg -n \"// [1-6]\\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml",
+      "exit": 0,
+      "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe\n.skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);\n.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,\n.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six"
+    },
+    "fix": {
+      "old": "repeats a known question, or would exceed the depth, fan-out or budget caps.",
+      "new": "repeats a known question, would exceed the depth, fan-out or budget caps, or closes a cycle back onto its own ancestry."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-2",
+    "source_id": "L1-2",
+    "lane": "L1",
+    "surface": "D2",
+    "standard": "Every deterministic check listed for the topic in topics.json exits 0",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".claude/agents/deep-review.md",
+    "line": "253",
+    "issue": "The prune enumeration is presented as the complete set of admission outcomes but omits the sixth check: frontier-admit runs relevance, dedupe, depth, fan-out, budget and then acyclicity for the review target too, pruning with reason 'cycle' when the parent chain loops. The review workflow's own admission step states it runs the six checks in order, so a leaf reading this sentence believes a cycling proposal is admitted when it is pruned.",
+    "evidence": {
+      "cmd": "rg -n \"// [1-6]\\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml",
+      "exit": 0,
+      "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);\n.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,\n.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six"
+    },
+    "fix": {
+      "old": "repeats a known node, or would exceed the depth, fan-out or budget caps.",
+      "new": "repeats a known node, would exceed the depth, fan-out or budget caps, or closes a cycle back onto its own ancestry."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L2-1",
+    "source_id": "L2-1",
+    "lane": "L2",
+    "surface": "D2",
+    "standard": "Every deterministic check listed for the topic in topics.json exits 0",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/commands/deep/assets/deep-research.yaml",
+    "line": "1181",
+    "issue": "The step claims to give the whole stop decision (\"The script applies this fixed order, first match wins\") but the ordered list omits the frontierOpen stop veto. convergence.cjs returns CONTINUE with reasonDetail 'frontierOpen' after the minIterations floor (line 1181) and before the quality-guard check (line 1204) whenever config.depthMode is 'expansive' and the research facts report an open or active frontier node (lines 1192-1196). The same file's divergent frontier_gate at line 1269 already names that veto, so an expansive stop cannot be reasoned about from this list.",
+    "evidence": {
+      "cmd": "rg -n \"minIterationsNotReached|depthMode === 'expansive'|frontierOpen'|qualityGuardFailed\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "exit": 0,
+      "out": "14:// minIterationsNotReached, frontierOpen,\n15:// qualityGuardFailed, all_questions_answered, all_dimensions_clean,\n1181:    return emit('CONTINUE', null, 'minIterationsNotReached', gatesAt(false), []);\n1192:  if (config.depthMode === 'expansive'\n1196:    return emit('CONTINUE', null, 'frontierOpen', gatesAt(false), []);\n1204:    return emit('CONTINUE', null, 'qualityGuardFailed', evaluated, failedGuards);"
+    },
+    "fix": {
+      "old": "          5. if iteration_count < effective_min_iterations: CONTINUE (minIterationsNotReached)\n          6. a failed quality guard turns the candidate into CONTINUE (qualityGuardFailed)",
+      "new": "          5. if iteration_count < effective_min_iterations: CONTINUE (minIterationsNotReached)\n          5a. if depth_mode == \"expansive\" AND the frontier holds an open or active node (registry.frontier.nodes): CONTINUE (frontierOpen). The veto runs after the floor and before the quality guards; the cap, consecutive failures, stuck recovery, convergence off, max-iterations and the floor all precede it.\n          6. a failed quality guard turns the candidate into CONTINUE (qualityGuardFailed)"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-3",
+    "source_id": "L1-3",
+    "lane": "L1",
+    "surface": "D3",
+    "standard": null,
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".pi/agents/deep-research.md",
+    "line": "294",
+    "issue": "Same omission in the pi mirror: the sentence lists evidence/scope, duplicate and the depth, fan-out and budget caps as the reasons a frontier_proposal is pruned, but frontier-admit's sixth check rejects a proposal whose parent chain loops with reason 'cycle' (the research workflow lists relevance, dedupe, depth, fan-out, budget, cycle).",
+    "evidence": {
+      "cmd": "rg -n \"// [1-6]\\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml",
+      "exit": 0,
+      "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);\n.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,\n.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six"
+    },
+    "fix": {
+      "old": "repeats a known question, or would exceed the depth, fan-out or budget caps.",
+      "new": "repeats a known question, would exceed the depth, fan-out or budget caps, or closes a cycle back onto its own ancestry."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-4",
+    "source_id": "L1-4",
+    "lane": "L1",
+    "surface": "D4",
+    "standard": null,
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".pi/agents/deep-review.md",
+    "line": "260",
+    "issue": "Same omission in the pi mirror of the review leaf contract: the admission step's sixth check (acyclicity, pruning with reason 'cycle') is missing from the list of reasons a frontier_proposal is pruned, while the review workflow states the helper runs the six admission checks in order.",
+    "evidence": {
+      "cmd": "rg -n \"// [1-6]\\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml",
+      "exit": 0,
+      "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);\n.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,\n.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six"
+    },
+    "fix": {
+      "old": "repeats a known node, or would exceed the depth, fan-out or budget caps.",
+      "new": "repeats a known node, would exceed the depth, fan-out or budget caps, or closes a cycle back onto its own ancestry."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-5",
+    "source_id": "L1-5",
+    "lane": "L1",
+    "surface": "D5",
+    "standard": null,
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/agents/deep-research.md",
+    "line": "302",
+    "issue": "The canonical research leaf doc gives the prune list as complete but stops at the budget cap. frontier-admit's fifth and sixth checks are separate: budget is a monotone check against the parent's budget, then checkCycle prunes with reason 'cycle' when the parent chain loops back onto an ancestor. The research workflow's step_frontier_admit names all six checks, so the leaf is told about five.",
+    "evidence": {
+      "cmd": "rg -n \"// [1-6]\\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml",
+      "exit": 0,
+      "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);\n.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,\n.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six"
+    },
+    "fix": {
+      "old": "repeats a known question, or would exceed the depth, fan-out or budget caps.",
+      "new": "repeats a known question, would exceed the depth, fan-out or budget caps, or closes a cycle back onto its own ancestry."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-6",
+    "source_id": "L1-6",
+    "lane": "L1",
+    "surface": "D6",
+    "standard": null,
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/agents/deep-review.md",
+    "line": "267",
+    "issue": "The canonical review leaf doc gives the prune list as complete but stops at the budget cap, omitting the sixth admission check: frontier-admit closes the ordered checks with checkCycle and records 'cycle' as the prune reason when the parent chain loops back onto an ancestor. The review workflow states the helper runs the six admission checks in order, so one behaviour the doc claims to list is missing.",
+    "evidence": {
+      "cmd": "rg -n \"// [1-6]\\. (relevance|dedupe|depth|fan-out|budget|cycle)|return checkCycle|helper runs the six\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml",
+      "exit": 0,
+      "out": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:313:  // 1. relevance\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:321:  // 2. dedupe\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:335:  // 3. depth\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:339:  // 4. fan-out\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:343:  // 5. budget\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:351:  // 6. cycle\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:352:  return checkCycle(proposal.parentId, nodes, caps);\n.skilled/commands/deep/assets/deep-research.yaml:1826:          The helper runs the six admission checks in order (relevance, dedupe, depth,\n.skilled/commands/deep/assets/deep-review.yaml:1988:          duplicate. An absent registry gives an empty array. The helper runs the six"
+    },
+    "fix": {
+      "old": "repeats a known node, or would exceed the depth, fan-out or budget caps.",
+      "new": "repeats a known node, would exceed the depth, fan-out or budget caps, or closes a cycle back onto its own ancestry."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C2",
+    "source_id": "C2",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    "line": "150",
+    "issue": "The consolidated prompt's Defaults line enumerates the setup defaults but omits antiConvergence.depthMode, although depth_mode is a required setup field (line 81) mapped to antiConvergence.depthMode (lines 123 and 164) and the review config template defaults it to \"default\". The sibling research contract had the same omission and is recorded as a finding; this is the review mirror no lane filed, so the review setup never states what its required depth-mode binding defaults to.",
+    "evidence": {
+      "cmd": "rg -n \"Defaults:|depthMode\" .skilled/commands/deep/assets/deep-review-presentation.txt .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
+      "exit": 0,
+      "out": ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json:14:    \"depthMode\": \"default\",\n.skilled/commands/deep/assets/deep-review-presentation.txt:123:   |-- --depth-mode=default|expansive -> antiConvergence.depthMode = value\n.skilled/commands/deep/assets/deep-review-presentation.txt:150:   +-- Defaults: maxIterations=7, convergenceThreshold=0.10, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, stop_policy=`convergence`, ..."
+    },
+    "fix": {
+      "old": "antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`",
+      "new": "antiConvergence.convergenceMode=`default`, antiConvergence.depthMode=`default`, antiConvergence.divergent=`{}`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C3",
+    "source_id": "C3",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/deep/assets/deep-review.yaml",
+    "line": "1319",
+    "issue": "The gate_results_array_json output says it carries one row per legal-stop gate and then enumerates eight names, dropping p0ResolutionGate, while the same step's item 5 names nine gates including p0ResolutionGate and the blocked_stop contract in references/convergence/convergence.md says the full 9-gate set is load-bearing and read verbatim by the reducer. A producer following this output spec persists a gateResults row for every gate except the P0 gate.",
+    "evidence": {
+      "cmd": "rg -n \"nine legal-stop gates|gate_results_array_json:\" .skilled/commands/deep/assets/deep-review.yaml",
+      "exit": 0,
+      "out": "1245:          5. the nine legal-stop gates run on a candidate: convergenceGate, dimensionCoverageGate, p0ResolutionGate, evidenceDensityGate, ...\n1319:          - gate_results_array_json: \"One {gateId,status,reasonCode,evidenceDigest} row per legal-stop gate (convergenceGate, dimensionCoverageGate, evidenceDensityGate, hotspotSaturationGate, claimAdjudicationGate, fixCompletenessReplayGate, candidateCoverageGate, graphlessFallbackGate), with at least one fail row when decision == BLOCKED\"\n1372:              fail_closed: \"... The nine legal-stop gates have already run and remain unchanged.\""
+    },
+    "fix": {
+      "old": "row per legal-stop gate (convergenceGate, dimensionCoverageGate, evidenceDensityGate, hotspotSaturationGate, claimAdjudicationGate, fixCompletenessReplayGate, candidateCoverageGate, graphlessFallbackGate)",
+      "new": "row per legal-stop gate (convergenceGate, dimensionCoverageGate, p0ResolutionGate, evidenceDensityGate, hotspotSaturationGate, claimAdjudicationGate, fixCompletenessReplayGate, candidateCoverageGate, graphlessFallbackGate)"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C4",
+    "source_id": "C4",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md",
+    "line": "28",
+    "issue": "The page says only the expansive value reaches the runtime, but both workflows pass `--depth-mode \"{depth_mode}\"` to convergence.cjs unconditionally and pass the same bound value into the fan-out runner, and normalizeDepthMode accepts `default` as a value. The explicit-default golden variant carries depthMode 'default' into both the config and the convergence args. A lane fixed the identical sentence in the system-deep-loop feature catalog but this mirror of it survived, so the two catalog pages now disagree about whether the default value reaches the runtime.",
+    "evidence": {
+      "cmd": "rg -n -- \"--depth-mode\" .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml .skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md",
+      "exit": 0,
+      "out": ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md:28:The command workflow reads `--depth-mode` and binds it as `depth_mode`. Only the value `expansive` reaches the runtime. ...\n.skilled/commands/deep/assets/deep-research.yaml:391:            --depth-mode {depth_mode}\n.skilled/commands/deep/assets/deep-research.yaml:1153:        bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs ... --depth-mode \"{depth_mode}\" ...'\n.skilled/commands/deep/assets/deep-review.yaml:384:            --depth-mode {depth_mode}\n.skilled/commands/deep/assets/deep-review.yaml:1204:        bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs ... --depth-mode \"{depth_mode}\" ...'"
+    },
+    "fix": {
+      "old": "Only the value `expansive` reaches the runtime.",
+      "new": "The runtime acts only on the value `expansive`."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C5",
+    "source_id": "C5",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+    "line": "609",
+    "issue": "The Locked Fields list names the expansiveDepth caps as runtime contracts the optimizer must not modify, but the canonical registry this section points to locks only antiConvergence.depthMode: optimizer-manifest.json's lockedFields and its invariant group carry no expansiveDepth.* path, and both config templates' _optimizerManaged.lockedFields omit the caps too. The same file's Expansive Depth Mode section now says the block is in neither the tunable nor the locked list, so §9 contradicts §1 of the same document.",
+    "evidence": {
+      "cmd": "rg -n \"Depth mode|expansiveDepth|lockedFields\" .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md .skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+      "exit": 0,
+      "out": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md:105:... The mode is locked against the optimizer; the `expansiveDepth` block is in neither its tunable nor its locked list. ...\n.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md:609:- Depth mode (`antiConvergence.depthMode`) and the `expansiveDepth` caps\n.skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json:128:      \"lockedFields\": [\"antiConvergence.convergenceMode\", \"convergenceMode\", \"antiConvergence.depthMode\"],"
+    },
+    "fix": {
+      "old": "- Depth mode (`antiConvergence.depthMode`) and the `expansiveDepth` caps",
+      "new": "- Depth mode (`antiConvergence.depthMode`); the `expansiveDepth` caps are in neither the tunable nor the locked list"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C6",
+    "source_id": "C6",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+    "line": "224",
+    "issue": "The new pilot note reads as a statement about the shipped root cap: it says the root fan-out cap of 6 pruned a seventh depth-1 node. frontier-admit now sizes the review root at max(maxChildrenPerNode, ROOT_CHILDREN_FLOOR.review), which is 8, and frontier-admit-review.vitest asserts a review seed admits up to eight depth-1 sub-targets. The note records a defect the same release fixed, without saying so, so a reader sizes a review seed to 6 and expects a seventh node to be pruned. The same sentence appears in feature-catalog/loop-lifecycle/expansive-depth-mode.md:16.",
+    "evidence": {
+      "cmd": "rg -n \"root fan-out cap|ROOT_CHILDREN_FLOOR\" .skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts",
+      "exit": 0,
+      "out": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md:224:... the root fan-out cap of 6 pruned a seventh depth-1 node, and three of six lineages stopped on `maxIterationsReached`.\n.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:60:const ROOT_CHILDREN_FLOOR = Object.freeze({ research: 6, review: 8 });\n.skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts:384:  it('seeds up to eight depth-1 review sub-targets, the top of the documented 3 to 8 range', () => {"
+    },
+    "fix": {
+      "old": "the root fan-out cap of 6 pruned a seventh depth-1 node",
+      "new": "the root fan-out cap of 6, since raised to 8, pruned a seventh depth-1 node"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L2-4",
+    "source_id": "L2-4",
+    "lane": "L2",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+    "line": "135",
+    "issue": "The consolidated prompt's Defaults line enumerates the setup defaults but omits antiConvergence.depthMode, although depth_mode is a required setup field (line 72) mapped to antiConvergence.depthMode (lines 112 and 149) and the config template defaults it to \"default\" (deep-research-config.json:8). The Tier-1 persist shape at line 19 likewise omits the key, so the setup contract never states what the required depth-mode binding defaults to.",
+    "evidence": {
+      "cmd": "rg -n 'Defaults:|depthMode\": \"default\"|antiConvergence.depthMode' .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
+      "exit": 0,
+      "out": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json:8:    \"depthMode\": \"default\",\n.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json:87:    \"lockedFields\": [\"lineage\", \"reducer\", \"fileProtection\", \"sessionId\", \"status\", \"antiConvergence.convergenceMode\", \"antiConvergence.depthMode\", \"antiConvergence.stopPolicy\"],\n.skilled/commands/deep/assets/deep-research-presentation.txt:112:   |-- --depth-mode=default|expansive -> antiConvergence.depthMode = value\n.skilled/commands/deep/assets/deep-research-presentation.txt:135:   +-- Defaults: maxIterations=10, convergenceThreshold=0.05, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`\n.skilled/commands/deep/assets/deep-research-presentation.txt:149:   - `--depth-mode` -> `antiConvergence.depthMode`"
+    },
+    "fix": {
+      "old": "antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`",
+      "new": "antiConvergence.convergenceMode=`default`, antiConvergence.depthMode=`default`, antiConvergence.divergent=`{}`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L2-2",
+    "source_id": "L2-2",
+    "lane": "L2",
+    "surface": "D2",
+    "standard": "Every deterministic check listed for the topic in topics.json exits 0",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/deep/assets/deep-research.yaml",
+    "line": "231",
+    "issue": "state_paths declares the synthesis snapshot as {artifact_dir}/synthesis-v{generation}.md, but the extension's snapshot step writes {state_paths.packet_dir}/synthesis-v${GENERATION}-r{continued_from_run}.md (line 582), and the synthesis note at line 2093 and the protocol reference both name synthesis-v{generation}-r{continuedFromRun}.md. No step writes the declared path, so a reader following the state-path map looks for the extension snapshot under a name the workflow never creates.",
+    "evidence": {
+      "cmd": "rg -n \"synthesis_snapshot_pattern|SNAPSHOT=\" .skilled/commands/deep/assets/deep-research.yaml",
+      "exit": 0,
+      "out": "231:  synthesis_snapshot_pattern: \"{artifact_dir}/synthesis-v{generation}.md\"\n582:          SNAPSHOT=\"{state_paths.packet_dir}/synthesis-v${GENERATION}-r{continued_from_run}.md\""
+    },
+    "fix": {
+      "old": "  synthesis_snapshot_pattern: \"{artifact_dir}/synthesis-v{generation}.md\"",
+      "new": "  synthesis_snapshot_pattern: \"{artifact_dir}/synthesis-v{generation}-r{continuedFromRun}.md\""
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  }
+]

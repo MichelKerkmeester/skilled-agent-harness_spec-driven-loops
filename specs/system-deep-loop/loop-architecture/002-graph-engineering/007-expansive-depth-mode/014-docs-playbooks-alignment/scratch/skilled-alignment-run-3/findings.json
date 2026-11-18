@@ -1,0 +1,214 @@
+[
+  {
+    "id": "D-02",
+    "source_id": "D-02",
+    "lane": "D",
+    "surface": "S7",
+    "standard": ".skilled/repo-rules/skill-hub-routing.md",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/hub-router.json",
+    "line": "32",
+    "issue": "Stage two cannot resolve the feature's vocabulary. `vocabularyClasses` has no expansive-depth or frontier phrase, so `compiled-route --hub system-deep-loop` returns `defer` for a research-specific feature request ('...keep a depth-capped frontier of follow-up questions') and for a review request naming the feature ('Review the payment module in expansive depth mode'). The mode SKILL.md files also promise phrases the router does not carry: deep-review/SKILL.md:83 says a 'spec-folder audit' fires the review signal, and deep-research/SKILL.md:57 says 'a convergence check' does; both defer. Author mode-specific feature phrases in `research-aliases` and `review-aliases`, mirror them in ROUTER.md INTENT_SIGNALS, regenerate the advisor signals, and add or remove the documented phrases so the docs and the router agree. Replay with compiled-route and the probe runner before reporting the feature routed.",
+    "evidence": {
+      "cmd": "node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt \"Investigate iteratively why the parser drops unicode and keep a depth-capped frontier of follow-up questions\"",
+      "exit": 0,
+      "out": "{\"hubId\":\"system-deep-loop\",\"action\":\"defer\",\"selectionKind\":null,\"targets\":[],\"effectivePolicyHash\":\"c6b62457fa5db8f1c3545095977dd006c852dc2c0021407a94bd2fbcbcb713b6\",\"generation\":4}"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D-01",
+    "source_id": "D-01",
+    "lane": "D",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/mode-registry.json",
+    "line": "48",
+    "issue": "The new expansive-depth frontier has no advisor reach. Probes authored from the feature before reading advisor metadata (probes-pre-metadata.md #2 and #5) fail: 'Investigate iteratively why the parser drops unicode and keep a depth-capped frontier of follow-up questions' returns zero recommendations, and 'Audit this spec folder for release readiness and keep a frontier of sub-targets open until they are exhausted' ranks system-spec-kit above system-deep-loop. A natural request naming the feature ('Research token refresh in expansive depth mode') also returns zero recommendations, and the completed-run extension wording ('Extend the completed review run by three iterations') ranks sk-code first. Cause: neither mode's `aliases` nor its `advisorRouting.legacyAliases` carries the feature vocabulary, and the hub's description/keyword surfaces omit it, so the advisor projection cannot score the feature. Add mode-specific feature phrases (research: 'depth-capped frontier', 'frontier of follow-up questions'; review: 'expansive depth review', 'frontier of sub-targets') to the registry aliases and legacy aliases, keep hub-router.json and ROUTER.md INTENT_SIGNALS in sync, update the projection maps so the drift guard passes, and replay each new phrase against an out-of-domain prompt. Do not add a bare 'frontier' to both modes: it ties and the tieBreak silently picks research.",
+    "evidence": {
+      "cmd": "printf '%s' '{\"prompt\":\"Research token refresh in expansive depth mode\"}' | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json | node -e 'let s=\"\";process.stdin.on(\"data\",d=>s+=d).on(\"end\",()=>{const j=JSON.parse(s);const r=(j.data.recommendations||[])[0];console.log(JSON.stringify({top:r?r.skillId:null,count:(j.data.recommendations||[]).length}))})'",
+      "exit": 0,
+      "out": "{\"top\":null,\"count\":0}"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-05",
+    "source_id": "C-05",
+    "lane": "C",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": "README.md",
+    "line": "253",
+    "issue": "The root README section that covers the deep loops does not reflect the capabilities this scope added. It describes the loops, their stop rules and their fan-out, but names none of `--depth-mode=expansive` on both loops, custom review dimensions, or `--extend=N` for a completed run; a grep for those terms over README.md returns 0 matches. Line 253's stop enumeration also leaves out the frontier hold that keeps an expansive run open while a node remains open. Add one sentence to the section that names the three capabilities and the frontier hold, or point to the Deep Loop README for them.",
+    "evidence": {
+      "cmd": "grep -cE -- \"depth-mode|expansive|--extend|custom dimension|dimensions\" README.md",
+      "exit": 1,
+      "out": "0"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-01",
+    "source_id": "C-01",
+    "lane": "C",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/changelog/v2.1.0.0.md",
+    "line": "25",
+    "issue": "The entry fails the shape gate that sk-create-changelog section 9 requires before writing: line 25 holds a 23-word sentence over the 22-word ceiling, and the entry averages 10.1 words a sentence against a ceiling of 10. The file was added after the checker's last change, so the defect is in the entry, not a later rule change. Split the sentence and shorten the surrounding prose until the gate passes.",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/system-deep-loop/changelog/v2.1.0.0.md",
+      "exit": 1,
+      "out": "FAIL .skilled/skills/system-deep-loop/changelog/v2.1.0.0.md\n  [sentence-max] line 25: a sentence of 23 words, ceiling 22. Split it\n  [sentence-mean] 10.1 words a sentence on average, ceiling 10. Use more, shorter sentences\nSUMMARY files=1 pass=0 fail=1"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-02",
+    "source_id": "C-02",
+    "lane": "C",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/changelog/v2.1.1.0.md",
+    "line": "15",
+    "issue": "The entry fails the shape gate: its prose averages 10.5 words a sentence against the 10-word ceiling in sk-create-changelog section 9. Shorten the opening paragraph and the glance bullets until the gate passes.",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/system-deep-loop/changelog/v2.1.1.0.md",
+      "exit": 1,
+      "out": "FAIL .skilled/skills/system-deep-loop/changelog/v2.1.1.0.md\n  [sentence-mean] 10.5 words a sentence on average, ceiling 10. Use more, shorter sentences\nSUMMARY files=1 pass=0 fail=1"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-03",
+    "source_id": "C-03",
+    "lane": "C",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md",
+    "line": "16",
+    "issue": "The entry fails the shape gate: its prose averages 11.1 words a sentence against the 10-word ceiling in sk-create-changelog section 9. The opening paragraph at line 16 is the longest, so split it and shorten the remaining prose until the gate passes.",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md",
+      "exit": 1,
+      "out": "FAIL .skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md\n  [sentence-mean] 11.1 words a sentence on average, ceiling 10. Use more, shorter sentences\nSUMMARY files=1 pass=0 fail=1"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-04",
+    "source_id": "C-04",
+    "lane": "C",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md",
+    "line": "16",
+    "issue": "The entry fails the shape gate: line 16 holds a 23-word sentence over the 22-word ceiling, and the entry averages 12.1 words a sentence against a ceiling of 10. Split the opening paragraph and shorten the rest until the gate passes.",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md",
+      "exit": 1,
+      "out": "FAIL .skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md\n  [sentence-max] line 16: a sentence of 23 words, ceiling 22. Split it\n  [sentence-mean] 12.1 words a sentence on average, ceiling 10. Use more, shorter sentences\nSUMMARY files=1 pass=0 fail=1"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "BAT-01",
+    "source_id": "S9-command-references",
+    "lane": "battery",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "S9-command-references failed (exit 1).",
+    "evidence": {
+      "cmd": "node .skilled/commands/scripts/validate-command-references.cjs",
+      "exit": 1,
+      "out": "FAIL  1 unresolved command reference(s):\n  .skilled/commands/speckit/assets/speckit-resume.yaml:104  [skill-asset]  .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json  - path does not exist on disk",
+      "ci_gated": false,
+      "ci_workflows": []
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D-03",
+    "source_id": "D-03",
+    "lane": "D",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+    "line": "162",
+    "issue": "The new `depth_mode` flag is described in the PRE-BOUND schema (line 190) and the Default Resolution Table (line 215), but the `:auto` Tier-1 persist shape at line 162 still lists `antiConvergence.convergenceMode` and omits `antiConvergence.depthMode`; the review contract has the same omission at line 156. A run following the contract's own Tier-1 shape writes a config without the flag and only gets it back when the YAML's `step_create_config` rewrites the file, so the command contract is internally inconsistent. Add `antiConvergence.depthMode` to the shape in both presentation sources (`.skilled/commands/deep/assets/deep-research-presentation.txt` and `deep-review-presentation.txt`) and regenerate with `compile-command-contracts.cjs --command deep/research --write` and `--command deep/review --write`; do not hand-edit the generated contract.",
+    "evidence": {
+      "cmd": "sed -n '162p' .skilled/commands/deep/assets/compiled/deep-research.contract.markdown | grep -o 'shape: .*config.executor\\.\\*'",
+      "exit": 0,
+      "out": "shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `executionMode: \"auto\"`, `resource_map.emit`, `config.executor.*"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D-04",
+    "source_id": "D-04",
+    "lane": "D",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/commands/scripts/validate-command-references.cjs",
+    "line": "131",
+    "issue": "The S9-command-references battery row fails on a runtime data path, not on a broken deep command reference. `.skilled/commands/speckit/assets/speckit-resume.yaml:104` names `.skilled/skills/system-spec-kit/runtime/database/access-telemetry.json`; `.gitignore:431` ignores that whole directory, so a clean checkout never holds it. The validator already exempts `.skilled/skills/.state/` (line 131) and the deep-loop sqlite databases (line 134), but not this gitignored runtime database. The four S9 scope files resolve cleanly: a scoped run over both deep YAMLs exits 0. Extend the runtime-artifact exemption (ideally derive it from the gitignore roots) so the check is green in a fresh checkout.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false check-ignore -v .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json",
+      "exit": 0,
+      "out": ".gitignore:431:.skilled/skills/system-spec-kit/runtime/database/\t.skilled/skills/system-spec-kit/runtime/database/access-telemetry.json"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  }
+]
