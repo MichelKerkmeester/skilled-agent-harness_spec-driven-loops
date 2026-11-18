@@ -552,8 +552,9 @@ function verify(loopType, artifactDir, iteration) {
 
   // 4. Route proof, preferring the projection and falling back to the delta the leaf
   // wrote itself. The delta is the authoritative record of the dispatch, so reading it
-  // is not a relaxation: it is the same evidence the projection was built from, taken
-  // before the projection dropped it. Only a mismatch in BOTH is a failure.
+  // is not a relaxation: it is the same evidence the projection was built from, read
+  // for a state row written before the projection carried it. Only a mismatch in BOTH
+  // is a failure.
   const routeWarnings = [];
   const stateRouteReason = checkRouteProof(iterationRecord, loopType, leaf);
   const deltaRouteReason = checkRouteProof(deltaRecords.findLast((r) => r && r.type === 'iteration'), loopType, leaf);
@@ -565,7 +566,7 @@ function verify(loopType, artifactDir, iteration) {
     };
   }
   if (stateRouteReason) {
-    routeWarnings.push(`route proof for iteration ${iteration} came from deltas/iter-${pad3(iteration)}.jsonl; the ${stateLogName} state row lacked route proof, so the delta carried it`);
+    routeWarnings.push(`route proof for iteration ${iteration} came from deltas/iter-${pad3(iteration)}.jsonl; the ${stateLogName} state row failed route proof (${stateRouteReason}), so the delta carried it`);
   }
 
   // 5. Executor provenance for a run the config gives a non-native executor.

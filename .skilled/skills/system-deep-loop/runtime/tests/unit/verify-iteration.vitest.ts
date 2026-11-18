@@ -135,6 +135,17 @@ describe('verify-iteration leaf-reliability check', () => {
     expect(r.warnings?.join(' ')).toContain('deltas/iter-001.jsonl');
   });
 
+  it('names the state row mismatch when the delta carries the route proof', () => {
+    writeComplete(dir, 1);
+    fs.writeFileSync(path.join(dir, 'deep-review-state.jsonl'), `${JSON.stringify(reviewRecord(1, { target_agent: 'general' }))}\n`);
+    const r = verify('review', dir, 1);
+    expect(r.ok).toBe(true);
+    const warning = (r.warnings ?? []).join(' ');
+    expect(warning).toContain('came from deltas/iter-001.jsonl');
+    expect(warning).toContain(REASONS.ROUTE_PROOF_MISMATCH);
+    expect(warning).not.toMatch(/lacked route proof/);
+  });
+
   it('fails route_proof_mismatch when target_agent is wrong in both places', () => {
     writeComplete(dir, 1);
     const wrong = reviewRecord(1, { target_agent: 'general' });
