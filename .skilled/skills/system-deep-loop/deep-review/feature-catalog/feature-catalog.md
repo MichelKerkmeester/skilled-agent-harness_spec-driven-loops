@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-review review-loop system."
-version: 1.11.10.0
+version: 1.11.11.0
 ---
 
 # deep-review: Feature Catalog
@@ -349,7 +349,7 @@ See [`state-management/pause-sentinel.md`](../feature-catalog/state-management/p
 
 #### Description
 
-Deep-review Next Focus names the first uncovered dimension when the latest leaf's free text names none, so free text cannot hijack the review focus.
+Deep-review Next Focus keeps a leaf's free-text focus only when it names an uncovered dimension or every dimension is covered, so free text cannot hijack the review focus.
 
 #### How It Works
 

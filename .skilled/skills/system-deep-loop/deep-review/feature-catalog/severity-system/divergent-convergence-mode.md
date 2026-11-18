@@ -6,7 +6,7 @@ trigger_phrases:
   - "all_dimensions_clean pivot"
   - "read-only review pivot"
   - "review pivot council"
-version: 1.11.3.0
+version: 1.11.4.0
 ---
 
 # Divergent convergence mode
@@ -19,7 +19,7 @@ version: 1.11.3.0
 
 ## 2. HOW IT WORKS
 
-The workflow admits only the exact reason `all_dimensions_clean`, after all nine legal-stop gates have run. Candidate sources include unswept dimensions, search debt, producer-consumer paths, negative-test gaps, and traceability gaps. Candidate generation rejects missing-evidence and mutation-shaped directions. The shared adapter runs three native seats in one round. A first-attempt quorum miss gets a one-time quorum retry of the same three seats, so one pivot uses at most six seat outputs. The adapter persists the transaction under `<artifactRoot>/divergent/pivots/<pivotId>/council/**`, and continues with the selected read-only direction.
+The workflow admits only the exact reason `all_dimensions_clean`, after all nine legal-stop gates have run. Candidate sources include unswept dimensions, search debt, producer-consumer paths, negative-test gaps, and traceability gaps. Under `--depth-mode=expansive`, a sixth source seeds one revisit direction for each frontier node the run closed `exhausted` or `blocked`. Candidate generation rejects missing-evidence and mutation-shaped directions. The shared adapter runs three native seats in one round. A first-attempt quorum miss gets a one-time quorum retry of the same three seats, so one pivot uses at most six seat outputs. The adapter persists the transaction under `<artifactRoot>/divergent/pivots/<pivotId>/council/**`, and continues with the selected read-only direction.
 
 `maxIterationsReached`, `blockedStop`, `stuckRecovery`, `error`, `manualStop`, `userPaused` and `maxDurationReached` do not pivot. Under `--depth-mode=expansive` the pivot is eligible only once the frontier holds no open or active node. PASS/CONDITIONAL/FAIL is still derived only in `phase_synthesis`, and no pivot candidate authorizes a fix or target mutation.
 

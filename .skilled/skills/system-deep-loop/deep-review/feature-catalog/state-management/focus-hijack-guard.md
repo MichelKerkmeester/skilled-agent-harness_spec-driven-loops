@@ -1,19 +1,19 @@
 ---
 title: "Next Focus free-text guard"
-description: "Deep-review Next Focus names the first uncovered dimension when the latest leaf's free text names none, so free text cannot hijack the review focus."
+description: "Deep-review Next Focus keeps a leaf's free-text focus only when it names an uncovered dimension or every dimension is covered, so free text cannot hijack the review focus."
 trigger_phrases:
   - "review next focus free text"
   - "review next focus hijack"
   - "uncovered dimension next focus"
   - "review Next Focus"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Next Focus free-text guard
 
 ## 1. OVERVIEW
 
-Review Next Focus is the next dimension the review audits. When the latest leaf's `nextFocus` names no dimension, the first uncovered dimension wins, so free text does not hijack the review focus. The strategy file and the dashboard apply the same rule.
+Review Next Focus is the next dimension the review audits. The first uncovered dimension wins unless the latest leaf's `nextFocus` names an uncovered dimension or every dimension is covered, so free text does not hijack the review focus. The strategy file and the dashboard apply the same rule.
 
 ---
 
@@ -21,7 +21,7 @@ Review Next Focus is the next dimension the review audits. When the latest leaf'
 
 ### Strategy And Dashboard
 
-`runtime/scripts/reduce-state.cjs` sets the review base pick in the strategy focus block and in its dashboard twin. An uncovered dimension outranks a leaf `nextFocus` that names no dimension.
+`runtime/scripts/reduce-state.cjs` sets the review base pick in the strategy focus block and in its dashboard twin. The first uncovered dimension wins unless the leaf `nextFocus` names an uncovered dimension or every dimension is covered.
 
 ---
 
