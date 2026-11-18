@@ -67,6 +67,9 @@ const SENTENCE_RULES = new Set(['sentence-max', 'sentence-mean']);
 // Release entries only: the release line, with its v1+/ style subfolders, and
 // every skill's changelog folder. Templates and READMEs there are not entries.
 const ENTRY_RE = /^\.skilled\/(?:changelog\/skilled|skills\/.+\/changelogs?)\/(?:v\d+\+\/)?v\d+(?:\.\d+)+[^/]*\.md$/;
+// A GitHub release body with no entry in the repository is staged here as a
+// file, so it goes through the same gates before it is published.
+const BODY_RE = /^specs\/sk-doc\/document-standards\/003-changelog-system\/010-changelog-layout-retrofit\/scratch\/release-bodies\/v?\d+(?:\.\d+)+\.md$/;
 // A usage limit stops the run instead of retrying into the same wall.
 const LIMIT_RE = /usage limit|rate[ _-]?limit|too many requests|\b429\b|status 402|insufficient[_ ](quota|balance)|quota exceeded|hit your (usage )?limit|budget exhausted|usage quota has been exhausted|daily usage quota|FreeUsageLimit|free (tier|usage) (limit|exhausted)/i;
 
@@ -560,7 +563,7 @@ function loadState(stateFile) {
 async function main() {
   const opts = parseArgs(process.argv.slice(2));
   const listed = read(opts.list).split('\n').map((l) => l.trim()).filter(Boolean);
-  const refused = listed.filter((f) => !ENTRY_RE.test(f) || !fs.existsSync(path.join(ROOT, f)));
+  const refused = listed.filter((f) => !(ENTRY_RE.test(f) || BODY_RE.test(f)) || !fs.existsSync(path.join(ROOT, f)));
   const state = loadState(opts.state);
   const queue = listed.filter((f) => !refused.includes(f)).filter((f) => {
     const s = state.get(f);
