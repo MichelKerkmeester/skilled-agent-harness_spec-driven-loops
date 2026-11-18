@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Prints the first three public rows (skill, command, policy) the advisor CLI returns per prompt.
+set -uo pipefail
 cd /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research || exit 2
 for p in "$@"; do
   printf '%s => ' "$p"

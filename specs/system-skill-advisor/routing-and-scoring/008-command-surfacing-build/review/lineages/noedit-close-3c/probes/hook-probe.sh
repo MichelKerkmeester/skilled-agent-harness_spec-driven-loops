@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Throwaway review probe. Each case writes one throwaway checkout under mktemp,
 # runs the shipped check against it, prints the verdict, and removes the folder.
-set -u
+set -uo pipefail
 REPO="/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research"
 CHECK="$REPO/.skilled/commands/doctor/scripts/hook-wiring-check.cjs"
 MARKER=".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js"

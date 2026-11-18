@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: Scorer probe Vitest config
+// ───────────────────────────────────────────────────────────────
 import base from '../../../../../../../../.skilled/skills/system-skill-advisor/runtime/vitest.config.ts';
 
 // Probe config kept inside this review lineage: the test file lives here and

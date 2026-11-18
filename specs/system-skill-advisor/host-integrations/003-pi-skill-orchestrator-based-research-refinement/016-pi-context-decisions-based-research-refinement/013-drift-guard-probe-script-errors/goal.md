@@ -56,10 +56,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits 0 from the repository root
-- [ ] `bash -n` exits 0 on each of the nine shell probes under the 008 `review/` folder
-- [ ] `git diff --numstat -- specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review` lists exactly ten files
-- [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED`
+- [x] `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits 0 from the repository root
+- [x] `bash -n` exits 0 on each of the nine shell probes under the 008 `review/` folder
+- [x] `git diff --numstat -- specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review` lists exactly ten files
+- [x] `validate.sh --strict` on this phase prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---

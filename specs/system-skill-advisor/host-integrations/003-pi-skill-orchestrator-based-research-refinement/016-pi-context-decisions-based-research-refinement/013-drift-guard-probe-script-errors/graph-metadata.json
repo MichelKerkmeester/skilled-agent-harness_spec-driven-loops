@@ -35,13 +35,23 @@
       "exit"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/noedit-close-3c/probes/hook-probe.sh",
+      "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/scorer-attach-4/probes/vitest.config.ts",
+      "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/cli-rows.sh",
+      "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/holdout-guard-emulation.sh",
+      "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/make-heredoc-variant.sh",
+      "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/make-shell-start-variant.sh",
+      "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/paired-arm.sh",
+      "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/top-only-head.sh",
+      "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/top-only-sweep.sh",
+      "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-5/probes/arena-provenance.sh",
       ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py"
     ],
     "entities": [
@@ -73,6 +83,66 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-probe.sh",
+        "kind": "script",
+        "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/noedit-close-3c/probes/hook-probe.sh",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/scorer-attach-4/probes/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cli-rows.sh",
+        "kind": "script",
+        "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/cli-rows.sh",
+        "source": "derived"
+      },
+      {
+        "name": "holdout-guard-emulation.sh",
+        "kind": "script",
+        "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/holdout-guard-emulation.sh",
+        "source": "derived"
+      },
+      {
+        "name": "make-heredoc-variant.sh",
+        "kind": "script",
+        "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/make-heredoc-variant.sh",
+        "source": "derived"
+      },
+      {
+        "name": "make-shell-start-variant.sh",
+        "kind": "script",
+        "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/make-shell-start-variant.sh",
+        "source": "derived"
+      },
+      {
+        "name": "paired-arm.sh",
+        "kind": "script",
+        "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/paired-arm.sh",
+        "source": "derived"
+      },
+      {
+        "name": "top-only-head.sh",
+        "kind": "script",
+        "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/top-only-head.sh",
+        "source": "derived"
+      },
+      {
+        "name": "top-only-sweep.sh",
+        "kind": "script",
+        "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/top-only-sweep.sh",
+        "source": "derived"
+      },
+      {
+        "name": "arena-provenance.sh",
+        "kind": "script",
+        "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-5/probes/arena-provenance.sh",
         "source": "derived"
       },
       {
@@ -128,71 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Ten",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Top",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Each Luna",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "nothing",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "the Vibe",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`run-all-drift-guards.sh` runs four guards and exits 1 when any fails (`.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:80-83`)",
     "created_at": "2026-11-18T15:49:37Z",
-    "last_save_at": "2026-11-18T16:14:13.790Z",
+    "last_save_at": "2026-11-18T21:37:06.600Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:031101eb28fdc0186fac8be1d1684971d35830a7cda5e5bbcb2cac365eda9d94",
+    "source_fingerprint": "sha256:0f9d737f9f90cf6c395a0d086cbc9dcd3f9fb900089211e66bf2fbfdb1e9db6a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f3f395a26e631501629df1e37f3d2edff30f7dd546ad7ba607a3b370703f2d2c",
+      "spec.md": "322fec9a3e69056a646dc068edb6f812d6b4e862a74f4f24ee88cf43cfe3a1c1",
       "plan.md": "59a9e1c4ad316f05884ec6a2f933eb798e5f2c69229a45c627383f1834948bad",
-      "tasks.md": "c91805e10a45ca9c5dc8629d2924efec19bc75629578219744f52dd3c951192f",
-      "implementation-summary.md": "1b4547f55b7e45f5a23a1c259f89cd728ceae97bda0daec54f2402d7f011fbd7"
+      "tasks.md": "36e0b10a5db6e8fa16c64cb031c220087928f2d352f0b31e6e6f77732f0eba1a",
+      "implementation-summary.md": "c000280028a34d31a4f97c25e9d230df08e4330a8bf4c2fe44ff0301b20d1a0e"
     },
     "last_active_at": null
   }

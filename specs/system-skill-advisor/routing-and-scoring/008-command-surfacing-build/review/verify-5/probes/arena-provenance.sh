@@ -3,7 +3,7 @@
 # Case A: dirty source with a rebuilt dist. Case B: clean source with a stale dist.
 # Case C: a dist symlink that points outside the source.
 # Usage: arena-provenance.sh <path to prepare-behaviour-arena.mjs>
-set -u
+set -uo pipefail
 BUILDER="$1"
 T=/tmp/v5-arena-probe
 rm -rf "$T"; mkdir -p "$T/outside"

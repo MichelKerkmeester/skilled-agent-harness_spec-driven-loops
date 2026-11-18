@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # For each prompt, compares the first passing row (0.8/0.35) with and without
 # compiledRouteTopOnly, the option every hook and the OpenCode plugin send.
+set -uo pipefail
 cd /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research || exit 2
 head() {
   env -u AI_SESSION_CHILD node .skilled/bin/skill-advisor.cjs advisor_recommend \
