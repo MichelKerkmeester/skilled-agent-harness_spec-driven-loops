@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Built on its branch: --depth-mode=expansive seeds, admits, projects, steers, vetoes and closes a research frontier, and default runs keep their bytes. The playbook and changelog are written. The pilot and the full suite run at the integration merge gate."
+description: "Built on its branch: --depth-mode=expansive seeds, admits, projects, steers, vetoes and closes a research frontier, and default runs keep their bytes. The playbook and changelog are written. Two target-2 pilot runs stopped at the iteration cap and failed AC-014. The full suite runs at the integration merge gate."
 trigger_phrases:
   - "research frontier mode implementation summary"
 importance_tier: "normal"
@@ -45,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 010-research-frontier-mode |
-| **Completed** | Built on branch `worktrees/467-ed-010-research-frontier-mode` 2026-11-17; playbook and changelog written 2026-11-17; pilot and full suite open |
+| **Completed** | Built on branch `worktrees/467-ed-010-research-frontier-mode` 2026-11-17; playbook and changelog written 2026-11-17; two pilot runs on 2026-11-17 and 2026-11-18 failed AC-014; full suite open |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -154,10 +154,10 @@ The golden baseline was captured first, on the untouched tree. Each change then 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Pilot not run on the branch.** The target-2 pilot (T031, T032) runs at the integration merge gate. Until then the live loop is covered only by unit suites and the CLI smoke.
+1. **The pilot ran twice and failed AC-014.** Both target-2 runs used `--depth-mode=expansive` on throwaway fixtures (`scratch/pilot-run-1.md`, `scratch/pilot-run-2.md`), and both stopped on `maxIterationsReached`. Run 1 ran 12 iterations, admitted 8 nodes beyond the 4 seeds and ended with 4 answered and 8 closed by budget. Its three defects were fixed in `1642d622a3b` with fail-first tests. Run 2 ran 16 iterations, ended with all 16 nodes answered and confirmed the fixes live. Two nodes briefly showed a budget close while already answered, a possible residue of one fix that is not confirmed. A stop before the cap stays out of reach while `maxFrontierNodes` equals `max_iterations`, because the seeds and early admissions fill every slot and each iteration answers one node. The T032 check printed 1 on run 1 and 0 on run 2, since it depends on what the leaf cites. Run 2 also hit a synthesis-closeout exit 2 and a SQLite foreign-key error on graph edges, both outside this phase.
 2. **Playbook and changelog written.** Six scenarios (DR-068 to DR-073) and the v1.16.0.0 changelog entry landed in integration.
 3. **Full suite pending.** The whole deep-loop suite runs at the merge gate (T030). Earlier integration gates showed one unrelated flaky test per run.
-4. **A focus without the node marker is not counted.** Visits match the `Frontier node <id>` marker anywhere in the focus, and the frontier block asks the leaf to copy its Focus Area line. A leaf that drops the marker altogether leaves visits at 0, so the budget does not spend and the stuck close cannot find the node. Check this first in the pilot.
+4. **A focus without the node marker is not counted.** Visits match the `Frontier node <id>` marker anywhere in the focus, and the frontier block asks the leaf to copy its Focus Area line. A leaf that drops the marker altogether leaves visits at 0, so the budget does not spend and the stuck close cannot find the node.
 5. **CLI lineage prompt bytes.** A default CLI lineage now carries the expansive-only leaf-contract paragraph in its embedded persona. AC-001 is waived for that one artifact under ADR-006, pending operator ratification.
 <!-- /ANCHOR:limitations -->
 
