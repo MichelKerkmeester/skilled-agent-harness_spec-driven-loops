@@ -65,6 +65,12 @@ Shell variables used in this list:
 - [x] T014 Check the named CLI prompts on the built CLI. Verify: the recorded results show the re-pin prompt surfaces `command-doctor-overlay-repin`, the ticket prompt tops mcp-tooling, and "review my code" stays with sk-code (`P/scratch/work-record.md`).
 - [x] T015 Close the index freshness claim as not confirmed, with no code change. Verify: `rg -n 'inferred' P/scratch/work-record.md` prints the verdict line, which marks the verdict as inferred.
 - [x] T016 Run `validate.sh --strict` until it prints `RESULT: PASSED`. Verify: the last run prints `RESULT: PASSED`. Evidence: `validate.sh --strict` printed `RESULT: PASSED` on 2026-11-17 after the implementation summary was written and `repair-derived.cjs --apply` re-derived the metadata.
+- [x] T017 Second round: record a clean advisor baseline on origin/main `82aaab5abbc` in worktree 472 after building its skill graph. Verify: the work record's second-round section reads 188 files, 2407 passed, 0 failed, 8 skipped (`P/scratch/work-record.md`).
+- [x] T018 Second round: skip the `dashboard` boost for a named design tool, and send a design-tool read with no build verb to mcp-tooling (`R/lib/scorer/lanes/explicit.ts`). Verify: `rg -c '^\s*it\(' R/tests/scorer/dashboard-design-source.vitest.ts` prints 4, and each failed before its change.
+- [x] T019 Second round: measure the command-order fix, then keep skill-first by operator decision. Verify: `rg -n 'ADR-001' P/decision-record.md` prints the heading, and `R/lib/scorer/fusion.ts` has no change to `keepPassingSkillsAboveDoctorBridges` or the 0.08 tie-break.
+- [x] T020 Second round: stop a floor-only rival from tying a real top on a short prompt, except when a command matched its own full phrase (`R/lib/scorer/ambiguity.ts`, `R/lib/scorer/fusion.ts`). Verify: `rg -n 'floorTiesCount' R/lib/scorer/ambiguity.ts R/lib/scorer/fusion.ts` prints the option and both passes, and the 4 floor tests in `R/tests/scorer/advisor-quality-049-003.vitest.ts` pass.
+- [x] T021 Second round: return `laneContributions` beside `laneBreakdown` with attribution (`R/handlers/advisor-recommend.ts`, `R/schemas/advisor-tool-schemas.ts`). Verify: `rg -n 'laneContributions: laneScores' R/handlers/advisor-recommend.ts` prints one line, and the handler test failed before the change.
+- [x] T022 Second round: run the full advisor suite, typecheck, build, the built CLI prompts and the vendoring corpus. Verify: the work record reads 2414 passed, 0 failed, typecheck exit 0, and mcp-03 moved to a hit (`P/scratch/work-record.md`).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -99,7 +105,7 @@ Shell variables used in this list:
 | **[P1]** | Required | Must complete OR get user approval |
 | **[P2]** | Optional | Can defer with documented reason |
 
-A task that waits on a decision stays `[ ]` and names the decision in its text. No task waits on a decision now, because both operator decisions were recorded on 2026-11-17.
+A task that waits on a decision stays `[ ]` and names the decision in its text. No task waits on a decision now. The operator decisions are recorded for 2026-11-17 and 2026-11-18.
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -107,7 +113,7 @@ A task that waits on a decision stays `[ ]` and names the decision in its text. 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] `spec.md` section 4 holds REQ-001 to REQ-008. Verify: `rg -c '^\| REQ-0' P/spec.md` prints 8.
+- [x] CHK-001 [P0] `spec.md` section 4 holds REQ-001 to REQ-012. Verify: `rg -c '^\| REQ-0' P/spec.md` prints 12.
 - [x] CHK-002 [P0] `plan.md` section 4 names the three phases. Verify: `rg -c '^(Setup records|Implementation adds|Verification runs)' P/plan.md` prints 3.
 - [x] CHK-003 [P1] Dependencies identified and listed in `plan.md` section 6.
 <!-- /ANCHOR:pre-impl -->
@@ -128,7 +134,7 @@ A task that waits on a decision stays `[ ]` and names the decision in its text. 
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [x] CHK-020 [P0] All acceptance criteria met. Verify: `rg -c '\| Met \|' P/acceptance-criteria.md` prints 8.
+- [x] CHK-020 [P0] All acceptance criteria met or superseded. Verify: `rg -c '\| Met \|' P/acceptance-criteria.md` prints 11, and AC-005 is Superseded under ADR-001.
 - [x] CHK-021 [P0] The named CLI prompts give the expected top result on the built CLI (recorded in T014).
 - [x] CHK-022 [P1] Edge case: the test "leaves a bare problem word beside a phrase-matched skill" passed in the recorded run (`R/tests/scorer/doctor-handoff-command.vitest.ts`).
 - [x] CHK-023 [P1] Error scenarios: the loader test covers a missing file and a malformed file (recorded).
@@ -146,6 +152,7 @@ A task that waits on a decision stays `[ ]` and names the decision in its text. 
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Evidence: axes are prompt shape (exact, close wording, scattered, hyphen-joined, ticket status, code review) and row kind (command, skill). 12 new advisor tests, plus the 45-row vendoring prompt set before and after.
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. Evidence: N/A. The changed code reads no environment or global state (`process.env` and `globalThis` appear in none of the added lines). The loader reads one file path fixed by its own location.
 - [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Evidence: the advisor fix is commit `8a6f64beac8`, and the deep-loop half is `c588762cf8d`.
+- [ ] CHK-FIX-008 [P1] The second round's evidence is pinned to its fix SHA. Open: nothing from the second round is committed yet.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -173,7 +180,7 @@ A task that waits on a decision stays `[ ]` and names the decision in its text. 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] Temp files in `scratch/` only. Verify: `ls P/scratch` lists only `.gitkeep`, `advisor-baseline.txt`, `request-from-vendoring-project.md` and `work-record.md`.
+- [x] CHK-050 [P1] Temp files in `scratch/` only. Verify: `ls P/scratch` lists only `.gitkeep`, `advisor-baseline.txt`, `request-from-vendoring-project.md`, `request-from-vendoring-project-round-2.md` and `work-record.md`.
 - [x] CHK-051 [P1] `scratch/` cleaned before completion. Evidence: scratch keeps only the request, the work record and the baseline, which are the evidence for the closed claims. The temporary run files live outside the packet.
 <!-- /ANCHOR:file-org -->
 

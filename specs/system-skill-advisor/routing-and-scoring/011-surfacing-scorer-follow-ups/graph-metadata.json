@@ -35,7 +35,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -51,9 +51,12 @@
       ".skilled/skills/system-skill-advisor/runtime/tests/scorer/review-status-wording.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/scorer/command-bridge-loader.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/name-mention-scoring.vitest.ts",
-      "scratch/advisor-baseline.txt",
-      "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/synthesis-review.md",
-      "scratch/work-record.md"
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+      ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/dashboard-design-source.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/advisor-quality-049-003.vitest.ts"
     ],
     "entities": [
       {
@@ -141,21 +144,39 @@
         "source": "derived"
       },
       {
-        "name": "advisor-baseline.txt",
-        "kind": "file",
-        "path": "scratch/advisor-baseline.txt",
+        "name": "ambiguity.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts",
         "source": "derived"
       },
       {
-        "name": "synthesis-review.md",
-        "kind": "doc",
-        "path": "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/synthesis-review.md",
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
         "source": "derived"
       },
       {
-        "name": "work-record.md",
-        "kind": "doc",
-        "path": "scratch/work-record.md",
+        "name": "advisor-recommend.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-tool-schemas.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dashboard-design-source.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/dashboard-design-source.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-quality-049-003.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/advisor-quality-049-003.vitest.ts",
         "source": "derived"
       },
       {
@@ -181,29 +202,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Test Files",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A project that vendors Skilled measured the advisor on its own prompts and reported eight surfacing gaps",
     "created_at": "2026-11-17T20:46:09Z",
-    "last_save_at": "2026-11-18T04:11:04.548Z",
+    "last_save_at": "2026-11-18T08:22:02.995Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:17af44fe7243d4ce13123c46041b902c7ec9ab92a6f71ec4fec4f14d0de983dc",
+    "source_fingerprint": "sha256:f0a503049cbaa83e3e285f9e7d886c91f35e7cb1698b31716f1ef0fee0004802",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b378db6fb3de2479e461d17fb65fc7818efc47a9e34e22c2545b86e8094d8ede",
+      "spec.md": "e1f66c5ab5e4df96fe747c56bd27145c3a903a2396b26ee9627ca65ebcce0a2c",
       "plan.md": "940637b7420285bf74ab58b11d8e496e1cfba77695410134bf79a43bc4fef1fc",
-      "tasks.md": "d39e53e75764f18ecb8c66e8533a9ec516f4934f9a78eef84a676ffa742405af",
-      "decision-record.md": "2e940ebe39ce919c16ff03fda47526ed69ec0b406257341df9f26b647e9ff7e2",
-      "implementation-summary.md": "36238224579d9f742e4aa2ea55b373101dcd0dd23f75c513f0a2ce4fe4a78bbb"
+      "tasks.md": "1b680a21ba27916940a8fe29d9f31077bcb6a683d614b63a0367c02c3525f33b",
+      "decision-record.md": "4048a41643e6f256357cac654a52f0d36e8faa190656e3c9f233a8ab15691e2b",
+      "implementation-summary.md": "41710fa345ca194ee4fef819dd5675c2e4e0fda92104a422e65fc9b4b07dff0d"
     },
     "last_active_at": null
   }
