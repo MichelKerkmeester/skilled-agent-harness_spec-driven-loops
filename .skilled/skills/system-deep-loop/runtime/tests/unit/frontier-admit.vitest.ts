@@ -226,6 +226,15 @@ describe('frontier-admit', () => {
     expect(checkProposal(proposal, new Map(), CAPS, ['How does the frontier prune?'])).toBe('relevance');
   });
 
+  it('throws on a config that exists but is not valid JSON, so its caps never widen to the defaults', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'frontier-admit-badconfig-'));
+    tempDirs.push(dir);
+    writeFileSync(join(dir, 'deep-research-config.json'), '{"expansiveDepth": {"maxDepth": 1', 'utf8');
+
+    expect(() => seedNodes({ artifactDir: dir, iteration: 0, candidates: [makeProposal('which seed holds')] }))
+      .toThrow(/cannot read deep-research-config\.json/);
+  });
+
   it('names relevance for a proposal whose parent admission already pruned', () => {
     const proposal = { ...makeProposal('which child would hang off the rejected branch'), parentId: 'F-1-001' };
     const nodes = new Map([

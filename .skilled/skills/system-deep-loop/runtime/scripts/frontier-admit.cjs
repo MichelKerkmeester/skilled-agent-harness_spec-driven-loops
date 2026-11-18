@@ -229,10 +229,19 @@ function readNodeStore(storePath) {
 
 function readTargetConfig(artifactDir, target) {
   const configFile = target === 'review' ? REVIEW_CONFIG_FILE : CONFIG_FILE;
+  // A missing config means the defaults apply. A config that exists but cannot be
+  // read or parsed is an error: falling back would widen every cap it sets.
+  let raw;
   try {
-    return JSON.parse(fs.readFileSync(path.join(artifactDir, configFile), 'utf8'));
-  } catch {
-    return null;
+    raw = fs.readFileSync(path.join(artifactDir, configFile), 'utf8');
+  } catch (error) {
+    if (error && error.code === 'ENOENT') return null;
+    throw new Error(`cannot read ${configFile}: ${error instanceof Error ? error.message : String(error)}`);
+  }
+  try {
+    return JSON.parse(raw);
+  } catch (error) {
+    throw new Error(`cannot read ${configFile}: ${error instanceof Error ? error.message : String(error)}`);
   }
 }
 
