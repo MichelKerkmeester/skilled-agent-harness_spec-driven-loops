@@ -590,6 +590,31 @@ describe('upsert.cjs review finding identity', () => {
       .toEqual(['file:src/a.cjs', 'file:src/b.cjs']);
   });
 
+  it('lands a leaf node and its edge on the new finding when a later iteration reuses an id', async () => {
+    const namespace = uniqueNamespace('upsert');
+    namespaces.push(namespace);
+    const file = stateLog([
+      { iteration: 1, findingDetails: [{ id: 'F1', title: 'Leak in a', file: 'src/a.cjs:3' }] },
+      { iteration: 2, findingDetails: [{ id: 'F1', title: 'Race in b', file: 'src/b.cjs:9' }] },
+    ]);
+
+    expect(upsert(namespace, file, 1).exitCode).toBe(0);
+    expect(upsert(namespace, file, 2, [
+      { id: 'finding-F1', kind: 'FINDING', name: 'Race in b' },
+      { id: 'ev-b', kind: 'EVIDENCE', name: 'Trace b' },
+    ], [
+      { id: 'conf-b', relation: 'CONFIRMS', source: 'ev-b', target: 'finding-F1' },
+    ]).exitCode).toBe(0);
+
+    const { nodes, edges } = await graph(namespace);
+    const earlier = nodes.find((node) => node.id === 'finding:F1');
+    expect(earlier?.name).toBe('Leak in a');
+    expect(earlier?.metadata).toMatchObject({ finding_id: 'F1', file: 'src/a.cjs', line: 3 });
+    expect(nodes.find((node) => node.id === 'finding:F1#2')?.name).toBe('Race in b');
+    expect(nodes.find((node) => node.id === 'finding:F1#2')?.metadata).toMatchObject({ file: 'src/b.cjs' });
+    expect(edges.find((edge) => edge.id === 'conf-b')?.targetId).toBe('finding:F1#2');
+  });
+
   it('derives an edge only from a ref with a line, and drops a trailing column', async () => {
     const namespace = uniqueNamespace('upsert');
     namespaces.push(namespace);

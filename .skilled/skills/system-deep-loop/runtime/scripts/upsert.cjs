@@ -383,17 +383,20 @@ async function main() {
       const findings = readReviewIterationFindings({ stateLog: args.stateLog, deltaDir: args.deltaDir, iteration });
       const findingNs = { specFolder, loopType, sessionId };
       derived = deriveReviewFindingEvidence(findings, iteration, (id) => db.getNode(findingNs, id));
+      // This iteration's own findings register first. When a reused id was split
+      // into finding:<id>#<iteration>, the leaf's node and edges for that id belong
+      // to the new finding, not to the different one an earlier iteration stored.
+      for (const node of derived.nodes) {
+        if (node.kind !== 'FINDING') continue;
+        const key = node.metadata.finding_id.toLowerCase();
+        if (!knownFindings.has(key)) knownFindings.set(key, node.id);
+      }
       for (const stored of db.getNodesByKind(findingNs, 'FINDING')) {
         const storedMeta = stored.metadata && typeof stored.metadata === 'object' ? stored.metadata : {};
         const findingKey = typeof storedMeta.finding_id === 'string'
           ? storedMeta.finding_id
           : stored.id.replace(/^finding:/, '');
         if (!knownFindings.has(findingKey.toLowerCase())) knownFindings.set(findingKey.toLowerCase(), stored.id);
-      }
-      for (const node of derived.nodes) {
-        if (node.kind !== 'FINDING') continue;
-        const key = node.metadata.finding_id.toLowerCase();
-        if (!knownFindings.has(key)) knownFindings.set(key, node.id);
       }
     }
     if (rawNodes.length === 0 && rawEdges.length === 0 && derived.nodes.length === 0) {
@@ -409,6 +412,9 @@ async function main() {
     // edge that still names the old id lands on the same node.
     const reviewNodeIds = new Map();
     const batchRawKinds = new Map();
+    const derivedFindingMetadata = new Map(derived.nodes
+      .filter((node) => node.kind === 'FINDING')
+      .map((node) => [node.id, node.metadata]));
 
     for (const n of rawNodes) {
       const kind = String(n.kind || n.nodeKind || n.type || '').toUpperCase();
@@ -435,13 +441,20 @@ async function main() {
       if (loopType === 'review') batchRawKinds.set(n.id, kind);
       const name = n.name || n.label || n.id;
       // The derived class overwrites any leaf-supplied quality_class on a research
-      // SOURCE node; every other node keeps its metadata as sent.
+      // SOURCE node. A leaf finding that folds onto a finding this iteration reports
+      // keeps its own metadata keys and gains the derived id, file and line it left
+      // out, so a later reused-id check can still compare files. Every other node
+      // keeps its metadata as sent.
+      const leafMetadata = n.metadata && typeof n.metadata === 'object' ? n.metadata : undefined;
+      const derivedFinding = kind === 'FINDING' ? derivedFindingMetadata.get(nodeId) : undefined;
       const metadata = loopType === 'research' && kind === 'SOURCE'
         ? {
-          ...(n.metadata && typeof n.metadata === 'object' ? n.metadata : {}),
+          ...(leafMetadata ?? {}),
           quality_class: deriveSourceQualityClass(n, SOURCE_QUALITY_CLASS),
         }
-        : n.metadata;
+        : derivedFinding
+          ? { ...derivedFinding, ...(leafMetadata ?? {}) }
+          : n.metadata;
       const baseNode = {
         id: nodeId,
         specFolder,
