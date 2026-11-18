@@ -2375,7 +2375,7 @@ rules:
     - skip_convergence_check
     - dispatch_non_leaf_agents
     - hold_iteration_findings_in_memory_only
-    - modify_config_after_initialization
+    - modify_config_after_initialization_outside_its_writer_steps  # step_extend_completed_run, step_frontier_budget and step_update_config_status
     - overwrite_jsonl_state_log
     - proceed_without_state_file_verification
 
