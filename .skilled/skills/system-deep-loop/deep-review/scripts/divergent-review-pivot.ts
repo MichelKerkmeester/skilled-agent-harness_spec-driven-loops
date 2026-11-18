@@ -32,6 +32,8 @@ export interface ReviewCandidateSeed {
   readonly evidenceRefs: readonly string[];
   readonly relevanceRationale: string;
   readonly scopeGrounded: boolean;
+  /** Path text quoted inside the focus. It is data, not an instruction, so the read-only guard skips it. */
+  readonly quotedScope?: string;
 }
 
 /** Files and loop facts needed to derive one review pivot input. */
@@ -173,7 +175,8 @@ function readPivotEvents(artifactRoot: string): JsonRecord[] {
 
 function seedViolatesReadOnlyBoundary(seed: ReviewCandidateSeed): boolean {
   if (!seed.scopeGrounded || seed.evidenceRefs.length === 0) return true;
-  const material = normalizedKey(`${seed.title} ${seed.focus}`);
+  const focus = seed.quotedScope ? seed.focus.split(seed.quotedScope).join(' ') : seed.focus;
+  const material = normalizedKey(`${seed.title} ${focus}`);
   return [
     /\bimplement\b/u,
     /\bapply (?:a )?fix\b/u,
@@ -314,6 +317,7 @@ function buildCandidateSeeds(
       evidenceRefs: [`frontier-nodes.jsonl#${nodeId}`],
       relevanceRationale: `The frontier closed this sub-target ${status} without covering every configured dimension.`,
       scopeGrounded: true,
+      quotedScope: scope,
     });
   });
 
