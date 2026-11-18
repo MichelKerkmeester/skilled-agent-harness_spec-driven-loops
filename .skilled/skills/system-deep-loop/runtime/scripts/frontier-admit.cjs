@@ -345,8 +345,12 @@ function checkProposal(proposal, nodes, caps, knownTexts, options = {}) {
   // 4. fan-out
   if (countLiveChildren(nodes, proposal.parentId) >= childCapFor(proposal.parentId, caps)) return 'fanout';
   // The run-wide node cap shares the fan-out reason: both bound how wide the
-  // frontier may grow, and the six reason names are the store's contract.
-  if (countLiveNodes(nodes) >= caps.maxFrontierNodes) return 'fanout';
+  // frontier may grow, and the six reason names are the store's contract. A
+  // depth-1 seed answers only to the root-children cap: the run cap is half the
+  // iteration budget, so on a small budget it would prune most of the seed before
+  // any iteration ran. Seeds still count toward the live total later checked here.
+  const seeding = isPlainObject(options) && options.seeding === true;
+  if (!seeding && countLiveNodes(nodes) >= caps.maxFrontierNodes) return 'fanout';
 
   // 5. budget
   const parent = proposal.parentId === 'root' ? null : nodes.get(proposal.parentId);
@@ -360,7 +364,7 @@ function checkProposal(proposal, nodes, caps, knownTexts, options = {}) {
   return checkCycle(proposal.parentId, nodes, caps);
 }
 
-function admitProposals({ artifactDir, iteration, proposals, knownTexts = [], target = 'research' }) {
+function admitProposals({ artifactDir, iteration, proposals, knownTexts = [], target = 'research', seeding = false }) {
   const mode = assertTarget(target);
   const storePath = path.join(artifactDir, NODE_STORE_FILE);
   const inboxPath = path.join(artifactDir, INBOX_FILE);
@@ -369,7 +373,10 @@ function admitProposals({ artifactDir, iteration, proposals, knownTexts = [], ta
   // A missing or unreadable review config gives the no-target object, which
   // admits every scope the way a prose target does: the target check can only
   // narrow when a file-list target is on record.
-  const reviewOptions = mode === 'review' ? { reviewConfig: readTargetConfig(artifactDir, mode) ?? {} } : {};
+  const reviewOptions = {
+    ...(mode === 'review' ? { reviewConfig: readTargetConfig(artifactDir, mode) ?? {} } : {}),
+    seeding: seeding === true,
+  };
   const iterationValue = normalizeIteration(iteration);
   const admitted = [];
   const pruned = [];
@@ -474,7 +481,7 @@ function seedNodes({ artifactDir, iteration = 0, candidates, knownTexts = [], ta
     pruned.push({ nodeId, reason: pruneReason });
   }
 
-  const result = admitProposals({ artifactDir, iteration, proposals, knownTexts, target: mode });
+  const result = admitProposals({ artifactDir, iteration, proposals, knownTexts, target: mode, seeding: true });
 
   return { admitted: result.admitted, pruned: [...pruned, ...result.pruned] };
 }

@@ -62,12 +62,14 @@ interface ReviewFacts {
   fallbackCoveredBugClasses: string[];
   frontierOpen?: number;
   frontierTotal?: number;
+  frontierAnswered?: number;
 }
 
 interface StopDecisionInput {
   loopType: LoopType;
   iterationCount: number;
   stuckCount: number;
+  consecutiveFailureCount?: number;
   config: StopConfig;
   ratios: number[];
   research: ResearchFacts | null;
@@ -1267,6 +1269,7 @@ describe('review frontier_drained candidate', () => {
       evidenceBackedP0P1: 1,
       frontierOpen: 0,
       frontierTotal: 3,
+      frontierAnswered: 1,
       ...(overrides.review ?? {}),
     },
   });
@@ -1293,6 +1296,9 @@ describe('review frontier_drained candidate', () => {
     ['an open node keeps the lineage running', { review: { frontierOpen: 1 } }, 'CONTINUE', 'noStopCandidate'],
     ['an empty partition forms no candidate', { review: { frontierTotal: 0 } }, 'CONTINUE', 'noStopCandidate'],
     ['a missing node count forms no candidate', { review: { frontierTotal: undefined } }, 'CONTINUE', 'noStopCandidate'],
+    ['a frontier closed without an answered node forms no candidate', { review: { frontierAnswered: 0 } }, 'CONTINUE', 'noStopCandidate'],
+    ['a missing answered count forms no candidate', { review: { frontierAnswered: undefined } }, 'CONTINUE', 'noStopCandidate'],
+    ['consecutive failures still win', { consecutiveFailureCount: 3 }, 'STOP', 'consecutiveFailures'],
     ['a default run gets no candidate', { config: { depthMode: 'default' } }, 'CONTINUE', 'noStopCandidate'],
     ['a run without depth mode gets no candidate', { config: { depthMode: undefined } }, 'CONTINUE', 'noStopCandidate'],
     ['the cap still wins', { iterationCount: 7 }, 'STOP', 'maxIterationsReached'],
@@ -1318,11 +1324,12 @@ describe('review frontier_drained candidate', () => {
     const graph = { nodes: [], edges: [] };
     const input = buildStopDecisionInput({ depthMode: 'expansive' }, 'review', {
       config: { maxIterations: 10 },
-      registry: { frontier: { nodes: [{ status: 'answered' }, { status: 'pruned' }, { status: 'pruned' }] } },
+      registry: { frontier: { nodes: [{ status: 'answered' }, { status: 'pruned' }, { status: 'exhausted' }] } },
       stateLogRows: [],
     }, graph);
     expect(input.review?.frontierOpen).toBe(0);
     expect(input.review?.frontierTotal).toBe(3);
+    expect(input.review?.frontierAnswered).toBe(1);
 
     const withoutFrontier = buildStopDecisionInput({ depthMode: 'expansive' }, 'review', {
       config: { maxIterations: 10 },

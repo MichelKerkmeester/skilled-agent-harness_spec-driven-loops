@@ -449,3 +449,5 @@ specs/**/context/
 .legacy-projection-watermarks/
 # A deep-loop coverage graph is a SQLite run database, rebuilt by the loop and never committed.
 coverage-graph-db/
+# A fan-out lineage keeps its own coverage graph inside its directory; it is run state too.
+**/lineages/*/graph-db/

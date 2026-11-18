@@ -390,6 +390,26 @@ describe('frontier-admit review root cap and commit-range scope', () => {
     expect(pruned).toEqual([{ nodeId: expect.any(String), reason: 'fanout' }]);
   });
 
+  // The run cap is half the iteration budget, so a small budget would otherwise
+  // prune most of the seed before any iteration ran; the seed answers only to
+  // the root-children cap, and its nodes still count toward later admissions.
+  it('admits every depth-1 seed under the root cap even when the run cap is smaller', () => {
+    const artifactDir = makeBareArtifactDir();
+    writeFileSync(join(artifactDir, REVIEW_CONFIG_FILE), JSON.stringify({ maxIterations: 7 }), 'utf8');
+
+    const { admitted, pruned } = seedNodes({ artifactDir, iteration: 0, candidates: subTargets(8), target: 'review' });
+
+    expect(admitted).toHaveLength(8);
+    expect(pruned).toEqual([]);
+    const { pruned: childPruned } = admitProposals({
+      artifactDir,
+      iteration: 1,
+      proposals: [{ parentId: admitted[0], question: 'which child opens past the cap', scope: 'src/part-1/a.ts', evidence: 'src/part-1/a.ts:2' }],
+      target: 'review',
+    });
+    expect(childPruned).toEqual([{ nodeId: expect.any(String), reason: 'fanout' }]);
+  });
+
   it('keeps a research seed at its documented six depth-1 nodes', () => {
     const artifactDir = makeBareArtifactDir();
 

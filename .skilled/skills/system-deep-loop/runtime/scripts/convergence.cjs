@@ -1169,12 +1169,17 @@ function buildStopDecision(input) {
     } else if (config.depthMode === 'expansive'
       && Number.isFinite(review.frontierTotal)
       && review.frontierTotal >= 1
-      && review.frontierOpen === 0) {
-      // A lineage whose frontier holds nodes and none still open or active has
-      // no work left in its partition. Without this candidate it runs to the
-      // cap even after every node is answered. It is a hard stop because a soft
-      // one passes the convergence gate only where the composite vote already
-      // forms a candidate; every other legal-stop gate still applies.
+      && review.frontierOpen === 0
+      && Number.isFinite(review.frontierAnswered)
+      && review.frontierAnswered >= 1) {
+      // An expansive review whose frontier holds nodes, none still open or
+      // active and at least one answered has no frontier work left; a fan-out
+      // lineage reads only its own partition. Without this candidate the run
+      // goes to the cap even after its nodes are answered. A frontier that
+      // closed with nothing answered (every node exhausted or pruned) forms no
+      // candidate. It is a hard stop because a soft one passes the convergence
+      // gate only where the composite vote already forms a candidate; every
+      // other legal-stop gate still applies.
       candidate = { reasonDetail: 'frontier_drained', hardStop: true };
     }
   } else if (coverage.total > 0 && coverage.answered >= coverage.total) {
@@ -1644,6 +1649,7 @@ function stopDecisionReviewFacts(options = {}) {
       ? {
         frontierOpen: registry.frontier.nodes.filter((node) => node?.status === 'open' || node?.status === 'active').length,
         frontierTotal: registry.frontier.nodes.length,
+        frontierAnswered: registry.frontier.nodes.filter((node) => node?.status === 'answered').length,
       }
       : {}),
   };

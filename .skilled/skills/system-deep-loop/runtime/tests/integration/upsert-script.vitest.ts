@@ -457,3 +457,177 @@ describe('upsert.cjs review finding evidence', () => {
     expect(edges.filter((edge) => edge.relation === 'EVIDENCE_FOR')).toHaveLength(1);
   });
 });
+
+// The merged finding id has to come out the same whichever iteration names it,
+// and only finding endpoints may move: a stable id is what lets a later
+// RESOLVES edge land on the finding an earlier iteration stored.
+describe('upsert.cjs review finding identity', () => {
+  const scratch: string[] = [];
+  afterEach(() => {
+    while (scratch.length > 0) rmSync(scratch.pop() as string, { recursive: true, force: true });
+  });
+
+  function stateLog(iterations: Array<{ iteration: number; findingDetails: unknown[] }>): string {
+    const dir = mkdtempSync(join(tmpdir(), 'upsert-identity-'));
+    scratch.push(dir);
+    const file = join(dir, 'deep-review-state.jsonl');
+    writeFileSync(file, iterations
+      .map((row) => JSON.stringify({ type: 'iteration', dimensions: ['correctness'], ...row }))
+      .join('\n') + '\n');
+    return file;
+  }
+
+  function upsert(namespace: ScriptNamespace, file: string, iteration: number, nodes: unknown[] = [], edges: unknown[] = []) {
+    return runScript('upsert', [
+      ...namespaceArgs(namespace),
+      '--nodes', JSON.stringify(nodes),
+      '--edges', JSON.stringify(edges),
+      '--state-log', file,
+      '--iteration', String(iteration),
+    ]);
+  }
+
+  async function graph(namespace: ScriptNamespace) {
+    const db = await import('../../lib/coverage-graph/coverage-graph-db.js');
+    try {
+      const ns = { specFolder: namespace.specFolder, loopType: namespace.loopType, sessionId: namespace.sessionId };
+      return { nodes: db.getNodes(ns), edges: db.getEdges(ns) };
+    } finally {
+      db.closeDb();
+    }
+  }
+
+  it('folds a lowercase leaf finding id onto the finding the iteration reports', async () => {
+    const namespace = uniqueNamespace('upsert');
+    namespaces.push(namespace);
+    const file = stateLog([{ iteration: 1, findingDetails: [{ id: 'R1-P2-001', title: 'Drift', file: 'src/a.cjs:3' }] }]);
+
+    expect(upsert(namespace, file, 1, [{ id: 'finding-r1-p2-001', kind: 'FINDING', name: 'Drift' }]).exitCode).toBe(0);
+
+    const { nodes, edges } = await graph(namespace);
+    const findings = nodes.filter((node) => node.kind === 'FINDING');
+    expect(findings.map((node) => node.id)).toEqual(['finding:R1-P2-001']);
+    expect(edges.filter((edge) => edge.relation === 'EVIDENCE_FOR').length / findings.length).toBe(1);
+  });
+
+  it('lands a RESOLVES edge from a later iteration on the finding an earlier one stored', async () => {
+    const namespace = uniqueNamespace('upsert');
+    namespaces.push(namespace);
+    const file = stateLog([
+      { iteration: 1, findingDetails: [{ id: 'finding-3-1', title: 'Leak', file: 'src/a.cjs:3' }] },
+      { iteration: 2, findingDetails: [] },
+    ]);
+
+    expect(upsert(namespace, file, 1, [{ id: 'finding-3-1', kind: 'FINDING', name: 'Leak' }]).exitCode).toBe(0);
+    const later = upsert(namespace, file, 2, [
+      { id: 'fix-1', kind: 'REMEDIATION', name: 'Close the handle' },
+    ], [
+      { id: 'resolves-1', relation: 'RESOLVES', source: 'fix-1', target: 'finding-3-1' },
+    ]);
+    expect(later.exitCode).toBe(0);
+    expect((later.json.data as Record<string, unknown>).rejectedOrphanEdges).toBeUndefined();
+
+    const { nodes, edges } = await graph(namespace);
+    const findings = nodes.filter((node) => node.kind === 'FINDING');
+    expect(findings).toHaveLength(1);
+    expect(edges.find((edge) => edge.id === 'resolves-1')?.targetId).toBe(findings[0].id);
+  });
+
+  it('leaves a non-finding node whose id starts with finding- and its edges alone', async () => {
+    const namespace = uniqueNamespace('upsert');
+    namespaces.push(namespace);
+    const file = stateLog([{ iteration: 1, findingDetails: [{ id: 'R1-P1-001', title: 'Guard skips', file: 'src/guard.cjs:42' }] }]);
+
+    const result = upsert(namespace, file, 1, [
+      { id: 'finding-R1-P1-001', kind: 'FINDING', name: 'Guard skips' },
+      { id: 'finding-R1-P1-001-proof', kind: 'EVIDENCE', name: 'Trace' },
+    ], [
+      { id: 'proof-edge', relation: 'CONFIRMS', source: 'finding-R1-P1-001-proof', target: 'finding-R1-P1-001' },
+    ]);
+    expect(result.exitCode).toBe(0);
+
+    const { nodes, edges } = await graph(namespace);
+    expect(nodes.find((node) => node.id === 'finding-R1-P1-001-proof')?.kind).toBe('EVIDENCE');
+    expect(edges.find((edge) => edge.id === 'proof-edge')).toMatchObject({
+      sourceId: 'finding-R1-P1-001-proof',
+      targetId: 'finding:R1-P1-001',
+    });
+  });
+
+  it('keeps two distinct findings that reuse an id in different iterations apart', async () => {
+    const namespace = uniqueNamespace('upsert');
+    namespaces.push(namespace);
+    const file = stateLog([
+      { iteration: 1, findingDetails: [{ id: 'F1', title: 'Leak in a', file: 'src/a.cjs:3' }] },
+      { iteration: 2, findingDetails: [{ id: 'F1', title: 'Race in b', file: 'src/b.cjs:9' }] },
+    ]);
+
+    expect(upsert(namespace, file, 1).exitCode).toBe(0);
+    expect(upsert(namespace, file, 2).exitCode).toBe(0);
+
+    const { nodes, edges } = await graph(namespace);
+    expect(nodes.filter((node) => node.kind === 'FINDING').map((node) => node.id).sort()).toEqual(['finding:F1', 'finding:F1#2']);
+    expect(edges.filter((edge) => edge.relation === 'EVIDENCE_FOR').map((edge) => edge.targetId).sort())
+      .toEqual(['file:src/a.cjs', 'file:src/b.cjs']);
+  });
+
+  it('derives an edge only from a ref with a line, and drops a trailing column', async () => {
+    const namespace = uniqueNamespace('upsert');
+    namespaces.push(namespace);
+    const file = stateLog([{ iteration: 1, findingDetails: [
+      { id: 'R1-P2-001', title: 'No line', file: 'src/a.cjs' },
+      { id: 'R1-P2-002', title: 'Line and column', file: 'src/b.cjs:42:7' },
+    ] }]);
+
+    expect(upsert(namespace, file, 1).exitCode).toBe(0);
+
+    const { edges } = await graph(namespace);
+    const evidence = edges.filter((edge) => edge.relation === 'EVIDENCE_FOR');
+    expect(evidence).toHaveLength(1);
+    expect(evidence[0]).toMatchObject({ sourceId: 'finding:R1-P2-002', targetId: 'file:src/b.cjs' });
+  });
+});
+
+// The orphan skip sits in the write path every loop type shares, so each one is
+// checked: the batch keeps its declared nodes and edges, and the drop is named.
+describe('upsert.cjs skips edges to undeclared nodes for every loop type', () => {
+  const cases: Array<[string, unknown[], unknown[]]> = [
+    ['research', [
+      { id: 'q-1', kind: 'QUESTION', name: 'Question' },
+      { id: 'f-1', kind: 'FINDING', name: 'Finding' },
+    ], [
+      { id: 'kept', relation: 'ANSWERS', source: 'f-1', target: 'q-1' },
+      { id: 'orphan', relation: 'ANSWERS', source: 'f-missing', target: 'q-1' },
+    ]],
+    ['context', [
+      { id: 'slice-1', kind: 'SLICE', name: 'Slice' },
+      { id: 'file-1', kind: 'FILE', name: 'src/a.cjs' },
+    ], [
+      { id: 'kept', relation: 'CONTAINS', source: 'slice-1', target: 'file-1' },
+      { id: 'orphan', relation: 'CONTAINS', source: 'slice-1', target: 'file-missing' },
+    ]],
+  ];
+
+  it.each(cases)('%s', async (loopType, nodes, edges) => {
+    const namespace = uniqueNamespace('upsert', loopType as ScriptNamespace['loopType']);
+    namespaces.push(namespace);
+
+    const result = runScript('upsert', [
+      ...namespaceArgs(namespace),
+      '--nodes', JSON.stringify(nodes),
+      '--edges', JSON.stringify(edges),
+    ]);
+    expect(result.exitCode).toBe(0);
+    expect((result.json.data as Record<string, unknown>).rejectedOrphanEdges).toEqual(['orphan']);
+    expect(result.stderr).toContain('skipped 1 edge to an undeclared node: orphan');
+
+    const db = await import('../../lib/coverage-graph/coverage-graph-db.js');
+    try {
+      const ns = { specFolder: namespace.specFolder, loopType: namespace.loopType, sessionId: namespace.sessionId };
+      expect(db.getNodes(ns as never)).toHaveLength(2);
+      expect(db.getEdges(ns as never).map((edge) => edge.id)).toEqual(['kept']);
+    } finally {
+      db.closeDb();
+    }
+  });
+});

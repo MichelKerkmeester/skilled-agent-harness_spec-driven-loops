@@ -166,16 +166,32 @@ function canonicalReviewDimensionId(id) {
   return `dimension:${match[1].toLowerCase()}`;
 }
 
-// A review leaf names a finding node with its own prefix around the finding id. The
-// graph keeps one finding node per finding, so `finding-R1-P1-001`, `FIND-R1-P1-001`,
-// `node:finding:R1-P1-001` and a bare id this iteration reports all fold onto
-// `finding:R1-P1-001`, the id the evidence projection below uses.
-function canonicalReviewFindingId(id, iterationFindingIds = new Set()) {
-  if (typeof id !== 'string') return id;
+// A review leaf names a finding node with its own prefix and case around the finding
+// id. The graph keeps one finding node per finding, so `finding-R1-P1-001`,
+// `finding-r1-p1-001`, `FIND-R1-P1-001`, `node:finding:R1-P1-001` and the bare id all
+// fold onto the node the finding is stored under. `knownFindings` maps each lowercased
+// finding id of this iteration and of the stored graph to that node id. The raw id is
+// tried before its prefix is stripped, so an id that itself starts with `finding-`
+// resolves the same way in every iteration that names it.
+function resolveReviewFindingId(id, knownFindings) {
+  if (typeof id !== 'string') return null;
   const trimmed = id.trim();
-  if (iterationFindingIds.has(trimmed)) return `finding:${trimmed}`;
+  const direct = knownFindings.get(trimmed.toLowerCase());
+  if (direct) return direct;
   const match = /^(?:node:)?(?:finding|find)[:_-](.+)$/i.exec(trimmed);
-  return match ? `finding:${match[1]}` : id;
+  if (!match) return null;
+  return knownFindings.get(match[1].toLowerCase()) ?? `finding:${match[1]}`;
+}
+
+// A file:line ref names a place a finding can be checked; a bare path does not. The
+// shape matches the one the stop decision counts as file:line evidence, and a
+// trailing column or range is dropped.
+function parseFindingRef(ref) {
+  if (typeof ref !== 'string') return null;
+  const match = /^(.+?):(\d+)(?:[:-].*)?$/.exec(ref.trim());
+  if (!match) return null;
+  const filePath = match[1].replace(/^\.\//, '').trim();
+  return filePath ? { filePath, line: Number(match[2]) } : null;
 }
 
 // The iteration's own findings are the source of review evidence: each finding with
@@ -230,32 +246,41 @@ function readReviewIterationFindings({ stateLog, deltaDir, iteration }) {
   return [...byId.values()];
 }
 
-function deriveReviewFindingEvidence(findings, iteration) {
+// Finding ids are unique only per source, so an id an earlier iteration stored for a
+// different finding (another file and another title) gets a node keyed on the id and
+// this iteration, the way the reducer keeps two such findings apart.
+function deriveReviewFindingEvidence(findings, iteration, storedNode = () => null) {
   const nodes = [];
   const edges = [];
   for (const finding of findings) {
     if (!finding || typeof finding.id !== 'string' || !finding.id.trim()) continue;
-    const findingId = `finding:${finding.id.trim()}`;
-    const ref = typeof finding.file === 'string' ? finding.file.trim() : '';
-    const refMatch = /^(.+?)(?::(\d+)(?:-\d+)?)?$/.exec(ref);
-    const filePath = refMatch ? refMatch[1].replace(/^\.\//, '') : '';
-    const line = refMatch && refMatch[2] ? Number(refMatch[2]) : null;
+    const rawId = finding.id.trim();
+    const ref = parseFindingRef(finding.file);
+    const title = typeof finding.title === 'string' && finding.title ? finding.title : rawId;
+    const stored = storedNode(`finding:${rawId}`);
+    const storedMeta = stored && stored.metadata && typeof stored.metadata === 'object' ? stored.metadata : {};
+    const distinct = stored
+      && typeof storedMeta.file === 'string'
+      && ref !== null
+      && storedMeta.file !== ref.filePath
+      && stored.name !== title;
+    const findingId = distinct ? `finding:${rawId}#${iteration}` : `finding:${rawId}`;
     nodes.push({
       id: findingId,
       kind: 'FINDING',
-      name: typeof finding.title === 'string' && finding.title ? finding.title : finding.id,
+      name: title,
       iteration,
-      metadata: { finding_id: finding.id.trim(), ...(filePath ? { file: filePath, line } : {}) },
+      metadata: { finding_id: rawId, ...(ref ? { file: ref.filePath, line: ref.line } : {}) },
     });
-    if (!filePath) continue;
-    const fileId = `file:${filePath}`;
-    nodes.push({ id: fileId, kind: 'FILE', name: filePath, iteration });
+    if (!ref) continue;
+    const fileId = `file:${ref.filePath}`;
+    nodes.push({ id: fileId, kind: 'FILE', name: ref.filePath, iteration });
     edges.push({
-      id: `evidence:${finding.id.trim()}:${fileId}`,
+      id: `evidence:${findingId.slice('finding:'.length)}:${fileId}`,
       relation: 'EVIDENCE_FOR',
       sourceId: findingId,
       targetId: fileId,
-      metadata: { derivedFrom: 'findingDetails', ...(line !== null ? { line } : {}) },
+      metadata: { derivedFrom: 'findingDetails', line: ref.line },
     });
   }
   return { nodes, edges };
@@ -344,7 +369,7 @@ async function main() {
     if (!Array.isArray(rawNodes) || !Array.isArray(rawEdges)) throw inputError('nodes and edges must be JSON arrays');
     const seedOptions = parseSeedOptions(args, rawNodes);
     let derived = { nodes: [], edges: [] };
-    let iterationFindingIds = new Set();
+    const knownFindings = new Map();
     const canonicalFindings = args.stateLog !== undefined || args.deltaDir !== undefined;
     if (canonicalFindings || args.iteration !== undefined) {
       if (loopType !== 'review') throw inputError('--state-log, --delta-dir and --iteration are supported only for loop type "review"');
@@ -354,8 +379,20 @@ async function main() {
       const iteration = Number(args.iteration);
       if (!Number.isInteger(iteration) || iteration < 1) throw inputError('--iteration must be a positive integer');
       const findings = readReviewIterationFindings({ stateLog: args.stateLog, deltaDir: args.deltaDir, iteration });
-      iterationFindingIds = new Set(findings.map((finding) => finding.id));
-      derived = deriveReviewFindingEvidence(findings, iteration);
+      const findingNs = { specFolder, loopType, sessionId };
+      derived = deriveReviewFindingEvidence(findings, iteration, (id) => db.getNode(findingNs, id));
+      for (const stored of db.getNodesByKind(findingNs, 'FINDING')) {
+        const storedMeta = stored.metadata && typeof stored.metadata === 'object' ? stored.metadata : {};
+        const findingKey = typeof storedMeta.finding_id === 'string'
+          ? storedMeta.finding_id
+          : stored.id.replace(/^finding:/, '');
+        if (!knownFindings.has(findingKey.toLowerCase())) knownFindings.set(findingKey.toLowerCase(), stored.id);
+      }
+      for (const node of derived.nodes) {
+        if (node.kind !== 'FINDING') continue;
+        const key = node.metadata.finding_id.toLowerCase();
+        if (!knownFindings.has(key)) knownFindings.set(key, node.id);
+      }
     }
     if (rawNodes.length === 0 && rawEdges.length === 0 && derived.nodes.length === 0) {
       if (!seedOptions) throw inputError('At least one node or edge must be provided');
@@ -369,6 +406,7 @@ async function main() {
     // the graph already holds. This map carries an old id to the canonical one so an
     // edge that still names the old id lands on the same node.
     const reviewNodeIds = new Map();
+    const batchRawKinds = new Map();
 
     for (const n of rawNodes) {
       const kind = String(n.kind || n.nodeKind || n.type || '').toUpperCase();
@@ -388,10 +426,11 @@ async function main() {
         nodeId = canonicalId;
       }
       if (canonicalFindings && kind === 'FINDING') {
-        const canonicalId = canonicalReviewFindingId(n.id, iterationFindingIds);
+        const canonicalId = resolveReviewFindingId(n.id, knownFindings) ?? n.id;
         if (canonicalId !== n.id) reviewNodeIds.set(n.id, canonicalId);
         nodeId = canonicalId;
       }
+      if (loopType === 'review') batchRawKinds.set(n.id, kind);
       const name = n.name || n.label || n.id;
       // The derived class overwrites any leaf-supplied quality_class on a research
       // SOURCE node; every other node keeps its metadata as sent.
@@ -429,10 +468,19 @@ async function main() {
       nodes.push({ ...node, specFolder, sessionId, loopType });
     }
 
+    // An endpoint moves only when it names a finding: a node of this batch that folded,
+    // or an id that resolves to a known finding and is not some other node kind here.
     const canonicalEdgeEndpoint = (id) => {
       if (loopType !== 'review') return id;
-      const mapped = reviewNodeIds.get(id) ?? id;
-      return canonicalReviewDimensionId(canonicalFindings ? canonicalReviewFindingId(mapped, iterationFindingIds) : mapped);
+      if (reviewNodeIds.has(id)) return reviewNodeIds.get(id);
+      if (canonicalFindings && typeof id === 'string' && !batchRawKinds.has(id)) {
+        const trimmed = id.trim();
+        const direct = knownFindings.get(trimmed.toLowerCase());
+        const match = /^(?:node:)?(?:finding|find)[:_-](.+)$/i.exec(trimmed);
+        const resolved = direct ?? (match ? knownFindings.get(match[1].toLowerCase()) : undefined);
+        if (resolved) return resolved;
+      }
+      return canonicalReviewDimensionId(id);
     };
     for (const e of [...rawEdges, ...derived.edges]) {
       const sourceId = canonicalEdgeEndpoint(e.sourceId || e.source);
@@ -479,6 +527,10 @@ async function main() {
       if (endpointKnown(edges[index].sourceId) && endpointKnown(edges[index].targetId)) continue;
       rejectedOrphanEdges.unshift(edges[index].id);
       edges.splice(index, 1);
+    }
+    if (rejectedOrphanEdges.length > 0) {
+      const noun = rejectedOrphanEdges.length === 1 ? 'edge' : 'edges';
+      process.stderr.write(`upsert: skipped ${rejectedOrphanEdges.length} ${noun} to an undeclared node: ${rejectedOrphanEdges.join(', ')}\n`);
     }
 
     const storageDir = db.COVERAGE_GRAPH_DATABASE_DIR;
