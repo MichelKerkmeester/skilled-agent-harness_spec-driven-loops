@@ -763,6 +763,26 @@ describe('expansive budget sized from the seed', () => {
     expect(result.warning).toBeUndefined();
   });
 
+  it('admits the growth the seed reported once the budget step has written the derived budget', () => {
+    const dir = dirWithBudget(10);
+    const result = seedWithBudget({ artifactDir: dir, candidates: seeds(6), maxIterationsSource: 'default' });
+    expect(result.growthSlots).toBe(2);
+
+    // step_frontier_budget writes the derived budget into the config before any admission runs.
+    const configPath = join(dir, 'deep-research-config.json');
+    const config = JSON.parse(readFileSync(configPath, 'utf8')) as Record<string, unknown>;
+    writeFileSync(configPath, JSON.stringify({ ...config, maxIterations: result.derivedMaxIterations }), 'utf8');
+
+    expect(readCaps(dir).maxFrontierNodes).toBe(6 + result.growthSlots);
+    const child = admitProposals({
+      artifactDir: dir,
+      iteration: 1,
+      proposals: [{ parentId: result.admitted[0], question: 'which child the first seed opened', scope: 'src/seed-1', evidence: 'src/seed-1/index.ts:2' }],
+    });
+    expect(child.pruned).toEqual([]);
+    expect(child.admitted).toHaveLength(1);
+  });
+
   it('never goes below the loop default', () => {
     const result = seedWithBudget({ artifactDir: dirWithBudget(10), candidates: seeds(1), maxIterationsSource: 'default' });
     expect(result.derivedMaxIterations).toBe(10);
