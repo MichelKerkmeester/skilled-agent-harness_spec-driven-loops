@@ -1,7 +1,7 @@
 ---
 title: "runtime/: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the runtime/ skill."
-version: 1.4.6.0
+version: 1.4.7.0
 ---
 
 # runtime/: Manual Testing Playbook
@@ -709,9 +709,9 @@ Expected signals: 10/10 pool tests pass; gated-worker confirms max N in flight; 
 Validates `fanout-run.cjs` creates distinct per-lineage dirs and `.executor-state` paths, saves stdout, and writes orchestration artifacts.
 
 #### Scenario Contract
-Prompt: `Validate the fan-out CLI lineage driver and confirm the 5 integration tests pass, verifying lineage isolation and orchestration artifact creation.`
+Prompt: `Validate the fan-out CLI lineage driver and confirm the selected lineage-isolation and orchestration cases pass, verifying lineage isolation and orchestration artifact creation.`
 
-Expected signals: 5/5 fanout-run tests pass; lineage dirs distinct; orchestration summary present.
+Expected signals: every selected case passes; lineage dirs distinct; orchestration summary present.
 
 #### Test Execution
 > **Feature File:** [DLR-025](../manual-testing-playbook/fanout/fanout-run-cli-lineage-spawn.md)

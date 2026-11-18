@@ -1,7 +1,7 @@
 ---
 title: "DLR-025 -- Fan-out CLI lineage driver spawn and isolation"
 description: "Validate fanout-run.cjs creates per-lineage dirs with isolated .executor-state paths, saves stdout to logs/, writes orchestration summary and ledger, and returns early for native-only configs."
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # DLR-025 -- Fan-out CLI lineage driver spawn and isolation
@@ -27,9 +27,9 @@ If stdout is not saved, the salvage sweep has nothing to recover from.
 
 - Objective: Confirm `fanout-run.cjs` creates distinct per-lineage dirs and state dirs, writes orchestration artifacts, and returns early for native-only configs.
 - Layer partition: CLI lineage dispatch.
-- Real user request: `Validate the fan-out CLI lineage driver and confirm the 5 integration tests pass, verifying lineage isolation and orchestration artifact creation.`
+- Real user request: `Validate the fan-out CLI lineage driver and confirm the selected lineage-isolation and orchestration cases pass, verifying lineage isolation and orchestration artifact creation.`
 - Expected signals: `lineages/lineage-a/` and `lineages/lineage-b/` dirs created; `.executor-state/` paths distinct for same-kind replicas; `orchestration-summary.json` present with `total_cli_lineages=2`; `orchestration-status.log` has JSONL events; native-only config returns `{status:"ok", results:[]}`.
-- Pass/fail: PASS only if all 5 tests pass with EXIT 0 and source inspection confirms `SPECKIT_STATE_ENV_BY_KIND` usage; FAIL otherwise.
+- Pass/fail: PASS only if every selected case passes with EXIT 0 and source inspection confirms `SPECKIT_STATE_ENV_BY_KIND` usage; FAIL otherwise.
 
 ---
 
@@ -42,19 +42,19 @@ If stdout is not saved, the salvage sweep has nothing to recover from.
 
 ### Prompt
 
-- Prompt: `Validate the fan-out CLI lineage driver and confirm the 5 integration tests pass, verifying lineage isolation and orchestration artifact creation.`
+- Prompt: `Validate the fan-out CLI lineage driver and confirm the selected lineage-isolation and orchestration cases pass, verifying lineage isolation and orchestration artifact creation.`
 
 ### Commands
 
 1. Inspect `scripts/fanout-run.cjs` — confirm `SPECKIT_STATE_ENV_BY_KIND` map, `computeLineageTimeoutMs` formula, `buildLineageCommand` per-kind branch.
 2. Verify `extraEnv` in the worker sets both `SPECKIT_FANOUT_LINEAGE_ID` and the kind-specific state dir var.
-3. `bash: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-run.vitest.ts`
-4. Confirm 5 tests pass. Note: the 2-lineage stub test verifies dirs, ledger, and summary; the lockfile-isolation test verifies `.executor-state` paths are distinct for same-kind replicas.
+3. `bash: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-run.vitest.ts -t "creates two isolated lineage dirs|for each same-kind replica|emits ok JSON for native fanout"`
+4. Confirm every selected case passes. The filter selects three cases: `creates two isolated lineage dirs and writes orchestration summary for 2 cli-opencode lineages`, `sets distinct SPECKIT_OPENCODE_STATE_DIR for each same-kind replica to prevent lockfile collisions` and `exits 0 and emits ok JSON for native fanout through opencode command dispatch`. The first verifies dirs, ledger and summary; the second verifies `.executor-state` paths are distinct for same-kind replicas; the third verifies the early return.
 5. Run the runner on a one-lineage research matrix with a throwaway `--spec-folder` and `--base-artifact-dir` and no `--allow-single-lineage`. Confirm exit 3, a message that names the single-executor `/deep:research` workflow and not the opt-in flag, and no lineage directory, ledger or summary under the base directory. Rerun with `--allow-single-lineage` and confirm the lineage starts.
 
 ### Expected Outcome
 
-5/5 pass. Lineage dirs created, `.executor-state` dirs distinct, `orchestration-summary.json` with `total_cli_lineages=2`, JSONL ledger written, native-only config returns early without spawning. Step 5 exits 3 with no side effect, and the opted-in rerun starts its one lineage.
+Every selected case passes. Lineage dirs created, `.executor-state` dirs distinct, `orchestration-summary.json` with `total_cli_lineages=2`, JSONL ledger written, native-only config returns early without spawning. Step 5 exits 3 with no side effect, and the opted-in rerun starts its one lineage.
 
 ### Evidence
 
@@ -86,7 +86,7 @@ If stdout is not saved, the salvage sweep has nothing to recover from.
 
 | File | Role |
 |---|---|
-| `tests/unit/fanout-run.vitest.ts` | 5 integration tests with stub CLI binaries |
+| `tests/unit/fanout-run.vitest.ts` | The selected lineage-spawn, lockfile-isolation and native early-return cases, run with `-t` |
 
 ---
 
@@ -97,5 +97,5 @@ If stdout is not saved, the salvage sweep has nothing to recover from.
 - Feature catalog entry: `feature-catalog/fanout/fanout-run.md`
 - Scenario file path: `manual-testing-playbook/fanout/fanout-run-cli-lineage-spawn.md`
 - Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`
-- Expected verdict mode: GREEN when 5/5 pass and source anchors agree
+- Expected verdict mode: GREEN when every selected case passes and source anchors agree
 - Wall-time estimate: 5-10 min
