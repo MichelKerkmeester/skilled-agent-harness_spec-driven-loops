@@ -178,7 +178,7 @@ Perform 3-5 focused research actions.
 - `[SOURCE: path:line]` for retrieval hits from the trigger index or a ripgrep recipe
 - `[INFERENCE: based on X and Y]` for derived conclusions
 
-**Source diversity**: Aim for >=2 independent sources per key finding. The orchestrator flags single-weak-source answers during convergence quality checks.
+**Source diversity**: Aim for >=2 independent sources per key finding. The source diversity guard blocks a stop while an answered question rests on fewer than two sources.
 
 For source failures, apply Tier 1-2 recovery:
 - **Tier 1 (Source failure)**: retry with an alternative source, max 2 retries; never repeat the exact same call.
