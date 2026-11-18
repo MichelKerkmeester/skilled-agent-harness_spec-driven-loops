@@ -1270,6 +1270,26 @@ describe('reduceReviewState expansive frontier', () => {
     expect(section).toContain('- Frontier size: 2 nodes (1 open, 0 active, 0 answered, 0 exhausted, 0 blocked, 1 abstained)');
   });
 
+  // An errored or timed out attempt is retried work: it spends none of the band's
+  // budget and covers no dimension, so the node keeps owing that dimension.
+  it('leaves a failed visit out of the node visits, the band budget and the covered dimensions', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    writeStore(reviewDir, [nodeRow({ nodeId: 'F-1-001', iteration: 1 })]);
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${[
+      iterationRecord(1, 'Frontier node F-1-001: correctness', ['correctness'], { frontierNodeId: 'F-1-001' }),
+      iterationRecord(2, 'Frontier node F-1-001: security', ['security'], { frontierNodeId: 'F-1-001', status: 'error' }),
+    ].join('\n')}\n`);
+
+    const frontier = readFrontier(reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }));
+    const [node] = frontier.nodes;
+
+    expect(node.visits).toBe(1);
+    expect(node.coveredDimensions).toEqual(['correctness']);
+    expect(frontier.budget.depth1).toEqual({ allotted: 5, spent: 1 });
+    expect(frontier.activeNextDimension).toBe('security');
+  });
+
   // A node owes one pass per configured dimension, so a partly reviewed node must
   // stay open and keep steering until the last of them lands.
   it('keeps a node open with two of four dimensions covered and answers it at four', () => {
