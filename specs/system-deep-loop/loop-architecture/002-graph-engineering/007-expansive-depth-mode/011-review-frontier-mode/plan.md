@@ -255,7 +255,7 @@ The operator accepted ADR-001 to ADR-004 as proposed on 2026-11-17 (T000). The b
 
 **Consequences**:
 - Dimension coverage keeps advancing while the frontier is worked.
-- A node needs one iteration per configured dimension (four by default), so the depth-1 band rule is `ceil(nodes / lineages) * dimensions`, and the edge case and T023 use that formula. Per-node dimension coverage is new reducer state (T014).
+- A node needs one iteration per dimension in its universe (the canonical four plus any custom name), so the depth-1 band rule is `ceil(nodes / lineages) * dimensions`, and the edge case and T023 use that formula. Per-node dimension coverage is new reducer state (T014).
 - The pilot either sets `maxIterations` to meet the rule or narrows `review_dimensions`; the choice is recorded at T000.
 
 **Alternatives Rejected**:
