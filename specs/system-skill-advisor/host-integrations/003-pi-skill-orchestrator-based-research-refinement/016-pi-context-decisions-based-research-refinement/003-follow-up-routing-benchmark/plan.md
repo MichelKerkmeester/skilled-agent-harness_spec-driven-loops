@@ -42,7 +42,7 @@ Paths are relative to `.skilled/skills/system-skill-advisor/` unless they start 
 - [ ] The pair list in section 3 and the decision rule in `spec.md` section 4 are unchanged since planning
 
 ### Definition of Done
-- [ ] `SPECKIT_RUN_BENCHES=true npx vitest run bench/scorer-calibration.bench.ts` from `runtime/` exits 0 and prints both log lines
+- [ ] `SPECKIT_RUN_BENCHES=true npx vitest run bench/scorer-calibration.bench.ts --reporter=verbose` from `runtime/` exits 0 and prints both log lines
 - [ ] `implementation-summary.md` records `N`, `H`, `C`, the ids of the `C` rows and the branch of the rule taken
 - [ ] If the guard ships, `npx vitest run tests/hooks tests/schemas tests/handlers` from `runtime/` exits 0
 <!-- /ANCHOR:quality-gates -->

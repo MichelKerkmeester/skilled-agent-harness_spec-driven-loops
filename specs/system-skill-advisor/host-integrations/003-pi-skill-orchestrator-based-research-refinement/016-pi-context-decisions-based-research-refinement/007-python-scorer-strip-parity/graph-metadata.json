@@ -195,7 +195,7 @@
     ],
     "causal_summary": "When the daemon is unreachable, `advisorrecommend` falls back to the Python scorer",
     "created_at": "2026-11-18T15:49:26Z",
-    "last_save_at": "2026-11-18T17:45:05.787Z",
+    "last_save_at": "2026-11-18T22:50:04.022Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:296ff47562d70150737d3e7dd330445fdbf9cac8c65d9eba1a43eb223af6d312",
+    "source_fingerprint": "sha256:ea1522641db2b30ff7bb420f5c471db503d086dfae9d0cfd277a8ae0d36a216d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "62973214a31eca0b6ff40b0e6f32edfd0562df92b275bf22348e30efc71b2e30",
       "plan.md": "06a83467e959ed38652cc05fde575467274434955c49885e9007ae275cbaaed9",
       "tasks.md": "c089a63b81c4b35e4d27f21d173129862fa8d66277ecd593e240e58c3ff343f8",
-      "implementation-summary.md": "d0af607ebf24e775ab90a1a8f6fb03a144f89c6dbade4fa0bacf47e9cd074c29"
+      "implementation-summary.md": "5ee0aa7b7854a73a4334729e423480200ab06b6d3c608fda82a42eb011ec9872"
     },
     "last_active_at": null
   }

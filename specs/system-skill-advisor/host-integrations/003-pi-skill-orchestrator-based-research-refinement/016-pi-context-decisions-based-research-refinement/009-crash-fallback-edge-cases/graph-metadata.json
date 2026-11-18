@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phase 004 made the outer catch of `handleClaudeUserPromptSubmit` (`hooks/claude/user-prompt-submit.ts:469-492`) return `renderAdvisorTimeoutFallback()` with default options inside a nested try (`:483-491`)",
     "created_at": "2026-11-18T15:49:30Z",
-    "last_save_at": "2026-11-18T18:46:58.347Z",
+    "last_save_at": "2026-11-18T22:50:05.982Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5e4f813d99e63f40426e730fd6ae85af5531601cafcc742cbecd176376bc3d01",
+    "source_fingerprint": "sha256:22d3b1c583048797051cb8bd5cea9b8d67cc9d76593ce518b1b282db792b9736",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a5be6737a54ca6f489b223ff0d4248bba2408faf33a46205764d196f2bd136c1",
       "plan.md": "836b52610e65be29b6f242cde137d6793498a67570ca95b911f0160544e71df6",
       "tasks.md": "fe7968f237756f8c81dbd1cbeb7113467b9c84f7ad1e4783c8bb5d07aac60c74",
-      "implementation-summary.md": "341acc88be98b589643f57fb043ff29e58287d8ed4d86aaad5af5a506185872a"
+      "implementation-summary.md": "44e4946a686cb9a9d20bee0a94903327c98f42f8439dcbeaf55f32f9922dffa7"
     },
     "last_active_at": null
   }

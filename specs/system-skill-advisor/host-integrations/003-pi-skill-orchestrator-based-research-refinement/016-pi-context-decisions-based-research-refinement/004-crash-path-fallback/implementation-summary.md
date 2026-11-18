@@ -107,8 +107,8 @@ The conductor re-read the catch and recorded the hook suite baseline. Two GPT-6 
 ## Known Limitations
 
 1. **An adapter that fails to import the built handler stays silent.** Pi, DSH and Vibe each have their own catch for that case. The fallback text lives in the module that failed to load, so covering it would need a duplicated string. Rebuilding the runtime is the workaround if it ever happens.
-2. **The crash fallback renders with default options.** A setup prompt loses its `/doctor:setup` hint, a prompt the policy would skip is shown as an outage, the directive block is not deduplicated across repeated crashing turns, and the policy observation carries no session. Each is reached only when the hook itself throws.
-3. **Follow-up for the doc row:** its existing clause about `confidenceOnly` is wrong; that mode drops the uncertainty check, not the confidence threshold. This phase added one sentence and left the clause alone.
+2. **Fixed by phase 009, completed in phase 012. The crash fallback rendered with default options.** A setup prompt lost its `/doctor:setup` hint, a prompt the policy would skip was shown as an outage and the directive block was not deduplicated across repeated crashing turns; phase 009 fixed those three (`hooks/claude/user-prompt-submit.ts`, the catch block). The policy observation still carried no session when the crash came before the delivery state was set, which phase 012 fixed by setting it right after the input is validated.
+3. **Fixed by phase 009. The doc row's `confidenceOnly` clause was wrong**; that mode drops the uncertainty check, not the confidence threshold. `ENV-REFERENCE.md:382` now says `confidenceOnly` mode skips only the uncertainty check.
 <!-- /ANCHOR:limitations -->
 
 ---

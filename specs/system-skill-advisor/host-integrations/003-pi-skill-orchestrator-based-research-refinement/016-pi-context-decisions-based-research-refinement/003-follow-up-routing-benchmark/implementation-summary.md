@@ -99,7 +99,7 @@ The conductor confirmed phases 002 and 004 had no open task and ran the bench on
 | T007 comment hygiene | `rg` printed nothing |
 | `npx vitest run tests/hooks tests/parity` | Exit 0, 235 of 235 |
 | Refutation pass (Luna `xhigh`, read-only) | One finding, confirmed and kept as a sensitivity note: today's live hook reads the policy reason from the raw prompt, where pair 9 gives `explicit_skill_or_governance_marker` (checked through `dist/`; the stripped text gives `work_intent_with_meaningful_tokens`). The frozen rule and the planned guard both read the stripped text, so the outcome stands. On raw text `H` would be 4 and `C` 18 (`rr-paste-208` drops out), which takes the no-guard branch; neither branch ships a guard. The other attacks failed: the top-1 is the first passing recommendation, `confidenceFloored` is set only when a floor raised the value, and a gold `none` row cannot enter `C` |
-| Drift guards | `run-all-drift-guards.sh` exits 1 on 11 errors, all in unrelated spec probe scripts and `.vibe` fixtures; primary `main` fails the same way |
+| Drift guards | `run-all-drift-guards.sh` exits 1 on 11 errors, all in ten review probes of the routing-and-scoring 008 packet. The `.vibe` repo-guard fixtures show WARN rows only. Primary `main` holds the same probes. Phase 013 fixes them |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -135,7 +135,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The bench counts floored top-1 passes on the labeled corpus | `SPECKIT_RUN_BENCHES=true npx vitest run bench/scorer-calibration.bench.ts` from `runtime/` exits 0 and its `advisor-scorer-calibration` line carries the floored counts, split by correct, wrong and work-intent |
+| REQ-001 | The bench counts floored top-1 passes on the labeled corpus | `SPECKIT_RUN_BENCHES=true npx vitest run bench/scorer-calibration.bench.ts --reporter=verbose` from `runtime/` exits 0 and its `advisor-scorer-calibration` line carries the floored counts, split by correct, wrong and work-intent |
 | REQ-002 | The bench scores the follow-up pairs | The same run prints one `advisor-follow-up-routing` line with `N`, `H`, `Hsame` and, per pair, the task top-1, the follow-up top-1, the floored flag, the policy reason from the stripped text and the follow-up's full floored set |
 | REQ-003 | The decision follows the rule | `implementation-summary.md` quotes `N`, `H`, `C` and the ids of the `C` rows from the run, and names the branch of the rule taken |
 | REQ-004 | No diagnostics or baseline schema change | `git diff --stat` lists no change to `runtime/lib/metrics.ts` or `runtime/bench/scorer-calibration-baseline.json` |

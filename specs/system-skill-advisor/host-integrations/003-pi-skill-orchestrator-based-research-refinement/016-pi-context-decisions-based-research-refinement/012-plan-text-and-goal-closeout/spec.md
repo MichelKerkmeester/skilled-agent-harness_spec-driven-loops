@@ -41,7 +41,7 @@ This is **Phase 12** of the pi-context-decisions refinement packet. It builds la
 
 `P` is the parent folder `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/`. `A` is `.skilled/skills/system-skill-advisor/`.
 
-**Scope Boundary**: Spec docs only, plus one decision record the continuity writer creates. No code, test, fixture or config changes. The conductor edits every doc itself, with no Luna leaf.
+**Scope Boundary**: Spec docs, plus one decision record the continuity writer creates. The conductor edits every doc itself. Code, test and fixture changes come only from a review finding confirmed against the code under D6, each written by a Luna leaf and listed in Files to Change.
 
 **Dependencies**:
 - Phases 006 to 011 and 013 complete, so their goals can be ticked and the drift-guard gate is green.
@@ -115,9 +115,10 @@ Both bench runs exited 0. The two commits are phase 004's own, so its three-file
 - Tick the 002, 003 and 004 goal criteria from fresh conductor runs, and set their `completion_pct` to 100.
 - Record the operator answers, 9 at planning, through `/speckit:save` `--full-auto`, targeting this folder.
 - Tick the parent goal criteria after the finish sequence, and set the parent spec and every phase-map row to Complete.
+- Run a read-only review of every phase in four lanes, on Opus 5.5 medium through claude2 and DeepSeek V4.1 Flash max through cli-mistral-vibe, record each finding with a verdict, and fix any confirmed defect test first.
 
 ### Out of Scope
-- Any code, test or fixture - this phase is doc-only.
+- Any code, test or fixture, except the fix for a review finding confirmed against the code, which joins Files to Change when it is confirmed.
 - Rewriting `[x]` marks or Evidence lines in 002, 003 or 004 - they record what ran.
 - Goal ticks for 001, 005 to 011 and 013 - each of those phases ticks its own goal when it completes.
 
@@ -138,6 +139,26 @@ Both bench runs exited 0. The two commits are phase 004's own, so its three-file
 | `P/004-crash-path-fallback/tasks.md` | Modify | T007 description at `:64`. Evidence at `:65` stays |
 | `P/004-crash-path-fallback/goal.md` | Modify | Criterion `:61` reworded. Tick `:59-62`. `completion_pct` at `:23` to 100 |
 | `P/delegation-strategy.md` | Modify | Wave rows at `:107` and `:116`. New socket bullet in section 5 after `:136` |
+| `012-plan-text-and-goal-closeout/evidence/review/` | Create | The review prompts, the two launchers and each lane's handback, kept as the scripts this phase ran |
+| `A/hooks/claude/user-prompt-submit.ts` | Modify | Review fixes: receipts follow the `directive-lifecycle` flag, a shown floored or degraded route writes no receipt and clears one for another skill, delivery state set after input validation, crash path silent for a payload with no prompt, `writeHookOutput` exported with a stream seam and committing only on a clean write |
+| `A/hooks/lib/route-receipt.ts` | Modify | `remove(sessionId)` on the receipt store and both implementations |
+| `A/hooks/lib/skill-advisor-cli-fallback.ts` | Modify | Strip a leading pasted reply before the 10,000-character cut |
+| `A/runtime/lib/skill-advisor-brief.ts` | Modify | Strip before the newline fold and the cut |
+| `A/runtime/scripts/skill_advisor.py` | Modify | Strip at the entry of `recommend_with_native_advisor` |
+| `A/hooks/dsh/prompt-advisor.mjs` | Modify | Log a named session's clock rotation that returned false |
+| `A/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` | Modify | Seven tests for the hook fixes |
+| `A/runtime/tests/hooks/route-receipt.vitest.ts` | Modify | Two tests for `remove` |
+| `A/runtime/tests/hooks/skill-advisor-cli-fallback-no-match.vitest.ts` | Modify | One test for a pasted reply past the cut |
+| `A/runtime/tests/legacy/advisor-brief-producer.vitest.ts` | Modify | Two tests for the brief's routed prompt |
+| `A/runtime/tests/python/test_skill_advisor.py` | Modify | One native-entry strip check |
+| `A/hooks/tests/dsh-prompt-advisor.test.mjs` | Modify | Two tests for the unmoved clock log |
+| `A/runtime/tests/fixtures/pasted-reply-strip-cases.json` | Modify | Row `newline-marker` |
+| `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` | Modify | Line 382: when the threshold variable is read |
+| `P/002-pasted-context-stripping/implementation-summary.md` | Modify | Known Limitations 1 to 4 marked with the phase that fixed each |
+| `P/004-crash-path-fallback/implementation-summary.md` | Modify | Known Limitations 2 and 3 marked fixed |
+| `P/007-python-scorer-strip-parity/implementation-summary.md` | Modify | Known Limitation 1 marked fixed, citation moved to `:1588` |
+| `P/009-crash-fallback-edge-cases/implementation-summary.md` | Modify | Known Limitation 1 narrowed to the disabled-hook case |
+| `P/011-route-receipts-build/implementation-summary.md` | Modify | Known Limitation 7 gains the weak-reading probe, new limitation 8 |
 | `012-plan-text-and-goal-closeout/decision-record.md` | Create | Written by the continuity writer from one `operatorDecisions` entry per operator answer |
 | `P/goal.md` | Modify | Tick criteria `:92-97`. `completion_pct` at `:24` to 100. One LOG row |
 | `P/spec.md` | Modify | Status at `:65` to Complete. Rows 6 to 13 at `:142-149` to Complete. `completion_pct` at `:29` to 100 |
@@ -164,6 +185,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-005 | The socket caveat is cited and true | `rg -n 'SPECKIT_IPC_SOCKET_DIR' P/delegation-strategy.md` prints the new bullet, and task T009's live check prints `local-scorer` |
+| REQ-007 | Every phase is reviewed before the finish | `evidence/review/` holds one Opus and one DeepSeek handback for each of the four lanes, each opening with a `FINDINGS:` line, and `implementation-summary.md` gives every finding a verdict. A confirmed defect has a test that failed before its fix and passes after it |
 | REQ-006 | The operator answers are recorded where a phase holds them | `012-plan-text-and-goal-closeout/decision-record.md` holds one operator-decision row per `answered_questions` line in `P/spec.md`, 9 at planning, and `test -e P/decision-record.md` exits 1 |
 <!-- /ANCHOR:requirements -->
 

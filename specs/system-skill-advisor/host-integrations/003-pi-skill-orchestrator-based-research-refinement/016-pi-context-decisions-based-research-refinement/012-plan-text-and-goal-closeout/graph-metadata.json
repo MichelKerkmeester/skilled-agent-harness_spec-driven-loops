@@ -18,6 +18,7 @@
       "plan text and goal closeout plan",
       "plan text and goal closeout tasks",
       "plan text and goal closeout goal",
+      "012-plan-text-and-goal-closeout operator decisions",
       "plan text and goal closeout implementation summary"
     ],
     "key_topics": [
@@ -41,8 +42,12 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
       ".skilled/bin/skill-advisor.cjs",
+      "evidence/review/run.sh",
+      "evidence/review/vibe-run.sh",
       ".skilled/commands/speckit/save.md",
       ".skilled/skills/system-spec-kit/references/memory/save-workflow.md"
     ],
@@ -72,15 +77,39 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
         "name": "skill-advisor.cjs",
         "kind": "file",
         "path": ".skilled/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run.sh",
+        "kind": "script",
+        "path": "evidence/review/run.sh",
+        "source": "derived"
+      },
+      {
+        "name": "vibe-run.sh",
+        "kind": "script",
+        "path": "evidence/review/vibe-run.sh",
         "source": "derived"
       },
       {
@@ -166,51 +195,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "No Luna",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Four pieces of packet text are wrong or missing",
     "created_at": "2026-11-18T15:49:36Z",
-    "last_save_at": "2026-11-18T16:17:13.135Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-18T22:51:38.946Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8dfa741f0201a36a52cf18d5123df749d798c7888e365df72f8fc83893bc9d61",
+    "source_fingerprint": "sha256:bbb3a4fe7c3462dfaca912851977c40cdfeb91cd098a81b6bdf9039900d9f18d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "30b08472aa832bbcf1240000fdf8e3b365a9199085e68d7c39bb89eae97ef8a6",
-      "plan.md": "3ae68f89a70c2e51bcca654f3abe6d0d6c1d6167946eab3b4cf5a31dda9c495e",
-      "tasks.md": "71042f66172cce0815c57bc0df71f980d5070292bb24bf0029437017b6f1c196",
-      "implementation-summary.md": "09862c9c43fb24a13e0e895a5ae723115e3fe9150619f74769fff81e7369c005"
+      "spec.md": "8902913f374cdefdb236018708a98248e5de3279f4228297a8570006fb725a9e",
+      "plan.md": "5da40034015bb2842efa85bbeae0800b3e9c0672b5d5f9176447ed201c2558ab",
+      "tasks.md": "11777703dd1c5bcfd6c6af0f01054e93067e86a06fcc5a8dd649eaf741fab9f0",
+      "decision-record.md": "dc519f756ff48d936f2d4d3f2ff1506ca3fb20763a8227172b51d95e0029502e",
+      "implementation-summary.md": "d3bccdc87efd02a5db4b66bd06ef6c4ea8bf8a0596d04d337a478cb64e06d4b6"
     },
     "last_active_at": null
   }

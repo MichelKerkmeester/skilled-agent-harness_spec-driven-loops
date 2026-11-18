@@ -1,0 +1,6 @@
+smoke EXIT=0 RUN_DIR=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//vibe-review-smoke-qGCluW
+smoke EXIT=0 RUN_DIR=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//vibe-review-smoke-G1hmDL
+l1 EXIT=0 RUN_DIR=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//vibe-review-l1-KJzmUP
+l2 EXIT=0 RUN_DIR=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//vibe-review-l2-bFxYCO
+l3 EXIT=0 RUN_DIR=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//vibe-review-l3-nUEgwA
+l4 EXIT=0 RUN_DIR=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//vibe-review-l4-5LTKJp

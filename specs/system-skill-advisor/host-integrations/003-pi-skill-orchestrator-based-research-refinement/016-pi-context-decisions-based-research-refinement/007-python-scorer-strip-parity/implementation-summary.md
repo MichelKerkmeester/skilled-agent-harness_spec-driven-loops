@@ -110,7 +110,7 @@ Luna `xhigh` `fast` leaves through cli-codex wrote the fixture rows, the Python 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The degraded path still reads the raw prompt for typed commands.** `degradedRecommendations` checks the raw prompt for a command row's bare command (`runtime/skill-advisor-cli.ts:1498`, passed at `:1585`). This phase does not change it. Phase 008 takes it by amendment.
+1. **Fixed by phase 008. The degraded path read the raw prompt for typed commands.** `degradedRecommendations` checked the raw prompt for a command row's bare command. Phase 008 strips it first (`runtime/skill-advisor-cli.ts:1490`), so the check at `:1498` reads the task; the call site is now `:1588`.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -81,7 +81,7 @@ Each edit below replaces the description text only. Every `[x]` mark and every `
 Fixed docs feed the ticks: 003's criterion reads the verbose command before it is run, and 004's criterion names the commits before it is run. The ticked child goals and the drift-guard gate feed the recursive validation. The merge, rebuild, restart and push feed parent criteria 1 and 6.
 
 ### Executors
-The conductor edits every doc directly, with no Luna leaf, because these are spec docs and the edits are pasted text. The conductor also runs the save, every check and the finish sequence. sk-git owns the merge and push mechanics.
+The conductor edits every doc directly, because these are spec docs and the edits are pasted text. A Luna leaf lands only the tests and fixes for confirmed review findings, from prepared files the conductor writes. The conductor also runs the save, every check and the finish sequence. sk-git owns the merge and push mechanics.
 <!-- /ANCHOR:architecture -->
 
 ---

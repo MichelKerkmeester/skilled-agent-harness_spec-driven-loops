@@ -42,7 +42,7 @@ Paths are relative to `.skilled/skills/system-skill-advisor/` unless they start 
 
 ### Definition of Done
 - [ ] `npx vitest run tests/hooks` from `runtime/` exits 0 with the new test included
-- [ ] `git diff --stat` lists only the three planned files
+- [ ] `git show --name-only --format= 31469e5ee4e cfad65c7c72` prints only the three planned paths
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -70,7 +70,7 @@ The catch fired 0 times across 8,231 retained diagnostic records on 2026-11-18, 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Setup re-reads the catch and runs the hook suite for a baseline. Implementation edits the catch and its import in `hooks/claude/user-prompt-submit.ts`, adds the test and adds the doc sentence. This phase builds before phase 003, whose guard would otherwise shift the catch lines pinned here. Verification runs the hook suite and checks the diff covers only the three files. The ordered work is in `tasks.md`.
+Setup re-reads the catch and runs the hook suite for a baseline. Implementation edits the catch and its import in `hooks/claude/user-prompt-submit.ts`, adds the test and adds the doc sentence. This phase builds before phase 003, whose guard would otherwise shift the catch lines pinned here. Verification runs the hook suite and checks that the phase's own commits change only the three files. The ordered work is in `tasks.md`.
 <!-- /ANCHOR:phases -->
 
 ---

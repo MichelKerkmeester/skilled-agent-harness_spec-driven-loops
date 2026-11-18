@@ -44,11 +44,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The conductor edits every doc directly. No Luna leaf runs, because every edit is to a spec doc |
+| D1 | The conductor edits every doc directly. A Luna leaf runs only to fix a review finding D6 confirms |
 | D2 | Every `[x]` mark and every Evidence line in 002, 003 and 004 stays byte-identical. Only description text changes |
 | D3 | Every tick quotes a command the conductor ran in this phase, never a number copied from a summary |
 | D4 | The operator answers go through `/speckit:save` `--full-auto` with `scope` `local`, into this folder's `decision-record.md`. The phase parent gets no decision record |
 | D5 | The parent goal is ticked only after the D6 finish sequence, because its criteria read `main` and `origin/main` |
+| D6 | Before the finish, a read-only review covers every phase in four lanes: Opus 5.5 `medium` through claude2, with DeepSeek V4.1 Flash `max` through cli-mistral-vibe as a second lens. Each finding gets a verdict checked against the code. A confirmed defect is fixed test first by a Luna leaf, and its files join Files to Change |
 
 <!-- /ANCHOR:directive -->
 
@@ -81,11 +82,13 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase planned | Done | `spec.md`, `plan.md` and `tasks.md` written 2026-11-18. The bare bench command printed 0 `advisor-` lines and the verbose one printed 3 |
+| Review fixes, plan text, goal ticks, decision record | Done | 13 review fixes test first (HOOKS 379, parent 423, DSH 15, PY 117), T004-T016 run, decision-record.md Q001-Q009 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Lines beyond the brief | The rebuild order also sits in `../delegation-strategy.md:107`, and the three-file claim also sits in `../004-crash-path-fallback/plan.md:45` and `:73` and `../delegation-strategy.md:116`. All are in Files to Change |
+| Amendment 2026-11-18 | The operator asked for a review of all logic and phases on Opus medium through claude2, and allowed DeepSeek Flash or Hy4 Flash Free as extra lenses. D6 added, D1 narrowed to match. Prompts, launchers and handbacks are kept in `evidence/review/` |
 | 003 spec scope | `../003-follow-up-routing-benchmark/spec.md:139` and `:156` say "the same run" and "one bench run" without the command, so they stay as they are |
 <!-- /ANCHOR:log -->

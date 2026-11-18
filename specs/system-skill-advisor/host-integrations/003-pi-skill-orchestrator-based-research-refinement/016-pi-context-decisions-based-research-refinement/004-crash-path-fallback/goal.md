@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "db37536c-37e4-472c-8a05-521b8fec328d"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,10 +56,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `npx vitest run tests/hooks` exits 0 from the advisor runtime folder, with the new test included
-- [ ] `rg -n 'daemon starts' .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` prints line 382
-- [ ] `git diff --stat` lists only the three planned files
-- [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED`
+- [x] `npx vitest run tests/hooks` exits 0 from the advisor runtime folder, with the new test included - evidence: phase 012 run exited 0, 12 files and 243 tests passed
+- [x] `rg -n 'daemon starts' .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` prints line 382 - evidence: phase 012 run printed one line, 382
+- [x] `git show --name-only --format= 31469e5ee4e cfad65c7c72` prints only the three planned paths - evidence: phase 012 run printed `user-prompt-submit.ts`, `claude-user-prompt-submit-hook.vitest.ts` and `ENV-REFERENCE.md`, nothing else
+- [x] `validate.sh --strict` on this phase prints `RESULT: PASSED` - evidence: phase 012 run after the metadata repair printed `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---

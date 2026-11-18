@@ -25,7 +25,7 @@ contextType: "implementation"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-`A` is `.skilled/skills/system-skill-advisor/runtime/`. `BENCH` is `SPECKIT_RUN_BENCHES=true npx vitest run bench/scorer-calibration.bench.ts`, run from `A`.
+`A` is `.skilled/skills/system-skill-advisor/runtime/`. `BENCH` is `SPECKIT_RUN_BENCHES=true npx vitest run bench/scorer-calibration.bench.ts --reporter=verbose`, run from `A`. The default reporter hides a passing test's console output, so the bench lines print only with `--reporter=verbose`.
 
 Tasks T009 to T014 run only when T008 records a ship decision. On any other decision they are marked `[x]` with the note "not built, rule said no guard".
 

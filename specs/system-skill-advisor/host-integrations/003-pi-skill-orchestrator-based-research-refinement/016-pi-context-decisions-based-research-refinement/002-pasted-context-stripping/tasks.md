@@ -65,7 +65,7 @@ Code comments carry the durable reason only. They name no phase, packet, review 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T009 Recapture the ratchet baseline (`A/scripts/routing-accuracy/scorer-eval-baseline.json`). Verify: `node scripts/routing-accuracy/capture-scorer-eval-baseline.mjs --write` exits 0, and `git diff` on the file shows the new corpus hash, totals up by one and `full_corpus_top1.correct` up by one, nothing else.
+- [x] T009 Rebuild the runtime, then recapture the ratchet baseline (`A/scripts/routing-accuracy/scorer-eval-baseline.json`). The capture script loads the scorer from `dist/runtime` (`A/scripts/routing-accuracy/capture-scorer-eval-baseline.mjs:47`, `:119`), so the build comes first. Verify: `npm --prefix A run build` exits 0. Then `node scripts/routing-accuracy/capture-scorer-eval-baseline.mjs --write` exits 0, and `git diff` on the file shows the new corpus hash, totals up by one and `full_corpus_top1.correct` up by one, nothing else.
   - Evidence: needs `npm run build` first, because the script scores through `dist/`. After the build: exit 0, total 196, correct 161; diff holds only hash, sha and counts.
 - [x] T010 Rewrite the calibration baseline (`A/bench/scorer-calibration-baseline.json`). Verify: `SPECKIT_WRITE_SCORER_CALIBRATION_BASELINE=1 SPECKIT_RUN_BENCHES=true npx vitest run bench/scorer-calibration.bench.ts` exits 0, and `git diff` shows the new hash, 196 rows and Brier and ECE moved by one row's weight.
   - Evidence: exit 0. The committed baseline was stale (200 rows, April), so the file diff is wider than one row; the isolated 195-to-196 effect is Brier 0.215213 to 0.21428 and ECE 0.137733 to 0.136112.

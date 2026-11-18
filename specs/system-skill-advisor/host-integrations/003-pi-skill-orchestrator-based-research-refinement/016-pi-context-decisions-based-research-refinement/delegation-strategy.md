@@ -104,7 +104,7 @@ Build order: 002, then 004, then 003. A phase starts only when the one before it
 |------|-----|-------|-------|
 | 0 | Conductor | T001 rebuild and probe pair; T002 fix the rule and the function name, and run the rule on the probe, negatives and nested case; T003 corpus count; T004 placement check | none written except `implementation-summary.md` |
 | 1 | 4 Luna leaves in parallel | T005 the exported function; T006 the call in `scoreAdvisorPrompt`; T007 the strip in `computeRecommendationOutput`; T008 the corpus row | `A/lib/prompt-policy.ts`; `A/lib/scorer/fusion.ts`; `A/handlers/advisor-recommend.ts`; `A/scripts/routing-accuracy/labeled-prompts.jsonl` |
-| 2 | Conductor | Typecheck, then T009 to T011 baseline recaptures, T012 corpus gates, T013 rebuild and the three probes, T014 comment hygiene, T015 summary | the three baseline files, written by their own scripts |
+| 2 | Conductor | Typecheck, then the build T009 needs because its capture scores through `dist/`, then T009 to T011 baseline recaptures, T012 corpus gates, T013 rebuild and the three probes, T014 comment hygiene, T015 summary | the three baseline files, written by their own scripts |
 
 ### Phase 004: crash-path fallback
 
@@ -113,7 +113,7 @@ Build order: 002, then 004, then 003. A phase starts only when the one before it
 | 0 | Conductor | T001 re-read the catch; T002 hook suite baseline | none |
 | 1 | 2 Luna leaves in parallel | T003 the failing test; T005 the doc sentence | `A/tests/hooks/claude-user-prompt-submit-hook.vitest.ts`; `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` |
 | 2 | Conductor, then 1 Luna leaf | Conductor confirms the new test fails for the right reason; leaf does T004 the nested-try fallback | `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` |
-| 3 | Conductor | T006 typecheck, T007 diff holds three files, T008 hygiene, T009 summary | none |
+| 3 | Conductor | T006 typecheck, T007 the phase's own changes hold three files, T008 hygiene, T009 summary | none |
 
 ### Phase 003: follow-up routing benchmark
 
@@ -134,6 +134,7 @@ The plan expects the no-guard branch, so waves 3 and 4 most likely never run.
 
 - **After every leaf:** read the diff, compare it with the brief's literal new text, and reject any change outside the named file. A rejected edit is reverted with `git checkout -- <file>` before the retry.
 - **After every wave:** run the checks the wave's tasks name, from the conductor's own shell, and read both the output and the exit code.
+- **Daemon socket.** Leave `SPECKIT_IPC_SOCKET_DIR` unset for probes. Unset, the CLI shim sets it to `/tmp/system-skill-advisor` (`.skilled/bin/skill-advisor.cjs:25`, `:88-89`), and the socket helper appends a 12-character hash of the advisor database folder (`.skilled/bin/lib/launcher-ipc-bridge.cjs:103-109`, `:139-154`). That folder is inside each checkout (`launcher-ipc-bridge.cjs:91-98`), so each checkout already gets its own daemon under `/tmp/system-skill-advisor/<hash>`. Pointing the variable elsewhere while a current-build daemon holds its lease drops the CLI to the local scorer: the CLI takes its socket folder from the variable (`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1092-1095`), the launcher bridges to the lease holder instead of binding the new socket (`.skilled/bin/system-skill-advisor-launcher.cjs:989-993`), the 5-second cold-start wait closes (`skill-advisor-cli.ts:37`, `:1355-1357`) and the answer carries `degraded: true` and `source: local-scorer` (`:1578-1589`). A daemon launched before the current build is recycled instead (`system-skill-advisor-launcher.cjs:961-970`). The worktree wrapper sets the variable on purpose (`.skilled/bin/worktree-session.sh:496`), and its sessions are not affected.
 - **Refutation pass after each phase.** One read-only Luna dispatch (`--sandbox read-only`) gets the phase's full diff and one instruction: refute it, naming an input and the wrong outcome for each finding. "Looks good" counts as a failed review. The conductor checks each finding before acting on it.
 - **Completion:** the phase's `tasks.md` has no open task except branches the decision rule skipped, its goal criteria are ticked with evidence, and `validate.sh <phase> --strict` prints `RESULT: PASSED`.
 

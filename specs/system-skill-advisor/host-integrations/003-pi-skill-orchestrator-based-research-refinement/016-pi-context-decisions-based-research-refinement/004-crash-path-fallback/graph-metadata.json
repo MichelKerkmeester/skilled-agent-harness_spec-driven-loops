@@ -193,7 +193,7 @@
     ],
     "causal_summary": "`handleClaudeUserPromptSubmit` wraps its work in one try (`hooks/claude/user-prompt-submit.ts:316`)",
     "created_at": "2026-11-18T11:32:36Z",
-    "last_save_at": "2026-11-18T15:29:21.671Z",
+    "last_save_at": "2026-11-18T22:29:52.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:72c0f4448ec2ee433295f17d92721dc0de5de0d0a3cd75f914ae42b0fc01ad1c",
+    "source_fingerprint": "sha256:db3c0026f6e7ed38d562c8f293ba80e32973c82714017091f2e7af79cf5640fe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "91d6c0b0f59cb3107436c65a1c83bf117361cb3eed1733b1a3cd2ab344e4ec0d",
-      "plan.md": "80d407938ccae2759a71b3b6ff2fea187f21c592ab327ab04d2b27a8edaf26f0",
-      "tasks.md": "562e2cb70f8ec1d9edd108e20662855533b919c40ed19e4cd1bb5dde95afeae7",
-      "implementation-summary.md": "a90c3364ced24bbbac65df56b5f09c647d72a8bf6f6e2195b0c07c724a6ccfcf"
+      "spec.md": "f1f946b272d844a614cbd5f536c9a7d027cdd46a9e586073222728bf138b7bb2",
+      "plan.md": "60de0bc5112d180b4a0061a331062b3c4f1a2caac140791091bba0bdff0b0064",
+      "tasks.md": "8264c2c4f0767b262138778b8270a64e7b4690d1c8ac0e8969577fbbd4a3d199",
+      "implementation-summary.md": "4e2be406583c63ba02f7239aa0804cd7deeaf29c297217fbe4a21c02453a4c5f"
     },
     "last_active_at": null
   }

@@ -61,7 +61,7 @@ Code comments carry the durable reason only. They name no phase, packet, review 
 
 - [x] T006 Run the typecheck (`A/runtime/`). Verify: `npm --prefix A/runtime run typecheck` exits 0.
   - Evidence: typecheck exit 0; `npm run build` exit 0.
-- [x] T007 Confirm the diff holds only the three planned files (`git`). Verify: `git diff --stat` lists `user-prompt-submit.ts`, `claude-user-prompt-submit-hook.vitest.ts` and `ENV-REFERENCE.md`, and nothing else.
+- [x] T007 Confirm this phase's own changes touch only the three planned files (`git`). Verify: `git show --name-only --format= 31469e5ee4e cfad65c7c72` prints `user-prompt-submit.ts`, `claude-user-prompt-submit-hook.vitest.ts` and `ENV-REFERENCE.md` paths, and nothing else. A whole-worktree `git diff --stat` also lists phase 002's files while they are uncommitted.
   - Evidence: this phase adds only the three planned files. Phase 002's uncommitted changes share the worktree, so the whole-worktree diff also lists those; none of them is touched here.
 - [x] T008 Check comment hygiene in the changed code (`A/hooks/`, `A/runtime/tests/`). Verify: `git diff -U0 -- A | rg -n '^\+.*(R2|N1|016-|phase 0)'` prints nothing.
   - Evidence: `rg` printed nothing (exit 1).

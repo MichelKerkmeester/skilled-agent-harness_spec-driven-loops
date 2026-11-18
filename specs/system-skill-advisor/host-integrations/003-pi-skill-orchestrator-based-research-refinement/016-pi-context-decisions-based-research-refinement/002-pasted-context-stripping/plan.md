@@ -89,7 +89,7 @@ When the daemon is unreachable, the CLI falls back to the Python local scorer (`
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Setup re-runs the probe pair and checks the candidate rule against every existing corpus prompt and a set of inline negatives. Implementation adds the function to `runtime/lib/prompt-policy.ts`, calls it from the recommend handler and from `scoreAdvisorPrompt`, and adds one row to `labeled-prompts.jsonl`. Verification re-baselines the moved pins, runs the corpus gates and re-runs the probe pair after a rebuild, with a semantic-lane check and a compiled-route probe. The ordered work is in `tasks.md`.
+Setup re-runs the probe pair and checks the candidate rule against every existing corpus prompt and a set of inline negatives. Implementation adds the function to `runtime/lib/prompt-policy.ts`, calls it from the recommend handler and from `scoreAdvisorPrompt`, and adds one row to `labeled-prompts.jsonl`. Verification rebuilds the runtime first, because the eval-baseline capture scores through `dist/`, then re-baselines the moved pins, runs the corpus gates and re-runs the probe pair against a daemon started after the build, with a semantic-lane check and a compiled-route probe. The ordered work is in `tasks.md`.
 <!-- /ANCHOR:phases -->
 
 ---

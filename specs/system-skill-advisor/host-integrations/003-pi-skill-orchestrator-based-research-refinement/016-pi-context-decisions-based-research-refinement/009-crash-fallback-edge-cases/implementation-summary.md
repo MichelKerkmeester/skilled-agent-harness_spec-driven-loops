@@ -106,7 +106,7 @@ Luna `xhigh` `fast` leaves through cli-codex, one file each. The eight planned t
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **A disabled hook in a removed working directory shows the outage fallback.** The disabled path calls `process.cwd()` for its diagnostic inside the try, so a removed directory sends it to the catch, which renders a fallback instead of `{}`. Before this phase the handler rejected there. Both conditions together are needed to reach it.
+1. **A disabled hook in a removed working directory shows the outage fallback.** The disabled path calls `process.cwd()` for its diagnostic inside the try, so a removed directory sends it to the catch, which renders a fallback instead of `{}`. Before this phase the handler rejected there. Both conditions together are needed to reach it. Phase 012 narrowed the case: a null payload or one with no prompt string now returns `{}` from the catch, so only a disabled hook with a valid prompt still reaches the fallback.
 <!-- /ANCHOR:limitations -->
 
 ---
