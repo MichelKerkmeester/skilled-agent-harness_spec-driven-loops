@@ -1033,6 +1033,16 @@ workflow:
         edit: "{state_paths.strategy}"
         note: "When resource_map_present is true, append the resource_map_known_context snapshot and add Resource Map Coverage to the Review Charter. When false, append 'resource-map.md not present; skipping coverage gate'."
 
+      step_frontier_reduce_seed:
+        action: "Reduce once after the seed so iteration 1 already reviews a frontier node"
+        enabled_when: "depth_mode == 'expansive'"
+        dry_run_boundary: "reducer-refresh"
+        note: "The loop binds active_frontier_node and the frontier dimension from registry.frontier, and step_create_findings_registry writes a registry with no frontier after the seed has run. Only the reducer projects the seeded nodes into it. Without this pass the first iteration has no frontier node and no frontier block. A fan-out lineage runs it too: its reducer_artifact_arg points the reducer at the lineage's own directory, where fanout-run.cjs put its share of the nodes."
+        command: |
+          node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors
+        working_directory: "{repo_root}"
+        on_failure: "Log the stderr line as a config_warning bookkeeping event and continue; iteration 1 then runs on the strategy's own dimension queue and step_reduce_review_state picks the frontier up after it."
+
       step_init_complete:
         log: "Initialization complete. Config, state, and strategy files created. Review scope: {review_scope_files_count} files, {dimension_queue_count} dimensions."
         set: { current_iteration: 1, p0_count: 0, p1_count: 0, p2_count: 0 }
