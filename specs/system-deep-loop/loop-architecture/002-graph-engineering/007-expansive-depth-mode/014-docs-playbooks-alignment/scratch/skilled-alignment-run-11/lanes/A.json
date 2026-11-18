@@ -1,0 +1,55 @@
+{
+  "lane": "A",
+  "findings": [
+    {
+      "id": "1",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "line": 262,
+      "issue": "readCaps derives maxFrontierNodes from the configured maxIterations (lines 262-264) while seedBudget derives it from the seed-sized budget (line 323). The comment at line 259 states the two agree; they do not. With the shipped research config (maxIterations 10) and the documented six-seed decomposition, seedNodes reports growthSlots 2 and no warning, but readCaps enforces a cap of 5, so the first child proposal is pruned as 'fanout' and the frontier can never grow past the seed. The review default (maxIterations 7) is worse: the seed reports growthSlots 4 while readCaps enforces 3. The 'no growth slot' warning therefore never fires when it should, and the stderr budget line the orchestrator reads is wrong. The two unit tests encode the two disagreeing formulas (frontier-admit.vitest.ts:740 asserts growthSlots 2 for maxIterations 10; frontier-admit.vitest.ts:666 asserts maxFrontierNodes 3 for maxIterations 7), so neither can fail on the divergence.",
+      "evidence": {
+        "cmd": "node -e 'const fs=require(\"node:fs\"),os=require(\"node:os\"),p=require(\"node:path\");const fa=require(\"./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs\");const d=fs.mkdtempSync(p.join(os.tmpdir(),\"fa-\"));fs.writeFileSync(p.join(d,\"deep-research-config.json\"),JSON.stringify({maxIterations:10,expansiveDepth:{maxDepth:3,maxChildrenPerNode:6,maxFrontierNodes:null}}));const c=Array.from({length:6},(_,i)=>({question:`seed question ${i+1}`,scope:`src/s${i+1}`,evidence:`src/s${i+1}/a.ts:1`}));const s=fa.seedNodes({artifactDir:d,iteration:0,candidates:c,target:\"research\"});console.log(\"seed reports growthSlots=\"+s.growthSlots+\" warning=\"+(s.warning??\"none\")+\" | readCaps.maxFrontierNodes=\"+fa.readCaps(d,\"research\").maxFrontierNodes);console.log(\"admit one child -> \"+JSON.stringify(fa.admitProposals({artifactDir:d,iteration:1,target:\"research\",proposals:[{parentId:s.admitted[0],question:\"a new child question\",scope:\"src/s1\",evidence:\"src/s1/a.ts:2\"}]})));'",
+        "exit": 0,
+        "out": "seed reports growthSlots=2 warning=none | readCaps.maxFrontierNodes=5\nadmit one child -> {\"admitted\":[],\"pruned\":[{\"nodeId\":\"F-2-007\",\"reason\":\"fanout\"}]}"
+      }
+    },
+    {
+      "id": "2",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "line": 475,
+      "issue": "admitProposals builds the node id from nodes.size + 1. readNodeStore deliberately skips a torn line ('A torn or hand-edited line must not hide the rows after it'), so the map holds fewer entries than the highest id and the counter reuses an existing id at the same depth. The new row then overwrites that node in the map and the store keeps two rows for one nodeId, so the earlier node's question, scope and status are silently lost.",
+      "evidence": {
+        "cmd": "node -e 'const fs=require(\"node:fs\"),os=require(\"node:os\"),p=require(\"node:path\");const fa=require(\"./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs\");const d=fs.mkdtempSync(p.join(os.tmpdir(),\"fa-\"));fs.writeFileSync(p.join(d,\"deep-research-config.json\"),JSON.stringify({maxIterations:60,expansiveDepth:{maxDepth:3,maxFrontierNodes:60}}));const rows=[[\"F-1-001\",\"root\",1,\"seed one\"],[\"F-1-002\",\"root\",1,\"seed two\"],[\"F-2-003\",\"F-1-001\",2,\"child three\"],[\"F-2-004\",\"F-1-001\",2,\"child four\"],[\"F-2-005\",\"F-1-001\",2,\"child five\"],[\"F-2-006\",\"F-1-001\",2,\"child six\"]].map(([nodeId,parentId,depth,question])=>JSON.stringify({nodeId,parentId,depth,status:\"open\",question,scope:[\"src/a\"],evidence:\"src/a/x.ts:1\"}));rows[3]=\"{\\\"nodeId\\\":\\\"F-2-004\\\",\\\"parentId\\\":\\\"F-1-001\\\",\\\"dep\";fs.writeFileSync(p.join(d,\"frontier-nodes.jsonl\"),rows.join(\"\\n\")+\"\\n\");console.log(\"before: \"+[...fa.readNodeStore(p.join(d,\"frontier-nodes.jsonl\")).keys()].join(\",\"));console.log(\"admit -> \"+JSON.stringify(fa.admitProposals({artifactDir:d,iteration:1,target:\"research\",proposals:[{parentId:\"F-1-002\",question:\"a fresh depth two question\",scope:\"src/a\",evidence:\"src/a/x.ts:2\"}]})));console.log(\"after: \"+[...fa.readNodeStore(p.join(d,\"frontier-nodes.jsonl\")).entries()].map(([k,v])=>k+\"=\"+v.question).join(\" | \"));'",
+        "exit": 0,
+        "out": "before: F-1-001,F-1-002,F-2-003,F-2-005,F-2-006\nadmit -> {\"admitted\":[\"F-2-006\"],\"pruned\":[]}\nafter: F-1-001=seed one | F-1-002=seed two | F-2-003=child three | F-2-005=child five | F-2-006=a fresh depth two question"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+    ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+    ".skilled/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/review-depth-mode-golden.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts"
+  ]
+}

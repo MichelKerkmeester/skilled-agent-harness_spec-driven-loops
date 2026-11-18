@@ -1,0 +1,16 @@
+{
+  "lane": "L7",
+  "findings": [],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/review-depth-v2-rollout/stop-gate-custom-dimension-coverage.md",
+    ".skilled/skills/system-deep-loop/deep-review/README.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/completed-run-extension-flag.md",
+    ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md"
+  ]
+}

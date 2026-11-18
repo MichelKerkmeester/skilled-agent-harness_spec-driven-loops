@@ -1,0 +1,44 @@
+[
+ {
+  "prompt": "Run an expansive deep research loop on the routing architecture, keeping a depth-capped frontier of follow-up questions",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Enable expansive depth mode on this research run",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Seed a depth-capped frontier of follow-up questions for this research run",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Run an expansive deep review of this diff, expanding the review target into a depth-capped frontier of sub-targets",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Expand the review target into sub-targets to depth 3",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Turn on expansive depth mode for the review loop",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Review this one file for bugs and report findings",
+  "expect": "sk-code"
+ },
+ {
+  "prompt": "Implement the frontier admission check in the reducer",
+  "expect": "sk-code"
+ },
+ {
+  "prompt": "Update the deep-research README to document the expansive depth flag",
+  "expect": "sk-doc"
+ }
+]

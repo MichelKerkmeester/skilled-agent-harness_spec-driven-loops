@@ -1,0 +1,370 @@
+[
+  {
+    "id": "A-1",
+    "source_id": "1",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    "line": "262",
+    "issue": "readCaps derives maxFrontierNodes from the configured maxIterations (lines 262-264) while seedBudget derives it from the seed-sized budget (line 323). The comment at line 259 states the two agree; they do not. With the shipped research config (maxIterations 10) and the documented six-seed decomposition, seedNodes reports growthSlots 2 and no warning, but readCaps enforces a cap of 5, so the first child proposal is pruned as 'fanout' and the frontier can never grow past the seed. The review default (maxIterations 7) is worse: the seed reports growthSlots 4 while readCaps enforces 3. The 'no growth slot' warning therefore never fires when it should, and the stderr budget line the orchestrator reads is wrong. The two unit tests encode the two disagreeing formulas (frontier-admit.vitest.ts:740 asserts growthSlots 2 for maxIterations 10; frontier-admit.vitest.ts:666 asserts maxFrontierNodes 3 for maxIterations 7), so neither can fail on the divergence.",
+    "evidence": {
+      "cmd": "node -e 'const fs=require(\"node:fs\"),os=require(\"node:os\"),p=require(\"node:path\");const fa=require(\"./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs\");const d=fs.mkdtempSync(p.join(os.tmpdir(),\"fa-\"));fs.writeFileSync(p.join(d,\"deep-research-config.json\"),JSON.stringify({maxIterations:10,expansiveDepth:{maxDepth:3,maxChildrenPerNode:6,maxFrontierNodes:null}}));const c=Array.from({length:6},(_,i)=>({question:`seed question ${i+1}`,scope:`src/s${i+1}`,evidence:`src/s${i+1}/a.ts:1`}));const s=fa.seedNodes({artifactDir:d,iteration:0,candidates:c,target:\"research\"});console.log(\"seed reports growthSlots=\"+s.growthSlots+\" warning=\"+(s.warning??\"none\")+\" | readCaps.maxFrontierNodes=\"+fa.readCaps(d,\"research\").maxFrontierNodes);console.log(\"admit one child -> \"+JSON.stringify(fa.admitProposals({artifactDir:d,iteration:1,target:\"research\",proposals:[{parentId:s.admitted[0],question:\"a new child question\",scope:\"src/s1\",evidence:\"src/s1/a.ts:2\"}]})));'",
+      "exit": 0,
+      "out": "seed reports growthSlots=2 warning=none | readCaps.maxFrontierNodes=5\nadmit one child -> {\"admitted\":[],\"pruned\":[{\"nodeId\":\"F-2-007\",\"reason\":\"fanout\"}]}"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "rebutted",
+      "note": "The workflow never admits before step_frontier_budget writes the derived budget into the config (deep-research.yaml step_frontier_budget, deep-review.yaml likewise), so readCaps then reads the budget the seed reported: config 10, six seeds, derived 16, cap 8, growth 2, and a child is admitted. The evidence called seedNodes and admitProposals directly without that write. Commit f053c714a78 corrects the readCaps comment and pins the sequence in a test that fails when readCaps ignores the written budget."
+    }
+  },
+  {
+    "id": "D-01",
+    "source_id": "D-01",
+    "lane": "D",
+    "surface": "S7",
+    "standard": ".skilled/repo-rules/skill-hub-routing.md",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    "line": "34",
+    "issue": "The packet advertises eight `Keyword triggers:` terms (lines 30-39) and five are absent from `hub-router.json` `vocabularyClasses.research-aliases`: `autonomous research` (34), `iterative research` (36), `multi-round research` (37), `deep investigation` (38), `comprehensive research` (39). Four of the five route to another skill: `autonomous research`, `multi-round research`, `deep investigation` and `comprehensive research` all land on `cli-external-orchestration`; `iterative research` reaches the hub only through the Python scorer's own pattern, not through the hub vocabulary. The hub `SKILL.md:45` states that `each packet's Keyword triggers: line where one exists ... [is] checked against it`, and `ci-hub-vocabulary-source.cjs` exists to fail on exactly this drift, but its `TRIGGER_PREFIX = 'Keyword triggers:'` reads only the remainder of the same line, so a line that ends at the colon yields zero items and the gate reports `triggers=0`. The advertised vocabulary is therefore unverified and partly unreachable, which is the `REGISTERED IS NOT ROUTED` failure the standard names in section 2.",
+    "evidence": {
+      "cmd": "printf '%s' '{\"prompt\":\"Run a comprehensive research pass on the topic\"}' | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json",
+      "exit": 0,
+      "out": "top1=cli-external-orchestration score=0.158705; candidates=['cli-external-orchestration', 'sk-doc', 'system-deep-loop']"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: system-deep-loop hub routing. deep-research/SKILL.md Keyword triggers (commit 9eeebf9d9f7) and hub-router.json research-aliases predate the program, as does ci-hub-vocabulary-source.cjs reading only same-line triggers."
+    }
+  },
+  {
+    "id": "D-02",
+    "source_id": "D-02",
+    "lane": "D",
+    "surface": "S7",
+    "standard": ".skilled/repo-rules/skill-hub-routing.md",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    "line": "76",
+    "issue": "The packet advertises twelve trigger terms and six are absent from `hub-router.json` `vocabularyClasses.review-aliases`: `spec folder review`, `quality audit`, `find misalignments`, `verify cross-references`, `pre-release review`, `audit spec folder`. All six route elsewhere: `spec folder review` and `audit spec folder` to `system-spec-kit`, `quality audit` and `pre-release review` to `sk-code`, `find misalignments` to `sk-code`, `verify cross-references` to `sk-doc`. The same terms are repeated as `Trigger Phrases` at lines 67-72, so the packet advertises them twice. The line is written as a `### Keyword Triggers` heading with the terms on the following line, so `ci-hub-vocabulary-source.cjs` (which matches the literal `Keyword triggers:` prefix) never reads it and reports `triggers=0`. Section 2 of the standard says a green gate is not integration, and this is that case: the gate is green because it cannot see the line.",
+    "evidence": {
+      "cmd": "printf '%s' '{\"prompt\":\"Audit the spec folder for completeness\"}' | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json",
+      "exit": 0,
+      "out": "top1=system-spec-kit score=0.888604; candidates=['system-spec-kit', 'sk-code', 'sk-doc']"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: system-deep-loop hub routing. deep-review/SKILL.md Keyword Triggers heading (commit b3e27b84255) and hub-router.json review-aliases predate the program."
+    }
+  },
+  {
+    "id": "D-03",
+    "source_id": "D-03",
+    "lane": "D",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/hub-router.json",
+    "line": "32",
+    "issue": "The new feature `--depth-mode=expansive` added no router vocabulary. `hub-router.json` `vocabularyClasses` (line 32) and `graph-metadata.json` `intent_signals` carry no `expansive`, `depth mode`, `frontier` or `sub-target` term, and `skill_advisor.py` has no matching pattern, so the feature is routable only when the prompt also names a pre-existing alias. Probes that name the feature alone route elsewhere: `Enable expansive depth mode on this research run` to `cli-external-orchestration`, `Expand the review target into sub-targets to depth 3` to `sk-code`, `Seed a depth-capped frontier of follow-up questions for this research run` to `cli-external-orchestration`. The two probes that pass do so only because they also contain `research loop` or `review loop`. The hub `SKILL.md:47` states `The advisor routes every deep-loop query to the single identity system-deep-loop`, which these queries contradict. The S8 lens requires a probe prompt for each new feature to route top-1 to the owning skill.",
+    "evidence": {
+      "cmd": "printf '%s' '{\"prompt\":\"Enable expansive depth mode on this research run\"}' | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json",
+      "exit": 0,
+      "out": "top1=cli-external-orchestration score=0.181817; candidates=['cli-external-orchestration', 'mcp-code-mode', 'mcp-tooling']"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-01",
+    "source_id": "P02",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P02 \"Enable expansive depth mode on this research run\" expected system-deep-loop/research; top-1 was cli-external-orchestration.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Enable expansive depth mode on this research run\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was cli-external-orchestration"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-02",
+    "source_id": "P03",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P03 \"Seed a depth-capped frontier of follow-up questions for this research run\" expected system-deep-loop/research; top-1 was cli-external-orchestration.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Seed a depth-capped frontier of follow-up questions for this research run\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was cli-external-orchestration"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-03",
+    "source_id": "P05",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P05 \"Expand the review target into sub-targets to depth 3\" expected system-deep-loop/review; top-1 was sk-code/sk-code-review.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Expand the review target into sub-targets to depth 3\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was sk-code/sk-code-review"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A-2",
+    "source_id": "2",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    "line": "475",
+    "issue": "admitProposals builds the node id from nodes.size + 1. readNodeStore deliberately skips a torn line ('A torn or hand-edited line must not hide the rows after it'), so the map holds fewer entries than the highest id and the counter reuses an existing id at the same depth. The new row then overwrites that node in the map and the store keeps two rows for one nodeId, so the earlier node's question, scope and status are silently lost.",
+    "evidence": {
+      "cmd": "node -e 'const fs=require(\"node:fs\"),os=require(\"node:os\"),p=require(\"node:path\");const fa=require(\"./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs\");const d=fs.mkdtempSync(p.join(os.tmpdir(),\"fa-\"));fs.writeFileSync(p.join(d,\"deep-research-config.json\"),JSON.stringify({maxIterations:60,expansiveDepth:{maxDepth:3,maxFrontierNodes:60}}));const rows=[[\"F-1-001\",\"root\",1,\"seed one\"],[\"F-1-002\",\"root\",1,\"seed two\"],[\"F-2-003\",\"F-1-001\",2,\"child three\"],[\"F-2-004\",\"F-1-001\",2,\"child four\"],[\"F-2-005\",\"F-1-001\",2,\"child five\"],[\"F-2-006\",\"F-1-001\",2,\"child six\"]].map(([nodeId,parentId,depth,question])=>JSON.stringify({nodeId,parentId,depth,status:\"open\",question,scope:[\"src/a\"],evidence:\"src/a/x.ts:1\"}));rows[3]=\"{\\\"nodeId\\\":\\\"F-2-004\\\",\\\"parentId\\\":\\\"F-1-001\\\",\\\"dep\";fs.writeFileSync(p.join(d,\"frontier-nodes.jsonl\"),rows.join(\"\\n\")+\"\\n\");console.log(\"before: \"+[...fa.readNodeStore(p.join(d,\"frontier-nodes.jsonl\")).keys()].join(\",\"));console.log(\"admit -> \"+JSON.stringify(fa.admitProposals({artifactDir:d,iteration:1,target:\"research\",proposals:[{parentId:\"F-1-002\",question:\"a fresh depth two question\",scope:\"src/a\",evidence:\"src/a/x.ts:2\"}]})));console.log(\"after: \"+[...fa.readNodeStore(p.join(d,\"frontier-nodes.jsonl\")).entries()].map(([k,v])=>k+\"=\"+v.question).join(\" | \"));'",
+      "exit": 0,
+      "out": "before: F-1-001,F-1-002,F-2-003,F-2-005,F-2-006\nadmit -> {\"admitted\":[\"F-2-006\"],\"pruned\":[]}\nafter: F-1-001=seed one | F-1-002=seed two | F-2-003=child three | F-2-005=child five | F-2-006=a fresh depth two question"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-1",
+    "source_id": "B-1",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+    "line": "16",
+    "issue": "Doubled comma in the OVERVIEW sentence: \"...budget and cycle checks, in that order,, and holds a convergence stop while frontier nodes stay open.\" The stray comma is a typo in a shipped catalog leaf that the S2 lens (references and assets current) covers.",
+    "evidence": {
+      "cmd": "grep -n 'in that order,,' -r .skilled/skills/system-deep-loop/",
+      "exit": 0,
+      "out": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md:16:`--depth-mode` takes `default` or `expansive`. ... under the relevance, dedupe, depth, fan-out, budget and cycle checks, in that order,, and holds a convergence stop while frontier nodes stay open. ..."
+    },
+    "fix": {
+      "old": "in that order,, and holds",
+      "new": "in that order, and holds"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-2",
+    "source_id": "B-2",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "217",
+    "issue": "Section 8 SCENARIO DIRECTORY omits the `write-containment/` category and `WC-001`, so its census reads \"Total scenarios: 11 / Categories: 4\" while Section 6 CATEGORY INDEX lists 12 scenario IDs across 5 categories and the package holds 13 scenario files across 6 category folders. The new Section 9 (line 233) re-asserts \"the 11-scenario total in Section 8\", so the stale count is now load-bearing. The standard's Section 3 root responsibility (\"Category sections with short per-feature summaries\") and Section 5 step 11 (\"link every per-feature file\") require the missing category row and its WC-001 link.",
+    "evidence": {
+      "cmd": "sed -n '143,190p' .skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md | grep -cE '^\\| `[A-Z]+-[0-9]+`'",
+      "exit": 0,
+      "out": "12\n--- ids ---\n`AI-001` `AI-002` `AI-004` `MO-001` `MO-002` `MO-004` `RB-001` `RB-004` `SC-001` `SC-003` `SC-004` `WC-001`"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: system-deep-loop hub playbook. Section 8 SCENARIO DIRECTORY (commit adbba5a06a9) omits write-containment/WC-001. This program's Section 9 sentence no longer restates the Section 8 total (commit 6fc46e54edd)."
+    }
+  },
+  {
+    "id": "B-3",
+    "source_id": "B-3",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "806",
+    "issue": "Section 14 is titled \"FEATURE CATALOG CROSS-REFERENCE INDEX\" but contains only a scenario index; the file holds zero references to `feature-catalog`, so the deep-review feature catalog (which gained five entries in this change: expansive-depth-mode, min-iterations-floor, custom-review-dimensions, completed-run-extension, focus-hijack-guard) is unreachable from the playbook root. The standard's Section 3 lists \"Feature catalog cross-reference index\" as a root-playbook responsibility and Section 5 step 13 says \"Add feature-catalog cross-references when a catalog exists\". The deep-research playbook root received exactly that link in this same change (line 1059), so the omission is an asymmetry the change left behind.",
+    "evidence": {
+      "cmd": "grep -c \"feature-catalog\" .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+      "exit": 1,
+      "out": "0"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-01",
+    "source_id": "C-01",
+    "lane": "C",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/README.md",
+    "line": "159",
+    "issue": "The README calls `--depth-mode=expansive` 'the one stop-path change that grows work instead of ending it', but the paragraph two lines above describes the review min-iterations floor, which also holds a review at CONTINUE with `minIterationsNotReached`. Both ship in this scope (v1.11.18.0 and v1.13.0.0), so the 'one' claim is false and the section contradicts itself.",
+    "evidence": {
+      "cmd": "grep -n \"one stop-path change\\|minIterationsNotReached\" .skilled/skills/system-deep-loop/deep-review/README.md",
+      "exit": 0,
+      "out": "157:...The floor holds a review run at `CONTINUE` with reason `minIterationsNotReached` until its iteration count reaches `minIterations`, even when every dimension is clean.\n159:`--depth-mode=expansive` is the one stop-path change that grows work instead of ending it. A seed step writes the depth-1 sub-target nodes before iteration 1. ..."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-02",
+    "source_id": "C-02",
+    "lane": "C",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    "line": "116",
+    "issue": "The v1.13.0.0 entry never names the `frontier_drained` stop candidate, the release's new stop path: a drained frontier lets an expansive review stop before its cap. The same release's README, SKILL.md, quick-reference, loop-protocol and convergence reference all name it, and commit 4b4f0448aba documented it in every one of those files except this entry, so the release notes are the one surface a reader cannot learn it from.",
+    "evidence": {
+      "cmd": "grep -c \"frontier_drained\" .skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+      "exit": 1,
+      "out": "0"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "E-1",
+    "source_id": "E-1",
+    "lane": "critic",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/changelog/skilled/v4.1.0.0.md",
+    "line": "25",
+    "issue": "The scope adds four user-visible capabilities -- `--depth-mode=expansive`, `--extend=N` with `--extend-minutes=M`, custom review dimensions and the review min-iterations floor -- and no root release-notes entry describes any of them. The newest entry is already tagged `v4.1.0.0`, was not touched in the range, and no newer entry was created, so the operator-facing upgrade surface carries no record of the release. The section that would hold it, 'The skill advisor and the deep loops now say more and guess less' (line 25), lists only the advisor command name, the advisor permission line, the Mistral Vibe runtime and the deep-review fail-closed check. The root README was updated for the same capabilities at README.md:255, so the two operator surfaces now disagree. The S6-release-coverage row passes, so no gate catches it.",
+    "evidence": {
+      "cmd": "for t in depth-mode expansive frontier extend minIterations \"custom dimension\" \"min-iterations\"; do printf '%s=%s ' \"$t\" \"$(grep -ci -- \"$t\" .skilled/changelog/skilled/v4.1.0.0.md)\"; done; git -c core.fsmonitor=false diff --stat 21c4b325b5a0074ac31d0f2ec3e31e28351be933..HEAD -- .skilled/changelog/skilled/; git -c core.fsmonitor=false tag --list v4.1.0.0",
+      "exit": 0,
+      "out": "depth-mode=0 expansive=0 frontier=0 extend=0 minIterations=0 custom dimension=0 min-iterations=0 \n(no diff output)\nv4.1.0.0"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: the operator, who writes skilled release entries. .skilled/changelog/skilled/v4.1.0.0.md (commit 6d4adab892a) is tagged v4.1.0.0; a new root release entry for this program's features is the operator's call."
+    }
+  },
+  {
+    "id": "BAT-01",
+    "source_id": "S9-command-references",
+    "lane": "battery",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "S9-command-references failed (exit 1).",
+    "evidence": {
+      "cmd": "node .skilled/commands/scripts/validate-command-references.cjs",
+      "exit": 1,
+      "out": "FAIL  1 unresolved command reference(s):\n  .skilled/commands/speckit/assets/speckit-resume.yaml:104  [skill-asset]  .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json  - path does not exist on disk",
+      "ci_gated": false,
+      "ci_workflows": []
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Same cause as D-03. Owner: commands/scripts/validate-command-references.cjs:134, a file this program did not change; speckit-resume.yaml:104 names a gitignored runtime path (.gitignore:431)."
+    }
+  },
+  {
+    "id": "D-04",
+    "source_id": "D-04",
+    "lane": "D",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+    "line": "70",
+    "issue": "The `maxIterations` row of the Default Resolution Table reads `with S the depth-1 nodes the seed admitted and c 1`, which is a truncated clause. The research budget formula is `2 * perNode * nodes` with `perNode = 1` (`frontier-admit.cjs:286`), so the intended text is `and c = 1`. The same string is copied into the generated `.skilled/commands/deep/assets/compiled/deep-research.contract.markdown:213`, so the fix needs a contract recompile.",
+    "evidence": {
+      "cmd": "grep -n 'and c 1' .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+      "exit": 0,
+      "out": ".skilled/commands/deep/assets/deep-research-presentation.txt:70: ... with S the depth-1 nodes the seed admitted and c 1; any other source is kept as given\n.skilled/commands/deep/assets/compiled/deep-research.contract.markdown:213: ... with S the depth-1 nodes the seed admitted and c 1; any other source is kept as given"
+    },
+    "fix": {
+      "old": "with S the depth-1 nodes the seed admitted and c 1; any other source is kept as given",
+      "new": "with S the depth-1 nodes the seed admitted and c = 1; any other source is kept as given"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  }
+]

@@ -1,0 +1,53 @@
+{
+  "lane": "L3",
+  "findings": [
+    {
+      "id": "L3-1",
+      "surface": "D2",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/assets/deep-review.yaml",
+      "line": 1285,
+      "issue": "The stop-order item states the review iteration floor unconditionally: any run below min_iterations returns CONTINUE with minIterationsNotReached. convergence.cjs guards the floor with `minIterations > 1`, so a floor of 1 (or 0) never blocks a candidate and the run falls through to the legal-stop gates. Verified by calling buildStopDecision with minIterations=1, iterationCount=0, a clean all_dimensions_clean candidate: the result is BLOCKED/blockedStop, not CONTINUE/minIterationsNotReached; with minIterations=2 the same input returns CONTINUE/minIterationsNotReached.",
+      "evidence": {
+        "cmd": "rg -n \"minIterations > 1\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "1195:  if (minIterations > 1 && iterationCount < minIterations) {"
+      },
+      "fix": {
+        "old": "4a. if iteration_count < min_iterations: CONTINUE (minIterationsNotReached).",
+        "new": "4a. if min_iterations > 1 and iteration_count < min_iterations: CONTINUE (minIterationsNotReached)."
+      }
+    },
+    {
+      "id": "L3-2",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+      "line": 19,
+      "issue": "The Tier 1 config shape enumerates the anti-convergence keys as `antiConvergence.convergenceMode` and `antiConvergence.depthMode` and omits `antiConvergence.minIterations`, the review iteration floor this topic ships. The floor is a real config key: the review config template sets it to 2 and convergence.cjs reads config.minIterations (falling back to antiConvergence.minIterations) as the floor that holds a stop candidate below the cap. The same omission repeats in the consolidated-prompt Defaults line, so a reader building the config from this presentation never learns the run has a floor.",
+      "evidence": {
+        "cmd": "rg -n \"minIterations\" .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
+        "exit": 0,
+        "out": "12:    \"minIterations\": 2,"
+      },
+      "fix": {
+        "old": "`antiConvergence.convergenceMode`, `antiConvergence.depthMode`,",
+        "new": "`antiConvergence.convergenceMode`, `antiConvergence.depthMode`, `antiConvergence.minIterations`,"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
+    ".skilled/commands/deep/review.md"
+  ]
+}

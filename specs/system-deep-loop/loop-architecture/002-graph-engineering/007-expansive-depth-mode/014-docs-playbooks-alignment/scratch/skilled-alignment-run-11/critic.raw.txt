@@ -1,0 +1,33 @@
+```json
+{
+  "findings": [
+    {
+      "id": "E-1",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/changelog/skilled/v4.1.0.0.md",
+      "line": 25,
+      "issue": "The scope adds four user-visible capabilities -- `--depth-mode=expansive`, `--extend=N` with `--extend-minutes=M`, custom review dimensions and the review min-iterations floor -- and no root release-notes entry describes any of them. The newest entry is already tagged `v4.1.0.0`, was not touched in the range, and no newer entry was created, so the operator-facing upgrade surface carries no record of the release. The section that would hold it, 'The skill advisor and the deep loops now say more and guess less' (line 25), lists only the advisor command name, the advisor permission line, the Mistral Vibe runtime and the deep-review fail-closed check. The root README was updated for the same capabilities at README.md:255, so the two operator surfaces now disagree. The S6-release-coverage row passes, so no gate catches it.",
+      "evidence": {
+        "cmd": "for t in depth-mode expansive frontier extend minIterations \"custom dimension\" \"min-iterations\"; do printf '%s=%s ' \"$t\" \"$(grep -ci -- \"$t\" .skilled/changelog/skilled/v4.1.0.0.md)\"; done; git -c core.fsmonitor=false diff --stat 21c4b325b5a0074ac31d0f2ec3e31e28351be933..HEAD -- .skilled/changelog/skilled/; git -c core.fsmonitor=false tag --list v4.1.0.0",
+        "exit": 0,
+        "out": "depth-mode=0 expansive=0 frontier=0 extend=0 minIterations=0 custom dimension=0 min-iterations=0 \n(no diff output)\nv4.1.0.0"
+      },
+      "fix": null
+    }
+  ],
+  "untouched": [
+    ".dsh/agents/deep-research.patch.yml",
+    ".dsh/agents/deep-review.patch.yml",
+    ".vibe/agents/deep-research.toml",
+    ".vibe/agents/deep-review.toml",
+    ".gitignore",
+    ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-research-default/lineage-prompt.txt",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/scratch/** (1040 prior-run artifacts across 30 run directories; no lane reviewed them and no battery row covers them)"
+  ],
+  "overrides": [],
+  "upheld_probes": ["P02", "P03", "P05"]
+}
+```

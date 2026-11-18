@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-11-18T15:55:21.560Z",
+  "scope": {
+    "target": "HEAD",
+    "kind": "branch",
+    "head": "7177cee3b503016c1ec844fb6f75f3352d177247"
+  },
+  "envExample": ".env.example",
+  "listedCount": 381,
+  "filesRead": 6,
+  "tokens": [],
+  "unlisted": []
+}

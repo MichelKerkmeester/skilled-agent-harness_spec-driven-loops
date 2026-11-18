@@ -1,0 +1,50 @@
+{
+  "findings": [
+    {
+      "id": "C1-1",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      "line": 19,
+      "issue": "The Tier 1 config shape lists `antiConvergence.convergenceMode` and `antiConvergence.depthMode` but omits `minIterations`, the floor `step_create_config` writes into the config as `minIterations: 3` (deep-research.yaml:723). The consolidated-prompt Defaults line at 137 omits it too, so a reader building the config from this presentation never learns the run carries a floor. The review presentation has the same gap, recorded as L3-2; this is the research twin, which no lane reported.",
+      "evidence": {
+        "cmd": "rg -n \"minIterations: 3\" .skilled/commands/deep/assets/deep-research.yaml; rg -n \"minIterations\" .skilled/commands/deep/assets/deep-research-presentation.txt; echo \"presentation-rg-exit=$?\"",
+        "exit": 0,
+        "out": "723:          minIterations: 3\npresentation-rg-exit=1"
+      },
+      "fix": {
+        "old": "`antiConvergence.convergenceMode`, `antiConvergence.depthMode`, `expansiveDepth.*`",
+        "new": "`antiConvergence.convergenceMode`, `antiConvergence.depthMode`, `minIterations`, `expansiveDepth.*`"
+      }
+    }
+  ],
+  "untouched": [],
+  "overrides": [
+    {
+      "id": "L3-1",
+      "verdict": "refuted",
+      "note": "The `minIterations > 1` guard cannot change a decision, so the doc's unconditional rule is exact for every reachable state. A stop candidate needs evidence that does not exist at iterationCount 0: cleanReviewStop requires review.coverageAge >= 1, and reviewCoverageAge returns 0 unless at least two evidence records cover every dimension (convergence.cjs:1488-1501); the composite vote needs two ratios for rollingAverage and three for madNoiseFloor (convergence.cjs:775-795). step_check_convergence runs at the top of phase_loop before the first dispatch (deep-review.yaml:1273, ahead of step_dispatch_iteration at 1705), so at count 0 the registry has no coverage and no ratios and the decision is CONTINUE/noStopCandidate with or without the guard. The lane's counterexample hand-built a clean candidate at iterationCount 0, a state the workflow cannot produce; for every reachable count >= 1 the guarded and unguarded forms agree."
+    },
+    {
+      "id": "L4-1",
+      "verdict": "refuted",
+      "note": "The flag takes three values by design; `completed-continue` is derived from `--extend=N`, not passed to `--lineage-mode`. The command's own presentation contract says so: deep-research-presentation.txt:75 'flag `--lineage-mode=auto|resume|restart`', :117 '`--lineage-mode=auto|resume|restart -> lineage_mode = value`', :207 'lineage_mode = [auto/resume/restart from flag, marker, or default auto; completed-continue from --extend=N]'. Passing `--lineage-mode=completed-continue` without `--extend` reaches step_extend_completed_run and fails with '--extend needs a positive integer' (deep-research.yaml:488). The workflow input enum lists the fourth value because the workflow binds it from `--extend`, not because the flag accepts it."
+    },
+    {
+      "id": "L4-2",
+      "verdict": "refuted",
+      "note": "Same as L4-1 for the review command: deep-review-presentation.txt:76 'flag `--lineage-mode=auto|resume|restart`', :130 '`--lineage-mode=auto|resume|restart -> lineage_mode = value`', :238 'lineage_mode = [auto/resume/restart from flag, marker, or default auto; completed-continue from --extend=N]'. `--lineage-mode=completed-continue` without `--extend` fails at step_extend_completed_run with '--extend needs a positive integer' (deep-review.yaml:515). The `--extend` row naming `completed-continue` is the mode that flag sets, not a value the `--lineage-mode` flag takes."
+    },
+    {
+      "id": "L4-3",
+      "verdict": "refuted",
+      "note": "Same inert guard as L3-1, on the research path. At iterationCount 0 no candidate forms: `coverage.total > 0 && coverage.answered >= coverage.total` is false because the graph holds no questions yet, and signalResult.stopCandidate needs questionEntropy (total > 0), rollingAverage (>= 3 ratios) or madNoiseFloor (>= 4) (convergence.cjs:798-840). step_check_convergence runs before step_dispatch_iteration (deep-research.yaml:1209 vs 1619), so the first pass has no ratios and no coverage. For every reachable count >= 1 the guarded and unguarded forms agree, so the page's unconditional statement matches every decision the script can take."
+    },
+    {
+      "id": "L4-4",
+      "verdict": "refuted",
+      "note": "Same inert guard as L3-1 and L4-3. The page describes the shipped floor rule, and the rule it states holds for every reachable state: a stop candidate cannot exist at iterationCount 0 (research needs coverage.total > 0 or three ratios, convergence.cjs:798-840; review needs coverageAge >= 1, convergence.cjs:1488-1501), and for count >= 1 `minIterations > 1 && count < minIterations` equals `count < minIterations` for every floor value the workflow can produce (clamped to 0..max_iterations). The lane's counterexample used a hand-built candidate at count 0, which the loop cannot reach."
+    }
+  ]
+}

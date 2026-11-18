@@ -1,0 +1,82 @@
+{
+  "lane": "C",
+  "findings": [
+    {
+      "id": "C-01",
+      "surface": "S5",
+      "standard": "sk-doc/sk-create-readme",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-review/README.md",
+      "line": 159,
+      "issue": "The README calls `--depth-mode=expansive` 'the one stop-path change that grows work instead of ending it', but the paragraph two lines above describes the review min-iterations floor, which also holds a review at CONTINUE with `minIterationsNotReached`. Both ship in this scope (v1.11.18.0 and v1.13.0.0), so the 'one' claim is false and the section contradicts itself.",
+      "evidence": {
+        "cmd": "grep -n \"one stop-path change\\|minIterationsNotReached\" .skilled/skills/system-deep-loop/deep-review/README.md",
+        "exit": 0,
+        "out": "157:...The floor holds a review run at `CONTINUE` with reason `minIterationsNotReached` until its iteration count reaches `minIterations`, even when every dimension is clean.\n159:`--depth-mode=expansive` is the one stop-path change that grows work instead of ending it. A seed step writes the depth-1 sub-target nodes before iteration 1. ..."
+      }
+    },
+    {
+      "id": "C-02",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+      "line": 116,
+      "issue": "The v1.13.0.0 entry never names the `frontier_drained` stop candidate, the release's new stop path: a drained frontier lets an expansive review stop before its cap. The same release's README, SKILL.md, quick-reference, loop-protocol and convergence reference all name it, and commit 4b4f0448aba documented it in every one of those files except this entry, so the release notes are the one surface a reader cannot learn it from.",
+      "evidence": {
+        "cmd": "grep -c \"frontier_drained\" .skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+        "exit": 1,
+        "out": "0"
+      }
+    }
+  ],
+  "reviewed": [
+    "README.md",
+    ".skilled/skills/system-deep-loop/README.md",
+    ".skilled/skills/system-deep-loop/deep-research/README.md",
+    ".skilled/skills/system-deep-loop/deep-review/README.md",
+    ".skilled/skills/system-deep-loop/SKILL.md",
+    ".skilled/skills/system-deep-loop/description.json",
+    ".skilled/skills/system-deep-loop/hub-router.json",
+    ".skilled/skills/system-deep-loop/mode-registry.json",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.0.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.1.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.2.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.3.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.4.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.5.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.6.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.17.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.12.0.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    ".skilled/commands/README.txt",
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".env.example",
+    ".skilled/skills/system-deep-loop/runtime/README.md",
+    ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+    ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+    ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
+    ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md"
+  ]
+}

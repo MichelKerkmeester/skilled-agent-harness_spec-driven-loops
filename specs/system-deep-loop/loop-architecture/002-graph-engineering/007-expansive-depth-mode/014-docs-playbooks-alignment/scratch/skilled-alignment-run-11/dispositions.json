@@ -1,0 +1,32 @@
+[
+  {
+    "id": "D-01",
+    "status": "handed_off",
+    "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: system-deep-loop hub routing. deep-research/SKILL.md Keyword triggers (commit 9eeebf9d9f7) and hub-router.json research-aliases predate the program, as does ci-hub-vocabulary-source.cjs reading only same-line triggers."
+  },
+  {
+    "id": "D-02",
+    "status": "handed_off",
+    "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: system-deep-loop hub routing. deep-review/SKILL.md Keyword Triggers heading (commit b3e27b84255) and hub-router.json review-aliases predate the program."
+  },
+  {
+    "id": "B-2",
+    "status": "handed_off",
+    "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: system-deep-loop hub playbook. Section 8 SCENARIO DIRECTORY (commit adbba5a06a9) omits write-containment/WC-001. This program's Section 9 sentence no longer restates the Section 8 total (commit 6fc46e54edd)."
+  },
+  {
+    "id": "E-1",
+    "status": "handed_off",
+    "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: the operator, who writes skilled release entries. .skilled/changelog/skilled/v4.1.0.0.md (commit 6d4adab892a) is tagged v4.1.0.0; a new root release entry for this program's features is the operator's call."
+  },
+  {
+    "id": "BAT-01",
+    "status": "handed_off",
+    "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Same cause as D-03. Owner: commands/scripts/validate-command-references.cjs:134, a file this program did not change; speckit-resume.yaml:104 names a gitignored runtime path (.gitignore:431)."
+  },
+  {
+    "id": "A-1",
+    "status": "rebutted",
+    "note": "The workflow never admits before step_frontier_budget writes the derived budget into the config (deep-research.yaml step_frontier_budget, deep-review.yaml likewise), so readCaps then reads the budget the seed reported: config 10, six seeds, derived 16, cap 8, growth 2, and a child is admitted. The evidence called seedNodes and admitProposals directly without that write. Commit f053c714a78 corrects the readCaps comment and pins the sequence in a test that fails when readCaps ignores the written budget."
+  }
+]

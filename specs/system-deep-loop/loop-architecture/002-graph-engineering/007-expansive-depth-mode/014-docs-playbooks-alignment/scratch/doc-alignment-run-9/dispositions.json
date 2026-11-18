@@ -1,0 +1,17 @@
+[
+  {
+    "id": "L1-1",
+    "status": "handed_off",
+    "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: the review agent definition. Its Convergence Threshold Semantics section (.skilled/agents/deep-review.md:37, commit 3c35ad81ae5) never names the review floor. Adding a sentence there changes the default-path lineage prompt, which review-depth-mode-golden.vitest.ts holds byte-identical to a pre-depth-mode baseline, so the fix needs that owner to regenerate the baseline on a tree that allows it. An attempt in commit 0c5c4b651bc was taken back out in the next commit."
+  },
+  {
+    "id": "L1-2",
+    "status": "handed_off",
+    "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: the review agent definition. Its Convergence Threshold Semantics section (.claude/agents/deep-review.md:23, commit efff591dfc8) never names the review floor. Adding a sentence there changes the default-path lineage prompt, which review-depth-mode-golden.vitest.ts holds byte-identical to a pre-depth-mode baseline, so the fix needs that owner to regenerate the baseline on a tree that allows it. An attempt in commit 0c5c4b651bc was taken back out in the next commit."
+  },
+  {
+    "id": "L1-3",
+    "status": "handed_off",
+    "note": "Text this program did not write (blame at the cited line predates the program base 21c4b325b5a). Owner: the review agent definition. Its Convergence Threshold Semantics section (.pi/agents/deep-review.md:30, commit 74f5988ba28) never names the review floor. Adding a sentence there changes the default-path lineage prompt, which review-depth-mode-golden.vitest.ts holds byte-identical to a pre-depth-mode baseline, so the fix needs that owner to regenerate the baseline on a tree that allows it. An attempt in commit 0c5c4b651bc was taken back out in the next commit."
+  }
+]

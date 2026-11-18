@@ -1,0 +1,146 @@
+{
+  "lane": "D",
+  "findings": [
+    {
+      "id": "D-01",
+      "surface": "S7",
+      "standard": ".skilled/repo-rules/skill-hub-routing.md",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      "line": 34,
+      "issue": "The packet advertises eight `Keyword triggers:` terms (lines 30-39) and five are absent from `hub-router.json` `vocabularyClasses.research-aliases`: `autonomous research` (34), `iterative research` (36), `multi-round research` (37), `deep investigation` (38), `comprehensive research` (39). Four of the five route to another skill: `autonomous research`, `multi-round research`, `deep investigation` and `comprehensive research` all land on `cli-external-orchestration`; `iterative research` reaches the hub only through the Python scorer's own pattern, not through the hub vocabulary. The hub `SKILL.md:45` states that `each packet's Keyword triggers: line where one exists ... [is] checked against it`, and `ci-hub-vocabulary-source.cjs` exists to fail on exactly this drift, but its `TRIGGER_PREFIX = 'Keyword triggers:'` reads only the remainder of the same line, so a line that ends at the colon yields zero items and the gate reports `triggers=0`. The advertised vocabulary is therefore unverified and partly unreachable, which is the `REGISTERED IS NOT ROUTED` failure the standard names in section 2.",
+      "evidence": {
+        "cmd": "printf '%s' '{\"prompt\":\"Run a comprehensive research pass on the topic\"}' | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json",
+        "exit": 0,
+        "out": "top1=cli-external-orchestration score=0.158705; candidates=['cli-external-orchestration', 'sk-doc', 'system-deep-loop']"
+      }
+    },
+    {
+      "id": "D-02",
+      "surface": "S7",
+      "standard": ".skilled/repo-rules/skill-hub-routing.md",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+      "line": 76,
+      "issue": "The packet advertises twelve trigger terms and six are absent from `hub-router.json` `vocabularyClasses.review-aliases`: `spec folder review`, `quality audit`, `find misalignments`, `verify cross-references`, `pre-release review`, `audit spec folder`. All six route elsewhere: `spec folder review` and `audit spec folder` to `system-spec-kit`, `quality audit` and `pre-release review` to `sk-code`, `find misalignments` to `sk-code`, `verify cross-references` to `sk-doc`. The same terms are repeated as `Trigger Phrases` at lines 67-72, so the packet advertises them twice. The line is written as a `### Keyword Triggers` heading with the terms on the following line, so `ci-hub-vocabulary-source.cjs` (which matches the literal `Keyword triggers:` prefix) never reads it and reports `triggers=0`. Section 2 of the standard says a green gate is not integration, and this is that case: the gate is green because it cannot see the line.",
+      "evidence": {
+        "cmd": "printf '%s' '{\"prompt\":\"Audit the spec folder for completeness\"}' | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json",
+        "exit": 0,
+        "out": "top1=system-spec-kit score=0.888604; candidates=['system-spec-kit', 'sk-code', 'sk-doc']"
+      }
+    },
+    {
+      "id": "D-03",
+      "surface": "S8",
+      "standard": "system-skill-advisor",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/hub-router.json",
+      "line": 32,
+      "issue": "The new feature `--depth-mode=expansive` added no router vocabulary. `hub-router.json` `vocabularyClasses` (line 32) and `graph-metadata.json` `intent_signals` carry no `expansive`, `depth mode`, `frontier` or `sub-target` term, and `skill_advisor.py` has no matching pattern, so the feature is routable only when the prompt also names a pre-existing alias. Probes that name the feature alone route elsewhere: `Enable expansive depth mode on this research run` to `cli-external-orchestration`, `Expand the review target into sub-targets to depth 3` to `sk-code`, `Seed a depth-capped frontier of follow-up questions for this research run` to `cli-external-orchestration`. The two probes that pass do so only because they also contain `research loop` or `review loop`. The hub `SKILL.md:47` states `The advisor routes every deep-loop query to the single identity system-deep-loop`, which these queries contradict. The S8 lens requires a probe prompt for each new feature to route top-1 to the owning skill.",
+      "evidence": {
+        "cmd": "printf '%s' '{\"prompt\":\"Enable expansive depth mode on this research run\"}' | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json",
+        "exit": 0,
+        "out": "top1=cli-external-orchestration score=0.181817; candidates=['cli-external-orchestration', 'mcp-code-mode', 'mcp-tooling']"
+      }
+    },
+    {
+      "id": "D-04",
+      "surface": "S9",
+      "standard": "sk-doc/sk-create-command",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      "line": 70,
+      "issue": "The `maxIterations` row of the Default Resolution Table reads `with S the depth-1 nodes the seed admitted and c 1`, which is a truncated clause. The research budget formula is `2 * perNode * nodes` with `perNode = 1` (`frontier-admit.cjs:286`), so the intended text is `and c = 1`. The same string is copied into the generated `.skilled/commands/deep/assets/compiled/deep-research.contract.markdown:213`, so the fix needs a contract recompile.",
+      "evidence": {
+        "cmd": "grep -n 'and c 1' .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+        "exit": 0,
+        "out": ".skilled/commands/deep/assets/deep-research-presentation.txt:70: ... with S the depth-1 nodes the seed admitted and c 1; any other source is kept as given\n.skilled/commands/deep/assets/compiled/deep-research.contract.markdown:213: ... with S the depth-1 nodes the seed admitted and c 1; any other source is kept as given"
+      },
+      "fix": {
+        "old": "with S the depth-1 nodes the seed admitted and c 1; any other source is kept as given",
+        "new": "with S the depth-1 nodes the seed admitted and c = 1; any other source is kept as given"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+    ".skilled/skills/system-deep-loop/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/description.json",
+    ".skilled/skills/system-deep-loop/hub-router.json",
+    ".skilled/skills/system-deep-loop/mode-registry.json",
+    ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+    ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+    ".skilled/commands/deep/assets/deep-research-presentation.txt",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md",
+    ".claude/agents/deep-research.md",
+    ".claude/agents/deep-review.md",
+    ".codex/agents/deep-research.toml",
+    ".codex/agents/deep-review.toml",
+    ".pi/agents/deep-research.md",
+    ".pi/agents/deep-review.md",
+    ".skilled/agents/deep-research.md",
+    ".skilled/agents/deep-review.md"
+  ],
+  "probes": [
+    {
+      "prompt": "Run an expansive deep research loop on the routing architecture, keeping a depth-capped frontier of follow-up questions",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Enable expansive depth mode on this research run",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Seed a depth-capped frontier of follow-up questions for this research run",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Run an expansive deep review of this diff, expanding the review target into a depth-capped frontier of sub-targets",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Expand the review target into sub-targets to depth 3",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Turn on expansive depth mode for the review loop",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Review this one file for bugs and report findings",
+      "expect": "sk-code"
+    },
+    {
+      "prompt": "Implement the frontier admission check in the reducer",
+      "expect": "sk-code"
+    },
+    {
+      "prompt": "Update the deep-research README to document the expansive depth flag",
+      "expect": "sk-doc"
+    }
+  ],
+  "batteryFailures": [
+    {
+      "row": "S9-command-references",
+      "cmd": "node .skilled/commands/scripts/validate-command-references.cjs",
+      "exit": 1,
+      "cause": "The only unresolved reference is `.skilled/commands/speckit/assets/speckit-resume.yaml:104`, which names `.skilled/skills/system-spec-kit/runtime/database/access-telemetry.json`. That file is a runtime telemetry store, not a committed asset: `access-telemetry.ts:32` declares `STORE_FILENAME = 'access-telemetry.json'` and the `runtime/database/` directory does not exist in a fresh checkout. `validate-command-references.cjs:135` requires every file-shaped `.skilled/skills/**` token to exist on disk, so it fails on a path the runtime creates. The file is outside Lane D's scope files and unchanged by this branch (`git diff --name-only <merge-base>..HEAD -- .skilled/commands/speckit/` is empty), so this is a pre-existing failure of the S9 surface's gate, not a defect in the deep command files."
+    }
+  ]
+}

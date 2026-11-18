@@ -1,0 +1,32 @@
+{
+  "lane": "L8",
+  "findings": [
+    {
+      "id": "L8-1",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md",
+      "line": 133,
+      "issue": "The validation row says the `expansive depth frontier` group holds 12 tests. The group runs from `describe('fanout-run.cjs — expansive depth frontier'` at line 6571 to the next `describe` at line 6907 and contains 13 `it(...)` cases: normalizes the depth mode, deals open depth-1 nodes round-robin, reuses the budget partition, writes a lineage store and inbox once, adds no depth-mode bytes to a default lineage prompt, binds the frontier scope, writes the lineage store before spawn and records the partition, both loop protocols name the summary key, a default depth mode writes no store and records no partition, deals seven review frontier nodes over three seats, writes a review lineage store without an inbox, binds a review frontier scope beside review_focus, and adds no depth-mode bytes to a default review lineage prompt.",
+      "evidence": {
+        "cmd": "rg -n \"describe\\('fanout-run.cjs — expansive depth frontier'|describe\\('fanout-run.cjs — per-lineage expansive budget'\" .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts; awk 'NR>=6571 && NR<=6906' .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts | grep -c \"^  it(\"; sed -n '133p' .skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md | cut -c1-140",
+        "exit": 0,
+        "out": "6571:describe('fanout-run.cjs — expansive depth frontier', () => {\n6907:describe('fanout-run.cjs — per-lineage expansive budget', () => {\n13\n| `tests/unit/fanout-run.vitest.ts` | Expansive depth groups: `expansive depth frontier` (12 tests: the round-robin deal, the per-lineage no"
+      },
+      "fix": {
+        "old": "`expansive depth frontier` (12 tests:",
+        "new": "`expansive depth frontier` (13 tests:"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-merge.md",
+    ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md",
+    ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/convergence-script.md",
+    ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/frontier-admit-script.md",
+    "README.md"
+  ]
+}

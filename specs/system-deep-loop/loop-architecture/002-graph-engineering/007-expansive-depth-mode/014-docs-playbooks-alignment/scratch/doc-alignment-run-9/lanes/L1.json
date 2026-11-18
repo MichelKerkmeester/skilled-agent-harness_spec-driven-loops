@@ -1,0 +1,97 @@
+{
+  "lane": "L1",
+  "findings": [
+    {
+      "id": "L1-1",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/agents/deep-review.md",
+      "line": 37,
+      "issue": "The doc's only convergence section (\"Convergence Threshold Semantics\") presents the review loop's stop behaviour as threshold-driven and never mentions the review iteration floor, which the topic ships. The code applies the floor to review runs: `buildStopDecision` returns CONTINUE with reasonDetail `minIterationsNotReached` while `iterationCount < minIterations` (convergence.cjs:1195-1196), and the shipped review config sets `antiConvergence.minIterations` to 2 (deep-review-config.json:12), so a review run cannot stop below two iterations even when every dimension is clean. A reader who tunes `convergenceThreshold` from this section expects a stop the runtime will not take.",
+      "evidence": {
+        "cmd": "rg -n \"minIterationsNotReached|minIterations > 1\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs; rg -n \"minIterations\" .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
+        "exit": 0,
+        "out": "1195:  if (minIterations > 1 && iterationCount < minIterations) {\n1196:    return emit('CONTINUE', null, 'minIterationsNotReached', gatesAt(false), []);\n---\n12:    \"minIterations\": 2,"
+      }
+    },
+    {
+      "id": "L1-2",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".claude/agents/deep-review.md",
+      "line": 23,
+      "issue": "Same omission in the .claude mirror: the convergence section describes only `convergenceThreshold` and never names the review iteration floor. convergence.cjs:1195-1196 holds a review stop candidate at CONTINUE with `minIterationsNotReached` until the configured floor is reached, and the shipped review config sets `antiConvergence.minIterations` to 2 (deep-review-config.json:12).",
+      "evidence": {
+        "cmd": "rg -n \"minIterationsNotReached|minIterations > 1\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs; rg -n \"minIterations\" .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
+        "exit": 0,
+        "out": "1195:  if (minIterations > 1 && iterationCount < minIterations) {\n1196:    return emit('CONTINUE', null, 'minIterationsNotReached', gatesAt(false), []);\n---\n12:    \"minIterations\": 2,"
+      }
+    },
+    {
+      "id": "L1-3",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".pi/agents/deep-review.md",
+      "line": 30,
+      "issue": "Same omission in the .pi mirror: the convergence section covers only `convergenceThreshold` and never names the review iteration floor. convergence.cjs:1195-1196 returns CONTINUE with `minIterationsNotReached` below the floor, and the shipped review config sets `antiConvergence.minIterations` to 2 (deep-review-config.json:12).",
+      "evidence": {
+        "cmd": "rg -n \"minIterationsNotReached|minIterations > 1\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs; rg -n \"minIterations\" .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
+        "exit": 0,
+        "out": "1195:  if (minIterations > 1 && iterationCount < minIterations) {\n1196:    return emit('CONTINUE', null, 'minIterationsNotReached', gatesAt(false), []);\n---\n12:    \"minIterations\": 2,"
+      }
+    },
+    {
+      "id": "L1-4",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/agents/deep-research.md",
+      "line": 302,
+      "issue": "The doc's frontier paragraph covers the proposal contract but leaves out the other half of the FRONTIER block's instruction: the research block tells the leaf to copy the Focus Area line exactly into the iteration record's `focus` (frontier-admit.cjs:649), and the research reducer attributes a frontier visit only by the `Frontier node <id>` marker in that `focus` field (deep-research/scripts/reduce-state.cjs:2478). A leaf that writes its own focus wording, as the doc's Step 8 example `\"focus\":\"[focus area]\"` invites, loses the visit attribution the node's budget and revisit counting depend on. The review twin of this doc does state the analogous record field (`frontierNodeId`), so the research doc is the one that leaves the requirement out.",
+      "evidence": {
+        "cmd": "rg -n \"Copy the Focus Area line\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs; rg -n \"Frontier node \\$\\{escaped\\}\" .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+        "exit": 0,
+        "out": "649:    lines.push(`Copy the Focus Area line exactly into this iteration record's \"focus\", so the run can tell which node this iteration worked.`);\n---\n2478:  const marker = new RegExp(`(?:^|[^\\\\w-])Frontier node ${escaped}(?![\\\\w-])`);"
+      }
+    },
+    {
+      "id": "L1-5",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".claude/agents/deep-research.md",
+      "line": 286,
+      "issue": "Same omission in the .claude mirror: the frontier paragraph never says the iteration record's `focus` must carry the `Frontier node <id>` marker. frontier-admit.cjs:649 requires the Focus Area line be copied into `focus`, and deep-research/scripts/reduce-state.cjs:2478 matches frontier visits on that marker only.",
+      "evidence": {
+        "cmd": "rg -n \"Copy the Focus Area line\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs; rg -n \"Frontier node \\$\\{escaped\\}\" .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+        "exit": 0,
+        "out": "649:    lines.push(`Copy the Focus Area line exactly into this iteration record's \"focus\", so the run can tell which node this iteration worked.`);\n---\n2478:  const marker = new RegExp(`(?:^|[^\\\\w-])Frontier node ${escaped}(?![\\\\w-])`);"
+      }
+    },
+    {
+      "id": "L1-6",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".pi/agents/deep-research.md",
+      "line": 294,
+      "issue": "Same omission in the .pi mirror: the frontier paragraph never says the iteration record's `focus` must carry the `Frontier node <id>` marker. frontier-admit.cjs:649 requires the Focus Area line be copied into `focus`, and deep-research/scripts/reduce-state.cjs:2478 matches frontier visits on that marker only.",
+      "evidence": {
+        "cmd": "rg -n \"Copy the Focus Area line\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs; rg -n \"Frontier node \\$\\{escaped\\}\" .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+        "exit": 0,
+        "out": "649:    lines.push(`Copy the Focus Area line exactly into this iteration record's \"focus\", so the run can tell which node this iteration worked.`);\n---\n2478:  const marker = new RegExp(`(?:^|[^\\\\w-])Frontier node ${escaped}(?![\\\\w-])`);"
+      }
+    }
+  ],
+  "reviewed": [
+    ".claude/agents/deep-research.md",
+    ".claude/agents/deep-review.md",
+    ".pi/agents/deep-research.md",
+    ".pi/agents/deep-review.md",
+    ".skilled/agents/deep-research.md",
+    ".skilled/agents/deep-review.md"
+  ]
+}
