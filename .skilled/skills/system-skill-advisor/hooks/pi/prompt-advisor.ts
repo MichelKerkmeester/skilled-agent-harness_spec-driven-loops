@@ -72,7 +72,7 @@ function sessionIdFromContext(ctx: { sessionManager?: { getSessionId?: () => unk
 // two-process blocking-spawn bridge stalled every send; calling the same
 // lifecycle code directly removes that stall and lets its module-level prompt
 // cache work. The specifier is relative to this folder, where Pi loads the
-// adapter through its one-line `.pi/extensions/` entry file.
+// adapter through its `.pi/extensions/` entry file.
 export const ADVISOR_HOOK_MODULE =
   "../../runtime/dist/hooks/claude/user-prompt-submit.js";
 

@@ -52,7 +52,7 @@ Claude registers both adapters in `.claude/settings.json` on `PreToolUse` and `P
 
 Cursor registers preflight in `.cursor/hooks.json` under `preToolUse` with matcher `Shell` and a 10-second timeout. The same file runs the post-tool proxy under `postToolUse` with a 10-second timeout. Devin registers both in `.devin/hooks.v1.json` under `PreToolUse` and `PostToolUse` for `^exec$` with 5-second timeouts.
 
-OpenCode loads the plugin from the flat `.opencode/plugins/*.js` glob. Pi discovers `.pi/extensions/dispatch-preflight-lint.ts` and `.pi/extensions/dispatch-audit.ts`. Each entry re-exports its matching file under `pi/`.
+OpenCode loads the plugin from the flat `.opencode/plugins/*.js` glob. Pi discovers `.pi/extensions/dispatch-preflight-lint.ts` and `.pi/extensions/dispatch-audit.ts`. Each entry imports its matching file under `pi/`.
 
 The DSH bundle at `.dsh/plugins/repo-guards/index.mjs` registers both adapters through links under `.dsh/plugins/repo-guards/adapters/`. Vibe registers `dispatch-preflight` in `.vibe/hooks.toml` as strict `pre_tool` with matcher `re:bash|process_start|process_write`.
 

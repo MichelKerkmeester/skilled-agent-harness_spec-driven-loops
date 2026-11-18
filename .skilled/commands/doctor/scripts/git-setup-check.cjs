@@ -1571,8 +1571,9 @@ function checkAiToolHooks(ctx) {
       let adapterDir = path.dirname(adapterPath);
       if (tool === 'pi') {
         // Pi loads a linked entry from the file its link points at, and a regular entry
-        // that only re-exports its adapter from the file that statement names. Either way
-        // the handler and the adapter's own imports are read from that file's folder.
+        // that re-exports or lazily imports its adapter from the file that statement
+        // names. Either way the handler and the adapter's own imports are read from
+        // that file's folder.
         let isLinked = false;
         try {
           isLinked = fs.lstatSync(adapterPath).isSymbolicLink();
@@ -1587,11 +1588,13 @@ function checkAiToolHooks(ctx) {
           }
         } else {
           const reexport = code.trim().match(/^export\s*\{\s*default\s*\}\s*from\s*['"](\.[^'"]+)['"];?$/);
-          if (reexport !== null) {
-            const targetPath = path.resolve(adapterDir, reexport[1]);
+          const lazyImport = reexport === null ? code.match(/\badapter\s*=\s*await\s+import\s*\(\s*['"](\.[^'"]+)['"]\s*\)/) : null;
+          const entryTarget = reexport ?? lazyImport;
+          if (entryTarget !== null) {
+            const targetPath = path.resolve(adapterDir, entryTarget[1]);
             const target = readRepoFile(targetPath);
             if (target.text === null) {
-              details.push(`${label}: ${rel} re-exports ${reexport[1]}, which does not exist`);
+              details.push(`${label}: ${rel} ${reexport !== null ? 're-exports' : 'imports'} ${entryTarget[1]}, which does not exist`);
               broken.push(tool);
               continue;
             }

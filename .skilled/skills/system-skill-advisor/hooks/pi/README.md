@@ -1,10 +1,10 @@
 ---
 title: "Pi Hooks: Skill-Advisor Prompt Bridge"
-description: "Pi extension factory that injects the skill-advisor recommendation into each user turn, discovered through a one-line entry file in .pi/extensions/ that re-exports it."
+description: "Pi extension factory that injects the skill-advisor recommendation into each user turn, discovered through an entry file in .pi/extensions/ that imports it."
 trigger_phrases:
   - "pi prompt advisor"
   - "pi skill advisor hook"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Pi Hooks: Skill-Advisor Prompt Bridge
@@ -13,7 +13,7 @@ version: 1.0.4.0
 
 ## 1. OVERVIEW
 
-`hooks/pi/` holds the real file behind the `.pi/extensions/prompt-advisor.ts` entry file. Pi discovers it through that one-line entry file, which re-exports it, so it loads from this folder. `ADVISOR_HOOK_MODULE` holds the one specifier the adapter imports. It is relative to this folder and points at the compiled hook in `../../runtime/dist/`. One test resolves it against this folder and imports the hook from there.
+`hooks/pi/` holds the real file behind the `.pi/extensions/prompt-advisor.ts` entry file. Pi discovers it through that entry file, which imports it, so it loads from this folder. `ADVISOR_HOOK_MODULE` holds the one specifier the adapter imports. It is relative to this folder and points at the compiled hook in `../../runtime/dist/`. One test resolves it against this folder and imports the hook from there.
 
 ---
 

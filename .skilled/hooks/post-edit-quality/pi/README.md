@@ -16,7 +16,7 @@ version: 1.0.0.0
 
 `.skilled/hooks/post-edit-quality/pi/` holds the Pi adapter for the post-edit quality concern. It runs at `tool_result` and appends checker findings and the staleness banner to an `edit` or `write` result. The result carries that text as one more part in its content.
 
-Pi has no JSON hook registration. It scans `.pi/extensions/` for one-line re-export entries. The entry for this adapter is `.pi/extensions/post-edit-quality.ts`. That file holds a single re-export statement that points back into this folder, with no event name of its own. The event is registered in the adapter, which calls `pi.on('tool_result', ...)` when Pi loads it.
+Pi has no JSON hook registration. It scans `.pi/extensions/` for entry files. The entry for this adapter is `.pi/extensions/post-edit-quality.ts`. That file is rendered from one template and imports the adapter from this folder, with no event name of its own. The event is registered in the adapter, which calls `pi.on('tool_result', ...)` when Pi loads it.
 
 The handler reads `event.toolName` first and returns at once unless the value is `edit` or `write`. It then reads `event.input.path` and returns unless that is a non-empty string. It resolves the path against `ctx.cwd` and returns when the file is not on disk.
 
@@ -48,7 +48,7 @@ Run the command from the repository root.
 (cd .skilled/skills/system-spec-kit && npx vitest run --project root runtime/tests/hook-adapter-path-parity.vitest.ts)
 ```
 
-Expected result: the parity suite passes and exits 0. It scans `.pi/extensions/` for one-line re-export entries, resolves each target and asserts that the target file exists on disk, so a missing or renamed adapter fails here.
+Expected result: the parity suite passes and exits 0. It reads each entry's adapter import in `.pi/extensions/`, resolves each target and asserts that the target file exists on disk, so a missing or renamed adapter fails here.
 
 ---
 
@@ -57,4 +57,4 @@ Expected result: the parity suite passes and exits 0. It scans `.pi/extensions/`
 - [`../README.md`](../README.md): the concern README, with the runtime coverage table.
 - [`../lib/post-edit-router.cjs`](../lib/post-edit-router.cjs): the shared router this adapter imports.
 - [`../../shared/hook-flags.mjs`](../../shared/hook-flags.mjs): the switch facade over the resolver the adapter calls.
-- [`../../../../.pi/extensions/post-edit-quality.ts`](../../../../.pi/extensions/post-edit-quality.ts): the one-line entry file Pi discovers.
+- [`../../../../.pi/extensions/post-edit-quality.ts`](../../../../.pi/extensions/post-edit-quality.ts): the rendered entry file Pi discovers.

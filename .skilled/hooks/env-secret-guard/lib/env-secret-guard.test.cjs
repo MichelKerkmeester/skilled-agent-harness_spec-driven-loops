@@ -500,7 +500,7 @@ test('command hook: the kill switch allows a call it would refuse', () => {
 });
 
 test('pi: read and bash on a dotenv file return a block', async (t) => {
-  // Pi reaches the adapter through a one-line entry file that re-exports it, so
+  // Pi reaches the adapter through an entry file that imports it, so
   // the adapter always loads from its own folder and the test imports it there.
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'env-secret-guard-pi-'));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));

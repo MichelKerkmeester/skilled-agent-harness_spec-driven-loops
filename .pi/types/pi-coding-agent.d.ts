@@ -42,6 +42,13 @@ declare module "@earendil-works/pi-coding-agent" {
     getContextUsage(): ContextUsage | undefined;
   };
 
+  /** Fired when a session starts, including after a reload. */
+  export type SessionStartEvent = {
+    type: "session_start";
+    reason: "startup" | "reload" | "new" | "resume" | "fork";
+    previousSessionFile?: string;
+  };
+
   /** The user's own turn, after sibling input transforms have run. */
   export type InputEvent = {
     text: string;
@@ -192,6 +199,10 @@ declare module "@earendil-works/pi-coding-agent" {
     on(
       event: "agent_end",
       handler: ExtensionHandler<AgentEndEvent>,
+    ): () => void;
+    on(
+      event: "session_start",
+      handler: ExtensionHandler<SessionStartEvent>,
     ): () => void;
     on(
       event: "message_end",

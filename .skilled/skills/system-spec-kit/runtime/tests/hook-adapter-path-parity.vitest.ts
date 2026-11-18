@@ -14,6 +14,7 @@
 // GitHub Copilot CLI anywhere in this repository).
 
 import { existsSync, lstatSync, readdirSync, readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { dirname, isAbsolute, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
@@ -103,12 +104,13 @@ function cursorRegistrations(): Registration[] {
 }
 
 // Pi has no JSON registration: hooks are discovered by scanning
-// `.pi/extensions/` for one-line re-export entries pointing back into the
+// `.pi/extensions/` for entry files, each rendered by
+// sync-hook-registrations.cjs from one template that imports its adapter in the
 // maintained source trees (see runtime/hooks/pi/README.md). The entry has to
-// stay a plain file holding just that statement, because older Pi resolves the
-// entry's imports from the entry's folder while newer Pi resolves the entry to
-// its real file first. Subdirectories under `.pi/extensions/` are unrelated Pi
-// feature bundles, not spec-kit hook adapters.
+// stay a plain file, because older Pi resolves the entry's imports from the
+// entry's folder while newer Pi resolves the entry to its real file first.
+// Subdirectories under `.pi/extensions/` are unrelated Pi feature bundles, not
+// spec-kit hook adapters.
 const PI_NON_ADAPTER_ENTRIES = new Set([
   'README.md',
   'lib',
@@ -116,21 +118,39 @@ const PI_NON_ADAPTER_ENTRIES = new Set([
   'pi-fast-mode-w-subagent-support',
 ]);
 
-const PI_REEXPORT_PATTERN = /^export \{ default \} from (['"])([^'"]+)\1;\r?\n?$/u;
+const { renderPiEntry, piAdapterSpecifier } = createRequire(import.meta.url)(
+  resolve(repoRoot, '.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs'),
+) as {
+  renderPiEntry: (entry: string, adapterSpecifier: string) => string;
+  piAdapterSpecifier: (source: string) => string | null;
+};
 
-function piRegistrations(): Registration[] {
+interface PiEntry {
+  name: string;
+  entryPath: string;
+  source: string;
+  specifier: string | null;
+}
+
+/** Every `.ts` file Pi would load from `.pi/extensions/`, whatever its shape. */
+function piEntries(): PiEntry[] {
   const extensionsDir = resolve(repoRoot, '.pi/extensions');
-  const out: Registration[] = [];
-  for (const name of readdirSync(extensionsDir)) {
+  const out: PiEntry[] = [];
+  for (const name of readdirSync(extensionsDir).sort()) {
     if (PI_NON_ADAPTER_ENTRIES.has(name)) continue;
     if (!name.endsWith('.ts')) continue;
     const entryPath = resolve(extensionsDir, name);
     if (!lstatSync(entryPath).isFile()) continue;
-    const match = PI_REEXPORT_PATTERN.exec(readFileSync(entryPath, 'utf8'));
-    if (match === null) continue;
-    out.push({ runtime: 'pi', event: 'extension', path: resolve(dirname(entryPath), match[2]) });
+    const source = readFileSync(entryPath, 'utf8');
+    out.push({ name, entryPath, source, specifier: piAdapterSpecifier(source) });
   }
   return out;
+}
+
+function piRegistrations(): Registration[] {
+  return piEntries()
+    .filter((entry) => entry.specifier !== null)
+    .map((entry) => ({ runtime: 'pi', event: 'extension', path: resolve(dirname(entry.entryPath), entry.specifier!) }));
 }
 
 // OpenCode has no source-hook adapter tree either (hook-system.md ss2): the
@@ -253,6 +273,17 @@ describe('hook adapter path parity', () => {
     ),
   )('%s resolves on disk', (_label, registration) => {
     expect(existsSync(resolveAgainstRepo(registration))).toBe(true);
+  });
+
+  // An entry in any other shape would drop out of the registrations above
+  // without a failure, so every one is held to the rendered template here.
+  it('renders every Pi extension entry from the one template', () => {
+    const entries = piEntries();
+    expect(entries.length).toBeGreaterThan(0);
+    for (const entry of entries) {
+      expect(entry.specifier, `${entry.name} names no adapter import`).not.toBeNull();
+      expect(entry.source, entry.name).toBe(renderPiEntry(entry.name, entry.specifier!));
+    }
   });
 
   it('reports a deliberately broken path as unresolved (checker self-check)', () => {

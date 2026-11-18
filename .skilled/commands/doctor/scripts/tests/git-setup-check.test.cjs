@@ -1609,6 +1609,26 @@ test('pi fails a re-export whose named file does not exist', (t) => {
   );
 });
 
+test('pi fails a lazy-import entry whose named adapter does not exist', (t) => {
+  const f = fixture(t);
+  const entry = path.join(f.repo, TOOL_FILES.pi);
+  fs.mkdirSync(path.dirname(entry), { recursive: true });
+  const REAL_ROOT = path.dirname(OWN_ROOT);
+  const real = fs.readFileSync(path.join(REAL_ROOT, TOOL_FILES.pi), 'utf8');
+  const missing = real.replace(/import\('[^']+'\)/, "import('../../.skilled/missing/git-preflight-advisory.ts')");
+  assert.notEqual(missing, real, 'the real Pi entry should carry a lazy adapter import');
+  fs.writeFileSync(entry, missing);
+
+  const row = rowOf(reportOf(f.run(['--tool', 'pi', '--json'])), 'ai-tool-hooks');
+  assert.equal(row.result, 'FAIL', `pi: ${row.details.join(' | ')}`);
+  assert.ok(
+    row.details.includes(
+      `pi (active): ${TOOL_FILES.pi} imports ../../.skilled/missing/git-preflight-advisory.ts, which does not exist`,
+    ),
+    `pi: ${row.details.join(' | ')}`,
+  );
+});
+
 test('opencode concise arrows and pi default functions register supported handlers', (t) => {
   const cases = [
     [

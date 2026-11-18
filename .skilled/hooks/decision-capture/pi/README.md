@@ -16,7 +16,7 @@ version: 1.0.0.0
 
 `.skilled/hooks/decision-capture/pi/` holds the Pi adapter for the decision capture concern. Pi has no question tool of its own, so an answer arrives as a `tool_result` for a package tool. The adapter watches `ask_user_question` from `rpiv-ask-user-question` and `question` from `pi-plan-build`. Both names sit in `QUESTION_TOOLS` in `.skilled/hooks/decision-capture/bin/sweep-pi.mjs`.
 
-Pi loads every `.ts` file in `.pi/extensions/` and calls its default export once at session start. The entry `.pi/extensions/decision-capture.ts` is one line that re-exports the adapter from this folder. The `pi` block of the `decision-capture` row in `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` names the same file. No other runtime loads this adapter.
+Pi loads every `.ts` file in `.pi/extensions/` and calls its default export once at session start. The entry `.pi/extensions/decision-capture.ts` is rendered from one template and imports the adapter from this folder. The `pi` block of the `decision-capture` row in `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` names the same file. No other runtime loads this adapter.
 
 The factory checks `isHookEnabled('decision-capture')` before it registers anything. When the switch is off, no handler registers and the session sees nothing from this file. On `tool_result` the handler returns at once for a tool name outside `QUESTION_TOOLS`, an error result, a cancelled result or a missing session id.
 
