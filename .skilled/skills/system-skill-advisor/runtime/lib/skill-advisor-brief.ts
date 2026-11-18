@@ -442,6 +442,21 @@ export function skippedAdvisorResultFor(prompt: string): AdvisorHookResult | nul
   });
 }
 
+/**
+ * Return the skipped result shown when a weak follow-up is held back against the
+ * session's earlier route, so it renders like any other prompt the policy declines.
+ */
+export function skippedWeakFollowUpResult(): AdvisorHookResult {
+  return result({
+    startedAt: performance.now(),
+    status: 'skipped',
+    freshness: 'unavailable',
+    brief: null,
+    diagnostics: { policyReason: 'weak_follow_up_receipt' },
+    freshnessResult: null,
+  });
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 5. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────

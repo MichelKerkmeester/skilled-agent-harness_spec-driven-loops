@@ -19,6 +19,7 @@ import { scoreAdvisorPrompt } from '../lib/scorer/fusion.js';
 import { shouldFireAdvisor, stripLeadingPastedReply } from '../lib/prompt-policy.js';
 import { loadAdvisorProjection } from '../lib/scorer/projection.js';
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
+import { decideRouteReceiptGuard, ROUTE_RECEIPT_VERSION, type RouteReceipt } from '../../hooks/lib/route-receipt.js';
 
 process.env.SPECKIT_METRICS_ENABLED = 'true';
 
@@ -102,6 +103,13 @@ const FOLLOW_UP_PAIRS: readonly { readonly task: string; readonly followUp: stri
   { task: 'Refactor the session store module to remove duplicated locking code', followUp: 'add tests for it as well', negativeControl: false },
   { task: 'Update the advisor README to document the new corpus file layout', followUp: 'Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: fix that too', negativeControl: false },
 ];
+
+// A complete task on a new topic that is floored on work intent: the shape a
+// stored route must not carry the session's earlier route into.
+const FALSE_CARRY_PAIR = {
+  task: 'Update the advisor README to document the new corpus file layout',
+  followUp: 'Refactor the session store module to remove duplicated locking code',
+} as const;
 
 // ───────────────────────────────────────────────────────────────
 // 4. HELPERS
@@ -251,6 +259,75 @@ function logFollowUpRouting(root: string, projection: ReturnType<typeof loadAdvi
   console.log(`advisor-follow-up-routing ${JSON.stringify({ N: FOLLOW_UP_PAIRS.length, H: harm, Hsame: harmSame, pairs })}`);
 }
 
+// Runs each follow-up pair through the receipt guard the hook ships. A task
+// leaves a receipt only when its own top route is unfloored, as in the hook,
+// and the clock is fixed so only the prompt and the routes decide. A
+// measurement only, like the line above it.
+function logFollowUpReceipts(root: string, projection: ReturnType<typeof loadAdvisorProjection>): void {
+  const clock = { storeGeneration: 'bench', lifecycleEpoch: 'bench' };
+  const scoreTop = (prompt: string) => {
+    const result = scoreAdvisorPrompt(prompt, { workspaceRoot: root, projection, includeAllCandidates: true });
+    return result.topSkill === null
+      ? null
+      : result.recommendations.find((recommendation) => recommendation.skill === result.topSkill) ?? null;
+  };
+  const receiptFor = (task: string) => {
+    const top = scoreTop(task);
+    const taskFloored = top?.confidenceFloored === true;
+    const receipt: RouteReceipt | null = top && !taskFloored
+      ? { version: ROUTE_RECEIPT_VERSION, sessionId: 'bench', skill: top.skill, ...clock, transcriptBytes: null }
+      : null;
+    return { taskTop: top?.skill ?? null, taskFloored, receipt };
+  };
+  const guardFollowUp = (receipt: RouteReceipt | null, followUp: string) => {
+    const top = scoreTop(followUp);
+    const strippedPrompt = stripLeadingPastedReply(followUp);
+    const policyReason = shouldFireAdvisor(strippedPrompt).reason;
+    const guard = decideRouteReceiptGuard({
+      receipt,
+      clock: () => clock,
+      transcriptBytes: null,
+      strippedPrompt,
+      policyReason,
+      topSkill: top?.skill ?? null,
+      topFloored: top?.confidenceFloored === true,
+    });
+    return { followUpTop: top?.skill ?? null, floored: top?.confidenceFloored === true, policyReason, guard };
+  };
+  let harm = 0;
+  let harmAfter = 0;
+  const pairs = FOLLOW_UP_PAIRS.map((pair, index) => {
+    const { taskTop, taskFloored, receipt } = receiptFor(pair.task);
+    const { followUpTop, floored, policyReason, guard } = guardFollowUp(receipt, pair.followUp);
+    const harmful = floored && policyReason === WORK_INTENT_REASON && followUpTop !== taskTop;
+    if (harmful) harm += 1;
+    if (harmful && guard === 'deliver') harmAfter += 1;
+    return {
+      pair: index + 1,
+      negativeControl: pair.negativeControl,
+      taskTop,
+      taskFloored,
+      receiptWritten: receipt !== null,
+      followUpTop,
+      guard,
+    };
+  });
+  const falseCarryTask = receiptFor(FALSE_CARRY_PAIR.task);
+  const falseCarry = guardFollowUp(falseCarryTask.receipt, FALSE_CARRY_PAIR.followUp);
+  console.log(`advisor-follow-up-receipts ${JSON.stringify({
+    N: FOLLOW_UP_PAIRS.length,
+    H: harm,
+    H_after: harmAfter,
+    pairs,
+    falseCarry: {
+      taskTop: falseCarryTask.taskTop,
+      receiptWritten: falseCarryTask.receipt !== null,
+      followUpTop: falseCarry.followUpTop,
+      guard: falseCarry.guard,
+    },
+  })}`);
+}
+
 export function runScorerCalibrationBench(root = workspaceRoot()): CalibrationReport {
   const corpusPath = resolve(root, SPECKIT_BENCH_CORPUS_PATH);
   const rows = readCorpus(corpusPath);
@@ -330,6 +407,7 @@ export function runScorerCalibrationBench(root = workspaceRoot()): CalibrationRe
     floored: { ...floored, collateral: collateralIds.length, collateralIds },
   })}`);
   logFollowUpRouting(root, projection);
+  logFollowUpReceipts(root, projection);
 
   expect(isSpeckitMetricsEnabled()).toBe(true);
   expect(roundMetric(brierMean ?? -1)).toBe(brierScore);

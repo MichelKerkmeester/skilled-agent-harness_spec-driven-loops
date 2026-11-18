@@ -17,6 +17,7 @@ import {
   type ClaudeUserPromptSubmitInput,
 } from '../../../hooks/claude/user-prompt-submit.js';
 import { DIRECTIVE_LIFECYCLE_DEDUP_ENV, InMemoryDirectiveLifecycleStore } from '../../../hooks/lib/directive-lifecycle.js';
+import { InMemoryRouteReceiptStore, type RouteReceiptStore } from '../../../hooks/lib/route-receipt.js';
 import { normalizeRuntimeOutput } from '../../lib/normalize-adapter-output.js';
 import { clearPolicyObservationSink, getPolicyObservationRecords } from '../../lib/policy-plan.js';
 import { renderAdvisorBrief } from '../../lib/render.js';
@@ -1050,5 +1051,146 @@ describe('Claude UserPromptSubmit advisor hook', () => {
     } finally {
       cwd.mockRestore();
     }
+  });
+
+  describe('route receipts', () => {
+    const README_TASK = 'Update the advisor README to document the new corpus file layout';
+    const REFACTOR_TASK = 'Refactor the session store module to remove duplicated locking code';
+    const PASTED_FIX_THAT_TOO = 'Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: fix that too';
+    // What the floored follow-up shows with no receipt, the same text the hook showed before receipts existed.
+    const UNGUARDED_FOLLOW_UP_CONTEXT = EXPECTED_ADVISOR_CONTEXT.replace('0.91/0.23', '0.82/0.20');
+
+    // A live result whose top route is the given skill, floored or confident,
+    // in the shape the CLI fallback hands the hook.
+    function routedResult(skill: string, confidence: number, floored: boolean): AdvisorHookResult {
+      return {
+        ...fixture('livePassingSkill.json'),
+        recommendations: [{
+          skill,
+          confidence,
+          uncertainty: 0.2,
+          passes_threshold: true,
+          ...(floored ? { confidenceFloored: true as const } : {}),
+        }],
+      };
+    }
+
+    function freshStores(): { lifecycle: InMemoryDirectiveLifecycleStore; receipts: RouteReceiptStore } {
+      return { lifecycle: new InMemoryDirectiveLifecycleStore(), receipts: new InMemoryRouteReceiptStore() };
+    }
+
+    async function receiptTurn(
+      prompt: string,
+      result: AdvisorHookResult,
+      stores: { lifecycle: InMemoryDirectiveLifecycleStore; receipts: RouteReceiptStore },
+      input: Partial<ClaudeUserPromptSubmitInput> = { session_id: 'receipt-session' },
+    ): Promise<string | undefined> {
+      const output = await handleClaudeUserPromptSubmit({
+        hook_event_name: 'UserPromptSubmit',
+        cwd: '/workspace/project',
+        prompt,
+        ...input,
+      }, {
+        buildCliBrief: vi.fn(async () => result),
+        renderBrief: renderAdvisorBrief,
+        writeDiagnostic: () => {},
+        directiveLifecycleStore: stores.lifecycle,
+        routeReceiptStore: stores.receipts,
+      });
+      return 'hookSpecificOutput' in output ? output.hookSpecificOutput.additionalContext : undefined;
+    }
+
+    const docsRoute = () => routedResult('sk-doc', 0.9373, false);
+    const flooredCodeRoute = () => routedResult('sk-code', 0.82, true);
+
+    it('holds back a floored weak follow-up that routes away from the session route', async () => {
+      const stores = freshStores();
+      expect(await receiptTurn(README_TASK, docsRoute(), stores)).toContain('use sk-doc');
+      expect(await receiptTurn('fix that too', flooredCodeRoute(), stores)).toBe(EXPECTED_SKIPPED_CONTEXT);
+    });
+
+    it('decides a pasted earlier reply the same as the bare follow-up', async () => {
+      const stores = freshStores();
+      await receiptTurn(README_TASK, docsRoute(), stores);
+      expect(await receiptTurn(PASTED_FIX_THAT_TOO, flooredCodeRoute(), stores)).toBe(EXPECTED_SKIPPED_CONTEXT);
+    });
+
+    it('keeps a floored topic change that names its own work', async () => {
+      const stores = freshStores();
+      await receiptTurn(README_TASK, docsRoute(), stores);
+      expect(await receiptTurn(REFACTOR_TASK, flooredCodeRoute(), stores)).toContain('use sk-code');
+    });
+
+    it('delivers after a lifecycle boundary advanced the session epoch', async () => {
+      const stores = freshStores();
+      await receiptTurn(README_TASK, docsRoute(), stores);
+      stores.lifecycle.advanceSessionEpoch('receipt-session');
+      expect(await receiptTurn('fix that too', flooredCodeRoute(), stores)).toContain('use sk-code');
+    });
+
+    it('delivers after the transcript shrank and holds back while it grew', async () => {
+      const dir = mkdtempSync(join(tmpdir(), 'route-receipt-transcript-'));
+      try {
+        const transcriptPath = join(dir, 'session.jsonl');
+        const input = { session_id: 'receipt-session', transcript_path: transcriptPath };
+        const grown = freshStores();
+        writeFileSync(transcriptPath, 'x'.repeat(200));
+        await receiptTurn(README_TASK, docsRoute(), grown, input);
+        writeFileSync(transcriptPath, 'x'.repeat(300));
+        const afterGrowth = await receiptTurn('fix that too', flooredCodeRoute(), grown, input);
+        expect(afterGrowth).toContain('Advisor: prompt skipped.');
+        expect(afterGrowth).not.toContain('use sk-code');
+
+        const shrunk = freshStores();
+        writeFileSync(transcriptPath, 'x'.repeat(200));
+        await receiptTurn(README_TASK, docsRoute(), shrunk, input);
+        writeFileSync(transcriptPath, 'x'.repeat(10));
+        expect(await receiptTurn('fix that too', flooredCodeRoute(), shrunk, input)).toContain('use sk-code');
+      } finally {
+        rmSync(dir, { recursive: true, force: true });
+      }
+    });
+
+    it('routes a follow-up with no session id as it would with no receipt', async () => {
+      const stores = freshStores();
+      await receiptTurn(README_TASK, docsRoute(), stores, {});
+      expect(await receiptTurn('fix that too', flooredCodeRoute(), stores, {})).toBe(UNGUARDED_FOLLOW_UP_CONTEXT);
+    });
+
+    it.each([
+      ['unconfirmed', { session_id: 'receipt-session', session_identity_confirmed: false }],
+      ['ambiguous', { session_id: 'receipt-session', session_identity_ambiguous: true }],
+    ] as const)('keeps no receipt for an %s session identity', async (_label, input) => {
+      const stores = freshStores();
+      expect(await receiptTurn(README_TASK, docsRoute(), stores, input)).toContain('use sk-doc');
+      expect(stores.receipts.read('receipt-session')).toBeNull();
+      expect(await receiptTurn('fix that too', flooredCodeRoute(), stores, input)).toBe(UNGUARDED_FOLLOW_UP_CONTEXT);
+    });
+
+    it('reads no receipt for an unconfirmed identity that reuses a recorded id', async () => {
+      const stores = freshStores();
+      await receiptTurn(README_TASK, docsRoute(), stores);
+      expect(stores.receipts.read('receipt-session')?.skill).toBe('sk-doc');
+      const unconfirmed = { session_id: 'receipt-session', session_identity_confirmed: false };
+      expect(await receiptTurn('fix that too', flooredCodeRoute(), stores, unconfirmed)).toBe(UNGUARDED_FOLLOW_UP_CONTEXT);
+    });
+
+    it('routes a follow-up with an empty receipt store as it would with no receipt', async () => {
+      expect(await receiptTurn('fix that too', flooredCodeRoute(), freshStores())).toBe(UNGUARDED_FOLLOW_UP_CONTEXT);
+    });
+
+    it('keeps the turn when the receipt store throws', async () => {
+      const throwingStore: RouteReceiptStore = {
+        read: () => {
+          throw new Error('read failed');
+        },
+        write: () => {
+          throw new Error('write failed');
+        },
+      };
+      const stores = { lifecycle: new InMemoryDirectiveLifecycleStore(), receipts: throwingStore };
+      expect(await receiptTurn(README_TASK, docsRoute(), stores)).toContain('use sk-doc');
+      expect(await receiptTurn('fix that too', flooredCodeRoute(), stores)).toBe(UNGUARDED_FOLLOW_UP_CONTEXT);
+    });
   });
 });

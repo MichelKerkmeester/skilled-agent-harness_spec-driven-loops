@@ -35,14 +35,15 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      "hooks/claude/user-prompt-submit.ts"
+      "hooks/claude/user-prompt-submit.ts",
+      "runtime/dist/hooks/claude/user-prompt-submit.js"
     ],
     "entities": [
       {
@@ -82,6 +83,12 @@
         "source": "derived"
       },
       {
+        "name": "user-prompt-submit.js",
+        "kind": "code",
+        "path": "runtime/dist/hooks/claude/user-prompt-submit.js",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -112,7 +119,7 @@
         "source": "derived"
       },
       {
-        "name": "The Files",
+        "name": "Design Corrections",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -182,17 +189,11 @@
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Five of nine weak follow-ups send the brief to a different skill than their session task, all on the 0.82 floor (`../003-follow-up-routing-benchmark/implementation-summary.md:97`)",
     "created_at": "2026-11-18T15:49:34Z",
-    "last_save_at": "2026-11-18T16:12:27.755Z",
+    "last_save_at": "2026-11-18T21:11:51.217Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +203,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:46a6e6a73722a4fafd98d06600f8ac2a6b3f8be6a8579a0eca75181b7d4ca324",
+    "source_fingerprint": "sha256:da6deee2119d51ac82f7693286107c857ba87c880f328ef83574ed5ec29dbf7b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1c327299bb350737060d94ed9fc530c9660860c30dc4ed20a003f0a3e4923df5",
-      "plan.md": "9c2d491f321ec6f60771d7d666c0dd8243f5686f786519d4b4d264c06cc249c7",
-      "tasks.md": "3a70a3a5f457f6e22ab8ff7ebb836a9e379e7668d1ab9c050d519c594fe73587",
-      "implementation-summary.md": "c723f8c57b00a649c4ec264d93d3d7c323e2a823f56c1c3ba546328a62b7e60f"
+      "spec.md": "ef19da67f273a71eeb21ffe67a9dc3732faba499436ad72b40f2a4e9a1cb490e",
+      "plan.md": "617384cfe522b08ae9f832c874eede69fec85c92f6dd29d21da922d7af994fac",
+      "tasks.md": "76716ef42c845522a6701f22deab1ac39d61d6ad0d329e9599327d3810037658",
+      "implementation-summary.md": "1fe40ce4977c5a09165a6649d5fb4b7a75b412914eb146b496bb3cf8beaaa871"
     },
     "last_active_at": null
   }

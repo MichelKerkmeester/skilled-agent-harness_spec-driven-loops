@@ -122,6 +122,24 @@ export function extractMetalinguisticSkillMentions(prompt: string): string[] {
   return [...new Set(canonicalLower.match(SKILL_NAME_PATTERN) ?? [])].sort();
 }
 
+/**
+ * Split a prompt into the policy's own tokens, the meaningful ones and the
+ * work-intent verbs among them, so callers that judge prompt shape count words
+ * exactly as the policy reason does.
+ */
+export function promptPolicyTokens(prompt: string): {
+  readonly tokens: string[];
+  readonly meaningful: string[];
+  readonly workVerbs: string[];
+} {
+  const tokens = tokenize(normalizePrompt(prompt));
+  return {
+    tokens,
+    meaningful: meaningfulTokens(tokens),
+    workVerbs: tokens.filter((token) => WORK_INTENT_VERBS.has(token)),
+  };
+}
+
 /** Decide whether a user prompt should invoke the advisor producer. */
 export function shouldFireAdvisor(prompt: string): AdvisorPromptPolicyResult {
   const canonicalPrompt = normalizePrompt(prompt);

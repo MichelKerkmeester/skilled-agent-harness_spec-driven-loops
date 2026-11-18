@@ -18,6 +18,10 @@ const ADVISOR_MODULE_URL = new URL(
   '../../runtime/dist/hooks/claude/user-prompt-submit.js',
   import.meta.url,
 ).href;
+const LIFECYCLE_MODULE_URL = new URL(
+  '../../runtime/dist/hooks/lib/directive-lifecycle.js',
+  import.meta.url,
+).href;
 
 // Mirrors the advisor renderer's directive label. A brief that drifts past it is
 // never split, so it is always delivered whole.
@@ -83,6 +87,16 @@ function deliveredContext(context, sessionId, dedupEnabled) {
   return context;
 }
 
+// A clock rotation is advisory: when it fails, a stored route still expires on
+// its own transcript check, so the failure is logged and never reaches the host.
+async function rotateSessionClock(ctx, core, sessionId) {
+  try {
+    await core.advanceBoundary?.(sessionId);
+  } catch (error) {
+    logFailure(ctx, error);
+  }
+}
+
 function concernEnabled(isEnabled, concern) {
   try {
     return isEnabled(concern) !== false;
@@ -128,6 +142,23 @@ export async function runAdvisor(input, load = () => import(ADVISOR_MODULE_URL))
 }
 
 /**
+ * Rotate the shared lifecycle clock for one session at a DSH boundary, so advisor
+ * state stamped with that clock expires with the context it described.
+ *
+ * Without a session id nothing rotates, because the shared call would then
+ * advance the store generation and reset every session.
+ *
+ * @param {string|undefined} sessionId - The DSH session id.
+ * @param {Function} [load] - Loads the lifecycle module, injectable for tests.
+ * @returns {Promise<boolean>} Whether a session clock was rotated.
+ */
+export async function advanceBoundary(sessionId, load = () => import(LIFECYCLE_MODULE_URL)) {
+  if (typeof sessionId !== 'string' || !sessionId.trim()) return false;
+  const lifecycle = await load();
+  return lifecycle.advanceDirectiveLifecycleBoundary(lifecycle.defaultDirectiveLifecycleStore(), sessionId);
+}
+
+/**
  * Register the advisor brief on the DSH pre-step waterfall for interactive sessions.
  *
  * A fan-out leaf, marked by the lineage patch, gets no brief: its prompt is a fixed
@@ -139,7 +170,7 @@ export async function runAdvisor(input, load = () => import(ADVISOR_MODULE_URL))
  */
 export function registerPromptAdvisor(ctx, {
   enabled = false,
-  core = { runAdvisor },
+  core = { runAdvisor, advanceBoundary },
   createNotice = makeNotice,
   isLeaf = isLineageLeaf,
   isEnabled = isHookEnabled,
@@ -148,11 +179,16 @@ export function registerPromptAdvisor(ctx, {
 
   ctx.on('agent/created', async ({ agent }) => {
     forgetReceipt(agent?.session?.id);
+    await rotateSessionClock(ctx, core, agent?.session?.id);
     return undefined;
   });
 
   ctx.on('session/event', (session, event) => {
-    if (event?.type === 'compaction/end' && !event.data?.error) forgetReceipt(session?.id);
+    if (event?.type === 'compaction/end' && !event.data?.error) {
+      forgetReceipt(session?.id);
+      // This handler is synchronous, so the rotation runs detached.
+      void rotateSessionClock(ctx, core, session?.id);
+    }
   });
 
   ctx.on('agent/pre-step', async (payload, next) => {

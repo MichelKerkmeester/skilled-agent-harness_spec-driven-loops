@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Route Receipts Build"
-description: "Amend the provisional design from phase 010's research first. Then carry the floored flag to the hook, add a receipt module with one pure decision function, wire it into the shared handler and the Pi adapter and measure it on the nine follow-up pairs, with every failing test landing before its fix."
+description: "Apply phase 010's design first. Then carry the floored flag to the hook, add a receipt module with one pure decision function, wire it into the shared handler and the DSH boundaries and measure it on the nine follow-up pairs, with every failing test landing before its fix."
 trigger_phrases:
   - "route receipts build plan"
 importance_tier: "normal"
@@ -21,12 +21,12 @@ contextType: "implementation"
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | TypeScript on Node, in the advisor runtime and its hooks |
-| **Framework** | The shared Claude `UserPromptSubmit` handler, reused by Pi, DSH and Vibe, and by Codex through the Claude adapter |
-| **Storage** | One small JSON file per session in a `route-receipts/` folder under the directive state base, provisional until phase 010 closes |
+| **Framework** | The shared Claude `UserPromptSubmit` handler, reused by DSH and Vibe, and by Codex through the Claude adapter |
+| **Storage** | One small JSON file per session in a `route-receipts/` folder under the directive state base |
 | **Testing** | Vitest hook, schema and handler suites, plus the calibration bench |
 
 ### Overview
-Phase 010 fixes the design, so T001 first rewrites `spec.md`'s Files to Change table and REQ rows from `../010-route-receipts-research/research/research.md`. The provisional build then has three parts. The `confidenceFloored` flag travels from the scorer to the hook along the `heldBelow` path. A new `hooks/lib/route-receipt.ts` holds the receipt store and one pure decision function. The shared handler reads a receipt before rendering and writes one after a confident route. The bench calls the same decision function on the nine follow-up pairs, so the measurement reads the guard that ships.
+Phase 010 fixes the design, so T001 first rewrites `spec.md`'s Files to Change table and REQ rows from `../010-route-receipts-research/research/research.md`. The build then has four parts. The `confidenceFloored` flag travels from the scorer to the hook along the `heldBelow` path. A new `hooks/lib/route-receipt.ts` holds the receipt store and one pure decision function. The shared handler reads a receipt before rendering and writes one after a confident route. The DSH adapter rotates the lifecycle clock on its own boundaries. The bench calls the same decision function on the nine follow-up pairs, so the measurement reads the guard that ships.
 
 Paths are relative to `.skilled/skills/system-skill-advisor/` unless they start with a dot.
 <!-- /ANCHOR:summary -->
@@ -54,20 +54,21 @@ Paths are relative to `.skilled/skills/system-skill-advisor/` unless they start 
 ## 3. ARCHITECTURE
 
 ### Pattern
-Pure decision, thin wiring. Provisional until 010 closes.
+Pure decision, thin wiring. The design is research section 3 to 8 with the corrections in `spec.md`.
 
 ### Key Components
-- **Flag pass-through**: the same four edits phase 003 planned for its ship branch (`../003-follow-up-routing-benchmark/plan.md` section 3). An optional `confidenceFloored: z.literal(true)` on `AdvisorRecommendationSchema` (`runtime/schemas/advisor-tool-schemas.ts:305-332`). `publicRecommendation` copies it when true (`runtime/handlers/advisor-recommend.ts:286`). `AdvisorRecommendation` carries it (`runtime/lib/subprocess.ts:39-56`). `recommendationFromCli` keeps it (`hooks/lib/skill-advisor-cli-fallback.ts:379`).
-- **`hooks/lib/route-receipt.ts`, new**: a receipt holds the session's last confident top skill, its confidence, a hash of the stripped prompt, the time it was written, the transcript byte count when known and the directive clock tokens when known. The provisional store writes one file per hashed session id, through a temp file and `rename`, in a `route-receipts/` folder beside Vibe's `vibe-turn-start/` folder under the same base (`hooks/vibe/prompt-advisor.mjs:43-44`, `:68-72`). It keeps at most 64 sessions, the bound both existing stores use (`hooks/lib/directive-lifecycle-contract.ts:8`, `hooks/vibe/prompt-advisor.mjs:45`). An in-memory store serves tests, as `InMemoryDirectiveLifecycleStore` does (`hooks/lib/directive-lifecycle.ts:193-246`). The decision function takes the receipt, the policy reason, the top passing recommendation and the weak-follow-up test 010's Q1 fixes, and returns keep, suppress or reuse. It does no I/O, so the bench can call it.
-- **The shared handler**: after the result is built (`hooks/claude/user-prompt-submit.ts:366-378`) and before `renderBrief` (`:388`), the handler reads the session's receipt, calls `shouldFireAdvisor(stripLeadingPastedReply(prompt))` for the policy reason and applies the decision. The live skip check reads the unstripped prompt (`:372`, `runtime/lib/skill-advisor-brief.ts:420-423`), so the guard must not reuse that reason: pair 9's raw reason is the explicit marker, not work intent. On a suppress decision the handler swaps in the policy's skipped result, built through an exported helper over the private `result` builder (`runtime/lib/skill-advisor-brief.ts:321`, `:432-442`), never a hand-written literal. After a confident, non-floored route it writes the receipt. Every receipt read and write sits in its own try, so a store fault keeps today's output, as directive dedup does (`:429-432`). Tests inject the store through a new optional dependency beside `directiveLifecycleStore` (`:136`), and the default is the file store.
-- **Pi**: the adapter passes `session_id: sessionIdFromContext(ctx)` (`hooks/pi/prompt-advisor.ts:56-62`) in the handler input at `:290-294`. DSH (`hooks/dsh/prompt-advisor.mjs:171`) and Vibe (`hooks/vibe/prompt-advisor.mjs:236`) already pass one. Codex forwards its whole input to the Claude adapter (`.skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts:101`). INFERRED that Codex input holds `session_id`, which phase 010's Q4 confirms.
-- **The bench**: a new log function beside `logFollowUpRouting` (`runtime/bench/scorer-calibration.bench.ts:216-252`) scores each pair's task, builds an in-memory receipt from the task's top-1, scores the follow-up and calls the decision function. It prints one `advisor-follow-up-receipts` line with `H`, the per-pair decision and the false-carry result. It adds no assertion, as phase 003's lines did not.
+- **Flag pass-through**: an optional `confidenceFloored: z.literal(true)` on `AdvisorRecommendationSchema` (`runtime/schemas/advisor-tool-schemas.ts:331`). `publicRecommendation` copies it when true (`runtime/handlers/advisor-recommend.ts:286`). `AdvisorRecommendation` carries it (`runtime/lib/subprocess.ts:39-56`). `recommendationFromCli` keeps it (`hooks/lib/skill-advisor-cli-fallback.ts:379`).
+- **`hooks/lib/route-receipt.ts`, new**: a receipt holds `version: 1`, the `sessionId`, the delivered top-1 `skill`, the lifecycle clock's `storeGeneration` and `lifecycleEpoch` at write time and the transcript byte count or `null`. `FileRouteReceiptStore` writes one `<sha256(sessionId)[:16]>.json` per session in `route-receipts/` under `SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR`, defaulting to `join(tmpdir(), 'speckit-advisor')` like the lifecycle and Vibe stores (`hooks/lib/directive-lifecycle-file-store.ts:46-48`). It writes a `wx` temp file and renames it, keeps at most `MAX_DIRECTIVE_LIFECYCLE_SESSIONS` files by `mtime`, removes temp files older than 5 minutes, refuses a symlinked folder and reads nothing over 4 KiB. `InMemoryRouteReceiptStore` serves tests. `isWeakFollowUp` needs at least one back-reference word from the closed list and at most 3 content words, counted through `promptPolicyTokens`.
+- **`decideRouteReceiptGuard`**: returns `suppress` only when all five predicates hold: (a) a receipt whose clock equals the current clock and whose transcript bytes are not above the current ones, (b) the stripped prompt's policy reason is `work_intent_with_meaningful_tokens`, (c) the top-1 is floored, (d) the top-1 differs from the receipt's skill, (e) `isWeakFollowUp`. It checks (b) to (e) first and calls the clock function last. It does no I/O, so the bench calls it with a fixed clock.
+- **The shared handler**: after the result build (`hooks/claude/user-prompt-submit.ts:458-470`) and before the metrics spread (`:472-478`), the guard reads the session's receipt and, on `suppress`, swaps in `skippedWeakFollowUpResult()`. The guard reads its policy reason from `shouldFireAdvisor(stripLeadingPastedReply(prompt))`, never from the hook's `skippedResult`, which is computed on raw text (`:457`). After the render (`:480`), an `ok` result with a rendered brief and an unfloored top-1 writes a receipt. The clock comes from `dependencies.directiveLifecycleStore ?? defaultDirectiveLifecycleStore()`, and the store from the new `routeReceiptStore` dependency or `defaultRouteReceiptStore()`. The guard and the write each sit in their own try that keeps the result, so a receipt fault never reaches the outer catch and its timeout fallback.
+- **DSH**: `advanceBoundary(sessionId, load)` imports `runtime/dist/hooks/lib/directive-lifecycle.js` and calls `advanceDirectiveLifecycleBoundary(defaultDirectiveLifecycleStore(), sessionId)`, and returns without importing when the id is not a non-empty string. The `agent/created` handler and the clean `compaction/end` branch call it through `core.advanceBoundary`, the second with a `.catch` because that handler is synchronous.
+- **The bench**: a new log function beside `logFollowUpRouting` (`runtime/bench/scorer-calibration.bench.ts:216-252`) builds a receipt from each pair's task top only when that top is unfloored, runs the follow-up through `decideRouteReceiptGuard` with a fixed matching clock and prints one `advisor-follow-up-receipts` line with `N`, `H`, `H_after`, the per-pair `taskFloored`, `receiptWritten` and `guard`, and the false-carry result. It adds no assertion.
 
 ### Data Flow
-Turn one: the CLI result reaches the handler with `confidenceFloored` on each floored recommendation, the brief renders and the handler writes a receipt for the confident top skill. Turn two: the handler reads that receipt, reads the policy reason from stripped text, calls the decision function and renders either the route, the reused route or the skipped head. With no receipt, the decision is always keep.
+Turn one: the CLI result reaches the handler with `confidenceFloored` on each floored recommendation, the brief renders and the handler writes a receipt for the unfloored top skill with the current clock. Turn two: the handler finds that receipt, the follow-up passes the five predicates and the handler renders `Advisor: prompt skipped.` with the directive block. A boundary rotates the clock, so the next follow-up's predicate (a) fails and it delivers. With no receipt, every turn delivers as today.
 
 ### Why `C` does not apply
-`C` counts corpus rows the prompt-only guard would hide. Corpus rows are scored one at a time with no session, so no receipt exists and the decision is keep for every row. The corpus gates still run, as a check that no receipt logic leaks into the scorer.
+`C` counts corpus rows the prompt-only guard would hide. Corpus rows are scored one at a time with no session, so no receipt exists and every row delivers. The corpus gates still run, as a check that no receipt logic leaks into the scorer.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -75,7 +76,7 @@ Turn one: the CLI result reaches the handler with `confidenceFloored` on each fl
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Setup amends `spec.md` from phase 010's research, confirms 009 and 010 are done, re-reads the hook and records the suite, bench and corpus baselines. Implementation lands each failing test before its fix, in the waves `tasks.md` gives: the receipt tests and the flag pass-through, then the receipt module, then the hook replay test and the hook, Pi and bench wiring. Verification runs the typecheck and build, the bench, the corpus gates and the hook, schema and handler suites, and checks the diff and comment hygiene. The ordered work is in `tasks.md`.
+Setup amends `spec.md` from phase 010's research, confirms 009 and 010 are done, re-reads the hook and records the suite, bench and corpus baselines. Implementation lands each failing test before its fix, in the waves `tasks.md` gives: the receipt tests and the flag pass-through, then the receipt module, then the hook replay and DSH tests, the bench and the Vibe row, then the hook and DSH wiring. Verification runs the typecheck and build, the bench, the corpus gates and the hook, schema and handler suites, and checks the diff and comment hygiene. The ordered work is in `tasks.md`.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -99,7 +100,7 @@ Phase 010 closed on the over-suppresses branch. Phase 009 complete. `SPECKIT_RUN
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Trigger: a weak follow-up loses a correct route in use, or a receipt fault changes output with no receipt present. Revert the phase's commit, which removes the receipt module, the guard, the Pi session id and the flag pass-through together, then rebuild the runtime. Receipt files left on disk are inert once the code is gone. Delete the `route-receipts/` folder under the state base to clear them.
+Trigger: a weak follow-up loses a correct route in use, or a receipt fault changes output with no receipt present. Revert the phase's commit, which removes the receipt module, the guard, the DSH boundary call and the flag pass-through together, then rebuild the runtime. Receipt files left on disk are inert once the code is gone. Delete the `route-receipts/` folder under the state base to clear them.
 <!-- /ANCHOR:rollback -->
 
 ---

@@ -284,6 +284,9 @@ function publicRecommendation(
     // Hook briefs re-derive ambiguity from the public list, so a skill the typed
     // command already ranked below its seed has to say so here.
     ...(heldBelow ? { heldBelow } : {}),
+    // A hook holds back a floored route against the session's earlier one, so
+    // the floor has to survive into the public list.
+    ...(recommendation.confidenceFloored === true ? { confidenceFloored: true as const } : {}),
     ...(status ? { status } : {}),
     ...(workflowMode ? { workflowMode } : {}),
     // A command row is the contract a reader acts on, so its runnable string,

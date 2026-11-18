@@ -16,9 +16,11 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isAdvisorRuntime, type AdvisorRuntime } from '../../runtime/lib/advisor-runtime-values.js';
 import { findAdvisorWorkspaceRoot } from '../../runtime/lib/utils/workspace-root.js';
+import { shouldFireAdvisor, stripLeadingPastedReply } from '../../runtime/lib/prompt-policy.js';
 import {
   buildSkillAdvisorBrief,
   skippedAdvisorResultFor,
+  skippedWeakFollowUpResult,
   type AdvisorHookResult,
   type AdvisorHookStatus,
   type AdvisorHookFreshness,
@@ -29,6 +31,12 @@ import {
   isDirectiveLifecycleDedupEnabled,
   type DirectiveLifecycleState,
 } from '../lib/directive-lifecycle.js';
+import {
+  decideRouteReceiptGuard,
+  defaultRouteReceiptStore,
+  ROUTE_RECEIPT_VERSION,
+  type RouteReceiptStore,
+} from '../lib/route-receipt.js';
 import {
   renderAdvisorBrief,
   renderAdvisorFallbackDirective,
@@ -134,6 +142,8 @@ export interface UserPromptSubmitDependencies {
   readonly writeDiagnostic?: (line: string) => void;
   /** Per-session directive-lifecycle dedup state; defaults to the durable file-backed store. */
   readonly directiveLifecycleStore?: DirectiveLifecycleState;
+  /** Per-session record of the last confident route; defaults to the durable file-backed store. */
+  readonly routeReceiptStore?: RouteReceiptStore;
   /** Delay a full-delivery receipt until the process handoff acknowledges stdout. */
   readonly deferDirectiveReceipt?: boolean;
 }
@@ -303,6 +313,96 @@ export function parseClaudeUserPromptSubmitInput(raw: string): ClaudeUserPromptS
 // 6. CORE LOGIC
 // ───────────────────────────────────────────────────────────────
 
+// A session's last confident route lets a weak follow-up that would route
+// elsewhere only on the confidence floor be held back, because the earlier
+// brief is still in context and the floored one would steer the model off the
+// session's task. Receipts are advisory: any fault keeps the turn as it was.
+//
+// A receipt is keyed by session id, so only an identity the host has confirmed
+// may hold or read one; otherwise a session reusing a provisional id could have
+// its follow-up held back against another session's route. Absent flags count
+// as confirmed, the same rule the directive lifecycle applies.
+function receiptSessionId(input: ClaudeUserPromptSubmitInput): string | null {
+  const sessionId = typeof input.session_id === 'string' && input.session_id.trim().length > 0
+    ? input.session_id.trim()
+    : null;
+  const confirmed = input.session_identity_confirmed
+    ?? (sessionId !== null && input.session_identity_ambiguous !== true);
+  return sessionId !== null && confirmed === true ? sessionId : null;
+}
+
+function transcriptBytesFor(input: ClaudeUserPromptSubmitInput): number | null {
+  if (typeof input.transcript_path !== 'string' || input.transcript_path.length === 0) return null;
+  try {
+    return statSync(input.transcript_path).size;
+  } catch {
+    return null;
+  }
+}
+
+function topPassingRecommendation(result: AdvisorHookResult): AdvisorHookResult['recommendations'][number] | null {
+  return result.status === 'ok'
+    ? result.recommendations.find((recommendation) => recommendation.passes_threshold === true) ?? null
+    : null;
+}
+
+function guardWeakFollowUp(
+  result: AdvisorHookResult,
+  prompt: string,
+  input: ClaudeUserPromptSubmitInput,
+  dependencies: UserPromptSubmitDependencies,
+): AdvisorHookResult {
+  try {
+    const sessionId = receiptSessionId(input);
+    const top = topPassingRecommendation(result);
+    if (!sessionId || !top || top.confidenceFloored !== true) return result;
+    const receipt = (dependencies.routeReceiptStore ?? defaultRouteReceiptStore()).read(sessionId);
+    if (!receipt) return result;
+    const strippedPrompt = stripLeadingPastedReply(prompt);
+    const lifecycle = dependencies.directiveLifecycleStore ?? defaultDirectiveLifecycleStore();
+    const decision = decideRouteReceiptGuard({
+      receipt,
+      clock: () => lifecycle.clock(sessionId),
+      transcriptBytes: transcriptBytesFor(input),
+      strippedPrompt,
+      // Read from stripped text: the hook's own skip check reads the raw prompt,
+      // where a pasted reply that names a skill reads as an explicit marker.
+      policyReason: shouldFireAdvisor(strippedPrompt).reason,
+      topSkill: top.skill,
+      topFloored: true,
+    });
+    return decision === 'suppress' ? skippedWeakFollowUpResult() : result;
+  } catch {
+    return result;
+  }
+}
+
+function recordRouteReceipt(
+  result: AdvisorHookResult,
+  brief: string | null,
+  input: ClaudeUserPromptSubmitInput,
+  dependencies: UserPromptSubmitDependencies,
+): void {
+  try {
+    const sessionId = receiptSessionId(input);
+    const top = topPassingRecommendation(result);
+    // Only a route the model was shown on its own evidence is worth holding to.
+    if (!sessionId || !brief || !top || top.confidenceFloored === true) return;
+    const clock = (dependencies.directiveLifecycleStore ?? defaultDirectiveLifecycleStore()).clock(sessionId);
+    if (!clock) return;
+    (dependencies.routeReceiptStore ?? defaultRouteReceiptStore()).write({
+      version: ROUTE_RECEIPT_VERSION,
+      sessionId,
+      skill: top.skill,
+      storeGeneration: clock.storeGeneration,
+      lifecycleEpoch: clock.lifecycleEpoch,
+      transcriptBytes: transcriptBytesFor(input),
+    });
+  } catch {
+    // A lost receipt only means the next follow-up is routed on its own evidence.
+  }
+}
+
 // Directive-lifecycle dedup delivers the full brief on the first message
 // and after lifecycle boundaries or transcript shrink. On proven repeats,
 // it keeps the head and drops the constant directive block. A headed
@@ -468,6 +568,7 @@ export async function handleClaudeUserPromptSubmit(
       }, {
         now: dependencies.now,
       });
+    result = guardWeakFollowUp(result, prompt, input, dependencies);
 
     result = {
       ...result,
@@ -478,6 +579,7 @@ export async function handleClaudeUserPromptSubmit(
     };
     deliveryState = deliveryStateOptionsFor(input);
     const brief = renderBrief(result, { deliveryState });
+    recordRouteReceipt(result, brief, input, dependencies);
     const renderOptions = { deliveryState, setupWording: !brief && SETUP_WORDING.test(prompt) };
     const emitted = brief ?? renderAdvisorFallbackDirective(renderOptions, result);
     const { effectiveEmitted, commitFullReceipt } = applyDirectiveLifecycle(emitted, input, dependencies);
