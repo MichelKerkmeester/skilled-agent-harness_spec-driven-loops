@@ -911,6 +911,24 @@ describe('completed-run extension', () => {
     expect(after.maxDurationMinutes).toBeLessThan(340);
   });
 
+  // Config creation writes the stop policy at the top level only, so the
+  // re-stop warning must read it there or a max-iterations run is warned too.
+  it('research: a max-iterations run gets no re-stop warning', () => {
+    const sessionId = 'extend-research-max-iterations';
+    const run = openResearchRun(sessionId);
+    appendResearchIteration(run, sessionId, 1, 'complete');
+    const written = readJson(run.config);
+    writeFileSync(run.config, JSON.stringify({
+      ...written,
+      status: 'complete',
+      stopPolicy: 'max-iterations',
+      antiConvergence: { minIterations: 1, convergenceMode: 'default' },
+    }));
+    const result = extendResearch(run, '1');
+    expect(result.status, String(result.stdout) + String(result.stderr)).toBe(0);
+    expect(lastJsonLine(result.stdout).warning).toBeNull();
+  });
+
   // The review prompt pack has the leaf write the run id string in `run`, so the
   // extension must count runs by the integer iteration, as the state reader does.
   it('review: runs are counted by iteration when the leaf writes a run id string', () => {
@@ -1033,6 +1051,45 @@ describe('completed-run extension', () => {
     expect(readFileSync(join(dir, 'review-report-v1-r5.md'), 'utf8')).toBe('# Second report\n');
     expect(snapshot('5').status).not.toBe(0);
     expect(stateRows(stateLog).filter((row) => row.event === 'extended')).toHaveLength(2);
+  });
+
+  it('review: a max-iterations run gets no re-stop warning', () => {
+    const dir = join(makeTempDir('extend-review-policy-'), 'review');
+    mkdirSync(dir, { recursive: true });
+    const config = join(dir, 'deep-review-config.json');
+    const stateLog = join(dir, 'deep-review-state.jsonl');
+    // The shape config creation writes: stopPolicy at the top level only.
+    writeFileSync(config, JSON.stringify({
+      topic: 'Review: the stop policy read',
+      mode: 'review',
+      sessionId: '2026-11-17T00:00:00Z',
+      parentSessionId: null,
+      lineageMode: 'new',
+      generation: 1,
+      reviewTarget: 'the extension',
+      reviewTargetType: 'files',
+      reviewDimensions: ['correctness'],
+      maxIterations: 2,
+      maxDurationMinutes: 120,
+      createdAt: minutesAgo(10),
+      antiConvergence: { convergenceMode: 'default', divergent: {} },
+      stopPolicy: 'max-iterations',
+    }));
+    const init = runShell(render(stepCommand('deep-review.yaml', 'step_create_state_log'), {
+      '{state_paths.config}': config,
+      '{state_paths.state_log}': stateLog,
+    }));
+    expect(init.status, String(init.stdout) + String(init.stderr)).toBe(0);
+    for (let run = 1; run <= 2; run += 1) appendReviewIteration(dir, run);
+    writeFileSync(config, JSON.stringify({ ...readJson(config), status: 'complete' }));
+    const result = runShell(render(stepCommand('deep-review.yaml', 'step_extend_completed_run'), {
+      '{state_paths.config}': config,
+      '{state_paths.state_log}': stateLog,
+      '{extend}': '1',
+      '{extend_minutes}': '',
+    }));
+    expect(result.status, String(result.stdout) + String(result.stderr)).toBe(0);
+    expect(lastJsonLine(result.stdout).warning).toBeNull();
   });
 });
 

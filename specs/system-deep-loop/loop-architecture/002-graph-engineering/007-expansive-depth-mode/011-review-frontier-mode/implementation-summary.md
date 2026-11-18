@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Built on branch 469: the opt-in review --depth-mode=expansive frontier with its golden default-path baseline; the live pilot runs on the integration tip after merge."
+description: "Built on branch 469: the opt-in review --depth-mode=expansive frontier with its golden default-path baseline. The target-1 pilot ran and failed AC-011."
 trigger_phrases:
   - "review frontier mode implementation summary"
 importance_tier: "normal"
@@ -37,7 +37,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 011-review-frontier-mode |
-| **Completed** | Built 2026-11-17 on `worktrees/469-ed-011-review-frontier-mode`; the playbook and the changelog were written 2026-11-18; not closed: the target-1 pilot and the full suite run at integration |
+| **Completed** | Built 2026-11-17 on `worktrees/469-ed-011-review-frontier-mode`; the playbook and the changelog were written 2026-11-18; the target-1 pilot ran 2026-11-17 to 2026-11-18 and failed AC-011; not closed: the full suite runs at integration |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -79,7 +79,7 @@ The admission helper gained a review target mode (no inbox, review config caps, 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
-Setup ran natively: dependency merges confirmed, the golden review baseline captured on `5e583331cc9` before any code change. Each implementation task then went to DeepSeek V4.1 Flash on the Pi lane as one brief, under a 20-minute watchdog with a status snapshot of main and the worktree around every dispatch; no dispatch touched main and none hit the watchdog. Every diff was read and every check rerun before its commit. The live pilot (T030, T031) and the full suite (T029) run on the integration tip after merge.
+Setup ran natively: dependency merges confirmed, the golden review baseline captured on `5e583331cc9` before any code change. Each implementation task then went to DeepSeek V4.1 Flash on the Pi lane as one brief, under a 20-minute watchdog with a status snapshot of main and the worktree around every dispatch; no dispatch touched main and none hit the watchdog. Every diff was read and every check rerun before its commit. The target-1 pilot ran in a throwaway worktree, with its results under Known Limitations. The full suite (T029) runs on the integration tip after merge.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -116,7 +116,7 @@ Setup ran natively: dependency merges confirmed, the golden review baseline capt
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
-1. **Pilot not run.** The target-1 pilot (T030, T031) runs on the integration tip after merge; `registry.frontier.stats` evidence does not exist yet.
+1. **The pilot ran once and failed AC-011.** The target-1 run reviewed 400 commits with 6 lineages of up to 16 iterations each, on a throwaway fixture (`scratch/pilot-run-1.md`). The T031 budget check passed: half of the 16-iteration cap is 8, which meets the 8 it needs. AC-011 failed for two reasons. The root cap of 6 pruned the seventh depth-1 node, and 3 of 6 lineages stopped on `maxIterationsReached`. The frontier still ended with no open or active node, and the merge guard passed. Four defects were fixed in `43eb6d47b8e` with fail-first tests. One stays open for the operator: a lineage keeps running after its node is answered.
 2. **AC-001 waived.** The default CLI lineage prompt now carries the expansive-only leaf-contract paragraph in its embedded persona (ADR-005), pending operator ratification together with 010's ADR-006.
 3. **Research golden on this base.** `research-depth-mode-golden` lineage-prompt fails on this branch's base because its baseline holds worktree 467's path; integration fixed it in `2c9405692a1`.
 <!-- /ANCHOR:limitations -->

@@ -338,6 +338,8 @@ function checkProposal(proposal, nodes, caps, knownTexts, options = {}) {
 
   // 4. fan-out
   if (countLiveChildren(nodes, proposal.parentId) >= childCapFor(proposal.parentId, caps)) return 'fanout';
+  // The run-wide node cap shares the fan-out reason: both bound how wide the
+  // frontier may grow, and the six reason names are the store's contract.
   if (countLiveNodes(nodes) >= caps.maxFrontierNodes) return 'fanout';
 
   // 5. budget
@@ -358,8 +360,9 @@ function admitProposals({ artifactDir, iteration, proposals, knownTexts = [], ta
   const inboxPath = path.join(artifactDir, INBOX_FILE);
   const nodes = readNodeStore(storePath);
   const caps = readCaps(artifactDir, mode);
-  // An unreadable review config must not silently widen the relevance check to
-  // every path, so it degrades to the no-target object rather than being skipped.
+  // A missing or unreadable review config gives the no-target object, which
+  // admits every scope the way a prose target does: the target check can only
+  // narrow when a file-list target is on record.
   const reviewOptions = mode === 'review' ? { reviewConfig: readTargetConfig(artifactDir, mode) ?? {} } : {};
   const iterationValue = normalizeIteration(iteration);
   const admitted = [];
@@ -529,11 +532,14 @@ function renderFrontierBlock({ artifactDir, focus, nodeId, dimension, target = '
     mode === 'review'
       ? `Current node: ${resolvedId} at depth ${depth} of ${caps.maxDepth}, scope ${scope}. Review dimension for this node: ${dimensionLabel}.`
       : `Current node: ${resolvedId} at depth ${depth} of ${caps.maxDepth}, scope ${scope}.`,
-    `Copy the Focus Area line exactly into this iteration record's "focus", so the run can tell which node this iteration worked.`,
   ];
 
+  // Only the research prompt carries a Focus Area line; a review prompt names its
+  // node through the focus string and frontierNodeId instead.
   if (mode === 'review') {
     lines.push(`Set this iteration record's "focus" to "Frontier node ${resolvedId}: ${dimensionLabel}" and add "frontierNodeId":"${resolvedId}" to it, so the run can tell which node this iteration worked.`);
+  } else {
+    lines.push(`Copy the Focus Area line exactly into this iteration record's "focus", so the run can tell which node this iteration worked.`);
   }
 
   if (depth >= caps.maxDepth) {

@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "2bb9bda3b118e86e6e04fca2d8d43cd152a6831b5fc60c912ade784f0257d0b6",
+      "sha256": "64ca19176ac3b3ad3dfff123c8fa177741b0f534a9cccabc2793bed98a039ba6",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "6b5975d4f5f7cd3580dcb2041b4cdc7b0fb96742ad2b4d83bc41612e5ce3d1dc",
+      "sha256": "e64d14c0b1ad262a1d26451103949c003bcb4e9e8e08c818b35b4ae43d26cdf7",
       "section": "full"
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "path": ".skilled/agents/deep-review.md",
-      "sha256": "cd0048d86e07843fb161f9f48b56b02384ea438da6b5eecd5c04d818b488cc4c",
+      "sha256": "157384df047acb7814f62d4f787d2a4fc1b62d5fa489b25a6257fff2586bed2d",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "1fdfe69a3a2876296127b3b19369740ea437fdf716e38efbd41a975effcc80ad"
+  "compiledBodyDigest": "42e3139127e34a7ac715e34408e0d028cbb28a6fdec724aa6dd194ac68375d97"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -153,7 +153,7 @@ Setup contract: see `.skilled/skills/system-spec-kit/references/workflows/auto-m
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, resolve `{artifact_dir}` and persist to `{artifact_dir}/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `reviewFocus`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `stopPolicy`, `executionMode: "auto"`, `lineageMode`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-review.yaml` with `execution_mode` bound to `auto`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, resolve `{artifact_dir}` and persist to `{artifact_dir}/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `reviewFocus`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, `antiConvergence.depthMode`, `expansiveDepth.*` (`maxDepth`, `maxChildrenPerNode`, `budgetSplit`, `maxFrontierNodes`), reserved `antiConvergence.divergent: {}`, `stopPolicy`, `executionMode: "auto"`, `lineageMode`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-review.yaml` with `execution_mode` bound to `auto`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `review_target_type`, `spec_folder`. **Ordering rule**: if `review_target_type` is ambiguous, ask only for `review_target_type` first — the answer may make `spec_folder` self-evident on the next Tier 1 pass. Missing `review_target` is absence, not ambiguity — go to Tier 3.
 
@@ -176,10 +176,11 @@ PRE-BOUND SETUP ANSWERS:
  lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
  extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
  extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the duration budget, default the prior budget
-  maxIterations: 10
+  maxIterations: 7
   convergenceThreshold: 0.10
   convergence_mode: default  # default | off | sliding-window | divergent
   depth_mode: default  # default | expansive (opt-in frontier growth)
+  frontier_scope: none  # internal, written by fan-out for an expansive lineage: comma-separated frontier node ids, or none
   stop_policy: convergence  # one of: convergence | max-iterations
   executor: native  # one of: native | cli-codex | cli-claude-code | cli-opencode | cli-cursor | cli-devin | cli-pi | cli-deepseek-harness | cli-mistral-vibe, the last one fan-out only (`EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`)
   executor_model: ""  # optional, executor-specific (cli-opencode e.g. llmgateway/glm-5.3-flash, minimax-coding-plan/MiniMax-M2.7-highspeed)
@@ -224,6 +225,7 @@ Rules:
 | `executor_service_tier` | N | flag `--service-tier`, marker `executor_service_tier`, or executor default | none | N |
 | `executor_timeout` | N | flag `--executor-timeout`, marker `executor_timeout`, or default | `900` | N |
 | `resource_map_emit` | N | flag `--no-resource-map`, marker `resource_map_emit`, or default | `true` | N |
+| `frontier_scope` | N | internal marker `frontier_scope`, written by `fanout-run.cjs` for an expansive fan-out lineage | none | N |
 | `config.fanout_lineage_artifact_dir` | N | internal flag `--fanout-lineage-artifact-dir=PATH` or marker `config.fanout_lineage_artifact_dir` | none | N |
 | `fanout_executors` | N | repeatable `--executor=<type>` flags or `--executors=<json>`; each group accepts `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count`; one expanded lineage selects `config.executor`, two or more select `config.fanout` | none (single-executor when absent) | N |
 | `fanout_concurrency` | N | flag `--concurrency=N` | `2` | N |
@@ -292,7 +294,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |   - 2+ --executor flags, an --executors matrix that expands to two or more lineages, or any count>1: write config.fanout
    |   - Review fan-out verdict: strongest-restriction (any lineage active P0 → merged FAIL)
    |
-   +-- Defaults: maxIterations=7, convergenceThreshold=0.10, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, stop_policy=`convergence`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
+   +-- Defaults: maxIterations=7, convergenceThreshold=0.10, antiConvergence.convergenceMode=`default`, antiConvergence.depthMode=`default`, antiConvergence.divergent=`{}`, stop_policy=`convergence`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
 
    Executor precedence for setup resolution:
    - CLI flag > config file > schema defaults

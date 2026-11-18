@@ -2172,3 +2172,33 @@ describe('deep-research reduce-state expansive frontier', () => {
     expect(defaulted.dashboard).not.toContain('6B. FRONTIER');
   });
 });
+
+// The budget never counts an errored or timed-out attempt as a visit, so the
+// focus pick must not either: a node whose only attempt failed still has its
+// work ahead of it and must not lose its turn to a sibling.
+describe('frontier focus visit counting', () => {
+  const { pickFrontierFocus, frontierNodeVisits } = nodeRequire('../../../deep-research/scripts/reduce-state.cjs') as {
+    pickFrontierFocus: (frontier: { nodes: Array<Record<string, unknown>> }, records: Array<Record<string, unknown>>) => string;
+    frontierNodeVisits: (nodeId: string, records: Array<Record<string, unknown>>) => number;
+  };
+  const nodes = [
+    { nodeId: 'F-1-001', depth: 1, status: 'open', iteration: 1, scope: ['runtime/lib'], question: 'Which module owns admission?' },
+    { nodeId: 'F-1-002', depth: 1, status: 'open', iteration: 2, scope: ['runtime/lib'], question: 'Which module owns the stop?' },
+  ];
+
+  it('does not count a failed attempt as a visit when ranking open nodes', () => {
+    const records = [
+      { type: 'iteration', iteration: 3, status: 'error', focus: 'Frontier node F-1-001 (depth 1, scope runtime/lib): Which module owns admission?' },
+    ];
+    expect(frontierNodeVisits('F-1-001', records)).toBe(0);
+    expect(pickFrontierFocus({ nodes }, records)).toMatch(/^Frontier node F-1-001 /);
+  });
+
+  it('still counts a completed attempt, so the unvisited sibling goes next', () => {
+    const records = [
+      { type: 'iteration', iteration: 3, status: 'complete', focus: 'Frontier node F-1-001 (depth 1, scope runtime/lib): Which module owns admission?' },
+    ];
+    expect(frontierNodeVisits('F-1-001', records)).toBe(1);
+    expect(pickFrontierFocus({ nodes }, records)).toMatch(/^Frontier node F-1-002 /);
+  });
+});

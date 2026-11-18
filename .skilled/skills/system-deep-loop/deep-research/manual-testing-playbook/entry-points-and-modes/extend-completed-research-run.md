@@ -1,7 +1,7 @@
 ---
 title: "DR-065 -- Completed-run extension with --extend"
 description: "This scenario validates `--extend=N` on a completed deep-research run for `DR-065`. It focuses on same-session continuation, the `run_extended` ledger event and the synthesis snapshot taken before the first new dispatch."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # DR-065 -- Completed-run extension with --extend
@@ -49,14 +49,15 @@ Operators run this as a real orchestrator-led check against a completed fixture 
 5. `rg -c '"event":"extended"' <completed-fixture-spec-folder>/research/deep-research-state.jsonl` (the `run_extended` stem lives in the ledger, and the state log carries its projected `extended` row)
 6. `jq '{maxIterations, sessionId: .lineage.sessionId, generation: .lineage.generation, lineageMode: .lineage.lineageMode, continuedFromRun: .lineage.continuedFromRun}' <completed-fixture-spec-folder>/research/deep-research-config.json` (research keeps the lineage fields under `.lineage`)
 7. `find <completed-fixture-spec-folder> -name 'synthesis-v*-r*.md'`
+8. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run workflow-restart-lifecycle.vitest -t 'extend-minutes'` (the `--extend-minutes=M` cases)
 
 ### Expected
 
-Command 1 prints the `--extend` binding and the extension step. Command 2 prints the `run_extended` stem and its payload type. Command 3 exits 0 with no failed test. After command 4 finishes, command 5 prints `1`, command 6 shows the original `sessionId`, generation 1, `maxIterations` at the prior count plus 3 and `lineageMode` `completed-continue`, and command 7 lists one snapshot file. The run adds exactly three iteration files.
+Command 1 prints the `--extend` binding and the extension step. Command 2 prints the `run_extended` stem and its payload type. Command 3 exits 0 with no failed test. After command 4 finishes, command 5 prints `1`, command 6 shows the original `sessionId`, generation 1, `maxIterations` at the prior count plus 3 and `lineageMode` `completed-continue`, and command 7 lists one snapshot file. The run adds exactly three iteration files. Command 8 exits 0 with 4 tests passed and none failed. They cover the `--extend-minutes` binding in both commands, the refusal of a value that is not a positive integer, and the case where `--extend-minutes` replaces the default added minutes.
 
 ### Evidence
 
-Capture the command 1 and 2 matches, the command 3 summary line, the command 5 count, the command 6 JSON and the command 7 listing, together with the iteration file count before and after the run.
+Capture the command 1 and 2 matches, the command 3 summary line, the command 5 count, the command 6 JSON, the command 7 listing and the command 8 summary line, together with the iteration file count before and after the run.
 
 ### Pass / Fail
 
@@ -71,6 +72,8 @@ Check the state log first, then the config. A missing event with a correct confi
 
 - Refusal: run the same command with `--extend=0` and confirm it stops with a named usage error before any state write. The flag accepts positive integers only.
 - Refusal: run it against a run that is still in progress and confirm it refuses because the run is not complete.
+- Duration: on a fresh copy of the completed fixture, run command 4 with `--extend=3 --extend-minutes=30`. Then run `jq '{maxDurationMinutes, createdAt}' <completed-fixture-spec-folder>/research/deep-research-config.json`. `maxDurationMinutes` equals the larger of the prior budget and the minutes elapsed since `createdAt`, plus 30. `createdAt` keeps its original value. Without `--extend-minutes`, the added minutes default to the prior budget.
+- Refusal: run the command with `--extend-minutes=30` and no `--extend`, and confirm it stops with a usage error that names the flag before any state write.
 
 ---
 
@@ -89,7 +92,7 @@ Check the state log first, then the config. A missing event with a correct confi
 |---|---|
 | `.skilled/commands/deep/assets/deep-research.yaml` | Extension step, snapshot step and classifier override |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-legacy-seam.vitest.ts` | Gateway case that appends `run_extended` and projects one `extended` row |
-| `.skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts` | Workflow case that keeps the original `sessionId` and generation |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts` | Workflow case that keeps the original `sessionId` and generation, plus the `--extend-minutes` binding and duration budget cases |
 
 ---
 

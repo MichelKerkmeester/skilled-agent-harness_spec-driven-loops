@@ -228,7 +228,7 @@ state_paths:
   research_output: "{artifact_dir}/research.md"
   resource_map_output: "{artifact_dir}/resource-map.md"
   archive_root: "{artifact_archive_root}"
-  synthesis_snapshot_pattern: "{artifact_dir}/synthesis-v{generation}.md"
+  synthesis_snapshot_pattern: "{artifact_dir}/synthesis-v{generation}-r{continuedFromRun}.md"
 
 # ────────
 # WORKFLOW
@@ -555,7 +555,8 @@ workflow:
             } catch (error) {
               if (error.code !== "ENOENT") throw error;
             }
-            const stopPolicy = config.antiConvergence && config.antiConvergence.stopPolicy || "convergence";
+            // Config creation writes the stop policy at the top level, beside maxIterations.
+            const stopPolicy = config.stopPolicy || "convergence";
             const warning = stopPolicy === "convergence" && pendingInbox === 0
               ? "This run stops on convergence and has no pending inbox question, so it may re-stop on all_questions_answered right away. Pass --convergence-mode=off, use stopPolicy max-iterations, or add questions to research/inbox.jsonl to keep it running."
               : null;
@@ -1179,6 +1180,7 @@ workflow:
           3a. if stop_policy == "max-iterations" AND iteration_count < max_iterations: the vote is telemetry only and the decision is CONTINUE.
           4. a STOP candidate exists when every question is answered (all_questions_answered) or the weighted vote passes (composite_converged).
           5. if iteration_count < effective_min_iterations: CONTINUE (minIterationsNotReached)
+          5a. if depth_mode == "expansive" and the frontier still holds an open or active node: CONTINUE (frontierOpen). This veto never creates a stop.
           6. a failed quality guard turns the candidate into CONTINUE (qualityGuardFailed)
           7. the graph decision settles the candidate: STOP_ALLOWED keeps STOP, STOP_BLOCKED gives BLOCKED, CONTINUE or a missing graph decision gives CONTINUE.
           Bind the outputs from stop_decision:
