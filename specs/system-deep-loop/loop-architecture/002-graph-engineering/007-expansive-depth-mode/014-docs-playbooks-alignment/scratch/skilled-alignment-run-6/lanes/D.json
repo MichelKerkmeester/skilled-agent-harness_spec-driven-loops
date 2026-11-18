@@ -1,0 +1,125 @@
+{
+  "lane": "D",
+  "findings": [
+    {
+      "id": "D-1",
+      "surface": "S7",
+      "standard": ".skilled/repo-rules/skill-hub-routing.md",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/hub-router.json",
+      "line": 37,
+      "issue": "The review class is the only owner of the convergence phrase `findings stop changing`, so a research-framed request that uses it resolves to the review loop in one silent step, with no clarify and no ambiguity flag; the same prompt without that clause defers. That breaks the hub's own policy that an unclear deep-loop intent asks (routerPolicy.defaultMode null, ambiguityDelta 1), and skill-hub-routing section 4, because the phrase catches traffic the selected mode cannot serve. Nothing on the research side scores: bare `research` is in no class, so review wins by 4 against 0. Either drop the phrase from review-aliases so those prompts defer, or add a convergence phrase to research-aliases so the delta defers; ROUTER.md section 3 REVIEW INTENT_SIGNALS carries the identical keyword and must move with it (the two stage-two keyword sets are equal today). Not introduced here: hub-router.json only gained the version line in this diff.",
+      "evidence": {
+        "cmd": "node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt \"Research the vendoring strategy for three competing HTTP clients over several passes until the findings stop changing\"",
+        "exit": 0,
+        "out": "{\"hubId\":\"system-deep-loop\",\"action\":\"route\",\"selectionKind\":\"single\",\"targets\":[{\"packetId\":\"deep-review\",\"workflowMode\":\"review\"}]} ; control, same prompt minus the clause: {\"action\":\"defer\",\"selectionKind\":null,\"targets\":[]}"
+      }
+    },
+    {
+      "id": "D-2",
+      "surface": "S8",
+      "standard": "system-skill-advisor",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/hub-router.json",
+      "line": 32,
+      "issue": "The new expansive-depth feature contributes no routing vocabulary at any stage: `expansive`, `frontier`, `sub-target` and `depth mode` occur zero times in SKILL.md's keyword line, description.json's keywords, hub-router.json's vocabularyClasses, mode-registry.json's aliases, ROUTER.md's INTENT_SIGNALS and graph-metadata.json's intent_signals. A probe written from the feature's own documented wording therefore lands on a skill that has no such feature, silently: top-1 sk-code at score 0.6528, confidence 0.8709 (above the 0.8 bar), ambiguous false, compiled route sk-code-review; and top-1 sk-doc at 0.08 for a second one. The two feature probes that do reach the hub win on their mode words, not on the feature's. A complete fix is a dual write: graph-metadata.json intent_signals (stage one, outside this change's file set) plus this file's vocabularyClasses (stage two, to choose research vs review).",
+      "evidence": {
+        "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt \"Turn on expansive depth for the next review run\" --format json",
+        "exit": 0,
+        "out": "{\"top\":\"sk-code\",\"score\":0.65275,\"confidence\":0.8709,\"ambiguous\":false,\"action\":\"route\",\"targets\":[\"sk-code-review\"]} ; \"Run an expansive depth loop over the payment module\" -> sk-doc 0.08, ambiguous false ; grep -ric 'expansive|frontier|sub-target|depth mode' returns 0 for graph-metadata.json, hub-router.json, description.json, ROUTER.md and mode-registry.json"
+      }
+    },
+    {
+      "id": "D-3",
+      "surface": "S7",
+      "standard": ".skilled/repo-rules/skill-hub-routing.md",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      "line": 30,
+      "issue": "The Keyword triggers list advertises activation the router cannot deliver, and the hub SKILL.md section 2 says this list is checked against vocabularyClasses while nothing enforces it. `comprehensive research` returns no recommendation at all; `multi-round research` and `autonomous research` put cli-external-orchestration top-1 (0.142 and 0.118); `deep investigation` returns no recommendation. Only `autoresearch`, `deep research` and `research loop` from the list reach the hub, and `autoresearch` loses to one bare `design` in the same request. Fix by adding the missing multi-word phrases to research-aliases, or by pruning this list to the vocabulary the hub actually scores, and replay each against an out-of-domain phrase as section 4 requires.",
+      "evidence": {
+        "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt \"Do comprehensive research on the cache invalidation strategy\" --format json",
+        "exit": 0,
+        "out": "{\"recommendations\":[],\"ambiguous\":false} ; \"Run multi-round research on the cache invalidation strategy\" -> cli-external-orchestration 0.14208 ambiguous true ; \"Start autoresearch on the auth token refresh design\" -> sk-design 0.410889, system-deep-loop second, ambiguous true"
+      }
+    },
+    {
+      "id": "D-4",
+      "surface": "S9",
+      "standard": "sk-doc/sk-create-command",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/commands/speckit/assets/speckit-resume.yaml",
+      "line": 104,
+      "issue": "Confirmed cause of the failed S9-command-references row, and it is not a defect in any /deep:* command file. The validator requires every literal repo-relative token to exist on disk, and this line names `.skilled/skills/system-spec-kit/runtime/database/access-telemetry.json`. That directory is gitignored (.gitignore:431) and is created at runtime: shared/config.ts derives TELEMETRY_STORE_DIR as `<skill root>/runtime/database`, so the YAML points at the right place but at a path a clean checkout cannot contain. Either teach validate-command-references.cjs that this declared state path is data rather than a skill asset, or reword the line so it stops reading as a file reference. Outside this change's scope.",
+      "evidence": {
+        "cmd": "node .skilled/commands/scripts/validate-command-references.cjs",
+        "exit": 1,
+        "out": "FAIL  1 unresolved command reference(s):\n  .skilled/commands/speckit/assets/speckit-resume.yaml:104  [skill-asset]  .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json  - path does not exist on disk"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+    ".skilled/skills/system-deep-loop/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/description.json",
+    ".skilled/skills/system-deep-loop/hub-router.json",
+    ".skilled/skills/system-deep-loop/mode-registry.json",
+    ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+    ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md"
+  ],
+  "probes": [
+    {
+      "prompt": "Research the vendoring strategy for three competing HTTP clients over several passes until the findings stop changing",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Investigate why our nightly build leaks file descriptors, running iterations until new information dries up",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Run a deep research loop on the migration options for our queue, with expansive depth so follow-up questions get chased",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Start autoresearch on the auth token refresh design and keep a frontier of follow-up questions",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Review this diff iteratively until the findings stop changing",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Do a release readiness deep review of the payment module with expansive depth on sub-targets",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Run an expansive-depth research loop that chases follow-up questions until the frontier drains",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Deep loop workflows: what can this hub do",
+      "expect": "system-deep-loop"
+    },
+    {
+      "prompt": "Review my JSON file",
+      "expect": "sk-code"
+    }
+  ]
+}

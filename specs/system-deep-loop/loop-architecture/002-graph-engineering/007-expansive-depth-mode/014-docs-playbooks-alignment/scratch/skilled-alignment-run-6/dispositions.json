@@ -1,0 +1,47 @@
+[
+ {
+  "id": "A1",
+  "status": "handed_off",
+  "note": "Owner: the coordinator; the cap design is under operator review and the code may change. runtime/scripts/frontier-admit.cjs:239 derives maxFrontierNodes as max(1, floor(maxIterations/2)), the seed is exempt only while seeding (:357-358) and still counts as live (countLiveNodes :149), so a seed that fills the cap leaves no depth-2 slot. The interim doc note landed in 7799a67f677; its wording is held until the design review settles."
+ },
+ {
+  "id": "A4",
+  "status": "handed_off",
+  "note": "Owner: phase 010 research frontier mode (frontier-admit.cjs). The id-prefix strip at runtime/scripts/frontier-admit.cjs:188 also drops a 1-2 letter word plus number plus colon, against its own comment at :183-185. The right fix narrows the regex to the id shapes leaves actually write, and no test or doc pins that set, so the shape list is the owner's call, not a doc fix."
+ },
+ {
+  "id": "B-13",
+  "status": "rebutted",
+  "note": "The result-persistence marker is advisory, not required: sk-doc/sk-create-manual-testing-playbook/SKILL.md:447-448 says missing it 'never creates a new fail-closed violation for an existing package', and validate-playbook-package.cjs:751-756 emits it as a warning. The research root lacked it at base 21c4b325b5a (git show 21c4b325b5a:... | grep -c MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT printed 0); the package validator exits 0 with PASS."
+ },
+ {
+  "id": "B-14",
+  "status": "rebutted",
+  "note": "Same as B-13 for the review root: the marker is advisory per sk-create-manual-testing-playbook/SKILL.md:447-448 and validate-playbook-package.cjs:751-756 (warning, not violation), and the package validator exits 0 with PASS for system-deep-loop/deep-review."
+ },
+ {
+  "id": "D-1",
+  "status": "handed_off",
+  "note": "Owner: system-deep-loop hub routing (skill-hub-routing.md section 4). hub-router.json:37 review-aliases holds 'findings stop changing' with no research counterpart, and ROUTER.md section 3 REVIEW INTENT_SIGNALS must move with it. A JSON routing-vocabulary change with an out-of-domain replay, not a doc fix; the lane notes it predates this change."
+ },
+ {
+  "id": "D-2",
+  "status": "handed_off",
+  "note": "Owner: system-deep-loop hub routing with system-skill-advisor. No stage-one or stage-two vocabulary for expansive depth, frontier or sub-target: hub-router.json:32 vocabularyClasses, mode-registry.json aliases and graph-metadata.json intent_signals need a dual write and a replay per skill-hub-routing.md section 4. JSON routing metadata, not a doc defect."
+ },
+ {
+  "id": "D-3",
+  "status": "handed_off",
+  "note": "Owner: system-deep-loop hub routing. deep-research/SKILL.md:30 keyword triggers predate this program (unchanged since 21c4b325b5a) and several do not route. The fix is either new research-aliases in hub-router.json:33 or pruning the list to what the hub scores, followed by the section 4 replay; that choice belongs to the routing owner."
+ },
+ {
+  "id": "D-4",
+  "status": "handed_off",
+  "note": "Owner: commands/scripts/validate-command-references.cjs (:136 flags every missing skill-asset path). speckit-resume.yaml:104 names system-spec-kit/runtime/database/access-telemetry.json, a gitignored runtime file (.gitignore:431) the YAML falls back from when absent, so the YAML is right and the checker needs a runtime-state exemption. Outside this change's scope and predates it."
+ },
+ {
+  "id": "BAT-01",
+  "status": "handed_off",
+  "note": "Same cause as D-4. The S9-command-references row fails only on speckit-resume.yaml:104, a gitignored runtime path (.gitignore:431). Owner: validate-command-references.cjs:136, which needs a runtime-state exemption. Predates this program."
+ }
+]

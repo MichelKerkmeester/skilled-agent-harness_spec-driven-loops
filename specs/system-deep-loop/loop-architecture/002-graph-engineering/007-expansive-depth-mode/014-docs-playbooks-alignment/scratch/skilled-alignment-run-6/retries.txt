@@ -1,0 +1,3 @@
+2026-11-18T06:10:44Z D failed on HTTP 429 rate_limit_exceeded; attempt files moved to lanes/attempt-429-D-pre/ and the lane was queued for a rerun with the same prompt.
+2026-11-18T06:11:08Z A failed on HTTP 429 rate_limit_exceeded; attempt files moved to lanes/attempt-429-A-pre/ and the lane was queued for a rerun with the same prompt.
+2026-11-18T06:29:37Z A returned JSON missing a closing brace at char 4275 (no JSON object with findings); attempt files moved to lanes/attempt-badjson-A/ and the lane was rerun once with the same prompt.

@@ -1,0 +1,11 @@
+{
+  "id": "C",
+  "exitCode": 143,
+  "signal": null,
+  "reason": "exit 143",
+  "startedAt": "2026-11-18T08:42:11.950Z",
+  "endedAt": "2026-11-18T08:47:11.094Z",
+  "seconds": 299.144,
+  "scratch": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/skilled-alignment-run-8/C",
+  "sessions": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/skilled-alignment-run-8/C/sessions"
+}

@@ -1,0 +1,117 @@
+{
+  "lane": "L7",
+  "findings": [
+    {
+      "id": "L7-1",
+      "surface": "D1",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+      "line": 48,
+      "issue": "The --depth-mode row says expansive \"stops on `frontier_drained` once every node is closed\". convergence.cjs forms that candidate only when the projected frontier holds nodes, none open or active, AND `review.frontierAnswered >= 1` (convergence.cjs:1169-1183); a frontier that closed with nothing answered (every node pruned or exhausted) forms no candidate at all and the run continues. A decision built with frontierTotal 4, frontierOpen 0, frontierAnswered 0 and no clean or composite candidate returns CONTINUE with reasonDetail `noStopCandidate`. The same doc states the condition correctly in section 8 (line 164), so the parameter table alone is wrong.",
+      "evidence": {
+        "cmd": "rg -n -A 10 \"config.depthMode === 'expansive'\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "1169:    } else if (config.depthMode === 'expansive'\n1170-      && Number.isFinite(review.frontierTotal)\n1171-      && review.frontierTotal >= 1\n1172-      && review.frontierOpen === 0\n1173-      && Number.isFinite(review.frontierAnswered)\n1174-      && review.frontierAnswered >= 1) {\n1175-      // An expansive review whose frontier holds nodes, none still open or\n1176-      // active and at least one answered has no frontier work left; a fan-out\n1177-      // lineage reads only its own partition. Without this candidate the run\n1178-      // goes to the cap even after its nodes are answered. A frontier that\n1179-      // closed with nothing answered (every node exhausted or pruned) forms no"
+      },
+      "fix": {
+        "old": "and stops on `frontier_drained` once every node is closed",
+        "new": "and forms the `frontier_drained` stop candidate once no node is open or active and at least one was answered"
+      }
+    },
+    {
+      "id": "L7-2",
+      "surface": "D2",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+      "line": 105,
+      "issue": "The Expansive Depth Mode section lists `budgetSplit` 0.5/0.35/0.15 as one of the caps but never says what a spent band does to the nodes in it. reduce-state.cjs applyReviewFrontierBudget closes every open or active node in a band as `exhausted` with reason `budget` as soon as the band spend reaches `maxIterations * share` (3.5 of the default 7), and an unspent share only rolls down to the next band once the band holds no open node (reduce-state.cjs:1979-1986). I ran the reducer over an 8-node depth-1 frontier with maxIterations 7 and 5 depth-1 visits: the projection returned stats {total:8, open:0, answered:0, exhausted:8}, every node at `exhausted/budget`, and budget.depth1 {allotted:3.5, spent:5}. Those nodes therefore never answer, `frontierOpen` falls to 0 and no `frontier_drained` candidate can form, so the seeded depth is abandoned mid-band instead of worked. Nothing in this section (or in SKILL.md line 238's \"an expansive run works its seeds only\") tells the reader that a band cap closes nodes, so the account of the mode's caps is incomplete.",
+      "evidence": {
+        "cmd": "rg -n -A 5 'if \\(spent\\[band\\] >= allotted\\)' .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "exit": 0,
+        "out": "1981:    if (spent[band] >= allotted) {\n1982-      result = result.map((node) => (bandOf(node.depth) === band && (node.status === 'open' || node.status === 'active')\n1983-        ? { ...node, status: 'exhausted', reason: 'budget' }\n1984-        : node));\n1985-    }\n1986-    const bandOpen = result.some((node) => bandOf(node.depth) === band && (node.status === 'open' || node.status === 'active'));"
+      }
+    },
+    {
+      "id": "L7-3",
+      "surface": "D3",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+      "line": 469,
+      "issue": "\"A node needs one iteration per configured dimension\" understates the node universe. reduce-state.cjs buildDimensionUniverse starts from the four canonical dimensions and appends the configured ones, so a node is projected `answered` only once correctness, security, traceability, maintainability and every configured custom name are covered, whatever `reviewDimensions` restricts. I ran the reducer on a config with `reviewDimensions: [\"correctness\",\"performance\"]` and a node whose two iterations covered both names: the node stayed `open` with coveredDimensions [correctness, performance] and nextDimension `security`. A lineage cap sized as ceil(nodes/lineages) * configured dimensions is therefore too small whenever the configured set is narrower than the canonical four.",
+      "evidence": {
+        "cmd": "rg -n -A 11 \"function buildDimensionUniverse\" .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "exit": 0,
+        "out": "1224:function buildDimensionUniverse(config) {\n1225-  const universe = [...REQUIRED_DIMENSIONS];\n1226-  const raw = config && config.reviewDimensions;\n1227-  const configured = Array.isArray(raw) ? raw : (typeof raw === 'string' ? raw.split(',') : []);\n1228-  for (const entry of configured) {\n1229-    const name = String(entry).trim().toLowerCase();\n1230-    if (name && name !== 'all' && !universe.includes(name)) {\n1231-      universe.push(name);\n1232-    }\n1233-  }\n1234-  return universe;\n1235-}"
+      },
+      "fix": {
+        "old": "A node needs one iteration per configured dimension, so 50% of each lineage's `maxIterations` should reach `ceil(nodes / lineages) * dimensions`",
+        "new": "A node needs one iteration per dimension in its universe, the four canonical dimensions plus any custom name, so 50% of each lineage's `maxIterations` should reach `ceil(nodes / lineages) * dimensions`"
+      }
+    },
+    {
+      "id": "L7-4",
+      "surface": "D4",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
+      "line": 38,
+      "issue": "The mutability row (and section 2's \"Created during initialization. Not modified after creation.\") records one post-init config write, the terminal `status: complete` flip. `--extend=N` rewrites the same file mid-run: step_extend_completed_run replaces deep-review-config.json with `status: \"initialized\"`, a new `maxIterations`, `maxDurationMinutes`, `lineageMode: \"completed-continue\"` and `continuedFromRun`, then moves the generated config over the stored one. README.md line 131 (\"Immutable after init, apart from the terminal `status: complete` flip\") repeats the same incomplete contract, so the schema no longer records every writer of the file that the extension feature writes.",
+      "evidence": {
+        "cmd": "rg -n -A 8 \"const next = \\{\" .skilled/commands/deep/assets/deep-review.yaml",
+        "exit": 0,
+        "out": "566:            const next = {\n567-              ...config,\n568-              status: \"initialized\",\n569-              maxIterations: newMaxIterations,\n570-              maxDurationMinutes: newMaxDurationMinutes,\n571-              lineageMode: \"completed-continue\",\n572-              continuedFromRun,\n573-            };"
+      },
+      "fix": {
+        "old": "Immutable after init, except the terminal `status: complete` flip",
+        "new": "Immutable after init, except the terminal `status: complete` flip and the `--extend=N` rewrite of `maxIterations`, `maxDurationMinutes`, `lineageMode` and `continuedFromRun`"
+      }
+    },
+    {
+      "id": "L7-5",
+      "surface": "D5",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/review-depth-v2-rollout/stop-gate-custom-dimension-coverage.md",
+      "line": 15,
+      "issue": "The scenario says the run \"names `performance` next to the four canonical dimensions\". Neither the case the doc invokes nor the doc's own prompt does that: review-depth-convergence.vitest.ts writes `reviewDimensions: ['correctness', 'performance']` (line 165) and the prompt at lines 29 and 41 is `review_dimensions: correctness,performance`. The described setup therefore does not match the scenario that decides pass/fail, and an operator reading it would expect a five-dimension coverage check instead of the two the test proves.",
+      "evidence": {
+        "cmd": "rg -n \"reviewDimensions\" .skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts",
+        "exit": 0,
+        "out": "82:      reviewDimensions: ['correctness'],\n165:      reviewDimensions: ['correctness', 'performance'],"
+      },
+      "fix": {
+        "old": "names `performance` next to the four canonical dimensions",
+        "new": "is configured with `correctness` and `performance`"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/README.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+    ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/review-depth-v2-rollout/stop-gate-custom-dimension-coverage.md",
+    ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/completed-run-extension-flag.md",
+    ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+    ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+    ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/commands/deep/review.md",
+    ".skilled/commands/deep/research.md",
+    ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+    ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
+    ".skilled/skills/system-deep-loop/mode-registry.json"
+  ]
+}

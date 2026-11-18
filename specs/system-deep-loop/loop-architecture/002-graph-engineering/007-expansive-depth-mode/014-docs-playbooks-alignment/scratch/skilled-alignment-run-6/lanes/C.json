@@ -1,0 +1,56 @@
+{
+  "lane": "C",
+  "findings": [
+    {
+      "id": "C-01",
+      "surface": "S6",
+      "standard": "sk-doc/sk-create-changelog",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/changelog/v2.1.6.0.md",
+      "line": 22,
+      "issue": "The glance bullet tells the reader that research accepts `--claude-config-dir`, but that flag is internal to `dispatch-iteration.cjs` and is rendered by the workflow only when `config.executor.configDir` is set. The operator-facing surface is `--config-dir=PATH` on the `--executor` group (`.skilled/commands/deep/assets/deep-research-presentation.txt`:120), and `/deep:research`'s published flag table has no `--claude-config-dir` row, so a reader who types the named flag binds nothing. The entry's own Upgrade line already points at the config key, so only the glance bullet misnames the surface.",
+      "evidence": {
+        "cmd": "grep -c \"claude-config-dir\" .skilled/commands/deep/research.md",
+        "exit": 1,
+        "out": "0"
+      },
+      "fix": {
+        "old": "- Research accepts `--claude-config-dir` on `cli-claude-code` runs.",
+        "new": "- Research honors `--config-dir=PATH` on `cli-claude-code` runs."
+      }
+    }
+  ],
+  "reviewed": [
+    "README.md",
+    ".env.example",
+    ".skilled/changelog/skilled/v4.1.0.0.md",
+    ".skilled/skills/system-deep-loop/README.md",
+    ".skilled/skills/system-deep-loop/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-research/README.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/README.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.0.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.1.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.2.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.3.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.4.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.5.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.1.6.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.17.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.12.0.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md",
+    ".skilled/commands/deep/assets/deep-research-presentation.txt",
+    ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+    ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs"
+  ]
+}

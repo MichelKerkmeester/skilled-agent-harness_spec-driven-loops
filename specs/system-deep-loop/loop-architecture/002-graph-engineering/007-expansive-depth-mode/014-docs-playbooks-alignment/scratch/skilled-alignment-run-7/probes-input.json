@@ -1,0 +1,54 @@
+[
+ {
+  "prompt": "Research the trade-offs of event sourcing versus CRUD for our audit log, deeply and with citations",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Do a deep review of the last five commits for security regressions",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Run a multi-iteration investigation into why our CI builds doubled in duration",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Exhaustively review this pull request for correctness and edge cases before we merge",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Iteratively research the best migration path from our monolith to modules and cite the sources",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Adversarially review the new retry logic against the spec and report every finding",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Implement the fix for the failing retry test",
+  "expect": "sk-code"
+ },
+ {
+  "prompt": "Write a README for the new retry module",
+  "expect": "sk-doc"
+ },
+ {
+  "prompt": "Commit these changes on a new branch and open a pull request",
+  "expect": "sk-git"
+ },
+ {
+  "prompt": "Use expansive depth mode to research the migration options",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Run a research loop that chases a frontier of follow-up questions until it drains",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ }
+]

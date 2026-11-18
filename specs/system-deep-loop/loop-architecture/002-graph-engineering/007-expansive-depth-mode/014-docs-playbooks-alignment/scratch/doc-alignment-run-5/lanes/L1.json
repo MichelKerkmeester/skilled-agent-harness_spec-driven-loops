@@ -1,0 +1,97 @@
+{
+  "lane": "L1",
+  "findings": [
+    {
+      "id": "L1-1",
+      "surface": "D1",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/agents/deep-research.md",
+      "line": 302,
+      "issue": "The frontier-proposal contract lists the budget prune as an admission outcome (\"would exceed the depth, fan-out or budget caps\") and constrains the row's optional `budget` to \"never above the parent's\". `frontier-admit.cjs` compares `proposal.budget` with `parent.budget` only when both are finite (frontier-admit.cjs:360-366), but no writer ever stores `budget` on a node row - the admitted row (:414-424), the pruned row (:397-407) and the seeded row (:472-483) all omit it - so `parent.budget` is always undefined and the check is skipped. Observed: a `frontier_proposal` carrying `budget: 999` under a seeded depth-1 parent is admitted and the store holds zero `budget` keys, so no row is ever pruned for budget and the FRONTIER block never prints a parent budget for the leaf to stay under.",
+      "evidence": {
+        "cmd": "bash $TMPDIR/budget-probe.sh   # seeds one depth-1 research node, then admits a child proposal carrying budget 999; then grep -c '\"budget\"' on the node store",
+        "exit": 0,
+        "out": "{\"admitted\":[\"F-1-001\"],\"pruned\":[]}\n{\"admitted\":[\"F-2-002\"],\"pruned\":[]}\n0"
+      }
+    },
+    {
+      "id": "L1-2",
+      "surface": "D1",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".claude/agents/deep-research.md",
+      "line": 286,
+      "issue": "Same clause in the claude mirror: the frontier-proposal contract lists the budget prune as an admission outcome (\"would exceed the depth, fan-out or budget caps\") and constrains the row's optional `budget` to \"never above the parent's\". `frontier-admit.cjs` compares `proposal.budget` with `parent.budget` only when both are finite (:360-366), but no writer stores `budget` on a node row - admitted (:414-424), pruned (:397-407) and seeded (:472-483) all omit it - so `parent.budget` is always undefined and the check is skipped. Observed: a proposal carrying `budget: 999` under a seeded parent is admitted and the store holds zero `budget` keys, so nothing is pruned for budget and the FRONTIER block never prints a parent budget for the leaf to stay under.",
+      "evidence": {
+        "cmd": "bash $TMPDIR/budget-probe.sh   # seeds one depth-1 research node, then admits a child proposal carrying budget 999; then grep -c '\"budget\"' on the node store",
+        "exit": 0,
+        "out": "{\"admitted\":[\"F-1-001\"],\"pruned\":[]}\n{\"admitted\":[\"F-2-002\"],\"pruned\":[]}\n0"
+      }
+    },
+    {
+      "id": "L1-3",
+      "surface": "D1",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".pi/agents/deep-research.md",
+      "line": 294,
+      "issue": "Same clause in the pi mirror: the frontier-proposal contract lists the budget prune as an admission outcome (\"would exceed the depth, fan-out or budget caps\") and constrains the row's optional `budget` to \"never above the parent's\". `frontier-admit.cjs` compares `proposal.budget` with `parent.budget` only when both are finite (:360-366), but no writer stores `budget` on a node row - admitted (:414-424), pruned (:397-407) and seeded (:472-483) all omit it - so `parent.budget` is always undefined and the check is skipped. Observed: a proposal carrying `budget: 999` under a seeded parent is admitted and the store holds zero `budget` keys, so nothing is pruned for budget and the FRONTIER block never prints a parent budget for the leaf to stay under.",
+      "evidence": {
+        "cmd": "bash $TMPDIR/budget-probe.sh   # seeds one depth-1 research node, then admits a child proposal carrying budget 999; then grep -c '\"budget\"' on the node store",
+        "exit": 0,
+        "out": "{\"admitted\":[\"F-1-001\"],\"pruned\":[]}\n{\"admitted\":[\"F-2-002\"],\"pruned\":[]}\n0"
+      }
+    },
+    {
+      "id": "L1-4",
+      "surface": "D1",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/agents/deep-review.md",
+      "line": 267,
+      "issue": "The review leaf's frontier-proposal contract lists the budget prune as an admission outcome (\"would exceed the depth, fan-out or budget caps\") and constrains the row's optional `budget` to \"never above the parent's\". Review admission runs through the same `checkProposal` in frontier-admit.cjs, which compares `proposal.budget` with `parent.budget` only when both are finite (:360-366), but no writer stores `budget` on a node row - admitted (:414-424), pruned (:397-407) and seeded (:472-483) all omit it - so `parent.budget` is always undefined and the check is skipped. Observed: a proposal carrying `budget: 999` under a seeded parent is admitted and the store holds zero `budget` keys, so no review sub-target is ever pruned for budget and the FRONTIER block never prints a parent budget for the leaf to stay under.",
+      "evidence": {
+        "cmd": "bash $TMPDIR/budget-probe.sh   # seeds one depth-1 research node, then admits a child proposal carrying budget 999; then grep -c '\"budget\"' on the node store",
+        "exit": 0,
+        "out": "{\"admitted\":[\"F-1-001\"],\"pruned\":[]}\n{\"admitted\":[\"F-2-002\"],\"pruned\":[]}\n0"
+      }
+    },
+    {
+      "id": "L1-5",
+      "surface": "D1",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".claude/agents/deep-review.md",
+      "line": 253,
+      "issue": "Same clause in the claude mirror of the review leaf: the budget prune is listed as an admission outcome (\"would exceed the depth, fan-out or budget caps\") and the row's optional `budget` is constrained to \"never above the parent's\". Review admission uses the same `checkProposal`, which compares `proposal.budget` with `parent.budget` only when both are finite (:360-366), but no writer stores `budget` on a node row - admitted (:414-424), pruned (:397-407) and seeded (:472-483) all omit it - so `parent.budget` is always undefined and the check is skipped. Observed: a proposal carrying `budget: 999` under a seeded parent is admitted and the store holds zero `budget` keys, so no sub-target is pruned for budget and the FRONTIER block never prints a parent budget for the leaf to stay under.",
+      "evidence": {
+        "cmd": "bash $TMPDIR/budget-probe.sh   # seeds one depth-1 research node, then admits a child proposal carrying budget 999; then grep -c '\"budget\"' on the node store",
+        "exit": 0,
+        "out": "{\"admitted\":[\"F-1-001\"],\"pruned\":[]}\n{\"admitted\":[\"F-2-002\"],\"pruned\":[]}\n0"
+      }
+    },
+    {
+      "id": "L1-6",
+      "surface": "D1",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".pi/agents/deep-review.md",
+      "line": 260,
+      "issue": "Same clause in the pi mirror of the review leaf: the budget prune is listed as an admission outcome (\"would exceed the depth, fan-out or budget caps\") and the row's optional `budget` is constrained to \"never above the parent's\". Review admission uses the same `checkProposal`, which compares `proposal.budget` with `parent.budget` only when both are finite (:360-366), but no writer stores `budget` on a node row - admitted (:414-424), pruned (:397-407) and seeded (:472-483) all omit it - so `parent.budget` is always undefined and the check is skipped. Observed: a proposal carrying `budget: 999` under a seeded parent is admitted and the store holds zero `budget` keys, so no sub-target is pruned for budget and the FRONTIER block never prints a parent budget for the leaf to stay under.",
+      "evidence": {
+        "cmd": "bash $TMPDIR/budget-probe.sh   # seeds one depth-1 research node, then admits a child proposal carrying budget 999; then grep -c '\"budget\"' on the node store",
+        "exit": 0,
+        "out": "{\"admitted\":[\"F-1-001\"],\"pruned\":[]}\n{\"admitted\":[\"F-2-002\"],\"pruned\":[]}\n0"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/agents/deep-research.md",
+    ".claude/agents/deep-research.md",
+    ".pi/agents/deep-research.md",
+    ".skilled/agents/deep-review.md",
+    ".claude/agents/deep-review.md",
+    ".pi/agents/deep-review.md"
+  ]
+}

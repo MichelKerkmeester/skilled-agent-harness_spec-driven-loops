@@ -1,0 +1,58 @@
+{
+  "lane": "L6",
+  "findings": [
+    {
+      "id": "L6-1",
+      "surface": "D1",
+      "severity": "P1",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      "line": 93,
+      "issue": "The doc tells the operator that at the default iteration budget the run never grows past the seed: \"At the default budget of 10 an expansive run works its seeds only; raise `--max-iterations`, as the pilots did at 16, to reach depths 2 and 3.\" The code derives the run-wide node cap as `max(1, floor(maxIterations / 2))` (frontier-admit.cjs:238-241), so at the default 10 the cap is 5 live nodes, and the seed itself is 3 to 6 nodes (deep-research.yaml:760). A seed of 3 or 4 nodes therefore leaves open slots and depth-2 children ARE admitted; only a 5- or 6-node seed is confined to depth 1. The doc's own preceding sentence (the seed 'counts toward the run cap', growth needs maxIterations above twice the live count) already permits depth 2 at 10 with four live nodes, so the sentence contradicts both the code and the paragraph it sits in.",
+      "evidence": {
+        "cmd": "TMPDIR research config {\"maxIterations\":10,\"antiConvergence\":{\"depthMode\":\"expansive\"},\"expansiveDepth\":{\"maxDepth\":3,\"maxChildrenPerNode\":6,\"maxFrontierNodes\":null}}; frontier-admit.cjs seed --artifact-dir .../research --iteration 0 --input frontier-seed.json (4 candidates); frontier-admit.cjs admit --iteration 1 --input iter-1.jsonl (parentId F-1-001)",
+        "exit": 0,
+        "out": "seed: {\"admitted\":[\"F-1-001\",\"F-1-002\",\"F-1-003\",\"F-1-004\"],\"pruned\":[]}\nadmit: {\"admitted\":[\"F-2-005\"],\"pruned\":[]}\nstore row 5: {\"nodeId\":\"F-2-005\",\"parentId\":\"F-1-001\",\"depth\":2,...}"
+      },
+      "fix": {
+        "old": "At the default budget of 10 an expansive run works its seeds only; raise `--max-iterations`, as the pilots did at 16, to reach depths 2 and 3.",
+        "new": "At the default budget of 10 the run-wide cap is 5 live nodes, so a seed of 5 or 6 works its seeds only while a 3- or 4-node seed can still open depth-2 children; raise `--max-iterations`, as the pilots did at 16, to reach depths 2 and 3."
+      }
+    },
+    {
+      "id": "L6-2",
+      "surface": "D3",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+      "line": 21,
+      "issue": "The budget rule is stated as \"Admission caps the live frontier at half of `maxIterations`, and the seed counts toward that cap\", which reads as if the depth-1 seed is subject to the run-wide cap. The code exempts the seed: `admitProposals` passes `seeding: true` and the run-cap check is skipped for it (frontier-admit.cjs:357-358), so a review seed of up to 8 nodes is admitted in full against a cap of 3 at the default maxIterations 7 — nothing is pruned for `fanout` until a later child proposal. The cap only bounds mid-run growth; the seed answers to the root-children cap alone (max(6, ROOT_CHILDREN_FLOOR.review = 8)), exactly as deep-research/SKILL.md states for research.",
+      "evidence": {
+        "cmd": "TMPDIR review config {\"maxIterations\":7,\"antiConvergence\":{\"depthMode\":\"expansive\"},\"expansiveDepth\":{\"maxDepth\":3,\"maxChildrenPerNode\":6,\"maxFrontierNodes\":null}}; frontier-admit.cjs seed --target review --iteration 0 --input frontier-seed.json (8 candidates); frontier-admit.cjs admit --target review --iteration 1 --input iter-1.jsonl",
+        "exit": 0,
+        "out": "seed: {\"admitted\":[\"F-1-001\",\"F-1-002\",\"F-1-003\",\"F-1-004\",\"F-1-005\",\"F-1-006\",\"F-1-007\",\"F-1-008\"],\"pruned\":[]}\nlive rows: 8 (cap at 7 iterations is 3)\nadmit: {\"admitted\":[],\"pruned\":[{\"nodeId\":\"F-2-009\",\"reason\":\"fanout\"}]}"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/min-iterations-floor.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/custom-review-dimensions.md",
+    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/cross-mode-anti-convergence-contract.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/cross-mode-anti-convergence-contract.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-review-stop.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-min-iterations-floor.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/extend-completed-review-run.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/custom-dimension-setup-and-universe.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-and-node-dimension-coverage.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md"
+  ]
+}

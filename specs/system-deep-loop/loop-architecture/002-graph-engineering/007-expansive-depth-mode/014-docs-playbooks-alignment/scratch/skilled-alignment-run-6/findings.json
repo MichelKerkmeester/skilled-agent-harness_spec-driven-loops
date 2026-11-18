@@ -1,0 +1,604 @@
+[
+  {
+    "id": "A1",
+    "source_id": "A1",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    "line": "239",
+    "issue": "readCaps derives maxFrontierNodes as floor(maxIterations/2), a value below the depth-1 seed the same function admits: the shipped configs give 5 (research, maxIterations 10) and 3 (review, maxIterations 7), while ROOT_CHILDREN_FLOOR/maxRootChildren on line 247 admit 6 and 8. The seed is exempt from the run cap only while `seeding` is true, and every seed still counts in countLiveNodes (line 149, which excludes only 'pruned'), so the first depth-2 proposal is pruned 'fanout' (line 353) and renderFrontierBlock computes zero slots (lines 537-540) and tells the leaf 'This node has no child slots left'. Case: `frontier-admit.cjs seed` with the shipped deep-research-config.json (4-6 sub-questions) or deep-review-config.json (up to 8 sub-targets), then any leaf frontier_proposal under a depth-1 node. Result: no depth-2 node is ever admitted, so expansiveDepth.maxDepth 3 and the budgetSplit depth2/depth3 bands, documented in deep-research/README.md, deep-research/references/convergence/convergence.md and deep-review/SKILL.md, cannot take effect at the shipped defaults; a review run is depth-1-only regardless of seed size, and the block attributes a run-wide cap to the node. The fix is a design decision: derive the run cap as at least maxRootChildren, or exempt seed nodes from countLiveNodes, and name the constraint the block reports.",
+    "evidence": {
+      "cmd": "node ${TMPDIR:-/tmp}/local-skilled-alignment-scratch/skilled-alignment-run-6/A/probe-cap.cjs  (seeds the shipped config, then admits one depth-2 child)",
+      "exit": 0,
+      "out": "research: maxIterations=10 maxFrontierNodes=5 seedFloor=6 seeded=6 depth2=[{\"nodeId\":\"F-2-007\",\"reason\":\"fanout\"}]\nreview: maxIterations=7 maxFrontierNodes=3 seedFloor=8 seeded=8 depth2=[{\"nodeId\":\"F-2-009\",\"reason\":\"fanout\"}]\ndetail: maxFrontierNodes derives as floor(maxIterations/2); the seed is exempt from it but still counts toward countLiveNodes"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Owner: the coordinator; the cap design is under operator review and the code may change. runtime/scripts/frontier-admit.cjs:239 derives maxFrontierNodes as max(1, floor(maxIterations/2)), the seed is exempt only while seeding (:357-358) and still counts as live (countLiveNodes :149), so a seed that fills the cap leaves no depth-2 slot. The interim doc note landed in 7799a67f677; its wording is held until the design review settles."
+    }
+  },
+  {
+    "id": "B-01",
+    "source_id": "B-01",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md",
+    "line": "54",
+    "issue": "The Expected block pins vitest summary counts that the committed suite no longer produces, so the stated Pass rule (\"Commands 1 and 2 exit 0 with the expected counts\", line 65) can never be met and a healthy run reports FAIL. Both counts are stale: command 1 and command 2. The scenario is pinned to the suite size the change superseded. Cause: this doc landed at 0c6b0c6a900 and stop-decision.vitest grew afterwards in 4b4f0448aba/7c6a2d9a7e5.",
+    "evidence": {
+      "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx vitest run stop-decision.vitest -t \"frontierOpen veto\" --reporter=verbose",
+      "exit": 0,
+      "out": "Tests  28 passed | 85 skipped (113)   [doc claims: Tests  28 passed | 64 skipped (92)].  Second command `npx vitest run stop-decision.vitest -t \"echoes the input unchanged\" --reporter=verbose` -> `Tests  1 passed | 112 skipped (113)` [doc claims: Tests  1 passed | 91 skipped (92)]"
+    },
+    "fix": {
+      "old": "`Tests  28 passed | 64 skipped (92)`",
+      "new": "`Tests  28 passed | 85 skipped (113)`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-02",
+    "source_id": "B-02",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+    "line": "54",
+    "issue": "Both pinned vitest counts in the Expected block are stale, so the count-dependent Pass rule at line 65 fails on a green suite. Command 2's summary and command 3's summary both need restating.",
+    "evidence": {
+      "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx vitest run stop-decision-yaml-contract.vitest -t \"seeds\" --reporter=verbose",
+      "exit": 0,
+      "out": "Tests  4 passed | 46 skipped (50)   [doc claims: Tests  4 passed | 30 skipped (34)].  Second command `npx vitest run frontier-admit.vitest -t \"seedNodes\" --reporter=verbose` -> `Tests  2 passed | 25 skipped (27)` [doc claims: Tests  2 passed | 22 skipped (24)]"
+    },
+    "fix": {
+      "old": "`Tests  4 passed | 30 skipped (34)`",
+      "new": "`Tests  4 passed | 46 skipped (50)`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-03",
+    "source_id": "B-03",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+    "line": "55",
+    "issue": "All three pinned vitest counts in the Expected block are stale, and the same `Tests  1 passed | 23 skipped (24)` string is used for both command 3 and command 4. The Pass rule at line 66 requires \"the expected pass count\", so the scenario fails a green suite.",
+    "evidence": {
+      "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx vitest run frontier-admit.vitest -t \"prunes with\" --reporter=verbose",
+      "exit": 0,
+      "out": "Tests  7 passed | 20 skipped (27)   [doc claims: Tests  7 passed | 17 skipped (24)].  Command 3 `-t \"admits a valid proposal\"` -> `Tests  1 passed | 26 skipped (27)`; command 4 `-t \"records a pruned proposal\"` -> `Tests  1 passed | 26 skipped (27)` [doc claims 1 passed | 23 skipped (24) for both]"
+    },
+    "fix": {
+      "old": "`Tests  7 passed | 17 skipped (24)`",
+      "new": "`Tests  7 passed | 20 skipped (27)`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-04",
+    "source_id": "B-04",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md",
+    "line": "54",
+    "issue": "The same stale vitest count is printed for both command 1 and command 2. The suite total moved from 51 to 53, so the Expected signals disagree with the shipped tests.",
+    "evidence": {
+      "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx vitest run deep-research-reduce-state.vitest -t \"picks the shallowest open node\" --reporter=verbose",
+      "exit": 0,
+      "out": "Tests  1 passed | 52 skipped (53)   [doc claims: Tests  1 passed | 50 skipped (51)].  Command 2 `-t \"counts a visit when the leaf rewords\"` -> `Tests  1 passed | 52 skipped (53)` [same doc claim]"
+    },
+    "fix": {
+      "old": "`Tests  1 passed | 50 skipped (51)`",
+      "new": "`Tests  1 passed | 52 skipped (53)`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-05",
+    "source_id": "B-05",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+    "line": "56",
+    "issue": "Commands 1 to 3 carry stale counts (fanout-run.vitest grew from 208 to 210 tests); command 4 is correct. The Pass rule at line 67 requires all four commands to exit 0 \"with the expected counts\", so three of the four legs cannot pass as written.",
+    "evidence": {
+      "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx vitest run fanout-run.vitest -t \"round-robin\" --reporter=verbose",
+      "exit": 0,
+      "out": "Tests  2 passed | 208 skipped (210)   [doc claims: Tests  2 passed | 206 skipped (208)].  Command 2 `-t \"writes the lineage store before spawn\"` -> `Tests  1 passed | 209 skipped (210)`; command 3 `-t \"default depth mode\"` -> `Tests  1 passed | 209 skipped (210)` [doc claims 1 passed | 207 skipped (208) for both].  Command 4 verified correct: `Tests  4 passed | 86 skipped (90)`"
+    },
+    "fix": {
+      "old": "`Tests  2 passed | 206 skipped (208)`",
+      "new": "`Tests  2 passed | 208 skipped (210)`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-06",
+    "source_id": "B-06",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+    "line": "54",
+    "issue": "Both pinned vitest counts are stale and the workflow line number is off by one, so three of the scenario's stated expected signals are wrong. Line numbers and suite totals are pinned to the tree the scenario was authored against, not to the shipped one.",
+    "evidence": {
+      "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx vitest run frontier-admit-review.vitest -t \"seeds a review run\" --reporter=verbose",
+      "exit": 0,
+      "out": "Tests  1 passed | 24 skipped (25)   [doc claims: Tests  1 passed | 22 skipped (23)].  Command 2 `npx vitest run stop-decision-yaml-contract.vitest -t \"seeds the review frontier before fan-out spawns|seeds the single-executor review frontier right after the config exists\" --reporter=verbose` -> `Tests  2 passed | 48 skipped (50)` [doc claims: Tests  2 passed | 32 skipped (34)].  `rg -n \"step_frontier_seed:\" .skilled/commands/deep/assets/deep-review.yaml` -> 319 and 899 [doc claims 319 and 898]"
+    },
+    "fix": {
+      "old": "`Tests  1 passed | 22 skipped (23)`",
+      "new": "`Tests  1 passed | 24 skipped (25)`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-07",
+    "source_id": "B-07",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+    "line": "55",
+    "issue": "Both pinned vitest counts are stale; frontier-admit-review.vitest grew from 23 to 25 tests. The Pass rule at line 68 requires commands 1 and 2 to exit 0 \"with the expected counts\".",
+    "evidence": {
+      "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx vitest run frontier-admit-review.vitest -t \"prunes with\" --reporter=verbose",
+      "exit": 0,
+      "out": "Tests  7 passed | 18 skipped (25)   [doc claims: Tests  7 passed | 16 skipped (23)].  Command 2 `-t \"seeds a review run, settling a candidate\"` -> `Tests  1 passed | 24 skipped (25)` [doc claims: Tests  1 passed | 22 skipped (23)]"
+    },
+    "fix": {
+      "old": "`Tests  7 passed | 16 skipped (23)`",
+      "new": "`Tests  7 passed | 18 skipped (25)`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-08",
+    "source_id": "B-08",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md",
+    "line": "54",
+    "issue": "Command 2's pinned count is stale (stop-decision-yaml-contract.vitest grew from 34 to 50 tests); command 1's count is correct. The Pass rule at line 65 requires both commands to exit 0 \"with the expected counts\", so command 2 can never satisfy it.",
+    "evidence": {
+      "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx vitest run stop-decision-yaml-contract.vitest -t \"gates the divergent pivot on a terminal review frontier\" --reporter=verbose",
+      "exit": 0,
+      "out": "Tests  1 passed | 49 skipped (50)   [doc claims: Tests  1 passed | 33 skipped (34)].  Command 1 verified correct: `Tests  3 passed | 23 skipped (26)`"
+    },
+    "fix": {
+      "old": "`Tests  1 passed | 33 skipped (34)`",
+      "new": "`Tests  1 passed | 49 skipped (50)`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-09",
+    "source_id": "B-09",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-and-node-dimension-coverage.md",
+    "line": "54",
+    "issue": "Command 2's pinned count is stale; command 1's is correct. The Pass rule at line 65 requires both commands to exit 0 \"with the expected counts\", so the scenario fails a green suite as written.",
+    "evidence": {
+      "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx vitest run stop-decision-yaml-contract.vitest -t \"takes the next dimension from the active frontier node\" --reporter=verbose",
+      "exit": 0,
+      "out": "Tests  1 passed | 49 skipped (50)   [doc claims: Tests  1 passed | 33 skipped (34)].  Command 1 verified correct: `Tests  3 passed | 29 skipped (32)`"
+    },
+    "fix": {
+      "old": "`Tests  1 passed | 33 skipped (34)`",
+      "new": "`Tests  1 passed | 49 skipped (50)`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-10",
+    "source_id": "B-10",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+    "line": "55",
+    "issue": "Command 1's pinned count is stale (fanout-run.vitest grew from 208 to 210 tests); command 2's count is correct. The Pass rule at line 66 requires both commands to exit 0 \"with the expected counts\".",
+    "evidence": {
+      "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx vitest run fanout-run.vitest -t \"deals seven review frontier nodes|writes a review lineage store without an inbox|binds a review frontier scope|adds no depth-mode bytes to a default review lineage prompt\" --reporter=verbose",
+      "exit": 0,
+      "out": "Tests  4 passed | 206 skipped (210)   [doc claims: Tests  4 passed | 204 skipped (208)].  Command 2 verified correct: `Tests  5 passed | 85 skipped (90)`"
+    },
+    "fix": {
+      "old": "`Tests  4 passed | 204 skipped (208)`",
+      "new": "`Tests  4 passed | 206 skipped (210)`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-11",
+    "source_id": "B-11",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-review-stop.md",
+    "line": "53",
+    "issue": "The single pinned vitest count is stale; stop-decision.vitest grew from 92 to 113 tests. The expected signals, and therefore the scenario's verdict, no longer match the shipped suite.",
+    "evidence": {
+      "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx vitest run stop-decision.vitest -t \"expansive review candidate|vetoes a composite review stop while the frontier is open\" --reporter=verbose",
+      "exit": 0,
+      "out": "Tests  9 passed | 104 skipped (113)   [doc claims: Tests  9 passed | 83 skipped (92)]"
+    },
+    "fix": {
+      "old": "`Tests  9 passed | 83 skipped | 83 skipped (92)`",
+      "new": "`Tests  9 passed | 104 skipped (113)`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A2",
+    "source_id": "A2",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    "line": "200",
+    "issue": "readNodeStore turns a read failure into an empty store: `catch { return nodes; }` has no comment and no log, unlike the sibling JSONL reader in upsert.cjs which throws for a required source. Case: frontier-nodes.jsonl at mode 0200 (read denied, append permitted). readNodeStore returns size 0, seedNodes sees no depth-1 row and treats the run as never seeded, and re-issues F-1-001; the store's last-row-wins rule then turns a node closed 'answered' back into 'open' with a different question. This is floor.silent-failures, but the reach is a file-permission state rather than an input the module's contract allows, so it is reported as P2 hardening rather than P1.",
+    "evidence": {
+      "cmd": "node ${TMPDIR:-/tmp}/local-skilled-alignment-scratch/skilled-alignment-run-6/A/probe-store2.cjs",
+      "exit": 0,
+      "out": "first seed admitted: [\"F-1-001\",\"F-1-002\"]\nstore size after close: 2\nreadNodeStore with mode 0200 returns size: 0\nre-seed: {\"admitted\":[\"F-1-001\"],\"pruned\":[]}\nF-1-001 row after re-seed: {\"question\":\"gamma question\",\"status\":\"open\"}"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A3",
+    "source_id": "A3",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    "line": "329",
+    "issue": "A proposal that carries evidence and scope but no `question` is pruned with reason 'dedupe': dedupeKey returns '' for a non-string, and checkProposal returns 'dedupe' for an empty key before any field-presence check. The module header (lines 16-18) and the DR-070 operator contract say the first failing check names the reason and that a pruned row lets an operator tell which bound it hit. Case: a leaf delta row `{\"parentId\":\"F-1-001\",\"scope\":[\"src\"],\"evidence\":\"...\"}` with no question. The stored row reads reason 'dedupe' with question null and dedupeKey '', so the operator sees a duplicate that duplicates nothing and the missing required field is never named; a question-presence guard belongs with the relevance checks on lines 320-325.",
+    "evidence": {
+      "cmd": "node ${TMPDIR:-/tmp}/local-skilled-alignment-scratch/skilled-alignment-run-6/A/probe-admit.cjs",
+      "exit": 0,
+      "out": "noQuestion: {\"admitted\":[],\"pruned\":[{\"nodeId\":\"F-2-002\",\"reason\":\"dedupe\"}]}\ndedupeKey(\"We 2: how does the loop stop\") === \"how does the loop stop\"\ndedupeKey(\"how does the loop stop\") === \"how does the loop stop\""
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A4",
+    "source_id": "A4",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    "line": "188",
+    "issue": "The id-prefix strip `^[a-z]{1,2}[-\\s]?\\d+(?:[-\\s]\\d+)*\\s*:\\s*` also removes an ordinary 1-2 letter word followed by a number and a colon, which the comment on lines 183-185 says stays part of the question ('an ordinary word followed by a number and a colon is part of the question'). Case: a question that begins with such a word, such as 'We 2: how does the loop stop' - its key collapses to the key of the bare question 'how does the loop stop', so the second of two genuinely different questions is pruned 'dedupe' and its content never reaches the frontier. Reach is limited to that question shape, so the severity stays P2; the guard should match only the id shapes the leaves actually write.",
+    "evidence": {
+      "cmd": "node ${TMPDIR:-/tmp}/local-skilled-alignment-scratch/skilled-alignment-run-6/A/probe-admit.cjs",
+      "exit": 0,
+      "out": "dedupeKey(\"We 2: how does the loop stop\") === \"how does the loop stop\"\ndedupeKey(\"how does the loop stop\") === \"how does the loop stop\""
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Owner: phase 010 research frontier mode (frontier-admit.cjs). The id-prefix strip at runtime/scripts/frontier-admit.cjs:188 also drops a 1-2 letter word plus number plus colon, against its own comment at :183-185. The right fix narrows the regex to the id shapes leaves actually write, and no test or doc pins that set, so the shape list is the owner's call, not a doc fix."
+    }
+  },
+  {
+    "id": "A5",
+    "source_id": "A5",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+    "line": "197",
+    "issue": "The comment block on lines 197-202 describes the finding-to-evidence derivation (each finding with a path:line ref becomes a FINDING node plus an EVIDENCE_FOR edge to the FILE node) but sits above readJsonlRows, a generic JSONL reader; the function it describes, deriveReviewFindingEvidence on line 252, carries no comment of its own. A maintainer reading readJsonlRows is told it derives review evidence, and the one new function that decides finding identity and the derived edge ids has no durable WHY.",
+    "evidence": {
+      "cmd": "grep -n -B6 \"^function readJsonlRows\" .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+      "exit": 0,
+      "out": "197-// The iteration's own findings are the source of review evidence: each finding with\n198-// a `path:line` ref becomes a FINDING node and an EVIDENCE_FOR edge to the FILE node\n199-// of that path. The evidence-density signal counts those edges per finding, and a\n200-// leaf that sends no graph events would otherwise leave it at zero, so the graph\n201-// could never allow a stop. The delta's finding rows carry the ref the leaf\n202-// contract requires; the state record's findingDetails may leave it out.\n203:function readJsonlRows(filePath, label, required) {"
+    },
+    "fix": {
+      "old": "// The iteration's own findings are the source of review evidence: each finding with\n// a `path:line` ref becomes a FINDING node and an EVIDENCE_FOR edge to the FILE node\n// of that path. The evidence-density signal counts those edges per finding, and a\n// leaf that sends no graph events would otherwise leave it at zero, so the graph\n// could never allow a stop. The delta's finding rows carry the ref the leaf\n// contract requires; the state record's findingDetails may leave it out.\nfunction readJsonlRows(filePath, label, required) {",
+      "new": "function readJsonlRows(filePath, label, required) {"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-12",
+    "source_id": "B-12",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "383",
+    "issue": "The root summary's Prompt field disagrees with the scenario contract it summarizes (iteration-execution-and-state-discipline/graph-events-review.md:32), which the standard forbids: \"Do not ship unsynchronized prompt fields.\" The two copies state different requests, so an operator cannot tell which is canonical. Pre-existing content, not introduced by this change, but it is inside a root playbook this change edited.",
+    "evidence": {
+      "cmd": "node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook",
+      "exit": 0,
+      "out": "PASS package=system-deep-loop/deep-review tier=FAIL_CLOSED scenarios=69 categories=10 operator=69 routing_gold_excluded=0 violations=0 warnings=3\n  WARN PROMPT_UNSYNCED manual-testing-playbook.md:383 iteration-execution-and-state-discipline/graph-events-review.md:32 scenario contract prompt differs from the root summary prompt"
+    },
+    "fix": {},
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-13",
+    "source_id": "B-13",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "9",
+    "issue": "This root playbook carries the EXECUTION POLICY block but not the results-storage contract the standard requires in section 4, and it has no `benchmark/reports/` home for a run. The hub root (line 9) and the runtime packet root (line 9) both carry the `MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT` block, so the two packet corpora this change extended have nowhere to record the PASS/FAIL/SKIP outcome the standard makes part of scenario completion.",
+    "evidence": {
+      "cmd": "node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook",
+      "exit": 0,
+      "out": "PASS package=system-deep-loop/deep-research tier=FAIL_CLOSED scenarios=71 categories=9 operator=71 routing_gold_excluded=0 violations=0 warnings=2\n  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker\n  (grep -c MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT: hub root 1, runtime root 1, deep-research root 0, deep-review root 0)"
+    },
+    "fix": {},
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "rebutted",
+      "note": "The result-persistence marker is advisory, not required: sk-doc/sk-create-manual-testing-playbook/SKILL.md:447-448 says missing it 'never creates a new fail-closed violation for an existing package', and validate-playbook-package.cjs:751-756 emits it as a warning. The research root lacked it at base 21c4b325b5a (git show 21c4b325b5a:... | grep -c MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT printed 0); the package validator exits 0 with PASS."
+    }
+  },
+  {
+    "id": "B-14",
+    "source_id": "B-14",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "9",
+    "issue": "Same gap as B-13 on the review root playbook: the EXECUTION POLICY block is present but the section 4 results-storage contract and its `MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT` marker are absent, so the 69 scenarios this playbook indexes have no documented destination for their outcomes.",
+    "evidence": {
+      "cmd": "node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook",
+      "exit": 0,
+      "out": "PASS package=system-deep-loop/deep-review tier=FAIL_CLOSED scenarios=69 categories=10 operator=69 routing_gold_excluded=0 violations=0 warnings=3\n  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker"
+    },
+    "fix": {},
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "rebutted",
+      "note": "Same as B-13 for the review root: the marker is advisory per sk-create-manual-testing-playbook/SKILL.md:447-448 and validate-playbook-package.cjs:751-756 (warning, not violation), and the package validator exits 0 with PASS for system-deep-loop/deep-review."
+    }
+  },
+  {
+    "id": "C-01",
+    "source_id": "C-01",
+    "lane": "C",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-deep-loop/changelog/v2.1.6.0.md",
+    "line": "22",
+    "issue": "The glance bullet tells the reader that research accepts `--claude-config-dir`, but that flag is internal to `dispatch-iteration.cjs` and is rendered by the workflow only when `config.executor.configDir` is set. The operator-facing surface is `--config-dir=PATH` on the `--executor` group (`.skilled/commands/deep/assets/deep-research-presentation.txt`:120), and `/deep:research`'s published flag table has no `--claude-config-dir` row, so a reader who types the named flag binds nothing. The entry's own Upgrade line already points at the config key, so only the glance bullet misnames the surface.",
+    "evidence": {
+      "cmd": "grep -c \"claude-config-dir\" .skilled/commands/deep/research.md",
+      "exit": 1,
+      "out": "0"
+    },
+    "fix": {
+      "old": "- Research accepts `--claude-config-dir` on `cli-claude-code` runs.",
+      "new": "- Research honors `--config-dir=PATH` on `cli-claude-code` runs."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D-1",
+    "source_id": "D-1",
+    "lane": "D",
+    "surface": "S7",
+    "standard": ".skilled/repo-rules/skill-hub-routing.md",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/hub-router.json",
+    "line": "37",
+    "issue": "The review class is the only owner of the convergence phrase `findings stop changing`, so a research-framed request that uses it resolves to the review loop in one silent step, with no clarify and no ambiguity flag; the same prompt without that clause defers. That breaks the hub's own policy that an unclear deep-loop intent asks (routerPolicy.defaultMode null, ambiguityDelta 1), and skill-hub-routing section 4, because the phrase catches traffic the selected mode cannot serve. Nothing on the research side scores: bare `research` is in no class, so review wins by 4 against 0. Either drop the phrase from review-aliases so those prompts defer, or add a convergence phrase to research-aliases so the delta defers; ROUTER.md section 3 REVIEW INTENT_SIGNALS carries the identical keyword and must move with it (the two stage-two keyword sets are equal today). Not introduced here: hub-router.json only gained the version line in this diff.",
+    "evidence": {
+      "cmd": "node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt \"Research the vendoring strategy for three competing HTTP clients over several passes until the findings stop changing\"",
+      "exit": 0,
+      "out": "{\"hubId\":\"system-deep-loop\",\"action\":\"route\",\"selectionKind\":\"single\",\"targets\":[{\"packetId\":\"deep-review\",\"workflowMode\":\"review\"}]} ; control, same prompt minus the clause: {\"action\":\"defer\",\"selectionKind\":null,\"targets\":[]}"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Owner: system-deep-loop hub routing (skill-hub-routing.md section 4). hub-router.json:37 review-aliases holds 'findings stop changing' with no research counterpart, and ROUTER.md section 3 REVIEW INTENT_SIGNALS must move with it. A JSON routing-vocabulary change with an out-of-domain replay, not a doc fix; the lane notes it predates this change."
+    }
+  },
+  {
+    "id": "D-3",
+    "source_id": "D-3",
+    "lane": "D",
+    "surface": "S7",
+    "standard": ".skilled/repo-rules/skill-hub-routing.md",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    "line": "30",
+    "issue": "The Keyword triggers list advertises activation the router cannot deliver, and the hub SKILL.md section 2 says this list is checked against vocabularyClasses while nothing enforces it. `comprehensive research` returns no recommendation at all; `multi-round research` and `autonomous research` put cli-external-orchestration top-1 (0.142 and 0.118); `deep investigation` returns no recommendation. Only `autoresearch`, `deep research` and `research loop` from the list reach the hub, and `autoresearch` loses to one bare `design` in the same request. Fix by adding the missing multi-word phrases to research-aliases, or by pruning this list to the vocabulary the hub actually scores, and replay each against an out-of-domain phrase as section 4 requires.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt \"Do comprehensive research on the cache invalidation strategy\" --format json",
+      "exit": 0,
+      "out": "{\"recommendations\":[],\"ambiguous\":false} ; \"Run multi-round research on the cache invalidation strategy\" -> cli-external-orchestration 0.14208 ambiguous true ; \"Start autoresearch on the auth token refresh design\" -> sk-design 0.410889, system-deep-loop second, ambiguous true"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Owner: system-deep-loop hub routing. deep-research/SKILL.md:30 keyword triggers predate this program (unchanged since 21c4b325b5a) and several do not route. The fix is either new research-aliases in hub-router.json:33 or pruning the list to what the hub scores, followed by the section 4 replay; that choice belongs to the routing owner."
+    }
+  },
+  {
+    "id": "D-2",
+    "source_id": "D-2",
+    "lane": "D",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-deep-loop/hub-router.json",
+    "line": "32",
+    "issue": "The new expansive-depth feature contributes no routing vocabulary at any stage: `expansive`, `frontier`, `sub-target` and `depth mode` occur zero times in SKILL.md's keyword line, description.json's keywords, hub-router.json's vocabularyClasses, mode-registry.json's aliases, ROUTER.md's INTENT_SIGNALS and graph-metadata.json's intent_signals. A probe written from the feature's own documented wording therefore lands on a skill that has no such feature, silently: top-1 sk-code at score 0.6528, confidence 0.8709 (above the 0.8 bar), ambiguous false, compiled route sk-code-review; and top-1 sk-doc at 0.08 for a second one. The two feature probes that do reach the hub win on their mode words, not on the feature's. A complete fix is a dual write: graph-metadata.json intent_signals (stage one, outside this change's file set) plus this file's vocabularyClasses (stage two, to choose research vs review).",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt \"Turn on expansive depth for the next review run\" --format json",
+      "exit": 0,
+      "out": "{\"top\":\"sk-code\",\"score\":0.65275,\"confidence\":0.8709,\"ambiguous\":false,\"action\":\"route\",\"targets\":[\"sk-code-review\"]} ; \"Run an expansive depth loop over the payment module\" -> sk-doc 0.08, ambiguous false ; grep -ric 'expansive|frontier|sub-target|depth mode' returns 0 for graph-metadata.json, hub-router.json, description.json, ROUTER.md and mode-registry.json"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Owner: system-deep-loop hub routing with system-skill-advisor. No stage-one or stage-two vocabulary for expansive depth, frontier or sub-target: hub-router.json:32 vocabularyClasses, mode-registry.json aliases and graph-metadata.json intent_signals need a dual write and a replay per skill-hub-routing.md section 4. JSON routing metadata, not a doc defect."
+    }
+  },
+  {
+    "id": "BAT-01",
+    "source_id": "S9-command-references",
+    "lane": "battery",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "S9-command-references failed (exit 1).",
+    "evidence": {
+      "cmd": "node .skilled/commands/scripts/validate-command-references.cjs",
+      "exit": 1,
+      "out": "FAIL  1 unresolved command reference(s):\n  .skilled/commands/speckit/assets/speckit-resume.yaml:104  [skill-asset]  .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json  - path does not exist on disk",
+      "ci_gated": false,
+      "ci_workflows": []
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "Same cause as D-4. The S9-command-references row fails only on speckit-resume.yaml:104, a gitignored runtime path (.gitignore:431). Owner: validate-command-references.cjs:136, which needs a runtime-state exemption. Predates this program."
+    }
+  },
+  {
+    "id": "D-4",
+    "source_id": "D-4",
+    "lane": "D",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/commands/speckit/assets/speckit-resume.yaml",
+    "line": "104",
+    "issue": "Confirmed cause of the failed S9-command-references row, and it is not a defect in any /deep:* command file. The validator requires every literal repo-relative token to exist on disk, and this line names `.skilled/skills/system-spec-kit/runtime/database/access-telemetry.json`. That directory is gitignored (.gitignore:431) and is created at runtime: shared/config.ts derives TELEMETRY_STORE_DIR as `<skill root>/runtime/database`, so the YAML points at the right place but at a path a clean checkout cannot contain. Either teach validate-command-references.cjs that this declared state path is data rather than a skill asset, or reword the line so it stops reading as a file reference. Outside this change's scope.",
+    "evidence": {
+      "cmd": "node .skilled/commands/scripts/validate-command-references.cjs",
+      "exit": 1,
+      "out": "FAIL  1 unresolved command reference(s):\n  .skilled/commands/speckit/assets/speckit-resume.yaml:104  [skill-asset]  .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json  - path does not exist on disk"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range",
+    "disposition": {
+      "status": "handed_off",
+      "note": "Owner: commands/scripts/validate-command-references.cjs (:136 flags every missing skill-asset path). speckit-resume.yaml:104 names system-spec-kit/runtime/database/access-telemetry.json, a gitignored runtime file (.gitignore:431) the YAML falls back from when absent, so the YAML is right and the checker needs a runtime-state exemption. Outside this change's scope and predates it."
+    }
+  }
+]

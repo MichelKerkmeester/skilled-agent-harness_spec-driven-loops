@@ -1,0 +1,109 @@
+{
+  "findings": [
+    {
+      "id": "C1",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/assets/deep-review.yaml",
+      "line": 1377,
+      "issue": "The review pivot gate says \"A candidate the pivot accepts re-enters breadth through step_frontier_admit as a frontier_proposal row\". No review-pivot code writes that row or any node-store row: `divergent-review-pivot.ts` has no `frontier_proposal` writer, the accepted direction is bound as `next_dimension` from `pivot_result.restoredFocus` (deep-review.yaml:1490), and the gate itself requires a terminal frontier (divergent-review-pivot.ts:390-393), so the next iteration has no active frontier node, no FRONTIER block and nothing for admission to admit. The second clause, seeding from nodes closed exhausted or blocked, is correct.",
+      "evidence": {
+        "cmd": "rg -n \"frontier_proposal\" .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts; rg -n -F \"re-enters breadth through step_frontier_admit\" .skilled/commands/deep/assets/deep-review.yaml; rg -n \"next_dimension: \\\"{pivot_result.restoredFocus}\\\"\" .skilled/commands/deep/assets/deep-review.yaml; rg -n \"frontierOpen\" .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+        "exit": 0,
+        "out": "(no frontier_proposal match in divergent-review-pivot.ts)\n1377:              frontier_gate: \"... A candidate the pivot accepts re-enters breadth through step_frontier_admit as a frontier_proposal row, and the pivot may seed from nodes closed exhausted or blocked.\"\n1490:                    next_dimension: \"{pivot_result.restoredFocus}\"\n390:  const frontierOpen = expansiveFrontierNodes(config, registry)\n393:    throw new TypeError('A review pivot under the expansive depth mode needs a terminal frontier; open frontier nodes remain.');"
+      },
+      "fix": {
+        "old": "A candidate the pivot accepts re-enters breadth through step_frontier_admit as a frontier_proposal row, and the pivot may seed from nodes closed exhausted or blocked.",
+        "new": "A candidate the pivot accepts becomes the next review direction through pivot_result.restoredFocus, which the workflow binds as next_dimension; no frontier_proposal row is written for it. The pivot may seed from nodes closed exhausted or blocked."
+      }
+    },
+    {
+      "id": "C2",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+      "line": 36,
+      "issue": "The Pivot section says the review pivot \"seeds from terminal unanswered nodes and routes accepted candidates through admission\". The first clause is accurate: exhausted and blocked nodes seed a `frontier-unanswered` candidate (divergent-review-pivot.ts:300-315). The second is not: the accepted candidate becomes `next_dimension` from `pivot_result.restoredFocus`, and there is no admission call and no `frontier_proposal` writer in the pivot code, so the accepted direction never enters the node store. This is the review-side instance of the same claim the research YAML is separately wrong about.",
+      "evidence": {
+        "cmd": "rg -n -F \"routes accepted candidates through admission\" .skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md; rg -n \"frontier_proposal\" .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts; rg -n \"frontier-unanswered\" .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+        "exit": 0,
+        "out": "36:The divergent review pivot runs only once the frontier is terminal. It seeds from terminal unanswered nodes and routes accepted candidates through admission.\n(no frontier_proposal match in divergent-review-pivot.ts)\n311:      source: 'frontier-unanswered',"
+      },
+      "fix": {
+        "old": "It seeds from terminal unanswered nodes and routes accepted candidates through admission.",
+        "new": "It seeds from terminal unanswered nodes, and an accepted candidate becomes the next review direction through restoredFocus; the pivot writes no frontier node."
+      }
+    },
+    {
+      "id": "C3",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      "line": 298,
+      "issue": "The research success display pins the stop reason to `converged|max_iterations|all_answered`. The workflow's frozen stop reason set is `converged`, `maxIterationsReached`, `blockedStop`, `stuckRecovery`, `error`, `manualStop`, `userPaused` and `maxDurationReached` (deep-research.yaml:1523), and `convergence.cjs` emits the cap stop as `maxIterationsReached` (:1140-1141). `all_questions_answered` is a `reasonDetail` carried on a `converged` stop (:1186 with :1031), never a stop reason, and `all_answered` is not even that detail string. So an iteration-cap run would print `maxIterationsReached`, never `max_iterations`, and the third listed value cannot appear at all.",
+      "evidence": {
+        "cmd": "rg -n \"Stop reason:\" .skilled/commands/deep/assets/deep-research-presentation.txt; rg -n \"stop_reasons_enum\" .skilled/commands/deep/assets/deep-research.yaml; rg -n \"'maxIterationsReached'\" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "298:Iterations: [N] | Stop reason: [converged|max_iterations|all_answered]\n1523:        stop_reasons_enum: [converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached]\n1140:      'maxIterationsReached'\n1141:      'maxIterationsReached'"
+      },
+      "fix": {
+        "old": "Iterations: [N] | Stop reason: [converged|max_iterations|all_answered]",
+        "new": "Iterations: [N] | Stop reason: [converged|maxIterationsReached]"
+      }
+    },
+    {
+      "id": "C4",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+      "line": 56,
+      "issue": "Three expected values in this playbook are stale. Command 1 now prints `Tests  1 passed | 24 skipped (25)`, not `1 passed | 22 skipped (23)`; command 2 now prints `Tests  2 passed | 48 skipped (50)`, not `2 passed | 32 skipped (34)`. The single-executor seed step is `deep-review.yaml:899`, not line 898 (line 319 for the fan-out seed is correct). `frontier-admit-review.vitest.ts` now holds 25 cases and `stop-decision-yaml-contract.vitest.ts` 50, so the skipped/total counts drifted while the named cases and the pass counts (1 and 2) still hold.",
+      "evidence": {
+        "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx vitest run frontier-admit-review.vitest -t \"seeds a review run\" --reporter=verbose; npx vitest run stop-decision-yaml-contract.vitest -t \"seeds the review frontier before fan-out spawns|seeds the single-executor review frontier right after the config exists\" --reporter=verbose; rg -n \"step_frontier_seed:\" /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration/.skilled/commands/deep/assets/deep-review.yaml",
+        "exit": 0,
+        "out": "Tests  1 passed | 24 skipped (25)\nTests  2 passed | 48 skipped (50)\n319:  step_frontier_seed:\n899:      step_frontier_seed:"
+      },
+      "fix": {
+        "old": "Command 1 prints `Tests  1 passed | 22 skipped (23)`, and the case `seeds a review run, settling a candidate that carries its own prune reason` passes. That case asserts two open rows at depth one and no inbox file. Command 2 prints `Tests  2 passed | 32 skipped (34)`, with the fan-out placement case and the single-executor placement case both passing. Command 3 prints two lines: line 319, the fan-out seed step that runs before any lineage spawns, and line 898, the single-executor seed step that runs right after the config is created so iteration one already has open nodes.",
+        "new": "Command 1 prints `Tests  1 passed | 24 skipped (25)`, and the case `seeds a review run, settling a candidate that carries its own prune reason` passes. That case asserts two open rows at depth one and no inbox file. Command 2 prints `Tests  2 passed | 48 skipped (50)`, with the fan-out placement case and the single-executor placement case both passing. Command 3 prints two lines: line 319, the fan-out seed step that runs before any lineage spawns, and line 899, the single-executor seed step that runs right after the config is created so iteration one already has open nodes."
+      }
+    }
+  ],
+  "untouched": [],
+  "overrides": [
+    {
+      "id": "L1-1",
+      "verdict": "severity",
+      "note": "P2: the sentence mirrors the runtime prompt rather than only the doc — frontier-admit.cjs:563 emits \"The admission step prunes duplicates, anything outside the review target and anything past the depth, fan-out or budget caps.\" to every review leaf. The omitted cycle check cannot fire through the CLI: check 1 rejects any parentId the store does not hold (:325), the depth check precedes cycle, and every stored parent link points at an earlier row, so no loop can form. The scope prune is inert for the default spec-folder target (:304), so the gap is an expectation mismatch, not a leaf behavior change."
+    },
+    {
+      "id": "L1-2",
+      "verdict": "severity",
+      "note": "P2: same basis as L1-1 — the clause is the code-owned prompt text (frontier-admit.cjs:563), the scope check runs only when `reviewTargetType === 'files'` (:304), and the contract default is `spec-folder` (review-mode-contract.yaml:19). No leaf action changes; only the stated prune set is overbroad."
+    },
+    {
+      "id": "L1-3",
+      "verdict": "severity",
+      "note": "P2: same as L1-1/L1-2 — the doc copies the code-owned prompt (frontier-admit.cjs:563); the scope prune needs a files target (:304, shipped default `spec-folder` in deep-review-config.json:43), and the cycle check is unreachable through admission. Expectation-only drift on a mirror doc."
+    },
+    {
+      "id": "L6-1",
+      "verdict": "severity",
+      "note": "P2: the default is already stated on the surfaces that own the flag — review.md:108 says \"default the prior `maxDurationMinutes`\", and loop-protocol.md:626 says \"`M` defaults to the prior budget, and a run with no duration budget keeps none unless `--extend-minutes` is passed.\" The feature page compresses the rule and loses the default; that is an incomplete summary, not a false contract on the only surface."
+    },
+    {
+      "id": "L8-2",
+      "verdict": "severity",
+      "note": "P2: the page scopes itself to flag plumbing (\"The behavior the flag turns on lives in the research and review packets\"), and those packet catalogs do list `frontier-admit.cjs`, `reduce-state.cjs` and the workflow YAMLs. What is unmet is feature-catalog.md:55's promise of \"full implementation and validation file listings\" — a listing-completeness gap, not a false behavior claim."
+    },
+    {
+      "id": "L8-4",
+      "verdict": "severity",
+      "note": "P2: the reducer's universe is always the canonical four plus every configured custom name (`buildDimensionUniverse`, reduce-state.cjs:1222-1235), so the \"filter, not addition\" argument only holds when the list is narrowed on purpose; the real defect in the unqualified \"a review can\" claim is that both fan-out bindings force `review_dimensions: all` (fanout-run.cjs:1743 and :1842), so a fan-out review never carries a configured custom dimension. Scope overstatement, not a general filter semantics error."
+    }
+  ]
+}

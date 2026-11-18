@@ -1,0 +1,168 @@
+{
+  "lane": "D",
+  "findings": [
+    {
+      "id": "D-1",
+      "surface": "S7",
+      "standard": ".skilled/repo-rules/skill-hub-routing.md",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      "line": 30,
+      "issue": "The packet's Keyword triggers list advertises activation the hub cannot route. Four of the eight terms (autonomous research, multi-round research, deep investigation, comprehensive research) are absent from hub-router.json research-aliases; iterative research is absent too, though another scoring lane catches it. The packet's own ROUTER.md LOOP_SETUP carries autonomous research, so stage two advertises a phrase stage one never scores, the exact two-stage disagreement skill-hub-routing.md section 1 and the ci-hub-vocabulary-source triggers leg exist to catch. Probes from the packet's own wording miss: autonomous research, deep investigation and comprehensive research return no recommendation at all, and multi-round research puts cli-external-orchestration top-1. Fix: add the missing multi-word phrases to hub-router.json research-aliases and the hub ROUTER.md RESEARCH intent (refresh graph-metadata with its writer), or prune the packet list to the vocabulary the hub scores, then replay each against an out-of-domain phrase.",
+      "evidence": {
+        "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Do comprehensive research on the caching layer\"}' --format json --timeout-ms 5000 | python3 -c \"import json,sys; d=json.load(sys.stdin)['data']; print(d['recommendations'], d['ambiguous'])\"",
+        "exit": 0,
+        "out": "[] False"
+      }
+    },
+    {
+      "id": "D-2",
+      "surface": "S7",
+      "standard": ".skilled/repo-rules/skill-hub-routing.md",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs",
+      "line": 169,
+      "issue": "The triggers leg cannot see a bullet-list Keyword triggers block. triggerItems() scans only lines containing the literal 'Keyword triggers:' prefix, so the eight backticked items on the following lines of deep-research/SKILL.md are never compared with hub-router.json. The gate therefore prints triggers=0 and RESULT: PASSED while five advertised terms (autonomous research, iterative research, multi-round research, deep investigation, comprehensive research) are absent from the authored vocabulary. The check runs in .github/workflows/routing-registry-drift.yml:243, so the false green is a CI routing gate's, not just a local checker's. Fix: after the prefix line, parse the following list block (the blank line then the '-' items) until the first non-list line, and add a test for the list form; the drift then surfaces and the packet/vocabulary fix in D-1 becomes visible.",
+      "evidence": {
+        "cmd": "node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs --hub system-deep-loop",
+        "exit": 0,
+        "out": "OK    system-deep-loop             alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=0\n\nchecked=1 hub(s), drift=0\nRESULT: PASSED"
+      }
+    },
+    {
+      "id": "D-3",
+      "surface": "S8",
+      "standard": "system-skill-advisor",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/hub-router.json",
+      "line": 37,
+      "issue": "Two review aliases are broad enough to steal other skills' prompts. 'findings stop changing' gives system-deep-loop the top-1 at score 0.549, confidence 0.82, against sk-code 0.097 and mcp-tooling 0.080, with ambiguous=false, for 'The findings stop changing after refactor, fix the linter'; the hub cannot serve a linter repair and nothing asks for clarification. 'review request' gives the hub the top-1 at score 0.620, confidence 0.8533, against sk-code 0.609, confidence 0.8472, for 'I got a review request from a colleague, what does it mean', though that prompt is flagged ambiguous. skill-hub-routing.md section 4 requires an alias to catch a request for this mode and to be replayed against an out-of-domain phrase; both fail that replay. Fix: narrow them (for example 'review loop request' and 'review until the findings stop changing') or drop them, keep ROUTER.md section 3 and graph-metadata in step, and replay each against the two prompts above.",
+      "evidence": {
+        "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"The findings stop changing after refactor, fix the linter\"}' --format json --timeout-ms 5000 | python3 -c \"import json,sys; d=json.load(sys.stdin)['data']; print([(r['skillId'], r['score'], r['confidence']) for r in d['recommendations']], d['ambiguous'])\"",
+        "exit": 0,
+        "out": "[('system-deep-loop', 0.548914, 0.82), ('sk-code', 0.096562, 0.82), ('mcp-tooling', 0.08, 0.82)] False"
+      }
+    },
+    {
+      "id": "D-4",
+      "surface": "S8",
+      "standard": "system-skill-advisor",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/hub-router.json",
+      "line": 33,
+      "issue": "The new expansive-depth feature contributes no stage-one vocabulary. 'expansive', 'frontier', 'depth mode' and 'sub-target' are absent from research-aliases, mode-registry aliases, the hub ROUTER.md RESEARCH intent and graph-metadata intent_signals. A probe from the feature's own wording, 'Use expansive depth mode to research the migration options', returns zero recommendations (ambiguous false); 'Research the trade-offs ... deeply and with citations' returns sk-code at 0.82. The feature routes only when the operator also names /deep:research or canonical mode words, which falsifies SKILL.md:47's 'The advisor routes every deep-loop query to the single identity system-deep-loop'. Fix: add the feature's multi-word phrases (for example 'expansive depth research', 'depth-capped frontier') to research-aliases and the hub ROUTER.md RESEARCH intent, refresh graph-metadata with its writer, and replay against out-of-domain phrases; do not add bare 'depth' or 'frontier'.",
+      "evidence": {
+        "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Use expansive depth mode to research the migration options\"}' --format json --timeout-ms 5000 | python3 -c \"import json,sys; d=json.load(sys.stdin)['data']; print(d['recommendations'], d['ambiguous'])\"",
+        "exit": 0,
+        "out": "[] False"
+      }
+    },
+    {
+      "id": "D-5",
+      "surface": "S9",
+      "standard": "sk-doc/sk-create-command",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/scripts/validate-command-references.cjs",
+      "line": 134,
+      "issue": "The S9-command-references row fails on a runtime-state path the validator should exempt, not on a command defect. .skilled/commands/speckit/assets/speckit-resume.yaml:104 names .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json as a pointer it explicitly falls back from when missing. That directory is gitignored (.gitignore:431) and created at runtime, but the validator exempts only .skilled/skills/.state/ and the deep-loop sqlite database, so a clean checkout always reports this reference unresolved. Add the spec-kit runtime database directory to the runtime-state exemptions; the YAML stays as is.",
+      "evidence": {
+        "cmd": "node .skilled/commands/scripts/validate-command-references.cjs",
+        "exit": 1,
+        "out": "FAIL  1 unresolved command reference(s):\n  .skilled/commands/speckit/assets/speckit-resume.yaml:104  [skill-asset]  .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json  - path does not exist on disk"
+      },
+      "fix": {
+        "old": "      if (/^\\.skilled\\/skills\\/system-deep-loop\\/runtime\\/database\\/[^/]+\\.sqlite$/.test(token)) continue;",
+        "new": "      if (/^\\.skilled\\/skills\\/system-deep-loop\\/runtime\\/database\\/[^/]+\\.sqlite$/.test(token)) continue;\n      if (/^\\.skilled\\/skills\\/system-spec-kit\\/runtime\\/database\\//.test(token)) continue;"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+    ".skilled/skills/system-deep-loop/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/description.json",
+    ".skilled/skills/system-deep-loop/hub-router.json",
+    ".skilled/skills/system-deep-loop/mode-registry.json",
+    ".skilled/skills/system-deep-loop/graph-metadata.json",
+    ".skilled/skills/system-deep-loop/ROUTER.md",
+    ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+    ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+    ".skilled/commands/deep/assets/deep-research-presentation.txt",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md",
+    ".skilled/agents/deep-research.md",
+    ".skilled/agents/deep-review.md",
+    ".claude/agents/deep-research.md",
+    ".claude/agents/deep-review.md",
+    ".codex/agents/deep-research.toml",
+    ".codex/agents/deep-review.toml",
+    ".pi/agents/deep-research.md",
+    ".pi/agents/deep-review.md",
+    ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs",
+    ".skilled/commands/scripts/validate-command-references.cjs",
+    ".skilled/commands/speckit/assets/speckit-resume.yaml"
+  ],
+  "probes": [
+    {
+      "prompt": "Research the trade-offs of event sourcing versus CRUD for our audit log, deeply and with citations",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Do a deep review of the last five commits for security regressions",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Run a multi-iteration investigation into why our CI builds doubled in duration",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Exhaustively review this pull request for correctness and edge cases before we merge",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Iteratively research the best migration path from our monolith to modules and cite the sources",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Adversarially review the new retry logic against the spec and report every finding",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "Implement the fix for the failing retry test",
+      "expect": "sk-code"
+    },
+    {
+      "prompt": "Write a README for the new retry module",
+      "expect": "sk-doc"
+    },
+    {
+      "prompt": "Commit these changes on a new branch and open a pull request",
+      "expect": "sk-git"
+    },
+    {
+      "prompt": "Use expansive depth mode to research the migration options",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "Run a research loop that chases a frontier of follow-up questions until it drains",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    }
+  ]
+}

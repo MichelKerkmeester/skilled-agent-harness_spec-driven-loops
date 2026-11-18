@@ -1,0 +1,11 @@
+{
+  "id": "D",
+  "exitCode": 0,
+  "signal": null,
+  "reason": "ok",
+  "startedAt": "2026-11-18T09:17:12.553Z",
+  "endedAt": "2026-11-18T09:30:43.360Z",
+  "seconds": 810.807,
+  "scratch": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/skilled-alignment-run-8/D",
+  "sessions": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/skilled-alignment-run-8/D/sessions"
+}

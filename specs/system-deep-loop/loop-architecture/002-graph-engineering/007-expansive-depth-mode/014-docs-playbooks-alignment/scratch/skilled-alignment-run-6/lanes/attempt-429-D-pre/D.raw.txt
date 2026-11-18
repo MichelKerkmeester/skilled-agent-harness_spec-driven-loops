@@ -1,0 +1,1 @@
+429: {"message":"Rate limit exceeded for /v1/chat/completions. Please retry after 1 seconds.","type":"rate_limit_error","param":null,"code":"rate_limit_exceeded"}

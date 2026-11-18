@@ -1,0 +1,113 @@
+{
+  "lane": "A",
+  "findings": [
+    {
+      "id": "A-1",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+      "line": 391,
+      "issue": "Case: a review run reuses a finding id for a different finding in a later iteration (the code treats ids as unique only per source, so deriveReviewFindingEvidence places the later one at finding:<id>#<iteration>), and the leaf also emits that finding as a graph node/edge ({id:'F1',kind:'FINDING'} plus a RESOLVES edge to 'F1'). knownFindings is filled from every stored FINDING first (386-392) and the current iteration's derived nodes only fill keys still absent (393-397), so resolveReviewFindingId folds the raw id onto the earliest stored node. Result: the RESOLVES edge targets iteration 1's finding, and the leaf's node rewrites that stored row's name to the iteration-3 title while dropping its iteration and metadata, contradicting the promise at line 465 that a derived node never overwrites one an earlier iteration stored. Fix: claim the current iteration's derived finding ids in knownFindings before the stored scan (or let the stored scan skip a key the derived scan already claimed), so a reused id resolves to finding:<id>#<iteration> for that iteration. Confidence HIGH: reproduced, with the store read below.",
+      "evidence": {
+        "cmd": "S=$TMPDIR/a1fix; mkdir -p $S/db; state.jsonl = iterations 1-3, each with findingDetails [{id:'F1',title:'<different title>',file:'src/<different>.cjs:9'}]; for i in 1 2: DEEP_LOOP_COVERAGE_DB_DIR=$S/db node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder specs/repro --loop-type review --session-id sess-repro --state-log $S/state.jsonl --iteration $i; DEEP_LOOP_COVERAGE_DB_DIR=$S/db node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder specs/repro --loop-type review --session-id sess-repro --state-log $S/state.jsonl --iteration 3 --nodes '[{\"id\":\"F1\",\"kind\":\"FINDING\",\"name\":\"Null deref in c\"},{\"id\":\"fix-3\",\"kind\":\"REMEDIATION\",\"name\":\"Guard the deref\"}]' --edges '[{\"id\":\"resolves-3\",\"relation\":\"RESOLVES\",\"source\":\"fix-3\",\"target\":\"F1\"}]'; then read coverage_nodes/coverage_edges",
+        "exit": 0,
+        "out": "coverage_nodes: {\"id\":\"finding:F1\",\"name\":\"Null deref in c\",\"iteration\":null,\"metadata\":null} | {\"id\":\"finding:F1#2\",\"name\":\"Race in b\",\"iteration\":2,\"metadata\":\"{...src/b.cjs...}\"} | {\"id\":\"finding:F1#3\",\"name\":\"Null deref in c\",\"iteration\":3,\"metadata\":\"{...src/c.cjs...}\"}; coverage_edges: {\"id\":\"resolves-3\",\"source_id\":\"fix-3\",\"target_id\":\"finding:F1\",\"relation\":\"RESOLVES\"}"
+      }
+    },
+    {
+      "id": "A-2",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      "line": 2684,
+      "issue": "Case: a seeded frontier node (frontier-admit always writes iteration 0) is closed by applyFrontierBudget's band sweep at iteration 9. The close exists only in the projection, so there is no resolution record and no stored close row; resolvedAtIteration falls back to frontierClose.iteration, the store row's iteration (0 for a seed), and the registry reports the question resolved at iteration 0. No consumer reads resolvedAtIteration today, so the impact is a wrong registry value for any reader or future consumer. Fix: when the close is budget-derived and has no recorded iteration, report null (or the reduce's latest iteration) instead of the node's creation iteration.",
+      "evidence": {
+        "cmd": "node -e 'const {reduceResearchState}=require(\"./.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs\"); console.log(JSON.stringify(reduceResearchState(<packet>, {write:false}).registry))'  # packet: maxIterations 10, depthMode expansive, one depth-1 node seeded with iteration 0, zero answeredQuestions, five iteration rows whose focus carries 'Frontier node F-1-001'",
+        "exit": 0,
+        "out": "frontier: [{\"nodeId\":\"F-1-001\",\"parentId\":\"root\",\"depth\":1,\"scope\":\"runtime\",\"question\":\"Which module owns admission?\",\"status\":\"exhausted\",\"reason\":\"budget\",\"iteration\":0}] keyQuestions: [{\"text\":\"Which module owns admission?\",\"resolved\":true,\"resolvedAtIteration\":0,\"frontierStatus\":\"exhausted\"}]"
+      }
+    },
+    {
+      "id": "A-3",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "line": 234,
+      "issue": "Case: deep-research-config.json exists but is truncated or hand-edited into invalid JSON. readTargetConfig catches every error and returns null, so readCaps (239-259) treats the run as having no config and the caps widen from the configured maxDepth/maxChildrenPerNode/maxFrontierNodes to the defaults 3/6/10, admitting proposals the run's config forbids. The same module throws for a node store that exists but cannot be read (208-210), so its two readers disagree on the same failure class. Fix: distinguish ENOENT (no config yet, the fan-out parent seed) from a read or parse failure on a file that exists and throw the latter, as readNodeStore does.",
+      "evidence": {
+        "cmd": "printf '%s' '{\"maxIterations\":10,\"expansiveDepth\":{\"maxDepth\":1,\"maxChildrenPerNode\":2,\"maxFrontierNodes\":2}' > deep-research-config.json; node -e 'const {readCaps}=require(\"./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs\"); console.log(JSON.stringify(readCaps(process.argv[1],\"research\")))' <dir>; then write the valid config and repeat",
+        "exit": 0,
+        "out": "corrupt: {\"maxDepth\":3,\"maxChildrenPerNode\":6,\"maxRootChildren\":6,\"maxFrontierNodes\":10}\nvalid  : {\"maxDepth\":1,\"maxChildrenPerNode\":2,\"maxRootChildren\":6,\"maxFrontierNodes\":2}"
+      }
+    },
+    {
+      "id": "A-4",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "line": 195,
+      "issue": "Case: a question begins with an ordinary 1-2 letter word, a number and a colon ('We 2: how does the loop stop'). The id-prefix strip ^[a-z]{1,2}[-\\s]?\\d+... removes it, so dedupeKey collapses that question to the key of 'how does the loop stop'; a genuinely different second question then prunes 'dedupe' and never reaches the frontier. The comment on lines 190-192 promises the opposite ('an ordinary word followed by a number and a colon is part of the question'). Fix: narrow the strip to the id shapes the leaves actually write (a leading Q/F-style marker, or a prefix that is wholly digits and separators) and pin the accepted shapes in a test.",
+      "evidence": {
+        "cmd": "node -e 'const {dedupeKey}=require(\"./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs\"); for (const q of [\"We 2: how does the loop stop\",\"how does the loop stop\",\"Q1: how does the loop stop\",\"Go 2: which cap applies\"]) console.log(JSON.stringify(q), \"=>\", JSON.stringify(dedupeKey(q)))'",
+        "exit": 0,
+        "out": "\"We 2: how does the loop stop\" => \"how does the loop stop\"\n\"how does the loop stop\" => \"how does the loop stop\"\n\"Q1: how does the loop stop\" => \"how does the loop stop\"\n\"Go 2: which cap applies\" => \"which cap applies\""
+      }
+    },
+    {
+      "id": "A-5",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+      "line": 377,
+      "issue": "Case: a caller passes --state-log/--delta-dir to a non-review loop, --iteration with neither source, --iteration 0, a flag without a value, or an unreadable state log. The five new inputError branches at 377-383 are changed behavior with no test: the integration suite exercises only the pre-existing events-file read error (upsert-script.vitest.ts:90), and a search for the new messages returns no row. A later edit can drop a guard without a failing test. Fix: add one case per branch; P2 because these are usage guards, not runtime paths.",
+      "evidence": {
+        "cmd": "rg -n -- 'supported only for loop type|iteration must be a positive integer|iteration needs --state-log|state log is unreadable|state-log requires a path|delta-dir requires a path' .skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts",
+        "exit": 1,
+        "out": "(no matches)"
+      }
+    },
+    {
+      "id": "A-6",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      "line": 2508,
+      "issue": "Case: the depth-band budget is implemented twice with the same shares, bandOf, allotted/carry math and status sweep: applyFrontierBudget here (2508-2538) and applyReviewFrontierBudget in runtime/scripts/reduce-state.cjs (1963-1990). The two already differ in visit attribution, so a fix to one (such as excluding a non-evidence iteration status in the visit count) must be mirrored by hand in the other, and review.dry asks for one source for a duplicated rule. Fix: move the shared band arithmetic into one runtime lib function and pass the per-loop visit count and the answered/covered projection into it.",
+      "evidence": {
+        "cmd": "rg -n \"rolls down|const allotted = cap \\* shares\\[band\\] \\+ carry\" .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "exit": 0,
+        "out": "runtime/scripts/reduce-state.cjs:1960:// unspent share rolls down to the next band only once the band has no open node,\nruntime/scripts/reduce-state.cjs:1980:    const allotted = cap * shares[band] + carry;\ndeep-research/scripts/reduce-state.cjs:2502:// unspent share rolls down to the next band only once the band has no open node,\ndeep-research/scripts/reduce-state.cjs:2528:    const allotted = cap * shares[band] + carry;"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+    ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+    ".skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts"
+  ]
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "P04",
+    "prompt": "run the research pass with a follow-up question frontier",
+    "expect": "system-deep-loop",
+    "expectMode": "research",
+    "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"run the research pass with a follow-up question frontier\"}' --format json",
+    "exit": 0,
+    "status": "fail",
+    "reason": "top-1 was sk-doc",
+    "actual": "sk-doc",
+    "actualMode": null,
+    "confidence": 0.82,
+    "runnerUp": "cli-external-orchestration"
+  },
+  {
+    "id": "P05",
+    "prompt": "turn on expansive depth mode for this investigation",
+    "expect": "system-deep-loop",
+    "expectMode": "research",
+    "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"turn on expansive depth mode for this investigation\"}' --format json",
+    "exit": 0,
+    "status": "fail",
+    "reason": "top-1 was nothing",
+    "actual": null,
+    "actualMode": null,
+    "confidence": null,
+    "runnerUp": null
+  },
+  {
+    "id": "P08",
+    "prompt": "use the expansive depth sub-mode on this audit",
+    "expect": "system-deep-loop",
+    "expectMode": "review",
+    "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"use the expansive depth sub-mode on this audit\"}' --format json",
+    "exit": 0,
+    "status": "fail",
+    "reason": "top-1 was sk-code",
+    "actual": "sk-code",
+    "actualMode": null,
+    "confidence": 0.82,
+    "runnerUp": null
+  },
+  {
+    "id": "P11",
+    "prompt": "extend this completed run by five iterations",
+    "expect": "system-deep-loop",
+    "expectMode": null,
+    "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"extend this completed run by five iterations\"}' --format json",
+    "exit": 0,
+    "status": "fail",
+    "reason": "top-1 was cli-external-orchestration",
+    "actual": "cli-external-orchestration",
+    "actualMode": null,
+    "confidence": 0.82,
+    "runnerUp": "mcp-tooling"
+  },
+  {
+    "id": "P12",
+    "prompt": "reopen the finished loop for three more passes",
+    "expect": "system-deep-loop",
+    "expectMode": null,
+    "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"reopen the finished loop for three more passes\"}' --format json",
+    "exit": 0,
+    "status": "fail",
+    "reason": "top-1 was nothing",
+    "actual": null,
+    "actualMode": null,
+    "confidence": null,
+    "runnerUp": null
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "lane": "L2",
+  "findings": [
+    {
+      "id": "L2-1",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      "line": 70,
+      "issue": "The `maxIterations` resolution row states the expansive derived budget only as `min(24, max(10, 2·c·(S + maxDepth − 1)))`. `expansiveBudget` returns the loop default before that formula whenever no depth-1 node was seeded: frontier-admit.cjs:273 `if (seededCount === 0) return floor;` (floor = the run's default budget, 10 for research), and the nodes term is only computed from line 274 on. So the documented formula overstates the budget as soon as `maxDepth` is configured above 3 and the seed admits nothing or every seed is pruned (S = 0, maxDepth 8: code gives 10, formula gives 14). The sibling review setup table states the zero-seed case (\"and kept at `7` when S is 0\") and the workflow text already says it (deep-research.yaml:783 \"With no seeded node, every seed pruned, the budget stays at the loop default\"), so only this row is stale.",
+      "evidence": {
+        "cmd": "node -e 'const {expansiveBudget}=require(\"./skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs\");console.log(expansiveBudget({target:\"research\",seeded:0,maxDepth:8,loopDefault:10}), Math.min(24,Math.max(10,2*(0+8-1))))'",
+        "exit": 0,
+        "out": "10 14"
+      },
+      "fix": {
+        "old": "with S the depth-1 nodes the seed admitted and c 1; any other source is kept as given",
+        "new": "with S the depth-1 nodes the seed admitted, c 1, and the budget kept at `10` when S is 0; any other source is kept as given"
+      }
+    },
+    {
+      "id": "L2-2",
+      "surface": "D2",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/commands/deep/assets/deep-research.yaml",
+      "line": 356,
+      "issue": "The fan-out seed step tells the operator that \"frontier-admit.cjs is the only writer of the node store and the frontier inbox rows\", in the very step whose next act is `fanout-run.cjs` splitting the seeded nodes. fanout-run.cjs does not go through frontier-admit for that: `writeLineageFrontierStore` writes `{lineageDir}/frontier-nodes.jsonl` itself (line 371-372) and appends `{lineageDir}/inbox.jsonl` (line 377) for every expansive fan-out lineage before it spawns, and it is called at fanout-run.cjs:3960 with `{ inbox: loopType !== 'review' }`. The claim only holds for the root/single-executor store, so a reader tracing who writes a lineage's store is pointed at the wrong script.",
+      "evidence": {
+        "cmd": "rg -n \"frontier-nodes.jsonl|inbox.jsonl\" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs | head -4",
+        "exit": 0,
+        "out": "316:  const nodes = [...readNodeStore(path.join(baseArtifactDir, 'frontier-nodes.jsonl')).values()]\n371:  const storePath = path.join(lineageDir, 'frontier-nodes.jsonl');\n377:  fs.appendFileSync(path.join(lineageDir, 'inbox.jsonl'), `${inboxRows.join('\\n')}\\n`, 'utf8');"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/commands/deep/assets/deep-research-presentation.txt",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".skilled/commands/deep/research.md"
+  ]
+}

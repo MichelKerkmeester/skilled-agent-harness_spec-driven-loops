@@ -1,0 +1,42 @@
+[
+ {
+  "id": "A-1",
+  "status": "handed_off",
+  "note": "Owner: phase 011 review frontier mode (review evidence edges). runtime/scripts/upsert.cjs:386-397 folds a leaf-sent FINDING node onto finding:<id> even when deriveReviewFindingEvidence placed a reused id at finding:<id>#<iteration>, so a later RESOLVES edge can target the wrong finding. Fixing it means deciding how leaf graph events address a re-keyed finding, a design choice in the evidence-edge contract, not a small fix."
+ },
+ {
+  "id": "A-2",
+  "status": "handed_off",
+  "note": "Owner: phase 010 research frontier mode. deep-research/scripts/reduce-state.cjs:2684 takes resolvedAtIteration from the store row's iteration (0 for a seed) when the close is a projection-only budget close. The lane notes no consumer reads resolvedAtIteration today; which iteration a projected close records is the owner's call."
+ },
+ {
+  "id": "A-4",
+  "status": "handed_off",
+  "note": "Owner: phase 010 research frontier mode. The id-prefix strip at runtime/scripts/frontier-admit.cjs:195 also drops a 1-2 letter word plus number plus colon, against its own comment at :190-192. The right fix narrows the regex to the id shapes leaves actually write, and no test or doc pins that set, so the shape list is the owner's call."
+ },
+ {
+  "id": "A-6",
+  "status": "handed_off",
+  "note": "Owner: phases 010 and 011 together. The band arithmetic exists twice, deep-research/scripts/reduce-state.cjs:2508-2538 and runtime/scripts/reduce-state.cjs:1963-1990, and the two already differ in visit attribution. Merging them into one shared module is a cross-packet refactor that must first settle which visit rule is right, not a small fix."
+ },
+ {
+  "id": "D-01",
+  "status": "handed_off",
+  "note": "Owner: system-deep-loop hub routing with system-skill-advisor. hub-router.json:33 research-aliases and review-aliases, graph-metadata.json:42 intent_signals and description.json:6 keywords carry no expansive, depth mode, frontier or extend phrase. Adding them needs a dual write and the out-of-domain replay in skill-hub-routing.md section 4; JSON routing metadata, not a doc defect."
+ },
+ {
+  "id": "D-02",
+  "status": "handed_off",
+  "note": "Owner: system-deep-loop hub routing. deep-research/SKILL.md:57 names 'a research state packet' as a selection phrase that no stage carries (hub-router.json:33, graph-metadata.json intent_signals, deep-research/ROUTER.md INTENT model). Whether to add the phrase to the routing vocabulary or drop it from the sentence is the routing owner's call under skill-hub-routing.md section 4; the sentence predates this program (git show 21c4b325b5a:.skilled/skills/system-deep-loop/deep-research/SKILL.md holds it)."
+ },
+ {
+  "id": "D-03",
+  "status": "handed_off",
+  "note": "Owner: commands/scripts/validate-command-references.cjs (:134-136), a file this program did not change. speckit-resume.yaml:104 names system-spec-kit/runtime/database/access-telemetry.json, a gitignored runtime file (.gitignore:431) the YAML falls back from, so the YAML is right and the checker needs a runtime-state exemption. Predates this program."
+ },
+ {
+  "id": "BAT-01",
+  "status": "handed_off",
+  "note": "Same cause as D-03. Owner: commands/scripts/validate-command-references.cjs (:134-136), a file this program did not change. speckit-resume.yaml:104 names system-spec-kit/runtime/database/access-telemetry.json, a gitignored runtime file (.gitignore:431) the YAML falls back from, so the YAML is right and the checker needs a runtime-state exemption. Predates this program."
+ }
+]

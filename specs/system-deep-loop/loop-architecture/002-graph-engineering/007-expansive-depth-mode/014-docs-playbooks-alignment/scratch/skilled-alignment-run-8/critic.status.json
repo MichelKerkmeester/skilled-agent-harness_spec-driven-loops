@@ -1,0 +1,11 @@
+{
+  "id": "critic",
+  "exitCode": 143,
+  "signal": null,
+  "reason": "exit 143",
+  "startedAt": "2026-11-18T09:37:40.932Z",
+  "endedAt": "2026-11-18T09:57:46.342Z",
+  "seconds": 1205.41,
+  "scratch": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/skilled-alignment-run-8/critic",
+  "sessions": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/skilled-alignment-run-8/critic/sessions"
+}

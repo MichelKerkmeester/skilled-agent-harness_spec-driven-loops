@@ -1,0 +1,161 @@
+{
+  "lane": "D",
+  "findings": [
+    {
+      "id": "D-01",
+      "surface": "S8",
+      "standard": "system-skill-advisor",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/hub-router.json",
+      "line": 33,
+      "issue": "The hub's routing vocabulary names none of the new features. `hub-router.json`'s `research-aliases` and `review-aliases`, `graph-metadata.json`'s `intent_signals` (line 42) and `description.json`'s `keywords` (line 6) contain no `expansive`, `depth mode`, `frontier`, `extend` or `completed-run` phrase, so stage one cannot select the hub from a request that names the feature without also naming deep research or deep review. Reproduced with the same advisor call: 'turn on expansive depth mode for this investigation' returns no recommendation, 'use the expansive depth sub-mode on this audit' top-1s sk-code, 'extend this completed run by five iterations' top-1s cli-external-orchestration, 'reopen the finished loop for three more passes' returns none, and 'run the research pass with a follow-up question frontier' top-1s sk-doc. Requests that also name the mode route correctly (this lane's probes), so the failure is the feature vocabulary alone. Add the new feature phrases to the hub's routing vocabulary and regenerate the derived fields; the exact phrase set is a design choice, and this is the D1/D4 handoff already open in the phase goal.",
+      "evidence": {
+        "cmd": "for p in \"turn on expansive depth mode for this investigation\" \"use the expansive depth sub-mode on this audit\" \"extend this completed run by five iterations\" \"reopen the finished loop for three more passes\" \"run the research pass with a follow-up question frontier\"; do printf '%s -> ' \"$p\"; node .skilled/bin/skill-advisor.cjs advisor_recommend --json \"{\\\"prompt\\\":\\\"$p\\\"}\" --format json --timeout-ms 8000 2>/dev/null | node -pe 'const j=JSON.parse(require(\"fs\").readFileSync(0,\"utf8\"));const t=(j.data.recommendations||[])[0];t?`${t.skillId} score=${t.score}`:\"NO_RECOMMENDATION\"'; done",
+        "exit": 0,
+        "out": "turn on expansive depth mode for this investigation -> NO_RECOMMENDATION\nuse the expansive depth sub-mode on this audit -> sk-code score=0.460329\nextend this completed run by five iterations -> cli-external-orchestration score=0.106349\nreopen the finished loop for three more passes -> NO_RECOMMENDATION\nrun the research pass with a follow-up question frontier -> sk-doc score=0.150528"
+      }
+    },
+    {
+      "id": "D-02",
+      "surface": "S7",
+      "standard": ".skilled/repo-rules/skill-hub-routing.md",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      "line": 57,
+      "issue": "The SMART ROUTING sentence says this packet is selected when the request names 'a research state packet', but no stage carries that phrase: `graph-metadata.json` has no such `intent_signals` entry and no derived phrase, `hub-router.json`'s `research-aliases` has no such keyword, and `deep-research/ROUTER.md`'s machine INTENT model declares `state file` but no such intent. Reproduced: `advisor_recommend` returns system-spec-kit 0.551 as top-1, and `compiled-route --hub system-deep-loop` returns `action: defer` for the same prompt. `generate-router-intent-signals --check` stays green because it replays only machine-declared phrases, so this prose promise is unguarded. Either add `research state packet` to the hub vocabulary and the packet's INTENT_SIGNALS, or reword the prose to a phrase the router already carries.",
+      "evidence": {
+        "cmd": "node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt \"recover a research state packet\"; node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"recover a research state packet\"}' --format json --timeout-ms 8000 2>/dev/null | node -pe 'const j=JSON.parse(require(\"fs\").readFileSync(0,\"utf8\"));const t=(j.data.recommendations||[])[0];t?`${t.skillId} score=${t.score}`:\"NO_RECOMMENDATION\"'",
+        "exit": 0,
+        "out": "{\"hubId\":\"system-deep-loop\",\"action\":\"defer\",\"selectionKind\":null,\"targets\":[],\"effectivePolicyHash\":\"c6b62457fa5db8f1c3545095977dd006c852dc2c0021407a94bd2fbcbcb713b6\",\"generation\":4}\nsystem-spec-kit score=0.551358"
+      }
+    },
+    {
+      "id": "D-03",
+      "surface": "S9",
+      "standard": "sk-doc/sk-create-command",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/scripts/validate-command-references.cjs",
+      "line": 134,
+      "issue": "The S9-command-references row fails on `speckit-resume.yaml:104`, and the failing reference is correct: `.skilled/skills/system-spec-kit/runtime/database/access-telemetry.json` is gitignored runtime state (`.gitignore:431`, confirmed by `git check-ignore -v`), written on demand by `resolveTelemetryStorePath()` into `TELEMETRY_STORE_DIR` (`runtime/lib/graph/access-telemetry.ts`, `shared/config.ts`), and the YAML itself falls back when the pointer is absent. The checker already exempts the same class for `.skilled/skills/.state/` (line 131) and the deep-loop sqlite databases (line 134) but not this store, so it reports a live runtime path as a dead reference. The command text needs no change; add the runtime-database exemption. This is the BAT-18/D-04/D6 handoff already recorded in the phase goal.",
+      "evidence": {
+        "cmd": "node .skilled/commands/scripts/validate-command-references.cjs",
+        "exit": 1,
+        "out": "FAIL  1 unresolved command reference(s):\n  .skilled/commands/speckit/assets/speckit-resume.yaml:104  [skill-asset]  .skilled/skills/system-spec-kit/runtime/database/access-telemetry.json  — path does not exist on disk"
+      },
+      "fix": {
+        "old": "      if (/^\\.skilled\\/skills\\/system-deep-loop\\/runtime\\/database\\/[^/]+\\.sqlite$/.test(token)) continue;",
+        "new": "      if (/^\\.skilled\\/skills\\/system-deep-loop\\/runtime\\/database\\/[^/]+\\.sqlite$/.test(token)) continue;\n      // The spec-kit telemetry store is gitignored runtime state, written under the\n      // configured database directory on first access, so a clean checkout holds none of it.\n      if (/^\\.(?:skilled|opencode)\\/skills\\/system-spec-kit\\/runtime\\/database\\//.test(token)) continue;"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+    ".skilled/skills/system-deep-loop/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+    ".skilled/skills/system-deep-loop/description.json",
+    ".skilled/skills/system-deep-loop/hub-router.json",
+    ".skilled/skills/system-deep-loop/mode-registry.json",
+    ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+    ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+    ".skilled/commands/deep/assets/deep-research-presentation.txt",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md",
+    ".claude/agents/deep-research.md",
+    ".claude/agents/deep-review.md",
+    ".codex/agents/deep-research.toml",
+    ".codex/agents/deep-review.toml",
+    ".pi/agents/deep-research.md",
+    ".pi/agents/deep-review.md",
+    ".skilled/agents/deep-research.md",
+    ".skilled/agents/deep-review.md"
+  ],
+  "probes": [
+    {
+      "prompt": "run an expansive deep research loop over the last 100 commits",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "start a deep research run in expansive depth mode on the skill advisor",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "keep adding follow-up questions to a deep research loop as it learns",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "run the research pass with a follow-up question frontier",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "turn on expansive depth mode for this investigation",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "run an expansive depth deep review loop on the routing code",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "audit this diff with a deep review loop that widens its scope as it goes",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "use the expansive depth sub-mode on this audit",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "extend a completed deep research run by five more iterations",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "reopen a finished research loop and continue it for three more iterations",
+      "expect": "system-deep-loop",
+      "expectMode": "research"
+    },
+    {
+      "prompt": "extend this completed run by five iterations",
+      "expect": "system-deep-loop"
+    },
+    {
+      "prompt": "reopen the finished loop for three more passes",
+      "expect": "system-deep-loop"
+    },
+    {
+      "prompt": "extend the completed deep review loop by two iterations",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "run a deep review convergence loop on the command YAML",
+      "expect": "system-deep-loop",
+      "expectMode": "review"
+    },
+    {
+      "prompt": "implement the frontier admission fix in the reducer",
+      "expect": "sk-code"
+    },
+    {
+      "prompt": "write a new skill for release notes",
+      "expect": "sk-doc"
+    },
+    {
+      "prompt": "create a worktree and commit the change",
+      "expect": "sk-git"
+    }
+  ]
+}

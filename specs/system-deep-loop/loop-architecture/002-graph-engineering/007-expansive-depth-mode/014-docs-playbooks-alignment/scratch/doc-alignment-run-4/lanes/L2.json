@@ -1,0 +1,48 @@
+{
+  "lane": "L2",
+  "findings": [
+    {
+      "id": "L2-1",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/assets/deep-research.yaml",
+      "line": 1272,
+      "issue": "The frontier_gate prose claims the frontier is refilled from a diverging pivot: \"Candidates the pivot opens re-enter breadth through step_frontier_admit as frontier_proposal rows.\" No pivot code writes frontier rows. divergent-research-pivot.ts and the shared divergent-pivot.ts contain no `frontier_proposal` writer and no node-store/inbox write; the pivot's accepted candidate is applied as an ordinary next focus (deep-research.yaml:1384-1389 `next_focus: {pivot_result.restoredFocus}`), and the reducer returns `registry.divergence.currentFocus` ahead of any frontier pick (deep-research/scripts/reduce-state.cjs:2548-2551). Because that focus does not start with \"Frontier node <id>\", step_dispatch_iteration's frontier block is empty (frontier-admit.cjs:520-525 returns '' on a non-matching focus), so the leaf is given no slots and admits nothing on the pivot's behalf. The gate's actual claim (pivot only eligible with no open/active node) is correct; only the re-entry sentence is wrong.",
+      "evidence": {
+        "cmd": "rg -n \"frontier_proposal\" .skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts .skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+        "exit": 1,
+        "out": "(no matches; clean no-hit)"
+      },
+      "fix": {
+        "old": "Candidates the pivot opens re-enter breadth through step_frontier_admit as frontier_proposal rows.",
+        "new": "A candidate the pivot accepts becomes the next focus through registry.divergence.currentFocus, so the leaf gets no frontier block and no frontier_proposal row is admitted for it."
+      }
+    },
+    {
+      "id": "L2-2",
+      "surface": "D2",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      "line": 47,
+      "issue": "The PRE-BOUND SETUP ANSWERS schema and the Default Resolution Table omit the `frontier_scope` marker, which fanout-run.cjs writes for an expansive research lineage: line 1852 appends `depth_mode: expansive` and `frontier_scope: <node ids|none>` to the native lineage's PRE-BOUND SETUP ANSWERS block (buildNativeCommandInput, not loop-type gated), and line 1730 pushes the same field into a CLI lineage's parameters for research. The sibling review presentation documents the identical internal field (deep-review-presentation.txt:46 and the `| frontier_scope |` row at line 91, guarded for review only by stop-decision-yaml-contract.vitest.ts:164-170), so the research contract leaves out a field its own fan-out partition writes and the parse rule then treats as an unknown field warning (auto-mode-contract.md §2).",
+      "evidence": {
+        "cmd": "rg -n \"frontier_scope\" .skilled/commands/deep/assets/deep-review-presentation.txt .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "exit": 0,
+        "out": "deep-review-presentation.txt:46:  frontier_scope: none  # internal, written by fan-out for an expansive lineage: comma-separated frontier node ids, or none\ndeep-review-presentation.txt:91:| `frontier_scope` | N | internal marker `frontier_scope`, written by `fanout-run.cjs` for an expansive fan-out lineage | none | N |\nfanout-run.cjs:1730:    params.push(`  frontier_scope: ${(options.frontierScope || []).join(', ') || 'none'}`);\nfanout-run.cjs:1852:    ...(options.depthMode === 'expansive' ? ['depth_mode: expansive', `frontier_scope: ${(options.frontierScope || []).join(', ') || 'none'}`] : []),\n(no deep-research-presentation.txt match)"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/commands/deep/assets/deep-research-presentation.txt",
+    ".skilled/commands/deep/assets/deep-research.yaml",
+    ".skilled/commands/deep/assets/deep-review.yaml",
+    ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md",
+    ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
+    ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
+    ".skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md"
+  ]
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "P01",
+    "prompt": "Research the vendoring strategy for three competing HTTP clients over several passes until the findings stop changing",
+    "expect": "system-deep-loop",
+    "expectMode": "research",
+    "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Research the vendoring strategy for three competing HTTP clients over several passes until the findings stop changing\"}' --format json",
+    "exit": 0,
+    "status": "fail",
+    "reason": "top-1 was system-deep-loop/review",
+    "actual": "system-deep-loop",
+    "actualMode": "review",
+    "confidence": 0.82,
+    "runnerUp": null
+  },
+  {
+    "id": "P04",
+    "prompt": "Start autoresearch on the auth token refresh design and keep a frontier of follow-up questions",
+    "expect": "system-deep-loop",
+    "expectMode": "research",
+    "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Start autoresearch on the auth token refresh design and keep a frontier of follow-up questions\"}' --format json",
+    "exit": 0,
+    "status": "fail",
+    "reason": "top-1 was sk-design",
+    "actual": "sk-design",
+    "actualMode": null,
+    "confidence": 0.82,
+    "runnerUp": "system-deep-loop"
+  }
+]

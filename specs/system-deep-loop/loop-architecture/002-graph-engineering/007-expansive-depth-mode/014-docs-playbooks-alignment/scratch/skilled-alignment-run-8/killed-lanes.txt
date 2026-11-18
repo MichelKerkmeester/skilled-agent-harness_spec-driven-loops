@@ -1,0 +1,1 @@
+2026-11-18T09:57:44Z skilled-alignment-run-8 critic past 20 minutes (1204s): TERM sent to process group 99703 (99703 ) under runner 99676

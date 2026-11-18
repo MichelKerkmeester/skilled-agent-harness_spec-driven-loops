@@ -1,0 +1,57 @@
+[
+ {
+  "id": "L5-1",
+  "status": "handed_off",
+  "note": "Owner: the coordinator. This flags the interim cap note from 7799a67f677. The operator approved a code change to expansive budgets, built by another agent in this worktree, whose commits replace this wording (coordinator ruling, 2026-11-18). The text is held, not rewritten here."
+ },
+ {
+  "id": "L5-2",
+  "status": "handed_off",
+  "note": "Owner: the coordinator. This flags the interim cap note from 7799a67f677. The operator approved a code change to expansive budgets, built by another agent in this worktree, whose commits replace this wording (coordinator ruling, 2026-11-18). The text is held, not rewritten here."
+ },
+ {
+  "id": "L6-1",
+  "status": "handed_off",
+  "note": "Owner: the coordinator. This flags the interim cap note from 7799a67f677. The operator approved a code change to expansive budgets, built by another agent in this worktree, whose commits replace this wording (coordinator ruling, 2026-11-18). The text is held, not rewritten here."
+ },
+ {
+  "id": "L6-2",
+  "status": "handed_off",
+  "note": "Owner: the coordinator. This flags the interim cap note from 7799a67f677. The operator approved a code change to expansive budgets, built by another agent in this worktree, whose commits replace this wording (coordinator ruling, 2026-11-18). The text is held, not rewritten here."
+ },
+ {
+  "id": "L8-1",
+  "status": "handed_off",
+  "note": "Owner: the coordinator. This flags the interim cap note from 7799a67f677. The operator approved a code change to expansive budgets, built by another agent in this worktree, whose commits replace this wording (coordinator ruling, 2026-11-18). The text is held, not rewritten here."
+ },
+ {
+  "id": "L1-1",
+  "status": "handed_off",
+  "note": "Owner: the coordinator, with the expansive-budget change in progress. frontier-admit.cjs compares proposal.budget with parent.budget only when both are finite (checkProposal, :360-366 at the run's tree), but no node-row writer stores budget (admitted :414-424, pruned :397-407, seeded :472-483), so the budget prune never fires. The agent text states the intended contract; the defect is the missing writer, a code change in the file the budget work is editing."
+ },
+ {
+  "id": "L1-2",
+  "status": "handed_off",
+  "note": "Owner: the coordinator, with the expansive-budget change in progress. frontier-admit.cjs compares proposal.budget with parent.budget only when both are finite (checkProposal, :360-366 at the run's tree), but no node-row writer stores budget (admitted :414-424, pruned :397-407, seeded :472-483), so the budget prune never fires. The agent text states the intended contract; the defect is the missing writer, a code change in the file the budget work is editing."
+ },
+ {
+  "id": "L1-3",
+  "status": "handed_off",
+  "note": "Owner: the coordinator, with the expansive-budget change in progress. frontier-admit.cjs compares proposal.budget with parent.budget only when both are finite (checkProposal, :360-366 at the run's tree), but no node-row writer stores budget (admitted :414-424, pruned :397-407, seeded :472-483), so the budget prune never fires. The agent text states the intended contract; the defect is the missing writer, a code change in the file the budget work is editing."
+ },
+ {
+  "id": "L1-4",
+  "status": "handed_off",
+  "note": "Owner: the coordinator, with the expansive-budget change in progress. frontier-admit.cjs compares proposal.budget with parent.budget only when both are finite (checkProposal, :360-366 at the run's tree), but no node-row writer stores budget (admitted :414-424, pruned :397-407, seeded :472-483), so the budget prune never fires. The agent text states the intended contract; the defect is the missing writer, a code change in the file the budget work is editing."
+ },
+ {
+  "id": "L1-5",
+  "status": "handed_off",
+  "note": "Owner: the coordinator, with the expansive-budget change in progress. frontier-admit.cjs compares proposal.budget with parent.budget only when both are finite (checkProposal, :360-366 at the run's tree), but no node-row writer stores budget (admitted :414-424, pruned :397-407, seeded :472-483), so the budget prune never fires. The agent text states the intended contract; the defect is the missing writer, a code change in the file the budget work is editing."
+ },
+ {
+  "id": "L1-6",
+  "status": "handed_off",
+  "note": "Owner: the coordinator, with the expansive-budget change in progress. frontier-admit.cjs compares proposal.budget with parent.budget only when both are finite (checkProposal, :360-366 at the run's tree), but no node-row writer stores budget (admitted :414-424, pruned :397-407, seeded :472-483), so the budget prune never fires. The agent text states the intended contract; the defect is the missing writer, a code change in the file the budget work is editing."
+ }
+]

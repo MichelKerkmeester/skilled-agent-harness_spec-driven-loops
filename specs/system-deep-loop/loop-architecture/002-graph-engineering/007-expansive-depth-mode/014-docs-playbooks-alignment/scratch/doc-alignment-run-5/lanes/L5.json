@@ -1,0 +1,93 @@
+{
+  "lane": "L5",
+  "findings": [
+    {
+      "id": "L5-1",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+      "line": 68,
+      "issue": "The doc states an unconditional budget rule: \"At the default budget of 10 an expansive run works its seeds only\". The admission code does not work that way. `readCaps` derives `maxFrontierNodes = max(1, floor(maxIterations / 2))` = 5 at the shipped default, and the run-cap guard is `if (!seeding && countLiveNodes(nodes) >= caps.maxFrontierNodes) return 'fanout'` (frontier-admit.cjs:358). A non-seeding admission only fails once the live count already reaches 5, so a 3- or 4-node seed (the seed step asks for \"3 to 6\" depth-1 nodes) still has headroom and depth-2 children are admitted at the default budget. Verified by running the script: seeding 3 nodes with `maxIterations: 10` and the shipped `expansiveDepth` then admitting one child under F-1-001 returns `{\"admitted\":[\"F-2-004\"],\"pruned\":[]}` and a depth-2 row lands in the store. Only a 5- or 6-node seed fills the cap. The same sentence appears verbatim in loop-protocol.md:411 and README.md:127, and in the command flag row at .skilled/commands/deep/research.md:107.",
+      "evidence": {
+        "cmd": "node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --artifact-dir \"$D\" --iteration 0 --input \"$D/seed.json\"; node .../frontier-admit.cjs admit --artifact-dir \"$D\" --iteration 1 --input \"$D/delta.jsonl\"  # config maxIterations 10, expansiveDepth maxFrontierNodes null, 3 seed rows",
+        "exit": 0,
+        "out": "{\"admitted\":[\"F-1-001\",\"F-1-002\",\"F-1-003\"],\"pruned\":[]}\n{\"admitted\":[\"F-2-004\"],\"pruned\":[]}\n{\"nodeId\":\"F-2-004\",\"parentId\":\"F-1-001\",\"depth\":2,...\"status\":\"open\"...}"
+      },
+      "fix": {
+        "old": "At the default budget of 10 an expansive run works its seeds only; raise `--max-iterations`, as the pilots did at 16, to reach depths 2 and 3.",
+        "new": "At the default budget of 10 the run cap is 5 live nodes, so a 5- or 6-node seed fills it and a 3- or 4-node seed still admits depth-2 children; raise `--max-iterations`, as the pilots did at 16, to reach depths 2 and 3."
+      }
+    },
+    {
+      "id": "L5-2",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+      "line": 21,
+      "issue": "Same budget claim as L5-1, stated here as the operator guidance that makes the flag usable: \"At the default budget of 10 an expansive run works its seeds only\". The admission run cap is half the iteration budget, checked as `countLiveNodes(nodes) >= caps.maxFrontierNodes` only for non-seeding admissions (frontier-admit.cjs:239-242 and 358), so with a 3- or 4-node seed a depth-2 child is admitted at `maxIterations: 10` (proved by the script run in L5-1). The forward sentence \"growth past depth 1 needs `maxIterations` above twice the live node count\" is correct; only the \"works its seeds only\" conclusion is wrong.",
+      "evidence": {
+        "cmd": "sed -n '236,242p;350,359p' .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+        "exit": 0,
+        "out": "const derivedCap = iterationBudget === null ? DEFAULT_MAX_FRONTIER_NODES : Math.max(1, Math.floor(iterationBudget / 2));\n...\nif (!seeding && countLiveNodes(nodes) >= caps.maxFrontierNodes) return 'fanout';"
+      },
+      "fix": {
+        "old": "At the default budget of 10 an expansive run works its seeds only; raise `--max-iterations`, as the pilots did at 16, to reach depths 2 and 3.",
+        "new": "At the default budget of 10 the run cap is 5 live nodes, so a 5- or 6-node seed fills it and a 3- or 4-node seed still admits depth-2 children; raise `--max-iterations`, as the pilots did at 16, to reach depths 2 and 3."
+      }
+    },
+    {
+      "id": "L5-3",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+      "line": 57,
+      "issue": "The doc tells the operator that the verify command prints 14 lines: \"Command 1 prints 14 lines.\" The command is `rg -n \"return '(relevance|dedupe|depth|fanout|budget|cycle)'\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs`, and the current source returns one of those six literals on 15 lines: 6 for `relevance` (317, 324, 325, 326, 329, 330), 3 for `dedupe` (334, 338, 342), 1 for `depth` (348), 2 for `fanout` (351, 358), 1 for `budget` (365) and 2 for `cycle` (163, 166). The doc's separate claim that all six reason strings appear is still true; only the line count is stale, so an operator using the count as PASS evidence would fail a correct tree.",
+      "evidence": {
+        "cmd": "rg -n \"return '(relevance|dedupe|depth|fanout|budget|cycle)'\" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs | wc -l",
+        "exit": 0,
+        "out": "15"
+      },
+      "fix": {
+        "old": "Command 1 prints 14 lines.",
+        "new": "Command 1 prints 15 lines."
+      }
+    },
+    {
+      "id": "L5-4",
+      "surface": "D1",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+      "line": 31,
+      "issue": "The scenario contract says \"Two YAML contract cases pass\", but the verify filter matches four cases and the doc's own Commands/Expected section below says `Tests 4 passed`. `npx vitest run stop-decision-yaml-contract.vitest -t \"seeds\"` matches `seeds the frontier before fan-out spawns`, `seeds the single-executor frontier right after the config exists`, `seeds the review frontier before fan-out spawns` and `seeds the single-executor review frontier right after the config exists`. The summary page (manual-testing-playbook.md:232) already states the correct \"four YAML contract cases pass (two research, two review)\", so the contract block contradicts both the code and the rest of the packet.",
+      "evidence": {
+        "cmd": "rg -n \"it\\(\" .skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts | rg -i seed",
+        "exit": 0,
+        "out": "193:  it('seeds the frontier before fan-out spawns', () => {\n202:  it('seeds the single-executor frontier right after the config exists', () => {\n272:  it('seeds the review frontier before fan-out spawns', () => {\n281:  it('seeds the single-executor review frontier right after the config exists', () => {"
+      },
+      "fix": {
+        "old": "Two YAML contract cases pass.",
+        "new": "Four YAML contract cases pass, two research and two review."
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/initialization.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/anti-convergence-floor.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md",
+    ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-deep-loop/deep-research/README.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+    ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md"
+  ]
+}

@@ -1,0 +1,4 @@
+2026-11-18T06:06:42Z L1 to L6 failed within 50 s on HTTP 429 rate_limit_exceeded from the gateway (8 lanes started at once); first-attempt raw, status and error files moved to lanes/attempt1/, and the six lanes were rerun one runner each, staggered 25 s apart, with the same prompts.
+2026-11-18T06:10:44Z L1 failed on HTTP 429 rate_limit_exceeded; attempt files moved to lanes/attempt-429-L1-pre/ and the lane was queued for a rerun with the same prompt.
+2026-11-18T06:10:44Z L5 failed on HTTP 429 rate_limit_exceeded; attempt files moved to lanes/attempt-429-L5-pre/ and the lane was queued for a rerun with the same prompt.
+2026-11-18T06:24:53Z L1 returned JSON with an unescaped quote at char 2161 (no JSON object with findings); attempt files moved to lanes/attempt-badjson-L1/ and the lane was rerun once with the same prompt.

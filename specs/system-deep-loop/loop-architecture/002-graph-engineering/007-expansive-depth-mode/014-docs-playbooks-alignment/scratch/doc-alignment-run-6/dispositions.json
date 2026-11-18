@@ -1,0 +1,37 @@
+[
+ {
+  "id": "L1-1",
+  "status": "handed_off",
+  "note": "Owner: the coordinator (expansive admission design). frontier-admit.cjs compares proposal.budget with parent.budget only when both are finite (checkProposal :428-431), and no node-row writer stores budget (admitted and pruned rows :463-492, seed rows :539, close rows :574 hold no budget field), so the budget prune never fires. The agent text states the intended contract; the defect is the missing writer or the decision to drop the check, a code and design change, not a doc fix."
+ },
+ {
+  "id": "L1-2",
+  "status": "handed_off",
+  "note": "Owner: the coordinator (expansive admission design). frontier-admit.cjs compares proposal.budget with parent.budget only when both are finite (checkProposal :428-431), and no node-row writer stores budget (admitted and pruned rows :463-492, seed rows :539, close rows :574 hold no budget field), so the budget prune never fires. The agent text states the intended contract; the defect is the missing writer or the decision to drop the check, a code and design change, not a doc fix."
+ },
+ {
+  "id": "L1-3",
+  "status": "handed_off",
+  "note": "Owner: the coordinator (expansive admission design). frontier-admit.cjs compares proposal.budget with parent.budget only when both are finite (checkProposal :428-431), and no node-row writer stores budget (admitted and pruned rows :463-492, seed rows :539, close rows :574 hold no budget field), so the budget prune never fires. The agent text states the intended contract; the defect is the missing writer or the decision to drop the check, a code and design change, not a doc fix."
+ },
+ {
+  "id": "L1-4",
+  "status": "handed_off",
+  "note": "Owner: the coordinator (expansive admission design). frontier-admit.cjs compares proposal.budget with parent.budget only when both are finite (checkProposal :428-431), and no node-row writer stores budget (admitted and pruned rows :463-492, seed rows :539, close rows :574 hold no budget field), so the budget prune never fires. The agent text states the intended contract; the defect is the missing writer or the decision to drop the check, a code and design change, not a doc fix."
+ },
+ {
+  "id": "L1-5",
+  "status": "handed_off",
+  "note": "Owner: the coordinator (expansive admission design). frontier-admit.cjs compares proposal.budget with parent.budget only when both are finite (checkProposal :428-431), and no node-row writer stores budget (admitted and pruned rows :463-492, seed rows :539, close rows :574 hold no budget field), so the budget prune never fires. The agent text states the intended contract; the defect is the missing writer or the decision to drop the check, a code and design change, not a doc fix."
+ },
+ {
+  "id": "L1-6",
+  "status": "handed_off",
+  "note": "Owner: the coordinator (expansive admission design). frontier-admit.cjs compares proposal.budget with parent.budget only when both are finite (checkProposal :428-431), and no node-row writer stores budget (admitted and pruned rows :463-492, seed rows :539, close rows :574 hold no budget field), so the budget prune never fires. The agent text states the intended contract; the defect is the missing writer or the decision to drop the check, a code and design change, not a doc fix."
+ },
+ {
+  "id": "L4-3",
+  "status": "rebutted",
+  "note": "The sentence is accurate. 'Binds' means the ceiling changes the value: with D 4 and maxDepth 3, one seed gives 2 x 4 x (1 + 2) = 24, which min(24, ...) leaves unchanged, and two seeds give 2 x 4 x 4 = 32, which the ceiling cuts to 24. So the ceiling binds from two seeds on, as written; the lane's arithmetic (24 at one seed) agrees."
+ }
+]

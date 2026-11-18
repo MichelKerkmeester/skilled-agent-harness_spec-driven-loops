@@ -1,0 +1,82 @@
+[
+ {
+  "prompt": "run an expansive deep research loop over the last 100 commits",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "start a deep research run in expansive depth mode on the skill advisor",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "keep adding follow-up questions to a deep research loop as it learns",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "run the research pass with a follow-up question frontier",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "turn on expansive depth mode for this investigation",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "run an expansive depth deep review loop on the routing code",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "audit this diff with a deep review loop that widens its scope as it goes",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "use the expansive depth sub-mode on this audit",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "extend a completed deep research run by five more iterations",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "reopen a finished research loop and continue it for three more iterations",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "extend this completed run by five iterations",
+  "expect": "system-deep-loop"
+ },
+ {
+  "prompt": "reopen the finished loop for three more passes",
+  "expect": "system-deep-loop"
+ },
+ {
+  "prompt": "extend the completed deep review loop by two iterations",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "run a deep review convergence loop on the command YAML",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "implement the frontier admission fix in the reducer",
+  "expect": "sk-code"
+ },
+ {
+  "prompt": "write a new skill for release notes",
+  "expect": "sk-doc"
+ },
+ {
+  "prompt": "create a worktree and commit the change",
+  "expect": "sk-git"
+ }
+]

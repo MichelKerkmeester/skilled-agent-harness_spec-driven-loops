@@ -1,0 +1,45 @@
+[
+ {
+  "prompt": "Research the vendoring strategy for three competing HTTP clients over several passes until the findings stop changing",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Investigate why our nightly build leaks file descriptors, running iterations until new information dries up",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Run a deep research loop on the migration options for our queue, with expansive depth so follow-up questions get chased",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Start autoresearch on the auth token refresh design and keep a frontier of follow-up questions",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Review this diff iteratively until the findings stop changing",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Do a release readiness deep review of the payment module with expansive depth on sub-targets",
+  "expect": "system-deep-loop",
+  "expectMode": "review"
+ },
+ {
+  "prompt": "Run an expansive-depth research loop that chases follow-up questions until the frontier drains",
+  "expect": "system-deep-loop",
+  "expectMode": "research"
+ },
+ {
+  "prompt": "Deep loop workflows: what can this hub do",
+  "expect": "system-deep-loop"
+ },
+ {
+  "prompt": "Review my JSON file",
+  "expect": "sk-code"
+ }
+]

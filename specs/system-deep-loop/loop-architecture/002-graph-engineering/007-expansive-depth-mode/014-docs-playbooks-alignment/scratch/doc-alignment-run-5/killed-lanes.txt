@@ -1,0 +1,1 @@
+2026-11-18T08:09:09Z doc-alignment-run-5 critic past 20 minutes (1203s): TERM sent to process group 55192 (55192 ) under runner 55149

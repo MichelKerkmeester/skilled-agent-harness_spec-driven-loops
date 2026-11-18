@@ -1,0 +1,41 @@
+{
+  "lane": "L3",
+  "findings": [
+    {
+      "id": "L3-1",
+      "surface": "D1",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+      "line": 446,
+      "issue": "The Convergence Detection list claims review's STOP is gated by \"Three binary quality gates (evidence, scope, coverage)\". The review stop path evaluates nine legal-stop gates before a candidate becomes STOP — convergenceGate, dimensionCoverageGate, p0ResolutionGate, evidenceDensityGate, hotspotSaturationGate, claimAdjudicationGate, fixCompletenessReplayGate, candidateCoverageGate, graphlessFallbackGate (convergence.cjs:1004-1015); a failed one returns BLOCKED/blockedStop, not a blocked stop of the kind described. The three gates named are a different mechanism: terminal-gates.cjs records the evidence, scope and coverage rows at the terminal stop (:39-41) and a failing row changes the verdict to FAIL, it does not prevent the stop. The same list also omits two review stop conditions the code enforces before those gates: the configured minIterations floor (convergence.cjs:1195-1197, reason minIterationsNotReached) and, under --depth-mode=expansive, the frontierOpen veto that returns CONTINUE while any frontier node is open or active (convergence.cjs:1207-1212), i.e. before any gate is evaluated.",
+      "evidence": {
+        "cmd": "rg --no-config -n \"Three binary quality gates\" .skilled/commands/deep/assets/deep-review-presentation.txt; sed -n '1004,1015p' .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "exit": 0,
+        "out": "446:- Three binary quality gates (evidence, scope, coverage) must pass before STOP\n  const gateOrder = [\n    'convergenceGate',\n    'dimensionCoverageGate',\n    'p0ResolutionGate',\n    'evidenceDensityGate',\n    'hotspotSaturationGate',\n    'claimAdjudicationGate',\n    'fixCompletenessReplayGate',\n    'candidateCoverageGate',\n    'graphlessFallbackGate',\n  ];"
+      }
+    },
+    {
+      "id": "L3-2",
+      "surface": "D2",
+      "severity": "P2",
+      "fix_class": "literal",
+      "file": ".skilled/commands/deep/assets/deep-review.yaml",
+      "line": 367,
+      "issue": "The fan-out spawn step tells the executor to skip \"phase_init and phase_main_loop\", but this workflow has no phase_main_loop: its phases are phase_init, phase_loop, phase_synthesis and phase_save, so a reader following the instruction looks for a phase key that does not exist. The sibling frontier-seed step and step_reject_extend_with_fanout already state the same fan-out jump with the real names (\"never reaches phase_init\", \"jumps from step_fanout_spawn to phase_synthesis\").",
+      "evidence": {
+        "cmd": "rg --no-config -n \"phase_main_loop\" .skilled/commands/deep/assets/deep-review.yaml; rg --no-config -n \"^  phase_\" .skilled/commands/deep/assets/deep-review.yaml",
+        "exit": 0,
+        "out": "367:      phase_main_loop entirely (those are the single-executor path). The merge step in\n393:  phase_init:\n1122:  phase_loop:\n2125:  phase_synthesis:\n2514:  phase_save:"
+      },
+      "fix": {
+        "old": "phase_main_loop entirely",
+        "new": "phase_loop entirely"
+      }
+    }
+  ],
+  "reviewed": [
+    ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    ".skilled/commands/deep/assets/deep-review.yaml"
+  ]
+}

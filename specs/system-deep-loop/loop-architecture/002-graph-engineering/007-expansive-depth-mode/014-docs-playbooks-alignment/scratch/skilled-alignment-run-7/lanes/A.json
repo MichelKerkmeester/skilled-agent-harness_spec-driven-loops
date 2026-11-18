@@ -1,0 +1,77 @@
+{
+  "lane": "A",
+  "findings": [
+    {
+      "id": "1",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+      "line": 386,
+      "issue": "Case: a review run reuses a finding id for a different finding in a later iteration. Iteration 1 stores F1 (src/a.cjs, 'Leak in a'); iteration 2 stores F1 (src/b.cjs, 'Race in b'), which deriveReviewFindingEvidence places at finding:F1#2; iteration 3 reports F1 (src/c.cjs, 'Null deref in c') and the leaf sends {id:'F1',kind:'FINDING'} plus a RESOLVES edge from fix-3. The leaf's node folds onto finding:F1 (the iteration-1 node) instead of finding:F1#3, so resolves-3 targets the wrong finding and the stored iteration-1 node is rewritten to name 'Null deref in c' with finding_id/file/line metadata dropped. Cause: knownFindings (line 386) is seeded from every stored FINDING first and line 396 only fills a key that is still absent, so resolveReviewFindingId (line 176) keeps resolving the raw id to the earliest node even when line 269 gave the current iteration's finding its own #<iteration> node. This contradicts the reuse contract its own comment states at lines 251-254 and the promise at line 465 that an earlier stored node keeps its name and metadata; the passing test 'keeps two distinct findings that reuse an id in different iterations apart' passes no --nodes, so it never exercises the fold. Recommended fix: register the current iteration's derived node in knownFindings before the stored scan (or let the stored scan skip a key the derived scan already claimed), so a reused id resolves to finding:<id>#<iteration> for this iteration.",
+      "evidence": {
+        "cmd": "DEEP_LOOP_COVERAGE_DB_DIR=$SCRATCH/db node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder specs/repro --loop-type review --session-id sess-repro --nodes '[{\"id\":\"F1\",\"kind\":\"FINDING\",\"name\":\"Null deref in c\"},{\"id\":\"fix-3\",\"kind\":\"REMEDIATION\",\"name\":\"Guard the deref\"}]' --edges '[{\"id\":\"resolves-3\",\"relation\":\"RESOLVES\",\"source\":\"fix-3\",\"target\":\"F1\"}]' --state-log $SCRATCH/state.jsonl --iteration 3   # after the same upsert for iterations 1 and 2 on a state log whose iteration 3 findingDetails is [{id:'F1',title:'Null deref in c',file:'src/c.cjs:9'}]",
+        "exit": 0,
+        "out": "graph_nodes_json (iteration 3 batch): finding:F1 FINDING 'Null deref in c' / fix-3 REMEDIATION / finding:F1#3 FINDING 'Null deref in c' / file:src/c.cjs; graph_edges_json: resolves-3 fix-3 -> finding:F1, evidence:F1#3:file:src/c.cjs finding:F1#3 -> file:src/c.cjs. A follow-up read of the store printed: 'finding:F1 | Null deref in c | undefined' (iteration 1's node rewritten, metadata gone), 'finding:F1#2 | Race in b | {\"finding_id\":\"F1\",\"file\":\"src/b.cjs\",\"line\":9}', 'finding:F1#3 | Null deref in c | {\"finding_id\":\"F1\",\"file\":\"src/c.cjs\",\"line\":9}', and edge 'resolves-3 fix-3 -> finding:F1'."
+      }
+    },
+    {
+      "id": "2",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P1",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      "line": 2535,
+      "issue": "Case: cap 10, F-1-001 (depth 1) open with 4 visits, F-2-002 (depth 2) open with 4 visits. The first reduce leaves depth 1 open, so carry is 0 and depth 2's allotted share is 3.5 < 4 spent, which closes F-2-002 as exhausted/reason budget. An iteration later answers F-1-001's question, so it reaches applyFrontierBudget through answeredNodeIds, the depth-1 band then has no open node, carry becomes 5-4=1, depth 2's allotted grows to 4.5, and F-2-002 reverts to its store status 'open'. The carried share (line 2535) makes the budget close non-monotone: a node the run already stopped funding reopens and consumes iterations, and the frontierOpen / frontier_drained facts the stop decision reads can flip backwards between two reduces of the same run. Nothing in the block's comment or in the expansive-depth spec declares that a closure may reopen. Recommended fix: make the closure monotone, either by deriving a band's allotted share from its own configured split only (no moving carry) or by keeping a node closed once it was closed, so the derived status never returns from exhausted to open.",
+      "evidence": {
+        "cmd": "node $SCRATCH/budget-flip.cjs   # requires the exported applyFrontierBudget and calls it twice over one store: applyFrontierBudget(nodes, records, 10) then applyFrontierBudget(nodes, records, 10, undefined, new Set(['F-1-001']))",
+        "exit": 0,
+        "out": "before answer: [\"F-1-001:open\",\"F-2-002:exhausted(budget)\"] budget {\"depth1\":{\"allotted\":5,\"spent\":4},\"depth2\":{\"allotted\":3.5,\"spent\":4},\"depth3\":{\"allotted\":1.5,\"spent\":0}} / after answer : [\"F-1-001:answered\",\"F-2-002:open\"] budget {\"depth1\":{\"allotted\":5,\"spent\":4},\"depth2\":{\"allotted\":4.5,\"spent\":4},\"depth3\":{\"allotted\":1.5,\"spent\":0}}"
+      }
+    },
+    {
+      "id": "3",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "line": 330,
+      "issue": "Case: an iteration delta carries a frontier_proposal whose parentId names a node the store already marked pruned (the leaf's focus lags one step behind the close step, or a resubmitted proposal row names it). checkProposal's relevance check only rejects a parentId that is absent from the store, and readNodeStore keeps pruned rows, so the proposal is admitted as an open child of a rejected branch. pickFrontierFocus then ranks that child as normal open work, so the run spends iterations on a branch admission had pruned, and buildFrontierGraphEvents emits no DERIVED_FROM edge for it because the pruned parent is never written. The module's own relevance rule treats an unresolvable parent as a relevance failure ('a node with no resolvable parent was never placed on the graph'), so a pruned parent is the same class of failure. Recommended fix: reject a proposal whose parentId resolves to a node with status pruned (relevance or a seventh reason), so a rejected branch cannot be re-entered through a descendant.",
+      "evidence": {
+        "cmd": "node $SCRATCH/pruned-parent.cjs   # checkProposal({parentId:'F-1-001',question:'A child of the rejected branch',scope:['a'],evidence:'leaf evidence'}, Map{[F-1-001 => status 'pruned']}, caps, [])",
+        "exit": 0,
+        "out": "checkProposal => null   (null is the admitted result; the six checks accepted a child of the pruned node)"
+      }
+    },
+    {
+      "id": "4",
+      "surface": "S1",
+      "standard": "sk-code",
+      "severity": "P2",
+      "fix_class": "judgment",
+      "file": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      "line": 2684,
+      "issue": "Case: a frontier node seeded at iteration 0 (frontier-admit seed always writes iteration 0) is closed by applyFrontierBudget's band sweep at iteration 9. The question has no resolution record and no stored close row, because the budget close exists only in the projection, so resolvedAtIteration takes frontierClose.iteration, which is the store row's iteration (0 for a seed, the admission iteration otherwise) rather than the iteration the close happened. The registry then reports the question as resolved at iteration 0. No consumer reads resolvedAtIteration in this repository today, so the impact is a wrong registry value for any reader or future consumer; a store-closed node is unaffected because frontier-admit close rewrites iteration with the close iteration. Recommended fix: report null (or the reduce's latest iteration) when the close is budget-derived and has no recorded iteration, instead of the node's creation iteration."
+    }
+  ],
+  "reviewed": [
+    ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+    ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+    ".skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts"
+  ]
+}

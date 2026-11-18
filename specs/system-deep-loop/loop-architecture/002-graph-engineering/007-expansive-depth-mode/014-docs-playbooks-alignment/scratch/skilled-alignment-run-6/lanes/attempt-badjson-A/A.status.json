@@ -1,0 +1,11 @@
+{
+  "id": "A",
+  "exitCode": 0,
+  "signal": null,
+  "reason": "no JSON object with findings",
+  "startedAt": "2026-11-18T06:18:09.931Z",
+  "endedAt": "2026-11-18T06:29:11.788Z",
+  "seconds": 661.857,
+  "scratch": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/skilled-alignment-run-6/A",
+  "sessions": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/skilled-alignment-run-6/A/sessions"
+}

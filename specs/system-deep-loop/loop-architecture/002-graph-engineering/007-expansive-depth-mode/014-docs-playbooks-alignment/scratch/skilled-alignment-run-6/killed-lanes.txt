@@ -1,0 +1,1 @@
+2026-11-18T06:55:13Z skilled-alignment-run-6 critic past 20 minutes (1204s): TERM sent to process group 51347 (51347 ) under runner 51326
