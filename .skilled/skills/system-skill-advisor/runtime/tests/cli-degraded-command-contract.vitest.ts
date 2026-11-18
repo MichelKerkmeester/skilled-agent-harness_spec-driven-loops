@@ -51,4 +51,15 @@ describe('degradedRecommendations', () => {
     expect(result).toMatchObject([{ skillId: 'sk-doc' }]);
     expect(result[0]).not.toHaveProperty('command');
   });
+
+  it('ignores a command named only in a pasted reply', () => {
+    const result = degradedRecommendations(
+      [entry('command-speckit-save')],
+      'Earlier you replied: Run /speckit:save to keep this. Now: Refactor the session store module to remove duplicated locking code',
+    );
+
+    expect(result).toHaveLength(1);
+    expect(result).toMatchObject([{ skillId: 'system-spec-kit' }]);
+    expect(result[0]).not.toHaveProperty('command');
+  });
 });

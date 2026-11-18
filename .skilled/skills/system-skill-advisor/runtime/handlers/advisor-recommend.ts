@@ -562,8 +562,8 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
     return attachTypedCommand(
       input.options?.includeCompiledRoute === false
         ? parsedCachedOutput
-        : enrichCompiledRoutes(parsedCachedOutput, input.prompt, workspaceRoot, input.options?.surfaceHint, input.options?.compiledRouteTopOnly === true),
-      input.prompt,
+        : enrichCompiledRoutes(parsedCachedOutput, scoredPrompt, workspaceRoot, input.options?.surfaceHint, input.options?.compiledRouteTopOnly === true),
+      scoredPrompt,
     );
   }
 
@@ -640,8 +640,8 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
   return attachTypedCommand(
     input.options?.includeCompiledRoute === false
       ? parsed
-      : enrichCompiledRoutes(parsed, input.prompt, workspaceRoot, input.options?.surfaceHint, input.options?.compiledRouteTopOnly === true),
-    input.prompt,
+      : enrichCompiledRoutes(parsed, scoredPrompt, workspaceRoot, input.options?.surfaceHint, input.options?.compiledRouteTopOnly === true),
+    scoredPrompt,
   );
 }
 
