@@ -7,7 +7,7 @@ trigger_phrases:
   - "extend completed review run"
   - "review run_extended"
   - "--extend-minutes review"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Completed-run extension (--extend)
@@ -34,7 +34,7 @@ Under `stopPolicy: convergence`, an extension with nothing new can stop again at
 
 ### Ledger And Reducer Routing
 
-The `run_extended` stem is part of the deep-review ledger schema, and the deep-review reducer routes it. `runtime/scripts/reduce-state.cjs` reads the extension through its live lineage modes.
+The `run_extended` stem is part of the deep-review ledger schema, and the deep-review reducer routes it. The schema refuses an event whose `newMaxIterations` is not `continuedFromRun` plus `addedIterations`, the ceiling the extend step derives, since the reducer adopts it as the run's cap. `runtime/scripts/reduce-state.cjs` reads the extension through its live lineage modes.
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: system-deep-loop
-version: 2.1.6.0
+version: 2.1.7.0
 description: "Routes research and review modes through registry-selected packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
 ---

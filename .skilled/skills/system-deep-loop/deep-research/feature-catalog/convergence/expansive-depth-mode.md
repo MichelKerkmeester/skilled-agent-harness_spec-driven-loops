@@ -6,7 +6,7 @@ trigger_phrases:
   - "expansive depth research"
   - "research frontier mode"
   - "frontier admission research"
-version: 1.0.10.0
+version: 1.0.11.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
@@ -35,7 +35,11 @@ After the iteration graph upsert, the workflow step `step_frontier_graph_upsert`
 
 ### Stop And Next Focus
 
-While a frontier node is open, a stop candidate, whether `all_questions_answered` or a composite convergence stop, becomes another iteration. Next Focus steers to the shallowest open node. The iteration cap, consecutive failures, the anti-convergence floor, stuck recovery, pause, the max-duration stop, `--convergence-mode=off` and the max-iterations policy decide before the frontier veto, so the frontier never extends a run past them.
+While a frontier node is open, a stop candidate, whether `all_questions_answered` or a composite convergence stop, becomes another iteration. Next Focus steers to the shallowest open node. A tie goes to the node with the fewest visits, then to the oldest, then to the lower node id, and the focus reads `Frontier node <id> (depth N, scope S): <question>`. The iteration cap, consecutive failures, the anti-convergence floor, stuck recovery, pause, the max-duration stop, `--convergence-mode=off` and the max-iterations policy decide before the frontier veto, so the frontier never extends a run past them.
+
+### Budget And Dashboard
+
+The reducer splits `maxIterations` 50/35/15 across the depth bands. Once a band's visits reach its share, it closes the band's open and active nodes as `exhausted` with reason `budget`. A node already answered stays answered. A band's unspent share rolls down to the next band only once the band holds no open node, and it never rolls up. The dashboard adds a `## 6B. FRONTIER` section on an expansive run only: the frontier size by status, the pruned count, the revisits and each band's spent and allotted iterations. A store row that does not parse is skipped, and the reducer reports it on stderr and in the projection's `warnings` with its file and line.
 
 ### Fan-Out
 
@@ -55,7 +59,7 @@ Fan-out lineages each receive a share of the seeded nodes. `runtime/scripts/fano
 | `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` | Script | Seeds, admits and closes frontier nodes. Its `graph` command builds the frontier graph events through `buildFrontierGraphEvents`. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs` | Script | Stores the frontier graph events in the coverage graph through `--events`. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Script | Applies the frontier-open veto and passes `depthMode` into the stop-decision config when expansive. |
-| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Script | Builds the opt-in `frontier` registry and the question close rule. |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Script | Builds the opt-in `frontier` registry and the question close rule, closes a spent band's nodes, picks the frontier focus and renders the `6B. FRONTIER` dashboard section. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Script | Passes `depthMode` to lineages only when expansive. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Script | Merges the lineage frontiers and runs the partition guard. |
 
@@ -64,8 +68,21 @@ Fan-out lineages each receive a share of the seeded nodes. `runtime/scripts/fano
 | File | Type | Role |
 |---|---|---|
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts` | Vitest | Admission, prune reasons and the close rule for the frontier writer. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts` | Vitest | The `frontierOpen` veto table and its precedence. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts` | Vitest | The `depth_mode` input and the depth-mode argument on the stop-decision call. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Vitest | The frontier projection, the band budget and its roll-down, the focus pick, the `6B. FRONTIER` section and the torn-row warning. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts` | Vitest | A default run keeps its output. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Vitest | The round-robin deal, the per-lineage store and the seed-share lineage budget. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts` | Vitest | The merged frontier and the partition guard. |
 | `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md` | Manual playbook | DR-068: the flag defaults to `default` and a default run matches the baseline. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md` | Manual playbook | DR-069: the seed writes depth-one nodes before iteration 1. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md` | Manual playbook | DR-070: admission prunes each proposal with its reason. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md` | Manual playbook | DR-071: Next Focus picks the shallowest open node. |
 | `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md` | Manual playbook | DR-072: an open frontier node turns a composite convergence stop into another iteration. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md` | Manual playbook | DR-073: fan-out deals the seeded nodes round-robin. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-graph-mirror-closes-unanswered-nodes.md` | Manual playbook | DR-074: the graph mirror closes unanswered nodes as claims. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-band-budget-rolls-down.md` | Manual playbook | DR-075: a spent band closes its open nodes and an unspent share rolls down, never up. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-dashboard-section.md` | Manual playbook | DR-076: the `6B. FRONTIER` dashboard section appears on an expansive run only. |
 
 ---
 

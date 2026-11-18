@@ -7,7 +7,7 @@ trigger_phrases:
   - "extend completed research run"
   - "run_extended"
   - "--extend-minutes"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Completed-run extension (--extend)
@@ -34,7 +34,7 @@ Under `stopPolicy: convergence`, an extension with nothing new can stop again at
 
 ### Ledger And Reducer Routing
 
-The `run_extended` stem is part of the deep-research ledger schema, and the deep-research reducer routes it. The lifecycle event filters in `deep-research/scripts/reduce-state.cjs` read the same event.
+The `run_extended` stem is part of the deep-research ledger schema, and the deep-research reducer routes it. The schema refuses an event whose `newMaxIterations` is not `continuedFromRun` plus `addedIterations`, the ceiling the extend step derives, since the reducer adopts it as the run's cap. The lifecycle event filters in `deep-research/scripts/reduce-state.cjs` read the same event.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "DR-022 -- Quality Guard — No Single-Weak-Source"
 description: "Verify that convergence STOP is blocked when an answered question relies solely on a tentative source."
-version: 1.14.1.0
+version: 1.14.2.0
 ---
 
 # DR-022 -- Quality Guard — No Single-Weak-Source
@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate single-weak-source guards override STOP when an answer depends on one tentative source.`
 - Expected execution process: Inspect the Quality Guard Protocol in the convergence reference first, then the sourceStrength definitions in state-format.md, then the convergence.cjs guard evaluation, then the loop protocol Step 2c.
 - Desired user-visible outcome: The user gets an accurate explanation of how tentative-only answers are caught and why the loop continues to seek stronger evidence.
-- Expected signals: guard_violation event logged with guard="single_weak_source", STOP decision overridden to CONTINUE, violated question targeted for stronger sourcing in next iteration.
+- Expected signals: the STOP candidate becomes `CONTINUE` with reasonDetail `qualityGuardFailed` and `singleWeakSource` in blockedBy, and no event is written, violated question targeted for stronger sourcing in next iteration.
 - Pass/fail posture: PASS if the single_weak_source guard rule (no answered question can rely solely on one tentative source), the sourceStrength classification, its violation logging, and its STOP-override behavior are consistent across convergence.md, state-format.md, loop-protocol.md and deep-research.yaml; FAIL if any of those elements drift or contradict.
 
 ---
@@ -48,11 +48,11 @@ Validate single-weak-source guards override STOP when an answer depends on one t
 1. `bash: sed -n '104,139p' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
 2. `bash: rg -n 'single_weak_source\|tentative\|sourceStrength' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
 3. `bash: sed -n '183,195p' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
-4. `bash: rg -n 'guard_violation\|single_weak_source' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
+4. `bash: rg -n 'qualityGuardFailed' .skilled/commands/deep/assets/deep-research.yaml`
 5. `bash: sed -n '97,107p' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
 6. `bash: sed -n '236,243p' .skilled/commands/deep/assets/deep-research.yaml`
 ### Expected
-guard_violation event logged with guard="single_weak_source", STOP decision overridden to CONTINUE, violated question targeted for stronger sourcing in next iteration.
+the STOP candidate becomes `CONTINUE` with reasonDetail `qualityGuardFailed` and `singleWeakSource` in blockedBy, and no event is written, violated question targeted for stronger sourcing in next iteration.
 ### Evidence
 Capture the guard rule table row for No Single-Weak-Source, the pseudocode branch for len(sources) == 1 and sources[0].strength == "tentative", the sourceStrength classification table from state-format.md, and the convergence.cjs guard evaluation with the workflow binding.
 ### Pass/Fail
@@ -75,7 +75,7 @@ Privilege convergence.md §2.4 for the canonical guard definition and state-form
 | File | Role |
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Canonical quality guard definitions; use §2.4 Quality Guard Protocol |
-| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | JSONL event schema; use guard_violation event definition and sourceStrength field classification |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | JSONL record schema; use the sourceStrength field classification |
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Loop orchestration; use Step 2c: Quality Guard Check |
 | `.skilled/commands/deep/assets/deep-research.yaml` | Workflow algorithm; inspect `step_check_convergence` guard rule and `stop_decision` binding |
 

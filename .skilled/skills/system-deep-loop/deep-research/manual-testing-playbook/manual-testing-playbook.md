@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.16.3.0
+version: 1.16.4.0
 ---
 
 # deep-research: Manual Testing Playbook
@@ -27,7 +27,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 72 deterministic scenarios across 9 categories validating the current `deep-research` skill surface, including 6 CP-* command-flow stress tests. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 74 deterministic scenarios across 9 categories validating the current `deep-research` skill surface, including 6 CP-* command-flow stress tests. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -238,7 +238,7 @@ Expected signals: The root `step_frontier_seed` precedes `step_fanout_spawn`, th
 
 ## 9. ITERATION EXECUTION AND STATE DISCIPLINE
 
-This category covers 18 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 20 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DR-007 | Iteration reads state before research
 
@@ -474,6 +474,32 @@ Expected signals: The five projection cases pass, the mirror step follows `step_
 #### Test Execution
 > **Feature File:** [DR-074](../manual-testing-playbook/iteration-execution-and-state-discipline/frontier-graph-mirror-closes-unanswered-nodes.md)
 
+### DR-075 | Frontier band budget closes spent bands and rolls down
+
+#### Description
+Verify that under the expansive mode a depth band that spends its share closes its open nodes as `exhausted` with reason `budget`, that an answered node stays answered, and that an unspent share rolls down to the next band but never up.
+
+#### Scenario Contract
+Prompt summary: Check that under expansive depth mode a spent depth band closes its open nodes as exhausted with reason budget, and that an unspent share rolls down to the next band but never up. Return a PASS or FAIL verdict with the reason.
+
+Expected signals: The three budget cases pass, the roll-down case reports a depth-2 allotment of 6.5, the never-up case closes the spent depth-1 node as `exhausted` with reason `budget`, and the answered-node case keeps both nodes answered with a depth-2 allotment of 7.5.
+
+#### Test Execution
+> **Feature File:** [DR-075](../manual-testing-playbook/iteration-execution-and-state-discipline/frontier-band-budget-rolls-down.md)
+
+### DR-076 | Frontier dashboard section on expansive runs only
+
+#### Description
+Verify that the research dashboard shows a `## 6B. FRONTIER` section with the frontier size, pruned count, revisits and band budget on an expansive run, and leaves it out of a default run.
+
+#### Scenario Contract
+Prompt summary: Check that the research dashboard shows the 6B. FRONTIER section with size, pruned count, revisits and band budget on an expansive run, and leaves it out of a default run. Return a PASS or FAIL verdict with the reason.
+
+Expected signals: The dashboard case passes, the expansive dashboard contains `## 6B. FRONTIER`, `- Frontier size: 2 nodes`, `- Pruned nodes: 0`, `- Revisits: ` and `- Budget depth1: `, and the default run has no `frontier` registry key and no `6B. FRONTIER` section.
+
+#### Test Execution
+> **Feature File:** [DR-076](../manual-testing-playbook/iteration-execution-and-state-discipline/frontier-dashboard-section.md)
+
 ---
 
 ## 10. CONVERGENCE AND RECOVERY
@@ -567,9 +593,9 @@ Expected signals: Stuck threshold is enforced, recovery resets the counter, the 
 Verify that convergence STOP is blocked when an answered question cites <2 independent sources.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the source diversity quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard checks each answered question for >= 2 independent sources, and that a violation emits a guard_violation event and overrides the decision to CONTINUE. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
+Prompt summary: As a manual-testing orchestrator, validate the source diversity quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard checks each answered question for >= 2 independent sources, and that a violation turns the decision into CONTINUE with reasonDetail qualityGuardFailed and writes no event. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
 
-Expected signals: guard_violation event logged with guard="source_diversity", STOP decision overridden to CONTINUE, violated question targeted in next iteration focus.
+Expected signals: the STOP candidate becomes `CONTINUE` with reasonDetail `qualityGuardFailed` and `sourceDiversity` in blockedBy, and no event is written, violated question targeted in next iteration focus.
 
 #### Test Execution
 > **Feature File:** [DR-020](../manual-testing-playbook/convergence-and-recovery/quality-guard-source-diversity.md)
@@ -580,9 +606,9 @@ Expected signals: guard_violation event logged with guard="source_diversity", ST
 Verify that convergence STOP is blocked when answered questions don't map to original key questions.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the focus alignment quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard compares answered questions against the original key questions from initialization, and that a mismatch emits a guard_violation event with guard="focus_alignment" and overrides the decision to CONTINUE. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
+Prompt summary: As a manual-testing orchestrator, validate the focus alignment quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard compares answered questions against the original key questions from initialization, and that a mismatch turns the decision into CONTINUE with reasonDetail qualityGuardFailed and focusAlignment in blockedBy, and writes no event. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
 
-Expected signals: guard_violation event logged with guard="focus_alignment", STOP decision overridden to CONTINUE, misaligned question flagged in violation detail.
+Expected signals: the STOP candidate becomes `CONTINUE` with reasonDetail `qualityGuardFailed` and `focusAlignment` in blockedBy, and no event is written, misaligned question flagged in violation detail.
 
 #### Test Execution
 > **Feature File:** [DR-021](../manual-testing-playbook/convergence-and-recovery/quality-guard-focus-alignment.md)
@@ -593,9 +619,9 @@ Expected signals: guard_violation event logged with guard="focus_alignment", STO
 Verify that convergence STOP is blocked when an answered question relies solely on a tentative source.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the no-single-weak-source quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard checks each answered question backed by exactly one source for sourceStrength == "tentative", and that a violation emits a guard_violation event with guard="single_weak_source" and overrides the decision to CONTINUE. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
+Prompt summary: As a manual-testing orchestrator, validate the no-single-weak-source quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard checks each answered question backed by exactly one source for sourceStrength == "tentative", and that a violation turns the decision into CONTINUE with reasonDetail qualityGuardFailed and singleWeakSource in blockedBy, and writes no event. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
 
-Expected signals: guard_violation event logged with guard="single_weak_source", STOP decision overridden to CONTINUE, violated question targeted for stronger sourcing in next iteration.
+Expected signals: the STOP candidate becomes `CONTINUE` with reasonDetail `qualityGuardFailed` and `singleWeakSource` in blockedBy, and no event is written, violated question targeted for stronger sourcing in next iteration.
 
 #### Test Execution
 > **Feature File:** [DR-022](../manual-testing-playbook/convergence-and-recovery/quality-guard-no-single-weak-source.md)
@@ -606,9 +632,9 @@ Expected signals: guard_violation event logged with guard="single_weak_source", 
 Verify the full override path: composite score >0.60 triggers STOP, quality guards check fires, guard fails, decision overridden to CONTINUE.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the convergence-guard override path for deep-research. Trace the full sequence: composite convergence votes STOP (score >0.60), then evaluateResearchQualityGuards runs, then a guard violation is detected, then the STOP is overridden to CONTINUE and the loop resumes against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify this flow exists in convergence.md Decision Priority step 4.5, convergence.cjs, and loop-protocol.md Step 2c. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
+Prompt summary: As a manual-testing orchestrator, validate the convergence-guard override path for deep-research. Trace the full sequence: composite convergence votes STOP (score >0.60), then evaluateResearchQualityGuards runs, then a guard violation is detected, then the STOP is overridden to CONTINUE and the loop resumes against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify this flow exists in convergence.md Decision Priority step 8, convergence.cjs, and loop-protocol.md Step 2c. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
 
-Expected signals: convergence_check with decision STOP and score >0.60, followed by guard_violation event, followed by decision override to CONTINUE and loop resumption.
+Expected signals: a weighted stop score above 0.60 nominates STOP, the failed guard turns it into `CONTINUE` with reasonDetail `qualityGuardFailed` and the failed guards in blockedBy, the workflow logs `Quality guard failed: <guards>. Continuing.` and writes no event, and the loop resumes.
 
 #### Test Execution
 > **Feature File:** [DR-023](../manual-testing-playbook/convergence-and-recovery/convergence-passes-guard-fails-override.md)

@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-review review-loop system."
-version: 1.11.9.0
+version: 1.11.10.0
 ---
 
 # deep-review: Feature Catalog
@@ -363,7 +363,7 @@ See [`state-management/focus-hijack-guard.md`](state-management/focus-hijack-gua
 
 ## 4. REVIEW DIMENSIONS
 
-These entries capture the four canonical audit dimensions that define loop coverage and shape findings, convergence, and the strategy checklist.
+These entries capture the four canonical audit dimensions, plus any configured custom dimension, that define loop coverage and shape findings, convergence, and the strategy checklist.
 
 ### Correctness
 

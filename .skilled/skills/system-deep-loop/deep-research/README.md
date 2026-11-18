@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.18.0
+version: 1.14.19.0
 ---
 
 # deep-research
@@ -120,7 +120,7 @@ A low novelty score only nominates STOP.
 | MAD noise floor | 0.35 | The latest ratio sits at or below `MAD * 1.4826` |
 | Question entropy | 0.35 | Evidence-backed coverage reaches 0.85 |
 
-A normalized score above 0.60 nominates STOP. The legal-stop gates then check that low novelty held for the required rounds, that every key question has an evidence-backed answer, that sources are diverse and that one weak source does not carry a finding. A missing graph decision blocks every non-terminal STOP. When a gate fails, the run records `blocked_stop` and continues with a recovery focus.
+A normalized score above 0.60 nominates STOP. The legal-stop gates then check that low novelty held for the required rounds, that every key question has an evidence-backed answer, that sources are diverse and that one weak source does not carry a finding. A failed quality guard returns CONTINUE with `qualityGuardFailed` and records no event. A missing graph decision blocks every non-terminal STOP, and a graph `STOP_BLOCKED` records `blocked_stop` and continues with a recovery focus.
 
 The shipped config floors convergence at 3 rounds, sets `stuckThreshold` to 3 and caps a run at 10 rounds and 120 minutes. Lower `--convergence` asks for more rounds. Raise it when the loop should finish sooner.
 
@@ -194,7 +194,7 @@ Skip it for a single lookup, where a direct web search or the `@context` agent i
 
 **Q: How does convergence decide to stop?**
 
-A: A low novelty score only nominates STOP. The weighted score must clear 0.60 before a STOP is nominated. Then the legal-stop gates check novelty over the required rounds, question coverage, source diversity and graph evidence. A blocked gate writes a `blocked_stop` event and the loop continues with a recovery focus. The full decision order is in [the convergence reference](./references/convergence/convergence.md).
+A: A low novelty score only nominates STOP. The weighted score must clear 0.60 before a STOP is nominated. Then the legal-stop gates check novelty over the required rounds, question coverage, source diversity and graph evidence. A failed quality guard continues the loop with `qualityGuardFailed` and writes no event. A graph block writes a `blocked_stop` event and the loop continues with a recovery focus. The full decision order is in [the convergence reference](./references/convergence/convergence.md).
 
 **Q: Why does each iteration start a fresh agent?**
 

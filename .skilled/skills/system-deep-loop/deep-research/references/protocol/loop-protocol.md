@@ -10,7 +10,7 @@ trigger_phrases:
   - "research synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.14.18.0
+version: 1.14.19.0
 ---
 
 # Loop Protocol Reference
@@ -220,16 +220,14 @@ This summary is prepended to the dispatch context (Step 3) to ensure the agent h
 
 #### Step 2c: Quality Guard Check
 
-When the convergence algorithm returns STOP:
-1. Run quality guard checks (see convergence.md §2.4)
-2. Verify minimum coverage, source diversity, and question resolution thresholds
-3. If **all guards pass**: proceed with STOP, exit to synthesis
-4. If **any guard fails**: override decision to CONTINUE
-   - Log each violation: `{"type":"event","event":"guard_violation","guard":"<name>","iteration":N,"detail":"<reason>"}`
-   - Persist the blocked legal-stop outcome: `{"type":"event","event":"blocked_stop","mode":"research","run":N,"blockedBy":["<gate>"],"gateResults":{"convergence":{"pass":true,"score":0.0},"keyQuestionCoverage":{"pass":false,"answered":X,"total":Y},"evidenceDensity":{"pass":false,"sources":N},"hotspotSaturation":{"pass":true}},"recoveryStrategy":"<one-line hint>","timestamp":"<ISO8601>","sessionId":"<sid>","generation":G}`
-   - Append failed guard details to strategy.md "Active Risks" section
-5. The loop continues until BOTH convergence AND quality guards pass simultaneously
-6. Guard checks apply only to STOP decisions - CONTINUE and STUCK_RECOVERY bypass this step
+When the convergence script forms a STOP candidate, it evaluates the quality guards itself (see convergence.md §2, Decision Priority steps 8 and 9):
+1. The guards are `sourceDiversity`, `focusAlignment` and `singleWeakSource`
+2. If **all guards pass**: the graph decision settles the stop
+3. If **any guard fails**: the decision becomes CONTINUE with reasonDetail `qualityGuardFailed`, and `blockedBy` names the failed guards
+   - The workflow logs `Quality guard failed: {blocked_by_csv}. Continuing.`
+   - No event is written: a failed guard records neither a `guard_violation` nor a `blocked_stop` event
+4. The loop continues until BOTH convergence AND quality guards pass simultaneously
+5. Guard checks apply to every STOP candidate except the hard max-iteration stop - CONTINUE and STUCK_RECOVERY bypass this step
 
 If the legal-stop decision tree returns `blocked`, the workflow MUST append the `blocked_stop` JSONL event before continuing. Reducers and dashboards consume the persisted event; they must not infer blocked-stop state solely from prose logs.
 

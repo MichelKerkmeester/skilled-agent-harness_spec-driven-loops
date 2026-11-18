@@ -1,7 +1,7 @@
 ---
 title: "DR-065 -- Completed-run extension with --extend"
 description: "This scenario validates `--extend=N` on a completed deep-research run for `DR-065`. It focuses on same-session continuation, the `run_extended` ledger event and the synthesis snapshot taken before the first new dispatch."
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # DR-065 -- Completed-run extension with --extend
@@ -84,6 +84,7 @@ Check the state log first, then the config. A missing event with a correct confi
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `../../feature-catalog/loop-lifecycle/completed-run-extension.md` | Feature-catalog entry for completed-run extension |
 | `../../feature-catalog/loop-lifecycle/initialization.md` | Feature-catalog source describing the lineage modes the config accepts |
 
 ### Implementation And Test Anchors

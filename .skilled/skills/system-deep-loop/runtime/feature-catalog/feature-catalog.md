@@ -5,7 +5,7 @@ trigger_phrases:
   - "runtime/ feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
-version: 1.4.9.0
+version: 1.4.10.0
 ---
 
 # runtime/: Feature Catalog
@@ -139,7 +139,7 @@ See [`executor/landed-iteration-no-redispatch.md`](../feature-catalog/executor/l
 
 ## 3. PROMPT RENDERING
 
-This entry covers prompt-pack template rendering and placeholder validation before iteration dispatch.
+These entries cover prompt-pack template rendering, placeholder validation before iteration dispatch, and the research prompt pack contract.
 
 ### Prompt pack
 
@@ -591,7 +591,7 @@ See [`coverage-graph/source-quality-class.md`](../feature-catalog/coverage-graph
 
 ## 8. SCRIPT ENTRY POINTS
 
-These entries cover the direct `.cjs` interfaces that replaced the removed `deep_loop_graph_*` MCP tools.
+These entries cover the direct `.cjs` interfaces that replaced the removed `deep_loop_graph_*` MCP tools, plus `frontier-admit.cjs`, which owns the expansive frontier node store.
 
 ### convergence.cjs
 
@@ -691,7 +691,7 @@ See [`script-entry-points/frontier-admit-script.md`](../feature-catalog/script-e
 
 ## 9. COUNCIL
 
-These entries cover the seat-dispatch helper that the divergent pivot in `deep-loop/divergent-pivot.ts` calls when a stalled research or review run convenes seats. The council folder holds this one CJS helper.
+These entries cover the seat-dispatch helper that the divergent pivot in `deep-loop/divergent-pivot.ts` calls when a stalled research or review run convenes seats. The council folder also documents the divergent pivot's per-attempt seat cap and council retry.
 
 ### Multi-seat dispatch
 

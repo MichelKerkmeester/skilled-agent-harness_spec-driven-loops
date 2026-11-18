@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.30.0
+version: 1.11.31.0
 ---
 
 # Deep Review Loop Protocol
@@ -177,10 +177,15 @@ Reducer contract for every loop refresh:
 
 #### Step 2: Check Convergence
 
-Run `shouldContinue_review()` (see `../deep-research/references/convergence/convergence.md` Section 10.3):
+Run `shouldContinue_review()`. The full order is the Decision Priority list in `../convergence/convergence.md`; first match wins:
 
 - Max iterations reached? `STOP`
+- Three trailing failed iterations? `STOP` with stop reason `error`
 - Stuck count `>= 2` using `noProgressThreshold = 0.05`? `STUCK_RECOVERY`
+- `--convergence-mode=off` or `--stop-policy=max-iterations`? `CONTINUE`
+- A stop candidate forms when all dimensions are covered and clean, when the composite vote passes, or, under `--depth-mode=expansive`, when the frontier has drained with at least one answered node (`frontier_drained`). No candidate: `CONTINUE`
+- Below `minIterations`, the candidate becomes `CONTINUE` (`minIterationsNotReached`)
+- Under `--depth-mode=expansive`, an open or active frontier node turns the candidate into `CONTINUE` (`frontierOpen`)
 - Composite convergence votes `STOP` only after:
   - Rolling average uses `rollingStopThreshold = 0.08`
   - Dimension coverage reaches 100% across the dimensions `reviewDimensions` names in the config, which is the four canonical ones for `all` and only the names given otherwise; a config with no list falls back to the dimensions the coverage map holds

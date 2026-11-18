@@ -1,7 +1,7 @@
 ---
 title: "runtime/: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the runtime/ skill."
-version: 1.4.5.0
+version: 1.4.6.0
 ---
 
 # runtime/: Manual Testing Playbook
@@ -36,7 +36,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 56 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria. DLR-060 to DLR-064 map to catalog entries that carry no F-number.
+This playbook provides 58 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria. DLR-060 to DLR-066 map to catalog entries that carry no F-number.
 
 ### REALISTIC TEST MODEL
 
@@ -562,7 +562,7 @@ Expected signals: The stored class is `repo-test` for the test path, the leaf-su
 
 ## 12. SCRIPT ENTRY POINTS
 
-This category covers 5 scenarios while the linked feature files remain the canonical execution contract.
+This category covers 6 scenarios while the linked feature files remain the canonical execution contract.
 
 ### DLR-014 | convergence.cjs
 
@@ -629,11 +629,24 @@ Expected signals: stdout JSON with `"ok":true` and a receipt carrying `ledger_id
 #### Test Execution
 > **Feature File:** [DLR-055](../manual-testing-playbook/script-entry-points/append-mode-event-script.md)
 
+### DLR-065 | frontier-admit.cjs
+
+#### Description
+Owns the expansive frontier node store: seeds depth-1 nodes and reports the budget, admits or prunes leaf proposals through six ordered checks, closes nodes, and refuses to close a pruned node as live.
+
+#### Scenario Contract
+Prompt: `Validate frontier-admit.cjs: seed two nodes, admit one proposal and prune one, close the admitted node, and try to close the pruned one. Return a PASS or FAIL verdict with the reason.`
+
+Expected signals: `seed` prints `[frontier-admit] budget after seed 10 iterations, 3 growth slots` and admits `F-1-001` and `F-1-002`; `admit` admits `F-2-003` and prunes `F-2-004` with reason `relevance`; `close` appends the `F-2-003` row as `answered`; closing `F-2-004` as `answered` exits 2 with the pruned-node refusal.
+
+#### Test Execution
+> **Feature File:** [DLR-065](../manual-testing-playbook/script-entry-points/frontier-admit-script.md)
+
 ---
 
 ## 13. COUNCIL
 
-Per the Runtime Boundary Decision (ADR-001), `lib/council/` holds the seat-dispatch helper the divergent pivot calls. This scenario validates that surface.
+Per the Runtime Boundary Decision (ADR-001), `lib/council/` holds the seat-dispatch helper the divergent pivot calls. These scenarios validate that surface and the divergent pivot's per-attempt seat cap and council retry.
 
 ### DLR-018 | Multi-seat dispatch
 
@@ -662,7 +675,7 @@ Expected signals: The retry case and the fail-closed second-miss case pass. The 
 
 ## 14. FAN-OUT
 
-This category covers 11 scenarios validating the opt-in multi-executor fan-out layer added in packet 124: config schema, pool primitive, CLI lineage driver, write-failure salvage, research merge, review strongest-restriction, and artifact-dir-override parity.
+This category covers 12 scenarios validating the opt-in multi-executor fan-out layer added in packet 124: config schema, pool primitive, CLI lineage driver, write-failure salvage, research merge, review strongest-restriction, artifact-dir-override parity, and the expansive per-lineage budget.
 
 ### DLR-023 | Fan-out config schema
 
@@ -808,6 +821,19 @@ Expected signals: The census prefixes `runs:`, `pairs:`, `class near-line:`, `cl
 
 #### Test Execution
 > **Feature File:** [DLR-059](../manual-testing-playbook/fanout/fanout-pair-replay.md)
+
+### DLR-066 | Fan-out sizes each expansive lineage from its seed share
+
+#### Description
+Under `--depth-mode expansive`, a lineage with no matrix `iterations` value gets a budget from its own seed share, a lineage dealt no seed node runs at its loop default (12 native, the workflow default for a CLI lineage), and stderr notes name each derived budget and warn once when lineages outnumber the open seed nodes.
+
+#### Scenario Contract
+Prompt: `Check that an expansive fan-out sizes each lineage from its own seed share, keeps a matrix iterations value, runs a lineage with no seed share at its loop default, and names each budget on stderr. Return a PASS or FAIL verdict with the reason.`
+
+Expected signals: the four per-lineage budget cases pass; a research matrix of four lineages gets `[12, 10, 12, 5]`; a review lineage dealt two nodes gets 24 and one dealt none gets 7; the notes open with `[fanout-run] 3 lineages share 1 open seed node, so 2 lineages get no seed share`.
+
+#### Test Execution
+> **Feature File:** [DLR-066](../manual-testing-playbook/fanout/fanout-expansive-lineage-budget.md)
 
 ---
 
@@ -997,3 +1023,5 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 | DLR-062 | [Divergent pivot seat cap and council retry](../feature-catalog/council/divergent-pivot-seat-cap-and-retry.md) | [council/divergent-council-quorum-retry.md](../manual-testing-playbook/council/divergent-council-quorum-retry.md) |
 | DLR-063 | [Landed iteration is not redispatched](../feature-catalog/executor/landed-iteration-no-redispatch.md) | [executor/landed-iteration-skips-redispatch.md](../manual-testing-playbook/executor/landed-iteration-skips-redispatch.md) |
 | DLR-064 | [Research Claude config dir](../feature-catalog/executor/research-claude-config-dir.md) | [executor/research-claude-config-dir.md](../manual-testing-playbook/executor/research-claude-config-dir.md) |
+| DLR-065 | [frontier-admit.cjs](../feature-catalog/script-entry-points/frontier-admit-script.md) | [script-entry-points/frontier-admit-script.md](../manual-testing-playbook/script-entry-points/frontier-admit-script.md) |
+| DLR-066 | [Fan-out CLI lineage driver](../feature-catalog/fanout/fanout-run.md) | [fanout/fanout-expansive-lineage-budget.md](../manual-testing-playbook/fanout/fanout-expansive-lineage-budget.md) |

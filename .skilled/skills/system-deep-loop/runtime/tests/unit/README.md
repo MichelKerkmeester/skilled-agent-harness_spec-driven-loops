@@ -58,6 +58,7 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `dependency-seams.vitest.ts` | Executable checks for the dependency seams runtime contract. |
 | `dispatch-failure.vitest.ts` | Executable checks for the dispatch failure runtime contract. |
 | `dispatch-receipts.vitest.ts` | Executable checks for the dispatch receipts runtime contract. |
+| `divergent-pivot-seat-scope.vitest.ts` | Executable checks that a divergent pivot counts only its own seat outputs against the per-attempt cap. |
 | `event-envelope.vitest.ts` | Executable checks for the event envelope runtime contract. |
 | `evidence-contract.vitest.ts` | Executable checks for the evidence contract runtime contract. |
 | `executor-audit-process-group.vitest.ts` | Executable checks for the executor audit process group runtime contract. |
@@ -70,6 +71,8 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `fanout-pool.vitest.ts` | Executable checks for the fanout pool runtime contract. |
 | `fanout-run.vitest.ts` | Executable checks for the fanout run runtime contract. |
 | `fanout-salvage.vitest.ts` | Executable checks for the fanout salvage runtime contract. |
+| `frontier-admit-review.vitest.ts` | Executable checks for review frontier admission: target relevance, seeding, the review block and the dimension-scaled budget. |
+| `frontier-admit.vitest.ts` | Executable checks for the frontier node store: check order, prune reasons, seeding, close, graph projection and the seed budget. |
 | `health-degeneration-harness.vitest.ts` | Executable checks for the health degeneration runtime contract. |
 | `jsonl-repair.vitest.ts` | Executable checks for the jsonl repair runtime contract. |
 | `legacy-projections.test.ts` | Executable checks for the legacy projections runtime contract. |
@@ -95,7 +98,9 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `receipts-and-effect-recovery.vitest.ts` | Executable checks for the receipts and effect recovery runtime contract. |
 | `render-command-contract.vitest.ts` | Executable checks for the render command contract runtime contract. |
 | `replay-fingerprint.vitest.ts` | Executable checks for the replay fingerprint runtime contract. |
+| `research-depth-mode-golden.vitest.ts` | Executable checks that a default research run keeps its pre-expansive output byte for byte. |
 | `result-envelopes.vitest.ts` | Executable checks for the result envelopes runtime contract. |
+| `review-depth-mode-golden.vitest.ts` | Executable checks that a default review run keeps its pre-expansive output byte for byte. |
 | `runtime-bootstrap.test.cjs` | `node:test` suite for `../../scripts/runtime-bootstrap.cjs`: `tsxChildEnv` drops `NODE_PRESERVE_SYMLINKS` and never mutates `process.env`, `resolveContainmentRepoRoot` honors its precedence order and symlink redirection, and every tsx re-exec entry point builds its child env through `tsxChildEnv`. A regression here reintroduces the `ERR_MODULE_NOT_FOUND` that stalls every executor at iteration 1. |
 | `run-now-yaml-control.vitest.ts` | Executable checks for the run now yaml control runtime contract. |
 | `runtime-capabilities-matrix-conformance.vitest.ts` | Executable checks for the runtime capabilities matrix conformance runtime contract. |

@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.13.8.0
+version: 1.13.9.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -500,12 +500,12 @@ Expected signals: `stuckThreshold=2` consecutive low-progress iterations trigger
 ### DRV-020 | Dimension coverage convergence signal
 
 #### Description
-Verify dimension coverage signal (weight 0.45) requires all 4 dimensions + minStabilizationPasses >= 1.
+Verify dimension coverage signal (weight 0.45) requires every configured dimension (the four by default) + minStabilizationPasses >= 1.
 
 #### Scenario Contract
 Prompt: `Validate the deep-review dimension coverage convergence signal and its stabilization requirement.`
 
-Expected signals: Weight 0.45, all 4 dimensions required, `minStabilizationPasses=1`, signal contributes 0 until conditions are met, strategy.md "Covered" list tracks dimension coverage.
+Expected signals: Weight 0.45, every configured dimension required (the four by default), `minStabilizationPasses=1`, signal contributes 0 until conditions are met, strategy.md "Covered" list tracks dimension coverage.
 
 #### Test Execution
 > **Feature File:** [DRV-020](../manual-testing-playbook/convergence-and-recovery/dimension-coverage-convergence-signal.md)

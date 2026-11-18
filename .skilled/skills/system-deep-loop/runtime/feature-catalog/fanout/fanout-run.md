@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.5.0
+version: 1.4.6.0
 ---
 
 # Fan-out CLI lineage driver
@@ -131,6 +131,7 @@ warning when there are more lineages than open seed nodes.
 |---|---|
 | `tests/unit/fanout-run.vitest.ts` | 5 tests: native-only config returns early (no pool spawn), bad JSON config exits 3, missing required args exits 3, 2-lineage pool creates distinct dirs + ledger + summary, same-kind replica state dirs are distinct |
 | `tests/unit/fanout-run.vitest.ts` | Expansive depth groups: `expansive depth frontier` (13 tests: the round-robin deal, the reuse of the budget step's partition, the per-lineage node store, the `frontier_scope` binding, the recorded partition and `depthMode` propagation) and `per-lineage expansive budget` (4 tests: the seed-share budget and the loop-default floor for a lineage dealt no seed node) |
+| `manual-testing-playbook/fanout/fanout-expansive-lineage-budget.md` | DLR-066: the seed-share lineage budget, the loop-default floor and the stderr budget notes |
 
 ---
 
