@@ -356,7 +356,113 @@ describe('frontier-admit review target', () => {
 });
 
 // ───────────────────────────────────────────────────────────────────
-// 5. REVIEW FRONTIER BLOCK
+// 5. REVIEW ROOT CAP AND COMMIT-RANGE SCOPE
+// ───────────────────────────────────────────────────────────────────
+
+describe('frontier-admit review root cap and commit-range scope', () => {
+  // A fan-out parent seeds before any config is written, so these run with none.
+  function makeBareArtifactDir(): string {
+    const dir = mkdtempSync(join(tmpdir(), 'frontier-admit-review-bare-'));
+    tempDirs.push(dir);
+    return dir;
+  }
+
+  function subTargets(count: number): NodeRow[] {
+    return Array.from({ length: count }, (_, index) => ({
+      question: `what does review sub-target number ${index + 1} hide`,
+      scope: `src/part-${index + 1}`,
+      evidence: `src/part-${index + 1}/index.ts:1`,
+    }));
+  }
+
+  const RANGE = 'adedc72e930~100..adedc72e930';
+  const RANGE_SCOPE_FILES = [
+    '.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md',
+    '.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json',
+  ];
+
+  it('seeds up to eight depth-1 review sub-targets, the top of the documented 3 to 8 range', () => {
+    const artifactDir = makeBareArtifactDir();
+
+    const { admitted, pruned } = seedNodes({ artifactDir, iteration: 0, candidates: subTargets(9), target: 'review' });
+
+    expect(admitted).toHaveLength(8);
+    expect(pruned).toEqual([{ nodeId: expect.any(String), reason: 'fanout' }]);
+  });
+
+  it('keeps a research seed at its documented six depth-1 nodes', () => {
+    const artifactDir = makeBareArtifactDir();
+
+    const { admitted, pruned } = seedNodes({ artifactDir, iteration: 0, candidates: subTargets(7) });
+
+    expect(admitted).toHaveLength(6);
+    expect(pruned).toEqual([{ nodeId: expect.any(String), reason: 'fanout' }]);
+  });
+
+  it('leaves the per-node children cap in force below the root', () => {
+    const artifactDir = makeReviewArtifactDir();
+    writeFileSync(
+      join(artifactDir, REVIEW_CONFIG_FILE),
+      JSON.stringify({ ...REVIEW_CONFIG, expansiveDepth: { ...REVIEW_CONFIG.expansiveDepth, maxFrontierNodes: 20 } }),
+      'utf8',
+    );
+    const { admitted: [parentId] } = seedNodes({
+      artifactDir,
+      iteration: 0,
+      candidates: [makeReviewProposal('which review parent holds the children')],
+      target: 'review',
+    });
+    const children = [1, 2, 3].map((index) => ({
+      ...makeReviewProposal(`which review child number ${index} opens`),
+      parentId,
+      scope: `src/a/child-${index}.ts`,
+    }));
+
+    const { admitted, pruned } = admitProposals({ artifactDir, iteration: 1, proposals: children, target: 'review' });
+
+    expect(admitted).toHaveLength(2);
+    expect(pruned).toEqual([{ nodeId: expect.any(String), reason: 'fanout' }]);
+  });
+
+  it('intersects a commit-range target with the files the range touches', () => {
+    const config = { reviewTargetType: 'files', reviewTarget: RANGE, reviewScopeFiles: RANGE_SCOPE_FILES };
+
+    expect(scopeInsideReviewTarget('.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate', config)).toBe(true);
+    expect(scopeInsideReviewTarget('./.skilled/skills/system-spec-kit/runtime/cli/retrieval/', config)).toBe(true);
+    expect(scopeInsideReviewTarget(RANGE_SCOPE_FILES[0], config)).toBe(true);
+    expect(scopeInsideReviewTarget('.skilled/skills/system-spec-kit/changelog', config)).toBe(false);
+    expect(scopeInsideReviewTarget(['.skilled/skills/system-spec-kit/runtime/cli/retrieval', 'lib/x'], config)).toBe(false);
+    expect(scopeInsideReviewTarget('lib/x', { reviewTargetType: 'files', reviewTarget: RANGE })).toBe(true);
+  });
+
+  it('admits depth-2 proposals a commit-range lineage scoped inside the touched files', () => {
+    const artifactDir = makeBareArtifactDir();
+    writeFileSync(
+      join(artifactDir, REVIEW_CONFIG_FILE),
+      JSON.stringify({ ...REVIEW_CONFIG, reviewTarget: RANGE, reviewScopeFiles: RANGE_SCOPE_FILES }),
+      'utf8',
+    );
+    // A lineage store holds the depth-1 node the fan-out runner dealt it, under the parent's id.
+    writeFileSync(
+      join(artifactDir, STORE_FILE),
+      `${JSON.stringify(nodeRow('F-1-077', 'root', 1, 'review the system-spec-kit changes in the range', { scope: ['.skilled/skills/system-spec-kit'] }))}\n`,
+      'utf8',
+    );
+    const proposals = [
+      { parentId: 'F-1-077', question: 'does the spec-gate README match the hook', scope: '.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate', evidence: 'spec-gate/README.md:1' },
+      { parentId: 'F-1-077', question: 'does the retrieval fixture set match its CLI', scope: '.skilled/skills/system-spec-kit/runtime/cli/retrieval', evidence: 'corpus-manifest.json:1' },
+      { parentId: 'F-1-077', question: 'does an untouched library drift', scope: 'lib/x', evidence: 'lib/x/index.ts:1' },
+    ];
+
+    const { admitted, pruned } = admitProposals({ artifactDir, iteration: 1, proposals, target: 'review' });
+
+    expect(admitted).toHaveLength(2);
+    expect(pruned).toEqual([{ nodeId: expect.any(String), reason: 'relevance' }]);
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// 6. REVIEW FRONTIER BLOCK
 // ───────────────────────────────────────────────────────────────────
 
 describe('frontier block review target', () => {

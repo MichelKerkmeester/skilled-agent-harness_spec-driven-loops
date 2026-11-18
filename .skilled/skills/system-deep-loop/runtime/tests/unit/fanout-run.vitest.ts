@@ -6702,6 +6702,16 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
     expect(summary.frontier_partition).toEqual({ 'vibe-frontier': ['F-1-001', 'F-1-002'] });
   });
 
+  it('both loop protocols name the summary key the runner records the partition under', () => {
+    // frontier_scope is the lineage prompt binding; a reader of orchestration-summary.json
+    // who looks for it there finds nothing, so each protocol names the recorded key.
+    const skillRoot = join(dirname(requireCjs.resolve('../../scripts/fanout-run.cjs')), '..', '..');
+    for (const mode of ['deep-research', 'deep-review']) {
+      const protocol = readFileSync(join(skillRoot, mode, 'references', 'protocol', 'loop-protocol.md'), 'utf8');
+      expect(protocol, mode).toMatch(/`frontier_partition` in `orchestration-summary\.json`/);
+    }
+  });
+
   it('a default depth mode writes no lineage store and records no partition', async () => {
     const binDir = makeTempDir('fanout-run-frontier-default-bin-');
     writeFrontierCaptureVibeStub(binDir);

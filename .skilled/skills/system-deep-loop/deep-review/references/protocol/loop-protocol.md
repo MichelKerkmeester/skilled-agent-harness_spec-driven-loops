@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.15.0
+version: 1.11.16.0
 ---
 
 # Deep Review Loop Protocol
@@ -466,7 +466,7 @@ Under `--depth-mode=expansive` the loop keeps a frontier of sub-target nodes bes
 
 Next Focus reads, in precedence order: blocked-stop recovery, the pivot, the active frontier node, the leaf's `nextFocus`, then the first uncovered dimension. The `frontierOpen` veto holds the loop at CONTINUE while a node stays open, and never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the review floor. Stuck recovery closes the active node `exhausted` with reason `stuck` before recovery continues.
 
-On a fan-out run the depth-1 nodes are dealt round-robin in node-id order, `frontier_scope:` binds each lineage's node ids beside `review_focus:` in its prompt, and the partition is recorded in `orchestration-summary.json`. Each lineage's store is written before it spawns, the merge returns a merged `frontier`, and a partition guard names any dealt node no lineage reports. A node needs one iteration per configured dimension, so 50% of each lineage's `maxIterations` should reach `ceil(nodes / lineages) * dimensions`; below that the depth-1 band cannot fund the nodes it was dealt.
+On a fan-out run the depth-1 nodes are dealt round-robin in node-id order, `frontier_scope:` binds each lineage's node ids beside `review_focus:` in its prompt, and the partition is recorded as `frontier_partition` in `orchestration-summary.json`. Each lineage's store is written before it spawns, the merge returns a merged `frontier`, and a partition guard names any dealt node no lineage reports. A node needs one iteration per configured dimension, so 50% of each lineage's `maxIterations` should reach `ceil(nodes / lineages) * dimensions`; below that the depth-1 band cannot fund the nodes it was dealt.
 
 ---
 

@@ -2115,11 +2115,18 @@ describe('research frontier merge', () => {
   it('merges each lineage frontier with its label', () => {
     const frontier = mergeResearchFrontier([lineageA, lineageB]);
     expect(frontier.nodes).toHaveLength(4);
-    expect(frontier.nodes.filter((node) => node.nodeId === 'F-2-003').map((node) => node.lineage)).toEqual(['a', 'b']);
+    expect(frontier.nodes.filter((node) => node.lineageNodeId === 'F-2-003').map((node) => node.nodeId)).toEqual(['a:F-2-003', 'b:F-2-003']);
     expect(frontier.stats.total).toBe(4);
     expect(frontier.stats.open).toBe(2);
     expect(frontier.stats.exhausted).toBe(1);
     expect(frontier.stats.answered).toBe(1);
+  });
+
+  it('gives every merged research node a unique id when two lineages share a local id', () => {
+    const frontier = mergeResearchFrontier([lineageA, lineageB]);
+    const ids = frontier.nodes.map((node) => node.nodeId);
+
+    expect(new Set(ids).size).toBe(ids.length);
   });
 
   it('adds no frontier key when no lineage has one', () => {
@@ -2170,11 +2177,11 @@ describe('review frontier merge', () => {
   it('merges each lineage frontier with its label and stats', () => {
     const merged = mergeReviewRegistries([lineageA, lineageB]);
     const frontier = merged.frontier as {
-      nodes: Array<{ nodeId: string; lineage: string }>;
+      nodes: Array<{ nodeId: string; lineageNodeId: string; lineage: string }>;
       stats: Record<string, number>;
     };
     expect(frontier.nodes).toHaveLength(4);
-    expect(frontier.nodes.filter((node) => node.nodeId === 'F-2-003').map((node) => node.lineage)).toEqual(['a', 'b']);
+    expect(frontier.nodes.filter((node) => node.lineageNodeId === 'F-2-003').map((node) => node.nodeId)).toEqual(['a:F-2-003', 'b:F-2-003']);
     expect(frontier.stats).toMatchObject({ total: 4, open: 2, exhausted: 1, answered: 1 });
   });
 
@@ -2192,6 +2199,32 @@ describe('review frontier merge', () => {
     });
     const frontier = merged.frontier as { partitionGuard?: { passed: boolean; missing: string[] } };
     expect(frontier.partitionGuard).toEqual({ passed: false, missing: ['F-1-004'] });
+  });
+
+  it('gives every merged node a unique id when lineages number their children alike', () => {
+    // Each lineage numbers the nodes it admits from its own store, so three lineages that
+    // each hold one dealt depth-1 node all name their first child F-2-002.
+    const lineage = (label: string, parentId: string) => ({
+      label,
+      registry: registryWithFrontier([
+        { nodeId: parentId, parentId: 'root', status: 'answered' } as { nodeId: string; status: string },
+        { nodeId: 'F-2-002', parentId, status: 'pruned' } as { nodeId: string; status: string },
+      ]),
+    });
+    const merged = mergeReviewRegistries([lineage('pi-2', 'F-1-076'), lineage('pi-3', 'F-1-077'), lineage('pi-4', 'F-1-078')], {
+      frontierPartition: { 'pi-2': ['F-1-076'], 'pi-3': ['F-1-077'], 'pi-4': ['F-1-078'] },
+    });
+    const frontier = merged.frontier as {
+      nodes: Array<{ nodeId: string; lineageNodeId: string; parentId: string; lineage: string }>;
+      partitionGuard?: { passed: boolean; missing: string[] };
+    };
+    const ids = frontier.nodes.map((node) => node.nodeId);
+
+    expect(new Set(ids).size).toBe(ids.length);
+    const child = frontier.nodes.find((node) => node.lineage === 'pi-3' && node.lineageNodeId === 'F-2-002');
+    expect(child).toBeDefined();
+    expect(ids).toContain(child?.parentId);
+    expect(frontier.partitionGuard).toEqual({ passed: true, missing: [] });
   });
 
   it('adds no frontier key when no review lineage has one', () => {

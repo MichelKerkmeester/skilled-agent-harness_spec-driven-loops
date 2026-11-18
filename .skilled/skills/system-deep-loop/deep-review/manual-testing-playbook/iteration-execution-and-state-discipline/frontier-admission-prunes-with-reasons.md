@@ -1,7 +1,7 @@
 ---
 title: "DRV-078 -- Frontier admission prunes each proposal with its reason"
 description: "This scenario validates that each failing admission check prunes a review proposal with that check's own reason, that a seed candidate arrives settled with its prune reason, and that the review workflow names `merge-no-own-diff` and `generated-artifact` as seed prune reasons, for `DRV-078`."
-version: 1.13.0.0
+version: 1.13.1.0
 ---
 
 # DRV-078 -- Frontier admission prunes each proposal with its reason
@@ -54,7 +54,7 @@ Operators run the commands below and confirm that each failing check names its o
 
 ### Expected
 
-Command 1 prints `Tests  7 passed | 11 skipped (18)`, with one passing case for each of relevance (twice), dedupe, depth, fanout, budget and cycle. Command 2 prints `Tests  1 passed | 17 skipped (18)`, and the case `seeds a review run, settling a candidate that carries its own prune reason` passes. Command 3 prints two lines, 333 and 910, that each name `{"pruneReason":"generated-artifact"}`. Command 4 prints one line, 405, which reads the candidate's `pruneReason` only when the target is the review.
+Command 1 prints `Tests  7 passed | 16 skipped (23)`, with one passing case for each of relevance (twice), dedupe, depth, fanout, budget and cycle. Command 2 prints `Tests  1 passed | 22 skipped (23)`, and the case `seeds a review run, settling a candidate that carries its own prune reason` passes. Command 3 prints two lines, 333 and 910, that each name `{"pruneReason":"generated-artifact"}`. Command 4 prints one line, 441, which reads the candidate's `pruneReason` only when the target is the review.
 
 No case names `generated-artifact` itself. The seed accepts any non-empty reason, so `generated-artifact` takes the same path as `merge-no-own-diff`, which command 2 covers. The verdict does not claim a unit case for `generated-artifact`.
 

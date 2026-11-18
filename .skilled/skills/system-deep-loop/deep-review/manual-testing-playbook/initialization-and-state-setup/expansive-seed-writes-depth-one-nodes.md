@@ -1,7 +1,7 @@
 ---
 title: "DRV-077 -- Expansive seed writes depth-one nodes before iteration one"
 description: "This scenario validates that an expansive review run decomposes its target into depth-one sub-target nodes before iteration one, on a plain run and before fan-out spawns on a fan-out run, and that the seed writes no inbox, for `DRV-077`."
-version: 1.13.0.0
+version: 1.13.1.0
 ---
 
 # DRV-077 -- Expansive seed writes depth-one nodes before iteration one
@@ -53,7 +53,7 @@ Operators run the commands below and confirm that the seed admits open depth-one
 
 ### Expected
 
-Command 1 prints `Tests  1 passed | 17 skipped (18)`, and the case `seeds a review run, settling a candidate that carries its own prune reason` passes. That case asserts two open rows at depth one and no inbox file. Command 2 prints `Tests  2 passed | 32 skipped (34)`, with the fan-out placement case and the single-executor placement case both passing. Command 3 prints two lines: line 319, the fan-out seed step that runs before any lineage spawns, and line 898, the single-executor seed step that runs right after the config is created so iteration one already has open nodes.
+Command 1 prints `Tests  1 passed | 22 skipped (23)`, and the case `seeds a review run, settling a candidate that carries its own prune reason` passes. That case asserts two open rows at depth one and no inbox file. Command 2 prints `Tests  2 passed | 32 skipped (34)`, with the fan-out placement case and the single-executor placement case both passing. Command 3 prints two lines: line 319, the fan-out seed step that runs before any lineage spawns, and line 898, the single-executor seed step that runs right after the config is created so iteration one already has open nodes.
 
 ### Evidence
 
