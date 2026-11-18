@@ -1904,7 +1904,34 @@ function planDirectoryOverlay(entry, ctx, problems) {
 }
 
 /**
+ * Find where a marked block's `insertBefore` line starts.
+ * The last whole-line match wins, so a heading quoted earlier in the file, such
+ * as one in a table of contents, never captures the block.
+ * @param {string} text File text to search.
+ * @param {string} anchor The exact line the block goes before.
+ * @param {number} [from=0] Only a line starting at or after this offset counts.
+ * @returns {number} Offset of the anchor line, or -1 when no line matches.
+ */
+function anchorLineOffset(text, anchor, from = 0) {
+  let found = -1;
+  let start = text.lastIndexOf('\n', from - 1) + 1;
+  while (start <= text.length) {
+    const newline = text.indexOf('\n', start);
+    const lineEnd = newline < 0 ? text.length : newline;
+    const line = text.slice(start, lineEnd).replace(/\r$/, '');
+    if (start >= from && line === anchor) found = start;
+    if (newline < 0) break;
+    start = newline + 1;
+  }
+  return found;
+}
+
+/**
  * Plan a block appended to, or rewritten inside, an upstream file.
+ * Without `insertBefore` the fragment, with the separator it carries in front of
+ * the begin marker, goes at the end of the file. With it, the fragment goes in
+ * verbatim just before that line and carries its own trailing separator, so a
+ * section such as RELATED RESOURCES that has to stay last keeps its place.
  * @param {object} entry Manifest overlay entry.
  * @param {object} ctx Engine context.
  * @param {string[]} problems Collects reasons the overlay cannot be applied.
@@ -1912,6 +1939,11 @@ function planDirectoryOverlay(entry, ctx, problems) {
  * @returns {{writes: object[], deletes: string[], outputs: object[]}}
  */
 function planMarkedSectionOverlay(entry, ctx, problems, acceptedSha256) {
+  const anchor = entry.insertBefore;
+  if (anchor !== undefined && (typeof anchor !== 'string' || anchor === '' || /[\r\n]/.test(anchor))) {
+    problems.push(`${entry.id}: insertBefore must be one non-empty line of text`);
+    return { writes: [], deletes: [], outputs: [] };
+  }
   const fragmentPath = path.join(ctx.overlayRoot, entry.fragment);
   const basePath = path.join(ctx.overlayRoot, entry.base);
   const destinationPath = path.join(ctx.root, entry.destination);
@@ -1925,13 +1957,21 @@ function planMarkedSectionOverlay(entry, ctx, problems, acceptedSha256) {
   const baseText = base.toString('utf8');
   const fragmentText = fragment.toString('utf8');
   const currentText = current ? current.toString('utf8') : null;
+  const missingAnchor = () => problems.push(
+    `${entry.destination} has no line "${anchor}" for the block to go before; rebase the overlay`);
+  const placeIntoBase = () => {
+    if (anchor === undefined) return `${baseText}${fragmentText}`;
+    const at = anchorLineOffset(baseText, anchor);
+    if (at < 0) return null;
+    return `${baseText.slice(0, at)}${fragmentText}${baseText.slice(at)}`;
+  };
   let expected;
   if (currentText === null) {
     if (acceptedHashFor(acceptedSha256, entry.destination) === undefined) {
       problems.push(`upstream removed ${entry.destination}; rebase the overlay`);
       return { writes: [], deletes: [], outputs: [] };
     }
-    expected = `${baseText}${fragmentText}`;
+    expected = placeIntoBase();
   } else if (currentText.includes(entry.beginMarker)) {
     const begin = currentText.indexOf(entry.beginMarker);
     const endMarkerIndex = currentText.indexOf(entry.endMarker);
@@ -1942,11 +1982,32 @@ function planMarkedSectionOverlay(entry, ctx, problems, acceptedSha256) {
     // Our own block is rewritten in place; the separator that carries it is
     // part of the fragment, so the text before the marker is kept as it is.
     const head = currentText.slice(0, begin);
-    expected = `${head}${fragmentText.slice(fragmentText.indexOf(entry.beginMarker))}`;
+    const block = fragmentText.slice(fragmentText.indexOf(entry.beginMarker));
+    if (anchor === undefined) {
+      expected = `${head}${block}`;
+    } else {
+      // Everything from the anchor on is upstream's and stays; what sat between
+      // the end marker and the anchor was the old fragment's trailing separator.
+      const at = anchorLineOffset(currentText, anchor, endMarkerIndex);
+      const tailAfterBlock = currentText.slice(endMarkerIndex + entry.endMarker.length);
+      if (at >= 0) {
+        expected = `${head}${block}${currentText.slice(at)}`;
+      } else if (head.startsWith(baseText) && tailAfterBlock.trim() === '') {
+        // The block still sits at the end, where the entry put it before it
+        // named an anchor, so the move starts again from the base copy.
+        expected = placeIntoBase();
+      } else {
+        expected = null;
+      }
+    }
   } else if (currentText === baseText) {
-    expected = `${baseText}${fragmentText}`;
+    expected = placeIntoBase();
   } else {
     problems.push(`upstream changed ${entry.destination}; rebase the overlay`);
+    return { writes: [], deletes: [], outputs: [] };
+  }
+  if (expected === null) {
+    missingAnchor();
     return { writes: [], deletes: [], outputs: [] };
   }
   const output = { filePath: destinationPath, buffer: Buffer.from(expected, 'utf8'), mode: entry.mode, sourcePath: fragmentPath };
@@ -3806,6 +3867,13 @@ function extractMarkedSection(entry, live) {
   if (begin < 0) throw new Error('live file is missing the begin marker');
   const endMarker = text.indexOf(entry.endMarker, begin);
   if (endMarker < 0) throw new Error('live file is missing the end marker');
+  if (typeof entry.insertBefore === 'string') {
+    // A placed block's fragment ends with the separator that leads into the
+    // anchor line, so the capture runs up to that line, the same span apply writes.
+    const anchorAt = anchorLineOffset(text, entry.insertBefore, endMarker);
+    if (anchorAt < 0) throw new Error('live file is missing the insertBefore line');
+    return Buffer.from(text.slice(begin, anchorAt), 'utf8');
+  }
   let end = endMarker + entry.endMarker.length;
   if (text.slice(end, end + 2) === '\r\n') end += 2;
   else if (text[end] === '\n') end += 1;
