@@ -7,7 +7,7 @@ trigger_phrases:
   - "notesmd-cli"
   - "obsidian mcp"
   - "local rest api"
-version: 0.18.6.0
+version: 0.18.7.0
 ---
 
 # mcp-obsidian
@@ -249,4 +249,5 @@ The scenarios behind these checks live in the [manual testing playbook](./manual
 
 <!-- readme-check
 allow-ref data.json | the Iconic community plugin rulebook inside an Obsidian vault, written by the live plugin rather than kept in this repository
+allow-count 24 enabled plugins | matches the roster count in references/plugins/installed-plugins.md
 -->

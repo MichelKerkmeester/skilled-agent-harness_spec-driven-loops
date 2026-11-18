@@ -821,6 +821,45 @@ def validate_folds(content: str) -> List[Dict[str, Any]]:
     return issues
 
 
+_FENCE_LINE = re.compile(r'^(`{3,}|~{3,})(.*)$')
+
+
+def validate_readme_diagrams(content: str, file_path: str) -> List[Dict[str, Any]]:
+    """Block a Mermaid fence in a README.
+
+    A Mermaid block draws only on GitHub and reads as raw code in a terminal or
+    an editor, where most README readers here meet it, so READMEs draw diagrams
+    as box-drawing text. The rule keys on the file name, not the document type,
+    because an untyped document falls back to the README type. Only a fence that
+    opens at the top level counts: one inside a longer outer fence is an example.
+    Other documents keep Mermaid, since diagram references use it on purpose.
+    """
+    if Path(file_path).name.lower() != 'readme.md':
+        return []
+    issues: List[Dict[str, Any]] = []
+    fence_char = ''
+    fence_len = 0
+    for line_number, line in enumerate(content.split('\n'), start=1):
+        match = _FENCE_LINE.match(line.strip())
+        if not match:
+            continue
+        marker, info = match.group(1), match.group(2).strip()
+        if fence_len == 0:
+            fence_char, fence_len = marker[0], len(marker)
+            if info.split()[:1] and info.split()[0].lower() == 'mermaid':
+                issues.append({
+                    'type': 'readme_mermaid',
+                    'rule_id': 'readme_mermaid',
+                    'severity': 'blocking',
+                    'message': 'A README draws diagrams as box-drawing text, not Mermaid.',
+                    'line_number': line_number,
+                    'fix_hint': 'Redraw the diagram with box-drawing characters in a `text` fence.',
+                })
+        elif marker[0] == fence_char and len(marker) >= fence_len and info == '':
+            fence_len = 0
+    return issues
+
+
 # ───────────────────────────────────────────────────────────────
 # 4B. RENDER CHECKS
 # ───────────────────────────────────────────────────────────────
@@ -3151,6 +3190,7 @@ def validate_document(
             structure_rules = {**doc_type_rules, 'h2DividerRequired': False}
         all_errors.extend(validate_general_structure(content, structure_rules))
     all_errors.extend(validate_folds(content))
+    all_errors.extend(validate_readme_diagrams(content, file_path))
     all_errors.extend(validate_render_checks(content, doc_type, doc_type_rules, Path(file_path)))
     all_errors.extend(validate_required_sections(content, doc_type_rules))
     if doc_type == 'feature_catalog':

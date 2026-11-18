@@ -4,7 +4,7 @@ description: "Draw a self-contained HTML/SVG technical diagram across 27 types a
 trigger_phrases:
   - "create diagram"
   - "architecture diagram"
-version: 1.2.5.0
+version: 1.2.6.0
 ---
 
 # sk-design-diagram
@@ -215,3 +215,7 @@ No. Export is manual. The packet writes the `.html` first, then `references/impo
 | [`assets/diagrams/README.md`](./assets/diagrams/README.md) | The 38-form library and what each file is for |
 | [`scripts/README.md`](./scripts/README.md) | Extractor and validator contract |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator scenarios for generation, import, export and capture review |
+
+<!-- readme-check
+allow-count 38 files | the corpus check prints 38 file runs and RESULT: PASSED
+-->

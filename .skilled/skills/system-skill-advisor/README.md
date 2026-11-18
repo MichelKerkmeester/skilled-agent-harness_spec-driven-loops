@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.24.0
+version: 0.12.25.0
 ---
 
 # system-skill-advisor
@@ -149,7 +149,7 @@ The graph is a package-local SQLite file at `runtime/database/skill-graph.sqlite
 
 | What you see | Why | Fix |
 |---|---|---|
-| `trustState` reads `absent` | The SQLite database file is missing | Run `advisor_rebuild --trusted`. If that fails, delete the `skill-graph.sqlite` database and its two sidecar files under `runtime/database/`, then rebuild with `--trusted --force` |
+| `trustState` reads `absent` | The SQLite database file is missing | Run `advisor_rebuild --trusted`. If that fails, delete the `skill-graph.sqlite` database and its `-wal` and `-shm` sidecar files under `runtime/database/`, then rebuild with `--trusted --force` |
 | The CLI exits 64 on a mutation | The trusted gate fails closed | Add `--trusted` or set `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` |
 | The CLI exits 69 with a stale-build message | The `dist` build is older than its source | Run `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`, then retry |
 | A skill you just added never appears | The daemon has not seen the new file yet | Run `advisor_rebuild --trusted` or wait for the watcher |

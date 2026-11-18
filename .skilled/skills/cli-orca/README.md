@@ -7,7 +7,7 @@ trigger_phrases:
   - "official orca skills package"
 importance_tier: normal
 contextType: general
-version: 0.1.10.0
+version: 0.1.11.0
 ---
 
 # cli-orca
@@ -245,3 +245,7 @@ The routing fixtures live in [manual-testing-playbook/manual-testing-playbook.md
 | [`manual-testing-playbook/manual-testing-playbook.md`](manual-testing-playbook/manual-testing-playbook.md) | The operator scenarios and their verdict rules |
 | [`assets/PROVENANCE.md`](assets/PROVENANCE.md) | Snapshot source, release revisions and digests |
 | [`changelog/`](changelog/) | One entry per release |
+
+<!-- readme-check
+allow-ref orca.yaml | a file the reader creates in their own project, not part of this repository
+-->

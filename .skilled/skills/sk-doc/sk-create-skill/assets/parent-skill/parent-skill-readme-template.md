@@ -9,7 +9,7 @@ trigger_phrases:
   - "hub readme validation"
 importance_tier: normal
 contextType: general
-version: 1.3.4.0
+version: 1.3.5.0
 ---
 
 # Parent Skill Hub README Template
@@ -86,7 +86,7 @@ Use `### Why This Hub Exists` only when the reader needs current problem context
 Write two to four short sentences about the current problem and how the hub helps.
 Do not recount project history.
 Add a short hook after the blockquote only when readers need it.
-Add a simple Mermaid diagram when it clarifies multi-step routing.
+Add a small text diagram when it clarifies multi-step routing. Draw the boxes with box-drawing characters in a `text` fence, never Mermaid, at one box width.
 
 Emoji use follows the technical register. Semantic emoji only (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers, and sparingly. Decorative section emoji stay on the repository front-page README, never on a hub README.
 
@@ -168,13 +168,24 @@ State what the hub does before listing features.]
 [Optional. In two to four short sentences, name the reader's current problem and how the hub helps.
 Name the family and nested packets. Do not add a feature list.]
 
-[Optional Mermaid diagram for a multi-step routing flow. Show request to registry to the packet that owns it.]
+[Optional text diagram for a multi-step routing flow. Show request to registry to the packet that owns it.]
 
-```mermaid
-flowchart TD
-  Request["[request]"] --> Registry["[mode-registry.json]"]
-  Registry --> Packet["[the packet that owns the request]"]
-  Packet --> Result["[the artifact or decision the mode returns]"]
+```text
+┌─────────────────────────────────────────────┐
+│ [request]                                   │
+└──────────────────────┬──────────────────────┘
+                       ▼
+┌─────────────────────────────────────────────┐
+│ [mode-registry.json]                        │
+└──────────────────────┬──────────────────────┘
+                       ▼
+┌─────────────────────────────────────────────┐
+│ [the packet that owns the request]          │
+└──────────────────────┬──────────────────────┘
+                       ▼
+┌─────────────────────────────────────────────┐
+│ [the artifact or decision the mode returns] │
+└─────────────────────────────────────────────┘
 ```
 
 ---

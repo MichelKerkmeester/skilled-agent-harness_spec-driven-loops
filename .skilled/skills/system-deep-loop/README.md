@@ -6,7 +6,7 @@ trigger_phrases:
   - "deep loop workflows"
   - "deep research review"
   - "deep-loop hub routing"
-version: 1.6.11.0
+version: 1.6.12.0
 ---
 
 # system-deep-loop
@@ -166,3 +166,8 @@ Expected output: `✅ VALID` and `Total issues: 0`.
 | [`manual-testing-playbook/`](./manual-testing-playbook/) | Operator scenarios for hub routing, state discipline and per-mode artifact ownership |
 | [`benchmark/`](./benchmark/) | Baseline and compiled-routing benchmark reports |
 | [`changelog/`](./changelog/) | Versioned release notes |
+
+<!-- readme-check
+allow-ref research/research.md | written by a research run inside the spec folder
+allow-ref review/review-report.md | written by a review run inside the spec folder
+-->

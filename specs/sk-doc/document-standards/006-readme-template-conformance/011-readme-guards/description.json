@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/document-standards/006-readme-template-conformance/011-readme-guards",
+  "description": "Phase 11: readme-guards",
+  "keywords": [
+    "phase",
+    "readme-guards"
+  ],
+  "lastUpdated": "2026-11-18T12:04:35.087Z",
+  "specId": "011",
+  "folderSlug": "readme-guards",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "006-readme-template-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -9,7 +9,7 @@ trigger_phrases:
   - "subagent delegation"
   - "second opinion"
   - "cross-validate"
-version: 1.4.10.0
+version: 1.4.11.0
 ---
 
 # cli-devin
@@ -260,3 +260,7 @@ The validator prints `✅ VALID` and `Total issues: 0` when the structure holds.
 | [`assets/prompt-templates.md`](./assets/prompt-templates.md) | copy-paste prompt templates |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | manual validation scenarios |
 | [`hard-rules.json`](./hard-rules.json) | preflight checks for stdin redirect and binary availability |
+
+<!-- readme-check
+allow-ref /Users/you/.local/bin/devin | sample output of `command -v devin`, which prints an absolute path on the reader's machine
+-->

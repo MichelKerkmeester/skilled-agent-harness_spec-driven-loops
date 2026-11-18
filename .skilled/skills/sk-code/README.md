@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.51.0
+version: 2.2.52.0
 ---
 
 # sk-code
@@ -220,3 +220,7 @@ node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<a prompt about you
 | [`sk-code-ci/README.md`](./sk-code-ci/README.md) | The CI surface |
 | [`sk-code-frontend/README.md`](./sk-code-frontend/README.md) | The frontend surface |
 | [`changelog/`](./changelog/) | Hub release entries |
+
+<!-- readme-check
+allow-count 4 guards | run-all-drift-guards.sh runs four guards and prints this line
+-->

@@ -7,7 +7,7 @@ trigger_phrases:
   - "pi.dev cli"
   - "delegate to pi"
   - "pi coding agent"
-version: 1.5.7.0
+version: 1.5.8.0
 ---
 
 # cli-pi
@@ -310,3 +310,7 @@ Expected output: `Document type: readme` followed by `Total issues: 0`. The comm
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator scenarios by category |
 | [`benchmark/README.md`](./benchmark/README.md) | The index of archived validation reports |
 | [`changelog/`](./changelog/) | One release note per version |
+
+<!-- readme-check
+allow-ref /Users/you/.local/bin/pi | sample output of `command -v pi`, which prints an absolute path on the reader's machine
+-->

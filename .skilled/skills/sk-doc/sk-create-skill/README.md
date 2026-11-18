@@ -4,7 +4,7 @@ description: "Scaffold, validate and package standalone Skilled skills and two-a
 trigger_phrases:
   - "create skill"
   - "parent hub"
-version: 1.2.12.0
+version: 1.2.13.0
 ---
 
 # create-skill
@@ -72,13 +72,13 @@ Expected output carries these two lines, then three numbered next steps:
 **Step 2: Fill the content, then run the gate.**
 
 ```bash
-python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/my-skill --strict
+python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/<skill-name> --strict
 ```
 
 Expected output for a standalone root:
 
 ```text
-Skill: .skilled/skills/my-skill
+Skill: .skilled/skills/<skill-name>
 Detected kind: standalone
 - package_skill.py --check --strict: PASS (exit 0)
 ```
@@ -88,7 +88,7 @@ A hub prints the same report with `Detected kind: parent`, plus one line each fo
 **Step 3: Package after the gate passes.**
 
 ```bash
-python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/my-skill <output-directory>
+python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/<skill-name> <output-directory>
 ```
 
 Expected output closes with:

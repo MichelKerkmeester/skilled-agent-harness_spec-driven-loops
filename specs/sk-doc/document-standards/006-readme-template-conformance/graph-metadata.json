@@ -13,7 +13,8 @@
     "sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes",
     "sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions",
     "sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme",
-    "sk-doc/document-standards/006-readme-template-conformance/010-readme-text-diagrams"
+    "sk-doc/document-standards/006-readme-template-conformance/010-readme-text-diagrams",
+    "sk-doc/document-standards/006-readme-template-conformance/011-readme-guards"
   ],
   "manual": {
     "depends_on": [],
@@ -47,7 +48,7 @@
       "packet"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -218,7 +219,7 @@
     ],
     "causal_summary": "The root README and its five root guides now read in a plain human voice, and the `sk-create-readme` templates were rewritten to match",
     "created_at": "2026-11-16T15:20:12Z",
-    "last_save_at": "2026-11-18T11:42:57.666Z",
+    "last_save_at": "2026-11-18T12:29:19.794Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,11 +227,11 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:d4d7f538dfa3bbc75e46409cd02f73d36e083a6de369fec5ce24704e87fcac8c",
+    "source_fingerprint": "sha256:ee69dada9fa5b2289daa616f85e5fa3154993a012c46e065cc7b5b486d0e3f3f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "939ad710ea0524ac30f059717a9c6eb50cef255f7efb8c90977176e25a5af75f",
-      "decision-record.md": "ae766744c96d6997165f4329b3d5b722d4470d4b31b9e64b759e5183b90e5a13"
+      "spec.md": "4dd76bd386d8bd9f13f4c650d1721068905e7e2c8f4feabb4245d4fefb76d2d3",
+      "decision-record.md": "3bf6a000163924da2aa72f9d4a7cacf9e78d9570fbd4ae4a75145cd647d2f408"
     },
     "last_active_child_id": "sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes",
     "last_active_at": "2026-11-17T17:07:56.519Z"

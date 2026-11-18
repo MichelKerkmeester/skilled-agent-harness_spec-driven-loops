@@ -8,7 +8,7 @@ trigger_phrases:
   - "extended thinking"
   - "deep reasoning"
   - "anthropic"
-version: 1.5.8.0
+version: 1.5.9.0
 ---
 
 # cli-claude-code
@@ -297,3 +297,7 @@ The packet ships 54 manual scenarios in 12 categories. A scenario run is complet
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The 54-scenario validation contract |
 | [`benchmark/README.md`](./benchmark/README.md) | The dated run reports and their index |
 | [`hard-rules.json`](./hard-rules.json) | The dispatch preflight rules |
+
+<!-- readme-check
+allow-ref /Users/you/.local/bin/claude | sample output of `command -v claude`, which prints an absolute path on the reader's machine
+-->

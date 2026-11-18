@@ -8,7 +8,7 @@ trigger_phrases:
   - "authoring checklist"
 importance_tier: important
 contextType: implementation
-version: 1.3.13.0
+version: 1.3.14.0
 ---
 
 # sk-code-quality
@@ -39,9 +39,9 @@ The mode routes by target path, so the checklists follow the files a change touc
 | Target | Checklist the verdict names |
 |---|---|
 | `.skilled/skills/` | `skill-authoring.md` under the SKILLED checklists |
-| `.skilled/agents/` and `.skilled/commands/` | `agent-authoring.md` or `command-authoring.md` |
+| `.skilled/agents/` and `.skilled/commands/` | `agent-authoring.md` or `command-authoring.md` under the SKILLED checklists |
 | `specs/` | The spec-folder authoring checklist that `system-spec-kit` owns, in this hub's own repository |
-| MCP server source | `mcp-server-authoring.md` |
+| MCP server source | `mcp-server-authoring.md` under the SKILLED checklists |
 | JavaScript, TypeScript, Python, Shell, Rust or config | The matching language checklist |
 | A path your own repository config names | The checklist its `checklists[]` row points at |
 

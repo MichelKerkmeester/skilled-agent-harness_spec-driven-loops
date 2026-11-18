@@ -5,7 +5,7 @@ trigger_phrases:
   - "system-skilled-doctor readme"
   - "skilled doctor commands"
   - "put skilled into my project"
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # system-skilled-doctor
@@ -166,3 +166,7 @@ Run the checks below from the repository root. The manual playbook covers what a
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The 12 operator scenarios and where each verdict is recorded |
 | [`INSTALL-SKILLED.md`](../../../INSTALL-SKILLED.md) | The step-by-step guide to linking Skilled into a project or copying it in with overlays |
 | [`.skilled/commands/doctor/`](../../commands/doctor/) | The command routers and the workflows they load |
+
+<!-- readme-check
+allow-ref .skilled-overlays.json | written in a project that vendors Skilled, not in this repository
+-->

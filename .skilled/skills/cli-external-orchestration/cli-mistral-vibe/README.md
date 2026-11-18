@@ -6,7 +6,7 @@ trigger_phrases:
   - "vibe print mode"
   - "delegate to vibe"
   - "vibe cli"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # cli-mistral-vibe
@@ -239,3 +239,7 @@ Expected output: `Document type: readme` followed by `Total issues: 0`, and exit
 | [`assets/prompt-quality-card.md`](./assets/prompt-quality-card.md) | The prompt card delegator and the print-mode addenda |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator scenarios, evidence rules and verdicts |
 | [`changelog/v1.0.0.0.md`](./changelog/v1.0.0.0.md) | The release note for the packet |
+
+<!-- readme-check
+allow-ref out/export.json | a file the export command writes, so it exists only after a run
+-->

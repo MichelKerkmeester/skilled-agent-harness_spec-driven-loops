@@ -14,14 +14,14 @@ _memory:
     last_updated_at: "2026-11-16T19:30:00Z"
     last_updated_by: "scaffold"
     recent_action: "All six completion criteria verified"
-    next_safe_action: "None: the program is complete"
+    next_safe_action: "Finish phase 011 and rerun the six criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "f7735347-b0b1-4b4f-a0cd-c44e70a362ab"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -35,7 +35,6 @@ _memory:
 
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
-<!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Keep only the newest n archives on request. WEAK: Improve the script. -->
 
 **Objective:** Bring all 184 READMEs and SYNC docs that a `sk-create-readme` template covers into line with that template and the Human Voice Rules, stating only facts checked against the code they describe.
 
@@ -47,8 +46,8 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | Each file follows its template's section model, keeps `---` before every numbered H2 and carries no emoji in a heading. |
 | D2 | A session that did not write a README checks every path, command and count in it against the code before it is committed. |
-| D3 | Out of scope: the root README and root guides, `local-webflow`, code-folder READMEs outside `.skilled/hooks/`, and any change to the templates, the validator or the voice scanner beyond what phases 008 to 010 name. README versions and changelogs are never edited by hand. |
-| D4 | Writers and reviewers run one README per session on the executor the operator chose, recorded as Q003 to Q012 in `decision-record.md`. The main session reruns every check before it trusts a result. |
+| D3 | Out of scope: the root README and root guides, `local-webflow`, code-folder READMEs outside `.skilled/hooks/`, and any change to the templates, the validator or the voice scanner beyond what phases 008 to 011 name. README versions and changelogs are never edited by hand. |
+| D4 | Writers and reviewers run one README per session on the executor the operator chose, recorded as Q003 to Q014 in `decision-record.md`. The main session reruns every check before it trusts a result. |
 | D5 | Phases run in order. Each phase is committed, merged with origin/main and pushed under sk-git before the next one starts, and the operator's own uncommitted files are never staged. |
 
 <!-- /ANCHOR:directive -->
@@ -57,7 +56,6 @@ Frozen choices. Changing one is an amendment.
 
 <!-- ANCHOR:binding -->
 ## 2. BINDING
-<!-- FILL: List each child phase and its goal path. Name the precedence rule. GOOD: 001 and 002. Decisions here outrank child detail. WEAK: Children are bound. -->
 
 **Read the child goal before working a phase.** Each is authoritative for its
 phase and binds as if written here.
@@ -74,6 +72,7 @@ phase and binds as if written here.
 | 008-readme-html-conventions | `008-readme-html-conventions/goal.md` |
 | 009-repo-rules-readme | `009-repo-rules-readme/goal.md` |
 | 010-readme-text-diagrams | `010-readme-text-diagrams/goal.md` |
+| 011-readme-guards | `011-readme-guards/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -86,14 +85,13 @@ string, not these files.
 
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
-<!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [x] `validate.sh specs/sk-doc/document-standards/006-readme-template-conformance --recursive --strict` prints `RESULT: PASSED` for the parent and all 10 phase folders.
-- [x] `validate_document.py` prints `VALID` and `hvr_scan.py` reports `hard blockers: 0` for each of the 184 files in scope.
-- [x] `check-markdown-links.cjs` exits 0 and reports 0 broken links across the repository.
-- [x] `test_readme_verdict_parity.py` prints `PARITY PASS` and the sk-doc `run-script-tests.sh` suite exits 0.
-- [x] `.skilled/skills/sk-design/README.md` and `.vibe/README.md` both exist on origin/main.
-- [x] After the last phase is pushed, `git rev-parse HEAD origin/main` prints the same hash twice.
+- [ ] `validate.sh specs/sk-doc/document-standards/006-readme-template-conformance --recursive --strict` prints `RESULT: PASSED` for the parent and all 11 phase folders.
+- [ ] `validate_document.py` prints `VALID` and `hvr_scan.py` reports `hard blockers: 0` for each of the 184 files in scope.
+- [ ] `check-markdown-links.cjs` exits 0 and reports 0 broken links across the repository.
+- [ ] `test_readme_verdict_parity.py` prints `PARITY PASS` and the sk-doc `run-script-tests.sh` suite exits 0.
+- [ ] `.skilled/skills/sk-design/README.md` and `.vibe/README.md` both exist on origin/main.
+- [ ] After the last phase is pushed, `git rev-parse HEAD origin/main` prints the same hash twice.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -121,4 +119,5 @@ and findings belong here.
 | D3 amendment | On 2026-11-18 the operator placed the README alert and fold work in this program as phase 008. It touches the README writing reference and `validate_document.py`, which D3 had kept out of scope, so D3 now names the exception |
 | Second D3 amendment | On 2026-11-18 the operator asked for a README in `.skilled/repo-rules/` under the new rule, placed as phase 009. The repo-rules checker and card builder read any README there as a rule, so D3 also names their README skip |
 | Third D3 amendment | On 2026-11-18 the operator asked to go back to plain-text diagrams, placed as phase 010. It changes the skill README template, so D3 now points at what phases 008 to 010 name. The operator chose Hy4 Flash Free at high as its writer and reviewer, recorded as Q012 |
+| Fourth D3 amendment | On 2026-11-18 the operator asked to fix every open follow-up as phase 011: Mermaid out of the two sk-create-skill templates, a README Mermaid check in the validator, the checklist voice flag and the README checker failures. Hy4 stays the README executor, as Q014 records |
 <!-- /ANCHOR:log -->

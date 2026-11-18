@@ -283,6 +283,34 @@ def test_each_broken_fold_shape_is_reported() -> None:
         assert [issue["rule_id"] for issue in validate_folds(text)] == [rule_id], rule_id
 
 
+def test_a_mermaid_fence_blocks_a_readme(tmp_path: Path) -> None:
+    path = tmp_path / "README.md"
+
+    for opener, closer in (("```mermaid", "```"), ("~~~mermaid", "~~~"), ("```Mermaid", "```")):
+        path.write_text(
+            f"# Folder: Holds Hooks\n\n{opener}\nflowchart TD\n  A --> B\n{closer}\n",
+            encoding="utf-8",
+        )
+
+        result = validate(path, "readme")
+
+        assert "readme_mermaid" in issue_types(result), opener
+        assert result["valid"] is False, opener
+
+
+def test_mermaid_passes_outside_a_readme_and_inside_an_example(tmp_path: Path) -> None:
+    other = tmp_path / "notes.md"
+    other.write_text("# Notes\n\n```mermaid\nflowchart TD\n  A --> B\n```\n", encoding="utf-8")
+    example = tmp_path / "README.md"
+    example.write_text(
+        "# Folder: Holds Hooks\n\n````markdown\n```mermaid\nflowchart TD\n```\n````\n",
+        encoding="utf-8",
+    )
+
+    assert "readme_mermaid" not in issue_types(validate(other, "readme"))
+    assert "readme_mermaid" not in issue_types(validate(example, "readme"))
+
+
 def test_an_unclosed_fold_blocks_a_readme(tmp_path: Path) -> None:
     path = tmp_path / "README.md"
     path.write_text("# Folder: Holds Hooks\n\n" + GOOD_FOLD.replace("</details>\n", ""), encoding="utf-8")

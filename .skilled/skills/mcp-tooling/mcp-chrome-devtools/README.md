@@ -7,7 +7,7 @@ trigger_phrases:
   - "bdg"
   - "screenshot"
   - "browser automation"
-version: 1.0.22.0
+version: 1.0.23.0
 ---
 
 # mcp-chrome-devtools
@@ -141,7 +141,7 @@ A weighted scorer adds points for signal words. A request naming `bdg` or a term
 
 ### The CLI path
 
-One session runs at a time. `bdg <url>` opens the page. `bdg status --json` reports the state as JSON. `bdg stop` releases the browser. There is no session selector, so two scripts cannot drive the CLI at once.
+One session runs at a time. `bdg <url>` opens the page. `bdg status --json` reports the state as JSON. `bdg stop` releases the browser. There is no session selector, so a second script cannot drive the CLI at the same time.
 
 The CLI documents its own protocol surface. Run discovery before a method call:
 
