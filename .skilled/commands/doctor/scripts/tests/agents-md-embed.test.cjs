@@ -33,6 +33,7 @@ const path = require('node:path');
 const test = require('node:test');
 
 const embed = require('../agents-md-embed.cjs');
+const { sourceStatus } = require('../agents-md-manifest.cjs');
 const {
   MANIFEST_PATH,
   REPO_ROOT,
@@ -46,6 +47,13 @@ const REPO_RULES_CHECKER = path.join(REPO_ROOT, '.skilled/skills/sk-doc/sk-creat
 const SOURCE = fs.readFileSync(ENGINE, 'utf8');
 
 const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'));
+
+// The suite ships into consumer repositories. A case that asserts this repository's own
+// files is gated on the origin remote naming the manifest's source repository.
+const source = sourceStatus({ root: REPO_ROOT, manifest });
+const NOT_SOURCE = source.isSource
+  ? false
+  : `asserts the Skilled source repository's own state; this host vendors Skilled (${source.reason})`;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. TREES, FILES AND DIGESTS
@@ -1029,6 +1037,15 @@ test('an ignored output path holds the backup and a non-ignored one falls back',
   assert.equal(here.fallback, false, here.reason);
   assert.equal(here.dir, path.join(ignoring, '.skilled', 'output', 'doctor-agents-md'));
   assert.equal(fs.existsSync(here.dir), false, 'naming a backup location creates nothing');
+});
+
+// The composed checkout above proves the ignore check. This case proves the source
+// repository still ignores its own output directory, so a backup made here never lands
+// in a commit. A vendoring host owns its own .gitignore, so the case runs only here.
+test('this repository ignores its output directory, so the backup stays inside it', { skip: NOT_SOURCE }, () => {
+  const here = embed.backupBase({ root: REPO_ROOT });
+  assert.equal(here.fallback, false, here.reason);
+  assert.equal(here.dir, path.join(REPO_ROOT, '.skilled', 'output', 'doctor-agents-md'));
 });
 
 test('the backup survives the run and records what it holds', (t) => {
