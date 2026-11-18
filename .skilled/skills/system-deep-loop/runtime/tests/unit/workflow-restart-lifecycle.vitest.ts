@@ -795,6 +795,7 @@ describe('completed-run extension', () => {
       const lockAt = text.indexOf('\n      step_acquire_lock:\n');
       const extendAt = text.indexOf('\n      step_extend_completed_run:\n');
       const classifyAt = text.indexOf('\n      step_classify_session:\n');
+      expect(lockAt).toBeGreaterThan(-1);
       expect(extendAt).toBeGreaterThan(lockAt);
       expect(classifyAt).toBeGreaterThan(extendAt);
       const classify = phaseStep(text, 'step_classify_session');
