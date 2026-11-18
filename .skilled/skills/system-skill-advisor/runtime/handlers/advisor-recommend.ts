@@ -13,7 +13,7 @@ import { resolve } from 'node:path';
 import { disabledRecommendOutput, emptyOutput, requestWorkspaceRoot } from '../lib/advisor-disabled.js';
 import { TRACKED_COMMANDS, attachCommand, commandRowFor, routeNeedsMode, typedCommandForTop } from '../lib/command-attach.js';
 import { advisorPromptCache } from '../lib/prompt-cache.js';
-import { extractMetalinguisticSkillMentions } from '../lib/prompt-policy.js';
+import { extractMetalinguisticSkillMentions, stripLeadingPastedReply } from '../lib/prompt-policy.js';
 import {
   resolveAdvisorThresholdConfig,
 } from '../lib/skill-advisor-brief.js';
@@ -532,8 +532,10 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
   }
   const sourceSignature = cacheSourceSignature(status);
   advisorPromptCache.invalidateSourceSignatureChange(sourceSignature);
+  // Stripped once here so the embedding, the cache key and the scorer all see the same text.
+  const scoredPrompt = stripLeadingPastedReply(input.prompt);
   const key = advisorPromptCache.makeKey({
-    canonicalPrompt: input.prompt.trim(),
+    canonicalPrompt: scoredPrompt.trim(),
     sourceSignature,
     workspaceRoot,
     runtime: 'mcp',
@@ -566,12 +568,15 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
   }
 
   const topK = input.options?.topK ?? 3;
-  const result = await withSemanticShadowPromptEmbedding(input.prompt, () => scoreAdvisorPrompt(input.prompt, {
-    workspaceRoot,
-    confidenceThreshold: input.options?.confidenceThreshold,
-    uncertaintyThreshold: input.options?.uncertaintyThreshold,
-    runtimeLaneHealth: runtimeLaneHealthForStatus(status),
-  }));
+  const result = await withSemanticShadowPromptEmbedding(
+    scoredPrompt,
+    () => scoreAdvisorPrompt(scoredPrompt, {
+      workspaceRoot,
+      confidenceThreshold: input.options?.confidenceThreshold,
+      uncertaintyThreshold: input.options?.uncertaintyThreshold,
+      runtimeLaneHealth: runtimeLaneHealthForStatus(status),
+    }),
+  );
   // The lane records its health while the scored call runs, so the reason is
   // read right after that call settles to describe this call's own fallback.
   const semanticLaneOffReason = getSemanticShadowRuntimeHealth().disabledReason;
@@ -579,7 +584,7 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
     .map((recommendation) => publicRecommendation(
       recommendation,
       Boolean(input.options?.includeAttribution),
-      input.prompt,
+      scoredPrompt,
     ))
     .filter((recommendation): recommendation is NonNullable<typeof recommendation> => Boolean(recommendation))
     .slice(0, topK);

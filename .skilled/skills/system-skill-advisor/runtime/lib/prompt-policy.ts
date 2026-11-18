@@ -221,3 +221,29 @@ export function shouldFireAdvisor(prompt: string): AdvisorPromptPolicyResult {
     metalinguisticMentions,
   };
 }
+
+const PASTED_REPLY_CUE = /^\s*(?:(?:earlier|previously|above),?\s+)?(?:(?:you|the assistant|claude)\s+(?:replied|said|wrote|answered|responded)\s*:|["“>])/i;
+const TASK_MARKER = /(?:^|[.!?\n]\s*)(?:now|task)\s*:\s*/i;
+
+function stripPastedReplyOnce(prompt: string): string {
+  if (!PASTED_REPLY_CUE.test(prompt)) return prompt;
+  const marker = TASK_MARKER.exec(prompt);
+  if (!marker) return prompt;
+  const task = prompt.slice(marker.index + marker[0].length).trim();
+  return task.length > 0 ? task : prompt;
+}
+
+/**
+ * Drop an earlier reply pasted ahead of the task, keeping the text after its task marker.
+ * The skill names in a pasted reply would otherwise steer routing away from the task.
+ * Repeats until nothing changes, so a second call returns the same text; the handler and
+ * the scorer both call it, and the semantic lane matches its embedding by exact text.
+ */
+export function stripLeadingPastedReply(prompt: string): string {
+  let current = prompt;
+  for (;;) {
+    const next = stripPastedReplyOnce(current);
+    if (next === current) return current;
+    current = next;
+  }
+}

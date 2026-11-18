@@ -98,7 +98,7 @@ function goldSkill(row: CorpusRow): string | null {
   return row.skill_top_1 === 'none' ? null : row.skill_top_1;
 }
 
-describe('advisor 195-prompt corpus regression-protection parity', () => {
+describe('advisor 196-prompt corpus regression-protection parity', () => {
   it('preserves Python-correct top-1 decisions while allowing native improvements', async () => {
     const previousSemantic = process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC;
     process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
@@ -110,8 +110,8 @@ describe('advisor 195-prompt corpus regression-protection parity', () => {
     try {
       const rows = loadCorpus();
       // The current labeled corpus retains the seven hub-routing rows added
-      // for the mcp-tooling hub projection, so the authoritative size is 195.
-      expect(rows).toHaveLength(195);
+      // for the mcp-tooling hub projection, so the authoritative size is 196.
+      expect(rows).toHaveLength(196);
       const pythonTopSkills = directPythonTopSkills(rows);
       expect(pythonTopSkills).toHaveLength(rows.length);
 
@@ -147,7 +147,7 @@ describe('advisor 195-prompt corpus regression-protection parity', () => {
         }
       }
 
-      // On the current 195-row corpus the Python reference scorer (built-in
+      // On the current 196-row corpus the Python reference scorer (built-in
       // semantic disabled for determinism) makes 117 gold-correct top-1 calls;
       // the native/hook scorer preserves 112 of them (re-baselined 2026-09-07
       // after the deep-loop and design consolidations moved both numbers up). The remaining

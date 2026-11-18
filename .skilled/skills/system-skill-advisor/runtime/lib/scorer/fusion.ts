@@ -49,6 +49,7 @@ import {
 } from './weights-config.js';
 import { isLiveScorerLane } from './lane-registry.js';
 import { isRouteExcludedSkillId } from '../route-exclusions.js';
+import { stripLeadingPastedReply } from '../prompt-policy.js';
 import { SKILL_ADVISOR_COMPAT_CONTRACT, resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from '../compat/contract.js';
 import type {
   AdvisorProjection,
@@ -1271,7 +1272,9 @@ export function rankTypedCommandOwnerFirst(
   ];
 }
 
-export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOptions): AdvisorScoringResult {
+export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOptions): AdvisorScoringResult {
+  // A reply pasted ahead of the task names skills the task never asked for, so it is scored without it.
+  const prompt = stripLeadingPastedReply(rawPrompt);
   const projection = projectionWithUsableSkillIds(
     options.projection ?? loadAdvisorProjection(options.workspaceRoot),
   );
