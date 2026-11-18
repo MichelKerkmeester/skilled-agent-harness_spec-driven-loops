@@ -2495,7 +2495,10 @@ function pickFrontierFocus(frontier, iterationRecords) {
 // unspent share rolls down to the next band only once the band has no open node,
 // and never up. When a band's spend reaches its share, its open nodes close as
 // exhausted with reason budget, so the run stops waiting on work it cannot fund.
-function applyFrontierBudget(nodes, iterationRecords, maxIterations, budgetSplit) {
+// An open node whose question an iteration already answered is marked answered
+// first: the budget closes only work still outstanding, and an answered node
+// never holds its band open against the roll-down.
+function applyFrontierBudget(nodes, iterationRecords, maxIterations, budgetSplit, answeredNodeIds = new Set()) {
   const split = budgetSplit && typeof budgetSplit === 'object' ? budgetSplit : {};
   const shares = [
     Number.isFinite(split.depth1) ? split.depth1 : 0.5,
@@ -2510,7 +2513,9 @@ function applyFrontierBudget(nodes, iterationRecords, maxIterations, budgetSplit
       .filter((record) => !['error', 'failed', 'failure', 'timeout'].includes(String(record?.status || '').toLowerCase())));
     spent[bandOf(node.depth)] += visits;
   }
-  let result = nodes.map((node) => ({ ...node }));
+  let result = nodes.map((node) => ((node.status === 'open' || node.status === 'active') && answeredNodeIds.has(node.nodeId)
+    ? { ...node, status: 'answered', reason: null }
+    : { ...node }));
   const budget = {};
   let carry = 0;
   for (let band = 0; band < 3; band += 1) {
@@ -2609,18 +2614,9 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
     return !['error', 'failed', 'failure', 'stuck', 'thought'].includes(status);
   });
 
-  // A frontier node that closed without an answer (exhausted, blocked, abstained,
-  // pruned) or one the store marks answered stops counting as an open question.
-  const FRONTIER_TERMINAL = new Set(['answered', 'blocked', 'exhausted', 'abstained', 'pruned']);
-  const frontierCloseByNode = new Map(
-    (reducerState.frontier ? reducerState.frontier.nodes : [])
-      .filter((node) => FRONTIER_TERMINAL.has(node.status))
-      .map((node) => [node.nodeId, node]),
-  );
-
-  const keyedQuestions = strategyQuestions.map((question, index) => {
+  const resolutionRecords = strategyQuestions.map((question) => {
     const normalized = normalizeText(question.text);
-    const resolutionRecord = questionCoverageRecords.find((record) => {
+    return questionCoverageRecords.find((record) => {
       const answeredQuestions = Array.isArray(record.answeredQuestions)
         ? record.answeredQuestions.map(normalizeText)
         : [];
@@ -2631,6 +2627,34 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
         || (answeredQuestions.length > 0 && keyQuestions.length === 1 && keyQuestions[0] === normalized)
         || normalizeOptionalText(record.focus) === normalized;
     });
+  });
+
+  // The budget runs after the iteration evidence, so a node whose question is
+  // already answered is never closed as budget-exhausted.
+  const frontierState = reducerState.frontier
+    ? applyFrontierBudget(
+      reducerState.frontier.nodes,
+      iterationRecords,
+      reducerState.frontier.maxIterations,
+      reducerState.frontier.budgetSplit,
+      new Set(strategyQuestions
+        .filter((question, index) => question.inboxId && (question.checked || resolutionRecords[index]))
+        .map((question) => normalizeQuestionId(question.inboxId))),
+    )
+    : null;
+
+  // A frontier node that closed without an answer (exhausted, blocked, abstained,
+  // pruned) or one the store marks answered stops counting as an open question.
+  const FRONTIER_TERMINAL = new Set(['answered', 'blocked', 'exhausted', 'abstained', 'pruned']);
+  const frontierCloseByNode = new Map(
+    (frontierState ? frontierState.nodes : [])
+      .filter((node) => FRONTIER_TERMINAL.has(node.status))
+      .map((node) => [node.nodeId, node]),
+  );
+
+  const keyedQuestions = strategyQuestions.map((question, index) => {
+    const normalized = normalizeText(question.text);
+    const resolutionRecord = resolutionRecords[index];
     const frontierClose = question.inboxId ? frontierCloseByNode.get(normalizeQuestionId(question.inboxId)) : undefined;
     const resolved = question.checked || Boolean(resolutionRecord) || Boolean(frontierClose);
     const id = normalizeQuestionId(question.id);
@@ -2796,7 +2820,7 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
       failedPivots: divergence.failed.length,
       pivotOverrides: divergence.overrides.length,
     },
-    ...(reducerState.frontier ? { frontier: buildFrontierProjection(reducerState.frontier, keyedQuestions) } : {}),
+    ...(frontierState ? { frontier: buildFrontierProjection(frontierState, keyedQuestions) } : {}),
   };
 }
 
@@ -3341,12 +3365,11 @@ function reduceResearchState(specFolder, options = {}) {
     rejectedPatternFuzzyThreshold: resolveRejectedPatternFuzzyThreshold(config),
     minIdeaObservations: resolveMinIdeaObservations(config),
     frontier: config?.antiConvergence?.depthMode === 'expansive'
-      ? applyFrontierBudget(
-        readFrontierNodeStore(path.join(researchDir, 'frontier-nodes.jsonl')),
-        records,
-        Number(config.maxIterations),
-        config.expansiveDepth?.budgetSplit,
-      )
+      ? {
+        nodes: readFrontierNodeStore(path.join(researchDir, 'frontier-nodes.jsonl')),
+        maxIterations: Number(config.maxIterations),
+        budgetSplit: config.expansiveDepth?.budgetSplit,
+      }
       : null,
   });
   // Expose corruptionWarnings as a top-level registry field for parity with

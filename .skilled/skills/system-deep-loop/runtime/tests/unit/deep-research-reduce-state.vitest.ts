@@ -2091,6 +2091,66 @@ describe('deep-research reduce-state expansive frontier', () => {
     expect(spent?.reason).toBe('budget');
   });
 
+  // A node the store still holds open is answered once an iteration answers its
+  // question. The budget must see that before it closes the band, or an answered
+  // node reads as exhausted and its band's unspent share never rolls down.
+  it('keeps answered nodes answered and rolls their unspent depth-1 share down', () => {
+    const specFolder = expansiveSpec();
+    writeNodes(specFolder, twoOpen());
+    const caps = 'Which caps does admission read?';
+    writeState(specFolder, stateOf([
+      iterationRow(1, visit('F-1-001', 1, 'Which module owns admission?'), ['Which module owns admission?']),
+      iterationRow(2, visit('F-2-002', 2, caps)),
+      iterationRow(3, visit('F-2-002', 2, caps)),
+      iterationRow(4, visit('F-2-002', 2, caps)),
+      iterationRow(5, visit('F-2-002', 2, caps), [caps]),
+    ]));
+
+    const { registry } = reduceResearchState(specFolder, { write: false });
+    const frontier = frontierOf(registry);
+
+    expect(frontier.nodes.map((entry) => `${entry.nodeId}:${entry.status}`))
+      .toEqual(['F-1-001:answered', 'F-2-002:answered']);
+    expect(frontier.stats.exhausted).toBe(0);
+    // Depth 1 spent 1 of its 5 and has no open node, so 4 follow depth 2.
+    expect(frontier.budget?.depth2.allotted).toBe(7.5);
+  });
+
+  it('closes only the unanswered nodes of an overspent band, and still resolves their questions', () => {
+    const specFolder = expansiveSpec();
+    const admission = 'Which module owns admission?';
+    const caps = 'Which caps does admission read?';
+    const limits = 'Which limits does admission skip?';
+    writeInbox(specFolder, [
+      { id: 'F-1-001', text: admission, source: 'frontier', origin: 'frontier', injectedAtIteration: 1 },
+      { id: 'F-2-002', text: caps, source: 'frontier', origin: 'frontier', injectedAtIteration: 1 },
+      { id: 'F-2-003', text: limits, source: 'frontier', origin: 'frontier', injectedAtIteration: 1 },
+    ]);
+    writeNodes(specFolder, [...twoOpen(), node('F-2-003', 2, 'F-1-001', limits)]);
+    writeState(specFolder, stateOf([
+      iterationRow(1, visit('F-1-001', 1, admission)),
+      iterationRow(2, visit('F-1-001', 1, admission)),
+      iterationRow(3, visit('F-1-001', 1, admission)),
+      iterationRow(4, visit('F-1-001', 1, admission)),
+      iterationRow(5, visit('F-1-001', 1, admission), [admission]),
+      iterationRow(6, visit('F-2-002', 2, caps)),
+      iterationRow(7, visit('F-2-002', 2, caps)),
+      iterationRow(8, visit('F-2-002', 2, caps)),
+      iterationRow(9, visit('F-2-002', 2, caps), [caps]),
+    ]));
+
+    const { registry } = reduceResearchState(specFolder, { write: false });
+    const frontier = frontierOf(registry);
+
+    // Depth 1 spent its whole share, so nothing carries and depth 2 overspends 4 of 3.5.
+    expect(frontier.budget?.depth2).toEqual({ allotted: 3.5, spent: 4 });
+    expect(frontier.nodes.map((entry) => `${entry.nodeId}:${entry.status}:${entry.reason}`))
+      .toEqual(['F-1-001:answered:null', 'F-2-002:answered:null', 'F-2-003:exhausted:budget']);
+    const closed = keyQuestionsOf(registry).find((entry) => entry.text === limits);
+    expect(closed?.frontierStatus).toBe('exhausted');
+    expect(registry.openQuestions?.some((question) => question.text === limits)).toBe(false);
+  });
+
   it('renders the frontier metrics on an expansive dashboard only', () => {
     const expansiveFolder = expansiveSpec();
     writeNodes(expansiveFolder, twoOpen());
