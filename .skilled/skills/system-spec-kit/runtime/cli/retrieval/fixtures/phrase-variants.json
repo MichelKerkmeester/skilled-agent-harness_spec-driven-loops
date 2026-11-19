@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b84fa2f88d76ce5cfbc84f9b0e57c7e199070eb4c98ac3e9a0d82ea60e54333e",
+  "manifestHash": "5a6bb530d7601ba97ea3d22195689a9619502d8e2a40640f3eb7c53c9eee421b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -3404,6 +3404,9 @@
     "014 resource map memory finalization resource map": [
       "014-resource-map-memory-finalization resource map"
     ],
+    "014 review p2 fixes operator decisions": [
+      "014-review-p2-fixes operator decisions"
+    ],
     "014 terminal packet": [
       "014 terminal packet"
     ],
@@ -3490,6 +3493,9 @@
     ],
     "015 root readme refresh resource map": [
       "015-root-readme-refresh resource map"
+    ],
+    "015 skilled alignment check operator decisions": [
+      "015-skilled-alignment-check operator decisions"
     ],
     "015 storage adapter ports plan": [
       "015-storage-adapter-ports plan"
@@ -3839,6 +3845,9 @@
     ],
     "016 degraded readiness envelope parity": [
       "016-degraded-readiness-envelope-parity"
+    ],
+    "016 doc alignment check operator decisions": [
+      "016-doc-alignment-check operator decisions"
     ],
     "016 embedding provider local first": [
       "016-embedding-provider-local-first"
@@ -7688,6 +7697,9 @@
     "54 tool count readme": [
       "54-tool count readme"
     ],
+    "5k canary no canary case routes to it": [
+      "5k-canary no canary case routes to it"
+    ],
     "6 digit lowercase hex": [
       "6-digit lowercase hex"
     ],
@@ -9468,6 +9480,9 @@
     ],
     "advisor pasted reply flips route": [
       "advisor pasted reply flips route"
+    ],
+    "advisor pasted reply topic": [
+      "advisor pasted reply topic"
     ],
     "advisor path migration": [
       "advisor path migration"
@@ -42733,6 +42748,18 @@
     "doc 331 finished run clause": [
       "doc-331 finished run clause"
     ],
+    "doc alignment check": [
+      "doc alignment check"
+    ],
+    "doc alignment check implementation summary": [
+      "doc alignment check implementation summary"
+    ],
+    "doc alignment check plan": [
+      "doc alignment check plan"
+    ],
+    "doc alignment check tasks": [
+      "doc alignment check tasks"
+    ],
     "doc alignment paths": [
       "doc alignment paths"
     ],
@@ -52191,6 +52218,12 @@
     "finite state logic": [
       "finite state logic"
     ],
+    "fire gate stripped input": [
+      "fire gate stripped input"
+    ],
+    "fire gate stripped input plan": [
+      "fire gate stripped input plan"
+    ],
     "fires when router parity": [
       "fires when router parity"
     ],
@@ -60905,6 +60938,9 @@
     "hub card references removed": [
       "hub-card references removed"
     ],
+    "hub check reads the hub repository": [
+      "hub check reads the hub repository"
+    ],
     "hub cleanup closure": [
       "hub cleanup closure"
     ],
@@ -66481,6 +66517,12 @@
     "linear style reference validation": [
       "Linear style reference validation"
     ],
+    "linear task marker plan": [
+      "linear task marker plan"
+    ],
+    "linear task marker tasks": [
+      "linear task marker tasks"
+    ],
     "linear tickets legacy": [
       "linear-tickets legacy"
     ],
@@ -67316,6 +67358,9 @@
     ],
     "local skill link discovery": [
       "local skill link discovery"
+    ],
+    "local skilled alignment advisor": [
+      "local skilled alignment advisor"
     ],
     "local test speedups": [
       "local test speedups"
@@ -81620,6 +81665,24 @@
     "parent skill check promotion plan": [
       "parent-skill-check promotion plan"
     ],
+    "parent skill check reads a hub s canary": [
+      "parent skill check reads a hub s canary"
+    ],
+    "parent skill check target root": [
+      "parent skill check target root"
+    ],
+    "parent skill check target root goal": [
+      "parent skill check target root goal"
+    ],
+    "parent skill check target root implementation summary": [
+      "parent skill check target root implementation summary"
+    ],
+    "parent skill check target root plan": [
+      "parent skill check target root plan"
+    ],
+    "parent skill check target root tasks": [
+      "parent skill check target root tasks"
+    ],
     "parent skill fixtures": [
       "parent skill fixtures"
     ],
@@ -83730,6 +83793,9 @@
     "phase 14 results": [
       "phase 14 results"
     ],
+    "phase 14 review p2 fixes": [
+      "phase 14 review p2 fixes"
+    ],
     "phase 14 review remediation": [
       "phase 14 review remediation"
     ],
@@ -83823,6 +83889,9 @@
     "phase 15 sk create with human voice": [
       "phase 15 sk create with human voice"
     ],
+    "phase 15 skilled alignment check": [
+      "phase 15 skilled alignment check"
+    ],
     "phase 15 tasks": [
       "phase 15 tasks"
     ],
@@ -83855,6 +83924,9 @@
     ],
     "phase 16 closure gate": [
       "phase 16 closure gate"
+    ],
+    "phase 16 doc alignment check": [
+      "phase 16 doc alignment check"
     ],
     "phase 16 ended goal mark match": [
       "phase 16 ended goal mark match"
@@ -100910,6 +100982,18 @@
     "review p2 findings triage": [
       "review p2 findings triage"
     ],
+    "review p2 fixes": [
+      "review p2 fixes"
+    ],
+    "review p2 fixes implementation summary": [
+      "review p2 fixes implementation summary"
+    ],
+    "review p2 fixes plan": [
+      "review p2 fixes plan"
+    ],
+    "review p2 fixes tasks": [
+      "review p2 fixes tasks"
+    ],
     "review packet audit fixes": [
       "review packet audit fixes"
     ],
@@ -102138,6 +102222,9 @@
     ],
     "route native advisor brief": [
       "route native Advisor brief"
+    ],
+    "route receipt after delivery": [
+      "route receipt after delivery"
     ],
     "route receipts build": [
       "route receipts build"
@@ -117773,6 +117860,18 @@
     "skilled agent template": [
       "skilled agent template"
     ],
+    "skilled alignment check": [
+      "skilled alignment check"
+    ],
+    "skilled alignment check implementation summary": [
+      "skilled alignment check implementation summary"
+    ],
+    "skilled alignment check plan": [
+      "skilled alignment check plan"
+    ],
+    "skilled alignment check tasks": [
+      "skilled alignment check tasks"
+    ],
     "skilled alignment checks": [
       "skilled alignment checks"
     ],
@@ -123429,6 +123528,9 @@
     "stringify frontmatter removed": [
       "stringify frontmatter removed"
     ],
+    "strip before the 64 kib cut": [
+      "strip before the 64 KiB cut"
+    ],
     "strip processing tag": [
       "strip processing tag"
     ],
@@ -125774,6 +125876,9 @@
     "system skilled doctor 1 1 7 0": [
       "system-skilled-doctor 1.1.7.0"
     ],
+    "system skilled doctor 1 1 8 0": [
+      "system-skilled-doctor 1.1.8.0"
+    ],
     "system skilled doctor benchmark": [
       "system-skilled-doctor benchmark"
     ],
@@ -125833,6 +125938,9 @@
     ],
     "system skilled doctor v1 1 7 0": [
       "system-skilled-doctor v1.1.7.0"
+    ],
+    "system skilled doctor v1 1 8 0": [
+      "system-skilled-doctor v1.1.8.0"
     ],
     "system spec gate": [
       "system-spec-gate"
@@ -127255,6 +127363,9 @@
     ],
     "task management": [
       "task management"
+    ],
+    "task marker linear regex": [
+      "task marker linear regex"
     ],
     "task prefix": [
       "task prefix"
@@ -133134,6 +133245,12 @@
     ],
     "vendored fork provenance check": [
       "vendored fork provenance check"
+    ],
+    "vendored hub canary cases": [
+      "vendored hub canary cases"
+    ],
+    "vendored hub canary fixture": [
+      "vendored hub canary fixture"
     ],
     "vendored model card exemption": [
       "vendored model card exemption"
