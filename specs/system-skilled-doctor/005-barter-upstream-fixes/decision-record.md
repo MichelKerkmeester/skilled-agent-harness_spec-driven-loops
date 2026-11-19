@@ -36,6 +36,7 @@ _memory:
 |----|---------|-----|------------|------------|
 | Q001 | Run the live register_manual check for clickup_official, mobbin and refero now, so AC-007 can close. | Not stated. | None | AC-007, REQ-001, acceptance-criteria.md |
 | Q002 | Create .github/workflows/pi-entry-checks.yml through the doctor:ci scaffold route. | Not stated. | None | REQ-011, AC-013, .github/workflows/pi-entry-checks.yml |
+| Q003 | Barter item 6 is decided by the goal of best UX and the easiest out-of-the-box install. | Not stated. | none | specs/system-skilled-doctor/005-barter-upstream-fixes/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -81,6 +82,26 @@ Don't create
 Answer:
 ```text
 Create it (Recommended)
+```
+
+### Q003
+<!-- source: claude:ad877c77-8e90-4f3c-a6e3-9273cfd24365:toolu_016RSKYqQJSAJg9GP6K8zVUQ:0 -->
+
+Question:
+```text
+Barter's item 6 asks Pi extension entries to catch a failed adapter load and print one line instead of a stack trace. A fail-soft entry would not have helped their incident. In a linked project .pi is linked whole from the Skilled checkout, and in a vendored tree entries and adapters ship together, so a stale tree has stale entries too. Item 5, now ported and proven (21 broken entries on Skilled's own old symlink tree, 22/22 ok today), already names the fix. What should Skilled do for item 6?
+```
+
+Options:
+```text
+Decline (Recommended)
+Fail-soft adapters
+Fail-soft entries
+```
+
+Answer:
+```text
+we want best UX, easiest install out of box
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

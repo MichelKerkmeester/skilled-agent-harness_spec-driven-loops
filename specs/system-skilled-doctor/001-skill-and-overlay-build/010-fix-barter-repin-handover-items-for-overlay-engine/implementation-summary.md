@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:36e832d468f27c6a6f5d76a661826562c0e0bd4aef38740c6edc8318110ed4d9"
       session_id: "scaffold-010-fix-barter-repin-handover-items-for-overlay-engine"
       parent_session_id: null
     completion_pct: 100

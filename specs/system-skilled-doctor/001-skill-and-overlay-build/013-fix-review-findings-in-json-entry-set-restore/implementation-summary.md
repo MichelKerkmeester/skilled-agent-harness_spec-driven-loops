@@ -20,7 +20,7 @@ _memory:
       - ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs"
       - ".skilled/skills/system-skilled-doctor/references/overlays.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:10e30336ebc9bb6b42269c2cc2696d9dc5deba2e1bdb6534722e1bb7d13572f3"
       session_id: "scaffold-013-fix-review-findings-in-json-entry-set-restore"
       parent_session_id: null
     session_ref:

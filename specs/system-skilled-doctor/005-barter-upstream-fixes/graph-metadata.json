@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Barter vendors Skilled and has to carry overlays, or live with a red gate, after every re-pin",
     "created_at": "2026-11-18T12:44:24Z",
-    "last_save_at": "2026-11-18T18:39:31.422Z",
+    "last_save_at": "2026-11-19T17:37:41.764Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:54112477d7e79a7a71ace07c11c0fe893a09b943222f9dee626c1d9ed32b38e3",
+    "source_fingerprint": "sha256:d23bd921be21a0e09252034c93da23d74ef844a250eb5d53b3179f09e4e5ebb2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ea1b8c726508c604d6369a3df179f8a56268cde758b2283c0ab9d6f32a8996b8",
       "plan.md": "c39a806f06be3c4c649d474b6f6b763a4b9db7ad9d048e0d1951a89934284d65",
       "tasks.md": "9154711d48496766a34ab4feaacf3263f550831f240aa10346af437b8c2b725a",
-      "decision-record.md": "f8617c61380e5804d75d4d64c32d0643665849254195ffbcdaa95514e133d054",
+      "decision-record.md": "1933fb4883ed89c5dee285f62a608a78de0ff4e5fd3a81cbba792de62a9e7d91",
       "implementation-summary.md": "1129a70c3a33e542a65ed92c2fd57727ec178d63f9db32931e5bbd48c186b67d"
     },
     "last_active_at": null
