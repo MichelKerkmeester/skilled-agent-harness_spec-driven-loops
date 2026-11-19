@@ -3689,7 +3689,11 @@ def _apply_deep_skill_routing_layer(
         else:
             continue
         routed_confidence = mode_scores.get(mode, 0.0)
-        recommendation["confidence"] = round(max(float(recommendation.get("confidence", 0.0)), routed_confidence), 2)
+        prior_confidence = float(recommendation.get("confidence", 0.0))
+        recommendation["confidence"] = round(max(prior_confidence, routed_confidence), 2)
+        # A raised row rests on the deep routing evidence, not on the scorer's floor.
+        if routed_confidence > prior_confidence:
+            recommendation.pop("confidenceFloored", None)
         recommendation["uncertainty"] = min(float(recommendation.get("uncertainty", 0.0)), 0.30)
         recommendation["mode"] = mode
         recommendation["workflowMode"] = mode
