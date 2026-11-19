@@ -236,6 +236,23 @@ describe('deep-research wires the expansive frontier steps', () => {
     expect(stuck.if_expansive_open_node.command).toContain('--status exhausted');
   });
 
+  // The focus and the iteration record carry text a leaf wrote, so neither may
+  // reach a shell argument: the block reads the focus from a file, and the stuck
+  // close takes its node id from the reducer-owned registry, never from the focus.
+  it('keeps leaf-written focus text out of every shell argument', () => {
+    const block = wf.phase_loop.steps.step_dispatch_iteration.pre_dispatch.render_prompt_pack.bind_before_render.frontier_block as string;
+    expect(block).toContain('--focus-file "{artifact_dir}/frontier-focus.txt"');
+    expect(block).not.toContain('--focus "{next_focus}"');
+    expect(block).toContain('never through a shell');
+
+    const stuck = wf.phase_loop.steps.step_handle_convergence.if_stuck_recovery;
+    const extract = JSON.stringify(stuck.if_expansive_open_node.extract);
+    expect(extract).toContain('registry.frontier.nodes');
+    expect(extract).toMatch(/never the text/);
+
+    expect(yamlText).not.toMatch(/--focus \\?"\{next_focus\}/);
+  });
+
   it('gates the divergent pivot on a terminal frontier', () => {
     expect(yamlText).toContain('frontier_gate:');
     const contract =

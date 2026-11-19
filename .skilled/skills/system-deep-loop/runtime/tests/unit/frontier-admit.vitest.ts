@@ -16,7 +16,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { spawnSync } from 'node:child_process';
-import { chmodSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { chmodSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -781,20 +781,50 @@ describe('frontier block', () => {
     expect(renderFrontierBlock({ artifactDir, focus })).toBe('');
   });
 
-  it('the block CLI prints the same string as the function', () => {
+  it('the block CLI reads the focus from a file and prints the same string as the function', () => {
     const { artifactDir, focus } = admitOneProposal('what does the cli block probe show');
+    const focusFile = join(artifactDir, 'frontier-focus.txt');
+    writeFileSync(focusFile, `${focus}\n`, 'utf8');
 
     const result = spawnSync(process.execPath, [
       FRONTIER_ADMIT_SCRIPT,
       'block',
       '--artifact-dir',
       artifactDir,
-      '--focus',
-      focus,
+      '--focus-file',
+      focusFile,
     ], { encoding: 'utf8' });
 
-    expect(result.status).toBe(0);
+    expect(result.status, String(result.stderr)).toBe(0);
     expect(String(result.stdout)).toBe(renderFrontierBlock({ artifactDir, focus }));
+  });
+
+  // The focus carries a question a leaf wrote, so it never travels inside a shell
+  // argument: a workflow that ran it through one would execute the substitution.
+  it('passes shell metacharacters in the focus file through as plain text', () => {
+    const question = 'does $(touch pwned-subst) or `touch pwned-tick` run';
+    const { artifactDir, focus } = admitOneProposal(question);
+    const focusFile = join(artifactDir, 'frontier-focus.txt');
+    writeFileSync(focusFile, focus, 'utf8');
+
+    const result = spawnSync('/bin/sh', [
+      '-c',
+      `"${process.execPath}" "${FRONTIER_ADMIT_SCRIPT}" block --artifact-dir "${artifactDir}" --focus-file "${focusFile}"`,
+    ], { cwd: artifactDir, encoding: 'utf8' });
+
+    expect(result.status, String(result.stderr)).toBe(0);
+    expect(String(result.stdout)).toContain('Current node: F-1-001 at depth 1');
+    expect(existsSync(join(artifactDir, 'pwned-subst'))).toBe(false);
+    expect(existsSync(join(artifactDir, 'pwned-tick'))).toBe(false);
+  });
+
+  it('rejects the retired inline focus flag', () => {
+    const { artifactDir, focus } = admitOneProposal('what does the retired focus flag probe show');
+
+    const result = spawnSync(process.execPath, [FRONTIER_ADMIT_SCRIPT, 'block', '--artifact-dir', artifactDir, '--focus', focus], { encoding: 'utf8' });
+
+    expect(result.status).toBe(2);
+    expect(String(result.stderr)).toContain('unknown option: --focus');
   });
 });
 

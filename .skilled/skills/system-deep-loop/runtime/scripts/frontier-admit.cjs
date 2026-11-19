@@ -925,7 +925,7 @@ const VALUE_FLAGS = new Set([
   'status',
   'reason',
   'output',
-  'focus',
+  'focus-file',
   'target',
   'dimension',
 ]);
@@ -993,6 +993,14 @@ function readKnownTexts(filePath) {
   return parsed;
 }
 
+function readFocusFile(filePath) {
+  try {
+    return fs.readFileSync(filePath, 'utf8').trim();
+  } catch (error) {
+    throw new Error(`cannot read focus file ${filePath}: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
 function readSeedCandidates(filePath) {
   const parsed = readJsonFile(filePath, 'input file');
   if (!Array.isArray(parsed)) throw new Error('--input for seed must hold a JSON array of candidates');
@@ -1053,10 +1061,12 @@ function runCli(argv) {
   // the JSON envelope the record-shaped commands return.
   if (command === 'block') {
     // A review leaf carries its node id, while the research block recovers the
-    // node from the focus string the reducer wrote.
+    // node from the focus string the reducer wrote. That focus holds a question a
+    // leaf proposed, so it arrives in a file: inside a shell argument its text
+    // would be expanded by the shell before this script ever read it.
     const blockOptions = target === 'review'
       ? { artifactDir, nodeId: requireFlag(args, 'nodeId', 'node-id'), dimension: args.dimension, target }
-      : { artifactDir, focus: requireFlag(args, 'focus', 'focus'), target };
+      : { artifactDir, focus: readFocusFile(requireFlag(args, 'focusFile', 'focus-file')), target };
     process.stdout.write(renderFrontierBlock(blockOptions));
     return undefined;
   }

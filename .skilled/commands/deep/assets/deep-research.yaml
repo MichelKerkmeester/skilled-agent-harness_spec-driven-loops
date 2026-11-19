@@ -1475,7 +1475,7 @@ workflow:
           if_expansive_open_node:
             when: "depth_mode == 'expansive' AND the latest iteration focus contains 'Frontier node <id>' AND that node is open or active in registry.frontier.nodes"
             extract:
-              - active_frontier_node_id: "The node id in the latest iteration focus, which the reducer writes as 'Frontier node <id> (depth N, scope S): <question>'"
+              - active_frontier_node_id: "The nodeId value from registry.frontier.nodes of the node the latest iteration focus names as 'Frontier node <id>'. Copy the id from the registry, never the text from the focus: a leaf writes that focus, and the id reaches a shell argument."
             note: "The stuckRecovery append above stays on this path: the loop counters reset stuckCount on that event, and without it the next low-yield iteration would close the next node after one iteration."
             command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs close --artifact-dir "{artifact_dir}" --node-id "{active_frontier_node_id}" --status exhausted --reason stuck --iteration "{current_iteration}"'
             then_command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
@@ -1650,7 +1650,7 @@ workflow:
             output_path: "{state_paths.prompt_dir}/iteration-{current_iteration}.md"
             dry_run_output: "Render in memory and print to terminal preview; do not write output_path."
             bind_before_render:
-              frontier_block: "Empty string unless depth_mode == 'expansive'. Under expansive, the exact stdout of: node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs block --artifact-dir \"{artifact_dir}\" --focus \"{next_focus}\". Pass it verbatim; an empty stdout means the leaf gets no frontier block and proposes nothing."
+              frontier_block: "Empty string unless depth_mode == 'expansive'. Under expansive, first write {next_focus} verbatim to {artifact_dir}/frontier-focus.txt with the file-write tool, never through a shell: the focus can carry a question a leaf proposed. Then take the exact stdout of: node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs block --artifact-dir \"{artifact_dir}\" --focus-file \"{artifact_dir}/frontier-focus.txt\". Pass it verbatim; an empty stdout means the leaf gets no frontier block and proposes nothing."
             variables:
               state_summary: "{state_summary}"
               research_topic: "{research_topic}"

@@ -1232,13 +1232,15 @@ describe('expansive frontier graph mirror', () => {
     const nextFocus = anchorBody.split('\n').map((line) => line.trim()).find((line) => line && !line.startsWith('#')) ?? '';
     expect(nextFocus).toMatch(/^Frontier node F-1-001 \(depth 1, scope runtime\/scripts\): /u);
 
+    const focusFile = join(artifactDir, 'frontier-focus.txt');
+    writeFileSync(focusFile, nextFocus, 'utf8');
     const block = spawnSync(process.execPath, [
       resolve(RUNTIME_ROOT, 'scripts', 'frontier-admit.cjs'),
       'block',
       '--artifact-dir',
       artifactDir,
-      '--focus',
-      nextFocus,
+      '--focus-file',
+      focusFile,
     ], { encoding: 'utf8' });
     expect(block.status, String(block.stderr)).toBe(0);
     expect(String(block.stdout)).toContain('Current node: F-1-001 at depth 1');
