@@ -356,6 +356,14 @@ describe('frontier-admit', () => {
     expect(dedupeKey('Café: résumé?')).toBe(dedupeKey('café résumé'));
   });
 
+  // NFKC has no precomposed form for an Indic or Thai vowel sign, so the mark
+  // itself must stay in the key or two different words collide.
+  it('keeps combining vowel signs, so Devanagari and Thai words stay apart', () => {
+    const { dedupeKey } = require(FRONTIER_ADMIT_SCRIPT) as { dedupeKey: (text: string) => string };
+    expect(dedupeKey('कि')).not.toBe(dedupeKey('कु'));
+    expect(dedupeKey('กิน')).not.toBe(dedupeKey('กัน'));
+  });
+
   // A budget is a count of iterations. A negative or fractional one stored on a
   // node would prune every later child that names a positive budget.
   it.each([-1, 0, 1.5])('ignores a budget of %s rather than storing it', (budget) => {

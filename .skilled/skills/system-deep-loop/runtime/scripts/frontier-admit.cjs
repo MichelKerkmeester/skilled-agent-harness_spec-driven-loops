@@ -261,14 +261,15 @@ function dedupeKey(text) {
   // qualify: a strategy question id (Q3) and a frontier node id (F-1-001). A
   // word followed by a number and a colon is part of the question, and so is a
   // short token such as ES2015, V8 or H2, which names what is being asked about.
-  // Letters and digits of every script count, so a question written outside
-  // ASCII keeps its words; NFKC folds the composed and decomposed spellings of
-  // one accented letter to the same key. ASCII text keys exactly as before.
+  // Letters, combining marks and digits of every script count, so a question
+  // written outside ASCII keeps its words; NFKC folds the composed and
+  // decomposed spellings of one accented letter to the same key, and a vowel
+  // sign with no precomposed form stays a mark. ASCII keys exactly as before.
   return text
     .normalize('NFKC')
     .toLowerCase()
     .replace(/^(?:q\d+|f-\d+-\d+)\s*:\s*/, '')
-    .replace(/[^\p{L}\p{N}]+/gu, ' ')
+    .replace(/[^\p{L}\p{M}\p{N}]+/gu, ' ')
     .trim();
 }
 
