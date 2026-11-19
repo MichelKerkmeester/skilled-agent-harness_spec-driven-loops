@@ -345,6 +345,17 @@ describe('frontier-admit', () => {
     expect(dedupeKey('IE11: which polyfill is loaded')).toBe('ie11 which polyfill is loaded');
   });
 
+  // A question in a non-Latin script would otherwise reduce to an empty key and
+  // prune as a duplicate of nothing, and two accented questions would collide.
+  it('keeps letters and digits from every script in the dedupe key', () => {
+    const { dedupeKey } = require(FRONTIER_ADMIT_SCRIPT) as { dedupeKey: (text: string) => string };
+    expect(dedupeKey('Wie stoppt die Schleife?')).toBe('wie stoppt die schleife');
+    expect(dedupeKey('ループはいつ止まるか')).not.toBe('');
+    expect(dedupeKey('ループはいつ止まるか')).not.toBe(dedupeKey('キャッシュはいつ消えるか'));
+    expect(dedupeKey('qué pasó')).not.toBe(dedupeKey('qu pas'));
+    expect(dedupeKey('Café: résumé?')).toBe(dedupeKey('café résumé'));
+  });
+
   it('records a pruned proposal in the store without an inbox row', () => {
     const artifactDir = makeArtifactDir();
     const question = 'how does the frontier hand off a duplicate';

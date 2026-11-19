@@ -244,7 +244,7 @@ function checkCycle(parentId, nodes, caps) {
  * Reduce a question to the key that dedupe compares.
  *
  * @param {unknown} text - The question text.
- * @returns {string} The lowercased key with any leading question id and punctuation removed, or '' for a non-string.
+ * @returns {string} The NFKC-normalized, lowercased key with any leading question id and every run of non-letter, non-digit characters collapsed, or '' for a non-string.
  */
 function dedupeKey(text) {
   if (typeof text !== 'string') return '';
@@ -254,10 +254,14 @@ function dedupeKey(text) {
   // qualify: a strategy question id (Q3) and a frontier node id (F-1-001). A
   // word followed by a number and a colon is part of the question, and so is a
   // short token such as ES2015, V8 or H2, which names what is being asked about.
+  // Letters and digits of every script count, so a question written outside
+  // ASCII keeps its words; NFKC folds the composed and decomposed spellings of
+  // one accented letter to the same key. ASCII text keys exactly as before.
   return text
+    .normalize('NFKC')
     .toLowerCase()
     .replace(/^(?:q\d+|f-\d+-\d+)\s*:\s*/, '')
-    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/[^\p{L}\p{N}]+/gu, ' ')
     .trim();
 }
 
