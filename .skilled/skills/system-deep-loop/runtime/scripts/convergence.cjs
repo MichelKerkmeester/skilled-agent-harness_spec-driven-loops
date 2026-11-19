@@ -1576,8 +1576,11 @@ function reviewCoverageAge(evidenceRecords, dimensions) {
 
 // A run configured with a dimension list that leaves traceability out never
 // reviews it. An absent list means the default four, which include traceability.
-// The stop gate and the reducer's dimension universe both read this one test, so
-// a node is never held open for a dimension the stop does not owe.
+// The stop gate and the reducer's dimension universe share this one test, so
+// neither owes traceability when the list leaves it out. They share nothing else:
+// the stop owes the configured list, while a frontier node owes the canonical four
+// less traceability plus every custom name, so a list naming a canonical subset
+// still holds a node open for, and dispatches it to, the canonical names it omits.
 function reviewOmitsTraceability(config) {
   const dimensions = config ? config.reviewDimensions : undefined;
   return Array.isArray(dimensions) && !dimensions.includes('traceability');
