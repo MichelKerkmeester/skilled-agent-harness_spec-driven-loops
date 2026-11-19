@@ -6,7 +6,7 @@ trigger_phrases:
   - "advisor cli fallback"
   - "trusted mutation gate"
   - "SYSTEM_SKILL_ADVISOR_CLI_TRUSTED"
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # Daemon-backed skill-advisor CLI
@@ -25,7 +25,7 @@ Calls are sent untrusted by default. The mutation set — `advisor_rebuild`, `sk
 
 ### Shim guards and exit taxonomy
 
-`.skilled/bin/skill-advisor.cjs` defaults the socket dir to `/tmp/system-skill-advisor`, walks the TypeScript source tree for mtimes and refuses stale dist with exit 69 (`SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` or `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` override in development), and maps spawn failure to 75. The entrypoint shares the program taxonomy: 0 success, 1 runtime, 64 usage/validation/trust refusal, 69 protocol, 75 retryable. `--warm-only` (default via `SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY`) probes the socket and exits 75 instead of auto-spawning.
+`.skilled/bin/skill-advisor.cjs` defaults the socket dir to `/tmp/system-skill-advisor`, walks the TypeScript source tree for mtimes and refuses stale dist with exit 69 (`SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` or `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` override in development), and maps spawn failure to 75. The entrypoint shares the program taxonomy: 0 success, 1 runtime, 64 usage/validation/trust refusal, 69 protocol, 75 retryable. `--warm-only` (default via `SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY`, or when any prompt-time marker is set: `SYSTEM_SKILL_ADVISOR_CLI_PROMPT_TIME`, `SPECKIT_SKILL_ADVISOR_CLI_PROMPT_TIME`, `SPECKIT_CLI_PROMPT_TIME`, `OPENCODE_PROMPT_TIME`, `CLAUDE_CODE_PROMPT_TIME`) probes the socket and exits 75 instead of auto-spawning.
 
 ### Stale-daemon compatibility retry
 
@@ -52,7 +52,7 @@ A resident daemon started from an older build rejects the newer request options 
 | `runtime/skill-advisor-cli-manifest.ts` | CLI manifest | Hand-maintained command registry, held byte-identical to `TOOL_DEFINITIONS` by the manifest parity suite |
 | `runtime/advisor-server.ts` | Daemon | Daemon-side trust default (`SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT`) |
 | `.skilled/bin/skill-advisor.cjs` | Advisor CLI | The plugin's advisor path: front door over the daemon-backed commands |
-| `hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper | Shared warm-only CLI fallback for Claude/OpenCode prompt-submit hooks |
+| `hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper | Shared CLI fallback that runs `--no-warm-only` for the Claude prompt handler, which the Pi, DSH and Vibe adapters also call |
 
 ### Validation And Tests
 

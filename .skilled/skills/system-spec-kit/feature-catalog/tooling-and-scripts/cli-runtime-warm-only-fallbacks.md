@@ -6,14 +6,14 @@ trigger_phrases:
   - "cli fallback hooks"
   - "transport-down fail-open"
   - "opencode plugin cli bridge"
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # CLI hook fallbacks and plugin bridges
 
 ## 1. OVERVIEW
 
-A CLI nobody's runtime calls does not close the transport-down incident class, so every 028 CLI workstream shipped paired runtime integrations. Prompt-time hooks for Claude Code and OpenCode gained a shared CLI fallback helper per system: the hook runs the casual-prompt gate first and passes the rest to a CLI that owns daemon startup. On a cold socket the CLI starts the launcher and waits for the daemon within a bounded cold-start window of at most 5 seconds, then falls back to the local Python scorer with a degraded answer when the daemon does not respond in that window. The hook fails open rather than blocking the prompt when its own budget ends first or the CLI fails.
+A CLI nobody's runtime calls does not close the transport-down incident class, so every 028 CLI workstream shipped paired runtime integrations. Prompt-time hooks for Claude Code and OpenCode gained a shared CLI fallback helper per system: the hook runs the casual-prompt gate first and passes the rest to a CLI that owns daemon startup. For `advisor_recommend`, the CLI caps its daemon wait at 5 seconds only when the initial probe fails for a reason other than timeout. A timeout means a daemon accepted the connection and stayed silent, so the CLI waits for the caller's full timeout instead. If the daemon stays unavailable, the CLI falls back to its local Python scorer with a degraded answer. The hook fails open rather than blocking the prompt when its own budget ends first or the CLI fails.
 
 OpenCode gained a plugin route with a CLI fallback in `system-skill-advisor` that leaves the primary bridge path untouched. The bridge uses CLI/IPC transport only — zero in-process database imports, so the dual-writer hazard that forced the earlier revert cannot return.
 
@@ -25,7 +25,7 @@ The `spec-memory` and `code-index` halves of this integration were removed with 
 
 ### CLI fallback helpers per system
 
-`skill-advisor-cli-fallback.ts` (system-skill-advisor hooks) runs the CLI with `--no-warm-only --timeout-ms` (warm calls measured 117-198 ms) because the CLI is the only component that starts the daemon. On a cold socket the CLI starts the launcher and waits for the daemon within a bounded cold-start window of at most 5 seconds. If the daemon does not answer in that window `advisor_recommend` answers from the local Python scorer, marked degraded, and the hook shows `Advisor: stale`.
+`skill-advisor-cli-fallback.ts` (system-skill-advisor hooks) runs the CLI with `--no-warm-only --timeout-ms` (warm calls measured 117-198 ms) because the CLI is the only component that starts the daemon. It caps the `advisor_recommend` daemon wait at 5 seconds only when the initial probe fails for a reason other than timeout. A timeout means the daemon accepted the connection but stayed silent, so the CLI sets the daemon wait to the caller's full `timeoutMs`. By default, Claude passes its 2.5-second hook budget as `timeoutMs` and kills the CLI subprocess at that limit. When a silent-daemon probe consumes the budget, the CLI cannot reach its degraded local-scorer answer and the hook emits `Advisor: outage (fail_open)`.
 
 ### Hook wiring
 

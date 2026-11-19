@@ -85,11 +85,12 @@ test('the prompt advisor reports itself as dsh, a runtime the advisor accepts', 
   const seen = [];
   await runAdvisor({ prompt: 'probe' }, async () => ({
     handleClaudeUserPromptSubmit: async (input, dependencies) => {
-      seen.push(dependencies.runtime);
+      seen.push([dependencies.runtime, dependencies.deferDirectiveReceipt]);
       return {};
     },
   }));
-  assert.deepEqual(seen, ['dsh']);
+  // The extension commits the handler's receipts itself once the notice exists.
+  assert.deepEqual(seen, [['dsh', true]]);
 });
 
 test('the prompt advisor stays silent in a fan-out leaf', async () => {
@@ -328,4 +329,69 @@ test('route receipts: advanceBoundary moves only the named session clock in the 
   } finally {
     rmSync(base, { recursive: true, force: true });
   }
+});
+
+test('route receipts: the handler receipts commit only once the notice is appended', async () => {
+  const commits = [];
+  const output = { hookSpecificOutput: { additionalContext: 'Advisor: fixture' } };
+  const core = { runAdvisor: async () => output, commitDelivery: async (delivered) => { commits.push(delivered); } };
+  const { ctx, fire } = pluginHarness();
+  registerPromptAdvisor(ctx, { enabled: true, isLeaf: interactive, isEnabled: enabled, core, createNotice: plainNotice });
+  const { agent } = fakeAgent({ id: 'session-receipt-commit' });
+  await step(fire, agent, [humanMessage('Route this.')]);
+  assert.deepEqual(commits, [output]);
+
+  const failed = [];
+  const failing = pluginHarness();
+  registerPromptAdvisor(failing.ctx, {
+    enabled: true,
+    isLeaf: interactive,
+    isEnabled: enabled,
+    core: { runAdvisor: async () => output, commitDelivery: async (delivered) => { failed.push(delivered); } },
+    createNotice: async () => { throw new Error('notice failed'); },
+  });
+  const other = fakeAgent({ id: 'session-receipt-no-notice' });
+  await step(failing.fire, other.agent, [humanMessage('Route this.')]);
+  assert.deepEqual(failed, []);
+});
+
+test('directive lifecycle: a turn whose notice fails leaves the directive block unsent, so the next turn sends it in full', async () => {
+  const brief = 'Advisor: route sk-code\nDirectives: keep comments durable';
+  let failNext = true;
+  const { ctx, fire } = pluginHarness();
+  registerPromptAdvisor(ctx, {
+    enabled: true,
+    isLeaf: interactive,
+    isEnabled: enabled,
+    core: advisorCore(brief),
+    createNotice: async (text) => {
+      if (failNext) {
+        failNext = false;
+        throw new Error('notice failed');
+      }
+      return plainNotice(text);
+    },
+  });
+  const { agent } = fakeAgent({ id: 'session-notice-fails-once' });
+  await step(fire, agent, [humanMessage('One.')]);
+  const retry = await step(fire, agent, [humanMessage('Two.')]);
+  assert.equal(noticeText(retry.messages[0]), brief);
+});
+
+test('route receipts: a host reply that cannot take the notice commits nothing', async () => {
+  const commits = [];
+  const output = { hookSpecificOutput: { additionalContext: 'Advisor: fixture' } };
+  const { ctx, handlers } = adapterHarness();
+  registerPromptAdvisor(ctx, {
+    enabled: true,
+    isLeaf: interactive,
+    isEnabled: enabled,
+    core: { runAdvisor: async () => output, commitDelivery: async (delivered) => { commits.push(delivered); } },
+    createNotice: plainNotice,
+  });
+  await handlers.get('agent/pre-step')({
+    agent: { session: { id: 'session-bad-host-reply', header: { cwd: '/fixture/workspace' } } },
+    messages: [{ role: 'user', source: { kind: 'user' }, content: [{ type: 'text', text: 'Route this.' }] }],
+  }, async () => ({ kind: 'enter', messages: {} }));
+  assert.deepEqual(commits, []);
 });

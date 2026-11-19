@@ -2669,6 +2669,54 @@ def test_pasted_reply_strip_parity():
             fail_test(name, f"batch={batch_top} single={single_top}")
 
 
+def test_native_bridge_floor_flag():
+    """The native bridge keeps the confidence floor flag, so a floored route reads as floored."""
+    name = "BRIDGE-FLOOR: a floored native row keeps confidenceFloored and an earned row gets none"
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        rows = advisor._legacy_recommendations_from_native({
+            "recommendations": [
+                {"skillId": "sk-code", "confidence": 0.82, "uncertainty": 0.2, "confidenceFloored": True},
+                {"skillId": "sk-doc", "confidence": 0.91, "uncertainty": 0.1},
+            ],
+        })
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if rows[0].get("confidenceFloored") is True and "confidenceFloored" not in rows[1]:
+        ok(name)
+    else:
+        fail_test(name, f"rows={rows!r}")
+
+
+def test_deep_routing_clears_floor_flag():
+    """A floored row the deep routing layer raises rests on that layer's evidence, not the floor."""
+    name = "DEEP-FLOOR: the deep routing layer clears confidenceFloored only when it raises the row"
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        original = advisor.deep_skill_routing_payload
+        advisor.deep_skill_routing_payload = lambda prompt, context: {
+            "scores": {"review": 0.9, "research": 0.0},
+            "mode": "review",
+            "skill": "system-deep-loop",
+            "confidence_band": "HIGH",
+        }
+        try:
+            raised = [{"skill": "system-deep-loop", "confidence": 0.82, "uncertainty": 0.2, "confidenceFloored": True}]
+            advisor._apply_deep_skill_routing_layer(raised, "deep review the release until convergence")
+            kept = [{"skill": "system-deep-loop", "confidence": 0.95, "uncertainty": 0.2, "confidenceFloored": True}]
+            advisor._apply_deep_skill_routing_layer(kept, "deep review the release until convergence")
+        finally:
+            advisor.deep_skill_routing_payload = original
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if "confidenceFloored" not in raised[0] and kept[0].get("confidenceFloored") is True:
+        ok(name)
+    else:
+        fail_test(name, f"raised={raised[0]!r} kept={kept[0]!r}")
+
+
 def main():
     print("=" * 60)
     print("  SKILL ADVISOR AUTOMATED TEST SUITE (T243/T246)")
@@ -2683,6 +2731,8 @@ def main():
     test_private_skill_discovery_trust()
     test_declared_phrase_specificity()
     test_pasted_reply_strip_parity()
+    test_native_bridge_floor_flag()
+    test_deep_routing_clears_floor_flag()
 
     print(f"\nSummary: pass={passed}, fail={failed}")
     return 0 if failed == 0 else 1

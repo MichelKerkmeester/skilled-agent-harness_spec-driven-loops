@@ -823,6 +823,10 @@ def _legacy_recommendations_from_native(output: Dict[str, Any]) -> List[Dict[str
         }
         if "passes" in recommendation:
             item["passes"] = bool(recommendation["passes"])
+        # The hook holds a floored route back against the session's earlier route,
+        # so the flag has to survive the translation to the legacy contract.
+        if recommendation.get("confidenceFloored") is True:
+            item["confidenceFloored"] = True
         if "score" in recommendation:
             item["score"] = recommendation["score"]
         if "dominantLane" in recommendation:
@@ -3685,7 +3689,11 @@ def _apply_deep_skill_routing_layer(
         else:
             continue
         routed_confidence = mode_scores.get(mode, 0.0)
-        recommendation["confidence"] = round(max(float(recommendation.get("confidence", 0.0)), routed_confidence), 2)
+        prior_confidence = float(recommendation.get("confidence", 0.0))
+        recommendation["confidence"] = round(max(prior_confidence, routed_confidence), 2)
+        # A raised row rests on the deep routing evidence, not on the scorer's floor.
+        if routed_confidence > prior_confidence:
+            recommendation.pop("confidenceFloored", None)
         recommendation["uncertainty"] = min(float(recommendation.get("uncertainty", 0.0)), 0.30)
         recommendation["mode"] = mode
         recommendation["workflowMode"] = mode
