@@ -35,6 +35,8 @@ _memory:
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
 | Q001 | Keep the level-match fix in child 011 and add a D1 exception for it in the series goal. | Not stated. | None | spec.md Q1, implementation-summary.md, ../goal.md D1 |
+| Q002 | The LEVEL_MATCH warning is fixed in the validator rule, not by removing decision records. | Not stated. | none | specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/spec.md |
+| Q003 | The 41 READMEs swept into commit 096fe534033 stay on main and their owning session is told. | Not stated. | none | specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -62,6 +64,46 @@ Record it in 011 only
 Answer:
 ```text
 Add a D1 exception (Recommended)
+```
+
+### Q002
+<!-- source: claude:ab672873-2f89-4541-9659-73a60e125e14:toolu_01N5N9kLQjbMN6PnNZffhiAH:0 -->
+
+Question:
+```text
+The LEVEL_MATCH warning now shows on four Level 1 packets (007, 009, 011, 012). The cause is that the save writer creates decision-record.md whenever it records an operator answer, and check-level-match.sh warns about any decision-record.md on a Level 1 packet, so the warning fires on the writer's own output. How should I handle it?
+```
+
+Options:
+```text
+Fix the validator rule (Recommended)
+Leave it as a warning
+Raise the four packets to Level 3
+```
+
+Answer:
+```text
+Fix the validator rule (Recommended)
+```
+
+### Q003
+<!-- source: claude:cbc62a39-7ca8-4b5a-989f-a86fdea260ea:toolu_01EoQG6cYUcGh7XKiSGC6DrP:0 -->
+
+Question:
+```text
+My 011 commit (096fe534033, pushed to main) also swept in 41 skill READMEs that the "README (5)" session had already staged. They are that session's work, packet sk-doc/006-readme-template-conformance/002-mode-packet-readmes, and its packet docs are still uncommitted. The commit hook also raised each README's version by one patch. How should I handle it?
+```
+
+Options:
+```text
+Revert and restage (Recommended)
+Leave on main, tell owner
+Leave it, no message
+```
+
+Answer:
+```text
+Leave on main, tell owner
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

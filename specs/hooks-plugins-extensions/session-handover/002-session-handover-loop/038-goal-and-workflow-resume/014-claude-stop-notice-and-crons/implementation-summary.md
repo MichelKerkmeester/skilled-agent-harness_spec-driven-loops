@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files: [".skilled/hooks/session-relaunch/claude/stop-arm.mjs", ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"]
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:2a99deda8be62976390dca97b287247f35d135e359e8c0602a7b7741fba86d40"
       session_id: "scaffold-014-claude-stop-notice-and-crons"
       parent_session_id: null
     completion_pct: 100

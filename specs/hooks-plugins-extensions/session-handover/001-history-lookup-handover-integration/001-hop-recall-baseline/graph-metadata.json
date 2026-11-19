@@ -16,6 +16,7 @@
       "hop recall baseline plan",
       "hop recall baseline tasks",
       "hop recall baseline goal",
+      "001-hop-recall-baseline operator decisions",
       "hop recall baseline implementation summary"
     ],
     "key_topics": [
@@ -26,11 +27,11 @@
       "plan",
       "tasks",
       "goal",
+      "001-hop-recall-baseline",
+      "operator",
+      "decisions",
       "implementation",
-      "summary",
-      "handover",
-      "starts",
-      "fresh"
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,6 +40,7 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-baseline-conversation.md",
@@ -69,6 +71,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -184,17 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Claude Code",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The handover starts a fresh session near the context limit, so the receiver holds only the four sections of the handoff note",
     "created_at": "2026-11-15T06:24:15Z",
-    "last_save_at": "2026-11-16T11:34:50.243Z",
+    "last_save_at": "2026-11-19T17:35:50.613Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +204,16 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:46a8205877fe769f4721fa1c539bba5a7c02e91fcfc4fb53558897e9ee0fefb2",
+    "source_fingerprint": "sha256:d3d7395797f6b5217b232c3d7cbbd4608e0c791dbfe488b5f9b6b573a87d9b9b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cdc9d41f72bc561432b8eccddd080fcaca2a8f4bf4ce3f7db3a927adcbfe82fb",
       "plan.md": "22f31b1e98adf574a493e5e4492fdb457f1276828d1e6cad9a5dc2ef82c372b5",
       "tasks.md": "f2534a71e4342689ce6536cefc072b737ff068ba9298de655788199ce33274e7",
+      "decision-record.md": "c91fddbffbc8da6ceb1c156ac7f151bcc63662d30fb493f9e41fd65efb3307d2",
       "implementation-summary.md": "1cf14dee7e978c8d495e0b3744cc90471a601810e80c4d40ddee2a62c60f33bc"
     },
     "last_active_at": null

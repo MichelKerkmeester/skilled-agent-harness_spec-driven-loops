@@ -16,6 +16,7 @@
       "pi one-line entry files",
       "file relative adapter imports plan",
       "file relative adapter imports tasks",
+      "006-file-relative-adapter-imports operator decisions",
       "file relative adapter imports implementation summary"
     ],
     "key_topics": [
@@ -38,10 +39,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       "scratch/real-folder-imports.patch",
       ".pi/extensions/lib/claude-hook-adapter.ts",
-      ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/hook-registration-sync.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/tests/hook-adapter-path-parity.vitest.ts",
@@ -53,8 +54,8 @@
       ".skilled/hooks/vitest.config.ts",
       ".skilled/skills/system-spec-kit/vitest.config.ts",
       ".skilled/skills/system-spec-kit/runtime/vitest.config.ts",
-      ".skilled/changelog/skilled/v4.0.2.1.md",
-      ".pi/README.md"
+      ".pi/README.md",
+      ".pi/SYNC.md"
     ],
     "entities": [
       {
@@ -76,6 +77,12 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -91,12 +98,6 @@
         "name": "claude-hook-adapter.ts",
         "kind": "code",
         "path": ".pi/extensions/lib/claude-hook-adapter.ts",
-        "source": "derived"
-      },
-      {
-        "name": "dispatch-preflight-lint.ts",
-        "kind": "code",
-        "path": ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
         "source": "derived"
       },
       {
@@ -154,9 +155,9 @@
         "source": "derived"
       },
       {
-        "name": "v4.0.2.1.md",
+        "name": "SYNC.md",
         "kind": "doc",
-        "path": ".skilled/changelog/skilled/v4.0.2.1.md",
+        "path": ".pi/SYNC.md",
         "source": "derived"
       },
       {
@@ -204,22 +205,24 @@
     ],
     "causal_summary": "Pi found this repository's hook adapters through 22 relative symlinks in `.pi/extensions/`",
     "created_at": "2026-11-12T09:07:41Z",
-    "last_save_at": "2026-11-15T14:37:03.451Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:47:08.661Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bf09d9c34a1b6e539ac9e8a8f6f5e474439cbd452c756382568d7ccf2c78ac0f",
+    "source_fingerprint": "sha256:02df5a1006fbd1dfa2b2dddcd1bd65346b88be760ea6be2172b802f02088ced6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "097b3c65521afa13b3543139c9b666de40295e61079eb749682e71f7d0f13285",
       "plan.md": "00fceb49452a9b5ff1a19982befee0a847c29f9eae92933e20ff5ad4377ffca1",
       "tasks.md": "5b3b0010f5043cbc87f9261eed856b29265ac182c699cf4063099394e014106b",
-      "implementation-summary.md": "3f4d71013436fd74e45e17298aeb484d9a7c3e43655bc93a913aab7c4f4d047d"
+      "decision-record.md": "3e449dbec1749c4aeb3e417e765d1bf8472cee1c10d9b34f61eb0b0a055dc492",
+      "implementation-summary.md": "95b1f2c6dee8254b0c8b3a10bfbaeb194a869f63d1b88ab359b7fc990df94f71"
     },
     "last_active_at": null
   }

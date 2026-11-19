@@ -18,7 +18,7 @@
     "plugins",
     "session-relaunch"
   ],
-  "lastUpdated": "2026-11-15T14:28:40.983Z",
+  "lastUpdated": "2026-11-19T17:47:41.132Z",
   "specId": "013",
   "folderSlug": "opencode-child-and-title",
   "parentChain": [
@@ -27,6 +27,9 @@
     "002-session-handover-loop",
     "038-goal-and-workflow-resume"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "19-11-26_18-36__manual-context-save.md",
+    "19-11-26_18-47__manual-context-save.md"
+  ]
 }

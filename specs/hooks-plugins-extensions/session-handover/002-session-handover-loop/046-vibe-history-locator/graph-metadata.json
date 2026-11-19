@@ -47,7 +47,6 @@
       ".skilled/hooks/session-handover/tests/session-handover-cli.test.cjs",
       ".skilled/hooks/session-handover/README.md",
       ".skilled/hooks/injection-contract.md",
-      "runtime/hooks/lib/history/cli.ts",
       "scratch/gate-baseline.txt",
       "scratch/gate-final.txt"
     ],
@@ -110,12 +109,6 @@
         "name": "injection-contract.md",
         "kind": "doc",
         "path": ".skilled/hooks/injection-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli.ts",
-        "kind": "code",
-        "path": "runtime/hooks/lib/history/cli.ts",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A Vibe receiver claims its note with no History Lookup section, so it cannot read the sender's earlier turns when the note leaves a detail out",
     "created_at": "2026-11-15T15:05:32Z",
-    "last_save_at": "2026-11-15T16:25:44.877Z",
+    "last_save_at": "2026-11-19T17:36:32.017Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +209,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f29fab2ca1853f154f0c5539ae4a1b679ad2a342aedd2e0314867446b51015a6",
+    "source_fingerprint": "sha256:60a5b2dfa41f79d681e04afd23b6b276d1af85587c314c2d03534e61c71108ad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "881826476516ba0b59e18d8205048c6d9d4d4bea944afc13ccd862d97a330dac",
       "plan.md": "b3b68622782bcc4c9ae8f4c558d36d29fcdd8738590d0d7cc48190661eeeafd5",
       "tasks.md": "7e65aa17eb450948e67cb1c2154aef54665821fba9a9aca309662afbf533f896",
-      "decision-record.md": "c77760bbd03015a4886e380571553b01c37a6580fbf509c573a6de0cdef524bb",
+      "decision-record.md": "57abda29cb26a7ce1f7324933df83fdafccaed555bcdd3d61508fa0908c0a791",
       "implementation-summary.md": "b5b8838508c8b5f87a84810fa07f3fd703b16561ca50ba9d1805775120aa8e56"
     },
     "last_active_at": null

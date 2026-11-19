@@ -17,6 +17,7 @@
       "permission mode carry tasks",
       "permission mode carry acceptance criteria",
       "permission mode carry goal",
+      "011-permission-mode-carry operator decisions",
       "permission mode carry implementation summary"
     ],
     "key_topics": [
@@ -29,9 +30,9 @@
       "acceptance",
       "criteria",
       "goal",
-      "implementation",
-      "summary",
-      "claude"
+      "011-permission-mode-carry",
+      "operator",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -41,6 +42,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       "scratch/red.txt",
       "scratch/green.txt",
@@ -75,6 +77,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -184,18 +192,12 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Confirm Codex",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A Claude session moved into another permission mode after launch, for example with Shift+Tab into `acceptEdits`, restarts in the launch mode after a hop",
     "created_at": "2026-11-13T08:49:33Z",
-    "last_save_at": "2026-11-15T14:28:42.602Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:36:19.354Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -203,15 +205,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e379db18b6f533885a0dc86fa17ad84b52f5bac1a7a8030e0966cc4ffc0f1ac8",
+    "source_fingerprint": "sha256:c7909688fea8a359c719b5c0b8e63291c3ba138dbd6883ca4a3f8cdcbe9a6da1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d50ba6b32e73f14d47f07c440039893103a2a0d6e64c139d79ee95a19ea68f40",
       "plan.md": "5fdcfde8bae81101dae00c66505d2b5864c0123a167687a5c7c56a9d17921109",
       "tasks.md": "58cc82c3468c7759c3b3cdb530f2a653c4b1e59be70c64e9cd56b170a6b65462",
-      "implementation-summary.md": "d36b509f10132dae8050a395d2195e364f66388cb6b2d25f30654f45862cec33"
+      "decision-record.md": "25c3f5dd19c80b94bcfbc68be0e390962b844a309ed65e6f6b26ccb2819190bc",
+      "implementation-summary.md": "73a92164712704a0fa40e1d98c6df25eac0e9e8e525c717e42db6e7d502e3755"
     },
     "last_active_at": null
   }

@@ -17,6 +17,7 @@
       "opencode child and title tasks",
       "opencode child and title acceptance criteria",
       "opencode child and title goal",
+      "013-opencode-child-and-title operator decisions",
       "opencode child and title implementation summary"
     ],
     "key_topics": [
@@ -29,9 +30,9 @@
       "acceptance",
       "criteria",
       "goal",
-      "implementation",
-      "summary",
-      "plugin"
+      "013-opencode-child-and-title",
+      "operator",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -41,6 +42,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".opencode/plugins/lib/v2-bridge.js",
       ".opencode/plugins/tests/v2-bridge.test.cjs",
@@ -81,6 +83,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -190,18 +198,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The plugin puts every sub-agent session in a skip set and returns before reading any later event for it (`.opencode/plugins/session-relaunch.js:335`, `:341`), and the parent arms at `session.idle` with no child check (`:418` to `:435`)",
     "created_at": "2026-11-13T08:49:35Z",
-    "last_save_at": "2026-11-15T14:28:42.631Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:36:22.279Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -209,15 +211,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:09b1ac410b4d8b47ddbcf3d16983c0dda45314d4002c77049394d81ab3ed6024",
+    "source_fingerprint": "sha256:ccb89b55dcfea9ad36219cef40ab7b50f0dc23fc728b90c9f5b33d0ab328caa8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5ca3de1c0bb29e389e0309d250daafd3ed57a993e7ddede26170f805f3c1fdf7",
       "plan.md": "bcb426d53318006ff00d7d0e9d718d434a64919669bbb3ac150feb38eeae1774",
       "tasks.md": "e1cf5ebb331d6c95005cc22c3e55064251dd9d42b0dcc615dc9d468d48ff4a0f",
-      "implementation-summary.md": "926302e1460a9f9bd87c84b6b7f54877ebddf45df92af81896f0ac59194596d0"
+      "decision-record.md": "5af44a8970ec58232d18d352bc2f328eb4fcd6d094c5de053441176decffb516",
+      "implementation-summary.md": "2b8da609ce09b783827d12ed3a73dc9a0528a1a9aaf8a857541dc94683d99e21"
     },
     "last_active_at": null
   }

@@ -17,7 +17,7 @@
     "mjs",
     "arms"
   ],
-  "lastUpdated": "2026-11-15T14:28:41.011Z",
+  "lastUpdated": "2026-11-19T17:47:48.343Z",
   "specId": "001",
   "folderSlug": "sender-dialog-after-prepare",
   "parentChain": [
@@ -26,6 +26,8 @@
     "002-session-handover-loop",
     "039-hop-dialog-goal-title"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "19-11-26_18-47__manual-context-save.md"
+  ]
 }

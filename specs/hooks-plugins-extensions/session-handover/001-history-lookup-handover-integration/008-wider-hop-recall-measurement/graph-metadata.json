@@ -15,7 +15,8 @@
       "phase 8 wider hop recall measurement",
       "hop recall on codex and vibe",
       "wider hop recall measurement plan",
-      "wider hop recall measurement tasks"
+      "wider hop recall measurement tasks",
+      "008-wider-hop-recall-measurement operator decisions"
     ],
     "key_topics": [
       "wider",
@@ -27,9 +28,9 @@
       "vibe",
       "plan",
       "tasks",
-      "claim-time",
-      "lookup",
-      "moved"
+      "008-wider-hop-recall-measurement",
+      "operator",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -37,6 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       ".skilled/hooks/session-handover/history/dist/cli.js"
     ],
     "entities": [
@@ -56,6 +58,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -159,24 +167,44 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The claim-time lookup moved receivers from 0 of 6 correct answers to 3 of 3, but that result rests on six counted runs, one runtime, one model and one synthetic detail",
     "created_at": "2026-11-15T17:11:10Z",
-    "last_save_at": "2026-11-15T17:13:33.316Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:47:24.592Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:3b427bc024f194880cb94cf53ed429bc3eb7f0c89c08f5656d0b670fd4cb2529",
+    "source_fingerprint": "sha256:e0e360f1159cdf1c755ab4dfe2988e22cec023993c36645b075783f25b8b566b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d6a8db36a240bdb752c8192cae5dfc7b901cf9e86128e59818aa4dae2eb41632",
       "plan.md": "80901a3adfa582e06033843ec12596a409a913131ffcbf0658a30ceb1972db9c",
-      "tasks.md": "7aac7b43c96855109753dd443523a725a181cd85b427fc30708e37d2802a2313"
+      "tasks.md": "7aac7b43c96855109753dd443523a725a181cd85b427fc30708e37d2802a2313",
+      "decision-record.md": "2d03e6ecb0fd9a8a5a98c4f60a20d9f1cb908089a7cf9b040999502b9b920641"
     },
     "last_active_at": null
   }

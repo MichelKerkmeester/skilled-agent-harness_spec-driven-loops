@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure",
   "description": "Give every hook, plugin and extension feature its own sub-track under the hooks track, with one overview of all features and their owning packets.",
   "keywords": [
@@ -18,14 +19,16 @@
     "owning",
     "packets"
   ],
-  "lastUpdated": "2026-11-15T06:21:47.654Z",
+  "lastUpdated": "2026-11-19T17:47:06.238Z",
   "specId": "001",
   "folderSlug": "feature-subtrack-restructure",
   "parentChain": [
     "hooks-plugins-extensions",
     "hook-platform"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "19-11-26_18-35__manual-context-save.md",
+    "19-11-26_18-47__manual-context-save.md"
+  ]
 }

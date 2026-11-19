@@ -28,7 +28,8 @@
       "history lookup handover integration",
       "look up the sender session after a hop",
       "history lookup at claim",
-      "deprecate compaction history offer"
+      "deprecate compaction history offer",
+      "001-history-lookup-handover-integration operator decisions"
     ],
     "key_topics": [
       "history",
@@ -44,10 +45,11 @@
       "compaction",
       "offer"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "decision-record.md",
       ".skilled/hooks/session-handover/bin/session-handover.cjs",
       "runtime/hooks/claude/hook-state.ts",
       ".skilled/commands/speckit/handoff.md",
@@ -59,6 +61,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -126,22 +134,60 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Bash",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "full",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A model can search and load its own earlier turns through the history lookup, but the lookup is offered only after a compaction",
     "created_at": "2026-11-15T06:24:14Z",
-    "last_save_at": "2026-11-16T11:34:39.385Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:47:29.122Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:bbaf654e86f2ac54067b470bdd06f0d660808e9979e62a8ce4735b685f2a4508",
+    "source_fingerprint": "sha256:b43a02850e2d77cb6a362f0468aaf4ca4e01972dbd9f9430e13accdcdf48b8c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c01358a1afc19d750dbbc44dadd26f303dcb268a34478984ba57be4dfed7a371"
+      "spec.md": "c01358a1afc19d750dbbc44dadd26f303dcb268a34478984ba57be4dfed7a371",
+      "decision-record.md": "4acef999fa8a2e5bc81df116aed1a57153a26e58ca951eabec665e228bff6f8a"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity",
-    "last_active_at": "2026-11-16T11:34:39.385Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction",
+    "last_active_at": "2026-11-19T17:47:29.122Z"
   }
 }

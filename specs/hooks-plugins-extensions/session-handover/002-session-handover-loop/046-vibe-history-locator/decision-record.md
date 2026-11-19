@@ -36,6 +36,8 @@ _memory:
 |----|---------|-----|------------|------------|
 | Q001 | DeepSeek V4.1 Flash max through cli-opencode builds phase 046 and a fresh Opus medium agent reviews it. | Same split as phase 045. | None | plan.md, scratch/briefs/ |
 | Q002 | Live Vibe hops bill the operator's Vibe plan key from the keychain, not the exported MISTRAL_API_KEY whose budget ran out. | The exported key returned HTTP 402 API budget exhausted, and the operator had already set Vibe up through the browser. | None | scratch/harness/live-hop.sh, implementation-summary.md |
+| Q003 | Phase 046 in worktree 413 is merged and pushed. | Not stated. | none | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/046-vibe-history-locator/spec.md |
+| Q004 | Phase 046 is folded into the v4.0.2.1 release notes. | Not stated. | none | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/046-vibe-history-locator/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -82,6 +84,45 @@ Pause 046 here
 Answer:
 ```text
 use vibe with vibe usage, i already logged into browser
+```
+
+### Q003
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_01FqupzKAYNRX6nJUk6ytFRr:0 -->
+
+Question:
+```text
+Phase 046 (a Vibe sender's receiver gets the History Lookup at claim) is committed in worktree 413 as 0bf6842fae4. Tests pass 191/191, gate relaunch 1600, all 46 phases validate strict, and a live deepseek-flash hop's receiver recovered a word the note left out through the lookup. The history session is moving the lookup engine into .skilled/hooks/session-handover/ in another worktree, and 046 touches no file of that engine. What next?
+```
+
+Options:
+```text
+Merge and push (Recommended)
+Wait for engine move
+Keep local
+```
+
+Answer:
+```text
+Merge and push (Recommended)
+```
+
+### Q004
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_01FqupzKAYNRX6nJUk6ytFRr:1 -->
+
+Question:
+```text
+The v4.0.2.1 release notes say "Claude Code and Codex senders get the section" for the claim-time History Lookup. Fold 046 in?
+```
+
+Options:
+```text
+Fold into v4.0.2.1 (Recommended)
+Leave release notes
+```
+
+Answer:
+```text
+Fold into v4.0.2.1 (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

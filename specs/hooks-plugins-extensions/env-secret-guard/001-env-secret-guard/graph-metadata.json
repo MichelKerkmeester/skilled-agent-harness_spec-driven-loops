@@ -19,6 +19,7 @@
       "env secret guard plan",
       "env secret guard tasks",
       "env secret guard acceptance criteria",
+      "001-env-secret-guard operator decisions",
       "env secret guard implementation summary"
     ],
     "key_topics": [
@@ -42,6 +43,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs",
       ".skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs",
@@ -56,8 +58,7 @@
       ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
       ".claude/settings.json",
       ".codex/hooks.json",
-      ".cursor/hooks.json",
-      ".devin/hooks.v1.json"
+      ".cursor/hooks.json"
     ],
     "entities": [
       {
@@ -82,6 +83,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -163,12 +170,6 @@
         "source": "derived"
       },
       {
-        "name": "hooks.v1.json",
-        "kind": "config",
-        "path": ".devin/hooks.v1.json",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -207,23 +208,25 @@
     ],
     "causal_summary": "An agent in a Skilled checkout can read, edit or patch a `.env` file on every runtime this repository supports",
     "created_at": "2026-11-10T14:52:41Z",
-    "last_save_at": "2026-11-15T07:09:05.120Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:47:03.833Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5bf0798b87005052d0ccbb25365ae97501d992e3d201359d9b404b0ca4b06b72",
+    "source_fingerprint": "sha256:0d579953984ffa721dc13e155e9fc692cd7b01f591199f047391eff4c185ae35",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "55c43dbb52034189a1313b355d7a8e3beda382424c03bf49b683f5eaabb0415d",
       "plan.md": "fbfa46051fd5b7ed613da9fefc0a9df3d2f971b6d85a8606e10da3e65163d6c3",
       "tasks.md": "f26978090a83f8aa0e625039b2cf2b17f8bb03e66dc4c9f6d8499ef773f68b78",
-      "implementation-summary.md": "139de5ba71d753d44be7f79b79c7a416bd5107fa810293928c48546ac8403b02"
+      "decision-record.md": "0c5125b02307cce1ec25c2c4cfd798b433ddcc6c26cb06b72c0882a314f26636",
+      "implementation-summary.md": "4ea0e7fdac0b1cfdc3aa7a47a0ae73d130db5734d24e19624257a58b221186c2"
     },
     "last_active_at": null
   }

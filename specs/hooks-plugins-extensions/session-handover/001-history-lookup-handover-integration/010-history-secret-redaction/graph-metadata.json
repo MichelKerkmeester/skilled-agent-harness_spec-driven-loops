@@ -17,6 +17,7 @@
       "api keys in transcripts",
       "history secret redaction plan",
       "history secret redaction tasks",
+      "010-history-secret-redaction operator decisions",
       "history secret redaction implementation summary"
     ],
     "key_topics": [
@@ -39,6 +40,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/hooks/session-handover/history/lib/core.ts",
       ".skilled/hooks/session-handover/history/tests/history-secret-redaction.vitest.ts",
@@ -62,6 +64,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -183,31 +191,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "a URL",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The lookup core projected adapter entries and returned their text unchanged",
     "created_at": "2026-11-15T20:32:29Z",
-    "last_save_at": "2026-11-15T20:47:50.561Z",
+    "last_save_at": "2026-11-19T17:36:07.995Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c692e1faba0c18667262009991a7bf8ac2fd3eef46ffdff9e744f12741de2633",
+    "source_fingerprint": "sha256:91da0beb80c69a0843650cb106b7a841fed2b9b84c8d0ba93857fb544af80958",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4ecfc2a9dcdbc904d38f462a39a2174292e8a89b0f2334525d7a2e2e7bca9dcd",
       "plan.md": "df9921a1ac25ebfd9cc55c6031028fd3b42f705e4d799477784bb1b6911a8651",
       "tasks.md": "df63705d42893d0e1b8d4b95dd3eecb616ec9959c52dcaa3a4de09c0d457b06c",
+      "decision-record.md": "af6a89466942f4da1e91030f1d15b433af16fba85cec5d979b47ecbd92bd84f7",
       "implementation-summary.md": "ae96c76ca209166a59b4fab862c882bf0d34b7bf0c113ed377b1bccf53906ead"
     },
     "last_active_at": null

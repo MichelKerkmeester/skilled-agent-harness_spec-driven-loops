@@ -19,7 +19,7 @@ _memory:
       - ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-pool.vitest.ts"
       - ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:f94a6ce36e47ae29cab630a40de409dc6f7353ecd569963f2fde706950034357"
       session_id: "scaffold-010-fanout-orphan-liveness"
       parent_session_id: null
     completion_pct: 100

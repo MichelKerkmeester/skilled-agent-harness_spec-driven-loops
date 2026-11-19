@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files: [".skilled/hooks/session-relaunch/claude/subagent-guard.mjs", ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs", ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json"]
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:db3a29faa455f3738ae5f5c36452ef32fcdb44949bea408e9a532277d37d7b67"
       session_id: "scaffold-001-sender-dialog-after-prepare"
       parent_session_id: null
     completion_pct: 100
