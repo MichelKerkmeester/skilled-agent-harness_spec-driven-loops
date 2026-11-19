@@ -599,4 +599,4 @@ export function dualPlugin(id, factory) {
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-export { MAPPED_HOOKS, EVENT_ALIASES, EVENT_MAPPINGS, TOOL_ALIASES };
+export { EVENT_ALIASES, EVENT_MAPPINGS };

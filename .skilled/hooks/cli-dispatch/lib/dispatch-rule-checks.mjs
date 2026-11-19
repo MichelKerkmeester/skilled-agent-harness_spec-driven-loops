@@ -45,8 +45,11 @@ const DSH_PATCH_ROSTER_CHECKS = new Set([
 ]);
 const DSH_PATCH_LITERAL_MESSAGE = 'Pass a literal `.dsh/patches/...` path to `--patch`; '
   + 'an unexpanded shell variable cannot prove the approved patch roster.';
-const QUOTED_OPENCODE_RUN_BINARY = /(?:^|[\s;&|])["']((?:[^"']*[\\/])?opencode\d*)["']\s+run\b/;
-const OPENCODE_RUN_BINARY = /(?:^|[\s;&|'" ])((?:[^\s"';&|]*[\\/])?opencode\d*|\$OPENCODE_BIN|\$\{OPENCODE_BIN\})["']?\s+run\b/;
+// The version probe runs the binary these capture, so they name only what can be OpenCode: the
+// bare name, a path ending in it, or OPENCODE_BIN. A numbered launcher is not probed; with no
+// version the engine holds it to every rule at its declared severity.
+const QUOTED_OPENCODE_RUN_BINARY = /(?:^|[\s;&|])["']((?:[^"']*[\\/])?opencode)["']\s+run\b/;
+const OPENCODE_RUN_BINARY = /(?:^|[\s;&|'" ])((?:[^\s"';&|]*[\\/])?opencode|\$OPENCODE_BIN|\$\{OPENCODE_BIN\})["']?\s+run\b/;
 const UNRESOLVED_FAMILIES = Object.freeze(['unknown', 'unsupported']);
 
 /** Read the sibling sidecar beside a SKILL.md; [] on any read, parse or shape error (fail-open). */

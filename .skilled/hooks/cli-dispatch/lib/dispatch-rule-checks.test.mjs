@@ -325,7 +325,8 @@ test('evaluate resolves quoted, wrapped, and path-qualified OpenCode executors',
       assert.deepEqual(violations, expectedV2, command);
     }
 
-    // An OpenCode 1 binary is unsupported, and it still meets every blocking rule.
+    // A numbered launcher is never probed, so with no resolved version it meets every rule at
+    // its declared severity.
     const unsupportedCommand = 'opencode1 run -m p/m "/memory:search q"';
     assert.deepEqual(
       evaluate(unsupportedCommand, rules).map(({ id, severity }) => ({ id, severity })),
@@ -379,6 +380,79 @@ test('evaluate probes one fake binary once across two evaluations', () => {
     else process.env.OPENCODE_BIN = previousBinary;
     if (previousCounter === undefined) delete process.env.OPENCODE_PROBE_COUNTER;
     else process.env.OPENCODE_PROBE_COUNTER = previousCounter;
+    clearOpencodeVersionCache();
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+// The version probe runs the named program before any rule decides, so only the names that
+// can be OpenCode reach it. A numbered launcher such as `opencode7` is whatever that name
+// happens to be on PATH, and it is held to every rule at its declared severity instead.
+test('a numbered launcher never reaches the version probe and stays fail-closed', () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'dispatch-opencode-numbered-'));
+  const markerPath = path.join(directory, 'probe-marker');
+  const previousPath = process.env.PATH;
+  const previousBinary = process.env.OPENCODE_BIN;
+  const rules = readHardRules(CO);
+
+  try {
+    writeExecutable(directory, 'opencode7', [
+      `printf '%s\\n' probed > ${JSON.stringify(markerPath)}`,
+      "printf '%s\\n' 'opencode v2.3.2'",
+    ]);
+    process.env.PATH = [directory, previousPath].filter(Boolean).join(path.delimiter);
+    delete process.env.OPENCODE_BIN;
+    clearOpencodeVersionCache();
+
+    assert.deepEqual(evaluate('opencode7 run -m a/b x </dev/null', rules), []);
+    assert.equal(fs.existsSync(markerPath), false, 'evaluate ran the numbered launcher');
+    assert.deepEqual(
+      evaluate('opencode7 run -m a/b x', rules).map(({ id, severity }) => ({ id, severity })),
+      [{ id: 'stdin-redirect-required', severity: 'block' }],
+    );
+    assert.equal(fs.existsSync(markerPath), false, 'evaluate ran the numbered launcher');
+  } finally {
+    if (previousPath === undefined) delete process.env.PATH;
+    else process.env.PATH = previousPath;
+    if (previousBinary === undefined) delete process.env.OPENCODE_BIN;
+    else process.env.OPENCODE_BIN = previousBinary;
+    clearOpencodeVersionCache();
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test('the bare, path-qualified and OPENCODE_BIN names still reach the version probe', () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'dispatch-opencode-named-'));
+  const markerPath = path.join(directory, 'probe-marker');
+  const previousPath = process.env.PATH;
+  const previousBinary = process.env.OPENCODE_BIN;
+  const rules = readHardRules(CO);
+
+  try {
+    const executable = writeExecutable(directory, 'opencode', [
+      `printf '%s\\n' probed > ${JSON.stringify(markerPath)}`,
+      "printf '%s\\n' 'opencode v2.3.2'",
+    ]);
+    process.env.PATH = [directory, previousPath].filter(Boolean).join(path.delimiter);
+    const commands = [
+      ['opencode run -m a/b x </dev/null', undefined],
+      [`${executable} run -m a/b x </dev/null`, undefined],
+      ['$OPENCODE_BIN run -m a/b x </dev/null', executable],
+      ['${OPENCODE_BIN} run -m a/b x </dev/null', executable],
+    ];
+    for (const [command, binary] of commands) {
+      if (binary === undefined) delete process.env.OPENCODE_BIN;
+      else process.env.OPENCODE_BIN = binary;
+      fs.rmSync(markerPath, { force: true });
+      clearOpencodeVersionCache();
+      assert.deepEqual(evaluate(command, rules), [], command);
+      assert.equal(fs.existsSync(markerPath), true, `evaluate did not probe: ${command}`);
+    }
+  } finally {
+    if (previousPath === undefined) delete process.env.PATH;
+    else process.env.PATH = previousPath;
+    if (previousBinary === undefined) delete process.env.OPENCODE_BIN;
+    else process.env.OPENCODE_BIN = previousBinary;
     clearOpencodeVersionCache();
     fs.rmSync(directory, { recursive: true, force: true });
   }

@@ -115,6 +115,37 @@ test('opencode does not duplicate an operator-supplied --standalone', (t) => {
   assert.deepEqual(records[1].args, ['--standalone', '--prompt', `${SEED} ${handoffPath}`, '--auto']);
 });
 
+test('opencode refuses an OpenCode 1 binary with a setup hint and never launches it', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath } = installRuntimeStub(sandbox, {
+    markers: '*',
+    OPENCODE_STUB_VERSION: 'opencode v1.19.4',
+  });
+  const result = runWrapper(sandbox, ['opencode', 'initial prompt']);
+
+  assert.equal(result.status, 1, result.stderr);
+  assert.equal(
+    result.stderr,
+    'skilled-loop: OpenCode 1 is unsupported; remove it with '
+      + '.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh '
+      + 'remove-v1, then install with its v2 mode\n',
+  );
+  assert.equal(fs.existsSync(recordPath), false, 'the wrapper launched the OpenCode 1 binary');
+});
+
+test('opencode 2 still starts standalone after the version probe', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath } = installRuntimeStub(sandbox, {
+    OPENCODE_STUB_VERSION: 'opencode v2.3.2',
+  });
+  const result = runWrapper(sandbox, ['opencode', 'initial prompt']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 1);
+  assert.deepEqual(records[0].args, ['--standalone', 'initial prompt']);
+});
+
 test('opencode relaunch drops -m because its root command has no model flag', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath, handoffPath } = installRuntimeStub(sandbox, {

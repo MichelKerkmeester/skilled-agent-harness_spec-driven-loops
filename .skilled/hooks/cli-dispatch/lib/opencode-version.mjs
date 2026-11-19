@@ -14,10 +14,11 @@ import { delimiter, join } from 'node:path';
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-// The single list of OpenCode families the rule engine treats as supported. A recognised
-// major outside it resolves to 'unsupported', which names a retired install but does not
-// refuse the dispatch: the rule engine applies every rule to it, at the declared severity
-// for a rule that covers every supported family and as a warning for a narrower one.
+// The single list of OpenCode families the rule engine treats as supported. Major 1 resolves
+// to 'unsupported', which names the retired install; any major other than 1 or 2, and output
+// with no version, resolves to 'unknown'. Neither refuses the dispatch: the rule engine applies every
+// rule to it, at the declared severity for a rule that covers every supported family and as
+// a warning for a narrower one.
 const SUPPORTED_FAMILIES = Object.freeze(['v2']);
 const PROBE_TIMEOUT_MS = 3000;
 const VERSION_PATTERN = /^\s*(?:[A-Za-z][\w.-]*\s+)?[vV]?(\d+)\.(\d+)\.(\d+)(?:[-+][\w.-]+)?\s*$/;
@@ -174,6 +175,9 @@ async function probeWithTimeout(probe, binary) {
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
+// This parser has a twin in system-deep-loop/runtime/scripts/opencode-version.cjs. This copy
+// fails open and the deep-loop copy fails closed, by design; the parity case in
+// system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts keeps them in step.
 /**
  * Parse the first supported version token in OpenCode version output.
  *

@@ -139,6 +139,9 @@ function resolveCandidate(command, executablePath, env, deps) {
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
+// This parser has a twin in hooks/cli-dispatch/lib/opencode-version.mjs. This copy fails
+// closed and the hook copy fails open, by design; the parity case in
+// tests/unit/opencode-dual-dispatch.vitest.ts keeps them in step.
 /**
  * Parse the first supported version token in OpenCode version output.
  *
@@ -176,7 +179,8 @@ function parseOpencodeVersion(text) {
 /**
  * Resolve and probe an executable OpenCode binary.
  *
- * Only OpenCode 2 is accepted; a binary that reports any other major is refused.
+ * Only OpenCode 2 is accepted. A binary that reports major 1 is refused as unsupported, and
+ * one that reports any other major, or no readable version, is refused as unknown.
  *
  * @param {NodeJS.ProcessEnv} [env=process.env] - Environment used for PATH and probing.
  * @param {Object} [deps={}] - Optional dependency overrides.
