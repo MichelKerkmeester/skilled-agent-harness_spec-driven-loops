@@ -348,6 +348,21 @@ describe('deep-review wires the expansive frontier steps', () => {
     );
   });
 
+  // The registry lists unfinished core protocols whatever the run reviews, so a run
+  // configured without traceability would lose its last iteration to a dimension it
+  // never asked for. A default run reviews traceability and keeps the steer.
+  it('steers the last iteration to traceability only when the run reviews traceability', () => {
+    const extract = extracts();
+    expect(extract.traceability_in_run).toContain('reviewDimensions');
+    expect(extract.traceability_in_run).toContain('absent');
+    expect(extract.next_dimension).toMatch(
+      /^When max_iterations >= 2, current_iteration == max_iterations, unfinished_core_protocols is non-empty and traceability_in_run is true, 'traceability'/,
+    );
+    expect(extract.unfinished_core_protocols_block).toContain("Under the same condition as next_dimension's traceability case");
+    const recovery = yamlText.split('\n').find((line) => line.includes('recovery_strategy = one line')) ?? '';
+    expect(recovery).toContain('I.unfinishedCoreProtocols is non-empty and traceability_in_run is true');
+  });
+
   it('gates the divergent pivot on a terminal review frontier', () => {
     const contract =
       wf.phase_loop.steps.step_handle_convergence.if_stop.if_divergent_eligible.eligibility_contract;
