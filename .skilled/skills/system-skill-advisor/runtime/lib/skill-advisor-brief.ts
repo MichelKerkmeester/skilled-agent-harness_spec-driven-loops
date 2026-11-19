@@ -419,7 +419,9 @@ export function clearAdvisorBriefCacheForTests(): void {
 /** Return the skipped result when the prompt gate declines, or null when the advisor should run. */
 export function skippedAdvisorResultFor(prompt: string): AdvisorHookResult | null {
   const startedAt = performance.now();
-  const policy = shouldFireAdvisor(prompt);
+  // Decide on the task, not on a pasted earlier reply: a skill named only in the
+  // paste would otherwise read as an explicit marker and fire the advisor.
+  const policy = shouldFireAdvisor(stripLeadingPastedReply(prompt));
   if (policy.fire) return null;
 
   const baseDiagnostics: AdvisorHookDiagnostics | null = policy.metalinguisticMentions.length > 0

@@ -193,10 +193,13 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
-function normalizePrompt(value: unknown): string | null {
-  if (typeof value !== 'string') {
+function normalizePrompt(raw: unknown): string | null {
+  if (typeof raw !== 'string') {
     return null;
   }
+  // Drop a pasted earlier reply before the cut, so a long paste cannot push the
+  // task line past it.
+  const value = stripLeadingPastedReply(raw);
   if (Buffer.byteLength(value, 'utf8') <= MAX_PROMPT_BYTES) {
     return value;
   }

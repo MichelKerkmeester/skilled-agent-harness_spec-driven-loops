@@ -1246,6 +1246,51 @@ describe('Claude UserPromptSubmit advisor hook', () => {
     });
   });
 
+  describe('pasted reply ahead of the prompt cap and the fire gate', () => {
+    function cliTurn(prompt: string) {
+      const buildCliBrief = vi.fn(async (_prompt: string) => fixture('livePassingSkill.json'));
+      const output = handleClaudeUserPromptSubmit({
+        hook_event_name: 'UserPromptSubmit',
+        cwd: '/workspace/project',
+        prompt,
+      }, {
+        buildCliBrief,
+        renderBrief: renderAdvisorBrief,
+        writeDiagnostic: () => {},
+        directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+      });
+      return { buildCliBrief, output };
+    }
+
+    it('sends the task line behind a pasted reply longer than the prompt cap', async () => {
+      const { buildCliBrief, output } = cliTurn(`Claude replied: ${'x'.repeat(70 * 1024)}. Now: Refactor the session store module`);
+      await output;
+      expect(buildCliBrief).toHaveBeenCalledTimes(1);
+      expect(buildCliBrief.mock.calls[0]?.[0]).toBe('Refactor the session store module');
+    });
+
+    it('still cuts a long prompt with no pasted reply at the cap', async () => {
+      const prompt = `Refactor the session store module ${'y'.repeat(70 * 1024)}`;
+      const { buildCliBrief, output } = cliTurn(prompt);
+      await output;
+      expect(buildCliBrief.mock.calls[0]?.[0]).toBe(prompt.slice(0, 64 * 1024));
+    });
+
+    it('skips a pasted reply that names a skill ahead of a casual task', async () => {
+      const { buildCliBrief, output } = cliTurn('Claude replied: I used sk-doc to update the README. Now: thanks');
+      expect(await output).toEqual({
+        hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: EXPECTED_SKIPPED_CONTEXT },
+      });
+      expect(buildCliBrief).not.toHaveBeenCalled();
+    });
+
+    it('still fires on a plain task that names a skill', async () => {
+      const { buildCliBrief, output } = cliTurn('Update the README with sk-doc conventions');
+      await output;
+      expect(buildCliBrief).toHaveBeenCalledTimes(1);
+    });
+  });
+
   describe('crash path and output handoff', () => {
     it('records the policy observation with the session when the brief build throws', async () => {
       clearPolicyObservationSink();
