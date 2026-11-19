@@ -2304,6 +2304,14 @@ describe('frontier focus visit counting', () => {
     expect(pickFrontierFocus({ nodes }, records)).toMatch(/^Frontier node F-1-001 /);
   });
 
+  it('does not count a thought iteration as a visit when ranking open nodes', () => {
+    const records = [
+      { type: 'iteration', iteration: 3, status: 'thought', focus: 'Frontier node F-1-001 (depth 1, scope runtime/lib): Which module owns admission?' },
+    ];
+    expect(frontierNodeVisits('F-1-001', records)).toBe(0);
+    expect(pickFrontierFocus({ nodes }, records)).toMatch(/^Frontier node F-1-001 /);
+  });
+
   it('still counts a completed attempt, so the unvisited sibling goes next', () => {
     const records = [
       { type: 'iteration', iteration: 3, status: 'complete', focus: 'Frontier node F-1-001 (depth 1, scope runtime/lib): Which module owns admission?' },

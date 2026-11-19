@@ -18,7 +18,7 @@ const { deriveReviewVerdict, openSearchDebtCount } = require('./review-verdict.c
 const { reviewOmitsTraceability, reviewUnfinishedCoreProtocols } = require('./convergence.cjs');
 const {
   NODE_STATUSES,
-  FAILED_VISIT_STATUSES,
+  isEvidenceBearingIteration,
   readNodeStore,
   applyBandBudget,
 } = require('./frontier-admit.cjs');
@@ -1963,12 +1963,13 @@ function buildReviewFrontier(storeData, iterationRecords, config) {
   const history = Array.isArray(storeData?.history) ? storeData.history : [];
   const storedNodes = Array.isArray(storeData?.nodes) ? storeData.nodes : [];
   // Only an attempt that produced evidence counts as a visit: an errored or timed
-  // out record is retried work, not depth the node has already spent.
+  // out record is retried work and a thought is no review, so neither is depth
+  // the node has already spent nor a dimension it covered.
   const visits = [];
   const nodes = storedNodes.map((node) => {
     const nodeId = node.nodeId;
     const records = reviewRecordsForNode(nodeId, history, iterationRecords)
-      .filter((record) => !FAILED_VISIT_STATUSES.has(String(record.status || '').toLowerCase()));
+      .filter(isEvidenceBearingIteration);
     const runs = records.map((record) => getIterationRun(record)).filter((run) => run !== null);
     visits.push({ spent: records.length, lastIteration: runs.length > 0 ? Math.max(...runs) : null });
     const covered = new Set();

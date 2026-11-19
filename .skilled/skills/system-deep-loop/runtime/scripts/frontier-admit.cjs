@@ -84,10 +84,19 @@ const NODE_STATUSES = Object.freeze([
   'pruned',
 ]);
 
-// An iteration record with one of these statuses proves nothing about the node it
-// names: the attempt never produced evidence, so it cannot spend budget share or
-// count as a visit.
-const FAILED_VISIT_STATUSES = new Set(['error', 'failed', 'failure', 'timeout']);
+// The statuses, from the deep-review and deep-research leaf vocabulary, of an
+// iteration that produced evidence. A thought, an error and a timeout prove
+// nothing about the node they name, so they spend no budget share, count as no
+// visit and cover no dimension. An allow-list keeps a status the vocabulary later
+// gains out of the count until someone decides it carries evidence.
+const EVIDENCE_BEARING_STATUSES = new Set(['complete', 'insight', 'stuck']);
+
+// A row with no status predates the field, and every reader took it as complete.
+function isEvidenceBearingIteration(record) {
+  if (!isPlainObject(record)) return false;
+  const status = String(record.status ?? '').trim().toLowerCase();
+  return status === '' || EVIDENCE_BEARING_STATUSES.has(status);
+}
 
 // Depth bands share maxIterations 50/35/15 by default (depths 0-1, 2, 3).
 const DEFAULT_BAND_SHARES = Object.freeze([0.5, 0.35, 0.15]);
@@ -1279,7 +1288,7 @@ if (require.main === module) {
 
 module.exports = {
   NODE_STATUSES,
-  FAILED_VISIT_STATUSES,
+  isEvidenceBearingIteration,
   EXPANSIVE_BUDGET_CEILING,
   LOOP_DEFAULT_MAX_ITERATIONS,
   expansiveBudget,

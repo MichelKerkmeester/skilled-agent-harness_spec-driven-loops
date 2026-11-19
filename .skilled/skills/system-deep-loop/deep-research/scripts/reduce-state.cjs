@@ -24,7 +24,7 @@ const { filterCompletionBearingRecords } = require('../../shared/progress/progre
 const { deriveLoopCounters } = require('../../runtime/scripts/convergence.cjs');
 const {
   NODE_STATUSES,
-  FAILED_VISIT_STATUSES,
+  isEvidenceBearingIteration,
   readNodeStore,
   applyBandBudget,
 } = require('../../runtime/scripts/frontier-admit.cjs');
@@ -2485,13 +2485,13 @@ function buildFrontierProjection(frontierInput, keyedQuestions) {
 // The leaf writes its own focus line and may reword it, so the node marker counts
 // wherever it appears; the id must end there, so F-1-001 never matches F-1-0010.
 // Only an attempt that produced evidence counts as a visit: an errored or timed
-// out record is retried work, so the focus pick, the budget and the dashboard
-// all count visits the same way.
+// out record is retried work and a thought gathered nothing, so the focus pick,
+// the budget and the dashboard all count visits the same way.
 function frontierNodeVisitRecords(nodeId, iterationRecords) {
   const escaped = String(nodeId).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const marker = new RegExp(`(?:^|[^\\w-])Frontier node ${escaped}(?![\\w-])`);
   return (Array.isArray(iterationRecords) ? iterationRecords : [])
-    .filter((record) => !FAILED_VISIT_STATUSES.has(String(record?.status || '').toLowerCase()))
+    .filter(isEvidenceBearingIteration)
     .filter((record) => typeof record?.focus === 'string' && marker.test(record.focus));
 }
 

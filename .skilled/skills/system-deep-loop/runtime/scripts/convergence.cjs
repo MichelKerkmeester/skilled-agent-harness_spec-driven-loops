@@ -39,6 +39,8 @@ const {
   appendObservabilityEvent,
 } = require('../lib/deep-loop/observability-events.cjs');
 
+const { isEvidenceBearingIteration } = require('./frontier-admit.cjs');
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1369,11 +1371,11 @@ function deriveLoopCounters(records, options) {
     if (row.type !== 'iteration') continue;
     const number = iterationRecordNumber(row);
     if (number !== null && lastIndexByNumber.get(number) !== index) continue;
-    if (row.status === 'thought') continue;
     if (row.status === 'error' || row.status === 'timeout') {
       consecutiveFailureCount += 1;
       continue;
     }
+    if (!isEvidenceBearingIteration(row)) continue;
 
     consecutiveFailureCount = 0;
     if (row.status === 'insight') {
@@ -1673,9 +1675,7 @@ function buildStopDecisionInput(args, loopType, files, graph) {
   const registry = isPlainObject(files?.registry) ? files.registry : {};
   const stateRows = Array.isArray(files?.stateLogRows) ? files.stateLogRows : [];
   const iterationRecords = orderedIterationRecords(stateRows);
-  const evidenceRecords = iterationRecords.filter(
-    (record) => record.status !== 'thought' && record.status !== 'error' && record.status !== 'timeout',
-  );
+  const evidenceRecords = iterationRecords.filter(isEvidenceBearingIteration);
   const ratioKey = loopType === 'review' ? 'newFindingsRatio' : 'newInfoRatio';
   const ratios = evidenceRecords
     .map((record) => record[ratioKey])

@@ -1087,4 +1087,39 @@ describe('shared band budget', () => {
     expect(review.budget).toEqual(research.budget);
     expect(research.budget.depth1).toEqual({ allotted: 5, spent: 5 });
   });
+
+  it('spends no depth on a thought or failed iteration in either reducer', () => {
+    const nodes: BudgetNode[] = [{ nodeId: 'F-1-001', depth: 1, status: 'open' }];
+    const records = ['thought', 'error', 'timeout', 'failed', 'complete'].map((status, index) => ({
+      type: 'iteration',
+      run: index + 1,
+      iteration: index + 1,
+      status,
+      dimensions: [],
+      focus: 'Frontier node F-1-001 (depth 1, scope src): q',
+    }));
+
+    expect(applyFrontierBudget(nodes, records, 10).budget.depth1).toEqual({ allotted: 5, spent: 1 });
+    expect(buildReviewFrontier({ nodes, history: nodes }, records, { maxIterations: 10 }).budget.depth1)
+      .toEqual({ allotted: 5, spent: 1 });
+  });
+});
+
+describe('evidence-bearing iteration rule', () => {
+  const { isEvidenceBearingIteration } = require(FRONTIER_ADMIT_SCRIPT) as {
+    isEvidenceBearingIteration: (record: unknown) => boolean;
+  };
+
+  it('admits the statuses that carry evidence and a legacy row with no status', () => {
+    for (const status of ['complete', 'insight', 'stuck', 'COMPLETE', undefined, '']) {
+      expect(isEvidenceBearingIteration({ type: 'iteration', status })).toBe(true);
+    }
+  });
+
+  it('refuses a thought, a failed attempt and a status outside the agent vocabulary', () => {
+    for (const status of ['thought', 'error', 'timeout', 'failed', 'failure', 'partial']) {
+      expect(isEvidenceBearingIteration({ type: 'iteration', status })).toBe(false);
+    }
+    expect(isEvidenceBearingIteration(null)).toBe(false);
+  });
 });
