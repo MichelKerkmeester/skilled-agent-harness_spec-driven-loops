@@ -33,7 +33,7 @@ trigger_phrases:
   - "vibe advisor adapter"
 importance_tier: normal
 contextType: reference
-version: 3.6.23.0
+version: 3.6.24.0
 ---
 
 # Skill Advisor: Prompt Routing Context
@@ -54,7 +54,7 @@ The concern key is `skill-advisor`. Its switch is `SYSTEM_SKILL_ADVISOR_DISABLED
 
 The exported `handleClaudeUserPromptSubmit` accepts a prompt payload. It checks `skippedAdvisorResultFor` before calling `buildSkillAdvisorBriefFromCli`. `renderAdvisorBrief` formats a recommendation. `renderAdvisorFallbackDirective` supplies context when no brief is available.
 
-`decideDirectiveLifecycleDelivery` reduces repeated context for a known session. It keeps the brief head and drops the repeated `Directives:` block. The handler returns `hookSpecificOutput.additionalContext`. It returns `{}` when its switch is off. It also returns `{}` when input is invalid. When its own code throws, it returns the outage fallback, or the skipped fallback for a skipped prompt, and returns `{}` only if that fallback cannot be rendered.
+`decideDirectiveLifecycleDelivery` reduces repeated context for a known session. It keeps the brief head and drops the repeated `Directives:` block. The handler returns `hookSpecificOutput.additionalContext`. It returns `{}` when its switch is off. It also returns `{}` when input is invalid. When its own code throws, it returns the outage fallback, or the skipped fallback for a skipped prompt; it returns `{}` only when the payload carries no prompt string or that fallback cannot be rendered.
 
 Pi calls the shared handler from its input extension. DSH calls it from the repo-guards adapter. Vibe's turn-start composer calls `buildAdvisorPart`. The OpenCode plugin handles its own `experimental.chat.system.transform` event.
 
@@ -64,7 +64,7 @@ Pi calls the shared handler from its input extension. DSH calls it from the repo
 
 | Runtime | Event | Entry in this folder | Real file | What the runtime shows |
 |---|---|---|---|---|
-| **Claude** | `UserPromptSubmit` | `.skilled/hooks/skill-advisor/claude/user-prompt-submit.js`, the compiled adapter the runtime runs | [Claude source shim, compiled to `dist/`](../../system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts) | `Advisor:` text in `hookSpecificOutput.additionalContext`, or `{}` when disabled or on error. |
+| **Claude** | `UserPromptSubmit` | `.skilled/hooks/skill-advisor/claude/user-prompt-submit.js`, the compiled adapter the runtime runs | [Claude source shim, compiled to `dist/`](../../system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts) | `Advisor:` text in `hookSpecificOutput.additionalContext`, or `{}` when disabled; a crash returns the outage fallback. |
 | **Codex** | `UserPromptSubmit` | `.skilled/hooks/skill-advisor/codex/user-prompt-submit.js`, the compiled adapter the runtime runs | [Codex source shim, compiled to `dist/`](../../system-spec-kit/runtime/hooks/codex/user-prompt-submit.ts) | Advisor context in the hook response. No response is emitted when the child has no output. |
 | **Cursor** | `beforeSubmitPrompt` | `.skilled/hooks/skill-advisor/cursor/user-prompt-submit.js`, the compiled adapter the runtime runs | [Cursor source shim, compiled to `dist/`](../../system-spec-kit/runtime/hooks/cursor/user-prompt-submit.ts) | Advisor context in Cursor's response when the hook fires. Missing context returns `permission: allow`. Delivery is unconfirmed, because `beforeSubmitPrompt` did not fire under the tested Cursor CLI build. |
 | **Devin** | `UserPromptSubmit` | `.skilled/hooks/skill-advisor/devin/user-prompt-submit.js`, the compiled adapter the runtime runs | [Devin source shim, compiled to `dist/`](../../system-spec-kit/runtime/hooks/devin/user-prompt-submit.ts) | Advisor context in `hookSpecificOutput.additionalContext`. Invalid child output adds no context. |

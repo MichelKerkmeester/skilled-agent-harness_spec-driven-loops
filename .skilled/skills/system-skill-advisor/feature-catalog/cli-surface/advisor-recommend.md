@@ -7,7 +7,7 @@ trigger_phrases:
   - "native recommend"
   - "skill recommendation tool"
   - "compiledRoute enrichment"
-version: 0.9.13.0
+version: 0.9.14.0
 ---
 
 # advisor_recommend Command
@@ -46,7 +46,7 @@ Each recommendation carries up to four optional fields that let a reader act on 
 
 `lib/command-attach.ts` is the single source for the values. Its generated `COMMAND_ROWS` block maps each id a scorer can return, whether the TypeScript id, the Python id or the entry id, to `{ command, policy?, mutating?, ownerSkillId }`, and `commandRowFor(id)` reads it with an own-key check so an inherited name such as `constructor` never resolves to a row. `mutating` is the class the renderer's child downgrade reads: `/doctor:env list` carries `read-only` and stays fully visible to a dispatched child, while `start`, `ask` and a writing `run` are marked as parent-named. `publicRecommendation()` in `handlers/advisor-recommend.ts` looks one up for the recommendation's own id and copies its `command`, its `policy` when present and its `ownerSkillId`, and it forwards the scorer's `kind`. An id with no row adds none of the three. A command attached through the compiled route takes its `policy` from `TRACKED_COMMANDS[command].policy`, the table keyed by runnable string that covers every tracked command, and it takes no `ownerSkillId` because the recommendation already names the hub.
 
-The renderer and the degraded path read the same contract. `lib/render.ts` builds the brief label `<ownerSkillId or skill> → <command> (<policy>)` from the recommendation's own fields first and falls back to the generated row for anything omitted, so a hook that predates the fields still prints a runnable command. The CLI degraded path in `skill-advisor-cli.ts` emits a `kind: 'command'` entry with all four fields when the prompt contains the row's bare slash command, and otherwise emits the row's `ownerSkillId` as a `kind: 'skill'` entry so the fallback brief names a real skill instead of a raw row id.
+The renderer and the degraded path read the same contract. `lib/render.ts` builds the brief label `<ownerSkillId or skill> → <command> (<policy>)` from the recommendation's own fields first and falls back to the generated row for anything omitted, so a hook that predates the fields still prints a runnable command. The CLI degraded path in `skill-advisor-cli.ts` emits a `kind: 'command'` entry with all four fields when the prompt, after any leading pasted reply is stripped, contains the row's bare slash command, and otherwise emits the row's `ownerSkillId` as a `kind: 'skill'` entry so the fallback brief names a real skill instead of a raw row id.
 
 ---
 
@@ -69,7 +69,7 @@ The renderer and the degraded path read the same contract. `lib/render.ts` build
 | File | Type | Role |
 |---|---|---|
 | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts` | Automated test | Validation reference |
-| `.skilled/skills/system-skill-advisor/runtime/tests/advisor-disabled.vitest.ts` | Automated test | The switch names, the exact-`1` value rule and the envelope fields. |
+| `.skilled/skills/system-skill-advisor/runtime/tests/advisor-disabled.vitest.ts` | Automated test | The switch names, the hooks' active-value rule (`1`/`true`/`yes`/`on`) and the envelope fields. |
 | `.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts` | Automated test | The client abstains under the switch with no call to a warm daemon and no launcher, and still asks the daemon without it. |
 | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-compiled-route-option.vitest.ts` | Automated test | `includeCompiledRoute: false` skips enrichment on fresh and cached returns. `compiledRouteTopOnly: true` looks up the first recommendation alone. A command that ranks through its own row is not offered again by its hub. |
 | `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-privacy.vitest.ts` | Automated test | Validation reference |

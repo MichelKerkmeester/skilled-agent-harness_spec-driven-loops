@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
 description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across the native command surface, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
-version: 0.8.13.0
+version: 0.8.14.0
 ---
 
 # Skill Advisor: Manual Testing Playbook
@@ -187,7 +187,7 @@ This category validates cli hooks and plugin scenarios `CL-001`, `CL-005..CL-010
 
 | ID | Scenario | File |
 |---|---|---|
-| CL-001 | Claude Code UserPromptSubmit Hook | [001-claude-user-prompt-submit.md](cli-hooks-and-plugin/claude-user-prompt-submit.md) |
+| CL-001 | Claude Code UserPromptSubmit Hook | [claude-user-prompt-submit.md](cli-hooks-and-plugin/claude-user-prompt-submit.md) |
 | CL-004 | OpenCode Native Hooks And Wrapper Fallback | 004-opencode-hook-and-wrapper.md (not yet authored) |
 | CL-005 | OpenCode Plugin | [005-opencode-plugin-bridge.md](cli-hooks-and-plugin/opencode-plugin-bridge.md) |
 | CL-006 | skill-advisor CLI Fallback Surface (028) | [006-skill-advisor-cli-fallback.md](cli-hooks-and-plugin/skill-advisor-cli-fallback.md) |

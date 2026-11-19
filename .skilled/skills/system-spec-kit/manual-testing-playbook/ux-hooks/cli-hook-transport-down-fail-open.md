@@ -1,7 +1,7 @@
 ---
 title: "433 -- CLI Hook Transport-Down Fail-Open"
 description: "Manual check that the skill-advisor prompt hook exits 0 and never blocks the prompt when the daemon socket is absent, with a status line or a brief in every case."
-version: 1.6.1.0
+version: 1.6.2.0
 id: ux-hooks-cli-hook-transport-down-fail-open
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -11,7 +11,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario verifies the transport-down behavior of the surviving runtime hook integrations. The Claude skill-advisor `user-prompt-submit` hook, which the Codex, Cursor and Devin adapters also spawn, runs the CLI through the fallback helper with `--no-warm-only`, so the CLI owns daemon reachability. The memory-backed session-prime, compact-inject, session-stop and session-start hooks were removed with their server, so the advisor hook is the remaining consumer of this contract. A casual prompt such as `hello` never reaches the CLI: the prompt gate declines it first and the hook prints `Advisor: prompt skipped.` On a cold socket the CLI starts the launcher and waits at most 5 s, then answers from the local scorer. The hook marks the answer degraded and renders it as stale (`Advisor: stale`). When the hook budget ends first, the hook exits 0 and prints `Advisor: outage (fail_open); route by hand:` above the directives. In every case the hook exits 0 and never blocks the prompt.
+This scenario verifies the transport-down behavior of the surviving runtime hook integrations. The Claude skill-advisor `user-prompt-submit` hook, which the Codex, Cursor and Devin adapters also spawn, runs the CLI through the fallback helper with `--no-warm-only`, so the CLI owns daemon reachability. The session-prime, compact-inject, session-stop and session-start hooks remain, but they do not consult the advisor daemon, so the advisor hook is the remaining consumer of this contract. A casual prompt such as `hello` never reaches the CLI: the prompt gate declines it first and the hook prints `Advisor: prompt skipped.` On a cold socket the CLI starts the launcher and waits at most 5 s, then answers from the local scorer. The hook marks the answer degraded and renders it as stale (`Advisor: stale`). When the hook budget ends first, the hook exits 0 and prints `Advisor: outage (fail_open); route by hand:` above the directives. In every case the hook exits 0 and never blocks the prompt.
 
 The check drives compiled hook scripts directly with a sandbox socket directory and a sandbox database directory, so it never reaches the host daemon or its database. Its teardown sends no signal. The default-budget run starts a sandbox launcher and daemon. The daemon exits on a 12-second idle timeout, and the block removes the sandbox only once nothing holds it.
 
