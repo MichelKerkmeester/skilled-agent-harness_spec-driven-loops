@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fc0e43546598bd818b89f320a24330687fec33b49cfbdad73aa2786fcec648e5",
+  "manifestHash": "de009e89d5d7b3daec9dabf3088fb63cf76ae14cab366e7dc60d3587cec89f50",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -4209,6 +4209,9 @@
     ],
     "018 matrix runner snake case rename resource map": [
       "018-matrix-runner-snake-case-rename resource map"
+    ],
+    "018 ollama lane off and daemon liveness operator decisions": [
+      "018-ollama-lane-off-and-daemon-liveness operator decisions"
     ],
     "018 parent complete rust": [
       "018 parent complete rust"
