@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "2d00c82428598f953b4f45d338080a5006a17a0fcf4cec0f22e29bcd0dcd7e5b",
+      "sha256": "4a7456ce36345204ee23fd09d2d472e01d532fba18923cc15fc5ee3a3c97cfd9",
       "section": "full"
     },
     {
@@ -37,12 +37,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "c472d7b1dc1a6e9df085c005da0a913176a216a0fae2b32617715f5eb5c2c0e6",
+      "sha256": "769760bb8718ce6d0f3b15457a8a94642fe6ce4038f73c5160b8a13594e44026",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "2f4b97a9a93fd897cc1d0fd3d4399bbb23a2e1510d613e4ee49b99b90853287d",
+      "sha256": "1e82ff8d43902d4d26be8fe056942a0f513c96e272c915e5e0f9b0ff88ffa0a1",
       "section": "full"
     },
     {
@@ -52,7 +52,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
-      "sha256": "8a188cf1ef9f992abf46b907d71237f8c5a21ba2636b30a6aaf62c5feae235e2",
+      "sha256": "14c925a3bd3fc97113e51360678de01634731de5c48b53d338d67a20538fe7f4",
       "section": "full"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "path": ".skilled/agents/deep-research.md",
-      "sha256": "efa6a031d8c92024bcbb2452495f0223ece6ce65aa2796aa1c8629c46ea7896f",
+      "sha256": "ea02e67d20615a2b602eab712b63d64419b69142984861468895daefefa4e7dc",
       "section": "full"
     },
     {

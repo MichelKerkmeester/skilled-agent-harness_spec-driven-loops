@@ -159,17 +159,17 @@ Build order: 001 merges first; 005 before 004; 012 before 010 and 011; 010 after
 
 | Phase | Folder | Status | Description |
 |-------|--------|--------|-------------|
-| 1 | `001-completed-run-extension/` | draft | Slice A: `completed-continue` / `--extend=N` for finished research and review runs |
-| 2 | `002-research-claude-config-dir/` | draft | Slice B (D2): forward the Claude config dir on single-executor research |
-| 3 | `003-review-min-iterations-floor/` | draft | Slice C (D3): apply the review `minIterations` floor |
-| 4 | `004-focus-hijack-fix/` | draft | Slice D (D5): stop stale free text steering Next Focus, research and review; after 005 |
-| 5 | `005-prompt-pack-contract-alignment/` | draft | Slice E (D6, D13): prompt-pack write list and heading match the agent definition |
-| 6 | `006-state-log-leaf-fields/` | draft | Slice F (D7, D9): widen the research upcast, stem schema and type so leaf fields reach the state log |
-| 7 | `007-source-diversity-quality-class/` | draft | Slice G (D1): derive `quality_class` at upsert from a closed vocabulary |
-| 8 | `008-review-dimension-coverage/` | draft | Slice H (D10): support custom review dimensions, so every configured dimension is tracked and can be covered |
-| 9 | `009-fanout-review-coverage-merge/` | draft | Slice I (D12): carry review coverage surfaces through the fan-out merge |
-| 10 | `010-research-frontier-mode/` | draft | Slice J: opt-in `--depth-mode=expansive` for deep-research; needs 004-007 and 012 |
-| 11 | `011-review-frontier-mode/` | draft | Slice K: expansive mode for deep-review; needs 003, 004, 008, 009, 010 and 012 |
-| 12 | `012-pivot-hygiene/` | draft | Slice L: council seat cap of 3 per council attempt with at most one quorum retry per pivot (6 seats at most), dead pivot guard retired |
-| 13 | `013-no-redispatch-landed-iteration/` | draft | Slice M (D14): no redispatch of an iteration that already landed |
-| 14 | `014-docs-playbooks-alignment/` | draft | Playbook coverage check (each phase writes its own scenarios), feature catalogs and doc/skilled alignment for the features and fixes of 001-013; needs 001-013 |
+| 1 | `001-completed-run-extension/` | Complete | Slice A: `completed-continue` / `--extend=N` for finished research and review runs |
+| 2 | `002-research-claude-config-dir/` | Complete | Slice B (D2): forward the Claude config dir on single-executor research |
+| 3 | `003-review-min-iterations-floor/` | Complete | Slice C (D3): apply the review `minIterations` floor |
+| 4 | `004-focus-hijack-fix/` | Complete | Slice D (D5): stop stale free text steering Next Focus, research and review; after 005 |
+| 5 | `005-prompt-pack-contract-alignment/` | Complete | Slice E (D6, D13): prompt-pack write list and heading match the agent definition |
+| 6 | `006-state-log-leaf-fields/` | Complete | Slice F (D7, D9): widen the research upcast, stem schema and type so leaf fields reach the state log |
+| 7 | `007-source-diversity-quality-class/` | Complete | Slice G (D1): derive `quality_class` at upsert from a closed vocabulary |
+| 8 | `008-review-dimension-coverage/` | Complete | Slice H (D10): support custom review dimensions, so every configured dimension is tracked and can be covered |
+| 9 | `009-fanout-review-coverage-merge/` | Complete | Slice I (D12): carry review coverage surfaces through the fan-out merge |
+| 10 | `010-research-frontier-mode/` | Complete | Slice J: opt-in `--depth-mode=expansive` for deep-research; needs 004-007 and 012 |
+| 11 | `011-review-frontier-mode/` | Complete | Slice K: expansive mode for deep-review; needs 003, 004, 008, 009, 010 and 012 |
+| 12 | `012-pivot-hygiene/` | Complete | Slice L: council seat cap of 3 per council attempt with at most one quorum retry per pivot (6 seats at most), dead pivot guard retired |
+| 13 | `013-no-redispatch-landed-iteration/` | Complete | Slice M (D14): no redispatch of an iteration that already landed |
+| 14 | `014-docs-playbooks-alignment/` | Complete | Playbook coverage check (each phase writes its own scenarios), feature catalogs and doc/skilled alignment for the features and fixes of 001-013; needs 001-013 |

@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "1c5c55de406cdabae6817c1ee03c7c81beade85a45a25c244ef0e5e42d3bb658",
+      "sha256": "cbb5ea6f456bcf60ee226acbb9820f137dbdec67bde30e1b9a6f8cb7faf45c4d",
       "section": "full"
     },
     {
@@ -47,7 +47,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "sha256": "d9a8b06f938df81786796cda992889ee280d7b42fb7df9ac9f4effc665b21af1",
+      "sha256": "625bc3d26b6925212b042ed43596bf4beca51e930ef4666d287e367585d3bdf5",
       "section": "full"
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "path": ".skilled/agents/deep-review.md",
-      "sha256": "89e7c1ff5aec28513bd95d511d6cefa1ac932071f9d4ef58cf9c96c93244e980",
+      "sha256": "efa025c8f968dbebc83a4dcf390ca851ce6cf83d46a622b79136cdf213db48fd",
       "section": "full"
     },
     {

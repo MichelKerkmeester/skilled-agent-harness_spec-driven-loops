@@ -6,7 +6,7 @@ trigger_phrases:
   - "expansive depth review"
   - "review frontier mode"
   - "review frontier-nodes"
-version: 1.0.14.0
+version: 1.0.15.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
@@ -22,6 +22,8 @@ version: 1.0.14.0
 ### Seeding And Admission
 
 The expansive run seeds depth-one sub-target nodes from the review target before iteration 1. Leaf `frontier_proposal` rows are admitted under relevance, dedupe, depth, fan-out, budget and cycle checks, in that order. On a commit-range target, the seed prunes a merge commit with no diff of its own as `merge-no-own-diff` and a generated index rebuild as `generated-artifact`.
+
+A defaulted review budget is capped at 24, so the depth-1 band gets at most 12 iterations, which funds three nodes at four dimensions. With four or more depth-1 nodes, raise `--max-iterations` or use fan-out.
 
 ### Dimension Coverage
 

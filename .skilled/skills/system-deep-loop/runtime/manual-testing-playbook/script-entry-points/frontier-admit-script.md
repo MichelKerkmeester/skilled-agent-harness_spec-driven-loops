@@ -1,7 +1,7 @@
 ---
 title: "DLR-065 -- frontier-admit.cjs"
 description: "This scenario validates the frontier-admit.cjs CLI: seed writes depth-1 nodes and reports the budget, admit prunes a proposal with its reason, close appends a status row, and a pruned node cannot be closed as live, for `DLR-065`."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DLR-065 -- frontier-admit.cjs
@@ -97,7 +97,7 @@ Command 1 exits 0 with every case passing. Command 2 prints the budget notice on
 
 | File | Role |
 |---|---|
-| `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` | The CLI, `seedNodes`, `admitProposals`, `checkProposal`, `closeNode` and `seedBudget` |
+| `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` | The CLI, `seedNodes`, `admitProposals`, `checkProposal`, `closeNode`, `seedBudget` and `writeSeedBudget` |
 
 ### Validation
 

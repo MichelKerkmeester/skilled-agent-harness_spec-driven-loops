@@ -10,7 +10,7 @@ trigger_phrases:
   - "research synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.14.20.0
+version: 1.14.21.0
 ---
 
 # Loop Protocol Reference
@@ -410,11 +410,11 @@ Under `--depth-mode=expansive` the loop keeps a frontier of follow-up questions 
 
 `step_frontier_seed` decomposes the topic into 3 to 6 depth-1 nodes before iteration 1. On a plain run it sits in `phase_init` after `step_create_config`; on a fan-out run it runs before `step_fanout_spawn`. It calls `runtime/scripts/frontier-admit.cjs seed`.
 
-A leaf may append `frontier_proposal` rows to its delta only when its prompt carries a FRONTIER block, which `frontier-admit.cjs block` computes as the smaller of the node's remaining child slots and the run-wide room left under `maxFrontierNodes`, and the prompt pack renders through `{frontier_block}`. `step_frontier_admit` runs before `step_reduce_state` and calls `frontier-admit.cjs admit`, which applies six checks in order: relevance, dedupe, depth, fan-out, budget, cycle. The first failure prunes the proposal with that reason. Admitted nodes become `research/inbox.jsonl` rows with `origin: "frontier"`.
+A leaf may append `frontier_proposal` rows to its delta only when its prompt carries a FRONTIER block, which `frontier-admit.cjs block` computes from the focus the workflow writes to `research/frontier-focus.txt` with its file tool and passes as `--focus-file`, so the focus never travels inside a shell argument. The block is the smaller of the node's remaining child slots and the run-wide room left under `maxFrontierNodes`, and the prompt pack renders it through `{frontier_block}`. `step_frontier_admit` runs before `step_reduce_state` and calls `frontier-admit.cjs admit`, which applies six checks in order: relevance, dedupe, depth, fan-out, budget, cycle. The first failure prunes the proposal with that reason. Admitted nodes become `research/inbox.jsonl` rows with `origin: "frontier"`.
 
 Next Focus picks the shallowest open node first, then the least visited, then the oldest, and writes `Frontier node <id> (depth N, scope S): <question>` so a visit does not read as an answer.
 
-Under stuck recovery the handler closes the focused node as `exhausted` with reason `stuck` through `frontier-admit.cjs close`, keeps the `stuckRecovery` event, and moves to the next open node. When the latest iteration's focus names no open or active frontier node, as after a blocked-stop recovery or a pivot focus, global recovery runs even while other nodes stay open.
+Under stuck recovery the handler takes the node id from `registry.frontier.nodes`, not from the focus text, closes that node as `exhausted` with reason `stuck` through `frontier-admit.cjs close`, keeps the `stuckRecovery` event, and moves to the next open node. When the latest iteration's focus names no open or active frontier node, as after a blocked-stop recovery or a pivot focus, global recovery runs even while other nodes stay open.
 
 On a fan-out run, `fanout-run.cjs --depth-mode expansive` deals the seeded open depth-1 nodes round-robin in node-id order across lineages, writes the `frontier-nodes.jsonl` and inbox rows of each lineage dealt at least one node that has no store yet before it spawns (a lineage dealt no node gets neither and runs at its loop default), binds `frontier_scope:` in the lineage prompt and records `frontier_partition` in `orchestration-summary.json`. `fanout-merge.cjs` merges the lineage frontiers, each node keeping its lineage label, and records a partition guard that names any dealt node no lineage reports.
 

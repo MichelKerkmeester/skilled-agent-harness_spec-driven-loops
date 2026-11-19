@@ -1,6 +1,6 @@
 ---
 description: "Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm."
-argument-hint: "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--dry-run] [--restart] [--extend=N]"
+argument-hint: "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--depth-mode=default|expansive] [--executor=TYPE] [--concurrency=N] [--dry-run] [--restart] [--extend=N]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch
 ---
 
