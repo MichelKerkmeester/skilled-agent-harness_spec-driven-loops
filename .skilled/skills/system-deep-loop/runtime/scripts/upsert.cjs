@@ -173,14 +173,25 @@ function canonicalReviewDimensionId(id) {
 // finding id of this iteration and of the stored graph to that node id. The raw id is
 // tried before its prefix is stripped, so an id that itself starts with `finding-`
 // resolves the same way in every iteration that names it.
-function resolveReviewFindingId(id, knownFindings) {
+const FINDING_ID_PREFIX = /^(?:node:)?(?:finding|find)[:_-](.+)$/i;
+
+// The node a known finding is stored under, or null when the id names no known
+// finding. An edge endpoint folds only onto a finding that exists.
+function knownReviewFindingId(id, knownFindings) {
   if (typeof id !== 'string') return null;
   const trimmed = id.trim();
   const direct = knownFindings.get(trimmed.toLowerCase());
   if (direct) return direct;
-  const match = /^(?:node:)?(?:finding|find)[:_-](.+)$/i.exec(trimmed);
-  if (!match) return null;
-  return knownFindings.get(match[1].toLowerCase()) ?? `finding:${match[1]}`;
+  const match = FINDING_ID_PREFIX.exec(trimmed);
+  return match ? knownFindings.get(match[1].toLowerCase()) ?? null : null;
+}
+
+function resolveReviewFindingId(id, knownFindings) {
+  const known = knownReviewFindingId(id, knownFindings);
+  if (known) return known;
+  if (typeof id !== 'string') return null;
+  const match = FINDING_ID_PREFIX.exec(id.trim());
+  return match ? `finding:${match[1]}` : null;
 }
 
 // A file:line ref names a place a finding can be checked; a bare path does not. The
@@ -491,10 +502,7 @@ async function main() {
       if (loopType !== 'review') return id;
       if (reviewNodeIds.has(id)) return reviewNodeIds.get(id);
       if (canonicalFindings && typeof id === 'string' && !batchRawKinds.has(id)) {
-        const trimmed = id.trim();
-        const direct = knownFindings.get(trimmed.toLowerCase());
-        const match = /^(?:node:)?(?:finding|find)[:_-](.+)$/i.exec(trimmed);
-        const resolved = direct ?? (match ? knownFindings.get(match[1].toLowerCase()) : undefined);
+        const resolved = knownReviewFindingId(id, knownFindings);
         if (resolved) return resolved;
       }
       return canonicalReviewDimensionId(id);
