@@ -24,6 +24,9 @@ intent_signals:
   - "advisor_status freshness check"
   - "which skill should handle this request"
   - "run the skill advisor hook"
+  - "pasted earlier reply steers the route"
+  - "route receipt for a weak follow-up"
+  - "advisor outage line or confidence floor"
 ---
 
 <!-- Keywords: system-skill-advisor, skill-advisor, advisor_recommend, advisor_status, advisor_rebuild, advisor_validate, skill_graph_scan, skill_graph_query, skill_graph_status, skill_graph_validate, skill_graph_propagate_enhances, cross-skill-edges, gate-2-routing, cli-front-door, daemon-cli, legacy-tool-bridge, skill-graph, pi prompt advisor, prompt-time brief, skill advice before the agent handles my prompt, advisor skipped my prompt, advisor skip my prompt -->

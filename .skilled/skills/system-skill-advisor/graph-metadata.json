@@ -94,7 +94,16 @@
     "prompt hook health",
     "command transcripts",
     "workflow each run opened",
-    "vibe prompt hook"
+    "vibe prompt hook",
+    "pasted earlier reply",
+    "pasted reply strip",
+    "route receipt",
+    "weak follow-up routing",
+    "advisor outage line",
+    "outage line",
+    "advisor lifecycle clock",
+    "lifecycle clock",
+    "confidence floor"
   ],
   "derived": {
     "trigger_phrases": [
