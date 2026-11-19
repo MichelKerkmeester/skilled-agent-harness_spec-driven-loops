@@ -1277,7 +1277,7 @@ workflow:
         outputs:
           - graph_decision: "CONTINUE | STOP_ALLOWED | STOP_BLOCKED"
           - stop_decision: "Tool stop_decision object: decision, stopReason, reasonDetail, weightedStopScore, signals, gates, blockedBy, graphDecision, inputs"
-          - loop_counters_json: "Tool loop_counters_json object: stuckCount and consecutiveFailureCount, both rebuilt from the state log on this pass"
+          - loop_counters_json: "Tool loop_counters_json object: stuckCount and consecutiveFailureCount, both rebuilt from the state log on this pass; under expansive depth stuckCount counts only the active frontier node's own iterations"
           - stuck_count: "loop_counters_json.stuckCount"
           - consecutive_failure_count: "loop_counters_json.consecutiveFailureCount"
           - graph_decision_code: "CONTINUE maps to continue, STOP_ALLOWED to converged, STOP_BLOCKED to blocked"
@@ -1301,7 +1301,7 @@ workflow:
         action: "Branch on the stop decision that convergence.cjs computed in step_graph_convergence"
         algorithm: |
           The whole stop decision is computed by convergence.cjs from the review config, the state log, the findings registry and the coverage graph. This step performs no arithmetic and never recomputes or overrides the result.
-          The ratio signals leave out thought iterations and every iteration whose status is error or timeout, and stuck_count is loop_counters_json.stuckCount.
+          The ratio signals leave out every iteration that is not evidence-bearing (thought, error, timeout), and stuck_count is loop_counters_json.stuckCount.
           The script applies this fixed order, first match wins:
           1. if iteration_count >= max_iterations: STOP (maxIterationsReached). This terminal cap is evaluated before every veto, the claim-adjudication veto included; failed legal-stop gates are recorded in stop_decision.blockedBy as synthesis evidence.
           1a. After 3 consecutive failed iterations (status error or timeout), halt the loop and enter synthesis with stop reason error and partial findings.
@@ -1609,7 +1609,7 @@ workflow:
         if_blocked:
           log: "Legal-stop gates blocked STOP. Failed gates: {blocked_by_csv}. Continuing review."
         if_stuck_recovery:
-          log: "Stuck detected ({stuck_count} consecutive no-progress). Entering recovery."
+          log: "Stuck detected ({stuck_count} consecutive no-progress, counted per frontier node under expansive depth). Entering recovery."
           recovery_strategies:
             - "Change granularity: file-level → function-level → line-level review"
             - "Traceability protocol replay: re-run unresolved core or overlay checks"
@@ -1622,7 +1622,7 @@ workflow:
             pending_stop_detail: "Recovery path activated after repeated no-progress iterations"
           if_expansive_open_node:
             when: "depth_mode == 'expansive' AND active_frontier_node is non-empty"
-            note: "The recovery path still sets pending_stop_event stuck_recovery, which step_normalize_pause_events appends as deep_review.recovery_started; that event projects to stuckRecovery and resets stuckCount, so the next low-yield iteration does not close the next node after one iteration."
+            note: "The recovery path still sets pending_stop_event stuck_recovery, which step_normalize_pause_events appends as deep_review.recovery_started. The next node needs no reset from it: its stuckCount counts only its own iterations."
             command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs close --target review --artifact-dir "{artifact_dir}" --node-id "{active_frontier_node}" --status exhausted --reason stuck --iteration "{current_iteration}"'
             then_command: "node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors"
             working_directory: "{repo_root}"
