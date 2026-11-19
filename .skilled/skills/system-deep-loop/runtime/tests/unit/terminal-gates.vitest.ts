@@ -45,6 +45,14 @@ const { computeTerminalGates } = requireCjs('../../scripts/terminal-gates.cjs') 
   computeTerminalGates: (files?: TerminalGateFiles) => TerminalGateReport;
 };
 
+const { deriveReviewVerdict } = requireCjs('../../scripts/review-verdict.cjs') as {
+  deriveReviewVerdict: (inputs: {
+    activeP0?: number;
+    activeP1?: number;
+    failedRequiredGateIds?: string[];
+  }) => { verdict: string };
+};
+
 const tempDirs: string[] = [];
 
 afterAll(() => {
@@ -326,6 +334,67 @@ describe('computeTerminalGates', () => {
       reasonCode: 'missing-dimensions',
     });
     expect(report.failedRequiredGateIds).toEqual(['coverage']);
+  });
+
+  describe('traceability owed by the configured dimensions', () => {
+    // The init step writes both core protocols for every run, whatever its
+    // dimensions, and records no traceability result in a run that never
+    // reviews traceability.
+    const coreProtocols = { core: ['spec_code', 'checklist_evidence'] };
+    const noTraceabilityResults = { summary: { gatingFailures: 0 }, results: [] };
+
+    function cleanRunFiles(dimensions: string[]): TerminalGateFiles {
+      const rows = [...dimensions, dimensions[0]].map((dimension, index) => ({
+        type: 'iteration',
+        iteration: index + 1,
+        status: 'complete',
+        newFindingsRatio: 0,
+        dimensions: [dimension],
+      }));
+      return {
+        config: passingConfig({ reviewDimensions: dimensions, crossReference: coreProtocols }),
+        registry: passingRegistry({
+          dimensionCoverage: Object.fromEntries(dimensions.map((dimension) => [dimension, true])),
+          findingsBySeverity: { P0: 0, P1: 0, P2: 0 },
+          openFindings: [],
+          traceability: noTraceabilityResults,
+        }),
+        stateLogRows: rows,
+      };
+    }
+
+    it('passes coverage and the verdict for a clean subset run without traceability', () => {
+      const report = computeTerminalGates(cleanRunFiles(['correctness', 'performance']));
+
+      expect(gateRow(report, 'coverage')).toEqual({
+        gateId: 'coverage',
+        status: 'pass',
+        reasonCode: 'coverage-complete',
+      });
+      expect(report.failedRequiredGateIds).toEqual([]);
+      expect(deriveReviewVerdict({
+        activeP0: 0,
+        activeP1: 0,
+        failedRequiredGateIds: report.failedRequiredGateIds,
+      }).verdict).toBe('PASS');
+    });
+
+    it('still owes the core protocols when the run reviews all four dimensions', () => {
+      const report = computeTerminalGates(
+        cleanRunFiles(['correctness', 'security', 'traceability', 'maintainability']),
+      );
+
+      expect(gateRow(report, 'coverage')).toEqual({
+        gateId: 'coverage',
+        status: 'fail',
+        reasonCode: 'traceability-incomplete',
+      });
+      expect(deriveReviewVerdict({
+        activeP0: 0,
+        activeP1: 0,
+        failedRequiredGateIds: report.failedRequiredGateIds,
+      }).verdict).toBe('FAIL');
+    });
   });
 
   it('gives every row a stable sha256 digest of its own summary', () => {

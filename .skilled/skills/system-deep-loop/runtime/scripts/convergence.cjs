@@ -1500,7 +1500,13 @@ function reviewCoverageAge(evidenceRecords, dimensions) {
   return 0;
 }
 
+// A run configured with a dimension list that leaves traceability out never
+// reviews it, so its cross-reference protocols are not owed at stop. An absent
+// list means the default four, which include traceability.
 function reviewTraceabilityCovered(config, registry) {
+  if (Array.isArray(config.reviewDimensions) && !config.reviewDimensions.includes('traceability')) {
+    return true;
+  }
   const traceability = isPlainObject(registry.traceability) ? registry.traceability : {};
   const summary = isPlainObject(traceability.summary) ? traceability.summary : null;
   const core = isPlainObject(config.crossReference) && Array.isArray(config.crossReference.core)
