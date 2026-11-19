@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.25.0
+version: 0.12.26.0
 ---
 
 # system-skill-advisor
@@ -65,7 +65,7 @@ Expected output: a `status: ok` envelope with `trustState.state`, `skillCount` a
 node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"create a new agent"}' --format json
 ```
 
-Expected output: `data.recommendations[]` in rank order, each with `skillId`, `score`, `confidence` and `uncertainty`, plus `effectiveThresholds` for the call. The prompt text does not appear in the response.
+Expected output: `data.recommendations[]` in rank order, each with `skillId`, `score`, `confidence` and `uncertainty`, plus `effectiveThresholds` for the call. A recommendation whose confidence the scorer raises to the task-intent floor also includes `confidenceFloored: true`. The prompt text does not appear in the response.
 
 **Step 3: Rebuild when the index is not live.**
 
@@ -82,6 +82,8 @@ Mutating commands require `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`. R
 ## 3. HOW IT WORKS
 
 A prompt reaches the advisor by one of two routes. A prompt hook calls the CLI before the agent starts. A caller can also run the CLI by hand. Both go through the same CLI and daemon, so a manual check reads the same index that a hook reads.
+
+The hook strips a pasted reply marked by an attribution header such as `You said:` before the 10,000-character cut and scoring, and the Claude hook may return `Advisor: prompt skipped.` when a weak follow-up's confidence-floored route conflicts with the session's earlier route.
 
 The CLI resolves the built server, checks that the build is current and reaches the daemon over a unix socket. It starts the daemon when the socket is cold. The daemon holds the scorer, the embedder, the command handlers and the SQLite skill graph.
 
