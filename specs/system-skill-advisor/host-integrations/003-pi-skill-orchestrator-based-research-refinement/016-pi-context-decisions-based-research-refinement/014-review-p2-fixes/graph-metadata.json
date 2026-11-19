@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The regex that finds a `Now:` or `Task:` marker backtracks on a long whitespace run that contains newlines",
     "created_at": "2026-11-19T05:16:45Z",
-    "last_save_at": "2026-11-19T12:41:51.304Z",
+    "last_save_at": "2026-11-19T12:54:46.368Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d2a772414c6dc4bfb0c0e141fdccc87acf3a2c14078c90c324f2d35d8fa7668c",
+    "source_fingerprint": "sha256:3e2e1a5ad31cbe78c272b50204969a9f08df27bfc2ff60dc62a7ffc72006826b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "23528bd4effd3f1c870f8db8f76038604398acfe02a99b2ab2d6c46fa4f8efb1",
       "plan.md": "560b7e6df960ba35dbf837ee83e2b75ecec7c5afdc02793029515c8559b0eab2",
       "tasks.md": "1cbba3b24499092c79d15d4cc390b9c6cbe530d748d1ad60deabaeaf5617c188",
-      "decision-record.md": "3d14cb1b07f9e8d4e668587e90dbcf304cd44a8773d230c125701c98adba9bf3",
-      "implementation-summary.md": "0e75ab62d0af0c260dc548f534089a614254a75b62fc4c2ff1f880786c2626ce"
+      "decision-record.md": "91a078fefb4ae3eb83e5f4f916651a783a7b5b333647980c216595e9bbb51070",
+      "implementation-summary.md": "615a3abf54273d99b66ec8037d0fc43bd33d54ac6c71b0e7e7018715c961a4d2"
     },
     "last_active_at": null
   }

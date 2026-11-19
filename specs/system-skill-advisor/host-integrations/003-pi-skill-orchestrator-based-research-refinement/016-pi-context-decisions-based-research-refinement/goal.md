@@ -44,12 +44,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Order: 001, 005, 002, 004, 003, 006 to 011, 013, 012, 014 to 016, each after the previous validates strict |
-| D2 | Code: GPT-6 Luna `xhigh` `fast` swarm, cli-codex |
-| D3 | Fallback: DeepSeek V4.1 Flash `max` via cli-mistral-vibe only |
+| D1 | Order: 001, 005, 002, 004, 003, 006-011, 013, 012, 014-017; each validates strict first |
+| D2 | Code: GPT-6 Luna `xhigh` `fast`, cli-codex |
+| D3 | Fallback: Vibe DeepSeek V4.1 Flash `max` only |
 | D4 | The conductor runs every check |
 | D5 | A phase changes only files its `spec.md` lists; cut items stay cut |
-| D6 | Approved: commits, merge and push for 474 and 014 |
+| D6 | Approved: commit, merge, push for 474 and 014 |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -78,6 +78,7 @@ phase and binds as if written here.
 | 014-review-p2-fixes | `014-review-p2-fixes/goal.md` |
 | 015-skilled-alignment-check | `015-skilled-alignment-check/goal.md` |
 | 016-doc-alignment-check | `016-doc-alignment-check/goal.md` |
+| 017-ollama-advisor-analysis | `017-ollama-advisor-analysis/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -95,7 +96,7 @@ string, not these files.
 - [x] `npx vitest run tests/hooks tests/parity tests/handlers` exits 0 from `.skilled/skills/system-skill-advisor/runtime`
 - [x] `rg -n 'daemon starts' .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` prints one line
 - [x] `rg -n 'Decision rule outcome' specs/system-skill-advisor/*/003-pi-*/016-pi-*/003-*/implementation-summary.md` prints one line naming ship, over-suppresses or no guard
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/*/003-pi-*/016-pi-* --recursive --strict --quiet` prints `RESULT: PASSED` for all seventeen folders
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/*/003-pi-*/016-pi-* --recursive --strict --quiet` prints `RESULT: PASSED` for every folder
 - [x] `git merge-base --is-ancestor worktrees/474-advisor-pasted-context-and-crash-fallback origin/main` exits 0
 - [x] `tasks.md` in 014, 015 and 016 has no `- [ ]` line
 <!-- /ANCHOR:completion -->
@@ -129,6 +130,7 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | D6 amended 2026-11-19 | The operator reopened 014 for every follow-up and approved its merge and push |
+| D1 amended 2026-11-19 | The operator added phase 017, a report-only Ollama analysis. D1 now orders 014-017, and D2, D3 and D6 were reworded with no change in meaning to keep the slice under 4000 characters |
 | Folder numbers differ from build order | 004 builds before 003 because both edit the same hook file; folder names were kept |
 | Amendment 2026-11-19, D6 for 014 | Operator approved commits and a merge to main for 014's worktree build, no push (014 decision record Q004) |
 | Amendment 2026-11-19, phases 015 and 016 | Report-only alignment runs added by operator request ("Also run /local-skilled-alignment and /local-doc-alignment make that phases"). D1 ends with 014 to 016, two binding rows added, criterion 5 counts seventeen folders and criterion 7 covers the tasks of 014, 015 and 016. To fit 4,000 characters: D7 dropped because it governed only the finished phase 011, D6 kept only its live choice, and `host-integrations` in two criterion globs became `*`, each glob checked to match one path |

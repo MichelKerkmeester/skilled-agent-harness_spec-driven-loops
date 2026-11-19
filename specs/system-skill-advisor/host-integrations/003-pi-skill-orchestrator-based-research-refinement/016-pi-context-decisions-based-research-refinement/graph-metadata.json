@@ -19,7 +19,8 @@
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/013-drift-guard-probe-script-errors",
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes",
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check",
-    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check"
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check",
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis"
   ],
   "manual": {
     "depends_on": [],
@@ -161,7 +162,7 @@
         "source": "derived"
       },
       {
-        "name": "cli-mistral-vibe",
+        "name": "sk-doc",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -169,19 +170,19 @@
     ],
     "causal_summary": "The skill advisor picks skills with a local five-lane scorer and pushes a brief into every prompt",
     "created_at": "2026-11-18T06:49:25Z",
-    "last_save_at": "2026-11-19T12:42:54.019Z",
+    "last_save_at": "2026-11-19T12:56:49.373Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:3f810eef64cd172fee419dee8c8ccbae8c205629e3ef373315f360f3572c93fa",
+    "source_fingerprint": "sha256:9ce0c473048ebe5590ceef5a7dbb80fffeaf27cb7f5c43765696e897ff9eb990",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c6e6cc8dd9791ae043e834fc4241eabb8a9cca60787a4690ffbc634307c00efe"
+      "spec.md": "2dabd3de852e70301fae6528b08c2c9abd3d4bc7e576ac42f3f294fbb5280cac"
     },
-    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check",
-    "last_active_at": "2026-11-19T09:31:34.306Z"
+    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis",
+    "last_active_at": "2026-11-19T12:56:49.373Z"
   }
 }
