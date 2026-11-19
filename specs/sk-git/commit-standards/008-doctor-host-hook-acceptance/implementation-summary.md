@@ -18,7 +18,7 @@ _memory:
       - ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs"
       - ".skilled/commands/doctor/assets/doctor-git-setup.yaml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a34cddd71db954fed685222d6d32d5671b9aef6c7fc4f7283fa0cc7e854b8d00"
       session_id: "scaffold-008-doctor-host-hook-acceptance"
       parent_session_id: null
     completion_pct: 100
