@@ -29,6 +29,7 @@ const {
 
 const FANOUT_FLAGS = [
   'specFolder', 'loopType', 'researchTopic', 'reviewFocus', 'reviewTarget', 'reviewTargetType', 'fanoutConfigJson', 'baseArtifactDir',
+  'researchTopicFile', 'reviewFocusFile', 'reviewTargetFile',
   'convergenceThreshold', 'lineageTimeoutHours', 'stopPolicy', 'convergenceMode', 'depthMode', 'containmentMode',
   'noMetadataRefresh', 'preDispatchWaitMs', 'stallWatchdogMs', 'maxCostUnitsPerLineage',
   'maxAggregateCostUnits', 'maxTokensPerLineage', 'maxTokenBudget', 'maxTokenBudgetPerLineage',
@@ -122,6 +123,43 @@ function parseArgs(argv = process.argv.slice(2)) {
   }
   assertKnownFlags(args, FANOUT_FLAGS, inputError);
   return args;
+}
+
+// Each file flag carries the same operator text as its inline flag. A workflow writes that
+// text with its file tool and passes the path, because inside a shell argument a backtick,
+// $() or quote in the text is expanded or ends the argument before this script reads it.
+const TEXT_FILE_FLAGS = Object.freeze({
+  researchTopicFile: 'researchTopic',
+  reviewFocusFile: 'reviewFocus',
+  reviewTargetFile: 'reviewTarget',
+});
+
+/**
+ * Replace each operator-text file flag with the text its file holds.
+ *
+ * The text lands under the inline flag's key, so both paths share one normalization.
+ *
+ * @param {Record<string, unknown>} args - The parsed argv.
+ * @returns {Record<string, unknown>} The argv with every file flag read into its text flag.
+ */
+function readTextFileFlags(args) {
+  const resolved = { ...args };
+  for (const [fileKey, textKey] of Object.entries(TEXT_FILE_FLAGS)) {
+    if (resolved[fileKey] === undefined) continue;
+    if (typeof resolved[fileKey] !== 'string') {
+      throw inputError(`${fileKey} must be a file path`);
+    }
+    if (resolved[textKey] !== undefined) {
+      throw inputError(`pass ${textKey} inline or from a file, not both`);
+    }
+    try {
+      resolved[textKey] = fs.readFileSync(resolved[fileKey], 'utf8');
+    } catch (error) {
+      throw inputError(`cannot read ${fileKey} ${resolved[fileKey]}: ${error instanceof Error ? error.message : String(error)}`);
+    }
+    delete resolved[fileKey];
+  }
+  return resolved;
 }
 
 function inputError(message) {
@@ -3665,7 +3703,7 @@ function runPacketMetadataRefresh(input) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  const args = parseArgs();
+  const args = readTextFileFlags(parseArgs());
   const specFolder = validateNamespaceValue(ensureString(args, 'specFolder'), 'specFolder', inputError);
   const loopType = ensureString(args, 'loopType');
   assertActiveFanoutLoopType(loopType);

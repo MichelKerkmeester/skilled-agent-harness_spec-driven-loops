@@ -6915,6 +6915,83 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
       expect(prompt).not.toContain('Expansive depth');
     }
   });
+
+  // The workflow hands operator text over in a file, so the runner must carry that text
+  // into every lineage prompt exactly as an inline flag would, metacharacters included.
+  const OPERATOR_TEXT = 'it\'s a "quoted" $(touch pwned-subst) and `touch pwned-tick` ask';
+
+  it('reads the research topic from a file into the lineage prompt', async () => {
+    const binDir = makeTempDir('fanout-run-topic-file-bin-');
+    writeFrontierCaptureVibeStub(binDir);
+    const baseDir = makeTempDir('fanout-run-topic-file-base-');
+    const topicFile = join(makeTempDir('fanout-run-topic-file-input-'), 'topic.txt');
+    writeFileSync(topicFile, `${OPERATOR_TEXT}\n`, 'utf8');
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'vibe-topic', kind: 'cli-mistral-vibe', model: 'deepseek-flash', iterations: 1 }],
+      concurrency: 1,
+      maxRetries: 0,
+    });
+
+    const { result } = await spawnFanout('topic-file', [
+      '--spec-folder', 'specs/test-fanout-topic-file',
+      '--loop-type', 'research',
+      '--fanout-config-json', fanoutConfig,
+      '--base-artifact-dir', baseDir,
+      '--research-topic-file', topicFile,
+      '--no-metadata-refresh',
+    ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
+
+    const prompt = readFileSync(join(baseDir, 'lineages', 'vibe-topic', 'vibe-prompt.txt'), 'utf8');
+    expect(prompt, `${result.stdout}\n${result.stderr}`).toContain(`  research_topic: ${OPERATOR_TEXT}\n`);
+  });
+
+  it('reads the review focus and target from files into the lineage prompt', async () => {
+    const binDir = makeTempDir('fanout-run-review-file-bin-');
+    writeFrontierCaptureVibeStub(binDir);
+    const baseDir = makeTempDir('fanout-run-review-file-base-');
+    const inputDir = makeTempDir('fanout-run-review-file-input-');
+    const focusFile = join(inputDir, 'focus.txt');
+    const targetFile = join(inputDir, 'target.txt');
+    writeFileSync(focusFile, OPERATOR_TEXT, 'utf8');
+    writeFileSync(targetFile, `scripts/${OPERATOR_TEXT}.cjs`, 'utf8');
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'vibe-review', kind: 'cli-mistral-vibe', model: 'deepseek-flash', iterations: 1 }],
+      concurrency: 1,
+      maxRetries: 0,
+    });
+
+    const { result } = await spawnFanout('review-file', [
+      '--spec-folder', 'specs/test-fanout-review-file',
+      '--loop-type', 'review',
+      '--fanout-config-json', fanoutConfig,
+      '--base-artifact-dir', baseDir,
+      '--review-focus-file', focusFile,
+      '--review-target-file', targetFile,
+      '--no-metadata-refresh',
+    ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
+
+    const prompt = readFileSync(join(baseDir, 'lineages', 'vibe-review', 'vibe-prompt.txt'), 'utf8');
+    expect(prompt, `${result.stdout}\n${result.stderr}`).toContain(`review_focus: ${OPERATOR_TEXT}\n`);
+    expect(prompt).toContain(`review_target: scripts/${OPERATOR_TEXT}.cjs\n`);
+  });
+
+  it('refuses a text flag passed both inline and from a file', async () => {
+    const topicFile = join(makeTempDir('fanout-run-topic-both-'), 'topic.txt');
+    writeFileSync(topicFile, 'from the file', 'utf8');
+
+    const { result } = await spawnFanout('topic-both', [
+      '--spec-folder', 'specs/test-fanout-topic-both',
+      '--loop-type', 'research',
+      '--fanout-config-json', '{}',
+      '--base-artifact-dir', makeTempDir('fanout-run-topic-both-base-'),
+      '--research-topic', 'inline',
+      '--research-topic-file', topicFile,
+      '--no-metadata-refresh',
+    ]);
+
+    expect(result.exitCode).toBe(3);
+    expect(result.stdout).toContain('pass researchTopic inline or from a file, not both');
+  });
 });
 
 // Under expansive depth a lineage the matrix gave no iterations is sized from its

@@ -109,12 +109,13 @@ context_loading:
   purpose: "Load prior review context for the target and buffer it until strategy.md exists"
   retrieval:
     mechanism: "continuity-ladder-then-ripgrep"
-    note: "File reads only. Nothing here needs a running daemon, and every step is reproducible by hand."
+    note: "File reads only, apart from the temporary pattern file below. Nothing here needs a running daemon, and every step is reproducible by hand."
     ladder:
       - "{spec_folder}/handover.md when present"
       - "the _memory.continuity frontmatter block in {spec_folder}/implementation-summary.md"
       - "the packet's canonical spec docs, spec.md and decision-record.md, for what the first two steps leave open"
-    free_text_recipe: "rg --no-config --json --fixed-strings --ignore-case -C 2 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- '{review_target}' specs .skilled"
+    pattern_file: "Run `mktemp -d` and bind context_pattern_file to pattern.txt inside the directory it prints. Write {review_target} into that new file with the file-write tool, never through a shell, with every line break collapsed to one space, then run free_text_recipe and remove the directory. Inside a shell argument a backtick, $() or quote in the target would be expanded or end the argument. The one-line rule keeps the target one fixed-string phrase: ripgrep reads a pattern file one pattern per line, so a second line would widen the search to either line, and a blank line is an empty pattern that matches every line."
+    free_text_recipe: "rg --no-config --json --fixed-strings --ignore-case -C 2 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -f '{context_pattern_file}' -- specs .skilled"
     recipe_contract: ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
     exit_status: "0 is a hit set, 1 is a clean no-hit, 2 or higher is a failure that must be surfaced instead of reported as no-hit"
     ranking: "Ripgrep does not rank. Order the hits caller-side with the tuple in retrieval-conventions.md section 5."
@@ -367,9 +368,12 @@ workflow:
       Fan-out mode is active. Spawn all lineages. Each lineage runs the full loop in its own
       isolated sub-packet under {artifact_dir}/lineages/{label}/.
       This step runs before phase_init, so pass the raw review_focus. fanout-run.cjs
-      normalizes it and hands every lineage the same single-line text. Escape any double
-      quote, backslash, dollar sign or backtick in it for the shell, and pass an empty
-      string when no focus was given.
+      normalizes it and hands every lineage the same single-line text. First write
+      {review_focus} verbatim to {artifact_dir}/fanout-review-focus.txt and {review_target}
+      verbatim to {artifact_dir}/fanout-review-target.txt with the file-write tool,
+      never through a shell: inside a shell argument a backtick, $() or quote in the text
+      would be expanded or end the argument. Write an empty file when no focus or no target was
+      given; the runner reads an empty focus as none and an empty target as the spec folder.
       A cli-opencode lineage inside this fan-out is an explicit parallel-detached OpenCode
       session with a separate lineage directory and session id; it is not the single-executor
       self-invocation path. fanout-run.cjs owns the stack-only recursion guard for that
@@ -389,8 +393,8 @@ workflow:
           node .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs \
             --spec-folder {spec_folder} \
             --loop-type review \
-            --review-focus "{review_focus}" \
-            --review-target "{review_target}" \
+            --review-focus-file "{artifact_dir}/fanout-review-focus.txt" \
+            --review-target-file "{artifact_dir}/fanout-review-target.txt" \
             --review-target-type {review_target_type} \
             --fanout-config-json '{config.fanout_json}' \
             --base-artifact-dir {artifact_dir} \
