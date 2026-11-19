@@ -675,6 +675,17 @@ describe('frontier-admit review root cap and commit-range scope', () => {
       expect(readConfig(artifactDir).reviewScopeFiles).toEqual(['in/a.ts']);
     });
 
+    it('splits a range written with commas the way range detection does', () => {
+      const { repo, base, tip } = makeRepo();
+      const artifactDir = makeBareArtifactDir();
+      writeConfig(artifactDir, `${base}..${tip}, -- in, (label)`, []);
+
+      const result = runScope(repo, artifactDir);
+
+      expect(result.status, String(result.stderr)).toBe(0);
+      expect(readConfig(artifactDir).reviewScopeFiles).toEqual(['in/a.ts']);
+    });
+
     it('reads every touched file when the range names no pathspec', () => {
       const { repo, base, tip } = makeRepo();
       const artifactDir = makeBareArtifactDir();

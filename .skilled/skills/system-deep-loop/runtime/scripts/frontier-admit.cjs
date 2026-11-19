@@ -654,7 +654,7 @@ function scopeInsideTouchedFiles(scope, touchedFiles) {
 // '--' are git's pathspec, up to a parenthesized label; with no '--' the whole
 // range is in scope, since words around the range may be a label, not paths.
 function commitRangeParts(reviewTarget) {
-  const tokens = reviewTarget.split(/\s+/).filter((token) => token !== '');
+  const tokens = reviewTarget.split(/[,\s]+/).filter((token) => token !== '');
   const range = tokens.find(isRevisionRangeToken);
   const separator = tokens.indexOf('--');
   const pathspec = [];
