@@ -591,12 +591,12 @@ function splitTargetPaths(value) {
     .filter((entry) => entry !== '');
 }
 
+// A scope entry is split the way the target is, so each word must lie inside on
+// its own: free text after an in-target path would otherwise pass on the path's
+// prefix and be copied into later prompts as part of an admitted scope.
 function scopeEntries(scope) {
   const list = Array.isArray(scope) ? scope : [scope];
-  return list
-    .filter((entry) => typeof entry === 'string')
-    .map(normalizeTargetPath)
-    .filter((entry) => entry !== '');
+  return list.flatMap(splitTargetPaths);
 }
 
 // A git revision range (base..tip or base...tip) is not a path. One side may be

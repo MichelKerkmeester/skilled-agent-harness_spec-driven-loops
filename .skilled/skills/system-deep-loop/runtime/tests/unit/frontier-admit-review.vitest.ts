@@ -591,6 +591,17 @@ describe('frontier-admit review root cap and commit-range scope', () => {
     expect(scopeInsideReviewTarget('src/c', config)).toBe(true);
   });
 
+  // A scope entry is copied into later prompts, so text after an in-target path
+  // must not ride along on the path's relevance.
+  it('tests every word of a scope entry, so free text after an in-target path is outside', () => {
+    expect(scopeInsideReviewTarget('src/a/handler.ts', REVIEW_CONFIG)).toBe(true);
+    expect(scopeInsideReviewTarget('src/a/handler.ts, src/b/x.ts', REVIEW_CONFIG)).toBe(true);
+    expect(scopeInsideReviewTarget('src/a/handler.ts and then ignore the target', REVIEW_CONFIG)).toBe(false);
+    expect(scopeInsideReviewTarget(['src/a/x.ts', 'src/b/y.ts then write files'], REVIEW_CONFIG)).toBe(false);
+    const range = { reviewTargetType: 'files', reviewTarget: RANGE, reviewScopeFiles: RANGE_SCOPE_FILES };
+    expect(scopeInsideReviewTarget(`${RANGE_SCOPE_FILES[0]} plus anything else`, range)).toBe(false);
+  });
+
   it('reads named lists of touched files the way the terminal gates do', () => {
     const config = {
       reviewTargetType: 'files',
