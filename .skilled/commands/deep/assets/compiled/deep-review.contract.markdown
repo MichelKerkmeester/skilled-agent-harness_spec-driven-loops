@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "cbb5ea6f456bcf60ee226acbb9820f137dbdec67bde30e1b9a6f8cb7faf45c4d",
+      "sha256": "c706b0c32125a6bd7ae8475c1ce1b73a435484fd59a25042f5d8272f6e939ac8",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "60f7856fdb0e84400188c79abe8d2515869cfb4ad3f1523838967e25ee524dac",
+      "sha256": "563185165839d495ff2f681257944781426bad88a1e2e9b822a2725f28eac9d5",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "77f3d11e46ae5226a8ef59beb534b6cac1c1a33ab39eb58b525b353b99b2f1e2",
+      "sha256": "810175ddf5c5cb9c9b6a8d3928bdb3f4f8827eb691c126fa6767383685419ead",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "0907bb079808ff41c889d902d7ce7855375d59c1117d5346ad7e935c3c286213"
+  "compiledBodyDigest": "276df36f04def21ad2aff72137167673fa6716b2341a10ca116dca7b8b28d3e9"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -176,6 +176,8 @@ PRE-BOUND SETUP ANSWERS:
   lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
   extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
   extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the later of the prior budget and the minutes elapsed, default the prior budget
+  frontier_max_depth: ""  # optional positive integer N from --frontier-max-depth=N, expansive depth only: expansiveDepth.maxDepth, default 3
+  frontier_max_nodes: ""  # optional positive integer N from --frontier-max-nodes=N, expansive depth only: expansiveDepth.maxFrontierNodes, default half the iteration budget
   maxIterations: 7
   convergenceThreshold: 0.10
   convergence_mode: default  # default | off | sliding-window | divergent
@@ -213,6 +215,8 @@ Rules:
 | `lineage_mode` | Y | flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default | `auto` | N |
 | `extend` | N | flag `--extend=N` (positive integer); sets `lineage_mode=completed-continue` on a completed run; refused with fan-out | none | N |
 | `extend_minutes` | N | flag `--extend-minutes=M` (positive integer), valid only with `--extend` | the prior `maxDurationMinutes` | N |
+| `frontier_max_depth` | N | flag `--frontier-max-depth=N` or marker `frontier_max_depth` (positive integer), valid only with `--depth-mode=expansive` on a single-executor run; written to `expansiveDepth.maxDepth` | `3` | N |
+| `frontier_max_nodes` | N | flag `--frontier-max-nodes=N` or marker `frontier_max_nodes` (positive integer), valid only with `--depth-mode=expansive` on a single-executor run; written to `expansiveDepth.maxFrontierNodes` | `null`, half the iteration budget | N |
 | `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default; the setup-only binding `max_iterations_source` names which (`flag`, `marker`, `setup`, `matrix` or `default`) and is never written to the config. Under `--depth-mode=expansive` a `default` budget is resized after the seed step to `min(24, max(7, 2·c·(S + maxDepth − 1)))`, with S the depth-1 nodes the seed admitted and c the four canonical dimensions plus any custom name, each counted once, and kept at `7` when S is 0. That is the single-executor budget: a fan-out lineage with no matrix `iterations` value is sized from its own seed share with c fixed at four, 24 once it is dealt a node and its loop default of 12 native or 7 CLI when it is dealt none; any other source is kept as given | `7` | N |
 | `convergenceThreshold` | Y | flag `--convergence`, marker `convergenceThreshold`, or default | `0.10` | N |
 | `convergence_mode` | Y | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default | `default` | N |
@@ -275,6 +279,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
    |-- --extend=N -> extend = N, lineage_mode = completed-continue (positive integer only; a completed run only; refused with fan-out)
    |-- --extend-minutes=M -> extend_minutes = M (positive integer only; valid only with --extend)
+   |-- --frontier-max-depth=N -> frontier_max_depth = N -> expansiveDepth.maxDepth (positive integer only; valid only with --depth-mode=expansive; refused with fan-out)
+   |-- --frontier-max-nodes=N -> frontier_max_nodes = N -> expansiveDepth.maxFrontierNodes (positive integer only; valid only with --depth-mode=expansive; refused with fan-out)
    |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness` | `cli-mistral-vibe`. Every kind runs in `:auto` and `:confirm`, `cli-deepseek-harness` as a single lineage or a fan-out and `cli-mistral-vibe` only as a fan-out lineage. `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; must resolve under ~/.claude* or a repository .claude* folder; fan-out sets CLAUDE_CONFIG_DIR)
@@ -384,6 +390,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - lineage_mode = [auto/resume/restart from flag, marker, or default auto; completed-continue from --extend=N]
    - extend = [N from --extend=N, else unset]
    - extend_minutes = [M from --extend-minutes=M, else unset; valid only with --extend]
+   - frontier_max_depth = [N from --frontier-max-depth=N or marker, else unset; valid only with depth_mode `expansive`]
+   - frontier_max_nodes = [N from --frontier-max-nodes=N or marker, else unset; valid only with depth_mode `expansive`]
    - maxIterations = [from Q3 or flag or default 7]; a Q3 answer that changes the offered value sets max_iterations_source = setup, a marker sets it to marker, and accepting the default keeps it default
    - convergenceThreshold = [from flag or default 0.10]
    - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]

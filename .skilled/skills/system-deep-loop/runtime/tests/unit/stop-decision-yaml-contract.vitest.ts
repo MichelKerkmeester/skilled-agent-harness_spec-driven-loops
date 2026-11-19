@@ -488,3 +488,60 @@ describe.each(FILES)('%s sizes a defaulted expansive budget after the seed', (fi
     expect(stepText(text, 'step_create_config')).not.toContain('max_iterations_source');
   });
 });
+
+// The two expansive frontier caps reach the config only through setup bindings,
+// so every surface an operator flag passes through must carry both of them. An
+// absent flag must leave the literal default in place, or a default run's config
+// would change.
+describe.each([
+  ['research', 'deep-research'],
+  ['review', 'deep-review'],
+])('deep-%s binds the frontier cap flags', (command, asset) => {
+  const yaml = readFileSync(resolve(ASSETS, `${asset}.yaml`), 'utf8');
+  const presentation = readFileSync(resolve(ASSETS, `${asset}-presentation.txt`), 'utf8');
+  const commandDoc = readFileSync(resolve(ASSETS, '..', `${command}.md`), 'utf8');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const doc = parseYaml(yaml) as any;
+
+  it('declares both caps in user_inputs', () => {
+    expect(doc.user_inputs.frontier_max_depth).toContain('--frontier-max-depth=N');
+    expect(doc.user_inputs.frontier_max_nodes).toContain('--frontier-max-nodes=N');
+  });
+
+  it('rejects a cap outside expansive depth or below 1 in the preflight', () => {
+    const verify = (doc.workflow.phase_init.steps.step_preflight_contract.verify as Array<Record<string, string>>)
+      .find((entry) => 'frontier_cap_values' in entry)?.frontier_cap_values ?? '';
+    expect(verify).toContain('positive integer');
+    expect(verify).toContain("depth_mode != 'expansive'");
+    expect(verify).toContain('Usage error (frontier-cap-without-expansive)');
+  });
+
+  // A fan-out run never reaches phase_init, so the preflight cannot see the caps there.
+  it('refuses the caps on a fan-out config before any lineage spawns', () => {
+    const keys = Object.keys(doc.workflow);
+    const guard = doc.workflow.step_reject_frontier_caps_with_fanout;
+    expect(guard?.halt).toBe(true);
+    expect(guard.skip_when).toContain('config.fanout is absent');
+    expect(guard.message).toContain('Usage error (frontier-caps-with-fanout)');
+    expect(keys.indexOf('step_reject_frontier_caps_with_fanout')).toBeLessThan(keys.indexOf('step_fanout_spawn'));
+  });
+
+  it('writes a bound cap and keeps the default literals when the flags are absent', () => {
+    const populate = doc.workflow.phase_init.steps.step_create_config.populate;
+    expect(populate['expansiveDepth.maxDepth']).toBe('{frontier_max_depth} when bound, else 3');
+    expect(populate['expansiveDepth.maxFrontierNodes']).toBe('{frontier_max_nodes} when bound, else null');
+  });
+
+  it('binds both flags in the presentation and the command flag table', () => {
+    expect(presentation).toContain('|-- --frontier-max-depth=N -> frontier_max_depth = N');
+    expect(presentation).toContain('|-- --frontier-max-nodes=N -> frontier_max_nodes = N');
+    expect(presentation).toContain('| `frontier_max_depth` |');
+    expect(presentation).toContain('| `frontier_max_nodes` |');
+    const marker = presentation.slice(presentation.indexOf('PRE-BOUND SETUP ANSWERS:\n'));
+    const block = marker.slice(0, marker.indexOf('```'));
+    expect(block).toContain('frontier_max_depth: ""');
+    expect(block).toContain('frontier_max_nodes: ""');
+    expect(commandDoc).toContain('| `--frontier-max-depth` |');
+    expect(commandDoc).toContain('| `--frontier-max-nodes` |');
+  });
+});

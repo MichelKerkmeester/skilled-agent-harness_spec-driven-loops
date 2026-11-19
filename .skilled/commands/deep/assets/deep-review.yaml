@@ -63,6 +63,8 @@ user_inputs:
   convergence_threshold: 0.10
   convergence_mode: "[default|off|sliding-window|divergent] - Convergence policy modifier. Default: default."
   depth_mode: "[default|expansive] - Opt-in frontier growth. expansive seeds depth-1 sub-target nodes, admits leaf frontier_proposal rows and vetoes a review stop candidate while nodes stay open. Default: default."
+  frontier_max_depth: "[FRONTIER_MAX_DEPTH] - Positive integer N from --frontier-max-depth=N, written to expansiveDepth.maxDepth: the deepest level the frontier may grow to. Only valid with --depth-mode=expansive. Default: unset, which keeps 3."
+  frontier_max_nodes: "[FRONTIER_MAX_NODES] - Positive integer N from --frontier-max-nodes=N, written to expansiveDepth.maxFrontierNodes: the run-wide frontier node cap. Only valid with --depth-mode=expansive. Default: unset, which keeps null, so the cap derives as half the iteration budget."
   stop_policy: "[convergence|max-iterations] - Stop behavior. Default: convergence. max-iterations treats convergence as telemetry until the hard iteration ceiling."
   dry_run: "[DRY_RUN] - Boolean pre-flight flag. Default: false."
   lineage_timeout_hours: "[LINEAGE_TIMEOUT_HOURS] - Optional per-lineage wall-clock ceiling in hours for fan-out runs, at most 4. Default: unset, which keeps the 4 hour ceiling."
@@ -317,6 +319,17 @@ workflow:
     status: "FAIL"
     message: "Usage error (extend-with-fanout): --extend extends a single-executor review run only. This config has fanout executors, so nothing was spawned and the run is unchanged."
 
+  step_reject_frontier_caps_with_fanout:
+    description: "Refuse the frontier cap flags on a fan-out config before any lineage spawns"
+    skip_when: "frontier_max_depth and frontier_max_nodes are both unset or config.fanout is absent"
+    instructions: |
+      A fan-out run never reaches phase_init, so neither the preflight check nor the
+      config step sees the caps, and each lineage writes its own config with the
+      default caps. Refuse the combination here rather than drop the caps silently.
+    halt: true
+    status: "FAIL"
+    message: "Usage error (frontier-caps-with-fanout): --frontier-max-depth and --frontier-max-nodes apply to a single-executor review run only. This config has fanout executors, so nothing was spawned and the run is unchanged."
+
   step_frontier_seed:
     description: "Seed the depth-1 review frontier before any fan-out lineage spawns"
     enabled_when: "depth_mode == 'expansive'"
@@ -405,6 +418,7 @@ workflow:
           - unresolved_placeholders: "FAIL if any user-facing template references placeholders not produced by earlier steps"
           - tool_contract: "FAIL if executable steps reference tools outside the command allowlist"
           - extend_values: "When extend is bound it must be a positive integer (digits only, no sign, at least 1), and extend_minutes when bound likewise. extend_minutes without extend, or extend with a lineage_mode other than auto or completed-continue, is a usage error. Each fails here, before step_acquire_lock, with a usage error that names the flag."
+          - frontier_cap_values: "When frontier_max_depth or frontier_max_nodes is bound it must be a positive integer (digits only, no sign, at least 1), else fail with 'Usage error (frontier-cap-value): --frontier-max-depth needs a positive integer' or the same for --frontier-max-nodes. Either one bound while depth_mode != 'expansive' fails with 'Usage error (frontier-cap-without-expansive): --frontier-max-depth only applies with --depth-mode=expansive' or the same for --frontier-max-nodes. Each fails here, before step_acquire_lock."
         on_fail: "Halt with STATUS=FAIL and report the missing binding or unsupported contract reference"
 
       step_create_directories:
@@ -881,11 +895,12 @@ workflow:
           convergenceThreshold: "{convergence_threshold}"
           antiConvergence.convergenceMode: "{convergence_mode}"
           antiConvergence.depthMode: "{depth_mode}"
-          expansiveDepth.maxDepth: 3
+          # Written as a JSON integer: frontier-admit.cjs reads a quoted number as unset and falls back to the default.
+          expansiveDepth.maxDepth: "{frontier_max_depth} when bound, else 3"
           expansiveDepth.maxChildrenPerNode: 6
           expansiveDepth.budgetSplit: { depth1: 0.5, depth2: 0.35, depth3: 0.15 }
           # Null derives the run-wide node cap at admission as half the iteration budget, so the frontier cannot claim every iteration; the depth-1 seed answers only to the root-children cap but counts toward this one. A defaulted budget is resized from the seed by step_frontier_budget so the cap keeps room past depth 1; an explicit budget is kept as given and may leave none.
-          expansiveDepth.maxFrontierNodes: null
+          expansiveDepth.maxFrontierNodes: "{frontier_max_nodes} when bound, else null"
           antiConvergence.divergent: {}
           stopPolicy: "{stop_policy}"
           stuckThreshold: 2

@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "4a7456ce36345204ee23fd09d2d472e01d532fba18923cc15fc5ee3a3c97cfd9",
+      "sha256": "5e52a3befb6a11033a44c23bc4e82e4428ff2862e8e4cce19e6ac971a7d1ede6",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "83c79b12e03f2838fd66c11eae6c4b1817f248c3d83ada5e0a96390f7d906c02",
+      "sha256": "91777efb9bfb398aa32f4e5fff36a10836ef176560f861f428ac20c0130f00cf",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research.yaml",
-      "sha256": "49594b04a0fff58c61725ad9696b7fcb54896b684996ccca9e3057ccd351c347",
+      "sha256": "620193c45ec4338d08dddbacac3501fb1aff0790637c0ce4a15edc6d0f52d8ba",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "ef5001ac5be1f31ee0206047dac64f50cb360cf114f1dc8c856f50587642becd"
+  "compiledBodyDigest": "0997ee15556dd50f7654dcbb96c2d97634213a65d30a427d7e30575d0ebcb870"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -192,6 +192,8 @@ PRE-BOUND SETUP ANSWERS:
   lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
   extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
   extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the later of the prior budget and the minutes elapsed, default the prior budget
+  frontier_max_depth: ""  # optional positive integer N from --frontier-max-depth=N, expansive depth only: expansiveDepth.maxDepth, default 3
+  frontier_max_nodes: ""  # optional positive integer N from --frontier-max-nodes=N, expansive depth only: expansiveDepth.maxFrontierNodes, default half the iteration budget
   executor: native  # native | cli-codex | cli-claude-code | cli-opencode | cli-cursor | cli-devin | cli-pi | cli-deepseek-harness | cli-mistral-vibe, the last one fan-out only (`EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`)
   executor_model: ""  # optional executor-specific model id (cli-opencode e.g. llmgateway/glm-5.3-flash, minimax-coding-plan/MiniMax-M2.7-highspeed)
   executor_config_dir: ""  # optional, cli-claude-code only; maps to CLAUDE_CONFIG_DIR
@@ -218,6 +220,8 @@ Rules: see `auto-mode-contract.md` §2 (unspecified fields fall back to default;
 | `lineage_mode`          | Y        | flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default                                                                                                         | `auto`                             | N                                                       |
 | `extend` | N | flag `--extend=N` (positive integer); sets `lineage_mode=completed-continue` on a completed run; refused with fan-out | none | N |
 | `extend_minutes` | N | flag `--extend-minutes=M` (positive integer), valid only with `--extend` | the prior `maxDurationMinutes` | N |
+| `frontier_max_depth` | N | flag `--frontier-max-depth=N` or marker `frontier_max_depth` (positive integer), valid only with `--depth-mode=expansive` on a single-executor run; written to `expansiveDepth.maxDepth` | `3` | N |
+| `frontier_max_nodes` | N | flag `--frontier-max-nodes=N` or marker `frontier_max_nodes` (positive integer), valid only with `--depth-mode=expansive` on a single-executor run; written to `expansiveDepth.maxFrontierNodes` | `null`, half the iteration budget | N |
 | `executor`              | N        | flag `--executor`, marker `executor`, config file, or default                                                                                                                                          | `native`                           | N                                                       |
 | `executor_model`        | N        | flag `--model`, marker `executor_model`, or executor-specific validation                                                                                                                               | none                               | N                                                       |
 | `executor_config_dir`   | N        | flag `--config-dir`, marker `executor_config_dir`, or executor-specific default                                                                                                                        | none                               | N                                                       |
@@ -268,6 +272,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
    |-- --extend=N -> extend = N, lineage_mode = completed-continue (positive integer only; a completed run only; refused with fan-out)
    |-- --extend-minutes=M -> extend_minutes = M (positive integer only; valid only with --extend)
+   |-- --frontier-max-depth=N -> frontier_max_depth = N -> expansiveDepth.maxDepth (positive integer only; valid only with --depth-mode=expansive; refused with fan-out)
+   |-- --frontier-max-nodes=N -> frontier_max_nodes = N -> expansiveDepth.maxFrontierNodes (positive integer only; valid only with --depth-mode=expansive; refused with fan-out)
    |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness` | `cli-mistral-vibe`, `cli-deepseek-harness` as a single lineage or a fan-out and `cli-mistral-vibe` only as a fan-out lineage. `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; must resolve under ~/.claude* or a repository .claude* folder; fan-out sets CLAUDE_CONFIG_DIR)
@@ -358,6 +364,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - lineage_mode = [auto/resume/restart from flag, marker, or default auto; completed-continue from --extend=N]
    - extend = [N from --extend=N, else unset]
    - extend_minutes = [M from --extend-minutes=M, else unset; valid only with --extend]
+   - frontier_max_depth = [N from --frontier-max-depth=N or marker, else unset; valid only with depth_mode `expansive`]
+   - frontier_max_nodes = [N from --frontier-max-nodes=N or marker, else unset; valid only with depth_mode `expansive`]
    - maxIterations = [from Q3 or flag or default 10]; a Q3 answer that changes the offered value sets max_iterations_source = setup, a marker sets it to marker, and accepting the default keeps it default
    - convergenceThreshold = [from flag or default 0.05]
    - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]
