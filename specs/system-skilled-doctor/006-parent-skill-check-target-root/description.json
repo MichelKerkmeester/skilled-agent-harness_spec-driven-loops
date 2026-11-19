@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-skilled-doctor/006-parent-skill-check-target-root",
+  "description": "parent-skill-check reads a hub's canary fixture, commands and guards from the hub's own repository",
+  "keywords": [
+    "parent-skill-check",
+    "reads",
+    "hub",
+    "canary",
+    "fixture",
+    "commands",
+    "guards",
+    "own",
+    "repository"
+  ],
+  "lastUpdated": "2026-11-19T08:58:02.359Z",
+  "specId": "006",
+  "folderSlug": "parent-skill-check-target-root",
+  "parentChain": [
+    "system-skilled-doctor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

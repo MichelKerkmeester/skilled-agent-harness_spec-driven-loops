@@ -8,7 +8,8 @@
     "system-skilled-doctor/002-symlink-first-link",
     "system-skilled-doctor/003-removed-folder-classification",
     "system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes",
-    "system-skilled-doctor/005-barter-upstream-fixes"
+    "system-skilled-doctor/005-barter-upstream-fixes",
+    "system-skilled-doctor/006-parent-skill-check-target-root"
   ],
   "manual": {
     "depends_on": [],
