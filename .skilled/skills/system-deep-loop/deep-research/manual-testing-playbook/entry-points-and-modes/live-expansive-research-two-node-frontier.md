@@ -1,7 +1,7 @@
 ---
 title: "DR-077 -- Live expansive research with two frontier nodes"
 description: "This scenario validates a low-token live expansive research run for `DR-077`. It focuses on a two-node frontier cap, three deterministic iterations and the dashboard, node-store and iteration-count signals an operator can read afterwards."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DR-077 -- Live expansive research with two frontier nodes
@@ -46,7 +46,7 @@ Operators run this as a real orchestrator-led check on a fixture spec folder, th
 2. `rg -n 'expansiveDepth|maxFrontierNodes|maxDepth|readCaps' .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs`
 3. `/deep:research "Which events does the deep-research reducer project from the ledger?" :confirm --spec-folder=<fixture> --depth-mode=expansive --max-iterations=3 --convergence-mode=off --frontier-max-depth=2 --frontier-max-nodes=2 --executor=cli-opencode --model='opencode-go/deepseek-v4.1-flash#max'`
 4. When the orchestrator reports the config written and stops before the frontier seed step, confirm the caps landed at init: `jq '{maxIterations, maxDepth: .expansiveDepth.maxDepth, maxFrontierNodes: .expansiveDepth.maxFrontierNodes, depthMode: .antiConvergence.depthMode}' <fixture>/research/deep-research-config.json`
-5. `printf '%s\n' '[{"question":"Which ledger stems does the reducer project into the dashboard?","scope":".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs","evidence":".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"},{"question":"Which iteration-record fields does the append gateway project into the state log?","scope":".skilled/skills/system-deep-loop/runtime/scripts","evidence":".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"}]' > <fixture>/research/frontier-seed.json`, then tell the orchestrator to seed that file unchanged.
+5. `printf '%s\n' '[{"question":"Which ledger stems does the reducer project into the dashboard?","scope":".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs","evidence":".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs"},{"question":"Which iteration-record fields does the append gateway project into the state log?","scope":".skilled/skills/system-deep-loop/runtime/scripts","evidence":".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"}]' > <fixture>/research/frontier-seed.json`, then tell the orchestrator to seed that file unchanged.
 6. Let the run continue through seeding, three iterations and synthesis.
 7. `jq -s '[.[] | select(.depth == 1) | .nodeId] | unique | length' <fixture>/research/frontier-nodes.jsonl`
 8. `jq -s '[.[] | .depth] | max' <fixture>/research/frontier-nodes.jsonl`
