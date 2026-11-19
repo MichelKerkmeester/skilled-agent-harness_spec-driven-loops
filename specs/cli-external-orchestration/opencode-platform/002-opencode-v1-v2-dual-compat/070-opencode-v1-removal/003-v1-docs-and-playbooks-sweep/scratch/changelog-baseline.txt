@@ -1,0 +1,1 @@
+48 cli-opencode changelog entries at HEAD, before the v2.0.0.0 write (git ls-tree HEAD). Recorded at closure.

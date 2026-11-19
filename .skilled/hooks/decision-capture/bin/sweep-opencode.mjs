@@ -5,17 +5,12 @@
 // Recover OpenCode's answered questions into the queue.
 // Backstop for the decision queue.
 //
-// OpenCode records a question call and its answer as one completed tool part, so
-// a sweep can replay the turn without a live hook. Only a completed part with an
-// answers array counts: a dismissed call keeps the part but stores no answer, and
-// a call still running has nothing to quote. Deduplication belongs to the core,
-// so a key an earlier producer wrote is skipped and running the sweep on every
-// save stays safe.
-//
-// Two storage layouts share the same queue. Older databases keep every part in
-// `part`; newer ones also keep whole assistant messages in `session_message`,
-// where the same call appears as a content item. Both are read so a database
-// mid-migration does not lose the answers it already holds.
+// OpenCode records a question call and its answer as one completed tool item in
+// an assistant message, so a sweep can replay the turn without a live hook. Only
+// a completed item with an answers array counts: a dismissed call keeps the item
+// but stores no answer, and a call still running has nothing to quote.
+// Deduplication belongs to the core, so a key an earlier producer wrote is
+// skipped and running the sweep on every save stays safe.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -44,9 +39,8 @@ const require = createRequire(import.meta.url);
 
 const RUNTIME = 'opencode';
 const QUESTION_TOOL = 'question';
-const PART_TABLE = 'part';
 const MESSAGE_TABLE = 'session_message';
-const SESSION_TABLES = ['session_v2', 'session'];
+const SESSION_TABLE = 'session_v2';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. ANSWER RECORDS
@@ -131,10 +125,10 @@ function tableNames(database) {
   return new Set(rows.map((row) => row.name));
 }
 
-// A newer database may hold only one of the two storage tables, so the schema is
-// read before a query names a table that is not there. The database is opened
-// read-only because a sweep must never write to OpenCode's own state, and it is
-// closed in finally so a failed query cannot leave a handle behind.
+// A database may not hold the message table yet, so the schema is read before a
+// query names a table that is not there. The database is opened read-only
+// because a sweep must never write to OpenCode's own state, and it is closed in
+// finally so a failed query cannot leave a handle behind.
 function loadOpenCodeSessionData({ dbPath, sessionId } = {}) {
   const database = openDatabase(dbPath);
 
@@ -142,16 +136,6 @@ function loadOpenCodeSessionData({ dbPath, sessionId } = {}) {
     const tables = tableNames(database);
     const parts = [];
     const turns = [];
-
-    if (tables.has(PART_TABLE)) {
-      const rows = database
-        .prepare(`SELECT data FROM ${PART_TABLE} WHERE session_id = ? ORDER BY time_created, id`)
-        .all(sessionId);
-      for (const row of rows) {
-        const part = parsedPart(row.data);
-        if (part) parts.push(part);
-      }
-    }
 
     if (tables.has(MESSAGE_TABLE)) {
       const rows = database
@@ -217,32 +201,18 @@ export function loadOpenCodeParts({ dbPath, sessionId } = {}) {
 // 5. LATEST SESSION
 // ─────────────────────────────────────────────────────────────────────────────
 
-// The same session can appear in the legacy `session` table or in `session_v2`,
-// so both are asked and the larger timestamp wins. Directory matching is exact
-// because OpenCode stores the resolved path it ran in.
+// Directory matching is exact because OpenCode stores the resolved path it ran in.
 export function latestOpenCodeSession({ dbPath, projectDir } = {}) {
   const database = openDatabase(dbPath);
 
   try {
-    const tables = tableNames(database);
-    let newest = null;
-
-    for (const table of SESSION_TABLES) {
-      if (!tables.has(table)) continue;
-      const row = database
-        .prepare(
-          `SELECT id, time_updated FROM ${table} WHERE directory = ? ORDER BY time_updated DESC LIMIT 1`,
-        )
-        .get(projectDir);
-      if (typeof row?.id !== 'string' || !row.id) continue;
-
-      const updated = Number(row.time_updated);
-      if (newest === null || updated > newest.updated) {
-        newest = { id: row.id, updated };
-      }
-    }
-
-    return newest?.id ?? null;
+    if (!tableNames(database).has(SESSION_TABLE)) return null;
+    const row = database
+      .prepare(
+        `SELECT id FROM ${SESSION_TABLE} WHERE directory = ? ORDER BY time_updated DESC LIMIT 1`,
+      )
+      .get(projectDir);
+    return typeof row?.id === 'string' && row.id ? row.id : null;
   } finally {
     database.close();
   }
@@ -254,19 +224,17 @@ export function latestOpenCodeSession({ dbPath, projectDir } = {}) {
 export function rootOpenCodeSession({ dbPath, sessionId } = {}) {
   const database = openDatabase(dbPath);
   try {
-    const tables = tableNames(database);
+    const hasSessions = tableNames(database).has(SESSION_TABLE);
     let current = sessionId;
     for (let depth = 0; depth < 16; depth += 1) {
       let parent = null;
-      for (const table of SESSION_TABLES) {
-        if (!tables.has(table)) continue;
+      if (hasSessions) {
         try {
-          const row = database.prepare(`SELECT parent_id FROM ${table} WHERE id = ?`).get(current);
+          const row = database.prepare(`SELECT parent_id FROM ${SESSION_TABLE} WHERE id = ?`).get(current);
           if (typeof row?.parent_id === 'string' && row.parent_id) parent = row.parent_id;
         } catch {
           // A store without a parent column has no subagent sessions to climb.
         }
-        if (parent) break;
       }
       if (!parent) return current;
       current = parent;

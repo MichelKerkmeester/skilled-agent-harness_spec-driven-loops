@@ -1,12 +1,12 @@
 ---
 title: "CO-013 -- Unflagged default-agent route"
 description: "This scenario validates the unflagged default-agent route for `CO-013`. It focuses on confirming that OMITTING `--agent` (never passing `--agent general`) produces the expected implementation-style behavior."
-version: 1.4.10.0
+version: 1.4.11.0
 ---
 
 # CO-013 -- Unflagged default-agent route
 
-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first.
+**Version note.** These commands target OpenCode 2 (2.3.2). Check that `opencode models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first.
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-013`.
 
@@ -18,7 +18,7 @@ This scenario validates the unflagged default-agent route for `CO-013`. It focus
 
 ### Why This Matters
 
-`general` is an OpenCode built-in, not a project-local agent file under `.opencode/agents/`, and the current cli-opencode contract explicitly forbids passing it at the top level: `opencode run --agent general` is rejected by OpenCode 1 (OpenCode 2.0.32 accepts it, and the rule still forbids it) (SKILL.md §3 "The `--agent` flag" note and hard rule `no-bare-agent-general`). The default agent already runs whenever `--agent` is omitted, which is what every ordinary dispatch should do. If the unflagged path silently fails or produces degraded behavior, the entire default-routing contract collapses and every other scenario that relies on the unflagged shape inherits the failure.
+`general` is an OpenCode built-in, not a project-local agent file under `.opencode/agents/`. The skill omits `--agent` entirely because the default agent already runs whenever the flag is absent, which is what every ordinary dispatch should do (SKILL.md §3 "The `--agent` flag" note). If the unflagged path silently fails or produces degraded behavior, the entire default-routing contract collapses and every other scenario that relies on the unflagged shape inherits the failure.
 
 ---
 
@@ -48,11 +48,11 @@ Operators run the exact prompt and command sequence for `CO-013` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-013 | Unflagged default-agent route | Confirm omitting `--agent` loads the default agent and produces implementation-style behavior | `As an external-AI conductor verifying the unflagged default-agent route, dispatch opencode run WITHOUT any --agent flag, with a prompt that requires a Read tool call against a small project file (e.g. .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md) and a multi-step reasoning summary. Verify the JSON event stream shows a `tool_use` event for Read and the response references content from the file. Return a concise pass/fail verdict naming the file read and the summary's first sentence.` | 1. `bash: opencode run --model llmgateway/deepseek-v4.1-flash-1017 --variant max --format json --dir "$(pwd)" "Use the Read tool to read .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md and summarize what the cli-opencode skill does in one short paragraph. Mention the three documented use cases by number." > /tmp/co-013-events.jsonl 2>&1` -> 2. `bash: echo "Exit: $?"` -> 3. `bash: jq -r 'select(.type == "tool_use") \| .part.tool' /tmp/co-013-events.jsonl \| sort -u` -> 4. `bash: jq -r 'select(.type == "tool_use" and (.part.tool \| test("Read";"i"))) \| .part' /tmp/co-013-events.jsonl \| wc -l` -> 5. `bash: jq -r 'select(.type == "text") \| .part.text' /tmp/co-013-events.jsonl \| grep -ciE '(use case 1\|use case 2\|use case 3\|external runtime\|parallel detached\|cross-AI handback)'` | Step 1: events captured non-empty. Step 2: exit 0. Step 3: `tool_use` names include `Read` (case-insensitive). Step 4: count of Read `tool_use` events >= 1. Step 5: response references at least 2 of the three use cases (count >= 2) | `/tmp/co-013-events.jsonl`, terminal histogram of `tool_use` names | PASS if exit 0 AND Read `tool_use` event appears AND >= 2 use cases mentioned AND no `--agent` flag in the dispatched command. FAIL if any check fails | 1. If `Read` `tool_use` event is missing, the agent may have answered from cache without reading. Re-prompt with stronger "use the Read tool" wording. 2. If response is generic, re-verify the exact dispatched command omitted `--agent` entirely. 3. If exit code is non-zero, check whether an explicit `--agent general` was accidentally reintroduced (opencode rejects it at the top level per hard rule `no-bare-agent-general`) and parse stderr for the specific error |
+| CO-013 | Unflagged default-agent route | Confirm omitting `--agent` loads the default agent and produces implementation-style behavior | `As an external-AI conductor verifying the unflagged default-agent route, dispatch opencode run WITHOUT any --agent flag, with a prompt that requires a Read tool call against a small project file (e.g. .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md) and a multi-step reasoning summary. Verify the JSON event stream shows a `tool_use` event for Read and the response references content from the file. Return a concise pass/fail verdict naming the file read and the summary's first sentence.` | 1. `bash: opencode run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json "Use the Read tool to read .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md and summarize what the cli-opencode skill does in one short paragraph. Mention the three documented use cases by number." > /tmp/co-013-events.jsonl 2>&1 </dev/null` -> 2. `bash: echo "Exit: $?"` -> 3. `bash: jq -r 'select(.type == "tool_use") \| .part.tool' /tmp/co-013-events.jsonl \| sort -u` -> 4. `bash: jq -r 'select(.type == "tool_use" and (.part.tool \| test("Read";"i"))) \| .part' /tmp/co-013-events.jsonl \| wc -l` -> 5. `bash: jq -r 'select(.type == "text") \| .part.text' /tmp/co-013-events.jsonl \| grep -ciE '(use case 1\|use case 2\|use case 3\|external runtime\|parallel detached\|cross-AI handback)'` | Step 1: events captured non-empty. Step 2: exit 0. Step 3: `tool_use` names include `Read` (case-insensitive). Step 4: count of Read `tool_use` events >= 1. Step 5: response references at least 2 of the three use cases (count >= 2) | `/tmp/co-013-events.jsonl`, terminal histogram of `tool_use` names | PASS if exit 0 AND Read `tool_use` event appears AND >= 2 use cases mentioned AND no `--agent` flag in the dispatched command. FAIL if any check fails | 1. If `Read` `tool_use` event is missing, the agent may have answered from cache without reading. Re-prompt with stronger "use the Read tool" wording. 2. If response is generic, re-verify the exact dispatched command omitted `--agent` entirely. 3. If exit code is non-zero, check whether an explicit `--agent general` was accidentally reintroduced, since the skill omits the flag rather than naming the built-in, and parse stderr for the specific error |
 
 ### Optional Supplemental Checks
 
-For agent-frontmatter introspection of a project-local agent (not the `general` built-in, which has no agent file under `.opencode/agents/`), run `opencode debug agent orchestrate` separately and confirm the resolved frontmatter matches `.opencode/agents/orchestrate.md`. This catches user-level agent fallbacks that might silently shadow a project agent.
+For agent-frontmatter introspection of a project-local agent (not the `general` built-in, which has no agent file under `.opencode/agents/`), run `opencode debug agents` separately and confirm the `orchestrate` entry's resolved frontmatter matches `.opencode/agents/orchestrate.md`. This catches user-level agent fallbacks that might silently shadow a project agent.
 
 ---
 
@@ -69,7 +69,7 @@ For agent-frontmatter introspection of a project-local agent (not the `general` 
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | §3 "The `--agent` flag (read this)" note (never pass `--agent general` at the top level) and ALWAYS rule 3 |
+| `../../SKILL.md` | §3 "The `--agent` flag (read this)" note (omit `--agent` rather than naming the built-in) and ALWAYS rule 3 |
 | `../../references/agent-delegation.md` | §4 routing matrix (default / unspecified -> omit `--agent`) |
 
 ---

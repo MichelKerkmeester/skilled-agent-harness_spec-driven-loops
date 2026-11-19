@@ -26,7 +26,7 @@ const pluginUrl = pathToFileURL(join(__dirname, '..', 'opencode-goal.js')).href;
 async function loadGoalCore(pluginModule) {
   const coreUrl = pathToFileURL(join(__dirname, '..', 'lib', 'opencode-goal-core.js')).href;
   const coreModule = await import(coreUrl);
-  return coreModule.getGoalCore(pluginModule.default.server);
+  return coreModule.getGoalCore(pluginModule.default.factory);
 }
 
 const OBJECTIVE = 'Ship the parity fixture and verify it';

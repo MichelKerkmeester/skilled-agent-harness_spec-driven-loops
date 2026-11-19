@@ -57,18 +57,21 @@ function readFixture() {
   return JSON.parse(readFileSync(FIXTURE, 'utf8'));
 }
 
-function writePartDatabase(dbPath, parts) {
+// OpenCode stores each question call as a tool item inside an assistant message,
+// so every fixture part becomes one such row in its own session.
+function writeQuestionMessageDatabase(dbPath, parts) {
   mkdirSync(dirname(dbPath), { recursive: true });
   const database = new DatabaseSync(dbPath);
   try {
     database.exec(
-      'CREATE TABLE part (id TEXT, message_id TEXT, session_id TEXT, time_created INTEGER, time_updated INTEGER, data TEXT)',
+      'CREATE TABLE session_message (id TEXT, session_id TEXT, type TEXT, seq INTEGER, time_created INTEGER, time_updated INTEGER, data TEXT)',
     );
     const insert = database.prepare(
-      'INSERT INTO part (id, message_id, session_id, time_created, time_updated, data) VALUES (?, ?, ?, ?, ?, ?)',
+      'INSERT INTO session_message (id, session_id, type, seq, time_created, time_updated, data) VALUES (?, ?, ?, ?, ?, ?, ?)',
     );
     parts.forEach((part, index) => {
-      insert.run(part.id, part.messageID, part.sessionID, index, index, JSON.stringify(part));
+      const content = [{ type: 'tool', id: part.callID, name: part.tool, state: part.state }];
+      insert.run(part.messageID, part.sessionID, 'assistant', index + 1, index, index, JSON.stringify({ content }));
     });
   } finally {
     database.close();
@@ -115,17 +118,18 @@ test('the fixture yields its four answered decisions and nothing else', () => {
   );
 });
 
-test('a part database recovers its answered decisions once', () => {
+test('a message database recovers its answered decisions once', () => {
   withTemp(({ root, projectDir }) => {
     const dbPath = join(root, 'opencode', 'opencode.db');
     const parts = readFixture();
     const otherSessionPart = {
       ...parts[0],
       id: 'prt_OTHER0001',
+      messageID: 'msg_OTHER0001',
       sessionID: 'ses_OTHER0001',
       callID: 'call_OTHER0001',
     };
-    writePartDatabase(dbPath, [...parts, otherSessionPart]);
+    writeQuestionMessageDatabase(dbPath, [...parts, otherSessionPart]);
 
     const first = sweepOpenCodeSession({ projectDir, dbPath, sessionId: SESSION, now: NOW });
     assert.equal(first.transcript, dbPath);
@@ -240,7 +244,9 @@ test('real session_message rows queue the answered call and ignore the dismissed
   });
 });
 
-test('the newest session for the directory wins across both session tables', () => {
+// The frozen `session` table predates the current store, so even a newer row in it
+// never names the session the sweep reads.
+test('the newest session_v2 row for the directory wins and the frozen session table is not read', () => {
   withTemp(({ root, projectDir }) => {
     const dbPath = join(root, 'opencode', 'opencode.db');
     mkdirSync(dirname(dbPath), { recursive: true });
@@ -257,13 +263,39 @@ test('the newest session for the directory wins across both session tables', () 
       const insert = database.prepare(
         'INSERT INTO session_v2 (id, directory, time_updated) VALUES (?, ?, ?)',
       );
+      insert.run('ses_OLDER0001', projectDir, 2000);
       insert.run(SESSION, projectDir, 3000);
       insert.run('ses_ELSEWHERE0001', join(projectDir, 'elsewhere'), 9000);
     } finally {
       database.close();
     }
 
-    assert.equal(latestOpenCodeSession({ dbPath, projectDir }), 'ses_LEGACY0001');
+    assert.equal(latestOpenCodeSession({ dbPath, projectDir }), SESSION);
+  });
+});
+
+test('answers held only in the frozen part table are not recovered', () => {
+  withTemp(({ root, projectDir }) => {
+    const dbPath = join(root, 'opencode', 'opencode.db');
+    mkdirSync(dirname(dbPath), { recursive: true });
+    const database = new DatabaseSync(dbPath);
+    try {
+      database.exec(
+        'CREATE TABLE part (id TEXT, message_id TEXT, session_id TEXT, time_created INTEGER, time_updated INTEGER, data TEXT)',
+      );
+      const insert = database.prepare(
+        'INSERT INTO part (id, message_id, session_id, time_created, time_updated, data) VALUES (?, ?, ?, ?, ?, ?)',
+      );
+      readFixture().forEach((part, index) => {
+        insert.run(part.id, part.messageID, part.sessionID, index, index, JSON.stringify(part));
+      });
+    } finally {
+      database.close();
+    }
+
+    const result = sweepOpenCodeSession({ projectDir, dbPath, sessionId: SESSION, now: NOW });
+    assert.equal(result.recovered, 0);
+    assert.equal(result.pending.length, 0);
   });
 });
 
@@ -271,7 +303,7 @@ test('the CLI resolves the newest session under the XDG data home', () => {
   withTemp(({ root, projectDir }) => {
     const dbPath = join(root, 'opencode', 'opencode.db');
     mkdirSync(dirname(dbPath), { recursive: true });
-    writePartDatabase(dbPath, readFixture());
+    writeQuestionMessageDatabase(dbPath, readFixture());
 
     const database = new DatabaseSync(dbPath);
     try {
@@ -300,7 +332,7 @@ test('the CLI resolves the newest session under the XDG data home', () => {
 test('the CLI reads the signalled session, not a newer one, and climbs to its root', () => {
   withTemp(({ root, projectDir }) => {
     const dbPath = join(root, 'opencode', 'opencode.db');
-    writePartDatabase(dbPath, readFixture());
+    writeQuestionMessageDatabase(dbPath, readFixture());
     const database = new DatabaseSync(dbPath);
     try {
       database.exec('CREATE TABLE session_v2 (id TEXT, parent_id TEXT, directory TEXT, time_updated INTEGER)');

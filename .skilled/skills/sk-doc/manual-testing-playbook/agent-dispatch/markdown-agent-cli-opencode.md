@@ -12,7 +12,7 @@ expected_workflow_mode: sk-create-changelog
 expected_leaf_resources:
   - workflow_mode: sk-create-changelog
     leaf_resource_id: assets/changelog-template.md
-version: 2.1.2.0
+version: 2.1.3.0
 ---
 
 # Output existence + shape
@@ -27,7 +27,7 @@ This scenario validates that `cli-opencode`, when pointed at the DeepSeek v4 Pro
 
 ### Why This Matters
 
-The DeepSeek API rejects MCP tool names containing `:` or `@` characters (memory: `feedback_opencode_pure_flag_required_for_deepseek.md`, `feedback_opencode_skills_node_modules_recursion.md`). The opencode skills index globs vendored `node_modules/**/SKILL.md` files whose paths include `@github/...`, which violate the regex. Successful dispatch requires `--pure` to strip the MCP skills surface and `</dev/null` to avoid the v1.14.39 stdin-hang bug (memory: `feedback_opencode_run_requires_dev_null_stdin.md`). This scenario also exercises the user's preferred DeepSeek dispatch shape under those constraints.
+The DeepSeek API rejects MCP tool names containing `:` or `@` characters (memory: `feedback_opencode_pure_flag_required_for_deepseek.md`, `feedback_opencode_skills_node_modules_recursion.md`). The opencode skills index globs vendored `node_modules/**/SKILL.md` files whose paths include `@github/...`, which violate the regex. On OpenCode 1 a successful dispatch needed `--pure` to strip the MCP skills surface and `</dev/null` to avoid the v1.14.39 stdin-hang bug (memory: `feedback_opencode_run_requires_dev_null_stdin.md`). OpenCode 2.3.2 `run` has no `--pure` flag (`opencode run --help` lists none), so the dispatch below cannot strip that surface, and a DeepSeek tool-name 400 is a live risk. When this scenario was converted to OpenCode 2, `opencode models --standalone` on 2.3.2 listed no `deepseek/` provider on the authoring machine, so expect the pre-flight to SKIP until one is configured. This scenario also exercises the user's preferred DeepSeek dispatch shape under those constraints.
 
 ---
 
@@ -59,17 +59,13 @@ EVIDENCE='<spec-folder>'
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 
-# Pre-flight: confirm deepseek provider is wired
-opencode providers list 2>&1 | grep -i deepseek || echo "[SKIP] deepseek provider not configured"
+# Pre-flight: confirm the direct deepseek provider lists the model
+opencode models --standalone 2>&1 | grep -qx 'deepseek/deepseek-v4-pro' || echo "[SKIP] deepseek provider not configured"
 
 # Dispatch via cli-opencode + DeepSeek v4 Pro direct API
-opencode run \
-  --pure \
-  --model deepseek/deepseek-v4-pro \
-  --variant high \
-  --agent general \
+cd "$REPO_ROOT" && opencode run --standalone \
+  -m deepseek/deepseek-v4-pro#high \
   --format json \
-  --dir "$REPO_ROOT" \
   "$PROMPT" </dev/null 2>&1 | tee "$EVIDENCE"
 
 # Append verdict footer manually after grading
@@ -90,7 +86,7 @@ Transcript + output changelog content.
 
 ### Failure Triage
 
-Verify `opencode providers list` shows `deepseek`; confirm `--pure` strips the MCP skills surface; confirm `</dev/null` redirect applied.
+Verify `opencode models --standalone` lists `deepseek/deepseek-v4-pro` and `opencode auth list` shows the deepseek credential; confirm `</dev/null` redirect applied. A DeepSeek 400 on a tool name means the MCP skills surface reached the provider, and OpenCode 2 has no `--pure` flag to strip it.
 
 ### Optional Supplemental Checks
 
@@ -113,7 +109,7 @@ This scenario is fixed to `cli-opencode` with the DeepSeek v4 Pro DIRECT API pro
 - output file exists at the requested path
 - output contains at least 3 of the 4 Keep-a-Changelog sections (Added / Changed / Fixed / Removed)
 - no installation under `.skilled/skills/` (stub stayed out of the skills tree)
-- no DeepSeek 400 errors due to tool-name regex (proves `--pure` is doing its job)
+- no DeepSeek 400 errors due to tool-name regex
 
 
 ---

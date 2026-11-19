@@ -1,12 +1,12 @@
 ---
 title: "CO-004 -- File attachment via -f / --file flag"
 description: "This scenario validates the `-f` / `--file` flag for `CO-004`. It focuses on confirming the dispatched session can read attached file contents without manual @./path embedding in the prompt body."
-version: 1.4.8.0
+version: 1.4.9.0
 ---
 
 # CO-004 -- File attachment via -f / --file flag
 
-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first.
+**Version note.** These commands target OpenCode 2 (2.3.2). Check that `opencode models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first.
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-004`.
 
@@ -48,11 +48,11 @@ Operators run the exact prompt and command sequence for `CO-004` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-004 | File attachment via -f / --file flag | Confirm `-f <path>` attaches a file and the dispatched session references its contents in its reply | `Attach /tmp/co-004-sample.ts with -f, ask OpenCode to summarize it, and verify the reply names helloWorld_co004.` | 1. `bash: printf 'export function helloWorld_co004(name: string): string {\n  return \`Hello, \${name}!\`;\n}\n' > /tmp/co-004-sample.ts && cat /tmp/co-004-sample.ts` -> 2. `bash: opencode run --model llmgateway/deepseek-v4.1-flash-1017 --variant max --format json --dir "$(pwd)" "Summarize the attached TypeScript file in one short sentence. Name the function it exports." -f /tmp/co-004-sample.ts > /tmp/co-004-events.jsonl 2>&1` -> 3. `bash: echo "Exit: $?"` -> 4. `bash: jq -r 'select(.type == "text") \| .part.text' /tmp/co-004-events.jsonl \| grep -c "helloWorld_co004"` | Step 1: file written and confirmed via cat. Step 2: events captured non-empty. Step 3: exit 0. Step 4: count of `helloWorld_co004` references in `text` events >= 1 | `/tmp/co-004-sample.ts`, `/tmp/co-004-events.jsonl`, terminal transcript | PASS if exit 0 AND reply mentions `helloWorld_co004`. FAIL if reply is generic or does not reference the unique function name | 1. Verify `-f` is the documented short flag in `opencode run --help` (drift handled per `references/cli-reference.md` §9). 2. If reply is generic, the attachment may have been silently dropped, so re-run with `--print-logs` and look for an attachment confirmation event. 3. Try `--file` (long form) instead of `-f` if the short form fails. 4. Confirm `/tmp/co-004-sample.ts` is readable from the working directory by the binary process |
+| CO-004 | File attachment via -f / --file flag | Confirm `-f <path>` attaches a file and the dispatched session references its contents in its reply | `Attach /tmp/co-004-sample.ts with -f, ask OpenCode to summarize it, and verify the reply names helloWorld_co004.` | 1. `bash: printf 'export function helloWorld_co004(name: string): string {\n  return \`Hello, \${name}!\`;\n}\n' > /tmp/co-004-sample.ts && cat /tmp/co-004-sample.ts` -> 2. `bash: opencode run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json "Summarize the attached TypeScript file in one short sentence. Name the function it exports." -f /tmp/co-004-sample.ts > /tmp/co-004-events.jsonl 2>&1 </dev/null` -> 3. `bash: echo "Exit: $?"` -> 4. `bash: jq -r 'select(.type == "text") \| .part.text' /tmp/co-004-events.jsonl \| grep -c "helloWorld_co004"` | Step 1: file written and confirmed via cat. Step 2: events captured non-empty. Step 3: exit 0. Step 4: count of `helloWorld_co004` references in `text` events >= 1 | `/tmp/co-004-sample.ts`, `/tmp/co-004-events.jsonl`, terminal transcript | PASS if exit 0 AND reply mentions `helloWorld_co004`. FAIL if reply is generic or does not reference the unique function name | 1. Verify `-f` is the documented short flag in `opencode run --help -m llmgateway/deepseek-v4.1-flash-1017 </dev/null` (drift handled per `references/cli-reference.md` §9). 2. If reply is generic, the attachment may have been silently dropped, so re-run with `--print-logs` and look for an attachment confirmation event. 3. Try `--file` (long form) instead of `-f` if the short form fails. 4. Confirm `/tmp/co-004-sample.ts` is readable from the working directory by the binary process |
 
 ### Optional Supplemental Checks
 
-For multi-file attachments, repeat the test passing `-f /tmp/co-004-a.ts -f /tmp/co-004-b.ts` and confirm the reply references both unique identifiers. This validates the array-typed `-f` flag documented in the cli_reference flag table.
+For multi-file attachments, repeat the test passing `-f /tmp/co-004-a.ts -f /tmp/co-004-b.ts` and confirm the reply references both unique identifiers. This validates the repeated `-f` flag documented in the cli_reference flag table.
 
 ---
 
@@ -70,7 +70,7 @@ For multi-file attachments, repeat the test passing `-f /tmp/co-004-a.ts -f /tmp
 | File | Role |
 |---|---|
 | `../../SKILL.md` | §3 default invocation shape and core flag table |
-| `../../references/cli-reference.md` | §4 `-f`/`--file` documented as `array` type allowing repeated use |
+| `../../references/cli-reference.md` | §4 `-f`/`--file` documented as a string flag, with the prompt placed before it |
 
 ---
 

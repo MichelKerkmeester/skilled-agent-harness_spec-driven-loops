@@ -1,0 +1,54 @@
+# Child 002 after-state, recorded at closure (2026-11-19T11:42Z), run from the worktree root
+== T013 four formerly gated suites (TAP)
+-- .skilled/bin/tests/opencode-config-shape.test.cjs
+# tests 5
+# pass 5
+# fail 0
+-- .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs
+# tests 49
+# pass 49
+# fail 0
+-- .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs
+# tests 6
+# pass 6
+# fail 0
+-- .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs
+# tests 14
+# pass 14
+# fail 0
+== AC-001 v1 matrix condition in workflow
+       0
+== AC-002 v1 entry / both job / old name
+       0
+== AC-003 old pin 2.3.0 in workflow and setup helper
+       0
+== AC-004 @opencode-ai/plugin in manifests
+       0
+== AC-005 config-shape v1 test name and compat suite
+       0
+# tests 20
+# pass 19
+# fail 0
+== AC-006 variant keys in opencode.json
+       2
+== AC-007 default-model-id
+# tests 6
+# pass 6
+# fail 0
+== CHK-010 workflow YAML parse
+ok
+== CHK-011 bash -n
+exit 0
+== CHK-012 lockfile state
+ .opencode/package-lock.json | 381 --------------------------------------------
+ .skilled/package-lock.json  | 280 ++------------------------------
+ 2 files changed, 12 insertions(+), 649 deletions(-)
+plugin entries in lockfiles: 
+== CHK-040 pin mention counts
+spec.md: 15
+plan.md: 8
+tasks.md: 8
+== CHK-041 phase/REQ ids in workflow
+       0
+== CHK-031 account-data words in versions.txt
+       0

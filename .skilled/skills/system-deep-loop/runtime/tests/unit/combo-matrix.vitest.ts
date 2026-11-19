@@ -100,7 +100,7 @@ function makeTempDir(prefix: string): string {
 function writeStubBinary(binDir: string, name: string): string {
   const stubPath = join(binDir, name);
   const script = name === 'opencode'
-    ? '#!/bin/sh\nif [ "$1" = "--version" ]; then echo 1.19.3; exit 0; fi\nexit 0\n'
+    ? '#!/bin/sh\nif [ "$1" = "--version" ]; then echo 2.3.2; exit 0; fi\nexit 0\n'
     : name === 'dsh'
       ? '#!/bin/sh\nif [ "$1" = "--version" ]; then echo 0.2.2-rc.3; exit 0; fi\nexit 0\n'
       : name === 'vibe'
@@ -127,35 +127,14 @@ function installStubExecutors(names: readonly string[]): { env: NodeJS.ProcessEn
 
 function expectedRepresentativeArgs(kind: ExecutorKind, model: string | undefined, sandbox: SandboxMode): string[] {
   switch (kind) {
-    case 'native': {
-      const nativeInput = [
-        ':auto "specs/combo-matrix" --spec-folder=specs/combo-matrix --max-iterations=12 --convergence=0.1 --stop-policy=convergence --fanout-lineage-artifact-dir=/tmp/combo-matrix --lineage-mode=auto',
-        '',
-        'PRE-BOUND SETUP ANSWERS:',
-        'review_target: specs/combo-matrix',
-        'review_target_type: spec-folder',
-        'review_dimensions: all',
-        'spec_folder: specs/combo-matrix',
-        'execution_mode: AUTONOMOUS',
-        'lineage_mode: auto',
-        'maxIterations: 12',
-        'convergenceThreshold: 0.1',
-        'stop_policy: convergence',
-        'config.fanout_lineage_artifact_dir: /tmp/combo-matrix',
-      ].join('\n');
-      // --dangerously-skip-permissions is added only for workspace-write/danger-full-access;
-      // a read-only native dispatch must not silently gain write bypass.
-      const bypassFlag = sandbox === 'danger-full-access' || sandbox === 'workspace-write'
-        ? ['--dangerously-skip-permissions']
-        : [];
-      return ['run', '--format', 'json', ...bypassFlag, '--dir', process.cwd(), '--command', 'deep/review', nativeInput];
-    }
+    case 'native':
+      throw new Error('a native lineage builds no fan-out command');
     case 'cli-codex':
       return ['exec', '--model', model ?? '', '-c', 'model_reasoning_effort=medium', '-c', 'approval_policy=never', '--sandbox', 'read-only', '-'];
     case 'cli-claude-code':
       return ['-p', MATRIX_PROMPT, '--model', model ?? '', '--permission-mode', 'plan', '--output-format', 'text'];
     case 'cli-opencode':
-      return ['run', '--model', model ?? '', '--format', 'json', '--dir', process.cwd(), MATRIX_PROMPT];
+      return ['run', '--standalone', '-m', model ?? '', '--format', 'json', '--auto', MATRIX_PROMPT];
     case 'cli-cursor':
       return [
         '-p', MATRIX_PROMPT, '--output-format', 'text', '--model', model ?? '',
@@ -205,6 +184,22 @@ describe('fanout-run.cjs — complete executor/model/sandbox construction matrix
           for (const sandbox of SANDBOX_MODES) {
             const lineage = model === undefined ? { kind } : { kind, model };
             const modelLabel = model ?? '(none)';
+
+            // A native lineage has no fan-out adapter: OpenCode 2 run cannot start the
+            // registered command that adapter needed, so every sandbox mode is refused.
+            if (kind === 'native') {
+              expect(() => buildLineageCommand(
+                lineage,
+                MATRIX_PROMPT,
+                sandbox,
+                PERMISSION_BY_SANDBOX[sandbox],
+                { env: installed.env, ...MATRIX_OPTIONS },
+              )).toThrow(/native fan-out lineages are not supported/);
+              rejectedCombinations += 1;
+              exercisedKinds.add(kind);
+              console.log(`[combo-matrix] rejected kind=${kind} model=${modelLabel} sandbox=${sandbox} reason=native-lineage-refused`);
+              continue;
+            }
 
             // cli-opencode exposes no OS-level sandbox flag: only danger-full-access
             // (which makes no confinement claim) is honest to construct. read-only and
@@ -269,8 +264,11 @@ describe('fanout-run.cjs — complete executor/model/sandbox construction matrix
         0,
       );
       expect(constructedCombinations + rejectedCombinations).toBe(expectedCombinationCount);
-      // Every cli-opencode model is rejected for both unenforceable sandbox modes.
-      expect(rejectedCombinations).toBe(MODELS_BY_KIND['cli-opencode'].length * 2);
+      // Every cli-opencode model is rejected for both unenforceable sandbox modes, and a
+      // native lineage is rejected for every sandbox mode.
+      expect(rejectedCombinations).toBe(
+        MODELS_BY_KIND['cli-opencode'].length * 2 + MODELS_BY_KIND.native.length * SANDBOX_MODES.length,
+      );
       expect(new Set(exercisedKinds)).toEqual(new Set(EXECUTOR_KINDS));
       expect([...exercisedModelsByKind['cli-cursor'] ?? []].sort()).toEqual([...CURSOR_SUPPORTED_MODELS].sort());
       expect([...exercisedModelsByKind['cli-devin'] ?? []].sort()).toEqual([...DEVIN_SUPPORTED_MODELS].sort());

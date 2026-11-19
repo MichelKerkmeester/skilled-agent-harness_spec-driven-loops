@@ -529,7 +529,7 @@ test('runChecks: real check-comment-hygiene.sh flags a live ADR reference (repo-
 test('OpenCode plugin exports only the default plugin factory', async () => {
   const pluginModule = await loadPlugin();
   assert.deepEqual(Object.keys(pluginModule), ['default']);
-  assert.equal(typeof pluginModule.default.server, 'function');
+  assert.equal(typeof pluginModule.default.factory, 'function');
 });
 
 test('OpenCode plugin correlation map: stash -> retrieve+evict, unmatched take is a no-op', async () => {
@@ -555,7 +555,7 @@ test('OpenCode plugin: before/after correlation runs the dispatch table and surf
   const editedFile = writeFile(path.join(tmpDir, 'edited.ts'), FLAGGED_SOURCE);
 
   const pluginModule = await loadPlugin();
-  const hooks = await pluginModule.default.server({ directory: tmpDir });
+  const hooks = await pluginModule.default.factory({ directory: tmpDir });
 
   const consoleCalls = await runTrapped(async () => {
     await hooks['tool.execute.before']({ tool: 'write', callID: 'call-1' }, { args: { filePath: editedFile } });
@@ -583,7 +583,7 @@ test('OpenCode plugin: logs under .opencode when that is the only source root', 
   const editedFile = writeFile(path.join(tmpDir, 'edited.ts'), FLAGGED_SOURCE);
 
   const pluginModule = await loadPlugin();
-  const hooks = await pluginModule.default.server({ directory: tmpDir });
+  const hooks = await pluginModule.default.factory({ directory: tmpDir });
   await runTrapped(async () => {
     await hooks['tool.execute.before']({ tool: 'write', callID: 'call-1' }, { args: { filePath: editedFile } });
     await hooks['tool.execute.after']({ tool: 'write', callID: 'call-1' }, { title: 'x', output: '', metadata: {} });
@@ -599,7 +599,7 @@ test('OpenCode plugin: tool.execute.after resolves a relative stashed filePath a
   writeFile(path.join(tmpDir, relativeEditedFile), FLAGGED_SOURCE);
 
   const pluginModule = await loadPlugin();
-  const hooks = await pluginModule.default.server({ directory: tmpDir });
+  const hooks = await pluginModule.default.factory({ directory: tmpDir });
 
   const consoleCalls = await runTrapped(async () => {
     // Simulate a tool handing over a path relative to projectDir rather than
@@ -636,7 +636,7 @@ test('OpenCode plugin: tool.execute.after threads cwd:projectDir through to runC
   t.after(() => { router.runChecks = originalRunChecks; });
 
   const pluginModule = await loadPlugin();
-  const hooks = await pluginModule.default.server({ directory: tmpDir });
+  const hooks = await pluginModule.default.factory({ directory: tmpDir });
 
   const consoleCalls = await runTrapped(async () => {
     await hooks['tool.execute.before']({ tool: 'write', callID: 'call-1' }, { args: { filePath: editedFile } });
@@ -657,7 +657,7 @@ test('OpenCode plugin: tool.execute.after threads cwd:projectDir through to runC
 test('OpenCode plugin: an after-hook with no matching callID is a no-op', async (t) => {
   const tmpDir = temporaryDirectory(t, 'sk-code-post-edit-quality-nomatch-');
   const pluginModule = await loadPlugin();
-  const hooks = await pluginModule.default.server({ directory: tmpDir });
+  const hooks = await pluginModule.default.factory({ directory: tmpDir });
 
   const consoleCalls = await runTrapped(async () => {
     await hooks['tool.execute.after']({ tool: 'write', callID: 'never-stashed' }, { title: 'x', output: '', metadata: {} });
@@ -671,7 +671,7 @@ test('OpenCode plugin: an after-hook with no matching callID is a no-op', async 
 test('OpenCode plugin: non-mutating tools are ignored by tool.execute.before', async (t) => {
   const tmpDir = temporaryDirectory(t, 'sk-code-post-edit-quality-nonmutating-');
   const pluginModule = await loadPlugin();
-  const hooks = await pluginModule.default.server({ directory: tmpDir });
+  const hooks = await pluginModule.default.factory({ directory: tmpDir });
 
   await hooks['tool.execute.before']({ tool: 'bash', callID: 'call-x' }, { args: { command: 'ls' } });
   const output = { system: [] };
@@ -684,7 +684,7 @@ test('OpenCode plugin: kill-switch env makes every hook a full no-op', async (t)
   const tmpDir = temporaryDirectory(t, 'sk-code-post-edit-quality-killswitch-');
   const editedFile = writeFile(path.join(tmpDir, 'edited.ts'), FLAGGED_SOURCE);
   const pluginModule = await loadPlugin();
-  const hooks = await pluginModule.default.server({ directory: tmpDir });
+  const hooks = await pluginModule.default.factory({ directory: tmpDir });
 
   const previousDisabled = process.env.SK_CODE_POST_EDIT_QUALITY_DISABLED;
   process.env.SK_CODE_POST_EDIT_QUALITY_DISABLED = '1';

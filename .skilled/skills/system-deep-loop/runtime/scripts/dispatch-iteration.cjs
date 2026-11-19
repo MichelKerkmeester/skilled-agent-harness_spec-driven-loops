@@ -709,7 +709,9 @@ function stageAndDispatchReviewOpencode(context, eventDir) {
   const gitDir = resolveGitPath(runGit(['rev-parse', '--git-dir'], repoRoot));
   const commonGitDir = resolveGitPath(runGit(['rev-parse', '--git-common-dir'], repoRoot));
   if (gitDir === commonGitDir) {
-    throw new Error('Unsafe cli-opencode dispatch: --dir must point at an isolated linked worktree');
+    throw new Error(
+      'Unsafe cli-opencode dispatch: the working directory (--repo-root) must be an isolated linked worktree, not the primary checkout',
+    );
   }
 
   const primaryBlock = runGit(['worktree', 'list', '--porcelain'], repoRoot)

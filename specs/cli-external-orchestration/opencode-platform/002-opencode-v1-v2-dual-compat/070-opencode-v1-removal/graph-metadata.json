@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "children_ids": [
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode v1 removal phase parent spec",
+      "070-opencode-v1-removal operator decisions"
+    ],
+    "key_topics": [
+      "opencode",
+      "removal",
+      "phase",
+      "parent",
+      "spec",
+      "070-opencode-v1-removal",
+      "operator",
+      "decisions",
+      "only",
+      "version",
+      "feature",
+      "specification"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "decision-record.md",
+      ".opencode/plugins/lib/v2-bridge.js",
+      ".skilled/hooks/cli-dispatch/lib/opencode-version.mjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json",
+      ".skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh",
+      ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+      ".skilled/hooks/shared/session-readers/opencode.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+      ".github/workflows/opencode-v2-battery.yml",
+      ".opencode/package.json",
+      ".skilled/package.json",
+      ".skilled/CROSS-CLI.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2-bridge.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/v2-bridge.js",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/cli-dispatch/lib/opencode-version.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hard-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-setup.sh",
+        "kind": "script",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version-battery.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/opencode.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-opencode.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-v2-battery.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-v2-battery.yml",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "CROSS-CLI.md",
+        "kind": "doc",
+        "path": ".skilled/CROSS-CLI.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "OpenCode 2.3.2 is the only version in use",
+    "created_at": "2026-11-19T09:04:20Z",
+    "last_save_at": "2026-11-19T17:44:43.347Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:2a76a0ac2cdf55e168a15a4e29eb7ec6dec8e4ef0c1f53f7f79e7a2f5ee8dff5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "568e7d5d44e8d2659481852d8765a8da0de35f5e701076b1c8f9ef36e9be4e4f",
+      "decision-record.md": "f20a6e17fcf2c5a5c12314d1155e87ac81af5793b44de9bf8ccd720e14809353"
+    },
+    "last_active_at": "2026-11-19T17:44:43.347Z",
+    "last_active_child_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins"
+  }
+}

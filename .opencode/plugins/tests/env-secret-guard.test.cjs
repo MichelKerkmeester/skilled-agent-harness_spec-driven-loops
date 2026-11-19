@@ -17,7 +17,7 @@ async function loadHooks(t) {
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   fs.writeFileSync(path.join(dir, '.env'), `API_KEY=${SECRET}\n`);
   const pluginUrl = pathToFileURL(path.join(__dirname, '..', 'env-secret-guard.js')).href;
-  const hooks = await (await import(pluginUrl)).default.server({ directory: dir });
+  const hooks = await (await import(pluginUrl)).default.factory({ directory: dir });
   return { dir, hooks };
 }
 

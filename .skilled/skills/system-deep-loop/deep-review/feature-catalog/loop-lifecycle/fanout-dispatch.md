@@ -1,13 +1,13 @@
 ---
 title: "Fan-out loop dispatch"
-description: "Opt-in fan-out dispatch layer: `step_resolve_artifact_root` artifact-dir override branch, `step_fanout_spawn` (CLI pool + native sequential agent dispatch), and `step_fanout_merge` with strongest-restriction verdict binding at the top of `phase_synthesis`. Single-executor path is byte-identical to pre-change behavior."
+description: "Opt-in fan-out dispatch layer: `step_resolve_artifact_root` artifact-dir override branch, `step_fanout_spawn` (CLI pool only; a native lineage is refused), and `step_fanout_merge` with strongest-restriction verdict binding at the top of `phase_synthesis`. Single-executor path is byte-identical to pre-change behavior."
 trigger_phrases:
   - "fan-out loop dispatch"
   - "fanout dispatch"
   - "step_fanout_spawn"
   - "strongest-restriction verdict"
   - "multi-executor review"
-version: 1.11.3.0
+version: 1.11.4.0
 ---
 
 # Fan-out loop dispatch
@@ -25,9 +25,11 @@ directly. When absent (single-executor mode), the `if_absent` branch runs the by
 original `resolveArtifactRoot` command — zero behavior change for single-executor runs.
 
 **`step_fanout_spawn`** (`skip_when: config.fanout is absent`) spawns CLI lineages via
-`fanout-run.cjs` (pool-capped headless subprocesses) and dispatches native lineages as
-sequential `agent: deep-review` runs with per-lineage isolated artifact dirs. When complete,
-control jumps directly to `phase_synthesis`, skipping `phase_init` and `phase_main_loop`.
+`fanout-run.cjs` (pool-capped headless subprocesses) with per-lineage isolated artifact dirs.
+A lineage whose kind is `native` is refused before any lineage spawns, because OpenCode 2
+`run` cannot start the registered `deep/review` command that adapter needed; `native` runs
+only as the single executor. When complete, control jumps directly to `phase_synthesis`,
+skipping `phase_init` and `phase_main_loop`.
 
 **`step_fanout_merge`** (`skip_when: config.fanout is absent`) sits at the top of
 `phase_synthesis`. It calls `fanout-merge.cjs --loop-type review` to produce a consolidated
@@ -57,8 +59,7 @@ active P0, or any lineage required gate still failing at its stop → merged FAI
 An optional `--review-focus "TEXT"` (or a pre-bound `review_focus` answer) carries the
 operator's focus to every lineage. `step_fanout_spawn_cli` passes it to `fanout-run.cjs`,
 which collapses control characters to spaces, bounds it at 1000 characters and adds a
-`review_focus:` line to each lineage's setup bindings. A native lineage also receives it
-as a `--review-focus` flag and a pre-bound answer. Each lineage then stores it as
+`review_focus:` line to each lineage's setup bindings. Each lineage then stores it as
 `reviewFocus` in its config, and the render step adds it under the dimensions of every
 iteration prompt. Without a focus, the lineage prompts are byte-identical to the earlier
 ones, and the iteration prompt differs only by one empty line under the dimensions.
@@ -82,7 +83,7 @@ ones, and the iteration prompt differs only by one empty line under the dimensio
 |---|---|
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Pool dispatch + lineage dir isolation |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts` | Review strongest-restriction (5 tests) + attribution |
-| `.skilled/skills/system-deep-loop/runtime/tests/fanout-review-focus.vitest.ts` | Review focus in each lineage's setup bindings, native command input and rendered iteration prompt, plus the unchanged no-focus prompt |
+| `.skilled/skills/system-deep-loop/runtime/tests/fanout-review-focus.vitest.ts` | Review focus in each lineage's setup bindings and rendered iteration prompt, plus the unchanged no-focus prompt |
 
 ---
 

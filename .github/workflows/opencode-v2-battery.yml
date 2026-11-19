@@ -1,0 +1,156 @@
+name: OpenCode v2 Battery
+
+# OpenCode 2 (`@opencode/cli`) is the only supported major. The pinned package is
+# installed into its own prefix and the battery reports one JSON summary, so a
+# plugin that stops loading on OpenCode 2 is caught before it reaches a commit.
+on:
+  pull_request:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.opencode/plugins/**'
+      - '.skilled/agents/**'
+      - '.opencode/agents/**'
+      - '.skilled/hooks/cli-dispatch/**'
+      - '.opencode/hooks/cli-dispatch/**'
+      - '.skilled/bin/tests/opencode-config-shape.test.cjs'
+      - '.opencode/bin/tests/opencode-config-shape.test.cjs'
+      - '.opencode/package.json'
+      - '.skilled/package.json'
+      - '.opencode/package-lock.json'
+      - '.skilled/package-lock.json'
+      - 'opencode.json'
+      - '.skilled/commands/doctor/scripts/opencode-version-battery.cjs'
+      - '.opencode/commands/doctor/scripts/opencode-version-battery.cjs'
+      - '.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs'
+      - '.opencode/commands/doctor/scripts/tests/opencode-version-battery.test.cjs'
+      - '.skilled/skills/cli-external-orchestration/cli-opencode/**'
+      - '.opencode/skills/cli-external-orchestration/cli-opencode/**'
+      - '.skilled/skills/cli-external-orchestration/**/*.md'
+      - '.opencode/skills/cli-external-orchestration/**/*.md'
+      - '.github/actions/**'
+      - '.github/workflows/opencode-v2-battery.yml'
+  push:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.opencode/plugins/**'
+      - '.skilled/agents/**'
+      - '.opencode/agents/**'
+      - '.skilled/hooks/cli-dispatch/**'
+      - '.opencode/hooks/cli-dispatch/**'
+      - '.skilled/bin/tests/opencode-config-shape.test.cjs'
+      - '.opencode/bin/tests/opencode-config-shape.test.cjs'
+      - '.opencode/package.json'
+      - '.skilled/package.json'
+      - '.opencode/package-lock.json'
+      - '.skilled/package-lock.json'
+      - 'opencode.json'
+      - '.skilled/commands/doctor/scripts/opencode-version-battery.cjs'
+      - '.opencode/commands/doctor/scripts/opencode-version-battery.cjs'
+      - '.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs'
+      - '.opencode/commands/doctor/scripts/tests/opencode-version-battery.test.cjs'
+      - '.skilled/skills/cli-external-orchestration/cli-opencode/**'
+      - '.opencode/skills/cli-external-orchestration/cli-opencode/**'
+      - '.skilled/skills/cli-external-orchestration/**/*.md'
+      - '.opencode/skills/cli-external-orchestration/**/*.md'
+      - '.github/actions/**'
+      - '.github/workflows/opencode-v2-battery.yml'
+  workflow_dispatch:
+    inputs:
+      cold:
+        description: Provision from scratch instead of restoring the cache
+        type: choice
+        options: ['false', 'true']
+        default: 'false'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  # Every model load runs on the CPU, so the onnxruntime-node install skips its Linux CUDA
+  # provider download: unused here, and the install step that fails when that host times out.
+  ONNXRUNTIME_NODE_INSTALL_CUDA: skip
+
+jobs:
+  battery:
+    name: Battery on OpenCode v2
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPENCODE_PACKAGE: '@opencode/cli@2.3.2'
+    steps:
+      # No suite in this job reads loop state, so the checkout skips the research, review,
+      # scratch and archive folders under specs/: about two thirds of the tracked files.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /*
+            !/specs/**/research/
+            !/specs/**/review/
+            !/specs/**/scratch/
+            !/specs/**/z_archive/
+          sparse-checkout-cone-mode: false
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+
+      # The plugins import the plugin workspace, the spec-kit shared package and
+      # compiled runtimes that are not committed, so the repository's own
+      # worktree provisioning installs and builds every tree it lists.
+      - name: Provision the dependency trees the plugins import
+        uses: ./.github/actions/setup
+        with:
+          cache: ${{ inputs.cold != 'true' }}
+
+      # Some of the trigger paths are unit tests, and a trigger path no step runs
+      # starts the workflow without checking the change that started it. They read
+      # fixtures, the repository's own config and the skill's documentation, never
+      # an installed binary, so they run before OpenCode is installed.
+      - name: Run the config-shape, battery and cli-opencode doc unit tests
+        run: |
+          set -euo pipefail
+          node --test \
+            .skilled/bin/tests/opencode-config-shape.test.cjs \
+            .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs \
+            .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs \
+            .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-models-form.test.cjs
+
+      # The package installs into its own prefix and the battery reaches the
+      # binary by its full path, so a runner image's own `opencode` cannot answer.
+      - name: Install OpenCode v2
+        run: |
+          set -euo pipefail
+          prefix="$RUNNER_TEMP/opencode-v2"
+          npm install -g --prefix "$prefix" "$OPENCODE_PACKAGE"
+          bin="$prefix/bin/opencode"
+          if [ ! -e "$bin" ]; then
+            echo "::error::$OPENCODE_PACKAGE installed no opencode under $prefix/bin"
+            exit 1
+          fi
+          "$bin" --version
+          echo "OPENCODE_BIN=$bin" >>"$GITHUB_ENV"
+
+      # The battery probes $OPENCODE_BIN first. Any non-zero exit, a degraded or
+      # skipped leg included, fails the job.
+      - name: Run the version battery
+        run: |
+          set -euo pipefail
+          node .skilled/commands/doctor/scripts/opencode-version-battery.cjs \
+            --family=v2 \
+            --json \
+            --out "$RUNNER_TEMP/battery-v2.json"
+
+      - name: Upload the battery summary
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: battery-v2
+          path: ${{ runner.temp }}/battery-v2.json
+          if-no-files-found: warn

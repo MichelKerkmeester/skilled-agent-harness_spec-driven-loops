@@ -1,0 +1,448 @@
+{
+  "sessionId": "2026-11-19T17:34:48.691Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "DR-001-P1-001",
+      "severity": "P1",
+      "title": "Phase 003's acceptance file still declares the whole phase unimplemented and not closeable",
+      "file": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/acceptance-criteria.md",
+      "line": 89,
+      "description": "",
+      "findingClass": "closure-metadata inconsistency",
+      "deltaStatus": "open",
+      "scopeProof": "acceptance-criteria.md:89,:91 and :57 are one file edited by 12dcc168817; implementation-summary.md:133, 003/spec.md:23 and 070/spec.md:145 are the artifacts the fix set to Complete",
+      "affectedSurfaceHints": [
+        "070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/acceptance-criteria.md",
+        "070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/implementation-summary.md",
+        "070-opencode-v1-removal/spec.md"
+      ],
+      "contentHash": null,
+      "refines": "DR3-P1-001",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR-001-P2-001",
+      "severity": "P2",
+      "title": "The ADR-001 replacement checks cannot be reproduced as written",
+      "file": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/acceptance-criteria.md",
+      "line": 55,
+      "description": "",
+      "findingClass": "checklist-evidence discipline",
+      "deltaStatus": "open",
+      "scopeProof": "AC-002/006/008 rows and check-index-v1.py were written by 12dcc168817; the script mixes an __file__-relative justified.txt with a cwd-relative index path at :6-8",
+      "affectedSurfaceHints": [
+        "070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/acceptance-criteria.md",
+        "070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/check-index-v1.py"
+      ],
+      "contentHash": null,
+      "refines": "DR3-P2-001",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR-001-P2-002",
+      "severity": "P2",
+      "title": "T023's closure note still says T019 and AC-004 stay open",
+      "file": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/tasks.md",
+      "line": 72,
+      "description": "",
+      "findingClass": "closure-metadata inconsistency",
+      "deltaStatus": "open",
+      "scopeProof": "tasks.md:68 records T019 done and :72 keeps the trailing open sentence; 12dcc168817 edited tasks.md",
+      "affectedSurfaceHints": [
+        "070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/tasks.md"
+      ],
+      "contentHash": null,
+      "refines": "DR3-P1-001",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": {
+    "run": 2,
+    "stopReason": "maxIterationsReached",
+    "failedRequiredGateIds": [
+      "coverage"
+    ]
+  },
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 2
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.5,
+  "graphConvergenceScore": 0.833,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "count": 2,
+      "description": "2 contradiction(s) are lowering finding stability below threshold",
+      "severity": "blocking",
+      "type": "unstable_findings"
+    }
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 1,
+    "evidenceDensity": 0.3333333333333333,
+    "findingStability": 0.6666666666666666,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.833
+  },
+  "candidateCoverage": {
+    "covered": [
+      "closure_metadata_conflict",
+      "verification_command_scope"
+    ],
+    "ruledOut": [
+      "closure_metadata_conflict",
+      "dangling_consumer",
+      "trust_boundary"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "closure_metadata_conflict": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "verification_command_scope": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "dangling_consumer": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "trust_boundary": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-1-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".vibe/plugins/repo-guards/session-cleanup.mjs",
+        ".opencode/plugins/lib/v2-bridge.js"
+      ],
+      "bugClass": "dangling_consumer",
+      "disposition": "ruled_out",
+      "rationale": "the fail-open break had exactly one runtime consumer",
+      "evidenceRefs": [],
+      "reason": "no consumer of the removed server key remains"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-1-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs",
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "trust_boundary",
+      "disposition": "ruled_out",
+      "rationale": "the wrapper probe runs only the binary it would launch",
+      "evidenceRefs": [
+        ".skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs:51",
+        ".skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs:388"
+      ],
+      "reason": "the probe surface is now limited to names that can be OpenCode"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-1-006",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/plugins/lib/v2-bridge.js"
+      ],
+      "bugClass": "dangling_consumer",
+      "disposition": "ruled_out",
+      "rationale": "the trim is safe",
+      "evidenceRefs": [
+        ".opencode/plugins/tests/plugin-inventory.test.cjs:81"
+      ],
+      "reason": "no code importer of the two trimmed names"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-1-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        "003-v1-docs-and-playbooks-sweep/spec.md",
+        "070-opencode-v1-removal/spec.md"
+      ],
+      "bugClass": "closure_metadata_conflict",
+      "disposition": "ruled_out",
+      "rationale": "the conflict is confined to the AC file and the T023 note",
+      "evidenceRefs": [
+        "070-opencode-v1-removal/spec.md:145"
+      ],
+      "reason": "parent continuity agrees with the summary"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-1-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".vibe/plugins/repo-guards/session-cleanup.mjs",
+        ".opencode/plugins/lib/v2-bridge.js"
+      ],
+      "bugClass": "dangling_consumer",
+      "disposition": "ruled_out",
+      "rationale": "the fail-open break had exactly one runtime consumer",
+      "evidenceRefs": [],
+      "proof": "no consumer of the removed server key remains"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-1-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs",
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "trust_boundary",
+      "disposition": "ruled_out",
+      "rationale": "the wrapper probe runs only the binary it would launch",
+      "evidenceRefs": [
+        ".skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs:51",
+        ".skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs:388"
+      ],
+      "proof": "the probe surface is now limited to names that can be OpenCode"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-1-006",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/plugins/lib/v2-bridge.js"
+      ],
+      "bugClass": "dangling_consumer",
+      "disposition": "ruled_out",
+      "rationale": "the trim is safe",
+      "evidenceRefs": [
+        ".opencode/plugins/tests/plugin-inventory.test.cjs:81"
+      ],
+      "proof": "no code importer of the two trimmed names"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-1-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        "003-v1-docs-and-playbooks-sweep/spec.md",
+        "070-opencode-v1-removal/spec.md"
+      ],
+      "bugClass": "closure_metadata_conflict",
+      "disposition": "ruled_out",
+      "rationale": "the conflict is confined to the AC file and the T023 note",
+      "evidenceRefs": [
+        "070-opencode-v1-removal/spec.md:145"
+      ],
+      "proof": "parent continuity agrees with the summary"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "closure_metadata_conflict",
+      "verification_command_scope",
+      "dangling_consumer",
+      "trust_boundary"
+    ],
+    "covered": [
+      "closure_metadata_conflict",
+      "verification_command_scope"
+    ],
+    "ruledOut": [
+      "dangling_consumer",
+      "trust_boundary"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 5,
+      "executed": 5,
+      "pass": 4,
+      "partial": 1,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 1,
+      "gatingFailures": 1
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          "001-v1-runtime-code-and-tests/implementation-summary.md:112",
+          ".vibe/plugins/repo-guards/session-cleanup.mjs:51",
+          ".skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs:51",
+          ".skilled/bin/skilled-loop:1219",
+          ".opencode/plugins/lib/v2-bridge.js:602"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "the recorded fix set matches the code and its catalog entry"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "003-v1-docs-and-playbooks-sweep/acceptance-criteria.md:89",
+          "003-v1-docs-and-playbooks-sweep/acceptance-criteria.md:91",
+          "003-v1-docs-and-playbooks-sweep/acceptance-criteria.md:57"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "summary": "ADRs and AC-004 land, but the closure statement contradicts the table and two replacement commands fail as written"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/cli-external-orchestration/cli-opencode/README.md:51",
+          ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:5",
+          ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v2.0.0.0.md:11"
+        ],
+        "gateClass": "soft",
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "summary": "README version claim matches SKILL.md and the changelog at 2.0.0.0"
+      },
+      {
+        "applicable": false,
+        "evidence": [],
+        "gateClass": "soft",
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "summary": "no agent definition or runtime mirror in the fix set"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/cli-external-orchestration/feature-catalog/opencode-version-dispatch/opencode-version-dispatch.md:28",
+          ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs:169"
+        ],
+        "gateClass": "soft",
+        "protocolId": "feature_catalog_code",
+        "status": "pass",
+        "summary": "catalog refusal description matches the parser verdicts"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh"
+        ],
+        "gateClass": "soft",
+        "protocolId": "playbook_capability",
+        "status": "pass",
+        "summary": "the runner carries no <v1|v2> version argument"
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "checklist_evidence"
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

@@ -175,7 +175,7 @@ test('deny list flags are absent from a hop', (t) => {
     ['pi', ['--no-mcp', '--session', 's1', '--continue', 'first prompt'],
       (seed) => [seed, '--no-mcp']],
     ['opencode', ['--auto', '--session', 's1', '--continue', 'first prompt'],
-      (seed) => ['--prompt', seed, '--auto']],
+      (seed) => ['--standalone', '--prompt', seed, '--auto']],
     ['codex', ['--search', '--image', '/tmp/a.png', '--worktree', '--last', 'first prompt'],
       (seed) => ['--no-daemon', seed, '--search']],
     ['cursor', ['--trust', '--worktree-base', 'main', '--continue', 'first prompt'],

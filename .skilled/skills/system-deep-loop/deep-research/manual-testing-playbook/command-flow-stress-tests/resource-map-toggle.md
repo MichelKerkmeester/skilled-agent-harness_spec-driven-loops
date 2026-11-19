@@ -1,7 +1,7 @@
 ---
 title: "CP-048 -- RESOURCE_MAP_TOGGLE no-resource-map fidelity **(SANDBOXED)**"
 description: "Validate that --no-resource-map is parsed by the command and honored by config, state, synthesis and artifact emission."
-version: 1.14.2.0
+version: 1.14.3.0
 ---
 
 # CP-048 -- RESOURCE_MAP_TOGGLE no-resource-map fidelity **(SANDBOXED)**
@@ -47,6 +47,8 @@ Operators run the exact command sequence for `CP-048` and grade the result throu
 
 ### Exact Runnable Command Sequence
 
+**OpenCode 2 status:** stage A is a plain prompt and runs in its sandbox with `opencode run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --auto "<prompt>" </dev/null`. Stage B is a registered slash command, which `run` does not expand on OpenCode 2 (hard rule `v2-slash-prompt-route`), so stage B is UNVERIFIED until a `session.command` runner is recorded. This scenario cannot PASS on OpenCode 2 until then.
+
 ```bash
 rm -rf /tmp/cp-048-sandbox /tmp/cp-048-sandbox-baseline /tmp/cp-048-spec
 mkdir -p /tmp/cp-048-spec
@@ -76,10 +78,13 @@ Acceptance: config and JSONL both show resource_map.emit false, research.md exis
 Return status, emit_flag, research_path, resource_map_path, and notes.
 EOF
 printf 'As @Task: %s\n' "$(cat /tmp/cp-048-task.txt)" > /tmp/cp-048-prompt-A.txt
-opencode run "$(cat /tmp/cp-048-prompt-A.txt)" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-048-sandbox </dev/null 2>&1 | tee /tmp/cp-048-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-048-A-exit.txt
+(cd /tmp/cp-048-sandbox && opencode run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --auto "$(cat /tmp/cp-048-prompt-A.txt)" </dev/null) 2>&1 | tee /tmp/cp-048-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-048-A-exit.txt
 rm -rf /tmp/cp-048-sandbox && cp -a /tmp/cp-048-sandbox-baseline /tmp/cp-048-sandbox
 cd /tmp/cp-048-sandbox
-opencode run "/deep:research:auto \"CP-048 resource map suppression\" --spec-folder=/tmp/cp-048-spec --max-iterations=1 --convergence=0.05 --no-resource-map" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-048-sandbox </dev/null 2>&1 | tee /tmp/cp-048-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-048-B-exit.txt
+# Stage B is a registered slash command. OpenCode 2 `run` does not expand it (hard rule v2-slash-prompt-route),
+# so it needs the session.command route (POST /api/session/{id}/command). No verified request body for that route
+# is recorded in this repository, so this step is UNVERIFIED and is not run here.
+echo "EXIT_B=UNVERIFIED" | tee /tmp/cp-048-B-exit.txt
 cd "$(git rev-parse --show-toplevel)"
 diff -u /tmp/cp-048-sandbox-baseline/.opencode/agents/deep-research.md /tmp/cp-048-sandbox/.opencode/agents/deep-research.md > /tmp/cp-048-B-canonical.diff; echo "POST_B_CANONICAL_DIFF=$?" | tee /tmp/cp-048-B-canonical-exit.txt
 find /tmp/cp-048-spec -type f -print0 2>/dev/null | xargs -0 cat > /tmp/cp-048-B-artifacts.txt 2>/dev/null || touch /tmp/cp-048-B-artifacts.txt

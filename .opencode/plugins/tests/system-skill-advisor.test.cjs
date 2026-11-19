@@ -206,7 +206,7 @@ function spawnSequence(children, calls = []) {
 
 async function makePlugin(options = {}, directory = WORKSPACE_ROOT) {
   const pluginModule = await loadPlugin();
-  return pluginModule.default.server({ directory }, {
+  return pluginModule.default.factory({ directory }, {
     sourceSignatureProvider: () => 'stable-test-signature',
     ...options,
   });
@@ -365,7 +365,7 @@ test('malformed optional configuration is reported with a prompt-safe code', asy
 test('plugin module exports a loader-compatible dual-plugin object as its default', async () => {
   const pluginModule = await loadPlugin();
   assert.deepEqual(Object.keys(pluginModule), ['default']);
-  assert.deepEqual(Object.keys(pluginModule.default).sort(), ['id', 'server', 'setup']);
+  assert.deepEqual(Object.keys(pluginModule.default).sort(), ['id', 'setup']);
 });
 
 test('bounded route rendering caps targets and exposes a complete reveal path', async () => {
@@ -688,7 +688,7 @@ test('multi-file freshness invalidates cache and ignores WAL-only mtime changes'
     const children = Array.from({ length: 8 }, () => fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) }));
     const calls = [];
     const pluginModule = await loadPlugin();
-    const hooks = await pluginModule.default.server({ directory: root }, {
+    const hooks = await pluginModule.default.factory({ directory: root }, {
       cacheTTLMs: 60_000,
       spawnOverride: spawnSequence(children, calls),
     });
@@ -742,7 +742,7 @@ test('the signature follows skills held only under the legacy source-root name',
     const children = Array.from({ length: 3 }, () => fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) }));
     const calls = [];
     const pluginModule = await loadPlugin();
-    const hooks = await pluginModule.default.server({ directory: root }, {
+    const hooks = await pluginModule.default.factory({ directory: root }, {
       cacheTTLMs: 60_000,
       spawnOverride: spawnSequence(children, calls),
     });
@@ -767,7 +767,7 @@ test('a workspace without a source root is never served from cache', async () =>
     const children = [fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) }), fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) })];
     const calls = [];
     const pluginModule = await loadPlugin();
-    const hooks = await pluginModule.default.server({ directory: root }, {
+    const hooks = await pluginModule.default.factory({ directory: root }, {
       cacheTTLMs: 60_000,
       spawnOverride: spawnSequence(children, calls),
     });
@@ -1368,7 +1368,7 @@ test('consecutive signatures over unchanged files hash each source file once', a
       fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) }),
     ];
     const calls = [];
-    const hooks = await pluginModule.default.server({ directory: root }, {
+    const hooks = await pluginModule.default.factory({ directory: root }, {
       spawnOverride: spawnSequence(children, calls),
     });
 
@@ -1418,7 +1418,7 @@ test('changing one source file changes the signature without rehashing unchanged
       () => fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) }),
     );
     const calls = [];
-    const hooks = await pluginModule.default.server({ directory: root }, {
+    const hooks = await pluginModule.default.factory({ directory: root }, {
       cacheTTLMs: 60_000,
       spawnOverride: spawnSequence(children, calls),
     });

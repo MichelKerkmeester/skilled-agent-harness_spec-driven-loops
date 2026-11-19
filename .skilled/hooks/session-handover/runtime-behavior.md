@@ -25,13 +25,13 @@ This document covers how each runtime adapter starts a handover. It lists the se
 |---|---|---|---|---|---|
 | Claude | automatic | `claude [--model <model>] "<seed>" [--name <name>]` | `--model`, `--model=` | [.claude/settings.json](../../../.claude/settings.json) hook entries | AUTO |
 | Pi | automatic | `pi [--provider <p>] [--model <model>] [-ne] [-e <path>] [--name <name>] "<seed>"` | `--model`, `--provider`, extension flags | `.pi/extensions/` entry file that imports `pi/session-handover.ts` | AUTO |
-| OpenCode | automatic | `opencode [-m <model>] --prompt "<seed>"`, and on OpenCode 2 `opencode --standalone --prompt "<seed>"` | `-m`, `--model`, `--model=` on OpenCode 1; on OpenCode 2 a hop carries the model in `OPENCODE_CONFIG_CONTENT` | `.opencode/plugins/` plugin plus `opencode/` browsability symlink | AUTO |
+| OpenCode | automatic | `opencode --standalone --prompt "<seed>"` | a hop carries the model in `OPENCODE_CONFIG_CONTENT` | `.opencode/plugins/` plugin plus `opencode/` browsability symlink | AUTO |
 | Codex | automatic | `codex --no-daemon [-m <model>] "<seed>"` | `-m`, `--model`, `--model=` | [.codex/hooks.json](../../../.codex/hooks.json) hook entries plus `.codex/hooks/` symlinks | AUTO |
 | Cursor | `/speckit-handoff` | `cursor-agent [--model <model>] "<seed>"` | `--model`, `--model=` | [.cursor/commands/speckit-handoff.md](../../../.cursor/commands/speckit-handoff.md) symlink | COMMAND-ONLY |
 | Devin | `/speckit:handoff` | `devin [--model <model>] -- "<seed>"` | `--model`, `--model=` | none, [.devin/SYNC.md](../../../.devin/SYNC.md) carries no command surface | COMMAND-ONLY |
 | Vibe | automatic from a context nudge, and under `skilled-loop` a typed `/speckit-handoff` arms too | `vibe "<seed>"` | none, because `--model` is headless-only | [.vibe/hooks.toml](../../../.vibe/hooks.toml) entries for `turn-start`, `turn-end` and `compaction-post-tool`, plus [.vibe/prompts/speckit-handoff.md](../../../.vibe/prompts/speckit-handoff.md) for the manual start | AUTO |
 
-The OpenCode 2 root command has no model flag. So `-m`, `--model` and `--model=` apply on OpenCode 1 only.
+The OpenCode 2 root command has no model flag, so a hop carries the model in `OPENCODE_CONFIG_CONTENT` rather than on the command line.
 
 On Vibe under `skilled-loop`, a typed `/speckit-handoff` arms, because the session reads its id from the `session-id` command. Outside the loop it prepares a manual start with a `uuidgen` id. That id is never armed, so the route prints the claim command.
 
@@ -128,7 +128,7 @@ The shim defines `claude`, `pi`, `opencode`, `codex`, `devin`, `cursor-agent`, `
 
 - `SKILLED_LOOP_ID` is unset, so no loop is running yet.
 - Standard input and standard output are both a terminal.
-- The arguments open an interactive session. Subcommands such as `claude doctor`, `codex exec` or `opencode run`, print modes such as `-p`, version and help run the binary directly. Each list comes from that runtime's own `--help`. Codex `resume` and `fork` stay wrapped, and so do Cursor `agent`, `ls` and `resume`, because they open a session.
+- The arguments open an interactive session. Subcommands such as `claude doctor`, `codex exec` or `opencode run`, print modes such as `-p`, version and help run the binary directly. The OpenCode list is a hand-kept case statement in `.skilled/bin/skilled-loop-shell.sh`, not a copy of `opencode --help`. It still names subcommands that OpenCode 2.3.2 does not have, such as `providers`, `agent`, `attach` and `web`. Codex `resume` and `fork` stay wrapped, and so do Cursor `agent`, `ls` and `resume`, because they open a session.
 - A `.skilled/bin/skilled-loop` exists in the current directory or one of its parents. A `.skilled` that is a symlink counts, so the wrapper also starts in a repository that links this checkout's `.skilled`.
 
 The shim resolves only wrappers inside the sourced checkout or a linked worktree registered to it. It also accepts an absolute checkout listed in `SKILLED_LOOP_TRUSTED_CHECKOUTS` as a colon-separated value. An unset or empty variable trusts no extra checkout. When a second checkout's shim is sourced later, the shim appends the earlier checkout to `SKILLED_LOOP_TRUSTED_CHECKOUTS` once, so the earlier checkout keeps its trust.

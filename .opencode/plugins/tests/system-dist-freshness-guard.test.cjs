@@ -167,14 +167,14 @@ function temporaryDirectory(t, prefix, sourceRoot = '.skilled') {
 test('exports only the OpenCode plugin factory', async () => {
   const pluginModule = await loadPlugin();
   assert.deepEqual(Object.keys(pluginModule), ['default']);
-  assert.equal(typeof pluginModule.default.server, 'function');
+  assert.equal(typeof pluginModule.default.factory, 'function');
 });
 
 test('injects stale and check-error diagnostics without terminal output', async (t) => {
   const tmpDir = temporaryDirectory(t, 'system-dist-freshness-guard-diagnostics-');
   writeCodeModeFixture(tmpDir, true);
   const pluginModule = await loadPlugin();
-  const hooks = await pluginModule.default.server({ directory: tmpDir });
+  const hooks = await pluginModule.default.factory({ directory: tmpDir });
   const beforeHook = hooks['tool.execute.before'];
   const transformHook = hooks['experimental.chat.system.transform'];
   const before = guardLogLineCount(tmpDir);
@@ -197,7 +197,7 @@ test('treats an opencode2 run as a risky bash dispatch and opencode2 serve as sa
   const tmpDir = temporaryDirectory(t, 'system-dist-freshness-guard-opencode2-');
   writeCodeModeFixture(tmpDir, true);
   const pluginModule = await loadPlugin();
-  const hooks = await pluginModule.default.server({ directory: tmpDir });
+  const hooks = await pluginModule.default.factory({ directory: tmpDir });
   const beforeHook = hooks['tool.execute.before'];
   const before = guardLogLineCount(tmpDir);
 
@@ -217,7 +217,7 @@ test('invalidates a warm cache for watched source mutations', async (t) => {
     assert.equal(distFreshness.recordPackageBuild('mcp-code-mode/mcp-server', { workspaceRoot: tmpDir }).status, 'recorded');
 
     const pluginModule = await loadPlugin();
-    const hooks = await pluginModule.default.server({ directory: tmpDir });
+    const hooks = await pluginModule.default.factory({ directory: tmpDir });
     const firstOutput = { system: [] };
     await hooks['experimental.chat.system.transform']({}, firstOutput);
     assert.deepEqual(firstOutput.system, [], `${tool} fixture must start fresh`);
@@ -241,7 +241,7 @@ test('bounds session state and rotates the audit log', async (t) => {
   fs.writeFileSync(logPath, 'x'.repeat(256 * 1024));
 
   const pluginModule = await loadPlugin();
-  const hooks = await pluginModule.default.server({ directory: tmpDir });
+  const hooks = await pluginModule.default.factory({ directory: tmpDir });
   await hooks.event({ event: { type: 'session.created', sessionID: 'session-a' } });
   const afterFirst = guardLogLineCount(tmpDir);
   assert.ok(fs.existsSync(`${logPath}.1`));
@@ -262,7 +262,7 @@ test('logs under .opencode when that is the only source root', async (t) => {
   const tmpDir = temporaryDirectory(t, 'system-dist-freshness-guard-legacy-root-', '.opencode');
   writeCodeModeFixture(tmpDir, true);
   const pluginModule = await loadPlugin();
-  const hooks = await pluginModule.default.server({ directory: tmpDir });
+  const hooks = await pluginModule.default.factory({ directory: tmpDir });
   await hooks.event({ event: { type: 'session.created', sessionID: 'legacy-root' } });
 
   assert.ok(fs.existsSync(path.join(tmpDir, '.opencode', 'logs', 'dist-freshness-guard.log')));
@@ -274,7 +274,7 @@ test('evicts the oldest session ID when the deduplication cap is reached', async
   writeAllPackageFixtures(tmpDir);
   const fixture = writeCodeModeFixture(tmpDir, true);
   const pluginModule = await loadPlugin();
-  const hooks = await pluginModule.default.server({ directory: tmpDir });
+  const hooks = await pluginModule.default.factory({ directory: tmpDir });
 
   for (let index = 0; index <= 1_000; index += 1) {
     await hooks.event({ event: { type: 'session.created', sessionID: `session-${index}` } });

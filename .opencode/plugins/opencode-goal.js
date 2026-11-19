@@ -3547,7 +3547,7 @@ async function executeGoalStatus(context, rawOptions = {}) {
 /**
  * Create the Goal OpenCode plugin hooks.
  *
- * @param {import('@opencode-ai/plugin').PluginInput} ctx - OpenCode plugin context
+ * @param {import('./lib/v2-bridge.js').PluginInput} ctx - OpenCode plugin context
  * @param {Object} [rawOptions] - Plugin options
  * @param {boolean} [rawOptions.enabled] - Whether passive injection is enabled
  * @param {string} [rawOptions.stateDir] - State directory override
@@ -3626,7 +3626,7 @@ async function MkGoalPlugin(ctx, rawOptions = {}) {
       return;
     }
 
-    if (eventType === 'permission.asked' || eventType === 'question.asked') {
+    if (eventType === 'permission.asked') {
       if (sessionID) {
         runtimeState.blockedByPromptSessions.add(sessionID);
         await setBlockedByPrompt(sessionID, true, eventOptions);
@@ -3634,7 +3634,7 @@ async function MkGoalPlugin(ctx, rawOptions = {}) {
       return;
     }
 
-    if (eventType === 'permission.replied' || eventType === 'question.replied' || eventType === 'question.rejected') {
+    if (eventType === 'permission.replied') {
       if (sessionID) {
         runtimeState.blockedByPromptSessions.delete(sessionID);
         await setBlockedByPrompt(sessionID, false, eventOptions);
@@ -3686,7 +3686,7 @@ async function MkGoalPlugin(ctx, rawOptions = {}) {
       return;
     }
 
-    if (eventType.endsWith('.disposed')) {
+    if (eventType === 'global.disposed') {
       flushVolatileLocks();
     }
   }

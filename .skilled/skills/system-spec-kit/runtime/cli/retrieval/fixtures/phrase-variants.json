@@ -1,5 +1,5 @@
 {
-  "manifestHash": "de009e89d5d7b3daec9dabf3088fb63cf76ae14cab366e7dc60d3587cec89f50",
+  "manifestHash": "a34ddccd387770a55acc8584ec943683682aae38313b4027980380524f3ab897",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7423,6 +7423,9 @@
     ],
     "066 skill readability refinement operator decisions": [
       "066-skill-readability-refinement operator decisions"
+    ],
+    "070 opencode v1 removal operator decisions": [
+      "070-opencode-v1-removal operator decisions"
     ],
     "092 epic review on main": [
       "092 epic review on main"
@@ -23956,6 +23959,9 @@
     "cli opencode 1 5 9 0": [
       "cli-opencode 1.5.9.0"
     ],
+    "cli opencode 2 0 0 0": [
+      "cli-opencode 2.0.0.0"
+    ],
     "cli opencode authoring complete": [
       "cli-opencode authoring complete"
     ],
@@ -24222,6 +24228,9 @@
     ],
     "cli opencode v1 5 9 0": [
       "cli-opencode v1.5.9.0"
+    ],
+    "cli opencode v2 0 0 0": [
+      "cli-opencode v2.0.0.0"
     ],
     "cli opencode version detection": [
       "cli-opencode version detection"
@@ -34610,9 +34619,6 @@
     "dangerous mode approval per task": [
       "dangerous mode approval per task"
     ],
-    "dangerously skip permissions risk": [
-      "dangerously skip permissions risk"
-    ],
     "dangling git hook probe": [
       "dangling git hook probe"
     ],
@@ -34837,6 +34843,9 @@
     ],
     "database schema diagram": [
       "database schema diagram"
+    ],
+    "dated opencode 1 survivors": [
+      "dated opencode 1 survivors"
     ],
     "db consistency audit": [
       "DB consistency audit"
@@ -62840,9 +62849,6 @@
     "install official orca skill": [
       "install official orca skill"
     ],
-    "install opencode v2 and v1": [
-      "install opencode v2 and v1"
-    ],
     "install scripts doctor research": [
       "install scripts doctor research"
     ],
@@ -64267,6 +64273,9 @@
     ],
     "keep drop ledger": [
       "keep drop ledger"
+    ],
+    "keep global disposed branches": [
+      "keep global disposed branches"
     ],
     "keep iconic and health md only": [
       "keep iconic and health-md only"
@@ -78552,8 +78561,8 @@
     "opencode": [
       "opencode"
     ],
-    "opencode 1 and opencode 2 lineage argv": [
-      "OpenCode 1 and OpenCode 2 lineage argv"
+    "opencode 1 refusal": [
+      "OpenCode 1 refusal"
     ],
     "opencode 2 ancestor opencode folder": [
       "opencode 2 ancestor opencode folder"
@@ -78623,6 +78632,9 @@
     ],
     "opencode authoring checklists": [
       "opencode authoring checklists"
+    ],
+    "opencode auto permission bypass risk": [
+      "opencode auto permission bypass risk"
     ],
     "opencode bridge isolation": [
       "opencode bridge isolation"
@@ -78711,9 +78723,6 @@
     "opencode db history lookup test": [
       "opencode_db history lookup test"
     ],
-    "opencode db isolation": [
-      "opencode db isolation"
-    ],
     "opencode deep loop dispatch safety": [
       "opencode deep-loop dispatch safety"
     ],
@@ -78771,11 +78780,11 @@
     "opencode dual version ci result": [
       "opencode dual-version ci result"
     ],
-    "opencode dual version dispatch": [
-      "OpenCode Dual-Version Dispatch"
-    ],
     "opencode dual version remediation list": [
       "opencode dual version remediation list"
+    ],
+    "opencode effort suffix": [
+      "opencode effort suffix"
     ],
     "opencode full runtime dispatch": [
       "opencode full runtime dispatch"
@@ -79114,6 +79123,9 @@
     "opencode relaunch plugin": [
       "opencode relaunch plugin"
     ],
+    "opencode remove v1 helper": [
+      "opencode remove-v1 helper"
+    ],
     "opencode route line bounding": [
       "opencode route line bounding"
     ],
@@ -79157,14 +79169,17 @@
     "opencode session sweep": [
       "opencode session sweep"
     ],
+    "opencode setup helper": [
+      "opencode setup helper"
+    ],
     "opencode share flag discontinued": [
       "opencode share flag discontinued"
     ],
-    "opencode side by side": [
-      "opencode side by side"
-    ],
     "opencode side by side install": [
       "opencode side by side install"
+    ],
+    "opencode side by side removal": [
+      "opencode side by side removal"
     ],
     "opencode skill singular typo": [
       "opencode skill singular typo"
@@ -79244,11 +79259,14 @@
     "opencode tui worker plugin2": [
       "opencode tui worker plugin2"
     ],
+    "opencode uninstall": [
+      "opencode uninstall"
+    ],
     "opencode unique capabilities": [
       "opencode unique capabilities"
     ],
-    "opencode upgrade major": [
-      "opencode upgrade major"
+    "opencode upgrade": [
+      "opencode upgrade"
     ],
     "opencode v1 pin 1 19 4": [
       "opencode v1 pin 1.19.4"
@@ -79261,6 +79279,9 @@
     ],
     "opencode v1 pin 1 19 4 tasks": [
       "opencode v1 pin 1.19.4 tasks"
+    ],
+    "opencode v1 removal phase parent spec": [
+      "opencode v1 removal phase parent spec"
     ],
     "opencode v1 v2 dual compat research": [
       "opencode v1 v2 dual compat research"
@@ -79298,10 +79319,8 @@
     "opencode v2 plugin migration": [
       "opencode v2 plugin migration"
     ],
-    "opencode variant reasoning effort": [
-      "opencode variant reasoning effort"
-    ],
     "opencode version detection": [
+      "OpenCode Version Detection",
       "opencode version detection"
     ],
     "opencode version drift": [
@@ -83422,6 +83441,9 @@
     "phase 1 unknowns and baseline": [
       "phase 1 unknowns and baseline"
     ],
+    "phase 1 v1 runtime code and tests": [
+      "phase 1 v1 runtime code and tests"
+    ],
     "phase 1 voice rule tooling and pilot": [
       "phase 1 voice rule tooling and pilot"
     ],
@@ -84454,6 +84476,9 @@
     "phase 2 tooling fixes": [
       "phase 2 tooling fixes"
     ],
+    "phase 2 v1 ci and package pins": [
+      "phase 2 v1 ci and package pins"
+    ],
     "phase 2 webflow labels and playbook": [
       "phase 2 webflow labels and playbook"
     ],
@@ -84996,6 +85021,9 @@
     ],
     "phase 3 unread version fields": [
       "phase 3 unread version fields"
+    ],
+    "phase 3 v1 docs and playbooks sweep": [
+      "phase 3 v1 docs and playbooks sweep"
     ],
     "phase 3 versioned placeholder gate": [
       "phase 3 versioned placeholder gate"
@@ -97015,6 +97043,9 @@
     "remove obsidian plugin support": [
       "remove obsidian plugin support"
     ],
+    "remove old opencode install": [
+      "remove old opencode install"
+    ],
     "remove predecessor hard block": [
       "remove predecessor hard block"
     ],
@@ -105863,6 +105894,9 @@
     ],
     "sdk dependency task list": [
       "sdk dependency task list"
+    ],
+    "sdk record ordering waiver": [
+      "sdk record ordering waiver"
     ],
     "sealed agent proposal artifacts": [
       "sealed agent proposal artifacts"
@@ -132148,6 +132182,24 @@
     "v1 2 5 0 release notes": [
       "v1.2.5.0 release notes"
     ],
+    "v1 ci and package pins": [
+      "v1 ci and package pins"
+    ],
+    "v1 ci and package pins acceptance criteria": [
+      "v1 ci and package pins acceptance criteria"
+    ],
+    "v1 ci and package pins decision record": [
+      "v1 ci and package pins decision record"
+    ],
+    "v1 ci and package pins implementation summary": [
+      "v1 ci and package pins implementation summary"
+    ],
+    "v1 ci and package pins plan": [
+      "v1 ci and package pins plan"
+    ],
+    "v1 ci and package pins tasks": [
+      "v1 ci and package pins tasks"
+    ],
     "v1 default llmgateway": [
       "v1 default llmgateway"
     ],
@@ -132159,6 +132211,42 @@
     ],
     "v1 default llmgateway tasks": [
       "v1 default llmgateway tasks"
+    ],
+    "v1 docs and playbooks sweep": [
+      "v1 docs and playbooks sweep"
+    ],
+    "v1 docs and playbooks sweep acceptance criteria": [
+      "v1 docs and playbooks sweep acceptance criteria"
+    ],
+    "v1 docs and playbooks sweep decision record": [
+      "v1 docs and playbooks sweep decision record"
+    ],
+    "v1 docs and playbooks sweep implementation summary": [
+      "v1 docs and playbooks sweep implementation summary"
+    ],
+    "v1 docs and playbooks sweep plan": [
+      "v1 docs and playbooks sweep plan"
+    ],
+    "v1 docs and playbooks sweep tasks": [
+      "v1 docs and playbooks sweep tasks"
+    ],
+    "v1 runtime code and tests": [
+      "v1 runtime code and tests"
+    ],
+    "v1 runtime code and tests acceptance criteria": [
+      "v1 runtime code and tests acceptance criteria"
+    ],
+    "v1 runtime code and tests decision record": [
+      "v1 runtime code and tests decision record"
+    ],
+    "v1 runtime code and tests implementation summary": [
+      "v1 runtime code and tests implementation summary"
+    ],
+    "v1 runtime code and tests plan": [
+      "v1 runtime code and tests plan"
+    ],
+    "v1 runtime code and tests tasks": [
+      "v1 runtime code and tests tasks"
     ],
     "v1 search pipeline": [
       "v1 search pipeline"

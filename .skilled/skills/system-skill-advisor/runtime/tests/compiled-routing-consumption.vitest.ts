@@ -59,7 +59,7 @@ function mockAdvisorChild(stdout: string) {
 }
 
 async function makePlugin(options: Record<string, unknown> = {}) {
-  return await skillAdvisorPlugin.server({ directory: process.cwd() } as never, {
+  return await skillAdvisorPlugin.factory({ directory: process.cwd() } as never, {
     sourceSignatureOverride: 'fixed-signature',
     cacheTTLMs: 60_000,
     ...options,
@@ -80,8 +80,8 @@ describe('plugin renders the served compiled outcome into system-context', () =>
     vi.clearAllMocks();
     delete process.env.SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED;
     delete process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED;
-    const reset = await skillAdvisorPlugin.server({ directory: process.cwd() } as never, {} as never);
-    await reset.event?.({ event: { type: 'server.instance.disposed', properties: { directory: process.cwd() } } } as never);
+    const reset = await skillAdvisorPlugin.factory({ directory: process.cwd() } as never, {} as never);
+    await reset.event?.({ event: { type: 'global.disposed', properties: { directory: process.cwd() } } } as never);
   });
   afterEach(() => { delete process.env[FLAG]; });
 

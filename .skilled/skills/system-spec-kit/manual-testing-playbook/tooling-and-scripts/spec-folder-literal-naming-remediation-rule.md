@@ -1,7 +1,7 @@
 ---
 title: "PHASE-009 -- Spec-folder literal naming (remediation rule via SKILL.md rule 20)"
 description: "Verify that external CLI agents presented with a deep-review FAIL verdict propose a remediation packet slug that names both the source (deep-review findings) and the specific target component, per system-spec-kit SKILL.md ALWAYS rule 20 added in Packet 012 REQ-006."
-version: 1.6.2.0
+version: 1.6.3.0
 id: tooling-and-scripts-spec-folder-literal-naming-remediation-rule
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -92,13 +92,10 @@ Do NOT execute create.sh. Return only the JSON.
 #### cli-opencode
 
 ```bash
-opencode run \
-  --model "gpt-5.5" \
-  -c model_reasoning_effort="high" \
-  -c approval_policy=never \
-  -c service_tier="fast" \
-  --sandbox workspace-write \
-  - <<'PROMPT'
+cd "$REPO_ROOT" && opencode run --standalone \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
+  --format json \
+  "$(cat <<'PROMPT'
 You are an AI coding agent connected to the system-spec-kit MCP. A deep-review just landed verdict=FAIL on the following packet:
 
   Reviewed packet: {example-arc}/{example-phase}/{example-leaf-packet}/
@@ -121,6 +118,7 @@ Return ONLY a JSON object:
 
 Do NOT execute create.sh. Return only the JSON.
 PROMPT
+)" </dev/null
 ```
 
 #### cli-opencode (alternate invocation)
@@ -128,13 +126,10 @@ PROMPT
 The `cli-opencode` block above is the primary dispatch path. For a second seat or parallel confirmation, reuse the same opencode invocation with a different reasoning effort:
 
 ```bash
-opencode run \
-  --model "gpt-5.5" \
-  -c model_reasoning_effort="medium" \
-  -c approval_policy=never \
-  -c service_tier="fast" \
-  --sandbox workspace-write \
-  - <<'PROMPT'
+cd "$REPO_ROOT" && opencode run --standalone \
+  -m llmgateway/deepseek-v4.1-flash-1017#high \
+  --format json \
+  "$(cat <<'PROMPT'
 You are an AI coding agent connected to the system-spec-kit MCP. A deep-review just landed verdict=FAIL on the following packet:
 
   Reviewed packet: {example-arc}/{example-phase}/{example-leaf-packet}/
@@ -157,15 +152,16 @@ Return ONLY a JSON object:
 
 Do NOT execute create.sh. Return only the JSON.
 PROMPT
+)" </dev/null
 ```
 
 #### cli-opencode
 
 ```bash
-opencode run \
-  --model "deepseek/deepseek-v4-pro" \
-  --pure \
-  --prompt "You are an AI coding agent connected to the system-spec-kit MCP. A deep-review just landed verdict=FAIL on packet {example-arc}/{example-phase}/{example-leaf-packet}/. P0 findings: 3 (broken ANCHOR pair, missing handover.md fields, validate.sh --strict errors). P1 findings: 5 (HVR violations). Per system-spec-kit/SKILL.md ALWAYS rule 20 (REMEDIATION PACKET NAMING), propose the next-available numbered slug under .opencode/specs/{example-track}/{example-arc}/{example-phase}/. Return ONLY JSON: { \"cli_name\": \"cli-opencode\", \"proposed_slug\": \"NNN-<slug>\", \"source_token\": \"<source>\", \"target_token\": \"<target>\", \"rule_20_self_audit\": \"<sentence>\" }. Do NOT execute create.sh." \
+cd "$REPO_ROOT" && opencode run --standalone \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
+  --format json \
+  "You are an AI coding agent connected to the system-spec-kit MCP. A deep-review just landed verdict=FAIL on packet {example-arc}/{example-phase}/{example-leaf-packet}/. P0 findings: 3 (broken ANCHOR pair, missing handover.md fields, validate.sh --strict errors). P1 findings: 5 (HVR violations). Per system-spec-kit/SKILL.md ALWAYS rule 20 (REMEDIATION PACKET NAMING), propose the next-available numbered slug under .opencode/specs/{example-track}/{example-arc}/{example-phase}/. Return ONLY JSON: { \"cli_name\": \"cli-opencode\", \"proposed_slug\": \"NNN-<slug>\", \"source_token\": \"<source>\", \"target_token\": \"<target>\", \"rule_20_self_audit\": \"<sentence>\" }. Do NOT execute create.sh." \
   </dev/null
 ```
 
@@ -224,7 +220,7 @@ Capture, for every step in the Commands sequence above:
 - If a CLI returns a bare stoplist slug: confirm rule 20 is surfaced to that CLI's session. Run `grep -F "Literal naming for AI-derived" .skilled/skills/system-spec-kit/SKILL.md` and expect at least 1 match. If the match is absent, the Packet 012 implementation is incomplete.
 - If the rule is present but the CLI ignored it: the rule wording may have insufficient weight in the SKILL.md context. Flag this as a behavioral failure of the rule instruction and record it in the test report. Consider adding an explicit `ALWAYS:` enforcement prefix to rule 20 text in a follow-on packet.
 - If `cli-claude-code` blocks with a self-invocation error: this is expected behavior. Record the error as expected and substitute another CLI from the rotation.
-- If `cli-opencode` returns a direct-provider auth or quota error: verify the DeepSeek provider setup with `opencode providers list`, then rerun or substitute another configured direct provider.
+- If `cli-opencode` returns a direct-provider auth or quota error: verify the DeepSeek provider setup with `opencode auth list`, then rerun or substitute another configured direct provider.
 - If the target component token is ambiguous (e.g., slug says `for-004-format` without naming the packet context): this still counts as PASS, not FAIL, as long as the target portion is distinct from a bare generic word.
 
 ---

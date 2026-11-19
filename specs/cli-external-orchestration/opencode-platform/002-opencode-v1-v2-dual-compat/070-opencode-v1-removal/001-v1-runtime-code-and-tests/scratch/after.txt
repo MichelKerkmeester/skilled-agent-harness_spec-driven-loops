@@ -1,0 +1,50 @@
+# Child 001 after-state, recorded at closure (2026-11-19T11:34Z), run from the worktree root
+== AC-001 supported family line
+       1
+== AC-001 parity vitest (opencode-dual-dispatch)
+ Test Files  1 passed (1)
+      Tests  24 passed (24)
+== AC-002 v1 rule names remaining
+       0
+== AC-003 native and variant strings
+       0
+== AC-003 fanout vitest
+ Test Files  1 passed (1)
+      Tests  194 passed (194)
+== AC-004 wrapper test
+== AC-005 setup helper v1 names
+       0
+== AC-005 both-test file exists (1 = gone)
+exit=1
+== setup classify test (includes remove-v1 refusal)
+== AC-006 battery test
+== AC-008 LEGACY_MESSAGE_TABLE count
+       0
+== AC-008 opencode-v1.db under hooks
+       0
+== AC-008 readers test
+== AC-009 branch-contract vitest
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+== T016 disposed branches removed (0 = removed)
+       0
+== AC-007 global.disposed kept in plugin files
+       3
+== node (TAP) skilled-loop wrapper test (AC-004)
+# tests 64
+# pass 64
+# fail 0
+== node (TAP) setup classify test incl. remove-v1 refusal (AC-005, CHK-012)
+# tests 5
+# pass 5
+# fail 0
+== node (TAP) doctor battery test (AC-006)
+# tests 49
+# pass 49
+# fail 0
+== node (TAP) session readers test (AC-008)
+# tests 10
+# pass 10
+# fail 0
+bash -n opencode-setup.sh exit=0
+bash -n skilled-loop exit=0

@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v1 runtime code and tests",
+      "phase 1 v1 runtime code and tests",
+      "v1 runtime code and tests plan",
+      "v1 runtime code and tests tasks",
+      "v1 runtime code and tests acceptance criteria",
+      "v1 runtime code and tests decision record",
+      "keep global disposed branches",
+      "v1 runtime code and tests implementation summary"
+    ],
+    "key_topics": [
+      "runtime",
+      "code",
+      "tests",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decision",
+      "record",
+      "keep",
+      "global"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/cli-dispatch/lib/opencode-version.mjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs",
+      ".skilled/hooks/cli-dispatch/lib/opencode-version-corpus.json",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json",
+      ".skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs",
+      ".skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/adapter-suite.ts",
+      ".skilled/skills/system-deep-loop/runtime/vitest.config.ts",
+      ".skilled/hooks/session-handover/tests/skilled-loop-wrapper-model-effort.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/cli-dispatch/lib/opencode-version.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version-corpus.json",
+        "kind": "config",
+        "path": ".skilled/hooks/cli-dispatch/lib/opencode-version-corpus.json",
+        "source": "derived"
+      },
+      {
+        "name": "hard-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "behavior-bench-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit-cli-branch-receipts.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adapter-suite.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/adapter-suite.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-model-effort.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/tests/skilled-loop-wrapper-model-effort.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The runtime still resolves OpenCode 1.x as a supported family",
+    "created_at": "2026-11-19T09:04:20Z",
+    "last_save_at": "2026-11-19T17:43:17.016Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d11582f04cc39ae7478bc32d7850dca2a67c39bde78550c2f1dfdedef3a2c970",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8e1a453909229f1ee90d841d240ed0dd4d91a115cfd67a87bc56fea35428fe96",
+      "plan.md": "ee37e54333ebdec785fd7a183c2130fea4b4d5277761e5bf42e89f4e0fee77a3",
+      "tasks.md": "d6a377037bb38f6c8996590f5c3c189bc5a5f87e7665e3715375363babedafe3",
+      "decision-record.md": "fdd8e1f61b7821a4a619a3c90e96396fcab4aea2a485c7c77be0924cdd32d5e3",
+      "implementation-summary.md": "8c0fbe6024d84016f959e6a1aecdbfc726b1324d74a8658a5eb63b1e17265851"
+    },
+    "last_active_at": null
+  }
+}

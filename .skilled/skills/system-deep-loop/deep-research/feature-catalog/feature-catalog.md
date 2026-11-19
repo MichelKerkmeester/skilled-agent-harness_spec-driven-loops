@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-research autonomous research loop."
-version: 1.14.4.0
+version: 1.14.5.0
 ---
 
 # deep-research: Feature Catalog
@@ -112,15 +112,17 @@ See [`loop-lifecycle/memory-save.md`](../feature-catalog/loop-lifecycle/memory-s
 #### Description
 
 Opt-in fan-out dispatch layer: `step_resolve_artifact_root` artifact-dir override branch,
-`step_fanout_spawn` (CLI pool + native sequential agent dispatch), and `step_fanout_merge`
+`step_fanout_spawn` (CLI pool only; a native lineage is refused), and `step_fanout_merge`
 at the top of `phase_synthesis`. Single-executor path is byte-identical to pre-change
 behavior.
 
 #### How It Works
 
 Three new YAML steps gated on `config.fanout` presence. CLI lineages run via `fanout-run.cjs`
-(pool-capped headless subprocesses). Native lineages run as sequential `agent: deep-research`
-dispatches. `step_fanout_merge` produces a consolidated `deep-research-findings-registry.json`
+(pool-capped headless subprocesses). A lineage whose kind is `native` is refused before any
+lineage spawns, because OpenCode 2 `run` cannot start the registered `deep/research` command
+that adapter needed; `native` runs only as the single executor. `step_fanout_merge` produces
+a consolidated `deep-research-findings-registry.json`
 before `step_compile_research` runs. Command flags: `--executor` (repeatable), `--executors
 <json>`, `--concurrency N`. Default policy: 0–1 executor, or an `--executors` matrix that expands to one lineage →
 `config.executor`; two or more lineages or `count>1` → `config.fanout`. A direct runner

@@ -18,7 +18,7 @@ async function loadPluginModule() {
 async function loadGoalCore(pluginModule) {
   const coreUrl = pathToFileURL(join(__dirname, '..', 'lib', 'opencode-goal-core.js')).href;
   const coreModule = await import(coreUrl);
-  return coreModule.getGoalCore(pluginModule.default.server);
+  return coreModule.getGoalCore(pluginModule.default.factory);
 }
 
 test('module exports only the default plugin entrypoint', async () => {
@@ -26,12 +26,12 @@ test('module exports only the default plugin entrypoint', async () => {
   assert.deepEqual(Object.keys(pluginModule), ['default']);
 });
 
-test('default export is a dual-version plugin object', async () => {
+test('default export is an OpenCode 2 plugin object with a hidden factory', async () => {
   const pluginModule = await loadPluginModule();
   assert.equal(typeof pluginModule.default, 'object');
-  assert.deepEqual(Object.keys(pluginModule.default).sort(), ['id', 'server', 'setup']);
+  assert.deepEqual(Object.keys(pluginModule.default).sort(), ['id', 'setup']);
   assert.equal(pluginModule.default.id, 'opencode-goal');
-  assert.equal(typeof pluginModule.default.server, 'function');
+  assert.equal(typeof pluginModule.default.factory, 'function');
   assert.equal(typeof pluginModule.default.setup, 'function');
 });
 

@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal",
+  "description": "Remove OpenCode v1 support from the repository",
+  "keywords": [
+    "remove",
+    "opencode",
+    "support",
+    "repository"
+  ],
+  "lastUpdated": "2026-11-19T17:44:43.271Z",
+  "specId": "070",
+  "folderSlug": "opencode-v1-removal",
+  "parentChain": [
+    "cli-external-orchestration",
+    "opencode-platform",
+    "002-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "19-11-26_18-44__removed-opencode-v1-from-the-repo-and-the-mac.md"
+  ]
+}

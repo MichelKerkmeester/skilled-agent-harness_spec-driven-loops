@@ -1,0 +1,12 @@
+.github/workflows/README.md
+.github/workflows/opencode-dual-version.yml
+.opencode/plugins/ARCHITECTURE.md
+.skilled/bun.lock
+.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-models-form.test.cjs
+.skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md
+.skilled/skills/cli-external-orchestration/feature-catalog/opencode-version-dispatch/opencode-version-dispatch.md
+.skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json
+.skilled/skills/system-spec-kit/runtime/data/trigger-index.json

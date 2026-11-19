@@ -32,7 +32,7 @@ function makeRepo(t, template) {
 
 async function hooksFor(dir) {
   const plugin = await import(pathToFileURL(PLUGIN).href);
-  return plugin.default.server({ directory: dir });
+  return plugin.default.factory({ directory: dir });
 }
 
 function bash(command) {

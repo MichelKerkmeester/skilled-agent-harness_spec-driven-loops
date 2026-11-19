@@ -1,5 +1,5 @@
 ---
-title: OpenCode CLI — Prompt Quality Card
+title: "OpenCode CLI: Prompt Quality Card"
 description: Fast-path prompt discipline for OpenCode CLI dispatches; frameworks and CLEAR are canonical in sk-prompt.
 trigger_phrases:
   - "opencode prompt quality card"
@@ -7,7 +7,7 @@ trigger_phrases:
   - "opencode dispatch framework precedence"
 importance_tier: normal
 contextType: planning
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # OpenCode CLI: Prompt Quality Card
@@ -40,7 +40,7 @@ The 7-framework selection table, the task->framework map, the pre-planning-densi
 OpenCode dispatches the MiniMax, DeepSeek-v4-flash, Kimi-K2.7, and GLM small models. Framework selection for these models follows the cross-model defaults in the canonical card. There are no per-model prompt-craft profiles.
 
 - **Agent:** Omit `--agent` for all small-model dispatches.
-- **Effort:** OpenCode 2 (recommended) takes the level on the model id (`#<level>`), and OpenCode 1 (fallback) takes the reasoning effort through `--variant`.
+- **Effort:** the level rides on the model id (`#<level>`).
 - **MiniMax endpoints:** MiniMax Token Plan (`minimax-coding-plan/MiniMax-M3`) and Direct API (`minimax/MiniMax-M3`) both serve M3.
 - **Ambiguity:** Ambiguous use-case (1 vs 2 vs 3) prevents the router from picking a path. Resolve before dispatch.
 - **Guard:** Always include a self-invocation guard signal when the dispatched session could loop back.

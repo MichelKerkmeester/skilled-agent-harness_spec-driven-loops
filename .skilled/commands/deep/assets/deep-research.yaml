@@ -331,16 +331,17 @@ workflow:
     instructions: |
       Fan-out mode is active. Spawn all lineages. Each lineage runs the full loop in its own
       isolated sub-packet under {artifact_dir}/lineages/{label}/.
-      fanout-run.cjs owns native and CLI lineage execution; native is run through the
-      deep/research command surface with config.fanout_lineage_artifact_dir so the LEAF
-      deep-research agent is used only for individual iterations, never as a full-loop
-      sub-agent or pasted phase-running prompt.
+      fanout-run.cjs owns every fan-out lineage, and each one needs a cli-* executor.
+      A native fan-out lineage is refused before any lineage spawns: OpenCode 2 run cannot
+      start the registered deep/research command that adapter needed, so native runs only as
+      the single executor. The LEAF deep-research agent is used only for individual
+      iterations, never as a full-loop sub-agent or pasted phase-running prompt.
       After all lineages complete, jump directly to phase_synthesis — skip phase_init and
       phase_main_loop entirely (those are the single-executor path). The merge step in
       phase_synthesis will consolidate results across all lineages.
     sub_steps:
       step_fanout_spawn_cli:
-        description: "Spawn all native and CLI lineages in capped worker pool"
+        description: "Spawn all CLI lineages in capped worker pool"
         skip_when: "no entries in config.fanout.executors"
         command: |
           node .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs \
@@ -1492,8 +1493,8 @@ workflow:
             - "Routed through runAuditedExecutorCommand so opencode produces INTENT + COMPLETION dispatch receipts; recursion guard + env allowlist enforced via buildExecutorDispatchEnv"
             - "buildLineageCommand returns empty input, so stdin is closed (EOF), equivalent to </dev/null"
             - "buildLineageCommand receives the route-proof preamble + iteration body as its message"
-            - "buildLineageCommand maps reasoningEffort to the installed OpenCode version's supported option"
-            - "buildLineageCommand resolves the OpenCode binary and version-correct argv for the configured sandboxMode"
+            - "buildLineageCommand passes reasoningEffort as the #effort suffix on the -m model"
+            - "buildLineageCommand resolves an OpenCode 2 binary and refuses any other major; it adds --auto for sandboxMode danger-full-access, and any other sandboxMode fails closed"
             - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
         if_cli_codex:
           command: |

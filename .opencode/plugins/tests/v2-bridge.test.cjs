@@ -1081,7 +1081,7 @@ test('setup bridges mapped hooks, counts skipped keys, and cleans up registratio
     };
   });
 
-  assert.deepEqual(Object.keys(plugin), ['id', 'server', 'setup']);
+  assert.deepEqual(Object.keys(plugin), ['id', 'setup']);
   const cleanup = await plugin.setup(context);
 
   await eventReceived;
@@ -1664,4 +1664,29 @@ test('a v1 hook refusal for bash reaches the host for a v2 shell call', async ()
   );
   assert.equal(receivedTool, 'bash');
   await cleanup();
+});
+
+test('setup forwards its options to the factory, which stays a hidden property', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context } = createV2Context();
+  const calls = [];
+  const factory = async (input, options) => {
+    calls.push({ directory: input.directory, options });
+    return {};
+  };
+  const plugin = dualPlugin('options-test', factory);
+
+  assert.deepEqual(Object.keys(plugin), ['id', 'setup']);
+  assert.equal(Object.hasOwn(plugin, 'server'), false);
+  assert.equal(plugin.factory, factory);
+  assert.equal(Object.getOwnPropertyDescriptor(plugin, 'factory').enumerable, false);
+
+  const options = { stateDir: '/fixture/state' };
+  await (await plugin.setup(context, options))();
+  await (await plugin.setup(context))();
+
+  assert.deepEqual(calls, [
+    { directory: '/workspace/project', options },
+    { directory: '/workspace/project', options: undefined },
+  ]);
 });

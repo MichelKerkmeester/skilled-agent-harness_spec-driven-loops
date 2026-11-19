@@ -7,7 +7,7 @@ trigger_phrases:
   - "select review executor"
   - "per-kind flag compatibility"
   - "native cli-opencode dispatch"
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # Executor Selection Contract
@@ -29,7 +29,7 @@ Before each dispatch, the workflow resolves the executor via `parseExecutorConfi
 | Kind | Dispatch |
 |---|---|
 | `native` | `@deep-review` agent with model Opus |
-| `cli-opencode` | rendered prompt piped via stdin to `opencode run --dangerously-skip-permissions`, granting full OS-level workspace write access. There is no `--sandbox workspace-write` flag in the live command, and `sandboxMode='read-only'` is NOT honored. The only real containment is the prompt-level "ALLOWED WRITE PATHS"/"BANNED OPERATIONS" contract (model-obeyed, not OS-enforced) plus post-dispatch validation. Review targets must be treated as potentially adversarial content. |
+| `cli-opencode` | the rendered prompt is passed as the `opencode run` message argument with stdin closed, using `run --standalone -m <model>#<effort> --format json`. `--auto` (auto-approve permissions) is added only for a `danger-full-access` sandbox. The executor exposes no sandbox flag, and `finalizeLineageCommand` refuses any other sandbox before dispatch, so a read-only request is refused rather than run unconfined. For a full-access lane, the only containment is the prompt-level "ALLOWED WRITE PATHS"/"BANNED OPERATIONS" contract (model-obeyed, not OS-enforced) plus post-dispatch validation. Review targets must be treated as potentially adversarial content. |
 | `cli-claude-code` | `claude -p` with `--permission-mode acceptEdits` (overriding the read-only `plan` default so iteration writes succeed) |
 | `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness` | the kind's own CLI, started by `dispatch-iteration.cjs` with the rendered prompt |
 | `cli-mistral-vibe` | none in a single-executor run, which refuses it. It runs only as a fan-out lineage |

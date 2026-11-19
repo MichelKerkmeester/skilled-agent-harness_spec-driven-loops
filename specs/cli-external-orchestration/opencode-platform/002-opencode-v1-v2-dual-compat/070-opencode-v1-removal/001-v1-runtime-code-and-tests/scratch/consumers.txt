@@ -1,0 +1,26 @@
+# Consumers of symbols removed by child 001, read from HEAD (the pre-edit state of this branch)
+# Command: git grep -n -e SUPPORTED_FAMILIES -e LEGACY_MESSAGE_TABLE -e mode_both -e legPluginLoad -e hermetic-opencode-path HEAD -- .skilled .opencode
+HEAD:.skilled/commands/doctor/scripts/opencode-version-battery.cjs:550:function legPluginLoad(files, harness) {
+HEAD:.skilled/commands/doctor/scripts/opencode-version-battery.cjs:903:        results.push(legPluginLoad(files, runtime.runHarness(args.root)));
+HEAD:.skilled/commands/doctor/scripts/opencode-version-battery.cjs:1299:  legPluginLoad,
+HEAD:.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:30:  legPluginLoad,
+HEAD:.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:307:  const loaded = legPluginLoad(files, harnessFor(files));
+HEAD:.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:329:  const result = legPluginLoad(files, harness);
+HEAD:.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:346:  const result = legPluginLoad(files, harness);
+HEAD:.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:459:  assert.equal(legPluginLoad([], { exit: 0, stdout: '' }).status, 'FAIL');
+HEAD:.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs:22:import { resolveOpencodeVersionSync, SUPPORTED_FAMILIES } from './opencode-version.mjs';
+HEAD:.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs:1108:  const hasVersion = [...SUPPORTED_FAMILIES, 'unknown'].includes(options.version);
+HEAD:.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs:1126:    const appliesTo = Array.isArray(rule.appliesTo) ? rule.appliesTo : SUPPORTED_FAMILIES;
+HEAD:.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs:1127:    const appliesToAll = SUPPORTED_FAMILIES.every((family) => appliesTo.includes(family));
+HEAD:.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs:28:  SUPPORTED_FAMILIES,
+HEAD:.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs:537:test('SUPPORTED_FAMILIES is the frozen list of supported families', () => {
+HEAD:.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs:538:  assert.deepEqual(SUPPORTED_FAMILIES, ['v1', 'v2']);
+HEAD:.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs:539:  assert.ok(Object.isFrozen(SUPPORTED_FAMILIES));
+HEAD:.skilled/hooks/cli-dispatch/lib/opencode-version.mjs:18:const SUPPORTED_FAMILIES = Object.freeze(['v1', 'v2']);
+HEAD:.skilled/hooks/cli-dispatch/lib/opencode-version.mjs:306:  SUPPORTED_FAMILIES,
+HEAD:.skilled/hooks/shared/session-readers/opencode.mjs:36:const LEGACY_MESSAGE_TABLE = 'message';
+HEAD:.skilled/hooks/shared/session-readers/opencode.mjs:281:    const legacyRows = tables.has(LEGACY_MESSAGE_TABLE)
+HEAD:.skilled/hooks/shared/session-readers/opencode.mjs:282:      ? database.prepare(`SELECT id, data FROM ${LEGACY_MESSAGE_TABLE} WHERE session_id = ?`).all(sessionId)
+HEAD:.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:379:mode_both() {
+HEAD:.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:526:    both) mode_both ;;
+HEAD:.skilled/skills/system-deep-loop/runtime/vitest.config.ts:28:    path.resolve(import.meta.dirname, 'tests', '_support', 'hermetic-opencode-path.ts'),

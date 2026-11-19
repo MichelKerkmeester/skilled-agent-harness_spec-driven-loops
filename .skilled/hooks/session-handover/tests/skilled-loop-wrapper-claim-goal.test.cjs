@@ -14,7 +14,7 @@ const {
   expectedClaudeManualCommand, createSandbox, handoffsDirectory, installRuntimeStub,
   writeSpecFolderNote, runWrapper, handOverLines, installSkilledLoopCommand, runManualCommand,
   withManualTemplate, installWithdrawBeforeConsumeStub, installFailingHandOverStub, readRecords,
-  readLog, OPENCODE_2_HELP,
+  readLog,
 } = require('./skilled-loop-wrapper-harness.cjs');
 
 test('wrapper template and core command escape a special handoff path identically', (t) => {
@@ -764,7 +764,7 @@ test('manual first launch with a claim seed exports the note goal packet', (t) =
   const cases = [
     ['pi', (seed) => ['pi', '--model', 'm1', seed], (seed) => ['--model', 'm1', seed]],
     ['opencode', (seed) => ['opencode', '-m', 'm1', '--prompt', seed],
-      (seed) => ['-m', 'm1', '--prompt', seed]],
+      (seed) => ['--standalone', '-m', 'm1', '--prompt', seed]],
     ['codex', (seed) => ['codex', '-m', 'm1', seed], (seed) => ['--no-daemon', '-m', 'm1', seed]],
     ['devin', (seed) => ['devin', '--model', 'm1', '--', seed],
       (seed) => ['--model', 'm1', '--', seed]],
@@ -789,10 +789,9 @@ test('a seeded Claude first launch starts on the goal command with the seed in p
   assert.deepEqual(warningLines(result), []);
 });
 
-test('a seeded OpenCode 2 first launch finds the seed after the prepended --standalone', (t) => {
+test('a seeded OpenCode first launch finds the seed after the prepended --standalone', (t) => {
   const { record, seed } = runSeededFirstLaunch(
     t, (claimSeed) => ['opencode', '--agent', 'build', '--prompt', claimSeed],
-    { env: { STUB_HELP: OPENCODE_2_HELP } },
   );
 
   assert.deepEqual(record.args, ['--standalone', '--agent', 'build', '--prompt', seed]);

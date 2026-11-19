@@ -1,0 +1,15 @@
+# Baseline for child 001: copied at closure from the orchestrator's pre-edit gate (scratchpad baseline.txt).
+# Provenance: the gate ran before any edit in this phase. Its single failing test is pre-existing and also fails on main.
+== node --test (44 files)
+not ok 473 - Claude source clamps prompts, keeps fallback parity, and flushes fail-open output
+# tests 845
+# pass 843
+# fail 1
+# cancelled 0
+# skipped 1
+== vitest dispatch-audit
+ Test Files  1 passed (1)
+      Tests  133 passed (133)
+== vitest deep-loop runtime (opencode-related)
+ Test Files  13 passed (13)
+      Tests  418 passed | 9 skipped (427)

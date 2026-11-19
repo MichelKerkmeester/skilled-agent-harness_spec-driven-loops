@@ -18,7 +18,7 @@ trigger_phrases:
   - "context handoff to a fresh session"
   - "skilled-loop shell shim"
   - "symlinked .skilled relaunch"
-version: 1.0.37.0
+version: 1.0.38.0
 ---
 
 # Session handover loop (skilled-loop)
@@ -79,7 +79,7 @@ Pi checks usage at message_end and holds the nudge text there rather than sendin
 
 OpenCode reads message.updated and message.part.updated. It pushes the active nudge on every request while this session has no handoff. When `SKILLED_LOOP_ID` is set but names no record, it keeps pushing only until the handoff note exists. A matching claim seed stays in the system prompt on every request of the session until the note leaves the open state or a new non-seed user message arrives, because an auxiliary request can consume the first prompt. The seed enters through experimental.chat.system.transform. The relaunch record is armed on session.idle.
 
-The wrapper's Pi relaunch carries provider and model selection together with -ne and each -e extension selection from the initial launch. In this repository, start Pi with -ne -e .pi/extensions/session-handover.ts because two installed extensions both register --fast. OpenCode 1 is started with -m <provider/model>, and the wrapper preserves that model selection across hops. On OpenCode 2, whose help lists `--standalone`, the wrapper adds `--standalone` to the first launch and every relaunch and carries the model through `OPENCODE_CONFIG_CONTENT`, because its root command takes no model flag.
+The wrapper's Pi relaunch carries provider and model selection together with -ne and each -e extension selection from the initial launch. In this repository, start Pi with -ne -e .pi/extensions/session-handover.ts because two installed extensions both register --fast. OpenCode 2, whose help lists `--standalone`, gets `--standalone` on the first launch and every relaunch, and the wrapper carries the model through `OPENCODE_CONFIG_CONTENT`, because its root command takes no model flag.
 
 In the recorded live runs, OpenCode reported about 1M context tokens for openai/gpt-6-luna and Pi reported 272K. These reported window sizes differ by runtime.
 

@@ -18,7 +18,6 @@ import {
   isoOr,
   parseJsonObject,
   textBlock,
-  thinkingBlock,
   toolCallBlock,
 } from './project.mjs';
 
@@ -30,13 +29,10 @@ const require = createRequire(import.meta.url);
 
 const RUNTIME = 'opencode';
 const LOCATOR_KIND = 'session-store';
-const PART_TABLE = 'part';
 const MESSAGE_TABLE = 'session_message';
-// OpenCode 1 keeps each turn's role in this table instead of `session_message`.
-const LEGACY_MESSAGE_TABLE = 'message';
-const SESSION_TABLES = ['session_v2', 'session'];
+const SESSION_TABLE = 'session_v2';
 // A message row without its own clock keeps its sequence order, but after every
-// part row that does carry one, rather than sorting ahead of the conversation.
+// row that does carry one, rather than sorting ahead of the conversation.
 const UNTIMED_MESSAGE_BASE = 1e15;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -50,8 +46,7 @@ export function openCodeStoreRoot(options = {}) {
 }
 
 // OpenCode reads `OPENCODE_DB` the same way: a relative name sits in the data
-// folder and an absolute path is used as given. The OpenCode 1 launcher sets it
-// so the two majors keep separate databases, and a shell the model runs inherits
+// folder and an absolute path is used as given. A shell the model runs inherits
 // it, so the reader opens the database that session wrote.
 export function openCodeDatabasePath(options = {}) {
   if (options.dbPath) return options.dbPath;
@@ -102,87 +97,20 @@ function toolPair({ id, callId, name, input, output, timestamp, sort }) {
   ];
 }
 
-// A text part is only as trustworthy as the message row it belongs to: the
-// same table holds user and assistant parts, so the row type decides the role.
-function roleOfMessage(rolesByMessageId, messageId) {
-  return rolesByMessageId.get(messageId) === 'user' ? 'user' : 'assistant';
-}
-
-function partEntries(rows, rolesByMessageId) {
+function messageEntries(rows) {
   const entries = [];
-  for (const row of rows) {
-    const parsed = parseJsonObject(row.data);
-    // OpenCode 1 stores a part's id as a column, not inside its JSON.
-    const part = parsed && typeof parsed.id !== 'string' && typeof row.id === 'string'
-      ? { ...parsed, id: row.id }
-      : parsed;
-    if (!part || typeof part.id !== 'string') continue;
-    const timestamp = isoOr(row.time_created ?? part.time_created);
-
-    if (part.type === 'text' && typeof part.text === 'string') {
-      const role = roleOfMessage(rolesByMessageId, row.message_id);
-      entries.push({ sort: row.time_created ?? 0, record: { id: part.id, role, timestamp, content: [textBlock(part.text)] } });
-      continue;
-    }
-    if (part.type === 'reasoning' && typeof part.text === 'string') {
-      entries.push({ sort: row.time_created ?? 0, record: { id: part.id, role: 'assistant', timestamp, content: [thinkingBlock(part.text)] } });
-      continue;
-    }
-    if (part.type === 'tool' && typeof part.callID === 'string' && typeof part.tool === 'string') {
-      entries.push(...toolPair({
-        id: part.id,
-        callId: part.callID,
-        name: part.tool,
-        input: part.state?.input,
-        output: part.state?.output ?? part.state?.content,
-        timestamp,
-        sort: row.time_created ?? 0,
-      }));
-    }
-  }
-  return entries;
-}
-
-function messageRoles(rows, legacyRows = []) {
-  const roles = new Map();
-  for (const row of legacyRows) {
-    if (typeof row.id !== 'string' || !row.id) continue;
-    const role = parseJsonObject(row.data)?.role;
-    if (role === 'user' || role === 'assistant') roles.set(row.id, role);
-  }
-  for (const row of rows) {
-    if (typeof row.id !== 'string' || !row.id) continue;
-    if (row.type === 'user' || row.type === 'assistant') roles.set(row.id, row.type);
-  }
-  return roles;
-}
-
-// A message whose text already arrived as text parts must not repeat it from
-// the message row, or the same turn would be found and counted twice.
-function messageIdsWithTextParts(rows) {
-  const ids = new Set();
-  for (const row of rows) {
-    if (typeof row.message_id !== 'string') continue;
-    const part = parseJsonObject(row.data);
-    if (part?.type === 'text' && typeof part.text === 'string') ids.add(row.message_id);
-  }
-  return ids;
-}
-
-function messageEntries(rows, seenCallIds, textPartMessageIds = new Set()) {
-  const entries = [];
+  const seenCallIds = new Set();
 
   rows.forEach((row) => {
     const message = parseJsonObject(row.data);
     if (!message) return;
     const timestamp = isoOr(message.time?.created ?? row.time_created);
     const sort = message.time?.created ?? UNTIMED_MESSAGE_BASE + (row.seq ?? 0);
-    const textFromParts = textPartMessageIds.has(row.id);
 
     if (row.type === 'user') {
       // Synthetic context is recorded as its own message type, which this branch
       // never reads, so a user row is operator content even when it opens with '<'.
-      if (textFromParts || typeof message.text !== 'string' || !message.text) return;
+      if (typeof message.text !== 'string' || !message.text) return;
       entries.push({ sort, record: { id: row.id, role: 'user', timestamp, content: [textBlock(message.text)] } });
       return;
     }
@@ -192,7 +120,6 @@ function messageEntries(rows, seenCallIds, textPartMessageIds = new Set()) {
     content.forEach((item, index) => {
       if (!item || typeof item !== 'object') return;
       if (item.type === 'text' && typeof item.text === 'string') {
-        if (textFromParts) return;
         entries.push({
           sort,
           record: { id: `${row.id}:${index}`.slice(0, 128), role: 'assistant', timestamp, content: [textBlock(item.text)] },
@@ -244,52 +171,26 @@ export function loadOpenCodeSession({ sessionId, ...options } = {}) {
 
   try {
     const tables = tableNames(database);
-
-    const sessionTables = SESSION_TABLES.filter((table) => tables.has(table));
-    if (sessionTables.length === 0) return { ok: false, code: 'store_unreadable' };
+    if (!tables.has(SESSION_TABLE)) return { ok: false, code: 'store_unreadable' };
 
     // A caller that names the folder the session ran in gets the session only
     // when its recorded directory is that folder, as the Pi and DSH readers
     // prove the session header's cwd.
-    let found = false;
-    for (const table of sessionTables) {
-      const hasDirectory = columnNames(database, table).has('directory');
-      const columns = hasDirectory ? 'id, directory' : 'id';
-      const row = database.prepare(`SELECT ${columns} FROM ${table} WHERE id = ?`).get(sessionId);
-      if (typeof row?.id === 'string' && row.id === sessionId) {
-        if (options.projectDir !== undefined && hasDirectory && !samePath(row.directory, options.projectDir)) {
-          return { ok: false, code: 'session_mismatch' };
-        }
-        found = true;
-        break;
-      }
+    const hasDirectory = columnNames(database, SESSION_TABLE).has('directory');
+    const columns = hasDirectory ? 'id, directory' : 'id';
+    const row = database.prepare(`SELECT ${columns} FROM ${SESSION_TABLE} WHERE id = ?`).get(sessionId);
+    if (typeof row?.id !== 'string' || row.id !== sessionId) return { ok: false, code: 'session_not_found' };
+    if (options.projectDir !== undefined && hasDirectory && !samePath(row.directory, options.projectDir)) {
+      return { ok: false, code: 'session_mismatch' };
     }
-    if (!found) return { ok: false, code: 'session_not_found' };
 
-    const partRows = tables.has(PART_TABLE)
-      ? database
-        .prepare(`SELECT id, message_id, time_created, data FROM ${PART_TABLE} WHERE session_id = ? ORDER BY time_created, id`)
-        .all(sessionId)
-      : [];
     const messageRows = tables.has(MESSAGE_TABLE)
       ? database
         .prepare(`SELECT id, type, seq, data FROM ${MESSAGE_TABLE} WHERE session_id = ? ORDER BY seq`)
         .all(sessionId)
       : [];
 
-    const seenCallIds = new Set();
-    const legacyRows = tables.has(LEGACY_MESSAGE_TABLE)
-      ? database.prepare(`SELECT id, data FROM ${LEGACY_MESSAGE_TABLE} WHERE session_id = ?`).all(sessionId)
-      : [];
-    const entries = [...partEntries(partRows, messageRoles(messageRows, legacyRows))];
-    for (const entry of entries) {
-      if (entry.record.role === 'assistant') {
-        for (const block of entry.record.content) {
-          if (block.type === 'toolCall') seenCallIds.add(block.id);
-        }
-      }
-    }
-    entries.push(...messageEntries(messageRows, seenCallIds, messageIdsWithTextParts(partRows)));
+    const entries = messageEntries(messageRows);
     entries.sort((left, right) => left.sort - right.sort);
 
     return {

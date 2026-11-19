@@ -1,0 +1,6 @@
+Checked 2026-11-19.
+npm view @opencode/cli@2.3.2 version -> 2.3.2
+npm view @opencode/cli dist-tags -> latest: 2.3.2
+~/.local/bin/opencode --version -> opencode v2.3.2 (resolves to ~/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe)
+Target pin: @opencode/cli@2.3.2
+# CHK-030 (recorded at closure from HEAD): matches of secret|token|password in the workflow before this phase = 0; after = 0

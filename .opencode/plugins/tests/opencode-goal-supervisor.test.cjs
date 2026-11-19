@@ -22,7 +22,7 @@ async function loadPluginModule() {
 async function loadGoalCore(pluginModule) {
   const coreUrl = pathToFileURL(join(testDir, '..', 'lib', 'opencode-goal-core.js')).href;
   const coreModule = await import(coreUrl);
-  return coreModule.getGoalCore(pluginModule.default.server);
+  return coreModule.getGoalCore(pluginModule.default.factory);
 }
 
 async function writeGoalWithEvidence(helpers, sessionID, stateDir, evidence) {
@@ -68,7 +68,7 @@ async function withSupervisor(fn) {
   let verifierCalls = 0;
 
   try {
-    const plugin = await pluginModule.default.server({}, {
+    const plugin = await pluginModule.default.factory({}, {
       stateDir,
       nowMs: 2000,
       supervisorVerifier: async ({ sessionID }) => {
@@ -261,7 +261,7 @@ test('default heuristic verifier completes only explicit objective-specific evid
   const helpers = await loadGoalCore(pluginModule);
   const stateDir = await mkdtemp(join(tmpdir(), 'opencode-goal-default-heuristic-'));
   try {
-    const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 2000 });
+    const plugin = await pluginModule.default.factory({}, { stateDir, nowMs: 2000 });
     await writeGoalWithObjectiveAndEvidence(
       helpers,
       'session-default-met',

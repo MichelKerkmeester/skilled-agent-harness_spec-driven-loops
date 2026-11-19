@@ -55,7 +55,7 @@ const VERSION_CORPUS = JSON.parse(
   fs.readFileSync(path.join(HERE, 'opencode-version-corpus.json'), 'utf8'),
 );
 
-const evaluateV1 = (command, rules) => evaluate(command, rules, { version: 'v1' });
+const evaluateV2 = (command, rules) => evaluate(command, rules, { version: 'v2' });
 
 function writeExecutable(directory, name, lines) {
   const executable = path.join(directory, name);
@@ -67,8 +67,8 @@ function writeExecutable(directory, name, lines) {
 test('reads the real hard rules from the sidecar beside each SKILL.md', () => {
   const co = readHardRules(CO);
   const coreRuleIds = [
-    'stdin-redirect-required', 'explicit-model-required', 'no-bare-agent-general',
-    'command-flag-for-slash-prompt', 'share-requires-confirmation',
+    'stdin-redirect-required', 'explicit-model-required', 'v2-slash-prompt-route',
+    'share-requires-confirmation',
   ];
   assert.deepEqual(co.map((r) => r.id).filter((id) => coreRuleIds.includes(id)), coreRuleIds);
   // Assert the ids, not a bare count: this line read `length, 1` while the packet had
@@ -198,19 +198,18 @@ test('availability checks pass for a resolvable binary and never refuse without 
 
 test('AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof)', () => {
   const rules = readHardRules(CO);
-  const flagged = evaluateV1('opencode run -m p/m "do a thing"', rules).map((v) => v.id);
+  const flagged = evaluateV2('opencode run -m p/m "do a thing"', rules).map((v) => v.id);
   assert.deepEqual(flagged, ['stdin-redirect-required']);
   // Mutation guard: the SAME command with a redirect must NOT flag — proves the check discriminates.
-  assert.deepEqual(evaluateV1('opencode run -m p/m "do a thing" </dev/null', rules), []);
-  assert.deepEqual(evaluateV1('cat x | opencode run -m p/m "x"', rules), []); // pipe closes inherited stdin
+  assert.deepEqual(evaluateV2('opencode run -m p/m "do a thing" </dev/null', rules), []);
+  assert.deepEqual(evaluateV2('cat x | opencode run -m p/m "x"', rules), []); // pipe closes inherited stdin
 });
 
 test('other checks discriminate correctly', () => {
   const rules = readHardRules(CO);
-  const ids = (cmd) => evaluateV1(cmd, rules).map((v) => v.id).sort();
-  assert.deepEqual(ids('opencode run -m p/m --agent general "x" </dev/null'), ['no-bare-agent-general']);
-  assert.deepEqual(ids('opencode run -m p/m "/memory:search q" </dev/null'), ['command-flag-for-slash-prompt']);
-  assert.deepEqual(ids('opencode run -m p/m --command memory/search "/memory:search q" </dev/null'), []);
+  const ids = (cmd) => evaluateV2(cmd, rules).map((v) => v.id).sort();
+  assert.deepEqual(ids('opencode run -m p/m "/memory:search q" </dev/null'), ['v2-slash-prompt-route']);
+  assert.deepEqual(ids('opencode run -m p/m "plain task" </dev/null'), []);
   assert.deepEqual(ids('opencode run -m p/m "x" --share </dev/null'), ['share-requires-confirmation']);
   assert.deepEqual(ids('git status && ls -la'), []); // non-dispatch bash never fires
 });
@@ -231,25 +230,23 @@ test('permission-mode check sees claude print mode behind other flags', () => {
 
 test('appliesTo evaluates only rules for the resolved version', () => {
   const rules = [
-    { id: 'v1-only', check: 'always-fail', message: 'v1', severity: 'error', appliesTo: ['v1'] },
     { id: 'v2-only', check: 'always-fail', message: 'v2', severity: 'error', appliesTo: ['v2'] },
-    { id: 'both-versions', check: 'always-fail', message: 'both', severity: 'error', appliesTo: ['v1', 'v2'] },
+    { id: 'other-family', check: 'always-fail', message: 'other', severity: 'error', appliesTo: ['v3'] },
   ];
   const checks = { 'always-fail': () => false };
   const ids = (version) => evaluate('opencode run "task"', rules, { version, checks }).map((v) => v.id);
 
-  assert.deepEqual(ids('v1'), ['v1-only', 'both-versions']);
-  assert.deepEqual(ids('v2'), ['v2-only', 'both-versions']);
+  assert.deepEqual(ids('v2'), ['v2-only']);
 });
 
-test('rules without appliesTo apply to both versions', () => {
+test('rules without appliesTo apply to every version', () => {
   const legacyRule = { id: 'legacy-rule', check: 'always-fail', message: 'legacy', severity: 'error' };
   const checks = { 'always-fail': () => false };
   const ids = (version) =>
     evaluate('opencode run "task"', [legacyRule], { version, checks }).map((v) => v.id);
 
-  assert.deepEqual(ids('v1'), ['legacy-rule']);
   assert.deepEqual(ids('v2'), ['legacy-rule']);
+  assert.deepEqual(ids('unsupported'), ['legacy-rule']);
 });
 
 test('a rule without appliesTo stays blocking when the version is unknown', () => {
@@ -264,28 +261,30 @@ test('a rule without appliesTo stays blocking when the version is unknown', () =
   ]);
 });
 
-test('unknown evaluation preserves shared severity and warns version-specific rules', () => {
-  const rules = [
-    { id: 'shared-error', check: 'always-fail', message: 'shared', severity: 'error', appliesTo: ['v1', 'v2'] },
-    { id: 'shared-warn', check: 'always-fail', message: 'shared advisory', severity: 'warn', appliesTo: ['v1', 'v2'] },
-    { id: 'v1-only', check: 'always-fail', message: 'v1', severity: 'error', appliesTo: ['v1'] },
-    { id: 'v2-only', check: 'always-fail', message: 'v2', severity: 'error', appliesTo: ['v2'] },
-  ];
-  const violations = evaluate('opencode run "task"', rules, {
-    version: 'unknown',
-    checks: { 'always-fail': () => false },
-  });
+// An unsupported binary is held to every rule, the same as one whose version is unknown, so
+// an old install cannot skip the checks that block for the supported family.
+for (const version of ['unknown', 'unsupported']) {
+  test(`${version} evaluation preserves shared severity and warns family-specific rules`, () => {
+    const rules = [
+      { id: 'shared-error', check: 'always-fail', message: 'shared', severity: 'error', appliesTo: ['v2'] },
+      { id: 'shared-warn', check: 'always-fail', message: 'shared advisory', severity: 'warn', appliesTo: ['v2'] },
+      { id: 'other-family', check: 'always-fail', message: 'other', severity: 'error', appliesTo: ['v3'] },
+    ];
+    const violations = evaluate('opencode run "task"', rules, {
+      version,
+      checks: { 'always-fail': () => false },
+    });
 
-  assert.deepEqual(violations.map(({ id, severity }) => ({ id, severity })), [
-    { id: 'shared-error', severity: 'block' },
-    { id: 'shared-warn', severity: 'warn' },
-    { id: 'v1-only', severity: 'warn' },
-    { id: 'v2-only', severity: 'warn' },
-  ]);
-});
+    assert.deepEqual(violations.map(({ id, severity }) => ({ id, severity })), [
+      { id: 'shared-error', severity: 'block' },
+      { id: 'shared-warn', severity: 'warn' },
+      { id: 'other-family', severity: 'warn' },
+    ]);
+  });
+}
 
 test('v2 slash-command fixture warns with session.command and never blocks', () => {
-  const fixture = 'opencode2 run --model p/m --agent build "/memory:search q" </dev/null';
+  const fixture = 'opencode run --model p/m --agent build "/memory:search q" </dev/null';
   const violations = evaluate(fixture, readHardRules(CO), { version: 'v2' });
 
   assert.ok(violations.length > 0, 'the slash-command fixture did not produce its v2 advisory');
@@ -302,8 +301,8 @@ test('evaluate resolves quoted, wrapped, and path-qualified OpenCode executors',
   const expectedV2 = [{ id: 'v2-slash-prompt-route', severity: 'warn' }];
 
   try {
-    writeExecutable(directory, 'opencode2', ["printf '%s\\n' 'opencode v2.0.32'"]);
-    writeExecutable(directory, 'opencode', ["printf '%s\\n' '1.19.3'"]);
+    writeExecutable(directory, 'opencode', ["printf '%s\\n' 'opencode v2.0.32'"]);
+    writeExecutable(directory, 'opencode1', ["printf '%s\\n' '1.19.3'"]);
     process.env.PATH = [directory, previousPath].filter(Boolean).join(path.delimiter);
     delete process.env.OPENCODE_BIN;
     clearOpencodeVersionCache();
@@ -311,34 +310,36 @@ test('evaluate resolves quoted, wrapped, and path-qualified OpenCode executors',
     // probe on a loaded runner can outlast the probe timeout and turn the version unknown,
     // so each stub's family is cached through the async resolver's probe seam, keyed on the
     // same file identity the synchronous resolver inside evaluate reads.
-    assert.equal(await resolveOpencodeVersion('opencode2', { probe: () => 'opencode v2.0.32' }), 'v2');
-    assert.equal(await resolveOpencodeVersion('opencode', { probe: () => '1.19.3' }), 'v1');
+    assert.equal(await resolveOpencodeVersion('opencode', { probe: () => 'opencode v2.0.32' }), 'v2');
+    assert.equal(await resolveOpencodeVersion('opencode1', { probe: () => '1.19.3' }), 'unsupported');
 
     const v2Commands = [
-      'opencode2 run -m p/m "/memory:search q" </dev/null',
-      '"opencode2" run -m p/m "/memory:search q" </dev/null',
-      "'opencode2' run -m p/m \"/memory:search q\" </dev/null",
-      'bash -c \'opencode2 run -m p/m "/memory:search q" </dev/null\'',
-      'sh -c "opencode2 run -m p/m \\"/memory:search q\\" </dev/null"',
+      'opencode run -m p/m "/memory:search q" </dev/null',
+      '"opencode" run -m p/m "/memory:search q" </dev/null',
+      "'opencode' run -m p/m \"/memory:search q\" </dev/null",
+      'bash -c \'opencode run -m p/m "/memory:search q" </dev/null\'',
+      'sh -c "opencode run -m p/m \\"/memory:search q\\" </dev/null"',
     ];
     for (const command of v2Commands) {
       const violations = evaluate(command, rules).map(({ id, severity }) => ({ id, severity }));
       assert.deepEqual(violations, expectedV2, command);
     }
 
-    const v1Command = 'opencode run -m p/m "/memory:search q" </dev/null';
+    // A numbered launcher is never probed, so with no resolved version it meets every rule at
+    // its declared severity.
+    const unsupportedCommand = 'opencode1 run -m p/m "/memory:search q"';
     assert.deepEqual(
-      evaluate(v1Command, rules).map(({ id, severity }) => ({ id, severity })),
-      [{ id: 'command-flag-for-slash-prompt', severity: 'block' }],
+      evaluate(unsupportedCommand, rules).map(({ id, severity }) => ({ id, severity })),
+      [
+        { id: 'stdin-redirect-required', severity: 'block' },
+        { id: 'v2-slash-prompt-route', severity: 'warn' },
+      ],
     );
 
     const pathQualifiedCommand = '/abs/opencode run -m p/m "/memory:search q" </dev/null';
     assert.deepEqual(
       evaluate(pathQualifiedCommand, rules).map(({ id, severity }) => ({ id, severity })),
-      [
-        { id: 'command-flag-for-slash-prompt', severity: 'warn' },
-        { id: 'v2-slash-prompt-route', severity: 'warn' },
-      ],
+      expectedV2,
     );
   } finally {
     if (previousPath === undefined) delete process.env.PATH;
@@ -359,7 +360,7 @@ test('evaluate probes one fake binary once across two evaluations', () => {
   const rules = readHardRules(CO);
 
   try {
-    writeExecutable(directory, 'opencode2', [
+    writeExecutable(directory, 'opencode', [
       'printf "%s\\n" probe >> "$OPENCODE_PROBE_COUNTER"',
       'printf "%s\\n" "opencode v2.0.32"',
     ]);
@@ -368,7 +369,7 @@ test('evaluate probes one fake binary once across two evaluations', () => {
     delete process.env.OPENCODE_BIN;
     clearOpencodeVersionCache();
 
-    const command = 'opencode2 run -m p/m "/memory:search q" </dev/null';
+    const command = 'opencode run -m p/m "/memory:search q" </dev/null';
     assert.deepEqual(evaluate(command, rules).map((violation) => violation.id), ['v2-slash-prompt-route']);
     assert.deepEqual(evaluate(command, rules).map((violation) => violation.id), ['v2-slash-prompt-route']);
     assert.equal(fs.readFileSync(counterPath, 'utf8').trim().split(/\r?\n/).length, 1);
@@ -384,6 +385,79 @@ test('evaluate probes one fake binary once across two evaluations', () => {
   }
 });
 
+// The version probe runs the named program before any rule decides, so only the names that
+// can be OpenCode reach it. A numbered launcher such as `opencode7` is whatever that name
+// happens to be on PATH, and it is held to every rule at its declared severity instead.
+test('a numbered launcher never reaches the version probe and stays fail-closed', () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'dispatch-opencode-numbered-'));
+  const markerPath = path.join(directory, 'probe-marker');
+  const previousPath = process.env.PATH;
+  const previousBinary = process.env.OPENCODE_BIN;
+  const rules = readHardRules(CO);
+
+  try {
+    writeExecutable(directory, 'opencode7', [
+      `printf '%s\\n' probed > ${JSON.stringify(markerPath)}`,
+      "printf '%s\\n' 'opencode v2.3.2'",
+    ]);
+    process.env.PATH = [directory, previousPath].filter(Boolean).join(path.delimiter);
+    delete process.env.OPENCODE_BIN;
+    clearOpencodeVersionCache();
+
+    assert.deepEqual(evaluate('opencode7 run -m a/b x </dev/null', rules), []);
+    assert.equal(fs.existsSync(markerPath), false, 'evaluate ran the numbered launcher');
+    assert.deepEqual(
+      evaluate('opencode7 run -m a/b x', rules).map(({ id, severity }) => ({ id, severity })),
+      [{ id: 'stdin-redirect-required', severity: 'block' }],
+    );
+    assert.equal(fs.existsSync(markerPath), false, 'evaluate ran the numbered launcher');
+  } finally {
+    if (previousPath === undefined) delete process.env.PATH;
+    else process.env.PATH = previousPath;
+    if (previousBinary === undefined) delete process.env.OPENCODE_BIN;
+    else process.env.OPENCODE_BIN = previousBinary;
+    clearOpencodeVersionCache();
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test('the bare, path-qualified and OPENCODE_BIN names still reach the version probe', () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'dispatch-opencode-named-'));
+  const markerPath = path.join(directory, 'probe-marker');
+  const previousPath = process.env.PATH;
+  const previousBinary = process.env.OPENCODE_BIN;
+  const rules = readHardRules(CO);
+
+  try {
+    const executable = writeExecutable(directory, 'opencode', [
+      `printf '%s\\n' probed > ${JSON.stringify(markerPath)}`,
+      "printf '%s\\n' 'opencode v2.3.2'",
+    ]);
+    process.env.PATH = [directory, previousPath].filter(Boolean).join(path.delimiter);
+    const commands = [
+      ['opencode run -m a/b x </dev/null', undefined],
+      [`${executable} run -m a/b x </dev/null`, undefined],
+      ['$OPENCODE_BIN run -m a/b x </dev/null', executable],
+      ['${OPENCODE_BIN} run -m a/b x </dev/null', executable],
+    ];
+    for (const [command, binary] of commands) {
+      if (binary === undefined) delete process.env.OPENCODE_BIN;
+      else process.env.OPENCODE_BIN = binary;
+      fs.rmSync(markerPath, { force: true });
+      clearOpencodeVersionCache();
+      assert.deepEqual(evaluate(command, rules), [], command);
+      assert.equal(fs.existsSync(markerPath), true, `evaluate did not probe: ${command}`);
+    }
+  } finally {
+    if (previousPath === undefined) delete process.env.PATH;
+    else process.env.PATH = previousPath;
+    if (previousBinary === undefined) delete process.env.OPENCODE_BIN;
+    else process.env.OPENCODE_BIN = previousBinary;
+    clearOpencodeVersionCache();
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
 // The preflight guard resolves the version before it decides whether to refuse a dispatch,
 // so a path the command merely names is not a program the guard may run.
 test('a path-qualified executable outside PATH stays unknown and never runs', async () => {
@@ -392,7 +466,7 @@ test('a path-qualified executable outside PATH stays unknown and never runs', as
   try {
     const executable = writeExecutable(directory, 'opencode', [
       `printf '%s\\n' probed > ${JSON.stringify(markerPath)}`,
-      "printf '%s\\n' '1.19.3'",
+      "printf '%s\\n' 'opencode v2.0.32'",
     ]);
     clearOpencodeVersionCache();
     assert.equal(resolveOpencodeVersionSync(executable), 'unknown');
@@ -412,13 +486,13 @@ test('a path-qualified executable on PATH resolves its version', async () => {
   const previousPath = process.env.PATH;
   const previousBinary = process.env.OPENCODE_BIN;
   try {
-    const executable = writeExecutable(directory, 'opencode', ["printf '%s\\n' '1.19.3'"]);
+    const executable = writeExecutable(directory, 'opencode', ["printf '%s\\n' 'opencode v2.0.32'"]);
     process.env.PATH = [directory, previousPath].filter(Boolean).join(path.delimiter);
     delete process.env.OPENCODE_BIN;
     clearOpencodeVersionCache();
-    assert.equal(resolveOpencodeVersionSync(executable), 'v1');
+    assert.equal(resolveOpencodeVersionSync(executable), 'v2');
     clearOpencodeVersionCache();
-    assert.equal(await resolveOpencodeVersion(executable), 'v1');
+    assert.equal(await resolveOpencodeVersion(executable), 'v2');
   } finally {
     if (previousPath === undefined) delete process.env.PATH;
     else process.env.PATH = previousPath;
@@ -443,7 +517,7 @@ test('a symlinked path-qualified executable spawns the trusted path, not the sym
     fs.mkdirSync(linkDirectory);
     const trusted = writeExecutable(binDirectory, 'opencode', [
       `printf '%s\\n' "$0" > ${JSON.stringify(markerPath)}`,
-      "printf '%s\\n' '1.19.3'",
+      "printf '%s\\n' 'opencode v2.0.32'",
     ]);
     const symlink = path.join(linkDirectory, 'opencode');
     fs.symlinkSync(trusted, symlink);
@@ -451,7 +525,7 @@ test('a symlinked path-qualified executable spawns the trusted path, not the sym
     delete process.env.OPENCODE_BIN;
     clearOpencodeVersionCache();
 
-    assert.equal(resolveOpencodeVersionSync(symlink), 'v1');
+    assert.equal(resolveOpencodeVersionSync(symlink), 'v2');
     // The script records the path it was started as, which is the argv[0] the guard spawned.
     const spawned = fs.readFileSync(markerPath, 'utf8').trim();
     assert.equal(spawned, trusted, 'the resolver spawned a path the command named');
@@ -472,12 +546,12 @@ test('OPENCODE_BIN makes a path-qualified executable trusted', async () => {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'dispatch-opencode-trusted-bin-'));
   const previousBinary = process.env.OPENCODE_BIN;
   try {
-    const executable = writeExecutable(directory, 'opencode', ["printf '%s\\n' '1.19.3'"]);
+    const executable = writeExecutable(directory, 'opencode', ["printf '%s\\n' 'opencode v2.0.32'"]);
     process.env.OPENCODE_BIN = executable;
     clearOpencodeVersionCache();
-    assert.equal(resolveOpencodeVersionSync('$OPENCODE_BIN'), 'v1');
+    assert.equal(resolveOpencodeVersionSync('$OPENCODE_BIN'), 'v2');
     clearOpencodeVersionCache();
-    assert.equal(await resolveOpencodeVersion('$OPENCODE_BIN'), 'v1');
+    assert.equal(await resolveOpencodeVersion('$OPENCODE_BIN'), 'v2');
   } finally {
     if (previousBinary === undefined) delete process.env.OPENCODE_BIN;
     else process.env.OPENCODE_BIN = previousBinary;
@@ -535,11 +609,13 @@ test('the shared version corpus pins the parser to each expected family', () => 
 });
 
 test('SUPPORTED_FAMILIES is the frozen list of supported families', () => {
-  assert.deepEqual(SUPPORTED_FAMILIES, ['v1', 'v2']);
+  assert.deepEqual(SUPPORTED_FAMILIES, ['v2']);
   assert.ok(Object.isFrozen(SUPPORTED_FAMILIES));
 });
 
-test('opencode2 run is evaluated by the hard-rule engine', () => {
+// A retired install often survives under a numbered launcher name, so that shape is still a
+// dispatch the engine holds to the blocking rules.
+test('a numbered launcher run on an unsupported binary is evaluated by the hard-rule engine', () => {
   const rules = [{
     id: 'stdin-redirect-required',
     check: 'stdin-redirect-required',
@@ -549,8 +625,9 @@ test('opencode2 run is evaluated by the hard-rule engine', () => {
   }];
 
   assert.deepEqual(
-    evaluate('opencode2 run -m p/m "task"', rules, { version: 'v2' }).map((violation) => violation.id),
-    ['stdin-redirect-required'],
+    evaluate('opencode1 run -m p/m "task"', rules, { version: 'unsupported' })
+      .map(({ id, severity }) => ({ id, severity })),
+    [{ id: 'stdin-redirect-required', severity: 'block' }],
   );
 });
 
@@ -585,7 +662,7 @@ test('every runtime with a preflight adapter has it registered', () => {
 test('pi dispatches need --offline and a provider-qualified model', () => {
   const CP = path.join(CLI_ORCHESTRATION, 'cli-pi/SKILL.md');
   const rules = readHardRules(CP).filter((r) => r.check !== 'command-v-pi-required');
-  const ids = (cmd) => evaluateV1(cmd, rules).map((v) => v.id).sort();
+  const ids = (cmd) => evaluateV2(cmd, rules).map((v) => v.id).sort();
   assert.deepEqual(ids('pi -p --offline --model llmgateway/glm-5.3-flash "task" </dev/null'), []);
   assert.deepEqual(ids('pi -p --model llmgateway/glm-5.3-flash "task" </dev/null'), ['pi-offline-required']);
   assert.deepEqual(ids('pi -p --offline --model glm-5.3-flash "task" </dev/null'), ['pi-provider-qualified-model']);
@@ -616,13 +693,11 @@ test('evaluateDispatch holds every dispatch in a chain to its own packet', () =>
 // rule read as enforced while the equals form and the unquoted prompt walked straight past.
 test('predicate bypasses: equals-form flags and unquoted slash prompts are caught', () => {
   const rules = readHardRules(CO);
-  const ids = (cmd) => evaluateV1(cmd, rules).map((v) => v.id).sort();
-  assert.deepEqual(ids('opencode run -m p/m --agent=general "x" </dev/null'), ['no-bare-agent-general']);
+  const ids = (cmd) => evaluateV2(cmd, rules).map((v) => v.id).sort();
   assert.deepEqual(ids('opencode run -m p/m "x" --share=public </dev/null'), ['share-requires-confirmation']);
-  assert.deepEqual(ids('opencode run -m p/m /memory:search q </dev/null'), ['command-flag-for-slash-prompt']);
+  assert.deepEqual(ids('opencode run -m p/m /memory:search q </dev/null'), ['v2-slash-prompt-route']);
   // The correct forms still pass, so the widened patterns discriminate rather than blanket-fire.
-  assert.deepEqual(ids('opencode run -m p/m --agent=build "x" </dev/null'), []);
-  assert.deepEqual(ids('opencode run -m p/m --command memory/search /memory:search q </dev/null'), []);
+  assert.deepEqual(ids('opencode run -m p/m "x" </dev/null'), []);
   // Negative control: a URL and a POSIX path must not read as a slash prompt.
   assert.deepEqual(ids('opencode run -m p/m "see https://example.com/a:b" </dev/null'), []);
   assert.deepEqual(ids('opencode run -m p/m "read /tmp/x:y" </dev/null'), []);
@@ -969,7 +1044,7 @@ test('fail-open: a check that throws never produces a violation', () => {
   const saved = CHECKS.boom;
   CHECKS.boom = () => { throw new Error('kaboom'); };
   try {
-    assert.deepEqual(evaluateV1('opencode run "x"', throwing), []);
+    assert.deepEqual(evaluateV2('opencode run "x"', throwing), []);
   } finally {
     if (saved === undefined) delete CHECKS.boom; else CHECKS.boom = saved;
   }
@@ -1020,7 +1095,7 @@ test('severity maps error and block to a blocking violation; anything else advis
   const saved = CHECKS['always-fail'];
   CHECKS['always-fail'] = () => false;
   try {
-    const bySev = Object.fromEntries(evaluateV1('opencode run "x"', rules).map((v) => [v.id, v.severity]));
+    const bySev = Object.fromEntries(evaluateV2('opencode run "x"', rules).map((v) => [v.id, v.severity]));
     assert.equal(bySev.err, 'block');
     assert.equal(bySev.blk, 'block');
     assert.equal(bySev.wrn, 'warn');
@@ -1076,17 +1151,9 @@ const CHECK_FIXTURES = {
     satisfied: 'opencode run -m p/m "task" </dev/null',
     violated: 'opencode run "task" </dev/null',
   },
-  'no-bare-agent-general': {
-    satisfied: 'opencode run -m p/m --agent build "task" </dev/null',
-    violated: 'opencode run -m p/m --agent=general "task" </dev/null',
-  },
   'v2-slash-prompt-route': {
-    satisfied: 'opencode2 run --standalone -m p/m "task" </dev/null',
-    violated: 'opencode2 run --standalone -m p/m "/memory:search q" </dev/null',
-  },
-  'command-flag-for-slash-prompt': {
-    satisfied: 'opencode run -m p/m --command memory/search "/memory:search q" </dev/null',
-    violated: 'opencode run -m p/m "/memory:search q" </dev/null',
+    satisfied: 'opencode run --standalone -m p/m "task" </dev/null',
+    violated: 'opencode run --standalone -m p/m "/memory:search q" </dev/null',
   },
   'share-requires-confirmation': {
     satisfied: 'opencode run -m p/m "task" </dev/null',
@@ -1372,8 +1439,8 @@ test('ENFORCEMENT GUARD: every appliesTo is a non-empty supported-version list',
         sidecarPath + '/' + rule.id + ' appliesTo must be a non-empty array',
       );
       assert.ok(
-        rule.appliesTo.every((version) => version === 'v1' || version === 'v2'),
-        sidecarPath + '/' + rule.id + ' appliesTo may contain only v1 and v2',
+        rule.appliesTo.every((version) => SUPPORTED_FAMILIES.includes(version)),
+        sidecarPath + '/' + rule.id + ' appliesTo may contain only ' + SUPPORTED_FAMILIES.join(', '),
       );
     }
   }

@@ -4,12 +4,12 @@ description: Root cause + prevention for destructive filesystem writes when cli-
 trigger_phrases:
   - "opencode destructive scope violation"
   - "opencode deep-loop dispatch safety"
-  - "dangerously skip permissions risk"
+  - "opencode auto permission bypass risk"
   - "opencode worktree isolation dispatch"
   - "rm-8 prevention playbook"
 importance_tier: important
 contextType: implementation
-version: 1.4.10.0
+version: 1.4.11.0
 ---
 
 # Destructive Scope Violations under cli-opencode Deep-Loop Dispatch (RM-8)
@@ -26,13 +26,13 @@ Record the 2026-05-04 destructive scope violation (RM-8), explain its root cause
 
 ### When to Use
 
-Read this before any non-interactive `opencode run` deep-loop dispatch that uses `--dangerously-skip-permissions` against a populated worktree, especially long-running `/deep:research:auto` and `/deep:review:auto` runs.
+Read this before any non-interactive `opencode run` deep-loop dispatch that uses `--auto` against a populated worktree, especially long-running `/deep:research:auto` and `/deep:review:auto` runs.
 
 ### Core Principle
 
-An instruction-only scope guard layered on `--dangerously-skip-permissions` is the root cause. Neither layer alone is sufficient, so prevention must add an enforced capability boundary, not more prose.
+An instruction-only scope guard layered on `--auto` is the root cause. Neither layer alone is sufficient, so prevention must add an enforced capability boundary, not more prose.
 
-**Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
+**Version baseline.** This reference is pinned to OpenCode 2 at 2.3.2, the only supported version. Observations that name 2.0.32 were read on that release and have not been re-read on 2.3.2. Later versions are unsupported until re-verified. The install and upgrade path is in [`install-and-versions.md`](./install-and-versions.md).
 
 ---
 
@@ -58,30 +58,15 @@ Two contributing layers, both required to enable the failure:
 The YAML dispatch wrapper (`.skilled/commands/deep/assets/deep-review.yaml` step `if_cli_opencode`) hands the executor:
 
 ```bash
-# OpenCode 1 only
-opencode run \
-  --model "<provider/model>" \
-  --agent general \
-  --format json \
-  --dangerously-skip-permissions \
-  --pure \
-  --dir "<repo-root>" \
-  --variant <effort> \
-  "<rendered prompt>" \
-  </dev/null
-```
-
-```bash
-# OpenCode 2
 cd "<repo-root>" && opencode run --standalone \
   -m "<provider/model>#<effort>" \
-  --agent general \
   --format json \
+  --auto \
   "<rendered prompt>" \
   </dev/null
 ```
 
-On OpenCode 1, `--dangerously-skip-permissions` disables OpenCode's per-tool-call permission prompts. Combined with `--dir <repo-root>` the executor's working directory is the live worktree, and it can `rm`, `mv`, or overwrite **any** file the running user has permissions for. On OpenCode 2 there is no `--dir` flag, so the working directory is set by starting in it, and whether `run` has a permission-skip equivalent is unverified on OpenCode 2.0.32 ([install reference](./install-and-versions.md)).
+`--auto` approves permissions that are not explicitly denied. Combined with starting in `<repo-root>`, the executor's working directory is the live worktree, and it can `rm`, `mv`, or overwrite **any** file the running user has permissions for ([install reference](./install-and-versions.md)).
 
 ### Layer B: instruction-only guard
 
@@ -91,13 +76,13 @@ Before the RM-8 mitigation shipped, the only safeguard against the model was a s
 
 That line **is not enforced anywhere**. The dispatch wrapper reads it as documentation, OpenCode does not parse it, and nothing inspects the executor's tool calls against it before they run. A confused model (DeepSeek hallucinated a cleanup step, plausibly anchored on stale spec-folder pointers it found while reading) can simply ignore the instruction, and the wrapper has no way to stop it.
 
-**The combination, an instruction-only guard layered on `--dangerously-skip-permissions`, is the root cause.** Neither layer alone is sufficient to cause the damage (with permission prompts in place the model would refuse the harmless instruction-only guard, and permission-skipped dispatches with a runtime guard would survive a confused model). Both together produced the destructive event.
+**The combination, an instruction-only guard layered on `--auto`, is the root cause.** Neither layer alone is sufficient to cause the damage (with permission prompts in place the model would refuse the harmless instruction-only guard, and permission-skipped dispatches with a runtime guard would survive a confused model). Both together produced the destructive event.
 
 ---
 
 ## 4. PREVENTION: APPLY BEFORE EVERY DEEP-LOOP DISPATCH
 
-The default risk surface for cli-opencode is **any non-interactive `opencode run` invocation that uses `--dangerously-skip-permissions` against a populated worktree**, especially long-running deep-loop dispatches like `/deep:research:auto` and `/deep:review:auto`. Apply all four layers before dispatch:
+The default risk surface for cli-opencode is **any non-interactive `opencode run` invocation that uses `--auto` against a populated worktree**, especially long-running deep-loop dispatches like `/deep:research:auto` and `/deep:review:auto`. Apply all four layers before dispatch:
 
 ### Layer 1 (REQUIRED): RM-8 prompt hardening, already shipped
 
@@ -113,39 +98,26 @@ Policy record: local destructive-scope violation policy.
 
 ### Layer 2 (STRONGLY RECOMMENDED): git worktree isolation
 
-Dispatch into a `git worktree` cloned from current HEAD instead of the live worktree. Any scope violation is contained to the isolated worktree (deletable as a single directory). The main repo stays physically untouched, because on OpenCode 1 the executor's `--dir` points at the worktree path and on OpenCode 2 the dispatch starts inside the worktree with `cd` (no `--dir` on OpenCode 2 `run`, see the [install reference](./install-and-versions.md)).
+Dispatch into a `git worktree` cloned from current HEAD instead of the live worktree. Any scope violation is contained to the isolated worktree (deletable as a single directory). The main repo stays physically untouched, because the dispatch starts inside the worktree with `cd` (`run` has no directory flag, see the [install reference](./install-and-versions.md)).
 
 ```bash
 # Cut a worktree from the recovery-baseline commit
 git worktree add --detach /Users/<you>/MEGA/Development/Code_Environment/<short-name>-review HEAD
 
 # Dispatch INSIDE the worktree (no --agent flag; the default agent runs when --agent is omitted)
-# OpenCode 1 only
-opencode run \
-  --model llmgateway/deepseek-v4.1-flash-1017 \
-  --variant max \
+cd /Users/<you>/MEGA/Development/Code_Environment/<short-name>-review && opencode run --standalone \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \
-  --dangerously-skip-permissions \
-  --pure \
-  --dir /Users/<you>/MEGA/Development/Code_Environment/<short-name>-review \
+  --auto \
   "<prompt>" \
   </dev/null
 
 # On success: copy review/ artifacts back, prune worktree
-# On destruction: nothing to do — main repo never saw the writes
+# On destruction: nothing to do, the main repo never saw the writes
 git worktree remove --force /Users/<you>/MEGA/Development/Code_Environment/<short-name>-review
 ```
 
-```bash
-# OpenCode 2
-cd /Users/<you>/MEGA/Development/Code_Environment/<short-name>-review && opencode run --standalone \
-  -m llmgateway/deepseek-v4.1-flash-1017#max \
-  --format json \
-  "<prompt>" \
-  </dev/null
-```
-
-On OpenCode 2 the effort level rides on `-m` as a `#max` suffix, the working directory moves into the `cd`, and `run` has no `--pure`. Whether `run` has a permission-skip equivalent is unverified on OpenCode 2.0.32 ([install reference](./install-and-versions.md)).
+The effort level rides on `-m` as a `#max` suffix, the working directory moves into the `cd`, and `--auto` approves permissions that are not explicitly denied ([install reference](./install-and-versions.md)).
 
 Worktree isolation is the cheapest single change that converts "deletion of N tracked files in main" into "deletion of N tracked files in throwaway worktree". For multi-phase work (the exact shape of the 2026-05-04 incident), worktrees are not optional.
 
@@ -166,8 +138,8 @@ The commit hash is the recovery baseline. Surface it to the operator before disp
 
 The 2026-05-04 incident was specifically observed with `opencode-go/deepseek-v4-pro` under `/deep:review:auto`. Until a runtime scope guard ships (see §5), the cross-phase synthesis recommendation stands:
 
-- **Preference**: for multi-phase deep-review work, prefer `cli-copilot` with `gpt-6-sol --reasoning-effort high` (verify `gpt-6-sol` availability on the Copilot surface. This slug is carried over from a gpt-5.5-era Copilot-catalog check and is NOT re-verified. `opencode models openai` on OpenCode 1 does not cover Copilot. If Copilot does not expose it, pick an available Copilot model rather than silently falling back to the risky default) when available.
-- **Fallback**: fall back to the flash default `llmgateway/deepseek-v4.1-flash-1017` — the default on both OpenCode versions — only with Layers 1+2+3 all in place.
+- **Preference**: for multi-phase deep-review work, prefer `cli-copilot` with `gpt-6-sol --reasoning-effort high` (verify `gpt-6-sol` availability on the Copilot surface. This slug is carried over from a gpt-5.5-era Copilot-catalog check and is NOT re-verified. An OpenCode model listing does not cover Copilot. If Copilot does not expose it, pick an available Copilot model rather than silently falling back to the risky default) when available.
+- **Fallback**: fall back to the flash default `llmgateway/deepseek-v4.1-flash-1017`, the mode default, only with Layers 1+2+3 all in place.
 - **Concurrency**: memory feedback `feedback_copilot_concurrency_override.md` caps Copilot at 3 parallel dispatches. Sequence the work accordingly.
 
 ---
@@ -177,7 +149,7 @@ The 2026-05-04 incident was specifically observed with `opencode-go/deepseek-v4-
 The true RM-8 fix is a runtime scope guard:
 
 - Pre-dispatch: snapshot the file tree (`git ls-tree -r HEAD` or `find ... -type f -printf '%P %s %T@\n'`)
-- During dispatch: rely on Layers 1–3 only
+- During dispatch: rely on Layers 1-3 only
 - Post-dispatch: diff the file tree. Any modification outside the allowed-write list is reverted via `git restore` and surfaced as a `scope_violation` event
 
 This requires changes to the YAML wrapper (pre/post hooks) and is a separate packet. Layer 1 + 2 + 3 are the operational ceiling until the runtime guard ships.
@@ -187,9 +159,9 @@ This requires changes to the YAML wrapper (pre/post hooks) and is a separate pac
 ## 6. QUICK CHECKLIST BEFORE DISPATCH
 
 - [ ] Layer 1: rendered prompt contains literal `BANNED OPERATIONS` and `ALLOWED WRITE PATHS` strings (grep the rendered prompt before dispatch).
-- [ ] Layer 2: on OpenCode 1 the dispatch `--dir` points at a `git worktree`, not the live working tree, and on OpenCode 2 the dispatch starts inside the worktree with `cd` (`run` has no `--dir`).
+- [ ] Layer 2: the dispatch starts inside a `git worktree`, not the live working tree (`run` has no directory flag).
 - [ ] Layer 3: the target's own in-flight changes committed by explicit path (staged set checked with `git diff --cached --name-only`, other sessions' changes left alone), recovery commit hash recorded.
-- [ ] Layer 4: model+executor pairing matches risk tolerance for the target shape (single child = lower risk, phase parent with multiple children = higher risk, prefer copilot or pair with all of Layers 1–3).
+- [ ] Layer 4: model+executor pairing matches risk tolerance for the target shape (single child = lower risk, phase parent with multiple children = higher risk, prefer copilot or pair with all of Layers 1-3).
 
 ---
 

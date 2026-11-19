@@ -79,7 +79,7 @@ test('session.created invokes the throttled state sweep, pruning a stale dedup e
       fresh: { fingerprint: 'sha256:fresh', advisedAt: freshAdvisedAt },
     });
 
-    const hooks = await MkCompletionSentinelPlugin.server({ directory: projectDir });
+    const hooks = await MkCompletionSentinelPlugin.factory({ directory: projectDir });
     await hooks.event({ event: { type: 'session.created' } });
 
     assert.deepEqual(
@@ -108,7 +108,7 @@ test('kill switch (SYSTEM_COMPLETION_SENTINEL_DISABLED=1) makes session.created 
       };
       writeDedupStore(stateDir, originalStore);
 
-      const hooks = await MkCompletionSentinelPlugin.server({ directory: projectDir });
+      const hooks = await MkCompletionSentinelPlugin.factory({ directory: projectDir });
       await hooks.event({ event: { type: 'session.created' } });
 
       assert.deepEqual(readDedupStore(stateDir), originalStore, 'kill switch must prevent the sweep entirely');
@@ -131,7 +131,7 @@ test('a second session.created on the same plugin instance within the sweep inte
       },
     });
 
-    const hooks = await MkCompletionSentinelPlugin.server({ directory: projectDir });
+    const hooks = await MkCompletionSentinelPlugin.factory({ directory: projectDir });
     await hooks.event({ event: { type: 'session.created' } });
     assert.deepEqual(readDedupStore(stateDir), {}, 'the first sweep must prune the stale entry');
 
@@ -167,7 +167,7 @@ test('an unrelated event type never triggers the sweep', async () => {
     };
     writeDedupStore(stateDir, originalStore);
 
-    const hooks = await MkCompletionSentinelPlugin.server({ directory: projectDir });
+    const hooks = await MkCompletionSentinelPlugin.factory({ directory: projectDir });
     await hooks.event({ event: { type: 'tool.execute.after' } });
 
     assert.deepEqual(readDedupStore(stateDir), originalStore, 'an unrelated event type must never trigger a sweep');

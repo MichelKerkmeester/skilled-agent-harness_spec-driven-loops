@@ -1,0 +1,4 @@
+After the workflow change (four formerly gated suites, no matrix condition):
+# tests 83
+# pass 83
+# fail 0

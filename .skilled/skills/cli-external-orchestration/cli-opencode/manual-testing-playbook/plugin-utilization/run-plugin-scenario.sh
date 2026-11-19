@@ -2,12 +2,12 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: PLUGIN SCENARIO RUNNER
 # ───────────────────────────────────────────────────────────────
-# Runs one live OpenCode session on v1 or v2 through the capture proxy and
-# records what the repository's plugins did: the event stream, every model
-# request's system prompt and tool results, and the plugin log lines and
-# state files the run wrote.
+# Runs one live OpenCode session through the capture proxy and records what the
+# repository's plugins did: the event stream, every model request's system
+# prompt and tool results, and the plugin log lines and state files the run
+# wrote.
 #
-# Usage: run-plugin-scenario.sh <v1|v2> <name> <prompt> [extra opencode args]
+# Usage: run-plugin-scenario.sh <name> <prompt> [extra opencode args]
 #
 # Environment:
 #   EVIDENCE_DIR  where the run files go (default: .skilled/skills/.state/plugin-utilization
@@ -16,19 +16,19 @@
 #   RUN_ALARM     whole seconds before the run is killed (default: 600)
 #   Any plugin switch (AI_SESSION_CHILD, ...) passes through.
 #
-# Writes: <name>.<ver>.events.jsonl, .capture.jsonl, .effects.txt, .exit
+# Writes: <name>.events.jsonl, .capture.jsonl, .effects.txt, .exit
 #
 # Exit Codes:
 #   0 - The run finished; read the files for the verdict
 #   2 - Usage error, a bad RUN_ALARM, an unusable or outside-the-checkout folder, or the capture proxy did not start
 set -uo pipefail
 
-if [[ $# -lt 3 || ( "$1" != v1 && "$1" != v2 ) ]]; then
-  echo "usage: run-plugin-scenario.sh <v1|v2> <name> <prompt> [extra opencode args]" >&2
+if [[ $# -lt 2 ]]; then
+  echo "usage: run-plugin-scenario.sh <name> <prompt> [extra opencode args]" >&2
   exit 2
 fi
-VERSION=$1 NAME=$2 PROMPT=$3
-shift 3
+NAME=$1 PROMPT=$2
+shift 2
 # The name becomes part of every evidence file path, so it must stay a plain slug.
 if ! [[ "$NAME" =~ ^[a-z0-9][a-z0-9-]*$ ]]; then
   echo "name must be lowercase letters, digits and hyphens: $NAME" >&2
@@ -45,8 +45,7 @@ if ! [[ "$ALARM" =~ ^[1-9][0-9]*$ ]]; then
   echo "RUN_ALARM must be a whole number of seconds: $ALARM" >&2
   exit 2
 fi
-MODEL_V1="llmgateway/deepseek-v4.1-flash-1017"
-MODEL_V2="llmgateway/deepseek-v4.1-flash-1017#high"
+MODEL="llmgateway/deepseek-v4.1-flash-1017#high"
 echo "running in $ROOT" >&2
 # Evidence must stay inside this checkout, so a run never writes into another tree.
 ROOT_REAL="$(cd "$ROOT" && pwd -P)" || exit 2
@@ -71,10 +70,10 @@ case "$EVID/" in
   *) echo "EVIDENCE_DIR resolves outside $ROOT: $EVID" >&2; exit 2 ;;
 esac
 
-EVENTS="$EVID/$NAME.$VERSION.events.jsonl"
-CAPTURE="$EVID/$NAME.$VERSION.capture.jsonl"
-EFFECTS="$EVID/$NAME.$VERSION.effects.txt"
-rm -f "$EVENTS" "$CAPTURE" "$CAPTURE.ready" "$EFFECTS" "$EVID/$NAME.$VERSION.exit"
+EVENTS="$EVID/$NAME.events.jsonl"
+CAPTURE="$EVID/$NAME.capture.jsonl"
+EFFECTS="$EVID/$NAME.effects.txt"
+rm -f "$EVENTS" "$CAPTURE" "$CAPTURE.ready" "$EFFECTS" "$EVID/$NAME.exit"
 
 # Plugin logs and runtime state live in these two trees, so a copy taken now
 # lets the report show only what this run appended.
@@ -120,26 +119,18 @@ CONFIG="$(PORT="$PORT" node -e '
 ')"
 
 cd "$ROOT" || exit 2
-if [[ "$VERSION" == v1 ]]; then
-  # Side by side, OpenCode 1 answers only to opencode1; a v1-only machine names it opencode
-  V1_BIN="$(command -v opencode1 || command -v opencode)"
-  OPENCODE_CONFIG_CONTENT="$CONFIG" perl -e 'alarm shift; exec @ARGV' "$ALARM" \
-    "$V1_BIN" run --model "$MODEL_V1" --variant high --format json --dir "$ROOT" "$@" "$PROMPT" \
-    </dev/null >"$EVENTS" 2>&1
-else
-  # OpenCode 2 loads every parent folder's .opencode, so a nested checkout pins
-  # its own config folder or it would load the outer checkout's plugins too.
-  OPENCODE_CONFIG_CONTENT="$CONFIG" OPENCODE_CONFIG_PROJECT_DISABLE=1 OPENCODE_CONFIG_DIR="$ROOT/.opencode" \
-    perl -e 'alarm shift; exec @ARGV' "$ALARM" \
-    opencode run --standalone -m "$MODEL_V2" --format json "$@" "$PROMPT" \
-    </dev/null >"$EVENTS" 2>&1
-fi
+# OpenCode 2 loads every parent folder's .opencode, so a nested checkout pins
+# its own config folder or it would load the outer checkout's plugins too.
+OPENCODE_CONFIG_CONTENT="$CONFIG" OPENCODE_CONFIG_PROJECT_DISABLE=1 OPENCODE_CONFIG_DIR="$ROOT/.opencode" \
+  perl -e 'alarm shift; exec @ARGV' "$ALARM" \
+  opencode run --standalone -m "$MODEL" --format json "$@" "$PROMPT" \
+  </dev/null >"$EVENTS" 2>&1
 STATUS=$?
 kill "$PROXY_PID" 2>/dev/null
 wait "$PROXY_PID" 2>/dev/null
 PROXY_PID=""
 rm -f "$CAPTURE.ready"
-echo "$STATUS" >"$EVID/$NAME.$VERSION.exit"
+echo "$STATUS" >"$EVID/$NAME.exit"
 
 {
   echo "# new log lines"
@@ -156,4 +147,4 @@ echo "$STATUS" >"$EVID/$NAME.$VERSION.exit"
   done | sed "s|$ROOT/||"
 } >"$EFFECTS"
 
-echo "$NAME $VERSION exit=$STATUS requests=$(wc -l <"$CAPTURE" 2>/dev/null | tr -d ' ') evidence=$EVID"
+echo "$NAME exit=$STATUS requests=$(wc -l <"$CAPTURE" 2>/dev/null | tr -d ' ') evidence=$EVID"

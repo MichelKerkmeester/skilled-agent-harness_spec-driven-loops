@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # Fan-out CLI lineage driver
@@ -17,8 +17,8 @@ version: 1.4.3.0
 ## 1. OVERVIEW
 
 `fanout-run.cjs` bridges the pool primitive and the actual CLI executor subprocesses. It
-parses the fanout config JSON, filters to CLI lineages (native lineages are handled by the
-YAML `step_fanout_spawn_native` agent dispatch), creates `{base}/lineages/{label}/` and
+parses the fanout config JSON, refuses any lineage whose kind is `native` before the pool
+starts, creates `{base}/lineages/{label}/` and
 `{label}/.executor-state/` directories per lineage, builds a "run the full loop" prompt,
 constructs the per-kind CLI command (`opencode run` + stdin, `claude -p`, `opencode run` +
 `</dev/null`), sets
@@ -43,7 +43,11 @@ timeoutSeconds * 2, 4h)`. TSX bootstrap (mirrors `convergence.cjs` pattern) ensu
 TypeScript imports (`parseFanoutConfig`, `expandLineages`) resolve in the CJS context. Exit
 codes: 0=all ok, 2=some failed, 3=all failed or refused before start. A research or review
 matrix that expands to one lineage is refused with exit 3 before any lineage directory or
-process exists, unless `--allow-single-lineage` is passed.
+process exists, unless `--allow-single-lineage` is passed. A matrix that holds a `native`
+lineage is refused with exit 3 before any lineage directory or process exists, naming the
+offending labels: `native fan-out lineages are not supported`. `native` stays the single,
+in-session executor, so the default `native` executor with `--count` greater than 1 is
+refused the same way, and every fan-out lineage needs a `cli-*` kind.
 
 A `cli-deepseek-harness` lineage is built by `buildDshLineageCommand`. It first checks that
 `dsh --version` prints the pinned release, running that probe in a throwaway home outside the
@@ -86,7 +90,7 @@ failure look impossible on a single-lineage run.
 
 | File | Role |
 |---|---|
-| `tests/unit/fanout-run.vitest.ts` | 5 tests: native-only config returns early (no pool spawn), bad JSON config exits 3, missing required args exits 3, 2-lineage pool creates distinct dirs + ledger + summary, same-kind replica state dirs are distinct |
+| `tests/unit/fanout-run.vitest.ts` | 5 tests: native lineage refusal (exit 3, names the lineage, spawns nothing), bad JSON config exits 3, missing required args exits 3, 2-lineage pool creates distinct dirs + ledger + summary, same-kind replica state dirs are distinct |
 
 ---
 

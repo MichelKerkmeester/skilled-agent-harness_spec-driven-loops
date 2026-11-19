@@ -90,7 +90,10 @@ function assertPluginDefinition(plugin, name) {
   );
   assert.equal(typeof plugin.id, 'string', name + ' must have a string id');
   assert.equal(typeof plugin.setup, 'function', name + ' must have a setup function');
-  assert.equal(typeof plugin.server, 'function', name + ' must have a server function');
+  assert.equal(Object.hasOwn(plugin, 'server'), false, name + ' must not expose a server entry point');
+  const factory = Object.getOwnPropertyDescriptor(plugin, 'factory');
+  assert.equal(typeof factory?.value, 'function', name + ' must carry its hook factory');
+  assert.equal(factory.enumerable, false, name + ' factory must be non-enumerable');
 }
 
 function createEventStream(signal) {
@@ -592,7 +595,7 @@ test('opencode-goal records v2 assistant evidence and token usage from session e
         path.join(PLUGIN_DIR, 'lib', 'opencode-goal-core.js'),
       ).href;
       const goalCoreModule = await import(goalCoreUrl);
-      const goalCore = goalCoreModule.getGoalCore(plugin.server);
+      const goalCore = goalCoreModule.getGoalCore(plugin.factory);
       assert.equal(
         (await goalCore.readGoal(sessionID, { stateDir: GOAL_STATE_DIR })).status,
         'active',

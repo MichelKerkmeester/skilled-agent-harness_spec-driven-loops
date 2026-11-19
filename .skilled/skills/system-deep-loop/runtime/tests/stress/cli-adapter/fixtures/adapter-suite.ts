@@ -95,8 +95,7 @@ function expectSuccessArgs(kind: AdapterKind, args: readonly string[]): void {
   switch (kind) {
     case 'cli-opencode':
       expect(args).toEqual(expect.arrayContaining([
-        'run', '--model', MODEL_BY_KIND[kind], '--format', 'json',
-        '--dir', '--dangerously-skip-permissions', '--variant', 'high',
+        'run', '--standalone', '-m', `${MODEL_BY_KIND[kind]}#high`, '--format', 'json', '--auto',
       ]));
       break;
     case 'cli-pi':
@@ -441,7 +440,7 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
       if (kind === 'cli-opencode') {
         const result = await runBuiltCommand(fixture, fixture.root, 'danger-full-access');
         expect(result.status).toBe(0);
-        expect(readAdapterCaptures(fixture)[0].args).toContain('--dangerously-skip-permissions');
+        expect(readAdapterCaptures(fixture)[0].args).toContain('--auto');
         return;
       }
       const readOnly = await runBuiltCommand(fixture, fixture.root, 'read-only');

@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.31.0
+version: 1.4.33.0
 ---
 
 # cli-opencode
@@ -48,7 +48,7 @@ A sibling CLI dispatch sends a prompt to one provider's binary behind a thin wra
 | **Provider and model catalog** | every reachable provider and model id, with the effort level for each |
 | **Agent delegation** | the project agents under `.skilled/agents/`, with the primary and subagent rules in `references/agent-delegation.md` |
 
-**Verified versions.** `SKILL.md`, the CLI reference and the install guide are verified against OpenCode 2.3.0 and OpenCode 1.19.4 as of 2026-11-14. The other references still carry an earlier read of 2.0.32 and 1.19.3. OpenCode 2 is the expected version. OpenCode 1 stays supported as a fallback for readers who have not updated. The capability delta between the two lives in [`references/install-and-versions.md`](./references/install-and-versions.md).
+**Pinned version.** OpenCode 2 is the only supported major; OpenCode 1 support was removed in skill version 2.0.0.0. The repository pins OpenCode 2 at 2.3.2, and the setup helper installs exactly that pin. Flag observations that name 2.0.32 were read on that release. A binary that reports major 1 is `unsupported`: a deep-loop lineage refuses it, and the dispatch guard checks it against every rule. The install reference is [`references/install-and-versions.md`](./references/install-and-versions.md).
 
 ---
 
@@ -57,10 +57,10 @@ A sibling CLI dispatch sends a prompt to one provider's binary behind a thin wra
 **Step 1: Find the binary.**
 
 ```bash
-command -v opencode2 || command -v opencode
+command -v opencode
 ```
 
-Expect one resolved path when either name is installed. Expect no output when neither resolves. The resolver prefers `opencode2` and falls back to `opencode`. `OPENCODE_BIN` overrides both. A side-by-side layout has no `opencode2`: there `opencode` is OpenCode 2 and OpenCode 1 answers to `opencode1`. If nothing prints, install with `brew install opencode` or `curl -fsSL https://opencode.ai/install | bash`.
+Expect one resolved path. Expect no output when the name does not resolve. `OPENCODE_BIN` names a different binary when it is set. If nothing prints, install with `brew install opencode` or `curl -fsSL https://opencode.ai/v2/install | bash`.
 
 **Step 2: Confirm the major version.**
 
@@ -68,7 +68,7 @@ Expect one resolved path when either name is installed. Expect no output when ne
 opencode --version
 ```
 
-Expect `opencode v2.3.0` on OpenCode 2 or `1.19.4` on OpenCode 1. Either major is supported. A different version is drift. [`references/install-and-versions.md`](./references/install-and-versions.md) explains what moved between the baselines.
+Expect `opencode v2.3.2`. A major-1 line is `unsupported`: a deep-loop lineage refuses it, and the dispatch guard checks it against every rule. Anything else is `unknown`. [`references/install-and-versions.md`](./references/install-and-versions.md) explains the detection and the install.
 
 **Step 3: Confirm provider auth.**
 
@@ -76,7 +76,7 @@ Expect `opencode v2.3.0` on OpenCode 2 or `1.19.4` on OpenCode 1. Either major i
 opencode auth list
 ```
 
-Expect a list of configured providers under their display names, such as `DevPass (LLM Gateway)`. On OpenCode 1 the listing command is `opencode providers list`. If the provider you intend to dispatch through is absent, ask before you substitute another model.
+Expect a list of configured providers under their display names, such as `DevPass (LLM Gateway)`. If the provider you intend to dispatch through is absent, ask before you substitute another model.
 
 **Step 4: Run the default dispatch.**
 
@@ -90,33 +90,19 @@ cd "$REPO_ROOT" && opencode run --standalone \
 
 Expect one JSON object per line on stdout. Each event carries `type`, `timestamp`, `sessionID` and a `part` payload. The reply text arrives in `text` events. The process exits 0 when the run completes.
 
-On OpenCode 1, the same task uses this shape:
-
-```bash
-opencode run \
-  --model llmgateway/deepseek-v4.1-flash-1017 \
-  --variant max \
-  --format json \
-  --dir "$REPO_ROOT" \
-  "Summarize references/integration-patterns.md in one paragraph." \
-  </dev/null
-```
-
-Expect the same event names and the same fields as the OpenCode 2 run. On a side-by-side install, run the line as `opencode1`.
-
 **Step 5: Ask for a parallel detached session.**
 
-Add `parallel detached` or `worker farm` to a request you send from inside OpenCode. The guard passes it because the run starts a separate session with its own id. On OpenCode 1 you can bind a known port:
+Add `parallel detached` or `worker farm` to a request you send from inside OpenCode. The guard passes it because the run starts a separate session with its own id.
 
 ```bash
-opencode run --port 4096 \
-  --model llmgateway/deepseek-v4.1-flash-1017 --variant max \
-  --format json --dir "$REPO_ROOT" \
+cd "$REPO_ROOT" && opencode run --standalone \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
+  --format json \
   "Run a parallel research branch for the approved spec folder." \
   </dev/null &
 ```
 
-Expect the shell prompt to return at once and the run to appear under its own `sessionID`. `opencode export <sessionID>` prints that session's log. OpenCode 2 has no `--port` on `run`, so the new session comes from the run itself.
+Expect the shell prompt to return at once and the run to appear under its own `sessionID`. `opencode session export <sessionID>` prints that session's log. `run` has no `--port`, so the new session comes from the run itself.
 
 ---
 
@@ -159,9 +145,9 @@ Each run is stateless by default. Keep every fact the session needs in the promp
 
 ### The Two Run Rules
 
-**Rule 1: close stdin on every non-interactive run.** Append `</dev/null` after the prompt argument and before any file redirect. On OpenCode 1 the CLI reads stdin at startup, so a run that sends stdout and stderr to files waits forever at 0% CPU when stdin stays open. Whether OpenCode 2 shares the hang is unverified, so close stdin on both. A foreground pipe such as `| tail` closes stdin for you. A background run inside a `while read` loop does not.
+**Rule 1: close stdin on every non-interactive run.** Append `</dev/null` after the prompt argument and before any file redirect. A run that sends stdout and stderr to files can wait forever at 0% CPU when stdin stays open. The recorded hang is from OpenCode 1 (v1.14.39), and no OpenCode 2 reproduction is recorded, so the redirect stays required. A foreground pipe such as `| tail` closes stdin for you. A background run inside a `while read` loop does not.
 
-**Rule 2: omit `--agent` on a top-level run.** The default agent covers the general case. Omitting the flag is how you select it. On OpenCode 1 a named agent such as `general` is not a primary agent, so the CLI rejects it at the top level. Pass `--agent` only for a primary profile such as `plan` or `orchestrate`, and only after `opencode run --help` confirms the top-level form. For any other role, state the role in the prompt body, as in 'Act as a code-review agent: ...'.
+**Rule 2: omit `--agent` on a top-level run.** The default agent covers the general case. Omitting the flag is how you select it. Pass `--agent` only for a primary profile such as `plan` or `orchestrate`, and only after `opencode run --help -m llmgateway/deepseek-v4.1-flash-1017 </dev/null` confirms the top-level form. For any other role, state the role in the prompt body, as in 'Act as a code-review agent: ...'.
 
 ### The Self-Invocation Guard
 
@@ -185,13 +171,13 @@ cd "$REPO_ROOT" && SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 \
 
 Expect the same event stream a plain run returns. The variables mark the run as a bound child, and the spec-folder line tells it where to write. The prompt also has to state the exemption, because a model cannot see an environment variable.
 
-Keep the prompt's `ALLOWED WRITE PATHS` and `BANNED OPERATIONS` lines literal. For a run with `--dangerously-skip-permissions` against a populated worktree, apply the four-layer mitigation in `SKILL.md` ALWAYS rule 15 before you dispatch. It starts with a literal write scope in the prompt and a fresh git worktree as the working directory. The rest of the checklist is in [`references/destructive-scope-violations.md`](./references/destructive-scope-violations.md). The permissions-matrix gate is built and unit tested but has no production caller, so a `--permissions-matrix` config enforces nothing today.
+Keep the prompt's `ALLOWED WRITE PATHS` and `BANNED OPERATIONS` lines literal. For a run with `--auto` against a populated worktree, apply the four-layer mitigation in `SKILL.md` ALWAYS rule 15 before you dispatch. It starts with a literal write scope in the prompt and a fresh git worktree as the working directory. The rest of the checklist is in [`references/destructive-scope-violations.md`](./references/destructive-scope-violations.md). The permissions-matrix gate is built and unit tested but has no production caller, so a `--permissions-matrix` config enforces nothing today.
 
 ### Providers And Models
 
-Run the auth pre-flight once per session. On OpenCode 2, list models and filter for the `<provider-id>/` prefix, because `models` takes no provider argument there. On OpenCode 1 the form is `opencode models <provider-id>`. The exact command and its decision tree are in [`references/cli-reference.md`](./references/cli-reference.md) §4.
+Run the auth pre-flight once per session. List models with `opencode models --standalone` and filter for the `<provider-id>/` prefix, because `models` takes no provider argument. The exact command and its decision tree are in [`references/cli-reference.md`](./references/cli-reference.md) §4.
 
-The roster is closed. [`references/providers-and-models.md`](./references/providers-and-models.md) lists every provider, model id, effort level and dispatch shape in scope. A model outside that list is out of scope. Effort rides on the model id as `#<level>` on OpenCode 2 and on `--variant` on OpenCode 1. If the provider a dispatch needs is missing, ask the operator before you change the model.
+The roster is closed. [`references/providers-and-models.md`](./references/providers-and-models.md) lists every provider, model id, effort level and dispatch shape in scope. A model outside that list is out of scope. Effort rides on the model id as `#<level>`. If the provider a dispatch needs is missing, ask the operator before you change the model.
 
 ### Agents And Routing
 
@@ -207,7 +193,7 @@ On a bare run that names no agent, inline the persona block in the prompt. The c
 | [`ROUTER.md`](./ROUTER.md) | Machine router: the intent and resource maps and the loading levels |
 | [`hard-rules.json`](./hard-rules.json) | Preflight checks read before a dispatch |
 | [`references/cli-reference.md`](./references/cli-reference.md) | Every subcommand and `run` flag, plus the version drift table |
-| [`references/install-and-versions.md`](./references/install-and-versions.md) | Install layouts and the side-by-side launcher, plus the capability delta |
+| [`references/install-and-versions.md`](./references/install-and-versions.md) | Install reference, version detection and removing an older install |
 | [`references/providers-and-models.md`](./references/providers-and-models.md) | The closed provider roster and the effort ladder for each model id |
 | [`references/integration-patterns.md`](./references/integration-patterns.md) | The use cases and the decision tree, plus the silent stdin trap |
 | [`references/agent-delegation.md`](./references/agent-delegation.md) | Agent classes and the routing matrix, plus the leaf constraints |
@@ -222,7 +208,7 @@ On a bare run that names no agent, inline the persona block in the prompt. The c
 | [`assets/permissions-matrix.example-readonly.json`](./assets/permissions-matrix.example-readonly.json) | Example matrix for read-only corpus inspection |
 | [`assets/permissions-matrix.example-packet-local.json`](./assets/permissions-matrix.example-packet-local.json) | Example matrix that confines writes to the active packet |
 | [`assets/permissions-matrix.example-repo-wide.json`](./assets/permissions-matrix.example-repo-wide.json) | Example matrix for `.skilled` writes with explicit denials |
-| [`scripts/opencode-setup.sh`](./scripts/opencode-setup.sh) | Builds the v2 or v1 layout, alone or side by side, and reports what each name resolves to |
+| [`scripts/opencode-setup.sh`](./scripts/opencode-setup.sh) | Installs OpenCode 2, removes an older install and reports what each name resolves to |
 | [`scripts/probe-worktree-confinement.cjs`](./scripts/probe-worktree-confinement.cjs) | Probes whether a dispatch shape keeps tool paths inside the worktree |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Per-feature scenarios grouped by category |
 | [`benchmark/README.md`](./benchmark/README.md) | Index of the archived validation reports |
@@ -270,15 +256,15 @@ If you already run inside one runtime, the matching cli-X skill refuses to load.
 
 | What you see | Why | Fix |
 |---|---|---|
-| `command not found: opencode` | The CLI is not installed or the shell has not reloaded | `brew install opencode` or `curl -fsSL https://opencode.ai/install \| bash`, then restart the terminal |
+| `command not found: opencode` | The CLI is not installed or the shell has not reloaded | `brew install opencode` or `curl -fsSL https://opencode.ai/v2/install \| bash`, then restart the terminal |
 | The run hangs at 0% CPU after the snapshot line | Missing `</dev/null` on a non-interactive run | Append `</dev/null` after the prompt and before any `> stdout.log 2> stderr.log` redirect |
-| The run prints nothing and retries for a long time | The default provider is out of quota, so every attempt returns `429` | Pin a model with live quota. Diagnose with `--print-logs --log-level DEBUG` and look for `stream error` |
-| `--agent general` warns or fails | OpenCode 1 treats `general` as a subagent at the top level | Omit `--agent`. Route a subagent through `--agent orchestrate` |
-| `provider/model not found` or `401 Unauthorized` | The provider is not configured on this machine | `opencode auth list` on OpenCode 2 or `opencode providers list` on OpenCode 1, then `opencode auth login <provider>` on OpenCode 2 or `opencode providers login <provider>` on OpenCode 1 |
+| The run prints nothing and retries for a long time | The default provider is out of quota, so every attempt returns `429` | Pin a model with live quota. Diagnose with `--print-logs --log-level debug` and look for `stream error` |
+| `--agent general` warns or fails | `general` is a subagent, not a primary agent | Omit `--agent`. Route a subagent through `--agent orchestrate` |
+| `provider/model not found` or `401 Unauthorized` | The provider is not configured on this machine | `opencode auth list`, then `opencode auth login <provider>` |
 | The event stream is empty | The format defaulted to formatted output | Force `--format json` |
 | `Self-invocation refused` | The caller already runs inside OpenCode | Use a different runtime, exit the current session, open a fresh shell or restate with `parallel detached` |
-| `Session sharing has been discontinued` | `--share` was passed on OpenCode 1.19.3 | Drop the flag. OpenCode 2 `run` has no share flag, so there is no URL to publish |
-| `unknown option --variant` on OpenCode 1 | The binary is older than the documented baseline | Run `opencode --version` and `opencode run --help`, then upgrade |
+| `--share` publishes nothing | `run` has no share flag | Drop the flag. There is no URL to publish |
+| `opencode --version` prints a 1.x line | An older install still answers to the name | Run `opencode-setup.sh remove-v1`, then `opencode-setup.sh v2` |
 | The context is too large or the reply is truncated | The prompt names broad paths instead of specific files | Name the files, pass `-f` and split a large task |
 
 ---
@@ -291,19 +277,19 @@ A: A sibling skill sends a prompt to one provider's binary behind a thin wrapper
 
 **Q: Why should I omit `--agent`?**
 
-A: The default agent covers the general case. Omitting the flag selects it. On OpenCode 1 a named agent such as `general` is not a primary agent, so the CLI rejects it at the top level. For a specific profile, describe the role in the prompt body. Route through `orchestrate` when the target is a subagent.
+A: The default agent covers the general case. Omitting the flag selects it. For a specific profile, describe the role in the prompt body. Route through `orchestrate` when the target is a subagent.
 
 **Q: Why does a non-interactive dispatch hang without `</dev/null`?**
 
-A: OpenCode 1 reads stdin at startup, and OpenCode 2 is unverified. When stdout and stderr go to files, stdin stays open and the process waits forever at 0% CPU. `</dev/null` gives it an immediate end of input.
+A: When stdout and stderr go to files, stdin stays open and the process can wait forever at 0% CPU. `</dev/null` gives it an immediate end of input. The recorded hang is from OpenCode 1 (v1.14.39), and no OpenCode 2 reproduction is recorded, so the redirect stays required.
 
 **Q: Is there a share URL?**
 
-A: No. OpenCode 2 `run` has no `--share` flag. On OpenCode 1.19.3 the flag is a deprecated no-op that prints `Session sharing has been discontinued` and publishes nothing. Inspect a run with `opencode export <sessionID>` instead.
+A: No. `run` has no `--share` flag, so there is nothing to publish. Inspect a run with `opencode session export <sessionID>` instead.
 
 **Q: How should I choose a model?**
 
-A: Start from the shipped command, which pins one model at its `max` effort level on both versions. [`references/providers-and-models.md`](./references/providers-and-models.md) lists every other id in scope and the effort ladder each one accepts. If the provider you need is not configured, ask before you change the model, because a silent substitution is the failure the pre-flight exists to catch.
+A: Start from the shipped command, which pins one model at its `max` effort level. [`references/providers-and-models.md`](./references/providers-and-models.md) lists every other id in scope and the effort ladder each one accepts. If the provider you need is not configured, ask before you change the model, because a silent substitution is the failure the pre-flight exists to catch.
 
 ---
 
@@ -318,7 +304,6 @@ The packet ships a playbook with per-feature scenarios, plus checks any reader c
 | README references | `python3 .skilled/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py .skilled/skills/cli-external-orchestration/cli-opencode/README.md` | `SUMMARY files=1 pass=1 fail=0` |
 | Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md` | `✅ VALID` with one document-type warning |
 | Default dispatch | `cd . && opencode run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json "Say hello" </dev/null` | JSON events with a `sessionID` on every line, exit 0 |
-| Fallback dispatch | `opencode run --model llmgateway/deepseek-v4.1-flash-1017 --variant max --format json --dir . "Say hello" </dev/null` | The same event names, exit 0 |
 
 The playbook groups its scenarios by category: CLI invocation, external dispatch, provider and model routing, agent routing, session continuity, integration patterns, prompt templates, parallel detached sessions, cross-repo and cross-server dispatch, routing recall, plugin utilization, the git preflight advisory, the goal hook and the stress matrix.
 
@@ -331,7 +316,7 @@ The playbook groups its scenarios by category: CLI invocation, external dispatch
 | [`SKILL.md`](./SKILL.md) | Runtime instructions and the full rule set |
 | [`ROUTER.md`](./ROUTER.md) | Machine router: the intent and resource maps and the loading levels |
 | [`references/cli-reference.md`](./references/cli-reference.md) | Complete subcommand, flag, auth and version drift reference |
-| [`references/install-and-versions.md`](./references/install-and-versions.md) | Install layouts and the side-by-side launcher, plus the capability delta |
+| [`references/install-and-versions.md`](./references/install-and-versions.md) | Install reference, version detection and removing an older install |
 | [`references/providers-and-models.md`](./references/providers-and-models.md) | Provider and model catalog, with the effort ladder for each |
 | [`references/integration-patterns.md`](./references/integration-patterns.md) | The use cases and the decision tree, plus the stdin trap |
 | [`references/agent-delegation.md`](./references/agent-delegation.md) | Agent roster and routing matrix, plus the leaf constraints |
