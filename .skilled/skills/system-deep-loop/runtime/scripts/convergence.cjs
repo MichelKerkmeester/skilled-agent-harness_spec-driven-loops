@@ -1394,8 +1394,10 @@ function iterationBoundToNode(record, nodeId, activeByIteration) {
     && activeByIteration.get(iteration) === nodeId;
 }
 
+// The leaf records findingsNew as a list, a severity count map or a count.
 function recordsNewFinding(row) {
   const recorded = row.findingsNew;
+  if (Array.isArray(recorded)) return recorded.length > 0;
   if (typeof recorded === 'number') return recorded > 0;
   if (!isPlainObject(recorded)) return false;
   return Object.values(recorded).some((count) => typeof count === 'number' && count > 0);

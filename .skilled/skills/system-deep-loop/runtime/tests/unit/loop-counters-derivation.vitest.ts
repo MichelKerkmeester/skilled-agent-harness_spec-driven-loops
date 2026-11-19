@@ -740,6 +740,11 @@ describe('per-node stuck accounting under expansive depth', () => {
     expect(convergence.deriveLoopCounters(rows, { loopType: 'review', nodeId: 'F-2-007' }).stuckCount).toBe(0);
     expect(convergence.deriveLoopCounters([pass(12, 'F-2-007', 0.05)], { loopType: 'review', nodeId: 'F-2-007' }).stuckCount)
       .toBe(1);
+    // The prompt pack writes findingsNew as a list of the new findings.
+    expect(convergence.deriveLoopCounters(
+      [{ ...pass(12, 'F-2-007', 0.05), findingsNew: [{ id: 'F-NEW', severity: 'P2' }] }],
+      { loopType: 'review', nodeId: 'F-2-007' },
+    ).stuckCount).toBe(0);
     // The lineage-wide count keeps its ratio-only rule.
     expect(convergence.deriveLoopCounters(rows, { loopType: 'review' }).stuckCount).toBe(1);
   });
