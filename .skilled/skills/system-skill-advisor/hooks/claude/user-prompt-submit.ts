@@ -689,9 +689,7 @@ export async function handleClaudeUserPromptSubmit(
       const emitted = skippedResult
         ? renderAdvisorFallbackDirective(renderOptions, skippedResult)
         : renderAdvisorTimeoutFallback(renderOptions);
-      const delivery = input
-        ? applyDirectiveLifecycle(emitted, input, dependencies)
-        : { effectiveEmitted: emitted };
+      const delivery = applyDirectiveLifecycle(emitted, input, dependencies);
       return finishAdvisorDelivery(delivery.effectiveEmitted, delivery.commitFullReceipt, deliveryState, runtime);
     } catch {
       return {};
