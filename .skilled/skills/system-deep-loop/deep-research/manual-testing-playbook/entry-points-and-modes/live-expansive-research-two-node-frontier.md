@@ -1,7 +1,7 @@
 ---
 title: "DR-077 -- Live expansive research with two frontier nodes"
 description: "This scenario validates a low-token live expansive research run for `DR-077`. It focuses on a two-node frontier cap, three deterministic iterations and the dashboard, node-store and iteration-count signals an operator can read afterwards."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # DR-077 -- Live expansive research with two frontier nodes
@@ -31,6 +31,7 @@ Operators run this as a real orchestrator-led check on a fixture spec folder, th
 - Expected signals: `research/frontier-nodes.jsonl` holds two depth-1 node ids and no node deeper than two; `research/deep-research-dashboard.md` contains `## 6B. FRONTIER`; `research/iterations/` holds exactly three `iteration-NNN.md` files; the config shows `maxIterations` 3, `expansiveDepth.maxDepth` 2 and `expansiveDepth.maxFrontierNodes` 2.
 - Desired user-visible outcome: The operator is told the run used three iterations, the frontier held two nodes, no node went past depth two, and where the dashboard and node store are.
 - Pass/fail: PASS if the node count, maximum depth, dashboard section, iteration count and config values all match the expected signals; FAIL if any one differs, including a third depth-1 node or a fourth iteration.
+- Observed cost: about 28 minutes; 0.69M input, 0.07M output, 0.06M reasoning and 17.1M cache-read tokens over three iterations.
 
 ---
 

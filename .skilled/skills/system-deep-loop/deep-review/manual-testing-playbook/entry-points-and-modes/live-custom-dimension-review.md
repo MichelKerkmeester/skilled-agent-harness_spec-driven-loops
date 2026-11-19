@@ -1,7 +1,7 @@
 ---
 title: "DRV-085 -- Live review of one custom dimension"
 description: "This scenario validates a low-token live review with one custom dimension for `DRV-085`. It focuses on the setup answer `correctness, performance`, two deterministic iterations and the coverage evidence that performance was reviewed."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DRV-085 -- Live review of one custom dimension
@@ -31,6 +31,7 @@ Operators run this as a real orchestrator-led review against a fixture spec fold
 - Expected signals: The config lists `reviewDimensions` as `correctness` then `performance`; `review/iterations/` holds exactly two files; the second iteration's focus and dimensions name performance; the dashboard's `## 5. DIMENSION COVERAGE` table marks performance `covered`; no `review/frontier-nodes.jsonl` exists because the depth mode stayed default.
 - Desired user-visible outcome: The operator is told correctness ran first, performance ran second, performance is covered, and the run took two iterations with no frontier.
 - Pass/fail: PASS if the config names both dimensions, the second iteration and the dashboard prove performance, the iteration count is two and no frontier store exists; FAIL if performance is missing from any of them or a third iteration runs.
+- Observed cost: about 36 minutes; 0.56M input, 0.05M output, 0.09M reasoning and 15.4M cache-read tokens over two iterations.
 
 ---
 
