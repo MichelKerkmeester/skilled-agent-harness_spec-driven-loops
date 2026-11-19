@@ -6,7 +6,7 @@ trigger_phrases:
   - "advisor feature catalog"
   - "native advisor features"
   - "skill advisor inventory"
-version: 0.8.4.0
+version: 0.8.5.0
 ---
 
 # Skill Advisor: Feature Catalog
@@ -17,7 +17,7 @@ This catalog is the current inventory for the skill advisor. The package source 
 
 ## 1. OVERVIEW
 
-The catalog covers 46 features across 7 groups. Group 01 owns daemon correctness. Groups 02-03 own the index and lifecycle surface that feeds the scorer. Group 04 owns scoring. Group 06 owns the command surface: the nine CLI commands plus the stable compat entrypoint. Groups 07-08 cover runtime integrations, OpenCode plugins and Python compatibility.
+The catalog covers 48 features across 7 groups. Group 01 owns daemon correctness. Groups 02-03 own the index and lifecycle surface that feeds the scorer. Group 04 owns scoring. Group 06 owns the command surface: the nine CLI commands plus the stable compat entrypoint. Groups 07-08 cover runtime integrations, OpenCode plugins and Python compatibility.
 
 > **Numbering note (gap-05).** The directory layout skips slot `05--*` between `scorer-fusion` and `cli-surface`. This is an intentional historical reservation from initial scaffold design that marked the boundary between the core scoring pipeline (groups 01-04) and the integration layer (groups 06-08). The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
@@ -26,9 +26,9 @@ The catalog covers 46 features across 7 groups. Group 01 owns daemon correctness
 | [daemon-and-freshness](../feature-catalog/daemon-and-freshness) | 7 | Watcher, lease, lifecycle, generation, trust state, rebuild-from-source, cache invalidation |
 | [auto-indexing](../feature-catalog/auto-indexing) | 8 | Derived extraction, sanitizer, provenance, sync, anti-stuffing, DF/IDF corpus, doc-frontmatter harvest, private skill containment |
 | [lifecycle-routing](../feature-catalog/lifecycle-routing) | 5 | Age haircut, supersession, archive handling, schema migration, rollback |
-| [scorer-fusion](../feature-catalog/scorer-fusion) | 9 | 5-lane fusion, projection, ambiguity, attribution, ablation, weights config, doctor command routing, command meaning matching, executor delegation |
+| [scorer-fusion](../feature-catalog/scorer-fusion) | 10 | 5-lane fusion, projection, ambiguity, attribution, ablation, weights config, doctor command routing, command meaning matching, executor delegation, pasted-reply stripping |
 | [cli-surface](../feature-catalog/cli-surface) | 10 | `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, stable compat entrypoint, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`, daemon-backed `skill-advisor` CLI |
-| [hooks-and-plugin](../feature-catalog/hooks-and-plugin) | 4 | The Claude hook, the OpenCode plugin, the `/goal` plugin and the Pi prompt advisor |
+| [hooks-and-plugin](../feature-catalog/hooks-and-plugin) | 5 | The Claude hook, the OpenCode plugin, the `/goal` plugin, the Pi prompt advisor and the weak follow-up route-receipt guard |
 | [python-compat](../feature-catalog/python-compat) | 3 | Python CLI shim, regression suite, bench runner |
 
 Baseline numbers (remediation SHA `97a318d83`):
@@ -100,6 +100,7 @@ Baseline numbers (remediation SHA `97a318d83`):
 | Doctor command routing | [scorer-fusion/doctor-command-routing.md](./scorer-fusion/doctor-command-routing.md) |
 | Command meaning matching | [scorer-fusion/command-meaning-matching.md](./scorer-fusion/command-meaning-matching.md) |
 | Executor delegation and workflow-owner guard | [scorer-fusion/executor-delegation.md](./scorer-fusion/executor-delegation.md) |
+| Pasted reply stripping | [scorer-fusion/pasted-reply-stripping.md](./scorer-fusion/pasted-reply-stripping.md) |
 
 ---
 
@@ -128,6 +129,7 @@ Baseline numbers (remediation SHA `97a318d83`):
 | Pi prompt advisor extension | [hooks-and-plugin/pi-prompt-advisor.md](../feature-catalog/hooks-and-plugin/pi-prompt-advisor.md) |
 | OpenCode plugin | [hooks-and-plugin/opencode-plugin-bridge.md](../feature-catalog/hooks-and-plugin/opencode-plugin-bridge.md) |
 | Goal OpenCode plugin (`/goal`, `opencode_goal`, `opencode_goal_status`) | [hooks-and-plugin/goal-opencode-plugin.md](../feature-catalog/hooks-and-plugin/goal-opencode-plugin.md) |
+| Weak follow-up route-receipt guard | [hooks-and-plugin/weak-follow-up-route-receipt-guard.md](./hooks-and-plugin/weak-follow-up-route-receipt-guard.md) |
 
 ---
 
