@@ -20,6 +20,7 @@ import re
 import sqlite3
 import sys
 import tempfile
+import time
 
 # ───────────────────────────────────────────────────────────────
 # 1. MODULE LOADING
@@ -2557,6 +2558,37 @@ def test_pasted_reply_strip_parity():
             ok(name)
         else:
             fail_test(name, f"got={stripped!r} expected={case['expected']!r}")
+
+    # A long whitespace run with newlines once made the marker search backtrack
+    # for seconds, so the strip has to stay linear on it.
+    name = "STRIP-LINEAR: a 64K whitespace run with newlines strips in under 500 ms"
+    slow_input = "Claude replied: ok." + " \n" * 32768 + "x"
+    started = time.perf_counter()
+    try:
+        stripped = advisor.strip_leading_pasted_reply(slow_input)
+    except Exception as exc:
+        fail_test(name, str(exc))
+    else:
+        elapsed_ms = (time.perf_counter() - started) * 1000
+        if stripped == slow_input and elapsed_ms < 500:
+            ok(name, f"{elapsed_ms:.0f} ms")
+        else:
+            fail_test(name, f"{elapsed_ms:.0f} ms")
+
+    for label, marker_input in (
+        ("an indented marker after a newline", "Claude replied: done.\n   Now: refactor the store"),
+        ("a marker after a CRLF line break", "Claude replied: done.\r\nNow: refactor the store"),
+    ):
+        name = f"STRIP-MARKER: keeps the task after {label}"
+        try:
+            stripped = advisor.strip_leading_pasted_reply(marker_input)
+        except Exception as exc:
+            fail_test(name, str(exc))
+            continue
+        if stripped == "refactor the store":
+            ok(name)
+        else:
+            fail_test(name, f"got={stripped!r}")
 
     # The strip runs at the entry of analyze_request, so a pasted reply and the
     # bare task score the same.
