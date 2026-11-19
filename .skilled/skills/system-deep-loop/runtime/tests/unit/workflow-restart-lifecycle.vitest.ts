@@ -956,6 +956,63 @@ describe('completed-run extension', () => {
     expect(lastJsonLine(result.stdout).warning).toBeNull();
   });
 
+  // With convergence mode off the stop decision continues before it forms any
+  // candidate, so all_questions_answered cannot fire and a warning would be false.
+  it('research: a run with convergence mode off gets no re-stop warning', () => {
+    const sessionId = 'extend-research-convergence-off';
+    const run = openResearchRun(sessionId);
+    appendResearchIteration(run, sessionId, 1, 'complete');
+    const written = readJson(run.config);
+    writeFileSync(run.config, JSON.stringify({
+      ...written,
+      status: 'complete',
+      stopPolicy: 'convergence',
+      antiConvergence: { minIterations: 1, convergenceMode: 'off' },
+    }));
+    const result = extendResearch(run, '1');
+    expect(result.status, String(result.stdout) + String(result.stderr)).toBe(0);
+    expect(lastJsonLine(result.stdout).warning).toBeNull();
+  });
+
+  it('review: a run with convergence mode off gets no re-stop warning', () => {
+    const dir = join(makeTempDir('extend-review-convergence-off-'), 'review');
+    mkdirSync(dir, { recursive: true });
+    const config = join(dir, 'deep-review-config.json');
+    const stateLog = join(dir, 'deep-review-state.jsonl');
+    writeFileSync(config, JSON.stringify({
+      topic: 'Review: the extension',
+      mode: 'review',
+      sessionId: '2026-11-17T00:00:00Z',
+      parentSessionId: null,
+      lineageMode: 'new',
+      generation: 1,
+      reviewTarget: 'the extension',
+      reviewTargetType: 'files',
+      reviewDimensions: ['correctness'],
+      maxIterations: 1,
+      maxDurationMinutes: 120,
+      createdAt: minutesAgo(30),
+      antiConvergence: { convergenceMode: 'off', divergent: {}, stopPolicy: 'convergence' },
+      stopPolicy: 'convergence',
+    }));
+    const init = runShell(render(stepCommand('deep-review.yaml', 'step_create_state_log'), {
+      '{state_paths.config}': config,
+      '{state_paths.state_log}': stateLog,
+    }));
+    expect(init.status, String(init.stdout) + String(init.stderr)).toBe(0);
+    appendReviewIteration(dir, 1);
+    writeFileSync(config, JSON.stringify({ ...readJson(config), status: 'complete' }));
+
+    const result = runShell(render(stepCommand('deep-review.yaml', 'step_extend_completed_run'), {
+      '{state_paths.config}': config,
+      '{state_paths.state_log}': stateLog,
+      '{extend}': '1',
+      '{extend_minutes}': '',
+    }));
+    expect(result.status, String(result.stdout) + String(result.stderr)).toBe(0);
+    expect(lastJsonLine(result.stdout).warning).toBeNull();
+  });
+
   // The review prompt pack has the leaf write the run id string in `run`, so the
   // extension must count runs by the integer iteration, as the state reader does.
   it('review: runs are counted by iteration when the leaf writes a run id string', () => {
