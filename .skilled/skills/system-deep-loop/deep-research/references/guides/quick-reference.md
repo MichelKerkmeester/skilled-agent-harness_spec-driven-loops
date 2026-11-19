@@ -10,7 +10,7 @@ trigger_phrases:
   - "research progress visualization"
 importance_tier: normal
 contextType: general
-version: 1.14.15.0
+version: 1.14.16.0
 ---
 
 # Deep Research Quick Reference
@@ -107,6 +107,7 @@ Operator contract source of truth for this page:
 | Frontier | `research/frontier-nodes.jsonl` | JSONL | Expansive node store (only under `--depth-mode=expansive`) |
 | Frontier seed | `research/frontier-seed.json` | JSON | Seed input to frontier admission (only under `--depth-mode=expansive`) |
 | Frontier focus | `research/frontier-focus.txt` | Text | One-line focus the block step reads before each expansive dispatch |
+| Frontier graph events | `research/frontier-graph-events.json` | JSON | Graph events each expansive iteration mirrors into the coverage graph |
 
 > **Live lifecycle branches:** `new`, `resume`, `restart`, and `completed-continue` through `--extend=N`, with `--extend-minutes=M` for the minutes added to the later of the prior duration budget and the time already elapsed.
 > `fork` is deferred and not runtime-wired. `progressiveSynthesis` defaults to `true`, so `research/research.md` is updated during the loop and finalized at synthesis.

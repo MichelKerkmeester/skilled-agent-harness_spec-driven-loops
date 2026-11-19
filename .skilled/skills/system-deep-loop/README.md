@@ -6,7 +6,7 @@ trigger_phrases:
   - "deep loop workflows"
   - "deep research review"
   - "deep-loop hub routing"
-version: 1.6.12.0
+version: 1.6.13.0
 ---
 
 # system-deep-loop
@@ -83,7 +83,7 @@ Each packet carries no `graph-metadata.json`. The hub root carries the only one,
 
 ### When To Use This Skill
 
-Reach for the hub when a request needs more than one round. Use the research mode for a topic that spans several sources, where each round should shape the next query. Use the review mode for a multi-pass audit of a spec folder or a file set. Use it for a release-readiness verdict. Both modes fit an unattended run, because each keeps its state on disk and checks convergence after every pass. A run can also go wider. `--depth-mode=expansive` keeps a frontier of follow-up questions or sub-targets in the shared runtime, and the loop keeps going while one stays open, within its iteration cap and duration budget.
+Reach for the hub when a request needs more than one round. Use the research mode for a topic that spans several sources, where each round should shape the next query. Use the review mode for a multi-pass audit of a spec folder or a file set. Use it for a release-readiness verdict. Both modes fit an unattended run, because each keeps its state on disk and checks convergence after every pass. A run can also go wider. `--depth-mode=expansive` keeps a frontier of follow-up questions or sub-targets in the shared runtime, and the loop keeps going while one stays open, within its iteration cap and duration budget. A finished single-executor run can also go further. `--extend=N` reopens it in the same session for N more iterations, `--extend-minutes=M` adds time, and the extension keeps the stop policy the run was created with.
 
 Use `@context` for a one-shot lookup and `/speckit:plan` for implementation planning. A single-pass review belongs to the code-review mode in `sk-code`. A planning council is a separate agent, reached through `/speckit:ai-council`. It is not a mode of this hub.
 

@@ -6,7 +6,7 @@ trigger_phrases:
   - "expansive depth research"
   - "research frontier mode"
   - "frontier admission research"
-version: 1.0.12.0
+version: 1.0.13.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
@@ -39,7 +39,7 @@ While a frontier node is open, a stop candidate, whether `all_questions_answered
 
 ### Budget And Dashboard
 
-The reducer splits `maxIterations` 50/35/15 across the depth bands. Once a band's visits reach its share, it closes the band's open and active nodes as `exhausted` with reason `budget`. A node already answered stays answered. A band's unspent share rolls down to the next band only once the band holds no open node, and it never rolls up. The dashboard adds a `## 6B. FRONTIER` section on an expansive run only: the frontier size by status, the pruned count, the revisits and each band's spent and allotted iterations. A store row that does not parse is skipped, and the reducer reports it on stderr and in the projection's `warnings` with its file and line.
+The reducer splits `maxIterations` 50/35/15 across the depth bands. Once a band's visits reach its share, it closes the band's open and active nodes as `exhausted` with reason `budget`. A node already answered stays answered. Only a record that produced evidence counts as a visit, so a record with status `error`, `failed`, `failure` or `timeout` spends no band share, and the focus pick and the dashboard count visits the same way. A band's unspent share rolls down to the next band only once the band holds no open node, and it never rolls up. The dashboard adds a `## 6B. FRONTIER` section on an expansive run only: the frontier size by status, the pruned count, the revisits and each band's spent and allotted iterations. A store row that does not parse is skipped, and the reducer reports it on stderr and in the projection's `warnings` with its file and line.
 
 ### Fan-Out
 
@@ -56,7 +56,7 @@ Fan-out lineages each receive a share of the seeded nodes. `runtime/scripts/fano
 | `.skilled/commands/deep/research.md` | Command doc | The `--depth-mode` flag row. |
 | `.skilled/commands/deep/assets/deep-research.yaml` | Command workflow | The `depth_mode` input, the preflight check, the config keys and the `step_frontier_graph_upsert` frontier graph mirror. |
 | `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | Config | `antiConvergence.depthMode` and the `expansiveDepth` block. |
-| `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` | Script | Seeds, admits and closes frontier nodes. Its `graph` command builds the frontier graph events through `buildFrontierGraphEvents`. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` | Script | Seeds, admits and closes frontier nodes. Its `graph` command builds the frontier graph events through `buildFrontierGraphEvents`, its `block` command renders the FRONTIER prompt block and its `budget` command writes the derived seed budget into the mode config. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs` | Script | Stores the frontier graph events in the coverage graph through `--events`. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Script | Applies the frontier-open veto and passes `depthMode` into the stop-decision config when expansive. |
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Script | Builds the opt-in `frontier` registry and the question close rule, closes a spent band's nodes, picks the frontier focus and renders the `6B. FRONTIER` dashboard section. |

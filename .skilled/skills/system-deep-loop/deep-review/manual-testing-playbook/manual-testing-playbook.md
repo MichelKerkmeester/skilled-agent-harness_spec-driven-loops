@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.13.11.0
+version: 1.13.12.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -612,7 +612,7 @@ Verify that the review divergent pivot refuses to run while a frontier node stay
 #### Scenario Contract
 Prompt: `Check that the deep-review divergent pivot refuses to run while a frontier node is open, seeds one revisit direction for each closed sub-target the frontier left uncovered, and leaves a default run untouched. Return a PASS or FAIL verdict with the reason.`
 
-Expected signals: The four review pivot cases pass, the workflow gate case passes, and the pivot script labels revisit seeds `frontier-unanswered`.
+Expected signals: The five review pivot cases pass, the workflow gate case passes, and the pivot script labels revisit seeds `frontier-unanswered`.
 
 #### Test Execution
 > **Feature File:** [DRV-081](../manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md)

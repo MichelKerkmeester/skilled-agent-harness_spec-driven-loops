@@ -9,7 +9,7 @@ trigger_phrases:
   - "review loop troubleshooting"
 importance_tier: normal
 contextType: general
-version: 1.11.17.0
+version: 1.11.18.0
 ---
 
 # Deep Review Quick Reference
@@ -99,6 +99,7 @@ Review mode stores its packet under the resolved local review path rooted at `{s
 | Report | `review/review-report.md` | Markdown | Final 9-section review report |
 | Pause | `review/.deep-review-pause` | Sentinel | Pause between iterations |
 | Frontier | `review/frontier-nodes.jsonl` | JSONL | Expansive node store (only under `--depth-mode=expansive`) |
+| Frontier seed | `review/frontier-seed.json` | JSON | Seed input to frontier admission (only under `--depth-mode=expansive`) |
 
 ### Lifecycle Modes
 

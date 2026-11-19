@@ -6,7 +6,7 @@ trigger_phrases:
   - "depth mode flag"
   - "expansive depth flag"
   - "deep loop depth mode"
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
 # Depth mode flag (--depth-mode)
@@ -45,7 +45,7 @@ The expansive behavior is documented in the packet catalogs: [expansive depth mo
 | `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Script | Adds `depthMode` to the stop-decision config only when expansive. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Script | Under expansive depth, passes `depthMode` to lineages, deals the seeded nodes round-robin and records the partition. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Script | Merges the lineage frontiers and runs the partition guard over the recorded deal. |
-| `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` | Script | Owns the node store and the seed, admit, close, block and graph calls the flag turns on. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` | Script | Owns the node store and the seed, admit, close, block, graph and budget calls the flag turns on. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Script | Projects `registry.frontier`, the input the review stop veto reads. |
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Script | Projects `registry.frontier` for research. |
 | `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Binds `depth_mode` and owns `step_frontier_seed` and `step_frontier_admit` for research. |

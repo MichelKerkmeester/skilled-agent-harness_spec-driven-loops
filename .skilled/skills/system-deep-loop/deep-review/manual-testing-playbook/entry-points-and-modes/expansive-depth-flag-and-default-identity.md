@@ -1,7 +1,7 @@
 ---
 title: "DRV-076 -- Expansive depth flag and default byte identity"
 description: "This scenario validates that `--depth-mode` defaults to `default`, that a review run without the flag matches the pre-change baseline on every compared artifact and that only the expansive-only agent paragraph differs on CLI lineage prompts, for `DRV-076`."
-version: 1.13.8.0
+version: 1.13.9.0
 ---
 
 # DRV-076 -- Expansive depth flag and default byte identity
@@ -56,7 +56,7 @@ Operators run the commands below and confirm that the flag documents `default` a
 
 ### Expected
 
-Command 1 prints two lines: the preflight `depth_mode` binding note and the flag row. The row's value column reads `default`, the value when the flag is absent. Command 2 prints `"depthMode": "default"`. Command 3 prints three lines: a header comment that points at the helper, the helper definition, and its one call, which applies to the CLI lineage prompt. Command 4 prints `Tests  14 passed (14)` with no failed count. The seven compared artifacts are `registry.json`, `dashboard.md`, `next-focus.txt`, `prompt-pack.md`, `pivot-seeds.json`, `lineage-prompt.txt` and `stop-decision-config.json`, and each matches its baseline.
+Command 1 prints three lines: the argument hint, the preflight `depth_mode` binding note and the flag row. The row's value column reads `default`, the value when the flag is absent. Command 2 prints `"depthMode": "default"`. Command 3 prints three lines: a header comment that points at the helper, the helper definition, and its one call, which applies to the CLI lineage prompt. Command 4 prints `Tests  14 passed (14)` with no failed count. The seven compared artifacts are `registry.json`, `dashboard.md`, `next-focus.txt`, `prompt-pack.md`, `pivot-seeds.json`, `lineage-prompt.txt` and `stop-decision-config.json`, and each matches its baseline.
 
 ### Evidence
 

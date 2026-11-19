@@ -1,6 +1,6 @@
 ---
 title: "runtime test fixtures"
-description: "Shared event and ledger fixtures for runtime tests."
+description: "Shared event, ledger and default-run golden fixtures for runtime tests."
 trigger_phrases:
   - "runtime test fixtures"
   - "authorized ledger fixtures"
@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-This folder contains reusable inputs and child-process workers for runtime tests. The fixtures build validated event envelopes and authorized-ledger requests without changing production state.
+This folder contains reusable inputs and child-process workers for runtime tests. The fixtures build validated event envelopes and authorized-ledger requests without changing production state. Two golden folders hold the byte-for-byte default-run output that the depth-mode golden suites compare against.
 
 The fixture surface is test-only. Each consumer suite owns the assertion that gives a fixture meaning.
 
@@ -25,7 +25,22 @@ fixtures/
 ├── authorized-ledger-fixtures.ts
 ├── authorized-ledger-test-helper.ts
 ├── authorized-ledger-worker.ts
-└── event-envelope-producers.ts
+├── event-envelope-producers.ts
+├── golden-research-default/
+│   ├── dashboard.md
+│   ├── lineage-prompt.txt
+│   ├── next-focus.txt
+│   ├── prompt-pack.md
+│   ├── registry.json
+│   └── stop-decision-config.json
+└── golden-review-default/
+    ├── dashboard.md
+    ├── lineage-prompt.txt
+    ├── next-focus.txt
+    ├── pivot-seeds.json
+    ├── prompt-pack.md
+    ├── registry.json
+    └── stop-decision-config.json
 ```
 
 ---
@@ -38,6 +53,8 @@ fixtures/
 | `authorized-ledger-test-helper.ts` | Shared test helper for authorized-ledger setup and assertions. |
 | `authorized-ledger-worker.ts` | Child-process worker that appends a fixture event and prints its receipt. |
 | `event-envelope-producers.ts` | Provides representative payloads for real event-producer families. |
+| `golden-research-default/` | Holds the six baseline artifacts a default research run renders, compared by `research-depth-mode-golden.vitest.ts`. |
+| `golden-review-default/` | Holds the seven baseline artifacts a default review run renders, compared by `review-depth-mode-golden.vitest.ts`. |
 
 ---
 
@@ -48,6 +65,7 @@ fixtures/
 | Ledger fixtures | `authorized-ledger-fixtures.ts` |
 | Worker fixtures | `authorized-ledger-worker.ts` |
 | Event fixtures | `event-envelope-producers.ts` |
+| Golden default-run baselines | `golden-research-default/`, `golden-review-default/` |
 
 These files are imported by tests and are not runtime production entry points.
 
@@ -55,7 +73,7 @@ These files are imported by tests and are not runtime production entry points.
 
 ## 5. SPINE ROLE
 
-Fixtures provide deterministic inputs at the test edge of the runtime spine. They let suites exercise event envelopes, authorization, subprocess ownership and graph queries while keeping test data separate from durable runtime storage.
+Fixtures provide deterministic inputs at the test edge of the runtime spine. They let suites exercise event envelopes, authorization, subprocess ownership and graph queries while keeping test data separate from durable runtime storage. The golden folders pin a default run's rendered output, so an opt-in change cannot alter it unnoticed.
 
 ---
 

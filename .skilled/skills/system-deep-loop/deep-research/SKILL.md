@@ -166,7 +166,7 @@ Child-phase and sub-phase targets use **flat-first** placement: a first run with
 A `pt-NN` subfolder (`{basename(spec_folder)}-pt-{NN}`) is allocated only when prior content already exists for a non-matching target, which avoids the unnecessary `pt-01` wrapper on first runs.
 Worked examples, the ownership model and the file-protection table live in [state-format.md §2](references/state/state-format.md).
 
-State files include `deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`, `findings-registry.json`, `deep-research-dashboard.md`, `.deep-research-pause`, `.deep-research.lock`, `resource-map.md`, `research.md`, and `iterations/iteration-NNN.md`, plus `frontier-nodes.jsonl`, `frontier-seed.json` and `frontier-focus.txt` on an expansive run.
+State files include `deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`, `findings-registry.json`, `deep-research-dashboard.md`, `.deep-research-pause`, `.deep-research.lock`, `resource-map.md`, `research.md`, and `iterations/iteration-NNN.md`, plus `frontier-nodes.jsonl`, `frontier-seed.json`, `frontier-focus.txt` and `frontier-graph-events.json` on an expansive run.
 
 ### Core Innovation: Fresh Context Per Iteration
 

@@ -1,7 +1,7 @@
 ---
 title: "runtime/: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the runtime/ skill."
-version: 1.4.9.0
+version: 1.4.10.0
 ---
 
 # runtime/: Manual Testing Playbook
@@ -36,7 +36,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 58 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria. DLR-060 to DLR-066 map to catalog entries that carry no F-number.
+This playbook provides 58 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria. DLR-060 to DLR-065 map to catalog entries that carry no F-number, and DLR-066 maps to F025.
 
 ### REALISTIC TEST MODEL
 
@@ -1024,4 +1024,4 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 | DLR-063 | [Landed iteration is not redispatched](../feature-catalog/executor/landed-iteration-no-redispatch.md) | [executor/landed-iteration-skips-redispatch.md](../manual-testing-playbook/executor/landed-iteration-skips-redispatch.md) |
 | DLR-064 | [Research Claude config dir](../feature-catalog/executor/research-claude-config-dir.md) | [executor/research-claude-config-dir.md](../manual-testing-playbook/executor/research-claude-config-dir.md) |
 | DLR-065 | [frontier-admit.cjs](../feature-catalog/script-entry-points/frontier-admit-script.md) | [script-entry-points/frontier-admit-script.md](../manual-testing-playbook/script-entry-points/frontier-admit-script.md) |
-| DLR-066 | [Fan-out CLI lineage driver](../feature-catalog/fanout/fanout-run.md) | [fanout/fanout-expansive-lineage-budget.md](../manual-testing-playbook/fanout/fanout-expansive-lineage-budget.md) |
+| DLR-066 | [F025 Fan-out CLI lineage driver](../feature-catalog/fanout/fanout-run.md) | [fanout/fanout-expansive-lineage-budget.md](../manual-testing-playbook/fanout/fanout-expansive-lineage-budget.md) |
