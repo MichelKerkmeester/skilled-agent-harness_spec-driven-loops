@@ -17,6 +17,7 @@
       "frontend reach tasks",
       "frontend reach acceptance criteria",
       "frontend reach goal",
+      "002-frontend-reach operator decisions",
       "frontend reach implementation summary"
     ],
     "key_topics": [
@@ -28,10 +29,10 @@
       "acceptance",
       "criteria",
       "goal",
-      "implementation",
-      "summary",
-      "agent",
-      "asks"
+      "002-frontend-reach",
+      "operator",
+      "decisions",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -41,6 +42,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/sk-code/mode-registry.json",
       ".skilled/skills/sk-code/hub-router.json",
@@ -54,8 +56,7 @@
       "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/scratch/probes.txt",
       ".skilled/bin/compiled-route-sync.cjs",
       "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/scratch/router-baseline.txt",
-      ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
-      "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md"
+      ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs"
     ],
     "entities": [
       {
@@ -86,6 +87,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -167,12 +174,6 @@
         "source": "derived"
       },
       {
-        "name": "findings-ledger.md",
-        "kind": "doc",
-        "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -205,8 +206,8 @@
     ],
     "causal_summary": "An agent that asks the sk-code hub for help with everyday web work gets `defer` and no frontend evidence: 12 of the 13 frontend probes fail to route",
     "created_at": "2026-11-14T12:01:49Z",
-    "last_save_at": "2026-11-14T17:07:45.544Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:48:02.553Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -214,15 +215,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:14ed4baba6aae14cefb4576b282b24ca2702b26ff5fcf9270e20085750a9c3b5",
+    "source_fingerprint": "sha256:13fdf1922164fa598cbe1470f6f3282296f41c0a2876cdc3f576e7d811634a07",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "67126238e9721e05f943dd87ff150daea639975926e80de384b9042c798594b4",
       "plan.md": "072128ee8f94b63d803c8c581c09b68765df9712d9297ddcf8ed54f294e6a40c",
       "tasks.md": "c0a0c543b9926de571bf967f38e11a10e3c722ad006605c7ca5d762adc70252a",
-      "implementation-summary.md": "e76e33cacbbe0983028d6b1fd830a270a8a29bae0c641bff4142979041573f9d"
+      "decision-record.md": "9bd844c1470c4882f8895828ab9aaebfd5d814341e8155690d91e2ce52a61f8d",
+      "implementation-summary.md": "6840c7bcec1cb2787db3594b1c5eca9f4fdc41c4614cd43e6b02e1fffb1633d0"
     },
     "last_active_at": null
   }

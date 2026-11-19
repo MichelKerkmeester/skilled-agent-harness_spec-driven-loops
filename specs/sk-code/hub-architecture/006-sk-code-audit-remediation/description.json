@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-code/hub-architecture/006-sk-code-audit-remediation",
   "description": "Fix every finding from the sk-code and sk-code-frontend audit across the hub and its five packets",
   "keywords": [
@@ -12,14 +13,16 @@
     "five",
     "packets"
   ],
-  "lastUpdated": "2026-11-14T12:01:48.456Z",
+  "lastUpdated": "2026-11-19T17:47:59.962Z",
   "specId": "006",
   "folderSlug": "sk-code-audit-remediation",
   "parentChain": [
     "sk-code",
     "hub-architecture"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "19-11-26_18-36__manual-context-save.md",
+    "19-11-26_18-47__manual-context-save.md"
+  ]
 }

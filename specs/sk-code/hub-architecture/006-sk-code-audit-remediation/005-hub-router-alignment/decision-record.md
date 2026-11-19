@@ -328,6 +328,9 @@ The operator's first answer was to add a module header to the 22 files in `.pi/e
 |----|---------|-----|------------|------------|
 | Q001 | Remove one line from the loop shell shim | A top-level `set` would change the operator's own shell | The plan's "add strict mode" for T013 | ADR-002 |
 | Q002 | Exempt the Pi entry files in the guard | The mirror-parity gate requires each file to be one re-export line | The earlier answer to add 22 headers, T012 as written | ADR-003 |
+| Q003 | This session fixes the red sk-doc Script Tests caused by the ROUTER.md section 4 citation in sk-code-skilled/SKILL.md. | Not stated. | none | specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/spec.md |
+| Q004 | Phase 005 fixes the 23 files outside sk-code that fail the drift guard. | Not stated. | none | specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/spec.md |
+| Q005 | sk-code-setup-check.cjs exits non-zero when it prints STATUS=FAIL. | Not stated. | none | specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -352,6 +355,65 @@ Question: LOGIC-SYNC: your earlier answer (add a MODULE header to the 22 `.pi/ex
 Options: `Exempt them in the guard (Recommended)`, `Allow headers in the mirror check`, `Bypass the gate once`.
 
 Answer, 2026-11-14: `Exempt them in the guard (Recommended)`
+
+### Q003
+<!-- source: claude:4ffb6631-1dac-4d59-8234-228bc0f180ed:toolu_01PP32UmcUeP7kkKZmmCVu7D:0 -->
+
+Question:
+```text
+sk-doc Script Tests has been red on main since be5bf4fb01, the sk-code audit session's merge, two pushes before mine. Cause: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:177 cites "ROUTER.md §4", but that ROUTER.md has no section 4, so the strict package check fails. Who fixes it?
+```
+
+Options:
+```text
+Leave to sk-code session (Recommended)
+Fix here
+```
+
+Answer:
+```text
+Fix here
+```
+
+### Q004
+<!-- source: claude:a2d45c1b-daf3-4ea1-9cac-ecbdd83c0b5d:toolu_018sX3XAYDdvLzp2uTuVTFd6:0 -->
+
+Question:
+```text
+Phase 005 needs the sk-code setup battery green. Its drift guard fails on 23 files outside sk-code: 22 `.pi/extensions/*.ts` files with no module header and `.skilled/bin/skilled-loop-shell.sh` with no strict mode. Goal decision D5 says these change only on your answer. What should happen?
+```
+
+Options:
+```text
+Fix the 23 files (Recommended)
+Exclude them from the guard
+Leave red
+```
+
+Answer:
+```text
+Fix the 23 files (Recommended)
+```
+
+### Q005
+<!-- source: claude:a2d45c1b-daf3-4ea1-9cac-ecbdd83c0b5d:toolu_018sX3XAYDdvLzp2uTuVTFd6:1 -->
+
+Question:
+```text
+The sk-code setup battery (`sk-code-setup-check.cjs`) prints `STATUS=FAIL` and still exits 0. Should its exit status follow its status line?
+```
+
+Options:
+```text
+Exit non-zero on FAIL (Recommended)
+Keep exit 0
+```
+
+Answer:
+```text
+Exit non-zero on FAIL (Recommended)
+```
+
 <!-- /ANCHOR:operator-answers-verbatim -->
 
 ---

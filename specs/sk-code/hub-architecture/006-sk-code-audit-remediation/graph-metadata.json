@@ -25,7 +25,8 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "006-sk-code-audit-remediation operator decisions"
     ],
     "key_topics": [
       "code",
@@ -41,11 +42,12 @@
       "completion",
       "criteria"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
+      "decision-record.md",
       "001-finding-verification/findings-ledger.md",
       "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md",
       ".skilled/skills/sk-code/mode-registry.json",
@@ -62,8 +64,7 @@
       "001-finding-verification/scratch/probes.txt",
       "001-finding-verification/goal.md",
       "002-frontend-reach/goal.md",
-      "003-frontend-content/goal.md",
-      "004-vocabulary-single-source/goal.md"
+      "003-frontend-content/goal.md"
     ],
     "entities": [
       {
@@ -76,6 +77,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -207,19 +214,21 @@
     ],
     "causal_summary": "An audit of the sk-code hub on 2026-11-14 produced 61 findings",
     "created_at": "2026-11-14T12:01:48Z",
-    "last_save_at": "2026-11-14T20:11:41.860Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:48:04.917Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "goal.md"
+      "goal.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:7b30d63d81c476424e59c4fd1d2163de6de7d717048f7cfa486b9545defd631a",
+    "source_fingerprint": "sha256:fc1263e4965dd1c9cc89a8f5c0d7e4bff332083de4ab0c999e7cee217fcb2438",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "355ca2e1a5d9d0629c422ebd79eedaf027a0d9c3ebc8060a38ed1f57b561f726"
+      "spec.md": "355ca2e1a5d9d0629c422ebd79eedaf027a0d9c3ebc8060a38ed1f57b561f726",
+      "decision-record.md": "70bb162fa0811d704058ab99dca3962388ab87de26d6ca1365fc9b009ebe86f8"
     },
-    "last_active_child_id": "sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings",
-    "last_active_at": "2026-11-14T17:11:19.214Z"
+    "last_active_child_id": "sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment",
+    "last_active_at": "2026-11-19T17:48:04.917Z"
   }
 }
