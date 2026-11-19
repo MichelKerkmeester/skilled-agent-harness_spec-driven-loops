@@ -40,7 +40,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".github/workflows/opencode-dual-version.yml",
+      ".github/workflows/opencode-v2-battery.yml",
       ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh",
       ".opencode/package.json",
       ".skilled/package.json",
@@ -88,9 +88,9 @@
         "source": "derived"
       },
       {
-        "name": "opencode-dual-version.yml",
+        "name": "opencode-v2-battery.yml",
         "kind": "config",
-        "path": ".github/workflows/opencode-dual-version.yml",
+        "path": ".github/workflows/opencode-v2-battery.yml",
         "source": "derived"
       },
       {
@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The CI workflow `.github/workflows/opencode-dual-version.yml` still runs a v1 matrix entry that installs `opencode-ai@1.19.4`, plus a `both` job that installs both majors side by side",
+    "causal_summary": "The CI workflow `.github/workflows/opencode-v2-battery.yml` still runs a v1 matrix entry that installs `opencode-ai@1.19.4`, plus a `both` job that installs both majors side by side",
     "created_at": "2026-11-19T09:04:22Z",
-    "last_save_at": "2026-11-19T11:56:49.595Z",
+    "last_save_at": "2026-11-19T15:00:15.121Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cd4608f773cbbd3f3aa34b2d4f890b95cf75ac20c53e2478902a4563abd45969",
+    "source_fingerprint": "sha256:0cc0309569b7a58ac7ea402f617f71a42c52e8ae794ec4285d66d07914d09cdd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0301606d4d28d1451b26c34171645e9c848341d0f2d8f8546ce3db45785f0e12",
-      "plan.md": "e47b3d11c2c2fc5acd974b5269a2b2ac414e8b5b305621628629fb0ab8535030",
-      "tasks.md": "9ed084492b7faeae59721d95811683324a5df33e0b84952ab2034538071dced7",
-      "implementation-summary.md": "8ee474d21ac86406bcf94a6257624b2c1072e8e2b034d49d5a2f00c34e0e58da"
+      "spec.md": "1d82d30bcfceeab63302f93b80106e91545b63faed75427495395bf2c0dadc5a",
+      "plan.md": "5a2c89e75b971f6ac6c3710c788c94c6ecedfd856507de81042621940eb3db78",
+      "tasks.md": "289795b7557f06bf89542ddc7140b31877d54a6eb805d28998f233b743a1a33f",
+      "implementation-summary.md": "647728527323a9d1cbb6419789f4052ff6adc4b2652fad61d7c7ef234fd27cbf"
     },
     "last_active_at": null
   }

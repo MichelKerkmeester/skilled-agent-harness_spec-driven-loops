@@ -1,0 +1,11 @@
+Mac cleanup, 2026-11-19, after the operator's yes. Rollback for the install: `npm i -g --prefix ~/.local opencode-ai@1.19.4`. The deleted data cannot be recovered (the operator chose delete over archive).
+
+Pre-check: `lsof ~/.local/share/opencode/opencode-v1.db*` printed nothing (exit 1). The -shm mtime of 15:50 came from a live OpenCode 2 scenario run, not from a v1 process.
+Layout: ~/.local/bin/opencode -> ../opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe, plus ~/.local/bin/opencode1 and ~/.local/lib/node_modules/opencode-ai.
+
+1. `bash .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh remove-v1` printed "PASS: OpenCode 1 removed". Afterwards ~/.local/bin holds only the opencode link with the same target, and `~/.local/bin/opencode --version` prints `opencode v2.3.2`. opencode-ai and opencode1 are gone.
+2. Removed the empty ~/.local/lib/node_modules/@earendil-works and @opencode-ai folders with rmdir.
+3. Deleted ~/.local/share/opencode/opencode-v1.db{,-shm,-wal} (2.8G), storage/ (13G) and pre-v2-default-20261024/ (2.1G). `ls` no longer lists any of them.
+4. Backed up ~/.zshrc to ~/.zshrc.bak-20261119-opencode-v1, then removed its four dead ~/.opencode/bin lines (old lines 2-3 and 31-32; ~/.opencode does not exist). `zsh -n ~/.zshrc` exits 0.
+Verify: in an interactive zsh, `which -a opencode1` finds nothing, `opencode` resolves to the skilled-loop shell function and then ~/.local/bin/opencode, and `command opencode --version` prints `opencode v2.3.2`.
+Left in place (not in the approved list): ~/.config/opencode/package.json pins @opencode-ai/plugin 1.18.11, with node_modules/@opencode-ai beside it (Orca's plugins there do not import it), the legacy session/message/part tables inside opencode.db, and the stale models.json.*.tmp files in ~/.cache/opencode.

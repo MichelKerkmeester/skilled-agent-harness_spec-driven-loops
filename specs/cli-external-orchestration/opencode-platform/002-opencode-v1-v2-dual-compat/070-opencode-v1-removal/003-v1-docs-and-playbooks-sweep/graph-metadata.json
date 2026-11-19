@@ -40,6 +40,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      "research/research.md",
       ".skilled/changelog/cli-external-orchestration/cli-opencode/v2.0.0.0.md",
       ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v2.0.0.0.md",
       ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
@@ -49,12 +50,11 @@
       ".opencode/plugins/ARCHITECTURE.md",
       ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      "scratch/mac-cleanup.txt",
       "scratch/live-version.txt",
       "scratch/justified.txt",
       ".skilled/CROSS-CLI.md",
-      ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh",
-      ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      ".skilled/commands/deep/assets/deep-review-presentation.txt"
+      ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh"
     ],
     "entities": [
       {
@@ -85,6 +85,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -136,6 +142,12 @@
         "source": "derived"
       },
       {
+        "name": "mac-cleanup.txt",
+        "kind": "file",
+        "path": "scratch/mac-cleanup.txt",
+        "source": "derived"
+      },
+      {
         "name": "live-version.txt",
         "kind": "file",
         "path": "scratch/live-version.txt",
@@ -157,12 +169,6 @@
         "name": "run-plugin-scenario.sh",
         "kind": "script",
         "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review-presentation.txt",
-        "kind": "file",
-        "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
         "source": "derived"
       },
       {
@@ -194,17 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The cli-opencode skill, its references and playbooks, the plugin docs and several cross-skill docs still describe the v1 install, the v1 launcher and the v1 dispatch",
     "created_at": "2026-11-19T09:04:23Z",
-    "last_save_at": "2026-11-19T13:55:10.065Z",
+    "last_save_at": "2026-11-19T15:00:16.585Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,15 +212,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:5806601566fdb4a088500865902f6c88a0e25b702606470f498d7a9c0e68d18a",
+    "source_fingerprint": "sha256:496552c65c22bda20bf061853b6c637589d27ec22928083997d613150e8e8961",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1f96cd83a0feb0d4a83a8fd9074ed81deb83a8337733faf47a8d296bb086049c",
+      "spec.md": "aefc9b46f4de5a8213359878109cda0e89858eb1b8c29dc1059dd4223b029c18",
       "plan.md": "5de7ebe9ee57e350f54837eb45fd0b767be0aad43ccc335a2a0122dfc608759c",
-      "tasks.md": "db75eb6c6027de95c32fd1e6e6c774ec6f9eb90565d6448267ddaea136554cea",
-      "implementation-summary.md": "d3a2235a0e47e9e0240b073768e688268cad94543242934b4943ec0a2b652cfa"
+      "tasks.md": "e14406700e6d718180cea4198288c97186f15860541ef37600c4d7d5337bbf0a",
+      "implementation-summary.md": "ca98bed52051eab09d362a30a52d3c76c5df9b4c10a99653a2c9e50a0a916c79",
+      "research/research.md": "afc5b3fe4f84b16e5321be659d9a5cb7edcf568cbd34f0e7097f73635449cc76"
     },
     "last_active_at": null
   }

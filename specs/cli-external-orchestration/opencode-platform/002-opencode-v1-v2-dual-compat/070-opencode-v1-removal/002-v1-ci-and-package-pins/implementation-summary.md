@@ -60,7 +60,7 @@ The workflow and the setup helper carried the old 2.3.0 pin and a v1 leg. This p
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.github/workflows/opencode-dual-version.yml` | Modified | Removes the v1 matrix entry and the both-versions job, runs the four suites unconditionally, pins 2.3.2, and renames the workflow |
+| `.github/workflows/opencode-v2-battery.yml` | Modified | Removes the v1 matrix entry and the both-versions job, runs the four suites unconditionally, pins 2.3.2, and renames the workflow |
 | `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh` | Modified | Bumps `V2_PKG` to `@opencode/cli@2.3.2` (the phase 001 edits are in the same file) |
 | `.opencode/package.json` | Modified | Removes `@opencode-ai/plugin` from `dependencies` and `overrides` |
 | `.skilled/package.json` | Modified | Removes `@opencode-ai/plugin` from `dependencies` and `overrides`; keeps the devDependency `@opencode/plugin` at 2.2.6 |
@@ -81,6 +81,7 @@ The workflow and the setup helper carried the old 2.3.0 pin and a v1 leg. This p
 The registry and the binary were checked first, and the results went into `scratch/versions.txt`. The SDK usage and the `variant` key were then decided and recorded, and the manifests and the lockfiles changed after that. The four formerly gated suites ran with no matrix condition, and the closure run reran them with the results in `scratch/after.txt`. The workflow YAML parses with Ruby, and `opencode-setup.sh` passes `bash -n`.
 
 The CI run on the final commit has not happened. It needs the operator's push go-ahead, so T015 and AC-008 stay open.
+After the operator asked for version-neutral names, the workflow file became `.github/workflows/opencode-v2-battery.yml`, the models-form test became `opencode-models-form.test.cjs`, and the catalog entry `opencode-dual-version-dispatch/` became `opencode-version-dispatch/`. These were `git mv` renames in their own commit, and every live reference and this packet's Verify lines were updated. The suite counts above were recorded under the old file names.
 <!-- /ANCHOR:how-delivered -->
 
 ---

@@ -85,6 +85,8 @@ The sweep grep and each task's Verify line were run. The closure notes name the 
 The live doctor battery and one live dispatch ran on OpenCode 2.3.2, and the session reader read 77 records from the v2 tables. The runtime-mirror checkers ran in check-only form. The deep-loop iteration and the plugin playbook scenario were not run in this closure, so T019 and AC-004 stay open.
 
 After closure, `/local-skilled-alignment` (42 findings, 0 P0) and `/local-doc-alignment` on an `opencode-v2-only` topic (60 findings, 30 P0) found more v1 leftovers. These included the OpenCode 1-only installer URL `https://opencode.ai/install`, `--dir`/`--pure`/`--prompt`/`--variant` on `opencode run`, examples without `</dev/null`, uppercase `--log-level`, and v2 subcommands that do not exist. Two fix lanes corrected them, plus the tests that sent `server.instance.disposed`. The deep contracts, the cli hub compiled route and the trigger index were then regenerated. Final state: the alignment battery passes 208 of 210 rows. The two failures predate the branch: root README.md:674 fails on main too, and a gitignored runtime file is absent from the worktree. The node gate is 831 of 833 (the same pre-existing failure), dispatch-audit 133 of 133, and the deep-loop subset 411 passed with 0 failures.
+
+AC-004 was closed live on 2026-11-19. One `/deep:research` iteration ran on the cli-opencode executor on OpenCode 2.3.2 (completion receipt exitStatus 0, `verify-iteration.cjs` OK, artifacts in `research/`), and plugin scenario CO-056 passed. The Mac cleanup is recorded in `scratch/mac-cleanup.txt`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -111,7 +113,7 @@ After closure, `/local-skilled-alignment` (42 findings, 0 P0) and `/local-doc-al
 | Doctor battery, default run | Exit 0; four v2 legs PASS (family, plugin-active, skill-visible, command-listed) |
 | Live binary version | OpenCode 2.3.2, recorded in `scratch/live-version.txt` |
 | Branch-contract vitest, `executor-branch-contract.vitest.ts` | Exit 0; 10 passed, 0 failed |
-| `opencode2-models-form.test.cjs` (`node --test`) | Exit 0; `# tests 14`, `# pass 14`, `# fail 0` |
+| `opencode-models-form.test.cjs` (`node --test`) | Exit 0; `# tests 14`, `# pass 14`, `# fail 0` |
 | Retrieval suites (7 files, `--project cli`) | Exit 0; 257 passed, 0 failed |
 | `generate-trigger-index.mjs` | Exit 0; published; `indexSha256` 0096cddc9e93eed7 |
 | `generate-trigger-index.mjs --check` | Exit 0; 0 obsolete paths, 0 untrusted docs |

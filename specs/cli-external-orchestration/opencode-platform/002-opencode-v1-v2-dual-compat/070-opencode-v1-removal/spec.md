@@ -125,7 +125,7 @@ The table is an audit summary. Each child's `plan.md` and `tasks.md` hold the pe
 | `.skilled/commands/doctor/scripts/opencode-version-battery.cjs` | Modify | 001 | The battery runs the v2 family only |
 | `.opencode/plugins/*.js`, `.opencode/plugins/lib/v2-bridge.js`, `.opencode/plugins/tests/*.test.cjs` | Modify | 001 | v1-only event branches and the bridge `server` key are removed; tests re-point to `setup` |
 | `.skilled/hooks/shared/session-readers/opencode.mjs`, `.skilled/hooks/decision-capture/bin/sweep-opencode.mjs` | Modify | 001 | Legacy `session` and `message` table branches are removed |
-| `.github/workflows/opencode-dual-version.yml` | Modify | 002 | The v1 matrix entry and the `both` job are removed; the workflow name becomes v2-only |
+| `.github/workflows/opencode-v2-battery.yml` | Modify | 002 | The v1 matrix entry and the `both` job are removed; the workflow name becomes v2-only |
 | `.opencode/package.json`, `.skilled/package.json` | Modify | 002 | The `@opencode-ai/plugin` pins are removed or replaced after a usage check |
 | `.skilled/skills/cli-external-orchestration/cli-opencode/**`, `.opencode/plugins/*.md`, `README.md`, `.skilled/CROSS-CLI.md` | Modify | 003 | v2-only docs, playbooks and references |
 | `.skilled/commands/deep/assets/*-presentation.txt`, deep-loop `loop-protocol.md` files | Modify | 003 | The `--pure` text is removed |
@@ -159,7 +159,7 @@ The table is an audit summary. Each child's `plan.md` and `tasks.md` hold the pe
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001-v1-runtime-code-and-tests | 002-v1-ci-and-package-pins | Phase 001 passes strict validation. The suites named in its REQ-004, REQ-005, REQ-006 and REQ-008 pass on OpenCode 2.3.2. | `validate.sh` on phase 001 prints `RESULT: PASSED`; `node --test` on each named suite prints `# fail 0` |
-| 002-v1-ci-and-package-pins | 003-v1-docs-and-playbooks-sweep | The workflow has no v1 entry and no `both` job, the v2 pin is 2.3.2 in both the setup helper and the workflow, and the package pins are decided. | `rg -l -F '2.3.0' .github/workflows/opencode-dual-version.yml .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh \| wc -l` prints 0 |
+| 002-v1-ci-and-package-pins | 003-v1-docs-and-playbooks-sweep | The workflow has no v1 entry and no `both` job, the v2 pin is 2.3.2 in both the setup helper and the workflow, and the package pins are decided. | `rg -l -F '2.3.0' .github/workflows/opencode-v2-battery.yml .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh \| wc -l` prints 0 |
 <!-- /ANCHOR:phase-map -->
 
 ---

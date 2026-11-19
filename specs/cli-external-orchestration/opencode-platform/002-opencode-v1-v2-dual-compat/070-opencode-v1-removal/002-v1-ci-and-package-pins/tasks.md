@@ -25,7 +25,7 @@ contextType: "general"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-Shell variables used below: `WF` is `.github/workflows/opencode-dual-version.yml`, `CLI` is `.skilled/skills/cli-external-orchestration/cli-opencode`, and `PKG` is the set of `package.json` files named in the task. Run every command from the repository root.
+Shell variables used below: `WF` is `.github/workflows/opencode-v2-battery.yml`, `CLI` is `.skilled/skills/cli-external-orchestration/cli-opencode`, and `PKG` is the set of `package.json` files named in the task. Run every command from the repository root.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -36,7 +36,7 @@ Shell variables used below: `WF` is `.github/workflows/opencode-dual-version.yml
 - [x] T001 Check the registry and the live binary for the target pin, and record both in `scratch/versions.txt` (`@opencode/cli@2.3.2`). Verify: `npm view @opencode/cli@2.3.2 version` prints `2.3.2`, and `rg -c '2.3.2' scratch/versions.txt` prints a number greater than 0.
 - [x] T002 [P] Record whether OpenCode 2.3.2 uses `@opencode-ai/plugin`, `@opencode/plugin` or neither, from the repository imports and a live plugin-load check, in `scratch/sdk-usage.txt` (`.opencode/package.json`, `.skilled/package.json`). Verify: `wc -l < scratch/sdk-usage.txt` prints a number greater than 0, and the file states "used" or "not used" for each package.
 - [x] T003 [P] Record whether OpenCode 2.3.2 reads the root `variant` key, from a live `opencode run -m <model> ... </dev/null` check, in `scratch/variant.txt` (`opencode.json`). Verify: `wc -l < scratch/variant.txt` prints a number greater than 0, and the file states "read" or "not read".
-- [x] T004 [P] Run the four formerly gated suites with no matrix condition, and record their `# fail` lines in `scratch/gated-suites.txt` (`.skilled/bin/tests/opencode-config-shape.test.cjs`, `.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs`, `$CLI/scripts/tests/default-model-id.test.cjs`, `$CLI/scripts/tests/opencode2-models-form.test.cjs`). Verify: `node --test` on the four files prints `# fail 0` for each, recorded in `scratch/gated-suites.txt`.
+- [x] T004 [P] Run the four formerly gated suites with no matrix condition, and record their `# fail` lines in `scratch/gated-suites.txt` (`.skilled/bin/tests/opencode-config-shape.test.cjs`, `.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs`, `$CLI/scripts/tests/default-model-id.test.cjs`, `$CLI/scripts/tests/opencode-models-form.test.cjs`). Verify: `node --test` on the four files prints `# fail 0` for each, recorded in `scratch/gated-suites.txt`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
