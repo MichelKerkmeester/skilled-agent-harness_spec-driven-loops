@@ -502,11 +502,14 @@ function scopeEntries(scope) {
 }
 
 // A git revision range (base..tip or base...tip) is not a path. The dots must sit
-// between two revision characters, so a '../' path segment never reads as one.
+// between two revision characters, and a token holding a '/' is a path, so neither
+// a '../' segment nor a file such as 'docs/notes..v2.md' reads as one. A range over
+// slashed refs such as 'origin/main..HEAD' therefore reads as a path and narrows
+// relevance to it; write it with commit ids instead.
 // The range may carry a label around it, so any one token that is a range marks
 // the target as one; the label's words would otherwise be read as paths.
 function isRevisionRangeToken(token) {
-  return /[^/.]\.\.\.?[^/.]/.test(token) && !/(?:^|\/)\.\.(?:\/|$)/.test(token);
+  return !token.includes('/') && /[^.]\.\.\.?[^.]/.test(token);
 }
 
 function isCommitRange(value) {

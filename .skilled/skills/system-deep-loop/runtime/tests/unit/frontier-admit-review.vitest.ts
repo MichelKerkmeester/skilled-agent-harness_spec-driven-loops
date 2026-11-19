@@ -538,6 +538,22 @@ describe('frontier-admit review root cap and commit-range scope', () => {
     expect(scopeInsideReviewTarget('lib/x', config)).toBe(false);
   });
 
+  // With no touched files on record a range admits every scope, so a path misread
+  // as a range would stop narrowing relevance to the files the target names.
+  it('reads a path with two dots inside a file name as a path, not a range', () => {
+    const config = { reviewTargetType: 'files', reviewTarget: 'docs/notes..v2.md' };
+
+    expect(scopeInsideReviewTarget('docs/notes..v2.md', config)).toBe(true);
+    expect(scopeInsideReviewTarget('lib/x', config)).toBe(false);
+  });
+
+  it('still reads a range between dotted tags as a range', () => {
+    const config = { reviewTargetType: 'files', reviewTarget: 'v1.2.0..v1.3.0', reviewScopeFiles: ['lib/x'] };
+
+    expect(scopeInsideReviewTarget('lib/x', config)).toBe(true);
+    expect(scopeInsideReviewTarget('src/c', config)).toBe(false);
+  });
+
   it('reads named lists of touched files the way the terminal gates do', () => {
     const config = {
       reviewTargetType: 'files',
