@@ -11,7 +11,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { spawnSync } from 'node:child_process';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -148,8 +148,9 @@ function parseStdout(result: CliResult): Record<string, any> {
 }
 
 describe('divergent-pivot CLI retry contract', () => {
-  it('finalize prints a retryable quorum failure and a second prepare returns attempt 2 with three missing seats', () => {
-    const env = createHermeticEnv('divergent-pivot-cli-retry');
+  // Runs attempt 1 to a retryable quorum failure: two seats endorse and one is rejected.
+  function failFirstAttempt(label: string) {
+    const env = createHermeticEnv(label);
     environments.push(env);
     const fixture = writeResearchFixture(env.tmpDir);
 
@@ -206,6 +207,11 @@ describe('divergent-pivot CLI retry contract', () => {
     expect(failed.retryable).toBe(true);
     expect(failed.attempt).toBe(1);
     expect(failed.failureReason).toBe('council_return_quorum_failed');
+    return { fixture, first };
+  }
+
+  it('finalize prints a retryable quorum failure and a second prepare returns attempt 2 with three missing seats', () => {
+    const { fixture } = failFirstAttempt('divergent-pivot-cli-retry');
 
     const retried = runCli(prepareArgs(fixture));
     expect(retried.status).toBe(0);
@@ -216,5 +222,21 @@ describe('divergent-pivot CLI retry contract', () => {
     expect(second.missingSeats).toHaveLength(3);
     expect(Object.keys(second.seatPrompts)).toHaveLength(3);
     expect((second.paths.seatPaths as string[])[0]).toContain('/attempt-2/');
+  });
+
+  // The move to attempt 2 rewrites the config once, and only after the attempt-1
+  // record on disk matches the one this prepare rebuilds; a drifted record stops it.
+  it('refuses the attempt-2 rewrite when the attempt-1 config on disk has drifted', () => {
+    const { fixture, first } = failFirstAttempt('divergent-pivot-cli-retry-drift');
+    const configPath = String(first.paths.configPath);
+    const drifted = { ...JSON.parse(readFileSync(configPath, 'utf8')), previousFocus: 'a focus nobody recorded' };
+    writeFileSync(configPath, JSON.stringify(drifted, null, 2));
+    const before = readFileSync(configPath, 'utf8');
+
+    const retried = runCli(prepareArgs(fixture));
+
+    expect(retried.status).not.toBe(0);
+    expect(retried.stderr).toContain('conflicts with the resumed transaction');
+    expect(readFileSync(configPath, 'utf8')).toBe(before);
   });
 });
