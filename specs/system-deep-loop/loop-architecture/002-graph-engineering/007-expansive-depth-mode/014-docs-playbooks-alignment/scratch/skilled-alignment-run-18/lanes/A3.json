@@ -1,0 +1,52 @@
+{
+ "lane": "A3",
+ "findings": [
+  {
+   "id": "A3-1",
+   "surface": "S1",
+   "standard": "sk-code",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+   "line": 380,
+   "issue": "writeLineageFrontierStore writes frontier-nodes.jsonl first and uses its existence as the 'already seeded' marker, then appends the research inbox in a second call. If the inbox append throws (ENOSPC, EACCES) or the process dies between the two writes, the next spawn attempt sees the store, returns false, and never writes the inbox. The research lineage then runs with no seeded inbox rows for its dealt frontier nodes, and nothing repairs that. The store write is also a plain writeFileSync rather than an atomic write. Reach: only an I/O failure or a kill between two synchronous writes, so this is hardening, not a correctness blocker.",
+   "fix": null
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts",
+  ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+  ".skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+  ".skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs",
+  ".skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs",
+  ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+  ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+  ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+  ".skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/fanout-review-focus.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/dispatch-iteration.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/divergent-pivot-cli.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/divergent-pivot-seat-scope.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts"
+ ],
+ "not_reviewed": [],
+ "notes": {
+  "tests_run": {
+   "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx vitest run --no-coverage <9 assigned test files>",
+   "exit": 0,
+   "out": "Test Files 9 passed (9); Tests 418 passed | 2 skipped (420). The 2 skips are the cli-claude-code research config-dir tests guarded by it.skipIf(underClaudeAncestry), because this lane runs under a Claude parent, so the research CLAUDE_CONFIG_DIR path was not exercised end to end here."
+  },
+  "checked_and_cleared": [
+   "Dropping the insufficient_remaining_iterations refusal is intentional: commit c06f0f06831 says so, and a test asserts minRemainingIterations is still persisted and no longer refused.",
+   "The frontier partition guard pools reported lineage ids across lineages. Child ids carry their depth (F-<depth>-<serial>), so a lineage's child cannot pose as a dealt depth-1 id, and the guard cannot pass falsely.",
+   "CLAUDE_CONFIG_DIR reaches the child through guardContext.env, and the CLAUDE_ prefix is on the cli-claude-code env allowlist (executor-audit.ts:155).",
+   "Pivot events persist pivotId (appendEvent), so counting seat outputs per pivot and attempt in both mode scripts reads a real field."
+  ],
+  "S15": "No scope files are assigned to this lane for S15, and every listed battery row passed, so this lane owns no CI failure.",
+  "tracked_files_modified": "none"
+ }
+}

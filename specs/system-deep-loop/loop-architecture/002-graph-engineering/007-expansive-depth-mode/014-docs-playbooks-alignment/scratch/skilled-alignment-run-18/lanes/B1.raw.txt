@@ -1,0 +1,1 @@
+Lane B1 (native review, opus, medium) returned: reviewed 39 of 39, not reviewed none, findings P0 0 P1 0 P2 3 (B1-1, B1-2, B1-3); no tracked file modified (lane's claim, checked against the git status baseline). Copied from the lane's scratch result.json.

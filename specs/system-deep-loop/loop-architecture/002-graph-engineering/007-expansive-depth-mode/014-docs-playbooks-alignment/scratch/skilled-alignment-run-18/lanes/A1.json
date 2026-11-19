@@ -1,0 +1,32 @@
+{
+ "lane": "A1",
+ "findings": [
+  {
+   "id": "A1-1",
+   "surface": "S1",
+   "standard": "sk-code",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+   "line": 508,
+   "issue": "isRevisionRangeToken reads any token with '..' between two non-dot, non-slash characters as a git revision range, so a file-list review target whose path holds '..' inside a name (for example docs/notes..v2.md) is routed to scopeInsideTouchedFiles. With no reviewScopeFiles on record that path returns true, so the review-target relevance check admits every scope (fail-open) instead of narrowing to the named file. Reach is narrow: an operator-supplied file target with a double-dot file name. Hardening only, since no caller is known to send one. A fix could require the range's two sides to have no '/' or file extension, or fall back to path containment when reviewScopeFiles is empty.",
+   "evidence": {
+    "cmd": "node -e \"const {checkProposal}=require('./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs'); const caps={maxDepth:3,maxChildrenPerNode:6,maxRootChildren:8,maxFrontierNodes:10}; for (const t of ['docs/notes..v2.md','docs/notes.md']) console.log(t, checkProposal({parentId:'root',question:'q',evidence:'e',scope:['secrets/other.txt']},new Map(),caps,[],{reviewConfig:{reviewTargetType:'files',reviewTarget:t}}));\"",
+    "exit": 0,
+    "out": "docs/notes..v2.md null\ndocs/notes.md relevance"
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+  ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+  ".skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/review-depth-mode-golden.vitest.ts"
+ ],
+ "not_reviewed": [],
+ "notes": "Tests run: the 6 assigned vitest files (node_modules/.bin/vitest run --no-coverage, runtime folder): 6 files, 177 tests passed, exit 0. No tracked file modified (git status shows no tracked changes). The changed convergence behaviors are each covered by a test: the min-iterations floor now applies to review runs too, focus alignment judges only the latest record and ignores a Q-prefix, and the frontier_drained candidate and frontierOpen veto are covered in convergence-script, review-depth-convergence and stop-decision. No battery failure is owned by this lane (S1 and S15 rows all passed). S15 has 0 scope files in this lane. The review-mode report checkers target markdown reports and were not run on this JSON contract."
+}

@@ -1,0 +1,124 @@
+{
+ "lane": "B2",
+ "findings": [
+  {
+   "id": "B2-1",
+   "surface": "S4",
+   "standard": "sk-doc/sk-create-manual-testing-playbook",
+   "severity": "P1",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md",
+   "line": 56,
+   "issue": "DRV-081 is pinned to a superseded test count. Command 1's filter now matches 5 cases, because the suite added 'still rejects a frontier seed whose free-text scope asks for a change' (it covers the new quotedPaths/isPathShaped guard in divergent-review-pivot.ts). The scenario expects 'Tests  4 passed' and lists four cases, at line 56 and in the 'four pivot cases' signal at line 31. Its Pass rule requires 'the expected counts', so an operator who runs it as written records a false FAIL against correct code. Fix: change 4 to 5, add the fifth case name, and add a free-text-rejection signal beside the verb-scope signal at line 31. This breaks the standard rule (sk-create-manual-testing-playbook SKILL.md lines 12 and 299) that a scenario be deterministic enough for another operator to reproduce the verdict.",
+   "evidence": {
+    "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx vitest run divergent-pivot.vitest -t \"review divergent pivot under the expansive depth mode\" --reporter=verbose",
+    "exit": 0,
+    "out": "vitest exit 0 (captured directly, not through a pipe): Tests  5 passed | 23 skipped (28); fifth case: still rejects a frontier seed whose free-text scope asks for a change"
+   }
+  },
+  {
+   "id": "B2-2",
+   "surface": "S4",
+   "standard": "sk-doc/sk-create-manual-testing-playbook",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+   "line": 615,
+   "issue": "The root index summary for DRV-081 repeats the stale count of four review pivot cases. The suite has five (see B2-1).",
+   "evidence": {
+    "cmd": "cd .skilled/skills/system-deep-loop/runtime && npx vitest run divergent-pivot.vitest -t \"review divergent pivot under the expansive depth mode\"",
+    "exit": 0,
+    "out": "Tests  5 passed | 23 skipped (28)"
+   },
+   "fix": {
+    "old": "Expected signals: The four review pivot cases pass,",
+    "new": "Expected signals: The five review pivot cases pass,"
+   }
+  },
+  {
+   "id": "B2-3",
+   "surface": "S4",
+   "standard": "sk-doc/sk-create-manual-testing-playbook",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+   "line": 59,
+   "issue": "DRV-076 says command 1 prints two lines. The command now prints three, because review.md's argument-hint (line 3) also names --depth-mode. The Pass rule does not depend on the count, so the verdict is unaffected, but the Expected text is stale.",
+   "evidence": {
+    "cmd": "rg -n -- '--depth-mode' .skilled/commands/deep/review.md",
+    "exit": 0,
+    "out": "3:argument-hint ... [--depth-mode=default|expansive] ...\n41:   - `depth_mode` (default `default` unless `--depth-mode=expansive` is present)\n100:| `--depth-mode` | `default` \\| `expansive` | ..."
+   },
+   "fix": {
+    "old": "Command 1 prints two lines: the preflight `depth_mode` binding note and the flag row.",
+    "new": "Command 1 prints three lines: the argument hint, the preflight `depth_mode` binding note and the flag row."
+   }
+  },
+  {
+   "id": "B2-4",
+   "surface": "S2",
+   "standard": "sk-doc/sk-create-skill",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+   "line": 101,
+   "issue": "The quick-reference artifact table adds frontier-nodes.jsonl but omits frontier-seed.json, the second file an expansive run writes. README.md, state-format.md and state-outputs.md all list both files, so this reference is the one that disagrees.",
+   "evidence": {
+    "cmd": "grep -n frontier-seed .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+    "exit": 1,
+    "out": ""
+   },
+   "fix": {
+    "old": "| Frontier | `review/frontier-nodes.jsonl` | JSONL | Expansive node store (only under `--depth-mode=expansive`) |",
+    "new": "| Frontier | `review/frontier-nodes.jsonl` | JSONL | Expansive node store (only under `--depth-mode=expansive`) |\n| Frontier seed | `review/frontier-seed.json` | JSON | Depth-1 sub-target input to `frontier-admit.cjs seed`, written once (only under `--depth-mode=expansive`) |"
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/deep-review/README.md",
+  ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+  ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
+  ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md",
+  ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md",
+  ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
+  ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md",
+  ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+  ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md",
+  ".skilled/skills/system-deep-loop/deep-review/changelog/v1.12.0.0.md",
+  ".skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/min-iterations-floor.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/custom-review-dimensions.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/cross-mode-anti-convergence-contract.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/state-management/config-management.md",
+  ".skilled/skills/system-deep-loop/deep-review/feature-catalog/state-management/focus-hijack-guard.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/composite-review-convergence-stop-behavior.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/dimension-coverage-convergence-signal.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-drained-stops-review.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-review-stop.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-min-iterations-floor.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/extend-completed-review-run.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fan-out-merged-coverage-surfaces.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/custom-dimension-setup-and-universe.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-and-node-dimension-coverage.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/review-next-focus-first-uncovered-dimension.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+  ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/review-depth-v2-rollout/stop-gate-custom-dimension-coverage.md",
+  ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+  ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+  ".skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+  ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
+  ".skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md",
+  ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+  ".skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs"
+ ],
+ "not_reviewed": []
+}

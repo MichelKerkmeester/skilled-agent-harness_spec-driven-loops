@@ -1,0 +1,23 @@
+{
+ "lane": "A4",
+ "findings": [],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs",
+  ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/continuity-thread.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-projections-contract.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-deltas-contract.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/loop-heartbeat.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/optimizer-manifest-anti-convergence.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts",
+  ".skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts",
+  ".skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-contract-parity.vitest.ts",
+  ".skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-reducer-schema.vitest.ts"
+ ],
+ "not_reviewed": []
+}

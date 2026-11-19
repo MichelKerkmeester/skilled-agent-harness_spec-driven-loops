@@ -1,0 +1,104 @@
+{
+ "lane": "C1",
+ "findings": [
+  {
+   "id": "C1-1",
+   "surface": "S6",
+   "standard": "sk-doc/sk-create-changelog",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/changelog/skilled/v4.1.0.0.md",
+   "line": 237,
+   "issue": "The newest root release notes (v4.1.0.0, the only v4.1 note in HEAD's tree) do not describe the two user-visible deep-research capabilities this scope ships: the opt-in --depth-mode=expansive frontier and --extend=N / --extend-minutes=M completed-run extension (deep-research changelog v1.16.0.0). Its Deep Loop section (line 237 onward) covers only the AI Council move, review verdicts and stop decisions. The root README at line 255 does describe both flags, so the release notes and the README disagree. The S6-release-coverage battery row passed only because line 590 names system-deep-loop as having its own entries. The v4.1.0.0 tag (05dbe23f023) is not an ancestor of HEAD, so whether this belongs in v4.1.0.0 or in a new open note is a release-owner decision.",
+   "evidence": {
+    "cmd": "rg -c -i \"expansive|depth-mode|--extend\" .skilled/changelog/skilled/v4.1.0.0.md",
+    "exit": 1,
+    "out": "(no matches)"
+   }
+  },
+  {
+   "id": "C1-2",
+   "surface": "S5",
+   "standard": "sk-doc/sk-create-readme",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+   "line": 169,
+   "issue": "The state-file list names three expansive-only files and leaves out research/frontier-graph-events.json. The README state table (line 111) and state-format.md (line 81) both list it, and deep-research.yaml lines 1899-1900 write it on every expansive iteration.",
+   "fix": {
+    "old": "plus `frontier-nodes.jsonl`, `frontier-seed.json` and `frontier-focus.txt` on an expansive run.",
+    "new": "plus `frontier-nodes.jsonl`, `frontier-seed.json`, `frontier-focus.txt` and `frontier-graph-events.json` on an expansive run."
+   }
+  },
+  {
+   "id": "C1-3",
+   "surface": "S5",
+   "standard": "sk-doc/sk-create-readme",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+   "line": 109,
+   "issue": "The state-file table adds rows for frontier-nodes.jsonl, frontier-seed.json and frontier-focus.txt but has no row for research/frontier-graph-events.json. The README (line 111) and state-format.md list that file, and the workflow writes it on every expansive iteration.",
+   "fix": {
+    "old": "| Frontier focus | `research/frontier-focus.txt` | Text | One-line focus the block step reads before each expansive dispatch |",
+    "new": "| Frontier focus | `research/frontier-focus.txt` | Text | One-line focus the block step reads before each expansive dispatch |\n| Frontier graph events | `research/frontier-graph-events.json` | JSON | Frontier events each expansive iteration mirrors into the coverage graph (only under `--depth-mode=expansive`) |"
+   }
+  },
+  {
+   "id": "C1-4",
+   "surface": "S5",
+   "standard": "sk-doc/sk-create-readme",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
+   "line": 211,
+   "issue": "The README FAQ describes --extend=N without its single-executor limit. deep-research.yaml step_reject_extend_with_fanout (line 331) refuses --extend on a fan-out config. The root README (line 255), quick-reference.md and feature-catalog/loop-lifecycle/completed-run-extension.md (line 25) all state the refusal, but the skill README does not, so a fan-out user gets no warning before the usage error.",
+   "fix": {
+    "old": "snapshots the prior synthesis and appends an `extended` event.",
+    "new": "snapshots the prior synthesis and appends an `extended` event. A fan-out config refuses it, because `--extend` extends a single-executor run only."
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/deep-research/README.md",
+  ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+  ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
+  ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
+  ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+  ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md",
+  ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.17.0.md",
+  ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/quality-guards.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/initialization.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/focus-hijack-guard.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/leaf-field-gates.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/convergence-passes-guard-fails-override.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-focus-alignment.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-no-single-weak-source.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-source-diversity.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/focus-alignment-and-findings-gate-read-leaf-fields.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-band-budget-rolls-down.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-dashboard-section.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-graph-mirror-closes-unanswered-nodes.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/next-focus-ignores-answered-free-text.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
+  ".skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts",
+  ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs"
+ ],
+ "not_reviewed": []
+}

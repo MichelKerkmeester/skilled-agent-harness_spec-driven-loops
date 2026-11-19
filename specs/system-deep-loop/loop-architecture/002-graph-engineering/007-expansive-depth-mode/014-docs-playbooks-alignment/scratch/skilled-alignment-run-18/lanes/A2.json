@@ -1,0 +1,42 @@
+{
+ "lane": "A2",
+ "findings": [
+  {
+   "id": "A2-1",
+   "surface": "S1",
+   "standard": "sk-code",
+   "severity": "P2",
+   "fix_class": "judgment",
+   "file": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+   "line": 1240,
+   "issue": "deriveDimension now walks the configured custom dimension names (buildDimensionUniverse) with a bare substring test over free text (iteration focus + finding title + description). A short custom name the config contract allows, such as 'ui' or 'api', matches inside unrelated words ('build', 'guide', 'rapid'), so when no canonical dimension name appears a finding is labelled with the custom dimension instead of falling back to iteration.dimensionsAddressed[0]. Before this change only the four canonical names were tested, so no custom name could mislabel a finding. Case: reviewDimensions ['correctness','ui'], a finding titled 'build step skips lint' in an iteration whose focus names no canonical dimension, gets dimension 'ui'. Inferred from reading the code; no command reproduced it."
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+  ".skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts",
+  ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+  ".skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-legacy-seam.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/coverage-graph-signals.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-graph-upsert.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reducers.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-reducers.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts",
+  ".skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts"
+ ],
+ "not_reviewed": []
+}

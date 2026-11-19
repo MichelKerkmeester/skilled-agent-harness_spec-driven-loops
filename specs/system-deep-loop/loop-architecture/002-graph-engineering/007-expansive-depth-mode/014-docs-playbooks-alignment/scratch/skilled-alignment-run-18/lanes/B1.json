@@ -1,0 +1,105 @@
+{
+ "lane": "B1",
+ "findings": [
+  {
+   "id": "B1-1",
+   "surface": "S4",
+   "standard": "sk-doc/sk-create-manual-testing-playbook",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+   "line": 59,
+   "issue": "DR-068 Expected says Command 1 (rg -n -- '--depth-mode' .skilled/commands/deep/research.md) prints two lines, but it prints three. The same diff added [--depth-mode=default|expansive] to the command's argument-hint on line 3, so the scenario is pinned to output the change superseded. An operator who grades on the stated line count would record a false FAIL.",
+   "evidence": {
+    "cmd": "rg -n -- '--depth-mode' .skilled/commands/deep/research.md",
+    "exit": 0,
+    "out": "3:argument-hint: \"<topic> ... [--depth-mode=default|expansive] ...\"\n41:>    - `depth_mode` (default `default` unless `--depth-mode=expansive` is present)\n107:| `--depth-mode` | `default` \\| `expansive` | ..."
+   },
+   "fix": {
+    "old": "Command 1 prints two lines: the preflight `depth_mode` binding note and the flag row.",
+    "new": "Command 1 prints three lines: the argument-hint, the preflight `depth_mode` binding note and the flag row."
+   }
+  },
+  {
+   "id": "B1-2",
+   "surface": "S2",
+   "standard": "sk-doc/sk-create-skill",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+   "line": 169,
+   "issue": "The SKILL.md state-file list names three expansive-run files but leaves out research/frontier-graph-events.json. That file is written on every expansive iteration by step_frontier_graph_upsert, and README.md line 111 and state-format.md line 81 both list it. SKILL.md therefore under-describes the shipped state surface.",
+   "evidence": {
+    "cmd": "rg -n frontier-graph-events .skilled/skills/system-deep-loop/deep-research/SKILL.md .skilled/skills/system-deep-loop/deep-research/README.md .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
+    "exit": 0,
+    "out": "README.md:111 and state-format.md:81 match; SKILL.md has no match"
+   },
+   "fix": {
+    "old": "plus `frontier-nodes.jsonl`, `frontier-seed.json` and `frontier-focus.txt` on an expansive run.",
+    "new": "plus `frontier-nodes.jsonl`, `frontier-seed.json`, `frontier-focus.txt` and `frontier-graph-events.json` on an expansive run."
+   }
+  },
+  {
+   "id": "B1-3",
+   "surface": "S2",
+   "standard": "sk-doc/sk-create-skill",
+   "severity": "P2",
+   "fix_class": "literal",
+   "file": ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+   "line": 109,
+   "issue": "The quick-reference state-file table adds Frontier, Frontier seed and Frontier focus rows but no row for research/frontier-graph-events.json, which every expansive iteration writes. This is the same gap as B1-2, and README.md and state-format.md both list the file.",
+   "evidence": {
+    "cmd": "rg -n frontier-graph-events .skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+    "exit": 1,
+    "out": ""
+   },
+   "fix": {
+    "old": "| Frontier focus | `research/frontier-focus.txt` | Text | One-line focus the block step reads before each expansive dispatch |",
+    "new": "| Frontier focus | `research/frontier-focus.txt` | Text | One-line focus the block step reads before each expansive dispatch |\n| Frontier graph events | `research/frontier-graph-events.json` | JSON | Frontier graph events each expansive iteration mirrors into the coverage graph (only under `--depth-mode=expansive`) |"
+   }
+  }
+ ],
+ "reviewed": [
+  ".skilled/skills/system-deep-loop/deep-research/README.md",
+  ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+  ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
+  ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
+  ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+  ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md",
+  ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.17.0.md",
+  ".skilled/skills/system-deep-loop/deep-research/changelog/v1.16.0.0.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/quality-guards.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/initialization.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/focus-hijack-guard.md",
+  ".skilled/skills/system-deep-loop/deep-research/feature-catalog/state-management/leaf-field-gates.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/convergence-passes-guard-fails-override.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-soft-stop.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-focus-alignment.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-no-single-weak-source.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-source-diversity.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/focus-alignment-and-findings-gate-read-leaf-fields.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-band-budget-rolls-down.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-dashboard-section.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-picks-shallowest-open-node.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/frontier-graph-mirror-closes-unanswered-nodes.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/next-focus-ignores-answered-free-text.md",
+  ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+  ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
+  ".skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts",
+  ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs"
+ ],
+ "not_reviewed": [],
+ "notes": "No battery failures were assigned to this lane. Checked and confirmed: the feature catalog has 30 entries (11/10/7/2) and the playbook 74 scenarios across 9 categories, both matching disk; verify-yaml-script-paths.sh prints PASS 27 (exit 0); every rg anchor in the modified and new playbooks resolves; 22 vitest runs (21 of the playbooks' -t filters plus research-depth-mode-golden at 12/12) all exit 0 at exactly the counts the playbooks state; every .skilled path in the new catalog and playbook source tables exists; the git status after the tests shows no tracked file modified. Behavior in the code diffs is documented: the frontier projection, band budget and 6B dashboard (state-format, catalog), extended treated like resumed (loop-protocol), frontier inbox origin (strategy template), and the per-attempt council seat cap (convergence.md, divergent catalog). Not raised, outside this lane: the command-flow-stress-tests SKILL.md:line anchors were already stale at base 21c4b325b5a."
+}
