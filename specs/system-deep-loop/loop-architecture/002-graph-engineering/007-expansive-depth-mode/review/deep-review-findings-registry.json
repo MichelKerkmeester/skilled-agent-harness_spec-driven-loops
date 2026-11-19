@@ -1,0 +1,1978 @@
+{
+  "sessionId": "2026-11-19T04:20:12.962Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Commit-range review target written with any surrounding text prunes every expansive node as relevance",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "line": 494,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Research frontier block step interpolates leaf-written question text into a double-quoted shell argument",
+      "file": ".skilled/commands/deep/assets/deep-research.yaml",
+      "line": 1653,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Defaulted expansive review budget cannot fund its own depth-1 seed under the 50% band share",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      "line": 1983,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Frontier proposal text has no length or character bound before it is replayed into later prompts and the inbox",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "line": 520,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Parent packet docs still report the program as unstarted",
+      "file": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/spec.md",
+      "line": 162,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Research admission never checks proposal scope against the root scope, so 010 CHK-032 is unmet in code, not just unticked",
+      "file": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/tasks.md",
+      "line": 177,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 10,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "The frontier seed step is written twice per workflow and the two copies already disagree on the budget-source flag",
+      "file": ".skilled/commands/deep/assets/deep-review.yaml",
+      "line": 343,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "The defaulted-budget config writer lives as an inline node -e program duplicated in both YAMLs, with no test executing it",
+      "file": ".skilled/commands/deep/assets/deep-review.yaml",
+      "line": 944,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-003",
+      "severity": "P2",
+      "title": "Both command argument-hints omit the opt-in --depth-mode flag",
+      "file": ".skilled/commands/deep/review.md",
+      "line": 3,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "Per-proposal budget field and admission check 5 bound a number nothing spends",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "line": 558,
+      "description": "",
+      "findingClass": "option-without-consumer",
+      "deltaStatus": null,
+      "scopeProof": "frontier-admit.cjs:558-564 and :637 are the only .budget reads outside tests",
+      "affectedSurfaceHints": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+        ".skilled/agents/deep-review.md",
+        ".skilled/agents/deep-research.md"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "overengineering",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "overengineering"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-002",
+      "severity": "P2",
+      "title": "Seed command computes and prints the expansive budget that step_frontier_budget recomputes; --max-iterations-source exists only for that discarded output",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "line": 720,
+      "description": "",
+      "findingClass": "duplicate-derivation-path",
+      "deltaStatus": null,
+      "scopeProof": "seed step outputs only admitted/pruned (deep-review.yaml:927-928); step_frontier_budget recomputes via seedBudget (deep-review.yaml:950)",
+      "affectedSurfaceHints": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+        ".skilled/commands/deep/assets/deep-review.yaml",
+        ".skilled/commands/deep/assets/deep-research.yaml"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "overengineering",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "overengineering"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R6-P2-001",
+      "severity": "P2",
+      "title": "Node-store reader drops a torn row with no signal, unlike the proposal reader",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+      "line": 258,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "sk-code-alignment",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "sk-code-alignment"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P2-001",
+      "severity": "P2",
+      "title": "minRemainingIterations is defaulted, validated, persisted and required on replay but nothing reads it",
+      "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+      "line": 293,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "overengineering",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "overengineering"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P2-002",
+      "severity": "P2",
+      "title": "maxCouncilSeatOutputs cap compares constant 3 with config; only reachable effect is disabling every pivot",
+      "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+      "line": 759,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "overengineering",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "overengineering"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P2-003",
+      "severity": "P2",
+      "title": "Four of six merged review coverage surfaces are written and no consumer reads them",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+      "line": 1000,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "overengineering",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "overengineering"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P2-004",
+      "severity": "P2",
+      "title": "canonicalEdgeEndpoint re-implements resolveReviewFindingId inline",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+      "line": 490,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "overengineering",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "overengineering"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": {
+    "run": 11,
+    "stopReason": "maxIterationsReached",
+    "failedRequiredGateIds": [
+      "coverage"
+    ]
+  },
+  "persistentSameSeverity": [
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Research admission never checks proposal scope against the root scope, so 010 CHK-032 is unmet in code, not just unticked",
+      "file": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/tasks.md",
+      "line": 177,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 10,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Research admission never checks proposal scope against the root scope, so 010 CHK-032 is unmet in code, not just unticked",
+      "file": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/tasks.md",
+      "line": 177,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 10,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true,
+    "overengineering": true,
+    "sk-code-alignment": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 14
+  },
+  "openFindingsCount": 16,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.98,
+  "graphConvergenceScore": 1,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "graphSignals": {
+    "dimensionCoverage": 1,
+    "evidenceDensity": 1,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 1
+  },
+  "candidateCoverage": {
+    "covered": [
+      "budget_accounting",
+      "budget_arithmetic",
+      "checklist_drift",
+      "checklist_evidence_drift",
+      "command_injection",
+      "consumerless_layer",
+      "dead_option",
+      "doc_state_drift",
+      "doc_surface_drift",
+      "duplicate_derivation",
+      "duplicated_logic",
+      "duplicated_logic_drift",
+      "identity_collision",
+      "input_classification",
+      "option_without_consumer",
+      "prompt_injection_persistence",
+      "silent_failure",
+      "state_transition",
+      "untested_logic",
+      "vestigial_option"
+    ],
+    "ruledOut": [
+      "budget_accounting",
+      "checklist_evidence_drift",
+      "comment_hygiene",
+      "consumer_contract",
+      "contract_mismatch",
+      "env_leak",
+      "id_collision",
+      "identity_collision",
+      "input_validation",
+      "mirror_drift",
+      "path_traversal",
+      "route_proof",
+      "spec_code_drift",
+      "speculative_generality",
+      "speculative_layer",
+      "stale_doc",
+      "state_transition",
+      "test_quality",
+      "unsafe_parse"
+    ],
+    "deferred": [
+      "catalog_drift",
+      "merge_semantics"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "input_classification": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "budget_arithmetic": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          7,
+          9
+        ]
+      },
+      "id_collision": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "route_proof": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "command_injection": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "prompt_injection_persistence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "env_leak": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "unsafe_parse": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "checklist_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "doc_state_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "spec_code_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          10
+        ]
+      },
+      "catalog_drift": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "duplicated_logic_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "untested_logic": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "doc_surface_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "stale_doc": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "option_without_consumer": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "duplicate_derivation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "speculative_layer": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "silent_failure": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "comment_hygiene": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "test_quality": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "identity_collision": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "budget_accounting": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "merge_semantics": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "dead_option": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "vestigial_option": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "consumerless_layer": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "duplicated_logic": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "speculative_generality": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "contract_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "input_validation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "consumer_contract": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "checklist_evidence_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "mirror_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 3,
+      "id": "SL-304",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/frontier-admit-script.md"
+      ],
+      "bugClass": "catalog_drift",
+      "disposition": "deferred",
+      "rationale": "same root cause as R1-P1-001",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:452"
+      ],
+      "reason": "catalog becomes true once R1-P1-001 is fixed; tracked under R1-P1-001"
+    },
+    {
+      "iteration": 7,
+      "id": "SL7-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"
+      ],
+      "bugClass": "merge_semantics",
+      "disposition": "deferred",
+      "rationale": "consumer of merged deferred list not traced",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1000"
+      ],
+      "reason": "tool budget; carried to next focus"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "conditions exclusive",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1183",
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1195"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
+      ],
+      "bugClass": "id_collision",
+      "disposition": "ruled_out",
+      "rationale": "highest-serial counter",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:218"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs"
+      ],
+      "bugClass": "route_proof",
+      "disposition": "ruled_out",
+      "rationale": "no logic change",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:569"
+      ],
+      "reason": "diff is comment-only"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs"
+      ],
+      "bugClass": "env_leak",
+      "disposition": "ruled_out",
+      "rationale": "allowlist applies",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:436"
+      ],
+      "reason": "buildExecutorDispatchEnv filters guardContext.env"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "no content-derived path",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:384",
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:905"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-205",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs"
+      ],
+      "bugClass": "unsafe_parse",
+      "disposition": "ruled_out",
+      "rationale": "no shell or path write",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-301",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "owned and documented",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1195",
+        "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor/spec.md:65"
+      ],
+      "reason": "003 spec.md:65 scopes it and config keeps floor 2"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+        ".skilled/skills/system-deep-loop/deep-review/README.md"
+      ],
+      "bugClass": "stale_doc",
+      "disposition": "ruled_out",
+      "rationale": "all copies consistent",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:616",
+        ".skilled/skills/system-deep-loop/deep-review/README.md:144"
+      ],
+      "reason": "verified by exact search"
+    },
+    {
+      "iteration": 5,
+      "id": "SL5-003",
+      "dimension": "overengineering",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json"
+      ],
+      "bugClass": "speculative_layer",
+      "disposition": "ruled_out",
+      "rationale": "key is consumed",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1969"
+      ],
+      "reason": "reduce-state.cjs:1966-1970 reads it"
+    },
+    {
+      "iteration": 5,
+      "id": "SL5-004",
+      "dimension": "overengineering",
+      "targetRefs": [
+        ".skilled/commands/deep/assets/deep-review.yaml"
+      ],
+      "bugClass": "speculative_layer",
+      "disposition": "ruled_out",
+      "rationale": "reducer depends on active rows",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1940"
+      ],
+      "reason": "reduce-state.cjs:1940"
+    },
+    {
+      "iteration": 6,
+      "id": "SL6-002",
+      "dimension": "sk-code-alignment",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+        ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "no ephemeral pointers",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:197"
+      ],
+      "reason": "scan of every added line clean"
+    },
+    {
+      "iteration": 6,
+      "id": "SL6-003",
+      "dimension": "sk-code-alignment",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts"
+      ],
+      "bugClass": "test_quality",
+      "disposition": "ruled_out",
+      "rationale": "tests can fail for real reasons",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts:47"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 7,
+      "id": "SL7-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
+      ],
+      "bugClass": "identity_collision",
+      "disposition": "ruled_out",
+      "rationale": "depth-1 ids cannot be minted by a lineage",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:800",
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:604",
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:681"
+      ],
+      "reason": "verified by direct read of id minting and seed skip"
+    },
+    {
+      "iteration": 7,
+      "id": "SL7-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "attempt 2 is isolated",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1504",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1621"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 7,
+      "id": "SL7-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs"
+      ],
+      "bugClass": "budget_accounting",
+      "disposition": "ruled_out",
+      "rationale": "ordering and id normalization are consistent",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2524",
+        ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:223"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 7,
+      "id": "SL7-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs"
+      ],
+      "bugClass": "identity_collision",
+      "disposition": "ruled_out",
+      "rationale": "fold order prefers this iteration",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:269",
+        ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:176"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-805",
+      "dimension": "overengineering",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs"
+      ],
+      "bugClass": "speculative_generality",
+      "disposition": "ruled_out",
+      "rationale": "serves anti-gaming requirement",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:311"
+      ],
+      "reason": "current requirement earns it"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-806",
+      "dimension": "overengineering",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"
+      ],
+      "bugClass": "speculative_generality",
+      "disposition": "ruled_out",
+      "rationale": "earned by lost-node detection",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1781"
+      ],
+      "reason": "two real callers"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-1",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/deep/assets/deep-review.yaml"
+      ],
+      "bugClass": "contract_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "producer and isData use the same identity",
+      "evidenceRefs": [
+        ".skilled/commands/deep/assets/deep-review.yaml:550"
+      ],
+      "reason": "verified by direct read of both"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-2",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "textFromQuestion reads .text and buildQuestionFields keeps it",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs:36"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-3",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/deep/assets/deep-review.yaml"
+      ],
+      "bugClass": "input_validation",
+      "disposition": "ruled_out",
+      "rationale": "isUint32 refuses at gateway before config move",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts:895"
+      ],
+      "reason": "gateway runs before mv"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-4",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"
+      ],
+      "bugClass": "consumer_contract",
+      "disposition": "ruled_out",
+      "rationale": "no consumer of merged coverage; synthesis binds only p0_count and failed gates",
+      "evidenceRefs": [
+        ".skilled/commands/deep/assets/deep-review.yaml:2168"
+      ],
+      "reason": "grep of workflow and scripts found no reader"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/deep/assets/deep-research.yaml",
+        ".skilled/commands/deep/assets/deep-review.yaml"
+      ],
+      "bugClass": "checklist_evidence_drift",
+      "disposition": "ruled_out",
+      "rationale": "content present; only cited line numbers drifted",
+      "evidenceRefs": [
+        ".skilled/commands/deep/assets/deep-research.yaml:1818",
+        ".skilled/commands/deep/assets/deep-review.yaml:1932"
+      ],
+      "reason": "verified by exact search"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".vibe/agents/deep-review.toml",
+        ".codex/agents/deep-review.toml"
+      ],
+      "bugClass": "mirror_drift",
+      "disposition": "ruled_out",
+      "rationale": "vibe stores instructions on one line",
+      "evidenceRefs": [
+        ".vibe/agents/deep-review.toml:4",
+        ".codex/agents/deep-review.toml:333"
+      ],
+      "reason": "occurrence count matches"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "already recorded as R1-P1-001; not re-reported",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:452"
+      ],
+      "reason": "duplicate of open registry finding"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "conditions exclusive",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1183",
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1195"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
+      ],
+      "bugClass": "id_collision",
+      "disposition": "ruled_out",
+      "rationale": "highest-serial counter",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:218"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs"
+      ],
+      "bugClass": "route_proof",
+      "disposition": "ruled_out",
+      "rationale": "no logic change",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:569"
+      ],
+      "proof": "diff is comment-only"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs"
+      ],
+      "bugClass": "env_leak",
+      "disposition": "ruled_out",
+      "rationale": "allowlist applies",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:436"
+      ],
+      "proof": "buildExecutorDispatchEnv filters guardContext.env"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "no content-derived path",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:384",
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:905"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-205",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs"
+      ],
+      "bugClass": "unsafe_parse",
+      "disposition": "ruled_out",
+      "rationale": "no shell or path write",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-301",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "owned and documented",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1195",
+        "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor/spec.md:65"
+      ],
+      "proof": "003 spec.md:65 scopes it and config keeps floor 2"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+        ".skilled/skills/system-deep-loop/deep-review/README.md"
+      ],
+      "bugClass": "stale_doc",
+      "disposition": "ruled_out",
+      "rationale": "all copies consistent",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:616",
+        ".skilled/skills/system-deep-loop/deep-review/README.md:144"
+      ],
+      "proof": "verified by exact search"
+    },
+    {
+      "iteration": 5,
+      "id": "SL5-003",
+      "dimension": "overengineering",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json"
+      ],
+      "bugClass": "speculative_layer",
+      "disposition": "ruled_out",
+      "rationale": "key is consumed",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1969"
+      ],
+      "proof": "reduce-state.cjs:1966-1970 reads it"
+    },
+    {
+      "iteration": 5,
+      "id": "SL5-004",
+      "dimension": "overengineering",
+      "targetRefs": [
+        ".skilled/commands/deep/assets/deep-review.yaml"
+      ],
+      "bugClass": "speculative_layer",
+      "disposition": "ruled_out",
+      "rationale": "reducer depends on active rows",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1940"
+      ],
+      "proof": "reduce-state.cjs:1940"
+    },
+    {
+      "iteration": 6,
+      "id": "SL6-002",
+      "dimension": "sk-code-alignment",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
+        ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "no ephemeral pointers",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:197"
+      ],
+      "proof": "scan of every added line clean"
+    },
+    {
+      "iteration": 6,
+      "id": "SL6-003",
+      "dimension": "sk-code-alignment",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts"
+      ],
+      "bugClass": "test_quality",
+      "disposition": "ruled_out",
+      "rationale": "tests can fail for real reasons",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts:47"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 7,
+      "id": "SL7-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
+      ],
+      "bugClass": "identity_collision",
+      "disposition": "ruled_out",
+      "rationale": "depth-1 ids cannot be minted by a lineage",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:800",
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:604",
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:681"
+      ],
+      "proof": "verified by direct read of id minting and seed skip"
+    },
+    {
+      "iteration": 7,
+      "id": "SL7-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "attempt 2 is isolated",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1504",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1621"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 7,
+      "id": "SL7-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs"
+      ],
+      "bugClass": "budget_accounting",
+      "disposition": "ruled_out",
+      "rationale": "ordering and id normalization are consistent",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2524",
+        ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:223"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 7,
+      "id": "SL7-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs"
+      ],
+      "bugClass": "identity_collision",
+      "disposition": "ruled_out",
+      "rationale": "fold order prefers this iteration",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:269",
+        ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:176"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-805",
+      "dimension": "overengineering",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs"
+      ],
+      "bugClass": "speculative_generality",
+      "disposition": "ruled_out",
+      "rationale": "serves anti-gaming requirement",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:311"
+      ],
+      "proof": "current requirement earns it"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-806",
+      "dimension": "overengineering",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"
+      ],
+      "bugClass": "speculative_generality",
+      "disposition": "ruled_out",
+      "rationale": "earned by lost-node detection",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1781"
+      ],
+      "proof": "two real callers"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-1",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/deep/assets/deep-review.yaml"
+      ],
+      "bugClass": "contract_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "producer and isData use the same identity",
+      "evidenceRefs": [
+        ".skilled/commands/deep/assets/deep-review.yaml:550"
+      ],
+      "proof": "verified by direct read of both"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-2",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "textFromQuestion reads .text and buildQuestionFields keeps it",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs:36"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-3",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/deep/assets/deep-review.yaml"
+      ],
+      "bugClass": "input_validation",
+      "disposition": "ruled_out",
+      "rationale": "isUint32 refuses at gateway before config move",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts:895"
+      ],
+      "proof": "gateway runs before mv"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-4",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"
+      ],
+      "bugClass": "consumer_contract",
+      "disposition": "ruled_out",
+      "rationale": "no consumer of merged coverage; synthesis binds only p0_count and failed gates",
+      "evidenceRefs": [
+        ".skilled/commands/deep/assets/deep-review.yaml:2168"
+      ],
+      "proof": "grep of workflow and scripts found no reader"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/deep/assets/deep-research.yaml",
+        ".skilled/commands/deep/assets/deep-review.yaml"
+      ],
+      "bugClass": "checklist_evidence_drift",
+      "disposition": "ruled_out",
+      "rationale": "content present; only cited line numbers drifted",
+      "evidenceRefs": [
+        ".skilled/commands/deep/assets/deep-research.yaml:1818",
+        ".skilled/commands/deep/assets/deep-review.yaml:1932"
+      ],
+      "proof": "verified by exact search"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".vibe/agents/deep-review.toml",
+        ".codex/agents/deep-review.toml"
+      ],
+      "bugClass": "mirror_drift",
+      "disposition": "ruled_out",
+      "rationale": "vibe stores instructions on one line",
+      "evidenceRefs": [
+        ".vibe/agents/deep-review.toml:4",
+        ".codex/agents/deep-review.toml:333"
+      ],
+      "proof": "occurrence count matches"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "already recorded as R1-P1-001; not re-reported",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:452"
+      ],
+      "proof": "duplicate of open registry finding"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "checklist_evidence_drift",
+      "spec_code_drift",
+      "mirror_drift"
+    ],
+    "covered": [
+      "checklist_evidence_drift"
+    ],
+    "ruledOut": [
+      "mirror_drift"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 6,
+      "executed": 6,
+      "pass": 1,
+      "partial": 5,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:452",
+          ".skilled/commands/deep/assets/deep-review.yaml:550"
+        ],
+        "evidenceRefs": [
+          ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:452",
+          ".skilled/commands/deep/assets/deep-review.yaml:550"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "partial",
+        "summary": "run_extended identity holds; R1-P1-001 commit-range relevance gap still active"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/tasks.md:177",
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/tasks.md:188",
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/tasks.md:204",
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/tasks.md:181",
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/tasks.md:48",
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/tasks.md:37",
+          ".skilled/commands/deep/assets/deep-research.yaml:1818",
+          ".skilled/commands/deep/assets/deep-review.yaml:1932",
+          ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2608",
+          ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:525"
+        ],
+        "evidenceRefs": [
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/tasks.md:177",
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/tasks.md:188",
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/tasks.md:204",
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/tasks.md:181",
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/tasks.md:48",
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/tasks.md:37",
+          ".skilled/commands/deep/assets/deep-research.yaml:1818",
+          ".skilled/commands/deep/assets/deep-review.yaml:1932",
+          ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2608",
+          ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:525"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "summary": "ticked-row evidence spot-checked and holds; 010/011 P0 rows open on Complete phases, 010 CHK-032 unmet in code, parent T004-T010 open"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/min-iterations-floor.md:16",
+          ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/frontier-admit-script.md:49",
+          ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/frontier-admit-script.md:35"
+        ],
+        "evidenceRefs": [
+          ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/frontier-admit-script.md:49"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "feature_catalog_code",
+        "status": "partial",
+        "summary": "floor catalog matches code; commit-range relevance claim true only for bare range (R1-P1-001 root cause)"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-min-iterations-floor.md",
+          ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md"
+        ],
+        "evidenceRefs": [],
+        "gateClass": "advisory",
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "summary": "scenario files present for each expansive capability and the review floor; steps not executed"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/agents/deep-review.md:170",
+          ".skilled/agents/deep-review.md:343",
+          ".codex/agents/deep-review.toml:160",
+          ".codex/agents/deep-review.toml:333",
+          ".vibe/agents/deep-review.toml:4"
+        ],
+        "evidenceRefs": [
+          ".skilled/agents/deep-review.md:170",
+          ".skilled/agents/deep-review.md:343",
+          ".codex/agents/deep-review.toml:160",
+          ".codex/agents/deep-review.toml:333",
+          ".vibe/agents/deep-review.toml:4"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "agent_cross_runtime",
+        "status": "pass",
+        "summary": "custom-dimension rule present in canonical deep-review agent and all five mirrors"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/agents/deep-review.md:266",
+          ".skilled/agents/deep-research.md:301"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "skill_agent",
+        "status": "partial",
+        "summary": "agent proposal schemas match the six checks, including the consumer-less budget check"
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "spec_code",
+      "checklist_evidence"
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}
