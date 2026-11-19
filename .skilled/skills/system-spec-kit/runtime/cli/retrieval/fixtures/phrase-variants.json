@@ -1,5 +1,5 @@
 {
-  "manifestHash": "caa5bae5665804af75688aa05bec20abd49c54569cec56ae656396787833329d",
+  "manifestHash": "612612cc33a58474dc8936e222f7c5ddfc995902923efc1983c4047a5f137eac",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8922,6 +8922,9 @@
     ],
     "advisor compatibility export": [
       "advisor compatibility export"
+    ],
+    "advisor confidence floor": [
+      "advisor confidence floor"
     ],
     "advisor confidence threshold daemon start": [
       "advisor confidence threshold daemon start"
@@ -20540,6 +20543,9 @@
     "cl 008 opencode later turn goal injection": [
       "CL-008 OpenCode later-turn goal injection"
     ],
+    "cl 011": [
+      "cl-011"
+    ],
     "claim adjudication": [
       "claim adjudication"
     ],
@@ -30166,6 +30172,9 @@
     ],
     "confidence floor counter": [
       "confidence floor counter"
+    ],
+    "confidence floored follow up": [
+      "confidence-floored follow-up"
     ],
     "confidence reranker weight removal": [
       "confidence reranker weight removal"
@@ -81923,6 +81932,12 @@
     "past due tasks": [
       "past-due tasks"
     ],
+    "pasted assistant reply": [
+      "pasted assistant reply"
+    ],
+    "pasted assistant response": [
+      "pasted assistant response"
+    ],
     "pasted command attaches to task": [
       "pasted command attaches to task"
     ],
@@ -81941,11 +81956,21 @@
     "pasted context stripping tasks": [
       "pasted context stripping tasks"
     ],
+    "pasted reply routing": [
+      "pasted reply routing"
+    ],
+    "pasted reply strip": [
+      "pasted reply strip"
+    ],
     "pasted reply strip edges": [
       "pasted reply strip edges"
     ],
     "pasted reply strip shared fixture": [
       "pasted reply strip shared fixture"
+    ],
+    "pasted reply stripping": [
+      "Pasted Reply Stripping",
+      "pasted reply stripping"
     ],
     "patch a notion page s properties": [
       "patch a Notion page's properties"
@@ -102241,6 +102266,9 @@
     "route receipt after delivery": [
       "route receipt after delivery"
     ],
+    "route receipt guard": [
+      "route-receipt guard"
+    ],
     "route receipts build": [
       "route receipts build"
     ],
@@ -104735,6 +104763,9 @@
     "sc 005": [
       "sc-005"
     ],
+    "sc 006": [
+      "sc-006"
+    ],
     "scaffold and validate test": [
       "scaffold and validate test"
     ],
@@ -107162,6 +107193,9 @@
     ],
     "session resume asynclocalstorage auth binding": [
       "session-resume AsyncLocalStorage auth binding"
+    ],
+    "session route receipt": [
+      "session route receipt"
     ],
     "session scope implementation tasks": [
       "session scope implementation tasks"
@@ -125519,6 +125553,9 @@
     "system skill advisor 1 1 0 0": [
       "system-skill-advisor 1.1.0.0"
     ],
+    "system skill advisor 1 1 1 0": [
+      "system-skill-advisor 1.1.1.0"
+    ],
     "system skill advisor architectural shape": [
       "system-skill-advisor architectural shape"
     ],
@@ -125863,6 +125900,9 @@
     ],
     "system skill advisor v1 1 0 0": [
       "system-skill-advisor v1.1.0.0"
+    ],
+    "system skill advisor v1 1 1 0": [
+      "system-skill-advisor v1.1.1.0"
     ],
     "system skilled doctor 1 0 0 0": [
       "system-skilled-doctor 1.0.0.0"
@@ -127381,6 +127421,9 @@
     ],
     "task marker linear regex": [
       "task marker linear regex"
+    ],
+    "task marker stripping": [
+      "task marker stripping"
     ],
     "task prefix": [
       "task prefix"
@@ -135048,6 +135091,12 @@
     ],
     "weak follow up receipt guard": [
       "weak follow-up receipt guard"
+    ],
+    "weak follow up route receipt": [
+      "weak follow-up route receipt"
+    ],
+    "weak follow up route receipt guard": [
+      "Weak Follow-Up Route-Receipt Guard"
     ],
     "weak follow up session receipt": [
       "weak follow-up session receipt"
