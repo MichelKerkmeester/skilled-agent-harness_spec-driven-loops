@@ -1,0 +1,22 @@
+{
+  "specFolder": "cli-external-orchestration/model-rosters/008-glm-5-3-opencode-go-roster",
+  "description": "Add GLM 5.3 to the cli-pi and cli-opencode rosters through the opencode-go provider",
+  "keywords": [
+    "glm",
+    "cli-pi",
+    "cli-opencode",
+    "rosters",
+    "opencode-go",
+    "provider"
+  ],
+  "lastUpdated": "2026-11-19T08:36:49.281Z",
+  "specId": "008",
+  "folderSlug": "glm-5-3-opencode-go-roster",
+  "parentChain": [
+    "cli-external-orchestration",
+    "model-rosters"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
