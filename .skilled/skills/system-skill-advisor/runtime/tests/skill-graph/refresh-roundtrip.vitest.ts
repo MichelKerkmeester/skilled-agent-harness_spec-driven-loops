@@ -5,7 +5,7 @@
 // Verifies that refreshSkillEmbeddings dispatches correctly on
 // hasActiveEmbedderPointer:
 //   - pointer SET  → uses EmbedderAdapter layer + writes vec_<dim>
-//   - pointer UNSET → uses legacy createEmbeddingsProvider + writes skill_nodes
+//   - pointer UNSET → skips refresh and returns no skill embeddings
 //
 // Closes the writer cross-wire gap surfaced by deep-review.
 //
@@ -51,25 +51,6 @@ vi.mock('../../lib/embedders/registry.js', async (importOriginal) => {
       }
       return actual.getAdapter(name);
     }),
-  };
-});
-
-// Mock the legacy createEmbeddingsProvider so the legacy-path test stays offline too
-vi.mock('@spec-kit/shared/embeddings/factory.js', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@spec-kit/shared/embeddings/factory.js')>();
-  return {
-    ...actual,
-    createEmbeddingsProvider: vi.fn(async () => ({
-      embedDocument: vi.fn(async () => new Float32Array(768).fill(0.5)),
-      embedQuery: vi.fn(async () => new Float32Array(768).fill(0.5)),
-      getProfile: () => ({
-        provider: 'mock',
-        model: 'legacy-fixture',
-        dim: 768,
-        slug: 'mock:legacy-fixture:768',
-      }),
-      warmup: async () => true,
-    })),
   };
 });
 
@@ -199,22 +180,19 @@ describe('010/004 refreshSkillEmbeddings round-trip', () => {
     expect(adapterEmbed).not.toHaveBeenCalled();
   });
 
-  it('legacy path: when pointer NOT set, falls back to createEmbeddingsProvider', async () => {
-    seedSkillTree(tmpRoot, 'sk-legacy', 'legacy-path skill');
+  it('without an active pointer, skips refresh and loads no skill embeddings', async () => {
+    seedSkillTree(tmpRoot, 'sk-no-pointer', 'skill without an active pointer');
     indexSkillMetadata(join(tmpRoot, '.skilled', 'skills'));
-    // NOTE: deliberately NOT calling setActiveEmbedder; pointer remains unset
 
     const result = await refreshSkillEmbeddings();
 
-    expect(result.failed).toBe(0);
-    expect(result.embedded).toBeGreaterThanOrEqual(1);
-
-    const loaded = loadSkillEmbeddings();
-    expect(loaded.length).toBeGreaterThanOrEqual(1);
-    for (const row of loaded) {
-      expect(row.embedding.length).toBe(768);
-      // Legacy path uses providerModelId slug
-      expect(row.modelId).toContain('mock');
-    }
+    expect(result).toEqual({
+      embedded: 0,
+      skipped: 0,
+      failed: 0,
+      warnings: ['no active embedder pointer; skill embeddings not refreshed'],
+    });
+    expect(adapterEmbed).not.toHaveBeenCalled();
+    expect(loadSkillEmbeddings()).toEqual([]);
   });
 });

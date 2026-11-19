@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor Install + Setup Guide"
 description: "Bootstrap, verification, runtime hooks, local scorer, rollback, operator notes and reference commands for the daemon-backed skill advisor CLI."
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Skill Advisor Install + Setup Guide
@@ -274,36 +274,28 @@ python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_regre
 
 ## 12. CHOOSING AN EMBEDDER
 
-The skill-advisor `semantic_shadow` lane runs against a pluggable embedder layer. As of phase `003/006` the contract surface (adapter interface, types, manifest registry, Ollama adapter) lives in `@spec-kit/shared/embeddings/`, which the advisor now owns. Skill-advisor's local `runtime/lib/embedders/` files are thin re-export shims plus a skill-advisor-specific `schema.ts` integration that targets the package-local SQLite database at `runtime/database/skill-graph.sqlite`. This section is the new-user onboarding view; the canonical embedder narrative lives at [embedder-pluggability.md](../system-spec-kit/references/memory/embedder-pluggability.md).
+The skill-advisor `semantic_shadow` lane uses the registered embedder in `@spec-kit/shared/embeddings/`. The adapter interface, types, manifest registry and Ollama adapter live in that shared package. Skill-advisor's local `runtime/lib/embedders/` files are thin re-export shims plus a `schema.ts` integration that targets the package-local SQLite database at `runtime/database/skill-graph.sqlite`. This section is the new-user onboarding view. The canonical embedder narrative lives at [embedder-pluggability.md](../system-spec-kit/references/memory/embedder-pluggability.md).
 
 ### 12.1 Current active default
 
-The persisted default is the `'auto'` sentinel. On daemon startup, `ensureActiveEmbedder()` invokes the shared cascade and persists the winner to `vec_metadata`. The cascade probes (in order):
+The persisted default is the `'auto'` sentinel. On daemon start, `ensureActiveEmbedder()` resolves an unset (`auto`) or unknown embedder pointer directly to the registered manifest `nomic-embed-text-v1.5` (768 dimensions) and persists it to `vec_metadata`. This path makes no backend probes. The advisor does not run the shared cascade.
 
-| Tier | Probe | Picks |
+| Pointer state | Resolved manifest | Backend probe |
 | --- | --- | --- |
-| 1 | Ollama running with a known text manifest pulled | `nomic-embed-text-v1.5` (first match in priority list) |
-| 2 | hf-local model server reachable (pure-Node `@huggingface/transformers` HTTP client, zero Python) | `nomic-ai/nomic-embed-text-v1.5` (hf-local) |
-| 3 | `OPENAI_API_KEY` present | `text-embedding-3-small` (1536-dim) |
-| 4 | `VOYAGE_API_KEY` present | `voyage-code-3` (1024-dim, acknowledged compromise for prose memory) |
+| Unset (`auto`) | `nomic-embed-text-v1.5` (768 dimensions) | None |
+| Unknown manifest | `nomic-embed-text-v1.5` (768 dimensions) | None |
 
-If every probe fails the daemon logs a warning and `semantic_shadow` scoring may degrade. The cascade only fires when the persisted pointer is `'auto'` or references a manifest the shared registry no longer knows about (legacy `embeddinggemma-300m` from a pre-phase-007 install). Manual `setActiveEmbedder()` calls take precedence — they pin the pointer and the cascade skips on subsequent restarts.
+`setActiveEmbedder()` can pin the registered manifest, and later daemon starts use that pointer.
 
-Phase `002/jina-swap-and-reindex` runbook plus phase `004/skill-graph-db-writer-cross-wire` together make the swap safe end-to-end. The writer dispatcher (`refreshSkillEmbeddings()`) routes through `refreshSkillEmbeddingsViaAdapter` when an active pointer is set and falls back to the legacy `createEmbeddingsProvider` factory only when the cascade has not yet resolved (e.g. cold start before any probe succeeds).
+Only a trusted `skill_graph_scan` refreshes skill vectors through `refreshSkillEmbeddingsViaAdapter`. No other path refreshes them. A refresh with no active pointer embeds nothing. The legacy `skill_nodes.embedding` path has been removed.
 
 ### 12.2 Registered alternatives
 
-Source of truth: [`@spec-kit/shared/embeddings/registry.ts`](../system-spec-kit/shared/embeddings/registry.ts). Skill-advisor's local `runtime/lib/embedders/registry.ts` is a re-export shim — adding manifests is a single edit in the shared package. The seven text-tuned manifests registered today, each as a frozen `EmbedderManifest`:
+Source of truth: [`@spec-kit/shared/embeddings/registry.ts`](../system-spec-kit/shared/embeddings/registry.ts). Skill-advisor's local `runtime/lib/embedders/registry.ts` is a re-export shim. One text-tuned manifest is registered today as a frozen `EmbedderManifest`:
 
 | Name | Dim | Backend | Ollama tag | Max input | Notes |
 | --- | ---: | --- | --- | ---: | --- |
 | `nomic-embed-text-v1.5` | 768 | `ollama` | `nomic-embed-text:v1.5` | 5000 | 768-dim retrieval specialist. Local-first cascade default per ADR-014. Uses `search_query: ` / `search_document: ` prefix tokens. |
-| `mxbai-embed-large-v1` | 1024 | `ollama` | `mxbai-embed-large:latest` | 1200 | Phase `016/004` paraphrase-strong candidate. |
-| `bge-small-en-v1.5` | 384 | `ollama` | `bge-small-en-v1.5:latest` | n/a | Compact 33M-param baseline. |
-| `bge-large-en-v1.5` | 1024 | `ollama` | `bge-large-en-v1.5:latest` | n/a | BAAI flagship retrieval model. |
-| `jina-embeddings-v3` | 1024 | `ollama` | `hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M` | 8000 | Multilingual + paraphrase-tuned. Matryoshka representation allows 256 / 512 / 768 / 1024 truncation. |
-| `bge-m3` | 1024 | `ollama` | `bge-m3:latest` | 8000 | Multilingual hybrid (dense + sparse + colbert). |
-| `snowflake-arctic-embed-l-v2.0` | 1024 | `ollama` | `snowflake-arctic-embed2:latest` | 8000 | Snowflake late-2024 flagship. 8192 context, multilingual, top MTEB retrieval scores. |
 
 > **Content-type split.** The TS shared registry is text-tuned by design. The `contentType: 'text' \| 'code'` parameter on the shared cascade preserves the conceptual split for any future TS code consumer. The previous skill-advisor-specific `jina-embeddings-v2-base-code` entry was removed because it was code-tuned and did not belong in a text-only registry.
 
@@ -313,7 +305,7 @@ Adding a new candidate is a single registry row in the shared package plus, if t
 
 There are two operator-facing surfaces. **Neither is an environment variable.**
 
-**Sentinel-driven (default).** `vec_metadata` starts unpopulated; `getActiveEmbedder()` returns `{ name: 'auto', dim: 0 }`. The first daemon start invokes `ensureActiveEmbedder()` which calls the shared cascade and persists the winner. Subsequent daemon starts read the persisted pointer and skip the cascade.
+**Sentinel-driven (default).** `vec_metadata` starts unpopulated, and `getActiveEmbedder()` returns `{ name: 'auto', dim: 0 }`. On daemon start, `ensureActiveEmbedder()` resolves an unset (`auto`) or unknown pointer to `nomic-embed-text-v1.5` (768 dimensions) and persists it without probing a backend. The advisor does not run the shared cascade.
 
 **Manual override.** [`setActiveEmbedder()`](./runtime/lib/embedders/schema.ts) writes a specific manifest into `vec_metadata` and creates the matching `vec_<dim>` table:
 
@@ -322,48 +314,46 @@ import Database from 'better-sqlite3';
 import { setActiveEmbedder } from './runtime/dist/.../lib/embedders/schema.js';
 
 const db = new Database('.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite');
-setActiveEmbedder(db, 'jina-embeddings-v3', 1024);
+setActiveEmbedder(db, 'nomic-embed-text-v1.5', 768);
 ```
 
 Effect of the call:
 
-- `vec_metadata.active_embedder_name` -> `jina-embeddings-v3`
-- `vec_metadata.active_embedder_dim` -> `1024`
-- `vec_1024` table created (if absent), schema `(skill_id, embedding BLOB, model_id, content_hash, updated_at)`
+- `vec_metadata.active_embedder_name` -> `nomic-embed-text-v1.5`
+- `vec_metadata.active_embedder_dim` -> `768`
+- `vec_768` table created (if absent), schema `(skill_id, embedding BLOB, model_id, content_hash, updated_at)`
 - `hasActiveEmbedderPointer(db)` returns `true`, so both read path (`semantic-shadow.ts`, `loadSkillEmbeddings()`) and write path (`refreshSkillEmbeddingsViaAdapter`) target `vec_<active.dim>`
-- The shared cascade is skipped on subsequent restarts (a manual override pins the pointer)
+- The pinned pointer is read on subsequent restarts.
 
-There are intentionally no embedder-administration commands here. Skill-advisor's surface is one database helper plus the cascade-driven sentinel. Operator discipline owns any manual swap workflow; there is no async re-index orchestrator on the skill-advisor side.
+There are intentionally no embedder-administration commands here. Skill-advisor's surface is one database helper plus the registered-manifest pointer. A trusted `skill_graph_scan` is the only skill-vector refresh path. There is no async re-index orchestrator on the skill-advisor side.
 
 ### 12.4 Operator-safe swap runbook
 
-The writer cross-wire shipped in phase `004` and the cascade-driven default shipped in phase `003/006`. The pointer flip is now safe end-to-end:
+The advisor resolves an unset or unknown pointer to the registered manifest without probing a backend. Only a trusted `skill_graph_scan` refreshes skill vectors:
 
 1. Stop the daemon.
 2. Snapshot `runtime/database/skill-graph.sqlite`.
-3. (Optional) Call `setActiveEmbedder()` to override the cascade choice.
-4. Restart the daemon. `ensureActiveEmbedder()` either honours your override or runs the cascade. The first scan or watcher tick populates `vec_<active.dim>` via the adapter dispatcher.
+3. (Optional) Call `setActiveEmbedder()` to pin the registered manifest.
+4. Restart the daemon. An unset or unknown pointer resolves to `nomic-embed-text-v1.5` (768 dimensions) without a backend probe. Run a trusted `skill_graph_scan` to refresh skill vectors through the adapter dispatcher. A refresh with no active pointer embeds nothing.
 5. Smoke-test `advisor_recommend` through the CLI against three queries (`"memory save"`, `"code search"`, `"spec folder"`) and confirm top-3 picks are sane.
 
 The full runbook (snapshot + stop + override + restart + smoke test + rollback) is documented at [`002-jina-swap-and-reindex/evidence/swap-runbook.md`](../../<spec-folder>). The "Architecture Context" and "Half-wired state" sections are now historical — the half-wired state was closed by phase `004`.
 
 ### 12.5 Device selection
 
-Skill-advisor does not ship an explicit `_resolve_device()` shim. Device selection inherits from the underlying backend:
+Skill-advisor does not ship an explicit `_resolve_device()` shim. Its registered `nomic-embed-text-v1.5` manifest uses Ollama, which owns device selection:
 
 | Backend | Device handling |
 | --- | --- |
-| `ollama` (default after cascade picks tier 1) | Ollama owns runtime device handling. It already covers Metal / CUDA / CPU autonomously based on its own daemon configuration. |
-| `hf-local` (fallback tier 2) | Pure-Node `@huggingface/transformers` HTTP model server (zero Python). Device handling (MPS / CUDA / CPU) is resolved by the model server's own runtime. |
-| `api` (OpenAI or Voyage fallback) | Remote inference; device handling is the provider's concern. |
+| `ollama` (`nomic-embed-text-v1.5`) | Ollama owns runtime device handling. It covers Metal / CUDA / CPU based on its daemon configuration. |
 
-If you need MPS-style auto-detect for a local model, the Ollama backend already provides it on Apple Silicon by default — install Ollama, pull a manifest, the cascade picks it.
+If you need MPS-style auto-detect for a local model, Ollama provides it on Apple Silicon. Install Ollama and pull the registered manifest.
 
 ### 12.6 Cross-references
 
 - Canonical shared-embedder narrative: [`embedder-pluggability.md`](../system-spec-kit/references/memory/embedder-pluggability.md) — covers skill-advisor and the shared design rationale.
 - Shared contract surface: [`@spec-kit/shared/embeddings/`](../system-spec-kit/shared/embeddings/) — the canonical adapter, types, registry and Ollama adapter.
-- Shared cascade: [`@spec-kit/shared/embeddings/auto-select.ts`](../system-spec-kit/shared/embeddings/auto-select.ts) — file-locked Ollama → hf-local → OpenAI → Voyage probe chain (ADR-014 local-first). Accepts optional `contentType: 'text' \| 'code'` parameter (default `'text'`).
+- Shared cascade: [`@spec-kit/shared/embeddings/auto-select.ts`](../system-spec-kit/shared/embeddings/auto-select.ts) is a file-locked chain that probes Ollama, hf-local, OpenAI and Voyage for shared consumers. The advisor does not use it to resolve its pointer. It accepts an optional `contentType: 'text' \| 'code'` parameter (default `'text'`).
 - Skill-advisor schema helpers: [`runtime/lib/embedders/schema.ts`](./runtime/lib/embedders/schema.ts).
 - Architecture-gap follow-on: packet `003/006-shared-embedder-logic-with-spec-memory` (shipped phase 003/006).
 
@@ -382,7 +372,7 @@ What the embedder costs on this machine, measured 2026-11-13 with `runtime/scrip
 | Warm embed latency, model loaded | 4.8 ms median, 8.9 ms p95 |
 | Cold first call after the unload | 538.53 ms |
 
-Once the approved steps ran, the route runs `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json`. That scan is what writes the command vectors into the `vec_cmd_<dim>` table: without it `commandVectorCoverage.embedded` stays at zero and the semantic lane reports off. The database is derived state and gitignored, since `.gitignore` ignores `runtime/database/*.sqlite`, so the scan costs its own runtime plus the warm latency per embedded prompt and leaves nothing for git.
+Once the approved steps run, the route runs `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json`. That trusted scan is the only path that refreshes skill vectors. A refresh with no active pointer embeds nothing. At the default live weight of 0, `advisor_status` reports `disabledReason: "lane_weight_zero"` and `laneEnabled: false`, and prompts make no Ollama embed call. The database is derived state and gitignored, since `.gitignore` ignores `runtime/database/*.sqlite`.
 
 ---
 

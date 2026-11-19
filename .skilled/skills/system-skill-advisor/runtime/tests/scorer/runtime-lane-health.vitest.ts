@@ -2,7 +2,11 @@
 // MODULE: Runtime Lane Health Tests
 // ───────────────────────────────────────────────────────────────
 
-import { describe, expect, it } from 'vitest';
+import { afterAll, describe, expect, it, vi } from 'vitest';
+
+vi.hoisted(() => {
+  process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON = '{"semantic_shadow":0.05}';
+});
 
 import { scoreAdvisorPrompt } from '../../lib/scorer/fusion.js';
 import { createFixtureProjection } from '../../lib/scorer/projection.js';
@@ -49,6 +53,10 @@ function top(result: AdvisorScoringResult) {
   expect(recommendation).toBeDefined();
   return recommendation!;
 }
+
+afterAll(() => {
+  delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
+});
 
 describe('runtime lane health graceful degradation', () => {
   it('keeps an explicit healthy signal byte-identical to the default path', () => {

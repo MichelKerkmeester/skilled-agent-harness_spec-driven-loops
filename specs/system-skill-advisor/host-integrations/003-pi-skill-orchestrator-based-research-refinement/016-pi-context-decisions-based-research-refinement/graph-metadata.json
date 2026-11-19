@@ -20,7 +20,8 @@
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes",
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check",
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check",
-    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis"
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis",
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness"
   ],
   "manual": {
     "depends_on": [],
@@ -170,17 +171,17 @@
     ],
     "causal_summary": "The skill advisor picks skills with a local five-lane scorer and pushes a brief into every prompt",
     "created_at": "2026-11-18T06:49:25Z",
-    "last_save_at": "2026-11-19T12:56:49.373Z",
+    "last_save_at": "2026-11-19T14:53:06.359Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:9ce0c473048ebe5590ceef5a7dbb80fffeaf27cb7f5c43765696e897ff9eb990",
+    "source_fingerprint": "sha256:e88159874129f185ecab1ec820f0efe24ddb54174804af3f1c585083296fbb5a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2dabd3de852e70301fae6528b08c2c9abd3d4bc7e576ac42f3f294fbb5280cac"
+      "spec.md": "2e9e5a7018a847f03ae10b7e4e5062187683aefc0eef9d0a47985776e2afe64b"
     },
     "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis",
     "last_active_at": "2026-11-19T12:56:49.373Z"

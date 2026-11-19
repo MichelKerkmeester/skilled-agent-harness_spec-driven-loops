@@ -7,7 +7,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
-import path from 'node:path';
+import path, { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 import {
@@ -27,6 +27,11 @@ import { findAdvisorWorkspaceRoot } from './lib/utils/workspace-root.js';
 import { computeAdvisorSourceSignature } from './lib/freshness.js';
 import { publishSkillGraphGeneration } from './lib/freshness/generation.js';
 import { startSkillGraphDaemon, type SkillGraphDaemon } from './lib/daemon/lifecycle.js';
+import {
+  HEARTBEAT_FILE_NAME,
+  startHeartbeat,
+  startParentWatch,
+} from './lib/daemon/liveness.js';
 import type { SkillGraphFsWatcher } from './lib/daemon/watcher.js';
 import { readAdvisorStatus } from './handlers/advisor-status.js';
 import { runWithCallerContext, type CallerContext } from './lib/caller-context.js';
@@ -184,6 +189,8 @@ async function startupSkillGraphScan(): Promise<void> {
 let skillGraphDaemon: SkillGraphDaemon | null = null;
 let ipcBridge: IpcSocketServerHandle | null = null;
 let launcherIdleMonitor: LauncherIdleMonitor | null = null;
+let parentWatchHandle: ReturnType<typeof startParentWatch> | null = null;
+let heartbeatHandle: ReturnType<typeof startHeartbeat> | null = null;
 let shuttingDown = false;
 
 async function shutdownAdvisor(reason: string): Promise<void> {
@@ -193,6 +200,14 @@ async function shutdownAdvisor(reason: string): Promise<void> {
   if (launcherIdleMonitor) {
     launcherIdleMonitor.stop();
     launcherIdleMonitor = null;
+  }
+  if (parentWatchHandle) {
+    parentWatchHandle.stop();
+    parentWatchHandle = null;
+  }
+  if (heartbeatHandle) {
+    heartbeatHandle.stop();
+    heartbeatHandle = null;
   }
   if (ipcBridge) {
     await ipcBridge.close().catch((error: unknown) => {
@@ -370,12 +385,8 @@ export async function main(): Promise<void> {
   console.error(`[system-skill-advisor-launcher] DB: ${resolveSkillGraphDbPath()}`);
   initSkillGraphDb(resolveSkillGraphDbDir());
 
-  // Resolve the active embedder via the shared cascade if the
-  // persisted pointer is the `'auto'` sentinel or references a manifest the
-  // shared registry no longer knows about (legacy `embeddinggemma-300m`
-  // pointer from a legacy install). The first scan or watcher tick
-  // after this call routes through `refreshSkillEmbeddingsViaAdapter`
-  // because `hasActiveEmbedderPointer` now returns true.
+  // An unset or unknown pointer resolves to the one registered manifest;
+  // skill vectors are written only by a trusted skill_graph_scan.
   try {
     const resolved = await ensureActiveEmbedder(getSkillGraphDb(), { contentType: 'text' });
     console.error(
@@ -411,6 +422,15 @@ export async function main(): Promise<void> {
     frameHandler: handleAdvisorFrame,
     log: (message: string) => console.error(message),
     onActivity: () => launcherIdleMonitor?.markActivity(),
+  });
+  parentWatchHandle = startParentWatch({
+    onOrphaned: async () => {
+      await shutdownAdvisor('launcher exited');
+      process.exit(0);
+    },
+  });
+  heartbeatHandle = startHeartbeat({
+    filePath: join(resolveSkillGraphDbDir(), HEARTBEAT_FILE_NAME),
   });
 }
 

@@ -13,15 +13,19 @@
 // 7. the warning carries the reason a degraded lane fell back, and is empty
 //    when the lane answered
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-const mocks = vi.hoisted(() => ({
-  embed: vi.fn(),
-  getAdapter: vi.fn(),
-  getActiveEmbedder: vi.fn(),
-  getDbReadOnly: vi.fn(),
-  loadSkillEmbeddings: vi.fn(),
-}));
+const mocks = vi.hoisted(() => {
+  // The matrix exercises the embed path, which a zero default weight skips, and the weight is read once at module load.
+  process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON = '{"semantic_shadow":0.05}';
+  return {
+    embed: vi.fn(),
+    getAdapter: vi.fn(),
+    getActiveEmbedder: vi.fn(),
+    getDbReadOnly: vi.fn(),
+    loadSkillEmbeddings: vi.fn(),
+  };
+});
 
 vi.mock('../lib/embedders/registry.js', async (importOriginal) => {
   const actual = await importOriginal<typeof import('../lib/embedders/registry.js')>();
@@ -122,6 +126,10 @@ function semanticEvidence(result: AdvisorScoringResult, skillId: string): readon
 // ───────────────────────────────────────────────────────────────────
 
 describe('semantic prompt embedding degrade matrix', () => {
+  afterAll(() => {
+    delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
+  });
+
   beforeEach(() => {
     vi.stubEnv('VITEST', 'false');
     vi.spyOn(console, 'warn').mockImplementation(() => {});
@@ -218,5 +226,6 @@ describe('semantic prompt embedding degrade matrix', () => {
       'semantic_lane_off:prompt_embedding_unreachable',
     ]);
     expect(semanticLaneOffWarning(null)).toEqual([]);
+    expect(semanticLaneOffWarning('lane_weight_zero')).toEqual([]);
   });
 });

@@ -7,7 +7,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import Database from 'better-sqlite3';
 
-import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 const ollamaMocks = vi.hoisted(() => ({
   probeOllamaModel: vi.fn(),
@@ -195,6 +195,11 @@ describe('advisor_status handler', () => {
     ollamaMocks.resolveOllamaBaseUrl.mockReturnValue('http://127.0.0.1:11434');
   });
 
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    vi.resetModules();
+  });
+
   it('includes a private skill linked from inside the skills root in the source signature', () => {
     const root = workspace('linked');
     const skills = join(root, '.skilled', 'skills');
@@ -309,7 +314,10 @@ describe('advisor_status handler', () => {
     }));
   });
 
-  it('reports semantic-lane health only when requested', () => {
+  it('reports semantic-lane health only when requested', async () => {
+    vi.stubEnv('SPECKIT_ADVISOR_LANE_WEIGHTS_JSON', '{"semantic_shadow":0.05}');
+    vi.resetModules();
+    const { readAdvisorStatus } = await import('../../handlers/advisor-status.js');
     const root = workspace('semantic-health');
     writeHealthDb(root);
     writeGeneration(root, 'live', 8);
@@ -336,7 +344,26 @@ describe('advisor_status handler', () => {
     }));
   });
 
-  it('surfaces semantic-lane dim mismatch as a disabled reason', () => {
+  it('reports the semantic lane disabled when its default weight is zero', async () => {
+    vi.stubEnv('SPECKIT_ADVISOR_LANE_WEIGHTS_JSON', undefined);
+    vi.resetModules();
+    const { readAdvisorStatus } = await import('../../handlers/advisor-status.js');
+    const root = workspace('semantic-weight-zero');
+    writeHealthDb(root);
+    writeGeneration(root, 'live', 8);
+
+    const status = readAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
+
+    expect(status.semanticLaneHealth).toEqual(expect.objectContaining({
+      disabledReason: 'lane_weight_zero',
+      laneEnabled: false,
+    }));
+  });
+
+  it('surfaces semantic-lane dim mismatch as a disabled reason', async () => {
+    vi.stubEnv('SPECKIT_ADVISOR_LANE_WEIGHTS_JSON', '{"semantic_shadow":0.05}');
+    vi.resetModules();
+    const { readAdvisorStatus } = await import('../../handlers/advisor-status.js');
     const root = workspace('semantic-dim-mismatch');
     writeDimMismatchHealthDb(root);
     writeGeneration(root, 'live', 9);
@@ -385,6 +412,9 @@ describe('advisor_status handler', () => {
   });
 
   it('reports a reachable backend when the model is loaded', async () => {
+    vi.stubEnv('SPECKIT_ADVISOR_LANE_WEIGHTS_JSON', '{"semantic_shadow":0.05}');
+    vi.resetModules();
+    const { handleAdvisorStatus } = await import('../../handlers/advisor-status.js');
     const root = workspace('backend-reachable');
     writeHealthDb(root);
     writeGeneration(root, 'live', 14);

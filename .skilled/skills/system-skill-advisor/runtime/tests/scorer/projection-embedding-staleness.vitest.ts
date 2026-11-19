@@ -6,7 +6,11 @@ import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import Database from 'better-sqlite3';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterAll, afterEach, describe, expect, it, vi } from 'vitest';
+
+vi.hoisted(() => {
+  process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON = '{"semantic_shadow":0.05}';
+});
 
 import { readAdvisorStatus } from '../../handlers/advisor-status.js';
 import { scoreAdvisorPrompt } from '../../lib/scorer/fusion.js';
@@ -174,6 +178,10 @@ afterEach(() => {
   for (const root of roots.splice(0)) {
     rmSync(root, { recursive: true, force: true });
   }
+});
+
+afterAll(() => {
+  delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
 });
 
 describe('advisor projection embedding staleness', () => {

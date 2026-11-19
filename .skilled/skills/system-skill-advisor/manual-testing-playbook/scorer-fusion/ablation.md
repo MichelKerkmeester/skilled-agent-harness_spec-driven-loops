@@ -6,7 +6,7 @@ trigger_phrases:
   - "ablation protocol"
   - "lane ablation"
   - "scorer ablation"
-version: 0.8.1.0
+version: 0.8.2.0
 id: SC-005
 category: scorer_fusion
 stage: routing
@@ -55,7 +55,9 @@ node .skilled/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":
 
 - Baseline accuracy matches the documented baseline (within noise).
 - Disabling any non-zero lane degrades accuracy by a measurable amount.
-- Disabling `semantic_shadow` (a live lane at weight 0.05) measurably affects scoring.
+- The recorded ablation covered 193 prompts. It scored 149 with `semantic_shadow` and 150 without it.
+- The lane cost an Ollama call and a cold model load of about 540 ms. Each uncached prompt could wait up to 750 ms.
+- The default live weight is 0, so prompts skip that embed call. Set `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'` to enable the lane.
 - Post-ablation `laneWeights` equal pre-ablation values (ablation does not mutate live configuration).
 
 ### Failure Modes

@@ -16,7 +16,7 @@ const launcher = require('../../../../bin/system-skill-advisor-launcher.cjs') as
   configureLauncherPathsForTesting: (paths: { runtimeDir?: string; dbDir: string; lockDir: string; stateFile: string }) => void;
   readOwnerLeaseFile: () => Record<string, unknown> | null;
   isModelServerEnabled: () => boolean;
-  modelServerSetting: () => 'default-on' | 'explicit-on' | 'off';
+  modelServerSetting: () => 'explicit-on' | 'off';
   pinModelServerToAdvisorDatabase: (env: NodeJS.ProcessEnv) => string | null;
   resolveModelServerSocketPath: (env?: NodeJS.ProcessEnv) => string;
 };
@@ -35,16 +35,16 @@ afterEach(() => {
 });
 
 describe('skill-advisor model-server spawn default', () => {
-  it('arms the spawn when the flag is unset, because no other launcher can', () => {
+  it('keeps the spawner off by default when the flag is unset', () => {
     setFlag(undefined);
-    expect(launcher.modelServerSetting()).toBe('default-on');
-    expect(launcher.isModelServerEnabled()).toBe(true);
+    expect(launcher.modelServerSetting()).toBe('off');
+    expect(launcher.isModelServerEnabled()).toBe(false);
   });
 
-  it('treats a blank value the same as unset', () => {
+  it('keeps the spawner off by default when the flag is blank', () => {
     setFlag('   ');
-    expect(launcher.modelServerSetting()).toBe('default-on');
-    expect(launcher.isModelServerEnabled()).toBe(true);
+    expect(launcher.modelServerSetting()).toBe('off');
+    expect(launcher.isModelServerEnabled()).toBe(false);
   });
 
   it('records an explicit 1 separately so a missing supervision library can fail loudly', () => {
@@ -98,8 +98,8 @@ describe('owner lease records the launcher supervision decision', () => {
   });
 
   it.each([
-    [undefined, true],
-    ['', true],
+    [undefined, false],
+    ['', false],
     ['1', true],
     ['0', false],
     ['off', false],
@@ -127,7 +127,7 @@ describe('owner lease records the launcher supervision decision', () => {
       configureTempLauncher(isolated);
       setFlag(value);
 
-      expect(isolated.isModelServerEnabled()).toBe(true);
+      expect(isolated.isModelServerEnabled()).toBe(value === '1');
       expect(isolated.buildOwnerLease().supervisesModelServer).toBe(false);
     },
   );

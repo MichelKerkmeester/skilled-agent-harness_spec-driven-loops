@@ -13,6 +13,7 @@ import {
 import { getAdapter } from '../../embedders/registry.js';
 import { getActiveEmbedder } from '../../embedders/schema.js';
 import { getDbReadOnly, loadSkillEmbeddings } from '../../skill-graph/skill-graph-db.js';
+import { DEFAULT_SCORER_LANE_WEIGHTS } from '../lane-registry.js';
 import { scoreTokenOverlap, tokenizePrompt } from '../text.js';
 import type { AdvisorProjection, LaneMatch } from '../types.js';
 
@@ -142,6 +143,13 @@ export function clearSemanticShadowPromptEmbedding(): void {
 }
 
 export async function withSemanticShadowPromptEmbedding<T>(prompt: string, run: () => T): Promise<T> {
+  // A zero-weight lane cannot change a score, so it must not cost an embed call.
+  if ((DEFAULT_SCORER_LANE_WEIGHTS.semantic_shadow ?? 0) <= 0) {
+    setSemanticShadowPromptEmbedding(prompt, null);
+    setRuntimeHealth({ disabledReason: 'lane_weight_zero' });
+    return run();
+  }
+
   if (process.env.VITEST === 'true') {
     return run();
   }

@@ -12,7 +12,7 @@ const DEFAULT_WEIGHTS = {
   lexical: 0.28,
   graph_causal: 0.13,
   derived_generated: 0.12,
-  semantic_shadow: 0.05,
+  semantic_shadow: 0,
 } as const;
 
 const DEFAULT_SHADOW_WEIGHTS = {

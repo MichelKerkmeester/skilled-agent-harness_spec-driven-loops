@@ -5,9 +5,10 @@
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 const { embedDocument, embedQuery, createEmbeddingsProvider } = vi.hoisted(() => {
+  process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON = '{"semantic_shadow":0.05}';
   const embedDocument = vi.fn(async (text: string) => (
     text.includes('changed')
       ? new Float32Array([0, 1])
@@ -38,6 +39,22 @@ vi.mock('@spec-kit/shared/embeddings/factory.js', async (importOriginal) => {
   };
 });
 
+vi.mock('../../lib/embedders/registry.js', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('../../lib/embedders/registry.js')>();
+  return {
+    ...actual,
+    getAdapter: (name: string) => name === 'mock-fixture-2'
+      ? {
+          name: 'mock-fixture-2',
+          dim: 2,
+          backend: 'ollama' as const,
+          embed: async (texts: readonly string[]) => Promise.all(texts.map((text) => embedDocument(text))),
+          ready: async () => true,
+        }
+      : actual.getAdapter(name),
+  };
+});
+
 import {
   closeDb,
   getDb,
@@ -45,6 +62,7 @@ import {
   initDb,
   refreshSkillEmbeddings,
 } from '../../lib/skill-graph/skill-graph-db.js';
+import { setActiveEmbedder } from '../../lib/embedders/schema.js';
 import {
   _semanticShadowTest,
   clearSemanticShadowPromptEmbedding,
@@ -101,6 +119,7 @@ describe('semantic shadow cosine lane', () => {
     dbDir = join(root, 'db');
     skillRoot = join(root, 'skills');
     initDb(dbDir);
+    setActiveEmbedder(getDb(), 'mock-fixture-2', 2);
     embedDocument.mockClear();
     embedQuery.mockClear();
     createEmbeddingsProvider.mockClear();
@@ -111,6 +130,10 @@ describe('semantic shadow cosine lane', () => {
     closeDb();
     rmSync(root, { recursive: true, force: true });
     vi.restoreAllMocks();
+  });
+
+  afterAll(() => {
+    delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
   });
 
   it('applies the embedding schema migration idempotently', () => {
@@ -128,6 +151,8 @@ describe('semantic shadow cosine lane', () => {
   });
 
   it('embeds changed skill descriptions and skips matching hash/model rows', async () => {
+    const skillEmbedCalls = (text: string) => embedDocument.mock.calls.filter((call) => JSON.stringify(call).includes(text)).length;
+
     writeSkill(skillRoot, 'alpha', 'stable local embedding workflow');
     indexSkillMetadata(skillRoot);
 
@@ -136,14 +161,14 @@ describe('semantic shadow cosine lane', () => {
 
     expect(first).toEqual(expect.objectContaining({ embedded: 1, skipped: 0, failed: 0 }));
     expect(second).toEqual(expect.objectContaining({ embedded: 0, skipped: 1, failed: 0 }));
-    expect(embedDocument).toHaveBeenCalledTimes(1);
+    expect(skillEmbedCalls('stable local embedding workflow')).toBe(1);
 
     writeSkill(skillRoot, 'alpha', 'changed local embedding workflow');
     indexSkillMetadata(skillRoot);
     const third = await refreshSkillEmbeddings(skillRoot);
 
     expect(third).toEqual(expect.objectContaining({ embedded: 1, failed: 0 }));
-    expect(embedDocument).toHaveBeenCalledTimes(2);
+    expect(skillEmbedCalls('changed local embedding workflow')).toBe(1);
   });
 
   it('computes cosine lane matches from cached skill vectors', () => {
@@ -151,15 +176,13 @@ describe('semantic shadow cosine lane', () => {
     writeSkill(skillRoot, 'beta', 'east vector');
     indexSkillMetadata(skillRoot);
     getDb().prepare(`
-      UPDATE skill_nodes
-      SET embedding = ?, embedding_model_id = ?, embedding_content_hash = ?
-      WHERE id = ?
-    `).run(buffer([1, 0]), 'mock-fixture-2', 'hash-alpha', 'alpha');
+      INSERT INTO vec_2 (skill_id, embedding, model_id, content_hash)
+      VALUES (?, ?, ?, ?)
+    `).run('alpha', buffer([1, 0]), 'mock-fixture-2', 'hash-alpha');
     getDb().prepare(`
-      UPDATE skill_nodes
-      SET embedding = ?, embedding_model_id = ?, embedding_content_hash = ?
-      WHERE id = ?
-    `).run(buffer([0, 1]), 'mock-fixture-2', 'hash-beta', 'beta');
+      INSERT INTO vec_2 (skill_id, embedding, model_id, content_hash)
+      VALUES (?, ?, ?, ?)
+    `).run('beta', buffer([0, 1]), 'mock-fixture-2', 'hash-beta');
 
     const projection: AdvisorProjection = {
       skills: [skill({ id: 'alpha' }), skill({ id: 'beta' })],

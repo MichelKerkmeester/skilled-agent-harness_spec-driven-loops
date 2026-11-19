@@ -27,6 +27,7 @@ import { probeOllamaModel, resolveOllamaBaseUrl } from '../lib/embedders/adapter
 import { commandVecTableNameForDim } from '../lib/embedders/schema.js';
 import { readEmbeddingsHealth } from '../lib/embedders/embeddings-health.js';
 import { getSemanticShadowRuntimeHealth } from '../lib/scorer/lanes/semantic-shadow.js';
+import { DEFAULT_SCORER_LANE_WEIGHTS } from '../lib/scorer/lane-registry.js';
 import { readAdvisorEmbeddingStaleness } from '../lib/scorer/projection.js';
 import { DEFAULT_SCORER_WEIGHTS } from '../lib/scorer/weights-config.js';
 import { readAdvisorHookHealthSection } from '../lib/metrics.js';
@@ -196,17 +197,19 @@ function readSemanticLaneHealth(dbPath: string): SemanticLaneHealth {
       : 0;
     const dimMismatch = Boolean(activeEmbedder && activeEmbedder.adapterDim !== null && activeEmbedder.dim !== activeEmbedder.adapterDim);
     const staleness = readAdvisorEmbeddingStaleness(database);
-    const disabledReason = dimMismatch
-      ? 'dim_mismatch'
-      : (staleness.stale
-          ? 'projection_embedding_stale'
-          : (!hasActive
-              ? 'active_embedder_unset'
-              : (!adapter
-                  ? 'adapter_unavailable'
-                  : (!hasVecTable
-                      ? 'vector_table_missing'
-                      : (total > 0 && embedded === 0 ? 'no_skill_vectors' : runtime.disabledReason)))));
+    const disabledReason = (DEFAULT_SCORER_LANE_WEIGHTS.semantic_shadow ?? 0) <= 0
+      ? 'lane_weight_zero'
+      : (dimMismatch
+          ? 'dim_mismatch'
+          : (staleness.stale
+              ? 'projection_embedding_stale'
+              : (!hasActive
+                  ? 'active_embedder_unset'
+                  : (!adapter
+                      ? 'adapter_unavailable'
+                      : (!hasVecTable
+                          ? 'vector_table_missing'
+                          : (total > 0 && embedded === 0 ? 'no_skill_vectors' : runtime.disabledReason))))));
     return {
       activeEmbedder,
       vectorCoverage: {
