@@ -1128,6 +1128,30 @@ describe('convergence.cjs stop-decision', () => {
     expect(stopDecision.gates.graphlessFallbackGate).toEqual({ pass: false, skipped: false });
   });
 
+  // A leaf that rewords its focus leaves only the store's active row to bind the
+  // run, so the stop decision has to read the store beside the state log.
+  it('reads the node store beside the state log to count the active node\'s own stuck passes', () => {
+    const lowPass = (iteration: number) => ({
+      type: 'iteration', iteration, status: 'complete', newFindingsRatio: 0, dimensions: ['correctness'], focus: 'reworded focus',
+    });
+    const stuckFor = (activeNodeId: string, extraArgs: string[]) => {
+      const namespace = uniqueNamespace('convergence', 'review');
+      namespaces.push(namespace);
+      expect(seedReviewNode(namespace).exitCode).toBe(0);
+      const fixture = reviewFixture([lowPass(3), lowPass(4)], { frontier: { activeNodeId, nodes: [] } });
+      fs.writeFileSync(join(fixture.dir, 'frontier-nodes.jsonl'), `${[3, 4]
+        .map((iteration) => JSON.stringify({ nodeId: 'F-1-001', status: 'active', iteration }))
+        .join('\n')}\n`, 'utf8');
+      const result = runScript('convergence', stopDecisionArgs(namespace, fixture, extraArgs));
+      expect(result.exitCode, result.stderr).toBe(0);
+      return (result.json.stop_decision as { inputs: { stuckCount: number } }).inputs.stuckCount;
+    };
+
+    expect(stuckFor('F-1-001', ['--depth-mode', 'expansive'])).toBe(2);
+    expect(stuckFor('F-1-002', ['--depth-mode', 'expansive'])).toBe(0);
+    expect(stuckFor('F-1-002', [])).toBe(2);
+  });
+
   // The prompt pack puts a ledger row's evidence on its searchActions entries and
   // names exact_search, so a row written to that contract has to count.
   it('counts a fallback ledger row whose evidence sits on an exact_search action', () => {
