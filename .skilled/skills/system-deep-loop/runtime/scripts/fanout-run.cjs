@@ -3708,10 +3708,12 @@ async function main() {
   const loopType = ensureString(args, 'loopType');
   assertActiveFanoutLoopType(loopType);
   // Optional shared research question, threaded into each lineage prompt so a research
-  // fan-out can bind research_topic. Absent for review, which scopes by folder.
-  const researchTopic = typeof args.researchTopic === 'string' && args.researchTopic.trim()
-    ? args.researchTopic.trim()
-    : null;
+  // fan-out can bind research_topic. Absent for review, which scopes by folder. Collapsed
+  // to one line like the review focus, so a line break cannot forge a binding below it.
+  const normalizedTopic = typeof args.researchTopic === 'string'
+    ? args.researchTopic.replace(REVIEW_FOCUS_CONTROL_PATTERN, ' ').replace(/\s+/g, ' ').trim()
+    : '';
+  const researchTopic = normalizedTopic || null;
   // Optional operator review focus, carried into every review lineage beside its dimensions.
   const reviewFocus = normalizeReviewFocus(args.reviewFocus);
   if (reviewFocus && loopType !== 'review') {
