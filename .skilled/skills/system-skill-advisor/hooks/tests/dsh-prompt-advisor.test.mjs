@@ -354,3 +354,26 @@ test('route receipts: the handler receipts commit only once the notice is append
   await step(failing.fire, other.agent, [humanMessage('Route this.')]);
   assert.deepEqual(failed, []);
 });
+
+test('directive lifecycle: a turn whose notice fails leaves the directive block unsent, so the next turn sends it in full', async () => {
+  const brief = 'Advisor: route sk-code\nDirectives: keep comments durable';
+  let failNext = true;
+  const { ctx, fire } = pluginHarness();
+  registerPromptAdvisor(ctx, {
+    enabled: true,
+    isLeaf: interactive,
+    isEnabled: enabled,
+    core: advisorCore(brief),
+    createNotice: async (text) => {
+      if (failNext) {
+        failNext = false;
+        throw new Error('notice failed');
+      }
+      return plainNotice(text);
+    },
+  });
+  const { agent } = fakeAgent({ id: 'session-notice-fails-once' });
+  await step(fire, agent, [humanMessage('One.')]);
+  const retry = await step(fire, agent, [humanMessage('Two.')]);
+  assert.equal(noticeText(retry.messages[0]), brief);
+});

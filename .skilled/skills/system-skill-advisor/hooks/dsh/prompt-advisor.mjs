@@ -76,15 +76,22 @@ function splitBrief(context) {
  * Deliver the directive block once per lifecycle epoch: in full the first time,
  * and as the routing head alone while the same block is still in context. An
  * unknown session, an unsplittable brief or a changed block gets the full text.
+ * The receipt is recorded by the returned `remember`, which the caller runs only
+ * once the notice exists, so a turn whose notice fails sends the block again.
  */
 function deliveredContext(context, sessionId, dedupEnabled) {
+  const unchanged = { text: context, remember: () => {} };
   const parts = splitBrief(context);
-  if (!dedupEnabled || !parts || typeof sessionId !== 'string' || !sessionId) return context;
+  if (!dedupEnabled || !parts || typeof sessionId !== 'string' || !sessionId) return unchanged;
   const store = receipts();
-  if (store.get(sessionId) === parts.directives) return parts.head.trim();
-  if (!store.has(sessionId) && store.size >= MAX_TRACKED_SESSIONS) store.delete(store.keys().next().value);
-  store.set(sessionId, parts.directives);
-  return context;
+  if (store.get(sessionId) === parts.directives) return { text: parts.head.trim(), remember: () => {} };
+  return {
+    text: context,
+    remember: () => {
+      if (!store.has(sessionId) && store.size >= MAX_TRACKED_SESSIONS) store.delete(store.keys().next().value);
+      store.set(sessionId, parts.directives);
+    },
+  };
 }
 
 // A clock rotation is advisory: when it fails, a stored route still expires on
@@ -241,8 +248,9 @@ export function registerPromptAdvisor(ctx, {
       if (typeof context !== 'string' || !context.trim()) return downstream;
 
       const delivered = deliveredContext(context, agent?.session?.id, concernEnabled(isEnabled, 'directive-lifecycle'));
-      if (!delivered) return downstream;
-      const notice = await createNotice(delivered);
+      if (!delivered.text) return downstream;
+      const notice = await createNotice(delivered.text);
+      delivered.remember();
       await commitDeliveredReceipts(ctx, core, output);
       return { ...downstream, messages: [...(downstream.messages ?? []), notice] };
     } catch (error) {
