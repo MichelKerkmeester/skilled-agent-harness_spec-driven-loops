@@ -129,6 +129,51 @@ describe.each(FANOUT_CASES)('$file fan-out spawn step', ({ file, flags }) => {
   });
 });
 
+// The fan-out config JSON is operator input too, and a single-quoted shell argument ends at
+// its first quote. Each value here pairs its quotes, so on an inline argument the payload
+// between them would run rather than leave the quote unterminated.
+const CONFIG_MARKERS = ['pwned-cfg-subst', 'pwned-cfg-tick'];
+const HOSTILE_CONFIG = {
+  executors: [{ label: "it's $(touch pwned-cfg-subst) and `touch pwned-cfg-tick` it's", kind: 'native' }],
+  note: "o'clock $(touch pwned-cfg-subst) o'clock",
+};
+const HOSTILE_CONFIG_JSON = JSON.stringify(HOSTILE_CONFIG);
+
+describe.each(FANOUT_CASES)('$file fan-out config JSON', ({ file, flags }) => {
+  it('passes the config JSON to the runner without the shell expanding it', () => {
+    const step = loadWorkflow(file).workflow.step_fanout_spawn;
+    const command = step.sub_steps.step_fanout_spawn_cli.command as string;
+    const dir = makeTempDir('operator-text-fanout-config-');
+    const artifactDir = join(dir, 'artifacts');
+    mkdirSync(artifactDir);
+    // The workflow writes each text and the config with its file tool before the step runs.
+    for (const { fileName } of flags) writeFileSync(join(artifactDir, fileName), 'plain text', 'utf8');
+    writeFileSync(join(artifactDir, 'fanout-config.json'), HOSTILE_CONFIG_JSON, 'utf8');
+    const capture = join(dir, 'argv.bin');
+    const binDir = argvCaptureBin(dir, capture);
+
+    const rendered = render(command, {
+      spec_folder: 'specs/example',
+      review_target_type: 'files',
+      'config.fanout_json': HOSTILE_CONFIG_JSON,
+      artifact_dir: artifactDir,
+      convergence_threshold: '0.05',
+      stop_policy: 'convergence',
+      convergence_mode: 'on',
+      depth_mode: 'default',
+    });
+    const result = runBash(rendered, dir, { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` });
+
+    for (const marker of CONFIG_MARKERS) expect(existsSync(join(dir, marker)), marker).toBe(false);
+    expect(result.status, result.stderr).toBe(0);
+    const argv = readFileSync(capture, 'utf8').split('\0').slice(0, -1);
+    const delivered = deliveredText(argv, '--fanout-config-json');
+    expect(delivered).toBe(HOSTILE_CONFIG_JSON);
+    expect(JSON.parse(delivered as string)).toEqual(HOSTILE_CONFIG);
+    expect(step.instructions).toContain('{artifact_dir}/fanout-config.json');
+  });
+});
+
 const RECIPE_CASES = [
   { file: 'deep-research.yaml', textKey: 'research_topic' },
   { file: 'deep-review.yaml', textKey: 'review_target' },

@@ -369,10 +369,11 @@ workflow:
       isolated sub-packet under {artifact_dir}/lineages/{label}/.
       This step runs before phase_init, so pass the raw review_focus. fanout-run.cjs
       normalizes it and hands every lineage the same single-line text. First write
-      {review_focus} verbatim to {artifact_dir}/fanout-review-focus.txt and {review_target}
-      verbatim to {artifact_dir}/fanout-review-target.txt with the file-write tool,
-      never through a shell: inside a shell argument a backtick, $() or quote in the text
-      would be expanded or end the argument. Write an empty file when no focus or no target was
+      {review_focus} verbatim to {artifact_dir}/fanout-review-focus.txt, {review_target}
+      verbatim to {artifact_dir}/fanout-review-target.txt and {config.fanout_json} verbatim
+      to {artifact_dir}/fanout-config.json with the file-write tool, never through a shell:
+      inside a shell argument a backtick, $() or quote in the text or the config would be
+      expanded or end the argument. Write an empty file when no focus or no target was
       given; the runner reads an empty focus as none and an empty target as the spec folder.
       A cli-opencode lineage inside this fan-out is an explicit parallel-detached OpenCode
       session with a separate lineage directory and session id; it is not the single-executor
@@ -396,7 +397,7 @@ workflow:
             --review-focus-file "{artifact_dir}/fanout-review-focus.txt" \
             --review-target-file "{artifact_dir}/fanout-review-target.txt" \
             --review-target-type {review_target_type} \
-            --fanout-config-json '{config.fanout_json}' \
+            --fanout-config-json-file "{artifact_dir}/fanout-config.json" \
             --base-artifact-dir {artifact_dir} \
             --convergence-threshold {convergence_threshold} \
             --stop-policy {stop_policy} \

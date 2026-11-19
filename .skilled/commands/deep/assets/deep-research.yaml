@@ -384,8 +384,9 @@ workflow:
       Fan-out mode is active. Spawn all lineages. Each lineage runs the full loop in its own
       isolated sub-packet under {artifact_dir}/lineages/{label}/.
       First write {research_topic} verbatim to {artifact_dir}/fanout-research-topic.txt
-      with the file-write tool, never through a shell: inside a shell argument a backtick,
-      $() or quote in the topic would be expanded or end the argument.
+      and {config.fanout_json} verbatim to {artifact_dir}/fanout-config.json with the
+      file-write tool, never through a shell: inside a shell argument a backtick, $() or
+      quote in the topic or the config would be expanded or end the argument.
       fanout-run.cjs owns native and CLI lineage execution; native is run through the
       deep/research command surface with config.fanout_lineage_artifact_dir so the LEAF
       deep-research agent is used only for individual iterations, never as a full-loop
@@ -402,7 +403,7 @@ workflow:
             --spec-folder {spec_folder} \
             --loop-type research \
             --research-topic-file "{artifact_dir}/fanout-research-topic.txt" \
-            --fanout-config-json '{config.fanout_json}' \
+            --fanout-config-json-file "{artifact_dir}/fanout-config.json" \
             --base-artifact-dir {artifact_dir} \
             --convergence-threshold {convergence_threshold} \
             --stop-policy {stop_policy} \

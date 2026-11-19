@@ -29,7 +29,7 @@ const {
 
 const FANOUT_FLAGS = [
   'specFolder', 'loopType', 'researchTopic', 'reviewFocus', 'reviewTarget', 'reviewTargetType', 'fanoutConfigJson', 'baseArtifactDir',
-  'researchTopicFile', 'reviewFocusFile', 'reviewTargetFile',
+  'researchTopicFile', 'reviewFocusFile', 'reviewTargetFile', 'fanoutConfigJsonFile',
   'convergenceThreshold', 'lineageTimeoutHours', 'stopPolicy', 'convergenceMode', 'depthMode', 'containmentMode',
   'noMetadataRefresh', 'preDispatchWaitMs', 'stallWatchdogMs', 'maxCostUnitsPerLineage',
   'maxAggregateCostUnits', 'maxTokensPerLineage', 'maxTokenBudget', 'maxTokenBudgetPerLineage',
@@ -125,17 +125,18 @@ function parseArgs(argv = process.argv.slice(2)) {
   return args;
 }
 
-// Each file flag carries the same operator text as its inline flag. A workflow writes that
+// Each file flag carries the same text as its inline flag. A workflow writes that
 // text with its file tool and passes the path, because inside a shell argument a backtick,
 // $() or quote in the text is expanded or ends the argument before this script reads it.
 const TEXT_FILE_FLAGS = Object.freeze({
   researchTopicFile: 'researchTopic',
   reviewFocusFile: 'reviewFocus',
   reviewTargetFile: 'reviewTarget',
+  fanoutConfigJsonFile: 'fanoutConfigJson',
 });
 
 /**
- * Replace each operator-text file flag with the text its file holds.
+ * Replace each file flag with the text its file holds.
  *
  * The text lands under the inline flag's key, so both paths share one normalization.
  *

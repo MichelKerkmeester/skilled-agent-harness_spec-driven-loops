@@ -7022,6 +7022,49 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
     expect(result.exitCode).toBe(3);
     expect(result.stdout).toContain('pass researchTopic inline or from a file, not both');
   });
+
+  it('reads the fan-out config JSON from a file', async () => {
+    const binDir = makeTempDir('fanout-run-config-file-bin-');
+    writeFrontierCaptureVibeStub(binDir);
+    const baseDir = makeTempDir('fanout-run-config-file-base-');
+    const configFile = join(makeTempDir('fanout-run-config-file-input-'), 'fanout-config.json');
+    writeFileSync(configFile, JSON.stringify({
+      executors: [{ label: 'vibe-config', kind: 'cli-mistral-vibe', model: 'deepseek-flash', iterations: 1 }],
+      concurrency: 1,
+      maxRetries: 0,
+    }), 'utf8');
+
+    const { result } = await spawnFanout('config-file', [
+      '--spec-folder', 'specs/test-fanout-config-file',
+      '--loop-type', 'research',
+      '--fanout-config-json-file', configFile,
+      '--base-artifact-dir', baseDir,
+      '--research-topic', 'config from a file',
+      '--no-metadata-refresh',
+    ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
+
+    const promptFile = join(baseDir, 'lineages', 'vibe-config', 'vibe-prompt.txt');
+    expect(existsSync(promptFile), `${result.stdout}\n${result.stderr}`).toBe(true);
+    expect(readFileSync(promptFile, 'utf8')).toContain('  research_topic: config from a file\n');
+  });
+
+  it('refuses the fan-out config passed both inline and from a file', async () => {
+    const configFile = join(makeTempDir('fanout-run-config-both-'), 'fanout-config.json');
+    writeFileSync(configFile, '{}', 'utf8');
+
+    const { result } = await spawnFanout('config-both', [
+      '--spec-folder', 'specs/test-fanout-config-both',
+      '--loop-type', 'research',
+      '--fanout-config-json', '{}',
+      '--fanout-config-json-file', configFile,
+      '--base-artifact-dir', makeTempDir('fanout-run-config-both-base-'),
+      '--research-topic', 'inline',
+      '--no-metadata-refresh',
+    ]);
+
+    expect(result.exitCode).toBe(3);
+    expect(result.stdout).toContain('pass fanoutConfigJson inline or from a file, not both');
+  });
 });
 
 // Under expansive depth a lineage the matrix gave no iterations is sized from its
