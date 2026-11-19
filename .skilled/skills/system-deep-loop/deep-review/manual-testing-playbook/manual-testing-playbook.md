@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.13.14.0
+version: 1.13.15.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -454,7 +454,7 @@ Expected signals: The seven per-check prune cases pass, the seed settlement case
 ### DRV-079 | Frontier focus and per-node dimension coverage
 
 #### Description
-Verify that an open review node is answered only after every dimension in its universe, the four canonical ones plus each configured custom name, is covered for it, that the active node's next uncovered dimension steers the iteration and that the dashboard reports the frontier metrics.
+Verify that an open review node is answered only after every dimension in its universe, the four canonical ones less traceability when the configured `reviewDimensions` list leaves it out, plus each configured custom name, is covered for it, that the active node's next uncovered dimension steers the iteration and that the dashboard reports the frontier metrics.
 
 #### Scenario Contract
 Prompt: `Check that an open deep-review frontier node with two of four dimensions covered stays open, that the next uncovered dimension of the active node steers the next iteration, and that the dashboard reports the frontier metrics. Return a PASS or FAIL verdict with the reason.`

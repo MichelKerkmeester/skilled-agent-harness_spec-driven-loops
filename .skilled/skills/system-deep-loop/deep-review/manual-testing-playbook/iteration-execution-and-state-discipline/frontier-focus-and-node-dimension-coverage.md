@@ -1,7 +1,7 @@
 ---
 title: "DRV-079 -- Frontier focus and per-node dimension coverage"
-description: "This scenario validates that an open review node is answered only after every dimension in its universe, the four canonical ones plus each configured custom name, is covered for it, that the active node's next uncovered dimension steers the iteration and that the dashboard reports the frontier metrics, for `DRV-079`."
-version: 1.13.3.0
+description: "This scenario validates that an open review node is answered only after every dimension in its universe, the four canonical ones less traceability when the configured `reviewDimensions` list leaves it out, plus each configured custom name, is covered for it, that the active node's next uncovered dimension steers the iteration and that the dashboard reports the frontier metrics, for `DRV-079`."
+version: 1.13.4.0
 ---
 
 # DRV-079 -- Frontier focus and per-node dimension coverage
@@ -67,7 +67,7 @@ Command 1 prints `Tests  3 passed` (the rest of the file skipped). Its three pas
 
 ### Failure Triage
 
-1. A node answers before its last dimension: check the per-node coverage map in the reducer, since a node answers only when every dimension in its universe, the four canonical ones plus each configured custom name, has evidence behind it.
+1. A node answers before its last dimension: check the per-node coverage map in the reducer, since a node answers only when every dimension in its universe, the four canonical ones less traceability when the configured `reviewDimensions` list leaves it out, plus each configured custom name, has evidence behind it.
 2. Next Focus names a different node: check the precedence. The blocked-stop text comes first, then the pivot, then the active node, then the leaf's own focus and finally the first uncovered dimension.
 3. The steering case fails: check that the review reads its next dimension from the active node only under the expansive flag, so a default run keeps its own rule.
 

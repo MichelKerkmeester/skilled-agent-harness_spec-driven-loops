@@ -7,7 +7,7 @@ trigger_phrases:
   - "frontier-nodes.jsonl"
   - "frontier admission checks"
   - "expansive frontier seed budget"
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # frontier-admit.cjs
@@ -64,7 +64,7 @@ A run is seeded once. When the store already holds a depth-1 node, `seed` return
 
 `readCaps` returns `maxDepth` (default 3), `maxChildrenPerNode` (default 6), `maxRootChildren` and `maxFrontierNodes`. The node cap is half of the config's `maxIterations`, never below 1, or 10 when no `maxIterations` is set. `expansiveDepth.maxFrontierNodes` overrides it.
 
-`seed` returns the result of `seedBudget` with the admission result. Only a `default` budget source derives a budget. Any other source keeps the configured value, even below the derived one. `expansiveBudget` derives `min(24, max(loopDefault, 2 × perNode × (S + maxDepth − 1)))`. S is the count of live depth-1 nodes. The loop default is the config's `maxIterations` when set, else 10 for research and 7 for review. Per-node cost is 1 for research. For review it is the size of the reducer's dimension universe (`buildDimensionUniverse`): the canonical four plus each distinct custom name in `reviewDimensions`, so never below four. When S is 0 the loop default stays. The result also holds `growthSlots`, the node cap left past depth 1, and a `warning` when none is left. The CLI writes the budget line to stderr from `seed`, and `budget` prints the same fields as JSON on stdout after it writes the config.
+`seed` returns the result of `seedBudget` with the admission result. Only a `default` budget source derives a budget. Any other source keeps the configured value, even below the derived one. `expansiveBudget` derives `min(24, max(loopDefault, 2 × perNode × (S + maxDepth − 1)))`. S is the count of live depth-1 nodes. The loop default is the config's `maxIterations` when set, else 10 for research and 7 for review. Per-node cost is 1 for research. For review it is the size of the reducer's dimension universe (`buildDimensionUniverse`): the canonical four less traceability when `reviewDimensions` leaves it out, plus each distinct custom name in that list, so never below three. When S is 0 the loop default stays. The result also holds `growthSlots`, the node cap left past depth 1, and a `warning` when none is left. The CLI writes the budget line to stderr from `seed`, and `budget` prints the same fields as JSON on stdout after it writes the config.
 
 ### Prompt Block
 
