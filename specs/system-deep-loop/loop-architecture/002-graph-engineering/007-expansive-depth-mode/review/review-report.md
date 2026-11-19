@@ -1,116 +1,191 @@
-# Deep Review Report: expansive-depth program logic (21c4b325b5a..f30fcdb42f6)
+# Deep Review Report: expansive-depth program, fan-out opus + deepseek
 
 ## 1. Executive Summary
 
-- **Verdict: FAIL.** There is no P0 and no P1. The FAIL comes from the terminal coverage gate: `terminal-gates.cjs` records `coverage` as failed with reasonCode `coverage-too-young`. Maintainability, the third configured dimension, was first covered in iteration 3, the last iteration under the cap, so no later pass could age its coverage. Two search-debt items are open as well.
-- **hasAdvisories:** false (the verdict is not PASS).
-- **Active counts the verdict used:** P0 0, P1 0, P2 3, search debt 2, failed required gates `coverage`.
-- **Self-check outcomes:** the adversarial self-check re-read the one P1.
-  - R1-P1-001 was **downgraded to P2**. The Hunter re-read `reduce-state.cjs:1224` (`buildDimensionUniverse` starts from the four canonical dimensions) and `reduce-state.cjs:2025-2037`, and the defect is real. The Skeptic found the downgrade trigger the finding itself named: the governing command document says a node needs "one iteration per dimension in its universe, the four canonical dimensions plus any custom name" (`.skilled/commands/deep/review.md:100`), and `frontier-admit.cjs:378-381` states the same intent. The remaining issue is the contradiction with the traceability-only-when-configured stop rule (`convergence.cjs:1502-1507`), so the Referee settled on P2.
-  - One `deep_review.claim_adjudication` row (`R1-P1-001 P2`) was appended through the gateway, and the registry was refreshed before the verdict.
-- **Scope:** 68 files. These are the code, command YAML assets and tests under `.skilled/skills/system-deep-loop/` and `.skilled/commands/deep/` that the range added or changed. Docs, playbooks and specs were excluded.
-- **Coverage honesty:** the three iterations read 17 of the 68 files, the production scripts first. About 38 test files and part of the lib tree were only sampled, so treat the test surface as unreviewed, not clean (search debt SL-007).
-- **Run shape:** generation 2 of the review lineage (restart; generation 1 is archived under `review-archive/20261119T153733Z/`). 3 iterations, stop reason `maxIterationsReached`, native executor (`deep-review` agent, opus, effort high). Dimensions: correctness (1), security (2), maintainability with the overengineering and sk-code-alignment rubrics (3).
-- **Operator review focus:** Review only the LOGIC the range 21c4b325b5a..f30fcdb42f6 added or changed; inspect each file with git diff 21c4b325b5a..f30fcdb42f6 -- <file>. Production scripts, lib and the two command YAML assets first, tests second. When the dimension is maintainability, also apply the overengineering rubric (abstractions, options, layers, files or fallbacks no current requirement earns, per .skilled/repo-rules/prevent-overengineering.md; name what to delete or collapse) and the sk-code-alignment rubric (the sk-code review floor, the JS/CJS/TS/test surface rules, test-what-changed, and comment hygiene: no spec paths, phase numbers or REQ/ADR/finding ids in code comments). Only cite files listed in reviewScopeFiles.
+- Overall verdict: **CONDITIONAL**. hasAdvisories: false.
+- Counts the verdict used, from the fan-out merge: P0 0, P1 4, P2 18.
+- Search debt: 0. Failed required gates: none.
+- Review scope: the commit range `21c4b325b5a..de32abbb74d`, narrowed by pathspec to:
+  - `.skilled/skills/system-deep-loop`
+  - `.skilled/commands/deep`
+  - `.skilled/agents`, with the `.claude`, `.codex`, `.pi`, `.dsh` and `.vibe` agent mirrors.
 
-**Fix first: R3-P2-001.** Its copies have already drifted in behavior, and every later frontier change must otherwise be made three times.
+  Spec-packet evidence under `specs/` was left out.
+- Expansive depth: 6 depth-1 seeds were admitted and 1 was pruned as `generated-artifact`. They were
+  dealt round-robin: opus took F-1-002, F-1-004 and F-1-006; deepseek took F-1-003, F-1-005 and
+  F-1-007.
+- Lineages:
+
+  | Lineage | Executor and model | Iterations | Stop | Deviation |
+  |---------|--------------------|------------|------|-----------|
+  | `opus` | cli-claude-code `claude-opus-5-5`, effort medium | 14 | converged | none |
+  | `deepseek` | cli-opencode `llmgateway/deepseek-v4.1-flash-1017#max` | 12 | converged | see below |
+
+  The deepseek lineage was resumed in place after its first attempt on
+  `opencode-go/deepseek-v4.1-flash` died on a provider quota (HTTP 429) after one iteration.
+- Operator review focus: Every iteration also covers three angles, read through the range diff (git diff 21c4b325b5a..de32abbb74d -- <file>). 1) Overengineering, per .skilled/repo-rules/prevent-overengineering.md: abstractions, options, flags, layers, fallbacks or files no current requirement earns, and duplicated logic or prose (one rule restated across YAML, presentation, review.md, references and playbooks); name what to delete or collapse. 2) Operator UX: flag ergonomics, error and warning text, setup prompts, dashboard and report clarity, and the cost of discovering how to use --extend, --depth-mode=expansive and the --frontier-max-depth/--frontier-max-nodes flags. 3) Cross-CLI runtime parity: the same behavior across the claude, opencode, codex, pi, devin, cursor, dsh and vibe executors and their agent and command mirrors (.claude .codex .pi .dsh .vibe against .skilled), plus Node and OS portability of the scripts (paths, shells, BSD vs GNU tools). Cite file:line for every finding.
+
+### Self-check outcomes
+
+The conductor re-read the cited code at `de32abbb74d`. On a fan-out root these calls are for
+reference only; they do not change the merged counts above.
+
+- `OPUS-F004-P1-002` is confirmed at P1. It absorbs `OPUS-REC-P1-003` as a refinement.
+  - `convergence.cjs:1383-1389` counts any review iteration with a ratio at or below
+    `0.5 x convergenceThreshold` toward a lineage-wide stuck counter.
+  - The workflow then closes the active node as `exhausted/stuck` (`deep-review.yaml:1610-1617`).
+  - In this run, opus closed F-1-004 after three of its four dimensions and F-2-007 after one.
+    Both closes came from clean passes on other nodes.
+- `OPUS-F002-P2-002` (now P1) is confirmed as a gap; the Referee downgrades it to P2.
+  - The gap is real: `step_scope_discovery` has no commit-range branch (`deep-review.yaml:815-820`),
+    and `scopeInsideTouchedFiles` admits every scope when the list is empty
+    (`frontier-admit.cjs:613-618`).
+  - "Never engages" is overstated: both lineages recorded a list in this run. Opus recorded 232
+    files; deepseek recorded the 8 pathspec directories.
+- `R2-P1-001` is confirmed at P1.
+  - `FAILED_VISIT_STATUSES` holds `error`, `failed`, `failure` and `timeout`, but not `thought`
+    (`frontier-admit.cjs:90`).
+  - `buildReviewFrontier` therefore credits a thought iteration's dimensions to its node and
+    counts it as spent depth (`reduce-state.cjs:1969-1980`). `convergence.cjs:1372` skips the same
+    rows as non-evidence.
+- `R3-P1-001` is confirmed at P1, as a spec/workflow contradiction.
+  - The review-frontier spec's `REQ-007` says an accepted pivot candidate is routed through
+    admission.
+  - `deep-review.yaml:1429` says that with the frontier terminal "the pivot adds no frontier node".
 
 ## 2. Planning Trigger
 
-`/speckit:plan` is required. The verdict is FAIL. No finding blocks on its own; the FAIL is the coverage gate plus open search debt, so the plan should pair the three P2 fixes with a follow-up review pass over the deferred surfaces.
+`/speckit:plan` is required: four active P1 findings.
 
 ```json
 {
-  "label": "Planning Packet",
-  "triggered": true,
-  "verdict": "FAIL",
-  "hasAdvisories": false,
-  "activeFindings": [
-    {"id": "R1-P1-001", "severity": "P2", "dimension": "correctness", "file": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1224", "findingClass": "cross-consumer contract mismatch"},
-    {"id": "R2-P2-001", "severity": "P2", "dimension": "security", "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3712", "findingClass": "input normalization gap at a trust boundary"},
-    {"id": "R3-P2-001", "severity": "P2", "dimension": "maintainability", "file": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1974", "findingClass": "repeated logic that behaves differently; parallel implementations of one owned contract"}
-  ],
-  "remediationWorkstreams": ["WS1 one frontier module for node statuses, the store reader and the depth-band budget (R3-P2-001)", "WS2 decide whether an expansive node's dimension universe honors a configured subset (R1-P1-001)", "WS3 collapse line breaks in the research topic the way focus and target already are (R2-P2-001)", "WS4 follow-up review of the deferred surfaces (SL-005, SL-007)"],
-  "specSeed": ["Remediation packet as a child of 007-expansive-depth-mode covering WS1-WS3, with WS4 as a scoped /deep:review"],
-  "planSeed": ["Extract the frontier node vocabulary, store reader and band budget into runtime/lib/deep-loop/ and import it from both reducers and fanout-merge", "Normalize the research topic in fanout-run.cjs with the focus and target rule", "Amend review.md or buildDimensionUniverse so the node universe and the stop rule agree on a configured subset"],
-  "findingClasses": ["cross-consumer contract mismatch", "input normalization gap at a trust boundary", "repeated logic that behaves differently; parallel implementations of one owned contract"],
-  "affectedSurfacesSeed": [".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs", ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs", ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs", ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs", ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs", ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs", ".skilled/commands/deep/assets/deep-review.yaml", ".skilled/commands/deep/assets/deep-research.yaml"],
-  "fixCompletenessRequired": false
+  "Planning Packet": {
+    "triggered": true,
+    "verdict": "CONDITIONAL",
+    "hasAdvisories": false,
+    "activeFindings": {"P0": 0, "P1": 4, "P2": 18},
+    "remediationWorkstreams": ["WS1 frontier stop and visit accounting", "WS2 commit-range scope", "WS3 pivot contract", "WS4 docs and UX drift", "WS5 portability"],
+    "specSeed": ["Make stuck closure per node, or exempt clean dimension passes from it, under --depth-mode=expansive", "Give step_scope_discovery a commit-range branch that records touched files", "Decide REQ-007: admit pivot candidates or amend the spec"],
+    "planSeed": ["Exclude thought iterations from frontier visits", "Per-node stuck accounting", "Commit-range scope discovery", "Collapse the --depth-mode flag cell to a pointer"],
+    "findingClasses": ["correctness", "traceability", "maintainability", "portability"],
+    "affectedSurfacesSeed": [".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs", ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs", ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs", ".skilled/commands/deep/assets/deep-review.yaml", ".skilled/commands/deep/review.md"],
+    "fixCompletenessRequired": true
+  }
 }
 ```
 
 ## 3. Active Finding Registry
 
+The merged registry is `deep-review-findings-registry.json`, and per-lineage attribution is in
+`fanout-attribution.md`.
+
+### P1
+
+| ID | File:line | Title |
+|----|-----------|-------|
+| OPUS-F004-P1-002 | `runtime/scripts/convergence.cjs:1389` | The novelty ratio divides by the accumulated weighted total, so late in an expansive run an iteration that finds a new issue reads as no progress and exhausts the node |
+| OPUS-F002-P2-002 | `runtime/scripts/frontier-admit.cjs:618` | No workflow step records the files a commit-range target touches |
+| R2-P1-001 | `runtime/scripts/reduce-state.cjs:1971` | A thought iteration covers a frontier dimension and spends node depth |
+| R3-P1-001 | `commands/deep/assets/deep-review.yaml:1429` | REQ-007 and AC-008 promise pivot-candidate admission the pivot branch never performs |
+
 ### P2
 
-| ID | Title | Dimension | file:line | Evidence | Impact | Fix | Disposition | findingClass | scopeProof | affectedSurfaceHints |
-|---|---|---|---|---|---|---|---|---|---|---|
-| R1-P1-001 | Expansive review frontier requires and dispatches dimensions the configured reviewDimensions excluded | correctness | `runtime/scripts/reduce-state.cjs:1224` | `buildDimensionUniverse` seeds the four canonical names; a node is answered only when all are covered (`:2025`) and `nextDimension` picks an uncovered one (`:2037`); `deep-review.yaml:1169` dispatches it; `frontier-admit.cjs:381` sizes the budget from it. `convergence.cjs:1502-1507` says an omitted traceability is never reviewed | An expansive run configured without traceability still spends a traceability iteration per node, and `frontier_drained` cannot form before it | Amend `review.md:100` to say a configured subset narrows the universe and make `buildDimensionUniverse` honor it, or state the rule in the stop logic | Downgraded P1 to P2 by the self-check (documented intent) | cross-consumer contract mismatch | All cited lines are added in the range | reduce-state.cjs, frontier-admit.cjs, deep-review.yaml, convergence.cjs |
-| R2-P2-001 | Research topic read from `--research-topic-file` keeps its line breaks and can forge lineage binding lines | security | `runtime/scripts/fanout-run.cjs:3712` | Focus and target are collapsed (`:238`, `:266`); the topic is only trimmed and lands at `:1812` above the `config.*` binding lines | Operator text with a line break adds a forged binding line to every lineage prompt. No privilege boundary is crossed, since the operator owns the text | Apply the focus and target normalization to the topic | Active | input normalization gap at a trust boundary | `readTextFileFlags` and the file flag were added in the range | fanout-run.cjs, deep-research.yaml |
-| R3-P2-001 | Frontier node vocabulary and depth-band budget are re-implemented in each consumer and have already drifted | maintainability | `runtime/scripts/reduce-state.cjs:1974` | `frontier-admit.cjs` exports `NODE_STATUSES` (`:77`) and `readNodeStore` (`:265`), yet status lists sit in `runtime/scripts/reduce-state.cjs:29`, `deep-research/scripts/reduce-state.cjs:2451`, `fanout-merge.cjs:753`, store readers at `:1917` and `:2439`, and band budgets at `:1974` and `:2531`; only the research copy sets `closedAtIteration` (`:2560`) | Every frontier change must be made in each copy, and the copies already disagree | Move them into one module under `runtime/lib/deep-loop/`; `frontier-admit.cjs` cannot own them because it requires `reduce-state.cjs` (`:381`) | Active | repeated logic that behaves differently | All copies are added in the range | both reducers, fanout-merge.cjs, frontier-admit.cjs |
+| ID | Location | Title |
+|----|----------|-------|
+| OPUS-F002-P2-001 | `frontier-admit.cjs:248` | `dedupeKey` drops non-ASCII letters |
+| OPUS-F002-P2-003 | `frontier-admit.cjs:620` | Scope prefix check lets free text through |
+| OPUS-F002-P2-004 | `frontier-admit.cjs:706` | A negative or fractional proposal budget is accepted |
+| OPUS-F004-P2-001 | `deep-review-presentation.txt:83` | Budget universe text not narrowed |
+| OPUS-F004-P2-002 | `deep-review.yaml:599` | The `--extend` warning omits `frontier_drained` |
+| OPUS-F004-P2-003 | `convergence.cjs:1505` | Comment false for a canonical subset |
+| OPUS-F004-P2-004 | `review.md:100` | 486-word flag cell, and the seed step is written out twice |
+| OPUS-F006-P2-001 | `state-format.md:305` | Universe wording drift on nine surfaces |
+| OPUS-F006-P2-002 | live two-node playbooks `:49` | Wait for a confirm stop the workflow lacks |
+| OPUS-F007-P2-001 | `frontier-admit.cjs:592` | An open-ended git range is read as a path |
+| OPUS-REC-P2-001 | `convergence.md:227` | `<` in the docs where the code uses `<=` |
+| OPUS-REC-P2-002 | `convergence.cjs:1581` | The graphless fallback gate demands row-level `evidenceRefs` |
+| R1-P2-001 | `fanout-run.cjs:1791` | The FRONTIER block is named but never rendered for CLI prompts |
+| R1-P2-002 | `fanout-run.cjs:357` | Locale collation against code-unit order |
+| R1-P2-003 | `fanout-merge.cjs:1003` | One lineage omitting `graphCoverageMode` erases it |
+| R1-P2-004 | `fanout-merge.cjs:982` | The merge re-implements reducer arithmetic |
+| R5-P2-001 | `upsert.cjs:330` | POSIX-only separators in source classification |
+| R12-P2-001 | `divergent-pivot.ts:1296` | Double config write bypasses the conflict check |
 
 ## 4. Remediation Workstreams
 
-1. **P0:** none.
-2. **P1:** none.
-3. **P2 advisories:** WS1 R3-P2-001 (shared frontier module), WS2 R1-P1-001 (dimension universe vs stop rule), WS3 R2-P2-001 (topic normalization).
-4. **Coverage:** WS4, a scoped follow-up review over the deferred files and the test surface.
+1. **WS1, frontier stop and visit accounting**: OPUS-F004-P1-002 and R2-P1-001.
+2. **WS2, commit-range scope**: OPUS-F002-P2-002 and OPUS-F007-P2-001.
+3. **WS3, pivot contract**: R3-P1-001, and R12-P2-001 as an advisory.
+4. **WS4, docs and UX drift** (P2 advisories): OPUS-F004-P2-001/002/004, OPUS-F006-P2-001/002 and
+   OPUS-REC-P2-001.
+5. **WS5, portability and parity** (P2 advisories): R5-P2-001, R1-P2-001, R1-P2-002 and
+   OPUS-F002-P2-001.
 
 ## 5. Spec Seed
 
-- A remediation child under `007-expansive-depth-mode` for WS1-WS3.
-- A decision on whether `reviewDimensions` narrows an expansive node's universe, recorded in the parent decision record.
+- Stuck recovery under expansive depth must not close a node for another node's clean passes, and a
+  clean dimension pass is not "no progress" while the node still owes dimensions.
+- A commit-range review target records its touched files at scope discovery.
+- REQ-007 needs a decision: either the pivot admits candidates through admission, or the spec drops
+  the promise.
 
 ## 6. Plan Seed
 
-- Extract the frontier node statuses, the store reader and the depth-band budget into one `runtime/lib/deep-loop/` module, with a test that both reducers close a budget band the same way.
-- Normalize the research topic in `fanout-run.cjs` with the same rule as focus and target, with a test that a line break cannot add a binding line.
-- Settle R1-P1-001 one way, then align `review.md:100`, `buildDimensionUniverse` and `reviewDimensionCount`.
-- Run `/deep:review` over the deferred surfaces with a budget that leaves at least one pass after the last new dimension.
+- Add `thought` to the statuses excluded from frontier visits. Test: a thought row neither covers
+  nor spends.
+- Key the stuck counter per active node, or skip the stuck close while the node owes dimensions.
+  Test: two clean passes on node A do not close node B.
+- Add a commit-range branch to `step_scope_discovery` that runs `git diff --name-only <range> --
+  <pathspec>`.
+- Replace the `--depth-mode` flag cell in `review.md` with a short pointer to the presentation
+  asset.
 
 ## 7. Traceability Status
 
-- Traceability was not a configured dimension for this run, so `convergence.cjs` owes no core protocol at stop, and none was run.
-- **Core Protocols:** `spec_code` and `checklist_evidence` not run (not configured).
-- **Overlay Protocols:** not run.
-- `AC_COVERAGE`: exempt, because the target type is `files`, not a spec folder.
+- **Core `spec_code`**: drift.
+  - R3-P1-001 is a spec/YAML contradiction.
+  - The universe narrowing reached only some surfaces (OPUS-F006-P2-001).
+- **Core `checklist_evidence`**: not assessed. The target is a commit range, not a spec folder.
+- **Overlay `agent_cross_runtime`**: the deep-review and deep-research mirrors changed in step
+  across `.skilled`, `.claude`, `.codex`, `.pi`, `.dsh` and `.vibe`. No lineage raised a mirror
+  divergence.
+- **Overlay `feature_catalog_code` and `playbook_capability`**: drift (OPUS-F006-P2-002,
+  OPUS-F006-P2-001).
+- AC_COVERAGE: exempt. This is not a spec-folder target.
 
 ## 8. Deferred Items
 
-- SL-005, unreviewed scope: iteration 1 deferred `fanout-run.cjs`, `upsert.cjs`, `dispatch-iteration.cjs` and `verify-iteration.cjs` for budget. Iteration 2 read them under security only, so correctness on them stays open.
-- SL-007, test coverage: about 38 test files (about 10k added lines) were sampled, not reviewed. Test-what-changed was not judged.
+- All 18 P2 findings are advisories. None blocks the verdict on its own.
+- The `synthesis_incomplete` rows both lineages wrote (`structured_state_findings_partially_reflected_in_registry`)
+  are false alarms. Every delta id the check counted as missing was recorded in the registry as a
+  refinement of an earlier id, under the earlier id.
 
 ## Dimension Expansion Map
 
-- Completed pivots: 0. Failed pivots: 0. Audited overrides: 0.
-- Saturated directions: none. Remaining frontier: none recorded (depth mode default).
+- **Opus**: F-1-002 and F-1-006 answered. F-1-004 exhausted by stuck. F-2-007, depth 2 under
+  F-1-002, admitted and then exhausted by stuck after one dimension.
+- **Deepseek**: F-1-003, F-1-005 and F-1-007, each with all four dimensions. No growth proposals.
+- No divergent pivot ran, because convergence mode was `default`.
 
-## 9. Search Ledger
+## Search Ledger
 
-- `searchCoverage.graphCoverageMode`: `graphless_fallback`.
-- `candidateCoverage.covered`: `contract_mismatch`, `duplicated_logic`, `input_validation`.
-- `ruledOutCandidates`: 15, among them shell injection through the frontier node id, path traversal through proposal scope, control characters in proposals, regex injection in the research reducer, and the duplicated inline `--extend` scripts.
-- `cleanSearchProof`: 15 rows.
-- `searchDebt`: SL-005 and SL-007, so hasSearchDebt: true. Debt is not the only reason for the verdict, since the coverage gate also failed.
+- `searchDebt`: 0. Exhausted nodes are frontier-only and are not filed as debt.
+- `candidateCoverage`: covered for the four answered depth-1 nodes, and for deepseek's nodes as its
+  reducer projected them.
+- `ruledOutCandidates`: F-1-001 (`generated-artifact`).
+- `cleanSearchProof`: not separately captured. See the lineage registries.
 
-## 10. Audit Appendix
+## Audit Appendix
 
-- **Convergence:** iteration 1 CONTINUE (noStopCandidate), iteration 2 CONTINUE (noStopCandidate), after iteration 3 STOP `maxIterationsReached` with `blockedBy` `dimensionCoverageGate`, `candidateCoverageGate` and `graphlessFallbackGate` recorded as evidence. newFindingsRatio: 1.0, 0.17, 0.14.
-- **Coverage:** correctness, security and maintainability each covered once; the terminal coverage gate failed as too young.
-- **Floor:** `antiConvergence.minIterations` 3, read by `convergence.cjs` as `minIterations: 3`.
-- **Sources reviewed:** 17 of 68 scope files, listed in the iteration records' `filesReviewed`.
-- **Route proof:** every iteration record carries `target_agent: "deep-review"`, the resolved route, `agent_definition_loaded: true` and `mode: "review"`, and `verify-iteration.cjs` passed all three.
-
-### Core Protocols
-
-Not run: traceability was not configured.
-
-### Overlay Protocols
-
-Not run.
-
-### Workflow deviations recorded by the conductor
-
-- The dimension pair the operator asked for (overengineering plus sk-code-alignment) ran as rubrics inside the maintainability pass, through the review focus. The loop dispatches one dimension per iteration, so this was the operator's stated fallback.
-- `phase_save` (`generate-context.js`) was not run, because the operator asked for a commit of the review artifacts only, and the save writes outside `review/`.
-- The iteration prompt was handed to each leaf as the path to the rendered prompt pack, not inlined.
+- **Convergence**:
+  - Opus stopped converged at run 15, after stuck recovery at runs 10 and 13 and a blocked stop at
+    run 14 (`graphlessFallbackGate`).
+  - Deepseek recorded a converged `synthesis_incomplete` row with no `terminal_gates` row. Its
+    iterations 4 to 12 landed 20 to 60 s apart.
+- **Coverage**: dimension coverage was 1.0 in both lineages. Per-node coverage is as in the
+  Dimension Expansion Map.
+- **Sources reviewed**: see `lineages/opus/iterations/` and `lineages/deepseek/iterations/`.
+- **Cross-reference**:
+  - Core Protocols: `spec_code` drift; `checklist_evidence` not applicable.
+  - Overlay Protocols: `agent_cross_runtime` no divergence found; `feature_catalog_code` drift;
+    `playbook_capability` drift; `skill_agent` not assessed.

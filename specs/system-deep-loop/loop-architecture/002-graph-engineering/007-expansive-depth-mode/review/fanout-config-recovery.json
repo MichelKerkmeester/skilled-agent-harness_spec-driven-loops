@@ -1,0 +1,1 @@
+{"executors":[{"kind":"cli-opencode","model":"llmgateway/deepseek-v4.1-flash-1017","reasoningEffort":"max","label":"deepseek"}],"concurrency":1}
