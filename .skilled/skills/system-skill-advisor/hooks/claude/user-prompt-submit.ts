@@ -370,6 +370,9 @@ function guardWeakFollowUp(
     const sessionId = receiptSessionId(input);
     const top = topPassingRecommendation(result);
     if (!sessionId || !top || top.confidenceFloored !== true || !routeReceiptsEnabled()) return result;
+    // A startup, resume or compact turn starts the model on fresh context, so the
+    // earlier route no longer frames this prompt.
+    if (lifecycleEventFor(input)) return result;
     const receipt = (dependencies.routeReceiptStore ?? defaultRouteReceiptStore()).read(sessionId);
     if (!receipt) return result;
     const strippedPrompt = stripLeadingPastedReply(prompt);
@@ -391,39 +394,73 @@ function guardWeakFollowUp(
   }
 }
 
-function recordRouteReceipt(
+// Works out the route receipt change this turn earns and returns it as an action,
+// so the caller can hold it until the host has taken the output. A turn the model
+// never saw then leaves the session on its earlier route.
+function routeReceiptActionFor(
   result: AdvisorHookResult,
   brief: string | null,
   input: ClaudeUserPromptSubmitInput,
   dependencies: UserPromptSubmitDependencies,
-): void {
+): (() => void) | undefined {
   try {
     const sessionId = receiptSessionId(input);
     const top = topPassingRecommendation(result);
-    if (!sessionId || !brief || !top || !routeReceiptsEnabled()) return;
+    if (!sessionId || !brief || !top || !routeReceiptsEnabled()) return undefined;
     const store = dependencies.routeReceiptStore ?? defaultRouteReceiptStore();
     // Only a route the model was shown on the advisor's own evidence is worth
     // holding to: not one lifted onto the confidence floor, and not one the
     // local scorer gave while the advisor was down. Showing either still moves
     // the session off an earlier route that differs, so that route expires.
     if (top.confidenceFloored === true || result.metrics.degraded === true) {
-      const held = store.read(sessionId);
-      if (held && held.skill !== top.skill) store.remove(sessionId);
-      return;
+      return () => {
+        const held = store.read(sessionId);
+        if (held && held.skill !== top.skill) store.remove(sessionId);
+      };
     }
+    // The clock is read now, before this turn's directive delivery moves it.
     const clock = (dependencies.directiveLifecycleStore ?? defaultDirectiveLifecycleStore()).clock(sessionId);
-    if (!clock) return;
-    store.write({
+    if (!clock) return undefined;
+    const transcriptBytes = transcriptBytesFor(input);
+    return () => store.write({
       version: ROUTE_RECEIPT_VERSION,
       sessionId,
       skill: top.skill,
       storeGeneration: clock.storeGeneration,
       lifecycleEpoch: clock.lifecycleEpoch,
-      transcriptBytes: transcriptBytesFor(input),
+      transcriptBytes,
     });
+  } catch {
+    return undefined;
+  }
+}
+
+function runRouteReceiptAction(action: () => void): void {
+  try {
+    action();
   } catch {
     // A lost receipt only means the next follow-up is routed on its own evidence.
   }
+}
+
+// A host that confirms its write holds both receipts for one commit after the
+// write lands, even on a repeat turn whose directive receipt needs no commit.
+// Without that confirmation the route receipt is written at once.
+function deliveryCommitFor(
+  commitFullReceipt: (() => boolean) | undefined,
+  routeReceiptAction: (() => void) | undefined,
+  dependencies: UserPromptSubmitDependencies,
+): (() => boolean) | undefined {
+  if (!routeReceiptAction) return commitFullReceipt;
+  if (dependencies.deferDirectiveReceipt !== true) {
+    runRouteReceiptAction(routeReceiptAction);
+    return commitFullReceipt;
+  }
+  return () => {
+    const committed = commitFullReceipt ? commitFullReceipt() : true;
+    runRouteReceiptAction(routeReceiptAction);
+    return committed;
+  };
 }
 
 // Directive-lifecycle dedup delivers the full brief on the first message
@@ -604,10 +641,11 @@ export async function handleClaudeUserPromptSubmit(
       },
     };
     const brief = renderBrief(result, { deliveryState });
-    recordRouteReceipt(result, brief, input, dependencies);
+    const routeReceiptAction = routeReceiptActionFor(result, brief, input, dependencies);
     const renderOptions = { deliveryState, setupWording: !brief && SETUP_WORDING.test(prompt) };
     const emitted = brief ?? renderAdvisorFallbackDirective(renderOptions, result);
     const { effectiveEmitted, commitFullReceipt } = applyDirectiveLifecycle(emitted, input, dependencies);
+    const commitReceipts = deliveryCommitFor(commitFullReceipt, routeReceiptAction, dependencies);
     emitDiagnostic({
       runtime,
       workspaceRoot,
@@ -623,7 +661,7 @@ export async function handleClaudeUserPromptSubmit(
       directivesSuppressed: effectiveEmitted !== emitted,
     }, writeDiagnostic);
 
-    return finishAdvisorDelivery(effectiveEmitted, commitFullReceipt, deliveryState, runtime);
+    return finishAdvisorDelivery(effectiveEmitted, commitReceipts, deliveryState, runtime);
   } catch {
     // process.cwd() throws when the working directory was removed, and a lost
     // diagnostic must not cost the model its fallback.

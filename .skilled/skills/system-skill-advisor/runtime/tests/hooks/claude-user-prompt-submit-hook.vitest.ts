@@ -1244,6 +1244,85 @@ describe('Claude UserPromptSubmit advisor hook', () => {
       expect(await receiptTurn(README_TASK, docsRoute(), stores)).toContain('use sk-doc');
       expect(await receiptTurn('fix that too', flooredCodeRoute(), stores)).toBe(UNGUARDED_FOLLOW_UP_CONTEXT);
     });
+
+    const failingStream = {
+      write: (_chunk: string, callback: (error?: Error | null) => void) => {
+        callback(new Error('EPIPE'));
+        return false;
+      },
+    };
+    const workingStream = {
+      write: (_chunk: string, callback: (error?: Error | null) => void) => {
+        callback(null);
+        return true;
+      },
+    };
+
+    it('writes the route receipt only once the output write lands', async () => {
+      const receipts = new InMemoryRouteReceiptStore();
+      const deliveredTurn = () => handleClaudeUserPromptSubmit({
+        session_id: 'receipt-delivery-session',
+        hook_event_name: 'UserPromptSubmit',
+        cwd: '/workspace/project',
+        prompt: README_TASK,
+      }, {
+        buildCliBrief: vi.fn(async () => docsRoute()),
+        renderBrief: renderAdvisorBrief,
+        writeDiagnostic: () => {},
+        directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+        routeReceiptStore: receipts,
+        deferDirectiveReceipt: true,
+      });
+
+      await userPromptSubmitHook.writeHookOutput(await deliveredTurn(), failingStream);
+      expect(receipts.read('receipt-delivery-session')).toBeNull();
+
+      await userPromptSubmitHook.writeHookOutput(await deliveredTurn(), workingStream);
+      expect(receipts.read('receipt-delivery-session')?.skill).toBe('sk-doc');
+    });
+
+    it('keeps the earlier route receipt when a reduced repeat turn fails to write', async () => {
+      const receipts = new InMemoryRouteReceiptStore();
+      const lifecycle = new InMemoryDirectiveLifecycleStore();
+      lifecycleTranscriptDir ||= mkdtempSync(join(tmpdir(), 'dl-shared-transcript-'));
+      const transcriptPath = join(lifecycleTranscriptDir, 'receipt-repeat.jsonl');
+      const turn = (prompt: string, result: AdvisorHookResult) => {
+        appendFileSync(transcriptPath, 'x');
+        return handleClaudeUserPromptSubmit({
+          session_id: 'receipt-repeat-session',
+          hook_event_name: 'UserPromptSubmit',
+          cwd: '/workspace/project',
+          prompt,
+          transcript_path: transcriptPath,
+        }, {
+          buildCliBrief: vi.fn(async () => result),
+          renderBrief: renderAdvisorBrief,
+          writeDiagnostic: () => {},
+          directiveLifecycleStore: lifecycle,
+          routeReceiptStore: receipts,
+          deferDirectiveReceipt: true,
+        });
+      };
+
+      await userPromptSubmitHook.writeHookOutput(await turn(README_TASK, docsRoute()), workingStream);
+      expect(receipts.read('receipt-repeat-session')?.skill).toBe('sk-doc');
+
+      const repeat = await turn('Commit the staged changes with a conventional message', routedResult('sk-git', 0.93, false));
+      // The repeat turn delivers only the head, so the directive store defers nothing for it.
+      expect(JSON.stringify(repeat)).not.toContain('Directives:');
+      await userPromptSubmitHook.writeHookOutput(repeat, failingStream);
+      expect(receipts.read('receipt-repeat-session')?.skill).toBe('sk-doc');
+    });
+
+    it('delivers a floored weak follow-up on a turn that crosses a lifecycle boundary', async () => {
+      const stores = freshStores();
+      await receiptTurn(README_TASK, docsRoute(), stores);
+      const compacted = await receiptTurn('fix that too', flooredCodeRoute(), stores, {
+        session_id: 'receipt-session',
+        lifecycle_event: 'compact',
+      });
+      expect(compacted).toContain('use sk-code');
+    });
   });
 
   describe('pasted reply ahead of the prompt cap and the fire gate', () => {
