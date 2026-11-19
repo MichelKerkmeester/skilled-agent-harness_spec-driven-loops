@@ -1,0 +1,9 @@
+Checked 2026-11-19 against OpenCode 2.3.2.
+@opencode-ai/plugin: not used.
+  - The v2 binary holds 0 occurrences of the string "@opencode-ai/plugin" (strings opencode.exe | grep -c).
+  - No repository file imports it at runtime; only JSDoc type comments in three plugins named it, and those are rewritten.
+@opencode/plugin: not used by the repository at runtime.
+  - The v2 binary bundles its own copy (64 occurrences of "@opencode/plugin" in strings output), so the plugins need no install.
+  - Adding it as a dependency was rejected: its peerDependencies include vite, electron, solid-js and @opentui/*, which npm 7+ would install.
+  - It stays a devDependency of .skilled/package.json (2.2.6), unchanged.
+Decision: remove @opencode-ai/plugin from dependencies and overrides in .opencode/package.json and .skilled/package.json; add nothing.

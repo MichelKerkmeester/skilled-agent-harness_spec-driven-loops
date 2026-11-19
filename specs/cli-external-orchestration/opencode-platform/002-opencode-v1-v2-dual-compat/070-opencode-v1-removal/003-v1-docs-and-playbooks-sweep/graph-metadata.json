@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v1 docs and playbooks sweep",
+      "phase 3 v1 docs and playbooks sweep",
+      "v1 docs and playbooks sweep plan",
+      "v1 docs and playbooks sweep tasks",
+      "v1 docs and playbooks sweep acceptance criteria",
+      "v1 docs and playbooks sweep implementation summary"
+    ],
+    "key_topics": [
+      "docs",
+      "playbooks",
+      "sweep",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "cli-opencode",
+      "skill"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/changelog/cli-external-orchestration/cli-opencode/v2.0.0.0.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v2.0.0.0.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/README.md",
+      ".opencode/plugins/ARCHITECTURE.md",
+      ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      "scratch/live-version.txt",
+      "scratch/justified.txt",
+      ".skilled/CROSS-CLI.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh",
+      ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+      ".skilled/commands/deep/assets/deep-review-presentation.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.0.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/cli-external-orchestration/cli-opencode/v2.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "install-and-versions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop-protocol.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "live-version.txt",
+        "kind": "file",
+        "path": "scratch/live-version.txt",
+        "source": "derived"
+      },
+      {
+        "name": "justified.txt",
+        "kind": "file",
+        "path": "scratch/justified.txt",
+        "source": "derived"
+      },
+      {
+        "name": "CROSS-CLI.md",
+        "kind": "doc",
+        "path": ".skilled/CROSS-CLI.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-plugin-scenario.sh",
+        "kind": "script",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cli-opencode skill, its references and playbooks, the plugin docs and several cross-skill docs still describe the v1 install, the v1 launcher and the v1 dispatch",
+    "created_at": "2026-11-19T09:04:23Z",
+    "last_save_at": "2026-11-19T13:55:10.065Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5806601566fdb4a088500865902f6c88a0e25b702606470f498d7a9c0e68d18a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1f96cd83a0feb0d4a83a8fd9074ed81deb83a8337733faf47a8d296bb086049c",
+      "plan.md": "5de7ebe9ee57e350f54837eb45fd0b767be0aad43ccc335a2a0122dfc608759c",
+      "tasks.md": "db75eb6c6027de95c32fd1e6e6c774ec6f9eb90565d6448267ddaea136554cea",
+      "implementation-summary.md": "d3a2235a0e47e9e0240b073768e688268cad94543242934b4943ec0a2b652cfa"
+    },
+    "last_active_at": null
+  }
+}

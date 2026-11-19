@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "children_ids": [
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode v1 removal phase parent spec"
+    ],
+    "key_topics": [
+      "opencode",
+      "removal",
+      "phase",
+      "parent",
+      "spec",
+      "only",
+      "version",
+      "feature",
+      "specification",
+      "remove",
+      "support",
+      "repository"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".opencode/plugins/lib/v2-bridge.js",
+      ".skilled/hooks/cli-dispatch/lib/opencode-version.mjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json",
+      ".skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh",
+      ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+      ".skilled/hooks/shared/session-readers/opencode.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+      ".github/workflows/opencode-dual-version.yml",
+      ".opencode/package.json",
+      ".skilled/package.json",
+      ".skilled/CROSS-CLI.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2-bridge.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/v2-bridge.js",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/cli-dispatch/lib/opencode-version.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hard-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-setup.sh",
+        "kind": "script",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version-battery.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/opencode.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-opencode.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-dual-version.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-dual-version.yml",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "CROSS-CLI.md",
+        "kind": "doc",
+        "path": ".skilled/CROSS-CLI.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "OpenCode 2.3.2 is the only version in use",
+    "created_at": "2026-11-19T09:04:20Z",
+    "last_save_at": "2026-11-19T11:59:28.816Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:9513731d8039b50f62ade6e88ed6546405fd720df62fc54fc1e1c020dd6f0e65",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f0e775d1d1b2f77e03d0f60e85d48eee10427dc1b2fc8fbd42ae7a37a91bdc03"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,56 @@
+Live checks against the installed OpenCode 2.3.2, 2026-11-19, run from the worktree after `npm ci` in .opencode.
+
+1. Doctor battery: `node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2 --json --out <tmp>` -> exit 0, success.
+   family-present PASS (a v2 binary is installed); plugin-active PASS (all 20 plugin files active);
+   skill-visible PASS (14 skill entries visible); command-listed PASS (all 92 command files listed).
+2. Dispatch: `opencode run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json "Reply with the single word OK and nothing else." </dev/null`
+   -> exit 0, success: 3 JSON events, final text "OK", empty stderr.
+3. Session reader: loadOpenCodeSession on the newest session_v2 row of ~/.local/share/opencode/opencode.db (read-only)
+   -> ok true, success: 77 records (user 1, assistant 39, toolResult 37), read from the OpenCode 2 tables only.
+
+## Closure run: mirror checks and default battery (recorded at closure, 2026-11-19T11:46Z)
+Runtime-mirror checkers, check-only forms from doctor-runtime-mirrors.yaml upstream_assets (exit codes):
+[codex-prompt-sync] PASS: 46 prompts are in sync.
+[runtime-mirror-sync] PASS: 260 mirrors across 10 trees are in sync.
+[codex-agent-sync] PASS: 11 agents are in sync.
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+  OK   commands/README.txt                44/44 listed
+  OK   commands/create/README.txt         13/13 listed
+  OK   commands/speckit/README.txt        8/8 listed
+  OK   sk-design/command-metadata.json    3 entries
+  OK   sk-doc/command-metadata.json       13 entries
+  OK   sk-prompt/command-metadata.json    1 entry
+  OK   system-deep-loop/command-metadata.json 2 entries
+  OK   system-spec-kit/command-metadata.json 8 entries
+  3 prose divergence(s) reported above; --strict fails on them.
+STATUS=OK command-catalog-mirror: every catalog and hub metadata covers the command tree
+[pi-agent-sync] PASS: 11 agents are in sync.
+install-codex-hooks: OK /Users/michelkerkmeester/.codex/hooks.json
+  OK   claude    11/11 present
+  OK   opencode  11/11 present
+  OK   codex     11/11 present
+  OK   pi        11/11 present
+  OK   dsh       11/11 present
+  OK   vibe      11/11 present
+  OK   cursor    11/11 symlinked
+  OK   devin     11/11 symlinked
+STATUS=OK agent-roster-mirror: every runtime covers the canonical roster
+[dsh-prompt-sync] PASS: 46 prompt stubs are in sync.
+[dsh-skill-sync] PASS: 55 skill links are in sync.
+[dsh-agent-sync] PASS: 11 agent patches are in sync.
+[vibe-prompt-sync] PASS: 46 prompt stubs are in sync.
+[vibe-agent-sync] PASS: 11 agent profiles are in sync.
+[pi-prompt-sync] PASS: 46 prompts are in sync.
+[vibe-skill-sync] PASS: 55 skill links are in sync.
+  codex_hook_approval: exit 1 = WARN codex-hooks-unapproved for this worktree path (an operator approval in Codex; not drift)
+  command_catalog: 3 argumentHint prose divergences (/create:changelog, /deep:research, /deep:review); STATUS=OK, the checker's --strict is not run
+  Result: 15 of 16 checkers exit 0; no drift reported; the one WARN is the Codex approval.
+
+Default battery (opencode-version-battery.cjs, no arguments), exit 0:
+PASS v2 family-present: a v2 binary is installed
+PASS v2 plugin-active: all 20 plugin files active
+PASS v2 skill-visible: 14 skill entries visible
+PASS v2 command-listed: all 92 command files listed
+Scope: the four legs are v2 only; no v1 leg is printed.
+NOT RUN (T019, AC-004): one deep-loop iteration on the standard executor, and the plugin live playbook scenario. Neither is in this file, so they stay open. See implementation-summary.
+Plugin playbook scenario (run-plugin-scenario.sh): not run in this closure. The runner lands scenario files and commits in the checkout (`run-plugin-scenario.sh` line 40), which the no-git-state rule forbids. The deep-loop iteration cannot run from a LEAF agent (`deep-research/SKILL.md` lines 11 and 91). Recorded at closure.

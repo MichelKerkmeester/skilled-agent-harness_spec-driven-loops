@@ -1,0 +1,12 @@
+# cli-opencode docs that name v1, counted at closure (case-insensitive rg -c; changelog and benchmark excluded). Main HEAD baseline is in baseline.txt.
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:1
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/multi-provider/variant-levels-comparison.md:2
+.skilled/skills/cli-external-orchestration/cli-opencode/README.md:2
+.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:1
+.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:6
+.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md:1
+.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:6
+.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:13
+.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs:1
+.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-setup-classify.test.cjs:13
+.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:1
