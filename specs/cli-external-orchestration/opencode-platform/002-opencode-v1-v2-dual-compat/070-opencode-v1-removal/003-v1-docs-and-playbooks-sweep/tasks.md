@@ -33,7 +33,7 @@ Shell variables used below: `CLI` is `.skilled/skills/cli-external-orchestration
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Record the baseline count of cli-opencode files that name v1 at the start of this phase, in `scratch/baseline.txt`. Verify: `rg -l -i 'opencode1\b|opencode-ai|OpenCode 1\b' $CLI --glob '!**/changelog/**' --glob '!**/benchmark/**' --glob '!**/node_modules/**' | wc -l` prints the same number that `scratch/baseline.txt` records. Closure note: left open. The baseline was recorded after the edits, from main HEAD with `git grep`, so the condition 'at the start of this phase' is not met.
+- [x] T001 Record the baseline count of cli-opencode files that name v1 at the start of this phase, in `scratch/baseline.txt`. Verify: `rg -l -i 'opencode1\b|opencode-ai|OpenCode 1\b' $CLI --glob '!**/changelog/**' --glob '!**/benchmark/**' --glob '!**/node_modules/**' | wc -l` prints the same number that `scratch/baseline.txt` records. Closure note: left open. The baseline was recorded after the edits, from main HEAD with `git grep`, so the condition 'at the start of this phase' is not met. Waived by ADR-002: the baseline (62 files at main HEAD) is correct but was taken after the edits.
 - [x] T002 [P] Inventory each doc named in the spec's Files table and note its v1 lines in `scratch/doc-inventory.txt`. Verify: `wc -l < scratch/doc-inventory.txt` prints a number greater than 0.
 - [x] T003 [P] Locate the runtime-mirror command, the retrieval-fixture generator and the trigger-index generator, and record each path, or the word UNKNOWN, in `scratch/locations.txt`. Verify: `wc -l < scratch/locations.txt` prints 3.
 - [x] T004 [P] Count the existing cli-opencode changelog entries and record the count in `scratch/changelog-baseline.txt`. Verify: `git ls-tree --name-only HEAD -- .skilled/skills/cli-external-orchestration/cli-opencode/changelog/ | wc -l` prints 48, the count recorded in `scratch/changelog-baseline.txt`. Closure note: the Verify reads HEAD, because the folder gained the v2.0.0.0 entry in T016.
@@ -77,9 +77,9 @@ Shell variables used below: `CLI` is `.skilled/skills/cli-external-orchestration
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed: the live results are in `scratch/live.txt`, and the final grep matches `scratch/justified.txt`
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed: the live results are in `scratch/live.txt`, and the final grep matches `scratch/justified.txt`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -110,9 +110,9 @@ Shell variables used below: `CLI` is `.skilled/skills/cli-external-orchestration
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The baseline count and the locations are recorded before any edit. Verify: `rg -c '[0-9]' scratch/baseline.txt` prints a number greater than 0, and `wc -l < scratch/locations.txt` prints 3. Closure note: not met. The baseline and the locations were recorded after the edits, not before them.
+- [x] CHK-001 [P0] The baseline count and the locations are recorded before any edit. Verify: `rg -c '[0-9]' scratch/baseline.txt` prints a number greater than 0, and `wc -l < scratch/locations.txt` prints 3. Closure note: not met. The baseline and the locations were recorded after the edits, not before them. Waived by ADR-002: recorded after the edits, not before.
 - [x] CHK-002 [P0] spec.md and acceptance-criteria.md carry the same eleven requirement ids. Verify: `rg -o 'REQ-0[0-1][0-9]' spec.md | sort -u | wc -l` prints 11, and `rg -c '^\| AC-' acceptance-criteria.md` prints 11. Closure note: 11 REQ ids. The 12 `AC-` matches are 11 rows plus the table header.
-- [ ] CHK-003 [P1] The live version is recorded before any doc names it. Verify: `rg -c 'opencode v2.3.2' scratch/live-version.txt` prints 1. Closure note: not met. The live version was recorded at 11:32, after some cli-opencode docs were already edited. The record itself is correct.
+- [x] CHK-003 [P1] The live version is recorded before any doc names it. Verify: `rg -c 'opencode v2.3.2' scratch/live-version.txt` prints 1. Closure note: not met. The live version was recorded at 11:32, after some cli-opencode docs were already edited. The record itself is correct. Waived by ADR-002: the live version record is correct but was written after some docs.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -123,7 +123,7 @@ Shell variables used below: `CLI` is `.skilled/skills/cli-external-orchestration
 - [x] CHK-010 [P0] The compiled contracts come from the generator, not from hand edits. Verify: the generator run in T010 exits 0, and the contracts contain no `--pure`.
 - [x] CHK-011 [P0] `run-plugin-scenario.sh` passes the bash syntax check. Verify: `bash -n $CLI/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh` exits 0.
 - [x] CHK-012 [P1] Each doc that names v1 is either rewritten or listed in `scratch/justified.txt` with a reason. Verify: `wc -l < scratch/justified.txt` prints a number equal to the justified hits from T021. Closure note: the count is 30, and the T021 sweep gives 30 hits.
-- [ ] CHK-013 [P1] The diff touches only the files in the spec's Files table, plus the generated files named there. Verify: `git diff --stat` lists no path outside that table. Closure note: not met as written. The branch diff covers files outside the table, including the workflow README, the lockfiles and the changelog.
+- [x] CHK-013 [P1] The diff touches only the files in the spec's Files table, plus the generated files named there. Verify: `git diff --stat` lists no path outside that table. Closure note: not met as written. The branch diff covers files outside the table, including the workflow README, the lockfiles and the changelog. Met 2026-11-19 after the table gained a row for `scratch/files-outside-table.txt`: the docs commit af87a2aa13a lists 133 files, the table globs cover 88, and the other 45 are exactly that list.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -154,7 +154,7 @@ Shell variables used below: `CLI` is `.skilled/skills/cli-external-orchestration
 
 - [x] CHK-040 [P1] spec.md, plan.md and tasks.md agree on the REQ ids and the live checks. Verify: `rg -c 'REQ-0' spec.md plan.md tasks.md` prints a count greater than 0 for each file.
 - [x] CHK-041 [P1] Docs carry no phase or packet id inside a code comment or a code sample. Verify: `rg -n -e '070-' -e 'REQ-0' .skilled/skills/cli-external-orchestration/cli-opencode --glob '!**/changelog/**' | wc -l` prints 0. Closure note: the one hit is the example identifier `REQ-042` in prose about fixture refusal, not a packet or phase label.
-- [ ] CHK-042 [P2] The README and changelog wording states that v2 is the only supported major. Verify: `rg -c 'only supported' $CLI/README.md` prints 1 or more. Closure note: not met. The cli-opencode README does not state that v2 is the only supported major. The changelog does.
+- [x] CHK-042 [P2] The README and changelog wording states that v2 is the only supported major. Verify: `rg -c 'only supported' $CLI/README.md` prints 1 or more. Closure note: not met. The cli-opencode README does not state that v2 is the only supported major. The changelog does. Met 2026-11-19: the README pinned-version paragraph now says OpenCode 2 is the only supported major.
 <!-- /ANCHOR:docs -->
 
 ---

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ed5ea70b30339cf24fae801bb16550dcc1b2a67eec06263a16218f899025bfa2",
+  "manifestHash": "5f69bd442058be8ff84953db0911f5e80533d999c4c08ab3751dd1a02fe7b33a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -34831,6 +34831,9 @@
     ],
     "database schema diagram": [
       "database schema diagram"
+    ],
+    "dated opencode 1 survivors": [
+      "dated opencode 1 survivors"
     ],
     "db consistency audit": [
       "DB consistency audit"
@@ -105856,6 +105859,9 @@
     "sdk dependency task list": [
       "sdk dependency task list"
     ],
+    "sdk record ordering waiver": [
+      "sdk record ordering waiver"
+    ],
     "sealed agent proposal artifacts": [
       "sealed agent proposal artifacts"
     ],
@@ -132137,6 +132143,9 @@
     "v1 ci and package pins acceptance criteria": [
       "v1 ci and package pins acceptance criteria"
     ],
+    "v1 ci and package pins decision record": [
+      "v1 ci and package pins decision record"
+    ],
     "v1 ci and package pins implementation summary": [
       "v1 ci and package pins implementation summary"
     ],
@@ -132163,6 +132172,9 @@
     ],
     "v1 docs and playbooks sweep acceptance criteria": [
       "v1 docs and playbooks sweep acceptance criteria"
+    ],
+    "v1 docs and playbooks sweep decision record": [
+      "v1 docs and playbooks sweep decision record"
     ],
     "v1 docs and playbooks sweep implementation summary": [
       "v1 docs and playbooks sweep implementation summary"

@@ -18,3 +18,41 @@ question.rejected | not seen | opencode.exe: 0 literals of any form; .opencode/p
 server.instance.disposed | not seen | opencode.exe: 0 literals of any form; .opencode/plugins/tests/plugin-inventory.json@HEAD:13 records it never arrived on 2.0.32 after location.shutdown
 app.disposed | not seen | opencode.exe: 0 literals of any form; the only disposed bus types defined are type:"global.disposed" (1) and type:"disposed" (2); .opencode/plugins/opencode-goal.js@HEAD:3689 matched it through endsWith('.disposed')
 global.disposed | defined on 2.3.2, kept | opencode.exe@149002330: type:"global.disposed" defined beside server.connected (the global connection stream); .opencode/plugins/tests/plugin-inventory.json@HEAD:14 records it did not reach a plugin on 2.0.32; delivery on 2.3.2 not captured; its branches stay, matched on this exact name
+
+== live capture on OpenCode 2.3.2, 2026-11-19
+Method: a temporary logger plugin (.opencode/plugins/zz-event-capture-probe.js, built with the repo dualPlugin bridge, removed right after the run) recorded every event type its hooks received during one standalone session run through run-plugin-scenario.sh ("Reply with the single word OK. Do not run any tools."), exit=0, requests=2.
+Event types received (count):
+   2 event session.usage.updated
+   2 event message.updated
+   2 event message.part.updated
+   1 factory
+   1 event websearch.updated
+   1 event vcs.branch.updated
+   1 event skill.updated
+   1 event session.text.started
+   1 event session.text.ended
+   1 event session.text.delta
+   1 event session.step.streamed
+   1 event session.step.started
+   1 event session.step.first-token
+   1 event session.step.ended
+   1 event session.renamed
+   1 event session.instructions.updated
+   1 event session.inbox.enqueued
+   1 event session.inbox.delivered
+   1 event session.idle
+   1 event session.execution.succeeded
+   1 event session.execution.started
+   1 event session.created
+   1 event reference.updated
+   1 event provider.updated
+   1 event plugin.updated
+   1 event model.updated
+   1 event location.shutdown
+   1 event integration.updated
+   1 event command.updated
+   1 event artifact.updated
+   1 event agent.updated
+   1 dispose
+T004 events: session.resumed NOT SEEN, session.compact NOT SEEN, session.updated NOT SEEN, session.status NOT SEEN, permission.* NOT SEEN, question.* NOT SEEN. This run triggered no resume, compaction, permission or question, so not-seen means not exercised, not proven absent.
+Disposal: global.disposed NOT SEEN and server.instance.disposed NOT SEEN; shutdown arrived as location.shutdown plus the dispose hook. The three kept global.disposed branches (system-dist-freshness-guard.js, system-skill-advisor.js, opencode-goal.js) clear in-memory state only, which a standalone process drops on exit, so no state leaks.

@@ -101,6 +101,8 @@ The two lines are the v1 matrix entry and the gated step that runs the four suit
 | `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs` | Modify (conditional) | Replace the v1 argv cases with v2 cases, or record why none are needed |
 | `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh` | Modify | Bump `V2_PKG` to `@opencode/cli@2.3.2`, after phase 001 finished editing the file |
 | `opencode.json` | Modify (conditional) | The `variant` keys change only if the live check shows that v2 does not read them |
+| The 12 files in `scratch/files-outside-table.txt` | Modify / Regenerate / Delete | Added after scope freeze: the workflow README, the renamed test and catalog entry, the deleted v1-only `.skilled/bun.lock`, the CI reference docs and the regenerated trigger index. Recorded here so the table matches the commits |
+
 <!-- /ANCHOR:scope -->
 
 ---

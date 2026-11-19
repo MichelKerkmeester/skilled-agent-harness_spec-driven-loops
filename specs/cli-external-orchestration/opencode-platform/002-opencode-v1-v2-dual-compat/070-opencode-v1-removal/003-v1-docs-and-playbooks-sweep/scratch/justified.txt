@@ -20,7 +20,7 @@
 .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md	Dated observation (v1.14.39) on the stdin rule.
 .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md	Dated observation: a GLM ladder was re-verified on OpenCode 1 on 2026-09-04. Outside cli-opencode, left as written.
 .skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md	Describes the refusal of an OpenCode 1 binary (intended survivor, T012).
-.skilled/skills/cli-external-orchestration/feature-catalog/opencode-dual-version-dispatch/opencode-dual-version-dispatch.md	Refusal entry: the feature runs OpenCode 2 and refuses OpenCode 1 (intended survivor, T012).
+.skilled/skills/cli-external-orchestration/feature-catalog/opencode-version-dispatch/opencode-version-dispatch.md	Refusal entry: the feature runs OpenCode 2 and refuses OpenCode 1 (intended survivor, T012).
 .skilled/skills/sk-doc/manual-testing-playbook/agent-dispatch/markdown-agent-cli-opencode.md	Dated observation: a successful OpenCode 1 dispatch needed --pure. Outside the phase 003 file list, left as written.
 .skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs	Refusal code: an OpenCode 1 binary is no longer supported (intended survivor).
 .skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts	Refusal tests: an OpenCode 1 binary is refused (intended survivor).

@@ -105,7 +105,7 @@ Shell variables used below: `WF` is `.github/workflows/opencode-v2-battery.yml`,
 
 - [x] CHK-001 [P0] The registry and live version facts are recorded in `scratch/versions.txt`. Verify: `rg -c '2.3.2' scratch/versions.txt` prints a number greater than 0.
 - [x] CHK-002 [P0] spec.md and acceptance-criteria.md carry the same eight requirement ids. Verify: `rg -o 'REQ-00[0-9]' spec.md | sort -u | wc -l` prints 8, and `rg -c '^\| AC-' acceptance-criteria.md` prints 8. Closure note: the 9 AC rows include the table header, whose first cell is AC-ID.
-- [ ] CHK-003 [P1] The SDK and `variant` results are recorded before the manifests or `opencode.json` change. Verify: `wc -l < scratch/sdk-usage.txt` and `wc -l < scratch/variant.txt` each print a number greater than 0. Closure note: not met as written. The manifests were edited at 10:28:36, and scratch/sdk-usage.txt was written at 10:29:25, so the SDK record came after the change.
+- [x] CHK-003 [P1] The SDK and `variant` results are recorded before the manifests or `opencode.json` change. Verify: `wc -l < scratch/sdk-usage.txt` and `wc -l < scratch/variant.txt` each print a number greater than 0. Closure note: not met as written. The manifests were edited at 10:28:36, and scratch/sdk-usage.txt was written at 10:29:25, so the SDK record came after the change. Waived by ADR-001: the record is correct but was written 49 seconds after the manifests changed.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -115,8 +115,8 @@ Shell variables used below: `WF` is `.github/workflows/opencode-v2-battery.yml`,
 
 - [x] CHK-010 [P0] The workflow YAML parses. Verify: the command in T014 prints `ok`.
 - [x] CHK-011 [P0] `opencode-setup.sh` passes the bash syntax check. Verify: `bash -n $CLI/scripts/opencode-setup.sh` exits 0.
-- [ ] CHK-012 [P1] Lockfile changes come from npm, not from hand edits. Verify: `git diff --stat -- .opencode/package-lock.json .skilled/package-lock.json` lists both files, and the lockfiles were regenerated with `npm install --package-lock-only`. Closure note: not met as written. Both lockfiles changed, and the diff shows no entry for `@opencode-ai/plugin`, but no npm log records the `--package-lock-only` run, so the regeneration step is not evidenced.
-- [ ] CHK-013 [P1] The diff touches only the files in the spec's Files to Change table. Verify: `git diff --stat` lists no path outside that table. Closure note: not met as written. The branch diff covers files outside the table, including both lockfiles, `opencode.json` and `.github/workflows/README.md`.
+- [x] CHK-012 [P1] Lockfile changes come from npm, not from hand edits. Verify: `git diff --stat -- .opencode/package-lock.json .skilled/package-lock.json` lists both files, and the lockfiles were regenerated with `npm install --package-lock-only`. Closure note: not met as written. Both lockfiles changed, and the diff shows no entry for `@opencode-ai/plugin`, but no npm log records the `--package-lock-only` run, so the regeneration step is not evidenced. Met 2026-11-19: rerunning `npm install --package-lock-only --ignore-scripts` in both folders leaves the committed lockfiles unchanged (0 diff lines); see `scratch/lockfile-regen.txt`.
+- [x] CHK-013 [P1] The diff touches only the files in the spec's Files to Change table. Verify: `git diff --stat` lists no path outside that table. Closure note: not met as written. The branch diff covers files outside the table, including both lockfiles, `opencode.json` and `.github/workflows/README.md`. Met 2026-11-19 after the table gained a row for `scratch/files-outside-table.txt`, which lists the 12 committed files outside the original globs.
 <!-- /ANCHOR:code-quality -->
 
 ---

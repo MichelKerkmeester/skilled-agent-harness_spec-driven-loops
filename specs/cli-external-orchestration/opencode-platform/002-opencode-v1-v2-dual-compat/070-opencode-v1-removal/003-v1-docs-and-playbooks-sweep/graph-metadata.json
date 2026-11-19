@@ -16,6 +16,8 @@
       "v1 docs and playbooks sweep plan",
       "v1 docs and playbooks sweep tasks",
       "v1 docs and playbooks sweep acceptance criteria",
+      "v1 docs and playbooks sweep decision record",
+      "dated opencode 1 survivors",
       "v1 docs and playbooks sweep implementation summary"
     ],
     "key_topics": [
@@ -27,18 +29,19 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation",
-      "summary",
-      "cli-opencode",
-      "skill"
+      "decision",
+      "record",
+      "dated",
+      "opencode"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
       ".skilled/changelog/cli-external-orchestration/cli-opencode/v2.0.0.0.md",
@@ -53,8 +56,7 @@
       "scratch/mac-cleanup.txt",
       "scratch/live-version.txt",
       "scratch/justified.txt",
-      "scratch/live.txt",
-      ".skilled/CROSS-CLI.md"
+      "scratch/live.txt"
     ],
     "entities": [
       {
@@ -79,6 +81,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -166,19 +174,7 @@
         "source": "derived"
       },
       {
-        "name": "CROSS-CLI.md",
-        "kind": "doc",
-        "path": ".skilled/CROSS-CLI.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -200,11 +196,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The cli-opencode skill, its references and playbooks, the plugin docs and several cross-skill docs still describe the v1 install, the v1 launcher and the v1 dispatch",
     "created_at": "2026-11-19T09:04:23Z",
-    "last_save_at": "2026-11-19T16:22:55.229Z",
+    "last_save_at": "2026-11-19T17:26:10.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,16 +214,18 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:5d908e5fc5c6055b358bb9829692352868e543e791c6f6875938c1dc4add24e2",
+    "source_fingerprint": "sha256:0feb6b636592ac85fc13fa58512ead957968f82f5e83d834d85ba322fe2d47f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aefc9b46f4de5a8213359878109cda0e89858eb1b8c29dc1059dd4223b029c18",
+      "spec.md": "974848e67397103669bb464ada9fc6c8b1da5002068e04288f1b4c92b0c6b1fd",
       "plan.md": "5de7ebe9ee57e350f54837eb45fd0b767be0aad43ccc335a2a0122dfc608759c",
-      "tasks.md": "e14406700e6d718180cea4198288c97186f15860541ef37600c4d7d5337bbf0a",
-      "implementation-summary.md": "681847c3a8b5b5e284de59d78bba3f12f2ac781cdc8271d97c147449930c2602",
+      "tasks.md": "def1cab9a859be8ccc7818ccb7259f096b4753b933d6af21ac7b3287159cc6b8",
+      "decision-record.md": "d2e470f11d864515d7f0a6d80172d718554fecaa7858aefc6ccf84c96263ad32",
+      "implementation-summary.md": "73ce1035016967f31b8e68ad416606bd4e71f2af7c637ced87ba3165da6f603f",
       "research/research.md": "afc5b3fe4f84b16e5321be659d9a5cb7edcf568cbd34f0e7097f73635449cc76"
     },
     "last_active_at": null

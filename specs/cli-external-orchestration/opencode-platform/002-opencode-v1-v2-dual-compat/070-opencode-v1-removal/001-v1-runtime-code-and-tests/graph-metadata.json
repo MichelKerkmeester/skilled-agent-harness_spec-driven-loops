@@ -35,7 +35,7 @@
       "global"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -186,12 +186,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -202,11 +196,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The runtime still resolves OpenCode 1.x as a supported family",
     "created_at": "2026-11-19T09:04:20Z",
-    "last_save_at": "2026-11-19T16:22:54.149Z",
+    "last_save_at": "2026-11-19T17:26:09.274Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +217,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:13685f2f2f3c4b9140640e39c5ab7e232b18ca4f27d804af81d633c681f754f1",
+    "source_fingerprint": "sha256:893fa07dee1530a89cd798f523d5e190cb706b202b71b039e0d1226f99e2ff76",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "30ae724f99a3abf377b0db8879bd570794229a98e856a9f7e5f66b39930ac14f",
+      "spec.md": "8e1a453909229f1ee90d841d240ed0dd4d91a115cfd67a87bc56fea35428fe96",
       "plan.md": "ee37e54333ebdec785fd7a183c2130fea4b4d5277761e5bf42e89f4e0fee77a3",
-      "tasks.md": "e738e52db4e8169d2e2c135aaae357a17b950c7a0e81275be24e45c26e3b6c89",
-      "decision-record.md": "6bf5d0f1f2c2c81fbeea4895718be2e9be546f427718019329eaf0afaa626644",
-      "implementation-summary.md": "b7812e2d31dec51b96bcf71707aa5f7683bfc9104c5173d62c2139027ad7cc26"
+      "tasks.md": "d6a377037bb38f6c8996590f5c3c189bc5a5f87e7665e3715375363babedafe3",
+      "decision-record.md": "fdd8e1f61b7821a4a619a3c90e96396fcab4aea2a485c7c77be0924cdd32d5e3",
+      "implementation-summary.md": "8c0fbe6024d84016f959e6a1aecdbfc726b1324d74a8658a5eb63b1e17265851"
     },
     "last_active_at": null
   }

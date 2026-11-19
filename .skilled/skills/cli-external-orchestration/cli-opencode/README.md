@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.32.0
+version: 1.4.33.0
 ---
 
 # cli-opencode
@@ -48,7 +48,7 @@ A sibling CLI dispatch sends a prompt to one provider's binary behind a thin wra
 | **Provider and model catalog** | every reachable provider and model id, with the effort level for each |
 | **Agent delegation** | the project agents under `.skilled/agents/`, with the primary and subagent rules in `references/agent-delegation.md` |
 
-**Pinned version.** The repository pins OpenCode 2 at 2.3.2, and the setup helper installs exactly that pin. Flag observations that name 2.0.32 were read on that release. A binary that reports major 1 is `unsupported`: a deep-loop lineage refuses it, and the dispatch guard checks it against every rule. The install reference is [`references/install-and-versions.md`](./references/install-and-versions.md).
+**Pinned version.** OpenCode 2 is the only supported major; OpenCode 1 support was removed in skill version 2.0.0.0. The repository pins OpenCode 2 at 2.3.2, and the setup helper installs exactly that pin. Flag observations that name 2.0.32 were read on that release. A binary that reports major 1 is `unsupported`: a deep-loop lineage refuses it, and the dispatch guard checks it against every rule. The install reference is [`references/install-and-versions.md`](./references/install-and-versions.md).
 
 ---
 

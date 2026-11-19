@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-19 |
 | **Branch** | `worktrees/477-opencode-v1-removal` |
 | **Parent Spec** | ../spec.md |
@@ -108,6 +108,7 @@ The block is the baseline for this phase: the cli-opencode files that name the v
 | `.skilled/commands/doctor/scripts/README.markdown`, `.skilled/skills/system-deep-loop/runtime/scripts/README.md`, `.skilled/hooks/session-handover/runtime-behavior.md`, `.skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-handover-loop.md`, `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-handover-pi-opencode.md`, `.skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/opencode-plugin-bridge.md`, `.skilled/skills/sk-git/references/worktree-workflows.md`, `.skilled/skills/cli-claude-code/references/claude-tools.md`, `.skilled/skills/cli-devin/references/providers-and-models.md` | Modify | Cross-skill mentions made v2-only |
 | `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`, `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/*.json` | Regenerate | From `generate-trigger-index.mjs` and the fixture generator |
 | `.skilled/skills/cli-external-orchestration/cli-opencode/changelog/` (new entry) | Create | Through `/create:changelog` |
+| The 45 files in `scratch/files-outside-table.txt` | Modify / Regenerate | Added after scope freeze: the native fan-out drop (deep-loop playbooks and catalogs), the `/local-skilled-alignment` and `/local-doc-alignment` findings (stress playbooks, spec-kit playbooks, `SECURITY.md`, sk-code references) and the regenerated compiled-routing manifests. Recorded here so the table matches the commit |
 <!-- /ANCHOR:scope -->
 
 ---

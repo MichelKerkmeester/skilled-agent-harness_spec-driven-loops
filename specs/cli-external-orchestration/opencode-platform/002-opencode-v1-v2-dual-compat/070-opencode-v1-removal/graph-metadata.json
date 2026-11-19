@@ -181,16 +181,16 @@
     ],
     "causal_summary": "OpenCode 2.3.2 is the only version in use",
     "created_at": "2026-11-19T09:04:20Z",
-    "last_save_at": "2026-11-19T16:22:55.141Z",
+    "last_save_at": "2026-11-19T17:26:09.974Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:88587c00de59766c49253cd1e82ead4e2b79f19083781b75511bd138a4bb09d0",
+    "source_fingerprint": "sha256:22fbdccbfe1cc8418f9bb79ae0da399248aabbf2127bfc8b8e80647cb39d7239",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6319079aea5c5b7e19e5b6fb914b234f5b886d58d79d7e43a3ad11f3582a1087"
+      "spec.md": "cf5ef826fdf8b2940a3cff576fa4434c4129972de2746c2efe7c37477f180fe1"
     },
     "last_active_at": null
   }

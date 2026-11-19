@@ -16,6 +16,8 @@
       "v1 ci and package pins plan",
       "v1 ci and package pins tasks",
       "v1 ci and package pins acceptance criteria",
+      "v1 ci and package pins decision record",
+      "sdk record ordering waiver",
       "v1 ci and package pins implementation summary"
     ],
     "key_topics": [
@@ -26,11 +28,11 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation",
-      "summary",
-      "workflow",
-      "github",
-      "workflows"
+      "decision",
+      "record",
+      "sdk",
+      "ordering",
+      "waiver"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -39,6 +41,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".github/workflows/opencode-v2-battery.yml",
       ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh",
@@ -53,8 +56,7 @@
       "scratch/sdk-usage.txt",
       "scratch/variant.txt",
       "scratch/gated-suites.txt",
-      "scratch/after.txt",
-      ".skilled/hooks/session-handover/lib/context-usage.cjs"
+      "scratch/after.txt"
     ],
     "entities": [
       {
@@ -79,6 +81,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -160,12 +168,6 @@
         "source": "derived"
       },
       {
-        "name": "context-usage.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/session-handover/lib/context-usage.cjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -204,7 +206,7 @@
     ],
     "causal_summary": "The CI workflow `.github/workflows/opencode-v2-battery.yml` still runs a v1 matrix entry that installs `opencode-ai@1.19.4`, plus a `both` job that installs both majors side by side",
     "created_at": "2026-11-19T09:04:22Z",
-    "last_save_at": "2026-11-19T15:00:15.121Z",
+    "last_save_at": "2026-11-19T17:26:09.272Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +214,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0cc0309569b7a58ac7ea402f617f71a42c52e8ae794ec4285d66d07914d09cdd",
+    "source_fingerprint": "sha256:7815216c11db4b31f6888bbebbb461700eeebeb2b06a2eea9f23d602de693e2c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1d82d30bcfceeab63302f93b80106e91545b63faed75427495395bf2c0dadc5a",
+      "spec.md": "b0a910c4e7babcc66828e0decbac2ba3a2a8f5a3a6e644a300abc73366e06461",
       "plan.md": "5a2c89e75b971f6ac6c3710c788c94c6ecedfd856507de81042621940eb3db78",
-      "tasks.md": "289795b7557f06bf89542ddc7140b31877d54a6eb805d28998f233b743a1a33f",
+      "tasks.md": "e11c66061e7e87622be91610ba9f21dd2a89ca247800c4625460c627ea8cdead",
+      "decision-record.md": "8270fd8bd7a3ebc9d7b74de6c794f47cc95fc9c54264bc934e4aa83307bd8c95",
       "implementation-summary.md": "647728527323a9d1cbb6419789f4052ff6adc4b2652fad61d7c7ef234fd27cbf"
     },
     "last_active_at": null

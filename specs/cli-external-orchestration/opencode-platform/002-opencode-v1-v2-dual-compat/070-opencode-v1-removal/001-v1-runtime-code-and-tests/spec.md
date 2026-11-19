@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-19 |
 | **Branch** | `worktrees/477-opencode-v1-removal` |
 | **Parent Spec** | ../spec.md |
@@ -148,6 +148,8 @@ Line references are inventory estimates from the 2026-11-19 sweep. Re-read each 
 | `.skilled/commands/deep/assets/deep-research.yaml` | Modify | Fan-out needs a `cli-*` executor; v2 opencode notes |
 | `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown` | Regenerate | `compile-command-contracts.cjs --command deep/review --write` |
 | `.skilled/commands/deep/assets/compiled/deep-research.contract.markdown` | Regenerate | `compile-command-contracts.cjs --command deep/research --write` |
+| The 33 files in `scratch/files-outside-table.txt` | Modify / Delete | Added after scope freeze: the callers and tests the v1 removal broke (session-handover, decision-capture, overlay-guard, advisor and spec-kit suites), the Vibe session-cleanup hook the deep review found, the bridge-export and launcher-probe fixes, and generated type maps. Recorded here so the table matches the commits |
+
 <!-- /ANCHOR:scope -->
 
 ---

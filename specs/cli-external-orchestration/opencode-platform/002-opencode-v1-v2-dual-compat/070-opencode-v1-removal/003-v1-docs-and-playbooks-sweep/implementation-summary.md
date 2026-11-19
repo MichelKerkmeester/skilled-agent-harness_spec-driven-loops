@@ -11,9 +11,8 @@ _memory:
     last_updated_at: "2026-11-19T12:30:00Z"
     last_updated_by: "closure-run"
     recent_action: "AC-004 met live: a cli-opencode deep-research iteration and plugin scenario CO-056 passed on OpenCode 2.3.2"
-    next_safe_action: "Decide the ordering checks (T001, CHK-001, CHK-003) and CHK-013/CHK-042, which keep the phase In Progress"
+    next_safe_action: "None; phase 003 is complete"
     blockers:
-      - "T001, CHK-001 and CHK-003 need a before-edit baseline that was taken after the edits"
     key_files:
       - "scratch/justified.txt"
       - "scratch/live.txt"
@@ -22,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "closure-003-v1-docs-and-playbooks-sweep"
       parent_session_id: null
-    completion_pct: 88
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,9 +39,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-v1-docs-and-playbooks-sweep |
-| **Completed** | Open: the ordering checks T001, CHK-001 and CHK-003, plus CHK-013 and CHK-042 |
+| **Completed** | 2026-11-19 |
 | **Level** | 2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -130,8 +129,8 @@ AC-004 was closed live on 2026-11-19. One `/deep:research` iteration ran on the 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The phase stays In Progress on its ordering checks, not on AC-004.** AC-004 and T019 are met. T001, CHK-001 and CHK-003 required a baseline taken before the edits, and the baseline was taken afterwards from main HEAD. CHK-013 (the diff covers files outside the Files table) and CHK-042 (the README does not state the v2-only rule; the changelog does) are also open.
-2. **Validation passes, and the packet stays In Progress.** `validate.sh --strict` prints `RESULT: PASSED` for this folder, and every acceptance row is Met.
+1. **The ordering checks are waived, and three zero-match rows are superseded.** ADR-002 waives T001, CHK-001 and CHK-003, whose records are correct but were written after the edits. ADR-001 supersedes AC-002, AC-006 and AC-008 with replacement checks that exclude the survivors listed in `justified.txt`. CHK-013 is met through `scratch/files-outside-table.txt`, and CHK-042 through the README sentence.
+2. **Every acceptance row is Met or Superseded.** `validate.sh --strict` prints `RESULT: PASSED` for this folder.
 3. **Three v1 phrases remain in the trigger index outside changelogs.** Two are trigger phrases of older packets' `spec.md` (052 and 066), and one is the refusal feature-catalog entry. They are kept.
 4. **The command-catalog prose divergences predate this branch.** The three `argumentHint` divergences (`/create:changelog`, `/deep:research`, `/deep:review`) are not in the diff against main, so this phase did not add them.
 5. **Two remnants found at closure were fixed afterwards.** `.skilled/bun.lock` held only the v1 SDK and was deleted, and the `security-testing-and-exemptions.md` example now imports the repo's own `tool-identity.js` and `v2-bridge.js`.
