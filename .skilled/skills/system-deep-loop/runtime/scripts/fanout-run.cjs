@@ -375,14 +375,18 @@ function expansiveLineageBudgetNotes(expanded, budgeted, partition) {
 // lineage has no store yet, so a resumed lineage keeps the nodes it already closed.
 // Review carries no inbox: its nodes reach the leaf through the FRONTIER block, so
 // a seeded inbox would only hand the finding pipeline a file nothing reads.
+// The store is the seeded marker, so it is written last: a failed inbox write leaves
+// no store, and the next spawn attempt seeds both. A retry after the inbox landed but
+// the store did not appends the rows again, which the research reducer folds by text.
 function writeLineageFrontierStore(lineageDir, nodes, options = {}) {
   const storePath = path.join(lineageDir, 'frontier-nodes.jsonl');
   if (fs.existsSync(storePath) || nodes.length === 0) return false;
   fs.mkdirSync(lineageDir, { recursive: true });
+  if (options.inbox !== false) {
+    const inboxRows = nodes.map((node) => JSON.stringify({ id: node.nodeId, text: node.question, source: 'frontier', origin: 'frontier', injectedAtIteration: 0 }));
+    fs.appendFileSync(path.join(lineageDir, 'inbox.jsonl'), `${inboxRows.join('\n')}\n`, 'utf8');
+  }
   fs.writeFileSync(storePath, nodes.map((node) => `${JSON.stringify(node)}\n`).join(''), 'utf8');
-  if (options.inbox === false) return true;
-  const inboxRows = nodes.map((node) => JSON.stringify({ id: node.nodeId, text: node.question, source: 'frontier', origin: 'frontier', injectedAtIteration: 0 }));
-  fs.appendFileSync(path.join(lineageDir, 'inbox.jsonl'), `${inboxRows.join('\n')}\n`, 'utf8');
   return true;
 }
 

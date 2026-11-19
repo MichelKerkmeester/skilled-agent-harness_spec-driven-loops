@@ -6676,6 +6676,22 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
     expect(readFileSync(join(lineageDir, 'inbox.jsonl'), 'utf8').trim().split('\n')).toHaveLength(2);
   });
 
+  // The store marks the lineage as seeded, so it must not exist until the inbox does;
+  // otherwise a retry after a failed inbox write skips the inbox for good.
+  it('leaves no store behind when the inbox write fails, so a retry seeds both', () => {
+    const lineageDir = makeTempDir('fanout-run-frontier-inbox-fail-');
+    const nodes = [frontierNodeRow('F-1-001')];
+    mkdirSync(join(lineageDir, 'inbox.jsonl'));
+
+    expect(() => writeLineageFrontierStore(lineageDir, nodes)).toThrow();
+    expect(existsSync(join(lineageDir, 'frontier-nodes.jsonl'))).toBe(false);
+
+    rmSync(join(lineageDir, 'inbox.jsonl'), { recursive: true });
+    expect(writeLineageFrontierStore(lineageDir, nodes)).toBe(true);
+    expect(readFileSync(join(lineageDir, 'frontier-nodes.jsonl'), 'utf8').trim().split('\n')).toHaveLength(1);
+    expect(readFileSync(join(lineageDir, 'inbox.jsonl'), 'utf8').trim().split('\n')).toHaveLength(1);
+  });
+
   it('adds no depth-mode bytes to a default lineage prompt or native input', () => {
     const lineage = { label: 'a', kind: 'cli-opencode', model: 'm', iterations: 2 };
     const baseline = buildLoopPrompt(
