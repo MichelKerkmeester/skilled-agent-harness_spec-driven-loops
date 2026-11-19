@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a899905eec578be331fd6b1a46339e7dd16d881e7a7083aa0ce9a2aa7258eb91",
+  "manifestHash": "fc0e43546598bd818b89f320a24330687fec33b49cfbdad73aa2786fcec648e5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9196,6 +9196,9 @@
     "advisor health restore": [
       "advisor health restore"
     ],
+    "advisor heartbeat watchdog": [
+      "advisor heartbeat watchdog"
+    ],
     "advisor held out evaluation set": [
       "advisor held-out evaluation set"
     ],
@@ -9477,6 +9480,9 @@
     ],
     "advisor package rename": [
       "advisor package rename"
+    ],
+    "advisor parent death check": [
+      "advisor parent death check"
     ],
     "advisor parity baseline regen": [
       "advisor parity baseline regen"
@@ -78147,8 +78153,29 @@
     "ollama jina bug fix circuit breaker": [
       "ollama jina bug fix circuit breaker"
     ],
+    "ollama lane off and daemon liveness": [
+      "ollama lane off and daemon liveness"
+    ],
+    "ollama lane off and daemon liveness acceptance criteria": [
+      "ollama lane off and daemon liveness acceptance criteria"
+    ],
+    "ollama lane off and daemon liveness goal": [
+      "ollama lane off and daemon liveness goal"
+    ],
+    "ollama lane off and daemon liveness implementation summary": [
+      "ollama lane off and daemon liveness implementation summary"
+    ],
+    "ollama lane off and daemon liveness plan": [
+      "ollama lane off and daemon liveness plan"
+    ],
+    "ollama lane off and daemon liveness tasks": [
+      "ollama lane off and daemon liveness tasks"
+    ],
     "ollama merge closure gate": [
       "ollama merge closure gate"
+    ],
+    "ollama prompt path": [
+      "Ollama prompt path"
     ],
     "ollama routing task list": [
       "ollama routing task list"
@@ -84108,6 +84135,9 @@
     ],
     "phase 18 host trigger index and repin generated": [
       "phase 18 host trigger index and repin generated"
+    ],
+    "phase 18 ollama lane off and daemon liveness": [
+      "phase 18 ollama lane off and daemon liveness"
     ],
     "phase 18 outside loop handoff": [
       "phase 18 outside loop handoff"
@@ -106590,6 +106620,9 @@
     "semantic lane health": [
       "semantic lane health"
     ],
+    "semantic lane weight zero": [
+      "semantic lane weight zero"
+    ],
     "semantic misattribution": [
       "semantic misattribution"
     ],
@@ -125580,6 +125613,9 @@
     "system skill advisor 1 1 1 0": [
       "system-skill-advisor 1.1.1.0"
     ],
+    "system skill advisor 1 2 0 0": [
+      "system-skill-advisor 1.2.0.0"
+    ],
     "system skill advisor architectural shape": [
       "system-skill-advisor architectural shape"
     ],
@@ -125927,6 +125963,9 @@
     ],
     "system skill advisor v1 1 1 0": [
       "system-skill-advisor v1.1.1.0"
+    ],
+    "system skill advisor v1 2 0 0": [
+      "system-skill-advisor v1.2.0.0"
     ],
     "system skilled doctor 1 0 0 0": [
       "system-skilled-doctor 1.0.0.0"

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6952,
-    "ok": 19969,
+    "ok": 19976,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28548,
+  "documentsScanned": 28555,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a899905eec578be331fd6b1a46339e7dd16d881e7a7083aa0ce9a2aa7258eb91",
+  "manifestHash": "fc0e43546598bd818b89f320a24330687fec33b49cfbdad73aa2786fcec648e5",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45344,
+      "ok": 45357,
       "prose-sentence": 22,
       "single-token": 150,
       "stop-word-only": 1,
@@ -61742,6 +61742,10 @@
     },
     {
       "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness/scratch",
       "reason": "excluded directory"
     },
     {
