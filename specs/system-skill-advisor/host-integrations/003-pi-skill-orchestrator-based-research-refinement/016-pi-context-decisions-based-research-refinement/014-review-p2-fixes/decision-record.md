@@ -39,6 +39,7 @@ _memory:
 | Q003 | Amend the 016 parent goal so criterion 5 counts fifteen folders and the build order includes 014, and author a child 014 goal. | Not stated. | None | ../goal.md and 014-review-p2-fixes/goal.md |
 | Q004 | Build 014 in a sk-git worktree, commit there, and merge to main once both suites, the built checks and strict validation pass. Commit the 014, 015 and 016 spec folders and the parent edits to main first. No push. | Recommended option chosen: the worktree needs the spec docs, and the merge waits on every check. | Parent D6, which approved commits only for worktree 474 | ../goal.md decision D6 |
 | Q005 | Run /speckit:implement for 014 in autonomous mode. | Recommended option chosen. | None | This build run |
+| Q006 | Run /speckit:implement for 014 in autonomous mode. | Not stated. | Q005 | tasks.md T001 to T020, implementation-summary.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -129,6 +130,25 @@ Worktree, commit, merge (Recommended)
 
 ### Q005
 <!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833 -->
+
+Question:
+```text
+Which /speckit:implement execution mode for phase 014?
+```
+
+Options:
+```text
+Autonomous (Recommended)
+Interactive
+```
+
+Answer:
+```text
+Autonomous (Recommended)
+```
+
+### Q006
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_012UB1Sgy3r4sYf6E3yHLKyv:1 -->
 
 Question:
 ```text

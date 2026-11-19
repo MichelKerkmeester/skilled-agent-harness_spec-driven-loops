@@ -8,18 +8,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check"
-    last_updated_at: "2026-11-19T07:45:00Z"
-    last_updated_by: "claude-opus-5-5"
-    recent_action: "Ran /local-doc-alignment on the advisor-pasted-reply topic and triaged its report"
-    next_safe_action: "Operator decides which findings become fix work"
+    last_updated_at: "2026-11-19T09:31:34Z"
+    last_updated_by: "generate-context"
+    recent_action: "Recorded the doc alignment scope answer"
+    next_safe_action: "Decide which doc alignment findings become fix work"
+    packet_purpose: "Purpose: One doc alignment report names every live doc that misdescribes the merged advisor behavior, so the operator can decide what to fix."
     blockers: []
     key_files:
       - ".skilled/commands/assets/local-doc-alignment/topics.json"
       - "evidence/report.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:5de57288963729dcd2414840c27fa96ae57836ba5034aa1e026ec1374822dd6f"
       session_id: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-19T09:31:34Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []

@@ -175,19 +175,19 @@
     ],
     "causal_summary": "The skill advisor picks skills with a local five-lane scorer and pushes a brief into every prompt",
     "created_at": "2026-11-18T06:49:25Z",
-    "last_save_at": "2026-11-19T09:23:04.489Z",
+    "last_save_at": "2026-11-19T09:35:06.560Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:ea82afb2415e3915efb132e1033b3290349293f092b75592b1a75e9a39ef9acc",
+    "source_fingerprint": "sha256:bcf7eb1ccf7c1107a94a6f8b9e63010cd738db475aa1cd30e163e5b470db4ff9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "af554e2b549495731f71ef3c84f53a4136713473afdb30803a7664eecbcca5f9"
     },
-    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes",
-    "last_active_at": "2026-11-19T05:43:23.401Z"
+    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check",
+    "last_active_at": "2026-11-19T09:31:34.306Z"
   }
 }

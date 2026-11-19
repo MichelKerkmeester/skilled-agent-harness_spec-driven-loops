@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes"
-    last_updated_at: "2026-11-19T10:30:00Z"
-    last_updated_by: "claude-opus-5-5"
-    recent_action: "Built the review fixes in worktree 475 as six commits, all suites green"
-    next_safe_action: "Merge worktree 475 to main, no push"
+    last_updated_at: "2026-11-19T09:31:09Z"
+    last_updated_by: "generate-context"
+    recent_action: "Merged the review fixes to main as c8404904544 with every check green"
+    next_safe_action: "Decide whether to open follow-ups for the DSH receipt and Python flag gaps"
     packet_purpose: "Purpose: Every review finding is either fixed with a test that failed before the fix, or recorded as accepted with the operator's reason, and the strip fixture's 24 rows still pass in both languages."
     blockers: []
     key_files:
@@ -21,9 +21,16 @@ _memory:
       - ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts"
       - ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:b176ec60db32c15e527a3f563ba139523c53d7d1fd57e9587401ff1a63a7ed78"
       session_id: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-19T09:31:09Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []

@@ -20,6 +20,7 @@
       "durable directive",
       "completion criteria",
       "goal binding",
+      "015-skilled-alignment-check operator decisions",
       "skilled alignment check implementation summary"
     ],
     "key_topics": [
@@ -43,6 +44,7 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       "evidence/report.md",
       "evidence/findings.json",
@@ -71,6 +73,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -186,33 +194,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phases 002 to 013 changed 34 files under `.skilled/` and merged to main, and the five-pass review in `../review/review-report.md` checked the code",
     "created_at": "2026-11-19T05:47:13Z",
-    "last_save_at": "2026-11-19T07:55:55.081Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T09:31:28.868Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f49937b1448a2e7eed845b6f5307e4a7bc43269ca980bfec095fa3189138cc13",
+    "source_fingerprint": "sha256:f198d37243e093dd8525a2ee5eb96d04f44faa7ee67a72b9c270ef8d51cea023",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1d84a1bd5a8970c47457bd262bd855ea8e4cc4f1b8c51369329570dca5b4c498",
       "plan.md": "be35df8d1430d4d36cf850dff03374ba391edf23cac0a9f261aa8f19fa06ead7",
       "tasks.md": "4a7174c9ea051739c6726cef22521ac603ecbd76b6a0c8d7bd4819d5f1226ab3",
-      "implementation-summary.md": "4dab6aae7107cb4c406ab39597e5ac990552e32c369fa1ed4afcbdecdc7e50ef"
+      "decision-record.md": "5c1f3f41881eb0a5ae1b2b794e5fd14ab0acc983c452ec4b46232aeb9dc7a163",
+      "implementation-summary.md": "1d9a5ca3e1967f25139320e29a87c044d19409d72ae7270882da20784755ee07"
     },
     "last_active_at": null
   }
