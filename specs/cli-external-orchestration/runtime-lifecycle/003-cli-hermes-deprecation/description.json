@@ -18,13 +18,16 @@
     "prompt",
     "stubs"
   ],
-  "lastUpdated": "2026-11-13T10:04:38.269Z",
+  "lastUpdated": "2026-11-19T17:46:59.347Z",
   "specId": "003",
   "folderSlug": "cli-hermes-deprecation",
   "parentChain": [
     "cli-external-orchestration",
     "runtime-lifecycle"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "19-11-26_18-35__manual-context-save.md",
+    "19-11-26_18-46__manual-context-save.md"
+  ]
 }

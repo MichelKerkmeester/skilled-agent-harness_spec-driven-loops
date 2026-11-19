@@ -15,7 +15,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "cli hermes deprecation phase parent spec"
+      "cli hermes deprecation phase parent spec",
+      "003-cli-hermes-deprecation operator decisions"
     ],
     "key_topics": [
       "cli",
@@ -24,23 +25,30 @@
       "phase",
       "parent",
       "spec",
+      "003-cli-hermes-deprecation",
+      "operator",
+      "decisions",
       "agent",
       "wired",
-      "seventh",
-      "runtime",
-      "cli-hermes",
-      "executor"
+      "seventh"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "decision-record.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -78,20 +86,58 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dev Plan",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cline Pass",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Hermes Agent was wired in as a seventh CLI runtime: the `cli-hermes` executor mode, a `.hermes/` folder of 67 generated skill copies, 44 prompt stubs and a repo-guards plugin, session-relaunch adapters, dispatch rules and deep-loop executor support",
     "created_at": "2026-11-07T10:34:38Z",
-    "last_save_at": "2026-11-10T05:38:37.640Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:35:28.958Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:5ff6c60e37ec51967c1e3ee8a620e2281d36f2d94fea5730cfe6cd4c514cc456",
+    "source_fingerprint": "sha256:ad29c7fecea02606fee6493b5028b574bcdfabdf9f1050daa6b54c6ec8e7c19e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b11747004351becd57ccbee91d7c82293b0ec38271755da583e155cf78b2b634"
+      "spec.md": "b11747004351becd57ccbee91d7c82293b0ec38271755da583e155cf78b2b634",
+      "decision-record.md": "eb9f7ecb7d9dd3f8d1dedb573e7a9efc4b533d3cf15164fa949f604303ee1e32"
     },
     "last_active_at": null
   }

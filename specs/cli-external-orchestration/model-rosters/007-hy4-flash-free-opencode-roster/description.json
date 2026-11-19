@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster",
   "description": "Add Hy4 Flash Free to the cli-opencode roster through the opencode-go provider at both thinking levels",
   "keywords": [
@@ -12,14 +13,16 @@
     "thinking",
     "levels"
   ],
-  "lastUpdated": "2026-11-17T07:59:52.951Z",
+  "lastUpdated": "2026-11-19T17:46:52.719Z",
   "specId": "007",
   "folderSlug": "hy4-flash-free-opencode-roster",
   "parentChain": [
     "cli-external-orchestration",
     "model-rosters"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "19-11-26_18-35__manual-context-save.md",
+    "19-11-26_18-46__manual-context-save.md"
+  ]
 }
