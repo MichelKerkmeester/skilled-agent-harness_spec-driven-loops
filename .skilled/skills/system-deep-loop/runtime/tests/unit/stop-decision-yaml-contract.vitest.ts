@@ -469,8 +469,17 @@ describe.each(FILES)('%s sizes a defaulted expansive budget after the seed', (fi
     expect(budget).toContain("depth_mode == 'expansive'");
     expect(budget).toContain("max_iterations_source == 'default'");
     expect(budget).toContain('extension_pending');
-    expect(budget).toContain('seedBudget');
+    expect(budget).toContain('frontier-admit.cjs budget');
+    expect(budget).not.toContain('node -e');
     expect(budget).toMatch(/- max_iterations: /);
+  });
+
+  // The fan-out parent seeds at the top level and a single-executor run seeds in
+  // phase_init; both copies run the same command, so their outputs agree.
+  it('runs one seed command in both seed steps', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const wf = (parseYaml(text) as any).workflow;
+    expect(wf.step_frontier_seed.command).toBe(wf.phase_init.steps.step_frontier_seed.command);
   });
 
   it('passes the source to the seed and keeps it out of the config', () => {

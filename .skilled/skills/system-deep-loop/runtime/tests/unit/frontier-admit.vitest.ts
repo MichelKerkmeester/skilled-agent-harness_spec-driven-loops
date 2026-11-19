@@ -571,7 +571,7 @@ describe('frontier-admit', () => {
       name: 'an unknown command',
       files: {},
       args: (dir: string) => ['grow', '--artifact-dir', dir],
-      message: '[frontier-admit] unknown command: grow; expected seed, admit, close, graph or block\n',
+      message: '[frontier-admit] unknown command: grow; expected seed, admit, close, graph, block or budget\n',
     },
     {
       name: 'a flag with no value',
@@ -1010,6 +1010,32 @@ describe('expansive budget sized from the seed', () => {
     writeFileSync(join(dir, 'frontier-nodes.jsonl'), pruned.map((row) => `${JSON.stringify(row)}\n`).join(''), 'utf8');
 
     expect(seedBudget({ artifactDir: dir, target: 'review', maxIterationsSource: 'default' }).derivedMaxIterations).toBe(7);
+  });
+
+  // The workflow's budget step runs this command after the seed, so the loop cap,
+  // the strategy and the convergence script all read the budget it writes.
+  it('the budget CLI writes the derived budget into the config and prints it', () => {
+    const dir = dirWithBudget(10);
+    seedNodes({ artifactDir: dir, iteration: 0, candidates: seeds(6) });
+
+    const result = spawnSync(process.execPath, [FRONTIER_ADMIT_SCRIPT, 'budget', '--artifact-dir', dir], { encoding: 'utf8' });
+
+    expect(result.status, String(result.stderr)).toBe(0);
+    expect(JSON.parse(String(result.stdout))).toEqual({ derivedMaxIterations: 16, growthSlots: 2 });
+    const config = JSON.parse(readFileSync(join(dir, 'deep-research-config.json'), 'utf8')) as Record<string, unknown>;
+    expect(config.maxIterations).toBe(16);
+    expect(config.expansiveDepth).toEqual({ maxDepth: 3 });
+  });
+
+  it('the budget CLI fails without a config, leaving nothing written', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'frontier-admit-budget-'));
+    tempDirs.push(dir);
+
+    const result = spawnSync(process.execPath, [FRONTIER_ADMIT_SCRIPT, 'budget', '--artifact-dir', dir, '--target', 'review'], { encoding: 'utf8' });
+
+    expect(result.status).toBe(2);
+    expect(String(result.stderr)).toContain('deep-review-config.json');
+    expect(existsSync(join(dir, 'deep-review-config.json'))).toBe(false);
   });
 
   it('lets an explicit budget win, even below the derived one, and warns when no growth slot is left', () => {

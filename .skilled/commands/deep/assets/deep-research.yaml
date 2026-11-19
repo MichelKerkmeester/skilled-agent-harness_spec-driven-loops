@@ -356,7 +356,7 @@ workflow:
       the command. frontier-admit.cjs writes the node store and the
       frontier inbox rows, and fanout-run.cjs writes the starting store of each
       lineage it deals a node to before it spawns; never write either file by hand.
-    command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json"'
+    command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json" --max-iterations-source "{max_iterations_source}"'
     working_directory: "{repo_root}"
     outputs:
       - frontier_seed_json: "The JSON line the command prints: admitted node ids and pruned {nodeId, reason} rows"
@@ -785,21 +785,7 @@ workflow:
           any custom name, each counted once. With no seeded node, every seed pruned,
           the budget stays at the loop default. The node cap stays half the final budget.
           A default-mode run never reaches this step, so its config gains no key.
-        command: |
-          node -e '
-            const fs = require("fs"), path = require("path");
-            const { seedBudget } = require("./.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs");
-            const [artifactDir] = process.argv.slice(1);
-            const configPath = path.join(artifactDir, "deep-research-config.json");
-            const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
-            const budget = seedBudget({ artifactDir, target: "research", maxIterationsSource: "default" });
-            if (config.maxIterations !== budget.derivedMaxIterations) {
-              const tmp = configPath + ".tmp";
-              fs.writeFileSync(tmp, JSON.stringify({ ...config, maxIterations: budget.derivedMaxIterations }, null, 2) + "\n");
-              fs.renameSync(tmp, configPath);
-            }
-            console.log(JSON.stringify(budget));
-          ' "{artifact_dir}"
+        command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs budget --artifact-dir "{artifact_dir}"'
         working_directory: "{repo_root}"
         outputs:
           - max_iterations: "derivedMaxIterations from the JSON output; it replaces the command default so the loop cap, the strategy and the convergence script read the same ceiling"

@@ -423,6 +423,33 @@ function seedBudget({ artifactDir, target = 'research', maxIterationsSource = 'd
   };
 }
 
+/**
+ * Write a defaulted expansive budget, sized from the seed, into the run's config.
+ *
+ * @param {Object} options - Budget inputs.
+ * @param {string} options.artifactDir - The run's artifact directory.
+ * @param {'research'|'review'} [options.target='research'] - The loop being sized.
+ * @returns {{derivedMaxIterations: number, growthSlots: number, warning?: string}} The seedBudget result.
+ * @throws {Error} When the config is missing or cannot be read.
+ */
+function writeSeedBudget({ artifactDir, target = 'research' }) {
+  const mode = assertTarget(target);
+  const configFile = mode === 'review' ? REVIEW_CONFIG_FILE : CONFIG_FILE;
+  const config = readTargetConfig(artifactDir, mode);
+  // The budget step runs after the config step, so a missing config is a broken
+  // run, never one the defaults could size.
+  if (!isPlainObject(config)) throw new Error(`cannot size the budget: ${configFile} is missing or holds no JSON object`);
+  const budget = seedBudget({ artifactDir, target: mode, maxIterationsSource: 'default' });
+  if (config.maxIterations !== budget.derivedMaxIterations) {
+    // Written beside the config and renamed over it, so a reader never sees half a file.
+    const configPath = path.join(artifactDir, configFile);
+    const tmpPath = `${configPath}.tmp`;
+    fs.writeFileSync(tmpPath, `${JSON.stringify({ ...config, maxIterations: budget.derivedMaxIterations }, null, 2)}\n`, 'utf8');
+    fs.renameSync(tmpPath, configPath);
+  }
+  return budget;
+}
+
 function childCapFor(parentId, caps) {
   return parentId === 'root' && Number.isFinite(caps.maxRootChildren) ? caps.maxRootChildren : caps.maxChildrenPerNode;
 }
@@ -1081,12 +1108,14 @@ function runCli(argv) {
   const command = args.command;
 
   if (command !== 'seed' && command !== 'admit' && command !== 'close'
-    && command !== 'graph' && command !== 'block') {
-    throw new Error(`unknown command: ${command === null ? '(none)' : command}; expected seed, admit, close, graph or block`);
+    && command !== 'graph' && command !== 'block' && command !== 'budget') {
+    throw new Error(`unknown command: ${command === null ? '(none)' : command}; expected seed, admit, close, graph, block or budget`);
   }
 
   const artifactDir = requireFlag(args, 'artifactDir', 'artifact-dir');
   const target = assertTarget(args.target === undefined ? 'research' : args.target);
+
+  if (command === 'budget') return writeSeedBudget({ artifactDir, target });
 
   if (command === 'graph') {
     const output = requireFlag(args, 'output', 'output');
@@ -1170,6 +1199,7 @@ module.exports = {
   LOOP_DEFAULT_MAX_ITERATIONS,
   expansiveBudget,
   seedBudget,
+  writeSeedBudget,
   dedupeKey,
   readNodeStore,
   readCaps,
