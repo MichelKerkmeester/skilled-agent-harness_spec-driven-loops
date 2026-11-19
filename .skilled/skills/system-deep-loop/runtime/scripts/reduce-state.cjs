@@ -15,7 +15,7 @@ const { resolveArtifactRoot } = require('../../runtime/lib/deep-loop/artifact-ro
 const { filterCompletionBearingRecords } = require('../../shared/progress/progress-record.cjs');
 const { latestIterationRecords } = require('../lib/deep-loop/iteration-findings.cjs');
 const { deriveReviewVerdict, openSearchDebtCount } = require('./review-verdict.cjs');
-const { reviewUnfinishedCoreProtocols } = require('./convergence.cjs');
+const { reviewOmitsTraceability, reviewUnfinishedCoreProtocols } = require('./convergence.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -1221,8 +1221,11 @@ function compareFindings(left, right) {
 }
 
 // The canonical four come first in risk order; configured custom names follow in configured order.
+// Traceability drops out when the configured list leaves it out, matching what the stop gate owes.
 function buildDimensionUniverse(config) {
-  const universe = [...REQUIRED_DIMENSIONS];
+  const universe = reviewOmitsTraceability(config)
+    ? REQUIRED_DIMENSIONS.filter((dimension) => dimension !== 'traceability')
+    : [...REQUIRED_DIMENSIONS];
   const raw = config && config.reviewDimensions;
   const configured = Array.isArray(raw) ? raw : (typeof raw === 'string' ? raw.split(',') : []);
   for (const entry of configured) {

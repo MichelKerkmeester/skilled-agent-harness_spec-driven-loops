@@ -1501,10 +1501,17 @@ function reviewCoverageAge(evidenceRecords, dimensions) {
 }
 
 // A run configured with a dimension list that leaves traceability out never
-// reviews it, so its cross-reference protocols are not owed at stop. An absent
-// list means the default four, which include traceability.
+// reviews it. An absent list means the default four, which include traceability.
+// The stop gate and the reducer's dimension universe both read this one test, so
+// a node is never held open for a dimension the stop does not owe.
+function reviewOmitsTraceability(config) {
+  const dimensions = config ? config.reviewDimensions : undefined;
+  return Array.isArray(dimensions) && !dimensions.includes('traceability');
+}
+
+// Its cross-reference protocols are not owed at stop when traceability is left out.
 function reviewTraceabilityCovered(config, registry) {
-  if (Array.isArray(config.reviewDimensions) && !config.reviewDimensions.includes('traceability')) {
+  if (reviewOmitsTraceability(config)) {
     return true;
   }
   const traceability = isPlainObject(registry.traceability) ? registry.traceability : {};
@@ -1994,6 +2001,7 @@ module.exports = {
   readObservationThresholdConfig,
   readStateLogRows,
   reviewUnfinishedCoreProtocols,
+  reviewOmitsTraceability,
   shouldTraceImprovementEffect,
 };
 

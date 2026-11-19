@@ -759,7 +759,7 @@ describe('reduceReviewState: configured custom dimensions', () => {
   const asCoverageRegistry = (result: ReturnType<typeof reduceReviewState>) =>
     result.registry as unknown as CoverageRegistry;
 
-  it('tracks and covers a configured custom dimension after the canonical four', () => {
+  it('tracks and covers a configured custom dimension after the canonical dimensions', () => {
     const { specFolder, reviewDir } = makeReviewDir();
     writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
       maxIterations: 5,
@@ -780,7 +780,7 @@ describe('reduceReviewState: configured custom dimensions', () => {
     const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
     const coverage = asCoverageRegistry(result).dimensionCoverage;
 
-    expect(Object.keys(coverage)).toEqual(['correctness', 'security', 'traceability', 'maintainability', 'performance']);
+    expect(Object.keys(coverage)).toEqual(['correctness', 'security', 'maintainability', 'performance']);
     expect(coverage.performance).toBe(true);
     expect(coverage.correctness).toBe(false);
     expect(result.dashboard).toContain('| performance | covered |');
@@ -872,7 +872,7 @@ describe('reduceReviewState: configured custom dimensions', () => {
     expect(byTitle['UI contrast is too low']).toBe('ui');
   });
 
-  it('keeps the canonical keys unchanged for a canonical-subset config', () => {
+  it('drops only the traceability key for a canonical-subset config that leaves it out', () => {
     const { specFolder, reviewDir } = makeReviewDir();
     writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
       maxIterations: 5,
@@ -893,7 +893,28 @@ describe('reduceReviewState: configured custom dimensions', () => {
     const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
     const coverage = asCoverageRegistry(result).dimensionCoverage;
 
-    expect(Object.keys(coverage)).toEqual(['correctness', 'security', 'traceability', 'maintainability']);
+    expect(Object.keys(coverage)).toEqual(['correctness', 'security', 'maintainability']);
+  });
+});
+
+describe('buildDimensionUniverse', () => {
+  const { buildDimensionUniverse } = nodeRequire('../../scripts/reduce-state.cjs') as {
+    buildDimensionUniverse: (config: Record<string, unknown> | null) => string[];
+  };
+
+  it('keeps the canonical four in risk order, then custom names, when the list is absent or canonical', () => {
+    const canonical = ['correctness', 'security', 'traceability', 'maintainability'];
+    expect(buildDimensionUniverse({})).toEqual(canonical);
+    expect(buildDimensionUniverse(null)).toEqual(canonical);
+    expect(buildDimensionUniverse({ reviewDimensions: canonical })).toEqual(canonical);
+    expect(buildDimensionUniverse({ reviewDimensions: [...canonical, 'performance'] })).toEqual([...canonical, 'performance']);
+  });
+
+  it('leaves traceability out when the configured list leaves it out', () => {
+    expect(buildDimensionUniverse({ reviewDimensions: ['correctness', 'security', 'maintainability'] }))
+      .toEqual(['correctness', 'security', 'maintainability']);
+    expect(buildDimensionUniverse({ reviewDimensions: ['correctness', 'performance'] }))
+      .toEqual(['correctness', 'security', 'maintainability', 'performance']);
   });
 });
 
@@ -1055,8 +1076,9 @@ describe('reduceReviewState expansive frontier', () => {
       nodeRow({ nodeId: 'F-1-001', status: 'exhausted', reason: 'budget', iteration: 2 }),
       nodeRow({ nodeId: 'F-1-002', question: 'Is the parser covered on all sides?' }),
     ]);
-    // The review universe is the canonical four plus any configured extras, so
-    // an answered node has to carry evidence for all four of them.
+    // The review universe is the canonical four, less traceability when the
+    // configured list leaves it out, plus any configured extras, so an answered
+    // node has to carry evidence for each of them.
     writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${[
       iterationRecord(1, 'parser pass one', ['correctness', 'security'], { frontierNodeId: 'F-1-002' }),
       iterationRecord(2, 'parser pass two', ['traceability', 'maintainability'], { frontierNodeId: 'F-1-002' }),
@@ -1069,7 +1091,7 @@ describe('reduceReviewState expansive frontier', () => {
       ['F-1-001', 'exhausted'],
       ['F-1-002', 'answered'],
     ]);
-    expect(frontier.nodes[1].coveredDimensions).toEqual(['correctness', 'security', 'traceability', 'maintainability']);
+    expect(frontier.nodes[1].coveredDimensions).toEqual(['correctness', 'security', 'maintainability']);
     expect(result.registry.searchDebt.filter((entry) => entry.frontier)).toEqual([]);
     expect(result.registry.candidateCoverage.deferred.filter((bugClass) => bugClass.startsWith('frontier:'))).toEqual([]);
     expect(result.registry.candidateCoverage.blocked.filter((bugClass) => bugClass.startsWith('frontier:'))).toEqual([]);
@@ -1155,7 +1177,7 @@ describe('reduceReviewState expansive frontier', () => {
 
     expect(node.status).toBe('active');
     expect(node.coveredDimensions).toEqual(['correctness', 'security']);
-    expect(node.nextDimension).toBe('traceability');
+    expect(node.nextDimension).toBe('maintainability');
     expect(node.visits).toBe(2);
   });
 
@@ -1366,6 +1388,37 @@ describe('reduceReviewState expansive frontier', () => {
     writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${all.join('\n')}\n`);
     const done = readFrontier(reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }));
     expect(done.nodes[0]).toMatchObject({ status: 'answered', nextDimension: null });
+    expect(done.activeNodeId).toBeNull();
+  });
+
+  // A dimension list that leaves traceability out never reviews it, so a node
+  // must not wait on it or steer an iteration to it.
+  it('answers a node once the configured dimensions are covered when traceability is left out', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
+      maxIterations: 20,
+      reviewTarget: 'expansive-frontier',
+      reviewDimensions: ['correctness', 'security', 'maintainability'],
+      antiConvergence: { depthMode: 'expansive' },
+    }));
+    writeStore(reviewDir, [nodeRow({ nodeId: 'F-1-001' })]);
+    const partial = [
+      iterationRecord(1, 'Frontier node F-1-001: correctness', ['correctness']),
+      iterationRecord(2, 'Frontier node F-1-001: security', ['security']),
+    ];
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${partial.join('\n')}\n`);
+    const halfway = readFrontier(reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }));
+    expect(halfway.nodes[0]).toMatchObject({ status: 'open', nextDimension: 'maintainability' });
+    expect(halfway.activeNextDimension).toBe('maintainability');
+
+    const all = partial.concat([iterationRecord(3, 'Frontier node F-1-001: maintainability', ['maintainability'])]);
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${all.join('\n')}\n`);
+    const done = readFrontier(reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }));
+    expect(done.nodes[0]).toMatchObject({
+      status: 'answered',
+      coveredDimensions: ['correctness', 'security', 'maintainability'],
+      nextDimension: null,
+    });
     expect(done.activeNodeId).toBeNull();
   });
 

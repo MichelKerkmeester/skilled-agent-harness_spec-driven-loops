@@ -690,22 +690,25 @@ describe('review expansive budget scales with the dimension count', () => {
     evidence: `src/part-${index + 1}/index.ts:1`,
   }));
 
-  it('one configured dimension still costs the canonical four per node', () => {
+  it('one configured dimension costs the canonical three it still owes per node', () => {
     const result = seedWithBudget({ artifactDir: reviewDir(['correctness']), candidates: parts(3), target: 'review', maxIterationsSource: 'default' });
     expect(result.derivedMaxIterations).toBe(24);
     expect(result.growthSlots).toBe(9);
   });
 
   // Depth 1 and one seeded node keep the budget under the ceiling, so the count
-  // the budget uses shows: 2 * count * 1 against the loop default of 7.
-  it('two canonical dimensions count as the canonical four', () => {
+  // the budget uses shows: 2 * count * 1 against the loop default of 7. A list
+  // without traceability owes three canonical passes, so 2 * 3 falls to the floor.
+  it('two canonical dimensions without traceability count as the canonical three', () => {
     const result = seedWithBudget({ artifactDir: reviewDir(['correctness', 'security'], 1), candidates: parts(1), target: 'review', maxIterationsSource: 'default' });
-    expect(result.derivedMaxIterations).toBe(8);
+    expect(result.derivedMaxIterations).toBe(7);
   });
 
-  it('a custom dimension adds one to the canonical four', () => {
+  it('a custom dimension adds one to the canonical dimensions owed', () => {
     const result = seedWithBudget({ artifactDir: reviewDir(['correctness', 'security', 'performance'], 1), candidates: parts(1), target: 'review', maxIterationsSource: 'default' });
-    expect(result.derivedMaxIterations).toBe(10);
+    expect(result.derivedMaxIterations).toBe(8);
+    const traced = seedWithBudget({ artifactDir: reviewDir(['correctness', 'traceability', 'performance'], 1), candidates: parts(1), target: 'review', maxIterationsSource: 'default' });
+    expect(traced.derivedMaxIterations).toBe(10);
   });
 
   it('counts a repeated or differently cased name, and all, once', () => {
