@@ -18,6 +18,7 @@
       "workflow outcome measure plan",
       "workflow outcome measure tasks",
       "workflow outcome measure acceptance criteria",
+      "019-workflow-outcome-measure operator decisions",
       "workflow outcome measure implementation summary",
       "workflow load rate per runtime"
     ],
@@ -42,6 +43,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
       ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
@@ -79,6 +81,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -194,33 +202,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The scorer reports how often a command was offered, seen and started, but nothing it prints says whether the model loaded the command's own workflow or the owning skill's own workflow before it acted",
     "created_at": "2026-11-13T23:30:09Z",
-    "last_save_at": "2026-11-14T07:21:57.472Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:37:26.919Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:195faa59fed8725c5f4db5e636f1af33f7128925348d0163af3228581b092777",
+    "source_fingerprint": "sha256:190f4bd7f01308b5dd7660c299fa8f873d4cfc44d7dcafac2e10a149611b0e8a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dddbd1d33b3ec88c1b4d949edf4e34481ee19a179edb57746ab8bb6f65aaa7b4",
       "plan.md": "52cbc6c1c3559a906ed327126b4ff526adbc4fa4671aa7422da40c401c1bfe20",
       "tasks.md": "601cb7f97e0d224c4aa53a9d73806e7fbc43aa485310c1ba03ad279121b1621c",
-      "implementation-summary.md": "a5aef06f2c01a15a99f748e81c3b685f81f0f3696ca32281c32bdea24cb8ef9b"
+      "decision-record.md": "ea2cd2c45f9ea8ec847fed8d204d8ee01022476d5c52bbedf719b8ae78eb2c36",
+      "implementation-summary.md": "d914c8a7c326e0d1e90227ca644de2d11a52292762cd102855dc0303f4700e47"
     },
     "last_active_at": null
   }

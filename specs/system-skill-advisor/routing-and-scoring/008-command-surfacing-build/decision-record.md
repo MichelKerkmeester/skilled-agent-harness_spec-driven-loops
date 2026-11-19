@@ -148,6 +148,12 @@ Q069 to Q073 above, as asked.
 | Q087 | Ask a fresh Opus agent for an independent read before choosing how to close the mention check loop. | Not stated. | None | review/review-report.md pass fourteen, 040 T011 |
 | Q088 | Stop patching the mention check, record the no-lead refusal or question class as a known limit graded P2 for new wordings, fix the generic advisor phrases and run the final alignment. | Not stated. | None | 040 implementation-summary Known Limitations, REQ-005, the alignment lane and critic rules |
 | Q089 | Amend the goal's review and alignment criterion to 0 P0 with every P1 fixed or accepted by the operator, with Q088 and phase 040 ADR-002 as the acceptance. | Not stated. Asked after the Stop-hook evaluator held the goal on the 0 P1 wording that Q088 had already set aside. | The review and alignment criterion's 0 P1 wording | goal.md section 3, 040 decision-record ADR-002 |
+| Q090 | The command surfacing changes made after v4.0.2.1 are added by amending the v4.0.2.1 release note. | Not stated. | none | specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md |
+| Q091 | A typed retired /create:skill points the user to /create:sk-skill. | Not stated. | none | specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md |
+| Q092 | Branch worktrees/372-hub-vocabulary-drift is merged into the 008 branch now. | Not stated. | none | specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md |
+| Q093 | The command-offer row lost by the 372 merge is fixed here before going on. | Not stated. | none | specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md |
+| Q094 | The 008 command surfacing session recaptures the routing corpus pin (routing-baseline.json) on its own branch so its pull request carries it; this session takes only the hub vocabulary drift. | Not stated. | none | specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md |
+| Q095 | The untracked nested repository (review/lineages/accuracy-runner-2/logs/quotepath-probe in the 008 packet) is deleted, and the 34 GB behaviour arenas are deleted after phase 019's outcome measure is scored. | Not stated. | none | 019-workflow-outcome-measure (arena deletion waits on its scoring) |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -1755,6 +1761,126 @@ Rework instead (b)
 Answer:
 ```text
 Approve (a) + brief change (Recommended)
+```
+
+### Q090
+<!-- source: claude:559fed55-36a8-440d-87e8-5e89f2f31a56:toolu_014zpWgyZxJjKTt3WwSoRwKA:0 -->
+
+Question:
+```text
+The command surfacing branch changed things after release v4.0.2.1 (the breaking rename of /create:skill to /create:sk-skill, hook health on by default, new advisor, doctor and spec-kit versions) and no Skilled release note records them. This is the last open P1 in the alignment report. How should it be recorded?
+```
+
+Options:
+```text
+New note v4.0.2.2 (Recommended)
+New note v4.0.3.0
+Amend v4.0.2.1
+```
+
+Answer:
+```text
+Amend v4.0.2.1
+```
+
+### Q091
+<!-- source: claude:559fed55-36a8-440d-87e8-5e89f2f31a56:toolu_014zpWgyZxJjKTt3WwSoRwKA:2 -->
+
+Question:
+```text
+Typing the retired /create:skill now makes the advisor recommend system-spec-kit at 0.82, while the sk-doc changelog says the old name reaches nothing. You ruled no alias for the command file. What should a typed /create:skill do in the advisor?
+```
+
+Options:
+```text
+Point to /create:sk-skill (Recommended)
+Recommend nothing
+Leave as is
+```
+
+Answer:
+```text
+Point to /create:sk-skill (Recommended)
+```
+
+### Q092
+<!-- source: claude:559fed55-36a8-440d-87e8-5e89f2f31a56:toolu_011pRwbg4TLe7gumCi6GwbrL:0 -->
+
+Question:
+```text
+Another session (skilled-76) says you chose "Commit here, land via 008" for its hub vocabulary fix: two unpushed commits on local branch worktrees/372-hub-vocabulary-drift (nine routed phrases in the sk-doc and deep-loop routers, both hub graph-metadata files, a rebuilt trigger index, packet sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift). I checked the branch read-only and it matches that description. Should I merge it into the command surfacing branch (worktree 352)?
+```
+
+Options:
+```text
+Merge it now (Recommended)
+Merge after phase 019
+Do not merge here
+```
+
+Answer:
+```text
+Merge it now (Recommended)
+```
+
+### Q093
+<!-- source: claude:559fed55-36a8-440d-87e8-5e89f2f31a56:toolu_015TZLMF3PApeU5BqhL51HQy:0 -->
+
+Question:
+```text
+Merging branch 372 (hub vocabulary fix) into the 008 branch cost one command offer: the tune prompt "confirm the AGENTS.md sections in this repo have not drifted" now leads with sk-doc and no longer offers /doctor:agents-md, because sk-doc gained the phrases "confirm flag" and "agent definition". Plain tune reach drops from 28 to 27 of 45, holdout top-1 rises from 50 to 51 of 65, every other floor holds. How should I proceed?
+```
+
+Options:
+```text
+Keep merge, record it (Recommended)
+Fix the row here first
+Back the merge out
+```
+
+Answer:
+```text
+Fix the row here first
+```
+
+### Q094
+<!-- source: claude:447cdf58-e65c-42b4-942d-6318296dbf0d:toolu_01S28JJwFsCbtuXogavWPNcT:0 -->
+
+Question:
+```text
+The command surfacing session (008, worktree 352) answered "Not yet": its unpushed branch holds one more corpus change (efba5621f7 removes one row from holdout-prompts.jsonl), it plans no further corpus edits, and the branch reaches main through a pull request you open. If I recapture the routing corpus pin on main now, it goes red again when that pull request merges. That session will not recapture the pin on a peer request alone. Who should recapture the corpus pin?
+```
+
+Options:
+```text
+The 008 session, on its branch (Recommended)
+Me, after the 008 pull request merges
+Me, now, and again later
+```
+
+Answer:
+```text
+The 008 session, on its branch (Recommended)
+```
+
+### Q095
+<!-- source: claude:559fed55-36a8-440d-87e8-5e89f2f31a56:toolu_014zpWgyZxJjKTt3WwSoRwKA:3 -->
+
+Question:
+```text
+Which leftover items may I delete? Both are untracked, git holds no copy, so a deletion cannot be undone.
+```
+
+Options:
+```text
+Nested repository
+Behaviour arenas (34 GB)
+Keep both
+```
+
+Answer:
+```text
+Nested repository, Behaviour arenas (34 GB)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

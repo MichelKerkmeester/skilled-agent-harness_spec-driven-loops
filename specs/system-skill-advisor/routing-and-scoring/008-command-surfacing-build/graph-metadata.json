@@ -245,7 +245,7 @@
     ],
     "causal_summary": "A user who chats without typing a command gets an improvised approach from the model, even where a slash command already owns a complete workflow for the task",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-17T08:38:02.077Z",
+    "last_save_at": "2026-11-19T17:48:40.572Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -253,13 +253,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:d5bf239ab00f27cc8bd469cb54b00919e6b2b2d6a8153c627251468db339e924",
+    "source_fingerprint": "sha256:057c316edfca9326f12102edd09721bcf635a9490f70bf9eb24102e0ea86a126",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d3d44aca1bd507ca484e878e8c6f6473d3b4f4481649de9bf567a2079f1a6a2d",
-      "decision-record.md": "9caf4ff2cef6225211d3ff58c5540d7560344e4a35942f471a7b0cd41a483e43"
+      "decision-record.md": "8204101f235e2bdfb91db4a5df01197c4175170be3ed453c4d9df80eaefb4883"
     },
-    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop",
-    "last_active_at": "2026-11-17T08:06:16.423Z"
+    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure",
+    "last_active_at": "2026-11-19T17:48:40.572Z"
   }
 }
