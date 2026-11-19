@@ -15,19 +15,20 @@ Reducer-generated observability surface for the active review packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Review Target: commit range 21c4b325b5a..1d2b49e4306 (expansive-depth program, phases 001-014) (files)
-- Started: 2026-11-19T04:20:12.962Z
-- Status: INITIALIZED
-- Iteration: 10 of 10
+- Review Target: commit range 21c4b325b5a..f30fcdb42f6 (expansive-depth program logic: code, command YAML assets and tests under .skilled/skills/system-deep-loop/ and .skilled/commands/deep/; docs, playbooks and specs excluded) (files)
+- Started: 2026-11-19T15:38:08.666Z
+- Status: COMPLETE
+- Iteration: 3 of 3
 - Provisional Verdict: FAIL
 - Failed required gates at stop: coverage
 - hasSearchDebt: true
 - hasAdvisories: false
-- Session ID: 2026-11-19T04:20:12.962Z
-- Parent Session: none
-- Lifecycle Mode: new
-- Generation: 1
+- Session ID: 2026-11-19T15:38:08.666Z
+- Parent Session: 2026-11-19T04:20:12.962Z
+- Lifecycle Mode: restart
+- Generation: 2
 - continuedFromRun: none
+- stopReason: maxIterationsReached
 
 <!-- /ANCHOR:status -->
 <!-- ANCHOR:dimension-expansion -->
@@ -46,8 +47,8 @@ Reducer-generated observability surface for the active review packet.
 | Severity | Count |
 |----------|------:|
 | P0 (Blockers) | 0 |
-| P1 (Required) | 2 |
-| P2 (Suggestions) | 14 |
+| P1 (Required) | 0 |
+| P2 (Suggestions) | 3 |
 | Resolved | 0 |
 
 <!-- /ANCHOR:findings-summary -->
@@ -56,16 +57,9 @@ Reducer-generated observability surface for the active review packet.
 
 | # | Focus | Dimensions | Ratio | P0/P1/P2 | Status |
 |---|-------|------------|-------|----------|--------|
-| 1 | correctness | correctness | 1.00 | 0/1/1 | complete |
-| 2 | security | security | 0.50 | 0/1/1 | complete |
-| 3 | traceability | traceability | 0.14 | 0/0/2 | complete |
-| 4 | maintainability | maintainability | 0.18 | 0/0/3 | complete |
-| 5 | overengineering | overengineering | 0.10 | 0/0/2 | complete |
-| 6 | sk-code-alignment | sk-code-alignment | 0.05 | 0/0/1 | complete |
-| 7 | correctness (second pass: fan-out merge/run, upsert, divergent pivot, research reducer) | correctness | 0.00 | 0/0/0 | complete |
-| 8 | overengineering | overengineering | 0.17 | 0/0/4 | complete |
-| 9 | correctness: ledger schemas, legacy compat, continuity thread, coverage graph, reducers, YAML-vs-script contract | correctness | 0.00 | 0/0/0 | complete |
-| 10 | traceability: checklist_evidence closure, spec_code re-record, agent_cross_runtime | traceability | 0.02 | 0/0/1 | complete |
+| 1 | correctness | correctness | 1.00 | 0/1/0 | complete |
+| 2 | security | security | 0.17 | 0/0/1 | complete |
+| 3 | maintainability | maintainability | 0.14 | 0/0/1 | complete |
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:dimension-coverage -->
@@ -73,12 +67,10 @@ Reducer-generated observability surface for the active review packet.
 
 | Dimension | Status | Open findings |
 |-----------|--------|--------------:|
-| correctness | covered | 5 |
-| security | covered | 2 |
-| traceability | covered | 2 |
-| maintainability | covered | 0 |
-| overengineering | covered | 6 |
-| sk-code-alignment | covered | 1 |
+| correctness | covered | 1 |
+| security | covered | 1 |
+| traceability | pending | 0 |
+| maintainability | covered | 1 |
 
 <!-- /ANCHOR:dimension-coverage -->
 <!-- ANCHOR:blocked-stops -->
@@ -95,12 +87,12 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:graph-convergence -->
 <!-- ANCHOR:trend -->
 ## 8. TREND
-- Last 3 ratios: 0.17 -> 0.00 -> 0.02
-- convergenceScore: 0.98
-- openFindings: 16
-- persistentSameSeverity: 1
+- Last 3 ratios: 1.00 -> 0.17 -> 0.14
+- convergenceScore: 0.86
+- openFindings: 3
+- persistentSameSeverity: 0
 - severityChanged: 0
-- repeatedFindings (deprecated combined bucket): 1
+- repeatedFindings (deprecated combined bucket): 0
 
 <!-- /ANCHOR:trend -->
 <!-- ANCHOR:corruption-warnings -->
@@ -111,75 +103,54 @@ No corrupt JSONL lines detected.
 <!-- ANCHOR:search-debt -->
 ## 10. SEARCH DEBT
 - graphCoverageMode: graphless_fallback
-- candidateCoverage: covered=20, ruledOut=19, deferred=2, blocked=0
+- candidateCoverage: covered=3, ruledOut=12, deferred=2, blocked=0
 
 ### Search Debt
-- iteration 3 catalog_drift (deferred): catalog becomes true once R1-P1-001 is fixed; tracked under R1-P1-001; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:452
-- iteration 7 merge_semantics (deferred): tool budget; carried to next focus; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1000
+- iteration 1 unreviewed_scope (deferred): carried to iteration 2 under the security lens; evidence=UNKNOWN
+- iteration 3 test_coverage (deferred): about 38 test files and 10k added lines exceed the 24-call budget; synthesis should treat this as unreviewed; evidence=.skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts:400
 
 ### Ruled-Out Candidates
-- iteration 1 state_transition (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1183, .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1195
-- iteration 1 id_collision (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:218
-- iteration 1 route_proof (ruled_out): diff is comment-only; evidence=.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:569
-- iteration 2 env_leak (ruled_out): buildExecutorDispatchEnv filters guardContext.env; evidence=.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:436
-- iteration 2 path_traversal (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:384, .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:905
-- iteration 2 unsafe_parse (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs
-- iteration 3 spec_code_drift (ruled_out): 003 spec.md:65 scopes it and config keeps floor 2; evidence=.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1195, specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor/spec.md:65
-- iteration 4 stale_doc (ruled_out): verified by exact search; evidence=.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:616, .skilled/skills/system-deep-loop/deep-review/README.md:144
-- iteration 5 speculative_layer (ruled_out): reduce-state.cjs:1966-1970 reads it; evidence=.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1969
-- iteration 5 speculative_layer (ruled_out): reduce-state.cjs:1940; evidence=.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1940
-- iteration 6 comment_hygiene (ruled_out): scan of every added line clean; evidence=.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:197
-- iteration 6 test_quality (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts:47
-- iteration 7 identity_collision (ruled_out): verified by direct read of id minting and seed skip; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:800, .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:604, .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:681
-- iteration 7 state_transition (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1504, .skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1621
-- iteration 7 budget_accounting (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2524, .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:223
-- iteration 7 identity_collision (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:269, .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:176
-- iteration 8 speculative_generality (ruled_out): current requirement earns it; evidence=.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:311
-- iteration 8 speculative_generality (ruled_out): two real callers; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1781
-- iteration 9 contract_mismatch (ruled_out): verified by direct read of both; evidence=.skilled/commands/deep/assets/deep-review.yaml:550
-- iteration 9 state_transition (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs:36
-- iteration 9 input_validation (ruled_out): gateway runs before mv; evidence=.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts:895
-- iteration 9 consumer_contract (ruled_out): grep of workflow and scripts found no reader; evidence=.skilled/commands/deep/assets/deep-review.yaml:2168
-- iteration 10 checklist_evidence_drift (ruled_out): verified by exact search; evidence=.skilled/commands/deep/assets/deep-research.yaml:1818, .skilled/commands/deep/assets/deep-review.yaml:1932
-- iteration 10 mirror_drift (ruled_out): occurrence count matches; evidence=.vibe/agents/deep-review.toml:4, .codex/agents/deep-review.toml:333
-- iteration 10 spec_code_drift (ruled_out): duplicate of open registry finding; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:452
+- iteration 1 state_transition (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:577, .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:805
+- iteration 1 stop_condition (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1169
+- iteration 1 merge_integrity (ruled_out): depth-1 ids are unique by construction; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs
+- iteration 2 shell_injection (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:672, .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:766, .skilled/commands/deep/assets/deep-review.yaml:1193, .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2062
+- iteration 2 path_traversal (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:467, .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:472
+- iteration 2 prompt_structure_injection (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:136, .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:588, .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:880
+- iteration 2 regex_injection (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1
+- iteration 2 shell_injection (ruled_out): verified by direct read; evidence=.skilled/commands/deep/assets/deep-research.yaml:1661
+- iteration 2 signal_forgery (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:1
+- iteration 2 env_leak (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:362, .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:813
+- iteration 3 overengineering (ruled_out): 6 and 5 node -e steps existed at 21c4b325b5a; workflow-restart-lifecycle runs both; evidence=.skilled/commands/deep/assets/deep-review.yaml:513, .skilled/commands/deep/assets/deep-research.yaml:485, .skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts:721
+- iteration 3 overengineering (ruled_out): tests pin FIND-, finding- and lowercase spellings; evidence=.skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts:400, .skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts:530, .skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts:567
+- iteration 3 comment_hygiene (ruled_out): the only hits describe the finding-id grammar, a durable format; evidence=.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:170
+- iteration 3 state_transition (ruled_out): status answered is set in the node map before applyReviewFrontierBudget runs; evidence=.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2026, .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2041
+- iteration 3 duplicated_logic (ruled_out): each mode owns its schema; the YAML derivation matches both validators; evidence=.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts:951, .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:1087
 
 ### Clean Search Proof
-- iteration 1 state_transition (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1183, .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1195
-- iteration 1 id_collision (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:218
-- iteration 1 route_proof (ruled_out): diff is comment-only; evidence=.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:569
-- iteration 2 env_leak (ruled_out): buildExecutorDispatchEnv filters guardContext.env; evidence=.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:436
-- iteration 2 path_traversal (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:384, .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:905
-- iteration 2 unsafe_parse (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs
-- iteration 3 spec_code_drift (ruled_out): 003 spec.md:65 scopes it and config keeps floor 2; evidence=.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1195, specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor/spec.md:65
-- iteration 4 stale_doc (ruled_out): verified by exact search; evidence=.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:616, .skilled/skills/system-deep-loop/deep-review/README.md:144
-- iteration 5 speculative_layer (ruled_out): reduce-state.cjs:1966-1970 reads it; evidence=.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1969
-- iteration 5 speculative_layer (ruled_out): reduce-state.cjs:1940; evidence=.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1940
-- iteration 6 comment_hygiene (ruled_out): scan of every added line clean; evidence=.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:197
-- iteration 6 test_quality (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts:47
-- iteration 7 identity_collision (ruled_out): verified by direct read of id minting and seed skip; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:800, .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:604, .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:681
-- iteration 7 state_transition (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1504, .skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1621
-- iteration 7 budget_accounting (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2524, .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:223
-- iteration 7 identity_collision (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:269, .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:176
-- iteration 8 speculative_generality (ruled_out): current requirement earns it; evidence=.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:311
-- iteration 8 speculative_generality (ruled_out): two real callers; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1781
-- iteration 9 contract_mismatch (ruled_out): verified by direct read of both; evidence=.skilled/commands/deep/assets/deep-review.yaml:550
-- iteration 9 state_transition (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs:36
-- iteration 9 input_validation (ruled_out): gateway runs before mv; evidence=.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts:895
-- iteration 9 consumer_contract (ruled_out): grep of workflow and scripts found no reader; evidence=.skilled/commands/deep/assets/deep-review.yaml:2168
-- iteration 10 checklist_evidence_drift (ruled_out): verified by exact search; evidence=.skilled/commands/deep/assets/deep-research.yaml:1818, .skilled/commands/deep/assets/deep-review.yaml:1932
-- iteration 10 mirror_drift (ruled_out): occurrence count matches; evidence=.vibe/agents/deep-review.toml:4, .codex/agents/deep-review.toml:333
-- iteration 10 spec_code_drift (ruled_out): duplicate of open registry finding; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:452
+- iteration 1 state_transition (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:577, .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:805
+- iteration 1 stop_condition (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1169
+- iteration 1 merge_integrity (ruled_out): depth-1 ids are unique by construction; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs
+- iteration 2 shell_injection (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:672, .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:766, .skilled/commands/deep/assets/deep-review.yaml:1193, .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2062
+- iteration 2 path_traversal (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:467, .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:472
+- iteration 2 prompt_structure_injection (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:136, .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:588, .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:880
+- iteration 2 regex_injection (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1
+- iteration 2 shell_injection (ruled_out): verified by direct read; evidence=.skilled/commands/deep/assets/deep-research.yaml:1661
+- iteration 2 signal_forgery (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:1
+- iteration 2 env_leak (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:362, .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:813
+- iteration 3 overengineering (ruled_out): 6 and 5 node -e steps existed at 21c4b325b5a; workflow-restart-lifecycle runs both; evidence=.skilled/commands/deep/assets/deep-review.yaml:513, .skilled/commands/deep/assets/deep-research.yaml:485, .skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts:721
+- iteration 3 overengineering (ruled_out): tests pin FIND-, finding- and lowercase spellings; evidence=.skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts:400, .skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts:530, .skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts:567
+- iteration 3 comment_hygiene (ruled_out): the only hits describe the finding-id grammar, a durable format; evidence=.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:170
+- iteration 3 state_transition (ruled_out): status answered is set in the node map before applyReviewFrontierBudget runs; evidence=.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2026, .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2041
+- iteration 3 duplicated_logic (ruled_out): each mode owns its schema; the YAML derivation matches both validators; evidence=.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts:951, .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:1087
 
 <!-- /ANCHOR:search-debt -->
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- Dimension: none (cap reached). Synthesis next. - Focus area: synthesis should carry R1-P1-001 and R2-P1-001 as the release-blocking items, and R3-P2-002 with its refinement R10-P2-001 as the checklist follow-up. - Reason: iteration 10 is maxIterations. - Rotation status: 6/6 dimensions covered. Core protocols are recorded: spec_code partial, checklist_evidence partial. - Blocked/productive carry-forward: exhausted approaches unchanged. Productive: checking checklist claims by content rather than by cited line. - Required evidence: none further this run. Review verdict: CONDITIONAL
+traceability
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
 ## 12. ACTIVE RISKS
-- 2 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
 - 2 search-debt obligation(s) remain deferred or blocked. Verdict is CONDITIONAL until they are covered or ruled out.
 
 <!-- /ANCHOR:active-risks -->

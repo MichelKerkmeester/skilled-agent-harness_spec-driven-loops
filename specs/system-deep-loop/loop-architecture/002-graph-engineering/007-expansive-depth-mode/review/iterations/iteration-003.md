@@ -1,83 +1,90 @@
-# Iteration 3 - Traceability
+# Iteration 3: maintainability (overengineering and sk-code-alignment rubrics)
 
 ## Dispatcher
-- Run 3 of 10, dimension `traceability`, native leaf, session `2026-11-19T04:20:12.962Z`, generation 1, lineageMode new.
-- Iteration number derived from the state log (two prior `type:"iteration"` records), matching the dispatch.
-- Operator focus: code and runtime files first. The traceability pass anchored each doc claim to the runtime file that should back it (`convergence.cjs`, `frontier-admit.cjs`, the review config asset) before judging the packet docs. Overengineering and sk-code-alignment rubrics do not apply to this dimension.
 
-## Dimension
-traceability (core: spec_code, checklist_evidence; overlay run: feature_catalog_code, playbook_capability).
+- Iteration 3 of 3, session 2026-11-19T15:38:08.666Z, generation 2, lineageMode restart. The state log held two iteration records, so the derived number matches the dispatch.
+- Dimension: maintainability, plus the operator focus rubrics overengineering and sk-code-alignment.
+- Doctrine loaded: `.skilled/skills/sk-code/sk-code-review/references/review-core.md` (sections 2 and 8, including the `review.maintainability` floor rule "no repeated logic that behaves differently") and `.skilled/repo-rules/prevent-overengineering.md` section 2.
+- Budget: 24 tool calls. About 17 went on analysis.
 
 ## Files Reviewed
-- specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/spec.md:61, :155-175
-- specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/tasks.md:36-75
-- specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/implementation-summary.md:11-25
-- specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor/spec.md:40, :65
-- specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/tasks.md:156-294, spec.md:37
-- specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/implementation-summary.md:14, :157
-- specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/tasks.md:181-276, implementation-summary.md:119
-- child spec.md status rows and tasks.md checkbox counts for 001-014
-- .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1195 (plus range diff)
-- .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:450-500
-- .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json:12
-- .skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md:24, min-iterations-floor.md:16
-- .skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/frontier-admit-script.md:35, :49
-- playbook directory listings under deep-research, deep-review and runtime manual-testing-playbook
+
+- `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs`: constants, budget helpers, renderFrontierBlock, exports (lines 40-116, 360-460, 846-915, 1195-1219).
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`: the review frontier projection (lines 1917-2066) and buildDimensionUniverse (1224).
+- `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`: the research frontier projection and budget (lines 2439-2570).
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs`: the frontier status vocabulary (753) and helper list.
+- `.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs`: finding-id folding and review evidence derivation (160-310).
+- `.skilled/commands/deep/assets/deep-review.yaml` and `.skilled/commands/deep/assets/deep-research.yaml`: the step_extend_completed_run inline scripts (513, 485). The two copies were diffed against each other.
+- `.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts` and `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts`: range diff. This closes the item carried forward from iteration 2.
+- Every added line in all 68 scope files, scanned for comment hygiene: 14112 added lines, indexed by file and new line number.
+- Tests: `upsert-script.vitest.ts` (finding-id spellings) and `workflow-restart-lifecycle.vitest.ts` (how the extend step is executed) were read in part. The rest of the test surface was sampled only.
 
 ## Findings - New
 
 ### P0 Findings
+
 None.
 
 ### P1 Findings
+
 None.
 
 ### P2 Findings
-1. **Parent packet docs still report the program as unstarted** -- specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/spec.md:162 -- The Phase Documentation Map lists all 14 phases as `draft` (spec.md:162-175) while every child spec's status row says `Complete`. The parent tasks.md leaves T004-T010 unchecked (tasks.md:48-63), and the parent implementation-summary.md continuity block still reads `recent_action: "Generation 2 research synthesized"`, `next_safe_action: "Plan Slice A completed-run extension"`, `completion_pct: 0` (implementation-summary.md:13-25). Three parent docs disagree with the 14 child docs and with the tip commit about completion state.
-   Finding class: doc_state_drift
-   Scope proof: parent spec.md, tasks.md and implementation-summary.md are in reviewScopeFiles; child status read from each 0NN/spec.md status row.
-   Affected surface hints: parent spec.md Phase Documentation Map status column; parent tasks.md Phase 2/3 checkboxes; parent implementation-summary.md _memory.continuity block
-   Case: an operator or resume step that reads the parent packet sees 14 draft phases and completion 0 for a program whose children all claim Complete, and plans Slice A again.
 
-2. **Frontier phases 010 and 011 claim Complete with P0 checklist rows unticked** -- specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/tasks.md:177 -- 010's Verification Checklist leaves CHK-020 [P0] "All acceptance criteria met" (tasks.md:177), CHK-FIX-001..004 [P0] (tasks.md:188-191) and CHK-120 [P0] rollback (tasks.md:269) open, and 011 leaves CHK-020 [P0] open (011 tasks.md:181). Both specs say `Complete` (010 spec.md:37) and both acceptance-criteria tables mark every row Met or Waived, so the checklist and the closure gate contradict each other. CHK-123 "Pilot run steps recorded in implementation-summary.md" is unticked in both (010 tasks.md:271, 011 tasks.md:275) although each summary records the pilot runs (010 implementation-summary.md:157, 011 implementation-summary.md:119). 010's continuity `next_safe_action` still says "run T030 full suite and the T031 pilot" (010 implementation-summary.md:14) after both pilots ran. 010 CHK-032 [P1] scope intersection (tasks.md:204) stays unticked while 011's equivalent is ticked; whether research relevance enforces a root-scope intersection was not verified this iteration.
-   Finding class: checklist_evidence_drift
-   Scope proof: 010/011 tasks.md and implementation-summary.md are in reviewScopeFiles; acceptance-criteria.md is cited only as context (not in scope list).
-   Affected surface hints: 010-research-frontier-mode/tasks.md Verification Checklist; 011-review-frontier-mode/tasks.md Verification Checklist; 010 implementation-summary.md _memory.continuity
-   Case: a completion audit reading tasks.md for 010 finds six P0 checklist rows open on a phase marked Complete and cannot tell whether the acceptance-criteria Met rows or the checklist is the truth.
+1. **Frontier node vocabulary and depth-band budget are re-implemented in each consumer and have already drifted** -- .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1974 -- `frontier-admit.cjs` owns and exports the node status vocabulary (`NODE_STATUSES`, frontier-admit.cjs:77) and the store reader (`readNodeStore`, frontier-admit.cjs:265; exported at 1201). `fanout-run.cjs` already imports both. Despite that, the range adds three local copies of the status list: runtime/scripts/reduce-state.cjs:29, deep-research/scripts/reduce-state.cjs:2451 and fanout-merge.cjs:753. It also adds two more store readers (runtime/scripts/reduce-state.cjs:1917, deep-research/scripts/reduce-state.cjs:2439), two copies of the failed-status set (runtime/scripts/reduce-state.cjs:33, deep-research/scripts/reduce-state.cjs:2493) and two copies of the 50/35/15 band-budget algorithm (runtime/scripts/reduce-state.cjs:1974, deep-research/scripts/reduce-state.cjs:2531). The two band-budget copies carry the same comment but no longer behave the same. The research copy marks answered nodes inside the budget pass and dates each budget close with `closedAtIteration` (deep-research/scripts/reduce-state.cjs:2560). Its own registry reads that field (2717). The review copy does neither. Visit attribution also differs: research matches the focus marker only (2495), while review also matches `frontierNodeId` and active store rows (runtime/scripts/reduce-state.cjs:1945). Some of these differences follow from different leaf contracts. But no single place states which differences are intended, so the next change to the band rule, the default split or the status set needs coordinated edits in up to four files.
+   Finding class: maintainability, repeated logic that behaves differently (sk-code review floor rule `review.maintainability`); overengineering rubric, parallel implementations of one owned contract.
+   Scope proof: all seven copies listed above are `+` lines in `git diff 21c4b325b5a..f30fcdb42f6`, and frontier-admit.cjs, the owning module, was added in the same range.
+   Affected surface hints: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs, .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs, .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs, .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs. Collapse target: one lib module under `runtime/lib/deep-loop/` holding the status list, failed-status set, store reader and band-budget pass, with the per-loop visit counter passed in. It cannot live in frontier-admit.cjs as-is, because frontier-admit lazily requires reduce-state.cjs (frontier-admit.cjs:381), so a top-level import back would form a cycle.
+   Case: adding a status such as `deferred` to `NODE_STATUSES` (frontier-admit.cjs:77). A node written with it is counted in `stats.total`, but in no status bucket of the review dashboard (runtime/scripts/reduce-state.cjs:2050), the research projection or the fan-out merge (fanout-merge.cjs:795). Separately, a fix to the band roll-down applied to one reducer leaves the other loop on the old rule, with nothing failing.
 
 ## Traceability Checks
-- **spec_code** -- partial. The owner of the review-wide `minIterationsNotReached` widening is now traced: phase 003 scopes it ("Apply the `minIterations` floor check ... to review as well as research", 003 spec.md:65), the range diff drops `loopType === 'research' &&` at convergence.cjs:1195, and the shipped review floor stays 2 (deep-review/assets/deep-review-config.json:12), so default review runs keep their stop point as 003 spec.md:40 argues and the parent spec.md:61 carve-out allows. The earlier partial cause is resolved. Still partial because R1-P1-001 remains active: the commit-range relevance claim is not met for the decorated target form (frontier-admit.cjs:452-454).
-- **checklist_evidence** -- partial. Child phases 001-009 and 012-014 leave only the notation legend row unchecked; 010 (34 open) and 011 (19 open) leave P0 rows open on Complete phases (R3-P2-002). Parent tasks.md T004-T010 open (R3-P2-001).
-- **feature_catalog_code** -- partial. The review min-iterations-floor catalog matches code (min-iterations-floor.md:16 vs convergence.cjs:1195 and config :12). The frontier-admit catalog says a commit-range target narrows relevance to touched files (frontier-admit-script.md:49), which holds only for a bare single-token range (frontier-admit.cjs:452-454); same root cause as R1-P1-001, not a separate finding. The research `block` command and its `--focus` requirement are documented (frontier-admit-script.md:35).
-- **playbook_capability** -- partial. Scenario files exist for the expansive flag, seed, admission, focus, band budget, frontier veto, drained stop, fan-out partition and the review min-iterations floor in the deep-research, deep-review and runtime playbooks. Only presence was checked; scenario steps were not executed or compared to code.
+
+- spec_code: notApplicable. Traceability is not a configured dimension, and specs and docs are excluded from the target (strategy Non-Goals).
+- checklist_evidence: notApplicable. Spec folders and checklists are excluded from the target.
 
 ## Integration Evidence
-- Workflow surface: `.skilled/commands/deep/assets/deep-research.yaml` searched for the frontier `block` step wording only; no new integration claim made.
+
+- `.skilled/commands/deep/assets/deep-review.yaml:513` and `.skilled/commands/deep/assets/deep-research.yaml:485`: the step_extend_completed_run inline scripts. Both run in `.skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts` (721, 1006).
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` imports from frontier-admit.cjs (`readNodeStore` at 353, `expansiveBudget` at 378). This is the existing precedent for the collapse proposed in R3-P2-001.
+
+## Rubric Coverage
+
+- **Overengineering** (prevent-overengineering.md): I checked each new production function list for abstractions, options, layers, files or fallbacks with no requirement behind them.
+  - frontier-admit.cjs: its option surface (`target`, `seeding`, `maxIterationsSource`, `knownTexts`) each has a caller in the two YAML assets or fanout-run.
+  - upsert.cjs finding-id folding: the spellings it folds are pinned by tests (upsert-script.vitest.ts:400, 530, 567).
+  - extension-budget ledger fields: each field is checked by the schema.
+  - Result: one parallel-implementation finding (R3-P2-001). Delete the local status lists, store readers and one band-budget copy, and collapse them into a shared lib module. No unused option or fallback layer was found.
+- **sk-code-alignment**:
+  - Floor: the floor rule `review.maintainability` produced R3-P2-001.
+  - CJS surface rules: the new modules follow the numbered-section layout and JSDoc on exported functions (frontier-admit.cjs:40, 321, 369, 1201).
+  - Comment hygiene: I indexed all 14112 added lines across the 68 scope files. I grepped comment-bearing lines, both comment-led and trailing comments, for spec paths, phase or packet numbers, and REQ/ADR/CHK/DR/task ids and finding ids. Zero violations. The only hits were upsert.cjs:170-171, which use `R1-P1-001` shapes to illustrate the finding-id grammar the folding accepts. That is a durable format description, not a label for an artifact.
+  - Test-what-changed: only partly covered. See Edge Cases.
 
 ## Edge Cases
-- The prompt pack's final-line mapping says "this iteration"; the agent contract maps over findings still active. R1-P1-001 and R2-P1-001 stay active, so the verdict is CONDITIONAL although this iteration raised only P2s.
-- Contradiction (checklist vs acceptance criteria) recorded on both sides in R3-P2-002 and not adjudicated: implementation evidence in the summaries supports the AC Met rows, so the checklist is treated as the stale side.
-- acceptance-criteria.md files are outside reviewScopeFiles; cited only as context.
-- skill_agent and agent_cross_runtime overlays not run this iteration.
+
+- Test-what-changed is deferred. About 38 test files (roughly 10k added lines) were sampled, not audited one by one for one-real-reason coverage, because of the 24-call budget. Synthesis should treat test-surface maintainability as unreviewed rather than clean.
+- `frontier-admit.cjs:381` (`reviewDimensionCount` to `buildDimensionUniverse`) sizes the expansive review budget from the same dimension universe that R1-P1-001 names. It is another affected surface of R1-P1-001, not a new finding.
+- Verdict rule: iteration 2 used the agent contract, which counts active findings, so I keep it. R1-P1-001 is still active, so the verdict is CONDITIONAL even though this iteration added only a P2.
 
 ## Confirmed-Clean Surfaces
-- convergence.cjs:1195 floor change is owned and documented by phase 003 and its catalog entry.
-- Research frontier `block --focus` command is documented in the runtime catalog.
+
+- Review frontier answered-before-budget ordering: `buildReviewFrontier` derives `answered` at runtime/scripts/reduce-state.cjs:2026, before `applyReviewFrontierBudget` runs at 2041. So the budget never closes an answered review node as exhausted. The research copy's explicit `answeredNodeIds` pass is not needed on the review side.
+- `closedAtIteration` has only one reader, the research reducer (deep-research/scripts/reduce-state.cjs:2717). Its absence from the review copy is drift, not a broken consumer.
+- Ledger schemas: the per-mode `run_extended` stems and `extension-budget` validators (deep-research-ledger-schema.ts:1087, deep-review-ledger-schema.ts:951) follow the existing per-mode schema architecture, and both YAML steps derive `newMaxIterations = continuedFromRun + addedIterations` (deep-review.yaml:568, deep-research.yaml:540), as the schemas require.
 
 ## Ruled Out
-- Undocumented default-path widening of the review floor: owned by 003 (003 spec.md:65), shipped floor 2 unchanged.
-- Separate catalog finding for commit-range relevance: duplicate of R1-P1-001's root cause.
-- Missing documentation of the research block step: frontier-admit-script.md:35 documents it.
 
-## Verdict
-CONDITIONAL: no P0; active P1s R1-P1-001 and R2-P1-001 carry forward; this iteration adds two P2s.
+- Duplicated `node -e` extend scripts in the two YAML assets: inline `node -e` steps were already the convention before the range (6 in deep-review.yaml, 5 in deep-research.yaml at 21c4b325b5a). The tests run both extracted steps (workflow-restart-lifecycle.vitest.ts:721, 1006). The differences between the copies track real config-shape differences: research nests lineage fields and has an inbox, review does not.
+- upsert.cjs finding-id prefix folding as overengineering: the tests pin the `FIND-`, `finding-` and lowercase spellings (upsert-script.vitest.ts:400, 530, 567). The `node:finding:` spelling is one regex alternate.
+- Comment hygiene violations: none in 14112 added lines.
 
 ## Next Focus
-- Dimension: maintainability.
-- Focus area: highest-churn code files (frontier-admit.cjs, reduce-state.cjs, both workflow YAMLs, divergent-pivot.ts).
-- Reason: plan rotation; traceability covered.
-- Rotation status: correctness, security, traceability covered; maintainability, overengineering, sk-code-alignment remain.
-- Carry-forward: spec_code partial (R1-P1-001); checklist_evidence partial; agent_cross_runtime unrun for .codex/.vibe/.dsh agent files; 010 CHK-032 research scope intersection unverified.
-- Required evidence: file:line in changed code.
+
+- Dimension: none. This was iteration 3 of 3, so the run stops at maxIterationsReached.
+- Focus area: synthesis.
+- Reason: all three configured dimensions are complete.
+- Rotation status: correctness, security and maintainability are done.
+- Carry-forward: R1-P1-001 (P1) is active. R2-P2-001 and R3-P2-001 (P2) are open. Test-what-changed was deferred.
+- Required evidence: file:line from reviewScopeFiles only.
 
 Review verdict: CONDITIONAL

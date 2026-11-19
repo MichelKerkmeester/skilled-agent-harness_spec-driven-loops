@@ -1,45 +1,59 @@
 ---
-title: Deep Review Strategy - expansive-depth program (21c4b325b5a..1d2b49e4306)
-description: Session tracking for the 10-iteration deep review of every change the expansive-depth program made.
+title: "Deep Review Strategy: expansive-depth program logic, generation 2"
+description: "Session tracking for the three-iteration deep review of the code the expansive-depth program added or changed."
+trigger_phrases:
+  - "deep review strategy template"
+  - "review dimension tracking"
+  - "exhausted review approaches"
+  - "review session tracking"
 importance_tier: normal
 contextType: planning
+version: 1.11.1.0
 ---
 
-# Deep Review Strategy - Session Tracking
+# Deep Review Strategy - Session Tracking Template
+
+Runtime template copied into the resolved `{artifact_dir}/` during initialization. Tracks review progress across iterations.
 
 ## 1. OVERVIEW
 
-Persistent brain for this review session. Read at every iteration; the leaf updates Next Focus, findings and what worked or failed.
+### Purpose
+
+Serves as the "persistent brain" for a deep review session. Records which dimensions remain, what was found (P0/P1/P2), what review approaches worked or failed, and where to focus next. Read by the orchestrator and agents at every iteration.
+
+### Usage
+
+- **Init:** Orchestrator copies this template to `{artifact_dir}/deep-review-strategy.md` and populates Topic, Review Dimensions, Known Context, and Review Boundaries from config and memory context.
+- **Per iteration:** Agent reads Next Focus, reviews the assigned dimension/files, updates findings, marks dimensions complete, and sets new Next Focus.
+- **Mutability:** Mutable, updated by both orchestrator and agents throughout the session.
+- **Protection:** None (shared mutable state). Orchestrator validates consistency on resume.
+- **Ownership:** Machine-managed metrics and coverage blocks are wrapped in explicit ownership markers. Human commentary and operator overrides live outside those markers.
 
 ---
 
 ## 2. TOPIC
-Review of commit range `21c4b325b5a..1d2b49e4306` on branch `worktrees/455-expansive-depth-integration`: the expansive-depth program, phases 001-014 (completed-run extension, defect fixes D1-D14, opt-in `--depth-mode=expansive` for deep-research and deep-review, playbooks, catalogs and alignment). 235 commits, 10 merge commits. Review target type: `files` (the commit range expanded to its changed files).
+commit range 21c4b325b5a..f30fcdb42f6 (expansive-depth program logic: code, command YAML assets and tests under .skilled/skills/system-deep-loop/ and .skilled/commands/deep/; docs, playbooks and specs excluded).
 
-### Review Charter
-- Dimensions (6): correctness, security, traceability, maintainability, plus two custom dimensions, `overengineering` and `sk-code-alignment`.
-- **overengineering rubric**: find abstractions, options, layers, files or fallbacks that no current requirement earns. Measure against `.skilled/repo-rules/prevent-overengineering.md` and the restraint signals in the root `CLAUDE.md` section 3: flexibility or future-proofing language, unmeasured performance claims, DRY across two instances, a new option or layer with one caller, and a symptom fixed where it surfaced instead of at its producer. Every finding names what to delete or collapse, and what current requirement (if any) it serves.
-- **sk-code-alignment rubric**: conformance with `.skilled/skills/sk-code/`: the review-mode floor (`sk-code-review/references/review-core.md`), the stack surface rules for the JS, CJS, TS and test files touched, its quality tiers and the test-what-changed rule (coverage floor = happy path plus one edge per public surface; above it a test earns its place by failing for one real reason no other test catches), and comment hygiene: no spec paths, phase numbers, REQ/ADR/task/finding ids or slice labels (for example "D5", "Slice K", "phase 011") inside code comments.
-- Severity: P0/P1/P2 only, reach-calibrated per review-core.md section 2.
+Generation 2 of the review lineage. Generation 1 (session 2026-11-19T04:20:12.962Z) reviewed 21c4b325b5a..1d2b49e4306 across code, docs and specs in ten iterations and is archived under review-archive/.
 
 ---
 
 <!-- ANCHOR:review-dimensions -->
 ## 3. REVIEW DIMENSIONS (remaining)
-[All dimensions complete]
+- [ ] traceability
 
 <!-- /ANCHOR:review-dimensions -->
 ## 4. NON-GOALS
-- Not reviewing the generated run artifacts under the packet's `research/`, `research_archive/`, `scratch/` and child-phase `research/` or `review/` directories (about 1,700 of the 1,970 changed paths). They are loop output, not program work. Only the packet's canonical docs and each child phase's `spec.md`, `tasks.md` and `implementation-summary.md` are in scope.
-- Not implementing fixes. Not re-running the test suites as a pass/fail gate (a leaf may run a single targeted test read-only to confirm a claim).
-- Not reviewing files outside Review Scope Files: a finding must cite a listed file, or the terminal scope gate fails.
+- Docs, manual testing playbooks, feature catalogs and spec folders: excluded from the target.
+- Traceability: not a configured dimension for this run, so no core traceability protocol is owed at stop.
+- Code outside the range diff: read it only to judge a changed line.
 
 ---
 
 ## 5. STOP CONDITIONS
-- Exactly 10 iterations: `maxIterations` 10, `antiConvergence.minIterations` 10, `stopPolicy` max-iterations (convergence is telemetry only before the cap).
-- `maxDurationMinutes` raised from the workflow's 120 to 360 at config creation so the duration stop cannot cut the run short (recorded deviation).
-- Three consecutive failed iterations still stop the run with reason error.
+- Exactly three iterations: maxIterations 3 and antiConvergence.minIterations 3, so the run stops at maxIterationsReached after iteration 3.
+- maxDurationMinutes 120 from createdAt.
+- Dimension order: correctness (1), security (2), maintainability with the overengineering and sk-code-alignment rubrics (3).
 
 ---
 
@@ -47,210 +61,88 @@ Review of commit range `21c4b325b5a..1d2b49e4306` on branch `worktrees/455-expan
 ## 4. COMPLETED DIMENSIONS
 - [x] correctness
 - [x] security
-- [x] traceability
 - [x] maintainability
-- [x] overengineering
-- [x] sk-code-alignment
 
 <!-- /ANCHOR:completed-dimensions -->
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 2
-- P2 (Suggestions): 14
+- P1 (Required): 0
+- P2 (Suggestions): 3
 - Resolved: 0
 
 <!-- /ANCHOR:running-findings -->
 ## 8. WHAT WORKED
-- Iteration 10: checking each ticked checklist claim by content against the code it cites (not by cited line) confirmed 12 phases' rows and turned 010 CHK-032 from unverified into a confirmed gap.
-- Iteration 9: tracing the run_extended ceiling across YAML producer, schema isData and reducer foldRun confirmed one identity in all three; grepping workflow bindings closed the merged-coverage open question.
-- Iteration 7: diff-first reads of the six new-to-review files, then one exact search to test each id-collision hypothesis against the minting code.
-- Iteration 1: calling the exported `scopeInsideReviewTarget` with this run's own config turned a reading into a confirmed P1; diff-plus-current-file reads kept the four-file slice inside budget.
-- Iteration 2: listing every frontier-admit shell step in both YAMLs and comparing what each interpolates isolated the one leaf-derived value; a one-line bash probe confirmed substitution.
-- Iteration 3: counting child status rows and checkbox states across all 14 phases in one pass surfaced the 010/011 checklist-vs-AC contradiction; tracing the convergence.cjs:1195 diff to 003 spec.md:65 closed the iteration-1 spec_code gap.
-- Iteration 4: diffing the two copies of each repeated YAML step against each other (and the contract test's indent-anchored stepText) exposed copy drift a single-copy read misses.
-- Iteration 5: grepping for every reader of a field or flag (`.budget`, `maxIterationsSource`) and checking the step's declared outputs separated consumer-less options from earned ones.
-- Iteration 6: scanning only the added diff lines for hygiene labels and running verify_alignment_drift.py on a scratch copy of the changed code covered all 26 files cheaply; comparing two readers of the same torn-line condition in one file surfaced the inconsistency.
+- Following one value across producers and consumers (the dimension set from config through reducer, YAML next_dimension and convergence) surfaced the contradiction that a per-file read missed (iteration 1).
+- Tracing each shell-interpolated value back to its producer (node id minting, registry binding, file-tool writes) cleared the YAML shell steps quickly, and comparing sibling normalizers in fanout-run.cjs exposed the one unnormalized operator text (iteration 2).
+- Listing every function the range added in production files, then grepping shared constants across them, exposed the parallel frontier implementations in one pass. Indexing all added lines by file:line made a range-wide comment-hygiene grep cheap (iteration 3).
+- Reading the whole new frontier-admit.cjs before its consumers made the admission and close invariants quick to confirm clean (iteration 1).
 
 ---
 
-- Iteration 8: stuck recovery at function granularity. For each config option, field and merged key, a grep for its readers outside its own file turned two dead pivot knobs and four reader-less merge surfaces into P2 findings.
-
 ## 9. WHAT FAILED
-- Iteration 10: no overengineering pass over the playbook and catalog duplication; budget went to closing checklist_evidence. skill_agent, feature_catalog_code and playbook_capability not re-run.
-- Iteration 9: correctness third pass over schemas, legacy upcast, continuity thread and dispatch/verify diffs yielded no new finding.
-- Iteration 8: did not trace whether synthesis runs convergence.cjs on the fan-out parent registry (finding R8-P2-003 withdraw trigger); checklist_evidence still unrun.
-- Iteration 7: budget ran out before tracing consumers of the merged searchCoverage buckets.
-- Iteration 1: did not trace which phase owns the review-wide `minIterationsNotReached` widening (convergence.cjs:1195); left spec_code partial.
-- Iteration 2: security pass did not advance spec_code or checklist_evidence; both core protocols still open.
-- Iteration 3: playbook_capability checked presence only (no scenario steps run); skill_agent and agent_cross_runtime overlays not run; 010 CHK-032 research scope intersection left unverified.
-- Iteration 4: did not advance spec_code or checklist_evidence; feature_catalog_code and playbook_capability still unrun.
-- Iteration 5: did not reach divergent-pivot.ts retry plumbing; spec_code and checklist_evidence still partial.
-- Iteration 6: name-based test-coverage counting is weak evidence (helpers are exercised through CLIs); divergent-pivot.ts still unread; core protocols not advanced.
+- The full 68-file range does not fit one 24-call iteration: fanout-run.cjs, upsert.cjs, dispatch-iteration.cjs, verify-iteration.cjs, the deep-research reducer, ledger schemas and divergent-pivot changes stayed unread under correctness (iteration 1).
+- The ledger schema files did not fit the iteration 2 budget under security (iteration 2).
+- Test-what-changed across about 38 test files (roughly 10k added lines) did not fit the iteration 3 budget, so it was sampled only and recorded as deferred (iteration 3).
 
 ---
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
-### .vibe deep-review mirror missing the custom rule: the low line count comes from a one-line TOML string, and the rule text is present. -- BLOCKED (iteration 10, 1 attempts)
-- What was tried: .vibe deep-review mirror missing the custom rule: the low line count comes from a one-line TOML string, and the rule text is present.
+### Comment hygiene violations: none in 14112 added lines. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: Comment hygiene violations: none in 14112 added lines.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: .vibe deep-review mirror missing the custom rule: the low line count comes from a one-line TOML string, and the rule text is present.
+- Do NOT retry: Comment hygiene violations: none in 14112 added lines.
 
-### `classifySourceLocation` hard-coded doc-host list (upsert.cjs:311-345) as speculative: it replaces a leaf-supplied quality class that a leaf could game. That is a current requirement, and the list is small and closed. -- BLOCKED (iteration 8, 1 attempts)
-- What was tried: `classifySourceLocation` hard-coded doc-host list (upsert.cjs:311-345) as speculative: it replaces a leaf-supplied quality class that a leaf could game. That is a current requirement, and the list is small and closed.
+### Commit-range relevance check: the target string tokenizes to a revision range and admission falls back to `reviewScopeFiles`; an empty file list admits every scope by stated design, not by accident (frontier-admit.cjs:534). -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: Commit-range relevance check: the target string tokenizes to a revision range and admission falls back to `reviewScopeFiles`; an empty file list admits every scope by stated design, not by accident (frontier-admit.cjs:534).
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `classifySourceLocation` hard-coded doc-host list (upsert.cjs:311-345) as speculative: it replaces a leaf-supplied quality class that a leaf could game. That is a current requirement, and the list is small and closed.
+- Do NOT retry: Commit-range relevance check: the target string tokenizes to a revision range and admission falls back to `reviewScopeFiles`; an empty file list admits every scope by stated design, not by accident (frontier-admit.cjs:534).
 
-### `deriveReviewFindingEvidence` reused-id split (`#<iteration>`) as speculative: a comment cites the reducer's same rule, and finding ids are unique only per source. -- BLOCKED (iteration 8, 1 attempts)
-- What was tried: `deriveReviewFindingEvidence` reused-id split (`#<iteration>`) as speculative: a comment cites the reducer's same rule, and finding ids are unique only per source.
+### Convergence-signal forgery through upsert derivations: no new capability. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Convergence-signal forgery through upsert derivations: no new capability.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `deriveReviewFindingEvidence` reused-id split (`#<iteration>`) as speculative: a comment cites the reducer's same rule, and finding ids are unique only per source.
+- Do NOT retry: Convergence-signal forgery through upsert derivations: no new capability.
 
-### 008 T004 `REQUIRED_DIMENSIONS` default parameters as a routing leak: every call site that matters passes the universe, and the defaults only serve direct callers of the exported helpers. -- BLOCKED (iteration 10, 1 attempts)
-- What was tried: 008 T004 `REQUIRED_DIMENSIONS` default parameters as a routing leak: every call site that matters passes the universe, and the defaults only serve direct callers of the exported helpers.
+### Duplicated `node -e` extend scripts in the two YAML assets: inline `node -e` steps were already the convention before the range (6 in deep-review.yaml, 5 in deep-research.yaml at 21c4b325b5a). The tests run both extracted steps (workflow-restart-lifecycle.vitest.ts:721, 1006). The differences between the copies track real config-shape differences: research nests lineage fields and has an inbox, review does not. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: Duplicated `node -e` extend scripts in the two YAML assets: inline `node -e` steps were already the convention before the range (6 in deep-review.yaml, 5 in deep-research.yaml at 21c4b325b5a). The tests run both extracted steps (workflow-restart-lifecycle.vitest.ts:721, 1006). The differences between the copies track real config-shape differences: research nests lineage fields and has an inbox, review does not.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: 008 T004 `REQUIRED_DIMENSIONS` default parameters as a routing leak: every call site that matters passes the universe, and the defaults only serve direct callers of the exported helpers.
+- Do NOT retry: Duplicated `node -e` extend scripts in the two YAML assets: inline `node -e` steps were already the convention before the range (6 in deep-review.yaml, 5 in deep-research.yaml at 21c4b325b5a). The tests run both extracted steps (workflow-restart-lifecycle.vitest.ts:721, 1006). The differences between the copies track real config-shape differences: research nests lineage fields and has an inbox, review does not.
 
-### 014 T001 ticked while marked open: the same row records the later close with its command output. -- BLOCKED (iteration 10, 1 attempts)
-- What was tried: 014 T001 ticked while marked open: the same row records the later close with its command output.
+### Env leakage through research CLAUDE_CONFIG_DIR: same validator and allowlist as review. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Env leakage through research CLAUDE_CONFIG_DIR: same validator and allowlist as review.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: 014 T001 ticked while marked open: the same row records the later close with its command output.
+- Do NOT retry: Env leakage through research CLAUDE_CONFIG_DIR: same validator and allowlist as review.
 
-### Abstracting the twice-written half-budget node cap: two instances, below the rule's threshold. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: Abstracting the twice-written half-budget node cap: two instances, below the rule's threshold.
+### fanout-merge.cjs partition guard compares partition ids against a flat set of lineage-local ids across all lineages; collision would need two lineages to report the same depth-1 id, and depth-1 ids are minted only by the single seed, so a missing node cannot be masked in practice. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: fanout-merge.cjs partition guard compares partition ids against a flat set of lineage-local ids across all lineages; collision would need two lineages to report the same depth-1 id, and depth-1 ids are minted only by the single seed, so a missing node cannot be masked in practice.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Abstracting the twice-written half-budget node cap: two instances, below the rule's threshold.
+- Do NOT retry: fanout-merge.cjs partition guard compares partition ids against a flat set of lineage-local ids across all lineages; collision would need two lineages to report the same depth-1 id, and depth-1 ids are minted only by the single seed, so a missing node cannot be masked in practice.
 
-### Attempt-1 config byte-identity rewrite in divergent-pivot.ts as gold-plating: it keeps resumed attempt-1 replays consistent, which is a correctness requirement. -- BLOCKED (iteration 8, 1 attempts)
-- What was tried: Attempt-1 config byte-identity rewrite in divergent-pivot.ts as gold-plating: it keeps resumed attempt-1 replays consistent, which is a correctness requirement.
+### Path traversal through review proposal scope: normalized and refused. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Path traversal through review proposal scope: normalized and refused.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Attempt-1 config byte-identity rewrite in divergent-pivot.ts as gold-plating: it keeps resumed attempt-1 replays consistent, which is a correctness requirement.
+- Do NOT retry: Path traversal through review proposal scope: normalized and refused.
 
-### Cycle check bypass: `checkCycle` caps steps at maxDepth+1 and returns `cycle` on a revisit; a dangling parent is caught earlier by relevance. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: Cycle check bypass: `checkCycle` caps steps at maxDepth+1 and returns `cycle` on a revisit; a dangling parent is caught earlier by relevance.
+### Prompt-row breakage by leaf proposals: control characters stripped. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Prompt-row breakage by leaf proposals: control characters stripped.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Cycle check bypass: `checkCycle` caps steps at maxDepth+1 and returns `cycle` on a revisit; a dangling parent is caught earlier by relevance.
+- Do NOT retry: Prompt-row breakage by leaf proposals: control characters stripped.
 
-### Dead `budgetSplit` config key: read by reduce-state.cjs:1966-1970. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: Dead `budgetSplit` config key: read by reduce-state.cjs:1966-1970.
+### Regex injection through node ids in the research reducer: escaped. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Regex injection through node ids in the research reducer: escaped.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Dead `budgetSplit` config key: read by reduce-state.cjs:1966-1970.
+- Do NOT retry: Regex injection through node ids in the research reducer: escaped.
 
-### Default-run registry drift: the frontier key is spread only when the projection exists. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: Default-run registry drift: the frontier key is spread only when the projection exists.
+### Shell injection through `{active_frontier_node}`: ids are minted, not leaf-chosen. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Shell injection through `{active_frontier_node}`: ids are minted, not leaf-chosen.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Default-run registry drift: the frontier key is spread only when the projection exists.
+- Do NOT retry: Shell injection through `{active_frontier_node}`: ids are minted, not leaf-chosen.
 
-### Divergent `fanout_graph_store` text across copies: identical, so not drift. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Divergent `fanout_graph_store` text across copies: identical, so not drift.
+### upsert.cjs finding-id prefix folding as overengineering: the tests pin the `FIND-`, `finding-` and lowercase spellings (upsert-script.vitest.ts:400, 530, 567). The `node:finding:` spelling is one regex alternate. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: upsert.cjs finding-id prefix folding as overengineering: the tests pin the `FIND-`, `finding-` and lowercase spellings (upsert-script.vitest.ts:400, 530, 567). The `node:finding:` spelling is one regex alternate.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Divergent `fanout_graph_store` text across copies: identical, so not drift.
-
-### Env widening through `guardContext.env`: the env still passes the executor allowlist. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Env widening through `guardContext.env`: the env still passes the executor allowlist.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Env widening through `guardContext.env`: the env still passes the executor allowlist.
-
-### Function-length lens (several 60-90 line functions in frontier-admit.cjs): lens default P2, consistent with sibling runtime scripts; not raised as noise. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: Function-length lens (several 60-90 line functions in frontier-admit.cjs): lens default P2, consistent with sibling runtime scripts; not raised as noise.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Function-length lens (several 60-90 line functions in frontier-admit.cjs): lens default P2, consistent with sibling runtime scripts; not raised as noise.
-
-### Graph `--output` arbitrary write: operator-only CLI flag with fixed callers. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Graph `--output` arbitrary write: operator-only CLI flag with fixed callers.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Graph `--output` arbitrary write: operator-only CLI flag with fixed callers.
-
-### Huge `--extend` value bypassing the ceiling: the regex has no upper bound, but `isUint32` on every budget field refuses it at the gateway before the config moves. -- BLOCKED (iteration 9, 1 attempts)
-- What was tried: Huge `--extend` value bypassing the ceiling: the regex has no upper bound, but `isUint32` on every budget field refuses it at the gateway before the config moves.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Huge `--extend` value bypassing the ceiling: the regex has no upper bound, but `isUint32` on every budget field refuses it at the gateway before the config moves.
-
-### Idle fan-out lineage reseeding the whole target (seed step skipped for lineages; seedNodes is idempotent). -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: Idle fan-out lineage reseeding the whole target (seed step skipped for lineages; seedNodes is idempotent).
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Idle fan-out lineage reseeding the whole target (seed step skipped for lineages; seedNodes is idempotent).
-
-### inboxId/nodeId normalization mismatch in the research frontier projection. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: inboxId/nodeId normalization mismatch in the research frontier projection.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: inboxId/nodeId normalization mismatch in the research frontier projection.
-
-### Leaf prose fields widening the iteration event: optionalLeafFields keeps only typed fields and drops a field with the wrong shape. -- BLOCKED (iteration 9, 1 attempts)
-- What was tried: Leaf prose fields widening the iteration event: optionalLeafFields keeps only typed fields and drops a field with the wrong shape.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Leaf prose fields widening the iteration event: optionalLeafFields keeps only typed fields and drops a field with the wrong shape.
-
-### Lineage store path traversal via frontier partition: the path is built from the fan-out label, not node content. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Lineage store path traversal via frontier partition: the path is built from the fan-out label, not node content.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Lineage store path traversal via frontier partition: the path is built from the fan-out label, not node content.
-
-### Missing documentation of the research block step: frontier-admit-script.md:35 documents it. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: Missing documentation of the research block step: frontier-admit-script.md:35 documents it.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Missing documentation of the research block step: frontier-admit-script.md:35 documents it.
-
-### Missing tests for new reducer/merge helpers: covered behaviorally through the reducer and merge CLIs. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: Missing tests for new reducer/merge helpers: covered behaviorally through the reducer and merge CLIs.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Missing tests for new reducer/merge helpers: covered behaviorally through the reducer and merge CLIs.
-
-### Node-id collision after a torn store line: `nextNodeSerial` counts from the highest serial, not the row count. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: Node-id collision after a torn store line: `nextNodeSerial` counts from the highest serial, not the row count.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Node-id collision after a torn store line: `nextNodeSerial` counts from the highest serial, not the row count.
-
-### Partition-guard masking by a colliding lineage-local id (see Edge Cases). -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: Partition-guard masking by a colliding lineage-local id (see Edge Cases).
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Partition-guard masking by a colliding lineage-local id (see Edge Cases).
-
-### Redundant `step_frontier_activate`: the reducer attributes visits from `active` rows. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: Redundant `step_frontier_activate`: the reducer attributes visits from `active` rows.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Redundant `step_frontier_activate`: the reducer attributes visits from `active` rows.
-
-### Removal of the remaining-iterations preflight as a regression (the spec retires it deliberately, specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/spec.md:108). -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: Removal of the remaining-iterations preflight as a regression (the spec retires it deliberately, specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/spec.md:108).
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Removal of the remaining-iterations preflight as a regression (the spec retires it deliberately, specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/spec.md:108).
-
-### Repeated `error instanceof Error ? error.message : String(error)` idiom: one-line idiom, below the rule-of-three value threshold for a helper. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: Repeated `error instanceof Error ? error.message : String(error)` idiom: one-line idiom, below the rule-of-three value threshold for a helper.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Repeated `error instanceof Error ? error.message : String(error)` idiom: one-line idiom, below the rule-of-three value threshold for a helper.
-
-### Research/review reducer generation drift on run_extended: research takes `max(run.generation, data.generation)`, review takes the scope generation. Both come from the same config generation in the extend step, so they cannot disagree in a recorded event. -- BLOCKED (iteration 9, 1 attempts)
-- What was tried: Research/review reducer generation drift on run_extended: research takes `max(run.generation, data.generation)`, review takes the scope generation. Both come from the same config generation in the extend step, so they cannot disagree in a recorded event.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Research/review reducer generation drift on run_extended: research takes `max(run.generation, data.generation)`, review takes the scope generation. Both come from the same config generation in the extend step, so they cannot disagree in a recorded event.
-
-### Review-pivot quotedPaths stripping as a guard bypass (.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts:189): scope text is adapter-built from admitted frontier nodes and the pivot stays read-only by contract; security is outside this iteration's dimension. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: Review-pivot quotedPaths stripping as a guard bypass (.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts:189): scope text is adapter-built from admitted frontier nodes and the pivot stays read-only by contract; security is outside this iteration's dimension.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Review-pivot quotedPaths stripping as a guard bypass (.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts:189): scope text is adapter-built from admitted frontier nodes and the pivot stays read-only by contract; security is outside this iteration's dimension.
-
-### Separate catalog finding for commit-range relevance: duplicate of R1-P1-001's root cause. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: Separate catalog finding for commit-range relevance: duplicate of R1-P1-001's root cause.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Separate catalog finding for commit-range relevance: duplicate of R1-P1-001's root cause.
-
-### Speculative object-form `reviewScopeFiles` support: matches terminal-gates' existing reader. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: Speculative object-form `reviewScopeFiles` support: matches terminal-gates' existing reader.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Speculative object-form `reviewScopeFiles` support: matches terminal-gates' existing reader.
-
-### Stale "completed-continue is deferred" text anywhere in the slice: none found; all copies updated. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Stale "completed-continue is deferred" text anywhere in the slice: none found; all copies updated.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Stale "completed-continue is deferred" text anywhere in the slice: none found; all copies updated.
-
-### Undocumented default-path widening of the review floor: owned by 003 (003 spec.md:65), shipped floor 2 unchanged. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: Undocumented default-path widening of the review floor: owned by 003 (003 spec.md:65), shipped floor 2 unchanged.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Undocumented default-path widening of the review floor: owned by 003 (003 spec.md:65), shipped floor 2 unchanged.
+- Do NOT retry: upsert.cjs finding-id prefix folding as overengineering: the tests pin the `FIND-`, `finding-` and lowercase spellings (upsert-script.vitest.ts:400, 530, 567). The `node:finding:` spelling is one regex alternate.
 
 <!-- /ANCHOR:exhausted-approaches -->
 ## 10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER
@@ -262,124 +154,186 @@ Review of commit range `21c4b325b5a..1d2b49e4306` on branch `worktrees/455-expan
 - Remaining frontier: none recorded
 
 ## 11. RULED OUT DIRECTIONS
-- Iteration 1: frontier cycle-check bypass, node-id collision after a torn store line, default-run registry drift from the frontier key (all verified clean in frontier-admit.cjs / reduce-state.cjs).
-- Iteration 2: env widening via guardContext.env (allowlist still filters), lineage-store or graph-output path traversal (label and fixed paths), upsert row content reaching shell or writes.
-- Iteration 3: undocumented default-path review floor widening (owned by 003), undocumented research block step (frontier-admit-script.md:35), separate catalog finding for commit-range relevance (duplicate of R1-P1-001).
-- Iteration 4: stale 'completed-continue deferred' wording (all copies updated), divergent fanout_graph_store copies (identical text).
-- Iteration 5: dead budgetSplit key (read at reduce-state.cjs:1966-1970), redundant step_frontier_activate (reducer reads active rows, reduce-state.cjs:1940), speculative object-form reviewScopeFiles (mirrors terminal-gates), abstracting the two-copy half-budget node cap (below threshold).
-- Iteration 6: comment-hygiene labels (clean), untested reducer/merge helpers (covered through CLIs), function-length lens noise, repeated error-message idiom (below rule of three).
-- Iteration 7: partition-guard masking by lineage-local id collision, idle lineage reseeding, remaining-iterations preflight removal (deliberate per pivot-hygiene spec), inboxId/nodeId normalization mismatch, attempt-2 seat-event reuse.
-- Iteration 10: 014 T001 ticked while open (same row records the close), 008 T004 REQUIRED_DIMENSIONS default params as routing leak, .vibe mirror missing the custom rule (one-line TOML string).
-- Iteration 8: doc-host list in classifySourceLocation (anti-gaming requirement), reused-id `#iteration` split in deriveReviewFindingEvidence (mirrors reducer), attempt-1 config byte-identity rewrite (replay correctness), frontier merge plus partition guard (earned, shared by both loops).
+[Review angles that were investigated and definitively eliminated -- consolidated from iteration dead-end data]
+- fanout-merge.cjs frontier partition guard masking a missing node: depth-1 ids come only from the single seed, so a flat id set cannot collide (iteration 1, evidence: fanout-merge.cjs mergeResearchFrontier, frontier-admit.cjs seedNodes).
+- Commit-range relevance admitting every scope: only when reviewScopeFiles is empty, by stated design (iteration 1, evidence: frontier-admit.cjs:534).
+- Shell injection through `{active_frontier_node}`: ids are minted F-<depth>-<serial> and bound from the reducer-projected registry (iteration 2, frontier-admit.cjs:672, deep-review.yaml:1193).
+- Path traversal through review proposal scope: path.posix.normalize plus prefix check refuses climbing and absolute paths (iteration 2, frontier-admit.cjs:467).
+- Prompt-row breakage by leaf proposals: control characters stripped, length capped (iteration 2, frontier-admit.cjs:136).
+- Upsert signal forgery and research CLAUDE_CONFIG_DIR leakage: no new capability, same validator (iteration 2).
+- Duplicated YAML extend node -e scripts: inline node -e was already the convention before the range, and the tests run both extracted steps (iteration 3, workflow-restart-lifecycle.vitest.ts:721, :1006).
+- upsert.cjs finding-id folding as overengineering: the tests pin the spellings (iteration 3, upsert-script.vitest.ts:400, :530, :567).
+- Comment hygiene: zero ephemeral labels in 14112 added lines (iteration 3).
+- Review budget closing answered nodes: answered is derived before the budget pass (iteration 3, runtime/scripts/reduce-state.cjs:2026, :2041).
+- Per-mode ledger-schema extension validators: these follow the existing per-mode architecture (iteration 3).
+
+### Carry-forward edge cases
+- Read under security in iteration 2: fanout-run.cjs, upsert.cjs, dispatch-iteration.cjs, verify-iteration.cjs, deep-research/scripts/reduce-state.cjs, divergent-pivot changes, fanout-merge.cjs. Still unread: the deep-research and deep-review ledger schema files.
+- R2-P2-001: researchTopic only trimmed (fanout-run.cjs:3712) while review focus and target collapse whitespace.
+- Verdict-line mapping differs between the prompt pack (this iteration's findings) and the agent contract (active findings); iteration 2 used the agent contract, CONDITIONAL while R1-P1-001 is active.
+- R1-P1-001 downgrade trigger: a governing doc stating an expansive review node needs all canonical dimensions regardless of reviewDimensions.
+- Ledger schemas were read in iteration 3, which closes the earlier carry-forward. frontier-admit.cjs:381 (reviewDimensionCount) is a further affected surface of R1-P1-001.
+- R3-P2-001: the frontier status vocabulary, store reader and band budget are duplicated across the two reducers and fanout-merge. The collapse target is a runtime/lib/deep-loop module.
+- Test-what-changed is deferred and unreviewed, not clean (iteration 3).
 
 ---
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- Dimension: none (cap reached). Synthesis next. - Focus area: synthesis should carry R1-P1-001 and R2-P1-001 as the release-blocking items, and R3-P2-002 with its refinement R10-P2-001 as the checklist follow-up. - Reason: iteration 10 is maxIterations. - Rotation status: 6/6 dimensions covered. Core protocols are recorded: spec_code partial, checklist_evidence partial. - Blocked/productive carry-forward: exhausted approaches unchanged. Productive: checking checklist claims by content rather than by cited line. - Required evidence: none further this run. Review verdict: CONDITIONAL
+traceability
 
 <!-- /ANCHOR:next-focus -->
 ## 13. KNOWN CONTEXT
+- Continuity ladder: no handover.md; implementation-summary.md continuity names the generation 2 research synthesis. The free-text recipe over the target text returned a clean no-hit (rg exit 1).
+- Prior lineage (archived): generation 1 ended at its cap with verdict FAIL, 2 P1 and 14 P2, over a wider target that included docs. Its report is review-archive/20261119T153733Z/review-report.md; do not re-report a finding the later commits fixed.
+
+- resource-map.md not present; skipping coverage gate.
 
 ### Bounded Context Snapshot
-- Continuity: no `handover.md`. `implementation-summary.md` continuity block is stale (last action "Generation 2 research synthesized", completion 0) although the tip commit says every phase is complete.
-- Target pointers: 51 changed code and config files (`runtime/scripts/*.cjs`, `runtime/lib/**`, both workflow YAMLs, configs, agent tomls), 54 test files, 125 doc files (playbooks, feature catalogs, references, changelogs), and 48 packet docs. Highest churn: `frontier-admit.cjs` (1,138 lines), `reduce-state.cjs` (364), `deep-review.yaml` (355), `deep-research.yaml` (336), `divergent-pivot.ts` (293), `upsert.cjs` (291), `deep-research/scripts/reduce-state.cjs` (249), `fanout-merge.cjs` (238), `fanout-run.cjs` (158).
-- Behavior claims: `spec.md` section 3 says expansive mode stays opt-in and default runs stay byte-identical for phases 010 and 011, while the defect fixes in 002-009, 012 and 013 change default-path behavior on purpose. Phase map in `spec.md` lists build order and per-phase scope; each child spec names its files.
-- Reuse and conventions: append gateway is the only state-log writer; `convergence.cjs` is the only stop-decision computer; `frontier-admit.cjs` owns the node store.
-- Review risks: the spec's Phase Documentation Map still shows every phase as `draft`. resource-map.md is not present; skipping coverage gate.
-- Executor note: native executor; the dispatch passes model opus and effort medium on the Agent call, because the native executor kind accepts no model or effort field in config.
+
+Populate during initialization before the first review dimension runs. Keep this pointer-based and scoped to the declared review target:
+
+- Target pointers: the 68 files in reviewScopeFiles; diff each with git diff 21c4b325b5a..f30fcdb42f6 -- <file>.
+- Behavior claims: acceptance criteria, public contracts, or docs to verify.
+- Reuse and conventions: existing patterns that define expected implementation shape.
+- Review risks and gaps: stale graph or memory caveats, missing files, and out-of-scope areas.
+
+Do not inline full source bodies. Do not dispatch the retired standalone context loop. Use this snapshot only to seed review dimensions and final traceability.
 
 ---
 
 ## 14. CROSS-REFERENCE STATUS
 <!-- MACHINE-OWNED: START -->
+[Alignment checks completed across core and overlay protocols]
+
 | Protocol | Level | Status | Iteration | Notes |
 |----------|-------|--------|-----------|-------|
-| `spec_code` | core | partial | 10 | owner of minIterations widening traced (003); R1-P1-001 commit-range relevance gap still active |
-| `checklist_evidence` | core | partial | 10 | ticked rows verified; 010/011 P0 rows open on Complete phases; 010 CHK-032 unmet (R10-P2-001) |
-| `skill_agent` | overlay | pending | - | - |
-| `agent_cross_runtime` | overlay | pass | 10 | custom-dimension rule in canonical agent and all five mirrors |
-| `feature_catalog_code` | overlay | pending | - | - |
-| `playbook_capability` | overlay | pending | - | - |
+| `spec_code` | core | [pending/pass/partial/fail/blocked] | [N] | [details] |
+| `checklist_evidence` | core | [pending/pass/partial/fail/blocked] | [N] | [details] |
+| `skill_agent` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
+| `agent_cross_runtime` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
+| `feature_catalog_code` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
+| `playbook_capability` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
 <!-- MACHINE-OWNED: END -->
 
 ---
 
 ## 15. FILES UNDER REVIEW
 <!-- MACHINE-OWNED: START -->
-Code and config files listed below; the full 278-path scope (tests, docs, packet docs) is `reviewScopeFiles` in `deep-review-config.json`.
-
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|-------------------|----------------|----------|--------|
-| `.codex/agents/deep-research.toml` | none | - | - | pending |
-| `.codex/agents/deep-review.toml` | none | - | - | pending |
-| `.dsh/agents/deep-research.patch.yml` | none | - | - | pending |
-| `.dsh/agents/deep-review.patch.yml` | none | - | - | pending |
-| `.gitignore` | none | - | - | pending |
-| `.skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json` | none | - | - | pending |
-| `.skilled/commands/deep/assets/compiled/deep-research.contract.markdown` | none | - | - | pending |
-| `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown` | none | - | - | pending |
-| `.skilled/commands/deep/assets/deep-research-presentation.txt` | none | - | - | pending |
-| `.skilled/commands/deep/assets/deep-research.yaml` | none | - | - | pending |
-| `.skilled/commands/deep/assets/deep-review-presentation.txt` | none | - | - | pending |
-| `.skilled/commands/deep/assets/deep-review.yaml` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/description.json` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/graph-metadata.json` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/hub-router.json` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/mode-registry.json` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs` | none | - | - | pending |
-| `.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs` | none | - | - | pending |
-| `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` | none | - | - | pending |
-| `.skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json` | none | - | - | pending |
-| `.vibe/agents/deep-research.toml` | none | - | - | pending |
-| `.vibe/agents/deep-review.toml` | none | - | - | pending |
+| .skilled/commands/deep/assets/deep-research.yaml | none | 0 | 0 | pending |
+| .skilled/commands/deep/assets/deep-review.yaml | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/fanout-review-focus.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-legacy-seam.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/continuity-thread.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/coverage-graph-signals.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-graph-upsert.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-projections-contract.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reducers.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-deltas-contract.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-reducers.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/dispatch-iteration.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/divergent-pivot-cli.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/divergent-pivot-seat-scope.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/loop-heartbeat.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/operator-text-shell-steps.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/optimizer-manifest-anti-convergence.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/review-depth-mode-golden.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/terminal-gates.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts | none | 0 | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts | none | 0 | 0 | pending |
 <!-- MACHINE-OWNED: END -->
 
 ---
 
 ## 16. REVIEW BOUNDARIES
 <!-- MACHINE-OWNED: START -->
-- Max iterations: 10
-- Convergence threshold: 0.10
-- Stop policy: max-iterations (minIterations 10)
+- Max iterations: 3
+- Convergence threshold: 0.1
 - Rolling STOP threshold: 0.08
 - No-progress threshold: 0.05
 - Coverage stabilization passes required: 1
-- Session lineage: sessionId=2026-11-19T04:20:12.962Z, parentSessionId=null, generation=1, lineageMode=new
+- Session lineage: sessionId=2026-11-19T15:38:08.666Z, parentSessionId=2026-11-19T04:20:12.962Z, generation=2, lineageMode=restart
 - Findings registry: `deep-review-findings-registry.json`
 - Release-readiness states: in-progress | converged | release-blocking
 - Per-iteration budget: 24 tool calls, 10 minutes
 - Severity threshold: P2
 - Review target type: files
 - Cross-reference checks: core=spec_code,checklist_evidence, overlay=skill_agent,agent_cross_runtime,feature_catalog_code,playbook_capability
-- Started: 2026-11-19T04:20:12.962Z
+- Started: 2026-11-19T15:38:08.666Z
 <!-- MACHINE-OWNED: END -->
+
+---
+
+## 17. EXAMPLE (POPULATED)
+
+Reference snippet showing a partially populated strategy file mid-review. Use this as a visual anchor when opening a live strategy doc.
+
+```markdown
+## 1. REVIEW CHARTER
+- Target: .skilled/skills/system-deep-loop/deep-research (skill, v1.4.0)
+- Dimensions: correctness, test-coverage, cross-runtime-parity, observability
+- Stop conditions: rolling newInfoRatio < 0.08 for 2 iterations OR all dimensions converged OR max=7 reached
+- Success criteria: zero P0 in correctness; test-coverage P0 resolved or deferred with rationale
+
+## 4. NEXT FOCUS
+- Dimension: test-coverage
+- Files: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs, .skilled/skills/system-spec-kit/runtime/cli/tests/deep-research-contract-parity.vitest.ts
+- Why: Iteration 2 surfaced a P0 (convergence-path coverage gap); needs a focused follow-up before correctness can terminate PASS.
+
+## 9. COVERAGE MATRIX
+| Dimension            | Status     | Iterations touched |
+|----------------------|------------|--------------------|
+| correctness          | converged  | 1                  |
+| test-coverage        | converging | 2, 4               |
+| cross-runtime-parity | converging | 3                  |
+| observability        | converging | 4                  |
+```

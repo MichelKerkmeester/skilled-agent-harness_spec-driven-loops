@@ -12,10 +12,10 @@ This prompt pack renders the per-iteration context for the `@deep-review` LEAF a
 ## STATE
 
 STATE SUMMARY (auto-generated):
-Iteration: 1 of 10
+Iteration: 1 of 3
 Dimension: correctness
 Prior Findings: P0=0 P1=0 P2=0
-Dimension Coverage: none (0/6)
+Dimension Coverage: none (0/3)
 Traceability: core=spec_code:pending,checklist_evidence:pending overlay=skill_agent:pending,agent_cross_runtime:pending,feature_catalog_code:pending,playbook_capability:pending
 Resource Map Coverage: resource-map.md not present; skipping coverage gate.
 Coverage Age: 0
@@ -23,17 +23,80 @@ Last 2 ratios: N/A -> N/A
 Stuck count: 0
 Provisional Verdict: PENDING hasAdvisories=false
 
-Review Iteration: 1 of 10
+Review Iteration: 1 of 3
 Mode: review
 Dimension: correctness
-Review Target: commit range 21c4b325b5a..1d2b49e4306 (expansive-depth program, phases 001-014)
-Review Scope Files: This iteration's slice (review these first):
-.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs
-.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs
-.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs
-.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs
-Diff to inspect: git diff 21c4b325b5a..1d2b49e4306 -- <file>
-Full citable scope (278 paths, code first, then tests, docs and packet docs): reviewScopeFiles in specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/deep-review-config.json. A finding must cite a path from that list.
+Review Target: commit range 21c4b325b5a..f30fcdb42f6 (expansive-depth program logic: code, command YAML assets and tests under .skilled/skills/system-deep-loop/ and .skilled/commands/deep/; docs, playbooks and specs excluded)
+Review Scope Files: Review order (production scripts and lib first, then the command YAML assets, then tests); +added/-removed lines in the range:
+- .skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts (+17/-9)
+- .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs (+257/-13)
+- .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts (+72/-10)
+- .skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs (+1/-1)
+- .skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts (+14/-0)
+- .skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts (+5/-1)
+- .skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs (+26/-0)
+- .skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts (+202/-91)
+- .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts (+42/-0)
+- .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts (+44/-1)
+- .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts (+53/-0)
+- .skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts (+13/-0)
+- .skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts (+21/-0)
+- .skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts (+25/-0)
+- .skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts (+13/-0)
+- .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts (+26/-0)
+- .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts (+13/-0)
+- .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs (+78/-7)
+- .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs (+17/-6)
+- .skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs (+4/-0)
+- .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs (+233/-5)
+- .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs (+196/-6)
+- .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs (+1219/-0)
+- .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs (+350/-25)
+- .skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs (+3/-0)
+- .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs (+287/-12)
+- .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs (+9/-7)
+- .skilled/commands/deep/assets/deep-research.yaml (+345/-14)
+- .skilled/commands/deep/assets/deep-review.yaml (+363/-26)
+- .skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts (+52/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/fanout-review-focus.vitest.ts (+47/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts (+328/-7)
+- .skilled/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts (+529/-9)
+- .skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts (+170/-3)
+- .skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts (+475/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-legacy-seam.vitest.ts (+179/-1)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts (+5/-3)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts (+2/-1)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/continuity-thread.vitest.ts (+74/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/coverage-graph-signals.vitest.ts (+2/-2)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-graph-upsert.vitest.ts (+29/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts (+93/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-projections-contract.vitest.ts (+151/-1)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts (+884/-1)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reducers.vitest.ts (+33/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-deltas-contract.vitest.ts (+44/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts (+27/-1)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-reducers.vitest.ts (+28/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts (+815/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/dispatch-iteration.vitest.ts (+189/-2)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/divergent-pivot-cli.vitest.ts (+154/-2)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/divergent-pivot-seat-scope.vitest.ts (+177/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts (+308/-2)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts (+584/-1)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts (+723/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts (+1047/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts (+15/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/loop-heartbeat.vitest.ts (+26/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/operator-text-shell-steps.vitest.ts (+165/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/optimizer-manifest-anti-convergence.vitest.ts (+31/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts (+212/-1)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts (+305/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/review-depth-mode-golden.vitest.ts (+365/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts (+480/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts (+328/-4)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/terminal-gates.vitest.ts (+69/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts (+251/-0)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts (+768/-2)
+Full citable scope (68 paths): reviewScopeFiles in specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/deep-review-config.json. Diff each with git diff 21c4b325b5a..f30fcdb42f6 -- <file>. A finding must cite a path from that list.
 Prior Findings: P0=0 P1=0 P2=0
 
 ## PIVOT LINEAGE
@@ -51,8 +114,8 @@ Load `.skilled/skills/sk-code/sk-code-review/references/review-core.md` before f
 
 ## REVIEW DIMENSIONS
 
-correctness, security, traceability, maintainability, overengineering, sk-code-alignment
-Operator review focus (cover it in addition to the dimension of this iteration, and say in the narrative how you addressed it): Target is commit range 21c4b325b5a..1d2b49e4306 (the expansive-depth program, phases 001-014). Code and runtime files first, docs second. When the dimension is overengineering, apply the Review Charter rubric in the strategy: abstractions, options, layers, files or fallbacks no current requirement earns, per .skilled/repo-rules/prevent-overengineering.md and the CLAUDE.md section 3 restraint signals; name what to delete or collapse. When the dimension is sk-code-alignment, apply the Charter rubric: the sk-code review floor, the JS/CJS/TS/test surface rules, quality tiers, test-what-changed, and comment hygiene (no spec paths, phase numbers or REQ/ADR/finding ids in code comments). Only cite files listed in Review Scope Files.
+correctness, security, maintainability
+Operator review focus (cover it in addition to the dimension of this iteration, and say in the narrative how you addressed it): Review only the LOGIC the range 21c4b325b5a..f30fcdb42f6 added or changed; inspect each file with git diff 21c4b325b5a..f30fcdb42f6 -- <file>. Production scripts, lib and the two command YAML assets first, tests second. When the dimension is maintainability, also apply the overengineering rubric (abstractions, options, layers, files or fallbacks no current requirement earns, per .skilled/repo-rules/prevent-overengineering.md; name what to delete or collapse) and the sk-code-alignment rubric (the sk-code review floor, the JS/CJS/TS/test surface rules, test-what-changed, and comment hygiene: no spec paths, phase numbers or REQ/ADR/finding ids in code comments). Only cite files listed in reviewScopeFiles.
 
 ## TRACEABILITY PROTOCOLS
 
