@@ -1642,22 +1642,29 @@ function lastClaimAdjudicationPassed(stateRows) {
   return lastMatch !== null && typeof lastMatch.passed === 'boolean' ? lastMatch.passed : null;
 }
 
+// A fallback ledger row counts once one of its search actions names an evidence
+// method and cites evidence. The leaf contract puts evidenceRefs on each
+// searchActions entry and names exact_search; refs on the row itself still count,
+// since rows written before that contract carried them there.
 function reviewFallbackCoveredBugClasses(iterationRecords) {
   const evidenceMethods = new Set([
     'direct_read',
+    'exact_search',
     'exact_grep',
     'semantic_search',
     'producer_consumer_trace',
     'negative_test_inspection',
   ]);
+  const cites = (refs) => Array.isArray(refs) && refs.length > 0;
   const covered = new Set();
   for (const record of iterationRecords) {
     if (!Array.isArray(record.searchLedger)) continue;
     for (const row of record.searchLedger) {
       if (!isPlainObject(row) || typeof row.bugClass !== 'string') continue;
-      if (!Array.isArray(row.evidenceRefs) || row.evidenceRefs.length === 0) continue;
       const actions = Array.isArray(row.searchActions) ? row.searchActions : [];
-      if (!actions.some((action) => isPlainObject(action) && evidenceMethods.has(action.method))) {
+      if (!actions.some((action) => isPlainObject(action)
+        && evidenceMethods.has(action.method)
+        && (cites(action.evidenceRefs) || cites(row.evidenceRefs)))) {
         continue;
       }
       covered.add(row.bugClass);

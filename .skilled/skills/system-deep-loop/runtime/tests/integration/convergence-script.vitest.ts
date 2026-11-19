@@ -1128,6 +1128,50 @@ describe('convergence.cjs stop-decision', () => {
     expect(stopDecision.gates.graphlessFallbackGate).toEqual({ pass: false, skipped: false });
   });
 
+  // The prompt pack puts a ledger row's evidence on its searchActions entries and
+  // names exact_search, so a row written to that contract has to count.
+  it('counts a fallback ledger row whose evidence sits on an exact_search action', () => {
+    const namespace = uniqueNamespace('convergence', 'review');
+    namespaces.push(namespace);
+    expect(seedReviewNode(namespace).exitCode).toBe(0);
+    const fixture = reviewFixture(
+      [
+        {
+          type: 'iteration',
+          iteration: 3,
+          status: 'complete',
+          newFindingsRatio: 0.1,
+          dimensions: ['correctness'],
+          reviewDepthSchemaVersion: 2,
+          searchLedger: [
+            {
+              bugClass: 'injection',
+              searchActions: [{ method: 'exact_search', queryOrPath: 'eval(', result: 'none', evidenceRefs: ['src/a.ts:1'] }],
+            },
+            {
+              bugClass: 'xss',
+              searchActions: [{ method: 'direct_read', queryOrPath: 'src/b.ts', result: 'escaped', evidenceRefs: [] }],
+            },
+          ],
+        },
+      ],
+      {
+        searchCoverage: {
+          requiredBugClasses: ['injection', 'xss'],
+          graphCoverageMode: 'graphless_fallback',
+        },
+      },
+    );
+
+    const result = runScript('convergence', stopDecisionArgs(namespace, fixture));
+    const stopDecision = result.json.stop_decision as {
+      inputs: { review: { fallbackCoveredBugClasses: string[] } };
+    };
+
+    expect(result.exitCode).toBe(0);
+    expect(stopDecision.inputs.review.fallbackCoveredBugClasses).toEqual(['injection']);
+  });
+
   it('exits 3 when the config file or the state log is missing', () => {
     const namespace = uniqueNamespace('convergence', 'research');
     namespaces.push(namespace);
