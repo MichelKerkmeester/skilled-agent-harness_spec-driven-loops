@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6951,
-    "ok": 19955,
+    "ok": 19959,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28533,
+  "documentsScanned": 28537,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "5a6bb530d7601ba97ea3d22195689a9619502d8e2a40640f3eb7c53c9eee421b",
+  "manifestHash": "caa5bae5665804af75688aa05bec20abd49c54569cec56ae656396787833329d",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45315,
+      "ok": 45320,
       "prose-sentence": 22,
       "single-token": 150,
       "stop-word-only": 1,
@@ -55048,6 +55048,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/model-rosters/008-glm-5-3-opencode-go-roster/scratch",
       "reason": "excluded directory"
     },
     {

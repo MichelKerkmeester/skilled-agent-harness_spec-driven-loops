@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5a6bb530d7601ba97ea3d22195689a9619502d8e2a40640f3eb7c53c9eee421b",
+  "manifestHash": "caa5bae5665804af75688aa05bec20abd49c54569cec56ae656396787833329d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8329,6 +8329,9 @@
     ],
     "add emoji reaction": [
       "add emoji reaction"
+    ],
+    "add glm 5 3 to the cli pi": [
+      "add glm 5 3 to the cli pi"
     ],
     "add goal md to a phase parent": [
       "add goal.md to a phase parent"
@@ -56049,6 +56052,18 @@
     ],
     "glm 5 3 opencode go gateway": [
       "glm-5.3 opencode-go gateway"
+    ],
+    "glm 5 3 opencode go roster": [
+      "glm 5 3 opencode go roster"
+    ],
+    "glm 5 3 opencode go roster implementation summary": [
+      "glm 5 3 opencode go roster implementation summary"
+    ],
+    "glm 5 3 opencode go roster plan": [
+      "glm 5 3 opencode go roster plan"
+    ],
+    "glm 5 3 opencode go roster tasks": [
+      "glm 5 3 opencode go roster tasks"
     ],
     "glm 5 3 research dispatch plan": [
       "glm 5.3 research dispatch plan"

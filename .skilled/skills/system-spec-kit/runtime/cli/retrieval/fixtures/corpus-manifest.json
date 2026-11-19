@@ -1,5 +1,5 @@
 {
-  "corpusHash": "64eef46e4114b7cddb5498c11fdd92864b51bbaf186329b81bca630690c37ab9",
+  "corpusHash": "2f3c65d04847e57e7de330a41e92df14043d1e5325b7d88ad2a5b3e950e36854",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28533,
+  "includedPathCount": 28537,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10130,6 +10130,10 @@
     "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/plan.md",
     "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/spec.md",
     "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/tasks.md",
+    "specs/cli-external-orchestration/model-rosters/008-glm-5-3-opencode-go-roster/implementation-summary.md",
+    "specs/cli-external-orchestration/model-rosters/008-glm-5-3-opencode-go-roster/plan.md",
+    "specs/cli-external-orchestration/model-rosters/008-glm-5-3-opencode-go-roster/spec.md",
+    "specs/cli-external-orchestration/model-rosters/008-glm-5-3-opencode-go-roster/tasks.md",
     "specs/cli-external-orchestration/opencode-platform/001-layer-3-own-paths-baseline/implementation-summary.md",
     "specs/cli-external-orchestration/opencode-platform/001-layer-3-own-paths-baseline/plan.md",
     "specs/cli-external-orchestration/opencode-platform/001-layer-3-own-paths-baseline/spec.md",
@@ -28565,7 +28569,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5a6bb530d7601ba97ea3d22195689a9619502d8e2a40640f3eb7c53c9eee421b",
+  "manifestHash": "caa5bae5665804af75688aa05bec20abd49c54569cec56ae656396787833329d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30473,6 +30477,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/model-rosters/008-glm-5-3-opencode-go-roster/scratch",
       "reason": "excluded directory"
     },
     {
