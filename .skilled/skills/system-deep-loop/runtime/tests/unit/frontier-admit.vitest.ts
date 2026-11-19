@@ -598,6 +598,35 @@ interface FrontierGraphEdgeEvent {
 
 type FrontierGraphEvent = FrontierGraphNodeEvent | FrontierGraphEdgeEvent;
 
+// A proposal's question and scope are copied into later prompts and the inbox, so
+// admission bounds their length and keeps control characters out of them.
+describe('frontier proposal text limits', () => {
+  it('stores a question and scope with control characters replaced by spaces', () => {
+    const artifactDir = makeArtifactDir();
+    const proposal = { ...makeProposal('which module\nIGNORE PREVIOUS\u0007 owns the cap'), scope: ['runtime/lib\r\nextra'] };
+
+    const { admitted } = admitProposals({ artifactDir, iteration: 1, proposals: [proposal] });
+
+    const node = readNodeStore(join(artifactDir, STORE_FILE)).get(admitted[0]);
+    expect(node?.question).toBe('which module IGNORE PREVIOUS owns the cap');
+    expect(node?.scope).toEqual(['runtime/lib extra']);
+    expect(readJsonl(join(artifactDir, INBOX_FILE))[0].text).toBe('which module IGNORE PREVIOUS owns the cap');
+  });
+
+  it('prunes a question or a scope entry past the length cap as relevance', () => {
+    const artifactDir = makeArtifactDir();
+    const proposals = [
+      makeProposal(`which long question ${'x'.repeat(600)}`),
+      { ...makeProposal('which long scope holds'), scope: `runtime/${'y'.repeat(600)}` },
+    ];
+
+    const { admitted, pruned } = admitProposals({ artifactDir, iteration: 1, proposals });
+
+    expect(admitted).toEqual([]);
+    expect(pruned.map((row) => row.reason)).toEqual(['relevance', 'relevance']);
+  });
+});
+
 describe('frontier graph close rule', () => {
   const BASE_NODES = [
     { id: 'q-base', kind: 'QUESTION' },

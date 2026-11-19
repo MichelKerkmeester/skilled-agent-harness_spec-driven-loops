@@ -49,6 +49,10 @@ const REVIEW_CONFIG_FILE = 'deep-review-config.json';
 // whether an admitted node queues a question.
 const TARGETS = Object.freeze(['research', 'review']);
 
+// A proposal's question and scope are written by a leaf and copied into later
+// prompts, the focus line and the inbox, so admission bounds each text it stores.
+const MAX_PROPOSAL_TEXT_LENGTH = 500;
+
 const DEFAULT_MAX_DEPTH = 3;
 const DEFAULT_MAX_CHILDREN_PER_NODE = 6;
 const DEFAULT_MAX_FRONTIER_NODES = 10;
@@ -124,6 +128,26 @@ function isNonEmptyString(value) {
 function hasScope(scope) {
   if (typeof scope === 'string') return scope.trim() !== '';
   return Array.isArray(scope) && scope.some(isNonEmptyString);
+}
+
+// A newline or other control character in a stored question would break the
+// one-line focus and prompt rows it is copied into, so each becomes a space.
+function stripControlCharacters(value) {
+  // eslint-disable-next-line no-control-regex
+  return typeof value === 'string' ? value.replace(/[\u0000-\u001f\u007f]/g, ' ').replace(/ {2,}/g, ' ') : value;
+}
+
+function cleanProposalText(proposal) {
+  if (!isPlainObject(proposal)) return proposal;
+  return {
+    ...proposal,
+    question: stripControlCharacters(proposal.question),
+    scope: Array.isArray(proposal.scope) ? proposal.scope.map(stripControlCharacters) : stripControlCharacters(proposal.scope),
+  };
+}
+
+function isOverLength(value) {
+  return typeof value === 'string' && value.length > MAX_PROPOSAL_TEXT_LENGTH;
 }
 
 function normalizeIteration(value) {
@@ -526,6 +550,8 @@ function checkProposal(proposal, nodes, caps, knownTexts, options = {}) {
   if (!isNonEmptyString(proposal.question)) return 'relevance';
   if (!isNonEmptyString(proposal.evidence)) return 'relevance';
   if (!hasScope(proposal.scope)) return 'relevance';
+  if (isOverLength(proposal.question)) return 'relevance';
+  if ((Array.isArray(proposal.scope) ? proposal.scope : [proposal.scope]).some(isOverLength)) return 'relevance';
   // A review run only reads the paths its target names, so a node scoped
   // elsewhere could never be answered by a finding.
   if (reviewConfig !== undefined && !scopeInsideReviewTarget(proposal.scope, reviewConfig)) return 'relevance';
@@ -604,7 +630,8 @@ function admitProposals({ artifactDir, iteration, proposals, knownTexts = [], ta
   const pruned = [];
   const list = Array.isArray(proposals) ? proposals : [];
 
-  for (const proposal of list) {
+  for (const rawProposal of list) {
+    const proposal = cleanProposalText(rawProposal);
     const accept = checkProposal(proposal, nodes, caps, knownTexts, reviewOptions);
     const depth = depthFor(proposal, nodes);
     const nodeId = `F-${depth}-${nextNodeSerial(nodes)}`;
