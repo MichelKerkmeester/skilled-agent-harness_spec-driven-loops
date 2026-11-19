@@ -1,7 +1,7 @@
 ---
 title: "DRV-074 -- Configured custom dimension joins the review dimension set"
 description: "This scenario validates that a custom review dimension named at setup joins the dimension set for `DRV-074`. It focuses on the normalized name list, the canonical-first order and the review prompt line."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DRV-074 -- Configured custom dimension joins the review dimension set
@@ -49,7 +49,7 @@ Operators run this as a setup check. They read the rule that accepts the custom 
 
 ### Expected
 
-Command 1 prints the review_dimensions input line, the risk-order line and the normalize rule among its other custom-dimension lines, each placing custom dimensions after the canonical four. Command 2 prints one line, the `buildDimensionUniverse(config)` definition. Command 3 exits 0 with the cases `tracks and covers a configured custom dimension after the canonical four` and `attributes a finding that names a custom dimension to it, not to the first addressed one` reported as passed, and no failed test. Command 4 exits 0 with `renders a configured custom dimension after the canonical four` reported as passed.
+Command 1 prints the review_dimensions input line, the risk-order line and the normalize rule among its other custom-dimension lines, each placing custom dimensions after the canonical four. Command 2 prints one line, the `buildDimensionUniverse(config)` definition. Command 3 exits 0 with the cases `tracks and covers a configured custom dimension after the canonical four` and `attributes a finding that names a custom dimension to it, not to the first addressed one`, `attributes a finding to a short custom dimension only when the name is a whole word` reported as passed, and no failed test. Command 4 exits 0 with `renders a configured custom dimension after the canonical four` reported as passed.
 
 ### Evidence
 

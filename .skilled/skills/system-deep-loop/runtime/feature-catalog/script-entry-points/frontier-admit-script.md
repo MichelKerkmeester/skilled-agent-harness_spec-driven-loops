@@ -7,7 +7,7 @@ trigger_phrases:
   - "frontier-nodes.jsonl"
   - "frontier admission checks"
   - "expansive frontier seed budget"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # frontier-admit.cjs
@@ -47,7 +47,7 @@ A research admission also appends one row to `inbox.jsonl` with `origin` `fronti
 
 `checkProposal` runs six checks in a fixed order. The first one that fails prunes the proposal, and its name becomes the prune reason.
 
-1. `relevance` fails a proposal with no question, no evidence or no usable scope. It also fails a parent that is not in the store or was pruned, and a question, or any scope entry, longer than 500 characters. Before the checks run, admission replaces every control character (U+0000-U+001F, U+007F) in the question and scope with a space and collapses repeated spaces, so the stored row, the focus line and the inbox text never carry a newline. On review, a file-list target narrows relevance to scopes inside that target, and a target that holds a revision range (`base..tip` or `base...tip`) anywhere, even with a label around it such as `commit range base..tip (label)`, narrows it to the files the range touches, read from `reviewScopeFiles` as one list or as named lists by kind. A token with a `../` or `/..` path segment is never read as a range. A `.` or `./` target names the repo root, which holds every path that does not climb out of it, and a glob entry such as `src/**/*.ts` is bounded by the directory before its first glob segment.
+1. `relevance` fails a proposal with no question, no evidence or no usable scope. It also fails a parent that is not in the store or was pruned, and a question, or any scope entry, longer than 500 characters. Before the checks run, admission replaces every control character (U+0000-U+001F, U+007F) in the question and scope with a space and collapses repeated spaces, so the stored row, the focus line and the inbox text never carry a newline. On review, a file-list target narrows relevance to scopes inside that target, and a target that holds a revision range (`base..tip` or `base...tip`) anywhere, even with a label around it such as `commit range base..tip (label)`, narrows it to the files the range touches, read from `reviewScopeFiles` as one list or as named lists by kind. A token with a `../` or `/..` path segment is never read as a range. A token that names a file or directory on disk, resolved against the working directory, is a path, so an existing `docs/notes..v2.md` is not a range, while slashed refs such as `origin/main..HEAD` or `feature/x...main` still are. A missing path of that shape reads as a range. A `.` or `./` target names the repo root, which holds every path that does not climb out of it, and a glob entry such as `src/**/*.ts` is bounded by the directory before its first glob segment.
 2. `dedupe` fails a question whose normalized key matches any stored node, in any status, or any known text. A leading id such as `Q3:` is dropped before the match.
 3. `depth` fails a proposal past `maxDepth`.
 4. `fanout` fails a parent that already holds its child cap. It also fails when the live node count has reached the run-wide node cap.
