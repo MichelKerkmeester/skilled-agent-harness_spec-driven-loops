@@ -1121,6 +1121,25 @@ describe('reduceReviewState expansive frontier', () => {
     expect(frontier.budget?.depth2).toEqual({ allotted: 3.5, spent: 0 });
   });
 
+  it('dates a budget close from the band\'s last counted visit', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    writeStore(reviewDir, [
+      nodeRow({ nodeId: 'F-1-001' }),
+      nodeRow({ nodeId: 'F-2-002', parentId: 'F-1-001', depth: 2, question: 'Does the parser keep its offsets?' }),
+    ]);
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${[1, 2, 3, 4, 5]
+      .map((iteration) => iterationRecord(iteration, `stop path pass ${iteration}`, ['correctness'], { frontierNodeId: 'F-1-001' }))
+      .join('\n')}\n`);
+
+    const frontier = readFrontier(reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }));
+    const nodes = frontier.nodes as Array<Record<string, unknown>>;
+
+    // The close exists only in the projection, so the last visit is its only date.
+    expect(nodes.find((node) => node.nodeId === 'F-1-001')?.closedAtIteration).toBe(5);
+    expect(nodes.find((node) => node.nodeId === 'F-2-002')).not.toHaveProperty('closedAtIteration');
+  });
+
   it('rolls an unspent depth-1 share down to depth 2 once depth 1 has no open node', () => {
     const { specFolder, reviewDir } = makeReviewDir();
     writeExpansiveConfig(reviewDir);

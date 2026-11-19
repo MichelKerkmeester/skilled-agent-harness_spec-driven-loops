@@ -84,6 +84,15 @@ const NODE_STATUSES = Object.freeze([
   'pruned',
 ]);
 
+// An iteration record with one of these statuses proves nothing about the node it
+// names: the attempt never produced evidence, so it cannot spend budget share or
+// count as a visit.
+const FAILED_VISIT_STATUSES = new Set(['error', 'failed', 'failure', 'timeout']);
+
+// Depth bands share maxIterations 50/35/15 by default (depths 0-1, 2, 3).
+const DEFAULT_BAND_SHARES = Object.freeze([0.5, 0.35, 0.15]);
+const DEFAULT_BUDGET_CAP = 10;
+
 // close cannot move a node back to the unopened or admitted state: seeding and
 // admission own those, and a re-close is only meaningful for a lifecycle move.
 const CLOSE_STATUSES = new Set([
@@ -259,10 +268,16 @@ function nextNodeSerial(nodes) {
  * Read the append-only node store into its current nodes.
  *
  * @param {string} storePath - Path to frontier-nodes.jsonl.
+ * @param {Object} [sinks] - Optional collectors for callers that report on their own.
+ * @param {Object[]} [sinks.history] - Receives every valid row in file order.
+ * @param {Object[]} [sinks.warnings] - Receives one {line, raw, error, file} per
+ *   unparseable line; when given, nothing is written to stderr.
  * @returns {Map<string, Object>} The last row per nodeId, empty when the file does not exist.
  * @throws {Error} When the file exists but cannot be read.
  */
-function readNodeStore(storePath) {
+function readNodeStore(storePath, sinks = {}) {
+  const history = Array.isArray(sinks.history) ? sinks.history : null;
+  const warnings = Array.isArray(sinks.warnings) ? sinks.warnings : null;
   const nodes = new Map();
   if (!fs.existsSync(storePath)) return nodes;
 
@@ -277,7 +292,8 @@ function readNodeStore(storePath) {
 
   const lines = content.split('\n');
   for (let index = 0; index < lines.length; index += 1) {
-    const trimmed = lines[index].trim();
+    const rawLine = lines[index];
+    const trimmed = rawLine.trim();
     if (!trimmed) continue;
     let row;
     try {
@@ -285,14 +301,77 @@ function readNodeStore(storePath) {
     } catch (error) {
       // A torn or hand-edited line must not hide the rows after it, but it may
       // have been a node the store keeps no other copy of, so it is reported.
-      process.stderr.write(`[frontier-admit] warning: skipped ${path.basename(storePath)} line ${index + 1}: ${error instanceof Error ? error.message : String(error)}\n`);
+      const message = error instanceof Error ? error.message : String(error);
+      if (warnings) {
+        warnings.push({
+          line: index + 1,
+          raw: rawLine.length > 200 ? `${rawLine.slice(0, 200)}...` : rawLine,
+          error: message,
+          file: path.basename(storePath),
+        });
+      } else {
+        process.stderr.write(`[frontier-admit] warning: skipped ${path.basename(storePath)} line ${index + 1}: ${message}\n`);
+      }
       continue;
     }
     if (!isPlainObject(row) || typeof row.nodeId !== 'string' || row.nodeId === '') continue;
     nodes.set(row.nodeId, row);
+    if (history) history.push(row);
   }
 
   return nodes;
+}
+
+/**
+ * Split maxIterations across the depth bands and close every open node of a band
+ * whose spend reached its share. A band's unspent share rolls down to the next
+ * band only once the band has no open node, and never up. Counting visits is the
+ * caller's: each loop attributes iterations to nodes its own way.
+ *
+ * @param {Object[]} nodes - Projected nodes, each with depth and status.
+ * @param {Array<{spent: number, lastIteration: (number|null)}>} visits - Per node,
+ *   in the same order as nodes: counted visits and the highest visited iteration.
+ * @param {number} maxIterations - The run's iteration budget.
+ * @param {Object} [budgetSplit] - Optional depth1/depth2/depth3 shares.
+ * @returns {{nodes: Object[], budget: Object}} Copied nodes with budget closes
+ *   applied, and the per-band allotted and spent report.
+ */
+function applyBandBudget(nodes, visits, maxIterations, budgetSplit) {
+  const split = budgetSplit && typeof budgetSplit === 'object' ? budgetSplit : {};
+  const shares = [
+    Number.isFinite(split.depth1) ? split.depth1 : DEFAULT_BAND_SHARES[0],
+    Number.isFinite(split.depth2) ? split.depth2 : DEFAULT_BAND_SHARES[1],
+    Number.isFinite(split.depth3) ? split.depth3 : DEFAULT_BAND_SHARES[2],
+  ];
+  const cap = Number.isFinite(maxIterations) && maxIterations > 0 ? maxIterations : DEFAULT_BUDGET_CAP;
+  const bandOf = (depth) => (depth <= 1 ? 0 : depth === 2 ? 1 : 2);
+  const isOpen = (node) => node.status === 'open' || node.status === 'active';
+  const spent = [0, 0, 0];
+  const lastVisit = [null, null, null];
+  nodes.forEach((node, index) => {
+    const band = bandOf(node.depth);
+    const entry = visits[index] || {};
+    spent[band] += Number.isFinite(entry.spent) ? entry.spent : 0;
+    const last = Number.isFinite(entry.lastIteration) ? entry.lastIteration : null;
+    if (last !== null && (lastVisit[band] === null || last > lastVisit[band])) lastVisit[band] = last;
+  });
+  let result = nodes.map((node) => ({ ...node }));
+  const budget = {};
+  let carry = 0;
+  for (let band = 0; band < 3; band += 1) {
+    const allotted = cap * shares[band] + carry;
+    if (spent[band] >= allotted) {
+      // A budget close exists only in this projection, so it is dated from the
+      // band's last counted visit.
+      result = result.map((node) => (bandOf(node.depth) === band && isOpen(node)
+        ? { ...node, status: 'exhausted', reason: 'budget', closedAtIteration: lastVisit[band] }
+        : node));
+    }
+    const bandOpen = result.some((node) => bandOf(node.depth) === band && isOpen(node));
+    carry = bandOpen ? 0 : Math.max(0, allotted - spent[band]);
+    budget[`depth${band + 1}`] = { allotted: Math.round(allotted * 100) / 100, spent: spent[band] };
+  }
+  return { nodes: result, budget };
 }
 
 function readTargetConfig(artifactDir, target) {
@@ -1200,6 +1279,7 @@ if (require.main === module) {
 
 module.exports = {
   NODE_STATUSES,
+  FAILED_VISIT_STATUSES,
   EXPANSIVE_BUDGET_CEILING,
   LOOP_DEFAULT_MAX_ITERATIONS,
   expansiveBudget,
@@ -1207,6 +1287,7 @@ module.exports = {
   writeSeedBudget,
   dedupeKey,
   readNodeStore,
+  applyBandBudget,
   readCaps,
   scopeInsideReviewTarget,
   checkProposal,

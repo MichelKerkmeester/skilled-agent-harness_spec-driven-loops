@@ -16,6 +16,12 @@ const { filterCompletionBearingRecords } = require('../../shared/progress/progre
 const { latestIterationRecords } = require('../lib/deep-loop/iteration-findings.cjs');
 const { deriveReviewVerdict, openSearchDebtCount } = require('./review-verdict.cjs');
 const { reviewOmitsTraceability, reviewUnfinishedCoreProtocols } = require('./convergence.cjs');
+const {
+  NODE_STATUSES,
+  FAILED_VISIT_STATUSES,
+  readNodeStore,
+  applyBandBudget,
+} = require('./frontier-admit.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -24,13 +30,6 @@ const { reviewOmitsTraceability, reviewUnfinishedCoreProtocols } = require('./co
 const REQUIRED_DIMENSIONS = ['correctness', 'security', 'traceability', 'maintainability'];
 const SEVERITY_KEYS = ['P0', 'P1', 'P2'];
 const SEVERITY_WEIGHTS = { P0: 10.0, P1: 5.0, P2: 1.0 };
-// The frontier lifecycle the node store records, in the order the projection
-// reports it. A status outside this list is still carried, just not counted.
-const FRONTIER_STATUSES = ['open', 'active', 'answered', 'blocked', 'exhausted', 'abstained', 'pruned'];
-// A record with one of these statuses proves nothing about the node it names:
-// the attempt never produced evidence, so it cannot cover a dimension or spend
-// budget share.
-const FRONTIER_FAILED_STATUSES = new Set(['error', 'failed', 'failure', 'timeout']);
 
 // An extension continues a completed run in place, so its lineage mode stays live.
 const LIVE_LINEAGE_MODES = new Set(['new', 'resume', 'restart', 'completed-continue']);
@@ -1918,16 +1917,9 @@ function buildSearchLedgerState(iterationRecords) {
 // is skipped but reported: when it was a node's only row, the node leaves the
 // frontier, and the warning is the one trace that pending depth went missing.
 function readReviewFrontierStore(storePath) {
-  if (!fs.existsSync(storePath)) return { nodes: [], history: [], warnings: [] };
-  const byId = new Map();
   const history = [];
-  const { records, corruptionWarnings } = parseJsonlDetailed(readUtf8(storePath));
-  const warnings = corruptionWarnings.map((warning) => ({ ...warning, file: path.basename(storePath) }));
-  for (const row of records) {
-    if (!row || typeof row !== 'object' || typeof row.nodeId !== 'string' || !row.nodeId) continue;
-    byId.set(row.nodeId, row);
-    history.push(row);
-  }
+  const warnings = [];
+  const byId = readNodeStore(storePath, { history, warnings });
   return {
     nodes: [...byId.values()].sort((left, right) => left.nodeId.localeCompare(right.nodeId)),
     history,
@@ -1962,48 +1954,6 @@ function reviewRecordsForNode(nodeId, history, iterationRecords) {
   });
 }
 
-// Only an attempt that produced evidence counts as a visit: an errored or timed
-// out record is retried work, not depth the node has already spent.
-function reviewFrontierVisits(nodeId, history, iterationRecords) {
-  return reviewRecordsForNode(nodeId, history, iterationRecords)
-    .filter((record) => !FRONTIER_FAILED_STATUSES.has(String(record.status || '').toLowerCase()))
-    .length;
-}
-
-// Depth bands share maxIterations 50/35/15 by default (depths 0-1, 2, 3). A band's
-// unspent share rolls down to the next band only once the band has no open node,
-// and never up. When a band's spend reaches its share, its open nodes close as
-// exhausted with reason budget, so the run stops waiting on work it cannot fund.
-function applyReviewFrontierBudget(nodes, history, iterationRecords, maxIterations, budgetSplit) {
-  const split = budgetSplit && typeof budgetSplit === 'object' ? budgetSplit : {};
-  const shares = [
-    Number.isFinite(split.depth1) ? split.depth1 : 0.5,
-    Number.isFinite(split.depth2) ? split.depth2 : 0.35,
-    Number.isFinite(split.depth3) ? split.depth3 : 0.15,
-  ];
-  const cap = Number.isFinite(maxIterations) && maxIterations > 0 ? maxIterations : 10;
-  const bandOf = (depth) => (depth <= 1 ? 0 : depth === 2 ? 1 : 2);
-  const spent = [0, 0, 0];
-  for (const node of nodes) {
-    spent[bandOf(node.depth)] += reviewFrontierVisits(node.nodeId, history, iterationRecords);
-  }
-  let result = nodes.map((node) => ({ ...node }));
-  const budget = {};
-  let carry = 0;
-  for (let band = 0; band < 3; band += 1) {
-    const allotted = cap * shares[band] + carry;
-    if (spent[band] >= allotted) {
-      result = result.map((node) => (bandOf(node.depth) === band && (node.status === 'open' || node.status === 'active')
-        ? { ...node, status: 'exhausted', reason: 'budget' }
-        : node));
-    }
-    const bandOpen = result.some((node) => bandOf(node.depth) === band && (node.status === 'open' || node.status === 'active'));
-    carry = bandOpen ? 0 : Math.max(0, allotted - spent[band]);
-    budget[`depth${band + 1}`] = { allotted: Math.round(allotted * 100) / 100, spent: spent[band] };
-  }
-  return { nodes: result, budget };
-}
-
 // A node is answered once every dimension in the review's universe has evidence
 // behind it. That status is derived on every reduce instead of written back, so
 // the store keeps only the lifecycle its writer owns and the projection stays a
@@ -2012,10 +1962,15 @@ function buildReviewFrontier(storeData, iterationRecords, config) {
   const universe = buildDimensionUniverse(config);
   const history = Array.isArray(storeData?.history) ? storeData.history : [];
   const storedNodes = Array.isArray(storeData?.nodes) ? storeData.nodes : [];
+  // Only an attempt that produced evidence counts as a visit: an errored or timed
+  // out record is retried work, not depth the node has already spent.
+  const visits = [];
   const nodes = storedNodes.map((node) => {
     const nodeId = node.nodeId;
     const records = reviewRecordsForNode(nodeId, history, iterationRecords)
-      .filter((record) => !FRONTIER_FAILED_STATUSES.has(String(record.status || '').toLowerCase()));
+      .filter((record) => !FAILED_VISIT_STATUSES.has(String(record.status || '').toLowerCase()));
+    const runs = records.map((record) => getIterationRun(record)).filter((run) => run !== null);
+    visits.push({ spent: records.length, lastIteration: runs.length > 0 ? Math.max(...runs) : null });
     const covered = new Set();
     for (const record of records) {
       if (!Array.isArray(record.dimensions)) continue;
@@ -2041,16 +1996,17 @@ function buildReviewFrontier(storeData, iterationRecords, config) {
       visits: records.length,
     };
   });
-  const budgeted = applyReviewFrontierBudget(
+  // When a band's spend reaches its share, its open nodes close as exhausted
+  // with reason budget, so the run stops waiting on work it cannot fund.
+  const budgeted = applyBandBudget(
     nodes,
-    history,
-    iterationRecords,
+    visits,
     Number(config?.maxIterations),
     config?.expansiveDepth?.budgetSplit,
   );
   const projected = budgeted.nodes;
   const stats = { total: projected.length };
-  for (const status of FRONTIER_STATUSES) stats[status] = projected.filter((node) => node.status === status).length;
+  for (const status of NODE_STATUSES) stats[status] = projected.filter((node) => node.status === status).length;
   // Breadth first: the shallowest node, then one not yet visited, then the oldest.
   const chosen = projected
     .filter((node) => node.status === 'open' || node.status === 'active')

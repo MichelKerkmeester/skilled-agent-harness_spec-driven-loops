@@ -1045,3 +1045,46 @@ describe('expansive budget sized from the seed', () => {
     expect(result.warning).toMatch(/no growth slot/);
   });
 });
+
+describe('shared band budget', () => {
+  type BudgetNode = { nodeId: string; depth: number; status: string; reason?: string | null; closedAtIteration?: number | null };
+  type Budgeted = { nodes: BudgetNode[]; budget: Record<string, { allotted: number; spent: number }> };
+  const scriptsDir = dirname(FRONTIER_ADMIT_SCRIPT);
+  const { applyFrontierBudget } = require(resolve(scriptsDir, '..', '..', 'deep-research', 'scripts', 'reduce-state.cjs')) as {
+    applyFrontierBudget: (nodes: BudgetNode[], records: unknown[], maxIterations: number, budgetSplit?: unknown) => Budgeted;
+  };
+  const { buildReviewFrontier } = require(resolve(scriptsDir, 'reduce-state.cjs')) as {
+    buildReviewFrontier: (store: { nodes: BudgetNode[]; history: BudgetNode[] }, records: unknown[], config: unknown) => Budgeted;
+  };
+
+  it('closes the same exhausted band the same way in both reducers', () => {
+    const nodes: BudgetNode[] = [
+      { nodeId: 'F-1-001', depth: 1, status: 'open' },
+      { nodeId: 'F-1-002', depth: 1, status: 'open' },
+      { nodeId: 'F-2-003', depth: 2, status: 'open' },
+    ];
+    // Both reducers attribute a visit through the focus marker, so the same records
+    // spend the same share: five depth-1 visits fill half of maxIterations 10.
+    const records = ['F-1-001', 'F-1-001', 'F-1-001', 'F-1-001', 'F-1-002'].map((nodeId, index) => ({
+      type: 'iteration',
+      run: index + 1,
+      iteration: index + 1,
+      status: 'complete',
+      dimensions: [],
+      focus: `Frontier node ${nodeId} (depth 1, scope src): q`,
+    }));
+
+    const research = applyFrontierBudget(nodes, records, 10);
+    const review = buildReviewFrontier({ nodes, history: nodes }, records, { maxIterations: 10 });
+    const shape = (result: Budgeted) => result.nodes.map((node) => [node.nodeId, node.status, node.reason ?? null, node.closedAtIteration]);
+
+    expect(shape(research)).toEqual([
+      ['F-1-001', 'exhausted', 'budget', 5],
+      ['F-1-002', 'exhausted', 'budget', 5],
+      ['F-2-003', 'open', null, undefined],
+    ]);
+    expect(shape(review)).toEqual(shape(research));
+    expect(review.budget).toEqual(research.budget);
+    expect(research.budget.depth1).toEqual({ allotted: 5, spent: 5 });
+  });
+});

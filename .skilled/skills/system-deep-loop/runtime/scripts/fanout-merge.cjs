@@ -26,6 +26,7 @@ const {
   findingKeys,
 } = require('../lib/deep-loop/iteration-findings.cjs');
 const { assertKnownFlags } = require('./lib/cli-guards.cjs');
+const { NODE_STATUSES } = require('./frontier-admit.cjs');
 const {
   activeReviewSeverityCounts,
   deriveReviewVerdict,
@@ -750,8 +751,6 @@ function buildLineageExecutors(lineageData) {
   return executors;
 }
 
-const FRONTIER_STATUSES = ['open', 'active', 'answered', 'blocked', 'exhausted', 'abstained', 'pruned'];
-
 // Lineages number the nodes they admit from their own store, so two lineages
 // that each hold one dealt node both name their first child F-2-002. A merged
 // node id is therefore qualified by its lineage label, its parent link with it,
@@ -792,7 +791,7 @@ function mergeResearchFrontier(lineageData, frontierPartition) {
   }
   nodes.sort((left, right) => compareText(left.lineage, right.lineage) || compareText(left.lineageNodeId, right.lineageNodeId));
   const stats = { total: nodes.length };
-  for (const status of FRONTIER_STATUSES) stats[status] = nodes.filter((node) => node.status === status).length;
+  for (const status of NODE_STATUSES) stats[status] = nodes.filter((node) => node.status === status).length;
   const reported = new Set(nodes.map((node) => node.lineageNodeId));
   const expected = frontierPartition && typeof frontierPartition === 'object'
     ? Object.values(frontierPartition).flatMap((ids) => (Array.isArray(ids) ? ids : []))

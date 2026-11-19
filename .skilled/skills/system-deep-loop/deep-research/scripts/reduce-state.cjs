@@ -22,6 +22,12 @@ const {
 } = require('../../runtime/lib/deep-loop/continuity-thread.cjs');
 const { filterCompletionBearingRecords } = require('../../shared/progress/progress-record.cjs');
 const { deriveLoopCounters } = require('../../runtime/scripts/convergence.cjs');
+const {
+  NODE_STATUSES,
+  FAILED_VISIT_STATUSES,
+  readNodeStore,
+  applyBandBudget,
+} = require('../../runtime/scripts/frontier-admit.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -2437,18 +2443,9 @@ function getTimestampValue(timestamp) {
 // does not parse is skipped but reported into warnings: when it was a node's only
 // row, the node leaves the frontier, and the warning is the one trace of it.
 function readFrontierNodeStore(storePath, warnings = []) {
-  if (!fs.existsSync(storePath)) return [];
-  const byId = new Map();
-  const { records, corruptionWarnings } = parseJsonlDetailed(readUtf8(storePath));
-  for (const warning of corruptionWarnings) warnings.push({ ...warning, file: path.basename(storePath) });
-  for (const row of records) {
-    if (!row || typeof row !== 'object' || typeof row.nodeId !== 'string' || !row.nodeId) continue;
-    byId.set(row.nodeId, row);
-  }
+  const byId = readNodeStore(storePath, { warnings });
   return [...byId.values()].sort((left, right) => left.nodeId.localeCompare(right.nodeId));
 }
-
-const FRONTIER_STATUSES = ['open', 'active', 'answered', 'blocked', 'exhausted', 'abstained', 'pruned'];
 
 // A node the store still holds open is answered once its question resolves in
 // the registry, so the status is derived here instead of written back.
@@ -2472,7 +2469,7 @@ function buildFrontierProjection(frontierInput, keyedQuestions) {
     };
   });
   const stats = { total: nodes.length };
-  for (const status of FRONTIER_STATUSES) stats[status] = nodes.filter((node) => node.status === status).length;
+  for (const status of NODE_STATUSES) stats[status] = nodes.filter((node) => node.status === status).length;
   return {
     nodes,
     stats,
@@ -2490,13 +2487,11 @@ function buildFrontierProjection(frontierInput, keyedQuestions) {
 // Only an attempt that produced evidence counts as a visit: an errored or timed
 // out record is retried work, so the focus pick, the budget and the dashboard
 // all count visits the same way.
-const FRONTIER_FAILED_STATUSES = new Set(['error', 'failed', 'failure', 'timeout']);
-
 function frontierNodeVisitRecords(nodeId, iterationRecords) {
   const escaped = String(nodeId).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const marker = new RegExp(`(?:^|[^\\w-])Frontier node ${escaped}(?![\\w-])`);
   return (Array.isArray(iterationRecords) ? iterationRecords : [])
-    .filter((record) => !FRONTIER_FAILED_STATUSES.has(String(record?.status || '').toLowerCase()))
+    .filter((record) => !FAILED_VISIT_STATUSES.has(String(record?.status || '').toLowerCase()))
     .filter((record) => typeof record?.focus === 'string' && marker.test(record.focus));
 }
 
@@ -2520,51 +2515,21 @@ function pickFrontierFocus(frontier, iterationRecords) {
   return `Frontier node ${chosen.nodeId} (depth ${chosen.depth}, scope ${scope}): ${chosen.question}`;
 }
 
-// Depth bands share maxIterations 50/35/15 by default (depths 0-1, 2, 3). A band's
-// unspent share rolls down to the next band only once the band has no open node,
-// and never up. When a band's spend reaches its share, its open nodes close as
-// exhausted with reason budget, so the run stops waiting on work it cannot fund.
-// An open node whose question an iteration already answered is marked answered
-// first: the budget closes only work still outstanding, and an answered node
-// never holds its band open against the roll-down. A budget close exists only in
-// this projection, so it is dated from the band's last counted visit.
+// Depth bands split maxIterations through the shared band budget, which closes a
+// band's open nodes as exhausted with reason budget once its spend reaches its
+// share. An open node whose question an iteration already answered is marked
+// answered first: the budget closes only work still outstanding, and an answered
+// node never holds its band open against the roll-down.
 function applyFrontierBudget(nodes, iterationRecords, maxIterations, budgetSplit, answeredNodeIds = new Set()) {
-  const split = budgetSplit && typeof budgetSplit === 'object' ? budgetSplit : {};
-  const shares = [
-    Number.isFinite(split.depth1) ? split.depth1 : 0.5,
-    Number.isFinite(split.depth2) ? split.depth2 : 0.35,
-    Number.isFinite(split.depth3) ? split.depth3 : 0.15,
-  ];
-  const cap = Number.isFinite(maxIterations) && maxIterations > 0 ? maxIterations : 10;
-  const bandOf = (depth) => (depth <= 1 ? 0 : depth === 2 ? 1 : 2);
-  const spent = [0, 0, 0];
-  const lastVisit = [null, null, null];
-  for (const node of nodes) {
-    const visits = frontierNodeVisitRecords(node.nodeId, iterationRecords);
-    const band = bandOf(node.depth);
-    spent[band] += visits.length;
-    for (const record of visits) {
-      const run = readIterationNumber(record);
-      if (run !== null && (lastVisit[band] === null || run > lastVisit[band])) lastVisit[band] = run;
-    }
-  }
-  let result = nodes.map((node) => ((node.status === 'open' || node.status === 'active') && answeredNodeIds.has(node.nodeId)
+  const visits = nodes.map((node) => {
+    const records = frontierNodeVisitRecords(node.nodeId, iterationRecords);
+    const runs = records.map((record) => readIterationNumber(record)).filter((run) => run !== null);
+    return { spent: records.length, lastIteration: runs.length > 0 ? Math.max(...runs) : null };
+  });
+  const marked = nodes.map((node) => ((node.status === 'open' || node.status === 'active') && answeredNodeIds.has(node.nodeId)
     ? { ...node, status: 'answered', reason: null }
-    : { ...node }));
-  const budget = {};
-  let carry = 0;
-  for (let band = 0; band < 3; band += 1) {
-    const allotted = cap * shares[band] + carry;
-    if (spent[band] >= allotted) {
-      result = result.map((node) => (bandOf(node.depth) === band && (node.status === 'open' || node.status === 'active')
-        ? { ...node, status: 'exhausted', reason: 'budget', closedAtIteration: lastVisit[band] }
-        : node));
-    }
-    const bandOpen = result.some((node) => bandOf(node.depth) === band && (node.status === 'open' || node.status === 'active'));
-    carry = bandOpen ? 0 : Math.max(0, allotted - spent[band]);
-    budget[`depth${band + 1}`] = { allotted: Math.round(allotted * 100) / 100, spent: spent[band] };
-  }
-  return { nodes: result, budget };
+    : node));
+  return applyBandBudget(marked, visits, maxIterations, budgetSplit);
 }
 
 function resolveNextFocus(registry, iterationFiles, iterationRecords) {
