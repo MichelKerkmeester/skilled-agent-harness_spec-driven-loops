@@ -449,8 +449,14 @@ function scopeEntries(scope) {
 
 // A git revision range (base..tip or base...tip) is not a path. The dots must sit
 // between two revision characters, so a '../' path segment never reads as one.
+// The range may carry a label around it, so any one token that is a range marks
+// the target as one; the label's words would otherwise be read as paths.
+function isRevisionRangeToken(token) {
+  return /[^/.]\.\.\.?[^/.]/.test(token) && !/(?:^|\/)\.\.(?:\/|$)/.test(token);
+}
+
 function isCommitRange(value) {
-  return typeof value === 'string' && /[^\s/.]\.\.\.?[^\s/.]/.test(value) && splitTargetPaths(value).length === 1;
+  return typeof value === 'string' && value.split(/[,\s]+/).some(isRevisionRangeToken);
 }
 
 // A commit range names no paths itself; the files it touches are its scope, and

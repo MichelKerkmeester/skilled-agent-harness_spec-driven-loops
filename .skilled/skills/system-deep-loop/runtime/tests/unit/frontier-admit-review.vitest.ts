@@ -516,6 +516,28 @@ describe('frontier-admit review root cap and commit-range scope', () => {
     expect(scopeInsideReviewTarget('lib/x', { reviewTargetType: 'files', reviewTarget: RANGE })).toBe(true);
   });
 
+  // An operator writes the range the way a review report names it, with a label
+  // around it. The range still decides the scope; its words are not paths.
+  it('takes the touched-files path for a range written with surrounding text', () => {
+    const config = {
+      reviewTargetType: 'files',
+      reviewTarget: `commit range ${RANGE} (spec-kit changes, phases 001-014)`,
+      reviewScopeFiles: RANGE_SCOPE_FILES,
+    };
+
+    expect(scopeInsideReviewTarget('.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate', config)).toBe(true);
+    expect(scopeInsideReviewTarget(RANGE_SCOPE_FILES[1], config)).toBe(true);
+    expect(scopeInsideReviewTarget('lib/x', config)).toBe(false);
+    expect(scopeInsideReviewTarget('commit', config)).toBe(false);
+  });
+
+  it('never reads a climbing path as a range', () => {
+    const config = { reviewTargetType: 'files', reviewTarget: 'src/a/../b src/c', reviewScopeFiles: ['lib/x'] };
+
+    expect(scopeInsideReviewTarget('src/c/d.ts', config)).toBe(true);
+    expect(scopeInsideReviewTarget('lib/x', config)).toBe(false);
+  });
+
   it('reads named lists of touched files the way the terminal gates do', () => {
     const config = {
       reviewTargetType: 'files',
