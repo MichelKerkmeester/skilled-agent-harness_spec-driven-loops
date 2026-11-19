@@ -377,3 +377,21 @@ test('directive lifecycle: a turn whose notice fails leaves the directive block 
   const retry = await step(fire, agent, [humanMessage('Two.')]);
   assert.equal(noticeText(retry.messages[0]), brief);
 });
+
+test('route receipts: a host reply that cannot take the notice commits nothing', async () => {
+  const commits = [];
+  const output = { hookSpecificOutput: { additionalContext: 'Advisor: fixture' } };
+  const { ctx, handlers } = adapterHarness();
+  registerPromptAdvisor(ctx, {
+    enabled: true,
+    isLeaf: interactive,
+    isEnabled: enabled,
+    core: { runAdvisor: async () => output, commitDelivery: async (delivered) => { commits.push(delivered); } },
+    createNotice: plainNotice,
+  });
+  await handlers.get('agent/pre-step')({
+    agent: { session: { id: 'session-bad-host-reply', header: { cwd: '/fixture/workspace' } } },
+    messages: [{ role: 'user', source: { kind: 'user' }, content: [{ type: 'text', text: 'Route this.' }] }],
+  }, async () => ({ kind: 'enter', messages: {} }));
+  assert.deepEqual(commits, []);
+});

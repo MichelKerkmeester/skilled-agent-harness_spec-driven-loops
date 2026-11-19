@@ -250,9 +250,12 @@ export function registerPromptAdvisor(ctx, {
       const delivered = deliveredContext(context, agent?.session?.id, concernEnabled(isEnabled, 'directive-lifecycle'));
       if (!delivered.text) return downstream;
       const notice = await createNotice(delivered.text);
+      // The message list is built before any receipt is stored, so a host reply
+      // that cannot take the notice leaves the session's state unchanged.
+      const messages = [...(downstream.messages ?? []), notice];
       delivered.remember();
       await commitDeliveredReceipts(ctx, core, output);
-      return { ...downstream, messages: [...(downstream.messages ?? []), notice] };
+      return { ...downstream, messages };
     } catch (error) {
       logFailure(ctx, error);
       return downstream;
