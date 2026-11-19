@@ -7286,3 +7286,73 @@ describe('fanout-run.cjs — a fatal provider refusal is announced and redacted'
     expect(existsSync(join(logsDir, 'fanout-lineage.1.err'))).toBe(false);
   });
 });
+
+describe('fanout-run.cjs — --preview builds every lineage command without writing', () => {
+  // Every entry under the tree, directories included, with each file's bytes hashed.
+  function treeDigest(root: string): string[] {
+    const entries: string[] = [];
+    const walk = (dir: string) => {
+      for (const name of readdirSync(dir).sort()) {
+        const full = join(dir, name);
+        const stat = lstatSync(full);
+        if (stat.isDirectory()) {
+          entries.push(`d ${relative(root, full)}`);
+          walk(full);
+        } else {
+          entries.push(`f ${relative(root, full)} ${createHash('sha256').update(readFileSync(full)).digest('hex')}`);
+        }
+      }
+    };
+    walk(root);
+    return entries;
+  }
+
+  it('prints both lineages with the prompt digested and leaves the artifact dir byte-identical', async () => {
+    const binDir = makeTempDir('fanout-run-preview-bin-');
+    writeStubBinary(binDir, 'opencode');
+    writeStubBinary(binDir, 'claude');
+    const hermetic = useHermeticEnv('preview');
+    const specFolder = 'specs/test-fanout-run-preview';
+    const baseDir = join(hermetic.tmpDir, specFolder, 'review');
+    // An earlier run's lineage and ledger, as a --restart dry run would find them.
+    mkdirSync(join(baseDir, 'lineages', 'opus', 'logs'), { recursive: true });
+    writeFileSync(join(baseDir, 'orchestration-status.log'), '{"event":"completed","label":"opus"}\n');
+    writeFileSync(join(baseDir, 'lineages', 'opus', 'logs', 'fanout-lineage.out'), 'earlier\n');
+    const before = treeDigest(baseDir);
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', specFolder,
+        '--loop-type', 'review',
+        '--fanout-config-json', JSON.stringify({
+          executors: [
+            { label: 'opus', kind: 'cli-claude-code', model: 'claude-opus-4-8', reasoningEffort: 'high' },
+            { label: 'deepseek', kind: 'cli-opencode', model: 'llmgateway/deepseek-v4.1-flash-1017', reasoningEffort: 'max' },
+          ],
+          concurrency: 2,
+        }),
+        '--base-artifact-dir', baseDir,
+        '--review-focus', 'error handling',
+        '--preview',
+      ],
+      { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 15_000 },
+    );
+
+    expect(result.exitCode).toBe(0);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      status?: string;
+      lineages?: Array<{ label: string; command: string; args: string[]; effective_config: Record<string, unknown> }>;
+    };
+    expect(payload.status).toBe('preview');
+    const [opus, deepseek] = payload.lineages ?? [];
+    expect(opus).toMatchObject({ label: 'opus', command: 'claude' });
+    expect(opus.args).toEqual(expect.arrayContaining(['--model', 'claude-opus-4-8', '--permission-mode', 'acceptEdits']));
+    expect(opus.args[1]).toMatch(/^<prompt:[0-9a-f]+>$/);
+    expect(deepseek).toMatchObject({ label: 'deepseek', command: 'opencode' });
+    // The prompt text itself never reaches the preview output.
+    expect(result.stdout).not.toContain('GATE 3 IS PRE-RESOLVED');
+    expect(result.stderr).toContain('--sandbox-mode=danger-full-access');
+    expect(treeDigest(baseDir)).toEqual(before);
+  });
+});

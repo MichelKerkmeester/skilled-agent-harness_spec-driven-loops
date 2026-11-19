@@ -33,7 +33,7 @@ const FANOUT_FLAGS = [
   'convergenceThreshold', 'lineageTimeoutHours', 'stopPolicy', 'convergenceMode', 'depthMode', 'containmentMode',
   'noMetadataRefresh', 'preDispatchWaitMs', 'stallWatchdogMs', 'maxCostUnitsPerLineage',
   'maxAggregateCostUnits', 'maxTokensPerLineage', 'maxTokenBudget', 'maxTokenBudgetPerLineage',
-  'costUnitsPerIteration', 'estimatedTokensPerIteration', 'allowSingleLineage',
+  'costUnitsPerIteration', 'estimatedTokensPerIteration', 'allowSingleLineage', 'preview',
 ];
 
 const {
@@ -3905,6 +3905,102 @@ async function main() {
     guards: rawGuardConfig,
     maxRetries: fanoutConfig.maxRetries,
   });
+
+  // One builder for the real dispatch and the preview, so the preview shows the command
+  // a run would spawn and not a reconstruction of it.
+  const buildLineageDispatch = (lineage, lineageDir, frontierScope) => {
+    const sessionId = readStoredLineageSessionId(loopType, lineageDir) || `fanout-${lineage.label}-${runId}`;
+    const promptLineageDir = path.resolve(process.cwd(), lineageDir);
+    const prompt = buildLoopPrompt(loopType, specFolder, promptLineageDir, sessionId, lineage, researchTopic, {
+      convergenceThreshold,
+      convergenceMode,
+      depthMode,
+      frontierScope,
+      stopPolicy,
+      reviewFocus,
+      reviewTarget: reviewTargetBinding.target,
+      reviewTargetType: reviewTargetBinding.type,
+    });
+
+    // Sandbox resolution stays write-capable by default even for review lineages:
+    // the review subprocess writes its own iteration artifacts (iterations/iteration-NNN.md,
+    // deep-review-state.jsonl, review-report.md, resource-map.md) INTO lineageDir, so a
+    // blanket read-only default would break those writes. The lineageDir-only write boundary
+    // is enforced by the lineage prompt's explicit write-scope instruction (which also names the
+    // repo tooling a weaker model must not run) rather than by a narrower sandbox; a path-scoped
+    // workspace-write would be the stronger fix if the CLIs exposed one. Callers can still pass an
+    // explicit sandboxMode to override.
+    //
+    // cli-opencode has no OS-level sandbox flag at all, so the generic workspace-write
+    // default would silently ask it to honor a mode it can never enforce. An UNSPECIFIED
+    // sandboxMode for this kind resolves to danger-full-access instead -- the only mode it
+    // can honestly report as effective -- so ordinary dispatch proceeds normally. A caller
+    // that EXPLICITLY asks for read-only/workspace-write still reaches finalizeLineageCommand
+    // unmodified, where that genuine confinement request is rejected.
+    const effectiveSandbox = lineage.kind === 'cli-opencode'
+      && (lineage.sandboxMode === null || lineage.sandboxMode === undefined)
+      ? 'danger-full-access'
+      : resolveSandboxMode(lineage.sandboxMode);
+    const effectivePermission = resolveClaudePermissionMode(lineage.sandboxMode);
+
+    const built = buildLineageCommand(lineage, prompt, effectiveSandbox, effectivePermission, {
+      loopType,
+      specFolder,
+      lineageDir: promptLineageDir,
+      sessionId,
+      convergenceThreshold,
+      convergenceMode,
+      depthMode,
+      frontierScope,
+      stopPolicy,
+      researchTopic,
+      reviewFocus,
+      reviewTarget: reviewTargetBinding.target,
+      reviewTargetType: reviewTargetBinding.type,
+    });
+    return { ...built, sessionId, prompt, promptLineageDir, effectivePermission };
+  };
+
+  // A preview builds every lineage's command exactly as a run would, prints it with the
+  // prompt replaced by its digest, and exits before any directory, ledger, lock,
+  // checkpoint or frontier store is written.
+  if (args.preview === true || args.preview === 'true') {
+    const previewPartition = resolveFrontierPartition({
+      depthMode,
+      budgetPartition,
+      baseArtifactDir,
+      labels: allLineages.map((lineage) => lineage.label),
+    });
+    const lineages = allLineages.map((lineage) => {
+      if (lineage.kind === 'cli-mistral-vibe') {
+        return {
+          label: lineage.label,
+          kind: lineage.kind,
+          command: null,
+          note: 'cli-mistral-vibe writes its home and prompt file into the lineage directory '
+            + 'while its command is built, so the preview does not build it',
+        };
+      }
+      const frontierScope = previewPartition ? (previewPartition[lineage.label] || []).map((node) => node.nodeId) : [];
+      const built = buildLineageDispatch(lineage, path.join(lineagesDir, lineage.label), frontierScope);
+      const promptToken = `<prompt:${digestText(built.prompt)}>`;
+      return {
+        label: lineage.label,
+        kind: lineage.kind,
+        command: built.command,
+        args: built.args.map((arg) => (arg === built.prompt ? promptToken : arg)),
+        ...(typeof built.input === 'string' ? { stdin: built.input === built.prompt ? promptToken : '<input>' } : {}),
+        cwd: built.cwd ?? process.cwd(),
+        session_id: built.sessionId,
+        iterations: lineage.iterations ?? null,
+        frontier_scope: frontierScope,
+        effective_config: built.effectiveConfig,
+        invocation_fingerprint: built.invocationFingerprint,
+      };
+    });
+    jsonOut({ status: 'preview', lineages, aggregate_budget: aggregateBudgetDecision });
+    return;
+  }
   if (!aggregateBudgetDecision.continue_allowed) {
     appendFanoutStatusLedger(ledgerPath, {
       event: 'aggregate_budget_cap_exceeded',
@@ -4115,44 +4211,10 @@ async function main() {
         ? createDshHome()
         : null;
 
-      const sessionId = readStoredLineageSessionId(loopType, lineageDir) || `fanout-${lineage.label}-${runId}`;
-      const promptLineageDir = path.resolve(process.cwd(), lineageDir);
-      const prompt = buildLoopPrompt(loopType, specFolder, promptLineageDir, sessionId, lineage, researchTopic, {
-        convergenceThreshold,
-        convergenceMode,
-        depthMode,
-        frontierScope,
-        stopPolicy,
-        reviewFocus,
-        reviewTarget: reviewTargetBinding.target,
-        reviewTargetType: reviewTargetBinding.type,
-      });
-
-      // Sandbox resolution stays write-capable by default even for review lineages:
-      // the review subprocess writes its own iteration artifacts (iterations/iteration-NNN.md,
-      // deep-review-state.jsonl, review-report.md, resource-map.md) INTO lineageDir, so a
-      // blanket read-only default would break those writes. The lineageDir-only write boundary
-      // is enforced by the lineage prompt's explicit write-scope instruction (which also names the
-      // repo tooling a weaker model must not run) rather than by a narrower sandbox; a path-scoped
-      // workspace-write would be the stronger fix if the CLIs exposed one. Callers can still pass an
-      // explicit sandboxMode to override.
-      //
-      // cli-opencode has no OS-level sandbox flag at all, so the generic workspace-write
-      // default would silently ask it to honor a mode it can never enforce. An UNSPECIFIED
-      // sandboxMode for this kind resolves to danger-full-access instead -- the only mode it
-      // can honestly report as effective -- so ordinary dispatch proceeds normally. A caller
-      // that EXPLICITLY asks for read-only/workspace-write still reaches finalizeLineageCommand
-      // unmodified, where that genuine confinement request is rejected.
-      const resolvedSandbox = lineage.kind === 'cli-opencode'
-        && (lineage.sandboxMode === null || lineage.sandboxMode === undefined)
-        ? 'danger-full-access'
-        : resolveSandboxMode(lineage.sandboxMode);
-      const resolvedPermission = resolveClaudePermissionMode(lineage.sandboxMode);
-
-      const effectiveSandbox = resolvedSandbox;
-      const effectivePermission = resolvedPermission;
-
       const {
+        sessionId,
+        promptLineageDir,
+        effectivePermission,
         command,
         args: cmdArgs,
         input,
@@ -4160,27 +4222,7 @@ async function main() {
         env: commandEnv,
         effectiveConfig,
         invocationFingerprint,
-      } = buildLineageCommand(
-        lineage,
-        prompt,
-        effectiveSandbox,
-        effectivePermission,
-        {
-          loopType,
-          specFolder,
-          lineageDir: promptLineageDir,
-          sessionId,
-          convergenceThreshold,
-          convergenceMode,
-          depthMode,
-          frontierScope,
-          stopPolicy,
-          researchTopic,
-          reviewFocus,
-          reviewTarget: reviewTargetBinding.target,
-          reviewTargetType: reviewTargetBinding.type,
-        },
-      );
+      } = buildLineageDispatch(lineage, lineageDir, frontierScope);
 
       // Persist invocation provenance before dispatch so the worker can read it.
       fs.writeFileSync(
