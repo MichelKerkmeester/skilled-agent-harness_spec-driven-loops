@@ -614,6 +614,98 @@ describe('frontier-admit review root cap and commit-range scope', () => {
     expect(scopeInsideReviewTarget('lib/x', config)).toBe(false);
   });
 
+  // Nothing else writes the files a range touches, so each lineage would record
+  // its own guess. The scope command reads them from git, honoring the pathspec
+  // after '--' and stopping at a parenthesized label.
+  describe('the scope command', () => {
+    function git(cwd: string, ...args: string[]): string {
+      const result = spawnSync('git', args, { cwd, encoding: 'utf8' });
+      if (result.status !== 0) throw new Error(`git ${args.join(' ')}: ${result.stderr}`);
+      return String(result.stdout).trim();
+    }
+
+    function makeRepo(): { repo: string; base: string; tip: string } {
+      const repo = mkdtempSync(join(tmpdir(), 'frontier-admit-scope-repo-'));
+      tempDirs.push(repo);
+      git(repo, 'init', '-q');
+      git(repo, 'config', 'user.name', 'test');
+      git(repo, 'config', 'user.email', 'test@example.invalid');
+      git(repo, 'config', 'commit.gpgsign', 'false');
+      git(repo, 'config', 'core.hooksPath', '/dev/null');
+      writeFileSync(join(repo, 'README.md'), 'start\n', 'utf8');
+      git(repo, 'add', '-A');
+      git(repo, 'commit', '-q', '-m', 'start');
+      const base = git(repo, 'rev-parse', 'HEAD');
+      for (const dir of ['in', 'out']) {
+        spawnSync('mkdir', ['-p', join(repo, dir)]);
+        writeFileSync(join(repo, dir, 'a.ts'), 'export {};\n', 'utf8');
+      }
+      writeFileSync(join(repo, 'README.md'), 'changed\n', 'utf8');
+      git(repo, 'add', '-A');
+      git(repo, 'commit', '-q', '-m', 'change');
+      return { repo, base, tip: git(repo, 'rev-parse', 'HEAD') };
+    }
+
+    function runScope(repo: string, artifactDir: string) {
+      return spawnSync(process.execPath, [
+        FRONTIER_ADMIT_SCRIPT, 'scope', '--target', 'review', '--artifact-dir', artifactDir,
+      ], { cwd: repo, encoding: 'utf8' });
+    }
+
+    function writeConfig(artifactDir: string, reviewTarget: string, reviewScopeFiles: unknown): void {
+      writeFileSync(
+        join(artifactDir, REVIEW_CONFIG_FILE),
+        JSON.stringify({ ...REVIEW_CONFIG, reviewTarget, reviewScopeFiles }),
+        'utf8',
+      );
+    }
+
+    function readConfig(artifactDir: string): Record<string, unknown> {
+      return JSON.parse(readFileSync(join(artifactDir, REVIEW_CONFIG_FILE), 'utf8')) as Record<string, unknown>;
+    }
+
+    it('replaces a guessed list with the files the range touches inside its pathspec', () => {
+      const { repo, base, tip } = makeRepo();
+      const artifactDir = makeBareArtifactDir();
+      writeConfig(artifactDir, `${base}..${tip} -- in (the inner tree only; out excluded)`, ['in', 'out', 'README.md']);
+
+      const result = runScope(repo, artifactDir);
+
+      expect(result.status, String(result.stderr)).toBe(0);
+      expect(readConfig(artifactDir).reviewScopeFiles).toEqual(['in/a.ts']);
+    });
+
+    it('reads every touched file when the range names no pathspec', () => {
+      const { repo, base, tip } = makeRepo();
+      const artifactDir = makeBareArtifactDir();
+      writeConfig(artifactDir, `${base}..${tip}`, []);
+
+      expect(runScope(repo, artifactDir).status).toBe(0);
+      expect(readConfig(artifactDir).reviewScopeFiles).toEqual(['README.md', 'in/a.ts', 'out/a.ts']);
+    });
+
+    it('leaves a target that is not a commit range untouched', () => {
+      const { repo } = makeRepo();
+      const artifactDir = makeBareArtifactDir();
+      writeConfig(artifactDir, 'in, out', ['in/a.ts']);
+      const before = readFileSync(join(artifactDir, REVIEW_CONFIG_FILE), 'utf8');
+
+      expect(runScope(repo, artifactDir).status).toBe(0);
+      expect(readFileSync(join(artifactDir, REVIEW_CONFIG_FILE), 'utf8')).toBe(before);
+    });
+
+    it('fails when git cannot read the range, rather than keeping the guessed list', () => {
+      const { repo } = makeRepo();
+      const artifactDir = makeBareArtifactDir();
+      writeConfig(artifactDir, 'nosuchref..alsomissing', ['guess']);
+
+      const result = runScope(repo, artifactDir);
+
+      expect(result.status).toBe(2);
+      expect(readConfig(artifactDir).reviewScopeFiles).toEqual(['guess']);
+    });
+  });
+
   it('admits depth-2 proposals a commit-range lineage scoped inside the touched files', () => {
     const artifactDir = makeBareArtifactDir();
     writeFileSync(

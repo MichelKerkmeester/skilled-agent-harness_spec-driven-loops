@@ -299,8 +299,19 @@ describe('deep-review wires the expansive frontier steps', () => {
     const steps = order(wf.phase_init.steps);
     const seed = steps.indexOf('step_frontier_seed');
     expect(seed).toBeGreaterThanOrEqual(0);
-    expect(steps[seed - 1]).toBe('step_create_config');
+    expect(steps[seed - 1]).toBe('step_frontier_scope');
+    expect(steps[seed - 2]).toBe('step_create_config');
     expect(wf.phase_init.steps.step_frontier_seed.skip_when).toContain('fanout_lineage_artifact_dir');
+  });
+
+  // Relevance and the terminal scope gate read reviewScopeFiles, so a commit-range
+  // target's touched files are written by a command before the seed admits
+  // anything, in every lineage, and never on a default run.
+  it('records the touched files of a commit range before the seed, in every lineage', () => {
+    const step = wf.phase_init.steps.step_frontier_scope;
+    expect(step.command).toContain('frontier-admit.cjs scope --target review');
+    expect(step.enabled_when).toBe("depth_mode == 'expansive'");
+    expect(step.skip_when).toBeUndefined();
   });
 
   it('activates the active frontier node right before the dispatch', () => {

@@ -33,6 +33,7 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 
+const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -648,6 +649,54 @@ function scopeInsideTouchedFiles(scope, touchedFiles) {
   )));
 }
 
+// The range target is written as '<range> -- <paths> (label)'. The paths after
+// '--' are git's pathspec, up to a parenthesized label; with no '--' the whole
+// range is in scope, since words around the range may be a label, not paths.
+function commitRangeParts(reviewTarget) {
+  const tokens = reviewTarget.split(/\s+/).filter((token) => token !== '');
+  const range = tokens.find(isRevisionRangeToken);
+  const separator = tokens.indexOf('--');
+  const pathspec = [];
+  if (separator !== -1) {
+    for (const token of tokens.slice(separator + 1)) {
+      if (token.startsWith('(')) break;
+      pathspec.push(token);
+    }
+  }
+  return { range, pathspec };
+}
+
+/**
+ * Record the files a commit-range review target touches as the config's
+ * reviewScopeFiles, read from git in the working directory. Relevance and the
+ * terminal scope gate both read that list, and no other step derives it.
+ *
+ * @param {Object} options - Scope inputs.
+ * @param {string} options.artifactDir - The run's artifact directory.
+ * @returns {{touchedFiles: number, range: string, pathspec: string[]}|{skipped: string}} The list size written, or why nothing was.
+ * @throws {Error} When the config is missing or git cannot read the range.
+ */
+function writeTouchedFiles({ artifactDir }) {
+  const config = readTargetConfig(artifactDir, 'review');
+  if (!isPlainObject(config)) throw new Error(`cannot record the touched files: ${REVIEW_CONFIG_FILE} is missing or holds no JSON object`);
+  if (config.reviewTargetType !== 'files' || !isCommitRange(config.reviewTarget)) return { skipped: 'not-a-commit-range' };
+
+  const { range, pathspec } = commitRangeParts(config.reviewTarget);
+  let output;
+  try {
+    output = execFileSync('git', ['diff', '--name-only', range, '--', ...pathspec], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+  } catch (error) {
+    const stderr = error && error.stderr ? String(error.stderr).trim() : '';
+    throw new Error(`git diff --name-only ${range} failed${stderr ? `: ${stderr}` : ''}`);
+  }
+  const files = output.split('\n').map((line) => line.trim()).filter((line) => line !== '');
+  const configPath = path.join(artifactDir, REVIEW_CONFIG_FILE);
+  const tmpPath = `${configPath}.tmp`;
+  fs.writeFileSync(tmpPath, `${JSON.stringify({ ...config, reviewScopeFiles: files }, null, 2)}\n`, 'utf8');
+  fs.renameSync(tmpPath, configPath);
+  return { touchedFiles: files.length, range, pathspec };
+}
+
 /**
  * Test whether a proposal's scope lies inside the review target.
  *
@@ -1220,14 +1269,18 @@ function runCli(argv) {
   const command = args.command;
 
   if (command !== 'seed' && command !== 'admit' && command !== 'close'
-    && command !== 'graph' && command !== 'block' && command !== 'budget') {
-    throw new Error(`unknown command: ${command === null ? '(none)' : command}; expected seed, admit, close, graph, block or budget`);
+    && command !== 'graph' && command !== 'block' && command !== 'budget' && command !== 'scope') {
+    throw new Error(`unknown command: ${command === null ? '(none)' : command}; expected seed, admit, close, graph, block, budget or scope`);
   }
 
   const artifactDir = requireFlag(args, 'artifactDir', 'artifact-dir');
   const target = assertTarget(args.target === undefined ? 'research' : args.target);
 
   if (command === 'budget') return writeSeedBudget({ artifactDir, target });
+  if (command === 'scope') {
+    if (target !== 'review') throw new Error('scope applies to --target review only');
+    return writeTouchedFiles({ artifactDir });
+  }
 
   if (command === 'graph') {
     const output = requireFlag(args, 'output', 'output');
@@ -1318,6 +1371,7 @@ module.exports = {
   applyBandBudget,
   readCaps,
   scopeInsideReviewTarget,
+  writeTouchedFiles,
   checkProposal,
   admitProposals,
   seedNodes,

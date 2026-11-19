@@ -603,7 +603,7 @@ describe('frontier-admit', () => {
       name: 'an unknown command',
       files: {},
       args: (dir: string) => ['grow', '--artifact-dir', dir],
-      message: '[frontier-admit] unknown command: grow; expected seed, admit, close, graph, block or budget\n',
+      message: '[frontier-admit] unknown command: grow; expected seed, admit, close, graph, block, budget or scope\n',
     },
     {
       name: 'a flag with no value',

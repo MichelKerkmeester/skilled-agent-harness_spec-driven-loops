@@ -923,6 +923,24 @@ workflow:
           executionMode: "{execution_mode}"
         output: "{state_paths.config}"
 
+      step_frontier_scope:
+        description: "Record the files a commit-range target touches before admission reads them"
+        enabled_when: "depth_mode == 'expansive'"
+        dry_run_boundary: "state-mutation"
+        note: |
+          Relevance and the terminal scope gate read reviewScopeFiles, and for a
+          commit-range target only git knows those files. The command replaces the
+          list step_scope_discovery recorded with git diff --name-only <range> --
+          <pathspec>, the pathspec being the paths after '--' up to a parenthesized
+          label, and leaves any other target untouched. A fan-out lineage runs it
+          too, after its own step_create_config, so its list is the same as every
+          other lineage's. A default-mode run never reaches this step.
+        command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs scope --target review --artifact-dir "{artifact_dir}"'
+        working_directory: "{repo_root}"
+        outputs:
+          - frontier_scope_json: "The JSON line the command prints: touchedFiles, range and pathspec, or skipped"
+        on_failure: "Halt with the command's stderr line. Admission must not run against a guessed file list."
+
       step_frontier_seed:
         description: "Seed the depth-1 review frontier so iteration 1 already has open nodes"
         enabled_when: "depth_mode == 'expansive'"
@@ -2636,7 +2654,7 @@ rules:
     - skip_convergence_check
     - dispatch_non_leaf_agents
     - hold_iteration_findings_in_memory_only
-    - modify_config_after_initialization_outside_its_writer_steps  # step_extend_completed_run, step_frontier_budget and step_update_config_status
+    - modify_config_after_initialization_outside_its_writer_steps  # step_extend_completed_run, step_frontier_scope, step_frontier_budget and step_update_config_status
     - overwrite_jsonl_state_log
     - proceed_without_state_file_verification
     - modify_files_under_review
