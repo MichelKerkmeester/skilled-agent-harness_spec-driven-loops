@@ -1176,6 +1176,16 @@ describe('reduceReviewState expansive frontier', () => {
     ]);
   });
 
+  it('fails a store that exists but cannot be read instead of projecting an empty frontier', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    // A directory at the store path cannot be read even as root.
+    mkdirSync(join(reviewDir, 'frontier-nodes.jsonl'));
+
+    expect(() => reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }))
+      .toThrow(/cannot read node store/);
+  });
+
   it('attributes a reworded focus through the store and keeps a longer node id out', () => {
     const { specFolder, reviewDir } = makeReviewDir();
     writeExpansiveConfig(reviewDir);

@@ -2102,6 +2102,15 @@ describe('deep-research reduce-state expansive frontier', () => {
     ]);
   });
 
+  it('fails a store that exists but cannot be read instead of projecting an empty frontier', () => {
+    const specFolder = expansiveSpec();
+    // A directory at the store path cannot be read even as root.
+    mkdirSync(join(specFolder, 'research', 'frontier-nodes.jsonl'));
+    writeState(specFolder, stateOf([]));
+
+    expect(() => reduceResearchState(specFolder, { write: false })).toThrow(/cannot read node store/);
+  });
+
   it('never rolls a share up: a spent depth-1 band closes its open node as budget-exhausted', () => {
     const specFolder = expansiveSpec();
     writeNodes(specFolder, twoOpen());
