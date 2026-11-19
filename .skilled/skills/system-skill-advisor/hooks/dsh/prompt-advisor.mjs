@@ -119,6 +119,16 @@ function logFailure(ctx, error) {
   return undefined;
 }
 
+// A lost commit only means the next turn is briefed and routed as if this one
+// had not happened, so a failure is logged and never reaches the host.
+async function commitDeliveredReceipts(ctx, core, output) {
+  try {
+    await core.commitDelivery?.(output);
+  } catch (error) {
+    logFailure(ctx, error);
+  }
+}
+
 async function makeNotice(text) {
   const { createUserMessage } = await loadDshLlm();
   return createUserMessage({
@@ -140,10 +150,25 @@ async function makeNotice(text) {
  */
 export async function runAdvisor(input, load = () => import(ADVISOR_MODULE_URL)) {
   const advisor = await load();
+  // The handler holds its receipts until this extension commits them, so a turn
+  // whose brief never reaches the model leaves the session's state unchanged.
   return advisor.handleClaudeUserPromptSubmit(input, {
     runtime: ADVISOR_RUNTIME,
     writeDiagnostic: () => {},
+    deferDirectiveReceipt: true,
   });
+}
+
+/**
+ * Commit the receipts the handler held for one delivered output.
+ *
+ * @param {Object} output - The advisor hook output the notice was built from.
+ * @param {Function} [load] - Loads the advisor module, injectable for tests.
+ * @returns {Promise<boolean>} Whether the held receipts were committed.
+ */
+export async function commitDelivery(output, load = () => import(ADVISOR_MODULE_URL)) {
+  const advisor = await load();
+  return advisor.commitClaudeDirectiveDeliveryReceipt(output);
 }
 
 /**
@@ -175,7 +200,7 @@ export async function advanceBoundary(sessionId, load = () => import(LIFECYCLE_M
  */
 export function registerPromptAdvisor(ctx, {
   enabled = false,
-  core = { runAdvisor, advanceBoundary },
+  core = { runAdvisor, advanceBoundary, commitDelivery },
   createNotice = makeNotice,
   isLeaf = isLineageLeaf,
   isEnabled = isHookEnabled,
@@ -218,6 +243,7 @@ export function registerPromptAdvisor(ctx, {
       const delivered = deliveredContext(context, agent?.session?.id, concernEnabled(isEnabled, 'directive-lifecycle'));
       if (!delivered) return downstream;
       const notice = await createNotice(delivered);
+      await commitDeliveredReceipts(ctx, core, output);
       return { ...downstream, messages: [...(downstream.messages ?? []), notice] };
     } catch (error) {
       logFailure(ctx, error);

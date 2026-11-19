@@ -189,10 +189,29 @@ export function reduceRepeatedHead(context, sessionId, {
 
 async function runAdvisor(input) {
   const advisor = await import(ADVISOR_MODULE_URL);
+  // The handler holds its receipts until this extension commits them, so a turn
+  // whose brief never reaches the model leaves the session's state unchanged.
   return advisor.handleClaudeUserPromptSubmit(input, {
     runtime: ADVISOR_RUNTIME,
     writeDiagnostic: () => {},
+    deferDirectiveReceipt: true,
   });
+}
+
+async function commitDelivery(output) {
+  const advisor = await import(ADVISOR_MODULE_URL);
+  return advisor.commitClaudeDirectiveDeliveryReceipt(output);
+}
+
+// A lost commit only means the next turn is briefed and routed as if this one
+// had not happened, so a failure never costs the turn its brief.
+async function commitQuietly(commit, output) {
+  try {
+    await commit(output);
+  } catch {
+    return undefined;
+  }
+  return undefined;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -208,6 +227,7 @@ async function runAdvisor(input) {
  */
 export async function buildAdvisorPart(payload, {
   run = runAdvisor,
+  commit = commitDelivery,
   env = process.env,
   isEnabled = isHookEnabled,
   // The receipt folder follows the injected environment, so a caller that
@@ -240,7 +260,9 @@ export async function buildAdvisorPart(payload, {
 
     const context = output?.hookSpecificOutput?.additionalContext;
     if (typeof context !== 'string' || !context.trim()) return '';
-    return reduceRepeatedHead(withCommandDocuments(context), sessionId, { read, write, env });
+    const brief = reduceRepeatedHead(withCommandDocuments(context), sessionId, { read, write, env });
+    if (brief) await commitQuietly(commit, output);
+    return brief;
   } catch {
     return '';
   }
