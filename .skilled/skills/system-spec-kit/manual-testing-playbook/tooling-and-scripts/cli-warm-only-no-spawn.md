@@ -1,7 +1,7 @@
 ---
 title: "428 -- CLI Warm-Only No-Spawn Behavior"
 description: "Manual check that a --warm-only CLI call against an absent daemon socket exits 75 with a backend-unavailable error and never cold-spawns a launcher or daemon."
-version: 2.0.0.0
+version: 2.0.1.0
 id: tooling-and-scripts-cli-warm-only-no-spawn
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -13,7 +13,7 @@ expected_leaf_resources: []
 
 This scenario verifies the warm-only contract all prompt-time hook integrations rely on: a `--warm-only` CLI call probes the daemon socket first and, when no daemon is reachable, exits 75 (`EXIT_RETRYABLE`) with a `backend unavailable` error instead of auto-spawning the launcher. The sandbox uses a fresh empty socket directory, so the probe always misses and the no-spawn invariant is directly observable — the socket directory must stay empty after the calls.
 
-`SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY` set the default and `--no-warm-only` re-enables auto-spawn per call. The `spec-memory` and `code-index` CLIs that shared this contract were removed with their servers, so the advisor is the only consumer left.
+`SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY` set the default, any prompt-time marker (`SYSTEM_SKILL_ADVISOR_CLI_PROMPT_TIME`, `SPECKIT_SKILL_ADVISOR_CLI_PROMPT_TIME`, `SPECKIT_CLI_PROMPT_TIME`, `OPENCODE_PROMPT_TIME`, `CLAUDE_CODE_PROMPT_TIME`) also makes warm-only the default, and `--no-warm-only` re-enables auto-spawn per call. The `spec-memory` and `code-index` CLIs that shared this contract were removed with their servers, so the advisor is the only consumer left.
 
 ---
 
@@ -43,7 +43,7 @@ Validate that --warm-only CLI calls exit 75 with backend unavailable and never s
 SANDBOX=$(mktemp -d /tmp/cli-playbook.XXXXXX)
 export SPECKIT_IPC_SOCKET_DIR="$SANDBOX/sock"
 export SPECKIT_DAEMON_REELECTION=0
-BEFORE=$(pgrep -f "mk-skill-advisor-launcher" | wc -l)
+BEFORE=$(pgrep -f "system-skill-advisor-launcher" | wc -l)
 
 node .skilled/bin/skill-advisor.cjs advisor_status --workspaceRoot . --warm-only --timeout-ms 3000 --format json; echo "skill-advisor exit=$?"
 
@@ -92,7 +92,7 @@ An exit 0 means the call reached a daemon — check that `SPECKIT_IPC_SOCKET_DIR
 | File | Role |
 |---|---|
 | `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts` | `ensureDaemonReady` warm-only branch throwing the retryable error |
-| `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper relying on this contract |
+| `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper that opts out of warm-only with `--no-warm-only` so the CLI can cold-start the daemon |
 
 Provenance: manual only - run the scenario prompt: Validate that --warm-only CLI calls exit 75 with backend unavailable and never spawn a daemon when the socket directory is empty.
 

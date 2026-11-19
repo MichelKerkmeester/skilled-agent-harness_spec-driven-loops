@@ -17,7 +17,7 @@ trigger_phrases:
 
 Current state:
 
-- Tracks latency and calibration benchmarks for the advisor scorer.
+- Tracks advisor latency and scorer calibration, with additional measurements for floored follow-up routing and the route-receipt guard.
 - Keeps a recorded code-graph query latency baseline; its benchmark suite is no longer in this folder.
 - Stores baseline JSON used for regression comparison.
 
@@ -45,7 +45,7 @@ bench/
 |---|---|
 | `latency-bench.ts` | Measures advisor latency paths. |
 | `scorer-bench.ts` | Measures scorer performance. |
-| `scorer-calibration.bench.ts` | Measures scorer calibration against baseline expectations. |
+| `scorer-calibration.bench.ts` | Measures scorer calibration against baseline expectations, plus floored follow-up routing and the route-receipt guard over a fixed prompt-pair set. |
 | `hook-brief-signal-noise.bench.ts` | Measures hook brief signal-to-noise behavior. |
 | `watcher-benchmark.ts` | Measures watcher behavior. |
 
@@ -75,7 +75,7 @@ benchmark scenario
 | Entrypoint | Type | Purpose |
 |---|---|---|
 | `latency-bench.ts` | Benchmark | Advisor latency measurement. |
-| `scorer-calibration.bench.ts` | Benchmark | Scorer calibration measurement. |
+| `scorer-calibration.bench.ts` | Benchmark | Measures scorer calibration, floored follow-up routing and the route-receipt guard. |
 | `watcher-benchmark.ts` | Benchmark | Watcher measurement. |
 
 ---

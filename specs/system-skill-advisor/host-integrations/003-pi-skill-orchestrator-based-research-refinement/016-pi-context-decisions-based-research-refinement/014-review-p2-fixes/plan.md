@@ -44,9 +44,9 @@ Five source files change, each with a test that fails before its fix. The order 
 - [x] Dependencies identified: section 6 below
 
 ### Definition of Done
-- [ ] All acceptance criteria met: every REQ row in `spec.md` section 4 has evidence in `implementation-summary.md`
-- [ ] The two `spec.md` SC-002 commands exit 0: vitest with at least 488 passes plus the new tests, and the Python harness with `fail=0` and at least 117 passes
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met: every REQ row in `spec.md` section 4 has evidence in `implementation-summary.md`
+- [x] The two `spec.md` SC-002 commands exit 0: vitest with at least 488 passes plus the new tests, and the Python harness with `fail=0` and at least 117 passes
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -74,6 +74,8 @@ Claude sends the prompt. The hook strips the pasted reply, cuts to 64 KiB and ch
 ## 4. IMPLEMENTATION PHASES
 
 Setup confirms the baseline: 457 vitest passes and 117 Python passes on main, and the measured-behavior numbers in `spec.md`. Implementation lands eight fixes in `tasks.md` order, each after a red test: R2-P2-001, R1-P2-001, R3-P2-001 with R4-P2-001, R1-P2-003, R5-P2-001, R1-P2-002, R4-P2-002. Verification reruns both suites and the measurement, rebuilds the advisor and checks the parent goal's first criterion. `tasks.md` owns the ordered work.
+
+Phase 4, added when the operator reopened this phase on 2026-11-19, takes the follow-ups. Code changes go test first through Luna leaves, as before. The alignment runs' literal fixes go through their own `apply-fixes.cjs` into the worktree, and Luna leaves write the doc fixes that carry no literal text. The conductor reviews every diff and runs every check. Worktree `478-advisor-review-follow-ups` takes the commits, and the operator approved merge and push.
 <!-- /ANCHOR:phases -->
 
 ---

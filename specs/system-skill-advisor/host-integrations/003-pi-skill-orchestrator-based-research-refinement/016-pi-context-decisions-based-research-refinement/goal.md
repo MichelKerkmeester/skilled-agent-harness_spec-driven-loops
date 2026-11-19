@@ -44,12 +44,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Order: 001, 005, 002, 004, 003, 006 to 011, 013, 012, 014 to 016, each after the previous validates strict |
-| D2 | Code: GPT-6 Luna `xhigh` `fast` swarm, cli-codex |
-| D3 | Fallback: DeepSeek V4.1 Flash `max` via cli-mistral-vibe only |
+| D1 | Order: 001, 005, 002, 004, 003, 006-011, 013, 012, 014-017; each validates strict first |
+| D2 | Code: GPT-6 Luna `xhigh` `fast`, cli-codex |
+| D3 | Fallback: Vibe DeepSeek V4.1 Flash `max` only |
 | D4 | The conductor runs every check |
 | D5 | A phase changes only files its `spec.md` lists; cut items stay cut |
-| D6 | Approved for 474: commits, merge, push. For 014: commits, merge |
+| D6 | Approved: commit, merge, push for 474 and 014 |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -78,6 +78,7 @@ phase and binds as if written here.
 | 014-review-p2-fixes | `014-review-p2-fixes/goal.md` |
 | 015-skilled-alignment-check | `015-skilled-alignment-check/goal.md` |
 | 016-doc-alignment-check | `016-doc-alignment-check/goal.md` |
+| 017-ollama-advisor-analysis | `017-ollama-advisor-analysis/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -95,9 +96,9 @@ string, not these files.
 - [x] `npx vitest run tests/hooks tests/parity tests/handlers` exits 0 from `.skilled/skills/system-skill-advisor/runtime`
 - [x] `rg -n 'daemon starts' .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` prints one line
 - [x] `rg -n 'Decision rule outcome' specs/system-skill-advisor/*/003-pi-*/016-pi-*/003-*/implementation-summary.md` prints one line naming ship, over-suppresses or no guard
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/*/003-pi-*/016-pi-* --recursive --strict --quiet` prints `RESULT: PASSED` for all seventeen folders
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/*/003-pi-*/016-pi-* --recursive --strict --quiet` prints `RESULT: PASSED` for every folder
 - [x] `git merge-base --is-ancestor worktrees/474-advisor-pasted-context-and-crash-fallback origin/main` exits 0
-- [ ] `tasks.md` in 014, 015 and 016 has no `- [ ]` line
+- [x] `tasks.md` in 014, 015 and 016 has no `- [ ]` line
 <!-- /ANCHOR:completion -->
 
 ---
@@ -121,11 +122,15 @@ and findings belong here.
 | Finish | Done | Merged to main as `57d3f5d9159`, advisor rebuilt and its daemon restarted on main, criteria 1 to 5 run on main, pushed to origin/main |
 | Criteria evidence | Done | 1: `sk-code` first, daemon 24672 after the main build; 2: 424 passed on main; 3: line 382; 4: line 80, over-suppresses; 5: 14 of 14 on main; 6: exit 0 after pushing `57d3f5d9159` |
 | 015 and 016 alignment runs | Done | 015: 25 findings (1 P0 repaired in session, 9 P1, 15 P2), `015-skilled-alignment-check/evidence/report.md`. 016: 20 open findings (5 P1, 15 P2), `016-doc-alignment-check/evidence/report.md`. Both report only, nothing fixed |
+| 014 review fixes | Done | Worktree 475, seven commits `5f1bfa57c2d` to `a7964556816`: eight P2 findings fixed, R1-P2-004 accepted. `VT` 500 passed, `PY` pass=120, @review APPROVED, Luna refutation 5 of 6 hold. 014 strict `RESULT: PASSED` |
+| 014 merged and saved | Done | Merge c8404904544 on main, no push; main build exit 0, vitest 523 passed, Python 120/0, 17 of 17 strict PASSED, criterion 1 sk-code first after daemon restart; worktree 475 removed |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| D6 amended 2026-11-19 | The operator reopened 014 for every follow-up and approved its merge and push |
+| D1 amended 2026-11-19 | The operator added phase 017, a report-only Ollama analysis. D1 now orders 014-017, and D2, D3 and D6 were reworded with no change in meaning to keep the slice under 4000 characters |
 | Folder numbers differ from build order | 004 builds before 003 because both edit the same hook file; folder names were kept |
 | Amendment 2026-11-19, D6 for 014 | Operator approved commits and a merge to main for 014's worktree build, no push (014 decision record Q004) |
 | Amendment 2026-11-19, phases 015 and 016 | Report-only alignment runs added by operator request ("Also run /local-skilled-alignment and /local-doc-alignment make that phases"). D1 ends with 014 to 016, two binding rows added, criterion 5 counts seventeen folders and criterion 7 covers the tasks of 014, 015 and 016. To fit 4,000 characters: D7 dropped because it governed only the finished phase 011, D6 kept only its live choice, and `host-integrations` in two criterion globs became `*`, each glob checked to match one path |

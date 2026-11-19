@@ -39,7 +39,7 @@
       "stripped"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,6 +47,9 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      "hooks/claude/user-prompt-submit.ts",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      ".skilled/bin/launcher-threshold-env.vitest.ts",
       ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
       ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
@@ -57,8 +60,7 @@
       ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/subprocess-output-cap.vitest.ts",
-      "hooks/claude/user-prompt-submit.ts",
-      ".skilled/bin/skill-advisor.cjs"
+      ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs"
     ],
     "entities": [
       {
@@ -100,7 +102,19 @@
       {
         "name": "user-prompt-submit.ts",
         "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+        "path": "hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-threshold-env.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/launcher-threshold-env.vitest.ts",
         "source": "derived"
       },
       {
@@ -158,9 +172,9 @@
         "source": "derived"
       },
       {
-        "name": "skill-advisor.cjs",
+        "name": "prompt-advisor.mjs",
         "kind": "file",
-        "path": ".skilled/bin/skill-advisor.cjs",
+        "path": ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs",
         "source": "derived"
       },
       {
@@ -192,23 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The regex that finds a `Now:` or `Task:` marker backtracks on a long whitespace run that contains newlines",
     "created_at": "2026-11-19T05:16:45Z",
-    "last_save_at": "2026-11-19T08:05:18.014Z",
+    "last_save_at": "2026-11-19T12:54:46.368Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:17084a689c1bee76ed9ea360d25874b7a7a6ecd7f9fdef49bd2da22ca5d80312",
+    "source_fingerprint": "sha256:3e2e1a5ad31cbe78c272b50204969a9f08df27bfc2ff60dc62a7ffc72006826b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0617a2964e505843ff836f991bd55382e7b757e27b77ae3624a092024eb51aea",
-      "plan.md": "3955c57edc33643646f0ed1d6621db31d4babd9d49eee4a3e5a59d65d40873e3",
-      "tasks.md": "77cacf91cd6d7fc9b5e6473611c1abeebc89f7f015aa31ed6f72f34cc5a4f80e",
-      "decision-record.md": "ee56a4c64dc883d4c26803f88485471de8a0df12be8d3b74b120120997848a6f",
-      "implementation-summary.md": "53c4bad7b7edad8119bec12e857b19a11d10e29b7e8e7704c6c5482c9ca582a1"
+      "spec.md": "23528bd4effd3f1c870f8db8f76038604398acfe02a99b2ab2d6c46fa4f8efb1",
+      "plan.md": "560b7e6df960ba35dbf837ee83e2b75ecec7c5afdc02793029515c8559b0eab2",
+      "tasks.md": "1cbba3b24499092c79d15d4cc390b9c6cbe530d748d1ad60deabaeaf5617c188",
+      "decision-record.md": "91a078fefb4ae3eb83e5f4f916651a783a7b5b333647980c216595e9bbb51070",
+      "implementation-summary.md": "615a3abf54273d99b66ec8037d0fc43bd33d54ac6c71b0e7e7018715c961a4d2"
     },
     "last_active_at": null
   }

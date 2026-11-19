@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b337c403eabff40b2bf1c2ec7410c83f90c2884f1c4ae3d70a8584be2432de87",
+  "manifestHash": "feb3769f8b8e85bc61c0c61107afa164e81c67f5ba677fe61b0f2bebb2f6bc74",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -3494,6 +3494,9 @@
     "015 root readme refresh resource map": [
       "015-root-readme-refresh resource map"
     ],
+    "015 skilled alignment check operator decisions": [
+      "015-skilled-alignment-check operator decisions"
+    ],
     "015 storage adapter ports plan": [
       "015-storage-adapter-ports plan"
     ],
@@ -3842,6 +3845,9 @@
     ],
     "016 degraded readiness envelope parity": [
       "016-degraded-readiness-envelope-parity"
+    ],
+    "016 doc alignment check operator decisions": [
+      "016-doc-alignment-check operator decisions"
     ],
     "016 embedding provider local first": [
       "016-embedding-provider-local-first"
@@ -7691,6 +7697,9 @@
     "54 tool count readme": [
       "54-tool count readme"
     ],
+    "5k canary no canary case routes to it": [
+      "5k-canary no canary case routes to it"
+    ],
     "6 digit lowercase hex": [
       "6-digit lowercase hex"
     ],
@@ -8321,6 +8330,9 @@
     "add emoji reaction": [
       "add emoji reaction"
     ],
+    "add glm 5 3 to the cli pi": [
+      "add glm 5 3 to the cli pi"
+    ],
     "add goal md to a phase parent": [
       "add goal.md to a phase parent"
     ],
@@ -8910,6 +8922,9 @@
     ],
     "advisor compatibility export": [
       "advisor compatibility export"
+    ],
+    "advisor confidence floor": [
+      "advisor confidence floor"
     ],
     "advisor confidence threshold daemon start": [
       "advisor confidence threshold daemon start"
@@ -9773,6 +9788,9 @@
     "advisor seeded resweep": [
       "advisor seeded resweep"
     ],
+    "advisor semantic lane analysis": [
+      "advisor semantic lane analysis"
+    ],
     "advisor semantic lane promotion": [
       "advisor semantic lane promotion"
     ],
@@ -10123,6 +10141,9 @@
     ],
     "advisor workspaceroot must resolve under": [
       "advisor workspaceroot must resolve under"
+    ],
+    "advisor zombie daemons": [
+      "advisor zombie daemons"
     ],
     "advisorhookresult renderer": [
       "AdvisorHookResult renderer"
@@ -20528,6 +20549,9 @@
     "cl 008 opencode later turn goal injection": [
       "CL-008 OpenCode later-turn goal injection"
     ],
+    "cl 011": [
+      "cl-011"
+    ],
     "claim adjudication": [
       "claim adjudication"
     ],
@@ -30160,6 +30184,9 @@
     ],
     "confidence floor counter": [
       "confidence floor counter"
+    ],
+    "confidence floored follow up": [
+      "confidence-floored follow-up"
     ],
     "confidence reranker weight removal": [
       "confidence reranker weight removal"
@@ -56044,6 +56071,18 @@
     "glm 5 3 opencode go gateway": [
       "glm-5.3 opencode-go gateway"
     ],
+    "glm 5 3 opencode go roster": [
+      "glm 5 3 opencode go roster"
+    ],
+    "glm 5 3 opencode go roster implementation summary": [
+      "glm 5 3 opencode go roster implementation summary"
+    ],
+    "glm 5 3 opencode go roster plan": [
+      "glm 5 3 opencode go roster plan"
+    ],
+    "glm 5 3 opencode go roster tasks": [
+      "glm 5 3 opencode go roster tasks"
+    ],
     "glm 5 3 research dispatch plan": [
       "glm 5.3 research dispatch plan"
     ],
@@ -60931,6 +60970,9 @@
     ],
     "hub card references removed": [
       "hub-card references removed"
+    ],
+    "hub check reads the hub repository": [
+      "hub check reads the hub repository"
     ],
     "hub cleanup closure": [
       "hub cleanup closure"
@@ -78024,6 +78066,21 @@
     "ollama adapter shim": [
       "ollama adapter shim"
     ],
+    "ollama advisor analysis": [
+      "ollama advisor analysis"
+    ],
+    "ollama advisor analysis goal": [
+      "ollama advisor analysis goal"
+    ],
+    "ollama advisor analysis implementation summary": [
+      "ollama advisor analysis implementation summary"
+    ],
+    "ollama advisor analysis plan": [
+      "ollama advisor analysis plan"
+    ],
+    "ollama advisor analysis tasks": [
+      "ollama advisor analysis tasks"
+    ],
     "ollama and bge promotion arc changelog": [
       "ollama and bge promotion arc changelog"
     ],
@@ -81666,6 +81723,24 @@
     "parent skill check promotion plan": [
       "parent-skill-check promotion plan"
     ],
+    "parent skill check reads a hub s canary": [
+      "parent skill check reads a hub s canary"
+    ],
+    "parent skill check target root": [
+      "parent skill check target root"
+    ],
+    "parent skill check target root goal": [
+      "parent skill check target root goal"
+    ],
+    "parent skill check target root implementation summary": [
+      "parent skill check target root implementation summary"
+    ],
+    "parent skill check target root plan": [
+      "parent skill check target root plan"
+    ],
+    "parent skill check target root tasks": [
+      "parent skill check target root tasks"
+    ],
     "parent skill fixtures": [
       "parent skill fixtures"
     ],
@@ -81891,6 +81966,12 @@
     "past due tasks": [
       "past-due tasks"
     ],
+    "pasted assistant reply": [
+      "pasted assistant reply"
+    ],
+    "pasted assistant response": [
+      "pasted assistant response"
+    ],
     "pasted command attaches to task": [
       "pasted command attaches to task"
     ],
@@ -81909,11 +81990,21 @@
     "pasted context stripping tasks": [
       "pasted context stripping tasks"
     ],
+    "pasted reply routing": [
+      "pasted reply routing"
+    ],
+    "pasted reply strip": [
+      "pasted reply strip"
+    ],
     "pasted reply strip edges": [
       "pasted reply strip edges"
     ],
     "pasted reply strip shared fixture": [
       "pasted reply strip shared fixture"
+    ],
+    "pasted reply stripping": [
+      "Pasted Reply Stripping",
+      "pasted reply stripping"
     ],
     "patch a notion page s properties": [
       "patch a Notion page's properties"
@@ -83979,6 +84070,9 @@
     ],
     "phase 17 missing transcript notice": [
       "phase 17 missing transcript notice"
+    ],
+    "phase 17 ollama advisor analysis": [
+      "phase 17 ollama advisor analysis"
     ],
     "phase 17 over engineering cuts": [
       "phase 17 over engineering cuts"
@@ -102221,6 +102315,9 @@
     "route receipt after delivery": [
       "route receipt after delivery"
     ],
+    "route receipt guard": [
+      "route-receipt guard"
+    ],
     "route receipts build": [
       "route receipts build"
     ],
@@ -104715,6 +104812,9 @@
     "sc 005": [
       "sc-005"
     ],
+    "sc 006": [
+      "sc-006"
+    ],
     "scaffold and validate test": [
       "scaffold and validate test"
     ],
@@ -107142,6 +107242,9 @@
     ],
     "session resume asynclocalstorage auth binding": [
       "session-resume AsyncLocalStorage auth binding"
+    ],
+    "session route receipt": [
+      "session route receipt"
     ],
     "session scope implementation tasks": [
       "session scope implementation tasks"
@@ -125499,6 +125602,9 @@
     "system skill advisor 1 1 0 0": [
       "system-skill-advisor 1.1.0.0"
     ],
+    "system skill advisor 1 1 1 0": [
+      "system-skill-advisor 1.1.1.0"
+    ],
     "system skill advisor architectural shape": [
       "system-skill-advisor architectural shape"
     ],
@@ -125844,6 +125950,9 @@
     "system skill advisor v1 1 0 0": [
       "system-skill-advisor v1.1.0.0"
     ],
+    "system skill advisor v1 1 1 0": [
+      "system-skill-advisor v1.1.1.0"
+    ],
     "system skilled doctor 1 0 0 0": [
       "system-skilled-doctor 1.0.0.0"
     ],
@@ -125870,6 +125979,9 @@
     ],
     "system skilled doctor 1 1 7 0": [
       "system-skilled-doctor 1.1.7.0"
+    ],
+    "system skilled doctor 1 1 8 0": [
+      "system-skilled-doctor 1.1.8.0"
     ],
     "system skilled doctor benchmark": [
       "system-skilled-doctor benchmark"
@@ -125930,6 +126042,9 @@
     ],
     "system skilled doctor v1 1 7 0": [
       "system-skilled-doctor v1.1.7.0"
+    ],
+    "system skilled doctor v1 1 8 0": [
+      "system-skilled-doctor v1.1.8.0"
     ],
     "system spec gate": [
       "system-spec-gate"
@@ -127355,6 +127470,9 @@
     ],
     "task marker linear regex": [
       "task marker linear regex"
+    ],
+    "task marker stripping": [
+      "task marker stripping"
     ],
     "task prefix": [
       "task prefix"
@@ -133283,6 +133401,12 @@
     "vendored fork provenance check": [
       "vendored fork provenance check"
     ],
+    "vendored hub canary cases": [
+      "vendored hub canary cases"
+    ],
+    "vendored hub canary fixture": [
+      "vendored hub canary fixture"
+    ],
     "vendored model card exemption": [
       "vendored model card exemption"
     ],
@@ -135064,6 +135188,12 @@
     ],
     "weak follow up receipt guard": [
       "weak follow-up receipt guard"
+    ],
+    "weak follow up route receipt": [
+      "weak follow-up route receipt"
+    ],
+    "weak follow up route receipt guard": [
+      "Weak Follow-Up Route-Receipt Guard"
     ],
     "weak follow up session receipt": [
       "weak follow-up session receipt"

@@ -292,3 +292,50 @@ describe('reduceRepeatedHead with a held-back follow-up', () => {
     expect(vibeAdvisor.reduceRepeatedHead(route, 'vibe-session', receipts)).toBe(route);
   });
 });
+
+describe('buildAdvisorPart receipt commit', () => {
+  it('commits the handler receipts only for a turn that returns a brief', async () => {
+    const head = 'Advisor: live; use sk-code 0.91/0.12 pass.';
+    const output = { hookSpecificOutput: { additionalContext: head } };
+    const commits: unknown[] = [];
+    const receipts = new Map<string, string>();
+    const dependencies = {
+      run: async () => output,
+      commit: async (delivered: unknown) => {
+        commits.push(delivered);
+      },
+      env: {},
+      isEnabled: () => true,
+      read: (sessionId: string) => receipts.get(sessionId) ?? '',
+      write: (sessionId: string, text: string) => {
+        receipts.set(sessionId, text);
+      },
+    };
+    const payload = { hook_event_name: 'pre_agent', prompt: 'refactor the session store', session_id: 'vibe-receipt-commit' };
+
+    await expect(vibeAdvisor.buildAdvisorPart(payload, dependencies)).resolves.toBe(head);
+    expect(commits).toEqual([output]);
+    // The repeat returns nothing, so the model sees no brief and nothing is committed.
+    await expect(vibeAdvisor.buildAdvisorPart(payload, dependencies)).resolves.toBe('');
+    expect(commits).toEqual([output]);
+  });
+});
+
+describe('buildAdvisorPart receipt commit failure', () => {
+  it('keeps the brief when the receipt commit throws', async () => {
+    const head = 'Advisor: live; use sk-code 0.91/0.12 pass.';
+    const dependencies = {
+      run: async () => ({ hookSpecificOutput: { additionalContext: head } }),
+      commit: async () => {
+        throw new Error('commit failed');
+      },
+      env: {},
+      isEnabled: () => true,
+      read: () => '',
+      write: () => {},
+    };
+    const payload = { hook_event_name: 'pre_agent', prompt: 'refactor the session store', session_id: 'vibe-commit-throws' };
+
+    await expect(vibeAdvisor.buildAdvisorPart(payload, dependencies)).resolves.toBe(head);
+  });
+});

@@ -325,11 +325,13 @@ function makeLexical(hubRoot, legacyAdvisorId, extraRegistry = {}) {
 // 4. RUNNER
 // ─────────────────────────────────────────────────────────────────────────────
 
-// The checker exits the process, so it runs as a child. The strict switch is
-// removed from the inherited environment so every case sees the default.
+// The checker exits the process, so it runs as a child. The strict switch and
+// the commands-tree override are removed from the inherited environment so
+// every case sees the default.
 function runChecker(target, envOverrides = {}) {
   const env = { ...process.env };
   delete env.PARENT_HUB_CHECK_STRICT;
+  delete env.PARENT_HUB_CHECK_COMMANDS_DIR;
   const result = spawnSync(process.execPath, [CHECKER_PATH, target], {
     encoding: 'utf8',
     env: { ...env, ...envOverrides },
@@ -516,6 +518,85 @@ test('5k-canary fails when a routerSignals mode is never the expected route of a
   const hub = buildHub('sk-code');
   const { status, output } = runChecker(hub);
   assertLine(output, 'FAIL', '5k-canary', MODE_A);
+  assert.equal(status, 1, output);
+});
+
+// Moves a fixture hub into a temp repository that carries the authored sentinel,
+// so the checker treats it as a hub living in another checkout, as a vendored
+// project's hub does. The hub keeps the name sk-code, whose canaries the real
+// repository also ships, so reading the wrong repository's fixture shows up.
+function buildProjectHub() {
+  const hub = buildHub('sk-code');
+  const projectRoot = path.join(path.dirname(hub), 'project');
+  const sentinel = path.join(projectRoot, '.skilled', 'skills', 'system-spec-kit', 'SKILL.md');
+  fs.mkdirSync(path.dirname(sentinel), { recursive: true });
+  fs.writeFileSync(sentinel, '---\nname: system-spec-kit\n---\n# sentinel\n');
+  const projectHub = path.join(projectRoot, '.skilled', 'skills', 'sk-code');
+  fs.renameSync(hub, projectHub);
+  return { projectRoot, hub: projectHub };
+}
+
+function writeProjectCanaries(projectRoot, modes) {
+  const dir = path.join(projectRoot, '.skilled', 'bin', 'lib', 'compiled-routing', '009-parent-hub-rollout',
+    '001-sk-code', 'fixtures');
+  fs.mkdirSync(dir, { recursive: true });
+  writeJson(path.join(dir, 'canary-cases.v1.json'), {
+    cases: modes.map((mode) => ({ expectedAction: 'route', expectedModes: [mode] })),
+  });
+}
+
+test('5k-canary reads the canary fixture of the repository that holds the hub', () => {
+  const { projectRoot, hub } = buildProjectHub();
+  writeProjectCanaries(projectRoot, [MODE_A, MODE_B]);
+  const { status, output } = runChecker(hub);
+  assertLine(output, 'PASS', '5k-canary');
+  assert.equal(status, 0, output);
+});
+
+test('5k-canary is not applicable when the hub repository has no fixture of its own', () => {
+  const { projectRoot, hub } = buildProjectHub();
+  const { status, output } = runChecker(hub);
+  assertLine(output, 'INFO', '5k-canary', `in ${escapeRegExp(projectRoot)}, leg not applicable`);
+  assert.doesNotMatch(output, /^FAIL: 5k-canary/m);
+  assert.equal(status, 0, output);
+});
+
+test('3k reads bound commands from the hub repository unless PARENT_HUB_CHECK_COMMANDS_DIR overrides', () => {
+  const { projectRoot, hub } = buildProjectHub();
+  writeProjectCanaries(projectRoot, [MODE_A, MODE_B]);
+  const writeCommand = (commandsDir, allowedTools) => {
+    fs.mkdirSync(path.join(commandsDir, 'demo'), { recursive: true });
+    fs.writeFileSync(path.join(commandsDir, 'demo', 'alpha.md'), `---\ndescription: demo\nallowed-tools: ${allowedTools}\n---\n# alpha\n`);
+  };
+  writeCommand(path.join(projectRoot, '.skilled', 'commands'), 'Read, Write');
+  editJson(hub, 'mode-registry.json', (r) => { r.modes[0].command = '/demo:alpha'; });
+  fs.writeFileSync(path.join(hub, 'SKILL.md'), hubSkillMd({
+    rows: [
+      `| **${MODE_A}** | alpha | \`pkg-alpha/\` | \`/demo:alpha\` |`,
+      `| **${MODE_B}** | beta | \`pkg-beta/\` | routes via aliases |`,
+    ],
+  }));
+
+  const fromProject = runChecker(hub);
+  assertLine(fromProject.output, 'FAIL', '3k', 'Write');
+  assert.equal(fromProject.status, 1, fromProject.output);
+
+  const overrideDir = path.join(path.dirname(projectRoot), 'override-commands');
+  writeCommand(overrideDir, 'Read');
+  const overridden = runChecker(hub, { PARENT_HUB_CHECK_COMMANDS_DIR: overrideDir });
+  assertLine(overridden.output, 'PASS', '3k');
+  assert.equal(overridden.status, 0, overridden.output);
+});
+
+// The drift guard named here exists in the checker's checkout but not in the
+// project, so reading the wrong repository turns both failures into passes.
+test('4a and 4b read the drift guard and advisor from the hub repository', () => {
+  const { projectRoot, hub } = buildProjectHub();
+  writeProjectCanaries(projectRoot, [MODE_A, MODE_B]);
+  makeLexical(hub, 'demo-legacy', { advisorRoutingContract: { driftGuard: REAL_ADVISOR_DRIFT_GUARD } });
+  const { status, output } = runChecker(hub);
+  assertLine(output, 'FAIL', '4a', 'missing');
+  assertLine(output, 'FAIL', '4b', 'advisor script not found');
   assert.equal(status, 1, output);
 });
 

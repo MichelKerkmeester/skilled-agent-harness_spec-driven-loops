@@ -1,5 +1,5 @@
 {
-  "corpusHash": "42c9863a67b844521939acf945b31f71599110fbfaae7d343ae606d41924296f",
+  "corpusHash": "9d3633860f9eb3fa16484cdd664d773edc96ced4ffe2d9a2710c3347f3fa3231",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28543,
+  "includedPathCount": 28566,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8154,6 +8154,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.9.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v1.0.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v1.1.1.0.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/anti-stuffing.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/derived-extraction.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/df-idf-corpus.md",
@@ -8184,6 +8185,7 @@
     ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/goal-opencode-plugin.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/opencode-plugin-bridge.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/pi-prompt-advisor.md",
+    ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/weak-follow-up-route-receipt-guard.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/lifecycle-routing/age-haircut.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/lifecycle-routing/archive-handling.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/lifecycle-routing/rollback.md",
@@ -8199,6 +8201,7 @@
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/executor-delegation.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/five-lane-fusion.md",
+    ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/pasted-reply-stripping.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/projection.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/weights-config.md",
     ".skilled/skills/system-skill-advisor/hooks/claude/README.md",
@@ -8226,6 +8229,7 @@
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/opencode-plugin-bridge.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/skill-advisor-cli-fallback.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/vibe-command-documents.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/weak-follow-up-route-receipt-guard.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/force-local-force-native.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md",
@@ -8260,6 +8264,7 @@
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/ambiguity.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/five-lane-fusion.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/lane-attribution.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/pasted-reply-stripping.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/projection.md",
     ".skilled/skills/system-skill-advisor/references/config/db-path-policy.md",
     ".skilled/skills/system-skill-advisor/references/decisions/deferred-decisions.md",
@@ -8337,6 +8342,7 @@
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.5.0.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.6.0.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.7.0.md",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.1.8.0.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-an-unowned-file.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-with-protected-file.md",
@@ -10130,6 +10136,10 @@
     "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/plan.md",
     "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/spec.md",
     "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/tasks.md",
+    "specs/cli-external-orchestration/model-rosters/008-glm-5-3-opencode-go-roster/implementation-summary.md",
+    "specs/cli-external-orchestration/model-rosters/008-glm-5-3-opencode-go-roster/plan.md",
+    "specs/cli-external-orchestration/model-rosters/008-glm-5-3-opencode-go-roster/spec.md",
+    "specs/cli-external-orchestration/model-rosters/008-glm-5-3-opencode-go-roster/tasks.md",
     "specs/cli-external-orchestration/opencode-platform/001-layer-3-own-paths-baseline/implementation-summary.md",
     "specs/cli-external-orchestration/opencode-platform/001-layer-3-own-paths-baseline/plan.md",
     "specs/cli-external-orchestration/opencode-platform/001-layer-3-own-paths-baseline/spec.md",
@@ -19402,6 +19412,7 @@
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes/plan.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes/spec.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check/decision-record.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check/evidence/fix-plan.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check/evidence/report.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check/goal.md",
@@ -19409,6 +19420,7 @@
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check/plan.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check/spec.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check/decision-record.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check/evidence/fix-plan.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check/evidence/report.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check/goal.md",
@@ -19416,6 +19428,12 @@
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check/plan.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check/spec.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/evidence/report.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/tasks.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/delegation-strategy.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-dashboard.md",
@@ -19967,6 +19985,11 @@
     "specs/system-skilled-doctor/005-barter-upstream-fixes/plan.md",
     "specs/system-skilled-doctor/005-barter-upstream-fixes/spec.md",
     "specs/system-skilled-doctor/005-barter-upstream-fixes/tasks.md",
+    "specs/system-skilled-doctor/006-parent-skill-check-target-root/goal.md",
+    "specs/system-skilled-doctor/006-parent-skill-check-target-root/implementation-summary.md",
+    "specs/system-skilled-doctor/006-parent-skill-check-target-root/plan.md",
+    "specs/system-skilled-doctor/006-parent-skill-check-target-root/spec.md",
+    "specs/system-skilled-doctor/006-parent-skill-check-target-root/tasks.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -28575,7 +28598,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "b337c403eabff40b2bf1c2ec7410c83f90c2884f1c4ae3d70a8584be2432de87",
+  "manifestHash": "feb3769f8b8e85bc61c0c61107afa164e81c67f5ba677fe61b0f2bebb2f6bc74",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30483,6 +30506,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/model-rosters/008-glm-5-3-opencode-go-roster/scratch",
       "reason": "excluded directory"
     },
     {
@@ -37178,6 +37205,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/host-integrations/z_archive",
       "reason": "excluded directory"
     },
@@ -37619,6 +37650,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/005-barter-upstream-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/006-parent-skill-check-target-root/scratch",
       "reason": "excluded directory"
     },
     {

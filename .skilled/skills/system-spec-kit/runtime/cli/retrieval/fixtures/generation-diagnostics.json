@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 46,
-    "missing-frontmatter": 6951,
-    "ok": 19965,
+    "missing-frontmatter": 6952,
+    "ok": 19987,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28543,
+  "documentsScanned": 28566,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "b337c403eabff40b2bf1c2ec7410c83f90c2884f1c4ae3d70a8584be2432de87",
+  "manifestHash": "feb3769f8b8e85bc61c0c61107afa164e81c67f5ba677fe61b0f2bebb2f6bc74",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45325,
+      "ok": 45368,
       "prose-sentence": 22,
       "single-token": 150,
       "stop-word-only": 1,
@@ -41910,6 +41910,12 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/evidence/report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -55051,6 +55057,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/model-rosters/008-glm-5-3-opencode-go-roster/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/model-rosters/z_archive",
       "reason": "excluded directory"
     },
@@ -61743,6 +61753,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/host-integrations/z_archive",
       "reason": "excluded directory"
     },
@@ -62184,6 +62198,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/005-barter-upstream-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/006-parent-skill-check-target-root/scratch",
       "reason": "excluded directory"
     },
     {

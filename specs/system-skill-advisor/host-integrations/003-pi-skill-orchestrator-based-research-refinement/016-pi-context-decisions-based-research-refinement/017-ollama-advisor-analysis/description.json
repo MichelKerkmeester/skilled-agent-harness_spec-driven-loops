@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis",
+  "description": "Phase 17: ollama-advisor-analysis",
+  "keywords": [
+    "phase",
+    "ollama-advisor-analysis"
+  ],
+  "lastUpdated": "2026-11-19T12:56:49.330Z",
+  "specId": "017",
+  "folderSlug": "ollama-advisor-analysis",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "19-11-26_13-56__a-fresh-fable-5-2-medium-read-through-claude2.md"
+  ]
+}

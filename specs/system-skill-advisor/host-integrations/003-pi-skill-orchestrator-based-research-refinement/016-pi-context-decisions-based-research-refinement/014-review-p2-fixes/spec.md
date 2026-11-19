@@ -24,7 +24,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-19 |
 | **Branch** | `main` for planning. The build workspace, a worktree or the current branch, is chosen when `/speckit:implement` starts |
 | **Parent Spec** | ../spec.md |
@@ -100,6 +100,16 @@ The two-marker input is `Claude replied: ok. Task: update readme. Now: commit it
 - Write the route receipt in `H` only once the host took the output, as the directive receipt already does (R1-P2-003).
 - Copy `confidenceFloored` in `S`'s stdout parser (R5-P2-001), honor an explicit lifecycle boundary in the receipt guard (R1-P2-002) and remove the dead crash-catch branch (R4-P2-002).
 
+### Follow-up Scope
+
+The operator reopened this phase on 2026-11-19 with "Fix all follow ups": the two code gaps the review and refutation pass left, and every open finding of phases 015 and 016.
+- Defer the route receipt in the DSH and Vibe advisor extensions until their brief reaches the model.
+- Carry `confidenceFloored` through the Python native bridge, so the subprocess parser fix has a producer.
+- Forward `SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD` and `SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD` to the advisor daemon, so the ENV-REFERENCE rows are true.
+- Apply the alignment runs' literal fixes and write the remaining doc fixes: hook reference, READMEs, feature catalog, playbooks, ENV-REFERENCE, bench README and fixtures README.
+- Add the merged features' names to the skill's routing metadata, recapture the routing corpus pins and rerun the alignment probes.
+- Bump `system-skill-advisor` to 1.1.1.0 with a component changelog entry, and append the advisor work to the v4.1.0.0 release entry.
+
 ### Out of Scope
 - Changing the last-marker rule (R1-P2-004) - the operator accepted it as the fixture records it: row `two-markers-in-user-task` keeps the text after the last marker, with an `ideal` field for the reading it gives up.
 - A task-intent confidence floor in the Python scorer - `Y` has no such floor today, so it has no flag to emit, and adding one is a scoring change.
@@ -120,6 +130,14 @@ The two-marker input is `Claude replied: ok. Task: update readme. Now: commit it
 | `.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` | Modify | Long-paste, fire-gate and failed-write cases |
 | `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts` | Modify | Fire-gate case through `buildSkillAdvisorBrief` |
 | `.skilled/skills/system-skill-advisor/runtime/tests/subprocess-output-cap.vitest.ts` | Modify | Floor flag survives the parser |
+| `.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs` | Modify | Defer the route receipt until the notice is appended |
+| `.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs` | Modify | Defer the route receipt until the brief is returned |
+| `.skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs`, `runtime/tests/hooks/vibe-prompt-advisor.vitest.ts` | Modify | Receipt cases for both extensions |
+| `.skilled/bin/system-skill-advisor-launcher.cjs`, `.skilled/bin/launcher-private-skill-roots.vitest.ts` or a sibling test | Modify | Forward both threshold variables, with a test |
+| `.skilled/skills/system-skill-advisor/graph-metadata.json` | Modify | Routing terms for the merged features |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/*` | Modify | Recaptured corpus pins |
+| Docs named by the 015 and 016 findings | Modify | Literal and authored doc fixes |
+| `.skilled/skills/system-skill-advisor/SKILL.md`, `changelog/v1.1.1.0.md`, `.skilled/changelog/skilled/v4.1.0.0.md` | Modify, Create | Version bump and changelog entries |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -147,6 +165,12 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-007 | The receipt guard does not suppress on a turn that carries an explicit `lifecycle_event` of `startup`, `resume` or `compact` (R1-P2-002) | A hook test with a held receipt, a floored weak follow-up and `lifecycle_event: 'compact'` returns the unsuppressed result. The pure decision in `hooks/lib/route-receipt.ts` takes no lifecycle input, so the check lives in `H`'s guard |
 | REQ-008 | The crash catch in `H` has no unreachable branch (R4-P2-002) | The `{ effectiveEmitted: emitted }` arm is gone and the crash-fallback tests still pass |
 | REQ-009 | The last-marker rule stays as the fixture records it (R1-P2-004) | `implementation-summary.md` names R1-P2-004 as accepted, with the fixture row id |
+| REQ-010 | The DSH and Vibe extensions write a route receipt only when their brief reaches the model | Each extension's test shows no receipt after a turn that delivers nothing, and one after a delivered turn |
+| REQ-011 | The Python native bridge keeps `confidenceFloored: true` | A Python harness case gets the flag from a floored native row and no flag from an earned one |
+| REQ-012 | The daemon sees both threshold variables | A launcher test shows `createChildEnv` passes `SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD` and `SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD` |
+| REQ-013 | Every 015 and 016 finding triaged Fix, Fix separately or Recheck is fixed or rechecked | `implementation-summary.md` names each finding id with its fix or recheck result |
+| REQ-014 | The routing corpus gate passes | The routing-accuracy corpus pins match after recapture, and the probes P01 and P03 route to `system-skill-advisor`. P04 may stay with the CLI hub, which the operator accepted on 2026-11-19 because a named executor is a deliberate routing signal |
+| REQ-015 | The skill is at 1.1.1.0 with changelog entries | `SKILL.md` says `version: 1.1.1.0`, `changelog/v1.1.1.0.md` exists and v4.1.0.0's Skill Advisor section names the work |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -157,6 +181,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - **SC-001**: Rerunning the measured-behavior commands prints a TypeScript time under 50 ms and a Python time under 500 ms, with `two markers` unchanged at `"commit it"`. The built `skippedAdvisorResultFor` returns a `skipped` result for the fire input and `null` for `Update the README with sk-doc conventions`.
 - **SC-002**: From `.skilled/skills/system-skill-advisor/runtime`, `npx vitest run tests/hooks tests/parity tests/handlers tests/legacy/advisor-prompt-policy.vitest.ts tests/subprocess-output-cap.vitest.ts tests/prompt-policy-gold-replay.vitest.ts tests/legacy/advisor-subprocess.vitest.ts tests/scorer/advisor-quality-049-003.vitest.ts` exits 0 with at least 488 passes, the main baseline of 457 plus 31. From the repo root, `SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC=1 python3 .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` exits 0 and prints `fail=0` with at least 117 passes. The harness counts failures and does not raise, so its summary line is the gate, not a pytest run.
 - **SC-003**: The parent goal's first criterion still lists `sk-code` first after the advisor is rebuilt.
+- **SC-004**: The follow-up suites pass: the SC-002 commands plus the DSH extension test, the Vibe extension test, the launcher test and the routing-accuracy corpus gate.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -176,7 +201,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- None. The operator fixed the order and accepted R1-P2-004 on 2026-11-19. R5-P2-001 carries the flag through the parser rather than dropping it from the type, because `hooks/lib/skill-advisor-cli-fallback.ts:395` already carries it on the other path.
+- None. The operator answered the follow-up questions on 2026-11-19: append to the v4.1.0.0 entry, bump to 1.1.1.0, route advisor-work probes to `system-skill-advisor` with `sk-code` accepted for code work, and forward the threshold variables. Before that, the operator fixed the order and accepted R1-P2-004. R5-P2-001 carries the flag through the parser rather than dropping it from the type, because `hooks/lib/skill-advisor-cli-fallback.ts:395` already carries it on the other path.
 <!-- /ANCHOR:questions -->
 
 ---

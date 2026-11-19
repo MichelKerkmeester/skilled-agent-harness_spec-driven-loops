@@ -9,7 +9,7 @@ trigger_phrases:
   - "prompt isolation safety"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.2.0
+version: 0.8.3.0
 ---
 
 # Advisor Scorer: Lane Attribution and Confidence Calibration
@@ -68,7 +68,7 @@ Shadow weights live alongside live weights as `DEFAULT_SHADOW_SCORER_LANE_WEIGHT
 
 ## 3. LEXICAL LANE
 
-The lexical lane performs token-based matching between prompt text and skill metadata covering name, description, domains, keywords and intent signals. Tokens expand through a synonym map (e.g., `branch` expands to `git`, `worktree`, `merge`) and category hints add skill-specific boosts (`runtime/lib/scorer/lanes/lexical.ts:8-37`).
+Before the lanes score the prompt, `scoreAdvisorPrompt` calls `stripLeadingPastedReply` from `runtime/lib/prompt-policy.ts` to remove a recognized earlier reply pasted ahead of the task (`runtime/lib/scorer/fusion.ts:1275-1277,1291-1297`). The lexical lane performs token-based matching between prompt text and skill metadata covering name, description, domains, keywords and intent signals. Tokens expand through a synonym map (e.g., `branch` expands to `git`, `worktree`, `merge`) and category hints add skill-specific boosts (`runtime/lib/scorer/lanes/lexical.ts:8-37`).
 
 Category hints route well-known phrases. The phrase `deep research` maps to the deep-research skill with a 0.38 boost (`runtime/lib/scorer/lanes/lexical.ts:25-37`). Evidence tokens are capped at 5 hits per skill and the lane score is clamped to 1.0 (`runtime/lib/scorer/lanes/lexical.ts:73-86`).
 

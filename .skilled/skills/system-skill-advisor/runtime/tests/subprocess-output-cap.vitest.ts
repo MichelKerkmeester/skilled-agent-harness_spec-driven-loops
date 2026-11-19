@@ -89,3 +89,35 @@ process.stdin.on('end', () => {
     expect(result.retriesAttempted).toBe(1);
   });
 });
+
+describe('runAdvisorSubprocess recommendation parser', () => {
+  // The hook holds a floored route back against the session's earlier route,
+  // so the flag has to survive the parse.
+  it.each([
+    ['keeps', true],
+    ['does not add', false],
+  ] as const)('%s the confidence floor flag', async (_label, floored) => {
+    const row = {
+      skill: 'sk-code',
+      confidence: 0.82,
+      uncertainty: 0.2,
+      passes_threshold: true,
+      ...(floored ? { confidenceFloored: true } : {}),
+    };
+    const scriptPath = writeScript(`
+process.stdin.resume();
+process.stdin.on('end', () => {
+  process.stdout.write(${JSON.stringify(JSON.stringify([row]))});
+});
+`);
+    const result = await runAdvisorSubprocess('prompt', {
+      workspaceRoot,
+      pythonBin: process.execPath,
+      scriptPath,
+      timeoutMs: 10000,
+    });
+
+    expect(result.ok).toBe(true);
+    expect(result.recommendations[0]?.confidenceFloored).toBe(floored ? true : undefined);
+  });
+});

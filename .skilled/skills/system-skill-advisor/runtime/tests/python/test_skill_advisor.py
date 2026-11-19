@@ -20,6 +20,7 @@ import re
 import sqlite3
 import sys
 import tempfile
+import time
 
 # ───────────────────────────────────────────────────────────────
 # 1. MODULE LOADING
@@ -2558,6 +2559,37 @@ def test_pasted_reply_strip_parity():
         else:
             fail_test(name, f"got={stripped!r} expected={case['expected']!r}")
 
+    # A long whitespace run with newlines once made the marker search backtrack
+    # for seconds, so the strip has to stay linear on it.
+    name = "STRIP-LINEAR: a 64K whitespace run with newlines strips in under 500 ms"
+    slow_input = "Claude replied: ok." + " \n" * 32768 + "x"
+    started = time.perf_counter()
+    try:
+        stripped = advisor.strip_leading_pasted_reply(slow_input)
+    except Exception as exc:
+        fail_test(name, str(exc))
+    else:
+        elapsed_ms = (time.perf_counter() - started) * 1000
+        if stripped == slow_input and elapsed_ms < 500:
+            ok(name, f"{elapsed_ms:.0f} ms")
+        else:
+            fail_test(name, f"{elapsed_ms:.0f} ms")
+
+    for label, marker_input in (
+        ("an indented marker after a newline", "Claude replied: done.\n   Now: refactor the store"),
+        ("a marker after a CRLF line break", "Claude replied: done.\r\nNow: refactor the store"),
+    ):
+        name = f"STRIP-MARKER: keeps the task after {label}"
+        try:
+            stripped = advisor.strip_leading_pasted_reply(marker_input)
+        except Exception as exc:
+            fail_test(name, str(exc))
+            continue
+        if stripped == "refactor the store":
+            ok(name)
+        else:
+            fail_test(name, f"got={stripped!r}")
+
     # The strip runs at the entry of analyze_request, so a pasted reply and the
     # bare task score the same.
     probe = next((case for case in cases if case["id"] == "probe"), None)
@@ -2637,6 +2669,54 @@ def test_pasted_reply_strip_parity():
             fail_test(name, f"batch={batch_top} single={single_top}")
 
 
+def test_native_bridge_floor_flag():
+    """The native bridge keeps the confidence floor flag, so a floored route reads as floored."""
+    name = "BRIDGE-FLOOR: a floored native row keeps confidenceFloored and an earned row gets none"
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        rows = advisor._legacy_recommendations_from_native({
+            "recommendations": [
+                {"skillId": "sk-code", "confidence": 0.82, "uncertainty": 0.2, "confidenceFloored": True},
+                {"skillId": "sk-doc", "confidence": 0.91, "uncertainty": 0.1},
+            ],
+        })
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if rows[0].get("confidenceFloored") is True and "confidenceFloored" not in rows[1]:
+        ok(name)
+    else:
+        fail_test(name, f"rows={rows!r}")
+
+
+def test_deep_routing_clears_floor_flag():
+    """A floored row the deep routing layer raises rests on that layer's evidence, not the floor."""
+    name = "DEEP-FLOOR: the deep routing layer clears confidenceFloored only when it raises the row"
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        original = advisor.deep_skill_routing_payload
+        advisor.deep_skill_routing_payload = lambda prompt, context: {
+            "scores": {"review": 0.9, "research": 0.0},
+            "mode": "review",
+            "skill": "system-deep-loop",
+            "confidence_band": "HIGH",
+        }
+        try:
+            raised = [{"skill": "system-deep-loop", "confidence": 0.82, "uncertainty": 0.2, "confidenceFloored": True}]
+            advisor._apply_deep_skill_routing_layer(raised, "deep review the release until convergence")
+            kept = [{"skill": "system-deep-loop", "confidence": 0.95, "uncertainty": 0.2, "confidenceFloored": True}]
+            advisor._apply_deep_skill_routing_layer(kept, "deep review the release until convergence")
+        finally:
+            advisor.deep_skill_routing_payload = original
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if "confidenceFloored" not in raised[0] and kept[0].get("confidenceFloored") is True:
+        ok(name)
+    else:
+        fail_test(name, f"raised={raised[0]!r} kept={kept[0]!r}")
+
+
 def main():
     print("=" * 60)
     print("  SKILL ADVISOR AUTOMATED TEST SUITE (T243/T246)")
@@ -2651,6 +2731,8 @@ def main():
     test_private_skill_discovery_trust()
     test_declared_phrase_specificity()
     test_pasted_reply_strip_parity()
+    test_native_bridge_floor_flag()
+    test_deep_routing_clears_floor_flag()
 
     print(f"\nSummary: pass={passed}, fail={failed}")
     return 0 if failed == 0 else 1

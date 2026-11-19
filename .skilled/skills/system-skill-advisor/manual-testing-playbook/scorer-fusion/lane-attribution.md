@@ -7,7 +7,7 @@ trigger_phrases:
   - "includeAttribution"
   - "laneBreakdown"
   - "why_recommended"
-version: 0.8.1.0
+version: 0.8.2.0
 id: SC-004
 category: scorer_fusion
 stage: routing
@@ -26,7 +26,7 @@ Prompt: Manual validation that includeAttribution: true returns per-lane contrib
 
 ## 1. OVERVIEW
 
-Validate that `includeAttribution: true` returns per-lane `lane`, `rawScore`, `weight`, `weightedScore` and `shadowOnly` metadata plus a prompt-safe `why_recommended` string, and that no prompt text or prompt-derived evidence snippets appear in the attribution output.
+Validate that `includeAttribution: true` returns per-lane `lane`, `rawScore`, `weight`, `weightedScore` and `shadowOnly` metadata plus a prompt-safe `why_recommended` explanation object, and that no prompt text or prompt-derived evidence snippets appear in the attribution output.
 
 ---
 
@@ -66,7 +66,7 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "review this pull
 | Extra fields in attribution | Evidence snippets or triggers present | Block release. Attribution is contribution-only. |
 | Prompt substring in attribution | Grep hits | Block release as privacy failure. |
 | `why_recommended` echoes the prompt | User words appear verbatim | Block release as prompt-safety failure. |
-| shadowOnly missing from semantic | `semantic_shadow` lacks flag | Audit `attribution.ts` lane tagging. |
+| shadowOnly missing from semantic | `semantic_shadow` lacks flag | Audit `fusion.ts` lane tagging (`isLiveScorerLane`). |
 
 ### Evidence
 

@@ -20,6 +20,7 @@
       "durable directive",
       "completion criteria",
       "goal binding",
+      "016-doc-alignment-check operator decisions",
       "doc alignment check implementation summary"
     ],
     "key_topics": [
@@ -43,6 +44,7 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/commands/assets/local-doc-alignment/topics.json",
       "evidence/report.md",
@@ -73,6 +75,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -188,33 +196,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`/local-doc-alignment` checks docs only for a topic listed in `topics.json`, and no listed topic covers the skill advisor",
     "created_at": "2026-11-19T05:47:14Z",
-    "last_save_at": "2026-11-19T07:55:56.680Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T09:31:34.254Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c883e7a41a31a12dfdb968b79779520ada29f1cae8294d0272cc00bbb4044cae",
+    "source_fingerprint": "sha256:521f593f814b8acde1d9faad9551ec0435d5f57ec5dede1559988228dc9c8917",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "917a8c2f287037144d9202db4214a3480acca104f342c2cbce113a44b7e9a78d",
       "plan.md": "474d7a1bebea4d685d17241d3342a6008572fd1a8662493c0b97a63dafaf2f74",
       "tasks.md": "5cac1bd03f1b9fc070019575f3a34ff83958cc11fb03c1c1d220c434d115881a",
-      "implementation-summary.md": "e05600648270c2f8e15b4e163c1cef9d3e2e87324e97f3d6f0a961f6975a0834"
+      "decision-record.md": "bcfdf52ec28b7953649157c98bd96e7fa04b8bc763401010bd06d5f0497bf160",
+      "implementation-summary.md": "2a4c43727e4fbaac382a4ac5043416ddd9b4462fe14182b6ed2c891eb229f3b7"
     },
     "last_active_at": null
   }

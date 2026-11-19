@@ -198,7 +198,7 @@ Four more rules run after the work. The agent checks the final state, proves com
 
 ### Skill Routing
 
-The skill advisor scores each prompt and puts a one-line routing brief in front of the agent. At a confidence of 0.8 or more, the agent must load that skill.
+The skill advisor scores each prompt and puts a one-line routing brief in front of the agent. An emitted skill recommendation at a confidence of 0.8 or more must be loaded. The task-intent confidence floor is 0.82, but the prompt hook can withhold a confidence-floored route for a weak follow-up when it differs from the session's stored route, so the brief can say `Advisor: prompt skipped.` The scorer strips a recognized earlier reply pasted ahead of the task before scoring.
 
 The advisor is a resident daemon behind one command-line front door. When the daemon is down, a local scorer answers instead and marks its answer stale. A setup or health prompt with no match gets a pointer to `/doctor:setup`. The [Skill Advisor README](.skilled/skills/system-skill-advisor/README.md) has the scoring and the CLI.
 
@@ -779,3 +779,7 @@ It runs as a resident daemon behind one command-line front door, so every runtim
 - **[Release Notes](.skilled/changelog/skilled/)** - every Skilled release, one file per version
 - **[Skills Index](.skilled/skills/README.txt)** - the skill library at a glance
 - **[Spec Kit Feature Catalog](.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md)** - the Spec Kit's shipped features by area
+
+<!-- readme-check
+allow-count two files | names Claude Code's two config files, not files in this folder
+-->

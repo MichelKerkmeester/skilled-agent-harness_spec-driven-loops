@@ -170,6 +170,10 @@ const CHILD_ENV_ALLOWLIST = new Set([
   // shadow lane-weight overrides are read by lane-registry.
   'SPECKIT_ADVISOR_LANE_WEIGHTS_JSON',
   'SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON',
+  // Documented routing thresholds. The scorer reads both in the daemon, so
+  // without these keys an operator's override never reaches it.
+  'SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD',
+  'SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD',
   'SPECKIT_METRICS_ENABLED',
   'SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS',
   'SPECKIT_IPC_SOCKET_DIR',
