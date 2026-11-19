@@ -57,10 +57,10 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `npx vitest run` exits 0 from `.skilled/skills/system-skill-advisor/runtime`, and from `.skilled` with `--config vitest.config.bin.ts`
-- [ ] `rg -n "id: .semantic_shadow." .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts` shows `defaultWeight: 0`, or `implementation-summary.md` records the none-gold fire that kept 0.05
-- [ ] `rg -c ppid .skilled/skills/system-skill-advisor/runtime/advisor-server.ts` prints at least 1
-- [ ] `git merge-base --is-ancestor worktrees/479-ollama-lane-off-and-daemon-liveness origin/main` exits 0
+- [x] `npx vitest run` exits 0 from `.skilled/skills/system-skill-advisor/runtime`, and from `.skilled` with `--config vitest.config.bin.ts`
+- [x] `rg -n "id: .semantic_shadow." .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts` shows `defaultWeight: 0`, or `implementation-summary.md` records the none-gold fire that kept 0.05
+- [x] `rg -c ppid .skilled/skills/system-skill-advisor/runtime/advisor-server.ts` prints at least 1
+- [x] `git merge-base --is-ancestor worktrees/479-ollama-lane-off-and-daemon-liveness origin/main` exits 0
 <!-- /ANCHOR:completion -->
 
 ---
@@ -78,6 +78,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Spec docs | Done | spec, plan, tasks and acceptance criteria written 2026-11-19 |
+| Build and merge | Done | runtime 2537 passed, bin 86, Python 122; merged `62d69f4bb7d` and pushed; live parent-death exit 6 s, live watchdog reap 245 s |
 
 ### Deviations and findings
 

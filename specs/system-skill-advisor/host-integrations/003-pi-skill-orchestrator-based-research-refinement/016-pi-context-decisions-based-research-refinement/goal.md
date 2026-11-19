@@ -125,6 +125,7 @@ and findings belong here.
 | 015 and 016 alignment runs | Done | 015: 25 findings (1 P0 repaired in session, 9 P1, 15 P2), `015-skilled-alignment-check/evidence/report.md`. 016: 20 open findings (5 P1, 15 P2), `016-doc-alignment-check/evidence/report.md`. Both report only, nothing fixed |
 | 014 review fixes | Done | Worktree 475, seven commits `5f1bfa57c2d` to `a7964556816`: eight P2 findings fixed, R1-P2-004 accepted. `VT` 500 passed, `PY` pass=120, @review APPROVED, Luna refutation 5 of 6 hold. 014 strict `RESULT: PASSED` |
 | 014 merged and saved | Done | Merge c8404904544 on main, no push; main build exit 0, vitest 523 passed, Python 120/0, 17 of 17 strict PASSED, criterion 1 sk-code first after daemon restart; worktree 475 removed |
+| Phase 018 | Done | merged 62d69f4bb7d, pushed; runtime 2537, bin 86, Python 122; live orphan exit 6 s, watchdog reap 245 s |
 
 ### Deviations and findings
 

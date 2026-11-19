@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-19 |
 | **Branch** | `worktrees/479-ollama-lane-off-and-daemon-liveness` |
 | **Parent Spec** | ../spec.md |
@@ -44,7 +44,7 @@ This is **Phase 18** of the pi-context-decisions refinement packet. It builds th
 
 **Dependencies**:
 - Phase 017's report, `../017-ollama-advisor-analysis/evidence/report.md`.
-- Worktree 479, branched from main at `ad9e5e2567f`.
+- Worktree 479, branched from main at `62a9359e60a`.
 
 **Deliverables**:
 - The lane off the prompt path at a default weight of 0, with an env re-enable.

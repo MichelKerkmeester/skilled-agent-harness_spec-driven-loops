@@ -114,7 +114,7 @@ Before the default weight goes above 0 again:
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Luna through cli-codex | External | Green | Stop and ask; fallback is Vibe DeepSeek V4.1 Flash `max` |
-| Baselines from main at `ad9e5e2567f` | Internal | Green | No regression delta to report |
+| Baselines from main at `62a9359e60a` | Internal | Green | No regression delta to report |
 <!-- /ANCHOR:dependencies -->
 
 ---

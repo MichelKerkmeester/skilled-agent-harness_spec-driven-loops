@@ -33,7 +33,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Record the suite baselines from main at `ad9e5e2567f` (`R`, `.skilled/bin`, the spec-kit launcher and embedder suites). Verify: `implementation-summary.md` lists runtime 2533 passed and 8 skipped, Python 122, bin 79, DSH 18 and spec-kit 202 passed and 2 skipped. Evidence: baselines in implementation-summary.md Verification.
+- [x] T001 Record the suite baselines from main at `62a9359e60a` (`R`, `.skilled/bin`, the spec-kit launcher and embedder suites). Verify: `implementation-summary.md` lists runtime 2533 passed and 8 skipped, Python 122, bin 79, DSH 18 and spec-kit 202 passed and 2 skipped. Evidence: baselines in implementation-summary.md Verification.
 - [x] T002 Count fires on none-gold labeled prompts with the lane at 0.05 and at 0, set through `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` (`R/scripts`). Verify: `implementation-summary.md` records both counts and the REQ-005 outcome. Evidence: 5 none-gold fires at 0.05 and at 0, both regimes.
 <!-- /ANCHOR:phase-1 -->
 
@@ -59,7 +59,7 @@ contextType: "implementation"
 ## Phase 3: Verification
 
 - [x] T012 Rerun every baseline suite and the none-gold count on the final tree. Verify: each suite matches its baseline plus the new tests, or each moved pin is named. Evidence: all suites green, see Verification.
-- [ ] T013 Merge to main, push, restart the daemon and run the parent goal's routing probe. Verify: the probe lists `sk-code` first.
+- [x] T013 Merge to main, push, restart the daemon and run the parent goal's routing probe. Verify: the probe lists `sk-code` first. Evidence: merged as `62d69f4bb7d`, pushed `62a9359e60a..62d69f4bb7d`; after the restart the probe lists sk-code 0.82 first.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -67,9 +67,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -138,7 +138,7 @@ contextType: "implementation"
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. N/A: no security, path or parser change.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Base `ad9e5e2567f`.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Base `62a9359e60a`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---

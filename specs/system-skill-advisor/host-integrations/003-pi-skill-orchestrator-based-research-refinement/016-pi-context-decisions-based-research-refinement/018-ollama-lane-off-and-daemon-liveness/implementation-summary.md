@@ -8,17 +8,29 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness"
-    last_updated_at: "2026-11-19T14:42:56Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-19T16:12:40Z"
+    last_updated_by: "generate-context"
+    recent_action: "Merged 018 as 62d69f4bb7d and pushed"
+    next_safe_action: "Run the re-enable checklist in plan.md before raising the semantic weight"
+    packet_purpose: "Purpose: No advisor prompt waits on Ollama, and no advisor server outlives its launcher or stays wedged for more than a few minutes."
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts"
+      - ".skilled/skills/system-skill-advisor/runtime/lib/daemon/liveness.ts"
+      - ".skilled/bin/system-skill-advisor-launcher.cjs"
+      - ".skilled/skills/system-skill-advisor/runtime/lib/embedders/schema.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:8d1db6e0fde462fcf1811c9b17729de4ebf1085e05c7d9ed97fbf0afcf4ddaa6"
       session_id: "scaffold-018-ollama-lane-off-and-daemon-liveness"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-19T16:12:40Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -72,7 +84,7 @@ You get the same routes with less waiting and fewer stray processes. The daemon 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-GPT-6 Luna `xhigh` `fast` wrote every code, test and doc change as a leaf through cli-codex in worktree 479. The conductor recorded baselines on main first and ran each new test with the source change reverted before the fix. Each failed: guard 1 of 2, pointer 3 of 5, legacy 3 of 8, status 8 of 40, hf 5 of 13 and watchdog 7 of 7. Each passed with the fix. The conductor then recaptured the three baseline fixtures and ran every suite on the final tree. It also proved both liveness paths on a live worktree daemon.
+GPT-6 Luna `xhigh` `fast` wrote every code, test and doc change as a leaf through cli-codex in worktree 479. The conductor recorded baselines on main first and ran each new test with the source change reverted before the fix. Each failed: guard 1 of 2, pointer 3 of 5, legacy 3 of 8, status 8 of 40, hf 5 of 13 and watchdog 7 of 7. Each passed with the fix. The conductor then recaptured the three baseline fixtures and ran every suite on the final tree. It also proved both liveness paths on a live worktree daemon. The branch merged to main as `62d69f4bb7d` and was pushed. After a daemon restart on main, the parent routing probe still lists sk-code first at 0.82, and `laneWeights` reports `semantic_shadow: 0`. The CLI `advisor_status` output carries no semantic-lane block, so `lane_weight_zero` is proven by the handler tests only.
 <!-- /ANCHOR:how-delivered -->
 
 ---

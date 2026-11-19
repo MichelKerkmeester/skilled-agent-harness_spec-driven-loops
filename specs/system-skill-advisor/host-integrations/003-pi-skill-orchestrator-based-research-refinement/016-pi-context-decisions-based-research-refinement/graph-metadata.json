@@ -171,19 +171,19 @@
     ],
     "causal_summary": "The skill advisor picks skills with a local five-lane scorer and pushes a brief into every prompt",
     "created_at": "2026-11-18T06:49:25Z",
-    "last_save_at": "2026-11-19T14:53:06.359Z",
+    "last_save_at": "2026-11-19T16:13:32.543Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:e88159874129f185ecab1ec820f0efe24ddb54174804af3f1c585083296fbb5a",
+    "source_fingerprint": "sha256:37024fbeeb65b45592695f640654088be7a5ab7880376c6cd5602af73775caeb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2e9e5a7018a847f03ae10b7e4e5062187683aefc0eef9d0a47985776e2afe64b"
+      "spec.md": "be5769ae0ac10cd2a3c21ddde1c4d44e73bea974924252b83904b3dd845e9aa8"
     },
-    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis",
-    "last_active_at": "2026-11-19T12:56:49.373Z"
+    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness",
+    "last_active_at": "2026-11-19T16:12:40.260Z"
   }
 }
