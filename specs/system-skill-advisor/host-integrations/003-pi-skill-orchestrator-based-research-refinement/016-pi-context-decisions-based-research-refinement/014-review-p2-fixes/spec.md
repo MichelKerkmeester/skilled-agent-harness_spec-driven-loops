@@ -24,7 +24,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-19 |
 | **Branch** | `main` for planning. The build workspace, a worktree or the current branch, is chosen when `/speckit:implement` starts |
 | **Parent Spec** | ../spec.md |

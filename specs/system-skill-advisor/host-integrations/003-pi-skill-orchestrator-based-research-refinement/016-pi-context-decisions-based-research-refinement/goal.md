@@ -97,7 +97,7 @@ string, not these files.
 - [x] `rg -n 'Decision rule outcome' specs/system-skill-advisor/*/003-pi-*/016-pi-*/003-*/implementation-summary.md` prints one line naming ship, over-suppresses or no guard
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/*/003-pi-*/016-pi-* --recursive --strict --quiet` prints `RESULT: PASSED` for all seventeen folders
 - [x] `git merge-base --is-ancestor worktrees/474-advisor-pasted-context-and-crash-fallback origin/main` exits 0
-- [ ] `tasks.md` in 014, 015 and 016 has no `- [ ]` line
+- [x] `tasks.md` in 014, 015 and 016 has no `- [ ]` line
 <!-- /ANCHOR:completion -->
 
 ---
@@ -121,6 +121,7 @@ and findings belong here.
 | Finish | Done | Merged to main as `57d3f5d9159`, advisor rebuilt and its daemon restarted on main, criteria 1 to 5 run on main, pushed to origin/main |
 | Criteria evidence | Done | 1: `sk-code` first, daemon 24672 after the main build; 2: 424 passed on main; 3: line 382; 4: line 80, over-suppresses; 5: 14 of 14 on main; 6: exit 0 after pushing `57d3f5d9159` |
 | 015 and 016 alignment runs | Done | 015: 25 findings (1 P0 repaired in session, 9 P1, 15 P2), `015-skilled-alignment-check/evidence/report.md`. 016: 20 open findings (5 P1, 15 P2), `016-doc-alignment-check/evidence/report.md`. Both report only, nothing fixed |
+| 014 review fixes | Done | Worktree 475, seven commits `5f1bfa57c2d` to `a7964556816`: eight P2 findings fixed, R1-P2-004 accepted. `VT` 500 passed, `PY` pass=120, @review APPROVED, Luna refutation 5 of 6 hold. 014 strict `RESULT: PASSED` |
 
 ### Deviations and findings
 

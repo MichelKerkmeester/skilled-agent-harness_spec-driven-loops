@@ -44,9 +44,9 @@ Five source files change, each with a test that fails before its fix. The order 
 - [x] Dependencies identified: section 6 below
 
 ### Definition of Done
-- [ ] All acceptance criteria met: every REQ row in `spec.md` section 4 has evidence in `implementation-summary.md`
-- [ ] The two `spec.md` SC-002 commands exit 0: vitest with at least 488 passes plus the new tests, and the Python harness with `fail=0` and at least 117 passes
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met: every REQ row in `spec.md` section 4 has evidence in `implementation-summary.md`
+- [x] The two `spec.md` SC-002 commands exit 0: vitest with at least 488 passes plus the new tests, and the Python harness with `fail=0` and at least 117 passes
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
