@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
 description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across the native command surface, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
-version: 0.8.14.0
+version: 0.8.15.0
 ---
 
 # Skill Advisor: Manual Testing Playbook
@@ -33,9 +33,9 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome, its 
 
 ## 1. OVERVIEW
 
-This playbook provides 53 scenario files across 9 categories, one of them a live conversation scenario, validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion and `PC` for Python compatibility.
+This playbook provides 55 scenario files across 9 categories, one of them a live conversation scenario, validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion and `PC` for Python compatibility.
 
-Coverage note (2026-05-07): the prior operator scenario corpus now lives under `manual-testing-playbook/` as the canonical manual validation package. Former `SAD-NNN` IDs are deprecated plus mapped to current feature files in section 18. The source root index describes 42 scenarios. The category tree holds 53 scenario files named by feature, none of them `NNN-*.md`, and still no `CL-002`. This root playbook reflects the live file inventory.
+Coverage note (2026-05-07): the prior operator scenario corpus now lives under `manual-testing-playbook/` as the canonical manual validation package. Former `SAD-NNN` IDs are deprecated plus mapped to current feature files in section 18. The source root index describes 42 scenarios. The category tree holds 55 scenario files named by feature, none of them `NNN-*.md`, and still no `CL-002`. This root playbook reflects the live file inventory.
 
 ### Realistic Test Model
 
@@ -127,7 +127,7 @@ Scenario verdict:
 
 ### Release Readiness Rule
 
-Release is `READY` only when all 53 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
+Release is `READY` only when all 55 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
 
 ---
 
@@ -149,13 +149,13 @@ This section records wave planning for the canonical Skill Advisor manual test p
 ### Recommended Wave Plan
 
 - **Wave 1**: `NC-001..NC-012` native command-surface behavior.
-- **Wave 2**: `CL-001`, `CL-005..CL-010` runtime hooks, the OpenCode plugin, CLI fallback and the goal plugin.
+- **Wave 2**: `CL-001`, `CL-005..CL-011` runtime hooks, the OpenCode plugin, CLI fallback and the goal plugin.
 - **Wave 3**: `CP-001..CP-004` compatibility and disable controls.
 - **Wave 4**: `OP-001..OP-003` H5 operator states.
 - **Wave 5**: `AU-001..AU-005` auto-update daemon behavior.
 - **Wave 6**: `AI-001..AI-007` auto-indexing behavior.
 - **Wave 7**: `LC-001..LC-005` lifecycle routing.
-- **Wave 8**: `SC-001..SC-005` scorer fusion.
+- **Wave 8**: `SC-001..SC-006` scorer fusion.
 - **Wave 9**: `PC-001..PC-005` Python compatibility.
 
 ---
@@ -183,7 +183,7 @@ This category validates native command-surface scenarios `NC-001..NC-012`.
 
 ## 8. CLI HOOKS AND PLUGIN
 
-This category validates cli hooks and plugin scenarios `CL-001`, `CL-005..CL-010`.
+This category validates cli hooks and plugin scenarios `CL-001`, `CL-005..CL-011`.
 
 | ID | Scenario | File |
 |---|---|---|
@@ -195,6 +195,7 @@ This category validates cli hooks and plugin scenarios `CL-001`, `CL-005..CL-010
 | CL-008 | Goal OpenCode Later-Turn Injection | [goal-opencode-plugin-conversation.md](cli-hooks-and-plugin/goal-opencode-plugin-conversation.md) |
 | CL-009 | The Brief's Command Policy Word in a Parent and a Child Session | [brief-command-policy-word.md](cli-hooks-and-plugin/brief-command-policy-word.md) |
 | CL-010 | The Vibe Brief Names Each Command's Document | [vibe-command-documents.md](cli-hooks-and-plugin/vibe-command-documents.md) |
+| CL-011 | Weak Follow-Up Route-Receipt Guard | [weak-follow-up-route-receipt-guard.md](cli-hooks-and-plugin/weak-follow-up-route-receipt-guard.md) |
 
 ---
 
@@ -269,7 +270,7 @@ This category validates lifecycle routing scenarios `LC-001..LC-005`.
 
 ## 14. SCORER FUSION
 
-This category validates scorer fusion scenarios `SC-001..SC-005`.
+This category validates scorer fusion scenarios `SC-001..SC-006`.
 
 | ID | Scenario | File |
 |---|---|---|
@@ -278,6 +279,7 @@ This category validates scorer fusion scenarios `SC-001..SC-005`.
 | SC-003 | Top-2 Ambiguity Window | [003-ambiguity.md](scorer-fusion/ambiguity.md) |
 | SC-004 | Lane Contribution Attribution | [004-lane-attribution.md](scorer-fusion/lane-attribution.md) |
 | SC-005 | Lane-by-Lane Ablation Protocol | [005-ablation.md](scorer-fusion/ablation.md) |
+| SC-006 | Pasted Reply Stripping | [pasted-reply-stripping.md](scorer-fusion/pasted-reply-stripping.md) |
 
 ---
 
