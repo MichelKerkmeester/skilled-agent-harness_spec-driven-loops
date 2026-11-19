@@ -8,12 +8,12 @@ expected_intent: CROSS_REPO
 expected_resources: 
   - references/cli-reference.md
   - references/opencode-tools.md
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # CO-R05: Cross-repo routing
 
-**Version note.** This scenario's routing prompt targets OpenCode 1 (1.19.3): it pins the cross-repo checkout with `--dir`. OpenCode 2 (2.0.32) `run` has no `--dir`, so its twin starts in the target directory instead: `cd <path> && opencode run ...` (see the [install reference](../../references/install-and-versions.md)).
+**Version note.** This scenario's routing prompt targets OpenCode 2 (2.3.2): a cross-repo checkout is reached by starting the dispatch in the target directory, since `run` has no directory flag.
 
 This document captures the routing-recall contract, execution process, source anchors, and metadata for `CO-R05`.
 
@@ -36,14 +36,14 @@ reference set or none at all.
 
 - Objective: confirm ROUTER.md's `INTENT_SIGNALS["CROSS_REPO"]` entry matches this scenario's expected_intent, and RESOURCE_MAP["CROSS_REPO"] resolves on disk.
 - Stage: `routing`
-- Prompt: `Run the same task in another repository by pointing --dir at that cross-repo checkout. (OpenCode 1 only)`
+- Prompt: `Run the same task in another repository by starting in that cross-repo checkout.`
 
 **Exact prompt**:
 ```text
-Run the same task in another repository by pointing --dir at that cross-repo checkout. (OpenCode 1 only)
+Run the same task in another repository by starting in that cross-repo checkout.
 ```
 
-On OpenCode 1, `--dir` pins the cross-repo checkout. The OpenCode 2 (2.0.32) twin has no `--dir`, so it starts in the target directory instead: `cd <path> && opencode run ...` (see the [install reference](../../references/install-and-versions.md)).
+`run` has no directory flag, so the cross-repo checkout is reached by starting the dispatch in the target directory instead: `cd <path> && opencode run ...` (see the [install reference](../../references/install-and-versions.md)).
 
 - Expected execution process: the hub scores the prompt against every `INTENT_SIGNALS` keyword list and resolves `CROSS_REPO` at its documented weight, then conditional-loads `RESOURCE_MAP["CROSS_REPO"]`.
 - Expected signals: ROUTER.md's `INTENT_SIGNALS["CROSS_REPO"]` entry exists with its documented weight and keyword list, and `RESOURCE_MAP["CROSS_REPO"]` names `references/cli-reference.md` and `references/opencode-tools.md`. Both resource paths resolve on disk.
@@ -56,7 +56,7 @@ On OpenCode 1, `--dir` pins the cross-repo checkout. The OpenCode 2 (2.0.32) twi
 
 ### Prompt
 
-- Prompt: `Run the same task in another repository by pointing --dir at that cross-repo checkout. (OpenCode 1 only)`
+- Prompt: `Run the same task in another repository by starting in that cross-repo checkout.`
 
 ### Commands
 

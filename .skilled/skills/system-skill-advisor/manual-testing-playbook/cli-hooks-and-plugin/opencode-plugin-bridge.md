@@ -6,7 +6,7 @@ trigger_phrases:
   - "opencode plugin bridge"
   - "opencode plugin"
   - "opencode"
-version: 0.8.1.0
+version: 0.8.2.0
 id: CL-005
 category: cli_hooks_and_plugin
 stage: routing
@@ -63,7 +63,7 @@ npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/syst
 
 ```bash
 mkdir -p /tmp/skill-advisor-playbook
-opencode run --print-logs --log-level INFO --dir "$PWD" -m opencode-go/deepseek-v4.1-flash \
+cd "$PWD" && opencode run --standalone --print-logs --log-level info -m opencode-go/deepseek-v4.1-flash \
   "List every tool you can call whose name contains advisor. Print only the tool names, one per line." \
   </dev/null > /tmp/skill-advisor-playbook/cl-005.stdout.txt 2> /tmp/skill-advisor-playbook/cl-005.log
 echo "opencode exit=$?"
@@ -88,7 +88,6 @@ grep -n 'spec_kit_skill_advisor_status' /tmp/skill-advisor-playbook/cl-005.stdou
 | Private dist pinning | Plugin imports handler internals directly | Update the plugin to spawn the advisor CLI instead. |
 | Plugin disabled unexpectedly | Status tool reports `disabled_reason` | Check env and plugin options. |
 | CLI timeout | `error: "TIMEOUT"` | Inspect build and Node binary path. |
-| OpenCode rejects the plugin | The log shows `failed to load plugin` naming `system-skill-advisor.js`, for example with `Plugin export is not a function` | OpenCode 1.18.32 rejects a plugin module that exports anything other than functions. Keep the module to its default factory export and move constants and helpers to a separate module. |
 | Status tool missing from the session | No `spec_kit_skill_advisor_status` in the model's answer while the log shows no load failure | Check that `.opencode/plugins/system-skill-advisor.js` is present and current, then rerun step 4. |
 
 ---

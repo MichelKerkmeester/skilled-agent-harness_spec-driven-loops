@@ -125,7 +125,7 @@ The suite in `.opencode/plugins/tests/session-cleanup.test.cjs` checks plugin li
 Run the disabled-plugin smoke check from the repository root.
 
 ```bash
-SYSTEM_SESSION_CLEANUP_DISABLED=1 node --input-type=module -e "import('./.opencode/plugins/session-cleanup.js').then(({ default: plugin }) => plugin.server().then(hooks => hooks.dispose().then(() => console.log('ok disabled'))))"
+SYSTEM_SESSION_CLEANUP_DISABLED=1 node --input-type=module -e "import('./.opencode/plugins/session-cleanup.js').then(({ default: plugin }) => plugin.factory().then(hooks => hooks.dispose().then(() => console.log('ok disabled'))))"
 ```
 
 Expected result: `ok disabled` and exit status 0.

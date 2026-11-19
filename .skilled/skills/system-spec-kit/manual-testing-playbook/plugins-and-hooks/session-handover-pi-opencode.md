@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-handover-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.29.0
+version: 1.0.30.0
 id: session-handover-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -71,7 +71,7 @@ Evidence: exit code 0 confirms Pi loads the extension in this smoke mode. It doe
 node -e "import('./.opencode/plugins/session-handover.js').then(m=>console.log(typeof m.default))"
 ~~~
 
-Evidence: stdout is `object` and the command exits 0. The module's default export is the dual-plugin object that `dualPlugin` returns, with the keys `id`, `server` and `setup`, so `typeof m.default` is `object`. It printed `function` only while the export was still the bare plugin function.
+Evidence: stdout is `object` and the command exits 0. The module's default export is the object that `dualPlugin` returns, with the enumerable keys `id` and `setup` and the hook factory on a non-enumerable `factory` property, so `typeof m.default` is `object`. It printed `function` only while the export was still the bare plugin function.
 
 #### Pi adapter suite (Automatable)
 
@@ -176,7 +176,7 @@ Observe `message.updated` usage handling, `message.part.updated` seed capture an
 
 ### Live Withdraw, Cancel And History Checks
 
-These checks call a Pi or OpenCode hand-over off, or let it run, and read the result from the record, the logs and the hop history. Each runtime runs through `skilled-loop` in a detached tmux session so one shell can type into it and read it. The code paths are covered by the suites listed under PO-6. The live steps were authored from that code, so record your own run before you rely on a timing. The Pi commands in PO-5 were run as written while this file was authored, and the OpenCode flow in CO-046 was run on OpenCode 1 and 2. The tmux checks PO-1 to PO-4 were not.
+These checks call a Pi or OpenCode hand-over off, or let it run, and read the result from the record, the logs and the hop history. Each runtime runs through `skilled-loop` in a detached tmux session so one shell can type into it and read it. The code paths are covered by the suites listed under PO-6. The live steps were authored from that code, so record your own run before you rely on a timing. The Pi commands in PO-5 were run as written while this file was authored, and the OpenCode flow in CO-046 was run on OpenCode 2. The tmux checks PO-1 to PO-4 were not.
 
 Both runtimes withdraw an armed record when a new turn starts, and a pending record a failed arm left deferred is withdrawn too; only a freshly prepared pending record is left alone. Pi acts on `agent_start` and OpenCode on a `message.updated` event for a user message it has not seen. Both tell the model it was withdrawn: Pi sends the withdraw notice as a steer and OpenCode adds it to the system prompt, `relaunch.log` records `arm-cancelled` where Claude, Codex and Vibe record `withdrawn`, and the extra nudge comes after the next assistant message that grows the fill by a step. Neither runtime has background-task completion prompts, so there is no `<task-notification>` case.
 

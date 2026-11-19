@@ -11,8 +11,8 @@ trigger_phrases:
   - "cross-runtime goal isolation"
   - "DeepSeek Harness Dispatch Mode"
   - "Mistral Vibe Dispatch Mode"
-last_updated: "2026-11-14"
-version: 1.7.10.0
+last_updated: "2026-11-19"
+version: 1.7.11.0
 ---
 
 # cli-external-orchestration: Feature Catalog
@@ -117,21 +117,21 @@ See [`.skilled/hooks/goal/README.md`](../../../hooks/goal/README.md) for the sup
 
 ---
 
-## 7. OPENCODE DUAL-VERSION DISPATCH
+## 7. OPENCODE VERSION DETECTION
 
-### OpenCode Dual-Version Dispatch
+### OpenCode Version Detection
 
 #### Description
 
-A `cli-opencode` lineage resolves the installed OpenCode binary, parses its `--version` output into a version family, and builds the OpenCode 1 or OpenCode 2 command line from that family rather than from the binary name.
+A `cli-opencode` lineage resolves the installed OpenCode binary, parses its `--version` output into a version family, and refuses an OpenCode 1 binary rather than dispatching it.
 
 #### Current Reality
 
-The runtime resolves the binary, probes its `--version` output, and composes the argv from the parsed family, so a binary named `opencode` that reports a 2.x version is dispatched as OpenCode 2 and an `opencode2` that reports a 1.x version is dispatched as OpenCode 1. The two generations receive different command lines, a probe that finds no supported version refuses the lineage instead of guessing, and a native lineage refuses to start on OpenCode 2. Run the dual-dispatch suite (`npx vitest run --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts .skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts`). All cases are expected to pass.
+The runtime resolves the binary, probes its `--version` output, and refuses the lineage unless the parsed family is `v2`, so a binary named `opencode` that reports a 2.x version is dispatched as OpenCode 2 and one that reports a 1.x version is refused with a message naming OpenCode 1 as unsupported. A probe that finds no supported version refuses the lineage instead of guessing, and a native fan-out lineage is refused because OpenCode 2 `run` cannot start a registered command. Run the dual-dispatch suite (`npx vitest run --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts .skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts`). All cases are expected to pass.
 
 #### Source Files
 
-See [`opencode-dual-version-dispatch/opencode-dual-version-dispatch.md`](opencode-dual-version-dispatch/opencode-dual-version-dispatch.md) for the resolution and probe contract, the per-family argv, and the durable test anchors.
+See [`opencode-dual-version-dispatch/opencode-dual-version-dispatch.md`](opencode-dual-version-dispatch/opencode-dual-version-dispatch.md) for the resolution and probe contract, the lineage argv, and the durable test anchors.
 
 ---
 

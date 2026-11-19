@@ -8,7 +8,7 @@ trigger_phrases:
   - "opencode plugin dispose"
   - "startup guard warnings"
   - "session teardown sweep"
-version: 1.0.2.0
+version: 1.0.3.0
 id: plugins-and-hooks-session-cleanup-plugin
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -141,7 +141,7 @@ const plugin = (await import(pathToFileURL(PLUGIN_PATH).href)).default;
 // emits its warning even if this harness runs inside a git worktree. The guard SCRIPTS
 // stay the real repo scripts; only their working directory moves -- no bypass, no mock.
 const GUARD_CWD = process.env.GUARD_CWD || REPO_ROOT;
-const hooks = await plugin.server({ directory: GUARD_CWD });
+const hooks = await plugin.factory({ directory: GUARD_CWD });
 
 console.log('--- session.created event (real worktree-guard.sh + check-git-hooks.sh) ---');
 await hooks.event({ event: { type: 'session.created', properties: { info: { id: 'live-demo-session' } } } });

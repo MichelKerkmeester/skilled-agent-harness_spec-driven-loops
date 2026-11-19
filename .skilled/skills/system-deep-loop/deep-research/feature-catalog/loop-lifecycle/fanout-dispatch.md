@@ -1,13 +1,13 @@
 ---
 title: "Fan-out loop dispatch"
-description: "Opt-in fan-out dispatch layer: `step_resolve_artifact_root` artifact-dir override branch, `step_fanout_spawn` (CLI pool + native sequential agent dispatch), and `step_fanout_merge` at the top of `phase_synthesis`. Single-executor path is byte-identical to pre-change behavior."
+description: "Opt-in fan-out dispatch layer: `step_resolve_artifact_root` artifact-dir override branch, `step_fanout_spawn` (CLI pool only; a native lineage is refused), and `step_fanout_merge` at the top of `phase_synthesis`. Single-executor path is byte-identical to pre-change behavior."
 trigger_phrases:
   - "fan-out loop dispatch"
   - "fanout dispatch"
   - "step_fanout_spawn"
   - "parallel lineage execution"
   - "multi-executor research"
-version: 1.14.3.0
+version: 1.14.4.0
 ---
 
 # Fan-out loop dispatch
@@ -24,10 +24,11 @@ directly. When absent (single-executor mode), the `if_absent` branch runs the by
 original `resolveArtifactRoot` command — zero behavior change for single-executor runs.
 
 **`step_fanout_spawn`** (`skip_when: config.fanout is absent`) spawns CLI lineages via
-`fanout-run.cjs` (pool-capped headless subprocesses) and dispatches native lineages as
-sequential `agent: deep-research` runs with per-lineage isolated artifact dirs. When
-complete, control jumps directly to `phase_synthesis`, skipping `phase_init` and
-`phase_main_loop`.
+`fanout-run.cjs` (pool-capped headless subprocesses) with per-lineage isolated artifact dirs.
+A lineage whose kind is `native` is refused before any lineage spawns, because OpenCode 2
+`run` cannot start the registered `deep/research` command that adapter needed; `native` runs
+only as the single executor. When complete, control jumps directly to `phase_synthesis`,
+skipping `phase_init` and `phase_main_loop`.
 
 **`step_fanout_merge`** (`skip_when: config.fanout is absent`) sits at the top of
 `phase_synthesis`. It calls `fanout-merge.cjs --loop-type research` to produce a

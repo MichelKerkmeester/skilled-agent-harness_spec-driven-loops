@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-opencode routing"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -38,7 +38,7 @@ loads before an intent selects it.
 - **PARALLEL_DETACHED** — fires on "parallel detached", "ablation suite", "worker farm", "spawn detached", "share url". Loads `references/integration-patterns.md` and `assets/prompt-templates.md`.
 - **CROSS_AI_HANDBACK** — fires on "spec kit", "cross-ai handback", "project's spec folders", "use the skill advisor". Loads `references/integration-patterns.md` and `references/opencode-tools.md`.
 - **AGENT_DISPATCH** — fires on "delegate", "agent", "deep-research", "deep-review", "ai-council", "spawn an agent". Loads `references/agent-delegation.md` and `assets/prompt-templates.md`.
-- **CROSS_REPO** — fires on "cross-repo", "different repo", "--dir", "remote opencode server", "--attach". Loads `references/cli-reference.md` and `references/opencode-tools.md`.
+- **CROSS_REPO** — fires on "cross-repo", "different repo", "--server", "remote opencode server", "start in directory". Loads `references/cli-reference.md` and `references/opencode-tools.md`.
 - **TEMPLATES** — fires on "template", "prompt", "how to ask", "copy-paste template", "prompt quality". Loads `assets/prompt-templates.md` and `references/cli-reference.md`.
 - **PATTERNS** — fires on "pattern", "workflow", "session continue", "resume session", "integration pattern". Loads `references/integration-patterns.md` and `references/cli-reference.md`.
 - **DESIGN** — fires on "sk-design-md-generator", "extract design system", "style reference", "design tokens". Loads nothing from `RESOURCE_MAP`: it is a deliberate hand-off to `sk-design-md-generator`, carried by the ALWAYS Design Standards Loading rule and the dispatch manifest.
@@ -55,11 +55,11 @@ The routing detail the short summary leaves out: the prerequisite probe, the gua
 ### Prerequisite Detection
 
 ```bash
-# Verify OpenCode CLI is available (opencode2 preferred, opencode accepted)
-command -v opencode2 || command -v opencode || echo "Not installed. Run: brew install opencode (macOS) or curl -fsSL https://opencode.ai/install | bash"
+# Verify OpenCode CLI is available
+command -v opencode || echo "Not installed. Run: brew install opencode (macOS) or curl -fsSL https://opencode.ai/v2/install | bash"
 ```
 
-Install steps, side-by-side setup for both versions and the capability delta between them: [`references/install-and-versions.md`](./references/install-and-versions.md).
+Install steps, version detection and removing an older install: [`references/install-and-versions.md`](./references/install-and-versions.md).
 
 ### Self-Invocation Guard (ADR-001)
 
@@ -86,10 +86,10 @@ The four smart-router patterns are the shared helpers `discover_markdown_resourc
 ```python
 INTENT_SIGNALS = {
     "EXTERNAL_DISPATCH":  {"weight": 4, "keywords": ["delegate to opencode", "opencode run", "from claude code", "from opencode", "from copilot", "external runtime", "full plugin runtime", "hand this off to opencode", "hand off to opencode", "send this to opencode", "dispatch to opencode", "run this through opencode", "let opencode handle this", "opencode's full runtime", "full runtime dispatch", "one-shot dispatch", "invoke opencode", "kick this off in opencode", "have opencode take care of this", "get opencode to run this", "pass this over to opencode", "opencode has access to every tool", "opencode has the whole toolchain", "since opencode has all the plugins", "opencode can load every skill", "ask opencode to handle this", "opencode should handle this", "offload this to opencode", "outsource this to opencode", "forward this to opencode", "route this to opencode", "push this to opencode", "opencode has everything loaded", "opencode has the whole toolset", "opencode cli", "run externally", "full toolset", "handle this externally", "external ai assistant", "run in opencode", "hand off externally"]},
-    "PARALLEL_DETACHED":  {"weight": 4, "keywords": ["parallel detached", "ablation suite", "worker farm", "parallel research", "spawn detached", "share url", "share-url", "detached session", "separate session id", "own state directory", "spin up a new session", "background opencode session", "run this in the background", "fan out workers", "concurrent sessions", "isolated session", "run these in parallel", "spin off a few workers", "kick off several sessions at once", "run copies side by side", "fire off multiple runs at the same time", "farm this out to multiple workers", "run a bunch of these concurrently", "distribute the work across sessions", "batch this across sessions", "start several sessions at once", "spin up another instance", "new opencode instance", "run it as its own session", "own separate session", "side session", "run this independently", "additional worker", "background job", "separate instance", "own instance", "parallel run", "concurrent run", "session of its own", "spin up a worker", "worker pool", "run in parallel"]},
+    "PARALLEL_DETACHED":  {"weight": 4, "keywords": ["parallel detached", "ablation suite", "worker farm", "parallel research", "spawn detached", "share url", "share-url", "detached session", "separate session id", "own state directory", "spin up a new session", "background opencode session", "run this in the background", "fan out workers", "concurrent sessions", "isolated session", "run these in parallel", "spin off a few workers", "kick off several sessions at once", "run copies concurrently", "fire off multiple runs at the same time", "farm this out to multiple workers", "run a bunch of these concurrently", "distribute the work across sessions", "batch this across sessions", "start several sessions at once", "spin up another instance", "new opencode instance", "run it as its own session", "own separate session", "side session", "run this independently", "additional worker", "background job", "separate instance", "own instance", "parallel run", "concurrent run", "session of its own", "spin up a worker", "worker pool", "run in parallel"]},
     "CROSS_AI_HANDBACK":  {"weight": 4, "keywords": ["spec kit", "spec-kit", "spec_kit", "code graph", "skill advisor", "cross-ai handback", "hand back to opencode", "bridge back to opencode", "opencode as a bridge", "non-anthropic cli", "project's spec folders", "structural code index", "use the skill advisor"]},
     "AGENT_DISPATCH":     {"weight": 4, "keywords": ["delegate", "agent", "deep-research", "deep-review", "ai-council", "review agent", "context agent", "dispatch an agent", "spawn an agent", "run a subagent", "invoke a subagent", "specialized subagent", "debug agent", "write agent"]},
-    "CROSS_REPO":         {"weight": 3, "keywords": ["cross-repo", "different repo", "--dir", "another repository", "remote opencode", "different repository", "target repo", "other codebase", "separate repository", "remote opencode server", "--attach"]},
+    "CROSS_REPO":         {"weight": 3, "keywords": ["cross-repo", "different repo", "--server", "another repository", "remote opencode", "different repository", "target repo", "other codebase", "separate repository", "remote opencode server", "start in directory"]},
     "TEMPLATES":          {"weight": 3, "keywords": ["template", "prompt", "how to ask", "opencode prompt", "minimax", "MiniMax-M3", "tidd-ec", "prompt framework", "prompt template", "how do i phrase this", "copy-paste template", "prompt quality", "prompt craft", "costar framework", "example prompt"]},
     "PATTERNS":           {"weight": 3, "keywords": ["pattern", "workflow", "orchestrate", "session continue", "resume session", "integration pattern", "dispatch pattern", "continue the session", "resume a session", "session continuation"]},
     # WHY: DESIGN is an intent signal only — a deliberate cross-skill handoff to sk-design-md-generator,

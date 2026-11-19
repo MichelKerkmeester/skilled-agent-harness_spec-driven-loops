@@ -8,7 +8,7 @@ trigger_phrases:
   - "javascript exemption tiers"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Security, Testing, Async & Exemption Tiers
@@ -259,7 +259,7 @@ This exemption applies to:
 
 | Standard                           | Reason for Exemption                                                               |
 |------------------------------------|------------------------------------------------------------------------------------|
-| `module.exports` requirement       | OpenCode plugin loader requires ESM default export per `@opencode-ai/plugin/dist/index.d.ts` |
+| `module.exports` requirement       | OpenCode 2 loads each plugin as an ES module whose default export is the `dualPlugin()` result from `.opencode/plugins/lib/v2-bridge.js` |
 
 ### What Still Applies
 
@@ -297,7 +297,8 @@ OpenCode's TUI paints plugin `stdout`/`stderr` onto the prompt input line, where
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { tool } from '@opencode-ai/plugin';
+import { tool } from './lib/tool-identity.js';
+import { dualPlugin } from './lib/v2-bridge.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -316,7 +317,7 @@ const PLUGIN_ID = 'example-plugin';
  * @param {Object} [options] - Plugin options
  * @returns {Promise<Object>} Hooks object for the OpenCode plugin loader
  */
-export default async function ExamplePlugin(ctx, options = {}) {
+async function ExamplePlugin(ctx, options = {}) {
   return {
     tool: {
       example_status: tool({
@@ -329,6 +330,8 @@ export default async function ExamplePlugin(ctx, options = {}) {
     },
   };
 }
+
+export default dualPlugin(PLUGIN_ID, ExamplePlugin);
 ```
 
 ---

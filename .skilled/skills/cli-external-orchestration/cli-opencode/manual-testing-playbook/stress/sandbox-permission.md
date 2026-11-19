@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-opencode.vitest.ts"
 test_name: "forwards the asserted cli-opencode sandbox and permission flags"
 playbook_path: "cli-external-orchestration/cli-opencode/manual-testing-playbook/stress/sandbox-permission.md"
 id: "cli-opencode-EC-007"
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # EC-007 -- cli-opencode sandbox or permission
@@ -65,7 +65,7 @@ The command exits `0`, and the verbose Vitest reporter names `forwards the asser
 
 - **stdout**: Capture the verbose Vitest line for the exact test name and the final file/test count.
 - **stderr**: Capture any runner or assertion diagnostic; redact credential-shaped values before retention.
-- **ledger/artifacts**: A danger-full-access command succeeds and the captured arguments include `--dangerously-skip-permissions`.
+- **ledger/artifacts**: A danger-full-access command succeeds and the captured arguments include `--auto`.
 - Fixtures are temporary and removed by test teardown, so the durable evidence is the terminal transcript and exit code.
 
 ### Verdict

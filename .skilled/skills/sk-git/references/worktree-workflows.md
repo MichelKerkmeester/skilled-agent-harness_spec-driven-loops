@@ -11,7 +11,7 @@ trigger_phrases:
   - "ephemeral session worktrees"
 importance_tier: important
 contextType: implementation
-version: 1.1.7.0
+version: 1.1.8.0
 ---
 
 # Git Worktrees - Detailed Workflow Reference
@@ -642,10 +642,9 @@ git worktree prune
 
 **Symptom**: In a worktree under `.worktrees/`, OpenCode 2 lists each repository plugin twice: the main checkout's copy active, the worktree's copy failed with `Duplicate plugin ID`.
 
-**Cause**: OpenCode 2 merges the `.opencode` folder of every ancestor directory, and `.worktrees/` sits inside the main checkout.
+**Cause**: OpenCode 2 merges the `.opencode` folder of every ancestor directory, and `.worktrees/` sits inside the main checkout (observed on 2.0.32, 2026-10-20).
 
 - OpenCode 2 runs the main checkout's plugin code, so a plugin change made in the worktree has no effect there.
-- OpenCode 1 stops at the worktree root and is not affected (observed on 2.0.32 and 1.19.3, 2026-10-20).
 
 **Solution**:
 ```bash

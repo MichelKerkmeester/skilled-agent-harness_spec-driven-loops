@@ -1,7 +1,7 @@
 ---
 title: "CP-055 -- Synthesis and save boundary **(SANDBOXED)**"
 description: "Validate that deep-review synthesis writes reducer-owned review artifacts and routes continuity through generate-context.js, not retired memory files."
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # CP-055 -- Synthesis and save boundary **(SANDBOXED)**
@@ -46,6 +46,8 @@ Operators run the exact command sequence and inspect only grep-able transcript a
 
 ### Exact Runnable Command Sequence
 
+**OpenCode 2 status:** the only dispatch is a registered slash command, which `run` does not expand on OpenCode 2 (hard rule `v2-slash-prompt-route`). It is UNVERIFIED until a `session.command` runner is recorded, so this scenario cannot PASS on OpenCode 2 yet.
+
 ```bash
 set -uo pipefail
 rm -rf /tmp/cp-055-sandbox /tmp/cp-055-sandbox-baseline /tmp/cp-055-spec
@@ -55,7 +57,10 @@ cp -a /tmp/cp-055-sandbox /tmp/cp-055-sandbox-baseline
 cd "$(git rev-parse --show-toplevel)"
 git status --porcelain -- /tmp/cp-055-sandbox /tmp/cp-055-spec > /tmp/cp-055-pre.txt
 cd /tmp/cp-055-sandbox
-opencode run "/deep:review:auto \"targets/review-target.js\" --spec-folder=/tmp/cp-055-spec --max-iterations=1 --convergence=0.10 --no-resource-map. Use target type files and dimensions maintainability. Complete synthesis after max iterations and route continuity via generate-context.js." --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-055-sandbox </dev/null 2>&1 | tee /tmp/cp-055-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-055-B-exit.txt
+# Stage B is a registered slash command. OpenCode 2 `run` does not expand it (hard rule v2-slash-prompt-route),
+# so it needs the session.command route (POST /api/session/{id}/command). No verified request body for that route
+# is recorded in this repository, so this step is UNVERIFIED and is not run here.
+echo "EXIT_B=UNVERIFIED" | tee /tmp/cp-055-B-exit.txt
 cd "$(git rev-parse --show-toplevel)"
 find /tmp/cp-055-spec -type f \( -name '*.json' -o -name '*.jsonl' -o -name '*.md' \) -print0 2>/dev/null | xargs -0 cat > /tmp/cp-055-B-artifacts.txt 2>/dev/null || touch /tmp/cp-055-B-artifacts.txt
 find /tmp/cp-055-spec -type f > /tmp/cp-055-B-files.txt 2>/dev/null || touch /tmp/cp-055-B-files.txt

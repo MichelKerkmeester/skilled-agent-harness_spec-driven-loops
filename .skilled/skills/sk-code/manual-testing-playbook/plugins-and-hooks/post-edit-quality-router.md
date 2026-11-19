@@ -7,7 +7,7 @@ trigger_phrases:
   - "post edit quality router"
   - "sk-code-post-edit-quality"
   - "posttooluse quality hook"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Post-Edit Quality Router
@@ -158,7 +158,7 @@ import path from 'node:path';
 const { default: MkPostEditQualityPlugin } = await import(new URL('file://$PWD/.opencode/plugins/sk-code-post-edit-quality.js'));
 const projectDir = '$PWD/$TMPDIR_LIVE';
 const editedFile = path.join(projectDir, 'edited.ts');
-const hooks = await MkPostEditQualityPlugin.server({ directory: projectDir });
+const hooks = await MkPostEditQualityPlugin.factory({ directory: projectDir });
 await hooks['tool.execute.before']({ tool: 'write', callID: 'live-call-1' }, { args: { filePath: editedFile } });
 await hooks['tool.execute.after']({ tool: 'write', callID: 'live-call-1' }, { title: 'write', output: '', metadata: {} });
 const output = { system: [] };

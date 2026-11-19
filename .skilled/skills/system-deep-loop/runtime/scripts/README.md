@@ -47,7 +47,7 @@ The `lib/` child contains CLI-only guards and writer-lock helpers.
 | `fanout-run.cjs` | Runs research or review fan-out lineages through CLI subprocesses. |
 | `fanout-salvage.cjs` | Recovers missing iteration artifacts from captured subprocess output. |
 | `loop-lock.cjs` | Adapts shared loop-lock acquisition, heartbeat, reclaim and release to the CLI. |
-| `opencode-version.cjs` | Resolves the OpenCode binary from `$OPENCODE_BIN`, else the first `opencode2` found anywhere on PATH, falling back to the first `opencode` in PATH order only when no `opencode2` exists, parses `--version` into v1 or v2 and refuses a dispatch on an unparsable version. `fanout-run.cjs` uses it to build the v1 or v2 `run` line. |
+| `opencode-version.cjs` | Resolves the OpenCode binary from `$OPENCODE_BIN`, else the first `opencode` on PATH, parses `--version` into `v2`, `unsupported` or `unknown` and refuses a dispatch on a major-1 binary or an unparsable version. `fanout-run.cjs` uses it to build the `run` line. |
 | `query.cjs` | Queries coverage gaps, contradictions and stored graph state. |
 | `reduce-state.cjs` | Reduces durable state records into a current runtime projection. |
 | `render-command-contract.cjs` | Renders the command contract used by validation and dispatch. |
