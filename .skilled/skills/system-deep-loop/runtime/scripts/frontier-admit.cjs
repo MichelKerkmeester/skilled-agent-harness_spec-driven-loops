@@ -599,8 +599,10 @@ function scopeEntries(scope) {
     .filter((entry) => entry !== '');
 }
 
-// A git revision range (base..tip or base...tip) is not a path. The dots must sit
-// between two revision characters, so a '../' path segment never reads as one.
+// A git revision range (base..tip or base...tip) is not a path. One side may be
+// empty, as in 'main..' or '..HEAD', since git reads an empty side as HEAD, but
+// the dots must touch a revision character on at least one side and never a '/',
+// so a '../' path segment, a bare '..' and '...' never read as one.
 // Slashed refs such as 'origin/main..HEAD' are the usual way to write a range, so a
 // slash does not decide it; a token that names a file or directory on disk, resolved
 // against the working directory, is a path, which keeps 'docs/notes..v2.md' a path
@@ -608,7 +610,12 @@ function scopeEntries(scope) {
 // The range may carry a label around it, so any one token that is a range marks
 // the target as one; the label's words would otherwise be read as paths.
 function isRevisionRangeToken(token) {
-  if (!/[^/.]\.\.\.?[^/.]/.test(token) || /(?:^|\/)\.\.(?:\/|$)/.test(token)) return false;
+  const match = /^(.*?)\.\.\.?(.*)$/.exec(token);
+  if (!match) return false;
+  const [, base, tip] = match;
+  if (base === '' && tip === '') return false;
+  if (base !== '' && /[/.]$/.test(base)) return false;
+  if (tip !== '' && /^[/.]/.test(tip)) return false;
   return !fs.existsSync(path.resolve(token));
 }
 

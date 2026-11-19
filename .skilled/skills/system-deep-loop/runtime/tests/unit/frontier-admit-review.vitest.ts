@@ -570,6 +570,27 @@ describe('frontier-admit review root cap and commit-range scope', () => {
     expect(scopeInsideReviewTarget('docs/notes..v2.md', config)).toBe(false);
   });
 
+  // git reads an empty side of a range as HEAD, so an open-ended range is still a
+  // range. Read as a path, it would prune the seed and every proposal on relevance.
+  it.each(['main..', '..HEAD', 'origin/main...'])('reads the open-ended %s as a range', (range) => {
+    const config = { reviewTargetType: 'files', reviewTarget: range, reviewScopeFiles: ['lib/x'] };
+
+    expect(scopeInsideReviewTarget('lib/x', config)).toBe(true);
+    expect(scopeInsideReviewTarget('src/c', config)).toBe(false);
+  });
+
+  it.each(['../x', '..', '...'])('still reads %s as a path, not a range', (target) => {
+    const config = { reviewTargetType: 'files', reviewTarget: target, reviewScopeFiles: ['lib/x'] };
+
+    expect(scopeInsideReviewTarget('lib/x', config)).toBe(false);
+  });
+
+  it('still reads x/.. as the repo root it resolves to, not a range', () => {
+    const config = { reviewTargetType: 'files', reviewTarget: 'x/..', reviewScopeFiles: ['lib/x'] };
+
+    expect(scopeInsideReviewTarget('src/c', config)).toBe(true);
+  });
+
   it('reads named lists of touched files the way the terminal gates do', () => {
     const config = {
       reviewTargetType: 'files',
