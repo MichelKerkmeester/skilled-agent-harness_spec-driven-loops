@@ -1,7 +1,7 @@
 ---
 title: "DRV-084 -- Live expansive review of one small file"
 description: "This scenario validates a low-token live expansive review for `DRV-084`. It focuses on one 121-line file, two sub-target nodes, three deterministic iterations and the signals that show no node is answered yet."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # DRV-084 -- Live expansive review of one small file
@@ -31,7 +31,7 @@ Operators run this as a real orchestrator-led review against a fixture spec fold
 - Expected signals: `review/frontier-nodes.jsonl` holds two depth-1 node ids and no node deeper than two; neither node is answered, because each node carries correctness evidence only and a node is answered only once every dimension in the run's universe has evidence; the store's latest row per node is `open` or `active`, while `review/deep-review-dashboard.md` counts both `exhausted` on `budget` because the depth-1 band allots `maxIterations` x `budgetSplit.depth1` = 3 x 0.5 = 1.5 visits and the two visits spend it; the dashboard contains `## 10B. FRONTIER` and a frontier size of two; its dimension table shows exactly two of the four canonical dimensions `covered`, correctness plus either traceability (when a core traceability protocol is still unfinished) or security (the next queued dimension), with the other two `pending`; `review/iterations/` holds exactly three files; the config shows `reviewTargetType` `files`, `maxIterations` 3 and both caps 2.
 - Desired user-visible outcome: The operator is told the review used three iterations, both sub-targets are still unanswered and the dashboard counts them exhausted on budget, correctness plus either traceability or security was covered while the other two dimensions stayed pending, and where the frontier evidence lives.
 - Pass/fail: PASS if the node count, the store statuses, the projected exhausted count, the dashboard section, the two-of-four dimension coverage (correctness plus either traceability or security), iteration count and config values match; FAIL if any one differs, including a third node, an answered node, a store row written `exhausted`, or a fourth iteration.
-- Observed cost: about 24 to 33 minutes; 0.57M to 0.75M input, 0.05M to 0.06M output, 0.09M reasoning and 11.9M cache-read tokens over three iterations, across two runs.
+- Observed cost: about 24 to 38 minutes; 0.57M to 0.75M input, 0.05M to 0.06M output, 0.09M to 0.10M reasoning and 11.9M to 13.7M cache-read tokens over three iterations, across three runs.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "DR-078 -- Live extension of a finished expansive research run"
 description: "This scenario validates `--extend=1` on the live expansive run from `DR-077` for `DR-078`. It focuses on reusing the finished run, the single extended ledger row and the synthesis snapshot without a fresh session."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # DR-078 -- Live extension of a finished expansive research run
@@ -31,7 +31,7 @@ Operators run this against the completed `DR-077` fixture spec folder, not a fre
 - Expected signals: Exactly one `extended` row appears in `research/deep-research-state.jsonl` and no `resumed` row is added; the config keeps the original `sessionId` and generation 1 with `maxIterations` 4, both frontier caps 2 and `lineageMode` `completed-continue`; one `research/synthesis-v1-r3.md` snapshot exists; `research/iterations/` gains exactly one file; the node store still holds the same two depth-1 ids.
 - Desired user-visible outcome: The operator is told the same run gained one iteration, the prior synthesis is kept as a snapshot, and the frontier is unchanged.
 - Pass/fail: PASS if the event count, session, generation, cap, snapshot, iteration delta and node ids all match; FAIL if any one differs, including a second `extended` row or a reseeded frontier.
-- Observed cost: about 6.5 minutes and 0.21M input, 0.01M output and 1.7M cache-read tokens when --extend refused a run whose closeout had not completed; a full extension was not observed.
+- Observed cost: about 11 minutes; 0.33M input, 0.03M output, 0.03M reasoning and 6.2M cache-read tokens for the one added iteration.
 
 ---
 
