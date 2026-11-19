@@ -1,7 +1,7 @@
 ---
 title: "DRV-084 -- Live expansive review of one small file"
 description: "This scenario validates a low-token live expansive review for `DRV-084`. It focuses on one 121-line file, two sub-target nodes, three deterministic iterations and the signals that show no node is answered yet."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DRV-084 -- Live expansive review of one small file
@@ -26,8 +26,8 @@ Operators run this as a real orchestrator-led review against a fixture spec fold
 
 - Objective: Verify that a live expansive review of one small file with `maxDepth` 2, `maxFrontierNodes` 2 and two seeded sub-target nodes holds two depth-1 nodes, answers none of them in three iterations, and renders the frontier dashboard section.
 - Real user request: Give this one state-append helper a small expansive review with two sub-targets and three iterations, and tell me what the frontier looks like afterwards.
-- Prompt: `Run a three-iteration expansive deep review of .skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs with --depth-mode=expansive --max-iterations=3 --convergence-mode=off, a frontier capped at two sub-target nodes, and the DeepSeek flash executor, then report the node statuses, the dimensions covered and the iteration count.`
-- Expected execution process: Name the repo-relative file path so setup binds `review_target_type` to `files`, hold the run after the config is written and before the frontier seed step, set the two caps, seed two sub-targets, then let three iterations and synthesis finish.
+- Prompt: `Run a three-iteration expansive deep review of .skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs with --depth-mode=expansive --max-iterations=3 --convergence-mode=off --frontier-max-depth=2 --frontier-max-nodes=2, and the DeepSeek flash executor, then report the node statuses, the dimensions covered and the iteration count.`
+- Expected execution process: Name the repo-relative file path so setup binds `review_target_type` to `files`, confirm the config it writes carries both caps, hold the run before the frontier seed step, seed two sub-targets, then let three iterations and synthesis finish.
 - Expected signals: `review/frontier-nodes.jsonl` holds two depth-1 node ids and no node deeper than two; neither node is answered because three iterations cover only three of the four canonical dimensions; the statuses are open or active; `review/deep-review-dashboard.md` contains `## 10B. FRONTIER` and a frontier size of two; `review/iterations/` holds exactly three files; the config shows `reviewTargetType` `files`, `maxIterations` 3 and both caps 2.
 - Desired user-visible outcome: The operator is told the review used three iterations, both sub-targets are still open, three dimensions were covered, and where the frontier evidence lives.
 - Pass/fail: PASS if the node count, statuses, dashboard section, dimension coverage, iteration count and config values match; FAIL if any one differs, including a third node, an answered node or a fourth iteration.
@@ -38,14 +38,14 @@ Operators run this as a real orchestrator-led review against a fixture spec fold
 
 ### Prompt
 
-- Prompt: `Run a three-iteration expansive deep review of .skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs with --depth-mode=expansive --max-iterations=3 --convergence-mode=off, a frontier capped at two sub-target nodes, and the DeepSeek flash executor, then report the node statuses, the dimensions covered and the iteration count.`
+- Prompt: `Run a three-iteration expansive deep review of .skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs with --depth-mode=expansive --max-iterations=3 --convergence-mode=off --frontier-max-depth=2 --frontier-max-nodes=2, and the DeepSeek flash executor, then report the node statuses, the dimensions covered and the iteration count.`
 
 ### Commands
 
 1. `wc -l .skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs`
-2. `rg -n -- '--depth-mode|--max-iterations|--convergence-mode' .skilled/commands/deep/review.md`
-3. `/deep:review ".skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs" :confirm --spec-folder=<fixture> --depth-mode=expansive --max-iterations=3 --convergence-mode=off --executor=cli-opencode --model='opencode-go/deepseek-v4.1-flash#max'`
-4. When the orchestrator reports the config written and stops before the frontier seed step, set the caps. This is a config edit because no flag exists for either value: `jq '.expansiveDepth.maxDepth = 2 | .expansiveDepth.maxFrontierNodes = 2' <fixture>/review/deep-review-config.json > /tmp/drv-caps.json && mv /tmp/drv-caps.json <fixture>/review/deep-review-config.json`
+2. `rg -n -- '--depth-mode|--max-iterations|--convergence-mode|--frontier-max-depth|--frontier-max-nodes' .skilled/commands/deep/review.md`
+3. `/deep:review ".skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs" :confirm --spec-folder=<fixture> --depth-mode=expansive --max-iterations=3 --convergence-mode=off --frontier-max-depth=2 --frontier-max-nodes=2 --executor=cli-opencode --model='opencode-go/deepseek-v4.1-flash#max'`
+4. When the orchestrator reports the config written and stops before the frontier seed step, confirm the caps landed at init: `jq '{maxIterations, maxDepth: .expansiveDepth.maxDepth, maxFrontierNodes: .expansiveDepth.maxFrontierNodes, depthMode: .antiConvergence.depthMode}' <fixture>/review/deep-review-config.json`
 5. `printf '%s\n' '[{"question":"Does the gateway refuse an iteration record without an integer iteration before it appends?","scope":".skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs","evidence":".skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs"},{"question":"Does the observed-time stamp preserve the producer claimed timestamp without letting it win?","scope":".skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs","evidence":".skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs"}]' > <fixture>/review/frontier-seed.json`, then tell the orchestrator to seed that file unchanged.
 6. Let the run continue through seeding, three iterations and synthesis.
 7. `jq -s '[.[] | select(.depth == 1) | .nodeId] | unique | length' <fixture>/review/frontier-nodes.jsonl`
@@ -60,11 +60,11 @@ The executor note: the cli-opencode self-invocation guard refuses that executor 
 
 ### Expected
 
-Command 1 prints `121`. Command 2 prints the three flag rows. Command 3 starts setup with a file target, so the config carries `reviewTargetType` `files`. At command 4 the config holds the two caps; the seed step's budget step is skipped because `--max-iterations` is explicit. Command 5 gives the seed step exactly two sub-targets, so it admits two nodes and prints its no-growth-slot warning. After the run, command 7 prints `2`, command 8 prints `1` because both nodes sit at depth 1, command 9 lists two rows with status `open` or `active` and none `answered`, command 10 prints `## 10B. FRONTIER` and a frontier size of two, command 11 prints `3`, command 12 shows `maxIterations` 3 with both caps 2 and the four canonical dimensions, and command 13 shows three canonical dimensions `covered` with maintainability the remaining `pending` row. At three iterations no review node can be answered because each node needs one iteration per dimension.
+Command 1 prints `121`. Command 2 prints a match for every one of the five flags. Command 3 starts setup with a file target, so the config carries `reviewTargetType` `files`, and command 4 shows the config the run wrote: `maxIterations` 3, both caps 2 and `depthMode` `expansive`, so the two flags landed at init rather than through a later edit. The seed step's budget step is skipped because `--max-iterations` is explicit. Command 5 gives the seed step exactly two sub-targets; the seed pass is exempt from the run-wide node cap and answers only to the root-children cap, so both nodes are admitted. After the run, command 7 prints `2`, command 8 prints `1` because both nodes sit at depth 1, command 9 lists two rows with status `open` or `active` and none `answered`, command 10 prints `## 10B. FRONTIER` and a frontier size of two, command 11 prints `3`, command 12 still shows `maxIterations` 3 with both caps 2 and the four canonical dimensions, and command 13 shows three canonical dimensions `covered` with maintainability the remaining `pending` row. At three iterations no review node can be answered because each node needs one iteration per dimension.
 
 ### Evidence
 
-Capture the command 1 line count, the command 2 matches, the config JSON before and after command 4, the seed output and warning, the command 7 to 13 outputs, and the iteration file listing.
+Capture the command 1 line count, the command 2 matches, the command 4 config JSON, the seed output and warning, the command 7 to 13 outputs, and the iteration file listing.
 
 ### Pass / Fail
 
@@ -73,7 +73,7 @@ Capture the command 1 line count, the command 2 matches, the config JSON before 
 
 ### Failure Triage
 
-Check the config first. A cap still at 3 or null means command 4 ran after the seed or was overwritten, so rerun on a fresh fixture and hold the run at the config report. An answered node at three iterations contradicts the one-iteration-per-dimension rule, so read the node's `coveredDimensions` in the registry. A fourth iteration means convergence was not off.
+Check the config first. A cap still at 3 or null at command 4 means the invocation dropped the flag or the value was not a positive integer, so rerun with both flags. A cap that matches at command 4 but not at command 12 means something rewrote the config. An answered node at three iterations contradicts the one-iteration-per-dimension rule, so read the node's `coveredDimensions` in the registry. A fourth iteration means convergence was not off.
 
 ### Optional Supplemental Checks
 

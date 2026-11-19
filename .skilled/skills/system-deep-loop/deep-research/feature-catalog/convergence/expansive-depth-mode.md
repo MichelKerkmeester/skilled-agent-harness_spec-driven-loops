@@ -6,7 +6,7 @@ trigger_phrases:
   - "expansive depth research"
   - "research frontier mode"
   - "frontier admission research"
-version: 1.0.13.0
+version: 1.0.14.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
@@ -25,7 +25,7 @@ The expansive run seeds depth-one nodes before iteration 1. Each iteration's lea
 
 ### Configuration
 
-`expansiveDepth` in `deep-research-config.json` sets `maxDepth` to 3, `maxChildrenPerNode` to 6, a 50/35/15 iteration budget across depths, and `maxFrontierNodes` to null, which admission resolves to half of `maxIterations` (10 when no config exists yet, as on a fan-out parent). The depth-1 seed answers only to the root-children cap, but every seed that is not pruned counts toward the run cap. When `--max-iterations` is left at its default, the run sizes its budget from the seed: `min(24, max(10, 2 × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes, 16 at the full six seeds, and the seed step prints the derived budget. The node cap stays half that budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value, and the seed warns when it leaves no room past depth 1. `antiConvergence.depthMode` defaults to `default`. The convergence script adds `depthMode` to its stop-decision config only when the value is `expansive`.
+`expansiveDepth` in `deep-research-config.json` sets `maxDepth` to 3, `maxChildrenPerNode` to 6, a 50/35/15 iteration budget across depths, and `maxFrontierNodes` to null, which admission resolves to half of `maxIterations` (10 when no config exists yet, as on a fan-out parent). `--frontier-max-depth=N` and `--frontier-max-nodes=N` set `maxDepth` and `maxFrontierNodes` when the config is created; both take a positive integer, need `--depth-mode=expansive` on a single-executor run, and are refused on a fan-out config. The depth-1 seed answers only to the root-children cap, but every seed that is not pruned counts toward the run cap. When `--max-iterations` is left at its default, the run sizes its budget from the seed: `min(24, max(10, 2 × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes, 16 at the full six seeds, and the seed step prints the derived budget. The node cap stays half that budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value, and the seed warns when it leaves no room past depth 1. `antiConvergence.depthMode` defaults to `default`. The convergence script adds `depthMode` to its stop-decision config only when the value is `expansive`.
 
 ### Frontier Graph Mirror
 
@@ -53,7 +53,7 @@ Fan-out lineages each receive a share of the seeded nodes. `runtime/scripts/fano
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/commands/deep/research.md` | Command doc | The `--depth-mode` flag row. |
+| `.skilled/commands/deep/research.md` | Command doc | The `--depth-mode`, `--frontier-max-depth` and `--frontier-max-nodes` flag rows. |
 | `.skilled/commands/deep/assets/deep-research.yaml` | Command workflow | The `depth_mode` input, the preflight check, the config keys and the `step_frontier_graph_upsert` frontier graph mirror. |
 | `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | Config | `antiConvergence.depthMode` and the `expansiveDepth` block. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` | Script | Seeds, admits and closes frontier nodes. Its `graph` command builds the frontier graph events through `buildFrontierGraphEvents`, its `block` command renders the FRONTIER prompt block and its `budget` command writes the derived seed budget into the mode config. |

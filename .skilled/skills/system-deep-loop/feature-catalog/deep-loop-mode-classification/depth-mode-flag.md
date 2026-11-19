@@ -6,14 +6,14 @@ trigger_phrases:
   - "depth mode flag"
   - "expansive depth flag"
   - "deep loop depth mode"
-version: 1.0.9.0
+version: 1.0.10.0
 ---
 
 # Depth mode flag (--depth-mode)
 
 ## 1. OVERVIEW
 
-`--depth-mode` is a command-level option on `/deep:research` and `/deep:review`. It takes `default` or `expansive`. The flag is not part of `mode-registry.json`, so the hub classifies a request into the same workflow mode with or without it. The behavior the flag turns on lives in the research and review packets. Admission caps the live frontier at half of `maxIterations`, or at `expansiveDepth.maxFrontierNodes` when the config sets it, and falls back to 10 when no config exists yet, as for a fan-out parent's seed. The seed pass is exempt from that cap, but every seeded node counts toward it afterwards, so a defaulted budget is sized from the seed: `min(24, max(loop default, 2 × c × (S + maxDepth − 1)))` for S seeded depth-1 nodes, with c 1 for research and, for review, the four canonical dimensions plus any custom name, each counted once. A fan-out lineage with no matrix `iterations` value is sized from its own seed share with c fixed at the canonical four for review and maxDepth at its default of 3, since a lineage reviews only those. A run or fan-out lineage with no seeded node keeps its loop default. An explicit `--max-iterations` always wins, even below the derived value.
+`--depth-mode` is a command-level option on `/deep:research` and `/deep:review`. It takes `default` or `expansive`. The flag is not part of `mode-registry.json`, so the hub classifies a request into the same workflow mode with or without it. The behavior the flag turns on lives in the research and review packets. Admission caps the live frontier at half of `maxIterations`, or at `expansiveDepth.maxFrontierNodes` when the config sets it, and falls back to 10 when no config exists yet, as for a fan-out parent's seed. Two companion flags set those caps when the config is created: `--frontier-max-depth=N` writes `expansiveDepth.maxDepth` and `--frontier-max-nodes=N` writes `expansiveDepth.maxFrontierNodes`. Both take a positive integer and need `--depth-mode=expansive` on a single-executor run, and a fan-out run refuses either one because each lineage writes its own config. The seed pass is exempt from that cap, but every seeded node counts toward it afterwards, so a defaulted budget is sized from the seed: `min(24, max(loop default, 2 × c × (S + maxDepth − 1)))` for S seeded depth-1 nodes, with c 1 for research and, for review, the four canonical dimensions plus any custom name, each counted once. A fan-out lineage with no matrix `iterations` value is sized from its own seed share with c fixed at the canonical four for review and maxDepth at its default of 3, since a lineage reviews only those. A run or fan-out lineage with no seeded node keeps its loop default. An explicit `--max-iterations` always wins, even below the derived value.
 
 ---
 
@@ -26,6 +26,8 @@ version: 1.0.9.0
 ### Flag Routing
 
 The command workflow reads `--depth-mode` and binds it as `depth_mode`. The runtime acts only on the value `expansive`. `runtime/scripts/convergence.cjs` adds `depthMode` to its stop-decision config only when the value is `expansive`, and `runtime/scripts/fanout-run.cjs` passes `depthMode` to fan-out lineages only when the value is `expansive`. A default run carries no depth key in either place.
+
+The same workflow reads `--frontier-max-depth` and `--frontier-max-nodes` as `frontier_max_depth` and `frontier_max_nodes`. When it creates the config, it writes the first to `expansiveDepth.maxDepth` and the second to `expansiveDepth.maxFrontierNodes`. A value that is not a positive integer fails as `Usage error (frontier-cap-value)`, a value without expansive depth fails as `Usage error (frontier-cap-without-expansive)`, and either flag on a fan-out config fails as `Usage error (frontier-caps-with-fanout)`; all three refuse before any lineage spawns or state changes. A resume or `--extend` run creates no config, so the flags have no effect there.
 
 ### Packet Behavior
 
@@ -40,16 +42,16 @@ The expansive behavior is documented in the packet catalogs: [expansive depth mo
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/system-deep-loop/mode-registry.json` | Registry | Holds the discriminator for `research` and `review`, with no depth field. |
-| `.skilled/commands/deep/research.md` | Command doc | The `--depth-mode` flag row for research. |
-| `.skilled/commands/deep/review.md` | Command doc | The `--depth-mode` flag row for review. |
+| `.skilled/commands/deep/research.md` | Command doc | The `--depth-mode`, `--frontier-max-depth` and `--frontier-max-nodes` flag rows for research. |
+| `.skilled/commands/deep/review.md` | Command doc | The `--depth-mode`, `--frontier-max-depth` and `--frontier-max-nodes` flag rows for review. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Script | Adds `depthMode` to the stop-decision config only when expansive. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Script | Under expansive depth, passes `depthMode` to lineages, deals the seeded nodes round-robin and records the partition. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Script | Merges the lineage frontiers and runs the partition guard over the recorded deal. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` | Script | Owns the node store and the seed, admit, close, block, graph and budget calls the flag turns on. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Script | Projects `registry.frontier`, the input the review stop veto reads. |
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Script | Projects `registry.frontier` for research. |
-| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Binds `depth_mode` and owns `step_frontier_seed` and `step_frontier_admit` for research. |
-| `.skilled/commands/deep/assets/deep-review.yaml` | Workflow | Binds `depth_mode` and owns `step_frontier_seed` and `step_frontier_admit` for review. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Binds `depth_mode` and the two frontier cap inputs, checks the cap values and ownership, and owns `step_frontier_seed` and `step_frontier_admit` for research. |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Workflow | Binds `depth_mode` and the two frontier cap inputs, checks the cap values and ownership, and owns `step_frontier_seed` and `step_frontier_admit` for review. |
 
 ### Validation And Tests
 

@@ -1,7 +1,7 @@
 ---
 title: "DR-078 -- Live extension of a finished expansive research run"
 description: "This scenario validates `--extend=1` on the live expansive run from `DR-077` for `DR-078`. It focuses on reusing the finished run, the single extended ledger row and the synthesis snapshot without a fresh session."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DR-078 -- Live extension of a finished expansive research run
@@ -28,7 +28,7 @@ Operators run this against the completed `DR-077` fixture spec folder, not a fre
 - Real user request: The small expansive run at three iterations already answered most of the question. Give that same run one more iteration without starting over.
 - Prompt: `Extend the completed expansive deep-research run from DR-077 in its fixture spec folder by one iteration with --extend=1, then confirm the same session and generation, the single extended event, the synthesis snapshot, the two frontier nodes and one more iteration file.`
 - Expected execution process: Read the iteration count, the config and the node store first, run the research command with `--extend=1` and no other loop flag against that spec folder, then reread the same files after synthesis.
-- Expected signals: Exactly one `extended` row appears in `research/deep-research-state.jsonl` and no `resumed` row is added; the config keeps the original `sessionId` and generation 1 with `maxIterations` 4 and `lineageMode` `completed-continue`; one `research/synthesis-v1-r3.md` snapshot exists; `research/iterations/` gains exactly one file; the node store still holds the same two depth-1 ids.
+- Expected signals: Exactly one `extended` row appears in `research/deep-research-state.jsonl` and no `resumed` row is added; the config keeps the original `sessionId` and generation 1 with `maxIterations` 4, both frontier caps 2 and `lineageMode` `completed-continue`; one `research/synthesis-v1-r3.md` snapshot exists; `research/iterations/` gains exactly one file; the node store still holds the same two depth-1 ids.
 - Desired user-visible outcome: The operator is told the same run gained one iteration, the prior synthesis is kept as a snapshot, and the frontier is unchanged.
 - Pass/fail: PASS if the event count, session, generation, cap, snapshot, iteration delta and node ids all match; FAIL if any one differs, including a second `extended` row or a reseeded frontier.
 
@@ -42,12 +42,12 @@ Operators run this against the completed `DR-077` fixture spec folder, not a fre
 
 ### Commands
 
-1. `jq '{maxIterations, sessionId: .lineage.sessionId, generation: .lineage.generation, lineageMode: .lineage.lineageMode}' <fixture>/research/deep-research-config.json`
+1. `jq '{maxIterations, maxDepth: .expansiveDepth.maxDepth, maxFrontierNodes: .expansiveDepth.maxFrontierNodes, sessionId: .lineage.sessionId, generation: .lineage.generation, lineageMode: .lineage.lineageMode}' <fixture>/research/deep-research-config.json`
 2. `find <fixture>/research/iterations -name 'iteration-*.md' | wc -l`
 3. `jq -s '[.[] | select(.depth == 1) | .nodeId] | unique | sort' <fixture>/research/frontier-nodes.jsonl`
 4. `/deep:research "Which events does the deep-research reducer project from the ledger?" :auto --spec-folder=<fixture> --extend=1`
 5. `rg -c '"event":"extended"' <fixture>/research/deep-research-state.jsonl`
-6. `jq '{maxIterations, sessionId: .lineage.sessionId, generation: .lineage.generation, lineageMode: .lineage.lineageMode, continuedFromRun: .lineage.continuedFromRun}' <fixture>/research/deep-research-config.json`
+6. `jq '{maxIterations, maxDepth: .expansiveDepth.maxDepth, maxFrontierNodes: .expansiveDepth.maxFrontierNodes, sessionId: .lineage.sessionId, generation: .lineage.generation, lineageMode: .lineage.lineageMode, continuedFromRun: .lineage.continuedFromRun}' <fixture>/research/deep-research-config.json`
 7. `find <fixture> -name 'synthesis-v*-r*.md'`
 8. `find <fixture>/research/iterations -name 'iteration-*.md' | wc -l`
 9. `jq -s '[.[] | select(.depth == 1) | .nodeId] | unique | sort' <fixture>/research/frontier-nodes.jsonl`
@@ -57,7 +57,7 @@ The executor note: the completion is one native iteration, so no `--executor` fl
 
 ### Expected
 
-Before the run, command 1 shows `maxIterations` 3 and generation 1, command 2 prints `3` and command 3 prints the two node ids. Command 4 adds one iteration; because `DR-077` was created with `--convergence-mode=off`, the extension inherits that mode and cannot stop before the new cap. After it finishes, command 5 prints `1`, command 6 shows the same `sessionId`, generation 1, `maxIterations` 4, `lineageMode` `completed-continue` and `continuedFromRun` 3, command 7 lists `synthesis-v1-r3.md`, command 8 prints `4`, command 9 prints the same two ids, and command 10 prints nothing and exits 1 because no `resumed` row exists.
+Before the run, command 1 shows `maxIterations` 3, both caps 2 and generation 1, command 2 prints `3` and command 3 prints the two node ids. Command 4 adds one iteration; `--extend` skips config creation, so a cap flag there changes nothing and the run keeps the caps `DR-077` wrote. Because `DR-077` was created with `--convergence-mode=off`, the extension inherits that mode and cannot stop before the new cap. After it finishes, command 5 prints `1`, command 6 shows the same `sessionId`, generation 1, `maxIterations` 4, both caps 2, `lineageMode` `completed-continue` and `continuedFromRun` 3, command 7 lists `synthesis-v1-r3.md`, command 8 prints `4`, command 9 prints the same two ids, and command 10 prints nothing and exits 1 because no `resumed` row exists.
 
 ### Evidence
 
@@ -65,7 +65,7 @@ Capture the command 1 to 3 outputs before the run, the command 4 start and finis
 
 ### Pass / Fail
 
-- **Pass**: One `extended` row, no `resumed` row, the same session and generation, `maxIterations` 4, `completed-continue`, one synthesis snapshot, four iteration files and the same two node ids.
+- **Pass**: One `extended` row, no `resumed` row, the same session and generation, `maxIterations` 4, both caps 2, `completed-continue`, one synthesis snapshot, four iteration files and the same two node ids.
 - **Fail**: A second `extended` row, a new session or generation, a different cap, no snapshot, an iteration count other than four, or a changed frontier.
 
 ### Failure Triage

@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "c706b0c32125a6bd7ae8475c1ce1b73a435484fd59a25042f5d8272f6e939ac8",
+      "sha256": "89310bb033d6aae4c12f4d252602c4365b2ec337a77a0852c46c41a4a019bfc3",
       "section": "full"
     },
     {
@@ -42,12 +42,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "d5f25ab4fe509942d356c0be8de956c2b763d52ec000720241322a5d476cb5ba",
+      "sha256": "1a3f564fbbbe3aa1dce14c402b805c2861bf7e46e576eaaadd2ffe3853dc3add",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "sha256": "625bc3d26b6925212b042ed43596bf4beca51e930ef4666d287e367585d3bdf5",
+      "sha256": "755e404617caa1ce79fb68041762101963ce01693219c3f1a4f9e338e552ab0f",
       "section": "full"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "28d4f35866e44e6933316f110b0b044eb63a6cb72c5a6ccff2b74fc00688e936",
+      "sha256": "d7a6201d9ffedfa399149c8b6909226b918fd08ab5020ce34e07114dca55313b",
       "section": "full"
     },
     {

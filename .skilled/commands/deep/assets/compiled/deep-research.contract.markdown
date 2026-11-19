@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "5e52a3befb6a11033a44c23bc4e82e4428ff2862e8e4cce19e6ac971a7d1ede6",
+      "sha256": "8d7a4ac87a1c8190368c9d958862edb1fd65ea8839b5dc8a9dc24f354a7e5e5d",
       "section": "full"
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "54888d66ce9652f516caa7d3fec25c81b06762c80356488d93b1f92e92e48e4e",
+      "sha256": "3b7574e92ca1a0797632884c5a7f7071488fcc4680448186aaee4a6026ed35ba",
       "section": "full"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
-      "sha256": "0aff5dd7601305b959ada40e16e644ff9df0ff2c3f89a9b4fc84a9da6c37e9e4",
+      "sha256": "173751c7878ea49d4c2a395974a7ff0fdd1c6e7c0840cdb4b5a4b13ed9e6d1aa",
       "section": "full"
     },
     {

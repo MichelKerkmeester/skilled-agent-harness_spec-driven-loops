@@ -1,7 +1,7 @@
 ---
 title: "DRV-085 -- Live review of one custom dimension"
-description: "This scenario validates a low-token live review with one custom dimension for `DRV-085`. It focuses on the setup answer `correctness, performance`, three deterministic iterations and the coverage evidence that performance was reviewed."
-version: 1.0.0.0
+description: "This scenario validates a low-token live review with one custom dimension for `DRV-085`. It focuses on the setup answer `correctness, performance`, two deterministic iterations and the coverage evidence that performance was reviewed."
+version: 1.0.1.0
 ---
 
 # DRV-085 -- Live review of one custom dimension
@@ -26,11 +26,11 @@ Operators run this as a real orchestrator-led review against a fixture spec fold
 
 - Objective: Verify that a live review configured with `review_dimensions: correctness, performance` records both names, reviews correctness first and performance second, and shows performance as covered after two iterations.
 - Real user request: Review this one small state-append helper for correctness and performance, and show me that performance was actually covered.
-- Prompt: `Run a three-iteration deep review of .skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs for the dimensions correctness and performance with --max-iterations=3 --convergence-mode=off and the DeepSeek flash executor, then confirm that performance is in the config, in the second iteration and in the coverage report.`
-- Expected execution process: Answer the setup dimensions question with `correctness, performance`, keep the default depth mode, let three iterations run, then read the config, the second iteration file, the state log and the dashboard coverage table. The run needs three iterations, not two: the last iteration under the cap goes to `traceability` while a core traceability protocol is unfinished, so a two-iteration run never reaches performance.
-- Expected signals: The config lists `reviewDimensions` as `correctness` then `performance`; `review/iterations/` holds exactly three files; the second iteration's focus and dimensions name performance; the dashboard's `## 5. DIMENSION COVERAGE` table marks performance `covered`; no `review/frontier-nodes.jsonl` exists because the depth mode stayed default.
-- Desired user-visible outcome: The operator is told correctness ran first, performance ran second, performance is covered, and the run took three iterations with no frontier.
-- Pass/fail: PASS if the config names both dimensions, the second iteration and the dashboard prove performance, the iteration count is three and no frontier store exists; FAIL if performance is missing from any of them or a fourth iteration runs.
+- Prompt: `Run a two-iteration deep review of .skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs for the dimensions correctness and performance with --max-iterations=2 --convergence-mode=off and the DeepSeek flash executor, then confirm that performance is in the config, in the second iteration and in the coverage report.`
+- Expected execution process: Answer the setup dimensions question with `correctness, performance`, keep the default depth mode, let two iterations run, then read the config, the second iteration file, the state log and the dashboard coverage table. Traceability is not in the configured set, so the last iteration under the cap is not steered to it, and iteration 2 reviews performance.
+- Expected signals: The config lists `reviewDimensions` as `correctness` then `performance`; `review/iterations/` holds exactly two files; the second iteration's focus and dimensions name performance; the dashboard's `## 5. DIMENSION COVERAGE` table marks performance `covered`; no `review/frontier-nodes.jsonl` exists because the depth mode stayed default.
+- Desired user-visible outcome: The operator is told correctness ran first, performance ran second, performance is covered, and the run took two iterations with no frontier.
+- Pass/fail: PASS if the config names both dimensions, the second iteration and the dashboard prove performance, the iteration count is two and no frontier store exists; FAIL if performance is missing from any of them or a third iteration runs.
 
 ---
 
@@ -38,12 +38,12 @@ Operators run this as a real orchestrator-led review against a fixture spec fold
 
 ### Prompt
 
-- Prompt: `Run a three-iteration deep review of .skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs for the dimensions correctness and performance with --max-iterations=3 --convergence-mode=off and the DeepSeek flash executor, then confirm that performance is in the config, in the second iteration and in the coverage report.`
+- Prompt: `Run a two-iteration deep review of .skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs for the dimensions correctness and performance with --max-iterations=2 --convergence-mode=off and the DeepSeek flash executor, then confirm that performance is in the config, in the second iteration and in the coverage report.`
 
 ### Commands
 
 1. `wc -l .skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs`
-2. `/deep:review ".skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs" :confirm --spec-folder=<fixture> --max-iterations=3 --convergence-mode=off --executor=cli-opencode --model='opencode-go/deepseek-v4.1-flash#max'`, then answer the review dimensions question with `correctness, performance` and keep the depth mode at `default`.
+2. `/deep:review ".skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs" :confirm --spec-folder=<fixture> --max-iterations=2 --convergence-mode=off --executor=cli-opencode --model='opencode-go/deepseek-v4.1-flash#max'`, then answer the review dimensions question with `correctness, performance` and keep the depth mode at `default`.
 3. `jq '{reviewDimensions, reviewTargetType, maxIterations, depthMode: .antiConvergence.depthMode, convergenceMode: .antiConvergence.convergenceMode}' <fixture>/review/deep-review-config.json`
 4. `find <fixture>/review/iterations -name 'iteration-*.md' | wc -l`
 5. `rg -n 'performance|correctness' <fixture>/review/iterations/iteration-002.md`
@@ -55,7 +55,7 @@ The executor note: the cli-opencode self-invocation guard refuses that executor 
 
 ### Expected
 
-Command 1 prints `121`. Command 2 runs the review; the setup answer is normalized to `["correctness","performance"]`, and because the configured names are a subset, the dimension queue is correctness then performance. Command 3 shows those two names in order, `reviewTargetType` `files`, `maxIterations` 3, `depthMode` `default` and `convergenceMode` `off`. Command 4 prints `3`. Command 5 prints a performance focus line in the second iteration. Command 6 prints three iteration records, the second naming performance. Command 7 prints `| performance | covered |`, and command 8 prints `no frontier store`.
+Command 1 prints `121`. Command 2 runs the review; the setup answer is normalized to `["correctness","performance"]`, and because the configured names are a subset, the dimension queue is correctness then performance. Command 3 shows those two names in order, `reviewTargetType` `files`, `maxIterations` 2, `depthMode` `default` and `convergenceMode` `off`. Command 4 prints `2`. Command 5 prints a performance focus line in the second iteration. Command 6 prints two iteration records, the first naming correctness and the second naming performance. Command 7 prints `| performance | covered |`, and command 8 prints `no frontier store`.
 
 ### Evidence
 
@@ -63,12 +63,12 @@ Capture the command 1 line count, the config JSON, the iteration listing, the pe
 
 ### Pass / Fail
 
-- **Pass**: `reviewDimensions` is correctness then performance, exactly three iterations ran, the second iteration and the dashboard prove performance is covered, and no frontier store exists.
-- **Fail**: A missing or reordered dimension name, a fourth iteration, a dashboard row that leaves performance pending, or a frontier store that a default run should not create.
+- **Pass**: `reviewDimensions` is correctness then performance, exactly two iterations ran, the second iteration and the dashboard prove performance is covered, and no frontier store exists.
+- **Fail**: A missing or reordered dimension name, a third iteration, a dashboard row that leaves performance pending, or a frontier store that a default run should not create.
 
 ### Failure Triage
 
-Check the config first. A config that lists all four canonical names means the setup answer was treated as `all`, so rerun and answer `correctness, performance` at the dimensions question. A performance row left pending after three iterations means the second iteration focused another dimension, so read its `focus` and `dimensions` in the state log.
+Check the config first. A config that lists all four canonical names means the setup answer was treated as `all`, so rerun and answer `correctness, performance` at the dimensions question. A performance row left pending after two iterations means the second iteration focused another dimension, so read its `focus` and `dimensions` in the state log.
 
 ### Optional Supplemental Checks
 

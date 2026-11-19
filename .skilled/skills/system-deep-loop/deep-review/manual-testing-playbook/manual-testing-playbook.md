@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.13.13.0
+version: 1.13.14.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -50,14 +50,14 @@ This playbook provides 72 deterministic scenarios across 10 categories validatin
 ### Keeping live runs cheap
 
 - Set `--max-iterations` to 2 or 3 explicitly. Left at its default, an expansive review sizes its budget from the seed and can reach 24 iterations (research reaches 16); an explicit flag wins and skips the resize step.
-- Cap the frontier in the run config. After setup writes `review/deep-review-config.json` and before the frontier seed step, set `expansiveDepth.maxDepth` to 2 and `expansiveDepth.maxFrontierNodes` to 2. This is a config edit because no flag exists for either value; it bounds frontier growth to the two nodes the run needs. Without it, three iterations derive a node cap of 1.
+- Cap the frontier with `--frontier-max-depth=2 --frontier-max-nodes=2`. Both flags take a positive integer, need `--depth-mode=expansive` on a single-executor run, and are written into `review/deep-review-config.json` at init. Without them the caps stay at `maxDepth` 3 and `maxFrontierNodes` null, and three iterations derive a node cap of 1.
 - Seed exactly two depth-1 sub-targets. The seed step normally asks for three to eight (three to six for research), and `frontier-admit.cjs seed` accepts a two-row `frontier-seed.json`.
 - Add `--convergence-mode=off` so the iteration count equals `--max-iterations`. An `--extend` run inherits the convergence mode of the run it extends.
 - Use a tiny target: one file under 150 lines, such as `runtime/scripts/append-state-record.cjs` at 121 lines, or one narrow research question answerable from repo files.
 - Run one lineage. Fan-out multiplies the iteration budget and is not needed for a live check.
 - Use the DeepSeek flash executor with `--executor=cli-opencode --model='opencode-go/deepseek-v4.1-flash#max'`. The cli-opencode self-invocation guard refuses it when the command is driven from inside an OpenCode session, so use the default native executor with the session model set instead.
-- Reuse a finished run with `--extend=1` rather than paying for a fresh run and a new frontier.
-- In `:confirm` mode, hold the run after the config is written and before the seed step so the cap edit lands before any node exists.
+- Reuse a finished run with `--extend=1` rather than paying for a fresh run and a new frontier. An extension creates no config, so a cap flag there has no effect and the run keeps the caps of the run it extends.
+- In `:confirm` mode, hold the run after the config is written so you can confirm both caps before the seed step.
 
 ---
 
