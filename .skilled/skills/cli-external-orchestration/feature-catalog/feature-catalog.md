@@ -12,7 +12,7 @@ trigger_phrases:
   - "DeepSeek Harness Dispatch Mode"
   - "Mistral Vibe Dispatch Mode"
 last_updated: "2026-11-19"
-version: 1.7.11.0
+version: 1.7.12.0
 ---
 
 # cli-external-orchestration: Feature Catalog
@@ -131,7 +131,7 @@ The runtime resolves the binary, probes its `--version` output, and refuses the 
 
 #### Source Files
 
-See [`opencode-dual-version-dispatch/opencode-dual-version-dispatch.md`](opencode-dual-version-dispatch/opencode-dual-version-dispatch.md) for the resolution and probe contract, the lineage argv, and the durable test anchors.
+See [`opencode-version-dispatch/opencode-version-dispatch.md`](opencode-version-dispatch/opencode-version-dispatch.md) for the resolution and probe contract, the lineage argv, and the durable test anchors.
 
 ---
 

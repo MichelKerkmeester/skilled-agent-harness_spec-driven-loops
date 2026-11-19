@@ -205,7 +205,7 @@ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 
 **Doctor battery.** The second command checks OpenCode 2, and the run starts a private server on its own port. On 2026-10-19, after main added `session-handover.js`, the battery reported all 17 plugin files then in the folder active on OpenCode 2.0.32. That count is dated history: the folder holds 20 plugin files today. In a worktree nested inside another checkout, OpenCode 2 also loads the outer checkout's plugin folder, so the battery's read turns that walk off with `OPENCODE_CONFIG_PROJECT_DISABLE=1`, sets `OPENCODE_CONFIG_DIR` to the root's own `.opencode`, and names each outer folder in an `isolated:` line of the plugin-active result. A plain checkout and CI keep OpenCode 2's normal discovery.
 
-**CI workflow.** `.github/workflows/opencode-dual-version.yml` runs one job: it provisions every dependency tree the plugins import, runs the config-shape, battery, default-model-id and models-form unit tests, installs `@opencode/cli@2.3.2` into its own prefix and runs the battery with `--family=v2`. It runs on pushes and pull requests to `main` and `skilled/**` that touch the plugin, agent or dispatch-hook trees, the cli-opencode skill (`.skilled/skills/cli-external-orchestration/cli-opencode/**` and `.opencode/skills/cli-external-orchestration/cli-opencode/**`), the setup action (`.github/actions/**`), the package manifests and lockfiles, the battery script and its test, the config-shape test, `opencode.json` or the workflow itself.
+**CI workflow.** `.github/workflows/opencode-v2-battery.yml` runs one job: it provisions every dependency tree the plugins import, runs the config-shape, battery, default-model-id and models-form unit tests, installs `@opencode/cli@2.3.2` into its own prefix and runs the battery with `--family=v2`. It runs on pushes and pull requests to `main` and `skilled/**` that touch the plugin, agent or dispatch-hook trees, the cli-opencode skill (`.skilled/skills/cli-external-orchestration/cli-opencode/**` and `.opencode/skills/cli-external-orchestration/cli-opencode/**`), the setup action (`.github/actions/**`), the package manifests and lockfiles, the battery script and its test, the config-shape test, `opencode.json` or the workflow itself.
 
 ---
 
@@ -234,5 +234,5 @@ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 - [tests/README.md](./tests/README.md): the regression suite index.
 - [lib/v2-bridge.js](./lib/v2-bridge.js): the export builder and hook mapping.
 - [hook-flags.cjs](../../.skilled/hooks/shared/hook-flags.cjs): the kill-switch resolver.
-- [opencode-dual-version.yml](../../.github/workflows/opencode-dual-version.yml): the OpenCode 2 CI workflow.
+- [opencode-v2-battery.yml](../../.github/workflows/opencode-v2-battery.yml): the OpenCode 2 CI workflow.
 - [opencode-version-battery.cjs](../../.skilled/commands/doctor/scripts/opencode-version-battery.cjs): the doctor battery.

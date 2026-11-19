@@ -1,5 +1,5 @@
 {
-  "manifestHash": "feb3769f8b8e85bc61c0c61107afa164e81c67f5ba677fe61b0f2bebb2f6bc74",
+  "manifestHash": "0981224d02589e7fc7ba71fd85280edd69af91079b7fe16daaf14f75b87deea2",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -573,7 +573,7 @@
     ".skilled/skills/cli-external-orchestration/feature-catalog/deepseek-harness-dispatch-mode/deepseek-harness-dispatch-mode.md",
     ".skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
     ".skilled/skills/cli-external-orchestration/feature-catalog/mistral-vibe-dispatch-mode/mistral-vibe-dispatch-mode.md",
-    ".skilled/skills/cli-external-orchestration/feature-catalog/opencode-dual-version-dispatch/opencode-dual-version-dispatch.md",
+    ".skilled/skills/cli-external-orchestration/feature-catalog/opencode-version-dispatch/opencode-version-dispatch.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-audit-trail.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization-conversation.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md",

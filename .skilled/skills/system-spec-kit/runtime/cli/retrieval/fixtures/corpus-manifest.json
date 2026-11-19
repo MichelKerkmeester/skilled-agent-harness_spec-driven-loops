@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9d3633860f9eb3fa16484cdd664d773edc96ced4ffe2d9a2710c3347f3fa3231",
+  "corpusHash": "ee258c60698149c26ebd8c5225f1c1eb153de77cb05546510189247bd5392c9d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -1960,7 +1960,7 @@
     ".skilled/skills/cli-external-orchestration/feature-catalog/deepseek-harness-dispatch-mode/deepseek-harness-dispatch-mode.md",
     ".skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
     ".skilled/skills/cli-external-orchestration/feature-catalog/mistral-vibe-dispatch-mode/mistral-vibe-dispatch-mode.md",
-    ".skilled/skills/cli-external-orchestration/feature-catalog/opencode-dual-version-dispatch/opencode-dual-version-dispatch.md",
+    ".skilled/skills/cli-external-orchestration/feature-catalog/opencode-version-dispatch/opencode-version-dispatch.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/compiled-routing/ordered-bundle-cli-transport-compiled-routing.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/auth-failure.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/budget-rejection.md",
@@ -28598,7 +28598,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "feb3769f8b8e85bc61c0c61107afa164e81c67f5ba677fe61b0f2bebb2f6bc74",
+  "manifestHash": "0981224d02589e7fc7ba71fd85280edd69af91079b7fe16daaf14f75b87deea2",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

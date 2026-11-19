@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "feb3769f8b8e85bc61c0c61107afa164e81c67f5ba677fe61b0f2bebb2f6bc74",
+  "manifestHash": "0981224d02589e7fc7ba71fd85280edd69af91079b7fe16daaf14f75b87deea2",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -8258,7 +8258,7 @@
     {
       "category": "duplicate-phrase",
       "line": 6,
-      "path": ".skilled/skills/cli-external-orchestration/feature-catalog/opencode-dual-version-dispatch/opencode-dual-version-dispatch.md",
+      "path": ".skilled/skills/cli-external-orchestration/feature-catalog/opencode-version-dispatch/opencode-version-dispatch.md",
       "rawKey": "trigger_phrases",
       "reason": "duplicate normalized phrase \"opencode version detection\""
     },

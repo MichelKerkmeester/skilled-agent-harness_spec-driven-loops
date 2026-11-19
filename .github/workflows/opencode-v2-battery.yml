@@ -28,7 +28,7 @@ on:
       - '.skilled/skills/cli-external-orchestration/**/*.md'
       - '.opencode/skills/cli-external-orchestration/**/*.md'
       - '.github/actions/**'
-      - '.github/workflows/opencode-dual-version.yml'
+      - '.github/workflows/opencode-v2-battery.yml'
   push:
     branches: [main, 'skilled/**']
     paths:
@@ -53,7 +53,7 @@ on:
       - '.skilled/skills/cli-external-orchestration/**/*.md'
       - '.opencode/skills/cli-external-orchestration/**/*.md'
       - '.github/actions/**'
-      - '.github/workflows/opencode-dual-version.yml'
+      - '.github/workflows/opencode-v2-battery.yml'
   workflow_dispatch:
     inputs:
       cold:
@@ -120,7 +120,7 @@ jobs:
             .skilled/bin/tests/opencode-config-shape.test.cjs \
             .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs \
             .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs \
-            .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs
+            .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-models-form.test.cjs
 
       # The package installs into its own prefix and the battery reaches the
       # binary by its full path, so a runner image's own `opencode` cannot answer.

@@ -6,7 +6,7 @@ trigger_phrases:
   - "opencode version detection"
   - "resolveOpencodeBinary version probe"
   - "OpenCode 1 refusal"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # OpenCode Version Detection (cli-opencode)
@@ -64,7 +64,7 @@ The hook-side resolver at `.skilled/hooks/cli-dispatch/lib/opencode-version.mjs`
 
 - Group: OpenCode Version Detection
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `opencode-dual-version-dispatch/opencode-dual-version-dispatch.md`
+- Feature file path: `opencode-version-dispatch/opencode-version-dispatch.md`
 
 Related references:
 - [cli-dispatch-authorization.md](../cli-dispatch-authorization/cli-dispatch-authorization.md): the hook-side inspector and the version-aware rule checks that consume the same parse rule.
