@@ -152,6 +152,20 @@ describe('buildSkillAdvisorBrief', () => {
     expect(vi.mocked(runAdvisorSubprocess).mock.calls[0]?.[0]).toBe('implement feature X');
   });
 
+  it('skips a pasted reply that names a skill ahead of a casual task', async () => {
+    const result = await buildSkillAdvisorBrief('Claude replied: I used sk-doc to update the README. Now: thanks', options);
+
+    expect(result.status).toBe('skipped');
+    expect(runAdvisorSubprocess).not.toHaveBeenCalled();
+  });
+
+  it('still fires on a plain task that names a skill', async () => {
+    const result = await buildSkillAdvisorBrief('Update the README with sk-doc conventions', options);
+
+    expect(result.status).toBe('ok');
+    expect(runAdvisorSubprocess).toHaveBeenCalledTimes(1);
+  });
+
   it('uses the shared ambiguous renderer contract for payload and brief content', async () => {
     vi.mocked(runAdvisorSubprocess).mockResolvedValue({
       ok: true,

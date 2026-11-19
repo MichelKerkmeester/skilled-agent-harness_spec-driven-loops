@@ -4804,7 +4804,10 @@ _PASTED_REPLY_CUE = re.compile(
     rf"|(?:the{_JS_SPACE}+)?(?:assistant|claude){_JS_SPACE}+(?:response|reply|answer)){_JS_SPACE}*:",
     _STRIP_FLAGS,
 )
-_TASK_MARKER = re.compile(rf"(?:^|[.!?\n]{_JS_SPACE}*)(?:now|task){_JS_SPACE}*:{_JS_SPACE}*", _STRIP_FLAGS)
+# The whitespace after a boundary stops at a newline, which starts a match of its own.
+# Letting it cross newlines rescanned a long run of spaces and newlines once per newline.
+_JS_SPACE_NO_NEWLINE = "[" + _JS_SPACE_CHARS.replace("\n", "") + "]"
+_TASK_MARKER = re.compile(rf"(?:^|[.!?\n]{_JS_SPACE_NO_NEWLINE}*)(?:now|task){_JS_SPACE}*:{_JS_SPACE}*", _STRIP_FLAGS)
 
 
 def _strip_pasted_reply_once(prompt: str) -> str:

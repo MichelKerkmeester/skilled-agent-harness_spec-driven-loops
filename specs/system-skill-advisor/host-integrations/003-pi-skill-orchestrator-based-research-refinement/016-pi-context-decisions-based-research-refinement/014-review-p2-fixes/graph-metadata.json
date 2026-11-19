@@ -39,7 +39,7 @@
       "stripped"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,6 +47,7 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      "hooks/claude/user-prompt-submit.ts",
       ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
       ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
@@ -57,7 +58,6 @@
       ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/subprocess-output-cap.vitest.ts",
-      "hooks/claude/user-prompt-submit.ts",
       ".skilled/bin/skill-advisor.cjs"
     ],
     "entities": [
@@ -100,7 +100,7 @@
       {
         "name": "user-prompt-submit.ts",
         "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+        "path": "hooks/claude/user-prompt-submit.ts",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The regex that finds a `Now:` or `Task:` marker backtracks on a long whitespace run that contains newlines",
     "created_at": "2026-11-19T05:16:45Z",
-    "last_save_at": "2026-11-19T08:05:18.014Z",
+    "last_save_at": "2026-11-19T09:22:30.195Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:17084a689c1bee76ed9ea360d25874b7a7a6ecd7f9fdef49bd2da22ca5d80312",
+    "source_fingerprint": "sha256:b75cc83c49885076f99bec26c7ec54a24c909abb1a1fc494de7410880b568551",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0617a2964e505843ff836f991bd55382e7b757e27b77ae3624a092024eb51aea",
-      "plan.md": "3955c57edc33643646f0ed1d6621db31d4babd9d49eee4a3e5a59d65d40873e3",
-      "tasks.md": "77cacf91cd6d7fc9b5e6473611c1abeebc89f7f015aa31ed6f72f34cc5a4f80e",
+      "spec.md": "e644d5f7bff8615ec1691dfa7a795d61317824c6339f1274baa232ba23fc1057",
+      "plan.md": "5a44eb774aa58d867ef56aeec571fd64c6521f786b7b1408f64d4735e6ce7e6f",
+      "tasks.md": "6e7485855a6c414bb5c85b2d9202a12d21150d493a0292bc09e5fff11f1b238c",
       "decision-record.md": "ee56a4c64dc883d4c26803f88485471de8a0df12be8d3b74b120120997848a6f",
-      "implementation-summary.md": "53c4bad7b7edad8119bec12e857b19a11d10e29b7e8e7704c6c5482c9ca582a1"
+      "implementation-summary.md": "a1cce163dfd439c41f4cb00f2332453075126bd4543a883606607c0a61023d1d"
     },
     "last_active_at": null
   }

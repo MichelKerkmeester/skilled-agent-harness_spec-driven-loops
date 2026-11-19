@@ -201,6 +201,7 @@ function parseRecommendations(stdout: string): AdvisorRecommendation[] {
       confidence: item.confidence,
       uncertainty: item.uncertainty,
       ...(typeof item.passes_threshold === 'boolean' ? { passes_threshold: item.passes_threshold } : {}),
+      ...(item.confidenceFloored === true ? { confidenceFloored: true as const } : {}),
       ...(typeof item.reason === 'string' ? { reason: item.reason } : {}),
       ...(compiledRouteSummary ? { compiledRouteSummary } : {}),
     };
