@@ -8,6 +8,7 @@ skill-graph.json
 .system-skill-advisor-launcher.json
 .system-skill-advisor-launcher.lockdir/
 .skill-advisor-owner.json
+advisor-server.heartbeat
 
 # State the retired /doctor:rebuild orchestrator left here. Still ignored so an older
 # checkout never commits it; /doctor:skill-advisor rebuild writes none of it.

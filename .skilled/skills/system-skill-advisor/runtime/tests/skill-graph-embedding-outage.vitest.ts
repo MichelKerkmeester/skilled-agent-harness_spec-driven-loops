@@ -36,7 +36,14 @@ vi.mock('../lib/embedders/registry.js', async (importOriginal) => {
 });
 
 import { setActiveEmbedder } from '../lib/embedders/schema.js';
-import { closeDb, getDb, indexSkillMetadata, initDb, refreshSkillEmbeddings } from '../lib/skill-graph/skill-graph-db.js';
+import {
+  closeDb,
+  getDb,
+  indexSkillMetadata,
+  initDb,
+  loadSkillEmbeddings,
+  refreshSkillEmbeddings,
+} from '../lib/skill-graph/skill-graph-db.js';
 import { writeGraphMetadata } from './fixtures/skill-graph-db.js';
 
 const SKILL_IDS = ['alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta'] as const;
@@ -85,46 +92,31 @@ describe('skill graph embedding refresh', () => {
     }
   }
 
-  it('embeds every skill when the backend answers', async () => {
-    mockedProvider.embedDocument.mockResolvedValue(new Float32Array([1, 2, 3]));
-
+  it('returns a warning without an active embedder pointer', async () => {
     const result = await refreshSkillEmbeddings(skillRoot);
 
-    expect(result).toEqual(expect.objectContaining({ embedded: SKILL_IDS.length, failed: 0 }));
-    expect(mockedProvider.embedDocument).toHaveBeenCalledTimes(SKILL_IDS.length);
+    expect(result).toEqual({
+      embedded: 0,
+      skipped: 0,
+      failed: 0,
+      warnings: ['no active embedder pointer; skill embeddings not refreshed'],
+    });
+    expect(mockedProvider.embedDocument).not.toHaveBeenCalled();
   });
 
-  it('stops asking a dead backend after three straight failures and counts the rest as failed', async () => {
-    mockedProvider.embedDocument.mockRejectedValue(new Error('model server unreachable'));
-
-    const result = await refreshSkillEmbeddings(skillRoot);
-
-    expect(mockedProvider.embedDocument).toHaveBeenCalledTimes(3);
-    expect(result).toEqual(expect.objectContaining({ embedded: 0, skipped: 0, failed: SKILL_IDS.length }));
-    expect(result.warnings.some((warning) => warning.startsWith('EMBEDDING-BACKEND-OUTAGE'))).toBe(true);
-  });
-
-  it('keeps the stored vector of a current row after the outage trips (legacy column)', async () => {
-    mockedProvider.embedDocument.mockResolvedValue(new Float32Array([1, 2, 3]));
-    await refreshSkillEmbeddings(skillRoot);
-    makeStale();
-    mockedProvider.embedDocument.mockReset();
-    mockedProvider.embedDocument.mockRejectedValue(new Error('model server unreachable'));
-
-    const result = await refreshSkillEmbeddings(skillRoot);
-
-    expect(mockedProvider.embedDocument).toHaveBeenCalledTimes(3);
-    expect(result).toEqual(expect.objectContaining({ embedded: 0, skipped: CURRENT_IDS.length, failed: STALE_IDS.length }));
-    const stored = new Map(
-      (getDb().prepare('SELECT id, embedding FROM skill_nodes').all() as Array<{ id: string; embedding: Buffer | null }>)
-        .map((row) => [row.id, row.embedding]),
+  it('ignores a stored legacy vector when no active embedder pointer is set', () => {
+    getDb().prepare(`
+      UPDATE skill_nodes
+      SET embedding = ?, embedding_model_id = ?, embedding_content_hash = ?
+      WHERE id = ?
+    `).run(
+      Buffer.from(new Float32Array([1, 2, 3]).buffer),
+      'test:fixture:3',
+      'legacy-content-hash',
+      SKILL_IDS[0],
     );
-    for (const id of CURRENT_IDS) {
-      expect(stored.get(id), `${id} keeps its vector`).not.toBeNull();
-    }
-    for (const id of STALE_IDS) {
-      expect(stored.get(id), `${id} holds no vector`).toBeNull();
-    }
+
+    expect(loadSkillEmbeddings()).toEqual([]);
   });
 
   it('keeps the stored vector of a current row after the outage trips (adapter table)', async () => {

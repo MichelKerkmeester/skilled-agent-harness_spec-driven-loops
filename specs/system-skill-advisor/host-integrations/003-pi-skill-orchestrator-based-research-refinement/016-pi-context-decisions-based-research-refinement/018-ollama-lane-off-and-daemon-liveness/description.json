@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness",
+  "description": "Phase 18: ollama-lane-off-and-daemon-liveness",
+  "keywords": [
+    "phase",
+    "ollama-lane-off-and-daemon-liveness"
+  ],
+  "lastUpdated": "2026-11-19T14:42:56.921Z",
+  "specId": "018",
+  "folderSlug": "ollama-lane-off-and-daemon-liveness",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

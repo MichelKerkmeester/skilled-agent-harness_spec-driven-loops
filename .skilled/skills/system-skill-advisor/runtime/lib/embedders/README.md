@@ -1,6 +1,6 @@
 ---
 title: "Skill Advisor Embedders"
-description: "Advisor-local embedder schema and shim layer over the canonical @spec-kit/shared embedding registry and auto-select cascade."
+description: "Advisor-local embedder schema and shim layer over the canonical @spec-kit/shared embedding registry and registered-manifest pointer resolution."
 trigger_phrases:
   - "skill advisor embedders"
   - "advisor embedder schema"
@@ -14,6 +14,8 @@ trigger_phrases:
 ## 1. OVERVIEW
 
 `lib/embedders/` is the advisor package's local adapter surface for skill-graph embeddings. It owns advisor database schema helpers and re-exports the canonical embedder registry from `@spec-kit/shared`.
+
+On daemon start, an unset (`auto`) or unknown pointer resolves to the sole registered `nomic-embed-text-v1.5` manifest (768 dimensions) without probing a backend. Only a trusted `skill_graph_scan` refreshes skill vectors. No other path refreshes them. The legacy `skill_nodes.embedding` path is gone, so a refresh with no pointer embeds nothing.
 
 ---
 
@@ -31,7 +33,7 @@ trigger_phrases:
 
 | File | Responsibility |
 |---|---|
-| `schema.ts` | Active embedder pointer, vector table creation and auto-select integration. |
+| `schema.ts` | Active embedder pointer, vector table creation and registered-manifest resolution. |
 | `registry.ts` | Re-exports canonical manifests and factory helpers from `@spec-kit/shared`. |
 | `adapter.ts` | Re-exports the canonical adapter contract. |
 | `types.ts` | Re-exports shared embedder types. |

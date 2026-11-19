@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.26.0
+version: 0.12.27.0
 ---
 
 # system-skill-advisor
@@ -35,7 +35,7 @@ The skill runs as a resident daemon behind that one CLI. Routing state lives in 
 
 ### The Scoring Lanes
 
-Five lanes score every prompt. `runtime/lib/scorer/lane-registry.ts` holds the live weights that set how much each lane adds to the final score.
+Five lanes are registered for scoring. `runtime/lib/scorer/lane-registry.ts` holds the live weights that set how much each enabled lane adds to the final score.
 
 | Lane | Live weight | What it reads |
 |---|---|---|
@@ -43,7 +43,9 @@ Five lanes score every prompt. `runtime/lib/scorer/lane-registry.ts` holds the l
 | `lexical` | 0.28 | Token overlap with skill name, description, domains, keywords and intent signals |
 | `graph_causal` | 0.13 | Typed edges in the skill graph, such as `depends_on` and `enhances` |
 | `derived_generated` | 0.12 | Derived trigger metadata from prior extraction runs |
-| `semantic_shadow` | 0.05 | Embedding cosine similarity, the lowest fusion weight |
+| `semantic_shadow` | 0 | Embedding cosine similarity, disabled by the default zero weight |
+
+The semantic lane remains registered, but its default live weight is 0. A prompt at that weight makes no Ollama embedding call. Set `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'` to enable its live scoring again. The shadow weight remains 0.05.
 
 Attribution names the lane that dominated each result, so a surprising score can be traced without printing the prompt.
 

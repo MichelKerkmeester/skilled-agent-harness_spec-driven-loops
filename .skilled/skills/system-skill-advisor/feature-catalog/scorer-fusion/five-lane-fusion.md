@@ -1,19 +1,19 @@
 ---
 title: "Five-Lane Analytical Fusion"
-description: "Analytical fusion of 5 lanes (explicit_author 0.42, lexical 0.28, graph_causal 0.13, derived_generated 0.12, semantic_shadow 0.05) that produces the live routing score."
+description: "Analytical fusion of 5 lanes (explicit_author 0.42, lexical 0.28, graph_causal 0.13, derived_generated 0.12, semantic_shadow 0) that produces the live routing score."
 trigger_phrases:
   - "five lane fusion"
   - "lane weights canonical"
   - "fusion scorer"
   - "advisor analytical fusion"
-version: 0.8.0.16
+version: 0.8.1.0
 ---
 
 # Five-Lane Analytical Fusion
 
 ## 1. OVERVIEW
 
-Combine evidence from five independent lanes into a single routing score with documented, auditable weights.
+Combine evidence from five registered lanes into a single routing score with documented weights. A zero-weight lane stays registered and does not score prompts.
 
 ---
 
@@ -27,7 +27,9 @@ Combine evidence from five independent lanes into a single routing score with do
 | `lexical` | 0.28 | Token overlap weighted by IDF from the active corpus. |
 | `graph_causal` | 0.13 | Graph-edge evidence projected through skill_nodes and skill_edges. |
 | `derived_generated` | 0.12 | Auto-extracted derived entries under trust-lane control. |
-| `semantic_shadow` | 0.05 | Semantic similarity evidence from the current lane registry. |
+| `semantic_shadow` | 0 | Semantic similarity evidence from the current lane registry, disabled at the default zero weight. |
+
+The lane remains registered as live, but weight 0 disables its embedding call. Set `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'` to enable it.
 
 Weight configuration is exposed via `advisor_status.laneWeights`.
 

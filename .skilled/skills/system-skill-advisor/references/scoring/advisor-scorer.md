@@ -9,7 +9,7 @@ trigger_phrases:
   - "prompt isolation safety"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.3.0
+version: 0.8.4.0
 ---
 
 # Advisor Scorer: Lane Attribution and Confidence Calibration
@@ -44,7 +44,7 @@ Recommendations must be explainable through lane attribution without echoing raw
 
 ## 2. LANE ATTRIBUTION MODEL
 
-Five lanes participate in scoring, and all five are live in the registry. Each carries a fixed weight in the live fusion total. Lane attribution derives shadow-only status from registry liveness (`isLiveScorerLane`): a lane is filtered from dominant-lane detection only when it is not live. With every lane currently live, all contribute to dominant-lane detection and reason strings.
+Five lanes are registered for scoring. Their live weights are held in the registry. A zero weight disables a lane for scoring without removing it from the registry. Lane attribution derives shadow-only status from registry liveness (`isLiveScorerLane`): a lane is filtered from dominant-lane detection only when it is not live.
 
 | Lane | Live Weight | Shadow Weight | Source |
 |---|---|---|---|
@@ -52,7 +52,7 @@ Five lanes participate in scoring, and all five are live in the registry. Each c
 | lexical | 0.28 | 0.25 | Token matching with synonym expansion |
 | graph_causal | 0.13 | 0.20 | Skill graph edge propagation |
 | derived_generated | 0.12 | 0.10 | Derived trigger metadata |
-| semantic_shadow | 0.05 | 0.05 | Embedding cosine similarity (live, lowest fusion weight) |
+| semantic_shadow | 0 | 0.05 | Embedding cosine similarity (registered live lane, disabled by default) |
 
 Lane weights live in `runtime/lib/scorer/lane-registry.ts:7-19`. The derived-dominant check fires when derived lane evidence exceeds combined explicit plus lexical evidence, triggering a confidence ceiling (`runtime/lib/scorer/attribution.ts:26-34`).
 
@@ -62,7 +62,7 @@ Shadow weights live alongside live weights as `DEFAULT_SHADOW_SCORER_LANE_WEIGHT
 
 - `SPECKIT_ADVISOR_SHADOW_MODE` is currently inert: it documents intended operator control, but the runtime has no reader for it and scoring does not branch on that variable.
 - Effective shadow-only status is derived per lane from registry liveness in fusion (`shadowOnly = !isLiveScorerLane(lane)`), not from any per-match flag.
-- Because `semantic_shadow` is live in the registry, its raw match tag is overridden to `shadowOnly:false`, so it contributes to both the live ranking (at weight 0.05) and dominant-lane detection.
+- When enabled, `semantic_shadow` remains live in the registry, and its raw match tag is overridden to `shadowOnly:false`. Set `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'` to enable its live scoring.
 
 ---
 
@@ -76,9 +76,11 @@ Category hints route well-known phrases. The phrase `deep research` maps to the 
 
 ## 4. SEMANTIC SHADOW LANE
 
-The semantic shadow lane computes cosine similarity between a prompt embedding and pre-computed skill embeddings. The lane is live in the registry (`live: true`, weight 0.05) so it contributes to the live fusion ranking at its low weight. Raw matches still tag `shadowOnly:true`, but fusion derives the effective value from registry liveness (`isLiveScorerLane`) and reports `shadowOnly:false` for this live lane (`runtime/lib/scorer/lanes/semantic-shadow.ts:154-171`).
+The semantic shadow lane computes cosine similarity between a prompt embedding and pre-computed skill embeddings when enabled. It remains live in the registry, but its default live weight is 0, so prompts make no Ollama embed call. `advisor_status` reports `disabledReason: "lane_weight_zero"` and `laneEnabled: false`. `advisor_recommend` adds no `semantic_lane_off` warning. Set `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'` to enable the lane.
 
-Cosine similarity below 0.2 is treated as no signal (`runtime/lib/scorer/lanes/semantic-shadow.ts:10, 147-150`). When embeddings are unavailable under `VITEST=true`, the lane falls back to token-overlap scoring so tests stay deterministic (`runtime/lib/scorer/lanes/semantic-shadow.ts:91-108`).
+When the lane is enabled, raw matches still tag `shadowOnly:true`, but fusion derives the effective value from registry liveness (`isLiveScorerLane`) and reports `shadowOnly:false` for this live lane (`runtime/lib/scorer/lanes/semantic-shadow.ts:154-171`).
+
+Cosine similarity below 0.2 is treated as no signal (`runtime/lib/scorer/lanes/semantic-shadow.ts:10, 147-150`). When the lane is enabled and embeddings are unavailable under `VITEST=true`, it falls back to token-overlap scoring so tests stay deterministic (`runtime/lib/scorer/lanes/semantic-shadow.ts:91-108`).
 
 ---
 

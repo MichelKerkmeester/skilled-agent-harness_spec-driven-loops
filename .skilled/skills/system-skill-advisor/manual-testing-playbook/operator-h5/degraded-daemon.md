@@ -5,7 +5,7 @@ trigger_phrases:
   - "op-001"
   - "degraded daemon"
   - "degraded"
-version: 0.8.1.0
+version: 0.8.2.0
 id: OP-001
 category: operator_h5
 stage: routing
@@ -110,7 +110,7 @@ Command run: `advisor_status({"workspaceRoot":"."})`
       "lexical": 0.28,
       "graph_causal": 0.13,
       "derived_generated": 0.12,
-      "semantic_shadow": 0.05
+      "semantic_shadow": 0
     }
   }
 }
@@ -176,7 +176,7 @@ Command run: `advisor_status({"workspaceRoot":"."})`
       "lexical": 0.28,
       "graph_causal": 0.13,
       "derived_generated": 0.12,
-      "semantic_shadow": 0.05
+      "semantic_shadow": 0
     }
   }
 }

@@ -6,7 +6,7 @@ trigger_phrases:
   - "daemon boot shutdown"
   - "sigterm daemon"
   - "daemon health"
-version: 0.8.0.14
+version: 0.8.1.0
 ---
 
 # Daemon Lifecycle and Health Reporting
@@ -22,6 +22,8 @@ Give operators a predictable daemon lifecycle: graceful boot, graceful SIGTERM s
 `lib/daemon/lifecycle.ts` orchestrates daemon boot by acquiring the workspace lease, starting the watcher, warming freshness state and exposing `trustState` to readers. Shutdown responds to SIGTERM, flushes any pending reindex, releases the lease and drains the watcher. `advisor_status` returns `generation`, `skillCount`, `lastScanAt`, `trustState` and `laneWeights` regardless of whether the daemon has a live writer.
 
 The advisor daemon also participates in the shared launcher idle-timeout guardrail. `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` defaults to `30`, accepts fractional values for tests, and `0` disables the monitor. Stdio and IPC socket connect/data/write activity refresh the idle timer so active secondary clients keep the server alive.
+
+The advisor server exits within 30 seconds when its launcher dies and its parent PID changes. The server rewrites `advisor-server.heartbeat` in its database directory every 15 seconds, and the launcher checks it every 60 seconds. A heartbeat file older than the server start does not count. If the heartbeat is older than 3 minutes, the launcher sends SIGTERM and then SIGKILL after 5 seconds. Heartbeat checks use no IPC traffic, so the 30-minute idle exit still works.
 
 ---
 

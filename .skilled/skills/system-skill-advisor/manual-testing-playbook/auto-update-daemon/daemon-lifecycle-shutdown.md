@@ -6,7 +6,7 @@ trigger_phrases:
   - "daemon lifecycle"
   - "sigterm shutdown"
   - "daemon health"
-version: 0.8.0.14
+version: 0.8.1.0
 id: AU-003
 category: auto_update_daemon
 stage: routing
@@ -102,7 +102,7 @@ Step 1 was executed exactly against the scenario command's workspace root placeh
       "lexical": 0.28,
       "graph_causal": 0.13,
       "derived_generated": 0.12,
-      "semantic_shadow": 0.05
+      "semantic_shadow": 0
     }
   }
 }

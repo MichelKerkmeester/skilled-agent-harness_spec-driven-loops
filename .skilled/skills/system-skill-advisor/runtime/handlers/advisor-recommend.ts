@@ -482,7 +482,8 @@ function roundScore(value: number): number {
 // A semantic lane that fell back to phrase scoring still answers, so the reason
 // it declined travels as a warning rather than changing the recommendation.
 export function semanticLaneOffWarning(reason: string | null): string[] {
-  return reason ? [`semantic_lane_off:${reason}`] : [];
+  // A lane switched off by configuration is not a fallback worth warning about.
+  return reason && reason !== 'lane_weight_zero' ? [`semantic_lane_off:${reason}`] : [];
 }
 
 function outputWarnings(

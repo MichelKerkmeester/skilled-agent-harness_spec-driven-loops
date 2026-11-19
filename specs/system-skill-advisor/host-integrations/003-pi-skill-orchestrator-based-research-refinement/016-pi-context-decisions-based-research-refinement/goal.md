@@ -44,12 +44,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Order: 001, 005, 002, 004, 003, 006-011, 013, 012, 014-017; each validates strict first |
+| D1 | Order: 001, 005, 002, 004, 003, 006-011, 013, 012, 014-018; each validates strict first |
 | D2 | Code: GPT-6 Luna `xhigh` `fast`, cli-codex |
 | D3 | Fallback: Vibe DeepSeek V4.1 Flash `max` only |
 | D4 | The conductor runs every check |
 | D5 | A phase changes only files its `spec.md` lists; cut items stay cut |
-| D6 | Approved: commit, merge, push for 474 and 014 |
+| D6 | Approved: commit, merge, push for 474, 014 and 018 |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -62,23 +62,24 @@ phase and binds as if written here.
 
 | Phase | Goal document |
 |-------|---------------|
-| 001-deep-research | `001-deep-research/goal.md` |
-| 002-pasted-context-stripping | `002-pasted-context-stripping/goal.md` |
-| 003-follow-up-routing-benchmark | `003-follow-up-routing-benchmark/goal.md` |
-| 004-crash-path-fallback | `004-crash-path-fallback/goal.md` |
-| 005-plan-validation-research | `005-plan-validation-research/goal.md` |
-| 006-strip-rule-boundary-edges | `006-strip-rule-boundary-edges/goal.md` |
-| 007-python-scorer-strip-parity | `007-python-scorer-strip-parity/goal.md` |
-| 008-handler-scored-prompt-consumers | `008-handler-scored-prompt-consumers/goal.md` |
-| 009-crash-fallback-edge-cases | `009-crash-fallback-edge-cases/goal.md` |
-| 010-route-receipts-research | `010-route-receipts-research/goal.md` |
-| 011-route-receipts-build | `011-route-receipts-build/goal.md` |
-| 012-plan-text-and-goal-closeout | `012-plan-text-and-goal-closeout/goal.md` |
-| 013-drift-guard-probe-script-errors | `013-drift-guard-probe-script-errors/goal.md` |
-| 014-review-p2-fixes | `014-review-p2-fixes/goal.md` |
-| 015-skilled-alignment-check | `015-skilled-alignment-check/goal.md` |
-| 016-doc-alignment-check | `016-doc-alignment-check/goal.md` |
-| 017-ollama-advisor-analysis | `017-ollama-advisor-analysis/goal.md` |
+| 001 | `001-deep-research/goal.md` |
+| 002 | `002-pasted-context-stripping/goal.md` |
+| 003 | `003-follow-up-routing-benchmark/goal.md` |
+| 004 | `004-crash-path-fallback/goal.md` |
+| 005 | `005-plan-validation-research/goal.md` |
+| 006 | `006-strip-rule-boundary-edges/goal.md` |
+| 007 | `007-python-scorer-strip-parity/goal.md` |
+| 008 | `008-handler-scored-prompt-consumers/goal.md` |
+| 009 | `009-crash-fallback-edge-cases/goal.md` |
+| 010 | `010-route-receipts-research/goal.md` |
+| 011 | `011-route-receipts-build/goal.md` |
+| 012 | `012-plan-text-and-goal-closeout/goal.md` |
+| 013 | `013-drift-guard-probe-script-errors/goal.md` |
+| 014 | `014-review-p2-fixes/goal.md` |
+| 015 | `015-skilled-alignment-check/goal.md` |
+| 016 | `016-doc-alignment-check/goal.md` |
+| 017 | `017-ollama-advisor-analysis/goal.md` |
+| 018 | `018-ollama-lane-off-and-daemon-liveness/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -131,6 +132,7 @@ and findings belong here.
 |------|------|
 | D6 amended 2026-11-19 | The operator reopened 014 for every follow-up and approved its merge and push |
 | D1 amended 2026-11-19 | The operator added phase 017, a report-only Ollama analysis. D1 now orders 014-017, and D2, D3 and D6 were reworded with no change in meaning to keep the slice under 4000 characters |
+| D1 and D6 amended 2026-11-19 | The operator added phase 018, the build of four of 017's five ranked changes, and approved its commit, merge and push. The binding table names each phase by its id alone to keep the slice under 4000 characters |
 | Folder numbers differ from build order | 004 builds before 003 because both edit the same hook file; folder names were kept |
 | Amendment 2026-11-19, D6 for 014 | Operator approved commits and a merge to main for 014's worktree build, no push (014 decision record Q004) |
 | Amendment 2026-11-19, phases 015 and 016 | Report-only alignment runs added by operator request ("Also run /local-skilled-alignment and /local-doc-alignment make that phases"). D1 ends with 014 to 016, two binding rows added, criterion 5 counts seventeen folders and criterion 7 covers the tasks of 014, 015 and 016. To fit 4,000 characters: D7 dropped because it governed only the finished phase 011, D6 kept only its live choice, and `host-integrations` in two criterion globs became `*`, each glob checked to match one path |
