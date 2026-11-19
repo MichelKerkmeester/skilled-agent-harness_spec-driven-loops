@@ -6172,7 +6172,7 @@ describe('fanout-run.cjs — cli-claude-code configDir env', () => {
 
 describe('fanout-run.cjs — post-run packet metadata refresh', () => {
   const { metadataRefreshRequested, buildMetadataRefreshCommands } = requireCjs(fanoutRunScript) as {
-    metadataRefreshRequested: (args: Record<string, unknown>) => boolean;
+    metadataRefreshRequested: (args: Record<string, unknown>, loopType?: string) => boolean;
     buildMetadataRefreshCommands: (
       specFolder: string,
       repoRoot: string,
@@ -6184,6 +6184,12 @@ describe('fanout-run.cjs — post-run packet metadata refresh', () => {
     expect(metadataRefreshRequested({})).toBe(true);
     expect(metadataRefreshRequested({ specFolder: 'specs/x' })).toBe(true);
     expect(metadataRefreshRequested({ noMetadataRefresh: true })).toBe(false);
+    expect(metadataRefreshRequested({}, 'research')).toBe(true);
+  });
+
+  it('never refreshes the packet a review run reads, since a review leaves its target untouched', () => {
+    expect(metadataRefreshRequested({}, 'review')).toBe(false);
+    expect(metadataRefreshRequested({ specFolder: 'specs/x' }, 'review')).toBe(false);
   });
 
   it('builds the refresh command list for the run\'s spec folder against the repo root', () => {

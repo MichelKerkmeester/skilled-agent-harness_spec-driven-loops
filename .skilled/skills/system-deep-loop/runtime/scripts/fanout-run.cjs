@@ -3640,8 +3640,13 @@ function isDshBinaryAvailable(env = process.env) {
 
 const SPEC_KIT_CLI_DIST_REL = path.join('.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'dist');
 
-/** Metadata refresh defaults on; `--no-metadata-refresh` is the only opt-out. */
-function metadataRefreshRequested(args) {
+/**
+ * Metadata refresh defaults on for research; `--no-metadata-refresh` opts out. A review
+ * run never refreshes: the review workflow holds its target read-only and writes only
+ * under its review folder, so rewriting the packet's description.json breaks that contract.
+ */
+function metadataRefreshRequested(args, loopType) {
+  if (loopType === 'review') return false;
   return args.noMetadataRefresh !== true;
 }
 
@@ -4927,10 +4932,10 @@ async function main() {
   });
 
   // Every lineage has settled, so the owning packet's generated metadata can
-  // be refreshed against the artifacts this run just wrote. Default on; the
-  // only opt-out is --no-metadata-refresh. Strictly non-fatal: the outcome is
+  // be refreshed against the artifacts this run just wrote. On for research unless
+  // --no-metadata-refresh; never for review. Strictly non-fatal: the outcome is
   // reported through the status ledger and never changes the exit code.
-  if (metadataRefreshRequested(args)) {
+  if (metadataRefreshRequested(args, loopType)) {
     runPacketMetadataRefresh({
       specFolder,
       repoRoot: containmentRepoRoot,
