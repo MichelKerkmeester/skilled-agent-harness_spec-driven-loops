@@ -320,3 +320,22 @@ describe('buildAdvisorPart receipt commit', () => {
     expect(commits).toEqual([output]);
   });
 });
+
+describe('buildAdvisorPart receipt commit failure', () => {
+  it('keeps the brief when the receipt commit throws', async () => {
+    const head = 'Advisor: live; use sk-code 0.91/0.12 pass.';
+    const dependencies = {
+      run: async () => ({ hookSpecificOutput: { additionalContext: head } }),
+      commit: async () => {
+        throw new Error('commit failed');
+      },
+      env: {},
+      isEnabled: () => true,
+      read: () => '',
+      write: () => {},
+    };
+    const payload = { hook_event_name: 'pre_agent', prompt: 'refactor the session store', session_id: 'vibe-commit-throws' };
+
+    await expect(vibeAdvisor.buildAdvisorPart(payload, dependencies)).resolves.toBe(head);
+  });
+});
