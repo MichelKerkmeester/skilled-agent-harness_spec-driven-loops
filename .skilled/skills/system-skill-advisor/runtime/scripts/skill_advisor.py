@@ -823,6 +823,10 @@ def _legacy_recommendations_from_native(output: Dict[str, Any]) -> List[Dict[str
         }
         if "passes" in recommendation:
             item["passes"] = bool(recommendation["passes"])
+        # The hook holds a floored route back against the session's earlier route,
+        # so the flag has to survive the translation to the legacy contract.
+        if recommendation.get("confidenceFloored") is True:
+            item["confidenceFloored"] = True
         if "score" in recommendation:
             item["score"] = recommendation["score"]
         if "dominantLane" in recommendation:

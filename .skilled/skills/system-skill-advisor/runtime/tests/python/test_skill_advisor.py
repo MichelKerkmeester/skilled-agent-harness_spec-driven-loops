@@ -2669,6 +2669,26 @@ def test_pasted_reply_strip_parity():
             fail_test(name, f"batch={batch_top} single={single_top}")
 
 
+def test_native_bridge_floor_flag():
+    """The native bridge keeps the confidence floor flag, so a floored route reads as floored."""
+    name = "BRIDGE-FLOOR: a floored native row keeps confidenceFloored and an earned row gets none"
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        rows = advisor._legacy_recommendations_from_native({
+            "recommendations": [
+                {"skillId": "sk-code", "confidence": 0.82, "uncertainty": 0.2, "confidenceFloored": True},
+                {"skillId": "sk-doc", "confidence": 0.91, "uncertainty": 0.1},
+            ],
+        })
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if rows[0].get("confidenceFloored") is True and "confidenceFloored" not in rows[1]:
+        ok(name)
+    else:
+        fail_test(name, f"rows={rows!r}")
+
+
 def main():
     print("=" * 60)
     print("  SKILL ADVISOR AUTOMATED TEST SUITE (T243/T246)")
@@ -2683,6 +2703,7 @@ def main():
     test_private_skill_discovery_trust()
     test_declared_phrase_specificity()
     test_pasted_reply_strip_parity()
+    test_native_bridge_floor_flag()
 
     print(f"\nSummary: pass={passed}, fail={failed}")
     return 0 if failed == 0 else 1
