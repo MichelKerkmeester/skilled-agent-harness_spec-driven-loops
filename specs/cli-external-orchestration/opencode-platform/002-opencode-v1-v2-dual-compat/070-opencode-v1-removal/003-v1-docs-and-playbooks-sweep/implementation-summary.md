@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Phase 003 rewrites the cli-opencode docs and playbooks for OpenCode 2 only, regenerates the trigger index and fixtures, and writes the v2.0.0.0 changelog entry. The live deep-loop and plugin-scenario checks are still open."
+description: "Phase 003 rewrites the cli-opencode docs and playbooks for OpenCode 2 only, regenerates the trigger index and fixtures, and writes the v2.0.0.0 changelog entry. The live deep-loop iteration and plugin scenario passed on OpenCode 2.3.2."
 trigger_phrases:
   - "v1 docs and playbooks sweep implementation summary"
 importance_tier: "normal"
@@ -10,10 +10,10 @@ _memory:
     packet_pointer: "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep"
     last_updated_at: "2026-11-19T12:30:00Z"
     last_updated_by: "closure-run"
-    recent_action: "Closed the docs sweep; the generators, the changelog and the sweep are final; AC-004 is open"
-    next_safe_action: "Run the deep-loop iteration and plugin scenario, or waive AC-004 by ADR (T019)"
+    recent_action: "AC-004 met live: a cli-opencode deep-research iteration and plugin scenario CO-056 passed on OpenCode 2.3.2"
+    next_safe_action: "Decide the ordering checks (T001, CHK-001, CHK-003) and CHK-013/CHK-042, which keep the phase In Progress"
     blockers:
-      - "T019 and AC-004 need a live deep-loop iteration and a live plugin scenario"
+      - "T001, CHK-001 and CHK-003 need a before-edit baseline that was taken after the edits"
     key_files:
       - "scratch/justified.txt"
       - "scratch/live.txt"
@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-v1-docs-and-playbooks-sweep |
-| **Completed** | Open: T019 and AC-004 are not done |
+| **Completed** | Open: the ordering checks T001, CHK-001 and CHK-003, plus CHK-013 and CHK-042 |
 | **Level** | 2 |
 | **Status** | In Progress |
 <!-- /ANCHOR:metadata -->
@@ -82,7 +82,7 @@ The complete list is `git diff --name-only main`. The main files are these.
 
 The sweep grep and each task's Verify line were run. The closure notes name the Verify lines that were changed, and the ordering conditions that were not met. The changelog went through `check_changelog_shape.py` (PASS), `hvr_scan.py` (0 hard blockers) and `validate_document.py` (0 issues), and `extract_structure.py` gave DQI 89. The trigger index was regenerated, then checked with `--check` (exit 0) after the last spec edits. Two generator runs gave the same hash.
 
-The live doctor battery and one live dispatch ran on OpenCode 2.3.2, and the session reader read 77 records from the v2 tables. The runtime-mirror checkers ran in check-only form. The deep-loop iteration and the plugin playbook scenario were not run in this closure, so T019 and AC-004 stay open.
+The live doctor battery and one live dispatch ran on OpenCode 2.3.2, and the session reader read 77 records from the v2 tables. The runtime-mirror checkers ran in check-only form. The deep-loop iteration and the plugin playbook scenario were not run in this closure; they ran later, as described below.
 
 After closure, `/local-skilled-alignment` (42 findings, 0 P0) and `/local-doc-alignment` on an `opencode-v2-only` topic (60 findings, 30 P0) found more v1 leftovers. These included the OpenCode 1-only installer URL `https://opencode.ai/install`, `--dir`/`--pure`/`--prompt`/`--variant` on `opencode run`, examples without `</dev/null`, uppercase `--log-level`, and v2 subcommands that do not exist. Two fix lanes corrected them, plus the tests that sent `server.instance.disposed`. The deep contracts, the cli hub compiled route and the trigger index were then regenerated. Final state: the alignment battery passes 208 of 210 rows. The two failures predate the branch: root README.md:674 fails on main too, and a gitignored runtime file is absent from the worktree. The node gate is 831 of 833 (the same pre-existing failure), dispatch-audit 133 of 133, and the deep-loop subset 411 passed with 0 failures.
 
@@ -121,7 +121,7 @@ AC-004 was closed live on 2026-11-19. One `/deep:research` iteration ran on the 
 | `compile-command-contracts.cjs --command deep/review` and `deep/research` (dry run) | Exit 0; output byte-identical to the two compiled contracts on disk |
 | Repo-wide v1 sweep | 30 files, equal to `scratch/justified.txt` (30 lines, each with a reason) |
 | Runtime-mirror checkers (check-only) | 15 of 16 exit 0 with no drift; the one WARN is the Codex hooks approval for this worktree |
-| `run-plugin-scenario.sh` | `bash -n` exit 0; live run not made |
+| `run-plugin-scenario.sh` | `bash -n` exit 0; live CO-056 run exit 0, PASS (see `scratch/live.txt`) |
 | Changelog `v2.0.0.0` | Shape gate PASS; `validate_document` 0 issues; DQI 89; 49 entries against 48 at HEAD |
 <!-- /ANCHOR:verification -->
 
@@ -130,11 +130,11 @@ AC-004 was closed live on 2026-11-19. One `/deep:research` iteration ran on the 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **T019 and AC-004 are not met, so the phase is not Complete.** The deep-loop iteration cannot run from this LEAF agent: `deep-research/SKILL.md` lines 11 and 91 give the loop and its Task dispatch to the command executor. The plugin scenario was not run: `run-plugin-scenario.sh` line 40 says scenario files and commits land in the checkout, which the no-git-state rule forbids. The operator names a loop owner and a commit-free scenario, or waives AC-004 through an ADR in `decision-record.md`. No waiver was written.
-2. **Validation passes, and the packet stays In Progress.** `validate.sh --strict` prints `RESULT: PASSED` for this folder. The AC_CLOSURE rule fails only a completion claim with an Unmet row, so the pass does not clear AC-004.
+1. **The phase stays In Progress on its ordering checks, not on AC-004.** AC-004 and T019 are met. T001, CHK-001 and CHK-003 required a baseline taken before the edits, and the baseline was taken afterwards from main HEAD. CHK-013 (the diff covers files outside the Files table) and CHK-042 (the README does not state the v2-only rule; the changelog does) are also open.
+2. **Validation passes, and the packet stays In Progress.** `validate.sh --strict` prints `RESULT: PASSED` for this folder, and every acceptance row is Met.
 3. **Three v1 phrases remain in the trigger index outside changelogs.** Two are trigger phrases of older packets' `spec.md` (052 and 066), and one is the refusal feature-catalog entry. They are kept.
 4. **The command-catalog prose divergences predate this branch.** The three `argumentHint` divergences (`/create:changelog`, `/deep:research`, `/deep:review`) are not in the diff against main, so this phase did not add them.
-5. **Remnants outside the phase file list are reported, not fixed.** `.skilled/bun.lock` still pins `@opencode-ai/plugin`, and `security-testing-and-exemptions.md` imports it. Both are listed in `scratch/justified.txt` as UNEXPECTED REMNANT.
+5. **Two remnants found at closure were fixed afterwards.** `.skilled/bun.lock` held only the v1 SDK and was deleted, and the `security-testing-and-exemptions.md` example now imports the repo's own `tool-identity.js` and `v2-bridge.js`.
 
 ---
 

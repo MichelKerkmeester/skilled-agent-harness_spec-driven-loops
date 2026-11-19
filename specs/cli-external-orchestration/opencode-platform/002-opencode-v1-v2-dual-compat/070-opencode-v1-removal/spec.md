@@ -10,12 +10,12 @@ _memory:
     packet_pointer: "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal"
     last_updated_at: "2026-11-19T12:40:00Z"
     last_updated_by: "closure-run"
-    recent_action: "All three phases In Progress; blockers recorded per phase"
-    next_safe_action: "Operator: T004 capture, 002 CI push (T015), 003 AC-004 path (T019)"
+    recent_action: "003 AC-004 met live; deep review (5 iterations) fixed its two P1 findings"
+    next_safe_action: "Operator: T004 capture, 002 CI push (T015) after the GitHub account switch"
     blockers:
       - "Phase 001: T004 live event capture not run (static scan stands in); CHK-003 and CHK-013 not met"
       - "Phase 002: the CI run needs the operator push go-ahead (AC-008 Unmet)"
-      - "Phase 003: AC-004 needs a live deep-loop iteration and plugin scenario, or an ADR waiver (T019)"
+      - "Phase 003: the ordering checks T001, CHK-001 and CHK-003 cannot be met after the fact; CHK-013 and CHK-042 are open"
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -144,7 +144,7 @@ The table is an audit summary. Each child's `plan.md` and `tasks.md` hold the pe
 |-------|--------|-------|--------|
 | 1 | 001-v1-runtime-code-and-tests/ | Version resolvers, dispatch rules, deep-loop runtime, skilled-loop wrapper, setup helper, doctor battery, plugins, session readers | In Progress (T004 live event capture not run; a static scan stands in; CHK-003 and CHK-013 not met) |
 | 2 | 002-v1-ci-and-package-pins/ | v1 CI matrix leg and `both` job, workflow name, `@opencode-ai/plugin` pins, v2 pin bump to 2.3.2 | In Progress (the CI run waits for the operator push; AC-008 Unmet) |
-| 3 | 003-v1-docs-and-playbooks-sweep/ | cli-opencode and plugin docs, playbooks, `--pure` text, feature catalog, generated artifacts, changelog entry | In Progress (AC-004 Unmet: the deep-loop iteration and plugin scenario are not run) |
+| 3 | 003-v1-docs-and-playbooks-sweep/ | cli-opencode and plugin docs, playbooks, `--pure` text, feature catalog, generated artifacts, changelog entry | In Progress (AC-004 Met live; the ordering checks and CHK-013/CHK-042 are open) |
 
 ### Phase Transition Rules
 

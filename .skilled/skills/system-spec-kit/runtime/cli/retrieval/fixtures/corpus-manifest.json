@@ -1,5 +1,5 @@
 {
-  "corpusHash": "38fe747728414fcaee247797b1f49a68a08306adb73f68d65d3adc6e43c6f93d",
+  "corpusHash": "b55204279a4e76eebf84f332bee52a48cb3fad3a111124d73ece993487a1ab25",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28567,
+  "includedPathCount": 28583,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10479,6 +10479,22 @@
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/research.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/spec.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/tasks.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review-archive/20261119T155645Z/deep-review-strategy.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review-archive/20261119T155645Z/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/deep-review-dashboard.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/deep-review-strategy.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/iterations/iteration-001.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/iterations/iteration-002.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/iterations/iteration-003.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/iterations/iteration-004.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/iterations/iteration-005.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/prompts/iteration-2.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/prompts/iteration-3.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/prompts/iteration-4.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/prompts/iteration-5.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/resource-map.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/review-report.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/research/research.md",
@@ -28599,7 +28615,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8defbfad28c31beb862275f9f25936d415cc681bb824e4e974308859f2ae4633",
+  "manifestHash": "ed5ea70b30339cf24fae801bb16550dcc1b2a67eec06263a16218f899025bfa2",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

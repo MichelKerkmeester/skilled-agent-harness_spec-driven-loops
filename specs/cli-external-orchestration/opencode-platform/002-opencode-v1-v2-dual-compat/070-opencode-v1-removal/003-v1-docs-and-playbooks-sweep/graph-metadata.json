@@ -53,8 +53,8 @@
       "scratch/mac-cleanup.txt",
       "scratch/live-version.txt",
       "scratch/justified.txt",
-      ".skilled/CROSS-CLI.md",
-      ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh"
+      "scratch/live.txt",
+      ".skilled/CROSS-CLI.md"
     ],
     "entities": [
       {
@@ -160,15 +160,15 @@
         "source": "derived"
       },
       {
-        "name": "CROSS-CLI.md",
-        "kind": "doc",
-        "path": ".skilled/CROSS-CLI.md",
+        "name": "live.txt",
+        "kind": "file",
+        "path": "scratch/live.txt",
         "source": "derived"
       },
       {
-        "name": "run-plugin-scenario.sh",
-        "kind": "script",
-        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh",
+        "name": "CROSS-CLI.md",
+        "kind": "doc",
+        "path": ".skilled/CROSS-CLI.md",
         "source": "derived"
       },
       {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The cli-opencode skill, its references and playbooks, the plugin docs and several cross-skill docs still describe the v1 install, the v1 launcher and the v1 dispatch",
     "created_at": "2026-11-19T09:04:23Z",
-    "last_save_at": "2026-11-19T15:00:16.585Z",
+    "last_save_at": "2026-11-19T16:22:55.229Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:496552c65c22bda20bf061853b6c637589d27ec22928083997d613150e8e8961",
+    "source_fingerprint": "sha256:5d908e5fc5c6055b358bb9829692352868e543e791c6f6875938c1dc4add24e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aefc9b46f4de5a8213359878109cda0e89858eb1b8c29dc1059dd4223b029c18",
       "plan.md": "5de7ebe9ee57e350f54837eb45fd0b767be0aad43ccc335a2a0122dfc608759c",
       "tasks.md": "e14406700e6d718180cea4198288c97186f15860541ef37600c4d7d5337bbf0a",
-      "implementation-summary.md": "ca98bed52051eab09d362a30a52d3c76c5df9b4c10a99653a2c9e50a0a916c79",
+      "implementation-summary.md": "681847c3a8b5b5e284de59d78bba3f12f2ac781cdc8271d97c147449930c2602",
       "research/research.md": "afc5b3fe4f84b16e5321be659d9a5cb7edcf568cbd34f0e7097f73635449cc76"
     },
     "last_active_at": null
