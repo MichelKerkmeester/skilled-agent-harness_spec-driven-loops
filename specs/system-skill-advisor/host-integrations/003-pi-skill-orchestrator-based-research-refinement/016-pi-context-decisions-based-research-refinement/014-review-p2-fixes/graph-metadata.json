@@ -48,6 +48,8 @@
       "decision-record.md",
       "implementation-summary.md",
       "hooks/claude/user-prompt-submit.ts",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      ".skilled/bin/launcher-threshold-env.vitest.ts",
       ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
       ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
@@ -58,9 +60,7 @@
       ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/subprocess-output-cap.vitest.ts",
-      ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs",
-      ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
-      ".skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs"
+      ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs"
     ],
     "entities": [
       {
@@ -103,6 +103,18 @@
         "name": "user-prompt-submit.ts",
         "kind": "code",
         "path": "hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-threshold-env.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/launcher-threshold-env.vitest.ts",
         "source": "derived"
       },
       {
@@ -166,12 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "dsh-prompt-advisor.test.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The regex that finds a `Now:` or `Task:` marker backtracks on a long whitespace run that contains newlines",
     "created_at": "2026-11-19T05:16:45Z",
-    "last_save_at": "2026-11-19T10:25:13.150Z",
+    "last_save_at": "2026-11-19T12:30:26.356Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:60906c2c0172b83b18f058d4953660b6944173f1c119400bd3c72dda2e95bd74",
+    "source_fingerprint": "sha256:3f371e1742b50cc49cfc5b81450b9355ed5a0293070264af5219349fafcdbffd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6d61159bd8fb6fd9286fc9130ae6ba0029f65469a3a68b9ff9aa755ae6e7eaff",
       "plan.md": "3c46ada2f4cbdef6d36c23fee39c2c191632dde57e49a00cc4334cda03359f8d",
-      "tasks.md": "8630eb90e2516caeae50472f213dfbff7409aed8fc660ecf55422dc9d0c3bd49",
+      "tasks.md": "28c5628f7cc822916504156ed0d6f69232fe953d16c54090366cc1dad4e58ef9",
       "decision-record.md": "3d14cb1b07f9e8d4e668587e90dbcf304cd44a8773d230c125701c98adba9bf3",
-      "implementation-summary.md": "6d6d6442ee1d3dc246e5f6d472887b47e60b78ef30c1d06f434fff234bbfa865"
+      "implementation-summary.md": "5980462e5cab9757de5266732132c745d7518ee673979ad63154dda2e79cc69e"
     },
     "last_active_at": null
   }

@@ -77,22 +77,22 @@ contextType: "implementation"
 
 Reopened 2026-11-19. `D` is `.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs` and `V` is `.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs`.
 
-- [ ] T021 Add a red DSH test: a turn whose notice is never appended leaves no route receipt, and a delivered turn leaves one (`hooks/tests/dsh-prompt-advisor.test.mjs`). Verify: the first case fails before T022.
-- [ ] T022 Make `D` ask the handler to defer its receipts and commit them after the notice is appended (`D`). Verify: T021 passes and the existing DSH tests pass.
-- [ ] T023 Add a red Vibe test: a turn that returns no brief leaves no route receipt, and a delivered turn leaves one (`runtime/tests/hooks/vibe-prompt-advisor.vitest.ts`). Verify: the first case fails before T024.
-- [ ] T024 Make `V` defer its receipts and commit them only when it returns a brief (`V`). Verify: T023 passes and the existing Vibe tests pass.
-- [ ] T025 Add a red Python case: a floored native row keeps `confidenceFloored` and an earned row gets none (`runtime/tests/python/test_skill_advisor.py`). Verify: it fails before T026.
-- [ ] T026 Copy `confidenceFloored` in `_legacy_recommendations_from_native` when it is `True` (`runtime/scripts/skill_advisor.py`). Verify: T025 passes and `PY` prints `fail=0`.
-- [ ] T027 Add a red launcher test for both threshold variables in `createChildEnv` (`.skilled/bin/`). Verify: it fails before T028.
-- [ ] T028 Add `SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD` and `SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD` to `CHILD_ENV_ALLOWLIST` (`.skilled/bin/system-skill-advisor-launcher.cjs`). Verify: T027 passes.
-- [ ] T029 Apply the 15 doc-run and 2 skilled-run literal fixes with `apply-fixes.cjs`, leaving out D-01, which T009 already fixed. Verify: `applied.json` lists 17 applied and 0 skipped, and each diff hunk matches its finding.
-- [ ] T030 Write the remaining doc fixes: B-01, B-02, B-03, B-04, C-02, C-03, C-04 with BAT-01, X-01, L3-2, L2-3 and L4-1. Verify: each finding id has a row in `implementation-summary.md` naming the changed line.
-- [ ] T031 Recheck N5 and X-02, and fix what the recheck shows. Verify: the summary records the recheck result.
-- [ ] T032 Add the merged features' names to the skill's routing metadata (D-02). Verify: probes P01, P03 and P04 route to `system-skill-advisor`, and P02 and P05 route to it or to `sk-code`.
-- [ ] T033 Recapture both routing corpus pins (A1). Verify: the routing-accuracy corpus gate exits 0.
-- [ ] T034 Bump `SKILL.md` to 1.1.1.0, add `changelog/v1.1.1.0.md` and append the advisor work to the v4.1.0.0 Skill Advisor section (C-06, C-07). Verify: the version line and both entries exist.
-- [ ] T035 Rebuild and run every suite: `VT`, `PY`, the DSH test, the Vibe test, the launcher test and the corpus gate. Verify: each exits 0.
-- [ ] T036 Record each follow-up with its evidence (`implementation-summary.md`). Verify: every 015 and 016 finding id appears in it.
+- [x] T021 Add a red DSH test: a turn whose notice is never appended leaves no route receipt, and a delivered turn leaves one (`hooks/tests/dsh-prompt-advisor.test.mjs`). Verify: the first case fails before T022. Evidence: red: defer flag undefined, commits [].
+- [x] T022 Make `D` ask the handler to defer its receipts and commit them after the notice is appended (`D`). Verify: T021 passes and the existing DSH tests pass. Evidence: DSH 16 passed, 08497161f38.
+- [x] T023 Add a red Vibe test: a turn that returns no brief leaves no route receipt, and a delivered turn leaves one (`runtime/tests/hooks/vibe-prompt-advisor.vitest.ts`). Verify: the first case fails before T024. Evidence: red: commits [].
+- [x] T024 Make `V` defer its receipts and commit them only when it returns a brief (`V`). Verify: T023 passes and the existing Vibe tests pass. Evidence: Vibe 14 passed, 08497161f38.
+- [x] T025 Add a red Python case: a floored native row keeps `confidenceFloored` and an earned row gets none (`runtime/tests/python/test_skill_advisor.py`). Verify: it fails before T026. Evidence: red: pass=120 fail=1.
+- [x] T026 Copy `confidenceFloored` in `_legacy_recommendations_from_native` when it is `True` (`runtime/scripts/skill_advisor.py`). Verify: T025 passes and `PY` prints `fail=0`. Evidence: PY pass=121 fail=0, 6d21278e210.
+- [x] T027 Add a red launcher test for both threshold variables in `createChildEnv` (`.skilled/bin/`). Verify: it fails before T028. Evidence: red: expected undefined to be 0.7 and 0.4.
+- [x] T028 Add `SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD` and `SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD` to `CHILD_ENV_ALLOWLIST` (`.skilled/bin/system-skill-advisor-launcher.cjs`). Verify: T027 passes. Evidence: bin 79 passed, 66dba4840eb.
+- [x] T029 Apply the 15 doc-run and 2 skilled-run literal fixes with `apply-fixes.cjs`, leaving out D-01, which T009 already fixed. Verify: `applied.json` lists 17 applied and 0 skipped, and each diff hunk matches its finding. Evidence: applied=15 and applied=2, skipped=0, 0c4dc99b608.
+- [x] T030 Write the remaining doc fixes: B-01, B-02, B-03, B-04, C-02, C-03, C-04 with BAT-01, X-01, L3-2, L2-3 and L4-1. Verify: each finding id has a row in `implementation-summary.md` naming the changed line. Evidence: Alignment Findings table in implementation-summary.md; each claim checked against code before commit.
+- [x] T031 Recheck N5 and X-02, and fix what the recheck shows. Verify: the summary records the recheck result. Evidence: N5 confirmed and fixed; X-02 no longer reproduces.
+- [B] T032 Add the merged features' names to the skill's routing metadata (D-02). Verify: probes P01, P03 and P04 route to `system-skill-advisor`, and P02 and P05 route to it or to `sk-code`. Blocked: P01, P02, P03, P05 and P06 meet it; P04 stays with the CLI hub at 0.95 because executor-delegation lifts a named executor, a scorer-policy change outside this phase.
+- [x] T033 Recapture both routing corpus pins (A1). Verify: the routing-accuracy corpus gate exits 0. Evidence: pin check clean, corpus gate overall_pass true.
+- [x] T034 Bump `SKILL.md` to 1.1.1.0, add `changelog/v1.1.1.0.md` and append the advisor work to the v4.1.0.0 Skill Advisor section (C-06, C-07). Verify: the version line and both entries exist. Evidence: 210d50871f7.
+- [x] T035 Rebuild and run every suite: `VT`, `PY`, the DSH test, the Vibe test, the launcher test and the corpus gate. Verify: each exits 0. Evidence: after both review passes, VT 502, PY 122/0, DSH 18, Vibe 15, bin 79, corpus gate pass; full suite in implementation-summary.md.
+- [x] T036 Record each follow-up with its evidence (`implementation-summary.md`). Verify: every 015 and 016 finding id appears in it. Evidence: Alignment Findings table.
 <!-- /ANCHOR:phase-4 -->
 
 ---
