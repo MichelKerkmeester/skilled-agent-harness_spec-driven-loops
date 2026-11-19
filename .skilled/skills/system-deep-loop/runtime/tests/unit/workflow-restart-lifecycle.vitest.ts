@@ -1013,6 +1013,48 @@ describe('completed-run extension', () => {
     expect(lastJsonLine(result.stdout).warning).toBeNull();
   });
 
+  // A drained expansive frontier forms frontier_drained as readily as a clean
+  // dimension set forms all_dimensions_clean, so the warning names both.
+  it('review: an expansive run is warned it may re-stop on frontier_drained too', () => {
+    const dir = join(makeTempDir('extend-review-expansive-'), 'review');
+    mkdirSync(dir, { recursive: true });
+    const config = join(dir, 'deep-review-config.json');
+    const stateLog = join(dir, 'deep-review-state.jsonl');
+    writeFileSync(config, JSON.stringify({
+      topic: 'Review: the extension',
+      mode: 'review',
+      sessionId: '2026-11-17T00:00:00Z',
+      parentSessionId: null,
+      lineageMode: 'new',
+      generation: 1,
+      reviewTarget: 'the extension',
+      reviewTargetType: 'files',
+      reviewDimensions: ['correctness'],
+      maxIterations: 1,
+      maxDurationMinutes: 120,
+      createdAt: minutesAgo(30),
+      antiConvergence: { convergenceMode: 'default', depthMode: 'expansive', divergent: {} },
+      stopPolicy: 'convergence',
+    }));
+    const init = runShell(render(stepCommand('deep-review.yaml', 'step_create_state_log'), {
+      '{state_paths.config}': config,
+      '{state_paths.state_log}': stateLog,
+    }));
+    expect(init.status, String(init.stdout) + String(init.stderr)).toBe(0);
+    appendReviewIteration(dir, 1);
+    writeFileSync(config, JSON.stringify({ ...readJson(config), status: 'complete' }));
+
+    const result = runShell(render(stepCommand('deep-review.yaml', 'step_extend_completed_run'), {
+      '{state_paths.config}': config,
+      '{state_paths.state_log}': stateLog,
+      '{extend}': '2',
+      '{extend_minutes}': '',
+    }));
+
+    expect(result.status, String(result.stdout) + String(result.stderr)).toBe(0);
+    expect(lastJsonLine(result.stdout).warning).toContain('all_dimensions_clean or frontier_drained');
+  });
+
   // The review prompt pack has the leaf write the run id string in `run`, so the
   // extension must count runs by the integer iteration, as the state reader does.
   it('review: runs are counted by iteration when the leaf writes a run id string', () => {
@@ -1106,6 +1148,7 @@ describe('completed-run extension', () => {
     // must not advise passing a flag beside --extend.
     expect(lastJsonLine(result.stdout).warning).toContain('all_dimensions_clean');
     expect(lastJsonLine(result.stdout).warning).not.toContain('Pass --convergence-mode=off');
+    expect(lastJsonLine(result.stdout).warning).not.toContain('frontier_drained');
     expect(lastJsonLine(result.stdout).warning).toContain('keeps the stop policy and convergence mode it was created with');
     expect(stateRows(stateLog).some((row) => row.event === 'extended' && row.continuedFromRun === 4)).toBe(true);
 

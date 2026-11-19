@@ -602,9 +602,13 @@ workflow:
             // extension keeps the stop policy and convergence mode the config already holds.
             // With convergence mode off the stop decision continues before it forms any
             // candidate, so the run cannot re-stop on all_dimensions_clean.
+            // An expansive run whose frontier drained re-stops on frontier_drained the same way.
             const convergenceOff = (config.antiConvergence && config.antiConvergence.convergenceMode) === "off";
+            const restopReasons = (config.antiConvergence && config.antiConvergence.depthMode) === "expansive"
+              ? "all_dimensions_clean or frontier_drained"
+              : "all_dimensions_clean";
             const warning = stopPolicy === "convergence" && !convergenceOff
-              ? "This run stops on convergence, so it may re-stop on all_dimensions_clean right away. An extension keeps the stop policy and convergence mode it was created with, and a flag passed beside --extend does not change them, so only a run created with --convergence-mode=off is sure to use the new budget."
+              ? "This run stops on convergence, so it may re-stop on " + restopReasons + " right away. An extension keeps the stop policy and convergence mode it was created with, and a flag passed beside --extend does not change them, so only a run created with --convergence-mode=off is sure to use the new budget."
               : null;
             console.log(JSON.stringify({ continuedFromRun, newMaxIterations, newMaxDurationMinutes, warning }));
           ' "{state_paths.config}" "{state_paths.state_log}" "{extend}" "{extend_minutes}" "$WORK_DIR" > "$WORK_DIR/result.json" || { STATUS=$?; rm -rf "$WORK_DIR"; exit "$STATUS"; }
