@@ -952,20 +952,11 @@ workflow:
         skip_reason: "A fan-out lineage receives its share of the parent's seeded nodes from fanout-run.cjs; seeding again would duplicate them."
         dry_run_boundary: "state-mutation"
         instructions: |
-          Decompose {review_target} into 3 to 8 depth-1 sub-targets that together
-          cover it: subsystems, directories or commit batches. For a commit-range
-          target, record the range end SHA as the pilot SHA in this step's log,
-          mark a merge commit with no diff of its own as
-          {"pruneReason":"merge-no-own-diff"} and a generated index rebuild as
-          {"pruneReason":"generated-artifact"}. Write them as a JSON array to
-          {artifact_dir}/frontier-seed.json, one object per sub-target:
-          {"question": "what to review in it", "scope": "<paths inside the
-          review target>", "evidence": "<path or commit that grounds it>"}. Then
-          run the command. frontier-admit.cjs writes the node store, and
-          fanout-run.cjs writes the starting store of each lineage it deals a
-          node to before it spawns;
-          never write that file by hand, and never queue or hand-expand
-          the admitted nodes yourself.
+          Decompose {review_target} and write {artifact_dir}/frontier-seed.json
+          exactly as the root step_frontier_seed describes, then run the command.
+          The decomposition is defined once, there; this call site exists because
+          a fan-out run seeds before phase_init and a single-executor run seeds
+          only once its config exists.
         command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --target review --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json" --max-iterations-source "{max_iterations_source}"'
         working_directory: "{repo_root}"
         outputs:

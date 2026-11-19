@@ -314,6 +314,13 @@ describe('deep-review wires the expansive frontier steps', () => {
     expect(step.skip_when).toBeUndefined();
   });
 
+  it('defines the review seed decomposition once, at the root seed step', () => {
+    expect(wf.step_frontier_seed.instructions).toContain('Decompose {review_target} into 3 to 8 depth-1 sub-targets');
+    expect(wf.phase_init.steps.step_frontier_seed.instructions).not.toContain('3 to 8');
+    expect(wf.phase_init.steps.step_frontier_seed.instructions).toContain('exactly as the root step_frontier_seed describes');
+    expect(wf.phase_init.steps.step_frontier_seed.command).toBe(wf.step_frontier_seed.command);
+  });
+
   it('activates the active frontier node right before the dispatch', () => {
     const steps = order(wf.phase_loop.steps);
     const activate = steps.indexOf('step_frontier_activate');
