@@ -7188,3 +7188,101 @@ describe('fanout-run.cjs — per-lineage expansive budget', () => {
     expect(lineages.map((lineage) => lineage.iterations)).toEqual([24, 12, 7]);
   });
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// A provider refusal reaches files that get committed, and a dead lineage must be
+// visible while the run is still going.
+// ─────────────────────────────────────────────────────────────────────────────
+
+describe('fanout-run.cjs — a fatal provider refusal is announced and redacted', () => {
+  const workspaceId = 'wrk_01JQZ8FAKEWORKSPACE';
+  const consoleUrl = `https://opencode.ai/workspace/${workspaceId}/go`;
+  const refusalBody = JSON.stringify({
+    type: 'error',
+    sessionID: 'ses_e0aeFAKESESSION',
+    error: {
+      type: 'provider.go-limit',
+      message: `OpenCode Go monthly usage limit reached. Manage it at ${consoleUrl}`,
+      status: 429,
+      workspaceID: workspaceId,
+      retryAfterMs: 1171152000,
+    },
+  });
+
+  function writeRefusingStub(binDir: string, marker: string): void {
+    writeFileSync(
+      join(binDir, 'opencode'),
+      [
+        '#!/bin/sh',
+        OPENCODE_VERSION_PROBE,
+        `echo ${shellQuote(marker)}`,
+        `echo ${shellQuote(refusalBody)}`,
+        'exit 1',
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+  }
+
+  async function runRefusal(hermetic: HermeticEnv, binDir: string, baseDir: string) {
+    return spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', 'specs/test-fanout-run-refusal',
+        '--loop-type', 'research',
+        '--fanout-config-json', JSON.stringify({
+          executors: [{ label: 'quota', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+          concurrency: 1,
+          maxRetries: 0,
+        }),
+        '--base-artifact-dir', baseDir,
+        '--allow-single-lineage',
+      ],
+      { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 15_000 },
+    );
+  }
+
+  it('prints one stderr line the moment the lineage fails and keeps the account out of every record', async () => {
+    const binDir = makeTempDir('fanout-run-refusal-bin-');
+    const baseDir = makeTempDir('fanout-run-refusal-base-');
+    writeRefusingStub(binDir, 'attempt-one');
+    const hermetic = useHermeticEnv('refusal-redacted');
+    const result = await runRefusal(hermetic, binDir, baseDir);
+
+    expect(result.exitCode).toBe(3);
+    expect(result.stderr).toMatch(/\[fanout-run\] lineage quota failed \(quota\): lineage quota exited with code 1: provider quota exhausted/);
+    const persisted = [
+      result.stdout,
+      result.stderr,
+      readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8'),
+      readFileSync(join(baseDir, 'orchestration-summary.json'), 'utf8'),
+      ...(existsSync(join(baseDir, 'observability-events.jsonl'))
+        ? [readFileSync(join(baseDir, 'observability-events.jsonl'), 'utf8')]
+        : []),
+    ].join('\n');
+    expect(persisted).not.toContain(workspaceId);
+    expect(persisted).not.toContain('opencode.ai/workspace');
+    expect(persisted).not.toContain('ses_e0aeFAKESESSION');
+    // What the operator acts on survives: the error type, the status and the retry-after.
+    expect(persisted).toContain('provider.go-limit');
+    expect(persisted).toContain('\\"status\\":429');
+    expect(persisted).toContain('\\"retryAfterMs\\":1171152000');
+  });
+
+  it('keeps a failed attempt\'s raw log when the lineage is run again', async () => {
+    const binDir = makeTempDir('fanout-run-refusal-rotate-bin-');
+    const hermetic = useHermeticEnv('refusal-rotate');
+    // Inside the packet's research folder, so both runs use the same directory as given.
+    const baseDir = join(hermetic.tmpDir, 'specs', 'test-fanout-run-refusal', 'research');
+    mkdirSync(baseDir, { recursive: true });
+    writeRefusingStub(binDir, 'attempt-one');
+    expect((await runRefusal(hermetic, binDir, baseDir)).stdout).toContain('"failure_class":"quota"');
+    writeRefusingStub(binDir, 'attempt-two');
+    expect((await runRefusal(hermetic, binDir, baseDir)).stdout).toContain('"failure_class":"quota"');
+
+    const logsDir = join(baseDir, 'lineages', 'quota', 'logs');
+    expect(readFileSync(join(logsDir, 'fanout-lineage.out'), 'utf8')).toContain('attempt-two');
+    expect(readFileSync(join(logsDir, 'fanout-lineage.1.out'), 'utf8')).toContain('attempt-one');
+    expect(existsSync(join(logsDir, 'fanout-lineage.1.err'))).toBe(false);
+  });
+});

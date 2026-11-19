@@ -880,6 +880,33 @@ function requiredLineageStateLogPath(loopType, lineageDir) {
   return path.join(lineageDir, name);
 }
 
+// A failed attempt's log moves to the first free numbered name instead of being replaced.
+function rotateLineageLog(logPath) {
+  if (!hasNonEmptyFile(logPath)) return;
+  const { dir, name, ext } = path.parse(logPath);
+  let index = 1;
+  while (fs.existsSync(path.join(dir, `${name}.${index}${ext}`))) index += 1;
+  fs.renameSync(logPath, path.join(dir, `${name}.${index}${ext}`));
+}
+
+// A provider's refusal body names the account it refused: workspace, organisation and
+// session ids, and console links that carry them. The failure message reaches the
+// ledger, the summary, the observability log and stdout, all of which can be committed,
+// so those parts are masked here while the error type, status and retry-after stay.
+const PROVIDER_ID_FIELD_PATTERN = /("(?:workspace|workspace_?id|session_?id|org|org_?id|organization_?id|account_?id|user_?id|email)"\s*:\s*)"[^"]*"/gi;
+const PROVIDER_ID_TOKEN_PATTERN = /\b(?:wrk|ws|org|acct|ses|usr|user|proj|key|sk)_[A-Za-z0-9]{6,}\b/g;
+const PROVIDER_URL_PATTERN = /\bhttps?:\/\/[^\s"'\\<>)]+/gi;
+const PROVIDER_EMAIL_PATTERN = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g;
+
+function redactProviderText(text) {
+  if (typeof text !== 'string') return text;
+  return text
+    .replace(PROVIDER_ID_FIELD_PATTERN, '$1"<redacted>"')
+    .replace(PROVIDER_URL_PATTERN, '<url>')
+    .replace(PROVIDER_EMAIL_PATTERN, '<email>')
+    .replace(PROVIDER_ID_TOKEN_PATTERN, '<id>');
+}
+
 function hasNonEmptyFile(filePath) {
   try {
     return fs.statSync(filePath).isFile() && fs.statSync(filePath).size > 0;
@@ -4034,6 +4061,15 @@ async function main() {
       updateLineageSnapshot(lineageSnapshots, enrichedEvent);
       if (enrichedEvent.gauges) latestGauges = enrichedEvent.gauges;
       appendFanoutStatusLedger(ledgerPath, enrichedEvent);
+      // Only the pool knows when a failure has no retry left. Said the moment it settles,
+      // so an operator watching the run learns a lineage is gone before the run ends.
+      if (enrichedEvent.event === 'failed' && enrichedEvent.terminal === true) {
+        const error = enrichedEvent.error || {};
+        process.stderr.write(
+          `[fanout-run] lineage ${enrichedEvent.label} failed (${error.failure_class || 'unknown'}): `
+            + `${String(error.message || 'no message').slice(0, 400)}\n`,
+        );
+      }
     },
     worker: async (lineage, context) => {
       const slotWindowStartIso = new Date().toISOString();
@@ -4526,11 +4562,15 @@ async function main() {
       }
 
       // Save subprocess stdout for salvage sweep (write failures in weak CLI executors).
+      // An earlier attempt's log is kept beside this one, since it may be the only
+      // record of why that attempt failed.
       const logsDir = path.join(lineageDir, 'logs');
       fs.mkdirSync(logsDir, { recursive: true });
       const savedStdout = typeof result.stdout === 'string' ? result.stdout : '';
+      rotateLineageLog(path.join(logsDir, 'fanout-lineage.out'));
       fs.writeFileSync(path.join(logsDir, 'fanout-lineage.out'), savedStdout, 'utf8');
       const savedStderr = typeof result.stderr === 'string' ? result.stderr : '';
+      rotateLineageLog(path.join(logsDir, 'fanout-lineage.err'));
       fs.writeFileSync(path.join(logsDir, 'fanout-lineage.err'), savedStderr, 'utf8');
       if (dshHome) removeDshHome(dshHome);
 
@@ -4603,7 +4643,7 @@ async function main() {
           : null;
         const failure = new Error(
           quotaExhaustion
-            ? `lineage ${lineage.label} ${reason}: provider quota exhausted (${quotaExhaustion.cause})`
+            ? `lineage ${lineage.label} ${reason}: provider quota exhausted (${redactProviderText(quotaExhaustion.cause)})`
             : `lineage ${lineage.label} ${reason}`,
         );
         failure.label = lineage.label;
