@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 066 readability program found 1,764 findings across 57 consolidated findings files, and most of them repeat a few rule classes that no check enforces",
     "created_at": "2026-11-05T06:39:42Z",
-    "last_save_at": "2026-11-10T05:26:17.742Z",
+    "last_save_at": "2026-11-19T17:48:11.984Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,6 @@
       "spec.md": "98ae5749ddbc44f304fe22c8748b4c866246837dfa87d546e21da532f7755273"
     },
     "last_active_child_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes",
-    "last_active_at": "2026-11-05T19:19:56.398Z"
+    "last_active_at": "2026-11-19T17:48:11.984Z"
   }
 }

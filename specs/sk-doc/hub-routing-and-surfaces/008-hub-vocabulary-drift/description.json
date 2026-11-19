@@ -18,15 +18,17 @@
     "check",
     "passes"
   ],
-  "lastUpdated": "2026-11-14T05:29:26.504Z",
+  "lastUpdated": "2026-11-19T17:48:25.794Z",
   "specId": "008",
   "folderSlug": "hub-vocabulary-drift",
   "parentChain": [
     "sk-doc",
     "hub-routing-and-surfaces"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "14-11-26_06-29__closed-the-hub-vocabulary-drift-packet-on-the.md"
+    "14-11-26_06-29__closed-the-hub-vocabulary-drift-packet-on-the.md",
+    "19-11-26_18-37__manual-context-save.md",
+    "19-11-26_18-48__manual-context-save.md"
   ]
 }

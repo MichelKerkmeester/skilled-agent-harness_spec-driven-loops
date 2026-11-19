@@ -26,7 +26,8 @@
     "trigger_phrases": [
       "changelog voice rewrite phase parent spec",
       "rewrite changelogs to human voice",
-      "shorter changelog sentences"
+      "shorter changelog sentences",
+      "007-changelog-voice-rewrite operator decisions"
     ],
     "key_topics": [
       "changelog",
@@ -39,13 +40,14 @@
       "human",
       "shorter",
       "sentences",
-      "standard",
-      "caps"
+      "007-changelog-voice-rewrite",
+      "operator"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "decision-record.md",
       "scratch/scope-list.txt",
       ".skilled/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md",
       ".skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md",
@@ -59,6 +61,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -138,22 +146,54 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Mistral",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The changelog standard caps a sentence at 22 words and an entry at 10 words a sentence on average",
     "created_at": "2026-11-15T06:37:25Z",
-    "last_save_at": "2026-11-15T19:37:32.347Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:48:16.606Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:921399b6c4924873b0977463f22917cf546e81f2589598c0865eb6765eacfd93",
+    "source_fingerprint": "sha256:96a96100fe52fffa3c99f95556528850637d89076e5fd2ca131bb24488ac7f75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bec3692da11dd6b2c376022d0c5aed5dbb6dd2c907e42efa62719f72c2dc6f04"
+      "spec.md": "bec3692da11dd6b2c376022d0c5aed5dbb6dd2c907e42efa62719f72c2dc6f04",
+      "decision-record.md": "e06c267a45130dd12a1d13111178c86a1cb6a734558a70d6c87187ec0f476e02"
     },
-    "last_active_child_id": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs",
-    "last_active_at": "2026-11-15T19:24:52.118Z"
+    "last_active_child_id": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot",
+    "last_active_at": "2026-11-19T17:48:16.606Z"
   }
 }
