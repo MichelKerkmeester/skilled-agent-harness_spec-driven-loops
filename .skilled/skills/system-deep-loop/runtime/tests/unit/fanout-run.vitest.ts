@@ -53,6 +53,10 @@ import {
 const tempDirs: string[] = [];
 const hermeticEnvs: HermeticEnv[] = [];
 const requireCjs = createRequire(import.meta.url);
+// A stub lineage that reports success records the iteration and terminal stop rows the
+// runner requires before it fulfils a lineage.
+const completedLineageStateHelper = resolve(runtimeRoot, 'tests', 'helpers', 'completed-lineage-state.cjs');
+const completedLineageStateShell = `${shellQuote(process.execPath)} ${shellQuote(completedLineageStateHelper)} "$lineage_dir"`;
 
 type WaitCheckpointFixture = {
   status?: string;
@@ -236,6 +240,7 @@ function writeNativeOpencodeStubBinary(binDir: string, captureCommand = false): 
       ...(captureCommand ? ['  printf "%s\\n" "$payload" > "$lineage_dir/native-command.capture"'] : []),
       '  printf "ok\\n" > "$lineage_dir/research.md"',
       '  printf "ok\\n" > "$lineage_dir/review-report.md"',
+      `  ${completedLineageStateShell}`,
       'fi',
       'echo "native-stub-done"',
       'exit 0',
@@ -415,6 +420,7 @@ function writeIntervalRecordingStubBinary(
       '  if (!dir) return;',
       '  fs.mkdirSync(dir, { recursive: true });',
       '  for (const file of ["research.md", "review-report.md"]) fs.writeFileSync(path.join(dir, file), "ok\\n");',
+      `  require(${JSON.stringify(completedLineageStateHelper)}).writeCompletedLineageState(dir);`,
       '}',
       'setTimeout(() => {',
       '  writeArtifacts();',
@@ -455,6 +461,7 @@ function writeDelayedNodeStubBinary(binDir: string, name: string, delayMs: numbe
       '  if (!dir) return;',
       '  fs.mkdirSync(dir, { recursive: true });',
       '  for (const file of ["research.md", "review-report.md"]) fs.writeFileSync(path.join(dir, file), "ok\\n");',
+      `  require(${JSON.stringify(completedLineageStateHelper)}).writeCompletedLineageState(dir);`,
       '}',
       `setTimeout(() => { writeArtifacts(); console.log('delayed'); process.exit(0); }, ${delayMs});`,
       '',
@@ -468,7 +475,7 @@ function shellQuote(value: string): string {
   return `'${value.replace(/'/g, "'\\''")}'`;
 }
 
-function writeFanoutArtifactsShell(): string {
+function writeFanoutArtifactsShell({ completedState = true }: { completedState?: boolean } = {}): string {
   return [
     'lineage_dir=""',
     'for state_dir in "$SPECKIT_OPENCODE_STATE_DIR" "$SPECKIT_CLAUDE_CODE_STATE_DIR" "$SPECKIT_DEEPSEEK_HARNESS_STATE_DIR"; do',
@@ -481,6 +488,7 @@ function writeFanoutArtifactsShell(): string {
     '  mkdir -p "$lineage_dir"',
     '  printf "ok\\n" > "$lineage_dir/research.md"',
     '  printf "ok\\n" > "$lineage_dir/review-report.md"',
+    ...(completedState ? [`  ${completedLineageStateShell}`] : []),
     'fi',
   ].join('\n');
 }
@@ -2431,6 +2439,7 @@ describe('fanout-run.cjs — cli-mistral-vibe adapter', () => {
       'printf "%s\\n" "$VIBE_HOME" > "$lineage_dir/vibe-home.txt"',
       'printf "ok\\n" > "$lineage_dir/research.md"',
       'printf "ok\\n" > "$lineage_dir/review-report.md"',
+      completedLineageStateShell,
       'printf \'{"exit_code":0,"outcome":"finished"}\\n\' > "$output_dir/export.json"',
       'printf "vibe-done\\n"',
       'exit 0',
@@ -2732,6 +2741,7 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       'mkdir -p "$lineage_dir"',
       'printf "ok\\n" > "$lineage_dir/research.md"',
       'printf "ok\\n" > "$lineage_dir/review-report.md"',
+      completedLineageStateShell,
       'echo "pi non-zero exit with artifacts"',
       'exit 1',
       '',
@@ -2772,6 +2782,7 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
         'cat > "$lineage_dir/codex-stdin.txt"',
         'printf "ok\\n" > "$lineage_dir/research.md"',
         'printf "ok\\n" > "$lineage_dir/review-report.md"',
+        completedLineageStateShell,
         'exit 0',
         '',
       ].join('\n'),
@@ -4260,7 +4271,7 @@ describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
       [
         '#!/bin/sh',
         OPENCODE_VERSION_PROBE,
-        writeFanoutArtifactsShell(),
+        writeFanoutArtifactsShell({ completedState: false }),
         'printf "attempt\\n" >> "$lineage_dir/unledgered-attempts.log"',
         'mkdir -p "$lineage_dir/iterations"',
         'printf "# Iteration 1\\n" > "$lineage_dir/iterations/iteration-001.md"',
@@ -6096,6 +6107,55 @@ describe('fanout-run.cjs — cli-claude-code configDir env', () => {
       stdout: readFileSync(join(baseDir, 'lineages', 'fable', 'logs', 'fanout-lineage.out'), 'utf8'),
     };
   }
+
+  // Under acceptEdits, Claude Code in print mode refuses every Bash call and still exits 0,
+  // so a lineage can write its report with the edit tool yet record no state at all.
+  async function runClaudeSeatWithoutState(lineage: Record<string, unknown>) {
+    const binDir = makeTempDir('fanout-run-claude-nostate-bin-');
+    writeFileSync(
+      join(binDir, 'claude'),
+      `#!/bin/sh\n${writeFanoutArtifactsShell({ completedState: false })}\necho "I couldn't run it: the command needs your approval"\nexit 0\n`,
+      { mode: 0o755 },
+    );
+    const baseDir = makeTempDir('fanout-run-claude-nostate-base-');
+    const hermetic = useHermeticEnv(`claude-nostate-${String(lineage['sandboxMode'] ?? 'default')}`);
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', 'specs/test-fanout-run-claude-nostate',
+        '--loop-type', 'review',
+        '--fanout-config-json', JSON.stringify({
+          executors: [{ label: 'fable', kind: 'cli-claude-code', model: 'claude-fable-5', count: 1, ...lineage }],
+          concurrency: 1,
+          maxRetries: 0,
+        }),
+        '--base-artifact-dir', baseDir,
+        '--allow-single-lineage',
+      ],
+      { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 15_000 },
+    );
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{ status?: string; error?: { message?: string } }>;
+    };
+    return { result, payload };
+  }
+
+  it('fails a claude lineage that recorded no state and names the sandbox flag at launch and on failure', async () => {
+    const { result, payload } = await runClaudeSeatWithoutState({});
+    expect(result.exitCode).toBe(3);
+    expect(payload.results?.[0]?.status).toBe('rejected');
+    expect(payload.results?.[0]?.error?.message).toContain('landed no iteration state in deep-review-state.jsonl');
+    expect(payload.results?.[0]?.error?.message).toContain('--sandbox-mode=danger-full-access');
+    expect(result.stderr).toContain('[fanout-run] warning: cli-claude-code lineage fable runs under --permission-mode acceptEdits');
+  });
+
+  it('still fails a bypassPermissions claude lineage that recorded no state, without the sandbox hint', async () => {
+    const { result, payload } = await runClaudeSeatWithoutState({ sandboxMode: 'danger-full-access' });
+    expect(result.exitCode).toBe(3);
+    expect(payload.results?.[0]?.error?.message).toContain('landed no iteration state');
+    expect(payload.results?.[0]?.error?.message).not.toContain('--sandbox-mode');
+    expect(result.stderr).not.toContain('--sandbox-mode=danger-full-access');
+  });
 
   it('injects expanded CLAUDE_CONFIG_DIR for a cli-claude-code lineage with configDir', async () => {
     const { home, stdout } = await runClaudeSeat({ configDir: '~/.claude-account2' });

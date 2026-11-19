@@ -104,6 +104,10 @@ export function createAdapterShim(kind: AdapterKind, mode: string): AdapterShimF
   }), 'utf8');
   copyFileSync(join(shimDir, SHIM_BY_KIND[kind]), join(binDir, BINARY_BY_KIND[kind]));
   copyFileSync(join(shimDir, 'adapter-shim-core.cjs'), join(binDir, 'adapter-shim-core.cjs'));
+  copyFileSync(
+    join(shimDir, '..', '..', '..', 'helpers', 'completed-lineage-state.cjs'),
+    join(binDir, 'completed-lineage-state.cjs'),
+  );
   chmodSync(join(binDir, BINARY_BY_KIND[kind]), 0o755);
   return {
     kind,

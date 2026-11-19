@@ -92,6 +92,7 @@ function emitCompleted(message, artifactDir) {
   if (artifactDir) {
     writeFileSync(safeWritePath(join(artifactDir, 'research.md'), artifactDir), '# Shim research\n', 'utf8');
     writeFileSync(safeWritePath(join(artifactDir, 'review-report.md'), artifactDir), '# Shim review\n', 'utf8');
+    require('./completed-lineage-state.cjs').writeCompletedLineageState(artifactDir);
   }
   emitSession();
   emitStatus(message);

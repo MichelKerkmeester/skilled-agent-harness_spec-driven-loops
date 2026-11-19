@@ -10,6 +10,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import {
   DEFAULT_LINEAGE_TIMESTAMP_TOLERANCE_MS,
+  checkLineageCompletion,
   checkLineageTimestampWindow,
 } from '../../lib/deep-loop/lineage-timestamp-window.js';
 import { gatewayAppendNodeSource } from '../helpers/gateway-backed-lineage';
@@ -80,6 +81,7 @@ function writeTimestampStubBinary(binDir: string, records: Array<Record<string, 
       '  }',
       '}',
       'fs.writeFileSync(path.join(lineageDir, "review-report.md"), "ok\\n", "utf8");',
+      `require(${JSON.stringify(resolve(runtimeRoot, 'tests', 'helpers', 'completed-lineage-state.cjs'))}).writeCompletedLineageState(lineageDir, ["review"]);`,
       'process.stdout.write("stub-done\\n");',
       '',
     ].join('\n'),
@@ -204,6 +206,88 @@ describe('checkLineageTimestampWindow', () => {
   });
 });
 
+// Rows copied from a real fan-out review: a lineage resumed after a provider failure that
+// stamped its last nine iterations a minute apart, ended on a synthesis row without ever
+// recording its stop gates, and stamped iteration 12 after that row and after its own exit.
+const REVIEW_TERMINAL_EVENTS = ['terminal_gates'];
+const RESUMED_ATTEMPT_WINDOW = { windowStart: '2026-11-19T19:06:04.000Z', windowEnd: '2026-11-19T19:25:56.000Z' };
+const resumedFakeCompletionRows: Array<Record<string, unknown>> = [
+  { type: 'config', timestamp: '2026-11-19T18:41:56.397Z' },
+  { type: 'iteration', iteration: 1, timestamp: '2026-11-19T18:45:15.000Z' },
+  { type: 'iteration', iteration: 2, timestamp: '2026-11-19T19:12:21.000Z' },
+  { type: 'iteration', iteration: 3, timestamp: '2026-11-19T19:16:25.000Z' },
+  { type: 'iteration', iteration: 4, timestamp: '2026-11-19T19:17:57.000Z' },
+  ...[5, 6, 7, 8, 9, 10, 11, 12].map((iteration) => ({
+    type: 'iteration',
+    iteration,
+    timestamp: `2026-11-19T19:${String(14 + iteration).padStart(2, '0')}:00.000Z`,
+  })),
+  { type: 'event', event: 'synthesis_incomplete', stopReason: 'converged', timestamp: '2026-11-19T19:25:13.101Z' },
+];
+const convergedLineageRows: Array<Record<string, unknown>> = [
+  { type: 'config', timestamp: '2026-11-19T18:38:20.821Z' },
+  { type: 'iteration', iteration: 1, timestamp: '2026-11-19T18:41:18.170Z' },
+  { type: 'iteration', iteration: 13, timestamp: '2026-11-19T18:58:58.154Z' },
+  { type: 'event', event: 'blocked_stop', timestamp: '2026-11-19T18:59:44.393Z' },
+  { type: 'iteration', iteration: 14, timestamp: '2026-11-19T19:00:35.012Z' },
+  { type: 'event', event: 'terminal_gates', stopReason: 'converged', timestamp: '2026-11-19T19:01:26.500Z' },
+  { type: 'event', event: 'synthesis_incomplete', stopReason: 'converged', timestamp: '2026-11-19T19:02:55.192Z' },
+];
+
+describe('checkLineageCompletion', () => {
+  it('passes a lineage that recorded its terminal stop row after its last iteration', () => {
+    expect(checkLineageCompletion(convergedLineageRows, {
+      terminalEvents: REVIEW_TERMINAL_EVENTS,
+      windowStart: '2026-11-19T18:37:03.000Z',
+      windowEnd: '2026-11-19T19:05:31.000Z',
+    })).toEqual({ complete: true });
+  });
+
+  it('fails a lineage that ends on a synthesis row without its terminal stop row', () => {
+    expect(checkLineageCompletion(resumedFakeCompletionRows, {
+      terminalEvents: REVIEW_TERMINAL_EVENTS,
+      ...RESUMED_ATTEMPT_WINDOW,
+    })).toMatchObject({ complete: false, failure: 'no_terminal_event' });
+  });
+
+  it('fails on the iteration stamped after the terminal row and the process end, even with that row present', () => {
+    const rows = [...resumedFakeCompletionRows];
+    rows.splice(rows.length - 1, 0, { type: 'event', event: 'terminal_gates', timestamp: '2026-11-19T19:25:10.000Z' });
+    const verdict = checkLineageCompletion(rows, { terminalEvents: REVIEW_TERMINAL_EVENTS, ...RESUMED_ATTEMPT_WINDOW });
+    expect(verdict).toMatchObject({ complete: false, failure: 'stamped_after_completion' });
+    expect(verdict.complete === false && verdict.detail).toContain('iteration 12');
+
+    // Inside the process window the same late stamp still contradicts the terminal row.
+    const verdictWithLaterExit = checkLineageCompletion(rows, {
+      terminalEvents: REVIEW_TERMINAL_EVENTS,
+      windowStart: RESUMED_ATTEMPT_WINDOW.windowStart,
+      windowEnd: '2026-11-19T19:30:00.000Z',
+    });
+    expect(verdictWithLaterExit).toMatchObject({ complete: false, failure: 'iteration_after_terminal' });
+  });
+
+  it('passes a resumed lineage whose earlier attempt left rows before the window', () => {
+    const rows = resumedFakeCompletionRows
+      .filter((row) => row.type !== 'event' && row.iteration !== 12)
+      .concat([{ type: 'event', event: 'terminal_gates', timestamp: '2026-11-19T19:25:30.000Z' }]);
+    expect(checkLineageCompletion(rows, { terminalEvents: REVIEW_TERMINAL_EVENTS, ...RESUMED_ATTEMPT_WINDOW }))
+      .toEqual({ complete: true });
+  });
+
+  it('fails a resume that recorded nothing new on the earlier attempt\'s terminal row', () => {
+    const rows = convergedLineageRows.slice(0, 6);
+    expect(checkLineageCompletion(rows, { terminalEvents: REVIEW_TERMINAL_EVENTS, ...RESUMED_ATTEMPT_WINDOW }))
+      .toMatchObject({ complete: false, failure: 'stale_terminal_event' });
+  });
+
+  it('fails a lineage that landed no iteration record', () => {
+    expect(checkLineageCompletion([{ type: 'config', timestamp: '2026-11-19T19:07:00.000Z' }], {
+      terminalEvents: REVIEW_TERMINAL_EVENTS,
+      ...RESUMED_ATTEMPT_WINDOW,
+    })).toMatchObject({ complete: false, failure: 'no_iteration_records' });
+  });
+});
+
 describe('fanout-run timestamp anomaly emission', () => {
   it('emits a warning ledger event and summary field without changing a successful outcome', async () => {
     const fabricated = timestampRecords([
@@ -230,14 +314,14 @@ describe('fanout-run timestamp anomaly emission', () => {
         label: 'seat-a',
         status: 'warning',
         severity: 'warning',
-        counts: expect.objectContaining({ anomalous: 11, untimestamped: 0, unparseable: 0, total: 11 }),
+        counts: expect.objectContaining({ anomalous: 11, untimestamped: 0, unparseable: 0, total: 12 }),
       }),
     ]);
     expect(payload.summary).toMatchObject({
       timestamp_anomalies: [
         expect.objectContaining({
           label: 'seat-a',
-          counts: expect.objectContaining({ anomalous: 11, total: 11 }),
+          counts: expect.objectContaining({ anomalous: 11, total: 12 }),
           sample: expect.arrayContaining([expect.objectContaining({ reason: 'before_window' })]),
         }),
       ],

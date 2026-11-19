@@ -1197,6 +1197,26 @@ function isMaxIterationsStopReason(stopReason) {
 // producer correctly reporting it did not finish.
 const SYNTHESIS_EVENT_NAMES = new Set(['synthesis_complete', 'phase_synthesis_complete', 'synthesis']);
 
+// The state-log row that proves a lineage reached a legal stop. A review loop runs its
+// terminal gates on every path into synthesis, so that row and not a synthesis row is the
+// stop; a synthesis row alone can be written by a lineage that skipped every stop gate.
+// The research loop has no gate step, and its closeout always records a synthesis row,
+// complete or incomplete, once the loop has stopped.
+const TERMINAL_STOP_EVENTS_BY_LOOP_TYPE = {
+  research: [...SYNTHESIS_EVENT_NAMES, 'synthesis_incomplete'],
+  review: ['terminal_gates'],
+};
+
+// Claude Code in print mode refuses every tool call that needs an approval, and still exits
+// 0, so a lineage below bypassPermissions cannot run the append gateway or the reducer.
+function claudePermissionHint(lineage, resolvedPermission) {
+  if (lineage.kind !== 'cli-claude-code' || resolvedPermission === 'bypassPermissions') return null;
+  return `cli-claude-code lineage ${lineage.label} runs under --permission-mode ${resolvedPermission}, `
+    + 'which cannot run Bash non-interactively, so it cannot record state; add '
+    + '--sandbox-mode=danger-full-access to its --executor group (sandboxMode "danger-full-access" '
+    + 'in an --executors matrix)';
+}
+
 function findSynthesisRecord(records) {
   return [...records].reverse().find((record) => record
     && record.type === 'event'
@@ -3745,6 +3765,7 @@ async function main() {
   const { snapshotOutOfScopeDirtyPaths, enforceWriteContainment, drainGitContentionWarnings, __internals: containmentInternals } = await import('../lib/deep-loop/write-containment.ts');
   const {
     DEFAULT_LINEAGE_TIMESTAMP_TOLERANCE_MS,
+    checkLineageCompletion,
     checkLineageTimestampWindow,
   } = await import('../lib/deep-loop/lineage-timestamp-window.ts');
   // Route the executor spawn through the shipped effect gateway so a
@@ -3842,6 +3863,10 @@ async function main() {
     preflightFanoutCapabilities(allLineages);
   } catch (error) {
     throw inputError(error instanceof Error ? error.message : String(error));
+  }
+  for (const lineage of allLineages) {
+    const hint = claudePermissionHint(lineage, resolveClaudePermissionMode(lineage.sandboxMode));
+    if (hint) process.stderr.write(`[fanout-run] warning: ${hint}\n`);
   }
 
   // Aggregate budget is a SEPARATE ceiling from the per-lineage cap enforced inside the
@@ -4606,8 +4631,10 @@ async function main() {
       }
 
       if (missingArtifacts.length > 0) {
+        const hint = claudePermissionHint(lineage, effectivePermission);
         const failure = new Error(
-          `lineage ${lineage.label} exited 0 but did not produce expected artifact: ${missingArtifacts.join(', ')}`,
+          `lineage ${lineage.label} exited 0 but did not produce expected artifact: ${missingArtifacts.join(', ')}`
+            + (hint ? `; ${hint}` : ''),
         );
         failure.label = lineage.label;
         failure.exitCode = exitCode;
@@ -4685,6 +4712,33 @@ async function main() {
         failure.unattributedStateLog = true;
         failure.code = UNATTRIBUTED_STATE_LOG_CODE;
         failure.reason = unledgeredStateLog;
+        throw failure;
+      }
+
+      // An exit-0 lineage with its report on disk is still not done until its state log
+      // proves it reached a legal stop in this attempt, in order, before its process ended.
+      const completion = stateRead.missing || stateRead.parseError
+        ? {
+          complete: false,
+          detail: stateRead.parseError
+            ? `its state log could not be parsed: ${stateRead.parseError}`
+            : `it landed no iteration state in ${lineageStateLogName(loopType)}`,
+        }
+        : checkLineageCompletion(stateRead.records, {
+          terminalEvents: TERMINAL_STOP_EVENTS_BY_LOOP_TYPE[loopType],
+          windowStart: slotWindowStartIso,
+          windowEnd: new Date().toISOString(),
+        });
+      if (!completion.complete) {
+        const hint = claudePermissionHint(lineage, effectivePermission);
+        const failure = new Error(
+          `lineage ${lineage.label} exited 0 but is not complete: ${completion.detail}${hint ? `; ${hint}` : ''}`,
+        );
+        failure.label = lineage.label;
+        failure.exitCode = exitCode;
+        failure.timedOut = false;
+        failure.salvage = salvage;
+        failure.reason = completion.failure || 'no_iteration_records';
         throw failure;
       }
 

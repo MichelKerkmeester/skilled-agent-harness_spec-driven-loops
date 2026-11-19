@@ -74,6 +74,10 @@ function createVibeFixture(): VibeFixture {
   mkdirSync(lineageDir, { recursive: true });
   mkdirSync(join(root, 'home'), { recursive: true });
   copyFileSync(shimSource, join(binDir, 'vibe'));
+  copyFileSync(
+    resolve(import.meta.dirname, '..', '..', 'helpers', 'completed-lineage-state.cjs'),
+    join(binDir, 'completed-lineage-state.cjs'),
+  );
   chmodSync(join(binDir, 'vibe'), 0o755);
   const fixture: VibeFixture = {
     root,

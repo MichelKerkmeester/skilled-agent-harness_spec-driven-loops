@@ -71,6 +71,7 @@ function runAdapterShim(kind) {
     mkdirSync(lineageDir, { recursive: true });
     writeFileSync(join(lineageDir, 'research.md'), '# Shim research\n', 'utf8');
     writeFileSync(join(lineageDir, 'review-report.md'), '# Shim review\n', 'utf8');
+    require('./completed-lineage-state.cjs').writeCompletedLineageState(lineageDir);
   }
 
   function diagnostic(message, exitCode = 1) {

@@ -139,3 +139,94 @@ export function checkLineageTimestampWindow(
     sample,
   };
 }
+
+export type LineageCompletionFailure =
+  | 'no_iteration_records'
+  | 'no_terminal_event'
+  | 'stale_terminal_event'
+  | 'iteration_after_terminal'
+  | 'stamped_after_completion';
+
+export type LineageCompletionInput = {
+  readonly terminalEvents: readonly string[];
+  readonly windowStart: string | Date;
+  readonly windowEnd: string | Date;
+};
+
+export type LineageCompletionVerdict =
+  | { readonly complete: true }
+  | { readonly complete: false; readonly failure: LineageCompletionFailure; readonly detail: string };
+
+function describeRecord(record: Record<string, unknown>, index: number): string {
+  const name = record.type === 'iteration' ? `iteration ${String(record.iteration)}` : `${String(record.event ?? record.type)} row`;
+  return `${name} (line ${index + 1}, ${String(record.timestamp)})`;
+}
+
+/**
+ * Decide whether a lineage's state log proves it finished the loop in this attempt.
+ *
+ * The advisory window check above tolerates skew because a stray stamp alone proves
+ * nothing. This one has no tolerance, since the evidence it checks is order on one host
+ * clock: a lineage that never recorded its terminal stop row, or that stamps an
+ * iteration after that row or after its own process ended, did not run the stop gates it
+ * claims. Rows from an earlier attempt sit before the window and stay legal, so a resumed
+ * lineage passes once this attempt records its own terminal row.
+ */
+export function checkLineageCompletion(
+  records: readonly unknown[],
+  input: LineageCompletionInput,
+): LineageCompletionVerdict {
+  const windowStart = parseIsoBoundary(input.windowStart, 'windowStart');
+  const windowEnd = parseIsoBoundary(input.windowEnd, 'windowEnd');
+  const terminalEvents = new Set(input.terminalEvents);
+  const rows = records.filter(isRecord);
+  const iterations = rows.filter((record) => record.type === 'iteration');
+  if (iterations.length === 0) {
+    return { complete: false, failure: 'no_iteration_records', detail: 'the state log holds no iteration record' };
+  }
+
+  let terminalIndex = -1;
+  rows.forEach((record, index) => {
+    if (record.type === 'event' && typeof record.event === 'string' && terminalEvents.has(record.event)) {
+      terminalIndex = index;
+    }
+  });
+  if (terminalIndex === -1) {
+    return {
+      complete: false,
+      failure: 'no_terminal_event',
+      detail: `the state log holds no terminal stop row (${[...terminalEvents].join(' or ')})`,
+    };
+  }
+
+  const terminal = rows[terminalIndex];
+  const terminalMs = parseRecordTimestamp(terminal.timestamp);
+  if (terminalMs === null || terminalMs < windowStart.ms) {
+    return {
+      complete: false,
+      failure: 'stale_terminal_event',
+      detail: `the last terminal stop row, ${describeRecord(terminal, terminalIndex)}, predates this attempt's start at ${windowStart.iso}`,
+    };
+  }
+
+  for (let index = 0; index < rows.length; index += 1) {
+    const record = rows[index];
+    const timestampMs = parseRecordTimestamp(record.timestamp);
+    if (timestampMs !== null && timestampMs > windowEnd.ms) {
+      return {
+        complete: false,
+        failure: 'stamped_after_completion',
+        detail: `${describeRecord(record, index)} is stamped after the lineage process ended at ${windowEnd.iso}`,
+      };
+    }
+    if (record.type !== 'iteration') continue;
+    if (index > terminalIndex || (timestampMs !== null && timestampMs > terminalMs)) {
+      return {
+        complete: false,
+        failure: 'iteration_after_terminal',
+        detail: `${describeRecord(record, index)} comes after the terminal stop row ${describeRecord(terminal, terminalIndex)}`,
+      };
+    }
+  }
+  return { complete: true };
+}

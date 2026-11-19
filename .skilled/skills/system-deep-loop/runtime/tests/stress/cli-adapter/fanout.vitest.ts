@@ -302,6 +302,7 @@ function installDestructiveShim(fixture: AdapterShimFixture, targetPath: string)
     "mkdirSync(lineageDir, { recursive: true });",
     "writeFileSync(control.targetPath, 'destructive out-of-scope write\\n', 'utf8');",
     "writeFileSync(join(lineageDir, 'research.md'), '# Shim research\\n', 'utf8');",
+    "require('./completed-lineage-state.cjs').writeCompletedLineageState(lineageDir);",
     // One concatenated string: a second argument here is read by Node as a stream
     // encoding, and anything that is not a real encoding name throws before the
     // call writes anything.
@@ -796,8 +797,8 @@ describe.sequential('fan-out scheduler contracts', () => {
       expect.objectContaining({
         event: 'failed',
         error: expect.objectContaining({
-          message: 'lineage policy violated max-iterations stop policy: '
-            + 'missing deep-research-state.jsonl for max-iterations stop-policy validation',
+          // The shim records one completed iteration against a cap of two.
+          message: 'lineage policy violated max-iterations stop policy: expected 2 iterations, got 1',
         }),
       }),
     ]));
@@ -827,7 +828,7 @@ describe.sequential('fan-out scheduler contracts', () => {
         event: 'failed',
         error: expect.objectContaining({
           message: 'lineage policy-review violated max-iterations stop policy: '
-            + 'missing deep-review-state.jsonl for max-iterations stop-policy validation',
+            + 'missing synthesis event and only 1 of 2 iterations on disk for max-iterations stop-policy validation',
         }),
       }),
     ]));
