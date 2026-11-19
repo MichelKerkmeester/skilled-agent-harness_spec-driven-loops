@@ -8,7 +8,7 @@
     "automated",
     "coverage"
   ],
-  "lastUpdated": "2026-11-13T10:27:32.193Z",
+  "lastUpdated": "2026-11-19T17:49:26.955Z",
   "specId": "005",
   "folderSlug": "tests-and-closeout",
   "parentChain": [
@@ -16,6 +16,8 @@
     "spec-folder-tooling",
     "005-subtrack-proposal-and-archive-reach"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "19-11-26_18-49__manual-context-save.md"
+  ]
 }

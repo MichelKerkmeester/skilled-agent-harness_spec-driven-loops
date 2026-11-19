@@ -64,6 +64,7 @@ _memory:
 | Q028 | The sparse checkout is planned and built in one pass in a new worktree with a pull request, with a stop before anything irreversible. | Not stated. | None | 022-ci-sparse-loop-state/plan.md |
 | Q029 | The loop-state reads of Spec-Kit Check, deep-loop and the sk-doc suites are mapped by a read-only run before any of their checkouts changes. | Not stated. | None | 023-ci-sparse-big-suites/spec.md |
 | Q030 | The mapping is recorded in phase 23 and built: the runtime vitest job gets the sparse checkout, and the CLI and deep-loop jobs get one that names the few paths they read again. | Not stated. | None | 023-ci-sparse-big-suites/spec.md, 023-ci-sparse-big-suites/implementation-summary.md |
+| Q031 | PR 104 is rebased, its generated files regenerated, and it is merged with a bypass. | Not stated. | none | specs/system-speckit/runtime-and-release/006-test-cycle-speed/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -667,6 +668,26 @@ Do not record it
 Answer:
 ```text
 Record it and build
+```
+
+### Q031
+<!-- source: claude:af05cd33-c1ff-46c9-825e-70281e3ca6f1:toolu_01RKLG72zkEBGCi7C9Z2sCqF:0 -->
+
+Question:
+```text
+Pull request 104 (sparse checkout for the CLI, runtime and deep-loop vitest jobs, plus the phase 23 map) passed 35 checks with test totals equal to main. Four local docs commits are not pushed, and main has moved by nine commits from another session. The branch conflicts with main only in the four generated trigger-index files, the same case as pull request 101. How should I finish it?
+```
+
+Options:
+```text
+Rebase, regenerate, bypass merge (Recommended)
+Rebase and push only, I merge
+Leave it as is
+```
+
+Answer:
+```text
+Rebase, regenerate, bypass merge (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

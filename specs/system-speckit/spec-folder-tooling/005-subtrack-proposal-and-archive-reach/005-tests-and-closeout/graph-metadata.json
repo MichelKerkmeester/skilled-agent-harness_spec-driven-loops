@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The behavior that phases 001 to 004 add has no automated coverage",
     "created_at": "2026-11-13T10:07:36Z",
-    "last_save_at": "2026-11-13T19:34:27.682Z",
+    "last_save_at": "2026-11-19T17:49:26.955Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:29ff6d9309110db7a70f0ebfe87155e9bdd87e98a404f6f1eb02c409324ce156",
+    "source_fingerprint": "sha256:490f49fa5fa12f8a491fe44aff0babe00aa8607655edd560ebfad8e7d4865651",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e2a3297851e2ca7909a68a69b9ea9eeb29b406754836c1e5f134a0cc23316873",
       "plan.md": "7e7eb6be3f5020517b3cb9a4e46bf1d1d62269acbaf60f971fabb21a55e6f2f2",
       "tasks.md": "b0b869826aa80ed717ecaa8f63b76287b9f4b1577d3658db99cd6f115cd177fc",
-      "decision-record.md": "5116fe238d50fdbd5592f3bb9c249e73ae4b2271907ac3de1f15518f7df8a2a5",
-      "implementation-summary.md": "cc29edd476bb7c57fe9c802fdab5d641237529e7102cc91137ffee3024e2dfcf"
+      "decision-record.md": "952674d9e1a9c177c270cd74fbacffaf915433e2957f0465609ed0ce4e4ad1cf",
+      "implementation-summary.md": "e6d42acecb80dc524b3eb964618e08491dacc85341abdc1bcf69b7c203f14105"
     },
     "last_active_at": null
   }

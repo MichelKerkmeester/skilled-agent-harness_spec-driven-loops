@@ -16,6 +16,7 @@
       "track subtrack regrouping plan",
       "track subtrack regrouping tasks",
       "track subtrack regrouping acceptance criteria",
+      "008-track-subtrack-regrouping operator decisions",
       "track subtrack regrouping implementation summary"
     ],
     "key_topics": [
@@ -27,10 +28,10 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation",
-      "summary",
-      "skilled",
-      "large"
+      "008-track-subtrack-regrouping",
+      "operator",
+      "decisions",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,6 +40,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
     ],
@@ -65,6 +67,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -180,17 +188,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Skilled's large spec tracks keep active packets in one flat folder list, so readers scan every folder name to find work on one subsystem",
     "created_at": "2026-11-10T05:05:27Z",
-    "last_save_at": "2026-11-10T08:41:37.137Z",
+    "last_save_at": "2026-11-19T17:38:08.780Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,15 +200,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7e6f6e53a168667c047b09cedd284a8a7b398022907bba2e07c107c8a8acd53",
+    "source_fingerprint": "sha256:05ef08d071a483f8c1ac8f3413b21a54ebbf0546b8fd9fe39c837b72dacce4ad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5f6b24b07041159ce7a784e5700ffab67596c3b21d55f6f02e9c64845b3c2afb",
       "plan.md": "9c0f1be3736ff709460400f9d7fd78ffbc98a49dc588ddf6dfe88ddddd7c5814",
       "tasks.md": "c731379d2ce40ec3e00c0f9c7aa2df3e992b468e88da6d1e4540a3d4878e016d",
-      "implementation-summary.md": "e11e74b8dd51f5905d2e3662fec58cf66ee1e31e9f607d1011b4a1e32ed35632"
+      "decision-record.md": "719d7adfd2500ec09114ae11b917cd4cc8ad4881cb3d2edc4575d08bbd43c932",
+      "implementation-summary.md": "0d8f235e9b18674b6e3b69b6fb11a5e9d93b1e757d40c86865f60d6b17994516"
     },
     "last_active_at": null
   }

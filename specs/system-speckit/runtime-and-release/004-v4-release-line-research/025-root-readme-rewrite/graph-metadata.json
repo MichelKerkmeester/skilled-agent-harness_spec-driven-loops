@@ -15,6 +15,7 @@
       "root readme rewrite research",
       "root readme rewrite plan",
       "root readme rewrite tasks",
+      "025-root-readme-rewrite operator decisions",
       "root readme rewrite implementation summary",
       "root readme rewrite research synthesis"
     ],
@@ -25,12 +26,12 @@
       "research",
       "plan",
       "tasks",
+      "025-root-readme-rewrite",
+      "operator",
+      "decisions",
       "implementation",
       "summary",
-      "synthesis",
-      "lines",
-      "long",
-      "written"
+      "synthesis"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -38,6 +39,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
       ".skilled/CROSS-CLI.md",
@@ -53,8 +55,7 @@
       ".cursor/commands/goal-cursor.md",
       ".pi/prompts/goal-pi.md",
       ".skilled/commands/local-doc-alignment.md",
-      ".skilled/skills/mcp-code-mode/mcp-server/index.ts",
-      "runtime/cli/lib/validator-registry.json"
+      ".skilled/skills/mcp-code-mode/mcp-server/index.ts"
     ],
     "entities": [
       {
@@ -73,6 +74,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -148,12 +155,6 @@
         "source": "derived"
       },
       {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": "runtime/cli/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -204,23 +205,25 @@
     ],
     "causal_summary": "The root `README.md` is 1,773 lines long and was written before the v4.0.1.0, v4.0.2.0 and v4.0.2.1 releases and the commits on main after the v4.0.2.1 tag",
     "created_at": "2026-11-16T09:02:18.037Z",
-    "last_save_at": "2026-11-16T15:03:32.849Z",
+    "last_save_at": "2026-11-19T17:37:49.737Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:05de1911cdf8b14180198db5e85c11b57dfaa061234f2fd400dfad57c173173a",
+    "source_fingerprint": "sha256:d1dde9c1b9db5d2207b56f23f2b80459a53a9209c7e97c85dd228d7c47151ba6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ca5dd4cf371958e4e4dd64379fef4c77266ed3791988deba37074c504d0c9bbe",
       "plan.md": "ffaae0e3428a7167ce1cce3cbb01e8dc9f71b342690fd8a12e87d538f254ec5f",
       "tasks.md": "88d4af59075067bbafeb2a3b7c3746304be0724a6196af351e6bb9a61a0f2510",
-      "implementation-summary.md": "947a11c8117fce61a9e1cbaedfd300be94fc92f42d1e945f90abb5d99e77fab1",
+      "decision-record.md": "fdf1ece99b225e3955763858df61a2ed2ac0512da0cb9adf341397f74abce880",
+      "implementation-summary.md": "d8fda15f71a9eee0e05f07e3c6bd67db514e35eb565bf3d2c1a5012ddc9ffe5e",
       "research/research.md": "7846035831f953b0fa9d0179c002c2bdd53d47c5b34c7cc334d299d68f852047"
     },
     "last_active_child_id": null,

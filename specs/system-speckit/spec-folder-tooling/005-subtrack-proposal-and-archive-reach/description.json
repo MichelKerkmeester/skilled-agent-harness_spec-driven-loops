@@ -16,19 +16,21 @@
     "gaps",
     "follow"
   ],
-  "lastUpdated": "2026-11-14T09:57:05.751Z",
+  "lastUpdated": "2026-11-19T17:49:24.629Z",
   "specId": "005",
   "folderSlug": "subtrack-proposal-and-archive-reach",
   "parentChain": [
     "system-speckit",
     "spec-folder-tooling"
   ],
-  "memorySequence": 5,
+  "memorySequence": 7,
   "memoryNameHistory": [
     "13-11-26_11-29__analyze-system-speckit-and-its-subtrack-support.md",
     "13-11-26_13-20__subtrack-proposal-and-archive-reach.md",
     "13-11-26_16-00__subtrack-proposal-and-archive-reach.md",
     "14-11-26_09-45__the-phase-010-worker-is-alive-it-began-a-few.md",
-    "14-11-26_10-28__all-seven-parent-goal-criteria-now-have-evidence.md"
+    "14-11-26_10-28__all-seven-parent-goal-criteria-now-have-evidence.md",
+    "19-11-26_18-38__manual-context-save.md",
+    "19-11-26_18-49__manual-context-save.md"
   ]
 }
