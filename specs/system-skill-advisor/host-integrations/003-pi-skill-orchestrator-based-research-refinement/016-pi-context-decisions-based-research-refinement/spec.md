@@ -62,7 +62,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete. Phases 001 to 013 are done and merged to main as `57d3f5d9159`, then pushed; phase 003 closed with the guard not built (over-suppresses), and phases 010 and 011 built the route receipts instead. Phase 014 fixed the review findings in worktree 475 and merged to main without a push. Phases 015 and 016, the two alignment runs, are complete with their findings triaged and not fixed |
+| **Status** | In Progress. Phases 001 to 013 are done and merged to main as `57d3f5d9159`, then pushed; phase 003 closed with the guard not built (over-suppresses), and phases 010 and 011 built the route receipts instead. Phase 014 fixed the review findings in worktree 475 and merged to main without a push, then reopened for the follow-ups in worktree 478. Phases 015 and 016, the two alignment runs, are complete with their findings triaged and not fixed |
 | **Created** | 2026-11-18 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -147,7 +147,7 @@ Phase 1 writes research artifacts only. Phases 002 to 004 list their exact files
 | 11 | 011-route-receipts-build/ | Stored route receipts build, to the design phase 010 fixes, measured on the nine follow-up pairs in the calibration bench | Complete |
 | 12 | 012-plan-text-and-goal-closeout/ | Packet closeout: plan-text fixes in 002, 003 and 004, the delegation-strategy socket caveat, child goal ticks, the operator answers in a decision record and the parent goal criteria | Complete |
 | 13 | 013-drift-guard-probe-script-errors/ | Drift-guard errors: give the ten old probe scripts under the routing-and-scoring 008 review folders the shebang, strict mode or module header the alignment-drift guard requires | Complete |
-| 14 | 014-review-p2-fixes/ | Review fixes: the nine P2 findings of the five-pass review in `review/review-report.md`, eight fixed test first and R1-P2-004 recorded as accepted | Complete |
+| 14 | 014-review-p2-fixes/ | Review fixes: the nine P2 findings of the five-pass review in `review/review-report.md`, eight fixed test first and R1-P2-004 recorded as accepted; reopened for the follow-ups | In Progress |
 | 15 | 015-skilled-alignment-check/ | `/local-skilled-alignment` over the merged worktree 474 branch against base `4bf79332378`, report only: the findings report kept in `evidence/` and triaged: 25 findings, 1 P0 (stale packet metadata, repaired), 9 P1 and 15 P2 | Complete |
 | 16 | 016-doc-alignment-check/ | `/local-doc-alignment` on a new `advisor-pasted-reply` topic in `topics.json`, report only: the findings report kept in `evidence/` and triaged: 20 open findings, 5 P1 and 15 P2 | Complete |
 

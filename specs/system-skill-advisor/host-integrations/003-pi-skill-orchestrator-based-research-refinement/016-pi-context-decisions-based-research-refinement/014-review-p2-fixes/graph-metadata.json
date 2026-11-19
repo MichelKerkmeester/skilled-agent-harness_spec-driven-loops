@@ -39,7 +39,7 @@
       "stripped"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -58,7 +58,9 @@
       ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/subprocess-output-cap.vitest.ts",
-      ".skilled/bin/skill-advisor.cjs"
+      ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs",
+      ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+      ".skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs"
     ],
     "entities": [
       {
@@ -158,13 +160,25 @@
         "source": "derived"
       },
       {
-        "name": "skill-advisor.cjs",
+        "name": "prompt-advisor.mjs",
         "kind": "file",
-        "path": ".skilled/bin/skill-advisor.cjs",
+        "path": ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-prompt-advisor.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -192,23 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The regex that finds a `Now:` or `Task:` marker backtracks on a long whitespace run that contains newlines",
     "created_at": "2026-11-19T05:16:45Z",
-    "last_save_at": "2026-11-19T09:31:09.902Z",
+    "last_save_at": "2026-11-19T10:25:13.150Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +221,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2c303938bf65e1c3cd069d22c668591fd224c44bf8e8e30e284337612cd2f14d",
+    "source_fingerprint": "sha256:60906c2c0172b83b18f058d4953660b6944173f1c119400bd3c72dda2e95bd74",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e644d5f7bff8615ec1691dfa7a795d61317824c6339f1274baa232ba23fc1057",
-      "plan.md": "5a44eb774aa58d867ef56aeec571fd64c6521f786b7b1408f64d4735e6ce7e6f",
-      "tasks.md": "6e7485855a6c414bb5c85b2d9202a12d21150d493a0292bc09e5fff11f1b238c",
+      "spec.md": "6d61159bd8fb6fd9286fc9130ae6ba0029f65469a3a68b9ff9aa755ae6e7eaff",
+      "plan.md": "3c46ada2f4cbdef6d36c23fee39c2c191632dde57e49a00cc4334cda03359f8d",
+      "tasks.md": "8630eb90e2516caeae50472f213dfbff7409aed8fc660ecf55422dc9d0c3bd49",
       "decision-record.md": "3d14cb1b07f9e8d4e668587e90dbcf304cd44a8773d230c125701c98adba9bf3",
       "implementation-summary.md": "6d6d6442ee1d3dc246e5f6d472887b47e60b78ef30c1d06f434fff234bbfa865"
     },
