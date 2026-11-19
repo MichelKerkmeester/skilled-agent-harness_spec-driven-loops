@@ -2509,6 +2509,8 @@ function finalizeLineageCommand(input) {
     ...(input.env ? { env: input.env } : {}),
     effectiveConfig,
     invocationFingerprint,
+    // The argv with every prompt argument replaced by its digest, for a preview to print.
+    redactedArgs: fingerprintPayload.argv,
   };
 }
 
@@ -3993,7 +3995,7 @@ async function main() {
         label: lineage.label,
         kind: lineage.kind,
         command: built.command,
-        args: built.args.map((arg) => (arg === built.prompt ? promptToken : arg)),
+        args: built.redactedArgs,
         ...(typeof built.input === 'string' ? { stdin: built.input === built.prompt ? promptToken : '<input>' } : {}),
         cwd: built.cwd ?? process.cwd(),
         session_id: built.sessionId,
