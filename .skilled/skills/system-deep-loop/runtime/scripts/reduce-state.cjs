@@ -1234,10 +1234,19 @@ function buildDimensionUniverse(config) {
   return universe;
 }
 
+// A canonical name still matches anywhere in the text, as it always has. A custom name
+// can be as short as 'ui' or 'api', which sit inside common words, so it must stand
+// as a whole word.
+function mentionsDimension(text, dimension) {
+  if (REQUIRED_DIMENSIONS.includes(dimension)) return text.includes(dimension);
+  const escaped = dimension.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`(?<![a-z0-9])${escaped}(?![a-z0-9])`).test(text);
+}
+
 function deriveDimension(finding, iteration, universe = REQUIRED_DIMENSIONS) {
   const focus = `${iteration.focus} ${finding.title} ${finding.description}`.toLowerCase();
   for (const dimension of universe) {
-    if (focus.includes(dimension)) {
+    if (mentionsDimension(focus, dimension)) {
       return dimension;
     }
   }

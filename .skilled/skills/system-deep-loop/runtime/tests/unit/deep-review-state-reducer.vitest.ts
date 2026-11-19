@@ -827,6 +827,51 @@ describe('reduceReviewState: configured custom dimensions', () => {
     expect(finding.dimension).toBe('performance');
   });
 
+  // A short custom name sits inside common words ('ui' in 'build' and 'guide'), so
+  // only a whole-word match may claim a finding for it.
+  it('attributes a finding to a short custom dimension only when the name is a whole word', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
+      maxIterations: 5,
+      reviewTarget: 'custom-dims',
+      reviewDimensions: ['correctness', 'ui'],
+    }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${JSON.stringify({
+      type: 'iteration',
+      iteration: 1,
+      run: 1,
+      status: 'complete',
+      focus: 'mixed pass',
+      dimensions: ['correctness', 'ui'],
+      newFindingsRatio: 1,
+      findingsSummary: { P0: 0, P1: 2, P2: 0 },
+    })}\n`);
+    mkdirSync(join(reviewDir, 'iterations'), { recursive: true });
+    writeFileSync(join(reviewDir, 'iterations', 'iteration-001.md'), [
+      '# Iteration 1: Mixed pass',
+      '',
+      '## Findings - New',
+      '',
+      '### P1 Findings',
+      '',
+      '1. **Build guide skips a step** -- `docs/build.md:10` -- The guide omits the install step',
+      '2. **UI contrast is too low** -- `src/theme.css:4` -- Body text fails the contrast ratio',
+      '',
+      '## Assessment',
+      '',
+      'Dimensions addressed: correctness, ui',
+      '',
+    ].join('\n'));
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const byTitle = Object.fromEntries(
+      asCoverageRegistry(result).openFindings.map((finding) => [finding.title, finding.dimension]),
+    );
+
+    expect(byTitle['Build guide skips a step']).toBe('correctness');
+    expect(byTitle['UI contrast is too low']).toBe('ui');
+  });
+
   it('keeps the canonical keys unchanged for a canonical-subset config', () => {
     const { specFolder, reviewDir } = makeReviewDir();
     writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
