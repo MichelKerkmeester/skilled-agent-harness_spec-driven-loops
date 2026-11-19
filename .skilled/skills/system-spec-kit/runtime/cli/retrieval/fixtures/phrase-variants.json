@@ -1,5 +1,5 @@
 {
-  "manifestHash": "612612cc33a58474dc8936e222f7c5ddfc995902923efc1983c4047a5f137eac",
+  "manifestHash": "a899905eec578be331fd6b1a46339e7dd16d881e7a7083aa0ce9a2aa7258eb91",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9788,6 +9788,9 @@
     "advisor seeded resweep": [
       "advisor seeded resweep"
     ],
+    "advisor semantic lane analysis": [
+      "advisor semantic lane analysis"
+    ],
     "advisor semantic lane promotion": [
       "advisor semantic lane promotion"
     ],
@@ -10138,6 +10141,9 @@
     ],
     "advisor workspaceroot must resolve under": [
       "advisor workspaceroot must resolve under"
+    ],
+    "advisor zombie daemons": [
+      "advisor zombie daemons"
     ],
     "advisorhookresult renderer": [
       "AdvisorHookResult renderer"
@@ -78057,6 +78063,21 @@
     "ollama adapter shim": [
       "ollama adapter shim"
     ],
+    "ollama advisor analysis": [
+      "ollama advisor analysis"
+    ],
+    "ollama advisor analysis goal": [
+      "ollama advisor analysis goal"
+    ],
+    "ollama advisor analysis implementation summary": [
+      "ollama advisor analysis implementation summary"
+    ],
+    "ollama advisor analysis plan": [
+      "ollama advisor analysis plan"
+    ],
+    "ollama advisor analysis tasks": [
+      "ollama advisor analysis tasks"
+    ],
     "ollama and bge promotion arc changelog": [
       "ollama and bge promotion arc changelog"
     ],
@@ -84033,6 +84054,9 @@
     ],
     "phase 17 missing transcript notice": [
       "phase 17 missing transcript notice"
+    ],
+    "phase 17 ollama advisor analysis": [
+      "phase 17 ollama advisor analysis"
     ],
     "phase 17 over engineering cuts": [
       "phase 17 over engineering cuts"

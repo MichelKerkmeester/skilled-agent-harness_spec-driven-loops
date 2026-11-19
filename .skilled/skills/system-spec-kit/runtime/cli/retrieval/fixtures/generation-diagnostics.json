@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 46,
-    "missing-frontmatter": 6951,
-    "ok": 19964,
+    "missing-frontmatter": 6952,
+    "ok": 19969,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28542,
+  "documentsScanned": 28548,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "612612cc33a58474dc8936e222f7c5ddfc995902923efc1983c4047a5f137eac",
+  "manifestHash": "a899905eec578be331fd6b1a46339e7dd16d881e7a7083aa0ce9a2aa7258eb91",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45336,
+      "ok": 45344,
       "prose-sentence": 22,
       "single-token": 150,
       "stop-word-only": 1,
@@ -41910,6 +41910,12 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/evidence/report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -61732,6 +61738,10 @@
     },
     {
       "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/scratch",
       "reason": "excluded directory"
     },
     {
