@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:e0e7721f72992d5197bdc4bffe1d14d64586a46bdcb1076ad2592dbd8f5729e1"
       session_id: "scaffold-011-decisions-rule-delivery"
       parent_session_id: null
     completion_pct: 100

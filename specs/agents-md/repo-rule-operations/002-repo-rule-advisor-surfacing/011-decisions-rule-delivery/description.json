@@ -10,7 +10,7 @@
     "every",
     "runtime"
   ],
-  "lastUpdated": "2026-11-13T10:04:35.334Z",
+  "lastUpdated": "2026-11-19T17:46:35.090Z",
   "specId": "011",
   "folderSlug": "decisions-rule-delivery",
   "parentChain": [
@@ -18,6 +18,10 @@
     "repo-rule-operations",
     "002-repo-rule-advisor-surfacing"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "19-11-26_18-34__manual-context-save.md",
+    "19-11-26_18-34__manual-context-save.md",
+    "19-11-26_18-46__manual-context-save.md"
+  ]
 }
