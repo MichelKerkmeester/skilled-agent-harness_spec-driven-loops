@@ -1,7 +1,7 @@
 ---
 title: "DR-078 -- Live extension of a finished expansive research run"
 description: "This scenario validates `--extend=1` on the live expansive run from `DR-077` for `DR-078`. It focuses on reusing the finished run, the single extended ledger row and the synthesis snapshot without a fresh session."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # DR-078 -- Live extension of a finished expansive research run
@@ -58,7 +58,7 @@ The executor note: the completion is one native iteration, so no `--executor` fl
 
 ### Expected
 
-Before the run, command 1 shows `maxIterations` 3, both caps 2 and generation 1, command 2 prints `3` and command 3 prints the two node ids. Command 4 adds one iteration; `--extend` skips config creation, so a cap flag there changes nothing and the run keeps the caps `DR-077` wrote. Because `DR-077` was created with `--convergence-mode=off`, the extension inherits that mode and cannot stop before the new cap. After it finishes, command 5 prints `1`, command 6 shows the same `sessionId`, generation 1, `maxIterations` 4, both caps 2, `lineageMode` `completed-continue` and `continuedFromRun` 3, command 7 lists `synthesis-v1-r3.md`, command 8 prints `4`, command 9 prints the same two ids, and command 10 prints nothing and exits 1 because no `resumed` row exists.
+Before the run, command 1 shows `maxIterations` 3, both caps 2 and generation 1, command 2 prints `3` and command 3 prints the two node ids. Command 4 adds one iteration; `--extend` skips config creation, so a cap flag there changes nothing and the run keeps the caps `DR-077` wrote. Because `DR-077` was created with `--convergence-mode=off`, the extension inherits that mode and cannot stop before the new cap. After it finishes, command 5 prints `1`, command 6 shows the same `sessionId`, generation 1, `maxIterations` 4, both caps 2, `lineageMode` `completed-continue` and `continuedFromRun` 3, command 7 lists `synthesis-v1-r3.md`, command 8 prints `4`, command 9 prints the same two ids, and command 10 prints nothing because no `resumed` row exists.
 
 ### Evidence
 

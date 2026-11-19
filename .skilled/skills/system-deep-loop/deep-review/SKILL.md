@@ -300,7 +300,7 @@ A review loop is complete only when convergence and every quality gate agree.
 All of these must hold:
 
 - The composite stop score clears `compositeStopScore`, or `maxIterations` is hit without a false-positive STOP.
-- Every configured dimension plus the required traceability protocols (`spec_code`, `checklist_evidence`) has at least one full iteration of coverage.
+- Every configured dimension has at least one full iteration of coverage, plus the core traceability protocols (`spec_code`, `checklist_evidence`) when traceability is among the configured dimensions. An absent dimension list means the default four, which include it.
 - All canonical state files exist and parse cleanly: `deep-review-config.json`, `deep-review-state.jsonl`, `deep-review-findings-registry.json`, `deep-review-strategy.md` and `deep-review-dashboard.md` (a fan-out run keeps one per lineage instead), plus one `iterations/iteration-NNN.md` per dispatched iteration.
 - `review-report.md` carries all 9 core sections plus the conditional `## Resource Map Coverage Gate`.
 - Continuity is saved via `generate-context.js`.

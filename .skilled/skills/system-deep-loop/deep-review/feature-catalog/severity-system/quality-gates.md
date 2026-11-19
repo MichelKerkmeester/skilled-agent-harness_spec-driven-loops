@@ -7,7 +7,7 @@ trigger_phrases:
   - "premature stop prevention"
   - "dimensionCoverageGate"
   - "blocked-stop event"
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # Quality gates
@@ -29,7 +29,7 @@ The gate model is split across two layers. The contract-level binary gates are E
 | Gate | Checks |
 |---|---|
 | `convergenceGate` | Rolling average, MAD noise floor, and novelty ratio all indicate low-yield churn |
-| `dimensionCoverageGate` | Every configured review dimension examined, traceability coverage stabilized |
+| `dimensionCoverageGate` | Every configured review dimension examined and stabilized, plus the core traceability protocols when traceability is configured |
 | `p0ResolutionGate` | No unresolved P0 findings remain active |
 | `evidenceDensityGate` | Evidence density across active findings meets the threshold |
 | `hotspotSaturationGate` | Review hotspots revisited enough to satisfy saturation |

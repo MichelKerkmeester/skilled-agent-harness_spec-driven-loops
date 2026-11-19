@@ -7,7 +7,7 @@ trigger_phrases:
   - "cross-reference integrity"
   - "spec code alignment"
   - "traceabilityChecks"
-version: 1.11.0.6
+version: 1.11.1.0
 ---
 
 # Traceability
@@ -24,7 +24,7 @@ Traceability is the review dimension that checks alignment across docs, specs, c
 
 The review contract ranks traceability third. Its checks cover spec alignment, completion evidence, and cross-reference integrity across linked artifacts. During traceability-focused iterations, the loop can execute core protocols such as `spec_code` and `checklist_evidence`, then add overlay checks like `skill_agent`, `feature_catalog_code`, and `playbook_capability` when the target type makes them applicable.
 
-Traceability is not marked `requiredForSeverityCoverage` in the contract, but it is still required for full review coverage and for a legal clean stop. Its protocol results feed the strategy's cross-reference table, JSONL `traceabilityChecks`, the final report's traceability section, and the stop decision's coverage gate.
+Traceability is not marked `requiredForSeverityCoverage` in the contract, but when it is among the configured dimensions (the default four include it) it is required for full review coverage and for a legal clean stop. A run configured without it owes no core traceability protocol at stop. Its protocol results feed the strategy's cross-reference table, JSONL `traceabilityChecks`, the final report's traceability section, and the stop decision's coverage gate.
 
 ---
 
