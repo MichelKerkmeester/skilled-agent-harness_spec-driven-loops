@@ -8,21 +8,29 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins"
-    last_updated_at: "2026-11-19T11:50:00Z"
-    last_updated_by: "closure-run"
-    recent_action: "Closed the local checks; the CI row and T015 stay open until the operator pushes"
-    next_safe_action: "Operator: give the push go-ahead, then read the CI run for the final commit (T015, AC-008)"
+    last_updated_at: "2026-11-19T17:44:43Z"
+    last_updated_by: "generate-context"
+    recent_action: "Closed review fixes; phases 001 and 003 complete, validate passes for all four folders"
+    next_safe_action: "Run the branch push after gh auth switch, then read CI for AC-008"
+    packet_purpose: "Purpose: A CI workflow that tests one OpenCode major at the pinned version, with no v1 leg, and package manifests that pin only what v2 uses."
     blockers:
-      - "The push and CI run need the operator's go-ahead"
+      - "Push needs gh account MichelKerkmeester active"
     key_files:
-      - "scratch/after.txt"
-      - "scratch/sdk-usage.txt"
-      - "scratch/variant.txt"
+      - "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/tasks.md"
+      - "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/acceptance-criteria.md"
+      - ".github/workflows/opencode-v2-battery.yml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:9998c67893bf70d66816e3ecd451545b68946c1f177b7771c22df0a754af6914"
       session_id: "closure-002-v1-ci-and-package-pins"
       parent_session_id: null
-    completion_pct: 85
+    session_ref:
+      runtime: "claude"
+      sessionId: "df9261d4-6090-4b52-892b-db52ff291ccd"
+      workspace: "/Users/michelkerkmeester/worktrees/public/477-opencode-v1-removal"
+      savedAt: "2026-11-19T17:44:43Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 88
     open_questions: []
     answered_questions: []
 ---

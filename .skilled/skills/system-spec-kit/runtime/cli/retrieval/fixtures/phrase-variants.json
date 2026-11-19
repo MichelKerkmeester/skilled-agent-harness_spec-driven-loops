@@ -1,5 +1,5 @@
 {
-  "manifestHash": "47f8484d0c2ed6a1beefc09ce46898d00a62f7cc0e7f7d9ccf7b55f41671a577",
+  "manifestHash": "ca20136807a5e1cc261cff31cfb5b94c48971ed696cca4da9aa81f3b5800de16",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7420,6 +7420,9 @@
     ],
     "066 skill readability refinement operator decisions": [
       "066-skill-readability-refinement operator decisions"
+    ],
+    "070 opencode v1 removal operator decisions": [
+      "070-opencode-v1-removal operator decisions"
     ],
     "092 epic review on main": [
       "092 epic review on main"

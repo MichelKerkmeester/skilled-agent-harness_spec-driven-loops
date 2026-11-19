@@ -15,7 +15,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "opencode v1 removal phase parent spec"
+      "opencode v1 removal phase parent spec",
+      "070-opencode-v1-removal operator decisions"
     ],
     "key_topics": [
       "opencode",
@@ -23,18 +24,19 @@
       "phase",
       "parent",
       "spec",
+      "070-opencode-v1-removal",
+      "operator",
+      "decisions",
       "only",
       "version",
       "feature",
-      "specification",
-      "remove",
-      "support",
-      "repository"
+      "specification"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "decision-record.md",
       ".opencode/plugins/lib/v2-bridge.js",
       ".skilled/hooks/cli-dispatch/lib/opencode-version.mjs",
       ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs",
@@ -56,6 +58,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -177,21 +185,36 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode 2.3.2 is the only version in use",
     "created_at": "2026-11-19T09:04:20Z",
-    "last_save_at": "2026-11-19T17:43:17.631Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:44:43.347Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:e472afa90c08d04014693f65d4971b1cbf126009c3714c08abba8d78156ebf74",
+    "source_fingerprint": "sha256:2a76a0ac2cdf55e168a15a4e29eb7ec6dec8e4ef0c1f53f7f79e7a2f5ee8dff5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "568e7d5d44e8d2659481852d8765a8da0de35f5e701076b1c8f9ef36e9be4e4f"
+      "spec.md": "568e7d5d44e8d2659481852d8765a8da0de35f5e701076b1c8f9ef36e9be4e4f",
+      "decision-record.md": "f20a6e17fcf2c5a5c12314d1155e87ac81af5793b44de9bf8ccd720e14809353"
     },
-    "last_active_at": null
+    "last_active_at": "2026-11-19T17:44:43.347Z",
+    "last_active_child_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins"
   }
 }
