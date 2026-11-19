@@ -201,7 +201,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 
 - [x] CHK-030 [P0] No credential is read or written by any changed file Evidence 2026-11-17: No changed file reads or writes a credential.
 - [x] CHK-031 [P0] Leaves cannot write `research/inbox.jsonl` or `research/frontier-nodes.jsonl`; only `frontier-admit.cjs` does Evidence 2026-11-17: Only `frontier-admit.cjs` appends the store and frontier inbox rows; the leaf contract forbids both writes.
-- [ ] CHK-032 [P1] Proposal scope must intersect the root scope, so a leaf cannot steer the run outside its target
+- [x] CHK-032 [P1] Amended: a review proposal's scope must sit inside the review target, so a leaf cannot steer a review outside its target; a research run has no path-shaped root scope, so research relevance is a non-blank question, evidence and scope Evidence 2026-11-19: `frontier-admit.cjs` `checkProposal` prunes as relevance on a blank question, evidence or scope (lines 585-587) and, for a review config only, on a scope outside the target via `scopeInsideReviewTarget` (lines 553-565, 592); `frontier-admit-review.vitest.ts` "normalizes ./ and trailing slashes on both sides of the review target test" (line 252) and `frontier-admit.vitest.ts` "evidence is empty" prune case (line 159) cover both.
 <!-- /ANCHOR:security -->
 
 ---

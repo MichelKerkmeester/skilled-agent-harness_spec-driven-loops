@@ -83,6 +83,7 @@ and findings belong here.
 | Merge-time steps | Open | T030 full suite, T031-T032 pilot (D-010-04). Next task on resume: T030 at the merge gate |
 | Playbook and changelog | Done | DR-068 to DR-073 added to the deep-research playbook. The package validator prints PASS with 71 scenarios and 0 violations. Changelog `v1.16.0.0.md`: shape PASS, `validate_document.py` 0 issues, DQI 89. Both compiled contracts regenerated. `check-documentation-drift.cjs --facts` reports 0 errors and `check-contract-drift.cjs` prints OK. |
 | AC-014 amended and met | Done 2026-11-18 | Operator ruling Q003: decouple the cap, no rerun, amend AC-014 to a frontier drain before the cap. Run 2 stop checks show frontierOpen 0 from the check before iteration 15 of 16; final stats 16 answered, 0 open, 0 active. frontier-admit.cjs now derives the cap as half of maxIterations; frontier-admit suites 51 passed. |
+| CHK-032 amended | done | review targets keep the scope-inside-target check (frontier-admit.cjs:553-565,592); research relevance is question, evidence and scope presence (585-587); frontier-admit-review.vitest.ts:252, frontier-admit.vitest.ts:159 |
 
 ### Deviations and findings
 
