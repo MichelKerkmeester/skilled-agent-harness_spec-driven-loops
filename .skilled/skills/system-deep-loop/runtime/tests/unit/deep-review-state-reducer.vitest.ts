@@ -1069,7 +1069,7 @@ describe('reduceReviewState expansive frontier', () => {
     expect(JSON.stringify(second.registry.searchDebt)).toBe(JSON.stringify(first.registry.searchDebt));
   });
 
-  it('closes an exhausted node and derives an answered one, reporting neither as debt', () => {
+  it('closes an exhausted node and derives an answered one, filing only the short-closed one as blocked debt', () => {
     const { specFolder, reviewDir } = makeReviewDir();
     writeExpansiveConfig(reviewDir);
     writeStore(reviewDir, [
@@ -1092,9 +1092,11 @@ describe('reduceReviewState expansive frontier', () => {
       ['F-1-002', 'answered'],
     ]);
     expect(frontier.nodes[1].coveredDimensions).toEqual(['correctness', 'security', 'maintainability']);
-    expect(result.registry.searchDebt.filter((entry) => entry.frontier)).toEqual([]);
+    expect(result.registry.searchDebt.filter((entry) => entry.frontier).map((entry) => [entry.id, entry.disposition]))
+      .toEqual([['frontier-F-1-001', 'blocked']]);
     expect(result.registry.candidateCoverage.deferred.filter((bugClass) => bugClass.startsWith('frontier:'))).toEqual([]);
-    expect(result.registry.candidateCoverage.blocked.filter((bugClass) => bugClass.startsWith('frontier:'))).toEqual([]);
+    expect(result.registry.candidateCoverage.blocked.filter((bugClass) => bugClass.startsWith('frontier:')))
+      .toEqual(['frontier:F-1-001']);
     expect(result.registry.candidateCoverage.covered).toContain('frontier:F-1-002');
   });
 
@@ -1384,6 +1386,82 @@ describe('reduceReviewState expansive frontier', () => {
     expect(node.coveredDimensions).toEqual(['correctness']);
     expect(frontier.budget.depth1).toEqual({ allotted: 5, spent: 1 });
     expect(frontier.activeNextDimension).toBe('security');
+  });
+
+  // A node marked active and then closed on the same run never reviewed that run:
+  // the run's own row names the node it was rebound to, and a recovery pass that
+  // names no node reviewed none.
+  it('credits a run only to the node its row is bound to, and an unbound recovery pass to none', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    writeStore(reviewDir, [
+      nodeRow({ nodeId: 'F-1-001', iteration: 0 }),
+      nodeRow({ nodeId: 'F-1-002', iteration: 0 }),
+      nodeRow({ nodeId: 'F-1-001', status: 'active', iteration: 1 }),
+      nodeRow({ nodeId: 'F-1-002', status: 'active', iteration: 2 }),
+      nodeRow({ nodeId: 'F-1-001', status: 'active', iteration: 3 }),
+      nodeRow({ nodeId: 'F-1-001', status: 'exhausted', reason: 'stuck', iteration: 3 }),
+      nodeRow({ nodeId: 'F-1-002', status: 'active', iteration: 3 }),
+    ]);
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${[
+      iterationRecord(1, 'Frontier node F-1-001: correctness', ['correctness'], { frontierNodeId: 'F-1-001' }),
+      iterationRecord(2, 'Frontier node F-1-002: correctness', ['correctness'], { frontierNodeId: 'F-1-002' }),
+      iterationRecord(3, 'Frontier node F-1-002: security', ['security'], { frontierNodeId: 'F-1-002' }),
+      iterationRecord(4, 'RECOVERY: escalate severity review. Least-covered dimension: security', ['security']),
+    ].join('\n')}\n`);
+
+    const frontier = readFrontier(reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }));
+    const byId = Object.fromEntries(frontier.nodes.map((node) => [node.nodeId, node]));
+
+    expect(byId['F-1-001']).toMatchObject({ status: 'exhausted', coveredDimensions: ['correctness'], visits: 1 });
+    expect(byId['F-1-002']).toMatchObject({ coveredDimensions: ['correctness', 'security'], visits: 2 });
+  });
+
+  // A node closed short of its dimensions is ground the run did not review, so it
+  // files blocked debt and the verdict cannot read PASS; a node that answered
+  // every dimension, or was closed after covering them, owes nothing.
+  it('files a node closed short of its dimensions as blocked search debt and leaves an answered node out', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    const everyDimension = ['correctness', 'security', 'maintainability'];
+    writeStore(reviewDir, [
+      nodeRow({ nodeId: 'F-1-001', iteration: 0 }),
+      nodeRow({ nodeId: 'F-1-002', iteration: 0 }),
+      nodeRow({ nodeId: 'F-1-003', iteration: 0 }),
+      nodeRow({ nodeId: 'F-1-001', status: 'exhausted', reason: 'stuck', iteration: 2 }),
+      nodeRow({ nodeId: 'F-1-003', status: 'exhausted', reason: 'stuck', iteration: 4 }),
+    ]);
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${[
+      iterationRecord(1, 'Frontier node F-1-001: correctness', ['correctness'], { newFindingsRatio: 0 }),
+      iterationRecord(2, 'Frontier node F-1-002: all', everyDimension, { newFindingsRatio: 0 }),
+      iterationRecord(3, 'Frontier node F-1-003: all', everyDimension, { newFindingsRatio: 0 }),
+    ].join('\n')}\n`);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const byId = Object.fromEntries(readFrontier(result).nodes.map((node) => [node.nodeId, node]));
+
+    expect(byId['F-1-001'].status).toBe('exhausted');
+    expect(byId['F-1-002'].status).toBe('answered');
+    expect(byId['F-1-003'].status).toBe('exhausted');
+    expect(result.registry.searchDebt).toHaveLength(1);
+    expect(result.registry.searchDebt[0]).toMatchObject({
+      id: 'frontier-F-1-001',
+      bugClass: 'frontier:F-1-001',
+      disposition: 'blocked',
+      frontier: true,
+    });
+    expect(result.registry.candidateCoverage.blocked).toEqual(['frontier:F-1-001']);
+    expect(result.dashboard).toContain('- Provisional Verdict: CONDITIONAL');
+
+    // Once the short node is the only change, the answered outcome reads PASS.
+    writeStore(reviewDir, [
+      nodeRow({ nodeId: 'F-1-002', iteration: 0 }),
+      nodeRow({ nodeId: 'F-1-003', iteration: 0 }),
+      nodeRow({ nodeId: 'F-1-003', status: 'exhausted', reason: 'stuck', iteration: 4 }),
+    ]);
+    const answered = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    expect(answered.registry.searchDebt).toEqual([]);
+    expect(answered.dashboard).toContain('- Provisional Verdict: PASS');
   });
 
   it('leaves a thought iteration out of the node visits, the band budget and the covered dimensions', () => {

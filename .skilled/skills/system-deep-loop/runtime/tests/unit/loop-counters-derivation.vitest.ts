@@ -672,3 +672,106 @@ describe('research dashboard', () => {
     }
   });
 });
+
+// Under expansive depth the stuck decision closes the frontier node about to be
+// dispatched, so it must read that node's own passes, never a run of clean passes
+// on its siblings. The rows replay the live lineage that closed a node early.
+describe('per-node stuck accounting under expansive depth', () => {
+  const convergence = requireCjs('../../scripts/convergence.cjs') as {
+    deriveLoopCounters: (
+      records: Array<Record<string, unknown>>,
+      options: Record<string, unknown>,
+    ) => LoopCounters;
+    buildStopDecisionInput: (
+      args: Record<string, unknown>,
+      loopType: LoopType,
+      files: Record<string, unknown>,
+      graph: Record<string, unknown> | null,
+    ) => StopDecisionInput;
+  };
+
+  function pass(iteration: number, nodeId: string | null, ratio: number, newP2 = 0): Record<string, unknown> {
+    return {
+      type: 'iteration',
+      iteration,
+      run: iteration,
+      status: 'complete',
+      ...(nodeId ? { frontierNodeId: nodeId, focus: `Frontier node ${nodeId}: correctness` } : { focus: 'RECOVERY: escalate severity review' }),
+      dimensions: ['correctness'],
+      newFindingsRatio: ratio,
+      findingsNew: { P0: 0, P1: 0, P2: newP2 },
+    };
+  }
+
+  // Runs 1-9 of the live lineage: three nodes in rotation, runs 8 and 9 clean.
+  const liveRows = [
+    pass(1, 'F-1-002', 1, 3),
+    pass(2, 'F-1-004', 0.5, 1),
+    pass(3, 'F-1-006', 0.2, 1),
+    pass(4, 'F-1-002', 0.286, 1),
+    pass(5, 'F-1-004', 0),
+    pass(6, 'F-1-006', 0.125, 1),
+    pass(7, 'F-1-004', 0.25, 1),
+    pass(8, 'F-1-002', 0),
+    pass(9, 'F-1-006', 0.036),
+  ];
+
+  it('keeps the lineage-wide count when no node is named, as a default run does', () => {
+    expect(convergence.deriveLoopCounters(liveRows, { loopType: 'review' }))
+      .toEqual({ stuckCount: 2, consecutiveFailureCount: 0 });
+  });
+
+  it('counts only the named node\'s own passes', () => {
+    expect(convergence.deriveLoopCounters(liveRows, { loopType: 'review', nodeId: 'F-1-004' }).stuckCount).toBe(0);
+    expect(convergence.deriveLoopCounters(
+      [...liveRows, pass(10, 'F-1-004', 0)],
+      { loopType: 'review', nodeId: 'F-1-004' },
+    ).stuckCount).toBe(1);
+    expect(convergence.deriveLoopCounters(
+      [...liveRows, pass(10, 'F-1-004', 0), pass(11, null, 0), pass(12, 'F-1-004', 0)],
+      { loopType: 'review', nodeId: 'F-1-004' },
+    ).stuckCount).toBe(2);
+  });
+
+  // A pass that recorded a new finding made progress on its node, whatever ratio
+  // the accumulated total divides it down to.
+  it('never counts a node-bound pass that recorded a new finding as no progress', () => {
+    const rows = [pass(12, 'F-2-007', 0.05, 1)];
+    expect(convergence.deriveLoopCounters(rows, { loopType: 'review', nodeId: 'F-2-007' }).stuckCount).toBe(0);
+    expect(convergence.deriveLoopCounters([pass(12, 'F-2-007', 0.05)], { loopType: 'review', nodeId: 'F-2-007' }).stuckCount)
+      .toBe(1);
+    // The lineage-wide count keeps its ratio-only rule.
+    expect(convergence.deriveLoopCounters(rows, { loopType: 'review' }).stuckCount).toBe(1);
+  });
+
+  it('binds a reworded focus through the last store row that marked a node active on that run', () => {
+    const reworded = { ...pass(5, null, 0), focus: 'Reviewing the command surface' };
+    const history = [
+      { nodeId: 'F-1-002', status: 'active', iteration: 5 },
+      { nodeId: 'F-1-004', status: 'active', iteration: 5 },
+    ];
+    expect(convergence.deriveLoopCounters([reworded], {
+      loopType: 'review', nodeId: 'F-1-004', frontierHistory: history,
+    }).stuckCount).toBe(1);
+    expect(convergence.deriveLoopCounters([reworded], {
+      loopType: 'review', nodeId: 'F-1-002', frontierHistory: history,
+    }).stuckCount).toBe(0);
+  });
+
+  it('feeds the active node\'s counter to the stop decision only under expansive depth', () => {
+    const registry = { frontier: { activeNodeId: 'F-1-004', nodes: [] } };
+    const expansive = convergence.buildStopDecisionInput({}, 'review', {
+      config: { stuckThreshold: 2, antiConvergence: { depthMode: 'expansive' } },
+      registry,
+      stateLogRows: liveRows,
+    }, null);
+    const defaulted = convergence.buildStopDecisionInput({}, 'review', {
+      config: { stuckThreshold: 2 },
+      registry,
+      stateLogRows: liveRows,
+    }, null);
+
+    expect(expansive.stuckCount).toBe(0);
+    expect(defaulted.stuckCount).toBe(2);
+  });
+});

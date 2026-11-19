@@ -39,7 +39,7 @@ const {
   appendObservabilityEvent,
 } = require('../lib/deep-loop/observability-events.cjs');
 
-const { isEvidenceBearingIteration } = require('./frontier-admit.cjs');
+const { isEvidenceBearingIteration, readNodeStore } = require('./frontier-admit.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -982,7 +982,12 @@ function evaluateReviewLegalStopGates(review, options = {}) {
       && applicability.enforcement === 'skip'
       && Array.isArray(applicability.evidenceRefs)
       && applicability.evidenceRefs.length > 0;
-    const everyRequiredClassCovered = searchDebt.length === 0
+    // A frontier node closed short files blocked debt that no further pass may
+    // pay, so it marks the verdict instead of holding the stop to the cap.
+    const payableDebt = searchDebt.filter((entry) => !(
+      isPlainObject(entry) && entry.frontier === true && entry.disposition === 'blocked'
+    ));
+    const everyRequiredClassCovered = payableDebt.length === 0
       && requiredBugClasses.every((bugClass) => candidateCovered.includes(bugClass));
     gates.candidateCoverageGate = {
       pass: trivialScope || everyRequiredClassCovered,
@@ -1301,8 +1306,21 @@ function readStopDecisionFiles(args) {
   const registryPath = typeof args.registryPath === 'string' && args.registryPath !== ''
     ? args.registryPath
     : null;
+  const config = readJsonObjectFile(configPath, 'configPath');
+  const antiConvergence = isPlainObject(config.antiConvergence) ? config.antiConvergence : {};
+  const expansive = (args.depthMode ?? args.depth_mode ?? antiConvergence.depthMode) === 'expansive';
+  // The node store sits beside the state log in the artifact dir; its active rows
+  // bind a reworded focus to the node it was dispatched to.
+  const frontierHistory = [];
+  if (expansive) {
+    readNodeStore(path.join(path.dirname(stateLogPath), 'frontier-nodes.jsonl'), {
+      history: frontierHistory,
+      warnings: [],
+    });
+  }
   return {
-    config: readJsonObjectFile(configPath, 'configPath'),
+    config,
+    frontierHistory,
     stateLogRows: readStateLogRows(stateLogPath),
     // An absent registry is a loop with no recorded findings yet, not a broken
     // request; only a present-but-unreadable registry file is an error.
@@ -1336,12 +1354,65 @@ function orderedIterationRecords(stateRows) {
   return [...numbered, ...unnumbered];
 }
 
+// A focus carries the node it was dispatched to as a marker phrase, and a bare
+// substring match would let a node claim a longer id that starts with its own,
+// so the id is bounded on both sides.
+function frontierMarkerPattern(nodeId) {
+  const escaped = String(nodeId).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`(?:^|[^\\w-])Frontier node ${escaped}(?![\\w-])`);
+}
+const ANY_FRONTIER_MARKER = /(?:^|[^\w-])Frontier node \S/;
+
+// A node can be marked active and then closed on the same run, and the run is
+// rebound to the next node, so only the last node marked active on a run was
+// dispatched to it.
+function activeNodeByIteration(history) {
+  const byIteration = new Map();
+  for (const row of Array.isArray(history) ? history : []) {
+    if (!isPlainObject(row) || row.status !== 'active' || typeof row.nodeId !== 'string') continue;
+    const iteration = iterationRecordNumber(row);
+    if (iteration !== null) byIteration.set(iteration, row.nodeId);
+  }
+  return byIteration;
+}
+
+// The one rule for which frontier node an iteration row reviewed: the per-node
+// stuck count and the reducer's node coverage both read it. The row's own
+// frontierNodeId wins; a leaf can drop that field or reword its focus, so the
+// focus marker comes next and the store's active row for the run last. A row none
+// of them name, such as a recovery pass, reviewed no node.
+function iterationBoundToNode(record, nodeId, activeByIteration) {
+  if (!isPlainObject(record) || record.type !== 'iteration') return false;
+  if (typeof record.frontierNodeId === 'string' && record.frontierNodeId !== '') {
+    return record.frontierNodeId === nodeId;
+  }
+  if (typeof record.focus === 'string' && ANY_FRONTIER_MARKER.test(record.focus)) {
+    return frontierMarkerPattern(nodeId).test(record.focus);
+  }
+  const iteration = iterationRecordNumber(record);
+  return iteration !== null && activeByIteration instanceof Map
+    && activeByIteration.get(iteration) === nodeId;
+}
+
+function recordsNewFinding(row) {
+  const recorded = row.findingsNew;
+  if (typeof recorded === 'number') return recorded > 0;
+  if (!isPlainObject(recorded)) return false;
+  return Object.values(recorded).some((count) => typeof count === 'number' && count > 0);
+}
+
 // The counters are rebuilt from the log on every pass, so a resumed run counts
-// the same as a run that never paused.
+// the same as a run that never paused. Given a nodeId, the stuck count reads only
+// the rows bound to that node, so clean passes on its siblings cannot close it,
+// and a bound pass that recorded a new finding is progress whatever its ratio:
+// the ratio divides by the run's accumulated total, so it shrinks as the run
+// grows while the pass still found something new.
 function deriveLoopCounters(records, options) {
   const rows = Array.isArray(records) ? records : [];
   const settings = isPlainObject(options) ? options : {};
   const loopType = settings.loopType;
+  const nodeId = typeof settings.nodeId === 'string' && settings.nodeId !== '' ? settings.nodeId : null;
+  const activeByIteration = nodeId === null ? null : activeNodeByIteration(settings.frontierHistory);
   const convergenceThreshold = finiteNumberOrNull(settings.convergenceThreshold);
   const researchThreshold = convergenceThreshold !== null && convergenceThreshold > 0
     ? convergenceThreshold
@@ -1378,6 +1449,7 @@ function deriveLoopCounters(records, options) {
     if (!isEvidenceBearingIteration(row)) continue;
 
     consecutiveFailureCount = 0;
+    if (nodeId !== null && !iterationBoundToNode(row, nodeId, activeByIteration)) continue;
     if (row.status === 'insight') {
       stuckCount = 0;
       continue;
@@ -1388,7 +1460,7 @@ function deriveLoopCounters(records, options) {
     const low = loopType === 'review'
       ? ratio !== null && ratio <= reviewThreshold
       : ratio !== null && ratio < researchThreshold;
-    stuckCount = low ? stuckCount + 1 : 0;
+    stuckCount = low && !(nodeId !== null && recordsNewFinding(row)) ? stuckCount + 1 : 0;
   }
 
   return { stuckCount, consecutiveFailureCount };
@@ -1684,7 +1756,19 @@ function buildStopDecisionInput(args, loopType, files, graph) {
   const convergenceThreshold = decisionConfig.convergenceThreshold === null
     ? undefined
     : decisionConfig.convergenceThreshold;
-  const counters = deriveLoopCounters(stateRows, { loopType, convergenceThreshold });
+  // Under expansive depth the stuck branch closes the registry's active node, so
+  // the count it acts on is that node's own; with no active node the branch falls
+  // through to global recovery and the lineage count stands.
+  const activeNodeId = isPlainObject(registry.frontier) ? registry.frontier.activeNodeId : null;
+  const nodeScoped = loopType === 'review'
+    && decisionConfig.depthMode === 'expansive'
+    && typeof activeNodeId === 'string'
+    && activeNodeId !== '';
+  const counters = deriveLoopCounters(stateRows, {
+    loopType,
+    convergenceThreshold,
+    ...(nodeScoped ? { nodeId: activeNodeId, frontierHistory: files?.frontierHistory } : {}),
+  });
 
   return {
     loopType,
@@ -1992,6 +2076,8 @@ module.exports = {
   deriveLoopCounters,
   evaluateResearchQualityGuards,
   evaluateReviewLegalStopGates,
+  activeNodeByIteration,
+  iterationBoundToNode,
   mapReviewThresholds,
   parseConvergenceModeValue,
   parseMinObservationsValue,

@@ -15,7 +15,12 @@ const { resolveArtifactRoot } = require('../../runtime/lib/deep-loop/artifact-ro
 const { filterCompletionBearingRecords } = require('../../shared/progress/progress-record.cjs');
 const { latestIterationRecords } = require('../lib/deep-loop/iteration-findings.cjs');
 const { deriveReviewVerdict, openSearchDebtCount } = require('./review-verdict.cjs');
-const { reviewOmitsTraceability, reviewUnfinishedCoreProtocols } = require('./convergence.cjs');
+const {
+  activeNodeByIteration,
+  iterationBoundToNode,
+  reviewOmitsTraceability,
+  reviewUnfinishedCoreProtocols,
+} = require('./convergence.cjs');
 const {
   NODE_STATUSES,
   isEvidenceBearingIteration,
@@ -1927,31 +1932,12 @@ function readReviewFrontierStore(storePath) {
   };
 }
 
-// A focus carries the node it was dispatched to as a marker phrase, and a bare
-// substring match would let a node claim a longer id that starts with its own,
-// so the id is bounded on both sides.
-function frontierMarkerPattern(nodeId) {
-  return new RegExp(`(?:^|[^\\w-])Frontier node ${escapeRegExp(String(nodeId))}(?![\\w-])`);
-}
-
-// A leaf can reword a focus before it reaches the state log, so the marker alone
-// cannot attribute every visit. A store row that marked the node active on an
-// iteration's number claims that iteration's record either way.
+// Coverage credit and the per-node stuck count read the same binding rule, so a
+// run credited to a node is the run that node's stuck count reads.
 function reviewRecordsForNode(nodeId, history, iterationRecords) {
-  const marker = frontierMarkerPattern(nodeId);
-  const activeIterations = new Set(
-    (Array.isArray(history) ? history : [])
-      .filter((row) => row && row.nodeId === nodeId && row.status === 'active')
-      .map((row) => getIterationRun(row))
-      .filter((iteration) => iteration !== null),
-  );
-  return (Array.isArray(iterationRecords) ? iterationRecords : []).filter((record) => {
-    if (!record || record.type !== 'iteration') return false;
-    if (record.frontierNodeId === nodeId) return true;
-    if (typeof record.focus === 'string' && marker.test(record.focus)) return true;
-    const iteration = getIterationRun(record);
-    return iteration !== null && activeIterations.has(iteration);
-  });
+  const activeByIteration = activeNodeByIteration(history);
+  return (Array.isArray(iterationRecords) ? iterationRecords : [])
+    .filter((record) => iterationBoundToNode(record, nodeId, activeByIteration));
 }
 
 // A node is answered once every dimension in the review's universe has evidence
@@ -2032,9 +2018,11 @@ function frontierScopeRefs(scope) {
 }
 
 // A node the store still holds open is search depth the run has not spent yet,
-// so it belongs in the same debt ledger a leaf's own deferral lands in. Exhausted
-// and blocked nodes stay frontier-only: their question is closed, and filing them
-// as debt would report work the run is no longer allowed to do.
+// so it belongs in the same debt ledger a leaf's own deferral lands in. A node
+// closed exhausted or blocked before every dimension had a pass is ground the run
+// never reviewed, so it files as blocked debt: the verdict cannot read PASS over
+// it, and the candidate coverage gate does not hold the stop on debt no further
+// pass may pay. A closed node that covered every dimension owes nothing.
 function mergeFrontierIntoSearchLedger(searchLedgerState, frontier) {
   const candidateCoverage = searchLedgerState.candidateCoverage;
   const debtById = new Map(
@@ -2058,6 +2046,20 @@ function mergeFrontierIntoSearchLedger(searchLedgerState, frontier) {
         frontier: true,
       });
       addCandidateClass(candidateCoverage, bugClass, 'deferred', iteration);
+    } else if ((node.status === 'exhausted' || node.status === 'blocked') && node.nextDimension !== null) {
+      const id = `frontier-${node.nodeId}`;
+      debtById.set(id, {
+        id,
+        iteration,
+        targetRefs: frontierScopeRefs(node.scope),
+        bugClass,
+        disposition: 'blocked',
+        rationale: `Frontier node ${node.nodeId} closed ${node.status} with ${node.nextDimension} unreviewed: ${node.question}`,
+        evidenceRefs: [`frontier-nodes.jsonl#${node.nodeId}`],
+        reason: `frontier node closed ${node.status}${node.reason ? ` (${node.reason})` : ''} short of its dimensions`,
+        frontier: true,
+      });
+      addCandidateClass(candidateCoverage, bugClass, 'blocked', iteration);
     } else if (node.status === 'answered') {
       addCandidateClass(candidateCoverage, bugClass, 'covered', iteration);
     } else if (node.status === 'pruned' || node.status === 'abstained') {
@@ -3045,7 +3047,6 @@ module.exports = {
   buildDimensionUniverse,
   buildGraphConvergenceRollup,
   buildReviewFrontier,
-  frontierMarkerPattern,
   pickReviewFrontierFocus,
   normalizeTraceabilityChecks,
   parseIterationFile,

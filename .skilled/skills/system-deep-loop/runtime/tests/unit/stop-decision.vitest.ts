@@ -638,6 +638,28 @@ describe('legal-stop gates', () => {
     expect(result.failed).toEqual(['candidateCoverageGate']);
   });
 
+  // Blocked frontier debt is a node the run already closed short; no further pass
+  // may pay it, so it marks the verdict CONDITIONAL without holding the stop.
+  it('does not hold candidate coverage on blocked frontier debt, and still holds it on open-node debt', () => {
+    const standard = {
+      reviewDepthSchemaVersion: 2,
+      reviewDepthApplicability: { scopeClass: 'standard', enforcement: 'enforce', evidenceRefs: ['e1'] },
+      requiredBugClasses: [],
+      candidateCovered: [],
+    };
+    const closedShort = legalGates({
+      ...standard,
+      searchDebt: [{ id: 'frontier-F-1-001', frontier: true, disposition: 'blocked' }],
+    } as Partial<ReviewFacts>);
+    const stillOpen = legalGates({
+      ...standard,
+      searchDebt: [{ id: 'frontier-F-1-002', frontier: true, disposition: 'deferred' }],
+    } as Partial<ReviewFacts>);
+
+    expect(closedShort.gates.candidateCoverageGate).toMatchObject({ pass: true, skipped: false });
+    expect(stillOpen.gates.candidateCoverageGate).toMatchObject({ pass: false, skipped: false });
+  });
+
   it('fails only the graphless fallback gate on unavailable graph coverage', () => {
     const result = legalGates({
       reviewDepthSchemaVersion: 2,
