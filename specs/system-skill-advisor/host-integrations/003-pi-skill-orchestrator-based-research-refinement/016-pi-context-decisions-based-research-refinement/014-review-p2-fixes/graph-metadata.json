@@ -39,7 +39,7 @@
       "stripped"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -184,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The regex that finds a `Now:` or `Task:` marker backtracks on a long whitespace run that contains newlines",
     "created_at": "2026-11-19T05:16:45Z",
-    "last_save_at": "2026-11-19T12:30:26.356Z",
+    "last_save_at": "2026-11-19T12:41:51.304Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f371e1742b50cc49cfc5b81450b9355ed5a0293070264af5219349fafcdbffd",
+    "source_fingerprint": "sha256:d2a772414c6dc4bfb0c0e141fdccc87acf3a2c14078c90c324f2d35d8fa7668c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6d61159bd8fb6fd9286fc9130ae6ba0029f65469a3a68b9ff9aa755ae6e7eaff",
-      "plan.md": "3c46ada2f4cbdef6d36c23fee39c2c191632dde57e49a00cc4334cda03359f8d",
-      "tasks.md": "28c5628f7cc822916504156ed0d6f69232fe953d16c54090366cc1dad4e58ef9",
+      "spec.md": "23528bd4effd3f1c870f8db8f76038604398acfe02a99b2ab2d6c46fa4f8efb1",
+      "plan.md": "560b7e6df960ba35dbf837ee83e2b75ecec7c5afdc02793029515c8559b0eab2",
+      "tasks.md": "1cbba3b24499092c79d15d4cc390b9c6cbe530d748d1ad60deabaeaf5617c188",
       "decision-record.md": "3d14cb1b07f9e8d4e668587e90dbcf304cd44a8773d230c125701c98adba9bf3",
-      "implementation-summary.md": "5980462e5cab9757de5266732132c745d7518ee673979ad63154dda2e79cc69e"
+      "implementation-summary.md": "0e75ab62d0af0c260dc548f534089a614254a75b62fc4c2ff1f880786c2626ce"
     },
     "last_active_at": null
   }

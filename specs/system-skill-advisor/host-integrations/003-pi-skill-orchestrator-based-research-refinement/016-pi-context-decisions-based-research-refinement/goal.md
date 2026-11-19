@@ -97,7 +97,7 @@ string, not these files.
 - [x] `rg -n 'Decision rule outcome' specs/system-skill-advisor/*/003-pi-*/016-pi-*/003-*/implementation-summary.md` prints one line naming ship, over-suppresses or no guard
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/*/003-pi-*/016-pi-* --recursive --strict --quiet` prints `RESULT: PASSED` for all seventeen folders
 - [x] `git merge-base --is-ancestor worktrees/474-advisor-pasted-context-and-crash-fallback origin/main` exits 0
-- [ ] `tasks.md` in 014, 015 and 016 has no `- [ ]` line
+- [x] `tasks.md` in 014, 015 and 016 has no `- [ ]` line
 <!-- /ANCHOR:completion -->
 
 ---

@@ -152,6 +152,17 @@ The follow-ups ran in worktree `478-advisor-review-follow-ups`. Four Luna leaves
 | Follow-up @review | First verdict CHANGES REQUESTED, advisory 87/100, one P1 and four P2. P1: DSH stored its own directive receipt inside `deliveredContext`, before `createNotice`, so a failed notice left the next turn with the head alone. Fixed with a `remember` step run after the notice, behind a test that got `Advisor: route sk-code` instead of the full brief before the fix; DSH 17 passed. P2-3: the Python deep routing layer raised a floored row and kept the flag. Fixed behind `DEEP-FLOOR`, which failed first; `PY` pass=122. P2-5: five probes with `line`, `pipeline`, `reply`, `strip` and `clock` pulled none to the advisor, and the ratchet and corpus numbers did not move, so no change. P2-2 and P2-4 are limitations 6 and 7 |
 | Follow-up Luna refutation pass, read-only | C2 (Vibe commits only on a returned brief) and C4 (launcher forwards both thresholds, read in `compat/contract.ts`) hold. C1 was refuted for a host reply whose `messages` is not an array: the spread threw after the receipts were stored. The message list is now built before any receipt is stored, behind a test. C3 was refuted for a row at 0.896 that rounds to 0.90 against a 0.89 deep score and keeps its flag. No change, by the conductor's judgment: the rise comes from rounding, not from deep-routing evidence, so the flag is still true. C5 found no test of Vibe swallowing a failed commit; one was added |
 
+### Follow-up Requirements
+
+| Requirement | Evidence |
+|-------------|----------|
+| REQ-010 | DSH and Vibe tests: no commit on an undelivered turn, one on a delivered turn; DSH also keeps its own directive receipt until the notice exists. DSH 18 and Vibe 15 passed |
+| REQ-011 | `BRIDGE-FLOOR` and `DEEP-FLOOR` pass; `PY` pass=122 fail=0 |
+| REQ-012 | `launcher-threshold-env.vitest.ts` passes both cases; bin tests 79 passed |
+| REQ-013 | The Alignment Findings table below names every 015 and 016 finding id |
+| REQ-014 | Pins match, corpus gate passes; P01 and P03 reach the advisor; P04 accepted on the CLI hub by the operator |
+| REQ-015 | `SKILL.md` `version: 1.1.1.0`, `changelog/v1.1.1.0.md`, v4.1.0.0 Skill Advisor subsection, commit `210d50871f7` |
+
 ### Alignment Findings
 
 | Finding | Result | Evidence |
@@ -176,7 +187,7 @@ The follow-ups ran in worktree `478-advisor-review-follow-ups`. Four Luna leaves
 | X-02, BAT-02 | No longer reproduce: the 016 parent validates with 0 errors | `validate.sh --strict --no-recursive` |
 | D-02 | Routing terms added | See T032 probes |
 | PRB-01, PRB-02, PRB-04, PRB-05 | Met: P02, P03 and P06 reach the advisor; P05 stays `sk-code`, accepted | T032 probes |
-| PRB-03 | Not met: P04 stays with the CLI hub | Limitation 4 |
+| PRB-03 | Accepted by the operator: P04 stays with the CLI hub | Limitation 4 |
 | A1 | Both pins recaptured; the gate passes | T033 |
 | A3, A4 | Accepted by the operator | The 015 triage |
 | A2, D-03, P11, L1-1 | No action: A2, D-03 and P11 needed none, L1-1 was refuted | The 015 and 016 triage |
@@ -190,7 +201,7 @@ The follow-ups ran in worktree `478-advisor-review-follow-ups`. Four Luna leaves
 1. **Closed by the follow-ups: the route receipt now waits on DSH and Vibe too.** Both extensions pass `deferDirectiveReceipt: true` and commit after delivery. Pi sends no session id, so it writes no receipt and needed no change.
 2. **Closed by the follow-ups: the parser flag has its producer.** `_legacy_recommendations_from_native` copies `confidenceFloored`. The first commit's message still overstates the old effect on the hook.
 3. **One brief ran long.** The route receipt brief was 124 lines against the strategy's 90, because the new functions had to be pasted whole. Luna applied it verbatim.
-4. **Probe P04 still routes to the CLI hub.** "rotate the session lifecycle clock when dsh starts an agent or finishes compaction" names the `dsh` executor, and `executor-delegation.ts` lifts a named executor to 0.95 (`ROUTE_CONFIDENCE`, line 55). The advisor ranks second with a higher raw score, 0.525 against 0.439. The fix would add `system-skill-advisor` to the module's workflow-owner skills, the ones a named executor never outranks. That is a scorer-policy change outside this phase's files, so it waits on an operator decision.
+4. **Probe P04 still routes to the CLI hub.** "rotate the session lifecycle clock when dsh starts an agent or finishes compaction" names the `dsh` executor, and `executor-delegation.ts` lifts a named executor to 0.95 (`ROUTE_CONFIDENCE`, line 55). The advisor ranks second with a higher raw score, 0.525 against 0.439. The fix would add `system-skill-advisor` to the module's workflow-owner skills, the ones a named executor never outranks. That is a scorer-policy change outside this phase's files. The operator accepted P04 on the CLI hub, because naming an executor is a deliberate routing signal.
 5. **The routing corpus pin lives in another packet.** The CI gate reads `013-drift-guard-repairs/baseline/routing-baseline.json`, so any change to the labeled or holdout corpus has to recapture it there, as this phase did.
 6. **Vibe commits before the composer writes stdout.** `buildAdvisorPart` commits as soon as it has a brief, and `turn-start.mjs` writes its output later, under one 20-second timeout. A kill or failed write in that window leaves receipts for text the model never got. This is narrower than before, when the handler committed even earlier. The fix would return the commit with the text and run it in the composer's write callback, in `turn-start.mjs`, which is outside this phase's files.
 7. **Other advisor variables are still stripped by the launcher.** @review listed scorer flags such as `SPECKIT_ADVISOR_RRF_FUSION`, prompt-policy keys and skill-graph watcher keys that are not on `CHILD_ENV_ALLOWLIST`. Some are read only in the hook process, where stripping them is harmless. It has not been settled key by key which process reads each one, so this phase forwarded only the two documented thresholds.

@@ -24,7 +24,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-19 |
 | **Branch** | `main` for planning. The build workspace, a worktree or the current branch, is chosen when `/speckit:implement` starts |
 | **Parent Spec** | ../spec.md |
@@ -169,7 +169,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-011 | The Python native bridge keeps `confidenceFloored: true` | A Python harness case gets the flag from a floored native row and no flag from an earned one |
 | REQ-012 | The daemon sees both threshold variables | A launcher test shows `createChildEnv` passes `SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD` and `SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD` |
 | REQ-013 | Every 015 and 016 finding triaged Fix, Fix separately or Recheck is fixed or rechecked | `implementation-summary.md` names each finding id with its fix or recheck result |
-| REQ-014 | The routing corpus gate passes | The routing-accuracy corpus pins match after recapture, and the probes P01, P03 and P04 route to `system-skill-advisor` |
+| REQ-014 | The routing corpus gate passes | The routing-accuracy corpus pins match after recapture, and the probes P01 and P03 route to `system-skill-advisor`. P04 may stay with the CLI hub, which the operator accepted on 2026-11-19 because a named executor is a deliberate routing signal |
 | REQ-015 | The skill is at 1.1.1.0 with changelog entries | `SKILL.md` says `version: 1.1.1.0`, `changelog/v1.1.1.0.md` exists and v4.1.0.0's Skill Advisor section names the work |
 <!-- /ANCHOR:requirements -->
 
