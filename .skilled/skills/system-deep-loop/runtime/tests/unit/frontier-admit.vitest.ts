@@ -22,7 +22,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {
   computeResearchQuestionCoverageFromData,
@@ -386,6 +386,22 @@ describe('frontier-admit', () => {
 
     expect(second).toEqual({ admitted: [], pruned: [], skipped: 'already-seeded' });
     expect(readNodeStore(join(artifactDir, STORE_FILE)).size).toBe(1);
+  });
+
+  // A torn row may have been a node, and the store keeps no other copy of it, so
+  // skipping it is reported the way the proposal reader reports a torn delta line.
+  it('warns on a torn node store row and still reads the rows after it', () => {
+    const artifactDir = makeArtifactDir();
+    const storePath = join(artifactDir, STORE_FILE);
+    const row = { nodeId: 'F-1-002', parentId: 'root', depth: 1, question: 'which row survives', status: 'open' };
+    writeFileSync(storePath, `{"nodeId":"F-1-001",\n${JSON.stringify(row)}\n`, 'utf8');
+    const stderr = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
+    try {
+      expect([...readNodeStore(storePath).keys()]).toEqual(['F-1-002']);
+      expect(stderr.mock.calls.map((call) => String(call[0])).join('')).toMatch(/\[frontier-admit\] warning: skipped frontier-nodes\.jsonl line 1: /);
+    } finally {
+      stderr.mockRestore();
+    }
   });
 
   it.skipIf(process.getuid?.() === 0)('throws on a node store it cannot read, so a seeded run is never re-seeded', () => {

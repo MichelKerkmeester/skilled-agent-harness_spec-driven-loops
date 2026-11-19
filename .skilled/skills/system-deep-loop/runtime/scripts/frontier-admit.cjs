@@ -275,14 +275,17 @@ function readNodeStore(storePath) {
     throw new Error(`cannot read node store ${storePath}: ${error instanceof Error ? error.message : String(error)}`);
   }
 
-  for (const line of content.split('\n')) {
-    const trimmed = line.trim();
+  const lines = content.split('\n');
+  for (let index = 0; index < lines.length; index += 1) {
+    const trimmed = lines[index].trim();
     if (!trimmed) continue;
     let row;
     try {
       row = JSON.parse(trimmed);
-    } catch {
-      // A torn or hand-edited line must not hide the rows after it.
+    } catch (error) {
+      // A torn or hand-edited line must not hide the rows after it, but it may
+      // have been a node the store keeps no other copy of, so it is reported.
+      process.stderr.write(`[frontier-admit] warning: skipped ${path.basename(storePath)} line ${index + 1}: ${error instanceof Error ? error.message : String(error)}\n`);
       continue;
     }
     if (!isPlainObject(row) || typeof row.nodeId !== 'string' || row.nodeId === '') continue;
