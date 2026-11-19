@@ -127,9 +127,9 @@ After the operator asked for version-neutral names, the workflow file became `.g
 
 1. **The CI run is UNKNOWN.** T015 and AC-008 stay open until the operator pushes the branch and the run on the final commit is read.
 2. **The `variant` decision rests on source evidence, not a live run.** `scratch/variant.txt` cites the OpenCode state code in `.skilled/hooks/session-handover/lib/context-usage.cjs`, and it records that no live `opencode run` was made. AC-006 is met on that basis.
-3. **CHK-003 is not met as written.** The manifests were edited at 10:28:36, and `scratch/sdk-usage.txt` was written at 10:29:25, so the SDK record came after the change.
-4. **CHK-012 is not evidenced.** The lockfiles changed and no longer name `@opencode-ai/plugin`, but no log records the `npm install --package-lock-only` run.
-5. **CHK-013 is not met as written.** The branch diff covers files outside the table, including both lockfiles, `opencode.json` and `.github/workflows/README.md`.
+3. **CHK-003 is waived by ADR-001.** The SDK record is correct but was written 49 seconds after the manifests changed.
+4. **CHK-012 is met.** Rerunning `npm install --package-lock-only` reproduces both committed lockfiles with 0 diff lines (`scratch/lockfile-regen.txt`).
+5. **CHK-013 is met.** The Files table gained a row for the 12 files in `scratch/files-outside-table.txt`.
 6. **Completion is blocked on the push.** The phase cannot be Complete while AC-008 is Unmet.
 
 ---

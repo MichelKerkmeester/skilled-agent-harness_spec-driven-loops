@@ -47,11 +47,11 @@ AC-002, AC-006 and AC-008 each expect a v1-term search to list no file. Some fil
 
 ### Decision
 
-AC-002, AC-006 and AC-008 are superseded by this decision. Every survivor is listed with its reason in `scratch/justified.txt`, and a full-repository sweep must equal that list. These are the replacement checks, and each prints `0`:
+AC-002, AC-006 and AC-008 are superseded by this decision. Every survivor is listed with its reason in `scratch/justified.txt`, and a full-repository sweep must equal that list. These are the replacement checks. Each runs from the repository root and prints `0`:
 
-- AC-002: `rg -l -i 'opencode1\b|opencode-ai|OpenCode 1\b' .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook --glob '!**/changelog/**' | grep -v -x -F -f <(cut -f1 scratch/justified.txt) | wc -l`
-- AC-006: `rg -l -i 'opencode1\b|opencode-ai|OpenCode 1\b' .skilled/skills/cli-external-orchestration/feature-catalog | grep -v -x -F -f <(cut -f1 scratch/justified.txt) | wc -l`
-- AC-008: `python3 scratch/check-index-v1.py`, which counts trigger-index sources that carry a v1 phrase and are neither history nor a listed survivor
+- AC-002: `rg -l -i 'opencode1\b|opencode-ai|OpenCode 1\b' .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook --glob '!**/changelog/**' | grep -v -x -F -f <(cut -f1 specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/justified.txt) | wc -l`
+- AC-006: `rg -l -i 'opencode1\b|opencode-ai|OpenCode 1\b' .skilled/skills/cli-external-orchestration/feature-catalog | grep -v -x -F -f <(cut -f1 specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/justified.txt) | wc -l`
+- AC-008: `python3 specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/check-index-v1.py`, which counts trigger-index sources that carry a v1 phrase and are neither history nor a listed survivor
 
 ### Consequences
 

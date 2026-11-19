@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-002-v1-ci-and-package-pins"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 88
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 002-v1-ci-and-package-pins
 **Level:** 2
-**Status:** Draft
+**Status:** In Progress
 **Date:** 2026-11-19
 <!-- /ANCHOR:metadata -->
 
@@ -85,5 +85,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-No. Every criterion is Unmet because this phase has not been implemented yet, and AC-008 also waits for the operator's push go-ahead.
+No. AC-001 to AC-007 are Met. AC-008, the CI run on the final commit, stays Unmet until the operator approves the push. Checked 2026-11-19.
 <!-- /ANCHOR:closure -->

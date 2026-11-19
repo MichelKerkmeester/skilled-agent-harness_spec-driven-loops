@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The CI workflow `.github/workflows/opencode-v2-battery.yml` still runs a v1 matrix entry that installs `opencode-ai@1.19.4`, plus a `both` job that installs both majors side by side",
     "created_at": "2026-11-19T09:04:22Z",
-    "last_save_at": "2026-11-19T17:26:09.272Z",
+    "last_save_at": "2026-11-19T17:43:17.014Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +217,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7815216c11db4b31f6888bbebbb461700eeebeb2b06a2eea9f23d602de693e2c",
+    "source_fingerprint": "sha256:c55d0afd4a6d7881576ec82c7c70cfaf1ab0c890461bedb7a255d869edb5e65a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b0a910c4e7babcc66828e0decbac2ba3a2a8f5a3a6e644a300abc73366e06461",
       "plan.md": "5a2c89e75b971f6ac6c3710c788c94c6ecedfd856507de81042621940eb3db78",
       "tasks.md": "e11c66061e7e87622be91610ba9f21dd2a89ca247800c4625460c627ea8cdead",
       "decision-record.md": "8270fd8bd7a3ebc9d7b74de6c794f47cc95fc9c54264bc934e4aa83307bd8c95",
-      "implementation-summary.md": "647728527323a9d1cbb6419789f4052ff6adc4b2652fad61d7c7ef234fd27cbf"
+      "implementation-summary.md": "c2808470aee54790162dd174bef0946f677a6885e5bc2c6e1c84acade65f9ea1"
     },
     "last_active_at": null
   }
