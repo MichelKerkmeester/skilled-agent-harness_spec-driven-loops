@@ -944,6 +944,33 @@ describe('deep-research reduce-state recovery gate', () => {
     }
   });
 
+  it('warns about a legacy import only on the reduce that imports it', () => {
+    const specFolder = makeTempSpec();
+    writeState(specFolder, '');
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const legacyWarnings = () => warnSpy.mock.calls
+      .filter(([message]) => String(message).includes('legacy-import question(s)'));
+
+    try {
+      reduceResearchState(specFolder, { write: true });
+      reduceResearchState(specFolder, { write: true });
+      expect(legacyWarnings()).toHaveLength(1);
+
+      const strategyPath = join(specFolder, 'research', 'deep-research-strategy.md');
+      writeFileSync(
+        strategyPath,
+        readFileSync(strategyPath, 'utf8')
+          .replace('<!-- /ANCHOR:key-questions -->', '- [ ] Which question was added later?\n<!-- /ANCHOR:key-questions -->'),
+        'utf8',
+      );
+      reduceResearchState(specFolder, { write: true });
+      expect(legacyWarnings()).toHaveLength(2);
+      expect(legacyWarnings()[1][0]).toContain('detected 1 legacy-import question(s)');
+    } finally {
+      warnSpy.mockRestore();
+    }
+  });
+
   it('suppresses an exact rejected next-focus candidate from reducer output', () => {
     const specFolder = makeTempSpec();
     writeState(specFolder, `${JSON.stringify({

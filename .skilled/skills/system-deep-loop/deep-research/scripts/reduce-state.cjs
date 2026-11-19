@@ -1482,20 +1482,26 @@ function appendQuestionConflictEvents(stateLogPath, questionConflicts, eventReco
  * @param {Array<Object>} inputs.strategyQuestions - Questions parsed from the strategy projection.
  * @param {Array<Object>} inputs.inboxQuestions - Immutable injected question rows.
  * @param {Object|null} inputs.priorRegistry - Prior reducer registry, when available.
- * @returns {{questions: Array<Object>, questionConflicts: Array<Object>}} Resolved canonical questions and conflict records.
+ * @returns {{questions: Array<Object>, questionConflicts: Array<Object>, newLegacyImportCount: number}} Resolved
+ *   canonical questions, conflict records, and how many legacy-import questions this pass added.
  */
 function resolveQuestionConflicts({ strategyQuestions, inboxQuestions, priorRegistry }) {
   const priorQuestions = collectPriorRegistryQuestions(priorRegistry);
   if (!priorQuestions.length) {
+    const questions = mergeQuestionSources(strategyQuestions, inboxQuestions);
     return {
-      questions: mergeQuestionSources(strategyQuestions, inboxQuestions),
+      questions,
       questionConflicts: [],
+      newLegacyImportCount: questions.filter((question) => question.origin === LEGACY_IMPORT_ORIGIN).length,
     };
   }
 
   const questions = priorQuestions.map((question) => ({ ...question }));
   const index = indexCanonicalQuestions(questions);
   const questionConflicts = [];
+  // A strategy question the prior registry already holds was imported, and reported, by an
+  // earlier pass. Only the ones added here are new imports.
+  let newLegacyImportCount = 0;
 
   for (const strategyQuestion of strategyQuestions) {
     const questionIndex = findCanonicalQuestionIndex(index, strategyQuestion);
@@ -1505,6 +1511,7 @@ function resolveQuestionConflicts({ strategyQuestions, inboxQuestions, priorRegi
     const question = normalizeRegistryQuestion(strategyQuestion, questions.length);
     if (question) {
       addIndexedQuestion(questions, index, question);
+      newLegacyImportCount += 1;
     }
   }
 
@@ -1546,6 +1553,7 @@ function resolveQuestionConflicts({ strategyQuestions, inboxQuestions, priorRegi
   return {
     questions: mergeQuestionSources([], questions.filter(Boolean)),
     questionConflicts,
+    newLegacyImportCount,
   };
 }
 
@@ -1597,8 +1605,7 @@ function seedTopicQuestion(topic) {
   }];
 }
 
-function warnLegacyImportQuestions(questions) {
-  const legacyCount = questions.filter((question) => question.origin === LEGACY_IMPORT_ORIGIN).length;
+function warnLegacyImportQuestions(legacyCount) {
   if (!legacyCount) {
     return;
   }
@@ -3367,7 +3374,7 @@ function reduceResearchState(specFolder, options = {}) {
     ? questionResolution.questions
     : seedTopicQuestion(config.topic);
   if (write) {
-    warnLegacyImportQuestions(questionInputs);
+    warnLegacyImportQuestions(questionResolution.newLegacyImportCount);
   }
   for (const warning of inbox.warnings) {
     console.warn(`[deep-research] skipped inbox record: ${warning}`);
