@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes",
+  "description": "Phase 14: review-p2-fixes",
+  "keywords": [
+    "phase",
+    "review-p2-fixes"
+  ],
+  "lastUpdated": "2026-11-19T05:43:23.384Z",
+  "specId": "014",
+  "folderSlug": "review-p2-fixes",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "19-11-26_06-30__planned-phase-014-for-the-nine-p2-findings-of-the.md",
+    "19-11-26_06-43__phase-014-planned-and-its-goal-written-the-parent.md"
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes",
+  "spec_folder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes",
+  "parent_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review p2 fixes",
+      "phase 14 review p2 fixes",
+      "task marker linear regex",
+      "strip before the 64 KiB cut",
+      "fire gate stripped input",
+      "route receipt after delivery",
+      "review p2 fixes plan",
+      "linear task marker plan",
+      "fire gate stripped input plan",
+      "review p2 fixes tasks",
+      "linear task marker tasks",
+      "packet goal"
+    ],
+    "key_topics": [
+      "review",
+      "phase",
+      "task",
+      "marker",
+      "linear",
+      "regex",
+      "strip",
+      "kib",
+      "cut",
+      "fire",
+      "gate",
+      "stripped"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py",
+      ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/subprocess-output-cap.vitest.ts",
+      "hooks/claude/user-prompt-submit.ts",
+      ".skilled/bin/skill-advisor.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-policy.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-brief.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts",
+        "source": "derived"
+      },
+      {
+        "name": "subprocess.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-prompt-policy.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test_skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "claude-user-prompt-submit-hook.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-brief-producer.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "subprocess-output-cap.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/subprocess-output-cap.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The regex that finds a `Now:` or `Task:` marker backtracks on a long whitespace run that contains newlines",
+    "created_at": "2026-11-19T05:16:45Z",
+    "last_save_at": "2026-11-19T08:05:18.014Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:17084a689c1bee76ed9ea360d25874b7a7a6ecd7f9fdef49bd2da22ca5d80312",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0617a2964e505843ff836f991bd55382e7b757e27b77ae3624a092024eb51aea",
+      "plan.md": "3955c57edc33643646f0ed1d6621db31d4babd9d49eee4a3e5a59d65d40873e3",
+      "tasks.md": "77cacf91cd6d7fc9b5e6473611c1abeebc89f7f015aa31ed6f72f34cc5a4f80e",
+      "decision-record.md": "ee56a4c64dc883d4c26803f88485471de8a0df12be8d3b74b120120997848a6f",
+      "implementation-summary.md": "53c4bad7b7edad8119bec12e857b19a11d10e29b7e8e7704c6c5482c9ca582a1"
+    },
+    "last_active_at": null
+  }
+}

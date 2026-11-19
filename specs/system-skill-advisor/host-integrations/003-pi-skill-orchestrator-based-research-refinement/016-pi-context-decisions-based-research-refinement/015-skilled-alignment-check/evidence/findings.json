@@ -1,0 +1,553 @@
+[
+  {
+    "id": "BAT-02",
+    "source_id": "S14-packet-validate:specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
+    "lane": "battery",
+    "surface": "S14",
+    "standard": ".github/workflows/changed-packet-validation.yml",
+    "severity": "P0",
+    "fix_class": "judgment",
+    "file": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
+    "line": null,
+    "issue": "S14-packet-validate failed for specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement (exit 1).",
+    "evidence": {
+      "cmd": "node .skilled/commands/assets/local-skilled-alignment/validate-packet.cjs specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
+      "exit": 1,
+      "out": "$ SPECKIT_DRAFT_AUTO_REPAIR=0 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement --strict --no-recursive --json\n  x GENERATED_METADATA_INTEGRITY: Generated metadata integrity found 1 violation(s) (enforced): graph-metadata.json: SOURCE_FINGERPRINT_MISMATCH: source_fingerprint does not match a re-derive of the current source docs, the stored derived fields may be stale\n  x GENERATED_METADATA_DRIFT: Generated metadata drift found 1 drifted field(s) (enforced): description: stored 'Mine the pi-context-decisions extension for ideas that could improve system-skill-advisor and its hooks' drifted from fresh 'The skill advisor picks skills with a local five-lane \nFAIL specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement: error rules GENERATED_METADATA_DRIFT,GENERATED_METADATA_INTEGRITY (validate.sh exit 2)",
+      "ci_gated": true,
+      "ci_workflows": [
+        "changed-packet-validation.yml > changed-packets > Validate the packets this PR changed"
+      ]
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A1",
+    "source_id": "A1",
+    "lane": "A",
+    "surface": "S15",
+    "standard": ".github/workflows",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+    "line": "196",
+    "issue": "The change appends row rr-paste-208 to the hash-pinned routing corpus (195 -> 196 rows, sha 4146b002802d010e -> 18bc5977180a722e) but does not recapture the corpus pin in specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json, which still records rows 195 / sha 4146b002802d010e. The blocking step 'Routing-accuracy corpus gate' of .github/workflows/routing-registry-drift.yml hashes every pinned corpus file and exits 2 before scoring, so the gate stops on this file. The scorer-eval baseline beside it was recaptured to the same new sha (18bc5977...) in this change, so only the routing pin was missed. Cause: this change. At base 538d2f789ec the labeled pin and file both read 4146b002802d010e/195; at head 4d65eced09e the pin is unchanged while the file is 18bc5977180a722e/196. The same step also fails on holdout-prompts.jsonl (pin rows 64 / sha 9408335972503fab vs actual 63 / 918265c278fd51fe) at both base and head, so that half predates this change and should be recaptured in the same pass. Fix: recapture the routing corpus pin for labeled-prompts.jsonl (rows 196 / 18bc5977180a722e) and for the current holdout file, then rerun the scores the pin gates.",
+    "evidence": {
+      "cmd": "cd .skilled/skills/system-skill-advisor/runtime && python3 -c \"import hashlib,json,pathlib;b=json.load(open('../../../specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json'));d=pathlib.Path('scripts/routing-accuracy');bad=[(n,b['corpus'][n]['sha256'][:16],hashlib.sha256((d/n).read_bytes()).hexdigest()[:16]) for n,m in b['corpus'].items() if isinstance(m,dict) and 'sha256' in m and hashlib.sha256((d/n).read_bytes()).hexdigest()!=m['sha256']];print(bad);raise SystemExit(2 if bad else 0)\"",
+      "exit": 2,
+      "out": "[('labeled-prompts.jsonl', '4146b002802d010e', '18bc5977180a722e'), ('holdout-prompts.jsonl', '9408335972503fab', '918265c278fd51fe')]"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-01",
+    "source_id": "B-01",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+    "line": "55",
+    "issue": "The branch ships two user-visible capabilities and this reference describes neither. `stripLeadingPastedReply` (feat 6c4af5fb5e) rewrites the prompt in `hooks/lib/skill-advisor-cli-fallback.ts` and again in `runtime/lib/scorer/fusion.ts`; the route-receipt guard (feat c27addb71) can replace a turn's brief with `skippedWeakFollowUpResult()` and persists a receipt under `$TMPDIR/speckit-advisor/route-receipts`. The HOW IT WORKS paragraph lists the old pipeline only, `references/scoring/advisor-scorer.md:71` starts the lexical lane from raw 'prompt text' with no preprocessing step, the KEY FILES table at line 109 omits `lib/route-receipt.ts`, and the §7 validation list still names only the runtime-list parity and AS4 checks, not the new `route-receipt.vitest.ts`. An rg over the skill's non-changelog, non-test Markdown finds zero mentions of 'pasted', 'route receipt' or 'weak follow', and the branch changes only two .md files in the skill (this reference and the fixtures README). An operator who sees `Advisor: prompt skipped.` on a substantive follow-up, or a different route after pasting an earlier reply, has no documented cause and no trigger phrase reaches the reference.",
+    "evidence": {
+      "cmd": "rg -n -i \"pasted|route receipt|route-receipt|weak follow\" .skilled/skills/system-skill-advisor --glob '*.md' --glob '!**/node_modules/**' --glob '!**/changelog/**' --glob '!**/tests/**'",
+      "exit": 1,
+      "out": ""
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-01",
+    "source_id": "C-01",
+    "lane": "C",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+    "line": "67",
+    "issue": "The Claude row of the runtime table still says the handler shows `{}` 'on error'. The catch block now returns `renderAdvisorTimeoutFallback` for a valid prompt whose processing throws (user-prompt-submit.ts:650), and section 2 of this same doc was updated by this change to say so (line 57). A reader debugging a crashed hook is told to expect no output while the runtime shows `Advisor: outage (...)`. The file is also reachable as .skilled/hooks/skill-advisor/README.md through a symlink.",
+    "evidence": {
+      "cmd": "grep -n \"on error\" .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md; grep -n \"renderAdvisorTimeoutFallback(renderOptions)\" .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "exit": 0,
+      "out": "67:| **Claude** | `UserPromptSubmit` | `.skilled/hooks/skill-advisor/claude/user-prompt-submit.js`, the compiled adapter the runtime runs | [Claude source shim, compiled to `dist/`](../../system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts) | `Advisor:` text in `hookSpecificOutput.additionalContext`, or `{}` when disabled or on error. |\n650:        : renderAdvisorTimeoutFallback(renderOptions);"
+    },
+    "fix": {
+      "old": "or `{}` when disabled or on error. |",
+      "new": "or `{}` when disabled; a crash returns the outage fallback. |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D-01",
+    "source_id": "D-01",
+    "lane": "D",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+    "line": "580",
+    "issue": "The hook's skip gate still reads the raw prompt, so a pasted earlier reply that names a skill makes `skippedAdvisorResultFor` fire and the stripped weak task is scored. Case: `Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: update this file` — `shouldFireAdvisor('update this file')` is false (`below_prompt_policy_threshold`) and the task alone renders `Advisor: prompt skipped.`, but the pasted form renders `Advisor: live; ambiguous: sk-doc 0.82/0.34 vs sk-code 0.82/0.26 pass.` That breaks phase 002's stated purpose, 'A task that follows a pasted earlier reply routes the same as the task alone, on every runtime' (`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping/spec.md:64`). The same raw-prompt gate is at `runtime/lib/skill-advisor-brief.ts:470` and `:473`, though no runtime hook calls that producer. The route-receipt research already records the mechanism as confirmed (`.../010-route-receipts-research/research/research.md:58`), and the 011 known-limitations list does not include it.",
+    "evidence": {
+      "cmd": "node /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/20261119T054734Z/D/repro-policy-bypass.mjs",
+      "exit": 0,
+      "out": "{\"prompt\":\"Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: update this file\",\"taskPolicy\":{\"fire\":false,\"reason\":\"below_prompt_policy_threshold\",\"canonicalPrompt\":\"update this file\",\"meaningfulTokenCount\":2,\"visibleCharCount\":16,\"metalinguisticMentions\":[]},\"contextHead\":\"Advisor: live; ambiguous: sk-doc 0.82/0.34 vs sk-code 0.82/0.26 pass.\"}\n{\"prompt\":\"update this file\",\"taskPolicy\":{\"fire\":false,\"reason\":\"below_prompt_policy_threshold\",\"canonicalPrompt\":\"update this file\",\"meaningfulTokenCount\":2,\"visibleCharCount\":16,\"metalinguisticMentions\":[]},\"contextHead\":\"Advisor: prompt skipped.\"}"
+    },
+    "fix": {
+      "old": "    skippedResult = injectedBrief ? null : skippedAdvisorResultFor(prompt);",
+      "new": "    skippedResult = injectedBrief ? null : skippedAdvisorResultFor(stripLeadingPastedReply(prompt));"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-01",
+    "source_id": "P02",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P02 \"add a regression test for the route receipt that holds a weak follow-up to the session route\" expected system-skill-advisor; top-1 was sk-code.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"add a regression test for the route receipt that holds a weak follow-up to the session route\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was sk-code"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-02",
+    "source_id": "P03",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P03 \"make the prompt hook print the outage line instead of nothing when it crashes\" expected system-skill-advisor; top-1 was sk-prompt.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"make the prompt hook print the outage line instead of nothing when it crashes\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was sk-prompt"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-03",
+    "source_id": "P04",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P04 \"rotate the session lifecycle clock when dsh starts an agent or finishes compaction\" expected system-skill-advisor; top-1 was cli-external-orchestration/cli-deepseek-harness.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"rotate the session lifecycle clock when dsh starts an agent or finishes compaction\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was cli-external-orchestration/cli-deepseek-harness"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-04",
+    "source_id": "P05",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P05 \"strip the pasted reply in the python scorer so it matches the native scorer\" expected system-skill-advisor; top-1 was sk-code/sk-code-skilled.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"strip the pasted reply in the python scorer so it matches the native scorer\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was sk-code/sk-code-skilled"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-05",
+    "source_id": "P06",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P06 \"measure how many top-1 advisor routes pass only on the confidence floor\" expected system-skill-advisor; top-1 was nothing.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"measure how many top-1 advisor routes pass only on the confidence floor\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was nothing"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A3",
+    "source_id": "A3",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+    "line": "411",
+    "issue": "Every briefed turn now pays one extra durable-clock read on the user's prompt path: recordRouteReceipt calls directiveLifecycleStore.clock(sessionId) here, and applyDirectiveLifecycle (line 607) then asks the same file-backed store once more through decideDirectiveLifecycleDelivery's evaluate call. Measured on this checkout with the real file store, one clock() call is a helper spawn costing 35-46 ms, so a Claude turn that already spent one helper spawn now spends two, and a runtime that sends no transcript (Pi, DSH: validTranscript fails, so dedup spends none) gains its first. Case: any live turn with a passing route and a brief. Fix: have applyDirectiveLifecycle surface the clock it already observed, or read the clock once and pass it to both the receipt write and the dedup decision, so the receipt is stamped from the same observation.",
+    "evidence": {
+      "cmd": "cd .skilled/skills/system-skill-advisor/runtime && node --input-type=module -e 'const lc=await import(\"./dist/hooks/lib/directive-lifecycle.js\"); const store=lc.defaultDirectiveLifecycleStore(); for (const label of [\"first\",\"second\",\"third\"]) { const t=process.hrtime.bigint(); const c=store.clock(\"bench-session\"); console.log(label,(Number(process.hrtime.bigint()-t)/1e6).toFixed(1)+\"ms\",c?\"clock\":\"null\"); }'",
+      "exit": 0,
+      "out": "first 45.9ms clock\nsecond 35.2ms clock\nthird 34.7ms clock"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A4",
+    "source_id": "A4",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+    "line": "441",
+    "issue": "The confirmed-session rule this change depends on is now written three times in one file: deliveryStateOptionsFor at line 267 (input.session_identity_confirmed ?? hasSessionId), the new receiptSessionId at lines 336-343, and the extracted applyDirectiveLifecycle at line 441. The transcript-size read is duplicated the same way, by the new transcriptBytesFor at line 345 and the inline statSync block at lines 443-455. Case: a later edit to the confirmed/ambiguous rule in one copy leaves the route receipt keyed differently from the directive-dedup state and the shadow delivery signal, so a receipt can be written or read for a session the other two treat as unconfirmed. The change added the second and third copies rather than reusing the helpers it had just introduced. Fix: call receiptSessionId and transcriptBytesFor from applyDirectiveLifecycle and from deliveryStateOptionsFor, so one helper owns the rule.",
+    "evidence": {
+      "cmd": "grep -n \"session_identity_confirmed\\|statSync(transcriptPath)\\|function transcriptBytesFor\\|function receiptSessionId\" .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "exit": 0,
+      "out": "267:    sessionIdentityConfirmed: input.session_identity_confirmed ?? hasSessionId,\n336:function receiptSessionId(input: ClaudeUserPromptSubmitInput): string | null {\n340:  const confirmed = input.session_identity_confirmed\n345:function transcriptBytesFor(input: ClaudeUserPromptSubmitInput): number | null {\n441:    const sessionConfirmed = input.session_identity_confirmed\n449:        transcriptBytes = statSync(transcriptPath).size;"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "X-01",
+    "source_id": "X-01",
+    "lane": "critic",
+    "surface": "S13",
+    "standard": "system-spec-kit ENV-REFERENCE",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+    "line": "159",
+    "issue": "The change adds a second consumer of `SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR` without naming it in the variable's docs. `routeReceiptBaseDir` (`hooks/lib/route-receipt.ts:97-100`) resolves the new route-receipt store's base from `DIRECTIVE_LIFECYCLE_STATE_DIR_ENV`, and the store writes under `<base>/route-receipts` (`:76`, `:224-225`). The ENV-REFERENCE row still describes the variable as the 'private state root used by the directory-descriptor-anchored subprocess store', and its runtime read-site column names only `directive-lifecycle-file-store.ts` and `directive-lifecycle-store.py`; `.env.example:342` says 'directive-lifecycle private state root'. Case: set the variable to relocate advisor state, then look for the new session receipts under the default `$TMPDIR/speckit-advisor/route-receipts`; they have moved to `<value>/route-receipts` and no doc says so. An operator who relocates or locks down the lifecycle root silently moves the receipts too. Fix: name the route-receipt store in the row and the `.env.example` comment, and add `route-receipt.ts` to the read-site column.",
+    "evidence": {
+      "cmd": "grep -n 'DIRECTIVE_LIFECYCLE_STATE_DIR_ENV\\|route-receipts\\|this.dir = join' .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts; grep -n 'SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR' .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md .env.example",
+      "exit": 0,
+      "out": "31:  DIRECTIVE_LIFECYCLE_STATE_DIR_ENV,\n76:const ROUTE_RECEIPT_DIR = 'route-receipts';\n97:function routeReceiptBaseDir(): string {\n98:  const envBase = process.env[DIRECTIVE_LIFECYCLE_STATE_DIR_ENV];\n225:    this.dir = join(this.baseDir, ROUTE_RECEIPT_DIR);\n--\nENV-REFERENCE.md:159:| Directive lifecycle state dir | `os.tmpdir()/speckit-advisor/directive-lifecycle` | `SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR` | Overrides the private state root used by the directory-descriptor-anchored subprocess store. ... | `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts`, `directive-lifecycle-store.py` |\n.env.example:342:# SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR= # Override the directive-lifecycle private state root (temp default)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "X-02",
+    "source_id": "X-02",
+    "lane": "critic",
+    "surface": "S14",
+    "standard": "system-spec-kit packet validation",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/description.json",
+    "line": "3",
+    "issue": "Pre-existing at the merge base, not introduced by this change, but it is the only reason the S14 parent row is red. The packet's `description.json` says 'Mine the pi-context-decisions extension for ideas that could improve system-skill-advisor and its hooks' while `graph-metadata.json`'s `causal_summary` (taken from the spec.md Problem Statement) says 'The skill advisor picks skills with a local five-lane scorer and pushes a brief into every prompt'. `validate.sh --strict --no-recursive` fails GENERATED_METADATA_DRIFT on this field at both the base and the reviewed head. At head 4d65eced09e the stored `source_doc_hashes.spec.md` (670d222c...) equals the head spec.md, so the row's SOURCE_FINGERPRINT_MISMATCH appears only in the working tree, where the alignment run's uncommitted spec.md edit (f258ea2e...) moved the file; do not attribute that half to the reviewed change. Fix: regenerate the packet metadata or record the deferral.",
+    "evidence": {
+      "cmd": "SPECKIT_DRAFT_AUTO_REPAIR=0 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement --strict --no-recursive --json; git show 538d2f789ec:specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/graph-metadata.json; git show 4d65eced09e:specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/graph-metadata.json",
+      "exit": 2,
+      "out": "summary {'errors': 2, 'warnings': 1, 'info': 5}\nGENERATED_METADATA_INTEGRITY: SOURCE_FINGERPRINT_MISMATCH\nGENERATED_METADATA_DRIFT: description: stored 'Mine the pi-context-decisions extension...' drifted from fresh 'The skill advisor picks skills with a local five-lane scorer...'\nhead spec.md sha256 670d222cbd82beb1afe9fe7c878e1b3106d83f5c140274b7bfdedb013b7ff990 == head source_doc_hashes.spec.md\nbase causal_summary 'The skill advisor picks skills with a local five-lane scorer...'\nbase description.json 'Mine the pi-context-decisions extension...'"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-02",
+    "source_id": "B-02",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/runtime/bench/README.md",
+    "line": "48",
+    "issue": "The bench README still presents `scorer-calibration.bench.ts` as calibration-only. The branch adds `logFollowUpRouting` and `logFollowUpReceipts` over `FOLLOW_UP_PAIRS` and `FALSE_CARRY_PAIR` (scorer-calibration.bench.ts:224-322), so the file now also measures floored follow-up routing and the route-receipt guard and emits `advisor-follow-up-routing` and `advisor-follow-up-receipts`. The table row at line 78 and the folder summary at line 16 carry the same calibration-only description.",
+    "evidence": {
+      "cmd": "grep -n \"scorer-calibration.bench.ts\" .skilled/skills/system-skill-advisor/runtime/bench/README.md",
+      "exit": 0,
+      "out": "35:+-- scorer-calibration.bench.ts             # Scorer calibration benchmark\n48:| `scorer-calibration.bench.ts` | Measures scorer calibration against baseline expectations. |\n78:| `scorer-calibration.bench.ts` | Benchmark | Scorer calibration measurement. |"
+    },
+    "fix": {
+      "old": "| `scorer-calibration.bench.ts` | Measures scorer calibration against baseline expectations. |",
+      "new": "| `scorer-calibration.bench.ts` | Measures scorer calibration against baseline expectations, plus floored follow-up routing and the route-receipt guard over a fixed prompt-pair set. |"
+    },
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "B-03",
+    "source_id": "B-03",
+    "lane": "B",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md",
+    "line": "20",
+    "issue": "The catalog is the skill's canonical current-state inventory, yet it still declares 46 features across 7 groups with `hooks-and-plugin` at 4, and no entry describes either new capability. The Claude hook entry never names the crash fallback added in 98a58b6245b, and neither `hooks-and-plugin/claude-hook.md` nor `scorer-fusion/five-lane-fusion.md` names the pasted-reply strip or the route-receipt guard. The new `runtime/tests/hooks/route-receipt.vitest.ts` is also absent from the Claude hook entry's validation table (lines 60-64). Two shipped capabilities and one changed fallback path have no catalog home or test anchor.",
+    "evidence": {
+      "cmd": "grep -n \"46 features\" .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md",
+      "exit": 0,
+      "out": "20:The catalog covers 46 features across 7 groups. Group 01 owns daemon correctness. Groups 02-03 own the index and lifecycle surface that feeds the scorer. Group 04 owns scoring. Group 06 owns the command surface: the nine CLI commands plus the stable compat entrypoint. Groups 07-08 cover runtime integrations, OpenCode plugins and Python compatibility."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "B-04",
+    "source_id": "B-04",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/claude-user-prompt-submit.md",
+    "line": "87",
+    "issue": "The only Claude-hook scenario still treats `{}` as a shim failure and a leading `Advisor: outage (` as an acceptable no-brief signal, so it would not distinguish a handler crash from a real outage; it also has no route-receipt or pasted-reply case. No file in the 53-scenario package mentions 'pasted', 'route receipt' or 'weak follow' (rg exit 1), so the new capabilities ship without a manual scenario even though the playbook standard maps every feature ID to exactly one per-feature file.",
+    "evidence": {
+      "cmd": "rg -n -i \"pasted|route receipt|weak follow\" .skilled/skills/system-skill-advisor/manual-testing-playbook",
+      "exit": 1,
+      "out": ""
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "BAT-01",
+    "source_id": "S5-derived-counts",
+    "lane": "battery",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "S5-derived-counts failed (exit 1).",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py .skilled/skills/system-skill-advisor/README.md README.md",
+      "exit": 1,
+      "out": "PASS .skilled/skills/system-skill-advisor/README.md: claims=0 failures=0\n  line 674: numeric count for 'files': `/doctor:mcp install` builds Code Mode and registers it in seven project config files for six runtimes: OpenCode, Claude Code (two files), Codex, Cursor, Pi and Devin. Each write waits for its own approval. DSH loads Code Mode from a hand-written patch, and Mistral Vibe has no Code Mode registration. `/doctor:mcp debug` reports PASS, WARN or FAIL per check, and its fix mode adds guided repair.\nFAIL README.md: claims=1 failures=1\nSUMMARY files=2 pass=1 fail=1",
+      "ci_gated": false,
+      "ci_workflows": []
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-02",
+    "source_id": "C-02",
+    "lane": "C",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/README.md",
+    "line": "84",
+    "issue": "How It Works describes the hook-to-CLI path without either new routing behavior: the hook strips a leading pasted reply (a cue needs an attribution header such as 'You said:') before the 10,000-character cut and before scoring, and it holds a confidence-floored recommendation back against the session's earlier route, which renders as `Advisor: prompt skipped.` Neither behavior, nor the new public `confidenceFloored` field, appears in this README. Fix direction: add one sentence to the How It Works pipeline and one to the advisor_recommend output list.",
+    "evidence": {
+      "cmd": "grep -ciE \"pasted|route receipt|weak follow\" .skilled/skills/system-skill-advisor/README.md || echo \"no mentions\"",
+      "exit": 0,
+      "out": "0\nno mentions"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "C-03",
+    "source_id": "C-03",
+    "lane": "C",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": "README.md",
+    "line": "201",
+    "issue": "The Skill Routing section states the 0.8 rule unconditionally and describes only the daemon and local-scorer path. The hook now withholds a confidence-floored route (the task-intent floor is 0.82) on a weak follow-up that would differ from the session's stored route, so a prompt can yield `Advisor: prompt skipped.` instead of a skill at or above 0.8; a leading pasted reply is also stripped before scoring. The section reflects neither. Fix direction: qualify the 0.8 rule and name both behaviors in the paragraph.",
+    "evidence": {
+      "cmd": "grep -ciE \"pasted (earlier )?(reply|context)|route receipt|weak follow|floored\" README.md || echo \"no mentions\"",
+      "exit": 0,
+      "out": "0\nno mentions"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "C-04",
+    "source_id": "C-04",
+    "lane": "C",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": "README.md",
+    "line": "674",
+    "issue": "The S5 derived-count row fails on `Claude Code (two files)`: the checker reads `two files` as a count of files in the repo root, which holds 16 or 17, and the root inventory is incomplete. The sentence means Claude Code's two config files, so it needs an allow-count entry. It predates this change: README.md and the checker are byte-identical at the base (same sha256) and blame puts the line at 0cc5ad8ff897, an ancestor of the base. This change did not cause the failure.",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py README.md >/dev/null 2>&1; echo \"checker=$?\"; git -c core.fsmonitor=false show 538d2f789ec:README.md | shasum -a 256 | cut -d' ' -f1; shasum -a 256 README.md | cut -d' ' -f1",
+      "exit": 0,
+      "out": "checker=1\n06116720545fa5665130fa0814ed83fa07e304b1c3de6fd3635e715aed293143\n06116720545fa5665130fa0814ed83fa07e304b1c3de6fd3635e715aed293143"
+    },
+    "fix": {
+      "old": "- **[Spec Kit Feature Catalog](.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md)** - the Spec Kit's shipped features by area",
+      "new": "- **[Spec Kit Feature Catalog](.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md)** - the Spec Kit's shipped features by area\n\n<!-- readme-check\nallow-count two files | names Claude Code's two config files, not files in this folder\n-->"
+    },
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "pre-existing (critic)",
+    "critic_override": {
+      "verdict": "pre-existing",
+      "note": "README.md is byte-identical at the base and at the working tree (sha256 06116720545fa5665130fa0814ed83fa07e304b1c3de6fd3635e715aed293143 both), the checker .skilled/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py is byte-identical (sha256 9486c98b0b6127aab1d68e5b804f20e79c56fa38691ef3c5e47b909eec658761 both), and line 674 is unchanged, so the S5-derived-counts failure predates the scope.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "C-05",
+    "source_id": "C-05",
+    "lane": "C",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/README.md",
+    "line": "49",
+    "issue": "The new fixture row names `legacy/advisor-prompt-policy.vitest.ts` and `python/test_skill_advisor.py`, which do not exist under tests/fixtures/; the repo's reference checker reports both on line 49. The row copied the file's existing style (lines 48 and 50 carry the same defect), so the file already failed at the base, but this change adds two instances. Prefixing both with `../` resolves them.",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py .skilled/skills/system-skill-advisor/runtime/tests/fixtures/README.md",
+      "exit": 1,
+      "out": "  line 48: inline 'python/test_skill_advisor.py': path does not exist\n  line 49: inline 'legacy/advisor-prompt-policy.vitest.ts': path does not exist\n  line 49: inline 'python/test_skill_advisor.py': path does not exist\n  line 50: inline 'handlers/advisor-recommend.vitest.ts': path does not exist\nFAIL .skilled/skills/system-skill-advisor/runtime/tests/fixtures/README.md: references=25 unresolved=5 examples=0 allowed=0"
+    },
+    "fix": {
+      "old": "Read by `legacy/advisor-prompt-policy.vitest.ts` and `python/test_skill_advisor.py`.",
+      "new": "Read by `../legacy/advisor-prompt-policy.vitest.ts` and `../python/test_skill_advisor.py`."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-06",
+    "source_id": "C-06",
+    "lane": "C",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/changelog/skilled/v4.1.0.0.md",
+    "line": "186",
+    "issue": "No release entry describes the three user-visible advisor changes. v4.1.0.0.md is the newest framework entry, and its Skill Advisor section and Smaller fixes list name none of them; the v4.1.0.0 tag points at 05dbe23f023, which is before this work merged (57d3f5d9159), and no newer entry exists. Fix direction: carry the pasted-reply strip, the weak follow-up hold and the hook crash fallback in the next framework entry.",
+    "evidence": {
+      "cmd": "grep -ciE \"pasted (earlier )?(reply|context)|route receipt|weak follow\" .skilled/changelog/skilled/v4.1.0.0.md || echo \"no mentions\"; git -c core.fsmonitor=false merge-base --is-ancestor v4.1.0.0 57d3f5d9159 && echo \"tag-before-merge\"",
+      "exit": 0,
+      "out": "0\nno mentions\ntag-before-merge"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "C-07",
+    "source_id": "C-07",
+    "lane": "C",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/SKILL.md",
+    "line": "5",
+    "issue": "The skill's behavior changed, but SKILL.md stays at 1.1.0.0 and no component changelog entry was added; the newest entry, v1.1.0.0, covers the earlier hook-health work. The established pattern for post-release advisor work is a version bump plus a component entry in the same phase (1367d4090e6 bumped SKILL.md, added changelog/v1.1.0.0.md and corrected the READMEs), so this change has no component release record. Fix direction: bump and add the entry, or record the deferral.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false diff --name-only 538d2f789ec 4d65eced09e -- .skilled/skills/system-skill-advisor/SKILL.md .skilled/skills/system-skill-advisor/changelog | wc -l",
+      "exit": 0,
+      "out": "0"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "D-02",
+    "source_id": "D-02",
+    "lane": "D",
+    "surface": "S7",
+    "standard": ".skilled/repo-rules/skill-hub-routing.md",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/graph-metadata.json",
+    "line": "66",
+    "issue": "The change adds five feature names — pasted reply, route receipt, outage line, lifecycle clock, confidence floor — but none appears in the skill's stage-one routing metadata: `graph-metadata.json` `intent_signals` (line 66), `SKILL.md` `intent_signals` (lines 21-26) and `ROUTER.md` contain none of them. Probes P02-P06 miss: `route receipt` routes to sk-code, `outage line` to sk-prompt, `lifecycle clock` + `dsh` to cli-external-orchestration/cli-deepseek-harness, `python scorer` + `pasted reply` to sk-code/sk-code-skilled, and `confidence floor` routes nowhere. P01 passes on the generic 'advisor hook' wording. An operator asking for the new work by its own name is steered to another skill.",
+    "evidence": {
+      "cmd": "node .skilled/commands/assets/local-skilled-alignment/run-probes.cjs --probes /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/20261119T054734Z/D/probes.json --out /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/local-skilled-alignment-scratch/20261119T054734Z/D/probes-out.json --timeout-ms 120000",
+      "exit": 1,
+      "out": "pass P01 want=system-skill-advisor got=system-skill-advisor\nfail P02 want=system-skill-advisor got=sk-code\nfail P03 want=system-skill-advisor got=sk-prompt\nfail P04 want=system-skill-advisor got=cli-external-orchestration/cli-deepseek-harness\nfail P05 want=system-skill-advisor got=sk-code/sk-code-skilled\nfail P06 want=system-skill-advisor got=-\npass P07 want=sk-code got=sk-code/sk-code-review\npass P08 want=system-spec-kit got=system-spec-kit\npass P09 want=sk-doc got=sk-doc/sk-create-changelog\npass P10 want=sk-git got=sk-git\nfail P11 want=sk-design got=sk-code/sk-code-frontend\nSTATUS=FINDINGS run-probes: pass=5 fail=6 cannot_run=0"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  }
+]

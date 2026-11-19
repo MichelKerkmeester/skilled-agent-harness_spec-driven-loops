@@ -1,0 +1,470 @@
+[
+  {
+    "id": "L3-2",
+    "source_id": "L3-2",
+    "lane": "L3",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md",
+    "line": "54",
+    "issue": "The block wraps all three hook runs in `gtimeout 20`, but `gtimeout` is GNU coreutils and is not installed on this macOS host: `gtimeout 20 true` exits 127 with `command not found`. The three runs never start the hook, the captured JSON files stay empty, and the block fails before any advisor behavior is exercised. The doc names `gtimeout` as the runner without stating the coreutils prerequisite or offering a portable fallback; the sibling playbook doc invokes `node` directly.",
+    "evidence": {
+      "cmd": "zsh -c 'gtimeout 20 true'",
+      "exit": 127,
+      "out": "zsh:1: command not found: gtimeout"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L4-2",
+    "source_id": "L4-2",
+    "lane": "L4",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+    "line": "157",
+    "issue": "The row says setting `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP` to `0`/`false`/`off`/`no` restores always-full delivery. Route receipts are not gated by this variable: `routeReceiptsEnabled()` checks `hookConcernEnabled('directive-lifecycle')` (`SYSTEM_DIRECTIVE_LIFECYCLE_DISABLED`), and `guardWeakFollowUp` still replaces the brief with `skippedWeakFollowUpResult()` when a receipt and a floored weak follow-up are present. Turning dedup off therefore does not restore full delivery.",
+    "evidence": {
+      "cmd": "rg -n 'routeReceiptsEnabled|hookConcernEnabled|skippedWeakFollowUpResult|isDirectiveLifecycleDedupEnabled|DIRECTIVE_LIFECYCLE_DEDUP_ENV' .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts",
+      "exit": 0,
+      "out": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:111:function routeReceiptsEnabled(): boolean {\n.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:112:  return hookConcernEnabled('directive-lifecycle');\n.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:385:    return decision === 'suppress' ? skippedWeakFollowUpResult() : result;\n.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:38:export function isDirectiveLifecycleDedupEnabled(): boolean {\n.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:39:  const value = process.env[DIRECTIVE_LIFECYCLE_DEDUP_ENV]?.trim().toLowerCase();\n.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:5:export const DIRECTIVE_LIFECYCLE_DEDUP_ENV = 'SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP';"
+    },
+    "fix": {
+      "old": "Set `0`/`false`/`off`/`no` to restore always-full delivery",
+      "new": "Set `0`/`false`/`off`/`no` to restore always-full directive delivery; route receipts are separate and are gated by `SYSTEM_DIRECTIVE_LIFECYCLE_DISABLED`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L4-4",
+    "source_id": "L4-4",
+    "lane": "L4",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+    "line": "382",
+    "issue": "The row says the fusion scorer reads `SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD` once at module load, so a warm daemon keeps the value it read when the daemon starts until a restart. In a launcher-spawned daemon the variable never arrives: `CHILD_ENV_ALLOWLIST` omits it and `createChildEnv()` filters the daemon child's environment to that exact list, so the fusion module always reads the 0.8 default and a restart cannot apply an operator value. The per-request `confidenceThreshold` option is the only working override. The adjacent `SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD` row has the same allowlist omission.",
+    "evidence": {
+      "cmd": "rg -n \"SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD|CHILD_ENV_ALLOWLIST = new Set|CHILD_ENV_ALLOWLIST.has|env: createChildEnv\\(\\)\" .skilled/bin/system-skill-advisor-launcher.cjs .skilled/skills/system-skill-advisor/runtime/lib/compat/contract.ts",
+      "exit": 0,
+      "out": ".skilled/skills/system-skill-advisor/runtime/lib/compat/contract.ts:26:  const env = parseFloatEnv('SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD');\n.skilled/bin/system-skill-advisor-launcher.cjs:131:const CHILD_ENV_ALLOWLIST = new Set([\n.skilled/bin/system-skill-advisor-launcher.cjs:314:    Object.entries(sourceEnv).filter(([key, value]) => CHILD_ENV_ALLOWLIST.has(key) && typeof value === 'string'),\n.skilled/bin/system-skill-advisor-launcher.cjs:1306:    env: createChildEnv(),\n.skilled/bin/system-skill-advisor-launcher.cjs:1552:    env: createChildEnv(),"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-3",
+    "source_id": "L1-3",
+    "lane": "L1",
+    "surface": "D4",
+    "standard": null,
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/hooks/lib/README.md",
+    "line": "13",
+    "issue": "The overview says this module runs 'when the in-process advisor brief returns `fail_open` or a degraded, unavailable-freshness result'. The shared handler no longer calls an in-process brief in production: `buildBrief` is an injection seam, and the default path is `skippedResult ?? await buildCliBrief(...)` (hooks/claude/user-prompt-submit.ts:578-593), so the CLI module is the hook's producer once the prompt-policy gate passes and its own fail_open results are what the hook renders. The frontmatter description at line 3 repeats the same stale premise.",
+    "evidence": {
+      "cmd": "rg -n \"skippedResult \\?\\? await buildCliBrief|const buildCliBrief|injectedBrief \\?\" .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "exit": 0,
+      "out": "579:    const buildCliBrief = dependencies.buildCliBrief ?? buildSkillAdvisorBriefFromCli;\n580:    skippedResult = injectedBrief ? null : skippedAdvisorResultFor(prompt);\n587:      : skippedResult ?? await buildCliBrief(prompt, {"
+    },
+    "fix": {
+      "old": "When the in-process advisor brief returns `fail_open` or a degraded, unavailable-freshness result, this module finds the advisor CLI under `.skilled` first and `.opencode` second, takes the CLI, its IPC bridge and the database directory from that one root, shells out to `<root>/bin/skill-advisor.cjs advisor_recommend` and reshapes the CLI response back into the same `AdvisorHookResult` envelope the hook already understands.",
+      "new": "When a prompt passes the advisor's prompt-policy gate, this module is the hook's producer: it finds the advisor CLI under `.skilled` first and `.opencode` second, takes the CLI, its IPC bridge and the database directory from that one root, shells out to `<root>/bin/skill-advisor.cjs advisor_recommend` and reshapes the CLI response back into the same `AdvisorHookResult` envelope the hook already understands."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L2-4",
+    "source_id": "L2-4",
+    "lane": "L2",
+    "surface": "D5",
+    "standard": null,
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-warm-only-no-spawn.md",
+    "line": "46",
+    "issue": "The no-spawn check greps for `mk-skill-advisor-launcher`, a name that exists nowhere in the repository: the CLI spawns `.skilled/bin/system-skill-advisor-launcher.cjs`, mirrored under `.opencode/bin`. `pgrep -f mk-skill-advisor-launcher` therefore returns 0 whether or not a launcher was spawned, so `before` and `after` always match and the scenario's core assertion (launcher process count unchanged) passes vacuously. Line 50 (`AFTER=`) carries the same pattern and needs the same change.",
+    "evidence": {
+      "cmd": "rg --files .skilled/bin .opencode/bin | rg 'advisor-launcher'; pgrep -f 'mk-skill-advisor-launcher' | wc -l; pgrep -f 'system-skill-advisor-launcher' | wc -l",
+      "exit": 0,
+      "out": ".skilled/bin/system-skill-advisor-launcher.cjs\n.opencode/bin/system-skill-advisor-launcher.cjs\n       0\n       1"
+    },
+    "fix": {
+      "old": "BEFORE=$(pgrep -f \"mk-skill-advisor-launcher\" | wc -l)",
+      "new": "BEFORE=$(pgrep -f \"system-skill-advisor-launcher\" | wc -l)"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-4",
+    "source_id": "L1-4",
+    "lane": "L1",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+    "line": "49",
+    "issue": "The degraded path's condition is stated over 'the prompt'. `degradedRecommendations()` strips a leading pasted reply first and tests the remaining task text (`const task = stripLeadingPastedReply(prompt);` then `task.includes(row.command.split(' ')[0])`, runtime/skill-advisor-cli.ts:1489-1501), so a slash command named only inside a pasted earlier reply yields the row's owner skill, not the `kind: 'command'` entry the doc promises.",
+    "evidence": {
+      "cmd": "rg -n \"stripLeadingPastedReply\\(prompt\\)|task.includes\\(row.command\" .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+      "exit": 0,
+      "out": "1490:  const task = stripLeadingPastedReply(prompt);\n1501:    if (row && task.includes(row.command.split(' ')[0])) {"
+    },
+    "fix": {
+      "old": "when the prompt contains the row's bare slash command",
+      "new": "when the prompt, after any leading pasted reply is stripped, contains the row's bare slash command"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L3-1",
+    "source_id": "L3-1",
+    "lane": "L3",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md",
+    "line": "14",
+    "issue": "The doc says the memory-backed session-prime, compact-inject, session-stop and session-start hooks were removed with their server. They still exist and are registered: `.claude/settings.json` runs session-prime on SessionStart, compact-inject on PreCompact and session-stop on Stop, and the Codex, Cursor and Devin session-start adapters remain. What was removed is the memory MCP server, not these hooks; they simply do not consult the advisor daemon.",
+    "evidence": {
+      "cmd": "ls .skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts && rg -c 'session-prime\\.js|session-stop\\.js|compact-inject\\.js' .claude/settings.json",
+      "exit": 0,
+      "out": ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts\n.skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts\n.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts\n3"
+    },
+    "fix": {
+      "old": "The memory-backed session-prime, compact-inject, session-stop and session-start hooks were removed with their server, so the advisor hook is the remaining consumer of this contract.",
+      "new": "The session-prime, compact-inject, session-stop and session-start hooks remain, but they do not consult the advisor daemon, so the advisor hook is the remaining consumer of this contract."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L4-1",
+    "source_id": "L4-1",
+    "lane": "L4",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+    "line": "153",
+    "issue": "The cadence sentence says model-context surfaces deliver the complete advisor brief on the first message and after lifecycle boundaries, then retain only the dynamic `Advisor:` route line on a proven repeat. The shared hook has a third outcome: when a weak follow-up is floored to a different skill and a stored route receipt is current, `guardWeakFollowUp` returns `skippedWeakFollowUpResult()`, and `renderAdvisorFallbackDirective` prints `Advisor: prompt skipped.` plus the directive block, neither the full brief nor a route line.",
+    "evidence": {
+      "cmd": "rg -n 'decideRouteReceiptGuard|skippedWeakFollowUpResult|Advisor: prompt skipped|fallbackCase ===' .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts .skilled/skills/system-skill-advisor/runtime/lib/render.ts .skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts",
+      "exit": 0,
+      "out": ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:163:export function decideRouteReceiptGuard(input: RouteReceiptGuardInput): RouteReceiptGuardDecision {\n.skilled/skills/system-skill-advisor/runtime/lib/render.ts:658:    : classification.fallbackCase === 'skipped'\n.skilled/skills/system-skill-advisor/runtime/lib/render.ts:659:      ? 'Advisor: prompt skipped.'\n.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:449:export function skippedWeakFollowUpResult(): AdvisorHookResult {"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L4-3",
+    "source_id": "L4-3",
+    "lane": "L4",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+    "line": "159",
+    "issue": "The documented default `os.tmpdir()/speckit-advisor/directive-lifecycle` is not the variable's default base. `FileDirectiveLifecycleStore` defaults it to `join(tmpdir(), 'speckit-advisor')`; the Python helper then creates `directive-lifecycle/<project>` under that base, and the route-receipt store creates `route-receipts` under the same base. Setting the variable to the documented path nests a second `directive-lifecycle` directory.",
+    "evidence": {
+      "cmd": "rg -n \"join\\(tmpdir\\(\\), 'speckit-advisor'\\)|ROUTE_RECEIPT_DIR|open_child_directory\\(base_fd\" .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py",
+      "exit": 0,
+      "out": ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:48:      ?? (envBase?.trim() ? envBase.trim() : join(tmpdir(), 'speckit-advisor')));\n.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:76:const ROUTE_RECEIPT_DIR = 'route-receipts';\n.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:99:  return resolve(envBase?.trim() ? envBase.trim() : join(tmpdir(), 'speckit-advisor'));\n.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:225:    this.dir = join(this.baseDir, ROUTE_RECEIPT_DIR);\n.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py:75:        lifecycle_fd = open_child_directory(base_fd, \"directive-lifecycle\", uid, create)"
+    },
+    "fix": {
+      "old": "`os.tmpdir()/speckit-advisor/directive-lifecycle`",
+      "new": "`os.tmpdir()/speckit-advisor`"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "N1",
+    "source_id": "N1",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+    "line": "72",
+    "issue": "The validation table says the disabled-switch test pins an 'exact-`1` value rule', while line 23 says any truthy value disables the advisor. Both describe the wrong rule: the hooks resolver treats `1`, `true`, `yes` and `on` as active (`hook-flags.cjs:158-159`), and `advisor-disabled.vitest.ts` asserts that `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED: 'true'` and `SYSTEM_SKILL_ADVISOR_DISABLED: 'ON'` both disable the advisor. A reader who tests `true` or `ON` against the documented exact-`1` rule would conclude the switch is broken.",
+    "evidence": {
+      "cmd": "rg -n 'v === \"1\" \\|\\| v === \"true\"' .skilled/hooks/shared/hook-flags.cjs; rg -n \"SYSTEM_SKILL_ADVISOR_DISABLED: 'ON'|SYSTEM_SKILL_ADVISOR_HOOK_DISABLED: 'true'\" .skilled/skills/system-skill-advisor/runtime/tests/advisor-disabled.vitest.ts",
+      "exit": 0,
+      "out": "159:  return v === \"1\" || v === \"true\" || v === \"yes\" || v === \"on\";\n45:    [{ SYSTEM_SKILL_ADVISOR_HOOK_DISABLED: 'true' }, 'SYSTEM_SKILL_ADVISOR_HOOK_DISABLED'],\n47:    [{ SYSTEM_SKILL_ADVISOR_DISABLED: 'ON' }, 'SYSTEM_SKILL_ADVISOR_DISABLED'],"
+    },
+    "fix": {
+      "old": "The switch names, the exact-`1` value rule and the envelope fields.",
+      "new": "The switch names, the hooks' active-value rule (`1`/`true`/`yes`/`on`) and the envelope fields."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "N2",
+    "source_id": "N2",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-advisor-cli.md",
+    "line": "55",
+    "issue": "The source table calls `hooks/lib/skill-advisor-cli-fallback.ts` a 'Shared warm-only CLI fallback for Claude/OpenCode prompt-submit hooks'. The helper runs the CLI with `--no-warm-only` because it needs the CLI to cold-start the daemon (`skill-advisor-cli-fallback.ts:269`), and no OpenCode module imports it: the OpenCode plugin spawns its own CLI path (`ADVISOR_CLI_PATH` at `.opencode/plugins/system-skill-advisor.js:137`, used by `advisorCliArgs()` at 693-694). The row misstates both the contract and the consumer.",
+    "evidence": {
+      "cmd": "rg -n 'no-warm-only' .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts; rg -n 'buildSkillAdvisorBriefFromCli' .skilled/skills/system-skill-advisor/hooks .opencode --glob '!**/tests/**'; rg -n 'ADVISOR_CLI_PATH|function advisorCliArgs' .opencode/plugins/system-skill-advisor.js",
+      "exit": 0,
+      "out": "269:      '--no-warm-only',\nskilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:52:import { buildSkillAdvisorBriefFromCli } from '../lib/skill-advisor-cli-fallback.js';\n137:const ADVISOR_CLI_PATH = fileURLToPath(new URL('../bin/skill-advisor.cjs', import.meta.url));\n693:function advisorCliArgs() {"
+    },
+    "fix": {
+      "old": "| `hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper | Shared warm-only CLI fallback for Claude/OpenCode prompt-submit hooks |",
+      "new": "| `hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper | Shared CLI fallback that runs `--no-warm-only` for the Claude prompt handler, which the Pi, DSH and Vibe adapters also call |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "N3",
+    "source_id": "N3",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-advisor-cli.md",
+    "line": "28",
+    "issue": "The warm-only sentence names only `SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` and `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY` as the way warm-only becomes the default. `defaultWarmOnly()` also returns true for any prompt-time marker via `defaultPromptTime()` (`SYSTEM_SKILL_ADVISOR_CLI_PROMPT_TIME`, `SPECKIT_SKILL_ADVISOR_CLI_PROMPT_TIME`, `SPECKIT_CLI_PROMPT_TIME`, `OPENCODE_PROMPT_TIME`, `CLAUDE_CODE_PROMPT_TIME`, `skill-advisor-cli.ts:417-429`), which is how hook-launched calls run, and `ENV-REFERENCE.md` documents that any of them implies warm-only. A reader who clears the two named variables but runs with a prompt-time marker still gets exit 75 instead of auto-spawn.",
+    "evidence": {
+      "cmd": "rg -n 'function defaultWarmOnly' -A 5 .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts; rg -n 'function defaultPromptTime' -A 7 .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts; rg -n 'implies warm-only' .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      "exit": 0,
+      "out": "425:function defaultWarmOnly(): boolean {\n426-  return envFlagEnabled('SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY')\n427-    || envFlagEnabled('SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY')\n428-    || defaultPromptTime();\n429-}\n417:function defaultPromptTime(): boolean {\n418-  return envFlagEnabled('SYSTEM_SKILL_ADVISOR_CLI_PROMPT_TIME')\n419-    || envFlagEnabled('SPECKIT_SKILL_ADVISOR_CLI_PROMPT_TIME')\n420-    || envFlagEnabled('SPECKIT_CLI_PROMPT_TIME')\n421-    || envFlagEnabled('OPENCODE_PROMPT_TIME')\n422-    || envFlagEnabled('CLAUDE_CODE_PROMPT_TIME');\n423-}\n435:| `SYSTEM_SKILL_ADVISOR_CLI_PROMPT_TIME` | ... | flag | Marks the skill-advisor CLI invocation as prompt-time, which implies warm-only. |"
+    },
+    "fix": {
+      "old": "`--warm-only` (default via `SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY`) probes the socket and exits 75 instead of auto-spawning.",
+      "new": "`--warm-only` (default via `SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY`, or when any prompt-time marker is set: `SYSTEM_SKILL_ADVISOR_CLI_PROMPT_TIME`, `SPECKIT_SKILL_ADVISOR_CLI_PROMPT_TIME`, `SPECKIT_CLI_PROMPT_TIME`, `OPENCODE_PROMPT_TIME`, `CLAUDE_CODE_PROMPT_TIME`) probes the socket and exits 75 instead of auto-spawning."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "N4",
+    "source_id": "N4",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "190",
+    "issue": "The section 8 File column displays `001-claude-user-prompt-submit.md` (and `005-opencode-plugin-bridge.md` at line 192, `006-skill-advisor-cli-fallback.md` at line 193), but those files do not exist; the live filenames are `claude-user-prompt-submit.md`, `opencode-plugin-bridge.md` and `skill-advisor-cli-fallback.md`. The same document says at line 38 that the tree holds no `NNN-*.md` files, so the table contradicts both the tree and its own inventory note.",
+    "evidence": {
+      "cmd": "rg -n 'CL-001 \\|.*001-claude|CL-005 \\|.*005-opencode|CL-006 \\|.*006-skill' .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md; ls .skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/ | sort",
+      "exit": 0,
+      "out": "190:| CL-001 | Claude Code UserPromptSubmit Hook | [001-claude-user-prompt-submit.md](cli-hooks-and-plugin/claude-user-prompt-submit.md) |\n192:| CL-005 | OpenCode Plugin | [005-opencode-plugin-bridge.md](cli-hooks-and-plugin/opencode-plugin-bridge.md) |\n193:| CL-006 | skill-advisor CLI Fallback Surface (028) | [006-skill-advisor-cli-fallback.md](cli-hooks-and-plugin/skill-advisor-cli-fallback.md) |\nbrief-command-policy-word.md\nclaude-user-prompt-submit.md\ngoal-opencode-plugin-conversation.md\ngoal-opencode-plugin.md\nopencode-plugin-bridge.md\nskill-advisor-cli-fallback.md\nvibe-command-documents.md"
+    },
+    "fix": {
+      "old": "| CL-001 | Claude Code UserPromptSubmit Hook | [001-claude-user-prompt-submit.md](cli-hooks-and-plugin/claude-user-prompt-submit.md) |",
+      "new": "| CL-001 | Claude Code UserPromptSubmit Hook | [claude-user-prompt-submit.md](cli-hooks-and-plugin/claude-user-prompt-submit.md) |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "N5",
+    "source_id": "N5",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-validate.md",
+    "line": "40",
+    "issue": "The table introduced as 'The current baseline slices remain' reports 80.5% full corpus and 77.5% holdout as measured current values, while the in-scope NC-003 scenario records the run it captured at 51.3% full corpus, 42.5% holdout and UNKNOWN 14, with verdict FAIL (`native-validate-slices.md:430,436`). The catalog therefore claims as current a passing baseline the playbook says the current corpus does not meet; at least one of the two is stale.",
+    "evidence": {
+      "cmd": "rg -n 'The current baseline slices remain|Full corpus top-1|Holdout top-1' .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-validate.md; rg -n 'Current observed baseline|^FAIL:' .skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/native-validate-slices.md",
+      "exit": 0,
+      "out": "40:The current baseline slices remain:\n44:| Full corpus top-1 | >= 75% | 80.5% |\n45:| Holdout top-1 | >= 72.5% | 77.5% |\n430:- Current observed baseline was not the Expected Phase 027 baseline: full corpus was `0.513`, holdout was `0.425`, unknown count was `14`, ...\n436:FAIL: ... full corpus was `0.513` instead of 80.5%, holdout was `0.425` instead of 77.5%, and unknown count was `14`, above `targetMax: 10`."
+    },
+    "fix": {
+      "old": "The current baseline slices remain:",
+      "new": "The Phase 027 reference baseline slices remain (the latest recorded NC-003 run did not meet them; see the playbook scenario):"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "N6",
+    "source_id": "N6",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-warm-only-no-spawn.md",
+    "line": "95",
+    "issue": "The anchor table says `hooks/lib/skill-advisor-cli-fallback.ts` is a 'Hook helper relying on this contract' — the warm-only no-spawn contract. The helper does the opposite: it passes `--no-warm-only` so the CLI cold-starts the daemon (`skill-advisor-cli-fallback.ts:269`), and the feature catalog describes that auto-spawn behavior. An operator auditing why a hook still spawns would be sent to the one helper that is designed not to use warm-only.",
+    "evidence": {
+      "cmd": "rg -n 'Hook helper relying on this contract' .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-warm-only-no-spawn.md; rg -n \"'--no-warm-only'\" .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+      "exit": 0,
+      "out": "95:| `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper relying on this contract |\n269:      '--no-warm-only',"
+    },
+    "fix": {
+      "old": "| `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper relying on this contract |",
+      "new": "| `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper that opts out of warm-only with `--no-warm-only` so the CLI can cold-start the daemon |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L2-1",
+    "source_id": "L2-1",
+    "lane": "L2",
+    "surface": "D3",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/lane-attribution.md",
+    "line": "29",
+    "issue": "The doc calls `why_recommended` a string. The handler emits an object, `{reason, dominantLane, topLanes[], matchedSkillFeatures[]}` (advisor-recommend.ts:276-280), and the output schema types it as `whyRecommendedSchema = z.object(...)` (advisor-tool-schemas.ts:228-236); a live `includeAttribution: true` call returns a dict. A reader scanning for a string will not find one. Line 57 repeats the same 'explanation' framing.",
+    "evidence": {
+      "cmd": "rg -n 'whyRecommendedSchema = z.object' -A 8 .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+      "exit": 0,
+      "out": "228:const whyRecommendedSchema = z.object({\n229-  reason: z.string().min(1),\n230-  dominantLane: AdvisorLaneSchema.nullable(),\n231-  topLanes: z.array(whyRecommendedLaneSchema),\n232-  matchedSkillFeatures: z.array(z.object({\n233-    lane: AdvisorLaneSchema,\n234-    feature: z.string().min(1),\n235-  }).strict()),\n236-}).strict();"
+    },
+    "fix": {
+      "old": "plus a prompt-safe `why_recommended` string, and that no prompt text",
+      "new": "plus a prompt-safe `why_recommended` explanation object, and that no prompt text"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L2-2",
+    "source_id": "L2-2",
+    "lane": "L2",
+    "surface": "D3",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/lane-attribution.md",
+    "line": "69",
+    "issue": "The failure triage sends the reader to `attribution.ts` to audit lane tagging, but that module only reads the flag (`contributions.filter((contribution) => !contribution.shadowOnly)`). `shadowOnly` is set in fusion.ts:1333 as `!isLiveScorerLane(lane)`, and lane liveness comes from lane-registry.ts. Auditing attribution.ts cannot explain a missing `semantic_shadow` flag.",
+    "evidence": {
+      "cmd": "rg -n 'shadowOnly = !|contribution.shadowOnly' .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts .skilled/skills/system-skill-advisor/runtime/lib/scorer/attribution.ts",
+      "exit": 0,
+      "out": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/attribution.ts:8:  const live = contributions.filter((contribution) => !contribution.shadowOnly);\n.skilled/skills/system-skill-advisor/runtime/lib/scorer/attribution.ts:20:      const suffix = contribution.shadowOnly ? ' shadow' : '';\n.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1333:        const shadowOnly = !isLiveScorerLane(lane);"
+    },
+    "fix": {
+      "old": "Audit `attribution.ts` lane tagging.",
+      "new": "Audit `fusion.ts` lane tagging (`isLiveScorerLane`)."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L2-3",
+    "source_id": "L2-3",
+    "lane": "L2",
+    "surface": "D4",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/cli-runtime-warm-only-fallbacks.md",
+    "line": "28",
+    "issue": "The 'bounded cold-start window of at most 5 seconds' is stated unconditionally, but `ensureDaemonReady` applies `COLD_START_WAIT_MS` only in the `hasLocalFallback && !probeTimedOut(initialProbe)` branch; when a daemon accepts the connection and stays silent the probe reason is `timeout` and the CLI waits the caller's full `timeoutMs` (30000 by default). The hook also passes its own budget as that timeout (`DEFAULT_CLAUDE_HOOK_TIMEOUT_MS = 2500`), so a hook-triggered call waits at most 2.5 s and is killed at that budget, which normally leaves no time for the documented degraded local-scorer answer; the hook emits the `Advisor: outage (fail_open)` line instead. Line 16 repeats the same 5-second claim.",
+    "evidence": {
+      "cmd": "rg -n 'DEFAULT_CLAUDE_HOOK_TIMEOUT_MS|timeoutMs: claudeHookTimeoutMs|COLD_START_WAIT_MS|const waitMs|probeTimedOut' .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+      "exit": 0,
+      "out": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:182:export const DEFAULT_CLAUDE_HOOK_TIMEOUT_MS = 2500;\n.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:245:  return positiveIntFromEnv(process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS, DEFAULT_CLAUDE_HOOK_TIMEOUT_MS);\n.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:590:        timeoutMs: claudeHookTimeoutMs(),\n.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:37:const COLD_START_WAIT_MS = 5_000;\n.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1333:function probeTimedOut(probe: BridgeProbeResult): boolean {\n.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1355:  const waitMs = hasLocalFallback && !probeTimedOut(initialProbe)\n.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1356:    ? Math.min(timeoutMs, COLD_START_WAIT_MS)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-2",
+    "source_id": "L1-2",
+    "lane": "L1",
+    "surface": "D5",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+    "line": "57",
+    "issue": "The sentence says `{}` is returned 'only if that fallback cannot be rendered'. The catch also returns `{}` before attempting any fallback when the payload carries no prompt string (hooks/claude/user-prompt-submit.ts:643), so a crash raised while rejecting a promptless payload stays silent instead of becoming an outage line.",
+    "evidence": {
+      "cmd": "rg -n \"typeof input.prompt !== 'string'\\) return \\{\\};\" .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "exit": 0,
+      "out": "643:    if (!input || typeof input.prompt !== 'string') return {};"
+    },
+    "fix": {
+      "old": "When its own code throws, it returns the outage fallback, or the skipped fallback for a skipped prompt, and returns `{}` only if that fallback cannot be rendered.",
+      "new": "When its own code throws, it returns the outage fallback, or the skipped fallback for a skipped prompt; it returns `{}` only when the payload carries no prompt string or that fallback cannot be rendered."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L2-5",
+    "source_id": "L2-5",
+    "lane": "L2",
+    "surface": "D5",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-warm-only-no-spawn.md",
+    "line": "16",
+    "issue": "The doc names only the two explicit warm-only switches as setting the default. `defaultWarmOnly()` also returns true whenever any prompt-time marker is set (`SYSTEM_SKILL_ADVISOR_CLI_PROMPT_TIME`, `SPECKIT_SKILL_ADVISOR_CLI_PROMPT_TIME`, `SPECKIT_CLI_PROMPT_TIME`, `OPENCODE_PROMPT_TIME`, `CLAUDE_CODE_PROMPT_TIME`, via `defaultPromptTime()`), which is how hook-launched calls run. A reader who clears both warm-only variables but runs with a prompt-time marker still gets exit 75 instead of auto-spawn.",
+    "evidence": {
+      "cmd": "rg -n 'function defaultWarmOnly' -A 7 .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts; rg -n 'function defaultPromptTime' -A 7 .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+      "exit": 0,
+      "out": "425:function defaultWarmOnly(): boolean {\n426-  return envFlagEnabled('SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY')\n427-    || envFlagEnabled('SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY')\n428-    || defaultPromptTime();\n429-}\n417:function defaultPromptTime(): boolean {\n418-  return envFlagEnabled('SYSTEM_SKILL_ADVISOR_CLI_PROMPT_TIME')\n419-    || envFlagEnabled('SPECKIT_SKILL_ADVISOR_CLI_PROMPT_TIME')\n420-    || envFlagEnabled('SPECKIT_CLI_PROMPT_TIME')\n421-    || envFlagEnabled('OPENCODE_PROMPT_TIME')\n422-    || envFlagEnabled('CLAUDE_CODE_PROMPT_TIME');\n423-}"
+    },
+    "fix": {
+      "old": "`SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY` set the default and `--no-warm-only` re-enables auto-spawn per call.",
+      "new": "`SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY` set the default, any prompt-time marker (`SYSTEM_SKILL_ADVISOR_CLI_PROMPT_TIME`, `SPECKIT_SKILL_ADVISOR_CLI_PROMPT_TIME`, `SPECKIT_CLI_PROMPT_TIME`, `OPENCODE_PROMPT_TIME`, `CLAUDE_CODE_PROMPT_TIME`) also makes warm-only the default, and `--no-warm-only` re-enables auto-spawn per call."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  }
+]

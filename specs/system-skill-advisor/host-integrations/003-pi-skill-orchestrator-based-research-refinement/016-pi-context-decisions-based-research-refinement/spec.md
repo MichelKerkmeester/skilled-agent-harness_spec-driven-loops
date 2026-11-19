@@ -62,7 +62,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete. All thirteen phases are done and merged to main as `57d3f5d9159`, then pushed; phase 003 closed with the guard not built (over-suppresses), and phases 010 and 011 built the route receipts instead |
+| **Status** | In Progress. Phases 001 to 013 are done and merged to main as `57d3f5d9159`, then pushed; phase 003 closed with the guard not built (over-suppresses), and phases 010 and 011 built the route receipts instead. Phase 014, the review fixes, is planned and not built. Phases 015 and 016, the two alignment runs, are complete with their findings triaged and not fixed |
 | **Created** | 2026-11-18 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -147,10 +147,17 @@ Phase 1 writes research artifacts only. Phases 002 to 004 list their exact files
 | 11 | 011-route-receipts-build/ | Stored route receipts build, to the design phase 010 fixes, measured on the nine follow-up pairs in the calibration bench | Complete |
 | 12 | 012-plan-text-and-goal-closeout/ | Packet closeout: plan-text fixes in 002, 003 and 004, the delegation-strategy socket caveat, child goal ticks, the operator answers in a decision record and the parent goal criteria | Complete |
 | 13 | 013-drift-guard-probe-script-errors/ | Drift-guard errors: give the ten old probe scripts under the routing-and-scoring 008 review folders the shebang, strict mode or module header the alignment-drift guard requires | Complete |
+| 14 | 014-review-p2-fixes/ | Review fixes: the nine P2 findings of the five-pass review in `review/review-report.md`, eight fixed test first and R1-P2-004 recorded as accepted | Pending |
+| 15 | 015-skilled-alignment-check/ | `/local-skilled-alignment` over the merged worktree 474 branch against base `4bf79332378`, report only: the findings report kept in `evidence/` and triaged: 25 findings, 1 P0 (stale packet metadata, repaired), 9 P1 and 15 P2 | Complete |
+| 16 | 016-doc-alignment-check/ | `/local-doc-alignment` on a new `advisor-pasted-reply` topic in `topics.json`, report only: the findings report kept in `evidence/` and triaged: 20 open findings, 5 P1 and 15 P2 | Complete |
 
 **Build order.** Folder numbers stay as they are. The build order is 001, then 005, then 002, then 004, then 003. Phase 004 builds before 003 because both edit `hooks/claude/user-prompt-submit.ts` and its hook test, and 003's guard would shift every line 004 pins.
 
 The closure phases build after 003 in the order 006, 007, 008, 009, 010, 011, 013, 012. Phase 006 comes first because every later phase consumes the strip rule. Phase 011 builds after 009 because both edit the shared hook. Phase 012 is the last phase because it ticks the goals of every other phase.
+
+Phase 014 opened after the packet closed, from the review that ran on the merged code. It builds after 012.
+
+Phases 015 and 016 are report-only alignment runs the operator asked for on 2026-11-19. They read the merged code, so they run without waiting on 014, and fixing what they find is a separate operator decision.
 
 ### Phase Transition Rules
 
@@ -175,6 +182,9 @@ The closure phases build after 003 in the order 006, 007, 008, 009, 010, 011, 01
 | 010-route-receipts-research | 011-route-receipts-build | `research/research.md` fixes the receipt design, and the follow-up bench rerun on the final strip rule still takes the over-suppresses branch, or the operator has decided after being told it does not | `010-route-receipts-research/research/research.md` and its strict validation |
 | 011-route-receipts-build | 013-drift-guard-probe-script-errors | The receipt build passes its bench and hook tests | `011-route-receipts-build/tasks.md` has no open task, and its strict validation prints `RESULT: PASSED` |
 | 013-drift-guard-probe-script-errors | 012-plan-text-and-goal-closeout | `run-all-drift-guards.sh` exits 0 | `013-drift-guard-probe-script-errors/tasks.md` has no open task, and its strict validation prints `RESULT: PASSED` |
+| 012-plan-text-and-goal-closeout | 014-review-p2-fixes | The packet is merged to main and its review report names the findings | `review/review-report.md` exists, and 012's strict validation prints `RESULT: PASSED` |
+| 014-review-p2-fixes | 015-skilled-alignment-check | None: 015 reads the merged code and does not wait on 014 | 015's strict validation prints `RESULT: PASSED` |
+| 015-skilled-alignment-check | 016-doc-alignment-check | None: the two runs are independent and may run side by side | `015-skilled-alignment-check/evidence/report.md` and `016-doc-alignment-check/evidence/report.md` exist |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check",
+  "description": "Phase 15: skilled-alignment-check",
+  "keywords": [
+    "phase",
+    "skilled-alignment-check"
+  ],
+  "lastUpdated": "2026-11-19T05:47:14.407Z",
+  "specId": "015",
+  "folderSlug": "skilled-alignment-check",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

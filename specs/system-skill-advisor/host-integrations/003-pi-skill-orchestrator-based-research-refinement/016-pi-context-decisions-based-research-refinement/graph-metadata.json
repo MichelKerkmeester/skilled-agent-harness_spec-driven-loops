@@ -16,7 +16,10 @@
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research",
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/011-route-receipts-build",
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout",
-    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/013-drift-guard-probe-script-errors"
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/013-drift-guard-probe-script-errors",
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes",
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check",
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check"
   ],
   "manual": {
     "depends_on": [],
@@ -58,6 +61,7 @@
       "003-follow-up-routing-benchmark/spec.md",
       "004-crash-path-fallback/spec.md",
       "001-deep-research/research/review-overengineering-opus-high.md",
+      "review/review-report.md",
       "hooks/claude/user-prompt-submit.ts",
       "002-pasted-context-stripping/tasks.md",
       "004-crash-path-fallback/tasks.md",
@@ -69,8 +73,7 @@
       "009-crash-fallback-edge-cases/tasks.md",
       "010-route-receipts-research/research/research.md",
       "011-route-receipts-build/tasks.md",
-      "013-drift-guard-probe-script-errors/tasks.md",
-      "001-deep-research/goal.md"
+      "013-drift-guard-probe-script-errors/tasks.md"
     ],
     "entities": [
       {
@@ -92,6 +95,12 @@
         "source": "derived"
       },
       {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
         "name": "user-prompt-submit.ts",
         "kind": "code",
         "path": "hooks/claude/user-prompt-submit.ts",
@@ -105,6 +114,12 @@
       },
       {
         "name": "Skill Advisor Refinement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -128,19 +143,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
@@ -158,7 +161,7 @@
         "source": "derived"
       },
       {
-        "name": "cli-codex",
+        "name": "cli-mistral-vibe",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -166,19 +169,19 @@
     ],
     "causal_summary": "The skill advisor picks skills with a local five-lane scorer and pushes a brief into every prompt",
     "created_at": "2026-11-18T06:49:25Z",
-    "last_save_at": "2026-11-18T22:57:44.703Z",
+    "last_save_at": "2026-11-19T08:05:58.218Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d74b07c44cdd431593adeceba375c72858a33dd2d9a1c01dcbed34c5a75db969",
+    "source_fingerprint": "sha256:a2ff828de0d88b536aa676c1441916de3a82d56f2f1304a06806ba2584114736",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9a343601ea656e6e650bbb36e9730f1afa2bf4a3b55a806736b6cd7bb58fe2d2"
+      "spec.md": "54edb1b20d844a20820668df01b778e3cd36b3be497031d80f5be571fb6f7a74"
     },
-    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout",
-    "last_active_at": "2026-11-18T22:31:45.859Z"
+    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes",
+    "last_active_at": "2026-11-19T05:43:23.401Z"
   }
 }

@@ -44,13 +44,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Build order: 001, 005, 002, 004, 003, 006 to 011, 013, 012. Each starts after the one before validates strict |
-| D2 | Code is built by a GPT-6 Luna `xhigh` `fast` swarm via cli-codex |
-| D3 | Fallback: DeepSeek V4.1 Flash `max` via cli-mistral-vibe only. Luna uses no other provider |
-| D4 | The conductor runs every check itself |
-| D5 | Each phase changes only files its `spec.md` lists. The cut items stay cut. N4 builds in 010 and 011 |
-| D6 | Worktree 474 commits are approved. Finish: sk-git merge to main, advisor rebuild and restart, these criteria, push |
-| D7 | If the 010 bench rerun gives no guard, the operator decides before 011 |
+| D1 | Order: 001, 005, 002, 004, 003, 006 to 011, 013, 012, 014 to 016, each after the previous validates strict |
+| D2 | Code: GPT-6 Luna `xhigh` `fast` swarm, cli-codex |
+| D3 | Fallback: DeepSeek V4.1 Flash `max` via cli-mistral-vibe only |
+| D4 | The conductor runs every check |
+| D5 | A phase changes only files its `spec.md` lists; cut items stay cut |
+| D6 | Approved for 474: commits, merge, push. For 014: commits, merge |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -76,6 +75,9 @@ phase and binds as if written here.
 | 011-route-receipts-build | `011-route-receipts-build/goal.md` |
 | 012-plan-text-and-goal-closeout | `012-plan-text-and-goal-closeout/goal.md` |
 | 013-drift-guard-probe-script-errors | `013-drift-guard-probe-script-errors/goal.md` |
+| 014-review-p2-fixes | `014-review-p2-fixes/goal.md` |
+| 015-skilled-alignment-check | `015-skilled-alignment-check/goal.md` |
+| 016-doc-alignment-check | `016-doc-alignment-check/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -92,9 +94,10 @@ string, not these files.
 - [x] `printf '%s' '{"prompt":"Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: Refactor the session store module to remove duplicated locking code"}' | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json` lists `sk-code` first on main after a daemon restart
 - [x] `npx vitest run tests/hooks tests/parity tests/handlers` exits 0 from `.skilled/skills/system-skill-advisor/runtime`
 - [x] `rg -n 'daemon starts' .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` prints one line
-- [x] `rg -n 'Decision rule outcome' specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-*/003-*/implementation-summary.md` prints one line naming ship, over-suppresses or no guard
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/host-integrations/003-pi-*/016-pi-* --recursive --strict --quiet` prints `RESULT: PASSED` for all fourteen folders
+- [x] `rg -n 'Decision rule outcome' specs/system-skill-advisor/*/003-pi-*/016-pi-*/003-*/implementation-summary.md` prints one line naming ship, over-suppresses or no guard
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/*/003-pi-*/016-pi-* --recursive --strict --quiet` prints `RESULT: PASSED` for all seventeen folders
 - [x] `git merge-base --is-ancestor worktrees/474-advisor-pasted-context-and-crash-fallback origin/main` exits 0
+- [ ] `tasks.md` in 014, 015 and 016 has no `- [ ]` line
 <!-- /ANCHOR:completion -->
 
 ---
@@ -117,11 +120,15 @@ and findings belong here.
 | 006 to 013 built | Done | Phases 006 to 011 and 013 committed in worktree 474; 012 fixed every confirmed review finding test first and closed the docs |
 | Finish | Done | Merged to main as `57d3f5d9159`, advisor rebuilt and its daemon restarted on main, criteria 1 to 5 run on main, pushed to origin/main |
 | Criteria evidence | Done | 1: `sk-code` first, daemon 24672 after the main build; 2: 424 passed on main; 3: line 382; 4: line 80, over-suppresses; 5: 14 of 14 on main; 6: exit 0 after pushing `57d3f5d9159` |
+| 015 and 016 alignment runs | Done | 015: 25 findings (1 P0 repaired in session, 9 P1, 15 P2), `015-skilled-alignment-check/evidence/report.md`. 016: 20 open findings (5 P1, 15 P2), `016-doc-alignment-check/evidence/report.md`. Both report only, nothing fixed |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Folder numbers differ from build order | 004 builds before 003 because both edit the same hook file; folder names were kept |
+| Amendment 2026-11-19, D6 for 014 | Operator approved commits and a merge to main for 014's worktree build, no push (014 decision record Q004) |
+| Amendment 2026-11-19, phases 015 and 016 | Report-only alignment runs added by operator request ("Also run /local-skilled-alignment and /local-doc-alignment make that phases"). D1 ends with 014 to 016, two binding rows added, criterion 5 counts seventeen folders and criterion 7 covers the tasks of 014, 015 and 016. To fit 4,000 characters: D7 dropped because it governed only the finished phase 011, D6 kept only its live choice, and `host-integrations` in two criterion globs became `*`, each glob checked to match one path |
+| Amendment 2026-11-19 | Phase 014 added for the nine P2 findings of the post-merge review, by operator choice. D1 order ends with 014, a binding row was added, criterion 5 counts fifteen folders and a seventh criterion requires 014's tasks done. To stay under 4,000 characters, D2 to D7 lost wording but no choice: D3's "Luna uses no other provider" and D5's "N4 builds in 010 and 011" were dropped as restating D2 and a finished phase |
 | Amendment 2026-11-18 | Phases 006 to 013 added, N4 moved out of the cut list, D1 order extended, D6 now approves commits, merge and push, D7 added, criteria 2 and 5 widened and criterion 6 added; the drift-guard and `confidenceOnly` checks live in the 013 and 009 goals |
 <!-- /ANCHOR:log -->

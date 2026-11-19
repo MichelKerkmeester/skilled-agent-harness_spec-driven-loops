@@ -1,0 +1,31 @@
+[
+  {
+    "id": "L1-1",
+    "source_id": "L1-1",
+    "lane": "L1",
+    "surface": "D5",
+    "standard": null,
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+    "line": "67",
+    "issue": "The Claude row says the runtime shows `{}` 'when disabled or on error'. The shared handler's catch does not return `{}` on an error: with a prompt string present it renders the outage fallback and returns it as `hookSpecificOutput.additionalContext` (renderAdvisorTimeoutFallback at hooks/claude/user-prompt-submit.ts:650, which renders `Advisor: outage (...)` through runtime/lib/render.ts:674), deduplicated like any brief. `{}` comes back only for a disabled switch, an unparsable payload, or an unrenderable fallback.",
+    "evidence": {
+      "cmd": "rg -n \"renderAdvisorTimeoutFallback\\(renderOptions\\)|renderAdvisorFallbackDirective\\(renderOptions, skippedResult\\)\" .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "exit": 0,
+      "out": "649:        ? renderAdvisorFallbackDirective(renderOptions, skippedResult)\n650:        : renderAdvisorTimeoutFallback(renderOptions);"
+    },
+    "fix": {
+      "old": "`Advisor:` text in `hookSpecificOutput.additionalContext`, or `{}` when disabled or on error.",
+      "new": "`Advisor:` text in `hookSpecificOutput.additionalContext`, or `{}` when disabled or when the payload carries no prompt string; a crash after the prompt is read renders the outage fallback."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "The row describes the compiled adapter the Claude runtime actually runs, which is the spec-kit shim: `.claude/settings.json` invokes `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js`, and the row's entry symlink points at that shim. That shim's `runShim()` returns `{}` on target-unresolved, spawn error/ETIMEDOUT, nonzero child exit, empty output and invalid JSON (`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:142,167,171,177,184,190`), so '`{}` ... on error' is accurate at the runtime boundary the row documents. The lane's handler-only evidence shows the handler can emit the outage fallback, but it does not contradict the shim's error-path `{}`.",
+      "lane_severity": "P1"
+    }
+  }
+]
