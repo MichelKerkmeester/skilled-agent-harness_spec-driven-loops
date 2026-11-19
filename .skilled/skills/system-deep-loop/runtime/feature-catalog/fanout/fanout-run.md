@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.8.0
+version: 1.4.9.0
 ---
 
 # Fan-out CLI lineage driver
@@ -88,7 +88,9 @@ from lineage label to node ids, which the merge's partition guard reads.
 Before a lineage spawns, `writeLineageFrontierStore` writes its share to
 `{lineageDir}/frontier-nodes.jsonl`. It writes only when the lineage has no store yet and its
 share is not empty, so a resumed lineage keeps the nodes it already closed. A research lineage
-also gets one `inbox.jsonl` row per node. A review lineage gets no inbox, because its nodes reach
+also gets one `inbox.jsonl` row per node. The inbox is written before the store, which marks the
+lineage as seeded, so a failed inbox write leaves no store and the next spawn attempt seeds both.
+A review lineage gets no inbox, because its nodes reach
 the leaf through the FRONTIER block.
 
 `depthMode` and the lineage's node ids reach the lineage through its prompt.
