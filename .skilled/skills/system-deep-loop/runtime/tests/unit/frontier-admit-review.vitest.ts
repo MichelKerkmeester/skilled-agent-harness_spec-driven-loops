@@ -538,20 +538,36 @@ describe('frontier-admit review root cap and commit-range scope', () => {
     expect(scopeInsideReviewTarget('lib/x', config)).toBe(false);
   });
 
-  // With no touched files on record a range admits every scope, so a path misread
-  // as a range would stop narrowing relevance to the files the target names.
-  it('reads a path with two dots inside a file name as a path, not a range', () => {
-    const config = { reviewTargetType: 'files', reviewTarget: 'docs/notes..v2.md' };
-
-    expect(scopeInsideReviewTarget('docs/notes..v2.md', config)).toBe(true);
-    expect(scopeInsideReviewTarget('lib/x', config)).toBe(false);
-  });
-
-  it('still reads a range between dotted tags as a range', () => {
-    const config = { reviewTargetType: 'files', reviewTarget: 'v1.2.0..v1.3.0', reviewScopeFiles: ['lib/x'] };
+  // Slashed refs are the usual way to write a review range, so a slash alone never
+  // makes a token a path.
+  it.each(['origin/main..HEAD', 'feature/x...main', 'v1.2.0..v1.3.0'])('reads %s as a range', (range) => {
+    const config = { reviewTargetType: 'files', reviewTarget: range, reviewScopeFiles: ['lib/x'] };
 
     expect(scopeInsideReviewTarget('lib/x', config)).toBe(true);
     expect(scopeInsideReviewTarget('src/c', config)).toBe(false);
+  });
+
+  // With no touched files on record a range admits every scope, so a real file read
+  // as a range would stop narrowing relevance to the file the target names.
+  it('reads a file that exists with two dots in its name as a path, not a range', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'frontier-admit-review-dots-'));
+    tempDirs.push(dir);
+    const file = join(dir, 'notes..v2.md');
+    writeFileSync(file, '# notes\n', 'utf8');
+    const config = { reviewTargetType: 'files', reviewTarget: file };
+
+    expect(scopeInsideReviewTarget(file, config)).toBe(true);
+    expect(scopeInsideReviewTarget('lib/x', config)).toBe(false);
+  });
+
+  // Accepted: a file target that does not exist on disk has nothing to review, and
+  // no lexical rule tells 'docs/notes..v2.md' from a range over slashed refs, so the
+  // missing path reads as a range and narrows to the touched files on record.
+  it('reads a missing slashed path with two dots in its name as a range', () => {
+    const config = { reviewTargetType: 'files', reviewTarget: 'docs/notes..v2.md', reviewScopeFiles: ['lib/x'] };
+
+    expect(scopeInsideReviewTarget('lib/x', config)).toBe(true);
+    expect(scopeInsideReviewTarget('docs/notes..v2.md', config)).toBe(false);
   });
 
   it('reads named lists of touched files the way the terminal gates do', () => {
