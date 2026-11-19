@@ -6914,6 +6914,17 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
     });
   });
 
+  // The merge orders frontier ids by code unit, so the deal must too: under locale
+  // collation a lowercase id sorts before an uppercase one and the shares would swap.
+  it('deals nodes in code-unit order, the order the merge checks', () => {
+    const dir = makeTempDir('fanout-run-frontier-codeunit-partition-');
+    writeNodeStore(dir, [frontierNodeRow('F-1-a'), frontierNodeRow('F-1-B')]);
+
+    const partition = partitionFrontierNodes(dir, ['left', 'right']);
+    expect(partition.left.map((node) => node.nodeId)).toEqual(['F-1-B']);
+    expect(partition.right.map((node) => node.nodeId)).toEqual(['F-1-a']);
+  });
+
   it('writes a review lineage store without an inbox', () => {
     const lineageDir = makeTempDir('fanout-run-frontier-review-store-');
     const nodes = [frontierNodeRow('F-1-001'), frontierNodeRow('F-1-002')];

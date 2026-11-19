@@ -354,7 +354,7 @@ function partitionFrontierNodes(baseArtifactDir, labels) {
   const { readNodeStore } = require('./frontier-admit.cjs');
   const nodes = [...readNodeStore(path.join(baseArtifactDir, 'frontier-nodes.jsonl')).values()]
     .filter((node) => node.depth === 1 && (node.status === 'open' || node.status === 'active'))
-    .sort((left, right) => left.nodeId.localeCompare(right.nodeId));
+    .sort((left, right) => (left.nodeId < right.nodeId ? -1 : left.nodeId > right.nodeId ? 1 : 0));
   const partition = Object.fromEntries(labels.map((label) => [label, []]));
   nodes.forEach((node, index) => { partition[labels[index % labels.length]].push(node); });
   return partition;
