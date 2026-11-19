@@ -62,7 +62,7 @@ const { execFileSync } = require('child_process');
 // The framework copy is the one holding the authored sentinel under `.skilled` or
 // `.opencode`. Resolving from the script's own directory therefore follows the
 // copy it was launched from, even when another repository's git root sits above it.
-const { findRepoRoot } = require(
+const { findRepoRoot, findSourceRoot } = require(
   '../../../skills/system-spec-kit/shared/workspace/repo-root.mjs',
 );
 
@@ -74,10 +74,14 @@ const EXIT_OK = 0;
 const EXIT_INVARIANT_FAILED = 1;
 const EXIT_CHECKER_ERROR = 2;
 
-// Targets and helper paths are repo-root-relative. Resolving them against the
-// framework copy that holds the authored sentinel, not process.cwd(), keeps a
-// non-root working directory from false-failing 4a or missing the hub entirely.
-const REPO_ROOT = findRepoRoot(__dirname);
+// Two roots: the checker's own code comes from CHECKER_ROOT, and the audited hub's data comes from its own repository (findDataRoot).
+// Resolving the checker root from the framework copy that holds the authored
+// sentinel, not process.cwd(), keeps a non-root working directory from missing
+// the hub entirely. The hub's data, meaning its canary fixture, bound commands,
+// drift guard and advisor, belongs to whichever repository holds the hub, so a
+// checker run from one checkout never audits another checkout's hub against its
+// own repository's data.
+const CHECKER_ROOT = findRepoRoot(__dirname);
 
 // Families the skill-graph compiler accepts for a discoverable identity.
 // Mirrors ALLOWED_FAMILIES in skill_graph_compiler.py / skill-graph-db.ts;
@@ -128,7 +132,6 @@ const DEEP_LOOP_DRIFT_GUARD =
 // projection against the live hardcoded map.
 const ADVISOR_SCRIPT =
   '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py';
-const ADVISOR_SCRIPT_ABS = path.resolve(REPO_ROOT, ADVISOR_SCRIPT);
 
 // The advisor dump imports the scorer, which takes seconds on a cold cache.
 // Past this budget the cross-check is reported as unable to run.
@@ -142,23 +145,24 @@ const GLOBAL_MAP_OWNER = 'system-deep-loop';
 const DEFAULT_TARGET = '.skilled/skills/system-deep-loop';
 
 // Shared contract libraries and the leaf-manifest generator live once in the
-// repository under sk-doc. They are resolved from the repo root so a hub
+// repository under sk-doc. They are resolved from the checker root so a hub
 // outside .skilled/skills, such as a fixture, audits against the same code.
-const SK_CREATE_SKILL_SCRIPTS = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts');
+const SK_CREATE_SKILL_SCRIPTS = path.join(CHECKER_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts');
 const LEAF_GENERATOR_PATH = path.join(SK_CREATE_SKILL_SCRIPTS, 'generate-leaf-manifest.cjs');
 const LEAF_CONTRACT_PATH = path.join(SK_CREATE_SKILL_SCRIPTS, 'lib', 'leaf-resource-contract.cjs');
 // The compiled-routing tree keeps one canary fixture per parent hub, each in a folder named `<number>-<hub>`.
-const CANARY_FIXTURE_ROOT = path.join(REPO_ROOT, '.skilled/bin/lib/compiled-routing/009-parent-hub-rollout');
+// It is relative to the hub's own repository, which owns its canaries.
+const CANARY_FIXTURE_DIR = '.skilled/bin/lib/compiled-routing/009-parent-hub-rollout';
 const ROOT_METADATA_CONTRACT_PATH = path.join(SK_CREATE_SKILL_SCRIPTS, 'lib', 'skill-root-metadata-contract.cjs');
 const ROOT_ROUTER_CONTRACT_PATH = path.join(SK_CREATE_SKILL_SCRIPTS, 'lib', 'root-router-contract.cjs');
 // The known-debt ledger reader is shared with the fleet gate, so both JS checks
 // read a skill's recorded shape the same way.
 const { loadRoutingShapeDebt } = require(path.join(SK_CREATE_SKILL_SCRIPTS, 'lib', 'routing-shape-debt.cjs'));
 
-// Bound commands resolve from here; the override lets a fixture supply them.
-const COMMANDS_DIR = process.env.PARENT_HUB_CHECK_COMMANDS_DIR
+// Bound commands resolve from the hub's repository; the override lets a fixture supply them.
+const COMMANDS_DIR_OVERRIDE = process.env.PARENT_HUB_CHECK_COMMANDS_DIR
   ? path.resolve(process.env.PARENT_HUB_CHECK_COMMANDS_DIR)
-  : path.join(REPO_ROOT, '.skilled', 'commands');
+  : null;
 
 // A slash command id: /namespace:name, both kebab-case.
 const COMMAND_PATTERN = /^\/([a-z][a-z0-9-]*):([a-z0-9-]+)$/;
@@ -754,11 +758,12 @@ function checkWriteGrant(mode, label, state) {
 // 3k: a bound command's frontmatter must not grant tools beyond the mode's
 // toolSurface.allowed; the command is an entrypoint into the mode, and a wider
 // grant silently escalates the mode's declared tool contract.
-function checkCommandGrant(mode, label, state) {
+function checkCommandGrant(ctx, mode, label, state) {
   const ts = mode.toolSurface;
   if (typeof mode.command !== 'string' || !isPlainObject(ts) || !Array.isArray(ts.allowed)) return;
   const cm = mode.command.match(COMMAND_PATTERN);
-  const cmdFile = cm ? path.join(COMMANDS_DIR, cm[1], `${cm[2]}.md`) : null;
+  const commandsDir = COMMANDS_DIR_OVERRIDE || path.join(ctx.dataRoot, '.skilled', 'commands');
+  const cmdFile = cm ? path.join(commandsDir, cm[1], `${cm[2]}.md`) : null;
   if (!cmdFile || !fs.existsSync(cmdFile)) return;
   const granted = parseAllowedTools(fs.readFileSync(cmdFile, 'utf8'));
   if (!granted) return;
@@ -827,7 +832,7 @@ function checkModes(ctx) {
     if (mode.packetKind === 'surface') checkSurfaceMode(mode, label, state);
     if (mode.packetKind === 'transport') checkTransportMode(ctx, mode, label, state);
     checkWriteGrant(mode, label, state);
-    checkCommandGrant(mode, label, state);
+    checkCommandGrant(ctx, mode, label, state);
   });
   reportModeState(ctx, state);
 }
@@ -1008,7 +1013,7 @@ function checkDriftGuard(ctx, projectedModes) {
     info('4a: hub declares no lexical/alias-fold modes — no advisor drift-guard required');
   } else if (!declaredGuard) {
     fail(`4a: hub has ${projectedModes.length} lexical/alias-fold mode(s) [${projectedModes.join(', ')}] but declares no driftGuard path (advisorRoutingContract.driftGuard or advisor-projection extension)`);
-  } else if (fs.existsSync(path.resolve(REPO_ROOT, declaredGuard))) {
+  } else if (fs.existsSync(path.resolve(ctx.dataRoot, declaredGuard))) {
     pass(`4a: routing-registry drift-guard present at ${declaredGuard}`);
   } else {
     fail(`4a: declared drift-guard test missing at ${declaredGuard} — registry/maps parity is unguarded`);
@@ -1018,13 +1023,14 @@ function checkDriftGuard(ctx, projectedModes) {
 // The advisor's live lexical map, or null after reporting why it is unavailable.
 // A lexical projection that cannot be verified is a failure, not a skip: the
 // cross-check is the only gate that reads the map the advisor actually serves.
-function dumpAdvisorMap() {
-  if (!fs.existsSync(ADVISOR_SCRIPT_ABS)) {
+function dumpAdvisorMap(ctx) {
+  const advisorScript = path.resolve(ctx.dataRoot, ADVISOR_SCRIPT);
+  if (!fs.existsSync(advisorScript)) {
     fail(`4b: advisor script not found at ${ADVISOR_SCRIPT}; the lexical projection cannot be verified`);
     return null;
   }
   try {
-    const raw = execFileSync('python3', [ADVISOR_SCRIPT_ABS, '--dump-routing-maps'], {
+    const raw = execFileSync('python3', [advisorScript, '--dump-routing-maps'], {
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'ignore'],
       timeout: ADVISOR_DUMP_TIMEOUT_MS,
@@ -1043,7 +1049,7 @@ function checkAdvisorMap(ctx, lexicalIds) {
     info('4b: registry declares no lexical modes; nothing to cross-check against the advisor');
     return;
   }
-  const dumped = dumpAdvisorMap();
+  const dumped = dumpAdvisorMap(ctx);
   if (!dumped) return;
   if (ctx.basename === GLOBAL_MAP_OWNER) {
     const expectedKeys = [...ids].sort();
@@ -1271,12 +1277,13 @@ function checkSubworkflowSignals(ctx, subworkflowSignals) {
 // The packet leg checks each mode packet against the description keywords. The
 // canary leg checks that each routerSignals mode is the expected route of a case
 // in the hub's canary fixture.
-function findCanaryFixtureDir(basename) {
-  if (!isDirectory(CANARY_FIXTURE_ROOT)) return null;
+function findCanaryFixtureDir(dataRoot, basename) {
+  const fixtureRoot = path.join(dataRoot, CANARY_FIXTURE_DIR);
+  if (!isDirectory(fixtureRoot)) return null;
   const pattern = new RegExp(`^\\d+-${escapeRegExp(basename)}$`);
-  const name = fs.readdirSync(CANARY_FIXTURE_ROOT).find((entry) => pattern.test(entry)
-    && isDirectory(path.join(CANARY_FIXTURE_ROOT, entry)));
-  return name ? path.join(CANARY_FIXTURE_ROOT, name) : null;
+  const name = fs.readdirSync(fixtureRoot).find((entry) => pattern.test(entry)
+    && isDirectory(path.join(fixtureRoot, entry)));
+  return name ? path.join(fixtureRoot, name) : null;
 }
 
 function aliasDrift(ctx, signals, classes) {
@@ -1353,9 +1360,11 @@ function checkVocabularyParity(ctx) {
     reportParityLeg(ctx, 'packet', packetDrift(ctx), 'every mode packet is a description keyword');
   }
 
-  const fixtureDir = findCanaryFixtureDir(ctx.basename);
+  // A hub's canaries belong to its own repository. A missing fixture there is
+  // reported as not applicable, never replaced by the checker repository's.
+  const fixtureDir = findCanaryFixtureDir(ctx.dataRoot, ctx.basename);
   if (!fixtureDir) {
-    info(`5k-canary: no compiled-routing canary fixture for hub "${ctx.basename}", leg not applicable`);
+    info(`5k-canary: no compiled-routing canary fixture for hub "${ctx.basename}" in ${ctx.dataRoot}, leg not applicable`);
     return;
   }
   let cases;
@@ -1914,11 +1923,12 @@ const ROUTING_SHAPE_MACHINE_LINE =
 const ROUTING_SHAPE_LINK = /(?<!!)\[[^\]]*\]\(\s*([^)]*?)\s*\)/g;
 
 // A ledger key is a path relative to the skills root, so a same-named folder
-// anywhere else can never inherit the debt recorded for a real skill. The env
-// override lets a test audit its fixture tree as if it were the skills root.
+// anywhere else can never inherit the debt recorded for a real skill. The ledger
+// ships with the checker's code, so its keys name the checker repository's skills.
+// The env override lets a test audit its fixture tree as if it were the skills root.
 const ROUTING_SHAPE_SKILLS_ROOT = process.env.ROUTING_SHAPE_SKILLS_ROOT
   ? path.resolve(process.env.ROUTING_SHAPE_SKILLS_ROOT)
-  : path.join(REPO_ROOT, '.skilled', 'skills');
+  : path.join(CHECKER_ROOT, '.skilled', 'skills');
 
 // A section title with its numbering and leading emoji or punctuation removed,
 // so `## 2. SMART ROUTING` and `## 🧭 Smart Routing` name the same section.
@@ -2420,10 +2430,18 @@ function checkVersionParity(ctx) {
 // 14. ORCHESTRATOR
 // ─────────────────────────────────────────────────────────────────────────────
 
+// The repository that holds the hub, recognized by its authored sentinel. A hub
+// outside any repository, such as a temp fixture, reads the checker's own.
+function findDataRoot(target) {
+  const root = findRepoRoot(target);
+  return findSourceRoot(root) ? root : CHECKER_ROOT;
+}
+
 function createContext(target) {
   const repoRootHub = readRepoRootHub(target);
   return {
     target,
+    dataRoot: findDataRoot(target),
     repoRootHub,
     basename: repoRootHub.declared ? kebabCase(path.basename(target)) : path.basename(target),
     registry: null,
@@ -2475,7 +2493,7 @@ function main() {
     return EXIT_CHECKER_ERROR;
   }
   const argTarget = explicitTarget || DEFAULT_TARGET;
-  const target = path.isAbsolute(argTarget) ? argTarget : path.resolve(REPO_ROOT, argTarget);
+  const target = path.isAbsolute(argTarget) ? argTarget : path.resolve(CHECKER_ROOT, argTarget);
 
   // A per-hub gate reporting on a hub the caller did not name reads exactly like success.
   if (!explicitTarget) {

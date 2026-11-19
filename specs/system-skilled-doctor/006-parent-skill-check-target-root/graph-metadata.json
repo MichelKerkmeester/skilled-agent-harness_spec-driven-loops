@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/006-parent-skill-check-target-root",
+  "spec_folder": "system-skilled-doctor/006-parent-skill-check-target-root",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "parent skill check target root",
+      "parent skill check reads a hub s canary",
+      "vendored hub canary fixture",
+      "5k-canary no canary case routes to it",
+      "parent skill check target root plan",
+      "parent skill check target root tasks",
+      "parent skill check target root goal",
+      "parent skill check target root implementation summary"
+    ],
+    "key_topics": [
+      "parent",
+      "skill",
+      "check",
+      "target",
+      "root",
+      "reads",
+      "hub",
+      "canary",
+      "vendored",
+      "fixture",
+      "5k-canary",
+      "case"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
+      ".skilled/commands/doctor/scripts/README.markdown",
+      ".skilled/skills/system-skilled-doctor/changelog/v1.1.8.0.md",
+      ".skilled/skills/system-skilled-doctor/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check-invariants.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/README.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.8.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/changelog/v1.1.8.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Barter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`parent-skill-check.cjs` resolves one root, `findRepoRoot(dirname)`, and reads every repository-relative path from it",
+    "created_at": "2026-11-19T08:58:02Z",
+    "last_save_at": "2026-11-19T10:24:22.132Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5b75a60db1c91bbef370bd02823b2e7efb7e7a97dc29f7a541497fdcb58ca56a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4be668c10f6cdf5c4c958cb08ee2cb04cb3f46170bc0e85b344a67153a166e10",
+      "plan.md": "8fbaa62ea4d12cb703110cbf28012bf5f96a9dd7b92e42ac638e70ae97dddc57",
+      "tasks.md": "b81b1ec5e0022312d085d5c860518c88c446368bb9d4e13c270ac5df0bb5d628",
+      "implementation-summary.md": "bfabedbfd6ca76ba55f97568b19dd897664e9d6db5bb1125cf787658ed7701f4"
+    },
+    "last_active_at": null
+  }
+}
