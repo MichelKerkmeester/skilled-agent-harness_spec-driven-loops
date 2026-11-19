@@ -144,6 +144,7 @@
     "resolvedQuestions": 0,
     "carriedForwardOpenQuestions": 0,
     "keyFindings": 0,
+    "sourceFindings": 0,
     "rejectedPatterns": 0,
     "suppressedCandidates": 0,
     "observedIdeas": 0,

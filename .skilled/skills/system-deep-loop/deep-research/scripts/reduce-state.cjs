@@ -2840,6 +2840,10 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
       resolvedQuestions: keyedQuestions.filter((question) => question.resolved).length,
       carriedForwardOpenQuestions: carriedForwardOpenQuestions.length,
       keyFindings: keyFindings.length,
+      // Every key finding here is read from an iteration file, so this is the
+      // count of findings the sources hold, the same count the fan-out merge
+      // records for a lineage.
+      sourceFindings: keyFindings.length,
       rejectedPatterns: rejectedPatterns.length,
       suppressedCandidates: suppressedCandidates.length,
       observedIdeas: ideaBacklog.observedIdeas.length,

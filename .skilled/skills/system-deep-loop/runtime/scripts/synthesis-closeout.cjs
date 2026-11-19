@@ -429,6 +429,9 @@ function closeOut(args) {
         stateParseFailureCount,
       });
       // Research incompleteness is an error the workflow must surface.
+      process.stderr.write(
+        `synthesis-closeout: research synthesis incomplete, invariant failed: ${invariantFailures.join(', ')}\n`,
+      );
       process.exitCode = 2;
       return;
     }

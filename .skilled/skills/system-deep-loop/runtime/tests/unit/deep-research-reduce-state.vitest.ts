@@ -2276,3 +2276,94 @@ describe('frontier focus visit counting', () => {
     expect(pickFrontierFocus({ nodes }, records)).toMatch(/^Frontier node F-1-002 /);
   });
 });
+
+describe('single-executor closeout over count-only state rows', () => {
+  const closeoutScript = resolve(
+    dirname(fileURLToPath(import.meta.url)), '..', '..', 'scripts', 'synthesis-closeout.cjs',
+  );
+
+  // Each state row counts its findings without listing them, as a live
+  // single-executor run records them; the findings themselves live only in the
+  // iteration markdown the reducer reads.
+  function countOnlyRun(findingsPerRun: Array<{ listed: number; counted: number }>) {
+    const specFolder = makeTempSpec();
+    const researchDir = join(specFolder, 'research');
+    mkdirSync(join(researchDir, 'iterations'), { recursive: true });
+    findingsPerRun.forEach(({ listed }, index) => {
+      const run = index + 1;
+      writeFileSync(
+        join(researchDir, 'iterations', `iteration-${String(run).padStart(3, '0')}.md`),
+        [
+          `# Iteration ${run}: count-only findings`,
+          '',
+          '## Findings',
+          '',
+          ...Array.from({ length: listed }, (_, finding) => `- Finding ${finding + 1} of run ${run}`),
+          '',
+        ].join('\n'),
+        'utf8',
+      );
+    });
+    writeState(specFolder, `${findingsPerRun.map(({ counted }, index) => JSON.stringify({
+      type: 'iteration',
+      iteration: index + 1,
+      run: index + 1,
+      status: 'complete',
+      focus: 'count-only findings',
+      newInfoRatio: 0.2,
+      findingsCount: counted,
+      timestamp: '2026-06-28T00:00:00.000Z',
+    })).join('\n')}\n`);
+
+    const reduced = reduceResearchState(specFolder, { write: true });
+    const outputPath = join(researchDir, 'research.md');
+    writeFileSync(outputPath, '# Research\n\nSynthesis of the count-only run.\n', 'utf8');
+    const eventDir = join(specFolder, 'events');
+    mkdirSync(eventDir, { recursive: true });
+    const closeout = spawnSync(process.execPath, [
+      closeoutScript,
+      '--mode', 'research',
+      '--event-dir', eventDir,
+      '--artifact-dir', researchDir,
+      '--state-log', join(researchDir, 'deep-research-state.jsonl'),
+      '--registry', reduced.registryPath,
+      '--output', outputPath,
+      '--dashboard', join(researchDir, 'deep-research-dashboard.md'),
+      '--stop-reason', 'converged',
+      '--answered-count', '1',
+      '--total-questions', '1',
+    ], { encoding: 'utf8' });
+    return { eventDir, closeout, registry: reduced.registry };
+  }
+
+  it('closes a run whose iteration files hold every counted finding', () => {
+    const { eventDir, closeout, registry } = countOnlyRun([
+      { listed: 2, counted: 2 },
+      { listed: 3, counted: 3 },
+    ]);
+
+    expect((registry.metrics as Record<string, unknown>).sourceFindings).toBe(5);
+    expect(closeout.stderr).toBe('');
+    expect(closeout.status).toBe(0);
+    expect(existsSync(join(eventDir, 'synthesis_incomplete.json'))).toBe(false);
+    expect(JSON.parse(readFileSync(join(eventDir, 'synthesis_complete.json'), 'utf8'))).toMatchObject({
+      stem: 'deep_research.synthesis_complete',
+      data: { totalIterations: 2, stopReason: 'converged' },
+    });
+  });
+
+  it('halts with the invariant on stderr when the iteration files hold fewer findings', () => {
+    const { eventDir, closeout } = countOnlyRun([{ listed: 1, counted: 3 }]);
+
+    expect(closeout.status).toBe(2);
+    expect(closeout.stderr).toContain('count_only_state_findings_not_reconstructed');
+    expect(JSON.parse(readFileSync(join(eventDir, 'synthesis_incomplete.json'), 'utf8'))).toMatchObject({
+      stem: 'deep_research.synthesis_incomplete',
+      data: {
+        invariantFailures: ['count_only_state_findings_not_reconstructed'],
+        countOnlyFindingCount: 3,
+        sourceFindingCount: 1,
+      },
+    });
+  });
+});
