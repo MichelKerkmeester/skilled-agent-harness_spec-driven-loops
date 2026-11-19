@@ -1828,14 +1828,14 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
     leafContract.splice(
       leafContract.length - 1,
       0,
-      `- Expansive depth: work the frontier nodes bound as frontier_scope. Propose follow-up questions only as frontier_proposal delta rows under the node your focus names, at most the slots its FRONTIER block allows, and never write the inbox or the node store.`,
+      `- Expansive depth: work the frontier nodes bound as frontier_scope. Before each iteration, write its focus to ${promptDir}/frontier-focus.txt with the file-write tool, then print its FRONTIER block with: node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs block --artifact-dir ${promptDir} --focus-file ${promptDir}/frontier-focus.txt. Propose follow-up questions only as frontier_proposal delta rows under the node your focus names, at most the slots that block allows and none when it prints nothing, and never write the inbox or the node store.`,
     );
   }
   if (options.depthMode === 'expansive' && loopType === 'review' && leafContract.length > 0) {
     leafContract.splice(
       leafContract.length - 1,
       0,
-      `- Expansive depth: work the frontier nodes bound as frontier_scope, one node and its next uncovered dimension per iteration as the FRONTIER block names it. Propose sub-targets only as frontier_proposal delta rows under that node, at most the slots its FRONTIER block allows, never outside the review target, and never write the node store or a coverage surface.`,
+      `- Expansive depth: work the frontier nodes bound as frontier_scope, one node and its next uncovered dimension per iteration. Before each iteration, print that node's FRONTIER block with: node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs block --target review --artifact-dir ${promptDir} --node-id <node id> --dimension <dimension>. Propose sub-targets only as frontier_proposal delta rows under that node, at most the slots that block allows and none when it prints nothing, never outside the review target, and never write the node store or a coverage surface.`,
     );
   }
   const hasIterationCap = typeof lineage.iterations === 'number' && lineage.iterations > 0;

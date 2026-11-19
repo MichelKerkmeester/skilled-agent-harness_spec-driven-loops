@@ -6959,8 +6959,26 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
     const focusIndex = lines.indexOf('review_focus: error handling');
     expect(focusIndex).toBeGreaterThan(-1);
     expect(lines[focusIndex + 1]).toBe('frontier_scope: F-1-001, F-1-004');
+    // A CLI leaf gets no rendered per-iteration prompt, so the contract names the command
+    // that prints the block rather than a block the prompt never carries.
     expect(prompt).toContain(
-      '- Expansive depth: work the frontier nodes bound as frontier_scope, one node and its next uncovered dimension per iteration as the FRONTIER block names it.',
+      'Before each iteration, print that node\'s FRONTIER block with: node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs block --target review --artifact-dir /tmp/x/review/lineages/a --node-id <node id> --dimension <dimension>.',
+    );
+    expect(prompt).not.toContain('as the FRONTIER block names it');
+  });
+
+  it('names the command that prints the FRONTIER block in an expansive research leaf contract', () => {
+    const prompt = buildLoopPrompt(
+      'research',
+      'specs/x',
+      '/tmp/x/research/lineages/a',
+      'sid',
+      { label: 'a', kind: 'cli-opencode', model: 'm', iterations: 2 },
+      'topic',
+      { stopPolicy: 'convergence', depthMode: 'expansive', frontierScope: ['F-1-001'] },
+    );
+    expect(prompt).toContain(
+      'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs block --artifact-dir /tmp/x/research/lineages/a --focus-file /tmp/x/research/lineages/a/frontier-focus.txt',
     );
   });
 
