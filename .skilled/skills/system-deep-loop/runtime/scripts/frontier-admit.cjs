@@ -172,6 +172,12 @@ function normalizeIteration(value) {
   return Number.isInteger(value) && value >= 0 ? value : 0;
 }
 
+// A budget counts iterations, so only a positive whole number is one. Anything
+// else is treated as no budget, the way a cap that is not positive reads as unset.
+function proposalBudget(value) {
+  return Number.isInteger(value) && value > 0 ? value : null;
+}
+
 function capValue(value, fallback) {
   return Number.isFinite(value) && value > 0 ? Math.floor(value) : fallback;
 }
@@ -716,10 +722,12 @@ function checkProposal(proposal, nodes, caps, knownTexts, options = {}) {
 
   // 5. budget
   const parent = proposal.parentId === 'root' ? null : nodes.get(proposal.parentId);
-  if (Number.isFinite(proposal.budget) && parent && Number.isFinite(parent.budget)) {
+  const budget = proposalBudget(proposal.budget);
+  const parentBudget = parent ? proposalBudget(parent.budget) : null;
+  if (budget !== null && parentBudget !== null) {
     // Budgets only narrow from parent to child; a child that claims more than
     // its parent could spend work the run never allotted to that branch.
-    if (proposal.budget > parent.budget) return 'budget';
+    if (budget > parentBudget) return 'budget';
   }
 
   // 6. cycle
@@ -794,7 +802,7 @@ function admitProposals({ artifactDir, iteration, proposals, knownTexts = [], ta
       dedupeKey: dedupeKey(proposal.question),
       // The budget check compares a child with its stored parent, so an admitted
       // budget is kept on the row or no later child could ever be held to it.
-      ...(Number.isFinite(proposal.budget) ? { budget: proposal.budget } : {}),
+      ...(proposalBudget(proposal.budget) !== null ? { budget: proposal.budget } : {}),
     };
     appendJsonlRow(storePath, row);
     nodes.set(nodeId, row);

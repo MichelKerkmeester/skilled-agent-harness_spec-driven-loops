@@ -356,6 +356,27 @@ describe('frontier-admit', () => {
     expect(dedupeKey('Café: résumé?')).toBe(dedupeKey('café résumé'));
   });
 
+  // A budget is a count of iterations. A negative or fractional one stored on a
+  // node would prune every later child that names a positive budget.
+  it.each([-1, 0, 1.5])('ignores a budget of %s rather than storing it', (budget) => {
+    const artifactDir = makeArtifactDir();
+    const first = admitProposals({
+      artifactDir,
+      iteration: 1,
+      proposals: [{ ...makeProposal('which branch claims an odd budget'), budget }],
+    });
+    const parentId = first.admitted[0];
+    expect(parentId).toBeDefined();
+    expect(readNodeStore(join(artifactDir, STORE_FILE)).get(parentId)?.budget).toBeUndefined();
+
+    const { admitted } = admitProposals({
+      artifactDir,
+      iteration: 2,
+      proposals: [{ ...makeProposal('which follow-up names a whole budget'), parentId, budget: 3 }],
+    });
+    expect(admitted).toHaveLength(1);
+  });
+
   it('records a pruned proposal in the store without an inbox row', () => {
     const artifactDir = makeArtifactDir();
     const question = 'how does the frontier hand off a duplicate';
