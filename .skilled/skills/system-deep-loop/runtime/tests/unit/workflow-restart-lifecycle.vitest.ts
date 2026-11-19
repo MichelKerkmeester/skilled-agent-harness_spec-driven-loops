@@ -14,7 +14,7 @@
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { spawnSync } from 'node:child_process';
+import { spawnSync, type SpawnSyncReturns } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
   existsSync,
@@ -166,7 +166,7 @@ function afterAcquire(text: string): string {
   return text.slice(text.indexOf('      step_acquire_lock:\n'));
 }
 
-function runShell(command: string, cwd = REPO_ROOT): ReturnType<typeof spawnSync> {
+function runShell(command: string, cwd = REPO_ROOT): SpawnSyncReturns<string> {
   return spawnSync('bash', ['-c', command], { cwd, encoding: 'utf8' });
 }
 
@@ -717,7 +717,7 @@ function markComplete(config: string): void {
   writeFileSync(config, JSON.stringify({ ...readJson(config), status: 'complete' }));
 }
 
-function extendResearch(run: ExtensionRun, extend: string, extendMinutes = ''): ReturnType<typeof spawnSync> {
+function extendResearch(run: ExtensionRun, extend: string, extendMinutes = ''): SpawnSyncReturns<string> {
   return runShell(render(stepCommand('deep-research.yaml', 'step_extend_completed_run'), {
     '{state_paths.config}': run.config,
     '{state_paths.state_log}': run.stateLog,
