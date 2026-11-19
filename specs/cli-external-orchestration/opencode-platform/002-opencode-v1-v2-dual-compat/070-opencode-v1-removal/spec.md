@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-19 |
 | **Branch** | `worktrees/477-opencode-v1-removal` |
 | **Parent Spec** | `../spec.md` |
@@ -141,7 +141,7 @@ The table is an audit summary. Each child's `plan.md` and `tasks.md` hold the pe
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-v1-runtime-code-and-tests/ | Version resolvers, dispatch rules, deep-loop runtime, skilled-loop wrapper, setup helper, doctor battery, plugins, session readers | Complete (live event capture done; CHK-003 waived by ADR-002) |
-| 2 | 002-v1-ci-and-package-pins/ | v1 CI matrix leg and `both` job, workflow name, `@opencode-ai/plugin` pins, v2 pin bump to 2.3.2 | In Progress (the CI run waits for the operator push; AC-008 Unmet) |
+| 2 | 002-v1-ci-and-package-pins/ | v1 CI matrix leg and `both` job, workflow name, `@opencode-ai/plugin` pins, v2 pin bump to 2.3.2 | Complete (v2 battery green on the merge commit) |
 | 3 | 003-v1-docs-and-playbooks-sweep/ | cli-opencode and plugin docs, playbooks, `--pure` text, feature catalog, generated artifacts, changelog entry | Complete (AC-004 met live; ADR-001 and ADR-002) |
 
 ### Phase Transition Rules

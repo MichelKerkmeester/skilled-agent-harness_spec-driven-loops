@@ -8,29 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins"
-    last_updated_at: "2026-11-19T17:44:43Z"
+    last_updated_at: "2026-11-19T23:02:51Z"
     last_updated_by: "generate-context"
-    recent_action: "Closed review fixes; phases 001 and 003 complete, validate passes for all four folders"
-    next_safe_action: "Run the branch push after gh auth switch, then read CI for AC-008"
+    recent_action: "Merged into main as 06d02096e90; v2 battery green, phase 002 complete"
+    next_safe_action: "None; the packet is complete"
     packet_purpose: "Purpose: A CI workflow that tests one OpenCode major at the pinned version, with no v1 leg, and package manifests that pin only what v2 uses."
-    blockers:
-      - "Push needs gh account MichelKerkmeester active"
+    blockers: []
     key_files:
       - "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/tasks.md"
       - "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/acceptance-criteria.md"
-      - ".github/workflows/opencode-v2-battery.yml"
     session_dedup:
-      fingerprint: "sha256:9998c67893bf70d66816e3ecd451545b68946c1f177b7771c22df0a754af6914"
+      fingerprint: "sha256:45aeff2412d861c7997d945af40b55c2735620ff6d72049c2edd36fc29700ad6"
       session_id: "closure-002-v1-ci-and-package-pins"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "df9261d4-6090-4b52-892b-db52ff291ccd"
       workspace: "/Users/michelkerkmeester/worktrees/public/477-opencode-v1-removal"
-      savedAt: "2026-11-19T17:44:43Z"
+      savedAt: "2026-11-19T23:02:51Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 88
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,9 +46,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-v1-ci-and-package-pins |
-| **Completed** | Open: the CI run is pending |
+| **Completed** | 2026-11-19 |
 | **Level** | 2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -88,7 +86,7 @@ The workflow and the setup helper carried the old 2.3.0 pin and a v1 leg. This p
 
 The registry and the binary were checked first, and the results went into `scratch/versions.txt`. The SDK usage and the `variant` key were then decided and recorded, and the manifests and the lockfiles changed after that. The four formerly gated suites ran with no matrix condition, and the closure run reran them with the results in `scratch/after.txt`. The workflow YAML parses with Ruby, and `opencode-setup.sh` passes `bash -n`.
 
-The CI run on the final commit has not happened. It needs the operator's push go-ahead, so T015 and AC-008 stay open.
+The branch was merged into main as 06d02096e90, and the OpenCode v2 Battery passed on that commit (run 44632438229). Three other suites failed on the same commit, each on a test that already failed on main before the merge: two pi executor-config tests, one Pi session-handover test and one plugin test.
 After the operator asked for version-neutral names, the workflow file became `.github/workflows/opencode-v2-battery.yml`, the models-form test became `opencode-models-form.test.cjs`, and the catalog entry `opencode-dual-version-dispatch/` became `opencode-version-dispatch/`. These were `git mv` renames in their own commit, and every live reference and this packet's Verify lines were updated. The suite counts above were recorded under the old file names.
 <!-- /ANCHOR:how-delivered -->
 
@@ -133,12 +131,12 @@ After the operator asked for version-neutral names, the workflow file became `.g
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The CI run is UNKNOWN.** T015 and AC-008 stay open until the operator pushes the branch and the run on the final commit is read.
+1. **The battery ran on main, not on the branch.** It triggers only on main or a pull request, and the operator chose a direct merge, so AC-008 rests on the merge commit's run.
 2. **The `variant` decision rests on source evidence, not a live run.** `scratch/variant.txt` cites the OpenCode state code in `.skilled/hooks/session-handover/lib/context-usage.cjs`, and it records that no live `opencode run` was made. AC-006 is met on that basis.
 3. **CHK-003 is waived by ADR-001.** The SDK record is correct but was written 49 seconds after the manifests changed.
 4. **CHK-012 is met.** Rerunning `npm install --package-lock-only` reproduces both committed lockfiles with 0 diff lines (`scratch/lockfile-regen.txt`).
 5. **CHK-013 is met.** The Files table gained a row for the 12 files in `scratch/files-outside-table.txt`.
-6. **Completion is blocked on the push.** The phase cannot be Complete while AC-008 is Unmet.
+6. **Three unrelated suites fail on main.** Deep-Loop Runtime (two pi executor-config tests, since `8bc8f71d2bf` dropped the private provider), Hook Vitest (one Pi session-handover test) and Plugin Tests (one Claude-source test) fail on the same tests as before the merge.
 
 ---
 

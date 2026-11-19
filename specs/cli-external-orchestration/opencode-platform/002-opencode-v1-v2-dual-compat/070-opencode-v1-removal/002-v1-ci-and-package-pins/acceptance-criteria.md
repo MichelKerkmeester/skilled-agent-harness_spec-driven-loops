@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-002-v1-ci-and-package-pins"
       parent_session_id: null
-    completion_pct: 88
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 002-v1-ci-and-package-pins
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-11-19
 <!-- /ANCHOR:metadata -->
 
@@ -58,7 +58,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-005 | REQ-005 | Given the compat and config-shape tests, When the v1 assertion and the v1 test name are searched, Then neither remains and the compat suite reports no failures | `rg -n -F 'keeps the v1 config shape' .skilled/bin/tests/opencode-config-shape.test.cjs \| wc -l` prints 0, and `node --test .skilled/bin/tests/opencode-compat-layout.test.cjs` prints `# fail 0` Observed 2026-11-19: the v1 test-name count is 0, and the compat suite reports `# tests 20`, `# pass 19`, `# fail 0`. | Met | - |
 | AC-006 | REQ-006 | Given the root `opencode.json`, When its `variant` keys are checked against the live result, Then the file matches the decision recorded in `scratch/variant.txt` | `rg -n '"variant"' opencode.json \| wc -l` prints the count the recorded result implies Observed 2026-11-19: 2 `variant` keys in `opencode.json`, matching the recorded result "read (kept)" in `scratch/variant.txt`. The result rests on source evidence, not a live run. | Met | - |
 | AC-007 | REQ-007 | Given the default-model-id test, When it runs on the v2 entry, Then it reports no failures | `node --test .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs` prints `# fail 0` Observed 2026-11-19: `# tests 6`, `# pass 6`, `# fail 0`. | Met | - |
-| AC-008 | REQ-008 | Given the final commit on the branch, When its CI run is read after the push, Then the run is green on the v2 entry | `gh run list --branch worktrees/477-opencode-v1-removal --limit 1` prints `success` for this workflow, after the operator's push go-ahead UNKNOWN: not run. The push needs the operator's go-ahead, so no CI run exists for the final commit. | Unmet | - |
+| AC-008 | REQ-008 | Given the final commit on the branch, When its CI run is read after the push, Then the run is green on the v2 entry | `gh run list --branch worktrees/477-opencode-v1-removal --limit 1` prints `success` for this workflow, after the operator's push go-ahead. CI run 44632438229 (OpenCode v2 Battery) on merge commit 06d02096e90 on main concluded `success` on 2026-11-19. The workflow runs only on main or a pull request, so it ran on the merged commit, not on a branch push; read with `gh run list --workflow 'OpenCode v2 Battery' --branch main --limit 1`. | Met | `gh run view 44632438229` |
 
 ### Status values
 
@@ -83,7 +83,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-No. AC-001 to AC-007 are Met. AC-008, the CI run on the final commit, stays Unmet until the operator approves the push. Checked 2026-11-19.
+Yes. Every criterion is Met. AC-008 was met by the v2 battery run on the merge commit on main. Checked 2026-11-19.
 <!-- /ANCHOR:closure -->

@@ -33,7 +33,7 @@
       "specification"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "decision-record.md",
@@ -157,12 +157,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -187,6 +181,12 @@
         "source": "derived"
       },
       {
+        "name": "Purpose One",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -201,20 +201,20 @@
     ],
     "causal_summary": "OpenCode 2.3.2 is the only version in use",
     "created_at": "2026-11-19T09:04:20Z",
-    "last_save_at": "2026-11-19T17:44:43.347Z",
+    "last_save_at": "2026-11-19T23:02:51.534Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:2a76a0ac2cdf55e168a15a4e29eb7ec6dec8e4ef0c1f53f7f79e7a2f5ee8dff5",
+    "source_fingerprint": "sha256:b8b4d461d1c85c702889729ac24c6f054976547d0c8e2293eb88c7265ff992c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "568e7d5d44e8d2659481852d8765a8da0de35f5e701076b1c8f9ef36e9be4e4f",
-      "decision-record.md": "f20a6e17fcf2c5a5c12314d1155e87ac81af5793b44de9bf8ccd720e14809353"
+      "spec.md": "6ff34dd9ac0e2a8ca3b531923e9d219271f7da5441ca60d5d30557d990c4063a",
+      "decision-record.md": "87f8aa95bab1a30b3501fa529ca3f1d64da2acd45c7a2588656ed21f89aba018"
     },
-    "last_active_at": "2026-11-19T17:44:43.347Z",
-    "last_active_child_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins"
+    "last_active_child_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins",
+    "last_active_at": "2026-11-19T23:02:51.534Z"
   }
 }

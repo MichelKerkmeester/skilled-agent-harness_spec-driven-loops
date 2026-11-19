@@ -41,6 +41,7 @@ _memory:
 | Q005 | Run the AC-004 live checks and rename the leftover dual/opencode2 names. | Not stated. | None | 003 AC-004, 002 rename commit 3ef324c3de1 |
 | Q006 | Run the deep review on cli-pi with DeepSeek V4.1 Flash at max, since cli-opencode refused a dirty primary checkout. | Not stated. | None | 070 review/review-report.md |
 | Q007 | Approve the full review-fix plan, closing A5 as intended and waiving the after-the-fact ordering checks by ADR. | Not stated. Evidence: yes_no, option false, overlap 0, imperative false, shift false. | None | 001 ADR-002, 002 ADR-001, 003 ADR-002 |
+| Q008 | Merge the branch straight into main with no pull request, following sk-git, so the v2 battery runs on main. | Not stated. | None | 002 T015, AC-008, merge commit 06d02096e90 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -183,6 +184,26 @@ Options: none
 Answer:
 ```text
 go
+```
+
+### Q008
+<!-- source: claude:df9261d4-6090-4b52-892b-db52ff291ccd:toolu_01JGLm8ABkZHybxph9mhUZgS:0 -->
+
+Question:
+```text
+The branch is pushed, and its message-contract check (the only required check) passed. The OpenCode v2 battery, which phase 002's last open row (AC-008) needs, only runs on a pull request into main. GitHub refused a manual run because the renamed workflow isn't on main yet. How should I get that CI run?
+```
+
+Options:
+```text
+Open a PR into main (Recommended)
+Open the PR and merge if green
+Stop here
+```
+
+Answer:
+```text
+just commit push merge no pr check sk git
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

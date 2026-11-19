@@ -35,7 +35,7 @@
       "waiver"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -174,12 +174,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -202,11 +196,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The CI workflow `.github/workflows/opencode-v2-battery.yml` still runs a v1 matrix entry that installs `opencode-ai@1.19.4`, plus a `both` job that installs both majors side by side",
     "created_at": "2026-11-19T09:04:22Z",
-    "last_save_at": "2026-11-19T17:44:43.271Z",
+    "last_save_at": "2026-11-19T23:02:51.450Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +217,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a2192ca31ead93fc4d7749b159d7316078c0496be8b4974eb7fc71d59034391",
+    "source_fingerprint": "sha256:94fc8b9dcb29c4cb021bfc8bb1e588b2c87ea31c0221962dbd771536c7c61e49",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b0a910c4e7babcc66828e0decbac2ba3a2a8f5a3a6e644a300abc73366e06461",
+      "spec.md": "6841c0c94acb88eb70cec40e61919707a13927ab94b4e5b4866f320ccbb5b23a",
       "plan.md": "5a2c89e75b971f6ac6c3710c788c94c6ecedfd856507de81042621940eb3db78",
-      "tasks.md": "e11c66061e7e87622be91610ba9f21dd2a89ca247800c4625460c627ea8cdead",
+      "tasks.md": "fff35cdf231fed5dbfa917a2a90170a82016c3d6c2cc56c7ca40b49358257a23",
       "decision-record.md": "8270fd8bd7a3ebc9d7b74de6c794f47cc95fc9c54264bc934e4aa83307bd8c95",
-      "implementation-summary.md": "d86a36d6c94c1f40269720a90034dc831600b49446b0f2011430180b8ef81c92"
+      "implementation-summary.md": "0a6a38819b9a32e46499bf96bb86e047839cd3f414a29b22f2f7b3d43ba43d30"
     },
     "last_active_at": null
   }

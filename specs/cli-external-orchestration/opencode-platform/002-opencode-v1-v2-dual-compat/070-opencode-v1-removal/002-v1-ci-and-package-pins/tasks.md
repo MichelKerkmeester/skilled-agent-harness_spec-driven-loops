@@ -61,7 +61,7 @@ Shell variables used below: `WF` is `.github/workflows/opencode-v2-battery.yml`,
 
 - [x] T013 Rerun the four formerly gated suites after the workflow change and record the result in `scratch/after.txt` (`scratch/after.txt`). Verify: `node --test` on the four files prints `# fail 0` for each.
 - [x] T014 Parse the workflow YAML and record the result (`WF`). Verify: `ruby -ryaml -e 'YAML.load_file(ARGV[0]); puts "ok"' WF` prints `ok`.
-- [ ] T015 After the operator's push go-ahead, read the CI result for the final commit (`WF`). Verify: `gh run list --branch worktrees/477-opencode-v1-removal --limit 1` prints `success` for this workflow. Closure note: open. UNKNOWN until the operator pushes and the CI run is read.
+- [x] T015 After the operator's push go-ahead, read the CI result for the final commit (`WF`). Verify: `gh run list --branch worktrees/477-opencode-v1-removal --limit 1` prints `success` for this workflow. Met: CI run 44632438229 (OpenCode v2 Battery) on merge commit 06d02096e90 on main concluded `success` on 2026-11-19. The workflow runs only on main or a pull request, so it ran on the merged commit, not on a branch push; read with `gh run list --workflow 'OpenCode v2 Battery' --branch main --limit 1`.
 - [x] T016 Run strict validation on this phase folder and record the result line (`specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins --strict --quiet` prints `RESULT: PASSED`. Closure note: `RESULT: PASSED (errors=0 warnings=0)` from `validate.sh` on this folder with `--strict --quiet`, exit 0, on the final state. The CI row (AC-008) and T015 stay open.
 <!-- /ANCHOR:phase-3 -->
 
@@ -70,9 +70,9 @@ Shell variables used below: `WF` is `.github/workflows/opencode-v2-battery.yml`,
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed: the CI result for the final commit is recorded from T015, after the operator's push go-ahead
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed: the CI result for the final commit is recorded from T015, after the operator's push go-ahead. Met 2026-11-19.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -126,7 +126,7 @@ Shell variables used below: `WF` is `.github/workflows/opencode-v2-battery.yml`,
 
 - [x] CHK-020 [P0] The four formerly gated suites print `# fail 0` under the unconditional step. Verify: `node --test` on the four files prints `# fail 0`.
 - [x] CHK-021 [P0] The v2 pin reads 2.3.2 in the workflow and the setup helper. Verify: `rg -n -F '2.3.0' WF $CLI/scripts/opencode-setup.sh | wc -l` prints 0.
-- [ ] CHK-022 [P1] The CI run on the final commit is green on the v2 entry. Verify: `gh run list --branch worktrees/477-opencode-v1-removal --limit 1` prints `success`, after the operator's push go-ahead. Closure note: open. It needs the operator's push go-ahead and the CI run on the final commit (UNKNOWN until then).
+- [x] CHK-022 [P1] The CI run on the final commit is green on the v2 entry. Verify: `gh run list --branch worktrees/477-opencode-v1-removal --limit 1` prints `success`, after the operator's push go-ahead. Met: CI run 44632438229 (OpenCode v2 Battery) on merge commit 06d02096e90 on main concluded `success` on 2026-11-19. The workflow runs only on main or a pull request, so it ran on the merged commit, not on a branch push; read with `gh run list --workflow 'OpenCode v2 Battery' --branch main --limit 1`.
 - [x] CHK-023 [P1] The compat-layout suite passes. Verify: `node --test .skilled/bin/tests/opencode-compat-layout.test.cjs` prints `# fail 0`.
 <!-- /ANCHOR:testing -->
 
