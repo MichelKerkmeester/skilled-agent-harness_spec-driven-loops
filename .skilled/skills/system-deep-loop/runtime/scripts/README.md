@@ -68,7 +68,7 @@ The public surface is the executable script name plus its documented argument co
 
 The scripts write or read durable state through the domain modules. They do not own mode semantics or consumer presentation.
 
-A review fan-out reviews its spec folder unless `fanout-run.cjs` is given `--review-target`, with `--review-target-type` as one of `spec-folder`, `skill`, `agent`, `track` or `files`. The spec folder still owns every write. A named target with no type is treated as `files`.
+A review fan-out reviews its spec folder unless `fanout-run.cjs` is given `--review-target`, with `--review-target-type` as one of `spec-folder`, `skill`, `agent`, `track` or `files`. The spec folder still owns every write. A named target with no type is treated as `files`. The workflow passes the target, the review focus and a research topic through `--review-target-file`, `--review-focus-file` and `--research-topic-file`, files it writes itself, so shell characters in the text never reach a shell. The inline flags still work, and passing both forms of one flag is refused.
 
 One focus line reaches every lineage. To give each lineage its own angle, write a `steer.md` into its lineage folder before the run. A CLI lineage reads it before init, before each iteration and before resolving a conflict:
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.33.0
+version: 1.11.34.0
 ---
 
 # Deep Review Loop Protocol
@@ -559,6 +559,7 @@ When `PASS` verdict is issued and active P2 findings remain, set `hasAdvisories 
      "timestamp": "..."
    }
    ```
+3. Refresh the dashboard: `step_refresh_completed_dashboard` reruns the reducer after the status flip, so the dashboard reports the completed status. A fan-out run skips it, and a failure only logs a warning.
 
 ---
 

@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.9.0
+version: 1.4.10.0
 ---
 
 # Fan-out CLI lineage driver
@@ -73,6 +73,11 @@ lineage directory, for every depth mode. The coverage graph store otherwise defa
 shared runtime database, which sits outside the lineage write surface, so a leaf that honors
 the write limit would skip every graph step. Each CLI lineage keeps its coverage graph in
 its own `graph-db/`.
+
+The workflow hands the research topic, review focus and review target to the runner as files
+through `--research-topic-file`, `--review-focus-file` and `--review-target-file`, so shell
+characters in operator text never reach a shell. The inline flags still work, and passing both
+forms of one flag is refused with a usage error.
 
 ### Expansive Depth
 

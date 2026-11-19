@@ -10,7 +10,7 @@ trigger_phrases:
   - "research synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.14.23.0
+version: 1.14.24.0
 ---
 
 # Loop Protocol Reference
@@ -592,7 +592,8 @@ Compile all iteration findings into final research/research.md. The synthesis wo
      - Place after Section 11 (Recommendations) and before Section 12 (Open Questions)
 4. **Extension snapshot**: an extension keeps the prior synthesis. Before its first dispatch, `step_snapshot_extended_synthesis` copies this file to `research/synthesis-v{generation}-r{continuedFromRun}.md` and never overwrites an existing snapshot
 5. **Update config status**: Set `status: "complete"` in config.json
-6. **Final JSONL entry**: `{"type":"event","event":"synthesis_complete","totalIterations":N,"answeredCount":A,"totalQuestions":Q,"stopReason":"converged"}`
+6. **Refresh the dashboard**: `step_refresh_completed_dashboard` reruns the reducer, so the dashboard reports the completed status. A fan-out run skips it, and a failure only logs a warning.
+7. **Final JSONL entry**: `{"type":"event","event":"synthesis_complete","totalIterations":N,"answeredCount":A,"totalQuestions":Q,"stopReason":"converged"}`
 
 ### Progressive vs Final Synthesis
 - If `progressiveSynthesis: true` (default): research/research.md was updated each iteration. Final synthesis is a cleanup pass.

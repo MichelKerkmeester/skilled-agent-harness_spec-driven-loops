@@ -7,7 +7,7 @@ trigger_phrases:
   - "question origin provenance"
   - "late question injection"
   - "legacy-import question source"
-version: 1.14.0.13
+version: 1.14.1.0
 ---
 
 # Injection inbox provenance
@@ -24,7 +24,7 @@ The inbox lets operators and analyst flows add questions during an active run wi
 
 `inbox.jsonl` is append-only input under the research packet. Records carry `id`, `text`, `source`, `origin`, `injectedAtIteration`, and optional `promotedQuestionId`. On each reduce step, `reduce-state.cjs` reads the inbox, normalizes valid rows, and projects the questions into open and resolved question state with provenance fields intact.
 
-Direct edits to the strategy key-question block still work as compatibility input, but they are attributed as `legacy-import`. The strategy template documents the inbox as the preferred injection path and warns that reducer-owned projections may replace direct markdown edits on the next reduce pass.
+Direct edits to the strategy key-question block still work as compatibility input, but they are attributed as `legacy-import`. The strategy template documents the inbox as the preferred injection path and warns that reducer-owned projections may replace direct markdown edits on the next reduce pass. The reducer warns about legacy-import questions only on the pass that imports them, not on every reduce.
 
 ---
 
