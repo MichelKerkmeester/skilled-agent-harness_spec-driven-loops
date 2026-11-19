@@ -1325,7 +1325,9 @@ describe('Claude UserPromptSubmit advisor hook', () => {
     });
   });
 
-  describe('pasted reply ahead of the prompt cap and the fire gate', () => {
+  // End to end: the hook strips before both the cut and the fire gate, so the skip
+  // cases pass on that strip alone. The brief producer test pins the fire gate itself.
+  describe('pasted reply ahead of the prompt cap and the fire gate, end to end', () => {
     function cliTurn(prompt: string) {
       const buildCliBrief = vi.fn(async (_prompt: string) => fixture('livePassingSkill.json'));
       const output = handleClaudeUserPromptSubmit({

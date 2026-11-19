@@ -382,8 +382,8 @@ function guardWeakFollowUp(
       clock: () => lifecycle.clock(sessionId),
       transcriptBytes: transcriptBytesFor(input),
       strippedPrompt,
-      // Read from stripped text: the hook's own skip check reads the raw prompt,
-      // where a pasted reply that names a skill reads as an explicit marker.
+      // Read from stripped text, as every other gate does. The prompt is already
+      // stripped when it gets here, and stripping again returns the same text.
       policyReason: shouldFireAdvisor(strippedPrompt).reason,
       topSkill: top.skill,
       topFloored: true,
