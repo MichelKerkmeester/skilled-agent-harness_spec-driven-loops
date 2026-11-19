@@ -30,7 +30,7 @@ function checkConfigShape(configPath) {
   assert.equal(keys.includes('permission'), true, 'opencode.json must define top-level permission');
 }
 
-test('repo opencode.json keeps the v1 config shape', () => {
+test('repo opencode.json keeps its top-level config shape', () => {
   checkConfigShape(CONFIG_PATH);
 });
 
@@ -49,20 +49,6 @@ test('rejects a top-level plugins key', () => {
     fs.rmSync(tempDir, { recursive: true, force: true });
   }
 });
-
-function checkNoV2NativeKeys(configPath) {
-  const config = readJson(configPath);
-  const keys = Object.keys(config);
-
-  assert.equal(keys.includes('providers'), false, 'opencode.json must not define top-level providers');
-  if (config.mcp !== null && typeof config.mcp === 'object') {
-    assert.equal(
-      Object.keys(config.mcp).includes('servers'),
-      false,
-      'opencode.json must not define mcp.servers',
-    );
-  }
-}
 
 function assertPermissionLeaf(value, location) {
   assert.equal(
@@ -189,10 +175,6 @@ function checkAgentPermissionDenials(agentsDir, fixturePath) {
     }
   }
 }
-
-test('repo opencode.json defines no OpenCode 2-native keys', () => {
-  checkNoV2NativeKeys(CONFIG_PATH);
-});
 
 test('repo opencode.json permission leaves are allow, ask or deny', () => {
   checkPermissionShape(CONFIG_PATH);

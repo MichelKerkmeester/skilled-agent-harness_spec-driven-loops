@@ -48,7 +48,7 @@ function createProject(t) {
 
 async function createHooks(projectDir) {
   const pluginModule = await import(pathToFileURL(PLUGIN_PATH).href);
-  return pluginModule.default.server({ directory: projectDir });
+  return pluginModule.default.factory({ directory: projectDir });
 }
 
 function questionInput({

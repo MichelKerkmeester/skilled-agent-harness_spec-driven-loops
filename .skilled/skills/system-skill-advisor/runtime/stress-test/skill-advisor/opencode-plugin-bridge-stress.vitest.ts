@@ -46,7 +46,7 @@ function makeChild(stdout: string, closeCode = 0) {
 }
 
 async function makePlugin(options: Record<string, unknown> = {}) {
-  return skillAdvisorPlugin.server({ directory: process.cwd() }, options);
+  return skillAdvisorPlugin.factory({ directory: process.cwd() }, options);
 }
 
 async function runTransform(hooks: Awaited<ReturnType<typeof makePlugin>>, prompt: string, sessionID = 'sa-034') {
@@ -96,12 +96,16 @@ describe('sa-034 — OpenCode plugin stress', () => {
     }
   });
 
-  // The default export keeps the dual-export id, setup and server fields that
-  // both OpenCode versions load.
-  it('keeps the dual-export object shape on the default export', () => {
+  // The host loads only id and setup; the hook factory rides along as a
+  // non-enumerable property so the host never sees a second entry point.
+  it('keeps the OpenCode 2 object shape on the default export', () => {
     expect(skillAdvisorPlugin.id).toBe('system-skill-advisor');
     expect(skillAdvisorPlugin.setup).toBeTypeOf('function');
-    expect(skillAdvisorPlugin.server).toBeTypeOf('function');
+    expect(Object.hasOwn(skillAdvisorPlugin, 'server')).toBe(false);
+    expect(Object.keys(skillAdvisorPlugin).sort()).toEqual(['id', 'setup']);
+    const factory = Object.getOwnPropertyDescriptor(skillAdvisorPlugin, 'factory');
+    expect(factory?.value).toBeTypeOf('function');
+    expect(factory?.enumerable).toBe(false);
   });
 
   it('exposes the canonical plugin surface and status tool only', async () => {

@@ -301,14 +301,38 @@ function toV1ToolContext(context, directory) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Build a plugin definition that exposes the original v1 server and a v2 setup.
+ * The input a plugin factory receives from the v2 setup below. Only the client and
+ * the directory carry values; the other keys stay for factories that destructure them.
+ *
+ * @typedef {Object} PluginInput
+ * @property {Object} client - Client facade the bridge builds over the v2 context.
+ * @property {undefined} project - Not provided on OpenCode 2.
+ * @property {string} worktree - The session's location directory.
+ * @property {string} directory - The session's location directory.
+ * @property {undefined} experimental_workspace - Not provided on OpenCode 2.
+ * @property {undefined} serverUrl - Not provided on OpenCode 2.
+ * @property {undefined} $ - Not provided on OpenCode 2.
+ */
+
+/**
+ * Build the OpenCode 2 plugin definition around a hook factory. The host reads the
+ * enumerable `{ id, setup }` shape; the factory rides along as a non-enumerable
+ * `factory` property, so tests and helpers can build the hooks directly without
+ * the host ever seeing a second entry point.
  *
  * @param {string} id - The plugin identifier.
- * @param {Function} server - The unchanged v1 plugin server function.
- * @returns {{ id: string, server: Function, setup: Function }} A dual-version plugin.
+ * @param {Function} factory - Builds the plugin hooks from a PluginInput and optional options.
+ * @returns {{ id: string, setup: Function }} The plugin, with a non-enumerable `factory`.
  */
-export function dualPlugin(id, server) {
-  async function setup(ctx) {
+export function dualPlugin(id, factory) {
+  /**
+   * Register the factory's hooks on the v2 context.
+   *
+   * @param {Object} ctx - The OpenCode 2 plugin context.
+   * @param {Object} [options] - Forwarded to the factory as its second argument.
+   * @returns {Promise<Function>} The cleanup function.
+   */
+  async function setup(ctx, options) {
     const directory = ctx.location.directory;
     const input = {
       client: createV1Client(ctx),
@@ -319,7 +343,7 @@ export function dualPlugin(id, server) {
       serverUrl: undefined,
       $: undefined,
     };
-    const hooks = await server(input);
+    const hooks = await factory(input, options);
     const registrations = [];
     const skippedKeys = Object.keys(hooks).filter((key) => !MAPPED_HOOKS.has(key));
     let eventController;
@@ -566,7 +590,9 @@ export function dualPlugin(id, server) {
     return cleanup;
   }
 
-  return { id, server, setup };
+  const plugin = { id, setup };
+  Object.defineProperty(plugin, 'factory', { value: factory, enumerable: false });
+  return plugin;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

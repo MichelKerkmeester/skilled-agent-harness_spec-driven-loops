@@ -99,8 +99,8 @@ test('every ESM hook exits 0 at the stdin deadline when its host never closes st
 });
 
 // A flagged dispatch trips one hard rule whose id the assertions look for.
-const FLAGGED_DISPATCH = 'opencode run -m p/m --agent general "x" </dev/null';
-const RULE_ID = 'no-bare-agent-general';
+const FLAGGED_DISPATCH = 'opencode run -m p/m "x" --share </dev/null';
+const RULE_ID = 'share-requires-confirmation';
 
 function runWithPayload(file, payload, env) {
   return spawnSync(process.execPath, [path.join(HOOKS_ROOT, file)], {
@@ -112,14 +112,13 @@ function runWithPayload(file, payload, env) {
   });
 }
 
-// The flagged rule applies to OpenCode v1 only, so the host's own opencode would decide
-// whether the preflight reports it. A stub that prints a v1 version, placed first on PATH,
-// pins the family the hook's version probe reads.
-function pinnedV1Env(t, extra = {}) {
-  const binDir = fs.mkdtempSync(path.join(os.tmpdir(), 'hook-stdin-opencode-v1-'));
+// The host's own opencode would otherwise decide which family the hook's version probe
+// reads. A stub that prints an OpenCode 2 version, placed first on PATH, pins it.
+function pinnedOpencodeEnv(t, extra = {}) {
+  const binDir = fs.mkdtempSync(path.join(os.tmpdir(), 'hook-stdin-opencode-'));
   t.after(() => fs.rmSync(binDir, { recursive: true, force: true }));
   const stub = path.join(binDir, 'opencode');
-  fs.writeFileSync(stub, "#!/bin/sh\nprintf '%s\\n' '1.19.3'\n");
+  fs.writeFileSync(stub, "#!/bin/sh\nprintf '%s\\n' '2.3.2'\n");
   fs.chmodSync(stub, 0o755);
   return { ...extra, PATH: [binDir, process.env.PATH].filter(Boolean).join(path.delimiter) };
 }
@@ -133,7 +132,7 @@ test('the Claude and Devin preflight lints still flag a dispatch sent on a norma
   const claude = runWithPayload(
     'cli-dispatch/claude/dispatch-preflight-lint.mjs',
     { tool_name: 'Bash', cwd: REPO_ROOT, tool_input: { command: FLAGGED_DISPATCH } },
-    pinnedV1Env(t, { CLAUDE_PROJECT_DIR: REPO_ROOT }),
+    pinnedOpencodeEnv(t, { CLAUDE_PROJECT_DIR: REPO_ROOT }),
   );
   assert.equal(claude.status, 0, claude.stderr);
   assert.equal(JSON.parse(claude.stdout).hookSpecificOutput.hookEventName, 'PreToolUse');
@@ -142,7 +141,7 @@ test('the Claude and Devin preflight lints still flag a dispatch sent on a norma
   const devin = runWithPayload(
     'cli-dispatch/devin/dispatch-preflight-lint.mjs',
     { tool_name: 'exec', cwd: REPO_ROOT, tool_input: { command: FLAGGED_DISPATCH } },
-    pinnedV1Env(t),
+    pinnedOpencodeEnv(t),
   );
   assert.equal(devin.status, 0, devin.stderr);
   assert.equal(JSON.parse(devin.stdout).hookSpecificOutput.hookEventName, 'PreToolUse');
@@ -174,7 +173,7 @@ test('the Cursor preflight, MCP route and Task guards still answer a normal payl
     tool_name: 'Shell',
     workspace_roots: [REPO_ROOT],
     tool_input: { command: FLAGGED_DISPATCH },
-  }, pinnedV1Env(t));
+  }, pinnedOpencodeEnv(t));
   assert.equal(lint.status, 0, lint.stderr);
   assert.equal(JSON.parse(lint.stdout).permission, 'allow');
   assert.ok(JSON.parse(lint.stdout).agent_message.includes(RULE_ID));

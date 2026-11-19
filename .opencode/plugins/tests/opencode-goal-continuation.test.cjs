@@ -24,7 +24,7 @@ async function loadPluginModule() {
 async function loadGoalCore(pluginModule) {
   const coreUrl = pathToFileURL(join(testDir, '..', 'lib', 'opencode-goal-core.js')).href;
   const coreModule = await import(coreUrl);
-  return coreModule.getGoalCore(pluginModule.default.server);
+  return coreModule.getGoalCore(pluginModule.default.factory);
 }
 
 async function withState(fn) {
@@ -165,7 +165,7 @@ test('smoke mode logs would-fire continuations and event metadata', async () => 
   assert.equal(result.reason, 'smoke_mode');
   assert.equal(promptCalls, 0);
 
-  const smokePlugin = await pluginModule.default.server({ client: noFireClient }, {
+  const smokePlugin = await pluginModule.default.factory({ client: noFireClient }, {
     stateDir,
     nowMs: pruneTestNowMs + 100,
     autonomy: 'smoke',
@@ -499,7 +499,7 @@ test('stale verifier results suppress the old continuation without prompting', a
       evidence: 'Old evidence only',
     };
   };
-  const stalePlugin = await pluginModule.default.server({
+  const stalePlugin = await pluginModule.default.factory({
     client: {
       session: {
         async promptAsync() {
@@ -878,7 +878,7 @@ test('debug mode surfaces swallowed append and orphan sweep errors without throw
   delete process.env.OPENCODE_GOAL_DEBUG;
   const silentOutput = await captureStderr(async () => {
     await helpers.maybeContinueGoal(null, { stateDir: blockedStatePath, nowMs: 1000 });
-    const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 3000000000 });
+    const plugin = await pluginModule.default.factory({}, { stateDir, nowMs: 3000000000 });
     await plugin.event({ event: { type: 'session.created', properties: {} } });
   });
   assert.equal(silentOutput, '');
@@ -887,7 +887,7 @@ test('debug mode surfaces swallowed append and orphan sweep errors without throw
   process.env.OPENCODE_GOAL_DEBUG = '1';
   const debugOutput = await captureStderr(async () => {
     await helpers.maybeContinueGoal(null, { stateDir: blockedStatePath, nowMs: 3000 });
-    const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 3000000000 });
+    const plugin = await pluginModule.default.factory({}, { stateDir, nowMs: 3000000000 });
     await plugin.event({ event: { type: 'session.created', properties: {} } });
   });
   assert.match(debugOutput, /appendGoalJsonl/);

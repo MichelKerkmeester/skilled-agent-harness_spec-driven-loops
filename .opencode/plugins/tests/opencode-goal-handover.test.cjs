@@ -23,7 +23,7 @@ const HAND_OVER_ENV = ['SESSION_HANDOVER_GOAL_PACKET', 'SESSION_HANDOVER_GOAL', 
 
 async function loadHelpers(pluginModule) {
   const coreModule = await import(pathToFileURL(join(testDir, '..', 'lib', 'opencode-goal-core.js')).href);
-  return coreModule.getGoalCore(pluginModule.default.server);
+  return coreModule.getGoalCore(pluginModule.default.factory);
 }
 
 async function writePacket(root, rel, { gitMarker = true } = {}) {
@@ -49,7 +49,7 @@ async function withWorkspace(fn) {
   for (const name of HAND_OVER_ENV) delete process.env[name];
   const originalDisabled = process.env.OPENCODE_GOAL_PLUGIN_DISABLED;
   delete process.env.OPENCODE_GOAL_PLUGIN_DISABLED;
-  const newPlugin = () => pluginModule.default.server({ directory: workspace }, { stateDir });
+  const newPlugin = () => pluginModule.default.factory({ directory: workspace }, { stateDir });
   try {
     await writePacket(workspace, PACKET);
     return await fn({ helpers, workspace, stateDir, newPlugin });

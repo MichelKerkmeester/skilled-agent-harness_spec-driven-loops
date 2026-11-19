@@ -2,12 +2,12 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: OPENCODE SETUP HELPER
 # ───────────────────────────────────────────────────────────────
-# Builds the v2-only (recommended), side-by-side or v1-only (fallback)
-# OpenCode layout under HOME, and reports which version each command
-# name resolves to. OpenCode 2 is the expected version; OpenCode 1 is
-# kept for users who have not updated yet.
+# Installs OpenCode 2 under HOME, reports which version each command
+# name resolves to, and removes the OpenCode 1 install and launcher an
+# earlier side-by-side layout left behind. OpenCode 2 is the only
+# supported version.
 #
-# Usage: opencode-setup.sh <v2|both|v1|check>
+# Usage: opencode-setup.sh <v2|remove-v1|check>
 #
 # Exit Codes:
 #   0 - Success
@@ -27,20 +27,23 @@ fi
 
 readonly SCRIPT_NAME="${0##*/}"
 
-readonly V1_PKG="opencode-ai@1.19.4"
-readonly V2_PKG="@opencode/cli@2.3.0"
+readonly V2_PKG="@opencode/cli@2.3.2"
+readonly V1_PKG_NAME="opencode-ai"
 
 # Every path derives from HOME, so a throwaway HOME isolates the whole run
-readonly V1_PREFIX="$HOME/.local"
-readonly V2_PREFIX="$HOME/.local/opencode-v2"
+readonly PREFIX="$HOME/.local"
 readonly BIN="$HOME/.local/bin"
 readonly DB_DIR="$HOME/.local/share/opencode"
-readonly LAUNCHER="$BIN/opencode1"
-# Relative to BIN, the same shape npm writes, so the side-by-side names point into the v2 prefix
-readonly V2_LINK_TARGET="../opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe"
+# The only path the earlier side-by-side layout wrote its OpenCode 1 launcher to
+readonly V1_LAUNCHER="$BIN/opencode1"
+
+# Where remove-v1 sets aside an opencode entry that belongs to another install
+readonly PRESERVED_ASIDE="$BIN/.opencode.remove-v1-preserved"
 
 # Cleared at startup so an inherited value never replaces the helper's own probe folder
 PROBE_DATA_DIR=""
+# Set only while an opencode entry sits at the aside path, so an early exit can name it
+PRESERVED_OPENCODE=""
 
 # ───────────────────────────────────────────────────────────────
 # 2. COLORS AND LOGGING
@@ -69,10 +72,9 @@ log_error() { printf "${RED}ERROR:${NC} %s\n" "$1" >&2; }
 # Print the resolved layout paths so every write target is visible before it happens
 print_paths() {
     printf 'resolved paths:\n'
-    printf '  V1_PREFIX: %s\n' "$V1_PREFIX"
-    printf '  V2_PREFIX: %s\n' "$V2_PREFIX"
-    printf '  BIN:       %s\n' "$BIN"
-    printf '  DB_DIR:    %s\n' "$DB_DIR"
+    printf '  PREFIX: %s\n' "$PREFIX"
+    printf '  BIN:    %s\n' "$BIN"
+    printf '  DB_DIR: %s\n' "$DB_DIR"
 }
 
 # Announce a mutating step and the rollback line it would need; the rollback is printed, never run
@@ -81,7 +83,8 @@ print_step() {
     printf '[rollback, never run] %s\n' "$2"
 }
 
-# Classify version output by shape, not by command name; the first matching token decides
+# Classify version output by shape, not by command name; the first matching token decides.
+# OpenCode 1 is reported as unsupported, so a leftover install is named rather than hidden.
 classify_version() {
     local line token
     local -a tokens
@@ -92,7 +95,7 @@ classify_version() {
             for token in "${tokens[@]}"; do
                 if [[ "$token" =~ ^[vV]?([0-9]+)\.[0-9]+\.[0-9]+([-+][^[:space:]]*)?$ ]]; then
                     case "${BASH_REMATCH[1]}" in
-                        1) printf 'v1\n' ;;
+                        1) printf 'unsupported\n' ;;
                         2) printf 'v2\n' ;;
                         *) printf 'unknown\n' ;;
                     esac
@@ -127,17 +130,6 @@ classify_binary() {
     local path="$1" output
     output="$(probe_version "$path")"
     printf '%s\n' "$output" | classify_version
-}
-
-# Classify what a bare name resolves to on PATH; "absent" when it does not resolve at all
-classify_name_on_path() {
-    local name="$1" path
-    path="$(command -v "$name" 2>/dev/null || true)"
-    if [[ -z "$path" ]]; then
-        printf 'absent\n'
-        return 0
-    fi
-    classify_binary "$path"
 }
 
 # Resolve a path through its symlink chain so the answering install is visible when a name is shadowed
@@ -189,86 +181,6 @@ pinned_installed() {
     return 1
 }
 
-# Keep the launcher byte-exact so an unchanged launcher is never rewritten
-launcher_content() {
-    cat <<'LAUNCHER_EOF'
-#!/bin/sh
-# OpenCode 1 fallback. OpenCode 2 owns opencode.db and migrates it in place,
-# so v1 keeps its own copy. A relative OPENCODE_DB resolves under the shared data directory.
-# An auto-update reinstalls the v1 package, which takes the opencode name back from v2.
-: "${OPENCODE_DB:=opencode-v1.db}"
-: "${OPENCODE_DISABLE_AUTOUPDATE:=1}"
-export OPENCODE_DB OPENCODE_DISABLE_AUTOUPDATE
-exec "$HOME/.local/lib/node_modules/opencode-ai/bin/opencode.exe" "$@"
-LAUNCHER_EOF
-}
-
-# Point one name in BIN at the v2 binary; a file the earlier layout left there is moved aside, never deleted
-link_v2_name() {
-    local name="$1" path="$BIN/$1" aside="$BIN/$1.pre-v2-default"
-    if [[ -L "$path" ]] && [[ "$(readlink "$path")" == "$V2_LINK_TARGET" ]]; then
-        log_info "$name: left unchanged ($path)"
-        return 0
-    fi
-    if [[ -L "$path" ]]; then
-        print_step "relink \"$path\" to v2" "ln -sfn \"$(readlink "$path")\" \"$path\""
-    elif [[ -e "$path" ]]; then
-        if [[ -e "$aside" ]] || [[ -L "$aside" ]]; then
-            log_error "$aside already exists; moving $path aside would overwrite it"
-            log_error "Nothing was moved; remove or rename $aside and rerun this mode"
-            exit 1
-        fi
-        print_step "move \"$path\" aside to \"$aside\" and link the name to v2" "rm \"$path\" && mv \"$aside\" \"$path\""
-        mv "$path" "$aside"
-    else
-        print_step "link \"$path\" to v2" "rm \"$path\""
-    fi
-    ln -sfn "$V2_LINK_TARGET" "$path"
-    log_info "$name: now runs v2 ($path)"
-}
-
-# Retire the opencode2 name: a link into the v2 prefix is removed, anything else is moved aside, never deleted
-retire_opencode2() {
-    local path="$BIN/opencode2" aside="$BIN/opencode2.pre-v2-default"
-    if [[ ! -e "$path" ]] && [[ ! -L "$path" ]]; then
-        return 0
-    fi
-    if [[ -L "$path" ]] && [[ "$(readlink "$path")" == "$V2_LINK_TARGET" ]]; then
-        print_step "remove \"$path\"" "ln -s \"$V2_LINK_TARGET\" \"$path\""
-        rm "$path"
-    else
-        if [[ -e "$aside" ]] || [[ -L "$aside" ]]; then
-            log_error "$aside already exists; moving $path aside would overwrite it"
-            log_error "Nothing was moved; remove or rename $aside and rerun this mode"
-            exit 1
-        fi
-        print_step "move \"$path\" aside to \"$aside\"" "mv \"$aside\" \"$path\""
-        mv "$path" "$aside"
-    fi
-    log_info "opencode2: retired ($path)"
-}
-
-# Write the launcher only when absent or byte-different, so reruns stay idempotent
-write_launcher() {
-    local state="wrote"
-    if [[ -L "$LAUNCHER" ]]; then
-        log_error "$LAUNCHER is a symlink; writing the launcher would write through the link"
-        log_error "Nothing was written through the link; remove the link and rerun this mode"
-        exit 1
-    fi
-    if [[ -e "$LAUNCHER" ]]; then
-        if launcher_content | cmp -s - "$LAUNCHER"; then
-            log_info "launcher: left unchanged ($LAUNCHER)"
-            return 0
-        fi
-        state="rewrote"
-    fi
-    print_step "write launcher \"$LAUNCHER\"" "rm \"$LAUNCHER\""
-    launcher_content > "$LAUNCHER"
-    chmod 755 "$LAUNCHER"
-    log_info "launcher: $state ($LAUNCHER)"
-}
-
 # Print one version probe line; succeed only when the shape matches the wanted major
 probe_shape() {
     local path="$1" want="$2" output shape
@@ -287,18 +199,38 @@ verify_one() {
     fi
 }
 
-# Verify all three names after the launcher lands; every line prints before any failure exit
-verify_pair() {
-    local failed=0 name want
-    for name in opencode:v2 opencode1:v1; do
-        want="${name#*:}"
-        name="${name%%:*}"
-        if ! probe_shape "$BIN/$name" "$want"; then
-            log_error "$BIN/$name did not report a $want version"
-            failed=1
-        fi
-    done
-    if [[ "$failed" -ne 0 ]]; then
+# List the database files in the data folder; they are reported and never changed
+list_data_files() {
+    local db found="false"
+    printf '\ndatabase files in %s:\n' "$DB_DIR"
+    if [[ -d "$DB_DIR" ]]; then
+        for db in "$DB_DIR"/*.db "$DB_DIR"/*.db-wal "$DB_DIR"/*.db-shm; do
+            if [[ -e "$db" ]]; then
+                printf '  %s\n' "$db"
+                found="true"
+            fi
+        done
+    fi
+    if [[ "$found" == "false" ]]; then
+        printf '  none exists\n'
+    fi
+}
+
+# Refuse unless the launcher is the regular file the side-by-side layout wrote:
+# a link, a folder or a file that does not run the OpenCode 1 package belongs to
+# someone else, so it is never removed
+check_v1_launcher() {
+    if [[ -L "$V1_LAUNCHER" ]]; then
+        log_error "$V1_LAUNCHER is a symlink to $(readlink "$V1_LAUNCHER"); only the launcher file this helper wrote is removed"
+        log_error "Nothing was changed; remove the link yourself if it is yours to remove"
+        exit 1
+    fi
+    if [[ ! -e "$V1_LAUNCHER" ]]; then
+        return 0
+    fi
+    if [[ ! -f "$V1_LAUNCHER" ]] || ! grep -q -F "node_modules/$V1_PKG_NAME/" "$V1_LAUNCHER"; then
+        log_error "$V1_LAUNCHER is not the OpenCode 1 launcher this helper wrote"
+        log_error "Nothing was changed; remove the file yourself if it is yours to remove"
         exit 1
     fi
 }
@@ -309,7 +241,7 @@ verify_pair() {
 
 # Report what each name resolves to and which data files exist; this mode never writes
 mode_check() {
-    local name on_path direct candidate shape resolved found db
+    local name on_path direct candidate shape resolved
     local opencode_on_path="" opencode_shape=""
 
     ensure_probe_dir
@@ -358,135 +290,32 @@ mode_check() {
         printf "bare name 'opencode' resolves to: (outside HOME, not probed) (%s)\n" "$opencode_on_path"
     fi
 
-    printf '\ndatabase files in %s:\n' "$DB_DIR"
-    found="false"
-    if [[ -d "$DB_DIR" ]]; then
-        for db in "$DB_DIR"/*.db; do
-            if [[ -e "$db" ]]; then
-                printf '  %s\n' "$db"
-                found="true"
-            fi
-        done
-    fi
-    if [[ "$found" == "false" ]]; then
-        printf '  none exists\n'
-    fi
+    list_data_files
 
     log_pass "check complete; nothing under HOME was changed"
 }
 
-# Build the side-by-side layout: both packages installed, opencode linked to v2, opencode2 retired, the opencode1 launcher last
-mode_both() {
-    print_paths
-    require_npm
-
-    if pinned_installed "$V1_PREFIX/lib/node_modules/opencode-ai/package.json" \
-        "$V1_PKG" "$V1_PREFIX/bin/opencode"; then
-        log_info "already installed: $V1_PKG, skipped"
-        printf '[rollback, never run] %s\n' "npm uninstall -g --prefix \"$V1_PREFIX\" opencode-ai"
-    else
-        print_step "npm install -g --prefix \"$V1_PREFIX\" \"$V1_PKG\"" \
-            "npm uninstall -g --prefix \"$V1_PREFIX\" opencode-ai"
-        if ! npm install -g --prefix "$V1_PREFIX" "$V1_PKG"; then
-            log_error "npm install failed for $V1_PKG; nothing further was written"
-            exit 1
-        fi
-    fi
-
-    if pinned_installed "$V2_PREFIX/lib/node_modules/@opencode/cli/package.json" \
-        "$V2_PKG" "$V2_PREFIX/bin/opencode2"; then
-        log_info "already installed: $V2_PKG, skipped"
-        printf '[rollback, never run] %s\n' "npm uninstall -g --prefix \"$V2_PREFIX\" @opencode/cli"
-    else
-        print_step "npm install -g --prefix \"$V2_PREFIX\" \"$V2_PKG\"" \
-            "npm uninstall -g --prefix \"$V2_PREFIX\" @opencode/cli"
-        if ! npm install -g --prefix "$V2_PREFIX" "$V2_PKG"; then
-            log_error "npm install failed for $V2_PKG; nothing further was written"
-            exit 1
-        fi
-    fi
-
-    # The v1 install takes the name opencode, so the v2 links are written after it
-    link_v2_name opencode
-    retire_opencode2
-    write_launcher
-
-    if [[ -e "$DB_DIR/opencode.db" ]] && [[ ! -e "$DB_DIR/opencode-v1.db" ]]; then
-        log_warn "v2 now runs as opencode and migrates $DB_DIR/opencode.db in place on its first run"
-        log_warn "to keep v1's history, copy it first: sqlite3 \"$DB_DIR/opencode.db\" \".backup '$DB_DIR/opencode-v1.db'\""
-        log_warn "this script changes no data file"
-    fi
-
-    ensure_probe_dir
-    verify_pair
-    log_pass "v2 answers to opencode; v1 answers to opencode1"
-}
-
-# Install v1 only; refuse when a v2 already answers to the name opencode
-mode_v1() {
-    local shape on_path
-    print_paths
-
-    ensure_probe_dir
-    shape="$(classify_name_on_path opencode)"
-    if [[ "$shape" == "v2" ]]; then
-        on_path="$(command -v opencode 2>/dev/null || true)"
-        log_error "an OpenCode v2 is on PATH as 'opencode' ($on_path); installing v1 here would collide with it"
-        log_error "Hint: run this script with \"both\" to build the side-by-side layout"
-        exit 1
-    fi
-
-    require_npm
-
-    if pinned_installed "$V1_PREFIX/lib/node_modules/opencode-ai/package.json" \
-        "$V1_PKG" "$V1_PREFIX/bin/opencode"; then
-        log_info "already installed: $V1_PKG, skipped"
-        printf '[rollback, never run] %s\n' "npm uninstall -g --prefix \"$V1_PREFIX\" opencode-ai"
-    else
-        print_step "npm install -g --prefix \"$V1_PREFIX\" \"$V1_PKG\"" \
-            "npm uninstall -g --prefix \"$V1_PREFIX\" opencode-ai"
-        if ! npm install -g --prefix "$V1_PREFIX" "$V1_PKG"; then
-            log_error "npm install failed for $V1_PKG"
-            exit 1
-        fi
-    fi
-
-    verify_one "$BIN/opencode" "v1"
-    log_pass "opencode now reports v1"
-}
-
-# Install v2 only into the default prefix so the name opencode answers with v2
+# Install v2 into the default prefix so the name opencode answers with v2
 mode_v2() {
-    local shape on_path
     print_paths
-
     ensure_probe_dir
-    shape="$(classify_name_on_path opencode)"
-    if [[ "$shape" == "v1" ]]; then
-        on_path="$(command -v opencode 2>/dev/null || true)"
-        log_error "an OpenCode v1 is on PATH as 'opencode' ($on_path)"
-        log_error "Installing v2 into the default prefix would overwrite that name and orphan the v1 install"
-        log_error "Hint: run this script with \"both\" to build the side-by-side layout"
-        exit 1
-    fi
-
     require_npm
 
-    if pinned_installed "$V1_PREFIX/lib/node_modules/@opencode/cli/package.json" \
-        "$V2_PKG" "$V1_PREFIX/bin/opencode"; then
+    if pinned_installed "$PREFIX/lib/node_modules/@opencode/cli/package.json" \
+        "$V2_PKG" "$PREFIX/bin/opencode"; then
         log_info "already installed: $V2_PKG, skipped"
-        printf '[rollback, never run] %s\n' "npm uninstall -g --prefix \"$V1_PREFIX\" @opencode/cli"
+        printf '[rollback, never run] %s\n' "npm uninstall -g --prefix \"$PREFIX\" @opencode/cli"
     else
-        print_step "npm install -g --prefix \"$V1_PREFIX\" \"$V2_PKG\"" \
-            "npm uninstall -g --prefix \"$V1_PREFIX\" @opencode/cli"
-        if ! npm install -g --prefix "$V1_PREFIX" "$V2_PKG"; then
+        print_step "npm install -g --prefix \"$PREFIX\" \"$V2_PKG\"" \
+            "npm uninstall -g --prefix \"$PREFIX\" @opencode/cli"
+        if ! npm install -g --prefix "$PREFIX" "$V2_PKG"; then
             log_error "npm install failed for $V2_PKG"
             exit 1
         fi
     fi
 
     if [[ -e "$DB_DIR/opencode.db" ]]; then
-        log_warn "a v1 database exists at $DB_DIR/opencode.db"
+        log_warn "a database already exists at $DB_DIR/opencode.db"
         log_warn "v2 adopts and migrates that file in place unless OPENCODE_DB is set"
         log_warn "move the file aside or export OPENCODE_DB before the first v2 run; this script changes no data file"
     fi
@@ -495,19 +324,124 @@ mode_v2() {
     log_pass "opencode now reports v2"
 }
 
+# Move the user's opencode entry back from where remove-v1 set it aside, then prove
+# it still resolves to the target it had before the uninstall
+restore_opencode() {
+    local link_before="$1" resolved_before="$2" link_after=""
+    if [[ -L "$BIN/opencode" || -e "$BIN/opencode" ]]; then
+        log_error "$BIN/opencode reappeared during the uninstall; the original is kept at $PRESERVED_OPENCODE"
+        log_error "Move it back yourself once you have checked which one you want"
+        exit 1
+    fi
+    mv -- "$PRESERVED_OPENCODE" "$BIN/opencode"
+    PRESERVED_OPENCODE=""
+    if [[ -L "$BIN/opencode" ]]; then
+        link_after="$(readlink "$BIN/opencode")"
+    fi
+    if [[ "$link_after" != "$link_before" ]] \
+        || [[ "$(resolve_realpath "$BIN/opencode")" != "$resolved_before" ]]; then
+        log_error "$BIN/opencode no longer resolves to $resolved_before after the restore"
+        exit 1
+    fi
+    log_info "opencode: restored ($BIN/opencode -> ${link_before:-regular file}, resolves to $resolved_before)"
+}
+
+# Remove the OpenCode 1 package from the default prefix and the opencode1 launcher;
+# every refusal runs before the first write, and data files are listed, never removed.
+# npm removes $BIN/opencode by bin name when it uninstalls opencode-ai, wherever that
+# entry points, so an opencode that belongs to another install is set aside first.
+mode_remove_v1() {
+    local pkg_dir="$PREFIX/lib/node_modules/$V1_PKG_NAME"
+    local manifest="$pkg_dir/package.json" version pkg_real reinstall
+    local keep_opencode="false" link_before="" resolved_before=""
+
+    print_paths
+    check_v1_launcher
+
+    if [[ -f "$manifest" ]]; then
+        require_npm
+        version="$(manifest_version "$manifest" || true)"
+        reinstall="npm install -g --prefix \"$PREFIX\" \"$V1_PKG_NAME@${version:-<version>}\""
+        pkg_real="$(cd "$pkg_dir" && pwd -P)"
+
+        if [[ -L "$BIN/opencode" || -e "$BIN/opencode" ]]; then
+            if [[ -L "$BIN/opencode" ]]; then
+                link_before="$(readlink "$BIN/opencode")"
+            fi
+            resolved_before="$(resolve_realpath "$BIN/opencode")"
+            if [[ "$resolved_before" == "$pkg_real/"* ]]; then
+                log_info "opencode: $BIN/opencode resolves into $V1_PKG_NAME ($resolved_before); no OpenCode 2 there, it goes with the package"
+            else
+                if [[ -L "$PRESERVED_ASIDE" || -e "$PRESERVED_ASIDE" ]]; then
+                    log_error "$PRESERVED_ASIDE already exists; an earlier run may have left the opencode entry there"
+                    log_error "Nothing was changed; move it back to $BIN/opencode or remove it, then rerun"
+                    exit 1
+                fi
+                keep_opencode="true"
+            fi
+        fi
+
+        if [[ "$keep_opencode" == "true" ]]; then
+            print_step "preserve \"$BIN/opencode\" (-> ${link_before:-regular file}, resolves to $resolved_before) at \"$PRESERVED_ASIDE\" during the uninstall, then restore it" \
+                "mv \"$PRESERVED_ASIDE\" \"$BIN/opencode\""
+            trap 'if [[ -n "${PRESERVED_OPENCODE:-}" ]]; then log_warn "your opencode entry is still at $PRESERVED_OPENCODE; move it back to $BIN/opencode"; fi' EXIT
+            trap 'exit 130' INT
+            trap 'exit 143' TERM
+            mv -- "$BIN/opencode" "$PRESERVED_ASIDE"
+            PRESERVED_OPENCODE="$PRESERVED_ASIDE"
+            if [[ -n "$link_before" ]]; then
+                reinstall="$reinstall, then restore the OpenCode 2 link: ln -sfn '$link_before' \"$BIN/opencode\" (or run $SCRIPT_NAME v2)"
+            else
+                reinstall="$reinstall, then run $SCRIPT_NAME v2 so OpenCode 2 owns opencode again"
+            fi
+        else
+            reinstall="$reinstall, then run $SCRIPT_NAME v2 so OpenCode 2 owns opencode"
+        fi
+
+        print_step "npm uninstall -g --prefix \"$PREFIX\" $V1_PKG_NAME" "$reinstall"
+        if ! npm uninstall -g --prefix "$PREFIX" "$V1_PKG_NAME"; then
+            log_error "npm uninstall failed for $V1_PKG_NAME; the launcher was left in place"
+            if [[ "$keep_opencode" == "true" ]]; then
+                restore_opencode "$link_before" "$resolved_before"
+            fi
+            exit 1
+        fi
+        if [[ "$keep_opencode" == "true" ]]; then
+            restore_opencode "$link_before" "$resolved_before"
+        fi
+    else
+        log_info "$V1_PKG_NAME: not installed under $PREFIX, skipped"
+    fi
+
+    if [[ -e "$V1_LAUNCHER" ]]; then
+        print_step "remove launcher \"$V1_LAUNCHER\"" \
+            "none needed: the launcher only ran the package removed above"
+        rm -- "$V1_LAUNCHER"
+        log_info "launcher: removed ($V1_LAUNCHER)"
+    else
+        log_info "launcher: not present ($V1_LAUNCHER), skipped"
+    fi
+
+    list_data_files
+    log_info "data files were left in place; an opencode-v1.db holds only OpenCode 1 history and is yours to keep or delete"
+    if [[ ! -e "$BIN/opencode" ]]; then
+        log_warn "nothing answers to opencode in $BIN now; run this script with \"v2\" to install OpenCode 2"
+    fi
+    log_pass "OpenCode 1 removed"
+}
+
 # ───────────────────────────────────────────────────────────────
 # 5. ENTRY POINT
 # ───────────────────────────────────────────────────────────────
 
 usage() {
     cat <<EOF
-Usage: $SCRIPT_NAME <v2|both|v1|check>
+Usage: $SCRIPT_NAME <v2|remove-v1|check>
 
 Modes:
-  v2     Install v2 only into the default prefix (recommended)
-  both   Install v1 and v2 side by side: opencode runs v2, the opencode1 launcher runs v1 (recommended)
-  v1     Install v1 only into the default prefix (fallback for users who have not updated)
-  check  Report what each name resolves to; change nothing
+  v2         Install OpenCode 2 into the default prefix
+  remove-v1  Remove the OpenCode 1 package and the opencode1 launcher; data files are listed and left in place
+  check      Report what each name resolves to; change nothing
 
 Exit Codes:
    0 - Success
@@ -523,9 +457,8 @@ if [[ $# -ne 1 ]]; then
 fi
 
 case "$1" in
-    both) mode_both ;;
-    v1) mode_v1 ;;
     v2) mode_v2 ;;
+    remove-v1) mode_remove_v1 ;;
     check) mode_check ;;
     *)
         printf 'Error: unknown mode: %s\n\n' "$1" >&2

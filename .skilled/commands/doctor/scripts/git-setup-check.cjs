@@ -1460,7 +1460,7 @@ function adapterExportsBinding(tool, source) {
     });
   }
 
-  // The dual-version bridge wraps the v1 entry, so the wrapped function is the
+  // The OpenCode 2 bridge wraps the hook factory, so the wrapped function is the
   // one that registers the handler. The scanner blanks the id literal, leaving
   // its opening quote as the \u0001 marker.
   const wrappedExport = tool === 'opencode'

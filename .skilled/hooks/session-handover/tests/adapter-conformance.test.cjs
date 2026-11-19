@@ -163,8 +163,9 @@ function killerArgument(spawned, flag) {
 
 async function loadOpenCodePlugin(directory) {
   const url = `${pathToFileURL(OPENCODE_PLUGIN).href}?conformance=${Date.now()}-${Math.random()}`;
-  // The default export is the dual OpenCode plugin; `server` is the v1 factory the host calls.
-  return (await import(url)).default.server({ directory });
+  // The default export is the OpenCode plugin: the host reads `{ id, setup }`, and the
+  // non-enumerable `factory` builds the hooks directly without a host context.
+  return (await import(url)).default.factory({ directory });
 }
 
 async function openCodeSystem(hooks) {

@@ -116,7 +116,7 @@ function setBunRuntime(t) {
 
 async function loadPlugin(ctx) {
   const moduleUrl = `${pathToFileURL(PLUGIN_PATH).href}?test=${Date.now()}-${Math.random()}`;
-  return (await import(moduleUrl)).default.server(ctx);
+  return (await import(moduleUrl)).default.factory(ctx);
 }
 
 function transform(hooks, sessionID, model = { limit: { context: 200000 } }) {

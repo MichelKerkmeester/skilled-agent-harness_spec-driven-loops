@@ -6,9 +6,8 @@
 // sandbox, where nested dispatch is denied; the lineage then spends every
 // iteration on dispatch failures and produces no findings. These cells pin the
 // directive that removes that ambiguity: present for CLI lineage kinds, ahead of
-// the "Read <skill>" instruction so it cannot be skimmed past, absent for native
-// lineages (whose executor is already bound by the command host), and additive
-// only — the existing write-containment sentence must survive unchanged.
+// the "Read <skill>" instruction so it cannot be skimmed past, and additive only —
+// the existing write-containment sentence must survive unchanged.
 
 import { describe, expect, it } from 'vitest';
 import { createRequire } from 'node:module';
@@ -18,7 +17,7 @@ import { dirname, join } from 'node:path';
 const requireCjs = createRequire(import.meta.url);
 const fanoutRunScript = join(dirname(fileURLToPath(import.meta.url)), '..', 'scripts', 'fanout-run.cjs');
 
-type LineageKind = 'native' | 'cli-codex' | 'cli-opencode' | 'cli-pi' | 'cli-cursor' | 'cli-devin';
+type LineageKind = 'cli-codex' | 'cli-opencode' | 'cli-pi' | 'cli-cursor' | 'cli-devin';
 
 const { buildLoopPrompt } = requireCjs(fanoutRunScript) as {
   buildLoopPrompt: (
@@ -62,7 +61,7 @@ describe('fanout-run.cjs — buildLoopPrompt in-process execution directive', ()
     expect(directiveIndex).toBeLessThan(readIndex);
   });
 
-  it('renders the directive for every non-native lineage kind', () => {
+  it('renders the directive for every CLI lineage kind', () => {
     for (const kind of ['cli-codex', 'cli-opencode', 'cli-pi', 'cli-cursor', 'cli-devin'] as const) {
       const prompt = researchPrompt(kind);
       expect(prompt, `${kind} carries the in-process directive`).toContain(DIRECTIVE_HEADLINE);
@@ -70,18 +69,8 @@ describe('fanout-run.cjs — buildLoopPrompt in-process execution directive', ()
     }
   });
 
-  it('omits the directive for a native lineage', () => {
-    const prompt = researchPrompt('native');
-
-    expect(prompt).not.toContain(DIRECTIVE_HEADLINE);
-    expect(prompt).not.toContain(DIRECTIVE_PROHIBITION);
-    expect(prompt).toContain(
-      "This is an explicit native fan-out adapter running through the command host's OpenCode CLI surface.",
-    );
-  });
-
-  it('leaves the write-containment sentence intact for cli and native lineages alike', () => {
-    for (const kind of ['cli-codex', 'cli-opencode', 'native'] as const) {
+  it('leaves the write-containment sentence intact for every CLI lineage', () => {
+    for (const kind of ['cli-codex', 'cli-opencode'] as const) {
       expect(researchPrompt(kind), `${kind} keeps write containment`).toContain(CONTAINMENT_SENTENCE);
     }
   });
@@ -98,7 +87,7 @@ describe('fanout-run.cjs: buildLoopPrompt mode-specific output contracts', () =>
     );
   }
 
-  it('includes the research contract for CLI seats and leaves native on its rendered iteration prompt', () => {
+  it('includes the research contract for CLI seats', () => {
     for (const kind of ['cli-pi', 'cli-codex'] as const) {
       const prompt = researchPrompt(kind);
       expect(prompt).toContain('CLI OUTPUT CONTRACT');
@@ -109,10 +98,9 @@ describe('fanout-run.cjs: buildLoopPrompt mode-specific output contracts', () =>
         prompt.indexOf('Read .skilled/skills/system-deep-loop/deep-research/SKILL.md'),
       );
     }
-    expect(researchPrompt('native')).not.toContain('CLI OUTPUT CONTRACT');
   });
 
-  it('includes the review findingDetails contract for CLI seats and leaves native on its rendered iteration prompt', () => {
+  it('includes the review findingDetails contract for CLI seats', () => {
     for (const kind of ['cli-pi', 'cli-codex'] as const) {
       const prompt = reviewPrompt(kind);
       expect(prompt).toContain('CLI OUTPUT CONTRACT');
@@ -126,7 +114,6 @@ describe('fanout-run.cjs: buildLoopPrompt mode-specific output contracts', () =>
         prompt.indexOf('Read .skilled/skills/system-deep-loop/deep-review/SKILL.md'),
       );
     }
-    expect(reviewPrompt('native')).not.toContain('CLI OUTPUT CONTRACT');
   });
 
   // A state row a lineage writes beside the ledger carries keys the projection
@@ -181,7 +168,5 @@ describe('fanout-run.cjs: buildLoopPrompt mode-specific output contracts', () =>
         'node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs specs/test-fanout-in-process --artifact-dir /tmp/fanout-in-process-lineage --create-missing-anchors',
       );
     }
-    // A native lineage runs the workflow through the command host, reducer included.
-    expect(researchPrompt('native')).not.toContain('step_reduce_state');
   });
 });

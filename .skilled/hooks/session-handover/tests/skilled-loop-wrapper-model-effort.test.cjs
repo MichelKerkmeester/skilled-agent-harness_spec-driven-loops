@@ -13,7 +13,7 @@ const {
   SEED, SPEC_FOLDER, LOOP_ID_PATTERN, LEFTOVER_RECORD, expectedClaudeManualCommand,
   createSandbox, installRuntimeStub, writeSpecFolderNote, runWrapperScript,
   installLeftoverRecordLauncher, installSymlinkedRecordLauncher, runWrapper, withManualTemplate,
-  readRecords, readLog, OPENCODE_2_HELP,
+  readRecords, readLog,
 } = require('./skilled-loop-wrapper-harness.cjs');
 
 test('Pi extension scanning stops at --', (t) => {
@@ -51,7 +51,7 @@ test('wrapper exports the selected provider and model to Pi across relaunches', 
   assert.equal(records[1].env.SKILLED_LOOP_MODEL, 'gpt-6-luna');
 });
 
-test('opencode carries -m before --prompt and never passes a resume flag', (t) => {
+test('opencode records -m as the carried model and never passes a resume flag', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
   const firstArguments = ['-m', 'openai/gpt-6-luna', '--continue', 'previous-session'];
@@ -61,9 +61,9 @@ test('opencode carries -m before --prompt and never passes a resume flag', (t) =
   const seed = `${SEED} ${handoffPath}`;
   assert.equal(records.length, 2);
   assert.equal(records[0].runtime, 'opencode');
-  assert.deepEqual(records[0].args, firstArguments);
+  assert.deepEqual(records[0].args, ['--standalone', ...firstArguments]);
   assert.equal(records[1].runtime, 'opencode');
-  assert.deepEqual(records[1].args, ['-m', 'openai/gpt-6-luna', '--prompt', seed]);
+  assert.deepEqual(records[1].args, ['--standalone', '--prompt', seed]);
   assert.equal(records[0].env.SKILLED_LOOP_MODEL, 'openai/gpt-6-luna');
   assert.equal(records[1].env.SKILLED_LOOP_MODEL, 'openai/gpt-6-luna');
   assert.equal(records[1].args.includes('--name'), false);
@@ -75,34 +75,21 @@ test('opencode carries -m before --prompt and never passes a resume flag', (t) =
   );
 });
 
-test('opencode normalizes --model m before --prompt on relaunch', (t) => {
-  const sandbox = createSandbox(t);
-  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
-  const result = runWrapper(sandbox, ['opencode', '--model', 'm']);
-  assert.equal(result.status, 0, result.stderr);
-  const records = readRecords(recordPath);
-  assert.deepEqual(records[1].args, [
-    '-m', 'm', '--prompt', `${SEED} ${handoffPath}`,
-  ]);
-});
-
-test('opencode normalizes --model=m before --prompt on relaunch', (t) => {
+test('opencode records --model=m as the carried model and drops it on relaunch', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
   const result = runWrapper(sandbox, ['opencode', '--model=m']);
   assert.equal(result.status, 0, result.stderr);
   const records = readRecords(recordPath);
-  assert.deepEqual(records[1].args, [
-    '-m', 'm', '--prompt', `${SEED} ${handoffPath}`,
-  ]);
+  assert.equal(records[1].env.SKILLED_LOOP_MODEL, 'm');
+  assert.deepEqual(records[1].args, ['--standalone', '--prompt', `${SEED} ${handoffPath}`]);
 });
 
-test('opencode 2 starts standalone on the first launch and on every relaunch', (t) => {
+test('opencode starts standalone on the first launch and on every relaunch', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
     markers: '*',
     SESSION_HANDOVER_MAX_HOPS: '2',
-    STUB_HELP: OPENCODE_2_HELP,
   });
   const result = runWrapper(sandbox, ['opencode', 'initial prompt']);
 
@@ -115,11 +102,10 @@ test('opencode 2 starts standalone on the first launch and on every relaunch', (
   assert.deepEqual(records[2].args, relaunch);
 });
 
-test('opencode 2 does not duplicate an operator-supplied --standalone', (t) => {
+test('opencode does not duplicate an operator-supplied --standalone', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
     markers: '1',
-    STUB_HELP: OPENCODE_2_HELP,
   });
   const result = runWrapper(sandbox, ['opencode', '--standalone', '--auto']);
 
@@ -129,11 +115,10 @@ test('opencode 2 does not duplicate an operator-supplied --standalone', (t) => {
   assert.deepEqual(records[1].args, ['--standalone', '--prompt', `${SEED} ${handoffPath}`, '--auto']);
 });
 
-test('opencode 2 relaunch drops -m because its root command has no model flag', (t) => {
+test('opencode relaunch drops -m because its root command has no model flag', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
     markers: '1',
-    STUB_HELP: OPENCODE_2_HELP,
   });
   const result = runWrapper(sandbox, ['opencode', '--model', 'openai/gpt-6-luna']);
 
@@ -142,12 +127,11 @@ test('opencode 2 relaunch drops -m because its root command has no model flag', 
   assert.deepEqual(records[1].args, ['--standalone', '--prompt', `${SEED} ${handoffPath}`]);
 });
 
-test('opencode 2 relaunch carries the sender model through OPENCODE_CONFIG_CONTENT', (t) => {
+test('opencode relaunch carries the sender model through OPENCODE_CONFIG_CONTENT', (t) => {
   const sandbox = createSandbox(t);
   const model = 'llmgateway/deepseek-v4.1-flash';
   const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
     markers: '1',
-    STUB_HELP: OPENCODE_2_HELP,
     RECORD_MODEL: model,
   });
   const result = runWrapper(sandbox, ['opencode', 'p']);
@@ -162,12 +146,11 @@ test('opencode 2 relaunch carries the sender model through OPENCODE_CONFIG_CONTE
   });
 });
 
-test('opencode 2 model carry keeps the operator config text it merges into', (t) => {
+test('opencode model carry keeps the operator config text it merges into', (t) => {
   const sandbox = createSandbox(t);
   const base = '{"theme":"tokyonight","agent":{"build":{"temperature":0.2}}}';
   const { recordPath } = installRuntimeStub(sandbox, {
     markers: '1',
-    STUB_HELP: OPENCODE_2_HELP,
     RECORD_MODEL: 'llmgateway/deepseek-v4.1-flash',
     OPENCODE_CONFIG_CONTENT: base,
   });
@@ -182,12 +165,11 @@ test('opencode 2 model carry keeps the operator config text it merges into', (t)
   assert.equal(carried.agent.build.model, 'llmgateway/deepseek-v4.1-flash');
 });
 
-test('opencode 2 model carry leaves config text it cannot parse untouched', (t) => {
+test('opencode model carry leaves config text it cannot parse untouched', (t) => {
   const sandbox = createSandbox(t);
   const base = '{ // the operator writes JSONC\n "theme": "tokyonight" }';
   const { recordPath } = installRuntimeStub(sandbox, {
     markers: '1',
-    STUB_HELP: OPENCODE_2_HELP,
     RECORD_MODEL: 'llmgateway/deepseek-v4.1-flash',
     OPENCODE_CONFIG_CONTENT: base,
   });
@@ -216,9 +198,9 @@ test('opencode settings read the latest assistant model from the session store',
   assert.equal(resolveSessionSettings({ runtime: 'opencode', sessionId: 'ses_other', env }).model, '');
 });
 
-test('opencode 2 on --server leaves the launch alone and warns the loop cannot arm', (t) => {
+test('opencode on --server leaves the launch alone and warns the loop cannot arm', (t) => {
   const sandbox = createSandbox(t);
-  const { recordPath } = installRuntimeStub(sandbox, { STUB_HELP: OPENCODE_2_HELP });
+  const { recordPath } = installRuntimeStub(sandbox);
   const result = runWrapper(sandbox, ['opencode', '--server', 'http://localhost:4096']);
 
   assert.equal(result.status, 0, result.stderr);
@@ -226,10 +208,9 @@ test('opencode 2 on --server leaves the launch alone and warns the loop cannot a
   assert.match(result.stderr, /warning: .*--server.*cannot arm/);
 });
 
-test('opencode 2 equals-form server warns and keeps the launch', (t) => {
+test('opencode equals-form server warns and keeps the launch', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath } = installRuntimeStub(sandbox, {
-    STUB_HELP: OPENCODE_2_HELP,
     SYSTEM_SESSION_HANDOVER_ENABLED: '1',
   });
   const result = runWrapper(sandbox, ['opencode', '--server=http://localhost:4096']);
@@ -259,20 +240,6 @@ test('missing runtime binary exits 127', (t) => {
 
   assert.equal(result.status, 127, result.stderr);
   assert.match(result.stderr, /claude: command not found/);
-});
-
-test('opencode without --standalone in its help keeps the launch and the -m replay', (t) => {
-  const sandbox = createSandbox(t);
-  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
-    markers: '1',
-    STUB_HELP: '  -m, --model   model to use',
-  });
-  const result = runWrapper(sandbox, ['opencode', '-m', 'p/m']);
-
-  assert.equal(result.status, 0, result.stderr);
-  const records = readRecords(recordPath);
-  assert.deepEqual(records[0].args, ['-m', 'p/m']);
-  assert.deepEqual(records[1].args, ['-m', 'p/m', '--prompt', `${SEED} ${handoffPath}`]);
 });
 
 test('wrapper removes its own leftover relaunch record before the first launch', (t) => {

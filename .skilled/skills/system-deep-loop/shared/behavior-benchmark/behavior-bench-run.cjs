@@ -51,15 +51,23 @@ const ENV_ERROR_MAX_TERMINAL_MS = 15000;
 // ── Leg spawn table (command parts WITHOUT the trailing prompt argument) ─────
 // Every leg skips permission prompts: a permission stall in a non-interactive
 // run would misclassify as stuck and corrupt the cell — permission UX is not
-// what this benchmark measures.
+// what this benchmark measures. OpenCode takes the reasoning effort as a `#effort`
+// suffix on the model and skips permission prompts with --auto.
 const LEG_TABLE = {
-  'deepseek': ['opencode', 'run', '--model', 'deepseek/deepseek-v4-pro', '--dangerously-skip-permissions'],
-  'glm-max': ['opencode', 'run', '--model', 'zai-coding-plan/glm-5.2', '--variant', 'max', '--dangerously-skip-permissions'],
-  'gpt-fast-med': ['opencode', 'run', '--model', 'openai/gpt-5.5-fast', '--variant', 'medium', '--dangerously-skip-permissions'],
-  'gpt-fast-high': ['opencode', 'run', '--model', 'openai/gpt-5.5-fast', '--variant', 'high', '--dangerously-skip-permissions'],
+  'deepseek': ['opencode', 'run', '--standalone', '-m', 'deepseek/deepseek-v4-pro', '--auto'],
+  'glm-max': ['opencode', 'run', '--standalone', '-m', 'zai-coding-plan/glm-5.2#max', '--auto'],
+  'gpt-fast-med': ['opencode', 'run', '--standalone', '-m', 'openai/gpt-5.5-fast#medium', '--auto'],
+  'gpt-fast-high': ['opencode', 'run', '--standalone', '-m', 'openai/gpt-5.5-fast#high', '--auto'],
   'claude-cli': ['claude', '-p', '--output-format', 'stream-json', '--verbose', '--dangerously-skip-permissions'],
 };
 
+/**
+ * Build the spawn argv for one leg, with the scenario prompt as the last argument.
+ *
+ * @returns {string[]|null} The argv, or null for an unknown leg.
+ * @throws {Error} When an OpenCode leg is given a command-kind scenario: OpenCode run
+ *   has no --command and does not expand a slash message, so it cannot start one.
+ */
 function buildSpawnArgs(legName, contract) {
   const base = LEG_TABLE[legName];
   if (!base) return null;
@@ -79,11 +87,12 @@ function buildSpawnArgs(legName, contract) {
     return [...base, promptText];
   }
 
-  // opencode legs take --command before --format.
-  const args = [...base];
-  if (isCommandKind) args.push('--command', commandStr);
-  args.push('--format', 'json');
-  return [...args, promptText];
+  if (isCommandKind) {
+    throw new Error(
+      `leg ${legName} cannot run command-kind scenario ${commandStr}: OpenCode run cannot start a registered command`,
+    );
+  }
+  return [...base, '--format', 'json', promptText];
 }
 
 // ── Scenario parsing: first fenced ```json block is the contract ─────────────
@@ -1064,7 +1073,12 @@ async function runOnce(args) {
     }
     spawnArray = [...parsed, contract.prompt];
   } else {
-    spawnArray = buildSpawnArgs(args.leg, contract);
+    try {
+      spawnArray = buildSpawnArgs(args.leg, contract);
+    } catch (error) {
+      console.error('behavior-bench-run: ' + error.message);
+      return EXIT_CONTRACT;
+    }
     if (!spawnArray) {
       console.error('behavior-bench-run: unknown leg: ' + args.leg);
       return EXIT_CONTRACT;

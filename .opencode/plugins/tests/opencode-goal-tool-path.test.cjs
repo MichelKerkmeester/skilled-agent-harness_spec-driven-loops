@@ -26,7 +26,7 @@ async function loadPluginModule() {
 async function loadGoalCore(pluginModule) {
   const coreUrl = pathToFileURL(join(__dirname, '..', 'lib', 'opencode-goal-core.js')).href;
   const coreModule = await import(coreUrl);
-  return coreModule.getGoalCore(pluginModule.default.server);
+  return coreModule.getGoalCore(pluginModule.default.factory);
 }
 
 async function withState(fn) {
@@ -78,7 +78,7 @@ test('invalid set action returns the documented failure envelope', async () => w
 }));
 
 test('registered opencode_goal reports created, refreshed, and replaced mutations', async () => withState(async ({ helpers, pluginModule, opts }) => {
-  const plugin = await pluginModule.default.server({}, opts);
+  const plugin = await pluginModule.default.factory({}, opts);
   const registeredCtx = { sessionID: 'registered-tool-sid', messageID: 'm2', agent: 'build' };
   const registeredSet = await plugin.tool.opencode_goal.execute(
     { action: 'set', objective: 'REGISTERED_TOOL_OBJ' },
@@ -103,7 +103,7 @@ test('registered opencode_goal reports created, refreshed, and replaced mutation
 }));
 
 test('terminal same-objective set reports replacement and resets counters', async () => withState(async ({ helpers, pluginModule, opts }) => {
-  const plugin = await pluginModule.default.server({}, opts);
+  const plugin = await pluginModule.default.factory({}, opts);
   const terminalCtx = { sessionID: 'terminal-tool-sid', messageID: 'm3', agent: 'build' };
   const terminalSet = await plugin.tool.opencode_goal.execute(
     { action: 'set', objective: 'TERMINAL_TOOL_OBJ', tokenBudget: 20 },

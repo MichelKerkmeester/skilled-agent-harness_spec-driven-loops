@@ -38,8 +38,8 @@ const BLOCKING_PACKET = [
 
 const BLOCKING_RULES = `${JSON.stringify([
   {
-    id: 'no-bare-agent-general',
-    check: 'no-bare-agent-general',
+    id: 'share-requires-confirmation',
+    check: 'share-requires-confirmation',
     message: 'fixture rule that blocks',
     severity: 'block',
   },
@@ -61,7 +61,7 @@ function consumer(sourceName, files = {}) {
 
 async function load(pluginFile, directory) {
   const plugin = await import(pathToFileURL(path.join(PLUGIN_DIR, pluginFile)).href);
-  return plugin.default.server({ directory });
+  return plugin.default.factory({ directory });
 }
 
 for (const sourceName of SOURCE_NAMES) {
@@ -75,7 +75,7 @@ for (const sourceName of SOURCE_NAMES) {
       await assert.rejects(
         hooks['tool.execute.before'](
           { tool: 'bash' },
-          { args: { command: 'opencode run -m p/m --agent general "x" </dev/null' } },
+          { args: { command: 'opencode run -m p/m --share "x" </dev/null' } },
         ),
         /Dispatch blocked by cli-opencode/,
       );
@@ -124,19 +124,19 @@ test('dispatch guard reads the command from the hook output args', async () => {
     {
       name: 'blocks a dispatch whose args arrive on the hook output',
       input: { tool: 'bash' },
-      output: { args: { command: 'opencode run -m p/m --agent general "x" </dev/null' } },
+      output: { args: { command: 'opencode run -m p/m --share "x" </dev/null' } },
       blocked: true,
     },
     {
       name: 'ignores args carried on the input instead of the output',
-      input: { tool: 'bash', args: { command: 'opencode run -m p/m --agent general "x" </dev/null' } },
+      input: { tool: 'bash', args: { command: 'opencode run -m p/m --share "x" </dev/null' } },
       output: undefined,
       blocked: false,
     },
     {
       name: 'ignores a non-bash tool',
       input: { tool: 'read' },
-      output: { args: { command: 'opencode run -m p/m --agent general "x" </dev/null' } },
+      output: { args: { command: 'opencode run -m p/m --share "x" </dev/null' } },
       blocked: false,
     },
     {
@@ -148,7 +148,7 @@ test('dispatch guard reads the command from the hook output args', async () => {
     {
       name: 'blocks a dispatch joined to another command',
       input: { tool: 'bash' },
-      output: { args: { command: 'echo x && opencode run -m p/m --agent general "x" </dev/null' } },
+      output: { args: { command: 'echo x && opencode run -m p/m --share "x" </dev/null' } },
       blocked: true,
     },
   ];
@@ -187,7 +187,7 @@ test('the audit-log switch leaves the preflight guard blocking', async () => {
     await assert.rejects(
       hooks['tool.execute.before'](
         { tool: 'bash' },
-        { args: { command: 'opencode run -m p/m --agent general "x" </dev/null' } },
+        { args: { command: 'opencode run -m p/m --share "x" </dev/null' } },
       ),
       /Dispatch blocked by cli-opencode/,
     );
@@ -206,7 +206,7 @@ test('without a source root the guard stays open and the watchdog reports no dri
     const guard = await load('cli-dispatch-audit.js', root);
     await guard['tool.execute.before'](
       { tool: 'bash' },
-      { args: { command: 'opencode run -m p/m --agent general "x" </dev/null' } },
+      { args: { command: 'opencode run -m p/m --share "x" </dev/null' } },
     );
     const watchdog = await load('codex-hooks-watchdog.js', root);
     await watchdog.event({ event: { type: 'session.created', properties: { info: { id: 's-none' } } } });

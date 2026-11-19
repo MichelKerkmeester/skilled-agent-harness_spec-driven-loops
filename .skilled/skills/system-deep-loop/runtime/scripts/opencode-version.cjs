@@ -35,7 +35,7 @@ function hasPathSeparator(binary) {
 function unresolvedError(reason, output = '') {
   const probeOutput = output.length > 0 ? output : '<none>';
   const error = new Error(
-    `Unable to resolve OpenCode binary (opencode2 or opencode). ${reason}. `
+    `Unable to resolve OpenCode binary (opencode). ${reason}. `
       + `Probe output: ${probeOutput}`,
   );
   error.code = 'E_OPENCODE_UNRESOLVED';
@@ -117,6 +117,12 @@ function resolveCandidate(command, executablePath, env, deps) {
     }
 
     version = parseOpencodeVersion(probeResult.output);
+    if (version === 'unsupported') {
+      throw unresolvedError(
+        `'${command}' is OpenCode 1, which is no longer supported; install OpenCode 2`,
+        probeResult.output,
+      );
+    }
     if (version === 'unknown') {
       throw unresolvedError(
         `Version probe output for '${command}' was not supported`,
@@ -137,7 +143,7 @@ function resolveCandidate(command, executablePath, env, deps) {
  * Parse the first supported version token in OpenCode version output.
  *
  * @param {string} text - Output returned by the version probe.
- * @returns {'v1' | 'v2' | 'unknown'} The supported major version or unknown.
+ * @returns {'v2' | 'unsupported' | 'unknown'} The supported family, a retired major, or unknown.
  */
 function parseOpencodeVersion(text) {
   if (typeof text !== 'string') return 'unknown';
@@ -157,7 +163,7 @@ function parseOpencodeVersion(text) {
         if (!match) continue;
 
         const major = Number(match[1]);
-        if (major === 1) return 'v1';
+        if (major === 1) return 'unsupported';
         if (major === 2) return 'v2';
         return 'unknown';
       }
@@ -170,13 +176,12 @@ function parseOpencodeVersion(text) {
 /**
  * Resolve and probe an executable OpenCode binary.
  *
- * OpenCode 2 is preferred anywhere on PATH; OpenCode 1 is only the fallback,
- * used when no `opencode2` executable exists.
+ * Only OpenCode 2 is accepted; a binary that reports any other major is refused.
  *
  * @param {NodeJS.ProcessEnv} [env=process.env] - Environment used for PATH and probing.
  * @param {Object} [deps={}] - Optional dependency overrides.
  * @param {(executablePath: string) => string} [deps.probe] - Synchronous version probe.
- * @returns {{command: string, executablePath: string, version: 'v1' | 'v2'}} The resolved binary.
+ * @returns {{command: string, executablePath: string, version: 'v2'}} The resolved binary.
  * @throws {Error} With code E_OPENCODE_UNRESOLVED when resolution or probing fails.
  */
 function resolveOpencodeBinary(env = process.env, deps = {}) {
@@ -200,13 +205,8 @@ function resolveOpencodeBinary(env = process.env, deps = {}) {
   }
 
   const searchPath = typeof env.PATH === 'string' ? env.PATH : '';
-
-  // Search the whole PATH once per name so an earlier-directory OpenCode 1 cannot
-  // shadow an OpenCode 2 that sits in a later directory
-  for (const command of ['opencode2', 'opencode']) {
-    const executablePath = resolveOnPath(command, searchPath);
-    if (executablePath) return resolveCandidate(command, executablePath, env, deps);
-  }
+  const executablePath = resolveOnPath('opencode', searchPath);
+  if (executablePath) return resolveCandidate('opencode', executablePath, env, deps);
 
   throw unresolvedError('No executable regular file was found on PATH');
 }

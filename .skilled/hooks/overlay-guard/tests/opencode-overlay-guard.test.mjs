@@ -124,7 +124,7 @@ function makeTree(options = {}) {
 async function loadHooks(root) {
   const pluginUrl = pathToFileURL(path.join(root, '.opencode', 'plugins', 'overlay-guard.js')).href;
   const plugin = (await import(pluginUrl)).default;
-  return plugin.server({ directory: root });
+  return plugin.factory({ directory: root });
 }
 
 /** A `tool.execute.before` call the way OpenCode hands one to a plugin. */

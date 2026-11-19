@@ -316,16 +316,17 @@ workflow:
       session with a separate lineage directory and session id; it is not the single-executor
       self-invocation path. fanout-run.cjs owns the stack-only recursion guard for that
       first-level detached lineage and still blocks recursive same-kind dispatch from inside it.
-      fanout-run.cjs owns native and CLI lineage execution; native is run through the
-      deep/review command surface with config.fanout_lineage_artifact_dir so the LEAF
-      deep-review agent is used only for individual iterations, never as a full-loop
-      sub-agent or pasted phase-running prompt.
+      fanout-run.cjs owns every fan-out lineage, and each one needs a cli-* executor.
+      A native fan-out lineage is refused before any lineage spawns: OpenCode 2 run cannot
+      start the registered deep/review command that adapter needed, so native runs only as
+      the single executor. The LEAF deep-review agent is used only for individual
+      iterations, never as a full-loop sub-agent or pasted phase-running prompt.
       After all lineages complete, jump directly to phase_synthesis — skip phase_init and
       phase_main_loop entirely (those are the single-executor path). The merge step in
       phase_synthesis will consolidate results across all lineages.
     sub_steps:
       step_fanout_spawn_cli:
-        description: "Spawn all native and CLI lineages in capped worker pool"
+        description: "Spawn all CLI lineages in capped worker pool"
         skip_when: "no entries in config.fanout.executors"
         command: |
           node .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs \
@@ -1537,11 +1538,11 @@ workflow:
           wait_for_completion: true
           notes:
             - "Routed through runAuditedExecutorCommand so opencode produces INTENT + COMPLETION dispatch receipts; recursion guard + env allowlist enforced via buildExecutorDispatchEnv"
-            - "Fail closed before dispatch unless the rendered containment sections exist, --dir is an isolated linked worktree, the primary worktree is clean, and current-worktree changes are confined to artifact_dir both by name and after every path component is resolved through symlinks; append the recovery-baseline commit to state_log"
+            - "Fail closed before dispatch unless the rendered containment sections exist, the working directory ({repo_root}) is an isolated linked worktree, the primary worktree is clean, and current-worktree changes are confined to artifact_dir both by name and after every path component is resolved through symlinks; append the recovery-baseline commit to state_log"
             - "buildLineageCommand returns empty input, so stdin is closed (EOF), equivalent to </dev/null"
             - "buildLineageCommand receives the route-proof preamble + iteration body as its message"
-            - "buildLineageCommand maps reasoningEffort to the installed OpenCode version's supported option"
-            - "buildLineageCommand resolves the OpenCode binary and version-correct argv for the configured sandboxMode"
+            - "buildLineageCommand passes reasoningEffort as the #effort suffix on the -m model"
+            - "buildLineageCommand resolves an OpenCode 2 binary and refuses any other major; it adds --auto for sandboxMode danger-full-access, and any other sandboxMode fails closed"
             - "cli-opencode self-invocation guard: this single-executor branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). Explicit parallel-detached cli-opencode fan-out is handled by step_fanout_spawn_cli/fanout-run.cjs, not this branch. the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
         if_cli_codex:
           command: |

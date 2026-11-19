@@ -4,28 +4,14 @@
     "check": "stdin-redirect-required",
     "message": "Ad-hoc `opencode run` MUST close/redirect stdin (`</dev/null`) — omitting it can hang indefinitely at 0% CPU with zero output.",
     "severity": "error",
-    "appliesTo": ["v1", "v2"]
+    "appliesTo": ["v2"]
   },
   {
     "id": "explicit-model-required",
     "check": "explicit-model-required",
-    "message": "Always pass `-m <provider/model>` to a non-interactive `opencode run`. When the configured default provider is out of quota, opencode retries the 429 indefinitely and produces NO output — indistinguishable from a deadlock. Confirm with `--print-logs --log-level DEBUG` (look for 'stream error … Error 429').",
+    "message": "Always pass `-m <provider/model>` to a non-interactive `opencode run`. When the configured default provider is out of quota, opencode retries the 429 indefinitely and produces NO output — indistinguishable from a deadlock. Confirm with `--print-logs --log-level debug` (look for 'stream error … Error 429').",
     "severity": "error",
-    "appliesTo": ["v1", "v2"]
-  },
-  {
-    "id": "no-bare-agent-general",
-    "check": "no-bare-agent-general",
-    "message": "Never pass a bare top-level `--agent general`; opencode rejects it on run.",
-    "severity": "warn",
-    "appliesTo": ["v1"]
-  },
-  {
-    "id": "command-flag-for-slash-prompt",
-    "check": "command-flag-for-slash-prompt",
-    "message": "A slash-command-shaped prompt (`/family:name ...`) needs `--command <family>/<name>`, else opencode silently delivers the slash text as raw prose.",
-    "severity": "error",
-    "appliesTo": ["v1"]
+    "appliesTo": ["v2"]
   },
   {
     "id": "v2-slash-prompt-route",
@@ -37,8 +23,8 @@
   {
     "id": "share-requires-confirmation",
     "check": "share-requires-confirmation",
-    "message": "`--share` publishes nothing: OpenCode 1.19.3 discontinued session sharing and OpenCode 2 `run` has no such flag. Drop it.",
+    "message": "`--share` publishes nothing: OpenCode `run` has no such flag. Drop it.",
     "severity": "warn",
-    "appliesTo": ["v1", "v2"]
+    "appliesTo": ["v2"]
   }
 ]

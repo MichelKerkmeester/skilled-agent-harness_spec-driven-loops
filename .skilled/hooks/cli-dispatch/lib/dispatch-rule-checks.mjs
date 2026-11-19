@@ -47,6 +47,7 @@ const DSH_PATCH_LITERAL_MESSAGE = 'Pass a literal `.dsh/patches/...` path to `--
   + 'an unexpanded shell variable cannot prove the approved patch roster.';
 const QUOTED_OPENCODE_RUN_BINARY = /(?:^|[\s;&|])["']((?:[^"']*[\\/])?opencode\d*)["']\s+run\b/;
 const OPENCODE_RUN_BINARY = /(?:^|[\s;&|'" ])((?:[^\s"';&|]*[\\/])?opencode\d*|\$OPENCODE_BIN|\$\{OPENCODE_BIN\})["']?\s+run\b/;
+const UNRESOLVED_FAMILIES = Object.freeze(['unknown', 'unsupported']);
 
 /** Read the sibling sidecar beside a SKILL.md; [] on any read, parse or shape error (fail-open). */
 export function readHardRules(skillMdPath) {
@@ -778,19 +779,8 @@ export const CHECKS = {
     const held = runs.length > 0 ? runs : [blankQuotedSpans(cmd)];
     return held.every((text) => /(^|\s)(-m|--model)(\s|=)/.test(text));
   },
-  // A bare top-level `--agent general` is rejected by opencode at runtime. Both spellings
-  // count: `--agent=general` reached the runtime unflagged while `--agent general` did not.
-  'no-bare-agent-general': (cmd) => !/--agent(?:\s+|=)general(\s|$)/.test(cmd),
-  // A slash-command-shaped prompt needs --command, else opencode delivers it as raw prose
-  // and the wrong task runs with no error. The prompt need not be quoted to be a prompt.
-  'command-flag-for-slash-prompt': (cmd) => {
-    const slashPrompt = /(?:["']|\s)\s*\/[a-z0-9]+:[a-z0-9-]+/i.test(cmd);
-    if (!slashPrompt) return true;
-    return /--command(\s|=)/.test(cmd);
-  },
   'v2-slash-prompt-route': (cmd) => !/(?:["']|\s)\s*\/[a-z0-9]+:[a-z0-9-]+/i.test(cmd),
-  // --share publishes nothing: OpenCode 1.19.3 keeps it as a hidden, deprecated flag that
-  // only prints a warning, and OpenCode 2 `run` has no such flag. A dispatch that passes it,
+  // --share publishes nothing: OpenCode `run` has no such flag. A dispatch that passes it,
   // bare or as `--share=<value>`, still expects a share, so the advisory names the flag.
   'share-requires-confirmation': (cmd) => !/--share(?:\s|=|$)/.test(cmd),
   // The four availability rules below were declared with `severity: error` but had no
@@ -1099,13 +1089,13 @@ export const KNOWN_CHECKS = Object.keys(CHECKS);
  * @param {Object} [options]
  * @param {object} [options.checks] - Check registry override.
  * @param {object} [options.context] - State available to checks.
- * @param {'v1' | 'v2' | 'unknown'} [options.version] - Resolved OpenCode version.
+ * @param {'v2' | 'unsupported' | 'unknown'} [options.version] - Resolved OpenCode version.
  * @returns {Array<{id,severity,message,check,passed:boolean}>} only the VIOLATED rules.
  */
 export function evaluate(command, rules, options = {}) {
   const registry = options.checks || CHECKS;
   const context = options.context;
-  const hasVersion = [...SUPPORTED_FAMILIES, 'unknown'].includes(options.version);
+  const hasVersion = [...SUPPORTED_FAMILIES, ...UNRESOLVED_FAMILIES].includes(options.version);
   const commandText = String(command || '');
   const opencodeRun = commandText.match(QUOTED_OPENCODE_RUN_BINARY)
     || commandText.match(OPENCODE_RUN_BINARY);
@@ -1125,7 +1115,10 @@ export function evaluate(command, rules, options = {}) {
     if (!fn) continue; // unknown check → skip (the CI validator catches typos, not this hot path)
     const appliesTo = Array.isArray(rule.appliesTo) ? rule.appliesTo : SUPPORTED_FAMILIES;
     const appliesToAll = SUPPORTED_FAMILIES.every((family) => appliesTo.includes(family));
-    if (filterByVersion && version !== 'unknown' && !appliesTo.includes(version)) continue;
+    // A binary that is not a supported family gets every rule, so an old install cannot slip
+    // past the checks that guard every family.
+    const unresolved = filterByVersion && UNRESOLVED_FAMILIES.includes(version);
+    if (filterByVersion && !unresolved && !appliesTo.includes(version)) continue;
     let passed = true;
     try {
       passed = fn(String(command || ''), context);
@@ -1139,7 +1132,7 @@ export function evaluate(command, rules, options = {}) {
       // the availability/self-invocation guards use) denies the dispatch;
       // everything else is advisory. A skill's own SKILL.md severity is the
       // source of truth here.
-      const severity = filterByVersion && version === 'unknown' && !appliesToAll
+      const severity = unresolved && !appliesToAll
         ? 'warn'
         : rule.severity;
       const blocking = severity === 'block' || severity === 'error';

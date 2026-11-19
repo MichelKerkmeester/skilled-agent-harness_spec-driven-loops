@@ -16,42 +16,6 @@ export function loadOpenCodeSession({ sessionId, ...options }?: {}): {
         locatorKind: string;
         storePath: string | undefined;
     };
-    records: ({
-        id: any;
-        role: string;
-        timestamp: any;
-        content: {
-            type: string;
-            id: string;
-            name: string;
-            arguments: any;
-        }[];
-        toolCallId?: undefined;
-    } | {
-        id: string;
-        role: string;
-        timestamp: any;
-        content: {
-            type: string;
-            text: string;
-        }[];
-        toolCallId: any;
-    } | {
-        id: any;
-        role: string;
-        timestamp: string;
-        content: {
-            type: string;
-            text: string;
-        }[];
-    } | {
-        id: any;
-        role: string;
-        timestamp: string;
-        content: {
-            type: string;
-            thinking: string;
-        }[];
-    })[];
+    records: any[];
 };
 //# sourceMappingURL=opencode.d.mts.map

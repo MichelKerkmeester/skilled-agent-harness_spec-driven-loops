@@ -283,11 +283,6 @@ function installRuntimeStub(sandbox, { markers = '', exitCodes = '0', ...overrid
   fs.writeFileSync(handoffPath, OPEN_NOTE);
   const shellProgram = `#!/usr/bin/env bash
 set -euo pipefail
-# A capability probe is answered from STUB_HELP and never recorded as a session.
-if [[ "\${1:-}" == "--help" ]]; then
-  printf '%s' "\${STUB_HELP:-}"
-  exit 0
-fi
 export SESSION_HANDOVER_TEST_RUNTIME="$SKILLED_LOOP_RUNTIME"
 export SESSION_HANDOVER_TEST_COMMAND="\${0##*/}"
 node -e '${RUNTIME_SOURCE}' -- "$@"
@@ -603,15 +598,6 @@ function readLog(sandbox) {
   return fs.existsSync(logPath) ? fs.readFileSync(logPath, 'utf8') : '';
 }
 
-// OpenCode 2 lists --standalone in its root help. Without it a session lands on the shared
-// background service, which carries no loop id, so the relaunch never arms.
-const OPENCODE_2_HELP = [
-  'FLAGS',
-  '  --standalone            Run with a private server instead of the background service',
-  '  --server string         Connect to a server URL instead of the background service',
-  '  --prompt string         Prompt to use',
-].join('\n');
-
 module.exports = {
   WRAPPER_PATH, CLI_PATH, SEED, SPEC_FOLDER, SPEC_FOLDER_SUFFIX, SKIP_SPEC_FOLDER_SUFFIX,
   COMMAND_RUNTIME_SPEC_FOLDER, LOOP_ID_PATTERN, OPEN_NOTE, LEFTOVER_RECORD,
@@ -622,5 +608,5 @@ module.exports = {
   installWrapperWithThrowingSuffix, runManualCommand, withManualTemplate, installDeciderStub,
   installConsumeFailureStub, installMalformedDecisionStub, installTruncatedDecisionOutputStub,
   installMalformedConsumeStub, installWithdrawBeforeConsumeStub, installFailingHandOverStub,
-  readRecords, readLog, OPENCODE_2_HELP,
+  readRecords, readLog,
 };

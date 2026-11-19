@@ -4,8 +4,8 @@
 // ║ PURPOSE: Pin the kill-switch contract: the master switch                 ║
 // ║          SYSTEM_HOOKS_DISABLED, its older alias MK_HOOKS_DISABLED and    ║
 // ║          the plugin's own SYSTEM_SPECKIT_COMPLETION_DISABLED, with any   ║
-// ║          truthy value, make the factory return an empty hooks object on  ║
-// ║          OpenCode 1 and register no tool on OpenCode 2. Also pins the    ║
+// ║          truthy value, make the hook factory return an empty hooks       ║
+// ║          object and register no tool on OpenCode 2. Also pins the        ║
 // ║          normal registration shape so the early return cannot swallow    ║
 // ║          it.                                                             ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
@@ -73,9 +73,9 @@ async function main() {
     // `tool` key at all, not a tool that answers `{status:'disabled'}`.
     await withSwitch(DISABLED_ENV, '1', async () => {
       assert.deepEqual(
-        await pluginModule.default.server({ directory: __dirname }),
+        await pluginModule.default.factory({ directory: __dirname }),
         {},
-        `${DISABLED_ENV}=1 must make the OpenCode 1 factory return an empty hooks object`,
+        `${DISABLED_ENV}=1 must make the hook factory return an empty hooks object`,
       );
       assert.ok(
         !registersTool(await v2Registrations(pluginModule)),
@@ -86,9 +86,9 @@ async function main() {
     // Master switch: one export silences every repo-authored hook at once.
     await withSwitch(MASTER_ENV, '1', async () => {
       assert.deepEqual(
-        await pluginModule.default.server({ directory: __dirname }),
+        await pluginModule.default.factory({ directory: __dirname }),
         {},
-        `${MASTER_ENV}=1 must make the OpenCode 1 factory return an empty hooks object`,
+        `${MASTER_ENV}=1 must make the hook factory return an empty hooks object`,
       );
       assert.ok(
         !registersTool(await v2Registrations(pluginModule)),
@@ -100,9 +100,9 @@ async function main() {
     // exported it before the rename.
     await withSwitch(MASTER_ALIAS_ENV, '1', async () => {
       assert.deepEqual(
-        await pluginModule.default.server({ directory: __dirname }),
+        await pluginModule.default.factory({ directory: __dirname }),
         {},
-        `${MASTER_ALIAS_ENV}=1 must make the OpenCode 1 factory return an empty hooks object`,
+        `${MASTER_ALIAS_ENV}=1 must make the hook factory return an empty hooks object`,
       );
       assert.ok(
         !registersTool(await v2Registrations(pluginModule)),
@@ -114,14 +114,14 @@ async function main() {
     // would silently keep the surface registered.
     await withSwitch(DISABLED_ENV, 'true', async () => {
       assert.deepEqual(
-        await pluginModule.default.server({ directory: __dirname }),
+        await pluginModule.default.factory({ directory: __dirname }),
         {},
-        `${DISABLED_ENV}=true must make the OpenCode 1 factory return an empty hooks object`,
+        `${DISABLED_ENV}=true must make the hook factory return an empty hooks object`,
       );
     });
 
     // No switch set: normal registration must be untouched by the guard.
-    const enabledHooks = await pluginModule.default.server({ directory: __dirname });
+    const enabledHooks = await pluginModule.default.factory({ directory: __dirname });
     assert.ok(
       enabledHooks.tool?.system_speckit_completion,
       'no kill-switch set: the tool namespace must be present',
@@ -139,7 +139,7 @@ async function main() {
     // An explicit falsy value must behave as enabled.
     await withSwitch(DISABLED_ENV, '0', async () => {
       assert.ok(
-        (await pluginModule.default.server({ directory: __dirname })).tool,
+        (await pluginModule.default.factory({ directory: __dirname })).tool,
         `${DISABLED_ENV}=0 must not disable registration: a falsy value leaves the tool namespace in place`,
       );
     });

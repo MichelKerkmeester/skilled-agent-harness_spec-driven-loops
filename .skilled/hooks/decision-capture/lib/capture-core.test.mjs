@@ -709,7 +709,7 @@ function runOpenCodeHook(projectDir, input, output) {
     "let inputText = '';",
     'for await (const chunk of process.stdin) inputText += chunk;',
     'const payload = JSON.parse(inputText);',
-    'const hooks = await plugin.server({ directory: payload.projectDir });',
+    'const hooks = await plugin.factory({ directory: payload.projectDir });',
     "await hooks['tool.execute.after'](payload.input, payload.output);",
   ].join('\n');
   const run = spawnSync(process.execPath, ['--input-type=module', '-e', script], {

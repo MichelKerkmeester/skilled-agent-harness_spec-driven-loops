@@ -1,9 +1,9 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: OpenCode Reader Tests
 // ───────────────────────────────────────────────────────────────────
-// The session row proves the id before any part or message is selected. The
-// driver loads only when a database is opened, because the shared plugin runs
-// under Bun, which has no `node:sqlite`.
+// The session row proves the id before any message is selected. The driver
+// loads only when a database is opened, because the shared plugin runs under
+// Bun, which has no `node:sqlite`.
 
 import assert from 'node:assert/strict';
 import { mkdirSync, renameSync } from 'node:fs';
@@ -16,26 +16,84 @@ import { readSession } from '../../session-readers/index.mjs';
 import { DECOY, opencodeSession, SESSION } from './fixtures.mjs';
 import { withTempAsync } from './helpers.mjs';
 
-test('a session resolves from its part and session_message rows', async () => {
+// Builds a store with only the tables OpenCode writes today: the session row and
+// its ordered message rows.
+function writeStore(root, messages) {
+  const opencodeRoot = join(root, 'opencode');
+  mkdirSync(opencodeRoot, { recursive: true });
+  const dbPath = join(opencodeRoot, 'opencode.db');
+  const database = new DatabaseSync(dbPath);
+  try {
+    database.exec('CREATE TABLE session_v2 (id TEXT, directory TEXT)');
+    database.exec('CREATE TABLE session_message (id TEXT, session_id TEXT, type TEXT, seq INTEGER, data TEXT)');
+    database.prepare('INSERT INTO session_v2 VALUES (?, ?)').run(SESSION, '/fixture/project');
+    const insert = database.prepare('INSERT INTO session_message VALUES (?, ?, ?, ?, ?)');
+    messages.forEach(([id, type, data], index) => insert.run(id, SESSION, type, index + 1, JSON.stringify(data)));
+  } finally {
+    database.close();
+  }
+  return { opencodeRoot, dbPath };
+}
+
+test('a session resolves from its session_message rows', async () => {
   await withTempAsync('opencode-reader', async (root) => {
     const fixture = opencodeSession({ root });
     const result = await readSession({ runtime: 'opencode', sessionId: SESSION, ...fixture.options });
     assert.equal(result.ok, true);
     assert.equal(result.source.locatorKind, 'session-store');
-    assert.equal(result.items[0].role, 'user');
-    assert.equal(result.items.some((item) => item.toolCallId === 'oc-call-1'), true);
+    assert.deepEqual(result.items.map((item) => [item.role, item.content[0].text]), [
+      ['user', 'Read the file.'],
+      ['assistant', 'The file holds one line.'],
+    ]);
   });
 });
 
-test('a text part takes its role from the parent message row', async () => {
-  await withTempAsync('opencode-part-role', async (root) => {
-    const fixture = opencodeSession({ root, withUserTextPart: true });
+test('a tool item in an assistant message yields one call and its result', async () => {
+  await withTempAsync('opencode-tool', async (root) => {
+    const tool = {
+      type: 'tool',
+      id: 'oc-call-1',
+      name: 'read',
+      state: { status: 'completed', input: { path: 'file.txt' }, output: 'file contents' },
+    };
+    const store = writeStore(root, [
+      ['oc-u1', 'user', { text: 'Read the file.', time: { created: 1000 } }],
+      ['oc-a1', 'assistant', { time: { created: 2000 }, content: [tool] }],
+      // A later row that repeats the call must not report it twice.
+      ['oc-a2', 'assistant', { time: { created: 3000 }, content: [tool] }],
+    ]);
+    const result = await readSession({ runtime: 'opencode', sessionId: SESSION, ...store });
+    assert.equal(result.ok, true);
+    assert.equal(result.items.filter((item) => item.toolCallId === 'oc-call-1').length, 1);
+    const toolResult = result.items.find((item) => item.toolCallId === 'oc-call-1');
+    assert.equal(toolResult.content[0].text, 'file contents');
+  });
+});
+
+// Rows in the frozen `part` table predate the current store and were migrated into
+// `session_message`, so reading both would repeat the same turn.
+test('rows in the frozen part table are not read', async () => {
+  await withTempAsync('opencode-part-ignored', async (root) => {
+    const fixture = opencodeSession({ root });
+    const database = new DatabaseSync(fixture.dbPath);
+    try {
+      database.exec('CREATE TABLE part (id TEXT, message_id TEXT, session_id TEXT, time_created INTEGER, data TEXT)');
+      const insert = database.prepare('INSERT INTO part VALUES (?, ?, ?, ?, ?)');
+      insert.run('oc-p0', 'oc-u1', SESSION, 500, JSON.stringify({ id: 'oc-p0', type: 'text', text: 'Read the file.' }));
+      insert.run('oc-p1', 'oc-a1', SESSION, 3000, JSON.stringify({
+        id: 'oc-p1',
+        type: 'tool',
+        callID: 'oc-call-1',
+        tool: 'read',
+        state: { status: 'completed', input: { path: 'file.txt' }, output: 'file contents' },
+      }));
+    } finally {
+      database.close();
+    }
     const result = await readSession({ runtime: 'opencode', sessionId: SESSION, ...fixture.options });
     assert.equal(result.ok, true);
-    const part = result.items.find((item) => item.id === 'oc-p0');
-    assert.equal(part?.role, 'user');
-    assert.equal(part?.content[0].text, 'Read the file.');
-    // The message row carries the same text, which must not appear a second time.
+    assert.equal(result.items.some((item) => item.id === 'oc-p0' || item.id === 'oc-p1'), false);
+    assert.equal(result.items.some((item) => item.toolCallId === 'oc-call-1'), false);
     assert.equal(result.items.filter((item) => item.role === 'user').length, 1);
   });
 });
@@ -58,9 +116,9 @@ test('a named folder must be the folder the session ran in', async () => {
 test('the database named by OPENCODE_DB is the one read', async () => {
   await withTempAsync('opencode-named-db', async (root) => {
     const fixture = opencodeSession({ root });
-    renameSync(fixture.dbPath, join(fixture.root, 'opencode-v1.db'));
+    renameSync(fixture.dbPath, join(fixture.root, 'opencode-named.db'));
     const named = await readSession({
-      runtime: 'opencode', sessionId: SESSION, opencodeRoot: fixture.root, env: { OPENCODE_DB: 'opencode-v1.db' },
+      runtime: 'opencode', sessionId: SESSION, opencodeRoot: fixture.root, env: { OPENCODE_DB: 'opencode-named.db' },
     });
     assert.equal(named.ok, true);
     const unnamed = await readSession({ runtime: 'opencode', sessionId: SESSION, opencodeRoot: fixture.root, env: {} });
@@ -68,8 +126,8 @@ test('the database named by OPENCODE_DB is the one read', async () => {
   });
 });
 
-test('an OpenCode 1 store takes part ids from the column and roles from the message table', async () => {
-  await withTempAsync('opencode-v1-shape', async (root) => {
+test('a store holding only the frozen session, message and part tables is store_unreadable', async () => {
+  await withTempAsync('opencode-legacy-only', async (root) => {
     const opencodeRoot = join(root, 'opencode');
     mkdirSync(opencodeRoot, { recursive: true });
     const dbPath = join(opencodeRoot, 'opencode.db');
@@ -88,8 +146,8 @@ test('an OpenCode 1 store takes part ids from the column and roles from the mess
     }
 
     const result = await readSession({ runtime: 'opencode', sessionId: SESSION, opencodeRoot, dbPath });
-    assert.equal(result.ok, true);
-    assert.deepEqual(result.items.map((item) => [item.role, item.id]), [['user', 'p-user'], ['assistant', 'p-model']]);
+    assert.equal(result.ok, false);
+    assert.equal(result.code, 'store_unreadable');
   });
 });
 

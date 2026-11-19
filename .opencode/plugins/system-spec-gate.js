@@ -189,14 +189,12 @@ async function MkSpecGatePlugin(ctx) {
           guardCore.sweepStaleGateStates(stateDir, runtimeState);
           return;
         }
-        if (eventType === 'session.resumed'
-          || eventType === 'session.compacted'
-          || eventType === 'session.compact') {
-          const resumedSession = String(sessionIdFromEvent(input));
-          guardCore.advanceGate3LifecycleEpoch(resumedSession, eventType);
-          // A resume starts a new stretch of work in the same session, so the
+        if (eventType === 'session.compacted') {
+          const compactedSession = String(sessionIdFromEvent(input));
+          guardCore.advanceGate3LifecycleEpoch(compactedSession, eventType);
+          // A compaction starts a new stretch of work in the same session, so the
           // one-time question may be put once more.
-          guardCore.rearmGate3NoticeDelivery({ sessionID: resumedSession, projectDir, env: process.env });
+          guardCore.rearmGate3NoticeDelivery({ sessionID: compactedSession, projectDir, env: process.env });
           return;
         }
         if (eventType === 'session.deleted') {

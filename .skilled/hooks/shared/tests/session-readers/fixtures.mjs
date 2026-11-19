@@ -156,7 +156,7 @@ export function piSession({ root, projectDir, sessionId = SESSION, headerId = se
 // 4. OPENCODE
 // ─────────────────────────────────────────────────────────────────────────────
 
-export function opencodeSession({ root, projectDir = '/fixture/project', sessionId = SESSION, withSession = true, withPart = true, withUserTextPart = false } = {}) {
+export function opencodeSession({ root, projectDir = '/fixture/project', sessionId = SESSION, withSession = true } = {}) {
   const opencodeRoot = join(root, 'opencode');
   const dbPath = join(opencodeRoot, 'opencode.db');
   mkdirSync(opencodeRoot, { recursive: true });
@@ -164,7 +164,6 @@ export function opencodeSession({ root, projectDir = '/fixture/project', session
   const database = new DatabaseSync(dbPath);
   try {
     database.exec('CREATE TABLE session_v2 (id TEXT, directory TEXT, time_updated INTEGER)');
-    database.exec('CREATE TABLE part (id TEXT, message_id TEXT, session_id TEXT, time_created INTEGER, data TEXT)');
     database.exec('CREATE TABLE session_message (id TEXT, session_id TEXT, type TEXT, seq INTEGER, data TEXT)');
 
     if (withSession) {
@@ -183,28 +182,6 @@ export function opencodeSession({ root, projectDir = '/fixture/project', session
         time: { created: T0 + 2000 },
         content: [{ type: 'text', text: 'The file holds one line.' }],
       }));
-
-    if (withUserTextPart) {
-      database
-        .prepare('INSERT INTO part (id, message_id, session_id, time_created, data) VALUES (?, ?, ?, ?, ?)')
-        .run('oc-p0', 'oc-u1', sessionId, T0 + 500, JSON.stringify({
-          id: 'oc-p0',
-          type: 'text',
-          text: 'Read the file.',
-        }));
-    }
-
-    if (withPart) {
-      database
-        .prepare('INSERT INTO part (id, message_id, session_id, time_created, data) VALUES (?, ?, ?, ?, ?)')
-        .run('oc-p1', 'oc-a1', sessionId, T0 + 3000, JSON.stringify({
-          id: 'oc-p1',
-          type: 'tool',
-          callID: 'oc-call-1',
-          tool: 'read',
-          state: { status: 'completed', input: { path: 'file.txt' }, output: 'file contents' },
-        }));
-    }
   } finally {
     database.close();
   }

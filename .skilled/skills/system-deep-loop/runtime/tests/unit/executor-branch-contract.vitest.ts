@@ -14,6 +14,15 @@ const WORKFLOW_YAMLS = [
   'deep-research.yaml',
   'deep-review.yaml',
 ];
+// The presentations and loop protocols carry the cli-opencode command an operator
+// copies, so a flag OpenCode rejects there fails the run as surely as one in the YAML.
+const SKILL_ROOT = resolve(__dirname, '..', '..', '..');
+const OPENCODE_COMMAND_DOCS = [
+  resolve(ASSETS, 'deep-research-presentation.txt'),
+  resolve(ASSETS, 'deep-review-presentation.txt'),
+  resolve(SKILL_ROOT, 'deep-research', 'references', 'protocol', 'loop-protocol.md'),
+  resolve(SKILL_ROOT, 'deep-review', 'references', 'protocol', 'loop-protocol.md'),
+];
 const EXECUTOR_FIELDS = Object.keys(executorConfigSchema.shape);
 const EXECUTOR_BRANCHES = [
   'if_native',
@@ -132,7 +141,10 @@ describe('deep-loop executor branch contract', () => {
   });
 
   it('does not pass OpenCode the rejected --pure flag', () => {
-    for (const yaml of workflows.values()) expect(rejectedPureFlags(yaml)).toEqual([]);
+    for (const [file, yaml] of workflows) expect(rejectedPureFlags(yaml), file).toEqual([]);
+    const docsWithPure = OPENCODE_COMMAND_DOCS
+      .filter((file) => rejectedPureFlags(readFileSync(file, 'utf8')).length > 0);
+    expect(docsWithPure).toEqual([]);
     expect(rejectedPureFlags('command: opencode --pure')).toEqual(['--pure']);
   });
 

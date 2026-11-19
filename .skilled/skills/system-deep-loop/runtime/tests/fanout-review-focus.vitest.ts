@@ -2,9 +2,9 @@
 //
 // An operator's review focus has to reach every lineage of a deep-review fan-out, and
 // every iteration prompt the leaf renders, in addition to the review dimensions. These
-// cells pin the three places it travels: the CLI lineage prompt's setup bindings, the
-// native lineage's command input, and the rendered review prompt pack. They also pin
-// that a run without a focus produces exactly the prompt it produced before.
+// cells pin the places it travels: the CLI lineage prompt's setup bindings, its
+// per-iteration contract, and the rendered review prompt pack. They also pin that a
+// run without a focus produces exactly the prompt it produced before.
 
 import { describe, expect, it } from 'vitest';
 import { createRequire } from 'node:module';
@@ -18,11 +18,11 @@ const testsDir = dirname(fileURLToPath(import.meta.url));
 const fanoutRunScript = join(testsDir, '..', 'scripts', 'fanout-run.cjs');
 const reviewTemplatePath = join(testsDir, '..', '..', 'deep-review', 'assets', 'prompt-pack-iteration.md.tmpl');
 
-type LineageKind = 'native' | 'cli-codex' | 'cli-opencode' | 'cli-claude-code';
+type LineageKind = 'cli-codex' | 'cli-opencode' | 'cli-claude-code';
 type Lineage = { kind: LineageKind; label: string; model?: string; iterations?: number };
 type LoopOptions = { stopPolicy?: string; reviewFocus?: string | null };
 
-const { buildLoopPrompt, buildNativeCommandInput, normalizeReviewFocus, REVIEW_FOCUS_MAX_LENGTH } = requireCjs(
+const { buildLoopPrompt, normalizeReviewFocus, REVIEW_FOCUS_MAX_LENGTH } = requireCjs(
   fanoutRunScript,
 ) as {
   buildLoopPrompt: (
@@ -34,13 +34,6 @@ const { buildLoopPrompt, buildNativeCommandInput, normalizeReviewFocus, REVIEW_F
     researchTopic?: string | null,
     options?: LoopOptions,
   ) => string;
-  buildNativeCommandInput: (
-    loopType: 'research' | 'review',
-    specFolder: string,
-    lineageDir: string,
-    lineage: Lineage,
-    options?: LoopOptions,
-  ) => string;
   normalizeReviewFocus: (raw: unknown) => string | null;
   REVIEW_FOCUS_MAX_LENGTH: number;
 };
@@ -50,7 +43,6 @@ const FOCUS = 'drift, bad integration, code alignment with sk-code-skilled, docs
 const LINEAGES: Lineage[] = [
   { kind: 'cli-codex', label: 'codex-1', model: 'gpt-5.6-codex', iterations: 5 },
   { kind: 'cli-opencode', label: 'opencode-1', model: 'llmgateway/glm-5.3-flash', iterations: 5 },
-  { kind: 'native', label: 'native-1', iterations: 5 },
 ];
 
 function reviewPrompt(lineage: Lineage, reviewFocus?: string | null): string {
@@ -115,16 +107,6 @@ describe('fanout-run.cjs review focus', () => {
     expect(focusRuleIndex).toBeGreaterThan(contractIndex);
   });
 
-  it('carries the focus to a native lineage as both a command flag and a pre-bound answer', () => {
-    const input = buildNativeCommandInput('review', SPEC_FOLDER, '/tmp/fanout-review-focus/native-1', LINEAGES[2], {
-      reviewFocus: FOCUS,
-    });
-    const [commandLine] = input.split('\n');
-    expect(commandLine).toContain(`--review-focus=${JSON.stringify(FOCUS)}`);
-    expect(input).toContain(`PRE-BOUND SETUP ANSWERS:`);
-    expect(input.split('\n')).toContain(`review_focus: ${FOCUS}`);
-  });
-
   it('leaves every prompt byte-identical when no focus is given', () => {
     for (const lineage of LINEAGES) {
       const withoutFocus = reviewPrompt(lineage);
@@ -136,9 +118,6 @@ describe('fanout-run.cjs review focus', () => {
         .join('\n');
       expect(focusLinesRemoved).toBe(withoutFocus);
     }
-    const nativeInput = buildNativeCommandInput('review', SPEC_FOLDER, '/tmp/fanout-review-focus/native-1', LINEAGES[2]);
-    expect(nativeInput).not.toContain('--review-focus');
-    expect(nativeInput).not.toContain('review_focus');
   });
 
   it('never adds a focus to a research lineage', () => {

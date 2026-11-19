@@ -51,7 +51,7 @@ describe('skill graph diagnostic redaction', () => {
   });
 
   it('keeps plugin status free of the retired bridge path and of absolute paths', async () => {
-    const hooks = await skillAdvisorPlugin.server({ directory: process.cwd() }, {});
+    const hooks = await skillAdvisorPlugin.factory({ directory: process.cwd() }, {});
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
 
     expect(status).not.toContain('bridge_path=');

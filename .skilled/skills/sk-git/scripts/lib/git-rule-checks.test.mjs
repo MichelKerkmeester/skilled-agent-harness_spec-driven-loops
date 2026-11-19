@@ -413,10 +413,10 @@ test('a check that throws is swallowed, so a broken rule cannot stop work', () =
 });
 
 test('the shared engine still evaluates command-only rules unchanged', () => {
-  const violations = evaluate('opencode run --agent general "x"', [
-    { id: 'no-bare-agent-general', check: 'no-bare-agent-general', message: 'm', severity: 'warn' },
+  const violations = evaluate('opencode run -m p/m "x"', [
+    { id: 'stdin-redirect-required', check: 'stdin-redirect-required', message: 'm', severity: 'warn' },
   ]);
-  assert.deepEqual(violations.map((v) => v.id), ['no-bare-agent-general']);
+  assert.deepEqual(violations.map((v) => v.id), ['stdin-redirect-required']);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

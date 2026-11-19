@@ -4,14 +4,16 @@
 // ───────────────────────────────────────────────────────────────────
 'use strict';
 
-// OpenCode 2 (2.0.32) `models` takes no positional argument: `opencode2 models
+// OpenCode 2 `models` takes no positional argument: on 2.3.2, `opencode models
 // opencode-go` exits 1 with `Unexpected positional argument: "opencode-go"`, so a
 // provider check written that way always reports the provider missing. Without
 // `--standalone` (or `--server <url>`) the command talks to the shared background
-// service, while `--standalone` runs a private server instead. Every documented
-// `opencode2 models` command must therefore carry `--standalone` or `--server <url>`
-// and no positional argument; a provider check filters the listing, for example
-// `opencode2 models --standalone 2>/dev/null | grep '^opencode-go/' >/dev/null`.
+// service, while `--standalone` runs a private server instead. A documented models
+// command must therefore carry `--standalone` or `--server <url>` and no positional
+// argument; a provider check filters the listing, for example
+// `opencode models --standalone 2>/dev/null | grep '^opencode-go/' >/dev/null`.
+// The scan reads every `opencode2 models` command and every `opencode models`
+// command that carries a server form.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS AND PATHS
@@ -58,8 +60,8 @@ const SERVER_FORM_PATTERN = /(?:^|\s)--(?:standalone|server)\b/;
 const REMAINDER_END_PATTERN = /[`|&;)]|(?:^|\s)\d*>/;
 
 function commandsIn(markdown) {
-  // An `opencode models` without a server form is the OpenCode 1 listing, which the
-  // version-label check owns, so only `opencode2` and the server forms are v2 commands.
+  // A bare `opencode models` with no server form is out of scope here, so only
+  // `opencode2` and the server forms are read as commands.
   return [...markdown.matchAll(COMMAND_PATTERN)].flatMap((match) => {
     const lineEnd = markdown.indexOf('\n', match.index + match[0].length);
     const restOfLine = markdown.slice(
@@ -111,38 +113,14 @@ function problemsWith(args) {
   return problems;
 }
 
-// In a v2-only layout the v2 binary is named `opencode`, where `opencode models
-// <provider>` is rejected, so a command both binaries answer to needs its version named
-// beside it. The provider it names cannot settle the version, because the v2 binary
-// rejects every provider that way. A prose command lives in an inline code span. A
-// fenced block is a shell transcript, and its first non-empty line is the comment that
-// names the version for every command below it.
+// A prose command lives in an inline code span, and a clause boundary is where one
+// sentence or table cell ends and the next begins.
 const INLINE_CODE_SPAN_PATTERN = /`([^`]*)`/g;
-const V1_COMMAND_PATTERN = /(?<![\w-])opencode\s+models\b/g;
-const VERSION_LABEL_PATTERN = /OpenCode 1\b|\bv1\b|1\.19/;
 
-// A prose line can label one command and mention another, so a label only covers the
-// clause it sits in. The line is masked before the split, because a `.` or `|` inside
-// backticks belongs to the command rather than to the sentence or table around it.
+// A prose line can hold more than one clause, so a boundary is measured on the line
+// itself. The line is masked before the split, because a `.` or `|` inside backticks
+// belongs to the command rather than to the sentence or table around it.
 const CLAUSE_BOUNDARY_PATTERN = /\||;|[.!?](?=\s|$)|, or | — /g;
-
-// The remainder ends where `commandsIn` ends it, so a pipeline, redirect, separator or
-// the closing backtick of an inline span is not read as part of the command.
-function v1CommandProblems(source, lineNumber, labelled) {
-  if (labelled) return [];
-
-  const offenders = [];
-  for (const match of source.matchAll(V1_COMMAND_PATTERN)) {
-    const remainder = source
-      .slice(match.index + match[0].length)
-      .split(REMAINDER_END_PATTERN)[0];
-    // A server form is the OpenCode 2 listing, which OpenCode 1 does not take.
-    if (SERVER_FORM_PATTERN.test(remainder)) continue;
-    offenders.push({ lineNumber, text: `${match[0]}${remainder}`.trim() });
-  }
-
-  return offenders;
-}
 
 // Clause ranges are measured on a copy whose inline code spans are replaced by
 // boundary-free placeholders of the same length, so a command is never cut in two.
@@ -160,38 +138,6 @@ function clauseRanges(line) {
   return ranges;
 }
 
-function unversionedV1Forms(markdown) {
-  const offenders = [];
-  let inFence = false;
-  let fenceLead = null;
-
-  for (const { text: line, lineNumber } of joinContinuations(markdown.split('\n'))) {
-    if (line.trim().startsWith('```')) {
-      inFence = !inFence;
-      fenceLead = null;
-      continue;
-    }
-
-    if (inFence) {
-      if (fenceLead === null && line.trim() !== '') fenceLead = line;
-      const labelled =
-        VERSION_LABEL_PATTERN.test(line) || VERSION_LABEL_PATTERN.test(fenceLead ?? '');
-      offenders.push(...v1CommandProblems(line, lineNumber, labelled));
-      continue;
-    }
-
-    const clauses = clauseRanges(line);
-    for (const span of line.matchAll(INLINE_CODE_SPAN_PATTERN)) {
-      const clause = clauses.find(
-        (range) => span.index >= range.start && span.index < range.end,
-      );
-      const labelled = VERSION_LABEL_PATTERN.test(line.slice(clause.start, clause.end));
-      offenders.push(...v1CommandProblems(span[1], lineNumber, labelled));
-    }
-  }
-
-  return offenders;
-}
 
 // A listing command written as prose reads like a command but is never checked by the
 // fenced-block scan, so it must be quoted like every runnable example. The match is
@@ -633,65 +579,6 @@ test('problemsWith classifies the forms OpenCode 2 accepts and rejects', () => {
   );
 });
 
-test('unversionedV1Forms flags only unlabelled forms OpenCode 2 would also run', () => {
-  const flagged = (line) => unversionedV1Forms(line).length;
-
-  assert.equal(
-    flagged('Run `opencode models <provider>` first.'),
-    1,
-    'a versionless placeholder must be flagged',
-  );
-  assert.equal(
-    flagged('Run `opencode models llmgateway` on OpenCode 1.'),
-    0,
-    'a named version must clear the form',
-  );
-  assert.equal(
-    flagged('Run `opencode models opencode-go` first.'),
-    1,
-    'a named provider must be flagged, since a v2-only layout names its v2 binary opencode',
-  );
-  assert.equal(
-    flagged('Run `opencode models opencode-go` on OpenCode 1.'),
-    0,
-    'a named version must clear the form even when the provider is named',
-  );
-  assert.equal(
-    flagged(['```', 'opencode models llmgateway >/dev/null', '```'].join('\n')),
-    1,
-    'a fenced command with no version lead must be flagged',
-  );
-  assert.equal(
-    flagged(
-      ['```', '# OpenCode 1 pre-flight', 'opencode models llmgateway >/dev/null', '```'].join('\n'),
-    ),
-    0,
-    'a version-named fence lead must label every command in the block',
-  );
-  assert.equal(
-    flagged('Use `opencode models <provider>` or `opencode2 models --standalone`.'),
-    1,
-    'a v2 form beside the v1 form must not label it',
-  );
-
-  const commaOr = unversionedV1Forms(
-    'Use `opencode models llmgateway` on OpenCode 1, or `opencode models openrouter` for OpenRouter.',
-  );
-  assert.equal(commaOr.length, 1, 'a label in another clause must not cover this command');
-  assert.equal(commaOr[0].text, 'opencode models openrouter', 'the unlabelled command is the offender');
-
-  assert.equal(
-    flagged('| `opencode models llmgateway` on OpenCode 1 | `opencode models openrouter` |'),
-    1,
-    'a label in another table cell must not cover this command',
-  );
-  assert.equal(
-    flagged('Run `opencode models llmgateway` (OpenCode 1; v2 has no argument).'),
-    0,
-    'a label before a boundary in the same clause must still clear the command',
-  );
-});
-
 test("commandsIn keeps a redirect's file descriptor out of the arguments", () => {
   const filtered = commandsIn(
     "opencode2 models --standalone 2>/dev/null | grep '^opencode-go/' >/dev/null",
@@ -733,7 +620,7 @@ test('a continuation between the binary and models is still one command', () => 
 // 4. NO DOCUMENT QUOTES A FORM THE V2 BINARY REJECTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches the shared service', () => {
+test('no doc quotes a models form that OpenCode 2 rejects or that reaches the shared service', () => {
   const offenders = [];
 
   const scan = (file) => {
@@ -753,25 +640,7 @@ test('no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches
   assert.equal(
     offenders.join('\n'),
     '',
-    `every documented "opencode2 models" command needs --standalone or --server <url> and no positional argument, but these do not:\n${offenders.join('\n')}`,
-  );
-});
-
-test('every opencode models command names OpenCode 1, since a v2-only layout names its v2 binary opencode', () => {
-  const offenders = [];
-
-  const scan = (file) => {
-    for (const offender of unversionedV1Forms(read(file))) {
-      offenders.push(`${relativeToRepoRoot(file)}:${offender.lineNumber}: ${offender.text}`);
-    }
-  };
-
-  for (const file of documents(CLI_ROOT)) scan(file);
-
-  assert.equal(
-    offenders.join('\n'),
-    '',
-    `in a v2-only layout the v2 binary is named "opencode", where "opencode models <provider>" is rejected, so every documented "opencode models" command must name its version, but these do not:\n${offenders.join('\n')}`,
+    `every documented models command needs --standalone or --server <url> and no positional argument, but these do not:\n${offenders.join('\n')}`,
   );
 });
 

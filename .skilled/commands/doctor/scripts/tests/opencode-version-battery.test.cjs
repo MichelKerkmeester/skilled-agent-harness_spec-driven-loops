@@ -18,7 +18,6 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
-const { pathToFileURL } = require('node:url');
 
 const {
   allowedCommandSources,
@@ -26,8 +25,6 @@ const {
   legCommandListed,
   legFamilyPresent,
   legPluginActive,
-  legPluginDiscovered,
-  legPluginLoad,
   legsForV2,
   listCommandNames,
   listNonCommandFiles,
@@ -48,9 +45,10 @@ const { parseOpencodeVersion } = require(path.resolve(
 ));
 
 // Fixture paths stand in for an installed binary and a plugin folder; the legs
-// judge records, so these paths never need to exist.
+// judge records, so these paths never need to exist. V1_BIN stands in for a
+// retired OpenCode 1 install the battery must name and never check.
 const V1_BIN = '/fixture/bin/opencode';
-const V2_BIN = '/fixture/bin/opencode2';
+const V2_BIN = '/fixture/v2/bin/opencode';
 const FIXTURE_ROOT = '/fixture/root';
 const OTHER_ROOT = '/fixture/other';
 
@@ -198,25 +196,8 @@ if (args[0] === 'serve') {
   return { script, record };
 }
 
-function fileRecord(root, name, broken = false) {
-  return { name, path: path.join(root, '.opencode', 'plugins', name), broken };
-}
-
-function debugConfigFor(files, commands = []) {
-  return {
-    exit: 0,
-    stdout: JSON.stringify({
-      plugin_origins: files.map((file) => ({ spec: pathToFileURL(file.path).href })),
-      command: Object.fromEntries(commands.map((name) => [name, { template: 'fixture' }])),
-    }),
-  };
-}
-
-function harnessFor(files) {
-  return {
-    exit: 0,
-    stdout: files.map((file) => JSON.stringify({ name: file.name, v1: 'loaded', detail: 'loaded' })).join('\n'),
-  };
+function fileRecord(root, name) {
+  return { name, path: path.join(root, '.opencode', 'plugins', name) };
 }
 
 function v2Entry(file, status = 'active') {
@@ -235,8 +216,6 @@ function makeDeps(options = {}) {
   const calls = {
     probeVersion: [],
     which: [],
-    runDebugConfig: [],
-    runHarness: [],
     readV2: [],
     writeFile: [],
     stdout: [],
@@ -251,14 +230,6 @@ function makeDeps(options = {}) {
     which(name) {
       calls.which.push(name);
       return options.which ? options.which(name) : null;
-    },
-    runDebugConfig(...args) {
-      calls.runDebugConfig.push(args);
-      return options.runDebugConfig ? options.runDebugConfig(...args) : { exit: 0, stdout: '{}' };
-    },
-    runHarness(...args) {
-      calls.runHarness.push(args);
-      return options.runHarness ? options.runHarness(...args) : { exit: 0, stdout: '' };
     },
     readV2(...args) {
       calls.readV2.push(args);
@@ -284,69 +255,32 @@ function summaryOf(calls) {
   return JSON.parse(calls.stdout.join(''));
 }
 
-function passingV1Options(root) {
-  const files = listPluginFiles(root);
+// A private v2 server that answered: every named plugin active on a stable read,
+// one skill under the root and the given command listing, settled.
+function startedV2(root, pluginNames, commandNames = []) {
+  const entries = pluginNames.map((name) => v2Entry(fileRecord(root, name)));
   return {
-    env: { OPENCODE_BIN: V1_BIN },
-    probeVersion: () => ({ output: '1.19.3', error: null }),
-    runDebugConfig: () => debugConfigFor(files),
-    runHarness: () => harnessFor(files),
+    started: true,
+    commandsStable: true,
+    reason: 'fixture: server started',
+    reads: [{ entries }, { entries }],
+    skills: { data: [{ id: 'battery', path: path.join(root, '.opencode', 'skills', 'battery', 'SKILL.md') }] },
+    commands: { data: [...commandNames, ...V2_BUILTIN_COMMANDS].map((name) => ({ name })) },
+  };
+}
+
+function passingV2Options(root) {
+  const names = listPluginFiles(root).map((file) => file.name);
+  return {
+    env: { OPENCODE_BIN: V2_BIN },
+    probeVersion: () => ({ output: '2.0.32', error: null }),
+    readV2: async () => startedV2(root, names),
   };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. ROW TESTS
 // ─────────────────────────────────────────────────────────────────────────────
-
-test('R1: v1 every plugin file discovered and loaded passes both legs', () => {
-  const files = [fileRecord(FIXTURE_ROOT, 'alpha.js'), fileRecord(FIXTURE_ROOT, 'beta.js')];
-  const discovered = legPluginDiscovered(files, debugConfigFor(files));
-  assert.equal(discovered.status, 'PASS');
-  assert.equal(discovered.leg, 'plugin-discovered');
-  assert.equal(discovered.family, 'v1');
-  const loaded = legPluginLoad(files, harnessFor(files));
-  assert.equal(loaded.status, 'PASS');
-  assert.equal(loaded.leg, 'plugin-load');
-  assert.equal(loaded.family, 'v1');
-});
-
-test('R2: v1 a file missing from the debug config fails plugin-discovered naming it', () => {
-  const files = [fileRecord(FIXTURE_ROOT, 'alpha.js'), fileRecord(FIXTURE_ROOT, 'beta.js')];
-  const result = legPluginDiscovered(files, debugConfigFor([files[0]]));
-  assert.equal(result.status, 'FAIL');
-  assert.match(resultText(result), /beta\.js/);
-});
-
-test('R3: v1 a harness failure fails plugin-load naming the plugin and its detail', () => {
-  const files = [fileRecord(FIXTURE_ROOT, 'alpha.js'), fileRecord(FIXTURE_ROOT, 'beta.js')];
-  const harness = {
-    exit: 0,
-    stdout: [
-      JSON.stringify({ name: 'alpha.js', v1: 'loaded', detail: 'loaded' }),
-      JSON.stringify({ name: 'beta.js', v1: 'failed', detail: 'import threw: boom' }),
-    ].join('\n'),
-  };
-  const result = legPluginLoad(files, harness);
-  assert.equal(result.status, 'FAIL');
-  const text = resultText(result);
-  assert.match(text, /beta\.js/);
-  assert.match(text, /boom/);
-});
-
-test('R4: v1 a non-zero debug config or unparseable stdout fails plugin-discovered', () => {
-  const files = [fileRecord(FIXTURE_ROOT, 'alpha.js')];
-  assert.equal(legPluginDiscovered(files, { exit: 1, stdout: '' }).status, 'FAIL');
-  assert.equal(legPluginDiscovered(files, { exit: 0, stdout: '' }).status, 'FAIL');
-  assert.equal(legPluginDiscovered(files, { exit: 0, stdout: 'not json at all' }).status, 'FAIL');
-});
-
-test('R5: v1 a plugin with no harness line degrades plugin-load naming it', () => {
-  const files = [fileRecord(FIXTURE_ROOT, 'alpha.js'), fileRecord(FIXTURE_ROOT, 'beta.js')];
-  const harness = { exit: 0, stdout: JSON.stringify({ name: 'alpha.js', v1: 'loaded', detail: 'loaded' }) };
-  const result = legPluginLoad(files, harness);
-  assert.equal(result.status, 'DEGRADED');
-  assert.match(resultText(result), /beta\.js/);
-});
 
 test('R6: v2 every plugin active on a stable read passes plugin-active', () => {
   const files = [fileRecord(FIXTURE_ROOT, 'alpha.js'), fileRecord(FIXTURE_ROOT, 'beta.js')];
@@ -413,75 +347,55 @@ test('R9: v2 a server that never started degrades plugin-active, skill-visible a
   assert.ok(degraded.some((result) => result.leg === 'command-listed'));
 });
 
-test('R10: family v2 requested with only a v1 candidate skips and exits 3', async (t) => {
+test('R10: only an OpenCode 1 candidate skips v2, names the binary as unsupported and exits 3', async (t) => {
   const root = pluginRoot(t, ['alpha.js']);
   const { calls, deps } = makeDeps({
     env: { OPENCODE_BIN: V1_BIN },
     probeVersion: () => ({ output: '1.19.3', error: null }),
   });
-  const code = await main(['--family=v2', '--root=' + root, '--json'], deps);
+  const code = await main(['--root=' + root, '--json'], deps);
   assert.equal(code, 3);
   const summary = summaryOf(calls);
   assert.equal(summary.exit, 3);
-  const present = summary.results.find((result) => result.leg === 'family-present' && result.family === 'v2');
-  assert.ok(present);
+  assert.equal(summary.family, 'v2');
+  assert.equal(summary.results.length, 1);
+  const [present] = summary.results;
+  assert.equal(present.leg, 'family-present');
+  assert.equal(present.family, 'v2');
   assert.equal(present.status, 'SKIP');
   assert.match(present.reason, /no v2 binary installed/);
-  assert.ok(summary.results.every((result) => result.status !== 'FAIL'));
-  assert.equal(legFamilyPresent('v2', null).status, 'SKIP');
-});
-
-test('R11: family both with only v1 installed skips v2 and exits 3 while the v1 legs pass', async (t) => {
-  const root = pluginRoot(t, ['alpha.js', 'beta.js']);
-  const files = listPluginFiles(root);
-  const { calls, deps } = makeDeps({
-    env: { OPENCODE_BIN: V1_BIN },
-    probeVersion: () => ({ output: '1.19.3', error: null }),
-    runDebugConfig: () => debugConfigFor(files),
-    runHarness: () => harnessFor(files),
-  });
-  const code = await main(['--family=both', '--root=' + root, '--json'], deps);
-  assert.equal(code, 3);
-  const summary = summaryOf(calls);
-  const v1 = summary.results.filter((result) => result.family === 'v1');
-  assert.ok(v1.length >= 2);
-  assert.ok(v1.every((result) => result.status === 'PASS'));
-  const v2 = summary.results.filter((result) => result.family === 'v2');
-  assert.ok(v2.length >= 1);
-  assert.ok(v2.every((result) => result.status === 'SKIP'));
-  assert.ok(v2.some((result) => result.leg === 'family-present'));
-  assert.ok(summary.results.every((result) => result.status !== 'FAIL'));
+  assert.deepEqual(present.details, [`${V1_BIN}: reports OpenCode 1, which is unsupported`]);
   assert.equal(calls.readV2.length, 0);
+  assert.deepEqual(legFamilyPresent('v2', null).details, []);
+  const beside = legFamilyPresent('v2', { path: V2_BIN, family: 'v2' }, [V1_BIN]);
+  assert.equal(beside.status, 'PASS');
+  assert.deepEqual(beside.details, [V2_BIN, `${V1_BIN}: reports OpenCode 1, which is unsupported`]);
 });
 
-test('R12: zero plugin files fails', async (t) => {
-  assert.equal(legPluginDiscovered([], { exit: 0, stdout: '{}' }).status, 'FAIL');
-  assert.equal(legPluginLoad([], { exit: 0, stdout: '' }).status, 'FAIL');
-  const root = tempRoot(t);
-  fs.mkdirSync(path.join(root, '.opencode', 'plugins'), { recursive: true });
-  const { calls, deps } = makeDeps({
-    env: { OPENCODE_BIN: V1_BIN },
-    probeVersion: () => ({ output: '1.19.3', error: null }),
-  });
-  const code = await main(['--family=v1', '--root=' + root, '--json'], deps);
-  assert.equal(code, 1);
-  assert.ok(summaryOf(calls).results.some((result) => result.status === 'FAIL'));
+test('R12: zero plugin files under the root fails plugin-active', () => {
+  const entry = v2Entry(fileRecord(FIXTURE_ROOT, 'alpha.js'));
+  const result = legPluginActive([], [{ entries: [entry] }, { entries: [entry] }], FIXTURE_ROOT);
+  assert.equal(result.status, 'FAIL');
+  assert.match(result.reason, /no plugin files under \/fixture\/root/);
 });
 
 test('R13: --out to an unwritable path exits 2', async (t) => {
   const root = pluginRoot(t, ['alpha.js']);
   const out = path.join(root, 'missing-dir', 'summary.json');
   const { deps } = makeDeps({
-    ...passingV1Options(root),
+    ...passingV2Options(root),
     writeFile: (file, text) => fs.writeFileSync(file, text),
   });
-  const code = await main(['--family=v1', '--root=' + root, '--out=' + out], deps);
+  const code = await main(['--family=v2', '--root=' + root, '--out=' + out], deps);
   assert.equal(code, 2);
 });
 
-test('R14: an unknown argument exits 2 with usage on stderr', async () => {
+test('R14: an unknown argument or a retired family exits 2 with usage on stderr', async () => {
   assert.throws(() => parseArgs(['--nonsense']), (error) => error.code === 'USAGE');
   assert.throws(() => parseArgs(['--family=v3']), (error) => error.code === 'USAGE');
+  assert.throws(() => parseArgs(['--family=v1']), (error) => error.code === 'USAGE');
+  assert.throws(() => parseArgs(['--family=both']), (error) => error.code === 'USAGE');
+  assert.equal(parseArgs([]).family, 'v2');
   const { calls, deps } = makeDeps();
   const code = await main(['--nonsense'], deps);
   assert.equal(code, 2);
@@ -505,12 +419,12 @@ test('R15: v2 a plugin file with no entry under the root fails naming the file',
 });
 
 test('R16: --out <file> and --root <dir> parse the same as the = forms', () => {
-  const joined = parseArgs(['--family=v1', '--root=/fixture/root', '--out=/fixture/out.json']);
+  const joined = parseArgs(['--family=v2', '--root=/fixture/root', '--out=/fixture/out.json']);
   const spaced = parseArgs([
-    '--family', 'v1', '--root', '/fixture/root', '--out', '/fixture/out.json',
+    '--family', 'v2', '--root', '/fixture/root', '--out', '/fixture/out.json',
   ]);
   assert.deepEqual(spaced, joined);
-  assert.equal(spaced.family, 'v1');
+  assert.equal(spaced.family, 'v2');
   assert.equal(spaced.root, path.resolve('/fixture/root'));
   assert.equal(spaced.out, '/fixture/out.json');
 });
@@ -525,7 +439,7 @@ test('R18: a spaced value that is itself a flag is a usage error, the = form is 
   const cases = [
     { args: ['--out', '--json'], error: '--out needs a value' },
     { args: ['--out=--json'], out: '--json', json: false },
-    { args: ['--root', '--family=v1'], error: '--root needs a value' },
+    { args: ['--root', '--family=v2'], error: '--root needs a value' },
     { args: ['--out'], error: '--out needs a value' },
     { args: ['--out', 'report.json', '--json'], out: 'report.json', json: true },
   ];
@@ -552,7 +466,7 @@ test('C1: v2 lists a nested project and allows the ancestor folder and the built
   const inner = path.join(outer, 'inner');
   commandFile(inner, 'a');
   commandFile(inner, 'b/c');
-  const sources = allowedCommandSources(inner, 'v2', emptyEnv(t));
+  const sources = allowedCommandSources(inner,emptyEnv(t));
   assert.deepEqual(sources.required, ['a', 'b/c']);
   const result = legCommandListed('v2', ['a', 'b/c', 'outer-only', ...V2_BUILTIN_COMMANDS], sources);
   assert.equal(result.status, 'PASS');
@@ -568,29 +482,14 @@ test('C2: v2 without the ancestor folder fails naming the ancestor command, then
   commandFile(isolated, 'b/c');
   const env = emptyEnv(t);
   const refused = legCommandListed(
-    'v2', ['a', 'b/c', 'outer-only', ...V2_BUILTIN_COMMANDS], allowedCommandSources(isolated, 'v2', env),
+    'v2', ['a', 'b/c', 'outer-only', ...V2_BUILTIN_COMMANDS], allowedCommandSources(isolated,env),
   );
   assert.equal(refused.status, 'FAIL');
   assert.match(resultText(refused), /outer-only: listed, in no command folder/);
   const accepted = legCommandListed(
-    'v2', ['a', 'b/c', ...V2_BUILTIN_COMMANDS], allowedCommandSources(isolated, 'v2', env),
+    'v2', ['a', 'b/c', ...V2_BUILTIN_COMMANDS], allowedCommandSources(isolated,env),
   );
   assert.equal(accepted.status, 'PASS');
-});
-
-test('C3: v1 does not walk up, so an ancestor command and a built-in are both strays', (t) => {
-  const outer = tempRoot(t);
-  commandFile(outer, 'outer-only');
-  const inner = path.join(outer, 'inner');
-  commandFile(inner, 'a');
-  commandFile(inner, 'b/c');
-  const env = emptyEnv(t);
-  const walkUp = legCommandListed('v1', ['a', 'b/c', 'outer-only'], allowedCommandSources(inner, 'v1', env));
-  assert.equal(walkUp.status, 'FAIL');
-  assert.match(resultText(walkUp), /outer-only: listed, in no command folder/);
-  const builtin = legCommandListed('v1', ['a', 'b/c', 'init'], allowedCommandSources(inner, 'v1', env));
-  assert.equal(builtin.status, 'FAIL');
-  assert.match(resultText(builtin), /init: listed, in no command folder/);
 });
 
 test('C4: v2 fails when a project command file is missing from the listing', (t) => {
@@ -598,37 +497,31 @@ test('C4: v2 fails when a project command file is missing from the listing', (t)
   commandFile(root, 'a');
   commandFile(root, 'b/c');
   const result = legCommandListed(
-    'v2', ['a', ...V2_BUILTIN_COMMANDS], allowedCommandSources(root, 'v2', emptyEnv(t)),
+    'v2', ['a', ...V2_BUILTIN_COMMANDS], allowedCommandSources(root,emptyEnv(t)),
   );
   assert.equal(result.status, 'FAIL');
   assert.match(resultText(result), /b\/c: in the command folder, not listed/);
 });
 
-test('C5: a listing that did not parse fails command-listed on either family', (t) => {
+test('C5: a listing that did not parse fails command-listed', (t) => {
   const root = tempRoot(t);
   commandFile(root, 'a');
-  const env = emptyEnv(t);
-  for (const family of ['v1', 'v2']) {
-    const result = legCommandListed(family, null, allowedCommandSources(root, family, env));
-    assert.equal(result.status, 'FAIL', family);
-    assert.equal(result.reason, 'the command listing did not parse');
-  }
+  const result = legCommandListed('v2', null, allowedCommandSources(root, emptyEnv(t)));
+  assert.equal(result.status, 'FAIL');
+  assert.equal(result.reason, 'the command listing did not parse');
 });
 
-test('C6: a command file in the global config folder is allowed on both families', (t) => {
+test('C6: a command file in the global config folder is allowed', (t) => {
   const root = tempRoot(t);
   commandFile(root, 'a');
   const env = emptyEnv(t);
   const globalDir = path.join(env.XDG_CONFIG_HOME, 'opencode', 'commands');
   fs.mkdirSync(globalDir, { recursive: true });
   fs.writeFileSync(path.join(globalDir, 'g.md'), '---\ndescription: global command\n---\n');
-  for (const family of ['v1', 'v2']) {
-    const sources = allowedCommandSources(root, family, env);
-    assert.ok(sources.allowed.has('g'), family);
-    assert.ok(!sources.required.includes('g'), family);
-    const listed = family === 'v1' ? ['a', 'g'] : ['a', 'g', ...V2_BUILTIN_COMMANDS];
-    assert.equal(legCommandListed(family, listed, sources).status, 'PASS', family);
-  }
+  const sources = allowedCommandSources(root, env);
+  assert.ok(sources.allowed.has('g'));
+  assert.ok(!sources.required.includes('g'));
+  assert.equal(legCommandListed('v2', ['a', 'g', ...V2_BUILTIN_COMMANDS], sources).status, 'PASS');
 });
 
 test('C7: both command folder spellings are read, with slashed names and a followed link', (t) => {
@@ -644,20 +537,23 @@ test('C7: both command folder spellings are read, with slashed names and a follo
   assert.deepEqual(listCommandNames(path.join(root, 'missing')), []);
 });
 
-test('C9: v1 names a file by its frontmatter name, v2 by its path', (t) => {
+test('C9: a command is named by its path, so a frontmatter name renames nothing', (t) => {
   const root = tempRoot(t);
   const opencode = path.join(root, '.opencode');
   fs.mkdirSync(path.join(opencode, 'command', 'deep'), { recursive: true });
   fs.writeFileSync(path.join(opencode, 'command', 'plain.md'), '# plain\n');
   fs.writeFileSync(path.join(opencode, 'command', 'deep', 'SKILL.md'), '---\nname: fixture-named\ndescription: x\n---\n# body\n');
-  fs.writeFileSync(path.join(opencode, 'command', 'deep', 'late.md'), '# body\n\nname: not-frontmatter\n');
-  assert.deepEqual(listCommandNames(opencode, 'v1'), ['deep/late', 'fixture-named', 'plain']);
-  assert.deepEqual(listCommandNames(opencode), ['deep/SKILL', 'deep/late', 'plain']);
+  assert.deepEqual(listCommandNames(opencode), ['deep/SKILL', 'plain']);
   const env = emptyEnv(t);
-  const v1 = legCommandListed('v1', ['plain', 'fixture-named', 'deep/late'], allowedCommandSources(root, 'v1', env));
-  assert.equal(v1.status, 'PASS', resultText(v1));
-  const v1ByPath = legCommandListed('v1', ['plain', 'deep/SKILL', 'deep/late'], allowedCommandSources(root, 'v1', env));
-  assert.equal(v1ByPath.status, 'FAIL');
+  const byPath = legCommandListed(
+    'v2', ['plain', 'deep/SKILL', ...V2_BUILTIN_COMMANDS], allowedCommandSources(root, env),
+  );
+  assert.equal(byPath.status, 'PASS', resultText(byPath));
+  const byName = legCommandListed(
+    'v2', ['plain', 'fixture-named', ...V2_BUILTIN_COMMANDS], allowedCommandSources(root, env),
+  );
+  assert.equal(byName.status, 'FAIL');
+  assert.match(resultText(byName), /fixture-named: listed, in no command folder/);
 });
 
 test('C8: v2 a command listing that never settles degrades command-listed', (t) => {
@@ -728,7 +624,7 @@ test('C10: v2 passes when the listing carries a prompt from a configured MCP ser
 test('C11: an unconfigured server prefix and an unprefixed stray both fail', (t) => {
   const root = tempRoot(t);
   commandFile(root, 'a');
-  const sources = { ...allowedCommandSources(root, 'v2', emptyEnv(t)), mcpServers: ['code_mode'] };
+  const sources = { ...allowedCommandSources(root,emptyEnv(t)), mcpServers: ['code_mode'] };
   const other = legCommandListed('v2', ['a', 'other_server:prompt'], sources);
   assert.equal(other.status, 'FAIL');
   assert.match(resultText(other), /other_server:prompt: listed, in no command folder/);
@@ -807,7 +703,7 @@ test('C14: a listed README fails even when a global folder owns its name', (t) =
   fs.writeFileSync(readme, '# fixture\n');
   const env = emptyEnv(t);
   const listed = ['a', 'deep/README', ...V2_BUILTIN_COMMANDS];
-  const stray = legCommandListed('v2', listed, allowedCommandSources(root, 'v2', env));
+  const stray = legCommandListed('v2', listed, allowedCommandSources(root,env));
   assert.equal(stray.status, 'FAIL');
   assert.match(resultText(stray), /deep\/README: listed, but deep\/README\.markdown is not a command file/);
 
@@ -816,13 +712,13 @@ test('C14: a listed README fails even when a global folder owns its name', (t) =
   const globalDir = path.join(env.XDG_CONFIG_HOME, 'opencode', 'commands', 'deep');
   fs.mkdirSync(globalDir, { recursive: true });
   fs.writeFileSync(path.join(globalDir, 'README.md'), '---\ndescription: global command\n---\n');
-  const allowedSources = allowedCommandSources(root, 'v2', env);
+  const allowedSources = allowedCommandSources(root,env);
   assert.ok(allowedSources.allowed.has('deep/README'));
   const allowedStray = legCommandListed('v2', listed, allowedSources);
   assert.equal(allowedStray.status, 'FAIL');
   assert.match(resultText(allowedStray), /deep\/README: listed, but deep\/README\.markdown is not a command file/);
 
-  const clean = legCommandListed('v2', ['a', ...V2_BUILTIN_COMMANDS], allowedCommandSources(root, 'v2', env));
+  const clean = legCommandListed('v2', ['a', ...V2_BUILTIN_COMMANDS], allowedCommandSources(root,env));
   assert.equal(clean.status, 'PASS');
 });
 
@@ -851,21 +747,16 @@ test('C16: a built-in or a configured MCP prompt keeps passing beside a non-comm
   // The runtime lists a built-in whatever the folder holds, so the file's stem is no
   // sign of a widened glob on v2.
   const builtin = legCommandListed(
-    'v2', ['a', ...V2_BUILTIN_COMMANDS], allowedCommandSources(root, 'v2', env),
+    'v2', ['a', ...V2_BUILTIN_COMMANDS], allowedCommandSources(root,env),
   );
   assert.equal(builtin.status, 'PASS');
   assert.deepEqual(builtin.details, [`listed: ${V2_BUILTIN_COMMANDS.length + 1}`, 'required: 1']);
 
   fs.writeFileSync(path.join(base, 'srv:prompt.txt'), '');
-  const mcpSources = { ...allowedCommandSources(root, 'v2', env), mcpServers: ['srv'] };
+  const mcpSources = { ...allowedCommandSources(root,env), mcpServers: ['srv'] };
   const prompt = legCommandListed('v2', ['a', 'srv:prompt', ...V2_BUILTIN_COMMANDS], mcpSources);
   assert.equal(prompt.status, 'PASS');
   assert.ok(prompt.details.includes('mcp prompts: 1'));
-
-  // v1 registers no built-ins, so the same file's stem stays a stray there.
-  const v1 = legCommandListed('v1', ['a', 'review'], allowedCommandSources(root, 'v1', env));
-  assert.equal(v1.status, 'FAIL');
-  assert.match(resultText(v1), /review: listed, but review\.txt is not a command file/);
 });
 
 test('C17: a linked command folder still exposes a non-command file name', (t) => {
@@ -880,7 +771,7 @@ test('C17: a linked command folder still exposes a non-command file name', (t) =
   const found = listNonCommandFiles(path.join(root, '.opencode'));
   assert.equal(found.get('deep/README'), 'deep/README.markdown');
 
-  const sources = allowedCommandSources(root, 'v2', emptyEnv(t));
+  const sources = allowedCommandSources(root,emptyEnv(t));
   const result = legCommandListed('v2', ['a', 'deep/README', ...V2_BUILTIN_COMMANDS], sources);
   assert.equal(result.status, 'FAIL');
   assert.match(resultText(result), /deep\/README: listed, but deep\/README\.markdown is not a command file/);
@@ -910,7 +801,7 @@ test('adversarial: path-qualified, prerelease and joined output answer the pinne
     ['opencode', 'unknown'],
     ['/opt/tools/1.19.3/opencode', 'unknown'],
     ['2.0.32-rc.1', 'v2'],
-    ['1.19.3 2.0.32', 'v1'],
+    ['1.19.3 2.0.32', 'unsupported'],
     ['opencode v2.0.32\n1.19.3', 'v2'],
   ];
   for (const [sample, family] of pinned) {
@@ -918,9 +809,9 @@ test('adversarial: path-qualified, prerelease and joined output answer the pinne
   }
 });
 
-test('adversarial: CRLF and joined version output read as v1, empty and garbage as unknown', () => {
-  assert.equal(parseVersion('1.19.3\r\n'), 'v1');
-  assert.equal(parseVersion('1.19.3 2.0.32'), 'v1');
+test('adversarial: CRLF and joined major-1 output read as unsupported, empty and garbage as unknown', () => {
+  assert.equal(parseVersion('1.19.3\r\n'), 'unsupported');
+  assert.equal(parseVersion('1.19.3 2.0.32'), 'unsupported');
   assert.equal(parseVersion('opencode v2.0.32\nWARN: x'), 'v2');
   assert.equal(parseVersion(''), 'unknown');
   assert.equal(parseVersion('   '), 'unknown');
@@ -928,45 +819,46 @@ test('adversarial: CRLF and joined version output read as v1, empty and garbage 
 });
 
 test('adversarial: empty version output is skipped and the family reports SKIP', async (t) => {
-  assert.equal(selectBinary([{ path: V1_BIN, output: '', error: null }], 'v1'), null);
+  assert.equal(selectBinary([{ path: V2_BIN, output: '', error: null }], 'v2'), null);
   const root = pluginRoot(t, ['alpha.js']);
   const { calls, deps } = makeDeps({
-    env: { OPENCODE_BIN: V1_BIN },
+    env: { OPENCODE_BIN: V2_BIN },
     probeVersion: () => ({ output: '', error: null }),
   });
-  const code = await main(['--family=v1', '--root=' + root, '--json'], deps);
+  const code = await main(['--family=v2', '--root=' + root, '--json'], deps);
   assert.equal(code, 3);
   const summary = summaryOf(calls);
-  const present = summary.results.find((result) => result.leg === 'family-present' && result.family === 'v1');
+  const present = summary.results.find((result) => result.leg === 'family-present' && result.family === 'v2');
   assert.ok(present);
   assert.equal(present.status, 'SKIP');
-  assert.deepEqual(calls.probeVersion, [V1_BIN]);
-  assert.equal(calls.runDebugConfig.length, 0);
-  assert.equal(calls.runHarness.length, 0);
+  assert.deepEqual(present.details, []);
+  assert.deepEqual(calls.probeVersion, [V2_BIN]);
   assert.equal(calls.readV2.length, 0);
   assert.ok(summary.results.every((result) => result.status !== 'FAIL'));
 });
 
-test('adversarial: a probe error skips the candidate instead of assuming it', () => {
-  const errored = { path: V1_BIN, output: '1.19.3', error: 'spawn ENOENT' };
-  const healthy = { path: V2_BIN, output: '2.0.32', error: null };
-  assert.equal(selectBinary([errored], 'v1'), null);
-  assert.equal(selectBinary([errored, healthy], 'v1'), null);
-  const selected = selectBinary([errored, healthy], 'v2');
+test('adversarial: a probe error or a major-1 binary is skipped instead of assumed', () => {
+  const errored = { path: V2_BIN, output: '2.0.32', error: 'spawn ENOENT' };
+  const retired = { path: V1_BIN, output: '1.19.3', error: null };
+  const healthy = { path: '/fixture/other/bin/opencode', output: '2.0.32', error: null };
+  assert.equal(selectBinary([errored], 'v2'), null);
+  assert.equal(selectBinary([retired], 'v2'), null);
+  const selected = selectBinary([errored, retired, healthy], 'v2');
   assert.ok(selected);
-  assert.equal(selected.path, V2_BIN);
+  assert.equal(selected.path, healthy.path);
   assert.equal(selected.family, 'v2');
-  assert.equal(selectBinary([{ path: V1_BIN, output: 'garbage', error: null }], 'v1'), null);
+  assert.equal(selectBinary([{ path: V2_BIN, output: 'garbage', error: null }], 'v2'), null);
 });
 
 test('adversarial: a root without .opencode/plugins fails naming the root', async (t) => {
   const root = tempRoot(t);
   assert.throws(() => listPluginFiles(root), (error) => error.code === 'NO_PLUGIN_DIR');
   const { calls, deps } = makeDeps({
-    env: { OPENCODE_BIN: V1_BIN },
-    probeVersion: () => ({ output: '1.19.3', error: null }),
+    env: { OPENCODE_BIN: V2_BIN },
+    probeVersion: () => ({ output: '2.0.32', error: null }),
+    readV2: async () => startedV2(root, ['alpha.js']),
   });
-  const code = await main(['--family=v1', '--root=' + root, '--json'], deps);
+  const code = await main(['--family=v2', '--root=' + root, '--json'], deps);
   assert.equal(code, 1);
   const failures = summaryOf(calls).results.filter((result) => result.status === 'FAIL');
   assert.ok(failures.length >= 1);
@@ -980,30 +872,24 @@ test('adversarial: a root with spaces and $(id) reaches the collectors as one st
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'alpha.js'), 'export default async () => ({});\n');
   commandFile(root, 'alpha');
-  const files = listPluginFiles(root);
   const { calls, deps } = makeDeps({
-    env: { OPENCODE_BIN: V1_BIN },
-    probeVersion: () => ({ output: '1.19.3', error: null }),
-    runDebugConfig: () => debugConfigFor(files, ['alpha']),
-    runHarness: () => harnessFor(files),
+    env: { OPENCODE_BIN: V2_BIN },
+    probeVersion: () => ({ output: '2.0.32', error: null }),
+    readV2: async (_bin, dir) => startedV2(dir, ['alpha.js'], ['alpha']),
   });
-  const code = await main(['--family=v1', '--root=' + root, '--json'], deps);
+  const code = await main(['--family=v2', '--root=' + root, '--json'], deps);
   assert.equal(code, 0);
   const listed = summaryOf(calls).results.find((result) => result.leg === 'command-listed');
   assert.ok(listed);
   assert.equal(listed.status, 'PASS');
   assert.equal(listed.reason, 'all 1 command files listed');
-  assert.equal(calls.runDebugConfig.length, 1);
-  assert.deepEqual(calls.runDebugConfig[0], [V1_BIN, root]);
-  assert.equal(calls.runHarness.length, 1);
-  assert.deepEqual(calls.runHarness[0], [root]);
+  assert.equal(calls.readV2.length, 1);
+  assert.deepEqual(calls.readV2[0], [V2_BIN, root]);
   assert.equal(summaryOf(calls).root, root);
 });
 
-test('probe count: three candidates sharing one path probe each distinct path once', async (t) => {
+test('probe count: candidates sharing one path probe each distinct path once', async (t) => {
   const root = pluginRoot(t, ['alpha.js']);
-  const files = listPluginFiles(root);
-  const entries = files.map((file) => v2Entry(file));
   const probes = {
     [V1_BIN]: { output: '1.19.3', error: null },
     [V2_BIN]: { output: '2.0.32', error: null },
@@ -1012,23 +898,14 @@ test('probe count: three candidates sharing one path probe each distinct path on
     env: { OPENCODE_BIN: V1_BIN },
     which: (name) => (name === 'opencode' ? V1_BIN : V2_BIN),
     probeVersion: (candidate) => probes[candidate] || { output: '', error: 'unexpected probe' },
-    runDebugConfig: () => debugConfigFor(files),
-    runHarness: () => harnessFor(files),
-    readV2: async () => ({
-      started: true,
-      commandsStable: true,
-      reason: 'fixture: server started',
-      reads: [{ entries }, { entries }],
-      skills: { data: [{ id: 'battery', path: path.join(root, '.opencode', 'skills', 'battery', 'SKILL.md') }] },
-      commands: { data: [] },
-    }),
   });
-  const code = await main(['--family=both', '--root=' + root, '--json'], deps);
-  assert.equal(code, 0);
-  assert.deepEqual(calls.probeVersion, [V1_BIN, V2_BIN]);
+  const code = await main(['--root=' + root, '--json'], deps);
+  assert.equal(code, 3);
+  assert.deepEqual(calls.which, ['opencode']);
+  assert.deepEqual(calls.probeVersion, [V1_BIN]);
 });
 
-test('a broken symlink in the plugin folder fails plugin-discovered naming it', (t) => {
+test('a broken symlink in the plugin folder fails plugin-active naming it', (t) => {
   const root = tempRoot(t);
   const dir = path.join(root, '.opencode', 'plugins');
   fs.mkdirSync(dir, { recursive: true });
@@ -1036,11 +913,10 @@ test('a broken symlink in the plugin folder fails plugin-discovered naming it', 
   fs.symlinkSync(path.join(dir, 'missing-target.js'), path.join(dir, 'broken.js'));
   const files = listPluginFiles(root);
   assert.deepEqual(files.map((file) => file.name), ['alpha.js', 'broken.js']);
-  assert.equal(files.find((file) => file.name === 'alpha.js').broken, false);
-  assert.equal(files.find((file) => file.name === 'broken.js').broken, true);
-  const result = legPluginDiscovered(files, debugConfigFor(files));
+  const entries = [v2Entry(files[0])];
+  const result = legPluginActive(files, [{ entries }, { entries }], root);
   assert.equal(result.status, 'FAIL');
-  assert.match(resultText(result), /broken\.js/);
+  assert.match(resultText(result), /broken\.js: no plugin entry under/);
 });
 
 test('real readV2: the password reaches no result, stream or leftover file and the fake server is gone', async (t) => {
@@ -1258,10 +1134,10 @@ test('nested: allowedCommandSources allows ancestor commands only when the read 
   const root = path.join(outer, 'wt');
   commandFile(root, 'battery');
   const env = emptyEnv(t);
-  assert.ok(allowedCommandSources(root, 'v2', env).allowed.has('outer-only'));
-  assert.ok(!allowedCommandSources(root, 'v2', env, true).allowed.has('outer-only'));
-  assert.ok(allowedCommandSources(root, 'v2', env, true).allowed.has('init'));
-  assert.ok(allowedCommandSources(root, 'v2', env, true).allowed.has('goal'));
+  assert.ok(allowedCommandSources(root,env).allowed.has('outer-only'));
+  assert.ok(!allowedCommandSources(root,env, true).allowed.has('outer-only'));
+  assert.ok(allowedCommandSources(root,env, true).allowed.has('init'));
+  assert.ok(allowedCommandSources(root,env, true).allowed.has('goal'));
 });
 
 // The caller's config folder is not what an isolated read loaded, so a command

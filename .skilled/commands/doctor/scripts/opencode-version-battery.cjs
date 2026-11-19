@@ -4,10 +4,10 @@
 // ───────────────────────────────────────────────────────────────────
 'use strict';
 
-// Compatibility battery for the OpenCode v1 and v2 surfaces: it proves the
-// plugin folder is discovered, importable and active, that the skill folder is
-// visible, and that the command listing matches the repository's command files,
-// on whichever major version is installed.
+// Compatibility battery for the OpenCode 2 surface: it proves the plugin folder
+// is active, that the skill folder is visible, and that the command listing
+// matches the repository's command files. OpenCode 1 is unsupported, so a binary
+// that reports major 1 is named and never checked.
 //
 // Every binary runs against a private data home, and the v2 leg starts its own
 // `serve` on a loopback port with a private database, so the shared service is
@@ -16,7 +16,7 @@
 // stored.
 //
 // Usage:
-//   opencode-version-battery.cjs [--family=v1|v2|both] [--root=<dir>] [--json] [--out=<file>]
+//   opencode-version-battery.cjs [--family=v2] [--root=<dir>] [--json] [--out=<file>]
 //
 // Exit 0 when every requested leg passes, 1 on a failed leg, 3 when a leg is
 // degraded or skipped, and 2 on a usage error or a crash.
@@ -32,15 +32,14 @@ const net = require('node:net');
 const os = require('node:os');
 const path = require('node:path');
 const { setTimeout: sleep } = require('node:timers/promises');
-const { pathToFileURL } = require('node:url');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 const USAGE = [
-  'Usage: node opencode-version-battery.cjs [--family=v1|v2|both] [--root=<dir>] [--json] [--out=<file>]',
-  '  --family  which family to check: v1, v2 or both (default: both)',
+  'Usage: node opencode-version-battery.cjs [--family=v2] [--root=<dir>] [--json] [--out=<file>]',
+  '  --family  which family to check: v2, the only supported family (default: v2)',
   '  --root    repository root to inspect (default: the repository root above this script)',
   '  --json    print the JSON summary on stdout instead of the human lines',
   '  --out     write the JSON summary to this file',
@@ -50,7 +49,7 @@ const USAGE = [
 // battery and the router cannot disagree about which major version a binary reports.
 const VERSION_PATTERN = /^\s*(?:[A-Za-z][\w.-]*\s+)?[vV]?(\d+)\.(\d+)\.(\d+)(?:[-+][\w.-]+)?\s*$/;
 
-const FAMILIES = ['v1', 'v2'];
+const FAMILIES = ['v2'];
 const PLUGIN_DIR_PARTS = ['.opencode', 'plugins'];
 
 // v2 registers these commands without a command folder entry, so a listing that
@@ -58,8 +57,6 @@ const PLUGIN_DIR_PARTS = ['.opencode', 'plugins'];
 const V2_BUILTIN_COMMANDS = ['init', 'review', 'goal'];
 
 const PROBE_TIMEOUT_MS = 5000;
-const CONFIG_TIMEOUT_MS = 60000;
-const HARNESS_TIMEOUT_MS = 120000;
 const API_TIMEOUT_MS = 20000;
 const SERVER_WAIT_MS = 30000;
 const SHUTDOWN_WAIT_MS = 2000;
@@ -163,26 +160,10 @@ function entryLabel(entry) {
   return typeof entry?.id === 'string' ? entry.id : 'plugin entry';
 }
 
-// Reads the `name:` field of a file's leading frontmatter block, or null when the
-// file opens with no such block or the block names nothing.
-function frontmatterName(file) {
-  let text;
-  try {
-    text = fs.readFileSync(file, 'utf8');
-  } catch {
-    return null;
-  }
-  const block = text.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
-  if (!block) return null;
-  const line = block[1].match(/^name:[ \t]*["']?([^"'\r\n]+?)["']?[ \t]*$/m);
-  return line ? line[1] : null;
-}
-
 // Lists the command names one config directory registers: every `.md` file under
 // its `command` and `commands` folders, named by the relative path without the
-// extension, because that is the name the runtime answers to. OpenCode 1 lets a
-// frontmatter `name:` replace that path, so for `v1` a named file answers to it.
-function listCommandNames(dir, family = 'v2') {
+// extension, because that is the name the runtime answers to.
+function listCommandNames(dir) {
   const names = [];
   const seen = new Set();
 
@@ -216,8 +197,7 @@ function listCommandNames(dir, family = 'v2') {
       if (stat.isDirectory()) {
         walk(full, `${prefix}${entry.name}/`);
       } else if (stat.isFile() && entry.name.endsWith('.md')) {
-        const named = family === 'v1' ? frontmatterName(full) : null;
-        names.push(named ?? `${prefix}${entry.name.slice(0, -'.md'.length)}`);
+        names.push(`${prefix}${entry.name.slice(0, -'.md'.length)}`);
       }
     }
   };
@@ -289,8 +269,8 @@ function listNonCommandFiles(dir) {
 // Names the command folders a runtime may legitimately list beyond the project's
 // own: the global config directories it reads, the ancestor folders v2 merges as
 // well, and the v2 built-ins that live in no folder at all.
-function allowedCommandSources(root, family, env, isolated = false) {
-  const required = listCommandNames(path.join(root, '.opencode'), family);
+function allowedCommandSources(root, env, isolated = false) {
+  const required = listCommandNames(path.join(root, '.opencode'));
   const allowed = new Set();
 
   const home = typeof env?.HOME === 'string' && env.HOME.length > 0 ? env.HOME : null;
@@ -303,23 +283,21 @@ function allowedCommandSources(root, family, env, isolated = false) {
   if (typeof env?.OPENCODE_CONFIG_DIR === 'string' && env.OPENCODE_CONFIG_DIR.length > 0) {
     globalDirs.push(env.OPENCODE_CONFIG_DIR);
   }
-  for (const dir of globalDirs) for (const name of listCommandNames(dir, family)) allowed.add(name);
+  for (const dir of globalDirs) for (const name of listCommandNames(dir)) allowed.add(name);
 
-  if (family === 'v2') {
-    // v2 walks past the repository root and merges each ancestor's `.opencode`, so a
-    // worktree nested inside another checkout also lists that checkout's commands.
-    // An isolated read turns the walk off, so an ancestor's commands are strays there.
-    if (!isolated) {
-      let current = path.dirname(root);
-      while (true) {
-        for (const name of listCommandNames(path.join(current, '.opencode'))) allowed.add(name);
-        const parent = path.dirname(current);
-        if (parent === current) break;
-        current = parent;
-      }
+  // v2 walks past the repository root and merges each ancestor's `.opencode`, so a
+  // worktree nested inside another checkout also lists that checkout's commands.
+  // An isolated read turns the walk off, so an ancestor's commands are strays there.
+  if (!isolated) {
+    let current = path.dirname(root);
+    while (true) {
+      for (const name of listCommandNames(path.join(current, '.opencode'))) allowed.add(name);
+      const parent = path.dirname(current);
+      if (parent === current) break;
+      current = parent;
     }
-    for (const name of V2_BUILTIN_COMMANDS) allowed.add(name);
   }
+  for (const name of V2_BUILTIN_COMMANDS) allowed.add(name);
 
   return { required, allowed, nonCommand: listNonCommandFiles(path.join(root, '.opencode')) };
 }
@@ -377,7 +355,8 @@ function v2ServerEnv(env, root, temp) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Reads the first version token that parses and lets it decide the family, so a
-// joined or noisy probe line is read the same way the router reads it.
+// joined or noisy probe line is read the same way the router reads it. Major 1 is
+// a retired family, reported as unsupported rather than as unknown output.
 function parseVersion(text) {
   if (typeof text !== 'string') return 'unknown';
   const trimmed = text.trim();
@@ -395,7 +374,7 @@ function parseVersion(text) {
         if (!match) continue;
 
         const major = Number(match[1]);
-        if (major === 1) return 'v1';
+        if (major === 1) return 'unsupported';
         if (major === 2) return 'v2';
         return 'unknown';
       }
@@ -409,7 +388,7 @@ function parseVersion(text) {
 // silently checks the wrong thing.
 function parseArgs(argv) {
   const parsed = {
-    family: 'both',
+    family: 'v2',
     root: path.resolve(__dirname, '..', '..', '..', '..'),
     json: false,
     out: null,
@@ -439,7 +418,7 @@ function parseArgs(argv) {
     }
 
     if (key === 'family') {
-      if (!FAMILIES.includes(value) && value !== 'both') throw usageError(`bad --family value: ${value}`);
+      if (!FAMILIES.includes(value)) throw usageError(`bad --family value: ${value}`);
       parsed.family = value;
     } else if (key === 'root') {
       if (!value) throw usageError('--root needs a directory');
@@ -453,8 +432,8 @@ function parseArgs(argv) {
   return parsed;
 }
 
-// Lists the top-level plugin scripts, flagging a symlink whose target is gone so
-// the discovery leg can fail on it instead of silently missing the file.
+// Lists the top-level plugin scripts; a symlink whose target is gone stays in the
+// list, so the activity leg names it when no plugin entry answers for it.
 function listPluginFiles(root) {
   const dir = path.join(root, ...PLUGIN_DIR_PARTS);
   let names;
@@ -470,16 +449,7 @@ function listPluginFiles(root) {
   return names
     .filter((name) => name.endsWith('.js'))
     .sort()
-    .map((name) => {
-      const filePath = path.join(dir, name);
-      let broken = false;
-      try {
-        fs.statSync(filePath);
-      } catch {
-        broken = true;
-      }
-      return { name, path: filePath, broken };
-    });
+    .map((name) => ({ name, path: path.join(dir, name) }));
 }
 
 // Picks the first probed candidate whose parsed family matches the requested one;
@@ -494,107 +464,21 @@ function selectBinary(candidates, family) {
 }
 
 // Reports the family itself before any leg runs, so a missing binary reads as a
-// skip rather than a failure the other legs would have to explain.
-function legFamilyPresent(family, selected) {
-  if (selected) {
-    return makeResult('family-present', family, 'PASS', `a ${family} binary is installed`, [selected.path]);
-  }
-  return makeResult('family-present', family, 'SKIP', `no ${family} binary installed`);
-}
-
-// Fails when the debug config cannot be read or does not list every plugin file,
-// so discovery is proven from the binary's own view of the folder.
-function legPluginDiscovered(files, debugConfig) {
-  if (debugConfig?.exit !== 0) {
-    return makeResult('plugin-discovered', 'v1', 'FAIL', `debug config exited with status ${debugConfig?.exit}`);
-  }
-  const parsed = parseJsonObject(String(debugConfig?.stdout ?? ''));
-  if (!parsed) {
-    return makeResult('plugin-discovered', 'v1', 'FAIL', 'debug config printed no parseable JSON object');
-  }
-
-  const origins = Array.isArray(parsed.plugin_origins)
-    ? parsed.plugin_origins
-    : Array.isArray(parsed.plugin) ? parsed.plugin : [];
-  const specs = new Set();
-  for (const origin of origins) {
-    const spec = typeof origin === 'string' ? origin : origin?.spec;
-    if (typeof spec === 'string' && spec.length > 0) specs.add(spec.split(/[?#]/)[0]);
-  }
-
-  const missing = files.filter((file) => !specs.has(pathToFileURL(file.path).href));
-  if (missing.length > 0) {
-    return makeResult(
-      'plugin-discovered', 'v1', 'FAIL', 'the debug config does not list every plugin file',
-      missing.map((file) => `${file.name}: not listed in the debug config`),
-    );
-  }
-  if (files.length === 0) {
-    return makeResult('plugin-discovered', 'v1', 'FAIL', 'no plugin files in the plugin folder');
-  }
-  const broken = files.filter((file) => file.broken);
-  if (broken.length > 0) {
-    return makeResult(
-      'plugin-discovered', 'v1', 'FAIL', 'a plugin file is a broken symlink',
-      broken.map((file) => `${file.name}: broken symlink`),
-    );
-  }
-  return makeResult(
-    'plugin-discovered', 'v1', 'PASS', `all ${files.length} plugin files discovered`,
-    files.map((file) => file.name),
+// skip rather than a failure the other legs would have to explain. A binary that
+// reports a retired major is named whether or not a supported binary was found, so
+// the skip is not mistaken for no install and a leftover install beside a supported
+// one still surfaces.
+function legFamilyPresent(family, selected, unsupportedPaths = []) {
+  const unsupported = unsupportedPaths.map(
+    (binaryPath) => `${binaryPath}: reports OpenCode 1, which is unsupported`,
   );
-}
-
-// Fails on every plugin the harness reports as failed and degrades when a file
-// has no harness line, because a config read alone never proves a plugin loaded.
-function legPluginLoad(files, harness) {
-  if (files.length === 0) {
-    return makeResult('plugin-load', 'v1', 'FAIL', 'no plugin files in the plugin folder');
-  }
-
-  const records = new Map();
-  for (const line of String(harness?.stdout ?? '').split('\n')) {
-    const text = line.trim();
-    if (!text) continue;
-    let record = null;
-    try {
-      record = JSON.parse(text);
-    } catch {
-      continue; // Non-JSON noise on stdout is not a plugin record.
-    }
-    if (record && typeof record.name === 'string') records.set(record.name, record);
-  }
-
-  const failed = [];
-  const missing = [];
-  for (const file of files) {
-    const record = records.get(file.name);
-    if (!record) {
-      missing.push(file.name);
-      continue;
-    }
-    if (record.v1 !== 'loaded') {
-      const detail = typeof record.detail === 'string' && record.detail.length > 0 ? record.detail : 'failed';
-      failed.push(`${file.name}: ${detail}`);
-    }
-  }
-
-  if (failed.length > 0) {
-    return makeResult('plugin-load', 'v1', 'FAIL', 'the import harness could not load every plugin', failed);
-  }
-  if (harness?.exit !== 0) {
+  if (selected) {
     return makeResult(
-      'plugin-load', 'v1', 'DEGRADED', `the import harness exited with status ${harness?.exit}`,
-      missing.map((name) => `${name}: no harness line`),
+      'family-present', family, 'PASS', `a ${family} binary is installed`,
+      [selected.path, ...unsupported],
     );
   }
-  if (missing.length > 0) {
-    return makeResult(
-      'plugin-load', 'v1', 'DEGRADED', 'some plugin files have no harness line',
-      missing.map((name) => `${name}: no harness line`),
-    );
-  }
-  return makeResult('plugin-load', 'v1', 'PASS', `all ${files.length} plugin files loaded`, files.map((file) => file.name));
+  return makeResult('family-present', family, 'SKIP', `no ${family} binary installed`, unsupported);
 }
 
 // Finds the first read whose count matches the previous one and is above zero,
@@ -677,7 +561,7 @@ function legsForV2(files, v2, root, env) {
   const sourceEnv = isolated ? { ...env, OPENCODE_CONFIG_DIR: path.join(root, '.opencode') } : env;
   const listed = commandNamesFromResponse(v2.commands);
   const sources = {
-    ...allowedCommandSources(root, 'v2', sourceEnv, isolated),
+    ...allowedCommandSources(root, sourceEnv, isolated),
     mcpServers: mcpServerNames(v2.config),
   };
   let commandLeg = v2.commandsStable === true
@@ -732,16 +616,8 @@ function legSkillVisible(response, root) {
   );
 }
 
-// Names the commands a v1 config registers, or null when the config did not
-// parse, so an unreadable config is never read as an empty listing.
-function commandNamesFromConfig(debugConfig) {
-  const commands = parseJsonObject(String(debugConfig?.stdout ?? ''))?.command;
-  if (!commands || typeof commands !== 'object' || Array.isArray(commands)) return null;
-  return Object.keys(commands);
-}
-
-// Names the commands in a v2 listing, or null when the body did not parse, for
-// the same reason a v1 config that did not parse carries no names.
+// Names the commands in a v2 listing, or null when the body did not parse, so an
+// unreadable listing is never read as an empty one.
 function commandNamesFromResponse(response) {
   if (!response || typeof response !== 'object' || !Array.isArray(response.data)) return null;
   return response.data
@@ -802,7 +678,7 @@ function legCommandListed(family, listed, sources) {
   for (const name of listed) {
     // A built-in or a configured MCP prompt is listed whatever the files are, so a
     // non-command file with its name proves nothing; a global or inherited folder fails.
-    const builtin = family === 'v2' && V2_BUILTIN_COMMANDS.includes(name);
+    const builtin = V2_BUILTIN_COMMANDS.includes(name);
     const server = promptServerOf(name);
     const configuredPrompt = server !== null
       && (Array.isArray(mcpServers) ? mcpServers.includes(server) : (mcpServers instanceof Set && mcpServers.has(server)));
@@ -855,7 +731,7 @@ function formatHuman(results) {
 // family decision is made without ever running a binary twice.
 function probeCandidates(deps) {
   const paths = [];
-  for (const candidate of [deps.env?.OPENCODE_BIN, deps.which('opencode'), deps.which('opencode2')]) {
+  for (const candidate of [deps.env?.OPENCODE_BIN, deps.which('opencode')]) {
     if (typeof candidate === 'string' && candidate.length > 0 && !paths.includes(candidate)) {
       paths.push(candidate);
     }
@@ -884,36 +760,21 @@ async function main(argv, deps = {}) {
     const probed = probeCandidates(runtime);
     const results = [];
 
-    for (const family of args.family === 'both' ? FAMILIES : [args.family]) {
-      const selected = selectBinary(probed, family);
-      results.push(legFamilyPresent(family, selected));
-      if (!selected) continue;
+    const selected = selectBinary(probed, args.family);
+    const unsupportedPaths = probed
+      .filter((candidate) => !candidate.error && parseVersion(candidate.output ?? '') === 'unsupported')
+      .map((candidate) => candidate.path);
+    results.push(legFamilyPresent(args.family, selected, unsupportedPaths));
 
-      if (family === 'v1') {
-        let files;
-        try {
-          files = listPluginFiles(args.root);
-        } catch (error) {
-          results.push(makeResult('plugin-discovered', 'v1', 'FAIL', error.message));
-          results.push(makeResult('plugin-load', 'v1', 'FAIL', error.message));
-          continue;
-        }
-        const debugConfig = runtime.runDebugConfig(selected.path, args.root);
-        results.push(legPluginDiscovered(files, debugConfig));
-        results.push(legPluginLoad(files, runtime.runHarness(args.root)));
-        results.push(legCommandListed(
-          'v1', commandNamesFromConfig(debugConfig), allowedCommandSources(args.root, 'v1', runtime.env),
-        ));
-      } else {
-        let files = [];
-        try {
-          files = listPluginFiles(args.root);
-        } catch (error) {
-          if (error?.code !== 'NO_PLUGIN_DIR') throw error;
-        }
-        const v2 = await runtime.readV2(selected.path, args.root);
-        results.push(...legsForV2(files, v2, args.root, runtime.env));
+    if (selected) {
+      let files = [];
+      try {
+        files = listPluginFiles(args.root);
+      } catch (error) {
+        if (error?.code !== 'NO_PLUGIN_DIR') throw error;
       }
+      const v2 = await runtime.readV2(selected.path, args.root);
+      results.push(...legsForV2(files, v2, args.root, runtime.env));
     }
 
     const exit = worstExit(results);
@@ -994,91 +855,6 @@ function whichBinary(name, env = process.env) {
     }
   }
   return null;
-}
-
-// Runs `debug config` from the repository root with a private data home and a
-// buffer sized for a large config dump.
-function runDebugConfig(bin, root, env = process.env) {
-  const dataHome = fs.mkdtempSync(path.join(os.tmpdir(), 'opencode-battery-config-'));
-  try {
-    const result = captureStdout(dataHome, (fd) => spawnSync(bin, ['debug', 'config'], {
-      cwd: root,
-      stdio: ['ignore', fd, 'pipe'],
-      timeout: CONFIG_TIMEOUT_MS,
-      env: { ...env, XDG_DATA_HOME: dataHome },
-      maxBuffer: MAX_BUFFER,
-    }));
-    return {
-      exit: typeof result.status === 'number' ? result.status : 1,
-      stdout: result.stdout?.toString() ?? '',
-    };
-  } finally {
-    fs.rmSync(dataHome, { recursive: true, force: true });
-  }
-}
-
-// The import harness runs inside the repository root, so every plugin imports
-// through the resolver a real session would use; it prints one JSON line per
-// file and always exits 0, because a plugin failure is data, not a crash.
-const HARNESS_SOURCE = `
-import { readdirSync } from 'node:fs';
-import path from 'node:path';
-import { pathToFileURL } from 'node:url';
-
-const root = process.argv[1];
-const dir = path.join(root, '.opencode', 'plugins');
-const client = new Proxy(function batteryClient() {}, {
-  get(_target, property) { return property === 'then' ? undefined : client; },
-  apply() { return client; },
-  construct() { return client; },
-});
-
-const names = readdirSync(dir).filter((name) => name.endsWith('.js')).sort();
-for (const name of names) {
-  let record = { name, v1: 'failed', detail: 'the factory did not resolve' };
-  try {
-    const loaded = await import(pathToFileURL(path.join(dir, name)).href);
-    const fallback = loaded.default;
-    const factory = typeof fallback === 'function'
-      ? fallback
-      : fallback && typeof fallback.server === 'function' ? fallback.server : null;
-    if (!factory) throw new Error('the plugin exports neither a function nor a server function');
-    await factory({
-      client,
-      project: { id: 'battery' },
-      worktree: root,
-      directory: root,
-      serverUrl: new URL('http://127.0.0.1:0'),
-      $: client,
-    });
-    record = { name, v1: 'loaded', detail: 'loaded' };
-  } catch (error) {
-    record = { name, v1: 'failed', detail: error && error.message ? error.message : String(error) };
-  }
-  console.log(JSON.stringify(record));
-}
-process.exit(0);
-`;
-
-// Runs the import harness through the same Node binary as this script, so the
-// plugins are judged by the interpreter that would load them.
-function runHarness(root) {
-  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'opencode-battery-harness-'));
-  try {
-    const args = ['--input-type=module', '-e', HARNESS_SOURCE, root];
-    const result = captureStdout(temp, (fd) => spawnSync(process.execPath, args, {
-      cwd: root,
-      timeout: HARNESS_TIMEOUT_MS,
-      maxBuffer: MAX_BUFFER,
-      stdio: ['ignore', fd, 'pipe'],
-    }));
-    return {
-      exit: typeof result.status === 'number' ? result.status : 1,
-      stdout: result.stdout?.toString() ?? '',
-    };
-  } finally {
-    fs.rmSync(temp, { recursive: true, force: true });
-  }
 }
 
 // Reserves a loopback port and releases it for the private server, so two
@@ -1270,8 +1046,6 @@ function defaultDeps() {
     env: process.env,
     probeVersion: (binaryPath) => probeVersion(binaryPath, process.env),
     which: (name) => whichBinary(name, process.env),
-    runDebugConfig: (bin, root) => runDebugConfig(bin, root, process.env),
-    runHarness: (root) => runHarness(root),
     readV2: (bin, root) => readV2(bin, root, process.env),
     writeFile: (file, text) => fs.writeFileSync(file, text),
     stdout: (text) => process.stdout.write(text),
@@ -1295,8 +1069,6 @@ module.exports = {
   listPluginFiles,
   selectBinary,
   legFamilyPresent,
-  legPluginDiscovered,
-  legPluginLoad,
   stableIndex,
   legPluginActive,
   legsForV2,
@@ -1307,10 +1079,7 @@ module.exports = {
   formatHuman,
   main,
   probeVersion,
-  runDebugConfig,
-  runHarness,
   readV2,
-  HARNESS_SOURCE,
 };
 
 // The entry sets the exit code instead of calling process.exit, so pending

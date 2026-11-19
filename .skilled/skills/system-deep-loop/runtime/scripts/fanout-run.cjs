@@ -178,7 +178,7 @@ function parseOptionalNumber(args, key) {
 
 const REVIEW_FOCUS_MAX_LENGTH = 1000;
 // C0 and C1 controls, DEL, and the Unicode line and paragraph separators. Each would
-// split a one-line setup binding or the native command's argument into a second line.
+// split a one-line setup binding into a second line.
 const REVIEW_FOCUS_CONTROL_PATTERN = /[\u0000-\u001F\u007F-\u009F\u2028\u2029]/g;
 
 /**
@@ -922,11 +922,9 @@ function countLineageLedgerFrames(loopType, lineageDir) {
  * so a lineage that ran the workflow leaves at least one ledger record behind
  * every state row. Rows with no ledger record were written straight to the
  * file, and the gateway itself never saw the run, so no refusal record exists
- * to explain it. Native lineages run the workflow through the command host and
- * are held to the gateway there.
+ * to explain it.
  */
-function findUnledgeredStateLog({ loopType, lineage, lineageDir, stateRead }) {
-  if (lineage.kind === 'native') return null;
+function findUnledgeredStateLog({ loopType, lineageDir, stateRead }) {
   if (!stateRead || !stateRead.statePath || stateRead.missing) return null;
   const frames = countLineageLedgerFrames(loopType, lineageDir);
   if (frames === null || frames > 0) return null;
@@ -1569,18 +1567,11 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
         `Use the separate lineage directory and session id below as the detached state boundary.`,
         ``,
       ]
-    : lineage.kind === 'native'
-      ? [
-          `This is an explicit native fan-out adapter running through the command host's OpenCode CLI surface.`,
-          `Use the separate lineage directory and session id below as the detached state boundary.`,
-          ``,
-        ]
-      : [];
+    : [];
   // A CLI lineage subprocess IS the executor for its own iterations. Left unsaid, a leaf reads
   // the workflow YAML's per-iteration executor-dispatch step literally and spawns a nested CLI
   // from inside its own sandbox, where nested dispatch is denied — the lineage then burns every
-  // iteration on dispatch failures and produces zero findings. Native lineages run through the
-  // command host and already have their executor bound, so the directive is CLI-only.
+  // iteration on dispatch failures and produces zero findings.
   // A state row written beside the ledger carries keys the projection cannot rebuild,
   // so the gateway refuses every later projection and the lineage records nothing.
   const stateLogName = lineageStateLogName(loopType);
@@ -1591,57 +1582,53 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
   const reducerCommand = loopType === 'review'
     ? `node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs ${specFolder} --artifact-dir ${promptDir} --create-missing-anchors`
     : `node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs ${specFolder} --artifact-dir ${promptDir}`;
-  const inProcessDirective = lineage.kind !== 'native'
-    ? [
-        `EXECUTION MODE (read this first): THIS process is the executor for EVERY iteration.`,
-        `Perform each iteration yourself in THIS session — read the sources, then write the iteration`,
-        `file, its delta, and the synthesis into the lineage directory below.`,
-        `State records go through the append gateway instead: hand every one, from the run-opening`,
-        `config row (step_create_state_log) to the terminal synthesis record, to`,
-        `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs exactly as the workflow YAML runs it.`,
-        `Never create, append to, or rewrite ${stateLogName} yourself: a row written there beside the`,
-        `ledger makes the gateway refuse every later projection, and the lineage fails.`,
-        `After each iteration's gateway append, run the workflow's step_reduce_state reducer exactly as the YAML runs it:`,
-        `${reducerCommand}`,
-        `It writes the lineage registry, dashboard, and strategy the merge reads; skipping it leaves the lineage merged with unverified provenance.`,
-        `NEVER spawn a nested CLI, agent, or subprocess to run an iteration: no 'codex exec', no`,
-        `'opencode run', no 'cursor-agent', no 'devin', no 'pi', no 'claude', no Task/agent dispatch.`,
-        `The workflow YAML's per-iteration executor-dispatch steps are ALREADY SATISFIED by this`,
-        `process: treat them as done and run the iteration inline. A nested dispatch is a failure of`,
-        `this lineage, not a way to run it.`,
-        ``,
-      ]
-    : [];
+  const inProcessDirective = [
+    `EXECUTION MODE (read this first): THIS process is the executor for EVERY iteration.`,
+    `Perform each iteration yourself in THIS session — read the sources, then write the iteration`,
+    `file, its delta, and the synthesis into the lineage directory below.`,
+    `State records go through the append gateway instead: hand every one, from the run-opening`,
+    `config row (step_create_state_log) to the terminal synthesis record, to`,
+    `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs exactly as the workflow YAML runs it.`,
+    `Never create, append to, or rewrite ${stateLogName} yourself: a row written there beside the`,
+    `ledger makes the gateway refuse every later projection, and the lineage fails.`,
+    `After each iteration's gateway append, run the workflow's step_reduce_state reducer exactly as the YAML runs it:`,
+    `${reducerCommand}`,
+    `It writes the lineage registry, dashboard, and strategy the merge reads; skipping it leaves the lineage merged with unverified provenance.`,
+    `NEVER spawn a nested CLI, agent, or subprocess to run an iteration: no 'codex exec', no`,
+    `'opencode run', no 'cursor-agent', no 'devin', no 'pi', no 'claude', no Task/agent dispatch.`,
+    `The workflow YAML's per-iteration executor-dispatch steps are ALREADY SATISFIED by this`,
+    `process: treat them as done and run the iteration inline. A nested dispatch is a failure of`,
+    `this lineage, not a way to run it.`,
+    ``,
+  ];
   // Detached executors receive one prompt for the whole loop, so repeat the
   // mode's artifact contract where the per-iteration prompt would have rendered.
   const iterationTemplateFile = `.skilled/skills/system-deep-loop/${agentName}/assets/prompt-pack-iteration.md.tmpl`;
-  const leafContract = lineage.kind !== 'native'
-    ? loopType === 'review'
-      ? [
-          `CLI OUTPUT CONTRACT (binds every iteration even though per-iteration prompt rendering is already satisfied):`,
-          `Before iteration 1, read ${iterationTemplateFile}; follow its OUTPUT CONTRACT for each iteration.`,
-          `- The narrative uses Findings by Severity with numbered findings under P0 Findings, P1 Findings, and P2 Findings.`,
-          `- The canonical iteration state record includes findingDetails with one object per finding, each carrying id, severity, and title.`,
-          `- Use only P0, P1, or P2. A positive findingsCount or findingsSummary needs a non-empty findingDetails that lists the findings behind it.`,
-          `- The delta contains the iteration row followed by one {"type":"finding","id":"<id>","severity":"P0|P1|P2","title":"<text>","file":"<path:line>","iteration":N} row per finding.`,
-          `- End the narrative with exactly one final Review verdict: PASS, CONDITIONAL, or FAIL line.`,
-          `- Read the timestamp from the clock when writing and hand the iteration record to the gateway immediately after its iteration, never in a batch at the end.`,
-          ``,
-        ]
-      : [
-          `CLI OUTPUT CONTRACT (binds every iteration even though per-iteration prompt rendering is already satisfied):`,
-          `Before iteration 1, read ${iterationTemplateFile}; follow its OUTPUT CONTRACT for each iteration.`,
-          `- The iteration narrative has a ## Findings section with one numbered line per finding.`,
-          `- The delta contains the iteration row followed by one {"type":"finding","id":"<id>","label":"<text>","iteration":N,"sources":["<path or URL>"]} row per finding.`,
-          `- The delta's iteration row and the iteration record handed to the gateway carry findingsCount equal to the number of findings enumerated for that iteration.`,
-          `- Read the timestamp from the clock when writing and hand the iteration record to the gateway immediately after its iteration, never in a batch at the end.`,
-          ``,
-        ]
-    : [];
+  const leafContract = loopType === 'review'
+    ? [
+        `CLI OUTPUT CONTRACT (binds every iteration even though per-iteration prompt rendering is already satisfied):`,
+        `Before iteration 1, read ${iterationTemplateFile}; follow its OUTPUT CONTRACT for each iteration.`,
+        `- The narrative uses Findings by Severity with numbered findings under P0 Findings, P1 Findings, and P2 Findings.`,
+        `- The canonical iteration state record includes findingDetails with one object per finding, each carrying id, severity, and title.`,
+        `- Use only P0, P1, or P2. A positive findingsCount or findingsSummary needs a non-empty findingDetails that lists the findings behind it.`,
+        `- The delta contains the iteration row followed by one {"type":"finding","id":"<id>","severity":"P0|P1|P2","title":"<text>","file":"<path:line>","iteration":N} row per finding.`,
+        `- End the narrative with exactly one final Review verdict: PASS, CONDITIONAL, or FAIL line.`,
+        `- Read the timestamp from the clock when writing and hand the iteration record to the gateway immediately after its iteration, never in a batch at the end.`,
+        ``,
+      ]
+    : [
+        `CLI OUTPUT CONTRACT (binds every iteration even though per-iteration prompt rendering is already satisfied):`,
+        `Before iteration 1, read ${iterationTemplateFile}; follow its OUTPUT CONTRACT for each iteration.`,
+        `- The iteration narrative has a ## Findings section with one numbered line per finding.`,
+        `- The delta contains the iteration row followed by one {"type":"finding","id":"<id>","label":"<text>","iteration":N,"sources":["<path or URL>"]} row per finding.`,
+        `- The delta's iteration row and the iteration record handed to the gateway carry findingsCount equal to the number of findings enumerated for that iteration.`,
+        `- Read the timestamp from the clock when writing and hand the iteration record to the gateway immediately after its iteration, never in a batch at the end.`,
+        ``,
+      ];
   // A CLI leaf runs every iteration from this one prompt, so the operator's focus has to be
   // restated where the leaf reads its per-iteration contract, not only in the setup bindings.
   const reviewFocus = loopType === 'review' && options.reviewFocus ? options.reviewFocus : null;
-  if (reviewFocus && leafContract.length > 0) {
+  if (reviewFocus) {
     leafContract.splice(
       leafContract.length - 1,
       0,
@@ -1678,15 +1665,14 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
   if (options.convergenceMode) {
     params.push(`  config.convergenceMode: ${options.convergenceMode}`);
   }
-  // Review lineages scope by spec_folder but the auto-workflow preflight
-  // still requires the same review setup bindings the native command path pre-binds.
-  // Without these, a detached CLI lineage can fail first-run initialization or infer a
-  // different setup contract than native lineages.
+  // Review lineages scope by spec_folder but the auto-workflow preflight still requires
+  // the review setup bindings. Without these, a detached CLI lineage can fail first-run
+  // initialization or infer a different setup contract than the workflow expects.
   const setupBindings =
     loopType === 'review'
       ? [
           ``,
-          `Review setup bindings (emit before any writes, same as native PRE-BOUND SETUP ANSWERS):`,
+          `Review setup bindings (emit before any writes, as PRE-BOUND SETUP ANSWERS):`,
           `review_target: ${options.reviewTarget || specFolder}`,
           `review_target_type: ${options.reviewTargetType || 'spec-folder'}`,
           `review_dimensions: all`,
@@ -1707,9 +1693,7 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
     ...detachedIntro,
     ``,
     ...inProcessDirective,
-    ...(lineage.kind !== 'native'
-      ? [agentPersonaBlock(agentName, path.resolve(__dirname, '../../../../../'))]
-      : []),
+    agentPersonaBlock(agentName, path.resolve(__dirname, '../../../../../')),
     ...leafContract,
     `Read ${skillFile} and execute the ${loopType} loop with these parameters:`,
     ...params,
@@ -1731,14 +1715,10 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
     `Use the repository-relative form ${promptDir} in every tool call, copied character for character; never type the absolute home prefix or rebuild the path from the packet or track name.`,
     `A "file not found" on a path you just wrote means the path was mistyped: re-copy ${promptDir} and retry.`,
     // A CLI lineage runs every iteration from this one prompt, so a lead's review file reaches
-    // later iterations only when the prompt names it. Native lineages receive a different input.
-    ...(lineage.kind !== 'native'
-      ? [
-          `Before init, before each iteration, and before resolving any conflict, read ${path.join(promptDir, 'steer.md')} when it exists.`,
-          `It is the lead's channel: its rulings are the dispatcher's answers to questions this lineage would otherwise ask, and they bind inside the lineage directory.`,
-          `It grants no write outside the lineage. When you read it, list it among that iteration's sources.`,
-        ]
-      : []),
+    // later iterations only when the prompt names it.
+    `Before init, before each iteration, and before resolving any conflict, read ${path.join(promptDir, 'steer.md')} when it exists.`,
+    `It is the lead's channel: its rulings are the dispatcher's answers to questions this lineage would otherwise ask, and they bind inside the lineage directory.`,
+    `It grants no write outside the lineage. When you read it, list it among that iteration's sources.`,
     ...(hasIterationCap && stopPolicy === 'max-iterations'
       ? [
           `The terminal synthesis record must carry stopReason "maxIterationsReached"; the runner`,
@@ -1749,55 +1729,6 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
     `When complete, output a single line: FANOUT_LINEAGE_COMPLETE:${lineage.label}`,
   ].join('\n');
   return prompt;
-}
-
-function buildNativeCommandInput(loopType, specFolder, lineageDir, lineage, options = {}) {
-  assertActiveFanoutLoopType(loopType);
-  const maxIterations = lineage.iterations || 12;
-  const convergenceThreshold = options.convergenceThreshold ?? (loopType === 'research' ? 0.05 : 0.1);
-  const stopPolicy = options.stopPolicy || 'convergence';
-  const sessionId = options.sessionId || '';
-  const reviewTarget = loopType === 'review' && options.reviewTarget ? options.reviewTarget : specFolder;
-  const reviewTargetType = loopType === 'review' && options.reviewTargetType
-    ? options.reviewTargetType
-    : 'spec-folder';
-  const args = [
-    ':auto',
-    JSON.stringify(loopType === 'review' ? reviewTarget : specFolder),
-    `--spec-folder=${specFolder}`,
-    `--max-iterations=${maxIterations}`,
-    `--convergence=${convergenceThreshold}`,
-    `--stop-policy=${stopPolicy}`,
-    ...(options.convergenceMode ? [`--convergence-mode=${options.convergenceMode}`] : []),
-    `--fanout-lineage-artifact-dir=${lineageDir}`,
-    '--lineage-mode=auto',
-  ];
-  if (loopType === 'research' && options.researchTopic) {
-    args.push(`--research-topic=${JSON.stringify(options.researchTopic)}`);
-  }
-  const reviewFocus = loopType === 'review' && options.reviewFocus ? options.reviewFocus : null;
-  if (reviewFocus) {
-    args.push(`--review-focus=${JSON.stringify(reviewFocus)}`);
-  }
-
-  return [
-    args.join(' '),
-    '',
-    'PRE-BOUND SETUP ANSWERS:',
-    `review_target: ${reviewTarget}`,
-    `review_target_type: ${reviewTargetType}`,
-    'review_dimensions: all',
-    ...(reviewFocus ? [`review_focus: ${reviewFocus}`] : []),
-    `spec_folder: ${specFolder}`,
-    ...(sessionId ? [`session_id: ${sessionId}`] : []),
-    'execution_mode: AUTONOMOUS',
-    'lineage_mode: auto',
-    `maxIterations: ${maxIterations}`,
-    `convergenceThreshold: ${convergenceThreshold}`,
-    `stop_policy: ${stopPolicy}`,
-    ...(options.convergenceMode ? [`convergence_mode: ${options.convergenceMode}`] : []),
-    `config.fanout_lineage_artifact_dir: ${lineageDir}`,
-  ].join('\n');
 }
 
 // Full-lineage lifetime is non-disableable in autonomous mode: 4 hours is the hard
@@ -2389,57 +2320,6 @@ function buildClaudeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
   });
 }
 
-function buildNativeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
-  let opencode;
-  try {
-    opencode = resolveOpencodeBinary(options.env || process.env);
-  } catch (error) {
-    throw inputError(`native executor unavailable: ${error.message}`);
-  }
-  if (opencode.version === 'v2') {
-    throw inputError(
-      'Native lineages cannot start on OpenCode v2 because v2 run has no --command and does not expand a slash message; '
-        + 'a registered command needs the session.command route.',
-    );
-  }
-
-  const args = [
-    'run',
-    '--format',
-    'json',
-    '--dir',
-    options.directoryRoot || process.cwd(),
-    '--command',
-    `deep/${options.loopType || 'review'}`,
-  ];
-  if (resolvedSandbox === 'danger-full-access' || resolvedSandbox === 'workspace-write') {
-    args.splice(1, 0, '--dangerously-skip-permissions');
-  }
-  const commandInput = buildNativeCommandInput(
-    options.loopType || 'review',
-    options.specFolder || '',
-    options.lineageDir || '',
-    lineage,
-    options,
-  );
-  args.push(commandInput);
-  return finalizeLineageCommand({
-    kind: lineage.kind,
-    command: opencode.command,
-    args,
-    input: '',
-    prompt: commandInput,
-    promptArgIndexes: [args.length - 1],
-    executableVersion: resolveOpencodeExecutableVersion(opencode.command, options),
-    model: null,
-    reasoningEffort: null,
-    serviceTier: null,
-    resolvedSandbox,
-    resolvedPermission,
-    webSearch: effectiveWebSearchPolicy(lineage),
-  });
-}
-
 // Mirrors isFlashMaxPinnedModel in executor-config.ts. DeepSeek V4 Flash and
 // GLM-5.3-Flash are reasoning models whose top tier is `max`, pinned there by operator
 // policy — never dispatched below max. DeepSeek is bare on cli-pi as the 4.1 line,
@@ -2476,46 +2356,11 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
   const model = lineage.model || OPENCODE_DEFAULT_MODEL;
   const opencodeEffort = pinReasoningEffortForModel(model, lineage.reasoningEffort);
   const useDangerousBypass = resolvedSandbox === 'danger-full-access';
-  const dangerousBypassFlag = opencode.version === 'v1'
-    ? '--dangerously-skip-permissions'
-    : '--auto';
   if (useDangerousBypass) {
     process.stderr.write(
-      `FATAL WARN: lineage ${lineage.label || '(cli-opencode)'} runs with ${dangerousBypassFlag}. `
+      `FATAL WARN: lineage ${lineage.label || '(cli-opencode)'} runs with --auto. `
         + `The lineageDir write boundary is prompt-only, not sandbox-enforced.\n`,
     );
-  }
-
-  if (opencode.version === 'v1') {
-    const args = [
-      'run',
-      '--model',
-      model,
-      '--format',
-      'json',
-      // The full runtime is required because the workflow writes isolated lineage state.
-      '--dir',
-      options.directoryRoot || process.cwd(),
-    ];
-    if (useDangerousBypass) args.push('--dangerously-skip-permissions');
-    if (opencodeEffort) args.push('--variant', opencodeEffort);
-    args.push(prompt);
-
-    return finalizeLineageCommand({
-      kind: lineage.kind,
-      command: opencode.command,
-      args,
-      input: '',
-      prompt,
-      promptArgIndexes: [args.length - 1],
-      executableVersion: resolveOpencodeExecutableVersion(opencode.command, options),
-      model,
-      reasoningEffort: opencodeEffort || null,
-      serviceTier: null,
-      resolvedSandbox,
-      resolvedPermission,
-      webSearch: effectiveWebSearchPolicy(lineage),
-    });
   }
 
   const args = [
@@ -3339,8 +3184,14 @@ function buildVibeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermi
   });
 }
 
+// A native lineage ran the whole loop as `opencode run --command deep/<loop>`. OpenCode 2
+// run has no --command and does not expand a slash message, so that adapter has no
+// supported host. Native stays the single-executor kind, dispatched by the workflow.
+const NATIVE_LINEAGE_REFUSAL = 'native fan-out lineages are not supported: OpenCode 2 run cannot start a '
+  + 'registered command. Give each fan-out lineage a cli-* executor kind, or run the single-executor '
+  + 'workflow with --executor=native.';
+
 const LINEAGE_COMMAND_ADAPTERS = Object.freeze({
-  native: buildNativeLineageCommand,
   'cli-codex': buildCodexLineageCommand,
   'cli-claude-code': buildClaudeLineageCommand,
   'cli-opencode': buildOpencodeLineageCommand,
@@ -3357,6 +3208,9 @@ const LINEAGE_COMMAND_ADAPTERS = Object.freeze({
  * @returns {{command:string,args:string[],input?:string,cwd?:string,effectiveConfig:Object,invocationFingerprint:string}}
  */
 function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options = {}) {
+  if (lineage.kind === 'native') {
+    throw inputError(NATIVE_LINEAGE_REFUSAL);
+  }
   const adapter = LINEAGE_COMMAND_ADAPTERS[lineage.kind];
   if (!adapter) {
     throw inputError(`Unknown fan-out executor kind: ${lineage.kind}`);
@@ -3648,6 +3502,11 @@ async function main() {
   const guardedAssignment = applyFlatPoolAssignmentGuard(parsedFanoutConfig);
   const fanoutConfig = guardedAssignment.config;
   const allLineages = expandLineages(fanoutConfig);
+  const nativeLineages = allLineages.filter((lineage) => lineage.kind === 'native');
+  if (nativeLineages.length > 0) {
+    const labels = nativeLineages.map((lineage) => lineage.label).join(', ');
+    throw inputError(`fan-out refused for lineage(s) ${labels}: ${NATIVE_LINEAGE_REFUSAL}`);
+  }
   // One lineage is not a fan-out. A caller who lands here with one lineage has left the
   // workflow that owns the packet init, synthesis and save phases, and a CLI lineage
   // would then run every iteration in one process.
@@ -4489,7 +4348,7 @@ async function main() {
         throw failure;
       }
 
-      const unledgeredStateLog = findUnledgeredStateLog({ loopType, lineage, lineageDir, stateRead });
+      const unledgeredStateLog = findUnledgeredStateLog({ loopType, lineageDir, stateRead });
       if (unledgeredStateLog) {
         const failure = new Error(`lineage ${lineage.label} ${unledgeredStateLog}`);
         failure.label = lineage.label;
@@ -4674,7 +4533,6 @@ module.exports = {
   withAgentPersona,
   validateClaudeConfigDir,
   buildLoopPrompt,
-  buildNativeCommandInput,
   normalizeReviewFocus,
   REVIEW_FOCUS_MAX_LENGTH,
   findMaxIterationsPolicyViolation,
