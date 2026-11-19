@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.16.5.0
+version: 1.16.6.0
 ---
 
 # deep-research: Manual Testing Playbook
@@ -27,7 +27,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 74 deterministic scenarios across 9 categories validating the current `deep-research` skill surface, including 6 CP-* command-flow stress tests. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 76 deterministic scenarios across 9 categories validating the current `deep-research` skill surface, including 6 CP-* command-flow stress tests. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -44,6 +44,18 @@ This playbook provides 74 deterministic scenarios across 9 categories validating
 - `/deep:research` command exists at `.skilled/commands/deep/research.md`.
 - `@deep-research` agent definition exists at `.skilled/agents/deep-research.md` plus runtime variants.
 - The deep-research workflow and reducer/runtime assets are available in the repository.
+
+### Keeping live runs cheap
+
+- Set `--max-iterations` to 2 or 3 explicitly. Left at its default, an expansive run sizes its budget from the seed and can reach 16 iterations for research and 24 for review; an explicit flag wins and skips the resize step.
+- Cap the frontier in the run config. After setup writes `research/deep-research-config.json` and before the frontier seed step, set `expansiveDepth.maxDepth` to 2 and `expansiveDepth.maxFrontierNodes` to 2. This is a config edit because no flag exists for either value; it bounds frontier growth to the two nodes the run needs. Without it, three iterations derive a node cap of 1.
+- Seed exactly two depth-1 nodes. The seed step normally asks for three to six (three to eight for review), and `frontier-admit.cjs seed` accepts a two-row `frontier-seed.json`.
+- Add `--convergence-mode=off` so the iteration count equals `--max-iterations`. An `--extend` run inherits the convergence mode of the run it extends.
+- Use a tiny target: one narrow question answerable from repo files, or one file under 150 lines, such as `runtime/scripts/append-state-record.cjs` at 121 lines.
+- Run one lineage. Fan-out multiplies the iteration budget and is not needed for a live check.
+- Use the DeepSeek flash executor with `--executor=cli-opencode --model='opencode-go/deepseek-v4.1-flash#max'`. The cli-opencode self-invocation guard refuses it when the command is driven from inside an OpenCode session, so use the default native executor with the session model set instead.
+- Reuse a finished run with `--extend=1` rather than paying for a fresh run and a new frontier.
+- In `:confirm` mode, hold the run after the config is written and before the seed step so the cap edit lands before any node exists.
 
 ---
 
@@ -83,7 +95,7 @@ This playbook provides 74 deterministic scenarios across 9 categories validating
 
 ## 7. ENTRY POINTS AND MODES
 
-This category covers 6 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 8 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DR-001 | Auto mode deep-research kickoff
 
@@ -162,6 +174,32 @@ Expected signals: The flag row names `default` as the value when the flag is abs
 
 #### Test Execution
 > **Feature File:** [DR-068](../manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md)
+
+### DR-077 | Live expansive research with two frontier nodes
+
+#### Description
+Run a three-iteration expansive research on one narrow repo question with the frontier capped at two nodes, then check the node store, the dashboard section and the iteration count.
+
+#### Scenario Contract
+Prompt summary: Run a three-iteration expansive deep-research on which events the deep-research reducer projects from the ledger, with `--depth-mode=expansive --max-iterations=3 --convergence-mode=off`, a frontier capped at two nodes, and the DeepSeek flash executor.
+
+Expected signals: Exactly two depth-1 node ids, no node deeper than two, the `## 6B. FRONTIER` dashboard section, exactly three iteration files, and `maxIterations` 3 with `expansiveDepth.maxDepth` and `maxFrontierNodes` both 2.
+
+#### Test Execution
+> **Feature File:** [DR-077](../manual-testing-playbook/entry-points-and-modes/live-expansive-research-two-node-frontier.md)
+
+### DR-078 | Live extension of a finished expansive research run
+
+#### Description
+Extend the `DR-077` run by one iteration with `--extend=1` and check the same session, the single `extended` row, the synthesis snapshot and the unchanged frontier.
+
+#### Scenario Contract
+Prompt summary: Extend the completed expansive deep-research run from `DR-077` by one iteration with `--extend=1`, then confirm the same session and generation, the single extended event, the synthesis snapshot, the two frontier nodes and one more iteration file.
+
+Expected signals: One `extended` row and no `resumed` row, the original `sessionId` and generation 1, `maxIterations` 4, `lineageMode` `completed-continue`, one `synthesis-v1-r3.md` snapshot, four iteration files and the same two node ids.
+
+#### Test Execution
+> **Feature File:** [DR-078](../manual-testing-playbook/entry-points-and-modes/live-extend-expansive-research-run.md)
 
 ---
 

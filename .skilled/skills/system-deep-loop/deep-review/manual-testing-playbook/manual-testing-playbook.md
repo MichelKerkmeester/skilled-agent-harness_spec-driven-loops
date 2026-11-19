@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.13.12.0
+version: 1.13.13.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -28,7 +28,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 70 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (51 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (7 scenarios under DRV-058..063 and DRV-075), and §17 covers fan-out dispatch (6 scenarios under DRV-064..067, DRV-071 and DRV-082). DRV-076 to DRV-083 cover the opt-in expansive depth flag for review. Default runs differ from the pre-change baseline only by the expansive-only agent paragraph, which applies only when an iteration prompt holds a `FRONTIER` block and which the golden comparison strips. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 72 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (53 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (7 scenarios under DRV-058..063 and DRV-075), and §17 covers fan-out dispatch (6 scenarios under DRV-064..067, DRV-071 and DRV-082). DRV-076 to DRV-084 cover the opt-in expansive depth flag for review, and DRV-085 covers the custom-dimension live run. Default runs differ from the pre-change baseline only by the expansive-only agent paragraph, which applies only when an iteration prompt holds a `FRONTIER` block and which the golden comparison strips. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -46,6 +46,18 @@ This playbook provides 70 deterministic scenarios across 10 categories validatin
 - `@deep-review` agent definition exists at `.skilled/agents/deep-review.md` plus runtime variants.
 - Review YAML workflow exists at `.skilled/commands/deep/assets/deep-review.yaml`.
 - `review-mode-contract.yaml` exists at `.skilled/skills/system-deep-loop/deep-review/assets/`.
+
+### Keeping live runs cheap
+
+- Set `--max-iterations` to 2 or 3 explicitly. Left at its default, an expansive review sizes its budget from the seed and can reach 24 iterations (research reaches 16); an explicit flag wins and skips the resize step.
+- Cap the frontier in the run config. After setup writes `review/deep-review-config.json` and before the frontier seed step, set `expansiveDepth.maxDepth` to 2 and `expansiveDepth.maxFrontierNodes` to 2. This is a config edit because no flag exists for either value; it bounds frontier growth to the two nodes the run needs. Without it, three iterations derive a node cap of 1.
+- Seed exactly two depth-1 sub-targets. The seed step normally asks for three to eight (three to six for research), and `frontier-admit.cjs seed` accepts a two-row `frontier-seed.json`.
+- Add `--convergence-mode=off` so the iteration count equals `--max-iterations`. An `--extend` run inherits the convergence mode of the run it extends.
+- Use a tiny target: one file under 150 lines, such as `runtime/scripts/append-state-record.cjs` at 121 lines, or one narrow research question answerable from repo files.
+- Run one lineage. Fan-out multiplies the iteration budget and is not needed for a live check.
+- Use the DeepSeek flash executor with `--executor=cli-opencode --model='opencode-go/deepseek-v4.1-flash#max'`. The cli-opencode self-invocation guard refuses it when the command is driven from inside an OpenCode session, so use the default native executor with the session model set instead.
+- Reuse a finished run with `--extend=1` rather than paying for a fresh run and a new frontier.
+- In `:confirm` mode, hold the run after the config is written and before the seed step so the cap edit lands before any node exists.
 
 ---
 
@@ -126,7 +138,7 @@ Keep global verdict logic in this root playbook. Put feature-specific acceptance
 
 ## 7. ENTRY POINTS AND MODES
 
-This category covers 5 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 7 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DRV-001 | Auto mode deep-review kickoff
 
@@ -192,6 +204,32 @@ Expected signals: The flag row and the config both name `default`, and the golde
 
 #### Test Execution
 > **Feature File:** [DRV-076](../manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md)
+
+### DRV-084 | Live expansive review of one small file
+
+#### Description
+Run a three-iteration expansive review of one 121-line runtime helper with the frontier capped at two sub-target nodes, then check the node statuses, the dimension coverage and the iteration count.
+
+#### Scenario Contract
+Prompt: `Run a three-iteration expansive deep review of .skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs with --depth-mode=expansive --max-iterations=3 --convergence-mode=off, a frontier capped at two sub-target nodes, and the DeepSeek flash executor, then report the node statuses, the dimensions covered and the iteration count.`
+
+Expected signals: Two depth-1 node ids and no node deeper than two, no answered node at three iterations, the `## 10B. FRONTIER` dashboard section with a frontier size of two, exactly three iteration files, and `reviewTargetType` `files` with `maxIterations` 3 and both caps 2.
+
+#### Test Execution
+> **Feature File:** [DRV-084](../manual-testing-playbook/entry-points-and-modes/live-expansive-review-two-node-frontier.md)
+
+### DRV-085 | Live review of one custom dimension
+
+#### Description
+Run a three-iteration review for `correctness, performance` on the same small file and confirm that performance is in the config, the second iteration and the coverage table.
+
+#### Scenario Contract
+Prompt: `Run a three-iteration deep review of .skilled/skills/system-deep-loop/runtime/scripts/append-state-record.cjs for the dimensions correctness and performance with --max-iterations=3 --convergence-mode=off and the DeepSeek flash executor, then confirm that performance is in the config, in the second iteration and in the coverage report.`
+
+Expected signals: `reviewDimensions` lists correctness then performance, exactly three iteration files exist, the second iteration and the dashboard coverage table name performance as covered, the depth mode stays default and no `review/frontier-nodes.jsonl` is created.
+
+#### Test Execution
+> **Feature File:** [DRV-085](../manual-testing-playbook/entry-points-and-modes/live-custom-dimension-review.md)
 
 ---
 
@@ -818,6 +856,8 @@ The deep-review feature catalog is at [`../feature-catalog/feature-catalog.md`](
 - DRV-003: [Parameterized invocation: max iterations + convergence](../manual-testing-playbook/entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md)
 - DRV-070: [Completed-run extension with --extend](../manual-testing-playbook/entry-points-and-modes/extend-completed-review-run.md)
 - DRV-076: [Expansive depth flag and default byte identity](../manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md)
+- DRV-084: [Live expansive review of one small file](../manual-testing-playbook/entry-points-and-modes/live-expansive-review-two-node-frontier.md)
+- DRV-085: [Live review of one custom dimension](../manual-testing-playbook/entry-points-and-modes/live-custom-dimension-review.md)
 
 ### INITIALIZATION AND STATE SETUP
 
