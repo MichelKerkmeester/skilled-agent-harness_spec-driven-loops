@@ -243,7 +243,9 @@ export function shouldFireAdvisor(prompt: string): AdvisorPromptPolicyResult {
 // A quote mark or `>` only shows that text is quoted, not that the assistant wrote it,
 // so a cue needs an attribution header such as "You said:" or "Assistant response:".
 const PASTED_REPLY_CUE = /^\s*(?:(?:earlier|previously|above),?\s+)?(?:(?:you|the assistant|claude)\s+(?:replied|said|wrote|answered|responded)|(?:the\s+)?(?:assistant|claude)\s+(?:response|reply|answer))\s*:/i;
-const TASK_MARKER = /(?:^|[.!?\n]\s*)(?:now|task)\s*:\s*/gi;
+// The whitespace after a boundary stops at a newline, which starts a match of its own.
+// Letting it cross newlines rescanned a long run of spaces and newlines once per newline.
+const TASK_MARKER = /(?:^|[.!?\n][^\S\n]*)(?:now|task)\s*:\s*/gi;
 
 // The last marker wins: a pasted reply can hold its own "Task:" line, and cutting there
 // would keep the reply's skill names in the scored text.

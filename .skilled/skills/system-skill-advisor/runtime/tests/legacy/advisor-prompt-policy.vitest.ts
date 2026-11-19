@@ -94,4 +94,21 @@ describe('pasted reply stripping', () => {
     // The handler and the scorer both strip, so a second pass must return the same text.
     expect(stripLeadingPastedReply(stripped)).toBe(stripped);
   });
+
+  it('strips a 64K whitespace run with newlines in linear time', () => {
+    const input = `Claude replied: ok.${' \n'.repeat(32768)}x`;
+    const startedAt = performance.now();
+    const stripped = stripLeadingPastedReply(input);
+    const elapsedMs = performance.now() - startedAt;
+
+    expect(stripped).toBe(input);
+    expect(elapsedMs).toBeLessThan(50);
+  });
+
+  it.each([
+    ['an indented marker after a newline', 'Claude replied: done.\n   Now: refactor the store'],
+    ['a marker after a CRLF line break', 'Claude replied: done.\r\nNow: refactor the store'],
+  ])('keeps the task after %s', (_label, input) => {
+    expect(stripLeadingPastedReply(input)).toBe('refactor the store');
+  });
 });
