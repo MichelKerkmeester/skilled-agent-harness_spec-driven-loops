@@ -6,17 +6,19 @@
     "phase",
     "prompt-improver-model-eligibility"
   ],
-  "lastUpdated": "2026-11-15T00:26:27.906Z",
+  "lastUpdated": "2026-11-19T17:46:50.497Z",
   "specId": "014",
   "folderSlug": "prompt-improver-model-eligibility",
   "parentChain": [
     "agents",
     "007-agent-alignment-follow-ups"
   ],
-  "memorySequence": 3,
+  "memorySequence": 5,
   "memoryNameHistory": [
     "14-11-26_21-48__phase-014-findings-reproduced-before-planning.md",
     "14-11-26_21-49__phase-014-findings-reproduced-before-planning.md",
-    "15-11-26_01-26__phase-014-built-prompt-improver-model-choice.md"
+    "15-11-26_01-26__phase-014-built-prompt-improver-model-choice.md",
+    "19-11-26_18-35__manual-context-save.md",
+    "19-11-26_18-46__manual-context-save.md"
   ]
 }

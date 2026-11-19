@@ -15,6 +15,7 @@
       "phase 14 prompt improver model eligibility",
       "prompt improver model eligibility plan",
       "prompt improver model eligibility tasks",
+      "014-prompt-improver-model-eligibility operator decisions",
       "prompt improver model eligibility implementation summary"
     ],
     "key_topics": [
@@ -25,11 +26,11 @@
       "phase",
       "plan",
       "tasks",
+      "014-prompt-improver-model-eligibility",
+      "operator",
+      "decisions",
       "implementation",
-      "summary",
-      "section",
-      "prompt-improver",
-      "denies"
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -37,6 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       "scratch/after.txt",
       "scratch/opus-probe.txt",
@@ -52,8 +54,7 @@
       ".dsh/agents/prompt-improver.patch.yml",
       ".skilled/commands/prompt/assets/prompt_improve_auto.yaml",
       ".skilled/agents/agent-registry.json",
-      "scratch/baseline.txt",
-      ".skilled/skills/sk-prompt/manual-testing-playbook/escalation-tiers/prompt-improver-output-block.md"
+      "scratch/baseline.txt"
     ],
     "entities": [
       {
@@ -72,6 +73,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -159,12 +166,6 @@
         "source": "derived"
       },
       {
-        "name": "prompt-improver-output-block.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-prompt/manual-testing-playbook/escalation-tiers/prompt-improver-output-block.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -203,21 +204,23 @@
     ],
     "causal_summary": "Section 0.1 of `prompt-improver.md` denies Opus and Fable on any route and tells an ineligible model to refuse the work",
     "created_at": "2026-11-14T20:19:24Z",
-    "last_save_at": "2026-11-15T00:26:27.906Z",
+    "last_save_at": "2026-11-19T17:35:19.977Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:742bb78b17beaecb9261733d611934aea7c69aacc675da9c402b116a047756e9",
+    "source_fingerprint": "sha256:37da2bf5f8a95b7d4b7f9adce92e101920fdd831ac4d5c615b4deddd1258e2a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "25e628cf35e8e88d7bbca236dd5c5ff7591c8174ede8dacac6935410505cdc13",
       "plan.md": "0a1ecfe9be20e0606194e537a29122f6eaa7f7a33fe7dbfb2a234a6693422f46",
       "tasks.md": "a455298751258e7e06ecad603d7a1d8a9a8bbc004d5f30e67fea86aabdfbc1d1",
+      "decision-record.md": "4cf98a92431521384f947e3981437bc14e8b2b09302c484d8489ba2152717262",
       "implementation-summary.md": "7c87394ab0f4361173649789a452e4139473969a047191a897e594e8713523d7"
     },
     "last_active_at": null

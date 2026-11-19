@@ -22,7 +22,8 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "006-agent-contract-and-registry-alignment operator decisions"
     ],
     "key_topics": [
       "agent",
@@ -38,11 +39,12 @@
       "directive",
       "completion"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
+      "decision-record.md",
       ".skilled/bin/agent-mirror-crosswalk.md",
       ".skilled/agents/agent-registry.json",
       ".skilled/agents/README.txt",
@@ -69,6 +71,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -190,21 +198,29 @@
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The eleven files in `.skilled/agents/` define how every agent in this repository behaves, and an audit on 2026-11-14 found five kinds of defect in them",
     "created_at": "2026-11-14T11:36:20Z",
-    "last_save_at": "2026-11-14T15:05:02.882Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:35:01.110Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "goal.md"
+      "goal.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:f53af9de596860d0f6c0321b01ab54a2293b144375bf30b079f838361a6d7c23",
+    "source_fingerprint": "sha256:fd38bd0bbf5632a8ab6f89c46760b15bd33857f0564983cf0463cdf13dd2dc26",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "833904aa051c5c53e50624fa942712bcb01a47d0c50749cee6716532d936a650"
+      "spec.md": "833904aa051c5c53e50624fa942712bcb01a47d0c50749cee6716532d936a650",
+      "decision-record.md": "e6f5855dedfae7b4571af8ea26eeaa3a6a38d437ec092f9e458d9a009b7be420"
     },
     "last_active_child_id": "agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping",
     "last_active_at": "2026-11-14T14:16:38.674Z"

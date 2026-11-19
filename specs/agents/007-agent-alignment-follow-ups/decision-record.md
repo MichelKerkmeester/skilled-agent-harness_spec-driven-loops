@@ -37,6 +37,10 @@ _memory:
 | Q001 | Move the v4.0.2.1 tag again, to main at 4f47d15fcc7, after the changelog counted Mistral Vibe among the env guard's runtimes. | Not stated. | None | tag v4.0.2.1 object cef1a8488c3, .skilled/changelog/skilled/v4.0.2.1.md |
 | Q002 | Build all four Fable 5.2 fixes for the deep-review limits as phases 030 to 033 of packet 007, in the order 3, 2, 1, 4. | Not stated. | None | 030-review-count-source, 031-search-debt-verdict, 032-traceability-reserve-iteration, 033-zero-iteration-report, spec.md phase map |
 | Q003 | Move the v4.0.2.1 tag to 2af6c638b50 so the tag holds the review fixes the published notes describe. | Not stated. | None | tag v4.0.2.1 object 06037dee3da, .skilled/changelog/skilled/v4.0.2.1.md |
+| Q004 | The planning docs are committed first, then phase 006 is built. | Not stated. | none | specs/agents/007-agent-alignment-follow-ups/spec.md |
+| Q005 | /speckit:plan for 007-agent-alignment-follow-ups runs in autonomous mode. | Not stated. | none | specs/agents/007-agent-alignment-follow-ups/spec.md |
+| Q006 | A single agent writes the planning documents for the 007 follow-up packet. | Not stated. | none | specs/agents/007-agent-alignment-follow-ups/spec.md |
+| Q007 | No session goal is set for the 007 planning run (research intent fix_bug). | Not stated. | none | specs/agents/007-agent-alignment-follow-ups/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -102,6 +106,84 @@ Leave the tag
 Answer:
 ```text
 Move the tag (Recommended)
+```
+
+### Q004
+<!-- source: claude:18900c05-bd74-4807-ba05-d1c5ed7e1d0a:toolu_011rAgavn1M2dkp4z7VJ27MG:3 -->
+
+Question:
+```text
+What happens next with the planning docs and the build?
+```
+
+Options:
+```text
+Commit, then build 006 (Recommended)
+Commit only
+Neither yet
+```
+
+Answer:
+```text
+Commit, then build 006 (Recommended)
+```
+
+### Q005
+<!-- source: claude:7b3d8afd-85b7-4568-b947-3f44f177431d:toolu_01MqSS73WHh3TFnS6t2QSe4m:0 -->
+
+Question:
+```text
+SpecKit Plan setup for specs/agents/007-agent-alignment-follow-ups (four phases, one per follow-up finding). How should the planning workflow run?
+```
+
+Options:
+```text
+Autonomous (Recommended)
+Interactive
+```
+
+Answer:
+```text
+Autonomous (Recommended)
+```
+
+### Q006
+<!-- source: claude:7b3d8afd-85b7-4568-b947-3f44f177431d:toolu_01MqSS73WHh3TFnS6t2QSe4m:1 -->
+
+Question:
+```text
+Who writes the planning documents for the 007 follow-up packet?
+```
+
+Options:
+```text
+Single agent (Recommended)
+Multi-agent (1+2)
+Multi-agent (1+3)
+```
+
+Answer:
+```text
+Single agent (Recommended)
+```
+
+### Q007
+<!-- source: claude:7b3d8afd-85b7-4568-b947-3f44f177431d:toolu_01MqSS73WHh3TFnS6t2QSe4m:3 -->
+
+Question:
+```text
+Should this planning run carry a session goal? (I will take the research intent as fix_bug, since all four items close gaps the audit found.)
+```
+
+Options:
+```text
+Skip (Recommended)
+Offer a goal
+```
+
+Answer:
+```text
+Skip (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

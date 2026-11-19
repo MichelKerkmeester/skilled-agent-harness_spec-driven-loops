@@ -6,16 +6,18 @@
     "phase",
     "ai-council-writer-and-round-model"
   ],
-  "lastUpdated": "2026-11-14T23:47:18.636Z",
+  "lastUpdated": "2026-11-19T17:46:48.301Z",
   "specId": "009",
   "folderSlug": "ai-council-writer-and-round-model",
   "parentChain": [
     "agents",
     "007-agent-alignment-follow-ups"
   ],
-  "memorySequence": 2,
+  "memorySequence": 4,
   "memoryNameHistory": [
     "14-11-26_21-47__phase-009-findings-reproduced-before-planning.md",
-    "15-11-26_00-47__phase-009-built-ai-council-names-itself-the-one.md"
+    "15-11-26_00-47__phase-009-built-ai-council-names-itself-the-one.md",
+    "19-11-26_18-35__manual-context-save.md",
+    "19-11-26_18-46__manual-context-save.md"
   ]
 }

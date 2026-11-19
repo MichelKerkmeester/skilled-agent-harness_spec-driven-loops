@@ -6,15 +6,17 @@
     "phase",
     "orchestrate-task-package-agent-names"
   ],
-  "lastUpdated": "2026-11-14T16:32:47.318Z",
+  "lastUpdated": "2026-11-19T17:46:43.893Z",
   "specId": "003",
   "folderSlug": "orchestrate-task-package-agent-names",
   "parentChain": [
     "agents",
     "007-agent-alignment-follow-ups"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "14-11-26_17-32__the-agent-line-of-the-orchestrator-task-template.md"
+    "14-11-26_17-32__the-agent-line-of-the-orchestrator-task-template.md",
+    "19-11-26_18-35__manual-context-save.md",
+    "19-11-26_18-46__manual-context-save.md"
   ]
 }

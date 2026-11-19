@@ -16,6 +16,7 @@
       "orchestrate routing and retry plan",
       "orchestrate routing and retry tasks",
       "orchestrate routing and retry acceptance criteria",
+      "008-orchestrate-routing-and-retry operator decisions",
       "orchestrate routing and retry implementation summary"
     ],
     "key_topics": [
@@ -27,10 +28,10 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation",
-      "summary",
-      "orchestrator",
-      "routes"
+      "008-orchestrate-routing-and-retry",
+      "operator",
+      "decisions",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,6 +40,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/agents/orchestrate.md",
       ".skilled/agents/agent-registry.json",
@@ -46,7 +48,6 @@
       ".skilled/skills/system-spec-kit/ROUTER.md",
       "scratch/after.txt",
       "scratch/measured-behavior.txt",
-      ".opencode/hooks/task-dispatch/lib/dispatch-guard.cjs",
       ".claude/agents/orchestrate.md",
       ".pi/agents/orchestrate.md",
       ".codex/agents/orchestrate.toml",
@@ -79,6 +80,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -121,12 +128,6 @@
         "name": "measured-behavior.txt",
         "kind": "file",
         "path": "scratch/measured-behavior.txt",
-        "source": "derived"
-      },
-      {
-        "name": "dispatch-guard.cjs",
-        "kind": "file",
-        "path": ".opencode/hooks/task-dispatch/lib/dispatch-guard.cjs",
         "source": "derived"
       },
       {
@@ -204,7 +205,7 @@
     ],
     "causal_summary": "The orchestrator routes an \"Evidence / iterative investigation\" request to `@deep-research` and tells itself to dispatch that leaf at depth 1",
     "created_at": "2026-11-14T20:19:19Z",
-    "last_save_at": "2026-11-14T23:28:44.789Z",
+    "last_save_at": "2026-11-19T17:35:13.881Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +213,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b277137c05fb3550204ed3e24de9dafd516d66c93b637a21e3e98377315e8581",
+    "source_fingerprint": "sha256:338a58dd687bd00e40ca6ae7cc7f6c5640ba723833b4bf83ff9bc64cc4229360",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "37f7b36b7508f1c6fa63f115186f6c6d4ec6e04aa5c0ae366fdbbf39afc4d49f",
       "plan.md": "4297e565ef39abd616da16aa2f06c07c2734709dc302c13e220946bbe94d2153",
       "tasks.md": "608b33c4382efa9d3a450f6c4b93b39de9e2ae4497888d6d46fa257491597413",
+      "decision-record.md": "f4f2c501656f94c8e17425237a9185913060b697ddaedce7dbca9f1d2cbc2718",
       "implementation-summary.md": "1cacda4b27de64cbf4df1bc07877a1794d4371745dc1e8503fffc9f829fcba42"
     },
     "last_active_at": null
