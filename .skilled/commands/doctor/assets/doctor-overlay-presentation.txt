@@ -421,6 +421,7 @@ OVERLAYS APPLIED
 Root: [the vendored tree]
 Engine: [each line the apply printed, such as its linked lines and its changed count]
 Re-read: [the status report's RESULT line and its state counts]
+Advisor vector coverage: skills [current]/[total] current or unavailable, commands [current]/[total] current or unavailable; backend [reachable|unreachable|model_missing|unavailable]. Informational only; missing Ollama does not fail the overlay step.
 STATUS=OK
 ```
 
@@ -431,6 +432,7 @@ LIVE EDIT CAPTURED
 Root: [the vendored tree]
 Engine: [the captured line the engine printed]
 Re-read: [the status report's RESULT line and its state counts]
+Advisor vector coverage: skills [current]/[total] current or unavailable, commands [current]/[total] current or unavailable; backend [reachable|unreachable|model_missing|unavailable]. Informational only; missing Ollama does not fail the overlay step.
 Next: /doctor:overlay apply, so the other overlays and the generated files catch up
 STATUS=OK
 ```
@@ -443,6 +445,7 @@ Root: [the vendored tree]
 Engine: [the adopted line the engine printed, then each line its apply printed]
 Entry: [the entry id the adopted line names], in [overlay folder]/overlay-manifest.json
 Re-read: [the status report's RESULT line and its state counts]
+Advisor vector coverage: skills [current]/[total] current or unavailable, commands [current]/[total] current or unavailable; backend [reachable|unreachable|model_missing|unavailable]. Informational only; missing Ollama does not fail the overlay step.
 STATUS=OK
 ```
 
@@ -454,6 +457,7 @@ Root: [the vendored tree]
 Backup: [overlay folder]/relayout-runs/[stamp]/
 Engine: [the backup line, each skipped and relinked line, each moved line and the moved count the engine printed, then each line its apply printed]
 Re-read: [the status report's RESULT line and its LAYOUT lines]
+Advisor vector coverage: skills [current]/[total] current or unavailable, commands [current]/[total] current or unavailable; backend [reachable|unreachable|model_missing|unavailable]. Informational only; missing Ollama does not fail the overlay step.
 Next: /doctor:overlay status, so the re-read confirms the tree is in sync
 STATUS=OK
 ```
@@ -479,6 +483,7 @@ Run folder: [overlay folder]/repin-runs/[run-id]/, kept for a later rollback
 Now equal to upstream: [one equals-upstream line per overlay, or none]
 Upstream lost: [the engine's upstream-lost lines, or none]
 Re-read: [the status report's RESULT line and its state counts]
+Advisor vector coverage: skills [current]/[total] current or unavailable, commands [current]/[total] current or unavailable; backend [reachable|unreachable|model_missing|unavailable]. Informational only; missing Ollama does not fail the re-pin step.
 STATUS=OK
 ```
 
@@ -490,6 +495,7 @@ Root: [the vendored tree]
 Run: [run-id]
 Engine: [each line the rollback printed]
 Re-read: [the status report's RESULT line and its state counts]
+Advisor vector coverage: skills [current]/[total] current or unavailable, commands [current]/[total] current or unavailable; backend [reachable|unreachable|model_missing|unavailable]. Informational only; missing Ollama does not fail the rollback step.
 STATUS=[OK on the direct path | FAIL ERROR="repin_rolled_back" after a failed re-pin]
 ```
 

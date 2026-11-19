@@ -6,7 +6,7 @@ trigger_phrases:
   - "lane ablation"
   - "scorer ablation"
   - "ablation accuracy"
-version: 0.8.0.14
+version: 0.8.1.14
 ---
 
 # Lane-by-Lane Ablation Protocol
@@ -20,6 +20,8 @@ Quantify each lane's contribution to accuracy so lane weights can be reasoned ab
 ## 2. HOW IT WORKS
 
 `lib/scorer/ablation.ts` drives the ablation protocol: it reads the active lane weight configuration, runs the corpus with each non-zero lane set to zero in turn and emits per-lane accuracy deltas. The live `laneWeights` (exposed via `advisor_status`) are unchanged after ablation. Results feed into `advisor_validate` ablation slices.
+
+The opt-in real-embedding check seeds skill and command vectors the same way production does and compares the semantic lane at weight `0.05` with the lane disabled. On the 196-row corpus, two identical runs scored 156 correct with the lane and 161 without it, with 7 flips and no new fire for a gold `none` row. The live default stays at `0`. The opt-in test asserts that the registry default follows this pass bar.
 
 ---
 

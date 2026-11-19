@@ -16,6 +16,7 @@ import { checkSqliteIntegrity } from '../lib/freshness/sqlite-integrity.js';
 import { createPrivateSkillLinkCheck } from '../lib/private-skill-target.js';
 import {
   computeSkillMetadataContentHash,
+  embeddingCoverage,
   isGenuineCorruptionReason,
   readCommandEmbeddingSources,
   resolveSkillGraphDbDir,
@@ -195,6 +196,17 @@ function readSemanticLaneHealth(dbPath: string): SemanticLaneHealth {
     const commandEmbedded = commandTable && tableExists(database, commandTable)
       ? countRows(database, `SELECT COUNT(*) AS c FROM ${commandTable}`)
       : 0;
+    let coverage: ReturnType<typeof embeddingCoverage> | null = null;
+    try {
+      coverage = embeddingCoverage(database);
+    } catch {
+      // Keep status available when older databases lack embedding-coverage inputs.
+    }
+    const currentSkillCount = coverage?.skills.current ?? embedded;
+    const skillCoverageTotal = coverage?.skills.total ?? total;
+    const currentCommandCount = coverage?.commands.current ?? commandEmbedded;
+    const commandCoverageTotal = coverage?.commands.total ?? commandTotal;
+    const coverageComplete = coverage?.complete;
     const dimMismatch = Boolean(activeEmbedder && activeEmbedder.adapterDim !== null && activeEmbedder.dim !== activeEmbedder.adapterDim);
     const staleness = readAdvisorEmbeddingStaleness(database);
     const disabledReason = (DEFAULT_SCORER_LANE_WEIGHTS.semantic_shadow ?? 0) <= 0
@@ -209,15 +221,21 @@ function readSemanticLaneHealth(dbPath: string): SemanticLaneHealth {
                       ? 'adapter_unavailable'
                       : (!hasVecTable
                           ? 'vector_table_missing'
-                          : (total > 0 && embedded === 0 ? 'no_skill_vectors' : runtime.disabledReason))))));
+                          : (total > 0 && currentSkillCount === 0 ? 'no_skill_vectors' : runtime.disabledReason))))));
     return {
       activeEmbedder,
       vectorCoverage: {
-        embedded,
-        total,
-        ratio: total > 0 ? Math.round((embedded / total) * 1_000_000) / 1_000_000 : 0,
+        embedded: currentSkillCount,
+        total: skillCoverageTotal,
+        ratio: skillCoverageTotal > 0 ? Math.round((currentSkillCount / skillCoverageTotal) * 1_000_000) / 1_000_000 : 0,
+        ...(coverage ? { stale: coverage.skills.stale, missing: coverage.skills.missing } : {}),
       },
-      commandVectorCoverage: { embedded: commandEmbedded, total: commandTotal },
+      commandVectorCoverage: {
+        embedded: currentCommandCount,
+        total: commandCoverageTotal,
+        ...(coverage ? { stale: coverage.commands.stale, missing: coverage.commands.missing } : {}),
+      },
+      ...(coverageComplete === undefined ? {} : { coverageComplete }),
       dimMismatch,
       lastRefresh,
       disabledReason,

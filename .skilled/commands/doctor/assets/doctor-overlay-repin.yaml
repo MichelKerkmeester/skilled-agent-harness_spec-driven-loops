@@ -111,6 +111,7 @@ workflow:
     purpose: "Prove the tree reads back through the read-only status mode"
     activities:
       - "After any engine write, run node .skilled/commands/doctor/scripts/overlay-engine.cjs status once more, with --root \"{root}\" when this run used it, and read its RESULT line and counts against the engine's own result lines."
+      - "After the re-pin or rollback result, resolve the advisor workspace root to {root} when supplied or \"$PWD\" otherwise, then make one read-only `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root <workspace root> --include-semantic-health true --format json --timeout-ms 1500 --warm-only` call. Report skills and command vectors as current/total, using total minus stale minus missing for current. If the daemon is absent or the status cannot be read, report coverage as unavailable; include an unreachable or missing-model backend state when returned. This line is informational and never changes the re-pin result, so missing Ollama is not a failed step."
       - "When the re-read cannot run at all, report its message, keep the write result and name the missing re-read as the next step. Never report a write as verified when the re-read never answered."
 
   phase_7_report:

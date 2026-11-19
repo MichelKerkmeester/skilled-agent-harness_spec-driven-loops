@@ -17,7 +17,7 @@ _memory:
     key_files:
       - "tasks.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:b1c2ab67717ae713d49757b5f0b641120331da8bd7948390e56b5ce3743746a3"
       session_id: "db37536c-37e4-472c-8a05-521b8fec328d"
       parent_session_id: null
     completion_pct: 100

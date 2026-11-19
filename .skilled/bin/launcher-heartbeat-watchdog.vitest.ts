@@ -97,8 +97,35 @@ describe('launcher heartbeat verdict', () => {
   it.each([
     [null, 1_000],
     [999, 1_000],
-  ])('does not arm for mtime %s before spawn time %s', (mtimeMs, spawnedAtMs) => {
+  ])('does not arm within the startup grace for mtime %s before spawn time %s', (mtimeMs, spawnedAtMs) => {
     expect(launcher.heartbeatVerdict({ mtimeMs, spawnedAtMs, nowMs: 10_000 })).toBe('not-armed');
+  });
+
+  it('does not arm when no heartbeat appears within the startup grace', () => {
+    const spawnedAtMs = 1_000;
+    expect(launcher.heartbeatVerdict({
+      mtimeMs: null,
+      spawnedAtMs,
+      nowMs: spawnedAtMs + launcher.HEARTBEAT_STARTUP_GRACE_MS - 1,
+    })).toBe('not-armed');
+  });
+
+  it('is stale when no heartbeat appears past the startup grace', () => {
+    const spawnedAtMs = 1_000;
+    expect(launcher.heartbeatVerdict({
+      mtimeMs: null,
+      spawnedAtMs,
+      nowMs: spawnedAtMs + launcher.HEARTBEAT_STARTUP_GRACE_MS + 1,
+    })).toBe('stale');
+  });
+
+  it('is stale when the heartbeat predates spawn past the startup grace', () => {
+    const spawnedAtMs = 1_000;
+    expect(launcher.heartbeatVerdict({
+      mtimeMs: spawnedAtMs - 1,
+      spawnedAtMs,
+      nowMs: spawnedAtMs + launcher.HEARTBEAT_STARTUP_GRACE_MS + 1,
+    })).toBe('stale');
   });
 
   it('is fresh just under the stale limit', () => {
@@ -167,5 +194,18 @@ describe('launcher heartbeat watchdog', () => {
     expect(fakeChild.messages).toEqual([]);
     watchdog.stop();
     expect(timers.intervalCleared).toBe(true);
+  });
+
+  it('sends SIGTERM when no heartbeat appears past the startup grace', () => {
+    const { fakeChild, timers, watchdog } = createWatchdog(
+      null,
+      1_000 + launcher.HEARTBEAT_STARTUP_GRACE_MS + 1,
+    );
+
+    timers.runInterval();
+    expect(fakeChild.signals).toEqual(['SIGTERM']);
+    expect(fakeChild.messages).toEqual([]);
+    expect(timers.intervalCleared).toBe(true);
+    watchdog.stop();
   });
 });

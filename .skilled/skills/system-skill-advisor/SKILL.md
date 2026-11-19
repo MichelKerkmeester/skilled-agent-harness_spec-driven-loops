@@ -2,7 +2,7 @@
 name: system-skill-advisor
 description: Routes non-trivial requests to matching skills through the daemon-backed advisor CLI and stable advisor command ids.
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.2.0.0
+version: 1.3.0.0
 trigger_phrases:
   - "skill advisor"
   - "gate 2 routing"

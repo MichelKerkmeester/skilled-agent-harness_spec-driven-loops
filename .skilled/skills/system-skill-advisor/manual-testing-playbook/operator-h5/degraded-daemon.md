@@ -5,7 +5,7 @@ trigger_phrases:
   - "op-001"
   - "degraded daemon"
   - "degraded"
-version: 0.8.2.0
+version: 0.8.3.0
 id: OP-001
 category: operator_h5
 stage: routing
@@ -58,6 +58,8 @@ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/pa
 - Degraded/stale state is visible without prompt text.
 - Logs identify graph generation or source freshness, not raw prompts.
 - After scan, `freshness` returns to `live` or the remaining reason is explicit.
+- With `includeSemanticHealth` enabled and Ollama unavailable, semantic health reports `DEGRADED` and includes skill and command vector coverage. A lane weight of 0 passes this setup check. Recommendation prompts are not embedded at that weight.
+- If Ollama is unavailable during a background refresh, failed embeds keep the old vectors. Stale vectors are excluded from the current count for semantic scoring.
 
 ### Failure Modes
 

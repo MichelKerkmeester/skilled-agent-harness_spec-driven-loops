@@ -6,7 +6,7 @@ trigger_phrases:
   - "ablation protocol"
   - "lane ablation"
   - "scorer ablation"
-version: 0.8.2.0
+version: 0.8.3.0
 id: SC-005
 category: scorer_fusion
 stage: routing
@@ -58,6 +58,7 @@ node .skilled/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":
 - The recorded ablation covered 193 prompts. It scored 149 with `semantic_shadow` and 150 without it.
 - The lane cost an Ollama call and a cold model load of about 540 ms. Each uncached prompt could wait up to 750 ms.
 - The default live weight is 0, so prompts skip that embed call. Set `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'` to enable the lane.
+- The opt-in real-embedding ablation seeds skills and commands the same way as production. Two runs on the 196-row corpus gave identical results. The lane at `0.05` scored 156 correct. It scored 161 with the lane disabled. The runs had 7 flips and no new fire for a gold `none` row. The registry default stays at `0`. The opt-in test asserts the default follows this pass bar.
 - Post-ablation `laneWeights` equal pre-ablation values (ablation does not mutate live configuration).
 
 ### Failure Modes

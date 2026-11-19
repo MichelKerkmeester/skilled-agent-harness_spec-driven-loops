@@ -206,7 +206,7 @@ STATUS=FAIL ERROR="[message]"
 
 ## 8. Embedder Setup Presentation
 
-Render these blocks for `/doctor:skill-advisor embedder`. The probe runs first and changes nothing. Every value is printed as the probe or the cost script returned it, and an unread value stays unread.
+Render these blocks for `/doctor:skill-advisor embedder`. The probe runs first and changes nothing. Every value is printed as the probe or the cost script returned it, and an unread value stays unread. The advisor daemon refreshes missing vectors on start and after skill changes when Ollama is reachable. This workflow scans the skill graph after approved setup steps or when Ollama is already set up and coverage is incomplete.
 
 ### Probe Dashboard
 
@@ -219,11 +219,14 @@ Server: [answering at <url>, version <version>|absent at <url>]
 Model: [nomic-embed-text:v1.5 present, <size> on disk|missing]
 Advisor daemon: [present|absent]
 Active embedder: [<backend> <model>|none|unread, the daemon is absent]
-Command vectors: [<embedded> of <total>|unread, the daemon is absent]
-Semantic lane: [enabled|off ([disabledReason])|unread, the daemon is absent]
+Skills: [<current> of <total> current (<stale> stale, <missing> missing)|unread, the daemon is absent]
+Commands: [<current> of <total> current (<stale> stale, <missing> missing)|unread, the daemon is absent]
+Coverage complete: [true|false|unread, the daemon is absent]
+Ollama backend: [reachable|unreachable|model_missing|unread, the daemon is absent]
+semantic lane weight [<laneWeights.semantic_shadow>]
 ```
 
-A missing binary, an absent server and a missing model are findings, not failures of the route. An exit 75 from `advisor_status` means the daemon is absent, so the active embedder, the command vectors and the lane state stay `unread`.
+A missing binary, an absent server and a missing model are findings, not failures of the route. An exit 75 from `advisor_status` means the daemon is absent, so the active embedder, both coverage objects, coverage state, backend state and lane weight stay `unread`. Print the lane-weight line on its own; at weight 0 with complete coverage, use `semantic lane weight 0: vectors ready, lane off by default`. With incomplete coverage, say the lane is off by default and vector coverage is incomplete.
 
 ### Plan Table
 
@@ -238,13 +241,13 @@ Missing: [comma-separated steps, or none]
 | Install Ollama (printed only, never run by this route) | [the install guide's cost] | [the package manager's uninstall command] |
 | Start ollama serve in the background | [.memory.serveRssKb from the cost script] resident | Stop the pid this run started |
 | Pull nomic-embed-text:v1.5 | [.model.sizeBytes from the cost script] on disk | ollama rm nomic-embed-text:v1.5 |
-| Run skill_graph_scan to write the command vectors | [the scan's own runtime] plus [.warm.medianMs from the cost script] per embedded prompt | None, the database is derived state and a rerun rewrites it |
+| Scan the skill graph to fill vectors | [scan runtime plus .warm.medianMs per embedded prompt] | None, skill-graph.sqlite is derived state and a rerun rewrites it |
 
 Will run after approval:
    [the listed steps, in dependency order, or none]
 ```
 
-When the probe found no missing step, skip the table and render the final result as already set up.
+Include the scan row when Ollama is installed and either setup steps are planned or coverage is incomplete. When no Ollama step is missing and coverage is complete, skip the table and render the final result as already set up.
 
 ### Approval Prompt
 
@@ -254,7 +257,7 @@ Ask once, after the plan is on screen. Nothing is pulled, started or written bef
 Set up meaning matching now? Only the steps in the plan run.
 Steps:
    [one line per approved step with its cost]
-Writes: .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite, through skill_graph_scan only
+Repository write: [the approved scan writes .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite as derived state, with no other repository files written|none when no scan is listed]
 Never: an Ollama install or upgrade, a model the plan did not list, a model removal, a second server
 Reply approve to continue, or no to cancel.
 ```
@@ -283,18 +286,21 @@ STATUS=OK
 
 ### Final Result
 
-Render after the post-scan probe. When the probe found nothing missing, render the same block from the probe values, ask nothing and run nothing.
+Render after the post-scan probe. When no Ollama step is missing and `coverageComplete` is true, render the block from the probe values as already set up, ask nothing and run nothing. When coverage is incomplete, the plan includes the scan and asks for approval before it runs.
 
 ```text
 EMBEDDER SETUP RESULT
 Server: [answering at <url>, version <version>|absent at <url>]
 Model: [nomic-embed-text:v1.5, <size> on disk|missing]
-Command vectors: [<embedded> of <total>|0 of <total>]
-Semantic lane: [enabled|off ([disabledReason])]
-Next: [none|restart the advisor daemon, the active embedder is resolved at startup|the repair the failed check names]
-STATUS=[OK|FAIL]
+Skills: [<current>/<total> current (<stale> stale, <missing> missing)]
+Commands: [<current>/<total> current (<stale> stale, <missing> missing)]
+Coverage complete: [true|false|unread]
+Ollama backend: [reachable|unreachable|model_missing|unread]
+semantic lane weight [<laneWeights.semantic_shadow>]
+Next: [none|start the advisor daemon with Ollama up so it refreshes missing vectors|/doctor:skill-advisor embedder]
+STATUS=[OK|DEGRADED|FAIL]
 ```
 
-Report `STATUS=OK` only when the lane is enabled and the embedded count is above zero. Otherwise report `STATUS=FAIL` and name the check that did not pass. When the active embedder is null, name a daemon restart, then rerun the probe.
+Report `STATUS=OK` when coverage is complete and the backend is reachable. Report `STATUS=DEGRADED` when the backend is not reachable, even if coverage is complete; say routing continues on the other lanes and point to `/doctor:skill-advisor embedder`. When the backend is reachable but coverage is incomplete, report the stale and missing counts and say the daemon refreshes them on its next start with Ollama up. An absent daemon leaves coverage unread and is DEGRADED. Never fail because `laneEnabled` is false or the semantic lane weight is 0. Print the weight on its own info line; when it is 0 and coverage is complete, use `semantic lane weight 0: vectors ready, lane off by default`. When it is 0 and coverage is incomplete, say the lane is off by default and vector coverage is incomplete.
 
 End interactive presentations with: `What would you like to do next?`

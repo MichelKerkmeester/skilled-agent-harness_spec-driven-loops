@@ -467,6 +467,8 @@ workflow:
     - Grep generated files for copied source workflow names
     - IF validation fails: Fix issues and re-run
     - Repeat until passing
+    - Regenerate command bridges after writing the command files with `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs`
+    - Tell the operator the advisor daemon picks up the new command on its next start and embeds it when Ollama is reachable
     validation_command: |
       Run the validators specified by .skilled/skills/sk-doc/sk-create-command/SKILL.md Step 13 when available.
       grep -R "[source-workflow-name]" [generated-file-list]

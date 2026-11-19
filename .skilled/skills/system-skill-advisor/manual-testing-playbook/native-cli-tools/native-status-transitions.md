@@ -6,7 +6,7 @@ trigger_phrases:
   - "native advisor_status transitions"
   - "native advisor_status"
   - "native"
-version: 0.8.1.0
+version: 0.8.2.0
 id: NC-002
 category: native_cli_tools
 stage: routing
@@ -66,6 +66,7 @@ grep -c 'help me commit my changes' "$DIAG"
 - Stale response reports `freshness: "stale"` or a stale trust-state reason such as `SOURCE_NEWER_THAN_SKILL_GRAPH`.
 - Absent response reports `freshness: "absent"` when graph sources exist but the artifact/generation state is missing.
 - Once at least one hook record exists, the live response carries `hookHealth` with `invocations`, `rollingP95Ms`, `rollingFailOpenRate`, `rollingCacheHitRate`, `rollingDegradedRate` and `lastRecordAt`. The newest record holds no `skillLabel`, no `errorDetails` and no prompt text. The prompt count prints `0`.
+- With `includeSemanticHealth` enabled, the response reports `vectorCoverage` and `commandVectorCoverage`, each with current (`embedded`), total, stale and missing counts, plus `coverageComplete`. The opt-in check probes Ollama even at lane weight 0.
 
 ### Failure Modes
 

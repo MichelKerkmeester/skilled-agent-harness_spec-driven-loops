@@ -9,6 +9,7 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory.js';
 
 import { scoreAdvisorPrompt } from '../../lib/scorer/fusion.js';
+import { DEFAULT_SCORER_LANE_WEIGHTS } from '../../lib/scorer/lane-registry.js';
 import {
   clearSemanticShadowPromptEmbedding,
   getSemanticShadowRuntimeHealth,
@@ -51,12 +52,13 @@ function flagEnabled(name: string): boolean {
 
 const hardMode = flagEnabled(ABLATION_FLAG);
 
-// The frozen lane's net effect on top-1 correctness must stay within a negligible
-// band of the full corpus. A swing beyond this — in either direction — is no
-// longer "frozen-neutral" and forces a conscious re-decision (raise, drop, or
-// re-baseline) rather than a silent pass. Sized well under the corpus's own
-// labeling-noise floor and the eval ratchet's actionable granularity.
-const FREEZE_NET_CORRECTNESS_TOLERANCE = 3;
+// The registry's default weight must follow this measurement. The lane earns a
+// live weight only when, scored at the candidate weight, it gets more top-1 rows
+// right than the disabled arm and makes no prompt whose gold answer is "none"
+// fire where the disabled arm abstains. Otherwise its default stays 0, which
+// keeps every prompt off the embedding backend.
+// The full arm scores the lane at the weight under evaluation because the registry default is 0.
+const CANDIDATE_SEMANTIC_WEIGHT = 0.05;
 
 // Stable repo-root marker: the skill's own package.json, so the suite resolves
 // the workspace root regardless of how spec folders are renumbered.
@@ -96,6 +98,8 @@ let corpus: CorpusRow[] = [];
 let ablationProjection: AdvisorProjection | null = null;
 let seedResult: SeedResult | null = null;
 let seedSkipReason: string | null = null;
+let seededSkillCount = 0;
+let seededCommandCount = 0;
 let promptVectorsByPrompt = new Map<string, Float32Array>();
 
 function findWorkspaceRoot(start = process.cwd()): string {
@@ -165,19 +169,24 @@ describe('semantic-shadow paired ablation (opt-in, seeded)', () => {
     corpus = loadCorpus(workspaceRoot);
     const fullProjection = loadAdvisorProjection(workspaceRoot);
     const describedSkills = fullProjection.skills.filter(
-      (projectionSkill) => projectionSkill.description.trim().length > 0,
+      (projectionSkill) => projectionSkill.kind === 'skill' && projectionSkill.description.trim().length > 0,
     );
-    // Score against a fixture projection of every described skill so the cosine
-    // lane can pull toward ANY skill (a wrong flip is as observable as a right
-    // one), and so sqlite embedding-staleness never silently disables the lane.
-    ablationProjection = createFixtureProjection(describedSkills);
+    const commandSources = skillGraphDb.readCommandEmbeddingSources() ?? [];
+    const seededCommands = commandSources.map(({ commandId, embeddingText }) => ({
+      id: commandId,
+      description: embeddingText,
+    }));
+    // Keep every projection row as a candidate; unseeded rows receive no cosine match.
+    ablationProjection = createFixtureProjection(fullProjection.skills);
 
     const seededSkills = describedSkills.map((projectionSkill) => ({
       id: projectionSkill.id,
       description: projectionSkill.description,
     }));
 
-    seedResult = await seedSkillEmbeddings(seededSkills);
+    seededSkillCount = seededSkills.length;
+    seededCommandCount = seededCommands.length;
+    seedResult = await seedSkillEmbeddings([...seededSkills, ...seededCommands]);
     if (seedResult.skipped) {
       seedSkipReason = seedResult.skipReason ?? 'embedding provider unavailable';
       return;
@@ -211,8 +220,7 @@ describe('semantic-shadow paired ablation (opt-in, seeded)', () => {
         seedSkipReason = `provider changed between skill and prompt seeding (${seedResult.providerModelId} -> ${queryProviderModelId})`;
         return;
       }
-      // Sequential to keep the local provider from being flooded with 193
-      // concurrent requests; the embed call is HTTP, not a native module.
+      // Sequential to avoid flooding the local provider; the embed call is HTTP, not a native module.
       for (const row of corpus) {
         const vector = await provider.embedQuery(row.prompt);
         if (!vector) {
@@ -240,7 +248,12 @@ describe('semantic-shadow paired ablation (opt-in, seeded)', () => {
     }
     expect(seedResult).not.toBeNull();
     expect(seedResult!.providerModelId).toBe(PINNED_PROVIDER_MODEL_ID);
-    expect(corpus.length).toBe(193);
+    const nonEmptyCorpusLineCount = readFileSync(
+      join(workspaceRoot, CORPUS_RELATIVE_PATH),
+      'utf8',
+    ).split(/\r?\n/).filter((line) => line.trim().length > 0).length;
+    expect(corpus.length).toBe(nonEmptyCorpusLineCount);
+    expect(corpus.length).toBeGreaterThan(0);
     expect(promptVectorsByPrompt.size).toBe(corpus.length);
 
     // Isolate the semantic lane (all other weights zeroed) and confirm it emits
@@ -293,6 +306,10 @@ describe('semantic-shadow paired ablation (opt-in, seeded)', () => {
     let fullCorrect = 0;
     let disabledCorrect = 0;
     let missing = 0;
+    let fullNoneFires = 0;
+    let disabledNoneFires = 0;
+    const fullNoneFireIds: string[] = [];
+    const disabledNoneFireIds = new Set<string>();
     const flips: FlipRecord[] = [];
 
     for (const row of corpus) {
@@ -309,6 +326,10 @@ describe('semantic-shadow paired ablation (opt-in, seeded)', () => {
           workspaceRoot,
           projection: ablationProjection!,
           disabledLanes: [],
+          laneWeightsOverride: {
+            ...DEFAULT_SCORER_LANE_WEIGHTS,
+            semantic_shadow: CANDIDATE_SEMANTIC_WEIGHT,
+          },
         });
         const disabled = scoreAdvisorPrompt(row.prompt, {
           workspaceRoot,
@@ -322,18 +343,35 @@ describe('semantic-shadow paired ablation (opt-in, seeded)', () => {
       }
       if (fullLabel === row.expectedSkill) fullCorrect += 1;
       if (disabledLabel === row.expectedSkill) disabledCorrect += 1;
+      if (row.expectedSkill === 'none') {
+        if (fullLabel !== 'none') {
+          fullNoneFires += 1;
+          fullNoneFireIds.push(row.id);
+        }
+        if (disabledLabel !== 'none') {
+          disabledNoneFires += 1;
+          disabledNoneFireIds.add(row.id);
+        }
+      }
       if (fullLabel !== disabledLabel) {
         flips.push({ id: row.id, expected: row.expectedSkill, full: fullLabel, disabled: disabledLabel });
       }
     }
 
     const delta = disabledCorrect - fullCorrect;
+    const newNoneFires = fullNoneFireIds.filter((id) => !disabledNoneFireIds.has(id));
     const summary = {
       rows: corpus.length,
       fullTop1Correct: fullCorrect,
       disabledTop1Correct: disabledCorrect,
       delta,
       flips: flips.length,
+      fullNoneFires,
+      disabledNoneFires,
+      newNoneFires,
+      seededSkills: seededSkillCount,
+      seededCommands: seededCommandCount,
+      candidateWeight: CANDIDATE_SEMANTIC_WEIGHT,
       providerModelId: seedResult!.providerModelId,
       cacheHits: seedResult!.cacheHits,
       cacheMisses: seedResult!.cacheMisses,
@@ -346,12 +384,13 @@ describe('semantic-shadow paired ablation (opt-in, seeded)', () => {
     console.log(`[semantic-ablation] flips ${JSON.stringify(flips)}`);
 
     expect(missing).toBe(0);
-    // Not asserted to zero: with real embeddings the lane is a marginal
-    // net-negative, not a no-op. Freeze holds while its net correctness effect
-    // stays inside the band; the exact counts and the flip list are recorded in
-    // the decision record. A larger swing would fail here and force a re-decision.
-    expect(Math.abs(delta)).toBeLessThanOrEqual(FREEZE_NET_CORRECTNESS_TOLERANCE);
-    expect(fullCorrect - disabledCorrect).toBeLessThanOrEqual(FREEZE_NET_CORRECTNESS_TOLERANCE);
+    const lanePasses = fullCorrect > disabledCorrect && newNoneFires.length === 0;
+    const defaultWeight = DEFAULT_SCORER_LANE_WEIGHTS.semantic_shadow ?? 0;
+    if (lanePasses) {
+      expect(defaultWeight, 'the lane passed its bar, so its default weight should be live').toBeGreaterThan(0);
+    } else {
+      expect(defaultWeight, 'the lane failed its bar, so its default weight must stay 0').toBe(0);
+    }
   });
 });
 

@@ -100,6 +100,23 @@ function runtimeLaneHealthForStatus(status: AdvisorStatus): AdvisorScoringOption
   };
 }
 
+// Exported so prompt embedding degradation can be tested without invoking the handler.
+export function mergeSemanticShadowRuntimeLaneHealth(
+  runtimeLaneHealth: AdvisorScoringOptions['runtimeLaneHealth'],
+  disabledReason: string | null,
+): AdvisorScoringOptions['runtimeLaneHealth'] {
+  if (!disabledReason?.startsWith('prompt_embedding_')) {
+    return runtimeLaneHealth;
+  }
+  return {
+    ...runtimeLaneHealth,
+    semantic_shadow: {
+      status: 'runtime_degraded',
+      reason: disabledReason,
+    },
+  };
+}
+
 function renderableStatus(status: AdvisorStatus): AdvisorStatus {
   const trustState = status.trustState.state;
   if (status.freshness === 'unavailable' && (trustState === 'live' || trustState === 'stale')) {
@@ -574,12 +591,18 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
   const topK = input.options?.topK ?? 3;
   const result = await withSemanticShadowPromptEmbedding(
     scoredPrompt,
-    () => scoreAdvisorPrompt(scoredPrompt, {
-      workspaceRoot,
-      confidenceThreshold: input.options?.confidenceThreshold,
-      uncertaintyThreshold: input.options?.uncertaintyThreshold,
-      runtimeLaneHealth: runtimeLaneHealthForStatus(status),
-    }),
+    () => {
+      const semanticShadowDisabledReason = getSemanticShadowRuntimeHealth().disabledReason;
+      return scoreAdvisorPrompt(scoredPrompt, {
+        workspaceRoot,
+        confidenceThreshold: input.options?.confidenceThreshold,
+        uncertaintyThreshold: input.options?.uncertaintyThreshold,
+        runtimeLaneHealth: mergeSemanticShadowRuntimeLaneHealth(
+          runtimeLaneHealthForStatus(status),
+          semanticShadowDisabledReason,
+        ),
+      });
+    },
   );
   // The lane records its health while the scored call runs, so the reason is
   // read right after that call settles to describe this call's own fallback.

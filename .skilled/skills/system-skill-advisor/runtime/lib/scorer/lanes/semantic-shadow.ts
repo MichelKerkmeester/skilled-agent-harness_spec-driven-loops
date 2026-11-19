@@ -12,7 +12,11 @@ import {
 } from '../../embedders/adapters/ollama.js';
 import { getAdapter } from '../../embedders/registry.js';
 import { getActiveEmbedder } from '../../embedders/schema.js';
-import { getDbReadOnly, loadSkillEmbeddings } from '../../skill-graph/skill-graph-db.js';
+import {
+  getDbReadOnly,
+  loadSkillEmbeddings,
+  readCommandEmbeddingSources,
+} from '../../skill-graph/skill-graph-db.js';
 import { DEFAULT_SCORER_LANE_WEIGHTS } from '../lane-registry.js';
 import { scoreTokenOverlap, tokenizePrompt } from '../text.js';
 import type { AdvisorProjection, LaneMatch } from '../types.js';
@@ -365,8 +369,22 @@ export function scoreSemanticShadowLane(prompt: string, projection: AdvisorProje
     }
   }
 
-  if (projection.source !== 'fixture' && process.env.VITEST !== 'true' && projection.skills.length > 0 && cachedVectors.size === 0) {
-    setRuntimeHealth({ disabledReason: 'no_skill_vectors' });
+  if (projection.source !== 'fixture' && process.env.VITEST !== 'true') {
+    if (projection.skills.length > 0 && cachedVectors.size === 0) {
+      setRuntimeHealth({ disabledReason: 'no_skill_vectors' });
+    } else {
+      const commandEmbeddingIds = new Set(
+        readCommandEmbeddingSources()?.map((source) => source.commandId) ?? [],
+      );
+      const requiredVectorRows = projection.skills.filter((skill) => (
+        (skill.kind === 'skill' && skill.description.trim().length > 0)
+        || commandEmbeddingIds.has(skill.id)
+      ));
+      if (requiredVectorRows.some((skill) => !cachedVectors.has(skill.id))) {
+        setRuntimeHealth({ disabledReason: 'incomplete_skill_vectors' });
+        return [];
+      }
+    }
   }
 
   return projection.skills

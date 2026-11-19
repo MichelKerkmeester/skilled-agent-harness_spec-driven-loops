@@ -6,7 +6,7 @@ trigger_phrases:
   - "five lane fusion"
   - "lane weights canonical"
   - "advisor fusion"
-version: 0.8.1.0
+version: 0.8.2.0
 id: SC-001
 category: scorer_fusion
 stage: routing
@@ -62,7 +62,9 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conver
 - `advisor_status.laneWeights` equals the canonical configuration above.
 - `advisor_status` reports `semantic_shadow` with `disabledReason: "lane_weight_zero"` and `laneEnabled: false`.
 - `semantic_shadow.weight == 0` in envelopes that expose current lane weights.
-- The prompt makes no Ollama embed call, and `advisor_recommend` adds no `semantic_lane_off` warning.
+- At weight 0, the semantic lane skips prompt embeddings. `advisor_recommend` adds no `semantic_lane_off` warning. The shared index refresh still runs independently of lane weight. An opt-in semantic-health status call can also run an Ollama readiness probe.
+- At a non-zero weight, the semantic lane scores only when every embeddable skill and command has a current vector. Incomplete coverage reports `incomplete_skill_vectors`.
+- A failed prompt embed marks the semantic lane degraded and removes it from that call's live confidence total.
 - For every lane, `weightedScore` matches `rawScore * weight` within `1e-9` tolerance.
 - Aggregate score equals the sum of lane `weightedScore` values (or matches the documented fusion formula).
 

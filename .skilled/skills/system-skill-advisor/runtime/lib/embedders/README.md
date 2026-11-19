@@ -15,7 +15,7 @@ trigger_phrases:
 
 `lib/embedders/` is the advisor package's local adapter surface for skill-graph embeddings. It owns advisor database schema helpers and re-exports the canonical embedder registry from `@spec-kit/shared`.
 
-On daemon start, an unset (`auto`) or unknown pointer resolves to the sole registered `nomic-embed-text-v1.5` manifest (768 dimensions) without probing a backend. Only a trusted `skill_graph_scan` refreshes skill vectors. No other path refreshes them. The legacy `skill_nodes.embedding` path is gone, so a refresh with no pointer embeds nothing.
+On daemon start, an unset (`auto`) or unknown pointer resolves to the sole registered `nomic-embed-text-v1.5` manifest (768 dimensions) without a pointer-resolution probe. After startup IPC is ready, one shared background refresh counts current, stale and missing skill and command vectors. The same refresh runs after each watcher reindex. Complete coverage returns without a network call. Incomplete coverage triggers one Ollama probe with a 500 ms timeout, then embeds only missing or stale rows. Coverage is complete only when at least one embeddable skill exists and every embeddable row is current. A command-only index can therefore reach the probe even when all its command vectors are current. A failed embed keeps the old vector. `SYSTEM_SKILL_ADVISOR_EMBED_REFRESH=off` disables this path. Embeddable skills need a non-empty `SKILL.md` description. Embeddable commands need non-empty generated-bridge `embeddingText` and an enabled TypeScript runtime id. The legacy `skill_nodes.embedding` path is gone.
 
 ---
 

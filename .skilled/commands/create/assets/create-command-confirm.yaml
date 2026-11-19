@@ -479,6 +479,8 @@ workflow:
     - Grep generated files for copied source workflow names
     - IF validation fails: Fix issues and re-run
     - Repeat until passing
+    - Regenerate command bridges after writing the command files with `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs`
+    - Tell the operator the advisor daemon picks up the new command on its next start and embeds it when Ollama is reachable
     outputs:
     - frontmatter_validation_result: pass_or_fail
     - yaml_validation_result: pass_or_fail

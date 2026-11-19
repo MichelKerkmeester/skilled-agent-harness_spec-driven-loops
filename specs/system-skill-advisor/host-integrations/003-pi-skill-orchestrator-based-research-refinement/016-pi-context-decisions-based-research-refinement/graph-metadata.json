@@ -21,7 +21,8 @@
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check",
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check",
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis",
-    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness"
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness",
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout"
   ],
   "manual": {
     "depends_on": [],
@@ -37,7 +38,8 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "016-pi-context-decisions-based-research-refinement operator decisions"
     ],
     "key_topics": [
       "pi-context-decisions",
@@ -53,11 +55,12 @@
       "packet",
       "goal"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
+      "decision-record.md",
       "001-deep-research/spec.md",
       "002-pasted-context-stripping/spec.md",
       "003-follow-up-routing-benchmark/spec.md",
@@ -74,8 +77,7 @@
       "008-handler-scored-prompt-consumers/tasks.md",
       "009-crash-fallback-edge-cases/tasks.md",
       "010-route-receipts-research/research/research.md",
-      "011-route-receipts-build/tasks.md",
-      "013-drift-guard-probe-script-errors/tasks.md"
+      "011-route-receipts-build/tasks.md"
     ],
     "entities": [
       {
@@ -88,6 +90,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -167,23 +175,49 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill advisor picks skills with a local five-lane scorer and pushes a brief into every prompt",
     "created_at": "2026-11-18T06:49:25Z",
-    "last_save_at": "2026-11-19T16:13:32.543Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:48:35.886Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "goal.md"
+      "goal.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:37024fbeeb65b45592695f640654088be7a5ab7880376c6cd5602af73775caeb",
+    "source_fingerprint": "sha256:7334e73362290d5098492372cc34f5d4dd37544c451831e4fcbc2ff70adc57e3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "be5769ae0ac10cd2a3c21ddde1c4d44e73bea974924252b83904b3dd845e9aa8"
+      "spec.md": "209df3479153115936c882e2f1b56fff6cafe6a48b4bdba1f88400be4eb635c3",
+      "decision-record.md": "9efcaf1024dee7424460dd801bed42db50bebcdfaf89f1514231d5e91922ba16"
     },
-    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness",
-    "last_active_at": "2026-11-19T16:12:40.260Z"
+    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research",
+    "last_active_at": "2026-11-19T17:48:35.886Z"
   }
 }

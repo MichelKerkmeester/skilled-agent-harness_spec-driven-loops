@@ -18,6 +18,7 @@
       "pasted context stripping plan",
       "pasted context stripping tasks",
       "pasted context stripping goal",
+      "002-pasted-context-stripping operator decisions",
       "pasted context stripping implementation summary"
     ],
     "key_topics": [
@@ -41,8 +42,8 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
-      "tmp/p002-briefs/rule.cjs",
       ".skilled/bin/skill-advisor.cjs"
     ],
     "entities": [
@@ -71,15 +72,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "rule.cjs",
-        "kind": "file",
-        "path": "tmp/p002-briefs/rule.cjs",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -193,7 +194,7 @@
     ],
     "causal_summary": "When a user pastes an earlier reply in front of a task, the advisor scores the pasted text as if it were the task",
     "created_at": "2026-11-18T11:32:34Z",
-    "last_save_at": "2026-11-18T22:29:47.974Z",
+    "last_save_at": "2026-11-19T17:37:18.686Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,15 +202,17 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04a436334e7d08f2a207263caf7ecb2c5f52da67ab73d5dd768e39df4b57a807",
+    "source_fingerprint": "sha256:313821c116500d6e186121d07d54f7788423aa7a55f384c965c9b733c0bdac18",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4fdb3ded1cc0647a07a54c050480095d24315b21ba8f1af00a6214bc60e5a0e7",
       "plan.md": "859a5d9541ff17e913769cd3dd073cedaaf37bba3efbd1de63c52231c570865a",
       "tasks.md": "e5fbc35692f2d2409f6e6729fe2915b73981d7a29d67d73f7a7ab9310edc3d86",
-      "implementation-summary.md": "b1c2ab67717ae713d49757b5f0b641120331da8bd7948390e56b5ce3743746a3"
+      "decision-record.md": "c341255307ac85d03b4d9f1e7bbaab5dd37d466e0f9e8807a815febe6042048c",
+      "implementation-summary.md": "e3bd6f15ec4f1671aef82e5f960d5b688a64bce9d11bf30de2a5e36f2464da95"
     },
     "last_active_at": null
   }

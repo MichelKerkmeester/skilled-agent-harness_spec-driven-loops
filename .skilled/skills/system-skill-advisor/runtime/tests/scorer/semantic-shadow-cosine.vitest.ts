@@ -62,10 +62,12 @@ import {
   initDb,
   refreshSkillEmbeddings,
 } from '../../lib/skill-graph/skill-graph-db.js';
+import * as skillGraphDb from '../../lib/skill-graph/skill-graph-db.js';
 import { setActiveEmbedder } from '../../lib/embedders/schema.js';
 import {
   _semanticShadowTest,
   clearSemanticShadowPromptEmbedding,
+  getSemanticShadowRuntimeHealth,
   scoreSemanticShadowLane,
   setSemanticShadowPromptEmbedding,
 } from '../../lib/scorer/lanes/semantic-shadow.js';
@@ -203,6 +205,80 @@ describe('semantic shadow cosine lane', () => {
         shadowOnly: false,
       },
     ]);
+  });
+
+  it('requires cached vectors for described skills and embeddable commands', () => {
+    vi.stubEnv('VITEST', 'false');
+    try {
+      const commandSources = vi.spyOn(skillGraphDb, 'readCommandEmbeddingSources').mockReturnValue([]);
+      writeSkill(skillRoot, 'alpha', 'north vector');
+      writeSkill(skillRoot, 'beta', 'north vector');
+      indexSkillMetadata(skillRoot);
+
+      const insertVector = getDb().prepare(`
+        INSERT INTO vec_2 (skill_id, embedding, model_id, content_hash)
+        VALUES (?, ?, ?, ?)
+      `);
+      insertVector.run('alpha', buffer([1, 0]), 'mock-fixture-2', 'hash-alpha');
+
+      const projection: AdvisorProjection = {
+        skills: [
+          skill({ id: 'alpha', description: 'north vector' }),
+          skill({ id: 'beta', description: 'north vector' }),
+        ],
+        edges: [],
+        generatedAt: '2026-05-13T00:00:00.000Z',
+        source: 'sqlite',
+      };
+      setSemanticShadowPromptEmbedding('north', new Float32Array([1, 0]));
+
+      const alphaProjection: AdvisorProjection = {
+        ...projection,
+        skills: projection.skills.filter((skill) => skill.id === 'alpha'),
+      };
+      const embeddableCommandId = 'command:embeddable';
+      commandSources.mockReturnValue([{
+        commandId: embeddableCommandId,
+        embeddingText: 'embeddable command source',
+      }]);
+      const embeddableCommandProjection: AdvisorProjection = {
+        ...alphaProjection,
+        skills: [...alphaProjection.skills, skill({ id: embeddableCommandId, kind: 'command' })],
+      };
+      expect(scoreSemanticShadowLane('north', embeddableCommandProjection)).toEqual([]);
+      expect(getSemanticShadowRuntimeHealth().disabledReason).toBe('incomplete_skill_vectors');
+
+      commandSources.mockReturnValue([]);
+      const unembeddableCommandProjection: AdvisorProjection = {
+        ...alphaProjection,
+        skills: [...alphaProjection.skills, skill({ id: 'command:not-embeddable', kind: 'command' })],
+      };
+      expect(scoreSemanticShadowLane('north', unembeddableCommandProjection).map((match) => match.skillId))
+        .toEqual(['alpha']);
+
+      expect(scoreSemanticShadowLane('north', projection)).toEqual([]);
+      expect(getSemanticShadowRuntimeHealth().disabledReason).toBe('incomplete_skill_vectors');
+
+      insertVector.run('beta', buffer([1, 0]), 'mock-fixture-2', 'hash-beta');
+      expect(scoreSemanticShadowLane('north', projection)).toEqual([
+        {
+          skillId: 'alpha',
+          lane: 'semantic_shadow',
+          score: 1,
+          evidence: ['cosine:1.0000'],
+          shadowOnly: false,
+        },
+        {
+          skillId: 'beta',
+          lane: 'semantic_shadow',
+          score: 1,
+          evidence: ['cosine:1.0000'],
+          shadowOnly: false,
+        },
+      ]);
+    } finally {
+      vi.unstubAllEnvs();
+    }
   });
 
   it('keeps semantic matches from overturning an explicit top route', () => {

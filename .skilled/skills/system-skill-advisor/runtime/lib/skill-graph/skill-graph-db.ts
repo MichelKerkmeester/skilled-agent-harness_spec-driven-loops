@@ -21,7 +21,8 @@ import {
   hasActiveEmbedderPointer,
   vecTableNameForDim,
 } from '../embedders/schema.js';
-import { getAdapter } from '../embedders/registry.js';
+import { getAdapter, getManifest } from '../embedders/registry.js';
+import { probeOllamaModel, resolveOllamaBaseUrl } from '../embedders/adapters/ollama.js';
 import { checkSqliteIntegrity } from '../freshness/sqlite-integrity.js';
 import { parseSkillFrontmatter } from '../utils/skill-markdown.js';
 import { findAdvisorWorkspaceRoot } from '../utils/workspace-root.js';
@@ -115,6 +116,13 @@ export interface SkillEmbeddingRow {
   embedding: Float32Array;
   modelId: string;
   contentHash: string;
+}
+
+export interface EmbeddingCoverage {
+  skills: { total: number; current: number; stale: number; missing: number };
+  commands: { total: number; current: number; stale: number; missing: number };
+  incompleteIds: string[];
+  complete: boolean;
 }
 
 interface ParsedSkillMetadata {
@@ -1303,6 +1311,181 @@ export async function refreshSkillEmbeddings(skillDir?: string): Promise<SkillEm
   return refreshSkillEmbeddingsViaAdapter(database, skillDir);
 }
 
+function tableExists(database: Database.Database, tableName: string): boolean {
+  const row = database.prepare(`
+    SELECT 1 AS present
+    FROM sqlite_master
+    WHERE type = 'table' AND name = ?
+    LIMIT 1
+  `).get(tableName) as { present: number } | undefined;
+  return Boolean(row);
+}
+
+/** Count current, stale, and missing vectors without contacting an embedder. */
+export function embeddingCoverage(database?: Database.Database): EmbeddingCoverage {
+  const sourceDatabase = database ?? getDb();
+  const hasActivePointer = hasActiveEmbedderPointer(sourceDatabase);
+  const active = hasActivePointer ? getActiveEmbedder(sourceDatabase) : null;
+  const skillVectors = new Map<string, {
+    embedding: Buffer | null;
+    model_id: string;
+    content_hash: string;
+  }>();
+  const commandVectors = new Map<string, {
+    embedding: Buffer | null;
+    model_id: string;
+    content_hash: string;
+  }>();
+
+  if (active) {
+    const skillTable = vecTableNameForDim(active.dim);
+    if (tableExists(sourceDatabase, skillTable)) {
+      const rows = sourceDatabase.prepare(`
+        SELECT skill_id, embedding, model_id, content_hash
+        FROM ${skillTable}
+      `).all() as Array<{
+        skill_id: string;
+        embedding: Buffer | null;
+        model_id: string;
+        content_hash: string;
+      }>;
+      for (const row of rows) {
+        skillVectors.set(row.skill_id, row);
+      }
+    }
+
+    const commandTable = commandVecTableNameForDim(active.dim);
+    if (tableExists(sourceDatabase, commandTable)) {
+      const rows = sourceDatabase.prepare(`
+        SELECT command_id, embedding, model_id, content_hash
+        FROM ${commandTable}
+      `).all() as Array<{
+        command_id: string;
+        embedding: Buffer | null;
+        model_id: string;
+        content_hash: string;
+      }>;
+      for (const row of rows) {
+        commandVectors.set(row.command_id, row);
+      }
+    }
+  }
+
+  const skills = { total: 0, current: 0, stale: 0, missing: 0 };
+  const commands = { total: 0, current: 0, stale: 0, missing: 0 };
+  const incompleteIds: string[] = [];
+  const skillRows = sourceDatabase.prepare(`
+    SELECT id, source_path
+    FROM skill_nodes
+    ORDER BY id ASC
+  `).all() as Array<{ id: string; source_path: string }>;
+
+  for (const row of skillRows) {
+    const description = skillDescriptionForEmbedding(row.source_path).trim();
+    if (!description) {
+      continue;
+    }
+
+    skills.total++;
+    const stored = skillVectors.get(row.id);
+    if (!stored?.embedding) {
+      skills.missing++;
+      incompleteIds.push(row.id);
+    } else if (
+      active
+      && stored.model_id === active.name
+      && stored.content_hash === computeContentHash(description)
+    ) {
+      skills.current++;
+    } else {
+      skills.stale++;
+      incompleteIds.push(row.id);
+    }
+  }
+
+  const commandSources = readCommandEmbeddingSources() ?? [];
+  for (const source of commandSources) {
+    commands.total++;
+    const stored = commandVectors.get(source.commandId);
+    if (!stored?.embedding) {
+      commands.missing++;
+      incompleteIds.push(source.commandId);
+    } else if (
+      active
+      && stored.model_id === active.name
+      && stored.content_hash === computeContentHash(source.embeddingText)
+    ) {
+      commands.current++;
+    } else {
+      commands.stale++;
+      incompleteIds.push(source.commandId);
+    }
+  }
+
+  return {
+    skills,
+    commands,
+    incompleteIds,
+    complete: skills.total > 0 && incompleteIds.length === 0,
+  };
+}
+
+let backgroundEmbeddingRefresh: Promise<SkillEmbeddingRefreshResult | null> | null = null;
+
+/**
+ * Embedding coverage is index-time and only changed rows cost calls; the prompt
+ * path remains tied to the semantic lane weight.
+ */
+export async function refreshEmbeddingsInBackground(
+  skillDir?: string,
+): Promise<SkillEmbeddingRefreshResult | null> {
+  if (backgroundEmbeddingRefresh) {
+    return backgroundEmbeddingRefresh;
+  }
+  if (process.env.SYSTEM_SKILL_ADVISOR_EMBED_REFRESH?.toLowerCase() === 'off') {
+    return null;
+  }
+
+  const refresh = (async (): Promise<SkillEmbeddingRefreshResult | null> => {
+    const database = getDb();
+    const coverage = embeddingCoverage(database);
+    if (coverage.complete) {
+      return null;
+    }
+
+    if (hasActiveEmbedderPointer(database)) {
+      const active = getActiveEmbedder(database);
+      const manifest = getManifest(active.name);
+      if (manifest?.backend === 'ollama') {
+        const probe = await probeOllamaModel(
+          resolveOllamaBaseUrl(),
+          manifest.ollamaName ?? manifest.name,
+          500,
+        );
+        if (!probe.available) {
+          return {
+            embedded: 0,
+            skipped: 0,
+            failed: 0,
+            warnings: [`embedding backend unavailable: ${probe.reason ?? 'unknown reason'}`],
+          };
+        }
+      }
+    }
+
+    return await refreshSkillEmbeddings(skillDir);
+  })();
+  backgroundEmbeddingRefresh = refresh;
+
+  try {
+    return await refresh;
+  } finally {
+    if (backgroundEmbeddingRefresh === refresh) {
+      backgroundEmbeddingRefresh = null;
+    }
+  }
+}
+
 // A dead or wedged embedding backend fails every row for the same reason, so a
 // per-row retry buys nothing and costs one full request deadline each time.
 const EMBEDDING_BACKEND_OUTAGE_STREAK = 3;
@@ -1405,11 +1588,9 @@ async function refreshSkillEmbeddingsViaAdapter(
       continue;
     }
 
-    // A current row never needed the backend, so an outage leaves it alone. A row
-    // that did need it is written exactly as a failed ask would write it.
+    // Keep stale vectors; projection staleness checks prevent mismatched vectors from scoring.
     if (backendOutage !== null) {
       failed++;
-      deleteEmbedding.run(row.id);
       continue;
     }
 
@@ -1425,7 +1606,6 @@ async function refreshSkillEmbeddingsViaAdapter(
     } catch (error: unknown) {
       failed++;
       consecutiveFailures++;
-      deleteEmbedding.run(row.id);
       const message = error instanceof Error ? error.message : String(error);
       const warning = `EMBEDDING-FAILED: ${row.id} (${message})`;
       warnings.push(warning);
@@ -1533,9 +1713,9 @@ async function refreshCommandEmbeddings(
       continue;
     }
 
+    // Keep stale vectors; projection staleness checks prevent mismatched vectors from scoring.
     if (backendOutage !== null) {
       result.failed++;
-      deleteEmbedding.run(source.commandId);
       continue;
     }
 
@@ -1551,7 +1731,6 @@ async function refreshCommandEmbeddings(
     } catch (error: unknown) {
       result.failed++;
       consecutiveFailures++;
-      deleteEmbedding.run(source.commandId);
       const message = error instanceof Error ? error.message : String(error);
       const warning = `COMMAND-EMBEDDING-FAILED: ${source.commandId} (${message})`;
       console.warn(`[skill-graph] ${warning}`);

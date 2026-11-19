@@ -119,7 +119,7 @@ describe('skill graph embedding refresh', () => {
     expect(loadSkillEmbeddings()).toEqual([]);
   });
 
-  it('keeps the stored vector of a current row after the outage trips (adapter table)', async () => {
+  it('keeps stored vectors after the outage trips (adapter table)', async () => {
     setActiveEmbedder(getDb(), 'mock-3', 3);
     mockedProvider.adapterEmbed.mockResolvedValue([new Float32Array([1, 2, 3])]);
     await refreshSkillEmbeddings(skillRoot);
@@ -131,9 +131,14 @@ describe('skill graph embedding refresh', () => {
 
     expect(mockedProvider.adapterEmbed).toHaveBeenCalledTimes(3);
     expect(result).toEqual(expect.objectContaining({ embedded: 0, skipped: CURRENT_IDS.length, failed: STALE_IDS.length }));
-    const stored = (getDb().prepare('SELECT skill_id FROM vec_3').all() as Array<{ skill_id: string }>)
-      .map((row) => row.skill_id)
-      .sort();
-    expect(stored).toEqual([...CURRENT_IDS].sort());
+    const stored = getDb().prepare('SELECT skill_id, embedding FROM vec_3').all() as Array<{
+      skill_id: string;
+      embedding: Buffer;
+    }>;
+    expect(stored.map((row) => row.skill_id).sort()).toEqual([...SKILL_IDS].sort());
+    const previousEmbedding = Buffer.from(new Float32Array([1, 2, 3]).buffer);
+    for (const id of STALE_IDS) {
+      expect(stored.find((row) => row.skill_id === id)?.embedding).toEqual(previousEmbedding);
+    }
   });
 });

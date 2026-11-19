@@ -165,6 +165,7 @@ Validation:
 - YAML workflows: PASSED
 - Resource paths: PASSED
 - Source leftovers: PASSED
+- Advisor command bridges: regenerated. The daemon picks up the new command and embeds it when Ollama is reachable on its next start.
 
 Invocation:
 - Type [command-invocation] [arguments]
