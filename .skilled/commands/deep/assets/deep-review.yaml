@@ -2484,6 +2484,15 @@ workflow:
         edit: "{state_paths.config}"
         set_field: { status: "complete" }
 
+      step_refresh_completed_dashboard:
+        action: "Rerun the reducer so the dashboard reports the completed status"
+        skip_when: "config.fanout is present"
+        dry_run_boundary: "reducer-refresh"
+        command: "node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors"
+        working_directory: "{repo_root}"
+        note: "Every earlier reducer pass ran before closeout wrote synthesis_complete and before the status flip, so the dashboard would keep its pre-completion status. A fan-out root keeps no root dashboard."
+        on_failure: "Log the stderr line as a warning and continue. The run is already complete; only the dashboard status line stays stale."
+
       step_stage_artifact_dir:
         skip_when: "config.fanout_lineage_artifact_dir is present"
         action: "Stage all skill-owned artifacts under artifact_dir for the operator's next git commit"

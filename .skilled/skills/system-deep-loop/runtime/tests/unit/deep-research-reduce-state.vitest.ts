@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { createHermeticEnv, type HermeticEnv } from '../helpers/spawn-cjs';
+import { createHermeticEnv, runtimeRoot, type HermeticEnv } from '../helpers/spawn-cjs';
 
 const nodeRequire = createRequire(import.meta.url);
 const {
@@ -2365,5 +2365,48 @@ describe('single-executor closeout over count-only state rows', () => {
         sourceFindingCount: 1,
       },
     });
+  });
+});
+
+// Closeout writes the completion event and the workflow then flips config.status,
+// but a dashboard reflects completion only once a reducer pass runs after both.
+describe('a completed run refreshes its dashboard status', () => {
+  const assetsDir = resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets');
+  const { load: loadYaml } = createRequire(
+    resolve(runtimeRoot, '..', '..', 'system-spec-kit', 'shared', 'package.json'),
+  )('js-yaml') as { load: (source: string) => unknown };
+
+  function synthesisSteps(file: string): Record<string, { command?: string; skip_when?: string }> {
+    const doc = loadYaml(readFileSync(join(assetsDir, file), 'utf8')) as {
+      workflow?: { phase_synthesis?: { steps?: Record<string, { command?: string; skip_when?: string }> } };
+    };
+    return doc.workflow?.phase_synthesis?.steps ?? {};
+  }
+
+  it('renders COMPLETE once the config is marked complete', () => {
+    const specFolder = makeTempSpec();
+    writeState(specFolder, `${JSON.stringify({ type: 'iteration', run: 1, iteration: 1, status: 'complete', focus: 'f' })}\n`);
+    expect(reduceResearchState(specFolder, { write: false }).dashboard).toContain('- Status: INITIALIZED');
+
+    const configPath = join(specFolder, 'research', 'deep-research-config.json');
+    const config = JSON.parse(readFileSync(configPath, 'utf8')) as Record<string, unknown>;
+    writeFileSync(configPath, `${JSON.stringify({ ...config, status: 'complete' }, null, 2)}\n`, 'utf8');
+
+    expect(reduceResearchState(specFolder, { write: false }).dashboard).toContain('- Status: COMPLETE');
+  });
+
+  it.each([
+    ['deep-research.yaml', 'deep-research/scripts/reduce-state.cjs'],
+    ['deep-review.yaml', 'runtime/scripts/reduce-state.cjs'],
+  ])('%s reruns the reducer after the status flip and before staging', (file, reducer) => {
+    const steps = synthesisSteps(file);
+    const order = Object.keys(steps);
+    const flip = order.indexOf('step_update_config_status');
+    const stage = order.indexOf('step_stage_artifact_dir');
+    const refresh = order.slice(flip + 1, stage).filter((id) => steps[id].command?.includes(reducer));
+
+    expect(flip).toBeGreaterThan(-1);
+    expect(refresh).toHaveLength(1);
+    expect(steps[refresh[0]].skip_when).toBe('config.fanout is present');
   });
 });
