@@ -1,7 +1,7 @@
 ---
 title: "DRV-074 -- Configured custom dimension joins the review dimension set"
 description: "This scenario validates that a custom review dimension named at setup joins the dimension set for `DRV-074`. It focuses on the normalized name list, the canonical-first order and the review prompt line."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # DRV-074 -- Configured custom dimension joins the review dimension set
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates how a custom review dimension enters a review run at setup for `DRV-074`. It focuses on three steps: the setup rule normalizes the configured names, the dimension universe lists the four canonical dimensions first and each custom name after them, and the review prompt names every configured dimension in that order.
+This scenario validates how a custom review dimension enters a review run at setup for `DRV-074`. It focuses on three steps: the setup rule normalizes the configured names, the dimension universe lists the four canonical dimensions less traceability when the configured list leaves it out, with each custom name after them, and the review prompt names every configured dimension in that order.
 
 ### Why This Matters
 
@@ -28,9 +28,9 @@ Operators run this as a setup check. They read the rule that accepts the custom 
 - Real user request: I want the review to check performance as well as correctness. Make sure performance is included and that the reviewer is told about it.
 - Prompt: `Start a deep review with review_dimensions: correctness,performance and confirm that performance is accepted as a custom dimension, ordered after the four canonical dimensions, and listed in the review prompt.`
 - Expected execution process: Read the review_dimensions input text and the normalize rule in the deep-review workflow, then read the dimension universe builder in the reducer, then run the reducer and prompt-pack cases that name a custom dimension.
-- Expected signals: The workflow input names custom names as allowed, and the normalize rule trims, lowercases and drops duplicates, and fails an empty name. The universe builder returns the four canonical names followed by each configured custom name. The prompt-pack case renders the dimension line as `correctness, security, traceability, maintainability, performance`.
+- Expected signals: The workflow input names custom names as allowed, and the normalize rule trims, lowercases and drops duplicates, and fails an empty name. The universe builder returns the four canonical names less traceability when the configured list leaves it out, followed by each configured custom name. The prompt-pack case renders the dimension line as `correctness, security, traceability, maintainability, performance`.
 - Desired user-visible outcome: The operator is told that performance is checked after the four canonical dimensions, and that the reviewer receives it in the prompt.
-- Pass/fail: PASS if the setup rule accepts `performance`, the universe lists it after the four canonical names, and the reducer and prompt-pack cases pass; FAIL if a custom name is rejected or dropped, if it appears before a canonical name, or if the prompt line omits it.
+- Pass/fail: PASS if the setup rule accepts `performance`, the universe lists it after the canonical names it keeps, and the reducer and prompt-pack cases pass; FAIL if a custom name is rejected or dropped, if it appears before a canonical name, or if the prompt line omits it.
 
 ---
 
@@ -49,7 +49,7 @@ Operators run this as a setup check. They read the rule that accepts the custom 
 
 ### Expected
 
-Command 1 prints the review_dimensions input line, the risk-order line and the normalize rule among its other custom-dimension lines, each placing custom dimensions after the canonical four. Command 2 prints one line, the `buildDimensionUniverse(config)` definition. Command 3 exits 0 with the cases `tracks and covers a configured custom dimension after the canonical four` and `attributes a finding that names a custom dimension to it, not to the first addressed one`, `attributes a finding to a short custom dimension only when the name is a whole word` reported as passed, and no failed test. Command 4 exits 0 with `renders a configured custom dimension after the canonical four` reported as passed.
+Command 1 prints the review_dimensions input line, the risk-order line and the normalize rule among its other custom-dimension lines, each placing custom dimensions after the canonical four. Command 2 prints one line, the `buildDimensionUniverse(config)` definition. Command 3 exits 0 with the cases `tracks and covers a configured custom dimension after the canonical dimensions` and `attributes a finding that names a custom dimension to it, not to the first addressed one`, `attributes a finding to a short custom dimension only when the name is a whole word` reported as passed, and no failed test. Command 4 exits 0 with `renders a configured custom dimension after the canonical four` reported as passed.
 
 ### Evidence
 
@@ -57,7 +57,7 @@ Capture the command 1 matches for the normalize rule, the command 2 definition l
 
 ### Pass / Fail
 
-- **Pass**: The setup rule accepts a custom name and normalizes it, the universe builder places it after the four canonical names, and command 3 and command 4 exit 0 with the named cases passing.
+- **Pass**: The setup rule accepts a custom name and normalizes it, the universe builder places it after the canonical names it keeps, and command 3 and command 4 exit 0 with the named cases passing.
 - **Fail**: The setup rule rejects or drops the custom name, the universe places it before a canonical name, the prompt line omits it, or a named case fails.
 
 ### Failure Triage
@@ -66,7 +66,7 @@ If command 1 shows no custom-name wording, the workflow input or normalize rule 
 
 ### Optional Supplemental Checks
 
-- Canonical-only input: run command 3 and confirm that the case `keeps the canonical keys unchanged for a canonical-subset config` is also reported as passed, since a run that names only the four canonical dimensions must keep the same registry keys.
+- Canonical-only input: run command 3 and confirm that the case `drops only the traceability key for a canonical-subset config that leaves it out` is also reported as passed, since leaving traceability out drops only that canonical key.
 
 ---
 
@@ -84,7 +84,7 @@ If command 1 shows no custom-name wording, the workflow input or normalize rule 
 | File | Role |
 |---|---|
 | `.skilled/commands/deep/assets/deep-review.yaml` | The review_dimensions input line, the risk order, the normalize rule and the `review_dimensions_list` binding |
-| `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | `buildDimensionUniverse`, the canonical four followed by configured custom names |
+| `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | `buildDimensionUniverse`, the canonical dimensions less traceability when the list leaves it out, then configured custom names |
 | `.skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl` | The `{review_dimensions_list}` line the reviewer receives |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts` | Universe, coverage and finding-attribution cases for a custom dimension |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts` | The custom-list render case and the default-line byte-identity case |

@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.13.15.0
+version: 1.13.16.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -297,7 +297,7 @@ Verify that a custom review dimension named at setup is normalized, ordered afte
 #### Scenario Contract
 Prompt: `Start a deep review with review_dimensions: correctness,performance and confirm that performance is accepted as a custom dimension, ordered after the four canonical dimensions, and listed in the review prompt.`
 
-Expected signals: The setup rule accepts and normalizes the custom name, the reducer universe lists the four canonical dimensions followed by each configured custom name, and the prompt-pack case renders the dimension line with performance last.
+Expected signals: The setup rule accepts and normalizes the custom name, the reducer universe lists the four canonical dimensions less traceability when the configured list leaves it out, followed by each configured custom name, and the prompt-pack case renders the dimension line with performance last.
 
 #### Test Execution
 > **Feature File:** [DRV-074](../manual-testing-playbook/initialization-and-state-setup/custom-dimension-setup-and-universe.md)

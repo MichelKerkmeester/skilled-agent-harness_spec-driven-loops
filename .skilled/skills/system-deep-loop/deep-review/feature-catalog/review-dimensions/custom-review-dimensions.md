@@ -6,7 +6,7 @@ trigger_phrases:
   - "custom dimension review"
   - "configured review dimension"
   - "review dimension coverage custom"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Custom review dimensions
@@ -21,7 +21,7 @@ A review normally audits four canonical dimensions: correctness, security, trace
 
 ### Setup And Ordering
 
-`.skilled/commands/deep/assets/deep-review.yaml` accepts custom names at setup, normalizes them, and orders them after the canonical four in the risk order. The review registry seeds the four canonical keys plus the custom keys.
+`.skilled/commands/deep/assets/deep-review.yaml` accepts custom names at setup, normalizes them, and orders them after the canonical four in the risk order. The review registry seeds the four canonical keys less traceability when the configured reviewDimensions list leaves it out, plus the custom keys.
 
 ### Coverage Tracking
 

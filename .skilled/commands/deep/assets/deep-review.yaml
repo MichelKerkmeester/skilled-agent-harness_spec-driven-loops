@@ -959,8 +959,9 @@ workflow:
         note: |
           The seed decides how many nodes the frontier starts with, so a defaulted budget
           is sized only now: min(24, max(loop default, 2 x c x (seeded nodes + maxDepth - 1))),
-          where c is 1 for research and, for review, the four canonical dimensions plus
-          any custom name, each counted once. With no seeded node, every seed pruned,
+          where c is 1 for research and, for review, the four canonical dimensions less
+          traceability when the configured reviewDimensions list leaves it out, plus any
+          custom name, each counted once. With no seeded node, every seed pruned,
           the budget stays at the loop default. The node cap stays half the final budget.
           A default-mode run never reaches this step, so its config gains no key.
         command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs budget --target review --artifact-dir "{artifact_dir}"'
