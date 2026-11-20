@@ -66,6 +66,78 @@ function extractTextFromOpencodeJson(stdout) {
   return raw.length > 50 ? raw.slice(0, 50_000) : null;
 }
 
+/**
+ * Sum the provider cost an opencode JSON log reports on its step_finish rows.
+ *
+ * @param {string} stdout - One attempt's captured stdout.
+ * @returns {number|null} USD total, or null when the log carries no cost record, so a
+ *   text log or an unrecognised JSON shape reads as unknown rather than free.
+ */
+function sumProviderCostFromLog(stdout) {
+  if (typeof stdout !== 'string') return null;
+  let total = 0;
+  let seen = false;
+  for (const line of stdout.split('\n')) {
+    const trimmed = line.trim();
+    if (!trimmed.startsWith('{')) continue;
+    let parsed;
+    try {
+      parsed = JSON.parse(trimmed);
+    } catch {
+      continue;
+    }
+    const cost = parsed && parsed.type === 'step_finish' && parsed.part ? parsed.part.cost : undefined;
+    if (typeof cost === 'number' && Number.isFinite(cost)) {
+      total += cost;
+      seen = true;
+    }
+  }
+  return seen ? total : null;
+}
+
+/**
+ * A lineage's provider cost across every attempt: the live log plus each rotated one.
+ *
+ * @param {string} lineageDir - The lineage's artifact directory.
+ * @returns {number|null} USD total, or null when any attempt's log reports no cost,
+ *   since that attempt's spend cannot be told from zero.
+ */
+function readLineageProviderCostUsd(lineageDir) {
+  const logsDir = path.join(lineageDir, 'logs');
+  let names;
+  try {
+    names = fs.readdirSync(logsDir);
+  } catch {
+    return null;
+  }
+  let total = 0;
+  let counted = 0;
+  for (const name of names.filter((entry) => /^fanout-lineage(\.\d+)?\.out$/.test(entry))) {
+    const text = fs.readFileSync(path.join(logsDir, name), 'utf8');
+    if (text.trim() === '') continue;
+    const cost = sumProviderCostFromLog(text);
+    if (cost === null) return null;
+    total += cost;
+    counted += 1;
+  }
+  return counted > 0 ? Math.round(total * 1e6) / 1e6 : null;
+}
+
+/**
+ * Roll per-lineage costs into a run total that stays null while any lineage is unknown.
+ *
+ * @param {Object<string, number|null>} costByLabel - Lineage label to USD cost or null.
+ * @returns {{total: number|null, by_lineage: Object<string, number|null>}}
+ */
+function summarizeProviderCost(costByLabel) {
+  const values = Object.values(costByLabel);
+  const complete = values.length > 0 && values.every((value) => typeof value === 'number');
+  return {
+    total: complete ? Math.round(values.reduce((sum, value) => sum + value, 0) * 1e6) / 1e6 : null,
+    by_lineage: costByLabel,
+  };
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
@@ -188,4 +260,10 @@ function runSalvageSweep(lineageDir, loopType, savedStdout) {
 // 5. EXPORTS
 // ───────────────────────────────────────────────────────────────────
 
-module.exports = { runSalvageSweep, extractTextFromOpencodeJson };
+module.exports = {
+  runSalvageSweep,
+  extractTextFromOpencodeJson,
+  sumProviderCostFromLog,
+  readLineageProviderCostUsd,
+  summarizeProviderCost,
+};

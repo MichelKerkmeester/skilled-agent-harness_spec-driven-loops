@@ -3580,6 +3580,8 @@ describe('fanout-run.cjs — module basics', () => {
     expect(summary.succeeded).toBe(1);
     expect(summary.failed).toBe(0);
     expect(summary.gauges).toEqual({ lag: 0, pending: 0, failed: 0 });
+    // The stub's log carries no cost record, so its cost and the total read as unknown.
+    expect(json.summary).toMatchObject({ provider_cost_usd: { total: null, by_lineage: { 'native-a': null } } });
   });
 
   it('passes the absolute lineage path to native dispatch when the base path is relative', async () => {

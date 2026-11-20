@@ -52,6 +52,8 @@ const {
 const {
   runSalvageSweep,
   extractTextFromOpencodeJson,
+  readLineageProviderCostUsd,
+  summarizeProviderCost,
 } = require('./fanout-salvage.cjs');
 
 const {
@@ -4999,6 +5001,9 @@ async function main() {
     ...summary,
     lineages: buildLineageOutcomes(results),
     ...(timestampAnomalies.length > 0 ? { timestamp_anomalies: timestampAnomalies } : {}),
+    provider_cost_usd: summarizeProviderCost(Object.fromEntries(cliLineages.map((lineage) => (
+      [lineage.label, readLineageProviderCostUsd(path.join(lineagesDir, lineage.label))]
+    )))),
   };
 
   writeOrchestrationSummary(summaryPath, {

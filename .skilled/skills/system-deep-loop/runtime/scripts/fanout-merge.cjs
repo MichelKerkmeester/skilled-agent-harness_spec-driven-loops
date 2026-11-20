@@ -26,6 +26,7 @@ const {
   findingKeys,
 } = require('../lib/deep-loop/iteration-findings.cjs');
 const { assertKnownFlags } = require('./lib/cli-guards.cjs');
+const { readLineageProviderCostUsd, summarizeProviderCost } = require('./fanout-salvage.cjs');
 const { NODE_STATUSES } = require('./frontier-admit.cjs');
 const { compareCodeUnit: compareText, summarizeTraceabilityResults } = require('./reduce-state.cjs');
 const {
@@ -1234,6 +1235,15 @@ function buildAttributionMd(lineageData, loopType, options = {}) {
     lines.push(`| ${label} | ${kind ?? 'unknown'} | ${model ?? 'unknown'} | ${iters} | ${convergenceScore} | ${salvage} | ${refusedLineages.has(label) ? 'REFUSED' : verdict} |`);
   }
 
+  // Cost comes from the lineage's own log; a log with no cost record stays unknown.
+  const providerCost = summarizeProviderCost(Object.fromEntries(
+    lineageData.map(({ label, providerCostUsd }) => [label, typeof providerCostUsd === 'number' ? providerCostUsd : null]),
+  ));
+  lines.push('', '| Label | Provider cost (USD) |', '|-------|---------------------|');
+  for (const [label, cost] of Object.entries(providerCost.by_lineage)) {
+    lines.push(`| ${label} | ${cost === null ? 'unknown' : cost} |`);
+  }
+  lines.push('', `Total provider cost (USD): ${providerCost.total === null ? 'unknown' : providerCost.total}`);
   lines.push('');
   return lines.join('\n');
 }
@@ -1691,6 +1701,7 @@ async function main() {
       kind: effectiveConfig.kind ?? executorRecord?.kind ?? summaryEntry.kind ?? 'unknown',
       model: effectiveConfig.model ?? executorRecord?.model ?? summaryEntry.model ?? 'unknown',
       reasoningEffort: effectiveConfig.reasoningEffort ?? executorRecord?.reasoningEffort ?? summaryEntry.reasoningEffort ?? null,
+      providerCostUsd: readLineageProviderCostUsd(lineageDir),
     };
   });
 
