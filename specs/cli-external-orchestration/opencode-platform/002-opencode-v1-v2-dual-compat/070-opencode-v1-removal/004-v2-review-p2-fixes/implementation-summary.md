@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes"
-    last_updated_at: "2026-11-20T14:52:00Z"
+    last_updated_at: "2026-11-20T15:09:25Z"
     last_updated_by: "generate-context"
     recent_action: "Renamed nativeDual to selfRegistered and fixed two critic-verified doc lines"
     next_safe_action: "Review the follow-up commits on main"
@@ -20,14 +20,14 @@ _memory:
       - ".opencode/plugins/tests/plugin-inventory.json"
       - ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-handover-loop.md"
     session_dedup:
-      fingerprint: "sha256:c5133c57c5b11a04a2ff877a1bf3c9a97a0728fa4a20c5d74d339b6149b77149"
+      fingerprint: "sha256:ba0692c495ef93d0745b1842ec58dcea002c8815cf827ed8c210ea3d53abcaee"
       session_id: "scaffold-004-v2-review-p2-fixes"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "df9261d4-6090-4b52-892b-db52ff291ccd"
-      workspace: "/Users/michelkerkmeester/worktrees/public/487-native-dual-rename"
-      savedAt: "2026-11-20T14:52:00Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/488-detached-decision-save"
+      savedAt: "2026-11-20T15:09:25Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

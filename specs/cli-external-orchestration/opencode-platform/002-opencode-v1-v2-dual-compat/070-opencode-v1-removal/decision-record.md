@@ -50,6 +50,7 @@ _memory:
 | Q014 | Write the cli-opencode v2.0.1.0 changelog for the loopback battery server and push it to main. | Not stated. | None | cli-opencode changelog v2.0.1.0, commit ce9b6f25b92 |
 | Q015 | Fix the five doc lines the doc alignment found, without rerunning its critic, and push to main. | Not stated. | None | 004 implementation-summary.md (How It Was Delivered) |
 | Q016 | Leave the duplicate changelog commit on the primary checkout's local main and hand over a rebase recipe. | Not stated. | None | primary checkout local main |
+| Q017 | Fix all four open items: rename nativeDual, rerun the doc critic, fix the reducer tests in their own spec folder, and refresh the session-handover build. | Not stated. | None | 004 implementation-summary.md; commits 686de1cb4ea, 9cd204a87b0, af471c253e2; 007-expansive-depth-mode/015-reducer-test-focus-contract |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -370,6 +371,27 @@ Revert locally
 Answer:
 ```text
 Leave it, give recipe (Recommended)
+```
+
+### Q017
+<!-- source: claude:df9261d4-6090-4b52-892b-db52ff291ccd:toolu_014qiLxCB2oNdcAyRq7KCEbA:0 -->
+
+Question:
+```text
+Which open items should I fix now? The Spec-Kit Check failure (3 deep-research-reducer tests expect a '## 11. NEXT FOCUS' section) sits in code another session is actively changing for the expansive-depth packet, whose files are uncommitted in your primary checkout.
+```
+
+Options:
+```text
+Rename nativeDual
+Rerun doc critic
+Fix reducer tests
+Session-handover dist
+```
+
+Answer:
+```text
+Rename nativeDual, Rerun doc critic, Fix reducer tests, Session-handover dist
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
