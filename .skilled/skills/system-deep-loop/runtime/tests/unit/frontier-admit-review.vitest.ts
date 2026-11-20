@@ -800,8 +800,9 @@ describe('frontier block review target', () => {
 });
 
 // A review node costs one iteration per dimension a node must cover before the
-// reducer marks it answered: the canonical four plus any custom names, so its
-// derived budget reaches the ceiling fast.
+// reducer marks it answered: the canonical four, less traceability when the
+// configured list leaves it out, plus any custom names, so its derived budget
+// reaches the ceiling fast.
 describe('review expansive budget scales with the dimension count', () => {
   type SeedBudget = AdmissionResult & { derivedMaxIterations: number; growthSlots: number };
   const seedWithBudget = seedNodes as unknown as (options: {

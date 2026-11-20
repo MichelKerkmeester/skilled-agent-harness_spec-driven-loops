@@ -476,8 +476,8 @@ function expansiveBudget({ target, seeded, maxDepth = DEFAULT_MAX_DEPTH, dimensi
 }
 
 // A review node is answered only once every dimension in the reducer's universe
-// has evidence, the canonical four plus any custom names, so the budget counts that
-// same set. Loaded on use, the way fanout-run loads this module.
+// has evidence: the canonical four, less traceability when the configured list
+// leaves it out, plus any custom names. The budget counts that same set. Loaded on use, the way fanout-run loads this module.
 function reviewDimensionCount(config) {
   const { buildDimensionUniverse } = require('./reduce-state.cjs');
   return buildDimensionUniverse(config).length;
