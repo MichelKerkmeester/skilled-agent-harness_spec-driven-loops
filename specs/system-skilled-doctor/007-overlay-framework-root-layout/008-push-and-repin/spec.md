@@ -39,9 +39,9 @@ contextType: "implementation"
 
 This is **Phase 8** of the overlay framework/root layout packet. It runs in two sessions. A Skilled session merges origin into main, runs the gates and pushes. A later ai-speckit session, with cwd `/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit`, re-pins onto the pushed commit and re-runs Barter's gates.
 
-Target Skilled commit: <C>
+Target Skilled commit: b5a630c6efaf30d36bb18e2bae875b03ab8f4600
 
-`<C>` stays a placeholder until the Skilled session pushes main and writes the 40-hex id of the pushed main HEAD into the line above. That commit carries every Skilled fix. A docs-only commit that records the id may follow it on main. The re-pin targets the id on this line, not whatever main is later. Do not start the re-pin while the line still reads `<C>`.
+The line above holds the 40-hex id of the main HEAD the Skilled session pushed with its gates green. That commit carries every Skilled fix. The docs-only commit that records the id follows it on main. The re-pin targets the id on this line, not whatever main is later.
 
 **Scope Boundary**: The Skilled session writes main's merge and push, and this folder. The ai-speckit session writes ai-speckit and, in Skilled, only this folder's tasks and summary.
 

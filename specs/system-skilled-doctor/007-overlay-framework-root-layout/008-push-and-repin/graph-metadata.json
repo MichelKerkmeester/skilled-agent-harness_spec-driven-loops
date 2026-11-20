@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Phase 006's engine fixes, the relayout rollback and the outside-repository refusal among them, exist only on local Skilled main, which is 10 commits ahead of and 34 behind `origin/main`",
     "created_at": "2026-11-20T15:37:53Z",
-    "last_save_at": "2026-11-20T15:48:33.512Z",
+    "last_save_at": "2026-11-20T16:01:56.955Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab70dcd807e2ba2115a0ae0276fdcb95cfa7c37f56689b3126153a23c2551933",
+    "source_fingerprint": "sha256:975b8dd01594103daf2f5f2923295d2fd901b00a6e91513e0882b1a5cdc09158",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6b9a606e70b6162d7c6b415def6f19b213de07f38f9d60f7f7a123c52e25ba53",
+      "spec.md": "6abe5321b4d32378322d3c065b758342a93409108ffde058466525123115d253",
       "plan.md": "7bd905271a8233d379b88c3f236392b5201d26c1f998a6f773bff2d131f6fd8d",
-      "tasks.md": "b25aae49358b4aee7314bc63dbcc43308ed32c6e794ec3703536dbe7f8d21172",
-      "implementation-summary.md": "1bd0655b89ffe3f99b640622049a0c97359113e999a43766354ebcadee700c1a"
+      "tasks.md": "5316ff4f0be4436748f297c5ede1ef62631304c9c84174896baf6e0302bcd150",
+      "implementation-summary.md": "3725343f2a80e1dabe455b969687b5fd61afbc9b68f30dd37d8a4afdb363f216"
     },
     "last_active_at": null
   }
