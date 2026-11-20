@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes"
-    last_updated_at: "2026-11-20T12:13:07Z"
+    last_updated_at: "2026-11-20T14:28:56Z"
     last_updated_by: "generate-context"
     recent_action: "Closed all eight review advisories with the gate unchanged against its baseline"
     next_safe_action: "Review and merge branch worktrees/482-opencode-v2-p2-fixes into main"
@@ -21,14 +21,14 @@ _memory:
       - "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes/scratch/gate-after.txt"
       - ".opencode/plugins/lib/v2-bridge.js"
     session_dedup:
-      fingerprint: "sha256:9feac44473e3baf4a3b6b80a2d49ed0664de632c25ce6a3237a90ac5d642c886"
+      fingerprint: "sha256:653e7e231fc046422d1cb5800d31bd54a72af366b720cef4da62d846d13a3aaf"
       session_id: "scaffold-004-v2-review-p2-fixes"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "df9261d4-6090-4b52-892b-db52ff291ccd"
-      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-20T12:13:07Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/485-opencode-v2-doc-alignment-fixes"
+      savedAt: "2026-11-20T14:28:56Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -88,6 +88,8 @@ Each advisory got the smallest change that removes it, plus a proof that fails w
 ## How It Was Delivered
 
 The gate in `scratch/gate.sh` ran before the first edit, with the output in `scratch/gate-baseline.txt`. Each fix was then proved on its own. The two mutation checks in `scratch/unmapped-hook-mutation.txt` showed what the inventory test catches. Removing `--hostname` failed the battery test, and the real `--family=v2` battery leg passed on 2.3.2. The workflow's unit step command ran with no `opencode` or `npm` on PATH. The gate then reran from the final tree into `scratch/gate-after.txt`, and the runtime-mirror checks ran in check-only form.
+
+After merge, `/local-doc-alignment` on an `opencode-v2-only` topic (four lanes on `opencode-go/hy4-flash-free#high`) found five doc lines that disagreed with the code. Its critic did not run, because OpenCode Go reported its monthly usage limit, so each line was checked by hand against the code before the fix. `goal-plugin.md` and `goal-carry-over.md` said the wrapper adds `--standalone` when `opencode --help` lists it; `skilled-loop` adds it unless the launch already carries `--standalone` or `--server`, after refusing OpenCode 1. The CO-001 playbook triage named `brew install opencode`; it now names `opencode-setup.sh v2`. The dist-freshness feature-catalog entry said the OpenCode plugin warns through `console.warn`; the plugin has no console call and logs to `dist-freshness-guard.log` and injects a system-context note.
 <!-- /ANCHOR:how-delivered -->
 
 ---
