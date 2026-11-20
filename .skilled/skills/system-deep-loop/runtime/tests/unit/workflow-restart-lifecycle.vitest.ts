@@ -1323,7 +1323,9 @@ describe('expansive frontier graph mirror', () => {
     })}\n`);
     writeFileSync(
       join(artifactDir, 'deep-research-strategy.md'),
-      readFileSync(resolve(SKILLS_ROOT, 'skills', 'system-deep-loop', 'deep-research', 'assets', 'deep-research-strategy.md'), 'utf8'),
+      // An expansive strategy is created with an empty key-question list.
+      readFileSync(resolve(SKILLS_ROOT, 'skills', 'system-deep-loop', 'deep-research', 'assets', 'deep-research-strategy.md'), 'utf8')
+        .replace(/^- \[ \] \[Question[^\n]*\n/gmu, ''),
     );
     writeFileSync(join(artifactDir, 'frontier-seed.json'), JSON.stringify([
       { question: 'Which module owns frontier admission?', scope: 'runtime/scripts', evidence: 'runtime/scripts/frontier-admit.cjs' },
@@ -1367,6 +1369,22 @@ describe('expansive frontier graph mirror', () => {
     ], { encoding: 'utf8' });
     expect(block.status, String(block.stderr)).toBe(0);
     expect(String(block.stdout)).toContain('Current node: F-1-001 at depth 1');
+
+    // The seeded rows are the run's only questions: the strategy derived none.
+    const registry = readJson<{ keyQuestions: Array<{ inboxId: string | null }> }>(join(artifactDir, 'findings-registry.json'));
+    expect(registry.keyQuestions.map((question) => question.inboxId)).toEqual(['F-1-001', 'F-1-002']);
+  });
+
+  // Under expansive depth the seed already wrote the run's questions to the inbox
+  // before the strategy exists. A second set derived from the topic words the same
+  // questions differently, so it never folds into the frontier rows and stays open
+  // after their nodes are answered.
+  it('derives no strategy key questions from the topic under expansive depth', () => {
+    const strategy = phaseStep(fileText('deep-research.yaml'), 'step_create_strategy');
+    expect(strategy).toContain('key_questions: "Derive 3-5 key questions from the research topic, except under depth_mode == \'expansive\' when {artifact_dir}/inbox.jsonl already holds frontier rows');
+    expect(strategy).toContain('the frontier rows are the only question intake');
+    // A lineage dealt no seed share has no frontier rows to stand in for them.
+    expect(strategy).toContain('A fan-out lineage dealt no seed share has no frontier rows and derives its questions');
   });
 
   // The review loop binds its frontier node and dimension from the findings

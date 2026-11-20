@@ -776,7 +776,7 @@ workflow:
         template: .skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md
         populate:
           topic: "{research_topic}"
-          key_questions: "Derive 3-5 key questions from the research topic"
+          key_questions: "Derive 3-5 key questions from the research topic, except under depth_mode == 'expansive' when {artifact_dir}/inbox.jsonl already holds frontier rows: there write the list with no question lines, removing the template placeholders, because the frontier rows are the only question intake and the reducer adds them on the next reduce. A fan-out lineage dealt no seed share has no frontier rows and derives its questions as a default run does"
           known_context: "None"
           known_context_summary: "None"
           max_iterations: "{max_iterations}"
