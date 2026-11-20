@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "system-skilled-doctor/007-overlay-framework-root-layout/016-upstream-code-alignment",
+  "description": "Phase 16: upstream-code-alignment",
+  "keywords": [
+    "phase",
+    "upstream-code-alignment"
+  ],
+  "lastUpdated": "2026-11-20T22:26:54.819Z",
+  "specId": "016",
+  "folderSlug": "upstream-code-alignment",
+  "parentChain": [
+    "system-skilled-doctor",
+    "007-overlay-framework-root-layout"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "20-11-26_23-26__scaffolded-and-planned-the-phase-on-the-worktree.md"
+  ]
+}

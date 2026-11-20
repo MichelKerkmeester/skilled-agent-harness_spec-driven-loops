@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets",
+  "spec_folder": "system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets",
+  "parent_id": "system-skilled-doctor/007-overlay-framework-root-layout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment command overlay targets",
+      "phase 15 alignment command overlay targets",
+      "overlay layout doc alignment topic",
+      "local skilled alignment overlays target",
+      "alignment command overlay targets plan",
+      "alignment command overlay targets tasks",
+      "alignment command overlay targets goal",
+      "alignment command overlay targets implementation summary"
+    ],
+    "key_topics": [
+      "alignment",
+      "command",
+      "overlay",
+      "targets",
+      "phase",
+      "layout",
+      "doc",
+      "topic",
+      "local",
+      "skilled",
+      "overlays",
+      "target"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/assets/local-doc-alignment/topics.json",
+      ".skilled/commands/assets/local-doc-alignment/doc-alignment.cjs",
+      ".skilled/commands/assets/local-doc-alignment/tests/doc-alignment-overlay-topic.test.cjs",
+      ".skilled/commands/assets/local-skilled-alignment/resolve-scope.cjs",
+      ".skilled/commands/assets/local-skilled-alignment/tests/resolve-scope.test.cjs",
+      ".skilled/commands/local-doc-alignment.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "topics.json",
+        "kind": "config",
+        "path": ".skilled/commands/assets/local-doc-alignment/topics.json",
+        "source": "derived"
+      },
+      {
+        "name": "doc-alignment.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/assets/local-doc-alignment/doc-alignment.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doc-alignment-overlay-topic.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/assets/local-doc-alignment/tests/doc-alignment-overlay-topic.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "resolve-scope.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/assets/local-skilled-alignment/resolve-scope.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "resolve-scope.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/assets/local-skilled-alignment/tests/resolve-scope.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "local-doc-alignment.md",
+        "kind": "doc",
+        "path": ".skilled/commands/local-doc-alignment.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Adds",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator wants every overlay folder to carry a README and both alignment commands able to audit and fix one",
+    "created_at": "2026-11-20T22:06:35Z",
+    "last_save_at": "2026-11-20T22:26:52.523Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:40d77abe0443cc5ddfc37183d2d9955eed529c9900a5102050ff443dcf510d0c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "318d722d30bbac0d7aa5c694927b7963b220dcd418ccff6458239fbcef63efaf",
+      "plan.md": "810857b5b348b9f0c4613ed2ffd5a8e26848bcb47f06c31ab8cdf9990cd9f597",
+      "tasks.md": "a5e86280bc774b6f40578a9f4648d204c46d1c5a4040b2ee6e73822aefffb705",
+      "implementation-summary.md": "f6e5b0559e21a38c75f75ce320143c5f93a6054a2eea36503aa40405fe5c9587"
+    },
+    "last_active_at": null
+  }
+}

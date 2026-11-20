@@ -15,7 +15,10 @@
     "system-skilled-doctor/007-overlay-framework-root-layout/009-skilled-open-items",
     "system-skilled-doctor/007-overlay-framework-root-layout/010-barter-open-items",
     "system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items",
-    "system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes"
+    "system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes",
+    "system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes",
+    "system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets",
+    "system-skilled-doctor/007-overlay-framework-root-layout/016-upstream-code-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -56,13 +59,7 @@
       ".skilled/commands/doctor/overlay.md",
       "review/review-report.md",
       "004-barter-repin-and-relayout/spec.md",
-      "scratch/design-notes.md",
-      "001-engine-out-of-tree-overlay-folder/goal.md",
-      "002-engine-framework-root-source-layout/goal.md",
-      "003-engine-docs-and-release/goal.md",
-      "004-barter-repin-and-relayout/goal.md",
-      "005-barter-move-overlays-out-of-tree/goal.md",
-      "006-review-remediation/goal.md"
+      "scratch/design-notes.md"
     ],
     "entities": [
       {
@@ -176,19 +173,19 @@
     ],
     "causal_summary": "The doctor overlay engine refuses an overlay folder outside the vendored tree",
     "created_at": "2026-11-20T09:31:32Z",
-    "last_save_at": "2026-11-20T20:13:05.750Z",
+    "last_save_at": "2026-11-20T22:28:27.617Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:01035cc842b70ce313af622844f62e343121626677bf4715cf7e999b4fe6347e",
+    "source_fingerprint": "sha256:1ec0c3739b2eddac980b324e9d3c45b6009b262955a46dcda4dd77189e4d2e5d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ae73435fe9c7080e425cb1993c32a6c2a1915551a411ace959e910255f70b014"
+      "spec.md": "c699d0a540f46bba72b0ad71fcd417d67175d80379b053dfea2e103a95cf651d"
     },
-    "last_active_child_id": "system-skilled-doctor/007-overlay-framework-root-layout/009-skilled-open-items",
-    "last_active_at": "2026-11-20T17:30:08.568Z"
+    "last_active_child_id": "system-skilled-doctor/007-overlay-framework-root-layout/016-upstream-code-alignment",
+    "last_active_at": "2026-11-20T22:26:54.836Z"
   }
 }
