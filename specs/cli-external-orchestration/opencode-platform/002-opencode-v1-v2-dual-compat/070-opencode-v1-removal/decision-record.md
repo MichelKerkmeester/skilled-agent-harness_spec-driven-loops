@@ -44,6 +44,8 @@ _memory:
 | Q008 | Merge the branch straight into main with no pull request, following sk-git, so the v2 battery runs on main. | Not stated. | None | 002 T015, AC-008, merge commit 06d02096e90 |
 | Q009 | Restore the archived review folder over the halted run, and list the wrapper refusal and its test as justified OpenCode 1 survivors. | Not stated. | None | 003-v1-docs-and-playbooks-sweep/scratch/justified.txt, 003 tasks.md CHK-012 and CHK-023, 003 implementation-summary.md |
 | Q010 | Run the five-iteration deep review through cli-pi with deepseek-v4.1-flash-1017 at max, because cli-opencode refuses dispatch from the primary checkout. | Not stated. | None | review/deep-review-config.json, review/review-report.md |
+| Q011 | Fix all eight P2 advisories from the third review in a new phase 004, worked in a worktree and merged to main. | Not stated. | None | 004-v2-review-p2-fixes, merge afb63707a44 |
+| Q012 | Delete the merged remote branch worktrees/477-opencode-v1-removal. | Not stated. | None | origin branch list |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -246,6 +248,45 @@ Wait for clean main
 Answer:
 ```text
 cli-pi, same model (Recommended)
+```
+
+### Q011
+<!-- source: claude:df9261d4-6090-4b52-892b-db52ff291ccd:toolu_01XiP3rTB9Tf1p3gJnuvRd5b:1 -->
+
+Question:
+```text
+What should happen with the 8 P2 advisories (opencode2 launcher drift, battery server not pinned to localhost, bridge drops unknown hooks silently, dualPlugin name, remove-v1 test not in CI, 9-vs-13 parity cases, two packet-evidence mismatches)?
+```
+
+Options:
+```text
+Fix all in a phase 004 (Recommended)
+Fix code ones only
+Defer
+```
+
+Answer:
+```text
+Fix all in a phase 004 (Recommended)
+```
+
+### Q012
+<!-- source: claude:df9261d4-6090-4b52-892b-db52ff291ccd:toolu_01XiP3rTB9Tf1p3gJnuvRd5b:2 -->
+
+Question:
+```text
+Delete the remote branch worktrees/477-opencode-v1-removal? All its commits are in main; it can be re-pushed from e8068aec7cd if ever needed.
+```
+
+Options:
+```text
+Delete it (Recommended)
+Keep it
+```
+
+Answer:
+```text
+Delete it (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes"
-    last_updated_at: "2026-11-20T11:58:52Z"
+    last_updated_at: "2026-11-20T12:13:07Z"
     last_updated_by: "generate-context"
     recent_action: "Closed all eight review advisories with the gate unchanged against its baseline"
     next_safe_action: "Review and merge branch worktrees/482-opencode-v2-p2-fixes into main"
@@ -21,9 +21,16 @@ _memory:
       - "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes/scratch/gate-after.txt"
       - ".opencode/plugins/lib/v2-bridge.js"
     session_dedup:
-      fingerprint: "sha256:894369b01217fec776de3a2fe5c8fc63d089b349b574f25b96d06e3c4f857a3d"
+      fingerprint: "sha256:9feac44473e3baf4a3b6b80a2d49ed0664de632c25ce6a3237a90ac5d642c886"
       session_id: "scaffold-004-v2-review-p2-fixes"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "df9261d4-6090-4b52-892b-db52ff291ccd"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-20T12:13:07Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []
