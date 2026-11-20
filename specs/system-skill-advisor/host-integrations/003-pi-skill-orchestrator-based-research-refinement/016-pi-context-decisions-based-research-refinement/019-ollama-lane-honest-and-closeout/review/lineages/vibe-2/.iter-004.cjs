@@ -1,0 +1,218 @@
+// Iteration 4 record + non-anchored strategy prose. Run: node .iter-004.cjs <artifactDir>
+// The reducer owns the ANCHOR blocks (dimensions, counts, exhausted approaches, next focus),
+// so this script only appends to the prose sections outside those anchors.
+const fs = require('fs');
+const path = require('path');
+
+const L = process.argv[2];
+const p = path.join(L, 'deep-review-strategy.md');
+let s = fs.readFileSync(p, 'utf8');
+
+function appendAfter(anchor, addition) {
+  if (!s.includes(anchor)) throw new Error(`strategy anchor missing: ${anchor.slice(0, 60)}`);
+  s = s.replace(anchor, anchor + addition);
+}
+
+appendAfter(
+  '- Reading the adapter error constructors before judging a logging concern: it proved the base URL is embedded verbatim and bounded the finding (iteration 3).',
+  '\n- Enumerating the code\'s diagnostic token vocabulary and diffing it against the docs: it turned a vague "docs may be thin" suspicion into a precise 3-of-8 gap (iteration 4).',
+);
+
+appendAfter(
+  '- A race on the module-level prompt embedding: the set, run and clear share one microtask (iteration 3, evidence: semantic-shadow.ts:236-252).',
+  '\n- `why_recommended` leaking prompt phrases: every evidence entry is reduced to a fixed category token (iteration 4, evidence: advisor-recommend.ts:168-190).\n- `semanticLaneHealth` being emitted unconditionally: both call sites gate it on `includeSemanticHealth || debug` (iteration 4, evidence: advisor-status.ts:534,558).\n- The reference\'s line citations having drifted: all three cited ranges resolve to the code they describe (iteration 4, evidence: semantic-shadow.ts:27,325-338,405).',
+);
+
+if (s.includes('| `skill_agent` | overlay | pending | - | Queued for iteration 4. |')) {
+  s = s.replace(
+    '| `skill_agent` | overlay | pending | - | Queued for iteration 4. |',
+    '| `skill_agent` | overlay | pass | 4 | The skill\'s own scoring reference matches the lane\'s shipped weight, gating and degradation behavior. |',
+  );
+}
+
+appendAfter(
+  '| runtime/lib/scorer/lanes/semantic-shadow.ts | D1, D2 | 1, 3 | 0 P0, 1 P1, 4 P2 | partial |',
+  '\n| references/scoring/advisor-scorer.md | D1 | 4 | 0 P0, 0 P1, 1 P2 | partial |',
+);
+
+fs.writeFileSync(p, s);
+
+const rec = {
+  type: 'iteration',
+  iteration: 4,
+  mode: 'review',
+  target_agent: 'deep-review',
+  agent_definition_loaded: true,
+  resolved_route: 'Resolved route: mode=review target_agent=deep-review',
+  run: 'fanout-vibe-2-1795172940208-84a42n',
+  status: 'complete',
+  focus: 'Frontier node F-1-005: security',
+  frontierNodeId: 'F-1-005',
+  dimensions: ['security'],
+  filesReviewed: [
+    '.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/attribution.md:25',
+    '.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:76',
+    '.skilled/skills/system-skill-advisor/references/scoring/lane-weight-tuning.md:55',
+    '.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-status.md:1',
+    '.skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/trust-state.md:1',
+    '.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:168',
+    '.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:225',
+    '.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:209',
+    '.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:534',
+    '.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:575',
+    '.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:27',
+    '.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:157',
+    '.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:325',
+    '.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:400',
+  ],
+  findingsCount: 1,
+  findingsSummary: { P0: 0, P1: 0, P2: 1 },
+  findingsNew: ['R4-P2-001'],
+  findingDetails: [
+    {
+      id: 'R4-P2-001',
+      severity: 'P2',
+      title: 'The docs define three of the eight disabledReason tokens the code can emit',
+      file: '.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:80',
+      dimension: 'security',
+      findingClass: 'traceability',
+      scopeProof: 'The claim is in the declared target references; the tokens are emitted from the declared target runtime.',
+      affectedSurfaceHints: ['advisor_status --include-semantic-health', 'semanticLaneHealth.disabledReason', 'doctor embedder diagnosis', 'operator H5 playbook'],
+    },
+  ],
+  traceabilityChecks: {
+    results: [
+      {
+        protocolId: 'spec_code',
+        status: 'partial',
+        gateClass: 'hard',
+        applicable: true,
+        evidence: [
+          '.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:80',
+          '.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:400',
+        ],
+        summary: 'The reference names one coverage token where the code emits two.',
+      },
+      {
+        protocolId: 'checklist_evidence',
+        status: 'notApplicable',
+        gateClass: 'hard',
+        applicable: false,
+        evidence: [],
+        summary: 'Files target with no checklist to reconcile.',
+      },
+      {
+        protocolId: 'skill_agent',
+        status: 'pass',
+        gateClass: 'overlay',
+        applicable: true,
+        evidence: [
+          '.skilled/skills/system-skill-advisor/SKILL.md',
+          '.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:76',
+        ],
+        summary: 'The skill scoring reference matches the lane shipped weight, gating and degradation behavior.',
+      },
+    ],
+  },
+  newFindingsRatio: 1.0,
+  noveltyJustification: 'One new finding: five of the eight operator-facing disabledReason tokens have no documentation. Weighted new 1 over weighted total 1.',
+  sessionId: 'fanout-vibe-2-1795172940208-84a42n',
+  generation: 1,
+  lineageMode: 'new',
+  timestamp: new Date().toISOString(),
+  durationMs: 0,
+  reviewDepthSchemaVersion: 2,
+  reviewDepthApplicability: {
+    scopeClass: 'complex',
+    enforcement: 'strict',
+    reason: 'Operator-facing diagnostic vocabulary spanning a status handler, a lane module and five documentation surfaces.',
+    evidenceRefs: ['.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:80'],
+  },
+  targetSelection: {
+    selectedTargets: [
+      '.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md',
+      '.skilled/skills/system-skill-advisor/feature-catalog',
+      '.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts',
+      '.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts',
+      '.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts',
+    ],
+    selectionReason: 'Frontier node F-1-005 scope: the documentation and status surfaces the semantic lane exposes to an operator.',
+    discoveryMethods: ['direct_read', 'exact_search', 'frontier_scope'],
+    omittedHighRiskTargets: [],
+    graphStatus: 'unavailable',
+    semanticSearchStatus: 'unavailable',
+    evidenceRefs: ['.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:80'],
+  },
+  searchCoverage: {
+    requiredBugClasses: ['prompt_injection', 'information_disclosure', 'diagnostic_misdescription', 'untrusted_input'],
+    covered: ['prompt_injection', 'information_disclosure', 'diagnostic_misdescription'],
+    ruledOut: ['untrusted_input'],
+    deferred: [],
+    blocked: [],
+    graphCoverageMode: 'graphless_fallback',
+  },
+  searchLedger: [
+    {
+      id: 'SL-014',
+      dimension: 'security',
+      targetRefs: ['.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts'],
+      bugClass: 'prompt_injection',
+      hypothesis: 'why_recommended echoes prompt phrases back to the caller.',
+      searchActions: [
+        { method: 'direct_read', queryOrPath: 'advisor-recommend.ts:168-190', result: 'evidenceFeature returns a fixed category token per prefix', evidenceRefs: ['.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:168'] },
+        { method: 'direct_read', queryOrPath: 'advisor-recommend.ts:225', result: 'doc-path allowlist rejects anything outside references/ or assets/ markdown', evidenceRefs: ['.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:225'] },
+      ],
+      disposition: 'ruled_out',
+      rationale: 'Every evidence entry is reduced to a fixed token before it reaches the response.',
+      ruledOutReason: 'No raw prompt text survives the mapping.',
+    },
+    {
+      id: 'SL-015',
+      dimension: 'security',
+      targetRefs: ['.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts'],
+      bugClass: 'information_disclosure',
+      hypothesis: 'semanticLaneHealth is emitted even when the caller did not ask for it.',
+      searchActions: [
+        { method: 'direct_read', queryOrPath: 'advisor-status.ts:534,558,575-576', result: 'both call sites gate on includeSemanticHealth || debug; the backend probe runs only on explicit true', evidenceRefs: ['.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:534'] },
+      ],
+      disposition: 'ruled_out',
+      rationale: 'The health block is opt-in exactly as the reference states.',
+      ruledOutReason: 'Both emission sites are gated.',
+    },
+    {
+      id: 'SL-016',
+      dimension: 'security',
+      targetRefs: ['.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md'],
+      bugClass: 'diagnostic_misdescription',
+      hypothesis: 'The documented disabledReason vocabulary does not cover what the code emits.',
+      searchActions: [
+        { method: 'exact_search', queryOrPath: 'disabledReason across references, feature-catalog, playbook, changelog, INSTALL-SKILLED.md', result: 'three tokens documented: database_absent, incomplete_skill_vectors, lane_weight_zero', evidenceRefs: ['.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:80'] },
+        { method: 'direct_read', queryOrPath: 'semantic-shadow.ts:157-260,399-413 and advisor-status.ts:209-224', result: 'eight tokens emitted, including no_skill_vectors and projection_embedding_stale', evidenceRefs: ['.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:400'] },
+      ],
+      disposition: 'finding',
+      rationale: 'Confirmed by enumerating both sides; five tokens have no documentation.',
+      linkedFindingId: 'R4-P2-001',
+    },
+    {
+      id: 'SL-017',
+      dimension: 'security',
+      targetRefs: ['.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md'],
+      bugClass: 'untrusted_input',
+      hypothesis: 'The reference line citations drifted from the code after the rewrite.',
+      searchActions: [
+        { method: 'direct_read', queryOrPath: 'semantic-shadow.ts:27,325-338,405', result: 'COSINE_THRESHOLD, the VITEST fallback and the cutoff all resolve as cited', evidenceRefs: ['.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:27'] },
+      ],
+      disposition: 'ruled_out',
+      rationale: 'All three cited ranges resolve to the code they describe.',
+      ruledOutReason: 'Citations are accurate.',
+    },
+  ],
+  graphEvents: [
+    { type: 'node', id: 'FILE-advisor-scorer-ref', kind: 'FILE', label: 'references/scoring/advisor-scorer.md' },
+    { type: 'node', id: 'FINDING-R4-P2-001', kind: 'FINDING', label: 'Undocumented disabledReason tokens' },
+    { type: 'edge', id: 'E6', source: 'FINDING-R4-P2-001', target: 'FILE-advisor-scorer-ref', relation: 'IN_FILE' },
+  ],
+};
+
+fs.writeFileSync(path.join(L, '.iter-004-event.json'), JSON.stringify(rec));
+console.log('strategy+record ok');

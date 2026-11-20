@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"fanout-vibe-2-1795172940208-84a42n","sessionId":"fanout-vibe-2-1795172940208-84a42n"},"data":{"mode":"review","totalIterations":8,"activeP0":0,"activeP1":1,"activeP2":11,"dimensionCoverage":1,"verdict":"CONDITIONAL","releaseReadinessState":"in-progress","stopReason":"convergence"}}

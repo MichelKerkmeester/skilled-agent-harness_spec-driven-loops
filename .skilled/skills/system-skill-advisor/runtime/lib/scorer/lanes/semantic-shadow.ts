@@ -389,7 +389,14 @@ export function scoreSemanticShadowLane(prompt: string, projection: AdvisorProje
       setRuntimeHealth({ disabledReason: 'no_skill_vectors' });
     } else {
       try {
-        if (!embeddingCoverage().complete) {
+        // The recommend path must never become a second writer on the
+        // daemon-owned database, so coverage is read through the read-only handle.
+        const coverageDatabase = getDbReadOnly();
+        if (!coverageDatabase) {
+          setRuntimeHealth({ disabledReason: 'database_absent' });
+          return [];
+        }
+        if (!embeddingCoverage(coverageDatabase).complete) {
           setRuntimeHealth({ disabledReason: 'incomplete_skill_vectors' });
           return [];
         }

@@ -283,6 +283,34 @@ describe('semantic shadow cosine lane', () => {
     }
   });
 
+  it('checks coverage without opening the database read-write', () => {
+    seedCurrentCommandVectors();
+    writeSkill(skillRoot, 'alpha', 'north vector');
+    indexSkillMetadata(skillRoot);
+    getDb().prepare(`
+      INSERT INTO vec_2 (skill_id, embedding, model_id, content_hash)
+      VALUES (?, ?, ?, ?)
+    `).run('alpha', buffer([1, 0]), 'mock-fixture-2', computeContentHash('north vector'));
+    closeDb();
+
+    vi.stubEnv('SYSTEM_SKILL_ADVISOR_DB_DIR', dbDir);
+    vi.stubEnv('VITEST', 'false');
+    try {
+      const projection: AdvisorProjection = {
+        skills: [skill({ id: 'alpha', description: 'north vector' })],
+        edges: [],
+        generatedAt: '2026-05-13T00:00:00.000Z',
+        source: 'sqlite',
+      };
+      setSemanticShadowPromptEmbedding('north', new Float32Array([1, 0]));
+
+      expect(scoreSemanticShadowLane('north', projection)).toHaveLength(1);
+      expect(skillGraphDb.getDbReadOnly()?.readonly).toBe(true);
+    } finally {
+      vi.unstubAllEnvs();
+    }
+  });
+
   it('disables scoring when a stored vector hash does not match its description', () => {
     vi.stubEnv('VITEST', 'false');
     try {

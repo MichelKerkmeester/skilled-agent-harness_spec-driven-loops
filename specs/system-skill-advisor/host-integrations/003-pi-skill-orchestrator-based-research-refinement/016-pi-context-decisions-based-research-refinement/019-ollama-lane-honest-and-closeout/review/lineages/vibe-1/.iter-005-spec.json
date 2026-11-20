@@ -1,0 +1,124 @@
+{
+  "iteration": 5,
+  "status": "complete",
+  "focus": "maintainability",
+  "dimensions": ["maintainability"],
+  "filesReviewed": [
+    ".skilled/skills/sk-doc/hub-router.json:254",
+    ".skilled/skills/sk-doc/sk-create-readme/SKILL.md:28",
+    ".skilled/skills/sk-doc/sk-create-readme/ROUTER.md:47",
+    ".skilled/skills/sk-doc/sk-create-readme/ROUTER.md:107",
+    ".skilled/skills/sk-doc/ROUTER.md:126",
+    ".skilled/skills/sk-doc/scripts/tests/test_routing_shape.py:89",
+    ".skilled/skills/sk-doc/scripts/tests/test_check_changelog_shape.py:21",
+    ".skilled/skills/sk-doc/scripts/tests/test_check_changelog_shape.py:193",
+    ".skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py:45",
+    ".skilled/changelog/skilled/v4.1.0.0.md:229",
+    ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/mcp-diagnostics-stress.vitest.ts:75",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:13",
+    ".skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts:1"
+  ],
+  "findingsSummary": { "P0": 0, "P1": 0, "P2": 2 },
+  "findings": [
+    {
+      "id": "R5-P2-001",
+      "severity": "P2",
+      "title": "The hub-vocabulary fix removed the phrase from the two checked surfaces and left two copies in the mode's own router reference",
+      "file": ".skilled/skills/sk-doc/sk-create-readme/ROUTER.md:47"
+    },
+    {
+      "id": "R5-P2-002",
+      "severity": "P2",
+      "title": "The stress diagnostics test restates the semantic lane's live weight instead of deriving it, and the value it replaced was the lane's shadow weight",
+      "file": ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/mcp-diagnostics-stress.vitest.ts:75"
+    }
+  ],
+  "traceabilityChecks": [
+    {
+      "protocolId": "spec_code",
+      "status": "pass",
+      "gateClass": "hard",
+      "applicable": true,
+      "evidence": [
+        ".skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py:45",
+        ".skilled/skills/sk-doc/scripts/tests/test_check_changelog_shape.py:193"
+      ],
+      "summary": "The 22-word ceiling is declared once at SENTENCE_MAX_WORDS = 22 and covered by a synthetic test that fails a 23-word sentence and passes a 22-word one."
+    },
+    {
+      "protocolId": "feature_catalog_code",
+      "status": "notApplicable",
+      "gateClass": "hard",
+      "applicable": false,
+      "evidence": [],
+      "summary": "This iteration reviewed routing and test surfaces, not a feature-catalog page."
+    },
+    {
+      "protocolId": "checklist_evidence",
+      "status": "notApplicable",
+      "gateClass": "hard",
+      "applicable": false,
+      "evidence": [],
+      "summary": "The review target is a file list, not a spec folder, so there is no checklist.md."
+    },
+    {
+      "protocolId": "skill_agent",
+      "status": "pass",
+      "gateClass": "overlay",
+      "applicable": true,
+      "evidence": [
+        ".skilled/skills/sk-doc/sk-create-readme/SKILL.md:28",
+        ".skilled/skills/sk-doc/hub-router.json:254"
+      ],
+      "summary": "The mode's SKILL.md keyword line and the hub router now agree on the readme intent; the disagreement that remains is in ROUTER.md, which no check reads."
+    },
+    {
+      "protocolId": "playbook_capability",
+      "status": "notApplicable",
+      "gateClass": "overlay",
+      "applicable": false,
+      "evidence": [],
+      "summary": "No playbook scenario covers the routing vocabulary or the stress diagnostics assertion."
+    }
+  ],
+  "newFindingsRatio": 0.08,
+  "noveltyJustification": "Two new P2 findings against ten carried findings. Both are duplicated-source-of-truth defects on surfaces the follow-up commits touched, so they add a maintainability direction the earlier iterations did not open; the ratio stays low because the shipped-behavior defects were found in iterations 1 and 2.",
+  "durationMs": 300000,
+  "classifications": [
+    "maintainability: 2 P2 (surviving ROUTER.md vocabulary duplicate, hardcoded lane weight in the stress test); the changelog ceiling coverage, the re-minted manifests, the security.md route and the Vibe fixture change are clean"
+  ],
+  "ruledOut": [
+    {
+      "direction": "The changelog shape test has no independent coverage of the word ceiling",
+      "reason": "test_a_sentence_fails_one_word_past_22 fails a 23-word sentence and passes a 22-word one against a synthetic fixture, and test_the_average_sentence_fails_past_10_words covers the mean (test_check_changelog_shape.py:193-202)"
+    },
+    {
+      "direction": "571575632a4 left the two compiled manifests out of step",
+      "reason": "both copies carry the same effectivePolicyHash 73c7a1c0 and generation 5"
+    },
+    {
+      "direction": "571575632a4 broke security.md routing",
+      "reason": "the security.md keyword survives in hub-router.json:255"
+    },
+    {
+      "direction": "c74042fd559 weakened the Vibe document assertion",
+      "reason": "the case still asserts that a tracked command's document is found; only the fixture changed from a gitignored local command to /doctor:setup"
+    },
+    {
+      "direction": "86038dfba80 changed a shipped default",
+      "reason": "it changed a test literal; the registry default at lane-registry.ts:13 is unchanged at defaultWeight 0"
+    }
+  ],
+  "frontierProposals": [],
+  "graphEvents": [
+    { "type": "node", "id": "dim-maintainability", "kind": "DIMENSION", "label": "Maintainability" },
+    { "type": "node", "id": "file-hub-router", "kind": "FILE", "label": "hub-router.json" },
+    { "type": "node", "id": "file-readme-router", "kind": "FILE", "label": "sk-create-readme/ROUTER.md" },
+    { "type": "node", "id": "file-stress-diagnostics", "kind": "FILE", "label": "mcp-diagnostics-stress.vitest.ts" },
+    { "type": "node", "id": "file-lane-registry", "kind": "FILE", "label": "lane-registry.ts" },
+    { "type": "edge", "id": "e11", "source": "dim-maintainability", "target": "file-hub-router", "relation": "COVERS" },
+    { "type": "edge", "id": "e12", "source": "dim-maintainability", "target": "file-readme-router", "relation": "COVERS" },
+    { "type": "edge", "id": "e13", "source": "dim-maintainability", "target": "file-stress-diagnostics", "relation": "COVERS" },
+    { "type": "edge", "id": "e14", "source": "dim-maintainability", "target": "file-lane-registry", "relation": "COVERS" }
+  ]
+}

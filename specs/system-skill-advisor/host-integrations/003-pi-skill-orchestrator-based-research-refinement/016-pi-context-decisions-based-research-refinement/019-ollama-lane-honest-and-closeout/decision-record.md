@@ -39,6 +39,10 @@ _memory:
 | Q003 | Write all 231 mapped answers after verifying the inferred mappings, with one commit per spec track. | Not stated. | none | D3, REQ-009, T011 |
 | Q004 | Run both alignment checks with Vibe DeepSeek Flash lanes; the critic also ran on it. | Not stated. | none | D6, REQ-013, T014 |
 | Q005 | Run both alignment checks in :auto report-only mode, then fix or accept every finding. | Not stated. | none | D6, REQ-013, T014, T015 |
+| Q006 | The expansive deep review covers this session's 019 work, its five follow-up fixes and the ten answer-routing commits, and leaves phase 018 out. | Not stated. | None | review/review-report.md, review/fanout-review-focus.txt |
+| Q007 | The review runs three cli-mistral-vibe lineages on deepseek-flash. | Not stated. | None | review/fanout-config.json |
+| Q008 | Swap the gitignored command in the Vibe document test for a tracked one, and remove worktree 480. | Not stated. Evidence: yes_no, option false, overlap 0, imperative false, shift false. | None | implementation-summary.md (Vibe document test in CI row) |
+| Q009 | Remove worktree 480 again and revert the stop-loop noise in the 016 parent's description.json and graph-metadata.json. | Not stated. Evidence: yes_no, option true, overlap 0, imperative false, shift false. | None | the 016 parent's description.json and graph-metadata.json |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -147,6 +151,76 @@ Options:
 Answer:
 ```text
 :auto, report then I fix (Recommended)
+```
+
+### Q006
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_01Wk8H15zVz2ebXiAMjPyqcy:0 -->
+
+Question:
+```text
+Which work should the expansive deep review cover? Phase 018's commit f9f293f772c set the semantic lane to weight 0 and added the heartbeat reaper; 019 builds on it, but it was not part of this session's work.
+```
+
+Options:
+```text
+019 + follow-ups (Recommended)
+Add 018 too
+Code only
+```
+
+Answer:
+```text
+019 + follow-ups (Recommended)
+```
+
+### Q007
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_01Wk8H15zVz2ebXiAMjPyqcy:1 -->
+
+Question:
+```text
+Which executors should run the 3 parallel review lanes?
+```
+
+Options:
+```text
+2 Vibe + 1 Codex (Recommended)
+3 Vibe DeepSeek Flash
+Native Claude, one lane
+```
+
+Answer:
+```text
+3 Vibe DeepSeek Flash
+```
+
+### Q008
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:chat:2476513a-5ea2-45bb-969a-7883f146a3fb:763e97b1-fa88-45e0-a21c-e8303fc49102 -->
+
+Question:
+```text
+Two decisions are still yours: should I swap the gitignored command in packet 008's Vibe test for a tracked one, and should I remove worktree 480?
+```
+
+Options: none
+
+Answer:
+```text
+Go
+```
+
+### Q009
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:chat:def46857-8768-4f1f-bd7f-903c970deabd:9ad5049f-cf1e-42e7-92df-e3b2e1a854f9 -->
+
+Question:
+```text
+Should I remove worktree 480 again? Should I revert the stop-loop noise in the 016 parent's description.json and graph-metadata.json to their committed versions?
+```
+
+Options: none
+
+Answer:
+```text
+yes to all
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

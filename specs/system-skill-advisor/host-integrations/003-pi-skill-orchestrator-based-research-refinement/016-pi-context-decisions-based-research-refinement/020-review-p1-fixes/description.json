@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/020-review-p1-fixes",
+  "description": "Phase 20: review-p1-fixes",
+  "keywords": [
+    "phase",
+    "review-p1-fixes"
+  ],
+  "lastUpdated": "2026-11-20T12:36:19.718Z",
+  "specId": "020",
+  "folderSlug": "review-p1-fixes",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "20-11-26_13-03__planned-phase-020-fix-the-three-p1-defects-the.md",
+    "20-11-26_13-36__implemented-phase-020-the-three-p1-defects-from.md"
+  ]
+}

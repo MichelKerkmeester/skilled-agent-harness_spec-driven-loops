@@ -1,0 +1,13 @@
+Lineage complete. Eight iterations reached legal convergence at iteration 8 of 16.
+
+**Result:** 12 open findings — 0 P0, 1 P1, 11 P2. Verdict CONDITIONAL.
+
+The P1 is real: `semantic-shadow.ts:404` calls `embeddingCoverage()` with no argument, which reaches `getDb()` → `initDb()` and opens the daemon-owned skill-graph database read-write on the recommend path, contradicting the read-only invariant the same module states at `:170-172`.
+
+The eleven P2s cluster into lane correctness edges (wrong-subject token, one-directional fixture guard, ungated rerank, misnamed resolved-weights constant), documentation claims that do not match shipped behavior (two changelog statements, an undocumented 5-of-8 diagnostic vocabulary, a superseded ablation score pair, an acceptance criterion claiming a match against five runs where two are recorded), and duplication/logging (the same wrong claim living in two changelogs, the adapter's raw error message carrying `OLLAMA_BASE_URL` into the log).
+
+What held up: prompt isolation in `why_recommended`, the two tests AC-003 and AC-004 cite, both halves of the test-only commit `0390556ee2b`, and the ablation measurement in the feature catalog, playbook, install guide and older changelog.
+
+Two things worth flagging. The graph had no DIMENSION nodes, so convergence read 0% coverage regardless of the registry; I seeded the four dimension nodes and their COVERS edges, which is what let the run stop legally rather than burning to 16 iterations. And `dc3979eb451` (generation counter) and `571575632a4` (sk-doc routing) were never read directly — their surfaces fall outside both frontier node scopes, and that gap is recorded in the report's Deferred Items rather than papered over.
+
+FANOUT_LINEAGE_COMPLETE:vibe-2

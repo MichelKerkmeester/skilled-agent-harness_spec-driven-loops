@@ -1,0 +1,119 @@
+{
+  "iteration": 1,
+  "status": "complete",
+  "focus": "Frontier node F-1-001: correctness",
+  "frontierNodeId": "F-1-001",
+  "dimensions": ["correctness"],
+  "filesReviewed": [
+    ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:1296",
+    ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:503",
+    ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:579",
+    ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:739",
+    ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:1500",
+    ".skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts:470",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:325",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:156",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:526",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:13",
+    ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts:437",
+    ".skilled/skills/system-skill-advisor/runtime/tests/skill-graph/refresh-in-background.vitest.ts:106",
+    ".skilled/skills/system-skill-advisor/runtime/tests/skill-graph/embedding-coverage.vitest.ts:68"
+  ],
+  "findingsSummary": { "P0": 0, "P1": 2, "P2": 2 },
+  "findings": [
+    {
+      "id": "R1-P1-001",
+      "severity": "P1",
+      "title": "The background refresh single-flight drops a reindex that lands mid-refresh",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:1442"
+    },
+    {
+      "id": "R1-P1-002",
+      "severity": "P1",
+      "title": "The semantic lane coverage gate opens the read-write database handle from the recommend path",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:1326"
+    },
+    {
+      "id": "R1-P2-001",
+      "severity": "P2",
+      "title": "The Ollama-unavailable early return reports zero failures",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:1466"
+    },
+    {
+      "id": "R1-P2-002",
+      "severity": "P2",
+      "title": "The coverage check re-reads every SKILL.md on each scored prompt",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:1325"
+    }
+  ],
+  "traceabilityChecks": [
+    {
+      "protocolId": "spec_code",
+      "status": "partial",
+      "gateClass": "hard",
+      "applicable": true,
+      "evidence": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/background-vector-refresh.md:1",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:1439"
+      ],
+      "summary": "The feature-catalog page describes the background refresh; the single-flight drop and the read-write handle are not described there."
+    },
+    {
+      "protocolId": "checklist_evidence",
+      "status": "notApplicable",
+      "gateClass": "hard",
+      "applicable": false,
+      "evidence": [],
+      "summary": "The review target is a file list, not a spec folder, so there is no checklist.md to check evidence against."
+    }
+  ],
+  "newFindingsRatio": 1.0,
+  "noveltyJustification": "All four findings are new: no prior iteration exists in this lineage, and each cites a line the reviewed commits introduced or changed.",
+  "durationMs": 420000,
+  "classifications": [
+    "correctness: 2 P1 (lost update in the refresh scheduler, read-write handle from the recommend path) and 2 P2 (outage failure count, per-prompt corpus read)"
+  ],
+  "ruledOut": [
+    {
+      "direction": "The refresh can overlap a watcher reindex's database writes",
+      "reason": "indexSkillMetadata is synchronous and runs before the refresh is fired; better-sqlite3 serializes writes in-process"
+    },
+    {
+      "direction": "The refresh can leak the single-flight slot",
+      "reason": "the finally block clears the slot only when it still holds this refresh"
+    },
+    {
+      "direction": "The coverage gate scores a stale vector",
+      "reason": "embeddingCoverage().complete is false whenever any row is stale or missing and the lane returns []"
+    }
+  ],
+  "frontierProposals": [
+    {
+      "parentId": "F-1-001",
+      "question": "Does the skillDir filter in refreshSkillEmbeddingsViaAdapter leave rows that embeddingCoverage counts as incomplete forever, so coverageComplete can never become true?",
+      "scope": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts, .skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts",
+      "evidence": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:1569"
+    },
+    {
+      "parentId": "F-1-001",
+      "question": "Can refreshCommandEmbeddings prune a live command vector when the bridge projection is momentarily partial, and does the prune run before the outage check?",
+      "scope": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+      "evidence": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:1691"
+    },
+    {
+      "parentId": "F-1-001",
+      "question": "Does the daemon startup refresh run before the first skill index completes, so it sees zero skill_nodes and never retries after the index lands?",
+      "scope": ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts, .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+      "evidence": ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts:439"
+    }
+  ],
+  "graphEvents": [
+    { "type": "node", "id": "dim-correctness", "kind": "DIMENSION", "label": "Correctness" },
+    { "type": "node", "id": "file-skill-graph-db", "kind": "FILE", "label": "skill-graph-db.ts" },
+    { "type": "node", "id": "file-watcher", "kind": "FILE", "label": "watcher.ts" },
+    { "type": "node", "id": "file-semantic-shadow", "kind": "FILE", "label": "semantic-shadow.ts" },
+    { "type": "edge", "id": "e1", "source": "dim-correctness", "target": "file-skill-graph-db", "relation": "COVERS" },
+    { "type": "edge", "id": "e2", "source": "dim-correctness", "target": "file-watcher", "relation": "COVERS" },
+    { "type": "edge", "id": "e3", "source": "dim-correctness", "target": "file-semantic-shadow", "relation": "COVERS" }
+  ]
+}

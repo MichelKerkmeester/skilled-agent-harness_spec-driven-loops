@@ -1,0 +1,21 @@
+Lineage `vibe-1` is complete on disk and in the ledger.
+
+**What ran:** 5 iterations across all four dimensions, each recorded through `append-mode-event.cjs` (ledger sequences 1–7, every one exit 0 with a receipt) and followed by `reduce-state.cjs`.
+
+| Iteration | Dimension | New findings |
+|---|---|---|
+| 1 | correctness (F-1-001) | 2 P1, 2 P2 |
+| 2 | correctness (F-1-004) | 1 P1, 1 P2 |
+| 3 | security | 2 P2 |
+| 4 | traceability | 2 P2 |
+| 5 | maintainability | 2 P2 |
+
+**Verdict: CONDITIONAL** — 0 P0, 3 P1, 9 P2. The three P1s share one shape: a surface reports a state the scoring path does not honor (`R1-P1-001` dropped reindex behind the single-flight guard, `R1-P1-002` read-write handle from the recommend path, `R2-P1-001` `laneEnabled` ignoring `coverageComplete`).
+
+**Two things the merge should read as caveats, not passes:**
+- The frontier is not drained. `searchDebtCount` stays 2 because this executor may not write the node store or a coverage surface; F-1-001 and F-1-004 are covered in the narrative of iterations 1, 2 and 4 but remain open in the store.
+- Every test-run claim in the packet is unverified here — the repository's test tooling cannot be executed from inside the lineage write surface.
+
+The packet's own completion criteria held up under reading, including the one whose scope could have been overstated: `vitest.config.bin.ts` includes only `bin/**/*.vitest.ts`, so criterion 1 does not claim the Pi hook test.
+
+FANOUT_LINEAGE_COMPLETE:vibe-1

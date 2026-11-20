@@ -196,4 +196,42 @@ describe('refreshEmbeddingsInBackground', () => {
     expect(probeOllamaModel).toHaveBeenCalledTimes(1);
     expect(adapterEmbed).toHaveBeenCalled();
   });
+
+  it('makes one more pass for a skill indexed while a refresh is embedding', async () => {
+    const { graph, skillRoot } = await prepareGraph();
+    let releaseEmbed: (() => void) | undefined;
+    let embedStarted: (() => void) | undefined;
+    const started = new Promise<void>((resolve) => {
+      embedStarted = resolve;
+    });
+    adapterEmbed.mockImplementationOnce(async (texts: ReadonlyArray<string>) => {
+      embedStarted?.();
+      await new Promise<void>((resolve) => {
+        releaseEmbed = resolve;
+      });
+      return texts.map(() => new Float32Array(ACTIVE_EMBEDDER_DIM));
+    });
+
+    const first = graph.refreshEmbeddingsInBackground(skillRoot);
+    await started;
+    seedSkillTree(tmpRoot, 'sk-late-arrival', 'skill indexed while the first pass embeds');
+    graph.indexSkillMetadata(skillRoot);
+    const second = graph.refreshEmbeddingsInBackground(skillRoot);
+    releaseEmbed?.();
+    await Promise.all([first, second]);
+
+    const coverage = graph.embeddingCoverage();
+    expect(coverage.skills).toEqual(expect.objectContaining({ total: 2, current: 2, missing: 0 }));
+    expect(coverage.complete).toBe(true);
+  });
+
+  it('clears the in-flight slot when a pass throws', async () => {
+    const { graph, skillRoot } = await prepareGraph();
+    probeOllamaModel.mockRejectedValueOnce(new Error('probe exploded'));
+
+    await expect(graph.refreshEmbeddingsInBackground(skillRoot)).rejects.toThrow('probe exploded');
+    const result = await graph.refreshEmbeddingsInBackground(skillRoot);
+
+    expect(result?.embedded).toBe(1);
+  });
 });

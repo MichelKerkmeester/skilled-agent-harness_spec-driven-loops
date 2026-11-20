@@ -1,0 +1,12 @@
+Lineage `vibe-3` is complete. Ten iterations ran to legal convergence (`composite_converged`, no blockers), both frontier nodes answered on all four dimensions, and the terminal synthesis row is in the ledger (sequence 12).
+
+**Verdict: CONDITIONAL** — P0 = 0, P1 = 3, P2 = 5, search debt = 0.
+
+The three P1s:
+- `R1-P1-001` — `semantic-shadow.ts:392` calls `embeddingCoverage()` with no handle, so `skill-graph-db.ts:1326` opens the database read-write on the recommend path, against the read-only contract its sibling `loadSkillEmbeddings` documents at `:1751`.
+- `R6-P1-001` — the packet says 581 answers, D3 says 231, the ten commits add 227, and the repo holds 118 verbatim answers. No sentence reconciles them.
+- `R9-P1-001` — `.skilled/changelog/skilled/v4.1.0.0.md:222` states the archived 149/193 ablation as the default-weight rationale while `:231` and the packet state 156 against 161.
+
+Artifacts written, all inside the lineage: `iterations/iteration-001..010.md`, `deltas/iter-001..010.jsonl`, `review-report.md`, plus the reducer-owned registry, dashboard and strategy. Every state row went through `append-mode-event.cjs`; the projection was never written directly.
+
+FANOUT_LINEAGE_COMPLETE:vibe-3
