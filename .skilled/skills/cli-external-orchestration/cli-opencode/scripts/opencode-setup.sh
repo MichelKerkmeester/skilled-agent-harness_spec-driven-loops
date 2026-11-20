@@ -217,7 +217,7 @@ mode_check() {
     ensure_probe_dir
     print_paths
 
-    for name in opencode opencode2; do
+    for name in opencode; do
         on_path="$(command -v "$name" 2>/dev/null || true)"
         direct="$BIN/$name"
         candidate=""
