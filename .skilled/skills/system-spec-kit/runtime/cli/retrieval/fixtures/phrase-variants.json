@@ -1,5 +1,5 @@
 {
-  "manifestHash": "bd5cc6f5c27dbb19c11e5d86a39d7eb7469228d5e981c5ae0f45a6088cfd42f7",
+  "manifestHash": "541bad0cc79b0c53b45e511b7a17ba78f149e800c7b1c1a0cac0ff863a29fbc1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14775,6 +14775,18 @@
     ],
     "barter move overlays summary": [
       "barter move overlays summary"
+    ],
+    "barter open items": [
+      "barter open items"
+    ],
+    "barter open items goal": [
+      "barter open items goal"
+    ],
+    "barter open items plan": [
+      "barter open items plan"
+    ],
+    "barter open items tasks": [
+      "barter open items tasks"
     ],
     "barter overlay mechanics research": [
       "barter overlay mechanics research"
@@ -51020,6 +51032,9 @@
     "fan out review runtime database exempt": [
       "fan-out review runtime database exempt"
     ],
+    "fan out review scope files empty": [
+      "fan-out review scope files empty"
+    ],
     "fan out root resource map": [
       "fan-out root resource map"
     ],
@@ -84125,6 +84140,9 @@
     "phase 10 alignment audit": [
       "phase 10 alignment audit"
     ],
+    "phase 10 barter open items": [
+      "phase 10 barter open items"
+    ],
     "phase 10 config row projection refusal": [
       "phase 10 config row projection refusal"
     ],
@@ -84292,6 +84310,9 @@
     ],
     "phase 11 prerequisites bound folder override": [
       "phase 11 prerequisites bound folder override"
+    ],
+    "phase 11 push and repin open items": [
+      "phase 11 push and repin open items"
     ],
     "phase 11 readme guards": [
       "phase 11 readme guards"
@@ -87067,6 +87088,9 @@
     ],
     "phase 9 sk git": [
       "phase 9 sk git"
+    ],
+    "phase 9 skilled open items": [
+      "phase 9 skilled open items"
     ],
     "phase 9 system skill advisor changelogs": [
       "phase 9 system skill advisor changelogs"
@@ -90608,6 +90632,9 @@
     "pre commit auto remint": [
       "pre-commit auto remint"
     ],
+    "pre commit hook git dir top level": [
+      "pre-commit hook git dir top-level"
+    ],
     "pre commit mirror gate": [
       "pre-commit mirror gate"
     ],
@@ -92449,6 +92476,18 @@
     ],
     "push and repin implementation summary": [
       "push and repin implementation summary"
+    ],
+    "push and repin open items": [
+      "push and repin open items"
+    ],
+    "push and repin open items goal": [
+      "push and repin open items goal"
+    ],
+    "push and repin open items plan": [
+      "push and repin open items plan"
+    ],
+    "push and repin open items tasks": [
+      "push and repin open items tasks"
     ],
     "push and repin plan": [
       "push and repin plan"
@@ -94901,6 +94940,9 @@
     ],
     "record base in a vendored layout and overlay": [
       "record base in a vendored layout and overlay"
+    ],
+    "record base pin fetch head": [
+      "record-base pin fetch head"
     ],
     "record executor audit gateway": [
       "record executor audit gateway"
@@ -119161,6 +119203,21 @@
     ],
     "skilled omithook": [
       "skilled.omitHook"
+    ],
+    "skilled open items": [
+      "skilled open items"
+    ],
+    "skilled open items goal": [
+      "skilled open items goal"
+    ],
+    "skilled open items implementation summary": [
+      "skilled open items implementation summary"
+    ],
+    "skilled open items plan": [
+      "skilled open items plan"
+    ],
+    "skilled open items tasks": [
+      "skilled open items tasks"
     ],
     "skilled packet audit fixes": [
       "skilled packet audit fixes"

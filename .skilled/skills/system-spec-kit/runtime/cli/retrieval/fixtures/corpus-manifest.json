@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3b7c1da26a56e1885a1aa00c7ca8e29c2c2abc778b36d59062606fc843f8b5f1",
+  "corpusHash": "b64de2264325859bb272c9942c8dce2b48b5e953fa4d6b05d16e88f038cdac49",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28903,
+  "includedPathCount": 28918,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -20307,7 +20307,22 @@
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/plan.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/009-skilled-open-items/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/009-skilled-open-items/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/009-skilled-open-items/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/009-skilled-open-items/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/009-skilled-open-items/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/010-barter-open-items/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/010-barter-open-items/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/010-barter-open-items/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/010-barter-open-items/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/tasks.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/fanout-attribution.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/review-report.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/fanout-attribution.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/review-report.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/spec.md",
@@ -28935,7 +28950,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "bd5cc6f5c27dbb19c11e5d86a39d7eb7469228d5e981c5ae0f45a6088cfd42f7",
+  "manifestHash": "541bad0cc79b0c53b45e511b7a17ba78f149e800c7b1c1a0cac0ff863a29fbc1",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -38079,6 +38094,22 @@
     },
     {
       "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/009-skilled-open-items/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/010-barter-open-items/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/lineages",
       "reason": "excluded directory"
     },
     {

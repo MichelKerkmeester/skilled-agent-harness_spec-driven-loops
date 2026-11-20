@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7086,
-    "ok": 20189,
+    "missing-frontmatter": 7088,
+    "ok": 20202,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28903,
+  "documentsScanned": 28918,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "bd5cc6f5c27dbb19c11e5d86a39d7eb7469228d5e981c5ae0f45a6088cfd42f7",
+  "manifestHash": "541bad0cc79b0c53b45e511b7a17ba78f149e800c7b1c1a0cac0ff863a29fbc1",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45718,
+      "ok": 45737,
       "prose-sentence": 23,
       "single-token": 154,
       "stop-word-only": 1,
@@ -42945,6 +42945,18 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -63101,6 +63113,22 @@
     },
     {
       "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/009-skilled-open-items/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/010-barter-open-items/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/lineages",
       "reason": "excluded directory"
     },
     {
