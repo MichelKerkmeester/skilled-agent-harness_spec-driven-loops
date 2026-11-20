@@ -10,7 +10,7 @@ trigger_phrases:
   - "toolchain on main after merge"
 importance_tier: normal
 contextType: implementation
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # Large Reorg Playbook - Rename/Renumber in a Worktree
@@ -136,7 +136,7 @@ work (a bare worktree silently no-ops — see §9 Caveat 1). Run, in order:
 
 ```bash
 # 1. Regenerate per-folder metadata for moved/renamed spec folders
-node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js <spec-folder>
+node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"<spec-folder>","sessionSummary":"<what moved and why>"}' <spec-folder>
 # 2. Strict-validate affected packets
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
 ```

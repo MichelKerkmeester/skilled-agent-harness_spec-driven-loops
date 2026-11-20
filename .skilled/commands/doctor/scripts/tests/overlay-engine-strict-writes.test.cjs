@@ -984,3 +984,64 @@ test('adopt of an excluded path prefers the framework copy when an excluded copy
   assert.equal(adopted.code, 0, adopted.output);
   assert.equal(entryFor(fixture, '.skilled/local/hook.sh').source, 'framework/local/hook.sh');
 });
+
+// A commit in a linked worktree hands its hook GIT_DIR pointing into the main
+// repository's worktrees folder, with no GIT_WORK_TREE. The check has to find the
+// worktree's own top level from there and still read the commit's index.
+test('pre-commit run as a real hook judges a commit in a linked worktree of the vendoring repository', (t) => {
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER, isGitAtWorkspace: true });
+  const outside = fs.mkdtempSync(path.join(os.tmpdir(), 'overlay-engine-worktree-'));
+  t.after(() => fs.rmSync(outside, { recursive: true, force: true }));
+  const hooks = path.join(outside, 'hooks');
+  const linked = path.join(outside, 'linked');
+  const engineFile = path.resolve(__dirname, '..', 'overlay-engine.cjs');
+  writeFile(hooks, 'pre-commit', '#!/bin/sh\n' +
+    'printf \'%s\\n\' "$GIT_DIR" > "$OVERLAY_HOOK_RECORD"\n' +
+    `exec "${process.execPath}" "${engineFile}" pre-commit --root ${path.basename(fixture.tree)}\n`);
+  fs.chmodSync(path.join(hooks, 'pre-commit'), 0o755);
+  git(fixture.workspace, ['worktree', 'add', '-q', '-b', 'linked', linked]);
+
+  const commitThroughHook = (checkout, label, extra = []) => {
+    const record = path.join(outside, label + '-git-dir');
+    const result = spawnSync('git', [...GIT_CONFIG, '-c', 'core.hooksPath=' + hooks,
+      '-C', checkout, 'commit', '-q', ...extra, '-m', label], {
+      encoding: 'utf8',
+      env: { ...process.env, OVERLAY_HOOK_RECORD: record },
+    });
+    return { ...result, output: (result.stdout || '') + (result.stderr || ''),
+      gitDir: fs.readFileSync(record, 'utf8').trim() };
+  };
+  const refusal = 'refuse: staged change to .skilled/skills/hub/fix.md is under a vendored root and no overlay owns it';
+
+  for (const [checkout, label] of [[linked, 'linked'], [fixture.workspace, 'main']]) {
+    const tree = path.join(checkout, path.basename(fixture.tree));
+    writeFile(tree, '.skilled/skills/hub/fix.md', 'edited in place\n');
+    git(checkout, ['add', '-A']);
+    const refused = commitThroughHook(checkout, label);
+    t.diagnostic(`${label} checkout hook GIT_DIR=${refused.gitDir}`);
+    assert.notEqual(refused.status, 0, refused.output);
+    assert.ok(refused.output.split('\n').includes(refusal), refused.output);
+
+    // An overlay source change is the project's own, so the same hook lets it in.
+    writeFile(tree, '.skilled/skills/hub/fix.md', FIX_UPSTREAM);
+    writeFile(path.join(checkout, SIBLING_FOLDER), 'skills/own/SKILL.md', 'project skill v2\n');
+    git(checkout, ['add', '-A']);
+    const allowed = commitThroughHook(checkout, label);
+    assert.equal(allowed.status, 0, allowed.output);
+
+    // commit -a stages into a temporary index, so the check must read that one.
+    writeFile(tree, '.skilled/skills/hub/fix.md', 'edited, left unstaged\n');
+    const refusedAll = commitThroughHook(checkout, label, ['-a']);
+    assert.notEqual(refusedAll.status, 0, refusedAll.output);
+    assert.ok(refusedAll.output.split('\n').includes(refusal), refusedAll.output);
+    writeFile(tree, '.skilled/skills/hub/fix.md', FIX_UPSTREAM);
+
+    // Upstream's own bytes are allowed only if the check reads the upstream
+    // checkout rather than the repository whose GIT_DIR the hook exported.
+    writeFile(tree, '.skilled/skills/hub/stable.md', OLD_ENTRIES['.skilled/skills/hub/stable.md']);
+    git(checkout, ['add', '-A']);
+    const upstreamCopy = commitThroughHook(checkout, label + '-upstream-copy');
+    assert.equal(upstreamCopy.status, 0, upstreamCopy.output);
+  }
+  assert.ok(git(linked, ['rev-parse', '--git-dir']).includes(path.join('.git', 'worktrees')));
+});

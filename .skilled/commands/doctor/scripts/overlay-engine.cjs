@@ -485,6 +485,16 @@ function resolveOverlayDir(root) {
 }
 
 /**
+ * Copy the environment without the repository variables a git hook exports.
+ * @returns {object} An environment in which git finds the repository from its cwd.
+ */
+function hookFreeEnv() {
+  const env = { ...process.env };
+  for (const name of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_INDEX_FILE', 'GIT_PREFIX']) delete env[name];
+  return env;
+}
+
+/**
  * Read the canonical top level of the git repository holding a folder.
  * @param {string} cwd Folder to ask from.
  * @returns {string|null} The top level, or null when the folder is in no repository or git cannot run.
@@ -492,11 +502,9 @@ function resolveOverlayDir(root) {
 function gitTopLevelOrNull(cwd) {
   // A git hook exports GIT_DIR without GIT_WORK_TREE, which makes git report the
   // working folder as the top level, so git has to find the repository from cwd.
-  const env = { ...process.env };
-  for (const name of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_INDEX_FILE', 'GIT_PREFIX']) delete env[name];
   let top;
   try {
-    const result = spawnSync('git', ['-C', cwd, 'rev-parse', '--show-toplevel'], { env, encoding: 'utf8' });
+    const result = spawnSync('git', ['-C', cwd, 'rev-parse', '--show-toplevel'], { env: hookFreeEnv(), encoding: 'utf8' });
     if (result.error || result.status !== 0) return null;
     top = result.stdout;
   } catch {
@@ -4224,8 +4232,8 @@ function commandGuard(ctx, inputPath) {
 //   3. Every failure after the backup names the run that --rollback restores.
 // ─────────────────────────────────────────────────────────────────────────────
 
-function runGit(upstream, args) {
-  const result = spawnSync('git', ['-C', upstream, ...args], { encoding: 'buffer', maxBuffer: GIT_MAX_BUFFER });
+function runGit(upstream, args, env) {
+  const result = spawnSync('git', ['-C', upstream, ...args], { encoding: 'buffer', maxBuffer: GIT_MAX_BUFFER, env });
   if (result.error) throw result.error;
   return result;
 }
@@ -5817,13 +5825,13 @@ function commandAdopt(ctx, inputPath, options = {}) {
   return withLock(ctx, 'overlay-engine adopt', () => adoptUnderLock(ctx, manifest, inputPath), options);
 }
 
-function gitTextOrNull(cwd, args) {
-  const result = runGit(cwd, args);
+function gitTextOrNull(cwd, args, env) {
+  const result = runGit(cwd, args, env);
   return result.status === 0 ? result.stdout.toString('utf8') : null;
 }
 
-function gitBytesOrNull(cwd, args) {
-  const result = runGit(cwd, args);
+function gitBytesOrNull(cwd, args, env) {
+  const result = runGit(cwd, args, env);
   return result.status === 0 ? result.stdout : null;
 }
 
@@ -5861,9 +5869,10 @@ function pinCommitOf(manifestText) {
  */
 function stagedUnownedChanges(ctx, manifest) {
   const root = canonicalPath(ctx.root);
-  const top = gitTextOrNull(root, ['rev-parse', '--show-toplevel']);
-  if (top === null) return [];
-  const topLevel = canonicalPath(top.trim());
+  // The top level is found without the hook's GIT_DIR, but the index reads below
+  // keep it: a commit with -a or a path list hands the hook a temporary index.
+  const topLevel = gitTopLevelOrNull(root);
+  if (topLevel === null) return [];
   const prefix = toPosix(path.relative(topLevel, root));
   const listing = gitTextOrNull(topLevel, ['diff', '--cached', '--name-status', '--no-renames', '-z']);
   if (!listing) return [];
@@ -5895,10 +5904,13 @@ function stagedUnownedChanges(ctx, manifest) {
   const pin = manifest.pin || {};
   const hasCheckout = typeof pin.checkout === 'string' && typeof pin.commit === 'string' && isDirectory(pin.checkout);
   const isManaged = managedPathTest(ctx, manifest);
+  // The upstream checkout is another repository, so its reads must not inherit the
+  // GIT_DIR a hook exports for this one, or they would read this repository instead.
+  const upstreamEnv = hookFreeEnv();
   return changes.filter((change) => {
     if (isManaged(change.key) || settings.isGenerated(change.key)) return false;
     if (!hasCheckout) return true;
-    const upstreamBlob = gitTextOrNull(pin.checkout, ['rev-parse', '--verify', '--quiet', `${pin.commit}:${change.key}`]);
+    const upstreamBlob = gitTextOrNull(pin.checkout, ['rev-parse', '--verify', '--quiet', `${pin.commit}:${change.key}`], upstreamEnv);
     // Deleting a file upstream never shipped removes the project's own stray file.
     if (change.status === 'D') return upstreamBlob !== null;
     const stagedBlob = gitTextOrNull(topLevel, ['rev-parse', '--verify', '--quiet', ':' + change.file]);
@@ -5907,7 +5919,7 @@ function stagedUnownedChanges(ctx, manifest) {
     // A project may normalise line endings on commit, so the same text can reach
     // the index as different bytes than upstream stored. Compare the contents
     // before calling a staged copy a change.
-    const upstreamBytes = gitBytesOrNull(pin.checkout, ['cat-file', 'blob', `${pin.commit}:${change.key}`]);
+    const upstreamBytes = gitBytesOrNull(pin.checkout, ['cat-file', 'blob', `${pin.commit}:${change.key}`], upstreamEnv);
     const stagedBytes = gitBytesOrNull(topLevel, ['cat-file', 'blob', ':' + change.file]);
     return !(upstreamBytes !== null && stagedBytes !== null && isSameText(upstreamBytes, stagedBytes));
   }).map(({ status, key }) => ({ status, key }));
@@ -5972,9 +5984,8 @@ function trackedTreeKeys(root) {
   // A temporary folder sits behind a link on some systems, so the tree's own
   // path is resolved before it is compared with the repository's top level.
   const projectRoot = canonicalPath(root);
-  const top = gitTextOrNull(projectRoot, ['rev-parse', '--show-toplevel']);
-  if (top === null) return [];
-  const topLevel = canonicalPath(top.trim());
+  const topLevel = gitTopLevelOrNull(projectRoot);
+  if (topLevel === null) return [];
   const prefix = toPosix(path.relative(topLevel, projectRoot));
   const listing = gitTextOrNull(topLevel, ['ls-files', '-z']);
   if (!listing) return [];

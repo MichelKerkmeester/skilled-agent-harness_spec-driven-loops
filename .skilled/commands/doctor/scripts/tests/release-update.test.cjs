@@ -2090,6 +2090,58 @@ test('record-base --pin records a framework commit that falls between release ta
   assert.equal(after['skill:hub-b'].commit, fixture.middleCommit);
 });
 
+// A fetch can exit 0 without rewriting FETCH_HEAD, leaving the file an earlier
+// fetch wrote. The wrapper stands in for that fetch, and the stale FETCH_HEAD
+// names a commit that holds framework units, so reading it records a wrong base.
+test('record-base --pin records the named commit when FETCH_HEAD names another one', () => {
+  const fixture = makePinnedFixture();
+  const { project, vendored } = makeVendoredLayout(fixture.root, 'project', fixture.middleTree);
+  const baseCommit = git(fixture.upstream, ['rev-parse', 'v1.0.0.0^{commit}']);
+  git(project, ['fetch', '-q', '--no-tags', fixture.upstream, baseCommit]);
+  assert.equal(git(project, ['rev-parse', 'FETCH_HEAD']), baseCommit);
+
+  const realGit = execFileSync('sh', ['-c', 'command -v git'], { encoding: 'utf8' }).trim();
+  const wrapperDir = path.join(fixture.root, 'git-wrapper');
+  fs.mkdirSync(wrapperDir);
+  fs.writeFileSync(path.join(wrapperDir, 'git'), [
+    '#!/bin/sh',
+    'if [ "$1" = fetch ]; then shift; exec "$REAL_GIT" fetch --no-write-fetch-head "$@"; fi',
+    'exec "$REAL_GIT" "$@"',
+    '',
+  ].join('\n'), { mode: 0o755 });
+  const result = spawnSync(process.execPath, [
+    SCRIPT_PATH, 'record-base', '--dry-run', '--pin', fixture.middleCommit,
+    '--remote', fixture.upstream, '--repo', vendored, '--json',
+  ], {
+    encoding: 'utf8',
+    env: { ...process.env, REAL_GIT: realGit, PATH: wrapperDir + path.delimiter + process.env.PATH },
+  });
+  const document = JSON.parse(result.stdout);
+  assert.equal(result.status, 0, result.stdout + result.stderr);
+  assert.equal(document.releaseCommit, fixture.middleCommit);
+  assert.deepEqual(document.units, ['skill:hub-a', 'skill:hub-b']);
+  assert.equal(git(project, ['rev-parse', 'FETCH_HEAD']), baseCommit);
+});
+
+test('record-base --pin refuses a commit that is no framework commit or is found nowhere', () => {
+  const fixture = makePinnedFixture();
+  const { project, vendored } = makeVendoredLayout(fixture.root, 'project', fixture.middleTree);
+
+  const own = git(project, ['rev-parse', 'HEAD']);
+  const notFramework = runCli(vendored, 'record-base', '--dry-run', '--pin', own,
+    '--remote', fixture.upstream);
+  assert.equal(notFramework.exitCode, 1, JSON.stringify(notFramework.document));
+  assert.match(notFramework.document.error, /not a framework commit/);
+
+  const missing = 'f'.repeat(40);
+  const nowhere = runCli(vendored, 'record-base', '--dry-run', '--pin', missing,
+    '--remote', fixture.upstream);
+  assert.equal(nowhere.exitCode, 1, JSON.stringify(nowhere.document));
+  assert.match(nowhere.document.error, new RegExp(missing));
+  assert.match(nowhere.document.error, /this repository/);
+  assert.ok(nowhere.document.error.includes('remote ' + fixture.upstream), nowhere.document.error);
+});
+
 test('a normal checkout still resolves --repo below its root to the git top level', () => {
   const fixture = makeFixture();
   const vendor = makeVendor(fixture, 'vendor-normal-root');

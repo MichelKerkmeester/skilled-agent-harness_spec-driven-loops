@@ -30,7 +30,7 @@ const {
 
 const FANOUT_FLAGS = [
   'specFolder', 'loopType', 'researchTopic', 'reviewFocus', 'reviewTarget', 'reviewTargetType', 'fanoutConfigJson', 'baseArtifactDir',
-  'researchTopicFile', 'reviewFocusFile', 'reviewTargetFile', 'fanoutConfigJsonFile',
+  'researchTopicFile', 'reviewFocusFile', 'reviewTargetFile', 'fanoutConfigJsonFile', 'reviewScopeFile',
   'convergenceThreshold', 'lineageTimeoutHours', 'stopPolicy', 'convergenceMode', 'depthMode', 'containmentMode',
   'preDispatchWaitMs', 'stallWatchdogMs', 'maxCostUnitsPerLineage',
   'maxAggregateCostUnits', 'maxTokensPerLineage', 'maxTokenBudget', 'maxTokenBudgetPerLineage',
@@ -256,6 +256,75 @@ function normalizeReviewFocus(raw) {
     throw inputError(`reviewFocus must be at most ${REVIEW_FOCUS_MAX_LENGTH} characters, got ${focus.length}`);
   }
   return focus;
+}
+
+// Each lineage copies this list into its config, where the terminal scope gate reads it.
+const REVIEW_SCOPE_LINEAGE_FILE = 'review-scope-files.txt';
+const REVIEW_SCOPE_CONTROL_PATTERN = /[\u0000-\u001F\u007F-\u009F\u2028\u2029]/;
+
+/**
+ * Read the review scope a fan-out root discovered, one repo-relative path per line.
+ *
+ * A fan-out root skips its own scope discovery, so the list arrives from the workflow as a
+ * file. Every entry must name an existing file inside the repository, once, because the
+ * terminal scope gate trusts this list to decide which findings were in scope. All bad lines
+ * are reported together so one fix pass can repair the file.
+ *
+ * @param {unknown} raw - The `--review-scope-file` value as parsed from argv.
+ * @param {string} repoRoot - The repository root every entry is relative to.
+ * @returns {string[]|null} The normalized paths in declared order, or null when none were given.
+ */
+function readReviewScopeFile(raw, repoRoot) {
+  if (raw === undefined) return null;
+  if (typeof raw !== 'string' || raw.trim() === '') {
+    throw inputError('reviewScopeFile must be a file path');
+  }
+  let text;
+  try {
+    text = fs.readFileSync(raw, 'utf8');
+  } catch (error) {
+    throw inputError(`cannot read reviewScopeFile ${raw}: ${error instanceof Error ? error.message : String(error)}`);
+  }
+  const physicalRoot = physicalPathForValidation(path.resolve(repoRoot));
+  const files = [];
+  const firstLineByPath = new Map();
+  const errors = [];
+  text.split(/\r?\n/).forEach((rawLine, index) => {
+    const lineNumber = index + 1;
+    const entry = rawLine.trim();
+    if (entry === '' || entry.startsWith('#')) return;
+    const fail = (reason) => errors.push(`line ${lineNumber}: ${reason} (${JSON.stringify(entry)})`);
+    if (REVIEW_SCOPE_CONTROL_PATTERN.test(entry)) return fail('control character');
+    if (path.isAbsolute(entry) || /^[A-Za-z]:[\\/]/.test(entry) || entry.startsWith('~')) return fail('absolute path');
+    if (entry.split(/[\\/]+/).includes('..')) return fail('path leaves the repository');
+    const normalized = path.posix.normalize(entry.replace(/\\/g, '/')).replace(/\/+$/, '');
+    if (normalized === '' || normalized === '.') return fail('names the repository root');
+    const physical = physicalPathForValidation(path.resolve(repoRoot, normalized));
+    if (!isPathInside(physical, physicalRoot)) return fail('path leaves the repository');
+    if (firstLineByPath.has(normalized)) return fail(`duplicate of line ${firstLineByPath.get(normalized)}`);
+    firstLineByPath.set(normalized, lineNumber);
+    let stat;
+    try {
+      stat = fs.statSync(physical);
+    } catch {
+      return fail('file not found');
+    }
+    if (!stat.isFile()) return fail('not a file');
+    files.push(normalized);
+  });
+  if (errors.length > 0) {
+    throw inputError(`reviewScopeFile ${raw} has invalid entries: ${errors.join('; ')}`);
+  }
+  return files.length > 0 ? files : null;
+}
+
+// A list given as an array, or as an object of arrays, counts once it names any path.
+function hasRecordedScope(reviewScopeFiles) {
+  if (Array.isArray(reviewScopeFiles)) return reviewScopeFiles.length > 0;
+  if (isRecord(reviewScopeFiles)) {
+    return Object.values(reviewScopeFiles).some((value) => Array.isArray(value) && value.length > 0);
+  }
+  return false;
 }
 
 const REVIEW_TARGET_TYPES = Object.freeze(['spec-folder', 'skill', 'agent', 'track', 'files']);
@@ -881,14 +950,27 @@ function readRootLineageValues(loopType, baseArtifactDir) {
  * config before the lineage starts: the workflow reads a config with no state log beside it
  * as a broken session and halts. Every other field, the session id among them, is kept.
  */
-function writeLineageValues(loopType, lineageDir, rootValues) {
-  if (!rootValues) return;
+function writeLineageValues(loopType, lineageDir, rootValues, reviewScopeFiles = null) {
+  const seedScope = loopType === 'review' && Array.isArray(reviewScopeFiles) && reviewScopeFiles.length > 0;
+  if (!rootValues && !seedScope) return;
   const configPath = path.join(lineageDir, LINEAGE_CONFIG_BY_LOOP_TYPE[loopType]);
   const config = readJsonRecord(configPath);
   if (!config) return;
-  const next = loopType === 'review'
-    ? { ...config, ...rootValues }
-    : { ...config, lineage: { ...(lineageFieldsOf(loopType, config) || {}), ...rootValues } };
+  let next = config;
+  if (rootValues) {
+    next = loopType === 'review'
+      ? { ...next, ...rootValues }
+      : { ...next, lineage: { ...(lineageFieldsOf(loopType, next) || {}), ...rootValues } };
+  }
+  // The seed is the one scope every lineage of the run shares, so it replaces whatever a
+  // lineage discovered on its own. A file-list target is the exception: frontier-admit
+  // rewrites that list from git for a commit range, and a plain file list expands the same
+  // way in every lineage, so a non-empty list there is kept.
+  const keepLineageScope = next.reviewTargetType === 'files' && hasRecordedScope(next.reviewScopeFiles);
+  if (seedScope && !keepLineageScope) {
+    next = { ...next, reviewScopeFiles: [...reviewScopeFiles] };
+  }
+  if (next === config) return;
   atomicWriteJson(configPath, next);
 }
 
@@ -2177,6 +2259,18 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
   // A CLI leaf runs every iteration from this one prompt, so the operator's focus has to be
   // restated where the leaf reads its per-iteration contract, not only in the setup bindings.
   const reviewFocus = loopType === 'review' && options.reviewFocus ? options.reviewFocus : null;
+  // The root already discovered the review scope, and each lineage's config must carry it
+  // before its stop step, where the terminal scope gate reads it.
+  const reviewScopeFile = loopType === 'review' && options.reviewScopeFiles && options.reviewScopeFiles.length > 0
+    ? path.join(promptDir, REVIEW_SCOPE_LINEAGE_FILE)
+    : null;
+  if (reviewScopeFile) {
+    leafContract.splice(
+      leafContract.length - 1,
+      0,
+      `- The review scope is pre-bound as review_scope_file: step_scope_discovery sets review_scope_files to the paths in that file, one per line in order, instead of discovering them, and step_create_config writes that list as reviewScopeFiles.`,
+    );
+  }
   if (reviewFocus) {
     leafContract.splice(
       leafContract.length - 1,
@@ -2244,6 +2338,7 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
           `review_target_type: ${options.reviewTargetType || 'spec-folder'}`,
           `review_dimensions: all`,
           ...(reviewFocus ? [`review_focus: ${reviewFocus}`] : []),
+          ...(reviewScopeFile ? [`review_scope_file: ${reviewScopeFile}`] : []),
           ...(options.depthMode === 'expansive' ? [`frontier_scope: ${(options.frontierScope || []).join(', ') || 'none'}`] : []),
           `spec_folder: ${specFolder}`,
           `execution_mode: AUTONOMOUS`,
@@ -3948,6 +4043,10 @@ async function main() {
     throw inputError('reviewTarget applies only to the review loop type');
   }
   const reviewTargetBinding = resolveReviewTarget(args.reviewTarget, args.reviewTargetType, specFolder);
+  if (args.reviewScopeFile !== undefined && loopType !== 'review') {
+    throw inputError('reviewScopeFile applies only to the review loop type');
+  }
+  const reviewScopeFiles = readReviewScopeFile(args.reviewScopeFile, process.cwd());
   const fanoutConfigJson = ensureString(args, 'fanoutConfigJson');
   const baseArtifactDir = validateBaseArtifactDir(ensureString(args, 'baseArtifactDir'), specFolder, loopType);
   const convergenceThreshold = parseOptionalNumber(args, 'convergenceThreshold');
@@ -4118,6 +4217,7 @@ async function main() {
       frontierScope,
       stopPolicy,
       reviewFocus,
+      reviewScopeFiles,
       reviewTarget: reviewTargetBinding.target,
       reviewTargetType: reviewTargetBinding.type,
     });
@@ -4514,6 +4614,17 @@ async function main() {
         JSON.stringify({ effectiveConfig, invocationFingerprint }) + '\n',
         'utf8',
       );
+      // Written before the containment baseline, so the lineage's own read file is never
+      // charged to it, and on every attempt, so a retry reads the same list.
+      if (reviewScopeFiles) {
+        fs.writeFileSync(path.join(lineageDir, REVIEW_SCOPE_LINEAGE_FILE), `${reviewScopeFiles.join('\n')}\n`, 'utf8');
+        // A resumed lineage skips scope discovery and its config creation, so its gate would
+        // read the list an earlier run recorded. Only a config that already exists is
+        // touched, so a fresh lineage still starts with no config, as the workflow requires.
+        if (readStoredLineageSessionId(loopType, lineageDir)) {
+          writeLineageValues(loopType, lineageDir, null, reviewScopeFiles);
+        }
+      }
 
       // Advertise a per-replica state dir hint to the child via SPECKIT_<KIND>_STATE_DIR.
       // This is DETECTION-ONLY: the native CLIs read their own home env (OPENCODE_HOME /
@@ -4895,7 +5006,7 @@ async function main() {
       }
 
       // After the containment snapshot, so the runner's own write is never charged to the lane.
-      writeLineageValues(loopType, lineageDir, rootLineageValues);
+      writeLineageValues(loopType, lineageDir, rootLineageValues, reviewScopeFiles);
 
       // Save subprocess stdout for salvage sweep (write failures in weak CLI executors).
       // An earlier attempt's log is kept beside this one, since it may be the only
@@ -5286,6 +5397,8 @@ module.exports = {
   validateClaudeConfigDir,
   buildLoopPrompt,
   normalizeReviewFocus,
+  readReviewScopeFile,
+  writeLineageValues,
   normalizeDepthMode,
   partitionFrontierNodes,
   resolveFrontierPartition,
