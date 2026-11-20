@@ -2597,6 +2597,14 @@ function planLayoutLinks(manifest, root, state) {
  *   this path as the engine's own, which permits pointing it at a new target.
  */
 function applyLayoutLink(root, link, isRetarget) {
+  // The plan judges the tree as it stood, so each write is judged again where
+  // its parent resolves now: every unlink and link below acts through it.
+  for (const linkPath of [link.path, link.replaces && link.replaces.path]) {
+    if (typeof linkPath !== 'string') continue;
+    if (!isWithin(canonicalPath(root), canonicalPath(path.dirname(path.resolve(root, linkPath))))) {
+      throw new Error('layout link path escapes the tree root: ' + linkPath);
+    }
+  }
   const replacement = replacedLinkState(root, link);
   if (replacement.state === 'refused') throw new Error(replacement.reason);
   if (replacement.state === 'pinned') fs.unlinkSync(replacement.replacedPath);
@@ -2883,19 +2891,52 @@ function layoutLinkEscape(root, manifest) {
   // makes the folders below it fresh, and nothing else can reach through a link
   // that resolves nowhere. A replaced link that does resolve is judged like any
   // other, since a command that does not replace it would write through it.
-  const parentStaysInTree = (treeRoot, linkPath, replacedPath) => {
+  //
+  // A parent folder another entry turns into a link is judged as that link,
+  // because the run writes the entries in turn and a later one is written
+  // through the link an earlier one made. The disk before the run cannot show
+  // it. A planned link is matched by where it will physically sit, so one
+  // written below an earlier planned link is found inside that link's target,
+  // and its own target resolves from there. Following the planned links ends
+  // at the first one met twice, since a cycle among them resolves nowhere and
+  // is refused.
+  const planned = new Map();
+  for (const link of manifest.layoutLinks || []) {
+    if (!link || typeof link.path !== 'string' || typeof link.target !== 'string') continue;
+    const linkAt = path.resolve(root, link.path);
+    planned.set(linkAt, link.target);
+  }
+  const parentStaysInTree = (treeRoot, linkPath, replacedPath, followed = new Set(), followedInto = []) => {
+    const top = path.resolve(treeRoot);
     const absolute = path.resolve(treeRoot, linkPath);
     const replaced = typeof replacedPath === 'string' ? path.resolve(treeRoot, replacedPath) : null;
-    const parts = path.relative(path.resolve(treeRoot), absolute).split(path.sep).slice(0, -1);
-    let current = path.resolve(treeRoot);
-    for (const part of parts) {
-      current = path.join(current, part);
+    const parts = path.relative(top, absolute).split(path.sep).slice(0, -1);
+    let current = top;
+    let onDisk = true;
+    for (let index = 0; index < parts.length; index += 1) {
+      current = path.join(current, parts[index]);
+      const spelled = [current];
+      for (const [into, linkAt] of followedInto) {
+        if (current !== into && isWithin(into, current)) spelled.push(path.join(linkAt, path.relative(into, current)));
+      }
+      const plannedAt = spelled.find((candidate) => planned.has(candidate));
+      if (plannedAt !== undefined) {
+        if (followed.has(plannedAt)) return false;
+        followed.add(plannedAt);
+        const into = path.resolve(path.dirname(current), planned.get(plannedAt));
+        const landed = path.join(into, ...parts.slice(index + 1), path.basename(absolute));
+        if (!isWithin(top, landed)) return isWithin(canonicalPath(treeRoot), canonicalPathWithoutLeaf(landed));
+        return parentStaysInTree(treeRoot, path.relative(top, landed), null, followed, [...followedInto, [into, plannedAt]]);
+      }
+      // A missing folder is made fresh, but a planned link may still sit below it.
+      if (!onDisk) continue;
       let stats;
       try {
         stats = fs.lstatSync(current);
       } catch (error) {
         if (!error || (error.code !== 'ENOENT' && error.code !== 'ENOTDIR')) throw error;
-        break;
+        onDisk = false;
+        continue;
       }
       if (stats.isSymbolicLink() && !fs.existsSync(current)) {
         if (current !== replaced) return false;
