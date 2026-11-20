@@ -8,16 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/005-phase-map-unanchored-append"
-    last_updated_at: "2026-11-20T15:51:39Z"
-    last_updated_by: "claude-opus"
-    recent_action: "Fixed the un-anchored phase map append in create.sh and added its regression case"
+    last_updated_at: "2026-11-20T16:26:23Z"
+    last_updated_by: "generate-context"
+    recent_action: "Aligned the phase-definitions map example with the template's emitted columns"
     next_safe_action: "None; the phase is complete"
+    packet_purpose: "Purpose: Adding a phase to a parent whose map has no anchor adds one row to the existing table and wraps the map in the anchor, so later appends take the anchored path."
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/005-phase-map-unanchored-append/implementation-summary.md"
+      - ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md"
+      - ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:6f726745d2ae1da2653bc2573f4ff91a55206a1cac189c7ae4c19cd21dea7b18"
       session_id: "scaffold-005-phase-map-unanchored-append"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "df9261d4-6090-4b52-892b-db52ff291ccd"
+      workspace: "/Users/michelkerkmeester/worktrees/public/492-opencode-shim-passthrough-honesty"
+      savedAt: "2026-11-20T16:26:23Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []
@@ -68,6 +79,8 @@ When the parent has no `phase-map` anchor but has a `## Phase Documentation Map`
 <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
 The suite ran first as a baseline at 12 of 12. Then the new case ran against the unfixed script and failed 3 of its 3 checks, reproducing the duplicate map. After the fix the suite passed 15 of 15. This phase was then created with the fixed `create.sh --phase --parent`. This parent's map was already anchored, so that run exercised the unchanged anchored path, not the new one.
+
+A follow-up aligned the reference with the template. `phase-definitions.md` §3 showed the map as Phase | Folder | Status | Description. `templates/packet-types/phase-parent.spec.md.tmpl` and the map `create.sh` writes for an existing parent both emit Phase | Folder | Focus | Status. The §3 example table now uses the emitted columns, and the template stays as it is, because changing its order would churn every existing parent. New rows follow each table's own header, so both orders still work. The decision row below cites the older §3 order as the shape of hand-written maps. Maps written that way still exist, which is why the header-ordered append stays. `test-phase-system.sh` passed 15 of 15 before and after the edit.
 <!-- /ANCHOR:how-delivered -->
 
 ---

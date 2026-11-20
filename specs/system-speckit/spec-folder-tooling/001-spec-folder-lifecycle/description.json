@@ -18,13 +18,15 @@
     "authoring",
     "guidance"
   ],
-  "lastUpdated": "2026-11-13T10:05:32.303Z",
+  "lastUpdated": "2026-11-20T16:26:23.163Z",
   "specId": "001",
   "folderSlug": "spec-folder-lifecycle",
   "parentChain": [
     "system-speckit",
     "spec-folder-tooling"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "20-11-26_17-26__follow-up-phase-definitions-md-section-3-example.md"
+  ]
 }
