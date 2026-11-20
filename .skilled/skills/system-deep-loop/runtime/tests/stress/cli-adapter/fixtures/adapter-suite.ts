@@ -450,6 +450,22 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
         expect(readOnlyArgs).toEqual(expect.arrayContaining([
           '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates',
         ]));
+        // The fan-out must carry a configured sandboxMode through to the pi argv and record
+        // the tool allowlist as a compensating control, not drop the mode on the way.
+        const fanoutFixture = useShim('success');
+        const readOnlyRun = await runAdapterFanout(fanoutFixture, { mode: 'sandbox-read-only', sandboxMode: 'read-only' });
+        expect(readOnlyRun.result.exitCode).toBe(0);
+        expect(readAdapterCaptures(fanoutFixture)[0].args).toEqual(expect.arrayContaining([
+          '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates',
+        ]));
+        expect(JSON.parse(readFileSync(`${readOnlyRun.lineageDir}/invocation-metadata.json`, 'utf8')).effectiveConfig)
+          .toMatchObject({ sandboxMode: 'read-only', sandboxEnforcement: 'compensating' });
+        const writableFixture = useShim('success');
+        const writableRun = await runAdapterFanout(writableFixture, { mode: 'sandbox-write', sandboxMode: 'workspace-write' });
+        expect(writableRun.result.exitCode).toBe(0);
+        expect(readAdapterCaptures(writableFixture)[0].args).not.toContain('--tools');
+        expect(JSON.parse(readFileSync(`${writableRun.lineageDir}/invocation-metadata.json`, 'utf8')).effectiveConfig)
+          .toMatchObject({ sandboxMode: 'workspace-write', sandboxEnforcement: 'none' });
       } else if (kind === 'cli-claude-code') {
         expect(readOnlyArgs).toEqual(expect.arrayContaining(['--permission-mode', 'plan']));
       } else if (kind === 'cli-devin') {
