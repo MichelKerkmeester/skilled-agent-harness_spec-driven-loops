@@ -1,5 +1,5 @@
 {
-  "manifestHash": "993d31c9057c6fa5c9d3e30376e7f730b93647e1458a47954d9f318943ab458e",
+  "manifestHash": "7d74a2db0aed3bb6c190361a7484f72edbf66e74fa85141c6d41523a4bc712e9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14752,9 +14752,6 @@
     "barter handover items": [
       "barter handover items"
     ],
-    "barter hooks read overlaydir": [
-      "barter hooks read overlayDir"
-    ],
     "barter host capture file command routing baseline": [
       "barter host capture file command routing baseline"
     ],
@@ -14769,9 +14766,6 @@
     ],
     "barter move overlays out of tree tasks": [
       "barter move overlays out of tree tasks"
-    ],
-    "barter move overlays summary": [
-      "barter move overlays summary"
     ],
     "barter overlay mechanics research": [
       "barter overlay mechanics research"
@@ -14809,14 +14803,8 @@
     "barter overlays move task list": [
       "barter overlays move task list"
     ],
-    "barter overlays moved to ai speckit overlays": [
-      "barter overlays moved to ai-speckit/overlays"
-    ],
     "barter overlays out of the vendored tree": [
       "barter overlays out of the vendored tree"
-    ],
-    "barter overlays relayout evidence": [
-      "barter overlays relayout evidence"
     ],
     "barter parity": [
       "barter parity"
@@ -14839,12 +14827,6 @@
     "barter re pin after rebasedonto": [
       "barter re-pin after rebasedOnto"
     ],
-    "barter re pin onto 063daae": [
-      "barter re-pin onto 063daae"
-    ],
-    "barter record base open item": [
-      "barter record-base open item"
-    ],
     "barter remove set operations after sets record": [
       "barter remove set operations after sets record"
     ],
@@ -14854,26 +14836,8 @@
     "barter repin and relayout plan": [
       "barter repin and relayout plan"
     ],
-    "barter repin and relayout summary": [
-      "barter repin and relayout summary"
-    ],
     "barter repin and relayout tasks": [
       "barter repin and relayout tasks"
-    ],
-    "barter review fixes": [
-      "barter review fixes"
-    ],
-    "barter review fixes goal": [
-      "barter review fixes goal"
-    ],
-    "barter review fixes implementation summary": [
-      "barter review fixes implementation summary"
-    ],
-    "barter review fixes plan": [
-      "barter review fixes plan"
-    ],
-    "barter review fixes tasks": [
-      "barter review fixes tasks"
     ],
     "barter state schema version 2": [
       "barter state schema version 2"
@@ -29365,9 +29329,6 @@
     "commit format research": [
       "commit format research"
     ],
-    "commit gate fails closed without an overlay manifest": [
-      "commit gate fails closed without an overlay manifest"
-    ],
     "commit got orphaned by reset": [
       "commit got orphaned by reset"
     ],
@@ -33189,6 +33150,9 @@
     ],
     "create sh parent packet corruption review": [
       "create.sh parent packet corruption review"
+    ],
+    "create sh parent phase map anchor": [
+      "create sh parent phase map anchor"
     ],
     "create sh path refreshes the track root": [
       "create sh path refreshes the track root"
@@ -46717,6 +46681,9 @@
     "duplicate packet number 001": [
       "duplicate packet number 001"
     ],
+    "duplicate phase documentation map": [
+      "duplicate phase documentation map"
+    ],
     "duplicate plugin id worktree": [
       "duplicate plugin id worktree"
     ],
@@ -48749,18 +48716,6 @@
     "epic sweep remediation phases": [
       "epic sweep remediation phases"
     ],
-    "epic verification": [
-      "epic verification"
-    ],
-    "epic verification implementation summary": [
-      "epic verification implementation summary"
-    ],
-    "epic verification plan": [
-      "epic verification plan"
-    ],
-    "epic verification tasks": [
-      "epic verification tasks"
-    ],
     "epistemic uncertainty tracking": [
       "epistemic uncertainty tracking"
     ],
@@ -50587,9 +50542,6 @@
     ],
     "fable subagent guard": [
       "fable subagent guard"
-    ],
-    "fable verification of the advisor epic": [
-      "fable verification of the advisor epic"
     ],
     "fabricated state log timestamps": [
       "fabricated state log timestamps"
@@ -81486,9 +81438,6 @@
     "overlaydir overlays barter hooks": [
       "overlayDir ../overlays barter hooks"
     ],
-    "overlaydir overlays evidence": [
-      "overlayDir ../overlays evidence"
-    ],
     "overlays folder beside the vendored tree": [
       "overlays folder beside the vendored tree"
     ],
@@ -85226,9 +85175,6 @@
     "phase 21 dsh remaining direct writers": [
       "phase 21 dsh remaining direct writers"
     ],
-    "phase 21 epic verification": [
-      "phase 21 epic verification"
-    ],
     "phase 21 follow up defect fixes": [
       "phase 21 follow up defect fixes"
     ],
@@ -86588,9 +86534,6 @@
     "phase 7 advisor name mention scoring": [
       "phase 7 advisor name mention scoring"
     ],
-    "phase 7 barter review fixes": [
-      "phase 7 barter review fixes"
-    ],
     "phase 7 checker debt closeout": [
       "phase 7 checker debt closeout"
     ],
@@ -86845,9 +86788,6 @@
     ],
     "phase 8 project scoped state": [
       "phase 8 project scoped state"
-    ],
-    "phase 8 push and repin": [
-      "phase 8 push and repin"
     ],
     "phase 8 quality packet fixes": [
       "phase 8 quality packet fixes"
@@ -87290,6 +87230,18 @@
     ],
     "phase map sync tasks": [
       "phase map sync tasks"
+    ],
+    "phase map unanchored append": [
+      "phase map unanchored append"
+    ],
+    "phase map unanchored append implementation summary": [
+      "phase map unanchored append implementation summary"
+    ],
+    "phase map unanchored append plan": [
+      "phase map unanchored append plan"
+    ],
+    "phase map unanchored append tasks": [
+      "phase map unanchored append tasks"
     ],
     "phase name placeholder": [
       "phase name placeholder"
@@ -92411,21 +92363,6 @@
     "push and create a pull request": [
       "push and create a pull request"
     ],
-    "push and repin": [
-      "push and repin"
-    ],
-    "push and repin goal": [
-      "push and repin goal"
-    ],
-    "push and repin implementation summary": [
-      "push and repin implementation summary"
-    ],
-    "push and repin plan": [
-      "push and repin plan"
-    ],
-    "push and repin tasks": [
-      "push and repin tasks"
-    ],
     "push gate git timeout": [
       "push gate git timeout"
     ],
@@ -92440,9 +92377,6 @@
     ],
     "push gate git timeout tasks": [
       "push gate git timeout tasks"
-    ],
-    "push skilled main with the overlay fixes": [
-      "push skilled main with the overlay fixes"
     ],
     "push tickets to clickup": [
       "push tickets to clickup"
@@ -96281,15 +96215,6 @@
     "relaunch test speed tasks": [
       "relaunch test speed tasks"
     ],
-    "relayout rollback design": [
-      "relayout rollback design"
-    ],
-    "relayout rollback implementation summary": [
-      "relayout rollback implementation summary"
-    ],
-    "relayout rollback on a failed rename": [
-      "relayout rollback on a failed rename"
-    ],
     "release alignment remediation": [
       "release alignment remediation"
     ],
@@ -98307,9 +98232,6 @@
     ],
     "repin acceptance criteria": [
       "repin acceptance criteria"
-    ],
-    "repin barter onto the pushed skilled commit": [
-      "repin barter onto the pushed skilled commit"
     ],
     "repin decision record": [
       "repin decision record"
@@ -109554,9 +109476,6 @@
     ],
     "sibling overlay folder backup area plan": [
       "sibling overlay folder backup area plan"
-    ],
-    "sibling overlay folder outside the git repository refused": [
-      "sibling overlay folder outside the git repository refused"
     ],
     "sibling overlay folder overlaydir overlays": [
       "sibling overlay folder overlayDir ../overlays"
@@ -134718,9 +134637,6 @@
     ],
     "verifier tail window arm": [
       "verifier tail-window arm"
-    ],
-    "verify advisor ollama changes": [
-      "verify advisor ollama changes"
     ],
     "verify alignment drift baseline delta": [
       "verify alignment drift baseline delta"

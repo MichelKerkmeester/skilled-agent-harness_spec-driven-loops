@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/005-phase-map-unanchored-append",
+  "description": "Phase 5: phase-map-unanchored-append",
+  "keywords": [
+    "phase",
+    "phase-map-unanchored-append"
+  ],
+  "lastUpdated": "2026-11-20T15:51:39.394Z",
+  "specId": "005",
+  "folderSlug": "phase-map-unanchored-append",
+  "parentChain": [
+    "system-speckit",
+    "spec-folder-tooling",
+    "001-spec-folder-lifecycle"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

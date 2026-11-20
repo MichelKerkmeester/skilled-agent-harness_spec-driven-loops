@@ -1939,6 +1939,73 @@ if [[ "$PHASE_MODE" = true ]]; then
             PHASE_MAP_EXISTS=true
         fi
 
+        # A hand-written parent can carry the map heading and table without the
+        # anchor. Appending a fresh section there would leave two maps, so the
+        # existing section is wrapped in the anchor and then takes the rows like
+        # any anchored map. The heading match is the one sync-phase-map-status
+        # uses. The new rows follow that table's own column order, since a
+        # hand-written map often puts Status before Description.
+        if [[ "$APPEND_TO_EXISTING_PARENT" = true ]] && [[ "$PHASE_MAP_EXISTS" = false ]]; then
+            _map_header=$(awk '
+                !found && tolower($0) ~ /^##[ \t]+phase documentation map[ \t]*$/ { found=1; next }
+                found && /^##[ \t]/ { exit }
+                found && /^\|/ { print; exit }
+            ' "$PARENT_SPEC")
+            if [[ -n "$_map_header" ]]; then
+                >&2 echo "[speckit] Existing PHASE DOCUMENTATION MAP has no phase-map anchor; adding the anchor and appending rows"
+                PHASE_ROWS=$(printf '%s\n' "$PHASE_ROWS" | awk -v header="$_map_header" '
+                    function trim(s) { gsub(/^[ \t]+|[ \t]+$/, "", s); return s }
+                    BEGIN { n = split(header, h, "|") }
+                    {
+                        split($0, f, "|");
+                        out = "|";
+                        focus_used = 0;
+                        for (i = 2; i < n; i++) {
+                            col = tolower(trim(h[i]));
+                            gsub(/[`*]/, "", col);
+                            if (col == "phase") value = trim(f[2]);
+                            else if (col == "folder") value = trim(f[3]);
+                            else if (col == "status") value = trim(f[5]);
+                            else if (!focus_used) { value = trim(f[4]); focus_used = 1 }
+                            else value = "";
+                            out = out " " value " |";
+                        }
+                        print out;
+                    }
+                ')
+                _tmp_parent_spec=$(mktemp)
+                PHASE_TMP_FILES+=("$_tmp_parent_spec")
+                # The section ends at the next level-2 heading, rule or anchor,
+                # or at the end of the file. The closing anchor goes right after
+                # its last line, which also ends a table that closes the file.
+                awk '
+                    function flush_blanks() { while (blanks > 0) { print ""; blanks-- } }
+                    state == 0 && tolower($0) ~ /^##[ \t]+phase documentation map[ \t]*$/ {
+                        print "<!-- ANCHOR:phase-map -->";
+                        print;
+                        state = 1;
+                        next;
+                    }
+                    state == 1 && (/^##[ \t]/ || /^---[ \t]*$/ || /^<!-- \/?ANCHOR:/) {
+                        print "<!-- /ANCHOR:phase-map -->";
+                        flush_blanks();
+                        state = 2;
+                    }
+                    state == 1 && /^[ \t]*$/ { blanks++; next }
+                    state == 1 { flush_blanks() }
+                    { print }
+                    END {
+                        if (state == 1) {
+                            print "<!-- /ANCHOR:phase-map -->";
+                            flush_blanks();
+                        }
+                    }
+                ' "$PARENT_SPEC" > "$_tmp_parent_spec"
+                mv "$_tmp_parent_spec" "$PARENT_SPEC"
+                PHASE_MAP_EXISTS=true
+            fi
+        fi
+
         if [[ "$APPEND_TO_EXISTING_PARENT" = true ]] && [[ "$PHASE_MAP_EXISTS" = true ]]; then
             >&2 echo "[speckit] Existing PHASE DOCUMENTATION MAP found; appending new phase rows and handoffs"
             _tmp_parent_spec=$(mktemp)

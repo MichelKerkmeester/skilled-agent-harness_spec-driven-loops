@@ -112,6 +112,7 @@ Summary of the child phase folders and their changes.
 | 2 | `002-relocate-specs-folder/` | Establish the canonical root location | Complete — all 6 phases closed, T015 operator review confirmed 2026-08-08 |
 | 3 | `003-spec-folder-tooling/` | Align packet creation, numbering, archiving, and track lists | Complete |
 | 4 | `004-write-recipe-fixes/` | Correct recipe arguments, commit steps, and staged-set checks | Complete |
+| 5 | `005-phase-map-unanchored-append/` | Add a row to an un-anchored parent phase map instead of a second map | Complete |
 
 ### Phase Transition Rules
 
@@ -127,6 +128,7 @@ Summary of the child phase folders and their changes.
 | 001-spec-root-resolution-hardening | 002-relocate-specs-folder | 001-spec-root-resolution-hardening validates on its own | `validate.sh --strict` on 001-spec-root-resolution-hardening |
 | 002-relocate-specs-folder | 003-spec-folder-tooling | 002-relocate-specs-folder validates on its own | `validate.sh --strict` on 002-relocate-specs-folder |
 | 003-spec-folder-tooling | 004-write-recipe-fixes | 003-spec-folder-tooling validates on its own | `validate.sh --strict` on 003-spec-folder-tooling |
+| 004-write-recipe-fixes | 005-phase-map-unanchored-append | 004-write-recipe-fixes validates on its own | `validate.sh --strict` on 004-write-recipe-fixes |
 <!-- /ANCHOR:phase-map -->
 
 ---
