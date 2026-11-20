@@ -468,7 +468,7 @@ describe('frontier-admit review root cap and commit-range scope', () => {
       proposals: [{ parentId: admitted[0], question: 'which child opens past the cap', scope: 'src/part-1/a.ts', evidence: 'src/part-1/a.ts:2' }],
       target: 'review',
     });
-    expect(childPruned).toEqual([{ nodeId: expect.any(String), reason: 'fanout' }]);
+    expect(childPruned).toEqual([{ nodeId: expect.any(String), reason: 'node-cap' }]);
   });
 
   it('keeps a research seed at its documented six depth-1 nodes', () => {

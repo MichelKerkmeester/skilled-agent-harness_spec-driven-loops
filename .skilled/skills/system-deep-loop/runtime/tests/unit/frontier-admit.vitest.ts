@@ -933,6 +933,34 @@ describe('frontier node cap', () => {
   it('keeps an explicit cap as an override', () => {
     expect(capsFor({ maxIterations: 16, expansiveDepth: { maxFrontierNodes: 12 } }).maxFrontierNodes).toBe(12);
   });
+
+  // The run-wide cap and the per-parent cap prune for different reasons, so the
+  // store tells an operator which one bit: a 10-iteration run with three seeds
+  // has two growth slots, and the proposal after them hits the run cap while no
+  // parent is near its own children cap.
+  it('prunes past the run-wide node cap as node-cap, apart from the per-parent fanout cap', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'frontier-cap-'));
+    tempDirs.push(dir);
+    writeFileSync(join(dir, CONFIG_FILE), JSON.stringify({ maxIterations: 10, expansiveDepth: { maxDepth: 3 } }), 'utf8');
+    const seeded = seedNodes({
+      artifactDir: dir,
+      iteration: 0,
+      candidates: [1, 2, 3].map((index) => makeProposal(`which seed question number ${index} holds`)),
+    });
+    expect(seeded.admitted).toHaveLength(3);
+
+    const growth = admitProposals({
+      artifactDir: dir,
+      iteration: 1,
+      proposals: seeded.admitted.map((parentId, index) => ({
+        ...makeProposal(`which growth question number ${index + 1} opens`),
+        parentId,
+      })),
+    });
+
+    expect(growth.admitted).toHaveLength(2);
+    expect(growth.pruned).toEqual([{ nodeId: expect.any(String), reason: 'node-cap' }]);
+  });
 });
 
 // A defaulted expansive budget is sized from the seed: two iterations per node on

@@ -720,14 +720,14 @@ function scopeInsideReviewTarget(scope, config) {
 }
 
 /**
- * Run the six admission checks in order and name the first that fails.
+ * Run the admission checks in order and name the first that fails.
  *
  * @param {Object} proposal - The proposed node.
  * @param {Map<string, Object>} nodes - The current node store.
  * @param {Object} caps - The caps from readCaps.
  * @param {string[]} knownTexts - Question texts the run already holds.
  * @param {{reviewConfig?: Object, seeding?: boolean}} [options] - Review target config and whether this is the seed.
- * @returns {string|null} The failing check's name (relevance, dedupe, depth, fanout, budget or cycle), or null to admit.
+ * @returns {string|null} The failing check's name (relevance, dedupe, depth, fanout, node-cap, budget or cycle), or null to admit.
  */
 function checkProposal(proposal, nodes, caps, knownTexts, options = {}) {
   if (!isPlainObject(proposal)) return 'relevance';
@@ -769,13 +769,13 @@ function checkProposal(proposal, nodes, caps, knownTexts, options = {}) {
 
   // 4. fan-out
   if (countLiveChildren(nodes, proposal.parentId) >= childCapFor(proposal.parentId, caps)) return 'fanout';
-  // The run-wide node cap shares the fan-out reason: both bound how wide the
-  // frontier may grow, and the six reason names are the store's contract. A
-  // depth-1 seed answers only to the root-children cap: the run cap is half the
-  // iteration budget, so on a small budget it would prune most of the seed before
-  // any iteration ran. Seeds still count toward the live total later checked here.
+  // The run-wide node cap prunes with its own reason, so the store tells an operator
+  // whether the run ran out of nodes or one parent ran out of children. A depth-1
+  // seed answers only to the root-children cap: the run cap is half the iteration
+  // budget, so on a small budget it would prune most of the seed before any
+  // iteration ran. Seeds still count toward the live total later checked here.
   const seeding = isPlainObject(options) && options.seeding === true;
-  if (!seeding && countLiveNodes(nodes) >= caps.maxFrontierNodes) return 'fanout';
+  if (!seeding && countLiveNodes(nodes) >= caps.maxFrontierNodes) return 'node-cap';
 
   // 5. budget
   const parent = proposal.parentId === 'root' ? null : nodes.get(proposal.parentId);
