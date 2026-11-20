@@ -47,7 +47,7 @@ describe('review-depth convergence v2 fixtures', () => {
     const workflow = readWorkflow();
     expect(workflow).toContain('candidateCoverageGate');
     expect(workflow).toContain('graphlessFallbackGate');
-    expect(workflow).toMatch(/--loop-type "review"[^\n]*--record-blocked-stop/);
+    expect(workflow).toMatch(/--loop-type "review"[^\n]*\{record_blocked_stop_arg\}/);
     expect(workflow).toMatch(/gate_results_array_json: "One \{gateId,status,reasonCode,evidenceDigest\} row per legal-stop gate \([^)]*graphlessFallbackGate[^)]*\)/);
   });
 });

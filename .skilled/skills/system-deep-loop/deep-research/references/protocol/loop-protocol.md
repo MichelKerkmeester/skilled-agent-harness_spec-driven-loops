@@ -10,7 +10,7 @@ trigger_phrases:
   - "research synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.14.32.0
+version: 1.14.33.0
 ---
 
 # Loop Protocol Reference
@@ -229,7 +229,7 @@ When the convergence script forms a STOP candidate, it evaluates the quality gua
 4. The loop continues until BOTH convergence AND quality guards pass simultaneously
 5. Guard checks apply to every STOP candidate except the hard max-iteration stop - CONTINUE and STUCK_RECOVERY bypass this step
 
-If the legal-stop decision tree returns `blocked`, the `blocked_stop` JSONL event MUST be in the state log before the loop continues. `convergence.cjs` records it: the workflow runs it with `--record-blocked-stop`, and on a `BLOCKED` decision the script appends the row through the append gateway, once per run and blocker set, and reports it as `blocked_stop_record` with status `recorded`, `already_recorded` or `failed`. A `failed` record makes the script exit with the gateway's status after printing the decision, and the workflow treats that as a gateway refusal and halts rather than writing the row by hand. `step_emit_blocked_stop` logs the block and appends nothing, so the row is never written twice. Reducers and dashboards consume the persisted event; they must not infer blocked-stop state solely from prose logs.
+If the legal-stop decision tree returns `blocked`, the `blocked_stop` JSONL event MUST be in the state log before the loop continues. `convergence.cjs` records it: the workflow runs it with `--record-blocked-stop` (live run only; a dry run withholds it, so it appends no blocked-stop row), and on a `BLOCKED` decision the script appends the row through the append gateway, once per run and blocker set, and reports it as `blocked_stop_record` with status `recorded`, `already_recorded` or `failed`. A `failed` record makes the script exit with the gateway's status after printing the decision, and the workflow treats that as a gateway refusal and halts rather than writing the row by hand. `step_emit_blocked_stop` logs the block and appends nothing, so the row is never written twice. Reducers and dashboards consume the persisted event; they must not infer blocked-stop state solely from prose logs.
 
 #### Step 2d: Rejected Pattern Cache Check
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "review graph events"
 importance_tier: important
 contextType: implementation
-version: 1.11.7.0
+version: 1.11.8.0
 ---
 
 # Deep Review State Log Records
@@ -195,7 +195,7 @@ The composite key `(spec_folder, loop_type, session_id, id)` in `runtime/lib/cov
 
 ### Blocked-Stop Event
 
-When the review legal-stop decision tree returns `blocked`, `convergence.cjs` records a first-class `blocked_stop` event instead of silently overriding STOP to CONTINUE. The workflow runs it with `--record-blocked-stop`, and it appends a `deep_review.blocked_stop_recorded` event through the append gateway, once per run and blocker set, which projects to the row below.
+When the review legal-stop decision tree returns `blocked`, `convergence.cjs` records a first-class `blocked_stop` event instead of silently overriding STOP to CONTINUE. The workflow runs it with `--record-blocked-stop` (live run only; a dry run withholds it, so it appends no blocked-stop row), and it appends a `deep_review.blocked_stop_recorded` event through the append gateway, once per run and blocker set, which projects to the row below.
 
 ```json
 {

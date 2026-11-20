@@ -80,6 +80,22 @@ describe.each(FILES)('%s', (file) => {
     expect(lines.length).toBe(1);
   });
 
+  // The convergence step runs on a dry run as a preview, and --record-blocked-stop
+  // makes the script append a real row on a BLOCKED decision, so the flag is bound
+  // per run and withheld whenever the run is a dry run.
+  it('withholds --record-blocked-stop from the convergence call on a dry run', () => {
+    const invocation = text
+      .split('\n')
+      .find((line) => line.includes('runtime/scripts/convergence.cjs')) ?? '';
+    expect(invocation).not.toContain('--record-blocked-stop');
+    expect(invocation).toContain('{record_blocked_stop_arg}');
+
+    const binding = (parseYaml(text) as any)?.workflow?.step_bind_record_blocked_stop_arg;
+    expect(binding?.branch_on).toBe('dry_run == true');
+    expect(binding?.if_dry_run?.bind?.record_blocked_stop_arg).toBe('');
+    expect(binding?.if_live_run?.bind?.record_blocked_stop_arg).toBe('--record-blocked-stop');
+  });
+
   if (file.startsWith('deep-review')) {
     it('holds no hardcoded 0.05 threshold', () => {
       expect(text).not.toMatch(/0\.05\b/);
