@@ -90,7 +90,7 @@ The diagram shows the bridged plugins. Every entry file in the folder is one.
 ├── tests/                     # regression suites for the entry files
 │   ├── v2-bridge.test.cjs     # covers the bridge itself
 │   ├── plugin-inventory.test.cjs   # inventory, unmapped-hook and event-name guards
-│   ├── plugin-inventory.json       # native-dual exceptions and event-name lists
+│   ├── plugin-inventory.json       # self-registered exceptions and event-name lists
 │   ├── v2-hard-plugins.test.cjs    # selected hard cases: expected registrations and behavior
 │   ├── v2-registration.test.cjs    # checks the export shape for every bridged plugin
 │   └── ...                    # the remaining behavior suites
@@ -188,7 +188,7 @@ Four capabilities the bridge cannot carry:
 6. Add the file to the inventory table and directory tree in `README.md` and to the topology in Section 2 here, and update the dated file count in both documents. The inventory in `tests/helpers/plugin-inventory.cjs` is the source of truth for which plugins the v2 suites cover.
 7. Run the plugin suite and the doctor battery.
 
-A plugin that needs an OpenCode 2 registration the bridge does not map, such as a command, skips steps 2 and 3. It default-exports its own `{ id, setup }`, and it goes in `nativeDual` in `tests/plugin-inventory.json` with its reason, and its v2 check goes in `PLUGINS` in `tests/v2-hard-plugins.test.cjs`.
+A plugin that needs an OpenCode 2 registration the bridge does not map, such as a command, skips steps 2 and 3. It default-exports its own `{ id, setup }`, and it goes in `selfRegistered` in `tests/plugin-inventory.json` with its reason, and its v2 check goes in `PLUGINS` in `tests/v2-hard-plugins.test.cjs`.
 
 ---
 

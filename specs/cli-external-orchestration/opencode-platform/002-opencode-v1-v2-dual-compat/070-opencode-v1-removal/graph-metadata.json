@@ -203,20 +203,20 @@
     ],
     "causal_summary": "OpenCode 2.3.2 is the only version in use",
     "created_at": "2026-11-19T09:04:20Z",
-    "last_save_at": "2026-11-20T12:13:07.138Z",
+    "last_save_at": "2026-11-20T15:09:25.858Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:a71a449ceef6196e9a06cbc571de0b799b9d875b273bf9327a9ed29519582f01",
+    "source_fingerprint": "sha256:2d0f1134258c251716635c80f6f5e243e923ec8bdfda51d4f9ad340e67a3b5a5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "441efc86844f08efacfbeba16f1c943bcb4191b290b561272962dc9eabb4a021",
-      "decision-record.md": "69eedd78bf88885d5538057de4171f51b4cf13038192dfb57b3c2f426bc56d11"
+      "decision-record.md": "9959ba02f82ade5f47b3db8c727d53ca5768a9399e3b1ee440252537640a8f15"
     },
     "last_active_child_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes",
-    "last_active_at": "2026-11-20T12:13:07.138Z"
+    "last_active_at": "2026-11-20T15:09:25.858Z"
   }
 }

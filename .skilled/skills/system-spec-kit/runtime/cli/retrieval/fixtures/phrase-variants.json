@@ -1,5 +1,5 @@
 {
-  "manifestHash": "19bfb57eaf9f7c14b481f5a0445ead12ced27365e09efb0404ac4a2e0dcba8f6",
+  "manifestHash": "8199b4e12113e8cc6fa12a711234b91ba2a37f1cfca6e5cfa0bcf297c6cf7af4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -15106,6 +15106,9 @@
     "battery misses tasks": [
       "battery misses tasks"
     ],
+    "battery private server loopback": [
+      "battery private server loopback"
+    ],
     "bayesian scorer": [
       "bayesian scorer"
     ],
@@ -24223,6 +24226,9 @@
     "cli opencode 2 0 0 0": [
       "cli-opencode 2.0.0.0"
     ],
+    "cli opencode 2 0 1 0": [
+      "cli-opencode 2.0.1.0"
+    ],
     "cli opencode authoring complete": [
       "cli-opencode authoring complete"
     ],
@@ -24492,6 +24498,9 @@
     ],
     "cli opencode v2 0 0 0": [
       "cli-opencode v2.0.0.0"
+    ],
+    "cli opencode v2 0 1 0": [
+      "cli-opencode v2.0.1.0"
     ],
     "cli opencode version detection": [
       "cli-opencode version detection"
@@ -38604,6 +38613,9 @@
     ],
     "deep research reducer implementation": [
       "deep research reducer implementation"
+    ],
+    "deep research reducer test next focus": [
+      "deep-research reducer test next focus"
     ],
     "deep research reducers": [
       "deep research reducers",
@@ -84575,6 +84587,9 @@
     "phase 15 plan": [
       "phase 15 plan"
     ],
+    "phase 15 reducer test focus contract": [
+      "phase 15 reducer test focus contract"
+    ],
     "phase 15 results": [
       "phase 15 results"
     ],
@@ -95045,6 +95060,18 @@
     ],
     "reducer records terminal stop metadata": [
       "reducer records terminal stop metadata"
+    ],
+    "reducer test focus contract": [
+      "reducer test focus contract"
+    ],
+    "reducer test focus contract implementation summary": [
+      "reducer test focus contract implementation summary"
+    ],
+    "reducer test focus contract plan": [
+      "reducer test focus contract plan"
+    ],
+    "reducer test focus contract tasks": [
+      "reducer test focus contract tasks"
     ],
     "reducer traceability and refines": [
       "reducer traceability and refines"

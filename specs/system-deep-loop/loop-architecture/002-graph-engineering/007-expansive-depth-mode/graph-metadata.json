@@ -17,7 +17,8 @@
     "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode",
     "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene",
     "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration",
-    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment"
+    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment",
+    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract"
   ],
   "manual": {
     "depends_on": [],
@@ -225,7 +226,7 @@
     ],
     "causal_summary": "The deep-research and deep-review loops converge on the three to five questions seeded at init and stop once novelty drops, so a broad target such as \"research the last 100 commits for bugs, drift and improvements\" or \"analyze system-skill-advisor for chat-time auto-utilization\" gets a narrow, shallow answer",
     "created_at": "2026-11-17T07:53:58Z",
-    "last_save_at": "2026-11-20T13:48:58.740Z",
+    "last_save_at": "2026-11-20T14:54:07.415Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -237,10 +238,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:50ae4e70cc96c7676d2e819a9fb5c8b4c3afde9887faa068f93fe4a4cc7643fd",
+    "source_fingerprint": "sha256:e4ec4609f99e634859cd1db098fac564af0a65e3ea808e329023638bb844a511",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4d621eb6239408072e0894b025463c8c3b4db65709c7ab74f8a951a4a3664fac",
+      "spec.md": "a1263c916260981fafa3c8771ecdae9f5c17d816d333c2c93ea0fb2b1441b1b9",
       "plan.md": "6a56a3aaa01f0331b6c583bb878c61d031938abfeddad6ebb39c9e3ea0cac9fd",
       "tasks.md": "2bd96d25454ae3e7bf9fea94cadc73dac0e5379c35aaeb83792afd7a17257727",
       "decision-record.md": "c2dc20f9b0759e820235c4c7330b1c06bf798c2a321c0d483e52362a7e951510",
