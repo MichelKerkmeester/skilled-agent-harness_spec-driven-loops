@@ -167,8 +167,12 @@ export type LineageCompletionInput = {
 
 const MAX_ITERATIONS_STOP_REASON = 'maxIterationsReached';
 
+// The integer iteration counts first and a numeric run is the fallback, as the state reader
+// counts them, because a leaf may write its session id string in run on every iteration.
 function distinctIterationCount(iterations: readonly Record<string, unknown>[]): number {
-  const runs = new Set(iterations.map((record) => String(record.run ?? record.iteration)));
+  const runs = new Set(iterations
+    .map((record) => (Number.isInteger(record.iteration) ? Number(record.iteration) : Number(record.run)))
+    .filter((run) => Number.isInteger(run)));
   return runs.size;
 }
 

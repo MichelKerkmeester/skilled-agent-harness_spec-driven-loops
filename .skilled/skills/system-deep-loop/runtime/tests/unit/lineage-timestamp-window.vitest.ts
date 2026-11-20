@@ -391,6 +391,11 @@ describe('checkLineageCompletion — research stop evidence', () => {
       .toMatchObject({ complete: false, failure: 'max_iterations_unproven' });
   });
 
+  it('counts a cap stop by integer iteration when the leaf writes its session id in run', () => {
+    const rows = researchFixtureRows('deepseek').map((row) => (row.type === 'iteration' ? { ...row, run: 'sess-abc' } : row));
+    expect(checkResearch(rows)).toEqual({ complete: true });
+  });
+
   it('fails a cap stop when the lineage has no iteration cap to check it against', () => {
     expect(checkResearch(researchFixtureRows('deepseek'), null))
       .toMatchObject({ complete: false, failure: 'max_iterations_unproven' });
