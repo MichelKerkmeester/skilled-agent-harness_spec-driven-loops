@@ -1,0 +1,47 @@
+{
+  "iteration": 5,
+  "focus": "Frontier node F-1-005: security",
+  "frontierNodeId": "F-1-005",
+  "dimensions": ["security"],
+  "filesReviewed": [
+    "barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:1-169",
+    "barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js:1-50",
+    "barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:160-215",
+    "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:83-118",
+    "barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-overlay-guard.test.cjs:121-155",
+    "barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/tests/barter-overlay-guard-core.test.cjs:147-220",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/spec.md:64,108-115"
+  ],
+  "findingDetails": [],
+  "traceabilityChecks": [
+    { "protocolId": "spec_code", "status": "pass", "gateClass": "hard", "applicable": true, "evidence": ["specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/spec.md:108-115", "barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:60-84", "barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:178-187", "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:83-92"], "summary": "All four hooks resolve the folder at the path the spec file table names, and the guard core and git-write gate agree on both copies." },
+    { "protocolId": "checklist_evidence", "status": "partial", "gateClass": "hard", "applicable": true, "evidence": ["specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/spec.md:111", "barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-overlay-guard.test.cjs:121-155"], "summary": "The guard core and plugin carry recorded evidence for their fail-open decisions; the pre-commit hook still has none, which is R2-P2-001." }
+  ],
+  "newFindingsRatio": 0.0,
+  "noveltyJustification": "No new findings. Every bypass route the move could have opened is closed by a name-locked layout match, a canonical containment test, or an absolute target path, and the remaining fail-open surfaces are documented, non-silent and pinned by tests. weightedNew is 0, so the ratio is 0.0.",
+  "durationMs": 205000,
+  "reviewDepthApplicability": { "scopeClass": "complex", "enforcement": "strict", "reason": "Four hooks across two runtimes, each with a fail-open or fail-closed decision to judge against a documented contract.", "evidenceRefs": ["barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:52-84", "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:83-92"] },
+  "targetSelection": { "selectedTargets": ["barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs", "barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js", "barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs", "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit"], "selectionReason": "The frontier node F-1-005 scope names the overlay folder, the OpenCode plugins and the sk-git hook; the pre-commit hook is the fourth hook the phase 005 spec names.", "discoveryMethods": ["direct_read", "exact_search"], "omittedHighRiskTargets": ["barter/ai-speckit/overlays/repin-runs (run history, not hook source)"], "graphStatus": "unavailable", "semanticSearchStatus": "unavailable", "evidenceRefs": ["barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:52-58"] },
+  "searchCoverage": { "requiredBugClasses": ["path_traversal", "symlink_escape", "guard_scope_mismatch", "fail_open_on_missing_input"], "covered": ["path_traversal", "symlink_escape", "guard_scope_mismatch", "fail_open_on_missing_input"], "ruledOut": ["path_traversal", "symlink_escape", "guard_scope_mismatch", "fail_open_on_missing_input"], "deferred": [], "blocked": [], "graphCoverageMode": "graphless_fallback" },
+  "searchLedger": [
+    { "id": "SL-017", "dimension": "security", "targetRefs": ["barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs"], "bugClass": "symlink_escape", "hypothesis": "A planted overlays folder can steer the guard core at a different manifest", "searchActions": [{ "method": "direct_read", "queryOrPath": "matchLayout:52-58 and findBarterOverlays:60-84", "result": "folder must be exactly <parent>/overlays, tree must hold the engine, folder must hold the manifest; two candidates at the same depth", "evidenceRefs": ["barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:52-58"] }], "disposition": "ruled_out", "ruledOutReason": "All three layout conditions are name-locked and each candidate rejects the other anchor.", "rationale": "The guard resolves from its own realpath rather than scanning." },
+    { "id": "SL-018", "dimension": "security", "targetRefs": ["barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js"], "bugClass": "path_traversal", "hypothesis": "The plugin sessionDir can steer the guard at a path outside the tree", "searchActions": [{ "method": "direct_read", "queryOrPath": "guard:139-158 and resolveSessionPath:138-140", "result": "target is canonicalized and passed absolute, so the engine cwd cannot change it", "evidenceRefs": ["barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:138-158"] }], "disposition": "ruled_out", "ruledOutReason": "The target reaches the engine as an absolute canonical path.", "rationale": "The cwd-relative resolution in the engine is neutralised by the absolute argument." },
+    { "id": "SL-019", "dimension": "security", "targetRefs": ["barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs"], "bugClass": "guard_scope_mismatch", "hypothesis": "aiSpeckitRoot resolves to different roots for the applied and overlay-source copies", "searchActions": [{ "method": "direct_read", "queryOrPath": "aiSpeckitRoot:178-187", "result": "five dirname hops from the realpath; both copies sit five levels below their anchor", "evidenceRefs": ["barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:178-187"] }], "disposition": "ruled_out", "ruledOutReason": "Both copies land on <ai-speckit> and probe the same sibling manifest.", "rationale": "The move preserved the depth deliberately." },
+    { "id": "SL-020", "dimension": "security", "targetRefs": ["barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit"], "bugClass": "fail_open_on_missing_input", "hypothesis": "The TREE_ROOT rewrite block can be steered into skipping the overlay gate", "searchActions": [{ "method": "direct_read", "queryOrPath": "pre-commit:83-118", "result": "a rewrite that lands on a folder without the engine prints BLOCKED and exits 1", "evidenceRefs": ["barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:95-100"] }], "disposition": "ruled_out", "ruledOutReason": "The engine probe after the rewrite fails closed with exit 1.", "rationale": "The rewrite can only move TREE_ROOT to a folder that must then hold the engine." }
+  ],
+  "graphEvents": [
+    { "type": "node", "id": "N-F1-005", "kind": "SLICE", "label": "Frontier node F-1-005 Barter hooks" },
+    { "type": "node", "id": "N-GUARDCORE", "kind": "FILE", "label": "barter-overlay-guard-core.cjs" },
+    { "type": "node", "id": "N-WRITEGATE", "kind": "FILE", "label": "barter-git-write-gate.mjs" },
+    { "type": "edge", "id": "E-15", "source": "N-F1-005", "target": "N-GUARDCORE", "relation": "COVERS" },
+    { "type": "edge", "id": "E-16", "source": "N-F1-005", "target": "N-WRITEGATE", "relation": "COVERS" }
+  ],
+  "classification": "no new findings; guard layout match, canonical containment, absolute target and the pre-commit rewrite all fail closed",
+  "ruledOut": [
+    { "direction": "a planted overlays folder can steer the guard core at a different manifest", "reason": "matchLayout requires the folder to be exactly <parent>/overlays, the tree to hold the engine and the folder to hold the manifest; findBarterOverlays tries only the two anchors its realpath implies" },
+    { "direction": "the plugin sessionDir can steer the guard at a path outside the tree", "reason": "guard passes an absolute canonical target, so the engine cwd cannot change it" },
+    { "direction": "aiSpeckitRoot resolves to different roots for the applied and overlay-source copies", "reason": "both sit five levels below their anchor and both probe the same sibling manifest" },
+    { "direction": "the pre-commit rewrite block can be steered into skipping the overlay gate", "reason": "a rewrite that lands on a folder without the engine exits 1 with BLOCKED" },
+    { "direction": "the guard core fail-open is silent", "reason": "warnCoreFailure writes a named stderr line and barter-overlay-guard.test.cjs:121-155 asserts exactly one stderr line and no throw" }
+  ]
+}

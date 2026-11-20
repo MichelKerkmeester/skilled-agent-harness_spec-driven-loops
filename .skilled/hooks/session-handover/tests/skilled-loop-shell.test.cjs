@@ -35,13 +35,21 @@ const INTERACTIVE = {
 };
 
 const PASSTHROUGH = {
-  claude: [['-p', 'hi'], ['--print'], ['--version'], ['-h'], ['doctor'], ['mcp', 'list'], ['--bg']],
+  // Claude's attach and OpenCode's mini open a session, but a hop cannot rebuild either.
+  claude: [
+    ['-p', 'hi'], ['--print'], ['--version'], ['-h'], ['doctor'], ['mcp', 'list'], ['--bg'],
+    ['attach', 'some-name'],
+  ],
   pi: [['-p', 'hi'], ['--version'], ['install', 'npm:x'], ['config'], ['--mode', 'rpc'], ['--list-models']],
   opencode: [
     ['run', 'hi'], ['serve'], ['--version'], ['-h'], ['models'],
     ['api'], ['service'], ['reload'], ['pair'], ['mini'],
+    ['--completions', 'zsh'], ['--completions=zsh'],
   ],
-  codex: [['exec', 'hi'], ['e', 'hi'], ['review'], ['login'], ['--version'], ['-V'], ['--help']],
+  codex: [
+    ['exec', 'hi'], ['e', 'hi'], ['review'], ['login'], ['--version'], ['-V'], ['--help'],
+    ['migrate-nfs-db'],
+  ],
   devin: [['-p', 'hi'], ['--print'], ['doctor'], ['some/path'], ['-V'], ['--cloud']],
   cursor: [['-p', 'hi'], ['--print'], ['login'], ['status'], ['--list-models'], ['-v']],
   vibe: [['-p', 'hi'], ['--prompt-file', 'task.txt'], ['--version'], ['-h'], ['mcp', 'list'], ['config'], ['update'], ['--setup']],
@@ -238,6 +246,26 @@ for (const shell of SHELLS) {
       for (const args of forms) {
         assert.equal(resolve(shell, box.repo, runtime, args), '', label(shell, runtime, args));
       }
+    }
+  });
+
+  // OpenCode 2.3.2 takes any word its --help does not list as the directory to open a
+  // session in, so the v1 names it dropped must reach the wrapper.
+  test(`${shell.name}: opencode passes only its 2.3.2 subcommands through`, (t) => {
+    const box = sandbox(t);
+    const subcommands = [
+      'upgrade', 'update', 'uninstall', 'acp', 'api', 'debug', 'auth', 'mcp', 'plugin',
+      'models', 'stats', 'mini', 'run', 'session', 'service', 'reload', 'pair', 'serve',
+    ];
+    for (const name of subcommands) {
+      assert.equal(resolve(shell, box.repo, 'opencode', [name]), '', label(shell, 'opencode', [name]));
+    }
+    for (const name of ['attach', 'providers', 'agent', 'web', 'completion', 'export', 'github', 'db']) {
+      assert.equal(
+        resolve(shell, box.repo, 'opencode', [name]),
+        `${fs.realpathSync(box.wrapper)}\n`,
+        label(shell, 'opencode', [name]),
+      );
     }
   });
 

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/022-verification-fixes",
+  "spec_folder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/022-verification-fixes",
+  "parent_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "verification fixes",
+      "phase 22 verification fixes",
+      "heartbeat watchdog after sleep",
+      "semantic lane coverage before embed",
+      "dsh route receipt at compaction",
+      "verification fixes plan",
+      "verification fixes tasks",
+      "verification fixes acceptance criteria",
+      "verification fixes goal",
+      "022-verification-fixes operator decisions",
+      "verification fixes implementation summary"
+    ],
+    "key_topics": [
+      "verification",
+      "phase",
+      "heartbeat",
+      "watchdog",
+      "sleep",
+      "semantic",
+      "lane",
+      "coverage",
+      "embed",
+      "dsh",
+      "route",
+      "receipt"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      "hooks/claude/user-prompt-submit.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/daemon/liveness.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+      ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/lib/embedders/schema.ts",
+      ".skilled/vitest.config.bin.ts",
+      ".skilled/bin/launcher-heartbeat-watchdog.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": "hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "liveness.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/daemon/liveness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "semantic-shadow.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-db.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "schema.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/embedders/schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.bin.ts",
+        "kind": "code",
+        "path": ".skilled/vitest.config.bin.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-heartbeat-watchdog.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/launcher-heartbeat-watchdog.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The launcher judges the daemon's heartbeat file from one read and never notices that it was itself asleep, so on wake it can SIGTERM a healthy daemon",
+    "created_at": "2026-11-20T15:31:23Z",
+    "last_save_at": "2026-11-20T16:21:44.268Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7462af998a0d75a85cc3e6df06641d3929b4b04778ae80ec723880422c9ee40b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2d975bc6a63124ce51e12182ac00009cfae3af878d2ea3aa689cc4051f8d0a83",
+      "plan.md": "ab6e014cc60ff796b1cdb49bc507275e3a4ed1c7a51b61282785dcb31b6bc584",
+      "tasks.md": "d2414c1c3ac0a1bb051fd4e6dd86103e12112c3bd788b423fbbdf7c8a71d9738",
+      "decision-record.md": "38b1c77f92b5af40a26bf1b9a6d9e5809e6406047bd398c3d8ed1ebcaddb74d7",
+      "implementation-summary.md": "5dcb87dd61d2b4cf9eaf16b7c64ac8eac035c563cb636b2d00f53e5bf78f67e5"
+    },
+    "last_active_at": null
+  }
+}

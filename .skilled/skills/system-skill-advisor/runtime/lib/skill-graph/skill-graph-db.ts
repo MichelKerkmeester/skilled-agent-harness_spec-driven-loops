@@ -1452,13 +1452,33 @@ export async function refreshEmbeddingsInBackground(
 
   const refresh = (async (): Promise<SkillEmbeddingRefreshResult | null> => {
     try {
-      let result = await refreshEmbeddingsOnce(skillDir);
-      while (backgroundEmbeddingRefreshRequested) {
-        const request = backgroundEmbeddingRefreshRequested;
+      // A pass that throws must not cost a queued request its pass, so each pass
+      // catches its own error; the run rethrows only when no pass succeeded.
+      let result: SkillEmbeddingRefreshResult | null = null;
+      let succeeded = false;
+      let lastError: unknown;
+      let request: { skillDir: string | undefined } | null = { skillDir };
+      while (request) {
+        try {
+          // A later pass that finds coverage complete keeps the result of the pass
+          // that did the work.
+          result = (await refreshEmbeddingsOnce(request.skillDir)) ?? result;
+          succeeded = true;
+        } catch (error: unknown) {
+          lastError = error;
+        }
+        request = backgroundEmbeddingRefreshRequested;
         backgroundEmbeddingRefreshRequested = null;
-        // A later pass that finds coverage complete keeps the result of the pass
-        // that did the work.
-        result = (await refreshEmbeddingsOnce(request.skillDir)) ?? result;
+      }
+      if (!succeeded) throw lastError;
+      // A failed pass after a successful one is reported, not hidden behind the
+      // earlier pass's counts.
+      if (lastError !== undefined) {
+        const message = lastError instanceof Error ? lastError.message : String(lastError);
+        const warning = `refresh pass failed: ${message}`;
+        result = result
+          ? { ...result, warnings: [...result.warnings, warning] }
+          : { embedded: 0, skipped: 0, failed: 0, warnings: [warning] };
       }
       return result;
     } finally {
@@ -1606,7 +1626,8 @@ async function refreshSkillEmbeddingsViaAdapter(
       continue;
     }
 
-    // Keep stale vectors; projection staleness checks prevent mismatched vectors from scoring.
+    // Keep stale vectors: the semantic lane's coverage gate refuses to score while any
+    // row is stale, and the projection check catches a model change.
     if (backendOutage !== null) {
       failed++;
       continue;
@@ -1731,7 +1752,8 @@ async function refreshCommandEmbeddings(
       continue;
     }
 
-    // Keep stale vectors; projection staleness checks prevent mismatched vectors from scoring.
+    // Keep stale vectors: the semantic lane's coverage gate refuses to score while any
+    // row is stale, and the projection check catches a model change.
     if (backendOutage !== null) {
       result.failed++;
       continue;

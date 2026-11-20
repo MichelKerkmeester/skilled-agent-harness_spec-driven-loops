@@ -12,7 +12,7 @@ expected_workflow_mode: sk-create-changelog
 expected_leaf_resources:
   - workflow_mode: sk-create-changelog
     leaf_resource_id: assets/changelog-template.md
-version: 2.1.3.0
+version: 2.1.4.0
 ---
 
 # Output existence + shape
@@ -27,7 +27,7 @@ This scenario validates that `cli-opencode`, when pointed at the DeepSeek v4 Pro
 
 ### Why This Matters
 
-The DeepSeek API rejects MCP tool names containing `:` or `@` characters (memory: `feedback_opencode_pure_flag_required_for_deepseek.md`, `feedback_opencode_skills_node_modules_recursion.md`). The opencode skills index globs vendored `node_modules/**/SKILL.md` files whose paths include `@github/...`, which violate the regex. On OpenCode 1 a successful dispatch needed `--pure` to strip the MCP skills surface and `</dev/null` to avoid the v1.14.39 stdin-hang bug (memory: `feedback_opencode_run_requires_dev_null_stdin.md`). OpenCode 2.3.2 `run` has no `--pure` flag (`opencode run --help` lists none), so the dispatch below cannot strip that surface, and a DeepSeek tool-name 400 is a live risk. When this scenario was converted to OpenCode 2, `opencode models --standalone` on 2.3.2 listed no `deepseek/` provider on the authoring machine, so expect the pre-flight to SKIP until one is configured. This scenario also exercises the user's preferred DeepSeek dispatch shape under those constraints.
+The DeepSeek API rejects MCP tool names containing `:` or `@` characters (memory: `feedback_opencode_pure_flag_required_for_deepseek.md`, `feedback_opencode_skills_node_modules_recursion.md`). The opencode skills index globs vendored `node_modules/**/SKILL.md` files whose paths include `@github/...`, which violate the regex. The dispatch closes stdin with `</dev/null`, as every non-interactive run must (memory: `feedback_opencode_run_requires_dev_null_stdin.md`). OpenCode 2.3.2 `run` has no `--pure` flag (`opencode run --help` lists none), so the dispatch below cannot strip that surface, and a DeepSeek tool-name 400 is a live risk. When this scenario was converted to OpenCode 2, `opencode models --standalone` on 2.3.2 listed no `deepseek/` provider on the authoring machine, so expect the pre-flight to SKIP until one is configured. This scenario also exercises the user's preferred DeepSeek dispatch shape under those constraints.
 
 ---
 

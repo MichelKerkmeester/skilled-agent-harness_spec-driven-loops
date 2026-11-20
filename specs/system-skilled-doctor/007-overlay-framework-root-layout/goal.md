@@ -45,12 +45,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Flag day: the `framework/` + `root/` rule is the default for every consumer, with no opt-in field. Old-layout trees keep applying and get a capped LAYOUT notice until one `apply --relayout`. |
+| D1 | Flag day: the `framework/` + `root/` rule is every consumer's default, with no opt-in field. Old-layout trees keep applying, with a capped LAYOUT notice until one `apply --relayout`. |
 | D2 | `overlayDir` may name only a direct sibling, `../<name>`. Deeper paths and a folder outside the git repository are refused. |
-| D3 | With a sibling folder, `repin --stage <dir>` holds `<dir>/<tree>` and `<dir>/<overlays>` and writes nothing live. |
+| D3 | With a sibling folder, `repin --stage <dir>` holds `<dir>/<tree>` and `<dir>/<overlays>`, writing nothing live. |
 | D4 | `ai-speckit/skilled/.skilled-overlays.json` stays inside the vendored copy and names `../overlays`. |
-| D5 | Phase 004 re-pins Barter onto the Skilled commit phase 003 produces and relays every source in one session. |
-| D6 | Out of scope: removing old-layout or in-tree support, overlay content changes beyond paths, and spec history under `ai-speckit/specs/`. |
+| D5 | Phase 004 re-pins Barter onto phase 003's Skilled commit and relays every source in one session. |
+| D6 | Out of scope: removing old-layout or in-tree support, non-path overlay content changes, and spec history under `ai-speckit/specs/`. |
 
 <!-- /ANCHOR:directive -->
 
@@ -70,6 +70,7 @@ phase and binds as if written here.
 | 003-engine-docs-and-release | `003-engine-docs-and-release/goal.md` |
 | 004-barter-repin-and-relayout | `004-barter-repin-and-relayout/goal.md` |
 | 005-barter-move-overlays-out-of-tree | `005-barter-move-overlays-out-of-tree/goal.md` |
+| 006-review-remediation | `006-review-remediation/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -89,7 +90,7 @@ string, not these files.
 - [ ] In `ai-speckit/skilled`, `cat .skilled-overlays.json` prints `{ "overlayDir": "../overlays" }`, and `ls -d barter-overlays` fails.
 - [ ] In `ai-speckit/skilled`, `node .skilled/commands/doctor/scripts/overlay-engine.cjs status --json` reports `PASSED` and an empty `offLayout`.
 - [ ] In `ai-speckit/skilled`, `node .skilled/commands/doctor/scripts/overlay-engine.cjs --guard .skilled/skills/sk-git/sk-git-skilled/SKILL.md` exits 1 and names a source under `../overlays/framework/`.
-- [ ] `validate.sh --recursive --strict` on this packet and its five phases prints `RESULT: PASSED`.
+- [ ] `validate.sh --recursive --strict` on this packet and its six phases prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -107,6 +108,9 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Parent goal authored | Done | `/create:goal ... phase-parent :auto`, five binding rows matched the five phase folders by name |
+| Phase 004 complete | Done | ai-speckit commits `c8cd005b173` (re-pin), `fd6dd18b66d` (changelog), `51e218edf2e` (relayout) |
+| Phase 005 complete | Done | 2026-11-20: ai-speckit commits `a954fc956ce` (hooks) and `2a8f454c8d1` (move); `.skilled-overlays.json` names `../overlays`, status PASSED with offLayout=0 |
+| Phase 006 complete | Done | 2026-11-20: Skilled merge `f2a608297c9` fixes the review's Skilled findings; on main the engine suite passes 262/262, guard 20/20, contract 9/9 |
 
 ### Deviations and findings
 

@@ -44,12 +44,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Order: 001, 005, 002, 004, 003, 006-011, 013, 012, 014-020; each validates strict first |
-| D2 | Code: GPT-6 Luna `xhigh` `fast`, cli-codex |
+| D1 | Order: 001, 005, 002, 004, 003, 006-011, 013, 012, 014-022; each validates strict first |
+| D2 | Code: GPT-6 Luna `xhigh` `fast`, cli-codex; 020 and 022 native |
 | D3 | Fallback: Vibe DeepSeek V4.1 Flash `max` only |
 | D4 | The conductor runs every check |
 | D5 | A phase changes only files its `spec.md` lists; cut items stay cut |
-| D6 | Approved: commit, merge, push for 474, 014, 018, 019 and 020 |
+| D6 | Approved: commit, merge, push for 474, 014 and 018-022 |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -82,6 +82,8 @@ phase and binds as if written here.
 | 018 | `018-ollama-lane-off-and-daemon-liveness/goal.md` |
 | 019 | `019-ollama-lane-honest-and-closeout/goal.md` |
 | 020 | `020-review-p1-fixes/goal.md` |
+| 021 | `021-epic-verification/goal.md` |
+| 022 | `022-verification-fixes/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -130,11 +132,14 @@ and findings belong here.
 | Phase 018 | Done | merged 62d69f4bb7d, pushed; runtime 2537, bin 86, Python 122; live orphan exit 6 s, watchdog reap 245 s |
 | Phase 019 | Done | merged 519b2b1ef8e, pushed; main 15/15 skills and 47/47 commands current at weight 0; ablation 156 vs 161 on four matching runs keeps weight 0; both alignment runs closed; runtime 2556, bin 94, Python 122 |
 | 020 review P1 fixes | Done | three P1s from the 019 deep review fixed test-first, merged as 1bb38778a03 and pushed; 2559 tests pass; @review APPROVED |
+| 021 epic verification | Done | Fable 5.2 high on claude2: 6 CONFIRMED, 4 PARTIAL, 0 REFUTED; 1 P1 heartbeat watchdog after sleep, 10 P2; report only, not committed |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| D1, D2 and D6 amended 2026-11-20 | The operator said "Fix all" for the 021 findings and chose a new worktree, native code as in 020, and commit, merge and push for 021 and 022; phase 022 added with its binding row |
+| D1 amended 2026-11-20 | The operator asked for a fresh Fable 5.2 high check of the epic on claude2; phase 021 added, report only, binding row added |
 | D6 amended 2026-11-19 | The operator reopened 014 for every follow-up and approved its merge and push |
 | D1 amended 2026-11-19 | The operator added phase 017, a report-only Ollama analysis. D1 now orders 014-017, and D2, D3 and D6 were reworded with no change in meaning to keep the slice under 4000 characters |
 | D1 and D6 amended 2026-11-19 | The operator added phase 018, the build of four of 017's five ranked changes, and approved its commit, merge and push. The binding table names each phase by its id alone to keep the slice under 4000 characters |

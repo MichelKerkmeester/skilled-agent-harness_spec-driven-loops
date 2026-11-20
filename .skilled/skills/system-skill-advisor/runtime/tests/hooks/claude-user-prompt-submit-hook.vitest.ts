@@ -1032,6 +1032,32 @@ describe('Claude UserPromptSubmit advisor hook', () => {
     expect(dependencies.buildCliBrief).not.toHaveBeenCalled();
   });
 
+  it('stays silent when a disabled hook crashes', async () => {
+    vi.stubEnv('SPECKIT_SKILL_ADVISOR_HOOK_DISABLED', '1');
+    const cwd = vi.spyOn(process, 'cwd').mockImplementation(() => {
+      throw new Error('cwd');
+    });
+    try {
+      const buildCliBrief = vi.fn(async () => fixture('livePassingSkill.json'));
+      const output = await handleClaudeUserPromptSubmit({
+        hook_event_name: 'UserPromptSubmit',
+        prompt: 'implement a TypeScript hook',
+        cwd: '/workspace/project',
+      }, {
+        buildCliBrief,
+        renderBrief: renderAdvisorBrief,
+        writeDiagnostic: diagnosticsSink().writeDiagnostic,
+        directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+      });
+
+      expect(output).toEqual({});
+      expect(buildCliBrief).not.toHaveBeenCalled();
+    } finally {
+      cwd.mockRestore();
+      vi.unstubAllEnvs();
+    }
+  });
+
   it('returns the outage fallback when the clock and the working directory both throw', async () => {
     const cwd = vi.spyOn(process, 'cwd').mockImplementation(() => {
       throw new Error('cwd');

@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-11-20 |
 | **Branch** | `main` |
 | **Parent Spec** | None, the packet sits at the `system-skilled-doctor` track root |
@@ -115,11 +115,14 @@ This table is an audit summary only. Each child's `plan.md` holds the per-phase 
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-engine-out-of-tree-overlay-folder/ | Runs in Skilled. The engine accepts `overlayDir: "../<name>"`, and every status, apply, guard, pre-commit, adopt, relayout and re-pin path works with the folder beside the tree | Planned |
-| 2 | 002-engine-framework-root-source-layout/ | Runs in Skilled. The `framework/` + `root/` rule becomes the default for every consumer. Old-layout trees keep applying and see a capped LAYOUT notice, and `apply --relayout` is the one migration step | Planned |
-| 3 | 003-engine-docs-and-release/ | Runs in Skilled. Docs, workflows, playbook and release note describe the default change and its migration step | Planned |
-| 4 | 004-barter-repin-and-relayout/ | Runs in ai-speckit, in one session. Barter re-pins onto the commit phase 3 produces, then relays every source with no adopt in between | Planned |
-| 5 | 005-barter-move-overlays-out-of-tree/ | Runs in ai-speckit. The three hooks first learn both locations, in their own commit. Then the folder moves to `ai-speckit/overlays/`, the setting names `../overlays`, and the checks, tests, scripts and docs follow | Planned |
+| 1 | 001-engine-out-of-tree-overlay-folder/ | Runs in Skilled. The engine accepts `overlayDir: "../<name>"`, and every status, apply, guard, pre-commit, adopt, relayout and re-pin path works with the folder beside the tree | Complete |
+| 2 | 002-engine-framework-root-source-layout/ | Runs in Skilled. The `framework/` + `root/` rule becomes the default for every consumer. Old-layout trees keep applying and see a capped LAYOUT notice, and `apply --relayout` is the one migration step | Complete |
+| 3 | 003-engine-docs-and-release/ | Runs in Skilled. Docs, workflows, playbook and release note describe the default change and its migration step | Complete |
+| 4 | 004-barter-repin-and-relayout/ | Runs in ai-speckit, in one session. Barter re-pins onto the commit phase 3 produces, then relays every source with no adopt in between | Complete |
+| 5 | 005-barter-move-overlays-out-of-tree/ | Runs in ai-speckit. The three hooks first learn both locations, in their own commit. Then the folder moves to `ai-speckit/overlays/`, the setting names `../overlays`, and the checks, tests, scripts and docs follow | Complete |
+| 6 | 006-review-remediation/ | Runs in Skilled. Fixes the Skilled findings of the extended deep review in `review/review-report.md`: relayout rollback on a mid-run failure, the outside-repository refusal at resolution, two remedies, three engine readability items, and the phase 002, 004 and 005 records | Complete |
+| 7 | 007-barter-review-fixes/ | Ran in ai-speckit, recorded here. Fixes the review's six Barter findings: the commit gate fails closed without a manifest, a hook test covers it, the three hooks read `overlayDir`, one plugin test loads the real bridge, and three hygiene items. ai-speckit commit `5dd004f3faa` | Complete |
+| 8 | 008-push-and-repin/ | Runs in Skilled, then ai-speckit. Merges origin into Skilled main, pushes it with every fix after the gates pass and records the pushed id; an ai-speckit session then re-pins Barter onto that id | In Progress |
 
 ### Phase Transition Rules
 
@@ -128,6 +131,8 @@ This table is an audit summary only. Each child's `plan.md` holds the per-phase 
 - Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
 - Phases 4 and 5 run from an ai-speckit session. They read this packet from the Skilled checkout and write nothing in Skilled except their own phase docs.
+- Phase 6 runs in Skilled, on the worktree branch the earlier engine phases used, and fixes only the Skilled findings of the review. The review's ai-speckit findings belong to an ai-speckit session.
+- Phase 7 ran in ai-speckit and is recorded here from its commit. Phase 8 pushes Skilled main from a Skilled session, and its re-pin belongs to a later ai-speckit session, which writes nothing in Skilled except phase 8's docs.
 
 ### Phase Handoff Criteria
 
@@ -137,6 +142,9 @@ This table is an audit summary only. Each child's `plan.md` holds the per-phase 
 | 002-engine-framework-root-source-layout | 003-engine-docs-and-release | New-default fixtures pass, and an old-layout fixture still applies, with status `RESULT: PASSED` and capped LAYOUT notes | the same `node --test` command exits 0 |
 | 003-engine-docs-and-release | 004-barter-repin-and-relayout | Phases 1-3 are committed in Skilled, and the commit id is on phase 4's `Target Skilled commit:` line | `git -C <Skilled> log -1 --format=%H` matches that line in `004-barter-repin-and-relayout/spec.md` |
 | 004-barter-repin-and-relayout | 005-barter-move-overlays-out-of-tree | Barter is on the new pin, every source sits under `framework/` or `root/`, and status passes with no off-layout source | `node .skilled/commands/doctor/scripts/overlay-engine.cjs status --json` in `ai-speckit/skilled` reports `PASSED` and an empty `offLayout` |
+| 005-barter-move-overlays-out-of-tree | 006-review-remediation | The extended deep review has run over phases 1-5 and its report names the findings this phase fixes | `review/review-report.md` exists and lists the active findings in §3 |
+| 006-review-remediation | 007-barter-review-fixes | Phase 006's Skilled fixes are merged on Skilled main, leaving only the review's ai-speckit findings | `git merge-base --is-ancestor 468f1bb4762 main` exits 0 in Skilled |
+| 007-barter-review-fixes | 008-push-and-repin | The six Barter findings are fixed in one ai-speckit commit with Barter's gates green | `git -C <ai-speckit> show --stat 5dd004f3faa` lists the hook, test and doc files named in phase 007's spec |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -166,6 +174,11 @@ None open. The operator answered every question on 2026-11-20.
 - **Workers.** Claude workers run on Opus at medium effort. DeepSeek runs through cli-pi on `llmgateway/deepseek-v4.1-flash-1017`, at thinking `high` for simple tasks and `max` for hard ones. Devin is out of quota.
 - **Failure policy.** When a phase still fails its tests or checks after three fix attempts, work stops. Earlier phases stay committed, and the failing phase's work stays uncommitted in the worktree for the report.
 - **Phases 004 and 005** run from a separate ai-speckit session, pinned to the merged `main` commit.
+
+### Resolved for phases 007 and 008 (operator, 2026-11-20)
+
+- **Push.** The operator asked for the review fixes to be committed, pushed and re-pinned into Barter. That replaces "Skilled is never pushed" above for phase 008: Skilled `main` is merged with origin and pushed, without force, once its gates pass.
+- **Re-pin.** A later ai-speckit session re-pins Barter onto the commit on phase 008's `Target Skilled commit:` line.
 <!-- /ANCHOR:questions -->
 
 ---

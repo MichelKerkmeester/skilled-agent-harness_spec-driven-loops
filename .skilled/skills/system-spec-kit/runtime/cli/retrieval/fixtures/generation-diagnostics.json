@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7083,
-    "ok": 20156,
+    "missing-frontmatter": 7086,
+    "ok": 20195,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28867,
+  "documentsScanned": 28909,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "8199b4e12113e8cc6fa12a711234b91ba2a37f1cfca6e5cfa0bcf297c6cf7af4",
+  "manifestHash": "8de60813f42eeaa61c16735e424521d2dd9150e82c1dcf2581227ba452649895",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45667,
+      "ok": 45725,
       "prose-sentence": 23,
       "single-token": 154,
       "stop-word-only": 1,
@@ -42709,6 +42709,12 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification/evidence/report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -42934,6 +42940,18 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/review-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -56318,6 +56336,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/research/deep-research-audit-ledger",
       "reason": "excluded directory"
     },
@@ -62598,6 +62620,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/022-verification-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/host-integrations/z_archive",
       "reason": "excluded directory"
     },
@@ -63063,6 +63093,22 @@
     },
     {
       "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/007-barter-review-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages",
       "reason": "excluded directory"
     },
     {
@@ -67031,6 +67077,10 @@
     },
     {
       "path": "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/005-phase-map-unanchored-append/scratch",
       "reason": "excluded directory"
     },
     {

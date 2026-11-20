@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ada4866955d53aa8a71b5c38b54420f4fc72d313d7cb0dff46b663972646c70f",
+  "corpusHash": "a1ca6e64a100b3ee39ec23990c5c708abcca4d3c1b7432dd933f3550f3232688",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28867,
+  "includedPathCount": 28909,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10578,6 +10578,12 @@
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes/plan.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes/spec.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes/tasks.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/acceptance-criteria.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/decision-record.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/implementation-summary.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/plan.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/spec.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/tasks.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/decision-record.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review-archive/20261119T155645Z/deep-review-strategy.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review-archive/20261119T155645Z/prompts/iteration-1.md",
@@ -19691,6 +19697,19 @@
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/020-review-p1-fixes/plan.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/020-review-p1-fixes/spec.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/020-review-p1-fixes/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification/evidence/report.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/022-verification-fixes/acceptance-criteria.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/022-verification-fixes/decision-record.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/022-verification-fixes/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/022-verification-fixes/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/022-verification-fixes/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/022-verification-fixes/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/022-verification-fixes/tasks.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/decision-record.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/delegation-strategy.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md",
@@ -20269,15 +20288,34 @@
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/tasks.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/implementation-summary.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/plan.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/tasks.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/acceptance-criteria.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/implementation-summary.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/plan.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-review-remediation/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-review-remediation/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-review-remediation/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-review-remediation/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-review-remediation/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/007-barter-review-fixes/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/007-barter-review-fixes/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/007-barter-review-fixes/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/007-barter-review-fixes/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/007-barter-review-fixes/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/tasks.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/fanout-attribution.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/review-report.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/spec.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
@@ -28747,6 +28785,10 @@
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination/tasks.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/spec.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/timeline.md",
+    "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/005-phase-map-unanchored-append/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/005-phase-map-unanchored-append/plan.md",
+    "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/005-phase-map-unanchored-append/spec.md",
+    "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/005-phase-map-unanchored-append/tasks.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/spec.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/timeline.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/001-create-track-fixes/implementation-summary.md",
@@ -28899,7 +28941,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8199b4e12113e8cc6fa12a711234b91ba2a37f1cfca6e5cfa0bcf297c6cf7af4",
+  "manifestHash": "8de60813f42eeaa61c16735e424521d2dd9150e82c1dcf2581227ba452649895",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31275,6 +31317,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/scratch",
       "reason": "excluded directory"
     },
     {
@@ -37558,6 +37604,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/022-verification-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/host-integrations/z_archive",
       "reason": "excluded directory"
     },
@@ -38023,6 +38077,22 @@
     },
     {
       "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/007-barter-review-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages",
       "reason": "excluded directory"
     },
     {
@@ -41991,6 +42061,10 @@
     },
     {
       "path": "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/005-phase-map-unanchored-append/scratch",
       "reason": "excluded directory"
     },
     {

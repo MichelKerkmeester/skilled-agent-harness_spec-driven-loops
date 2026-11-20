@@ -1,0 +1,12 @@
+{"record":{"focus":"Frontier node F-1-008: security","frontierNodeId":"F-1-008","dimensions":["security"],
+"filesReviewed":["specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/spec.md:40","specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/spec.md:97","specs/system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder/scratch/evidence/baseline-engine-suite.txt:13"],
+"traceabilityChecks":{"results":[{"protocolId":"checklist_evidence","status":"pass","gateClass":"hard","applicable":true,"evidence":["specs/system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder/scratch/evidence/baseline-engine-suite.txt:13"],"summary":"evidence captures hold no secrets"}]},
+"newFindingsRatio":0.0,"noveltyJustification":"No new findings.","durationMs":150000,
+"reviewDepthSchemaVersion":2,
+"reviewDepthApplicability":{"scopeClass":"standard","enforcement":"strict","reason":"packet evidence scan","evidenceRefs":["specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/spec.md:40"]},
+"targetSelection":{"selectedTargets":["specs/system-skilled-doctor/007-overlay-framework-root-layout"],"selectionReason":"F-1-008 security","discoveryMethods":["exact_search"],"omittedHighRiskTargets":[],"graphStatus":"available","semanticSearchStatus":"unavailable","evidenceRefs":["specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/spec.md:97"]},
+"searchCoverage":{"requiredBugClasses":["secret_exposure"],"covered":[],"ruledOut":["secret_exposure"],"deferred":[],"blocked":[],"graphCoverageMode":"graph"},
+"searchLedger":[{"id":"SL-008-1","dimension":"security","targetRefs":["specs/system-skilled-doctor/007-overlay-framework-root-layout"],"bugClass":"secret_exposure","hypothesis":"evidence captures leak a credential","searchActions":[{"method":"exact_search","queryOrPath":"rg secret/token/key/private-key patterns","result":"test titles only","evidenceRefs":["specs/system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder/scratch/evidence/baseline-engine-suite.txt:13"]}],"disposition":"ruled_out","rationale":"no secret","ruledOutReason":"scan clean; home paths are a repo-wide convention"}]},
+"findings":[],
+"ruledOut":["Secret leakage in packet evidence"],
+"extra":[{"type":"ruled_out","direction":"secret leakage in packet evidence","reason":"scan clean"}]}

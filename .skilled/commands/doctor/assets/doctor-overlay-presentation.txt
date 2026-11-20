@@ -85,12 +85,15 @@ in-sync=[n] overlay-edited=[n] live-edited=[n] both-changed=[n] upstream-moved=[
 MISS     [one line per check that failed, when any did]
 STALE    root-file [path]: [the engine's line about the pin, one per stale root file]
 LAYOUT   [overlay]: [field] [from] belongs at [to]; run [the engine command] apply --relayout
+LAYOUT   [overlay]: [field] [from] belongs at [to]; change the destination or remove the entry
 NOTE     [one line per note: a check the run skipped, a value no record covers, an operation path through an array index, an insert anchor that matched nothing, or unowned upstream paths missing from the tree]
 AUDIT    [kind] [path], with --audit only
 audit=[n], with --audit only
 checked=[n] ok=[n] miss=[n]
 RESULT: [PASSED|FAILED]
 ```
+
+The second remedy, `change the destination or remove the entry`, is printed when [to] sits under root/skilled, which relayout refuses because that folder holds no copy.
 
 What each state means, and who acts on it:
 
@@ -112,7 +115,7 @@ The engine prints four more kinds of line after the counts, and the report tells
 | Line | When it prints | What it means | Status |
 |------|----------------|---------------|--------|
 | `STALE` | An upstream file named in a `repin.rootFiles` overlay changed since that overlay was pinned | A re-pin never copies a root file, so between re-pins this comparison is the only place the drift shows. It needs the checkout `pin.checkout` names with the pinned commit fetched. Without one the check does not run, and a `NOTE` line says it was skipped. Rebase the overlay onto the new upstream bytes, then set its `pinnedSha256` to theirs | fails the status |
-| `LAYOUT` | An overlay source sits off the layout path its destination maps to, such as a copy kept under `<overlay folder>/skilled/skills/...` that belongs under `<overlay folder>/framework/skills/...` | The copy still applies, so the tree is not broken and nothing is lost. `/doctor:overlay apply --relayout` moves it to its layout path and points the manifest there: a `.skilled/X` destination maps to `framework/X`, and any other destination `X` maps to `root/` plus `X` with its leading dots dropped. Status prints at most 20 of these lines, then one overflow line, `LAYOUT   … N more; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout`, and `status --json` keeps every move in its `offLayout` array | does not fail the status |
+| `LAYOUT` | An overlay source sits off the layout path its destination maps to, such as a copy kept under `<overlay folder>/skilled/skills/...` that belongs under `<overlay folder>/framework/skills/...` | The copy still applies, so the tree is not broken and nothing is lost. `/doctor:overlay apply --relayout` moves it to its layout path and points the manifest there: a `.skilled/X` destination maps to `framework/X`, and any other destination `X` maps to `root/` plus `X` with its leading dots dropped. Status prints at most 20 of these lines, then one overflow line, in one of three forms, where N is the hidden lines, M the ones relayout can move and B the ones under root/skilled: `LAYOUT   … N more; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout` when none is under root/skilled, `LAYOUT   … N more under root/skilled; change the destination or remove the entry` when all are, and `LAYOUT   … N more; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout for M, and change the destination or remove the entry for the B under root/skilled` when they mix. A LAYOUT line whose [to] sits under root/skilled names `change the destination or remove the entry` instead of the relayout, because relayout refuses a move under root/skilled. `status --json` keeps every move in its `offLayout` array | does not fail the status |
 | `NOTE` | The state file is schema version 1, a check was skipped because no checkout at the pin could be read, an operation's path goes through an array index, an insert's `before` or `beforeKey` anchor matches nothing so its items or keys go at the end, an in-sync json-entry destination differs from its entry set applied to the pinned copy (`cross-check`), or unowned upstream paths at the pin are missing from the tree | Each line names its own fix. A `cross-check` line on a file a `regenerate` step writes means the step does not list that file in its `outputs` | does not fail the status |
 | `AUDIT` | Only with `--audit`. A vendored path that no overlay owns and no `generated` glob matches is `differs` from upstream at the pin, `missing` from the tree while upstream has it, or `extra` in the tree while upstream never had it | Nothing else reports a path like this, so the drift would otherwise go unseen until a re-pin or a strict write refused it | fails the status |
 

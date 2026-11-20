@@ -11,8 +11,8 @@
 # Defines claude, pi, opencode, codex, devin, cursor-agent and vibe, plus the `skilled-loop`
 # command the wrapper prints for a manual claim. Each runtime function runs
 # `bash <repo>/.skilled/bin/skilled-loop <arm> "$@"` when stdin and stdout are a
-# terminal, no loop is running yet, the arguments open an interactive session, and a
-# wrapper sits in $PWD or a parent; otherwise it runs the binary itself. A linked
+# terminal, no loop is running yet, the arguments open an interactive session the
+# wrapper can relaunch, and a wrapper sits in $PWD or a parent; otherwise it runs the binary itself. A linked
 # `.skilled` counts, so a repository that links another checkout's `.skilled` hops too.
 #
 # The file is sourced into the operator's own shell, so it sets no option there and
@@ -114,8 +114,12 @@ skilled_loop_resolve() (
 # 2. INVOCATION CLASSIFIERS
 # ───────────────────────────────────────────────────────────────
 
-# Succeeds when the first argument is a subcommand that does not open a session in
-# this terminal. Each list comes from that runtime's own --help.
+# Succeeds when the first argument is a subcommand the wrapper cannot relaunch. Most
+# open no session in this terminal. Claude's attach and OpenCode's mini do open one, but
+# a hop rebuilds the runtime's root command, so it cannot reattach a background session
+# or return to the minimal interface. Each list is copied by hand from that runtime's own
+# --help, so a release that adds or drops a subcommand needs its list updated here. Devin
+# needs no list, because its terminal prompt only follows `--`.
 skilled_loop_first_word_passes() {
   case "$1:$2" in
     claude:agents|claude:attach|claude:auth|claude:auto-mode|claude:doctor|\
@@ -128,13 +132,11 @@ skilled_loop_first_word_passes() {
     pi:install|pi:remove|pi:uninstall|pi:update|pi:list|pi:config|pi:auth|pi:mcp)
       return 0
       ;;
-    opencode:completion|opencode:acp|opencode:mcp|opencode:attach|opencode:run|\
-      opencode:debug|opencode:providers|opencode:auth|opencode:agent|\
-      opencode:upgrade|opencode:uninstall|opencode:serve|opencode:web|\
-      opencode:models|opencode:stats|opencode:export|opencode:import|\
-      opencode:github|opencode:pr|opencode:session|opencode:plugin|\
-      opencode:plug|opencode:db|opencode:api|opencode:service|opencode:reload|\
-      opencode:pair|opencode:mini)
+    # OpenCode reads any other first word as the directory to open a session in.
+    opencode:upgrade|opencode:update|opencode:uninstall|opencode:acp|opencode:api|\
+      opencode:debug|opencode:auth|opencode:mcp|opencode:plugin|opencode:models|\
+      opencode:stats|opencode:mini|opencode:run|opencode:session|\
+      opencode:service|opencode:reload|opencode:pair|opencode:serve)
       return 0
       ;;
     # Codex resume and fork reopen an interactive session, so they stay wrapped.
@@ -142,8 +144,8 @@ skilled_loop_first_word_passes() {
       codex:mcp|codex:plugin|codex:app-server|codex:remote-control|codex:app|\
       codex:completion|codex:update|codex:doctor|codex:sandbox|codex:debug|\
       codex:apply|codex:a|codex:queue|codex:archive|codex:delete|\
-      codex:migrate-rollouts|codex:unarchive|codex:cloud|codex:exec-server|\
-      codex:features|codex:help)
+      codex:migrate-rollouts|codex:migrate-nfs-db|codex:unarchive|codex:cloud|\
+      codex:exec-server|codex:features|codex:help)
       return 0
       ;;
     # A leading Devin word is a subcommand or a path for the desktop app; the
@@ -184,7 +186,8 @@ skilled_loop_flag_passes() {
       pi:--blackhole-export|pi:--blackhole-export=*)
       return 0
       ;;
-    opencode:-v|opencode:--version|opencode:-h|opencode:--help)
+    opencode:-v|opencode:--version|opencode:-h|opencode:--help|\
+      opencode:--completions|opencode:--completions=*)
       return 0
       ;;
     codex:-V|codex:--version|codex:-h|codex:--help)

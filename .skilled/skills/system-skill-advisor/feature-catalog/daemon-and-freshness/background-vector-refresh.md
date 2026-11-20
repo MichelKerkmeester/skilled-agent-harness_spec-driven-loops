@@ -6,7 +6,7 @@ trigger_phrases:
   - "skill vector refresh"
   - "command vector refresh"
   - "embedding coverage"
-version: 0.8.6.0
+version: 0.8.7.0
 ---
 
 # Background Vector Refresh
@@ -19,7 +19,7 @@ The advisor refreshes missing or stale skill and command vectors after startup a
 
 ## 2. HOW IT WORKS
 
-After startup IPC is ready, `advisor-server.ts` starts the shared refresh without waiting. `watcher.ts` starts the same refresh after each reindex. Both paths run at any semantic lane weight. Only one refresh runs at a time. A request that arrives while one runs joins it, and the run makes one more pass once the current pass ends, so a skill a reindex added mid-run still gets its vector.
+After startup IPC is ready, `advisor-server.ts` starts the shared refresh without waiting. `watcher.ts` starts the same refresh after each reindex. Both paths run at any semantic lane weight. Only one refresh runs at a time. A request that arrives while one runs joins it, and the run makes one more pass once the current pass ends, so a skill a reindex added mid-run still gets its vector. A pass that throws does not cancel that extra pass, and the run rejects only when every pass threw. A pass that fails after an earlier one succeeded adds a `refresh pass failed` warning to the run's result.
 
 `embeddingCoverage()` compares each stored vector with the active embedder and source content hash without contacting the embedder. It reports how many eligible skill and command rows are ready or need refresh. Coverage is complete when at least one embeddable skill exists and every eligible skill and command vector is current. A command-only index remains incomplete. Complete coverage skips network work. Otherwise, the refresh probes Ollama once with a 500 ms timeout when the active embedder uses Ollama, then refreshes missing or stale rows. Failed embeds keep the old vectors.
 

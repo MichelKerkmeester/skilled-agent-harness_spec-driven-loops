@@ -9,7 +9,7 @@ trigger_phrases:
   - "suggested phase counts"
 importance_tier: normal
 contextType: planning
-version: 1.6.6.0
+version: 1.6.7.0
 ---
 
 # Phase Definitions
@@ -181,11 +181,11 @@ The parent `spec.md` includes a Phase Documentation Map section that lists all c
 ```markdown
 ## Phase Documentation Map
 
-| Phase | Folder | Status | Description |
-|-------|--------|--------|-------------|
-| 1 | `001-foundation/` | active | Core data models and database schema |
-| 2 | `002-api-layer/` | draft | REST API endpoints and middleware |
-| 3 | `003-frontend/` | draft | UI components and state management |
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | `001-foundation/` | Core data models and database schema | active |
+| 2 | `002-api-layer/` | REST API endpoints and middleware | draft |
+| 3 | `003-frontend/` | UI components and state management | draft |
 ```
 
 ### Child spec.md: Parent Back-Reference

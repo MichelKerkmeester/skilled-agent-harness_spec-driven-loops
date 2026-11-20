@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin",
+  "description": "Phase 8: push-and-repin",
+  "keywords": [
+    "phase",
+    "push-and-repin"
+  ],
+  "lastUpdated": "2026-11-20T15:37:54.791Z",
+  "specId": "008",
+  "folderSlug": "push-and-repin",
+  "parentChain": [
+    "system-skilled-doctor",
+    "007-overlay-framework-root-layout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8199b4e12113e8cc6fa12a711234b91ba2a37f1cfca6e5cfa0bcf297c6cf7af4",
+  "manifestHash": "8de60813f42eeaa61c16735e424521d2dd9150e82c1dcf2581227ba452649895",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -5213,6 +5213,9 @@
     ],
     "022 transitive re verify": [
       "022 transitive re-verify"
+    ],
+    "022 verification fixes operator decisions": [
+      "022-verification-fixes operator decisions"
     ],
     "022 vibe hook playbook and live scenarios operator decisions": [
       "022-vibe-hook-playbook-and-live-scenarios operator decisions"
@@ -14752,6 +14755,9 @@
     "barter handover items": [
       "barter handover items"
     ],
+    "barter hooks read overlaydir": [
+      "barter hooks read overlayDir"
+    ],
     "barter host capture file command routing baseline": [
       "barter host capture file command routing baseline"
     ],
@@ -14766,6 +14772,9 @@
     ],
     "barter move overlays out of tree tasks": [
       "barter move overlays out of tree tasks"
+    ],
+    "barter move overlays summary": [
+      "barter move overlays summary"
     ],
     "barter overlay mechanics research": [
       "barter overlay mechanics research"
@@ -14803,8 +14812,14 @@
     "barter overlays move task list": [
       "barter overlays move task list"
     ],
+    "barter overlays moved to ai speckit overlays": [
+      "barter overlays moved to ai-speckit/overlays"
+    ],
     "barter overlays out of the vendored tree": [
       "barter overlays out of the vendored tree"
+    ],
+    "barter overlays relayout evidence": [
+      "barter overlays relayout evidence"
     ],
     "barter parity": [
       "barter parity"
@@ -14827,6 +14842,12 @@
     "barter re pin after rebasedonto": [
       "barter re-pin after rebasedOnto"
     ],
+    "barter re pin onto 063daae": [
+      "barter re-pin onto 063daae"
+    ],
+    "barter record base open item": [
+      "barter record-base open item"
+    ],
     "barter remove set operations after sets record": [
       "barter remove set operations after sets record"
     ],
@@ -14836,8 +14857,26 @@
     "barter repin and relayout plan": [
       "barter repin and relayout plan"
     ],
+    "barter repin and relayout summary": [
+      "barter repin and relayout summary"
+    ],
     "barter repin and relayout tasks": [
       "barter repin and relayout tasks"
+    ],
+    "barter review fixes": [
+      "barter review fixes"
+    ],
+    "barter review fixes goal": [
+      "barter review fixes goal"
+    ],
+    "barter review fixes implementation summary": [
+      "barter review fixes implementation summary"
+    ],
+    "barter review fixes plan": [
+      "barter review fixes plan"
+    ],
+    "barter review fixes tasks": [
+      "barter review fixes tasks"
     ],
     "barter state schema version 2": [
       "barter state schema version 2"
@@ -29329,6 +29368,9 @@
     "commit format research": [
       "commit format research"
     ],
+    "commit gate fails closed without an overlay manifest": [
+      "commit gate fails closed without an overlay manifest"
+    ],
     "commit got orphaned by reset": [
       "commit got orphaned by reset"
     ],
@@ -33150,6 +33192,9 @@
     ],
     "create sh parent packet corruption review": [
       "create.sh parent packet corruption review"
+    ],
+    "create sh parent phase map anchor": [
+      "create sh parent phase map anchor"
     ],
     "create sh path refreshes the track root": [
       "create sh path refreshes the track root"
@@ -46366,6 +46411,9 @@
     "dsh route re pin": [
       "dsh route re-pin"
     ],
+    "dsh route receipt at compaction": [
+      "dsh route receipt at compaction"
+    ],
     "dsh route verification": [
       "dsh route verification"
     ],
@@ -46677,6 +46725,9 @@
     ],
     "duplicate packet number 001": [
       "duplicate packet number 001"
+    ],
+    "duplicate phase documentation map": [
+      "duplicate phase documentation map"
     ],
     "duplicate plugin id worktree": [
       "duplicate plugin id worktree"
@@ -48710,6 +48761,18 @@
     "epic sweep remediation phases": [
       "epic sweep remediation phases"
     ],
+    "epic verification": [
+      "epic verification"
+    ],
+    "epic verification implementation summary": [
+      "epic verification implementation summary"
+    ],
+    "epic verification plan": [
+      "epic verification plan"
+    ],
+    "epic verification tasks": [
+      "epic verification tasks"
+    ],
     "epistemic uncertainty tracking": [
       "epistemic uncertainty tracking"
     ],
@@ -50536,6 +50599,9 @@
     ],
     "fable subagent guard": [
       "fable subagent guard"
+    ],
+    "fable verification of the advisor epic": [
+      "fable verification of the advisor epic"
     ],
     "fabricated state log timestamps": [
       "fabricated state log timestamps"
@@ -59922,6 +59988,9 @@
     ],
     "heartbeat staleness detection owner lease": [
       "heartbeat staleness detection owner lease"
+    ],
+    "heartbeat watchdog after sleep": [
+      "heartbeat watchdog after sleep"
     ],
     "heat matrix band defect": [
       "heat matrix band defect"
@@ -79131,9 +79200,6 @@
     "opencode": [
       "opencode"
     ],
-    "opencode 1 refusal": [
-      "OpenCode 1 refusal"
-    ],
     "opencode 2 ancestor opencode folder": [
       "opencode 2 ancestor opencode folder"
     ],
@@ -79895,6 +79961,9 @@
     ],
     "opencode version drift": [
       "opencode version drift"
+    ],
+    "opencode version families v2 unknown": [
+      "opencode version families v2 unknown"
     ],
     "opencode version resolver": [
       "opencode version resolver"
@@ -81431,6 +81500,9 @@
     ],
     "overlaydir overlays barter hooks": [
       "overlayDir ../overlays barter hooks"
+    ],
+    "overlaydir overlays evidence": [
+      "overlayDir ../overlays evidence"
     ],
     "overlays folder beside the vendored tree": [
       "overlays folder beside the vendored tree"
@@ -85169,6 +85241,9 @@
     "phase 21 dsh remaining direct writers": [
       "phase 21 dsh remaining direct writers"
     ],
+    "phase 21 epic verification": [
+      "phase 21 epic verification"
+    ],
     "phase 21 follow up defect fixes": [
       "phase 21 follow up defect fixes"
     ],
@@ -85240,6 +85315,9 @@
     ],
     "phase 22 tasks": [
       "phase 22 tasks"
+    ],
+    "phase 22 verification fixes": [
+      "phase 22 verification fixes"
     ],
     "phase 22 vibe hook playbook and live scenarios": [
       "phase 22 vibe hook playbook and live scenarios"
@@ -86222,6 +86300,9 @@
     "phase 5 trim duplicated and dead agent text": [
       "phase 5 trim duplicated and dead agent text"
     ],
+    "phase 5 v1 reference purge": [
+      "phase 5 v1 reference purge"
+    ],
     "phase 5 version aware guards": [
       "phase 5 version aware guards"
     ],
@@ -86528,6 +86609,9 @@
     "phase 7 advisor name mention scoring": [
       "phase 7 advisor name mention scoring"
     ],
+    "phase 7 barter review fixes": [
+      "phase 7 barter review fixes"
+    ],
     "phase 7 checker debt closeout": [
       "phase 7 checker debt closeout"
     ],
@@ -86782,6 +86866,9 @@
     ],
     "phase 8 project scoped state": [
       "phase 8 project scoped state"
+    ],
+    "phase 8 push and repin": [
+      "phase 8 push and repin"
     ],
     "phase 8 quality packet fixes": [
       "phase 8 quality packet fixes"
@@ -87224,6 +87311,18 @@
     ],
     "phase map sync tasks": [
       "phase map sync tasks"
+    ],
+    "phase map unanchored append": [
+      "phase map unanchored append"
+    ],
+    "phase map unanchored append implementation summary": [
+      "phase map unanchored append implementation summary"
+    ],
+    "phase map unanchored append plan": [
+      "phase map unanchored append plan"
+    ],
+    "phase map unanchored append tasks": [
+      "phase map unanchored append tasks"
     ],
     "phase name placeholder": [
       "phase name placeholder"
@@ -92231,6 +92330,9 @@
     "pull request template": [
       "pull request template"
     ],
+    "purge opencode 1 references": [
+      "purge opencode 1 references"
+    ],
     "purge qwen3 embeddings": [
       "purge qwen3 embeddings"
     ],
@@ -92345,6 +92447,21 @@
     "push and create a pull request": [
       "push and create a pull request"
     ],
+    "push and repin": [
+      "push and repin"
+    ],
+    "push and repin goal": [
+      "push and repin goal"
+    ],
+    "push and repin implementation summary": [
+      "push and repin implementation summary"
+    ],
+    "push and repin plan": [
+      "push and repin plan"
+    ],
+    "push and repin tasks": [
+      "push and repin tasks"
+    ],
     "push gate git timeout": [
       "push gate git timeout"
     ],
@@ -92359,6 +92476,9 @@
     ],
     "push gate git timeout tasks": [
       "push gate git timeout tasks"
+    ],
+    "push skilled main with the overlay fixes": [
+      "push skilled main with the overlay fixes"
     ],
     "push tickets to clickup": [
       "push tickets to clickup"
@@ -96197,6 +96317,15 @@
     "relaunch test speed tasks": [
       "relaunch test speed tasks"
     ],
+    "relayout rollback design": [
+      "relayout rollback design"
+    ],
+    "relayout rollback implementation summary": [
+      "relayout rollback implementation summary"
+    ],
+    "relayout rollback on a failed rename": [
+      "relayout rollback on a failed rename"
+    ],
     "release alignment remediation": [
       "release alignment remediation"
     ],
@@ -97695,9 +97824,6 @@
     "remove obsidian plugin support": [
       "remove obsidian plugin support"
     ],
-    "remove old opencode install": [
-      "remove old opencode install"
-    ],
     "remove predecessor hard block": [
       "remove predecessor hard block"
     ],
@@ -98214,6 +98340,9 @@
     ],
     "repin acceptance criteria": [
       "repin acceptance criteria"
+    ],
+    "repin barter onto the pushed skilled commit": [
+      "repin barter onto the pushed skilled commit"
     ],
     "repin decision record": [
       "repin decision record"
@@ -107378,6 +107507,9 @@
     "semantic intent tags": [
       "semantic intent tags"
     ],
+    "semantic lane coverage before embed": [
+      "semantic lane coverage before embed"
+    ],
     "semantic lane coverage gate": [
       "semantic lane coverage gate"
     ],
@@ -109458,6 +109590,9 @@
     ],
     "sibling overlay folder backup area plan": [
       "sibling overlay folder backup area plan"
+    ],
+    "sibling overlay folder outside the git repository refused": [
+      "sibling overlay folder outside the git repository refused"
     ],
     "sibling overlay folder overlaydir overlays": [
       "sibling overlay folder overlayDir ../overlays"
@@ -133071,6 +133206,24 @@
     "v1 docs and playbooks sweep tasks": [
       "v1 docs and playbooks sweep tasks"
     ],
+    "v1 reference purge": [
+      "v1 reference purge"
+    ],
+    "v1 reference purge acceptance criteria": [
+      "v1 reference purge acceptance criteria"
+    ],
+    "v1 reference purge decision record": [
+      "v1 reference purge decision record"
+    ],
+    "v1 reference purge implementation summary": [
+      "v1 reference purge implementation summary"
+    ],
+    "v1 reference purge plan": [
+      "v1 reference purge plan"
+    ],
+    "v1 reference purge tasks": [
+      "v1 reference purge tasks"
+    ],
     "v1 runtime code and tests": [
       "v1 runtime code and tests"
     ],
@@ -134590,6 +134743,24 @@
     "verification evidence": [
       "verification evidence"
     ],
+    "verification fixes": [
+      "verification fixes"
+    ],
+    "verification fixes acceptance criteria": [
+      "verification fixes acceptance criteria"
+    ],
+    "verification fixes goal": [
+      "verification fixes goal"
+    ],
+    "verification fixes implementation summary": [
+      "verification fixes implementation summary"
+    ],
+    "verification fixes plan": [
+      "verification fixes plan"
+    ],
+    "verification fixes tasks": [
+      "verification fixes tasks"
+    ],
     "verification implementation summary": [
       "verification implementation summary"
     ],
@@ -134619,6 +134790,9 @@
     ],
     "verifier tail window arm": [
       "verifier tail-window arm"
+    ],
+    "verify advisor ollama changes": [
+      "verify advisor ollama changes"
     ],
     "verify alignment drift baseline delta": [
       "verify alignment drift baseline delta"

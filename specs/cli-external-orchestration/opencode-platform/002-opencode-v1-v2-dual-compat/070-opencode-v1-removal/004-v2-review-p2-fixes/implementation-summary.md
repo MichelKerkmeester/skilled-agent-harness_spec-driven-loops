@@ -8,26 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes"
-    last_updated_at: "2026-11-20T15:09:25Z"
+    last_updated_at: "2026-11-20T16:26:13Z"
     last_updated_by: "generate-context"
-    recent_action: "Renamed nativeDual to selfRegistered and fixed two critic-verified doc lines"
-    next_safe_action: "Review the follow-up commits on main"
+    recent_action: "Made the shim passthrough rule honest for attach and mini and passed --completions"
+    next_safe_action: "Review the follow-up commit on main"
     packet_purpose: "Purpose: Each advisory is fixed or shown already covered, with a command that proves it, and the gate shows no regression against the baseline taken before the first edit."
     blockers: []
     key_files:
       - "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes/implementation-summary.md"
-      - ".opencode/plugins/tests/helpers/plugin-inventory.cjs"
-      - ".opencode/plugins/tests/plugin-inventory.json"
+      - ".skilled/bin/skilled-loop-shell.sh"
+      - ".skilled/hooks/session-handover/tests/skilled-loop-shell.test.cjs"
+      - ".skilled/hooks/session-handover/runtime-behavior.md"
       - ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-handover-loop.md"
     session_dedup:
-      fingerprint: "sha256:ba0692c495ef93d0745b1842ec58dcea002c8815cf827ed8c210ea3d53abcaee"
+      fingerprint: "sha256:c0d65096eb97b30bf52627617bf72a8cbd2e4682bb0197ca863629131cc810e1"
       session_id: "scaffold-004-v2-review-p2-fixes"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "df9261d4-6090-4b52-892b-db52ff291ccd"
-      workspace: "/Users/michelkerkmeester/worktrees/public/488-detached-decision-save"
-      savedAt: "2026-11-20T15:09:25Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/492-opencode-shim-passthrough-honesty"
+      savedAt: "2026-11-20T16:26:13Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -91,6 +92,10 @@ The gate in `scratch/gate.sh` ran before the first edit, with the output in `scr
 After merge, `/local-doc-alignment` on an `opencode-v2-only` topic (four lanes on `opencode-go/hy4-flash-free#high`) found five doc lines that disagreed with the code. Its critic did not run, because OpenCode Go reported its monthly usage limit, so each line was checked by hand against the code before the fix. `goal-plugin.md` and `goal-carry-over.md` said the wrapper adds `--standalone` when `opencode --help` lists it; `skilled-loop` adds it unless the launch already carries `--standalone` or `--server`, after refusing OpenCode 1. The CO-001 playbook triage named `brew install opencode`; it now names `opencode-setup.sh v2`. The dist-freshness feature-catalog entry said the OpenCode plugin warns through `console.warn`; the plugin has no console call and logs to `dist-freshness-guard.log` and injects a system-context note.
 
 A follow-up closed three loose ends. The plugin inventory key `nativeDual` became `selfRegistered`. It lists the plugins that make no `definePlugin` call and default-export their own OpenCode 2 `{ id, setup }`, so the new name says what they do on the v2-only contract instead of naming the dual-compat era. The JSON key, the helper's return field, its problem messages, two test files, `tests/README.md` and `ARCHITECTURE.md` changed together, with no alias, because every reader is in `.opencode/plugins`. `node --test .opencode/plugins/tests/*.test.cjs` gave 595 of 595 before and after. The doc-alignment critic was rerun on the same run folder with the `deepseek-high` preset (`llmgateway/deepseek-v4.1-flash-1017`, thinking high). `run-lanes.cjs --critic` reads only the config's top-level `critic`, so it ran from a scratch copy of `executors.json` whose `critic` is that preset. It raised four lines. Two were checked and confirmed in `session-handover-loop.md`, and both are fixed: the shell-shim paragraph said every subcommand list comes from `--help`, though the OpenCode list is hand-kept and names subcommands 2.3.2 lacks, and the adapter paragraph did not say the wrapper refuses an OpenCode 1 binary. Two were refuted: `brew install opencode` resolves to the `homebrew/core` formula at 2.3.2, so those lines do not install OpenCode 1. The `session-handover/history` dist in the primary checkout was stale by mtime. It is gitignored, so it was rebuilt in place with `tsc --build --force`, and all seven dist packages then read fresh.
+
+A second follow-up fixed the shell shim itself instead of describing its drift. `.skilled/bin/skilled-loop-shell.sh` said each subcommand list comes from the runtime's `--help`, but its OpenCode arm still named eleven OpenCode 1 words. `scratch/opencode-2.3.2-subcommands.txt` holds `opencode --help </dev/null` from 2.3.2, which lists 18 subcommands, and a per-name probe. Each listed name, plus the `update` alias, prints its own help. `completion`, `attach`, `providers`, `agent`, `web`, `export`, `import`, `github`, `pr`, `plug` and `db` print the top-level help, the same as a made-up word, because 2.3.2 takes an unknown first word as its `[<directory>]` argument. Those words had been opening a session without the loop wrapper. The OpenCode arm is now exactly the 2.3.2 list. Checked against each runtime's live `--help`, the Codex arm lacked `migrate-nfs-db`, new in codex-cli 0.170.0, which is added. Claude 2.1.329, Pi 1.5.2, Cursor and Vibe 3.1.2 matched; Vibe lists `update` in a second Commands block of its help. The comment now says the lists are copied by hand and that Devin needs none, and `runtime-behavior.md` and `session-handover-loop.md` say the same. `skilled-loop-shell.test.cjs` gained one case that passes all 18 names and sends eight retired words to the wrapper, and a Codex passthrough form. The suite went from 41 of 41 (`scratch/loop-shell-tests-before.txt`) to 43 of 43 (`scratch/loop-shell-tests-after.txt`). Against the old shim the new case and the Codex form fail.
+
+A third follow-up fixed two things the shim's passthrough comment got wrong. The comment said a passed-through subcommand does not open a session in this terminal, but OpenCode 2.3.2 `mini` starts "the minimal interactive interface" and Claude 2.1.329 `attach` opens "the background session in this terminal". Both stay passthrough, because the wrapper cannot relaunch either one. `opencode --standalone mini --help </dev/null` parses, so a first launch through the wrapper would start. A hop, though, rebuilds the root command as `opencode --standalone --prompt <seed>` and replays only dash flags. It drops the `mini` word and lands the receiver in the full TUI. It also replays mini-only flags such as `--fork`, `--replay` and `--agent`, which the root `--help` does not list. A Claude hop builds a fresh `claude <seed>` rather than a reattach. `claude --bg` already passes through, so attaching to that same session belongs on the same side. Its session runs in a process the wrapper did not start, and the handover CLI reads the loop id from its own environment. That is the case `runtime-behavior.md` documents for OpenCode's background service, where nothing arms. This part is inferred from the code and that analogue, not observed. The comment, the shim header, `runtime-behavior.md` and `session-handover-loop.md` now say the shim wraps a session the wrapper can relaunch, and they name `attach` and `mini` as sessions it cannot. OpenCode 2.3.2 lists `--completions <shell>` as a global flag that prints a shell completion script, and `opencode --completions zsh` and `--completions=zsh` both print `#compdef opencode`. `skilled_loop_flag_passes` now passes both forms. `skilled-loop-shell.test.cjs` adds `attach some-name` to the Claude passthrough forms and both `--completions` forms to OpenCode's, and keeps `mini`. The suite stayed at 43 of 43 before and after, since the new forms ride the existing passthrough case. Sourced from the old shim, `skilled_loop_opens_session opencode --completions zsh` reports a session for both forms, and the new shim reports none. The other global flags, `--wizard`, `--log-level` and `--print-logs`, were left as they were.
 <!-- /ANCHOR:how-delivered -->
 
 ---

@@ -1,0 +1,20 @@
+{
+  "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge",
+  "description": "Phase 5: v1-reference-purge",
+  "keywords": [
+    "phase",
+    "v1-reference-purge"
+  ],
+  "lastUpdated": "2026-11-20T16:32:14.480Z",
+  "specId": "005",
+  "folderSlug": "v1-reference-purge",
+  "parentChain": [
+    "cli-external-orchestration",
+    "opencode-platform",
+    "002-opencode-v1-v2-dual-compat",
+    "070-opencode-v1-removal"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

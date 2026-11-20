@@ -563,9 +563,13 @@ export async function handleClaudeUserPromptSubmit(
   let skippedResult: AdvisorHookResult | null = null;
   let deliveryState: ShadowDeliveryRenderOptions = {};
   const writeDiagnostic = dependencies.writeDiagnostic;
+  // Read before the try, so a crash in a hook the operator switched off stays as
+  // silent as the hook itself.
+  let hookDisabled = false;
 
   try {
-    if (!skillAdvisorHookEnabled() || process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED === '1') {
+    hookDisabled = !skillAdvisorHookEnabled() || process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED === '1';
+    if (hookDisabled) {
       emitDiagnostic({
         runtime,
         workspaceRoot: process.cwd(),
@@ -681,7 +685,7 @@ export async function handleClaudeUserPromptSubmit(
     }
     // A payload with no prompt string is silent on the normal path, so a crash
     // while rejecting it must not turn it into an outage line.
-    if (!input || typeof input.prompt !== 'string') return {};
+    if (hookDisabled || !input || typeof input.prompt !== 'string') return {};
     // A crash shows the model what a timeout would show for this turn, deduplicated the
     // same way. If any of that throws as well, there is nothing safe left to show.
     try {

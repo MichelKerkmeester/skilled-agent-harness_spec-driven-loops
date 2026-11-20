@@ -267,7 +267,8 @@ function backendToProvider(backend: BackendKind | undefined): AutoSelectedEmbedd
  * Resolve an unset or unknown pointer to the first registered manifest.
  * Known pointers stay unchanged, with their provider backfilled when it is missing.
  *
- * Skill vectors are written only by a trusted `skill_graph_scan`.
+ * Skill and command vectors are written by a trusted `skill_graph_scan` and by the
+ * daemon's background refresh after startup and after each watcher reindex.
  */
 export async function ensureActiveEmbedder(
   db: Database.Database,

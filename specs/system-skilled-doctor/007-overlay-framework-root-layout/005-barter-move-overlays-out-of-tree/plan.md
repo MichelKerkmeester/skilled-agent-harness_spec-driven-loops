@@ -94,6 +94,41 @@ Required inventories:
 - Algorithm invariant: each hook resolves the tree root as the folder holding `.skilled`, never as the overlay folder's parent. Adversarial cases: a project repository with a fake `barter-overlays/overlay-manifest.json` marker still reads as `project` (the existing case in the sk-git hub docs), and a stray `overlays/` folder without the engine beside it is not taken.
 <!-- /ANCHOR:affected-surfaces -->
 
+---
+
+<!-- ANCHOR:location-matrix -->
+## FIX ADDENDUM: LOCATION MATRIX
+
+Folder location by hook, filled from the execution evidence in `tasks.md`. In-tree is `skilled/barter-overlays/`, beside-tree is `ai-speckit/overlays/`, none is neither. "No folder found" means: the edit guard core throws and runs no overlay check, the commit gate leaves `HAS_OVERLAYS` unset and skips its overlay checks, and the git-write gate's `aiSpeckitRoot` returns null so the session reads as `project`.
+
+### Commit 1, `a954fc956ce`: the hooks accept both places
+
+| # | Location | Hook | Expected | Evidence |
+|---|----------|------|----------|----------|
+| 1 | In-tree | Edit guard | Accepts; refuses an owned destination | T013: `--guard` exit 1, named `barter-overlays/framework/repo-rules/barter-overlay-first.md` |
+| 2 | In-tree | Commit gate | Accepts; runs the overlay checks | T013: ran during commit 1; clean index exit 0, an unowned staged change refused exit 1 |
+| 3 | In-tree | Git-write gate | Accepts; `ai-speckit` | T013: `ai-speckit` and `allow`; refuses outside ai-speckit |
+| 4 | Beside-tree | Edit guard | Accepts | T006, T007: the beside-tree cases pass in the core and plugin guard tests |
+| 5 | Beside-tree | Commit gate | Accepts | T008: `HAS_OVERLAYS` set for either manifest, `bash -n` exit 0; run live beside the tree at T041 and T047 |
+| 6 | Beside-tree | Git-write gate | Accepts; `ai-speckit` | T010, T011: the beside-tree fixtures pass in both gate tests |
+| 7 | None | Edit guard | Not accepted: no folder found | No-folder case in the core test, kept through commit 2 (T021-T025, 41 pass) |
+| 8 | None | Commit gate | Not accepted: no folder found, overlay checks skipped | The `HAS_OVERLAYS` test finds neither manifest; no live run recorded at commit 1 |
+| 9 | None | Git-write gate | Not accepted: no folder found, `project` | The fake-marker and no-folder cases in the gate tests (T025) |
+
+### Commit 2, `2a8f454c8d1`: the hooks accept only beside-tree
+
+In-tree now behaves like none: each hook probes only `<tree>/../overlays`, so a folder left at `skilled/barter-overlays/` is not found. The in-tree fixtures were removed (T021, T025).
+
+| # | Location | Hook | Expected | Evidence |
+|---|----------|------|----------|----------|
+| 1 | Beside-tree | Edit guard | Accepts; refuses an owned destination, allows an edit in the folder | T045 exit 1 naming `../overlays/framework/...`; T046 `allow`; T048 live plugin refusal |
+| 2 | Beside-tree | Commit gate | Accepts; runs the overlay checks | T041 staged index and T047 clean index exit 0, `HAS_OVERLAYS=1`, status in-sync=487 |
+| 3 | Beside-tree | Git-write gate | Accepts; `ai-speckit` | T049: `ai-speckit` and `allow` |
+| 4 | In-tree or none | Edit guard | Not accepted: no folder found | No-folder case in the core test passes; error reads "could not locate the overlays folder beside the tree" (T023) |
+| 5 | In-tree or none | Commit gate | Not accepted: no folder found | pre-commit tests only `$TREE_ROOT/../overlays/overlay-manifest.json` (T024); the old-name grep prints nothing |
+| 6 | In-tree or none | Git-write gate | Not accepted: no folder found, `project` | `aiSpeckitRoot` probes only the beside-tree manifest; no-folder and fake-marker cases pass (T025); T049 refusal outside ai-speckit |
+<!-- /ANCHOR:location-matrix -->
+
 
 ---
 
@@ -129,7 +164,7 @@ Setup records the status in-sync count, the hook answers, `core.hooksPath` and t
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 004, the re-pin and relayout phase: the new engine (phases 001-002) vendored in Barter, and every source relaid out under `framework/` and `root/` | Internal | Yellow: planned | Without the re-pin, `../overlays` is refused and nothing in this phase can run. Without the relayout, the hook source paths and link targets this plan names do not exist yet |
+| Phase 004, the re-pin and relayout phase: the new engine (phases 001-002) vendored in Barter, and every source relaid out under `framework/` and `root/` | Internal | Green: complete | Without the re-pin, `../overlays` is refused and nothing in this phase can run. Without the relayout, the hook source paths and link targets this plan names do not exist yet |
 | A local Skilled checkout that holds the current pin | Internal | Green | The staged re-pin check cannot run |
 <!-- /ANCHOR:dependencies -->
 

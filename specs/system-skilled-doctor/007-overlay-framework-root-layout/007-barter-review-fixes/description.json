@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skilled-doctor/007-overlay-framework-root-layout/007-barter-review-fixes",
+  "description": "Phase 7: barter-review-fixes",
+  "keywords": [
+    "phase",
+    "barter-review-fixes"
+  ],
+  "lastUpdated": "2026-11-20T15:37:53.708Z",
+  "specId": "007",
+  "folderSlug": "barter-review-fixes",
+  "parentChain": [
+    "system-skilled-doctor",
+    "007-overlay-framework-root-layout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/005-phase-map-unanchored-append",
+  "spec_folder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/005-phase-map-unanchored-append",
+  "parent_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase map unanchored append",
+      "duplicate phase documentation map",
+      "create sh parent phase map anchor",
+      "phase map unanchored append plan",
+      "phase map unanchored append tasks",
+      "phase map unanchored append implementation summary"
+    ],
+    "key_topics": [
+      "phase",
+      "map",
+      "unanchored",
+      "append",
+      "duplicate",
+      "documentation",
+      "parent",
+      "anchor",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh",
+      "templates/packet-types/phase-parent.spec.md.tmpl"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "test-phase-system.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh",
+        "source": "derived"
+      },
+      {
+        "name": "phase-parent.spec.md.tmpl",
+        "kind": "file",
+        "path": "templates/packet-types/phase-parent.spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`create.sh --phase --parent` looked for the existing map only by its `phase-map` anchor comment",
+    "created_at": "2026-11-20T15:51:38Z",
+    "last_save_at": "2026-11-20T16:26:23.163Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8b2eb4715ed285dbfac0b7ee467a29efb91c296138d040b79b5d767ea8e39f64",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c4010cf65fbd9d624f3328093e22a411ed78891744f3988b073f7f39d3ab4a98",
+      "plan.md": "ad3787db4b5092c149f37c6185b1d620a499b81875ea1d19161edccb98039463",
+      "tasks.md": "5178a30eb77fd9dbff6068c603542e77a213a63ffc57f0152380055853262fa0",
+      "implementation-summary.md": "c59122e723945db8632b04b407ce84d30e835481f42c3f280cafe8d02a54dd16"
+    },
+    "last_active_at": null
+  }
+}

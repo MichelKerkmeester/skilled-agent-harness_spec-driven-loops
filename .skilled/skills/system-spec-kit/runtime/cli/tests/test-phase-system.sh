@@ -277,6 +277,66 @@ else
   fail "Expected appended child labels to match phase numbers in description, graph metadata and spec title"
 fi
 
+# ───────────────────────────────────────────────────────────────
+# Test 5: a hand-written map with no anchor gets the row, not a second map
+# ───────────────────────────────────────────────────────────────
+# Parents written by hand carry the map heading and table without the
+# phase-map anchor, often in the Phase | Folder | Status | Description order
+# and with the table as the last line of the file.
+echo ""
+echo "-- Un-anchored parent map --"
+
+repo5=$(make_temp_repo)
+install_desc_generator_stub "$repo5"
+create5="$repo5/.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
+
+base_json=$(cd "$repo5" && bash "$create5" --json --phase --skip-branch --number 5 --phases 1 --phase-names "foundation" "Unanchored map base")
+parent_rel="specs/$(echo "$base_json" | json_field "BRANCH_NAME")"
+parent_spec5="$repo5/$parent_rel/spec.md"
+
+cat > "$parent_spec5" <<'SPEC_EOF'
+# Feature Specification: Unanchored map base
+
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 1 |
+
+---
+
+## Phase Documentation Map
+
+Build order: 001 first.
+
+| Phase | Folder | Status | Description |
+|-------|--------|--------|-------------|
+| 1 | `001-foundation/` | Complete | Foundation work |
+SPEC_EOF
+
+(cd "$repo5" && bash "$create5" --json --phase --parent "$parent_rel" --phases 1 --phase-names "follow-up" "Unanchored map append" >/dev/null)
+
+heading_count5=$(grep -ciE '^## +phase documentation map *$' "$parent_spec5" || true)
+open_count5=$(grep -c '^<!-- ANCHOR:phase-map -->$' "$parent_spec5" || true)
+close_count5=$(grep -c '^<!-- /ANCHOR:phase-map -->$' "$parent_spec5" || true)
+if [[ "$heading_count5" == "1" ]] && [[ "$open_count5" == "1" ]] && [[ "$close_count5" == "1" ]]; then
+  pass "Un-anchored map stays a single section and gains one phase-map anchor pair"
+else
+  fail "Expected one map heading and one anchor pair, got ${heading_count5} headings, ${open_count5} open and ${close_count5} close anchors"
+fi
+
+if [[ "$(grep -A1 -F '| 1 | `001-foundation/` |' "$parent_spec5" | sed -n 2p)" == "| 2 | 002-follow-up/ | Pending | [Phase 2 scope] |" ]]; then
+  pass "Row lands under the last existing row with cells in the table's own column order"
+else
+  fail "Expected '| 2 | 002-follow-up/ | Pending | [Phase 2 scope] |' directly after the existing row"
+fi
+
+if ! grep -qE '^\| From \| To \|' "$parent_spec5"; then
+  pass "No handoff table is added to a map that never had one"
+else
+  fail "Append added a handoff table to a hand-written map"
+fi
+
 echo ""
 echo "---------------------------------------------------------------"
 echo "  Results: ${PASS} passed, ${FAIL} failed (of ${TOTAL})" >&2

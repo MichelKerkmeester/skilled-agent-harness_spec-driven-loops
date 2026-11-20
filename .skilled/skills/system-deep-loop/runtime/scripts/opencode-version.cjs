@@ -117,12 +117,6 @@ function resolveCandidate(command, executablePath, env, deps) {
     }
 
     version = parseOpencodeVersion(probeResult.output);
-    if (version === 'unsupported') {
-      throw unresolvedError(
-        `'${command}' is OpenCode 1, which is no longer supported; install OpenCode 2`,
-        probeResult.output,
-      );
-    }
     if (version === 'unknown') {
       throw unresolvedError(
         `Version probe output for '${command}' was not supported`,
@@ -146,7 +140,7 @@ function resolveCandidate(command, executablePath, env, deps) {
  * Parse the first supported version token in OpenCode version output.
  *
  * @param {string} text - Output returned by the version probe.
- * @returns {'v2' | 'unsupported' | 'unknown'} The supported family, a retired major, or unknown.
+ * @returns {'v2' | 'unknown'} The supported family, or unknown.
  */
 function parseOpencodeVersion(text) {
   if (typeof text !== 'string') return 'unknown';
@@ -166,7 +160,6 @@ function parseOpencodeVersion(text) {
         if (!match) continue;
 
         const major = Number(match[1]);
-        if (major === 1) return 'unsupported';
         if (major === 2) return 'v2';
         return 'unknown';
       }
@@ -179,8 +172,8 @@ function parseOpencodeVersion(text) {
 /**
  * Resolve and probe an executable OpenCode binary.
  *
- * Only OpenCode 2 is accepted. A binary that reports major 1 is refused as unsupported, and
- * one that reports any other major, or no readable version, is refused as unknown.
+ * Only OpenCode 2 is accepted. A binary that reports any other major, or no readable
+ * version, is refused as unknown.
  *
  * @param {NodeJS.ProcessEnv} [env=process.env] - Environment used for PATH and probing.
  * @param {Object} [deps={}] - Optional dependency overrides.

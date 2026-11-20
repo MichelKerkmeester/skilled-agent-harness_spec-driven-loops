@@ -21,7 +21,8 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "barter re-pin onto 063daae"
     ],
     "key_topics": [
       "barter",
@@ -38,14 +39,18 @@
       "doctor"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
+      "implementation-summary.md",
+      ".opencode/package-lock.json",
       ".skilled/commands/doctor/scripts/overlay-engine.cjs",
       ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
       ".skilled/commands/doctor/overlay.md"
     ],
     "entities": [
@@ -74,6 +79,18 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".opencode/package-lock.json",
+        "source": "derived"
+      },
+      {
         "name": "overlay-engine.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
@@ -83,6 +100,18 @@
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
         "source": "derived"
       },
       {
@@ -168,49 +197,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Barter's vendored tree is pinned to Skilled `b0a3b9f2edbf0dde902929b69c6db5afd051f418` (`BO/overlay-manifest.json:6`), whose engine refuses any `overlayDir` that climbs out of the tree (`names a folder outside the tree root`, vendored `overlay-engine.cjs:443`)",
     "created_at": "2026-11-20T10:11:41Z",
-    "last_save_at": "2026-11-20T12:32:11.948Z",
+    "last_save_at": "2026-11-20T15:28:00.964Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e9656957b9ef316ffbfd87aec93968955fbef527b4476a2e1c1da5d0d89566f6",
+    "source_fingerprint": "sha256:8441cb555d50baf6ae8a490f26859a28a19ada4ca5ab99d32c81b3640fc7af69",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c32ffe47528775057522d32e7645ae831c28ee3c84f0c0bddec9c4efaa733cd9",
+      "spec.md": "c82e08112242e4cae89da10d8540971165a76b3a711cf3b83cb14d038973d9bf",
       "plan.md": "bb1a6f950cddfac8ff19a790cc635a6087973ab12b242a09bbd5dcd6fd420ac8",
-      "tasks.md": "2797eb1bfa6ce7bd10ba14bfd5a1ef25d1c50386d91695c3bfb58466af2f1167"
+      "tasks.md": "cda10bc62745d5c012c5380da75cb7c574d8214241526949da49ee26454609d4",
+      "implementation-summary.md": "ac3b1aff263115500acaa8122ca1ce700aef3fb23514731a5d74cdba7e03d4d0"
     },
     "last_active_at": null
   }

@@ -14,11 +14,10 @@ import { delimiter, join } from 'node:path';
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-// The single list of OpenCode families the rule engine treats as supported. Major 1 resolves
-// to 'unsupported', which names the retired install; any major other than 1 or 2, and output
-// with no version, resolves to 'unknown'. Neither refuses the dispatch: the rule engine applies every
-// rule to it, at the declared severity for a rule that covers every supported family and as
-// a warning for a narrower one.
+// The single list of OpenCode families the rule engine treats as supported. Any major other
+// than 2, and output with no version, resolves to 'unknown'. That never refuses the dispatch:
+// the rule engine applies every rule to it, at the declared severity for a rule that covers
+// every supported family and as a warning for a narrower one.
 const SUPPORTED_FAMILIES = Object.freeze(['v2']);
 const PROBE_TIMEOUT_MS = 3000;
 const VERSION_PATTERN = /^\s*(?:[A-Za-z][\w.-]*\s+)?[vV]?(\d+)\.(\d+)\.(\d+)(?:[-+][\w.-]+)?\s*$/;
@@ -182,7 +181,7 @@ async function probeWithTimeout(probe, binary) {
  * Parse the first supported version token in OpenCode version output.
  *
  * @param {string} text - Output returned by the version probe.
- * @returns {'v2' | 'unsupported' | 'unknown'} The supported family, a retired major, or unknown.
+ * @returns {'v2' | 'unknown'} The supported family, or unknown.
  */
 function parseOpencodeVersion(text) {
   if (typeof text !== 'string') return 'unknown';
@@ -202,7 +201,6 @@ function parseOpencodeVersion(text) {
         if (!match) continue;
 
         const major = Number(match[1]);
-        if (major === 1) return 'unsupported';
         if (major === 2) return 'v2';
         return 'unknown';
       }
@@ -220,7 +218,7 @@ function parseOpencodeVersion(text) {
  * @param {(binary: string) => (string | Promise<string>)} [deps.probe] - Version probe.
  * @param {(binary: string) => {size: number, mtimeMs: number}} [deps.stat] - File stat provider.
  * @param {(binary: string) => string} [deps.realpath] - Canonical path provider.
- * @returns {Promise<'v2' | 'unsupported' | 'unknown'>} The resolved version family.
+ * @returns {Promise<'v2' | 'unknown'>} The resolved version family.
  */
 async function resolveOpencodeVersion(binary, deps = {}) {
   if (typeof binary !== 'string' || binary.length === 0) return 'unknown';
@@ -257,7 +255,7 @@ async function resolveOpencodeVersion(binary, deps = {}) {
  * Resolve a named or path-qualified OpenCode executable through the bounded synchronous version probe.
  *
  * @param {string} binary - Executable name or path from the dispatch command.
- * @returns {'v2' | 'unsupported' | 'unknown'} The resolved version family.
+ * @returns {'v2' | 'unknown'} The resolved version family.
  */
 function resolveOpencodeVersionSync(binary) {
   try {

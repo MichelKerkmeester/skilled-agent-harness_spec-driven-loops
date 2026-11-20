@@ -1,0 +1,1 @@
+{"executors":[{"kind":"cli-claude-code","model":"claude-opus-5-5","reasoningEffort":"medium","configDir":"~/.claude-account2","sandboxMode":"danger-full-access","label":"opus-medium"},{"kind":"cli-mistral-vibe","model":"deepseek-flash","label":"deepseek-flash-max"}],"concurrency":2}

@@ -225,6 +225,55 @@ describe('refreshEmbeddingsInBackground', () => {
     expect(coverage.complete).toBe(true);
   });
 
+  it('still runs a queued pass when the running pass throws', async () => {
+    const { graph, skillRoot } = await prepareGraph();
+    let failProbe: ((error: Error) => void) | undefined;
+    probeOllamaModel.mockReturnValueOnce(new Promise((_resolve, reject) => {
+      failProbe = reject;
+    }));
+
+    const first = graph.refreshEmbeddingsInBackground(skillRoot);
+    seedSkillTree(tmpRoot, 'sk-late-arrival', 'skill indexed while the first pass fails');
+    graph.indexSkillMetadata(skillRoot);
+    const second = graph.refreshEmbeddingsInBackground(skillRoot);
+    failProbe?.(new Error('probe exploded'));
+    const [firstResult, secondResult] = await Promise.all([first, second]);
+
+    expect(firstResult?.embedded).toBe(2);
+    expect(secondResult).toEqual(firstResult);
+    expect(graph.embeddingCoverage().complete).toBe(true);
+  });
+
+  it('reports a queued pass that throws after an earlier pass succeeded', async () => {
+    const { graph, skillRoot } = await prepareGraph();
+    let releaseEmbed: (() => void) | undefined;
+    let embedStarted: (() => void) | undefined;
+    const started = new Promise<void>((resolve) => {
+      embedStarted = resolve;
+    });
+    adapterEmbed.mockImplementationOnce(async (texts: ReadonlyArray<string>) => {
+      embedStarted?.();
+      await new Promise<void>((resolve) => {
+        releaseEmbed = resolve;
+      });
+      return texts.map(() => new Float32Array(ACTIVE_EMBEDDER_DIM));
+    });
+    probeOllamaModel
+      .mockResolvedValueOnce({ available: true })
+      .mockRejectedValueOnce(new Error('database is locked'));
+
+    const first = graph.refreshEmbeddingsInBackground(skillRoot);
+    await started;
+    seedSkillTree(tmpRoot, 'sk-late-arrival', 'skill indexed while the first pass embeds');
+    graph.indexSkillMetadata(skillRoot);
+    void graph.refreshEmbeddingsInBackground(skillRoot);
+    releaseEmbed?.();
+    const result = await first;
+
+    expect(result?.embedded).toBe(1);
+    expect(result?.warnings).toEqual(expect.arrayContaining([expect.stringContaining('database is locked')]));
+  });
+
   it('clears the in-flight slot when a pass throws', async () => {
     const { graph, skillRoot } = await prepareGraph();
     probeOllamaModel.mockRejectedValueOnce(new Error('probe exploded'));

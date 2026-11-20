@@ -39,13 +39,14 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "implementation-summary.md",
       ".skilled/commands/doctor/scripts/overlay-engine.cjs"
     ],
     "entities": [
@@ -77,6 +78,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Barter's own files live inside the copy it vendors from Skilled, at `skilled/barter-overlays/`, and 52 non-hidden files outside spec history and changelogs name the folder there",
     "created_at": "2026-11-20T10:11:42Z",
-    "last_save_at": "2026-11-20T10:39:10.164Z",
+    "last_save_at": "2026-11-20T15:28:02.716Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,14 +205,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4654e9c71f675ed93223fff0278b2a711941f075cf098c3ad57878c2af82b039",
+    "source_fingerprint": "sha256:4a766e3055491278f62fe7253fc84012539575b1d60e5ace34fef82fe602c7d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4da892efda718799fbf4e5d38997d2245b90f9d3becf93c16d97bab7a3dae202",
-      "plan.md": "5c58a5f7789549a3aa900dc4e722ace4f26de6ee7731565e9e89eba450894fdb",
-      "tasks.md": "b657afc3c2273db0906789f06fa116bea3471fb28dbd28d67ce13b7e9ccc35ae"
+      "spec.md": "87057992e9764bf613db662f5628cfab6f03b22640f91004033fea237393d6fa",
+      "plan.md": "a6bb010b4185f06d6f43405ffe3d044bfeca9a03f4e767a2ef6bcc558c3cac0b",
+      "tasks.md": "e2fc3ea17f5bc580283674113bac53697fd6ec401abe3426f1ee696d28c0e132",
+      "implementation-summary.md": "ce19c3c641c26b0ac681212acae9c556bfd0ad1f3123c1fbbcd25437a66e40b7"
     },
     "last_active_at": null
   }

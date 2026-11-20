@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-20 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -242,6 +242,11 @@ Still UNKNOWN until execution, and read during it:
 - What sets `core.hooksPath`. Setup and verification both read it (T003, T054).
 - Whether a running OpenCode plugin re-reads the cached realpath of the hook core. Open sessions are restarted after commit 2.
 - Whether a staged re-pin to the current pin exits 0. T050 records the exit status and judges by the hashes.
+
+Answered during execution, 2026-11-20, in ai-speckit commits `a954fc956ce` (hooks, commit 1) and `2a8f454c8d1` (move, commit 2):
+- `core.hooksPath` printed `skilled/.opencode/scripts/git-hooks` before and after the move (T003, T054).
+- The live OpenCode plugin refused a guarded edit after the move and named `../overlays/...` (T048).
+- The staged re-pin to the current pin exited 0, printed `nothing to copy` and `RESULT: PASSED`, and left the live hashes unchanged (T050).
 <!-- /ANCHOR:questions -->
 
 ---

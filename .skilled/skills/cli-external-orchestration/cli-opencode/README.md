@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.33.0
+version: 1.4.34.0
 ---
 
 # cli-opencode
@@ -48,7 +48,7 @@ A sibling CLI dispatch sends a prompt to one provider's binary behind a thin wra
 | **Provider and model catalog** | every reachable provider and model id, with the effort level for each |
 | **Agent delegation** | the project agents under `.skilled/agents/`, with the primary and subagent rules in `references/agent-delegation.md` |
 
-**Pinned version.** OpenCode 2 is the only supported major; OpenCode 1 support was removed in skill version 2.0.0.0. The repository pins OpenCode 2 at 2.3.2, and the setup helper installs exactly that pin. Flag observations that name 2.0.32 were read on that release. A binary that reports major 1 is `unsupported`: a deep-loop lineage refuses it, and the dispatch guard checks it against every rule. The install reference is [`references/install-and-versions.md`](./references/install-and-versions.md).
+**Pinned version.** OpenCode 2 is the only supported major. The repository pins OpenCode 2 at 2.3.2, and the setup helper installs exactly that pin. Flag observations that name 2.0.32 were read on that release. A binary that reports any other major is `unknown`: a deep-loop lineage refuses it, and the dispatch guard checks it against every rule. The install reference is [`references/install-and-versions.md`](./references/install-and-versions.md).
 
 ---
 
@@ -68,7 +68,7 @@ Expect one resolved path. Expect no output when the name does not resolve. `OPEN
 opencode --version
 ```
 
-Expect `opencode v2.3.2`. A major-1 line is `unsupported`: a deep-loop lineage refuses it, and the dispatch guard checks it against every rule. Anything else is `unknown`. [`references/install-and-versions.md`](./references/install-and-versions.md) explains the detection and the install.
+Expect `opencode v2.3.2`. Anything else is `unknown`: a deep-loop lineage refuses it, and the dispatch guard checks it against every rule. [`references/install-and-versions.md`](./references/install-and-versions.md) explains the detection and the install.
 
 **Step 3: Confirm provider auth.**
 
@@ -145,7 +145,7 @@ Each run is stateless by default. Keep every fact the session needs in the promp
 
 ### The Two Run Rules
 
-**Rule 1: close stdin on every non-interactive run.** Append `</dev/null` after the prompt argument and before any file redirect. A run that sends stdout and stderr to files can wait forever at 0% CPU when stdin stays open. The recorded hang is from OpenCode 1 (v1.14.39), and no OpenCode 2 reproduction is recorded, so the redirect stays required. A foreground pipe such as `| tail` closes stdin for you. A background run inside a `while read` loop does not.
+**Rule 1: close stdin on every non-interactive run.** Append `</dev/null` after the prompt argument and before any file redirect. A run that sends stdout and stderr to files can wait forever at 0% CPU when stdin stays open. No OpenCode 2 reproduction of the hang is recorded, and the redirect stays required. A foreground pipe such as `| tail` closes stdin for you. A background run inside a `while read` loop does not.
 
 **Rule 2: omit `--agent` on a top-level run.** The default agent covers the general case. Omitting the flag is how you select it. Pass `--agent` only for a primary profile such as `plan` or `orchestrate`, and only after `opencode run --help -m llmgateway/deepseek-v4.1-flash-1017 </dev/null` confirms the top-level form. For any other role, state the role in the prompt body, as in 'Act as a code-review agent: ...'.
 
@@ -193,7 +193,7 @@ On a bare run that names no agent, inline the persona block in the prompt. The c
 | [`ROUTER.md`](./ROUTER.md) | Machine router: the intent and resource maps and the loading levels |
 | [`hard-rules.json`](./hard-rules.json) | Preflight checks read before a dispatch |
 | [`references/cli-reference.md`](./references/cli-reference.md) | Every subcommand and `run` flag, plus the version drift table |
-| [`references/install-and-versions.md`](./references/install-and-versions.md) | Install reference, version detection and removing an older install |
+| [`references/install-and-versions.md`](./references/install-and-versions.md) | Install reference and version detection |
 | [`references/providers-and-models.md`](./references/providers-and-models.md) | The closed provider roster and the effort ladder for each model id |
 | [`references/integration-patterns.md`](./references/integration-patterns.md) | The use cases and the decision tree, plus the silent stdin trap |
 | [`references/agent-delegation.md`](./references/agent-delegation.md) | Agent classes and the routing matrix, plus the leaf constraints |
@@ -208,7 +208,7 @@ On a bare run that names no agent, inline the persona block in the prompt. The c
 | [`assets/permissions-matrix.example-readonly.json`](./assets/permissions-matrix.example-readonly.json) | Example matrix for read-only corpus inspection |
 | [`assets/permissions-matrix.example-packet-local.json`](./assets/permissions-matrix.example-packet-local.json) | Example matrix that confines writes to the active packet |
 | [`assets/permissions-matrix.example-repo-wide.json`](./assets/permissions-matrix.example-repo-wide.json) | Example matrix for `.skilled` writes with explicit denials |
-| [`scripts/opencode-setup.sh`](./scripts/opencode-setup.sh) | Installs OpenCode 2, removes an older install and reports what each name resolves to |
+| [`scripts/opencode-setup.sh`](./scripts/opencode-setup.sh) | Installs OpenCode 2 and reports what each name resolves to |
 | [`scripts/probe-worktree-confinement.cjs`](./scripts/probe-worktree-confinement.cjs) | Probes whether a dispatch shape keeps tool paths inside the worktree |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Per-feature scenarios grouped by category |
 | [`benchmark/README.md`](./benchmark/README.md) | Index of the archived validation reports |
@@ -264,7 +264,6 @@ If you already run inside one runtime, the matching cli-X skill refuses to load.
 | The event stream is empty | The format defaulted to formatted output | Force `--format json` |
 | `Self-invocation refused` | The caller already runs inside OpenCode | Use a different runtime, exit the current session, open a fresh shell or restate with `parallel detached` |
 | `--share` publishes nothing | `run` has no share flag | Drop the flag. There is no URL to publish |
-| `opencode --version` prints a 1.x line | An older install still answers to the name | Run `opencode-setup.sh remove-v1`, then `opencode-setup.sh v2` |
 | The context is too large or the reply is truncated | The prompt names broad paths instead of specific files | Name the files, pass `-f` and split a large task |
 
 ---
@@ -281,7 +280,7 @@ A: The default agent covers the general case. Omitting the flag selects it. For 
 
 **Q: Why does a non-interactive dispatch hang without `</dev/null`?**
 
-A: When stdout and stderr go to files, stdin stays open and the process can wait forever at 0% CPU. `</dev/null` gives it an immediate end of input. The recorded hang is from OpenCode 1 (v1.14.39), and no OpenCode 2 reproduction is recorded, so the redirect stays required.
+A: When stdout and stderr go to files, stdin stays open and the process can wait forever at 0% CPU. `</dev/null` gives it an immediate end of input. No OpenCode 2 reproduction of the hang is recorded, and the redirect stays required.
 
 **Q: Is there a share URL?**
 
@@ -316,7 +315,7 @@ The playbook groups its scenarios by category: CLI invocation, external dispatch
 | [`SKILL.md`](./SKILL.md) | Runtime instructions and the full rule set |
 | [`ROUTER.md`](./ROUTER.md) | Machine router: the intent and resource maps and the loading levels |
 | [`references/cli-reference.md`](./references/cli-reference.md) | Complete subcommand, flag, auth and version drift reference |
-| [`references/install-and-versions.md`](./references/install-and-versions.md) | Install reference, version detection and removing an older install |
+| [`references/install-and-versions.md`](./references/install-and-versions.md) | Install reference and version detection |
 | [`references/providers-and-models.md`](./references/providers-and-models.md) | Provider and model catalog, with the effort ladder for each |
 | [`references/integration-patterns.md`](./references/integration-patterns.md) | The use cases and the decision tree, plus the stdin trap |
 | [`references/agent-delegation.md`](./references/agent-delegation.md) | Agent roster and routing matrix, plus the leaf constraints |
