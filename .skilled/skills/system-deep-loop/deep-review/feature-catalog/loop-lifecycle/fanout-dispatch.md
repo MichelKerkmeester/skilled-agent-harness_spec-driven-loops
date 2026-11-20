@@ -7,7 +7,7 @@ trigger_phrases:
   - "step_fanout_spawn"
   - "strongest-restriction verdict"
   - "multi-executor review"
-version: 1.11.5.0
+version: 1.11.6.0
 ---
 
 # Fan-out loop dispatch
@@ -58,7 +58,11 @@ active P0, or any lineage required gate still failing at its stop → merged FAI
 The runner's stdout summary and `orchestration-summary.json` list each lineage as
 `{label, status, failure_class, exit_code, rerun_command}`; only a failed lineage gets a
 `rerun_command`, the run's own argv with `--only-lineage LABEL`, to run from the original
-working directory.
+working directory. A failed lineage whose config is `complete` gets a null `rerun_command` and a
+`rerun_note` instead: archive its folder first, or rerun with `--restart` when it was refused.
+A finished lineage is skipped before spawn only when its terminal stop row passes the post-attempt
+stop-reason check and its recorded `reviewTarget` and executor match this run; a mismatch is
+refused before spawn with a message naming `--restart`.
 
 An optional `--review-focus "TEXT"` (or a pre-bound `review_focus` answer) carries the
 operator's focus to every lineage. `step_fanout_spawn_cli` writes it to a file with the
