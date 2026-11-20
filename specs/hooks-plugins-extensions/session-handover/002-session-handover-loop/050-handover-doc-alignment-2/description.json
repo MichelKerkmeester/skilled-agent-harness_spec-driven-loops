@@ -13,7 +13,7 @@
     "86-doc",
     "check"
   ],
-  "lastUpdated": "2026-11-16T12:10:31.437Z",
+  "lastUpdated": "2026-11-19T17:47:57.646Z",
   "specId": "050",
   "folderSlug": "handover-doc-alignment-2",
   "parentChain": [
@@ -21,8 +21,10 @@
     "session-handover",
     "002-session-handover-loop"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "16-11-26_13-10__second-hand-over-doc-alignment-pass-a-six-lane.md"
+    "16-11-26_13-10__second-hand-over-doc-alignment-pass-a-six-lane.md",
+    "19-11-26_18-36__manual-context-save.md",
+    "19-11-26_18-47__manual-context-save.md"
   ]
 }

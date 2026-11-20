@@ -201,6 +201,7 @@ Four more rules run after the work. The agent checks the final state, proves com
 The skill advisor scores each prompt and puts a one-line routing brief in front of the agent. An emitted skill recommendation at a confidence of 0.8 or more must be loaded. The task-intent confidence floor is 0.82, but the prompt hook can withhold a confidence-floored route for a weak follow-up when it differs from the session's stored route, so the brief can say `Advisor: prompt skipped.` The scorer strips a recognized earlier reply pasted ahead of the task before scoring.
 
 The advisor is a resident daemon behind one command-line front door. When the daemon is down, a local scorer answers instead and marks its answer stale. A setup or health prompt with no match gets a pointer to `/doctor:setup`. The [Skill Advisor README](.skilled/skills/system-skill-advisor/README.md) has the scoring and the CLI.
+When Ollama is available, the daemon refreshes missing or stale skill and command vectors in the background.
 
 ### Spec Folders
 

@@ -17,6 +17,7 @@
       "feature subtrack restructure tasks",
       "feature subtrack restructure acceptance criteria",
       "feature subtrack restructure goal",
+      "001-feature-subtrack-restructure operator decisions",
       "feature subtrack restructure implementation summary"
     ],
     "key_topics": [
@@ -41,6 +42,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       "specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/feature-overview.md",
       "scratch/move-map/map.txt",
@@ -79,6 +81,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -188,18 +196,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The track files its packets under broad sub-tracks named after a bundle of work (`goal-and-directive-hooks`, `hook-injection-pipeline`, `pi-extensions`, `repo-commit-gates`, `session-turn-boundaries`), not after the feature a reader is looking for",
     "created_at": "2026-11-15T06:21:47Z",
-    "last_save_at": "2026-11-15T14:37:05.110Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:47:06.238Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -207,14 +209,16 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:813067b613048da092dc00099b1d113a956675a373dcc3979c92d8b146d7cab2",
+    "source_fingerprint": "sha256:66ea3ce40bb5720bb8cc63ff8f7146e29edec781a2d963ea12cc7433ec4c974a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2a7b4e4cd0d42117c6777d31757a98ab3aab7a712ec8c42dd98c64389cfa2aca",
       "plan.md": "a34d4adb2ce337f1c1cee6dde582ef5868ea1f429065c30c76ec9f72dfa2a1cc",
       "tasks.md": "e3027dd9a54a45d67f1edb678373afe78af02bd23809e69424d77205d62a2d86",
+      "decision-record.md": "1f194ee2f968946f6f00d10edbf5bb901e89d1c6bd7dd0f331fd08371727ce75",
       "implementation-summary.md": "792741567f1eb719ea1dfcd5f5f2f6a3462193a862073e8064e7b13d42df9c8b"
     },
     "last_active_at": null

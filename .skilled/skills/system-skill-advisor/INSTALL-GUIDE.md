@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor Install + Setup Guide"
 description: "Bootstrap, verification, runtime hooks, local scorer, rollback, operator notes and reference commands for the daemon-backed skill advisor CLI."
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Skill Advisor Install + Setup Guide
@@ -287,7 +287,7 @@ The persisted default is the `'auto'` sentinel. On daemon start, `ensureActiveEm
 
 `setActiveEmbedder()` can pin the registered manifest, and later daemon starts use that pointer.
 
-Only a trusted `skill_graph_scan` refreshes skill vectors through `refreshSkillEmbeddingsViaAdapter`. No other path refreshes them. A refresh with no active pointer embeds nothing. The legacy `skill_nodes.embedding` path has been removed.
+After startup IPC comes up, the daemon starts one shared background refresh without awaiting it. It starts the refresh again after each watcher reindex. It counts current, stale and missing vectors locally. Complete coverage returns without a network call. Incomplete coverage triggers one Ollama probe with a 500 ms timeout, followed by embeds for missing or stale rows. Coverage is complete only when at least one embeddable skill exists and all embeddable skill and command rows are current. A command-only index can therefore reach the probe even when all its command vectors are current. A failed embed keeps the prior vector. Set `SYSTEM_SKILL_ADVISOR_EMBED_REFRESH=off` to disable background refreshes. Embeddable skills have a non-empty `SKILL.md` description. Embeddable command rows come from generated command bridges and need non-empty `embeddingText` plus an enabled TypeScript runtime id. The legacy `skill_nodes.embedding` path has been removed.
 
 ### 12.2 Registered alternatives
 
@@ -325,16 +325,16 @@ Effect of the call:
 - `hasActiveEmbedderPointer(db)` returns `true`, so both read path (`semantic-shadow.ts`, `loadSkillEmbeddings()`) and write path (`refreshSkillEmbeddingsViaAdapter`) target `vec_<active.dim>`
 - The pinned pointer is read on subsequent restarts.
 
-There are intentionally no embedder-administration commands here. Skill-advisor's surface is one database helper plus the registered-manifest pointer. A trusted `skill_graph_scan` is the only skill-vector refresh path. There is no async re-index orchestrator on the skill-advisor side.
+There are intentionally no embedder-administration commands here. Skill-advisor's surface is one database helper plus the registered-manifest pointer. The daemon's shared refresh handles skill and command vectors in the background after startup and watcher reindexing. A trusted `skill_graph_scan` remains available for indexing. The shared refresh also updates vectors.
 
 ### 12.4 Operator-safe swap runbook
 
-The advisor resolves an unset or unknown pointer to the registered manifest without probing a backend. Only a trusted `skill_graph_scan` refreshes skill vectors:
+The advisor resolves an unset or unknown pointer to the registered manifest without probing a backend. Background refresh starts after IPC is ready and after watcher reindexing. It probes Ollama once when coverage is incomplete. Coverage requires at least one embeddable skill, so a command-only index can still reach the probe when its command vectors are current:
 
 1. Stop the daemon.
 2. Snapshot `runtime/database/skill-graph.sqlite`.
 3. (Optional) Call `setActiveEmbedder()` to pin the registered manifest.
-4. Restart the daemon. An unset or unknown pointer resolves to `nomic-embed-text-v1.5` (768 dimensions) without a backend probe. Run a trusted `skill_graph_scan` to refresh skill vectors through the adapter dispatcher. A refresh with no active pointer embeds nothing.
+4. Restart the daemon. An unset or unknown pointer resolves to `nomic-embed-text-v1.5` (768 dimensions) without a pointer-resolution probe. Once IPC is ready, the daemon checks vector coverage and refreshes missing or stale skill and command rows in the background. A trusted `skill_graph_scan` is still available when you need to reindex.
 5. Smoke-test `advisor_recommend` through the CLI against three queries (`"memory save"`, `"code search"`, `"spec folder"`) and confirm top-3 picks are sane.
 
 The full runbook (snapshot + stop + override + restart + smoke test + rollback) is documented at [`002-jina-swap-and-reindex/evidence/swap-runbook.md`](../../<spec-folder>). The "Architecture Context" and "Half-wired state" sections are now historical — the half-wired state was closed by phase `004`.
@@ -372,7 +372,7 @@ What the embedder costs on this machine, measured 2026-11-13 with `runtime/scrip
 | Warm embed latency, model loaded | 4.8 ms median, 8.9 ms p95 |
 | Cold first call after the unload | 538.53 ms |
 
-Once the approved steps run, the route runs `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json`. That trusted scan is the only path that refreshes skill vectors. A refresh with no active pointer embeds nothing. At the default live weight of 0, `advisor_status` reports `disabledReason: "lane_weight_zero"` and `laneEnabled: false`, and prompts make no Ollama embed call. The database is derived state and gitignored, since `.gitignore` ignores `runtime/database/*.sqlite`.
+Once the approved steps run, the route runs `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json`. Setup and embedder checks pass when `coverageComplete` is true. If Ollama is unavailable, they report `DEGRADED`. A lane weight of 0 passes setup. Update apply, overlay apply and overlay repin report vector coverage. Symlink link reports it too. At the default live weight of 0, recommendations make no prompt embedding call. An `advisor_status --include-semantic-health true` call independently probes Ollama readiness. The database is derived state and gitignored, since `.gitignore` ignores `runtime/database/*.sqlite`.
 
 ---
 

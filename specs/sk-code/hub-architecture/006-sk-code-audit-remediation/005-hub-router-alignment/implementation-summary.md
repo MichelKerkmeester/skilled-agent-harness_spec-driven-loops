@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:4d9b2389e903fac49943c4c634c18baded27b35b4a0c6d378e2286e7c861eb34"
       session_id: "scaffold-005-hub-router-alignment"
       parent_session_id: null
     completion_pct: 100

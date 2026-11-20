@@ -15,15 +15,17 @@
     "only",
     "compaction"
   ],
-  "lastUpdated": "2026-11-15T18:13:47.586Z",
+  "lastUpdated": "2026-11-19T17:47:15.597Z",
   "specId": "001",
   "folderSlug": "history-lookup-handover-integration",
   "parentChain": [
     "hooks-plugins-extensions",
     "session-handover"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "15-11-26_19-13__ten-iteration-deep-review-of-the-history-lookup.md"
+    "15-11-26_19-13__ten-iteration-deep-review-of-the-history-lookup.md",
+    "19-11-26_18-35__manual-context-save.md",
+    "19-11-26_18-47__manual-context-save.md"
   ]
 }

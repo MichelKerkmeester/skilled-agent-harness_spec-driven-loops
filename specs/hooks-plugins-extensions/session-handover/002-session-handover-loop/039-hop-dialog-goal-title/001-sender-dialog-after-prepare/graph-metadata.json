@@ -19,6 +19,7 @@
       "sender dialog after prepare tasks",
       "sender dialog after prepare acceptance criteria",
       "sender dialog after prepare goal",
+      "001-sender-dialog-after-prepare operator decisions",
       "sender dialog after prepare implementation summary"
     ],
     "key_topics": [
@@ -43,6 +44,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
       ".claude/settings.json",
@@ -80,6 +82,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -189,18 +197,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow Claude",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "On Claude Code, `prepare` leaves the relaunch record `pending` and only the Stop hook `stop-arm.mjs` arms it",
     "created_at": "2026-11-13T15:46:08Z",
-    "last_save_at": "2026-11-15T14:28:42.746Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:47:48.343Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -208,15 +210,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fa1884bf0f209305fa039ae76f2d20c2919108099ed26125d0bdcded60bdaf57",
+    "source_fingerprint": "sha256:c395e39b0ae4559ea07b14bee9b40f4e5bf429643e0ca4786b30a86b37bca177",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8eb024511c57b2a8271646823137b78abc771c068c54d7d13605685696ed4183",
       "plan.md": "7bf0da5dd83222ee230f160374266f45b494c2f74b6c71d629bde81ac5ff4173",
       "tasks.md": "8ff53daee327e83d3d1ae583afac8dbecb672e97927f6191054082f1226a56d5",
-      "implementation-summary.md": "db3a29faa455f3738ae5f5c36452ef32fcdb44949bea408e9a532277d37d7b67"
+      "decision-record.md": "686bdabe083465246bdfc6144d65b1126118aefaf833f6a8848a2721d063b1a7",
+      "implementation-summary.md": "b372ed5183da58eea86edf858580e3c51cf468e946de78b20aa67635e0d9ac84"
     },
     "last_active_at": null
   }

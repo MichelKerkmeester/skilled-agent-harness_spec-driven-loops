@@ -16,6 +16,7 @@
       "ai council writer and round model plan",
       "ai council writer and round model tasks",
       "ai council writer and round model acceptance criteria",
+      "009-ai-council-writer-and-round-model operator decisions",
       "ai council writer and round model implementation summary"
     ],
     "key_topics": [
@@ -28,9 +29,9 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation",
-      "summary",
-      "ai-council"
+      "009-ai-council-writer-and-round-model",
+      "operator",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,6 +40,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       "scratch/after.txt",
       ".skilled/agents/ai-council.md",
@@ -53,8 +55,7 @@
       ".codex/agents/ai-council.toml",
       ".dsh/agents/ai-council.patch.yml",
       ".skilled/agents/README.txt",
-      ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md",
-      ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md"
+      ".skilled/skills/system-spec-kit/runtime/tests/multi-ai-council-runtime-parity.vitest.ts"
     ],
     "entities": [
       {
@@ -79,6 +80,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -148,15 +155,9 @@
         "source": "derived"
       },
       {
-        "name": "folder-layout.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md",
-        "source": "derived"
-      },
-      {
-        "name": "convergence-signals.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md",
+        "name": "multi-ai-council-runtime-parity.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/multi-ai-council-runtime-parity.vitest.ts",
         "source": "derived"
       },
       {
@@ -204,7 +205,7 @@
     ],
     "causal_summary": "`ai-council.md` says it is the sole writer of `ai-council/` (line 739), while the registry tells `@orchestrate` to run `persist-artifacts.cjs` after the agent returns (`agent-registry.json:44`) and `/deep:ai-council` persists each seat through its own script (`orchestrate-session.cjs:417`)",
     "created_at": "2026-11-14T20:19:19Z",
-    "last_save_at": "2026-11-14T23:47:18.636Z",
+    "last_save_at": "2026-11-19T17:35:17.053Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +213,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8d0291018b91f1d9278a0c8ebaca11e291abab6830ffc6ebf0244e2d1795a09d",
+    "source_fingerprint": "sha256:bb5948eea758f35f2cad5729401e118a02cbb8bc8dc1c21d1981035a7dfb63aa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5fa51e6097e875f9026fc00f0daa7e6f91e117e6d16a13f0adc25471bde95c9a",
       "plan.md": "a5467bd3b5286bfd07cabe5e1bb03510c0ad631183e0bb8a99b3dae61fbe163c",
       "tasks.md": "8a5f1cd30832b020565a5c4002de5c3954327b464a6aade48cb692ac07bbdb2b",
+      "decision-record.md": "fe1fe1a58d5a1ba332f79a43a16995ea94e80adb425dc7b38b1ee5bd6fb91052",
       "implementation-summary.md": "454f37d1fe6b9d2dff724c7fade6f596dfec29865651d8e86602e123f8be6dbf"
     },
     "last_active_at": null

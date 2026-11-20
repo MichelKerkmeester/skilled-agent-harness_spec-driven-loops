@@ -1,0 +1,16 @@
+[
+  {
+    "id": "P16",
+    "prompt": "debug why the MCP tool call times out",
+    "expect": "mcp-tooling",
+    "expectMode": null,
+    "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"debug why the MCP tool call times out\"}' --format json",
+    "exit": 0,
+    "status": "fail",
+    "reason": "top-1 was mcp-code-mode",
+    "actual": "mcp-code-mode",
+    "actualMode": null,
+    "confidence": 0.8854,
+    "runnerUp": "sk-code"
+  }
+]

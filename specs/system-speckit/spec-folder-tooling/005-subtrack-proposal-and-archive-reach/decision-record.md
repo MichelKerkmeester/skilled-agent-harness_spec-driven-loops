@@ -65,6 +65,14 @@ _memory:
 | Q029 | Worktree 378 is pushed to origin/main as a fast-forward. | Not stated. | None | Done 2026-11-14: origin/main `57531ae8bc..ab7218b42d` |
 | Q030 | In the primary checkout, only this packet's stale copies and the four dirty generated index files are cleaned, with a backup first. Other sessions' files and this packet's `description.json` are left, and the checkout's fast-forward is left to its follower. | Not stated. | Carries out Q023 | Done 2026-11-14: copies moved to the session scratchpad, parent files restored by exact path; the live follower then fast-forwarded the checkout to `ab7218b42d` |
 | Q031 | Worktree 378 and its local branch worktrees/378-relocate-restore-fixes are removed now. | Not stated. The branch was merged and pushed. | None | Done 2026-11-14: `git worktree remove` and `git branch -d` |
+| Q032 | The /deep:review packet for the 005 alignment review writes its files under 005/review/. | Not stated. | none | 005/review/ (deep-review packet) |
+| Q033 | The 5-iteration review runs as 2 lineages of 5 iterations each, since cli-deepseek-harness refuses single-executor runs. | Not stated. | none | 005/review/ (deep-review packet) |
+| Q034 | The review loop runs in auto mode and may stop early on convergence. | Not stated. | none | 005/review/ (deep-review packet) |
+| Q035 | The review covers all four dimensions plus a --review-focus naming the sk-code and sk-doc alignment checks. | Not stated. | none | 005/review/ (deep-review packet) |
+| Q036 | Lanes A and B are rerun on preset 3 or the llmgateway route after timing out on opencode-go. | Not stated. | none | specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md |
+| Q037 | Every finding caused by the 005 branch is fixed. | Not stated. | none | specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md |
+| Q038 | Both release and routing findings are fixed: a system-spec-kit changelog entry and version bump, and advisor vocabulary for the new tools. | Not stated. | none | specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md |
+| Q039 | This session writes the phase 006-010 doc closeout itself instead of a claude2 Fable worker. | Not stated. | none | specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -445,6 +453,168 @@ Asked through AskUserQuestion on 2026-11-14. Question: remove worktree 378 and i
 Operator answer:
 ```text
 Remove now (Recommended)
+```
+
+### Q032
+<!-- source: claude:0876649b-ba9c-4e02-8bc7-a7cc3d0815b1:toolu_01TaZBmZWpoi7MY1oxtmvUZX:0 -->
+
+Question:
+```text
+Where should the /deep:review packet for the 005 subtrack-proposal alignment review write its files (Gate 3)?
+```
+
+Options:
+```text
+005/review/ (Recommended)
+New child 011
+Skip docs
+```
+
+Answer:
+```text
+005/review/ (Recommended)
+```
+
+### Q033
+<!-- source: claude:0876649b-ba9c-4e02-8bc7-a7cc3d0815b1:toolu_01TaZBmZWpoi7MY1oxtmvUZX:1 -->
+
+Question:
+```text
+cli-deepseek-harness (DeepSeek V4.1 Flash, pinned max) refuses single-executor runs per deep-review-presentation.txt line 206. Which shape should the 5-iteration review take?
+```
+
+Options:
+```text
+2 lineages x 5 iters (Recommended)
+2 lineages, 3+2 iters
+Native Opus, 5 iters
+```
+
+Answer:
+```text
+2 lineages x 5 iters (Recommended)
+```
+
+### Q034
+<!-- source: claude:0876649b-ba9c-4e02-8bc7-a7cc3d0815b1:toolu_01TaZBmZWpoi7MY1oxtmvUZX:2 -->
+
+Question:
+```text
+How should the review loop run and stop?
+```
+
+Options:
+```text
+Auto, run all 5 (Recommended)
+Auto, may converge early
+Interactive
+```
+
+Answer:
+```text
+Auto, may converge early
+```
+
+### Q035
+<!-- source: claude:0876649b-ba9c-4e02-8bc7-a7cc3d0815b1:toolu_01TaZBmZWpoi7MY1oxtmvUZX:3 -->
+
+Question:
+```text
+Review dimensions: all four (correctness, security, traceability, maintainability) plus a --review-focus naming the alignment checks: sk-code SKILLED surface for the code, sk-doc create-skill / create-command / create-readme for the docs, and stale playbook, feature catalog, README and root README against phase 006-010 behaviour. Is that the scope?
+```
+
+Options:
+```text
+All 4 + focus (Recommended)
+Traceability + maint.
+```
+
+Answer:
+```text
+All 4 + focus (Recommended)
+```
+
+### Q036
+<!-- source: claude:447cdf58-e65c-42b4-942d-6318296dbf0d:toolu_01QNjbhR91YRo2TyPvsam7W4:0 -->
+
+Question:
+```text
+Alignment run on the 005 branch: review lanes C (READMEs, changelogs, env docs) and D (routing, commands, rules) finished with 11 findings, but lanes A (code) and B (skill docs) both hit the 30-minute timeout on the opencode-go preset (DeepSeek V4.1 Flash) and returned nothing. How should I cover lanes A and B?
+```
+
+Options:
+```text
+Opus high, native (Recommended)
+Codex Luna xhigh
+Retry opencode-go
+Skip A and B
+```
+
+Answer:
+```text
+3 or llmgateway
+```
+
+### Q037
+<!-- source: claude:447cdf58-e65c-42b4-942d-6318296dbf0d:toolu_01Je6UrkVuCL6sXTtmj8uSFU:0 -->
+
+Question:
+```text
+The full alignment run on the 005 branch is done: 33 findings, of which about 20 are caused by this branch. Two are code defects I confirmed (an eslint `no-explicit-any` error in tests/relocate.vitest.ts, and relocate.mjs accepting a map that names the same source twice, which leaves a half-applied move). Three are missing tests for new behavior. The rest are docs that do not mention the new tools: option C wording in the quick reference and root README, `--include-archive` in five READMEs and the search presentation file, feature catalog entries, playbook scenarios. How much should I fix on this branch before the merge?
+```
+
+Options:
+```text
+Everything branch-caused (Recommended)
+Code, tests and wrong docs only
+Code defects only
+Report only
+```
+
+Answer:
+```text
+Everything branch-caused (Recommended)
+```
+
+### Q038
+<!-- source: claude:447cdf58-e65c-42b4-942d-6318296dbf0d:toolu_01Je6UrkVuCL6sXTtmj8uSFU:1 -->
+
+Question:
+```text
+Two findings need your call because they touch release and routing state. First, the branch adds no changelog entry or version bump for system-spec-kit (still v2.12.53.0). Second, the skill advisor has no vocabulary for the new tools: 'propose a sub-track map' routes to sk-doc and 'validate the archived packets under z_archive' routes to nothing. Fixing the second means adding intent signals to system-spec-kit's graph-metadata.json and recompiling the skill graph, which the freshness check calls operator-gated. The compiled graph is already one sk-doc signal behind on main, and that check is a P0 CI step. What should I do with these?
+```
+
+Options:
+```text
+Add signals, leave changelog (Recommended)
+Do both
+Changelog only
+Leave both
+```
+
+Answer:
+```text
+Do both
+```
+
+### Q039
+<!-- source: claude:765b978e-aba4-4cf3-aca4-aa103f4ffa68:toolu_014Q1oJzLKkfQivsGa2LxZsq:0 -->
+
+Question:
+```text
+All code for phases 006-010 is built, verified and committed on branch 375. The remaining doc closeout (tasks, implementation summaries, parent goal record, B8 blocked note) was to go through claude2 Fable 5.2, but that account hit its 5-hour limit and resets at 11:40 Amsterdam (about 85 minutes). How should the docs be written?
+```
+
+Options:
+```text
+Fable subagent now (Recommended)
+Wait for claude2
+Write them myself
+```
+
+Answer:
+```text
+Write them myself
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

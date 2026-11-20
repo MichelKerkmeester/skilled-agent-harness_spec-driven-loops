@@ -17,6 +17,7 @@
       "conversation scenario suffix rename",
       "hub index gap links plan",
       "hub index gap links tasks",
+      "007-hub-index-gap-links operator decisions",
       "hub index gap links implementation summary"
     ],
     "key_topics": [
@@ -39,6 +40,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/hooks/ask-surface-guard/opencode/ask-surface-guard.js",
       ".skilled/hooks/decision-capture/opencode/decision-capture.js",
@@ -62,6 +64,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -183,32 +191,28 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Plugin Tests",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`.skilled/hooks` is the index of every runtime hook, plugin and extension, but twelve Vibe guard scripts in `.vibe/plugins/repo-guards/` and the OpenCode `ask-surface-guard.js` and `decision-capture.js` plugins had no link from it",
     "created_at": "2026-11-15T14:52:32Z",
-    "last_save_at": "2026-11-15T15:02:39.068Z",
+    "last_save_at": "2026-11-19T17:35:39.772Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53a0d853a72f1bd10a13d4ae61a2a0f41f3aff0e7b6c74f9e86354ebb4b14074",
+    "source_fingerprint": "sha256:77129bdd25df75c71d19f243cdbe1f47e68e826fb1b22e6e4b6142d0d478be78",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "513fe1add859763b1d568408c23a9338cd604bd185e9ea3b8bae7ef35175b169",
       "plan.md": "482b30e8dd6aabdf3c96c1a3f02171f16424d7547fabccab330a891934f52616",
       "tasks.md": "c427978b328a0d7e1f12a008ad35356d60542367e25527c9284c58663186c221",
-      "implementation-summary.md": "5d908f32dcfdcadefacc85a2e7ec2e38d2943c2b75c902c3607580ac641e19a1"
+      "decision-record.md": "a58a48230f336bfa1a0853de00601214eb6896c036fd4a6dfab0966df0fc10cf",
+      "implementation-summary.md": "cc204104c06e26e86a6e7a65a749e002036daee006c97886da75d178ada887a4"
     },
     "last_active_at": null
   }

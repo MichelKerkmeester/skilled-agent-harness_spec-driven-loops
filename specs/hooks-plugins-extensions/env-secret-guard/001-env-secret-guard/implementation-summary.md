@@ -18,7 +18,7 @@ _memory:
       - ".skilled/hooks/env-secret-guard/command-hook/env-secret-guard.cjs"
       - ".opencode/plugins/env-secret-guard.js"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:139de5ba71d753d44be7f79b79c7a416bd5107fa810293928c48546ac8403b02"
       session_id: "scaffold-007-env-secret-guard"
       parent_session_id: null
     completion_pct: 100

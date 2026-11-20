@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:3f4d71013436fd74e45e17298aeb484d9a7c3e43655bc93a913aab7c4f4d047d"
       session_id: "scaffold-012-file-relative-adapter-imports"
       parent_session_id: null
     completion_pct: 100

@@ -19,6 +19,7 @@
       "fanout orphan liveness tasks",
       "fanout orphan liveness acceptance criteria",
       "fanout orphan liveness goal",
+      "010-fanout-orphan-liveness operator decisions",
       "fanout orphan liveness implementation summary"
     ],
     "key_topics": [
@@ -43,6 +44,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
@@ -84,6 +86,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -193,18 +201,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`detectOrphanedLineages` counts a label as orphaned when it has a `started` row and no later `completed`, `failed` or `orphanrequeued` row, and it never asks whether the process is alive",
     "created_at": "2026-11-13T08:49:31Z",
-    "last_save_at": "2026-11-15T14:28:42.586Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:36:16.074Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -212,15 +214,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a1899326182ee4a9d52bfb1911e7572d89fb615908b30131875818983b38beab",
+    "source_fingerprint": "sha256:c7ddda1d0e1f91c0ad06c70dacdc4f7359cdb1fb15dfca92d906c19b5d357235",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9ea8324f0f287fc5a81b5ffce747bb2637851d695b9489fc5253bdb5bb130603",
       "plan.md": "bf80a91d7f9d284cb32a69cb7a95c6ed2aba63cc89db531f9f879f3eba71e76c",
       "tasks.md": "e832baf0ec733d8cffd63536e4acd71ffe0da683654b4c5c7ac5af894e5e48fd",
-      "implementation-summary.md": "f94a6ce36e47ae29cab630a40de409dc6f7353ecd569963f2fde706950034357"
+      "decision-record.md": "0eadf07268f8e696fbac5d7ca3b417e6c612fedaddc677eed2db70ec00a5753b",
+      "implementation-summary.md": "2ddfef5942a8aed44d783bf40b2d0277ca29a5aad356f4a64dd738a9662066b9"
     },
     "last_active_at": null
   }

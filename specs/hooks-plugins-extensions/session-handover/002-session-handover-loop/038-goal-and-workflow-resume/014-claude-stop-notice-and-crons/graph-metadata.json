@@ -19,6 +19,7 @@
       "claude stop notice and crons tasks",
       "claude stop notice and crons acceptance criteria",
       "claude stop notice and crons goal",
+      "014-claude-stop-notice-and-crons operator decisions",
       "claude stop notice and crons implementation summary"
     ],
     "key_topics": [
@@ -43,6 +44,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       "scratch/live-crons.txt",
       "scratch/red.txt",
@@ -77,6 +79,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -186,18 +194,12 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Use Claude Code",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "When background tasks run at Stop, `armPendingRecord` logs `deferred-background-tasks`, marks the record and returns null with no output (`.skilled/hooks/session-relaunch/claude/stop-arm.mjs:119-135`), and `main` then exits with nothing printed (`stop-arm.mjs:179-180`)",
     "created_at": "2026-11-13T08:49:36Z",
-    "last_save_at": "2026-11-15T14:28:42.646Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:36:25.580Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -205,15 +207,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d23d11479b24a25b58b3a45bb0a6e820308519c6c04e251ff18f8ddcb3ac7675",
+    "source_fingerprint": "sha256:2c20e122b9d964ee74ddd97114d6a811a843aaa2d24739ae107b74d524b5d543",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9cc995b319efe522b941e120bfac8c67b13b7412133d1ae431fffeeefac1dd0d",
       "plan.md": "536db7d8afe50406008fc375f6b48da5d0b61ca4d411afbccca0e768fecb9461",
       "tasks.md": "c829337cb93bcd5d77bc17b17f391208c296f0e5bf3f1fa67e5008b255c89e97",
-      "implementation-summary.md": "2a99deda8be62976390dca97b287247f35d135e359e8c0602a7b7741fba86d40"
+      "decision-record.md": "f00faeda7dd72c26a22b1f8f9ce0ecef065fe2d9707467c959a8380c8122e022",
+      "implementation-summary.md": "b3fb281a0ac3180ad7b134e5aa434bcc8754b348dedc075c1c00d6b874b31612"
     },
     "last_active_at": null
   }

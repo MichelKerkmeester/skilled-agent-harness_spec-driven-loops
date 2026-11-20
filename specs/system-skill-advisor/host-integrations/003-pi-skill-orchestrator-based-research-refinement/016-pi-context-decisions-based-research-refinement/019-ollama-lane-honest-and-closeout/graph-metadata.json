@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout",
+  "spec_folder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout",
+  "parent_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ollama lane honest and closeout",
+      "phase 19 ollama lane honest and closeout",
+      "semantic lane coverage gate",
+      "semantic lane real ablation",
+      "orphan operator answers",
+      "ollama lane honest and closeout plan",
+      "ollama lane honest and closeout tasks",
+      "ollama lane honest and closeout acceptance criteria",
+      "ollama lane honest and closeout goal",
+      "ollama lane honest and closeout implementation summary"
+    ],
+    "key_topics": [
+      "ollama",
+      "lane",
+      "honest",
+      "closeout",
+      "phase",
+      "semantic",
+      "coverage",
+      "gate",
+      "real",
+      "ablation",
+      "orphan",
+      "operator"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+      ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-ablation.vitest.ts",
+      ".skilled/commands/assets/local-doc-alignment/topics.json",
+      "evidence/doc-alignment/topics-entry.json",
+      "evidence/skilled-alignment/report.md",
+      "evidence/doc-alignment/report.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-server.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-db.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "semantic-shadow.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+        "source": "derived"
+      },
+      {
+        "name": "semantic-shadow-ablation.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-ablation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "topics.json",
+        "kind": "config",
+        "path": ".skilled/commands/assets/local-doc-alignment/topics.json",
+        "source": "derived"
+      },
+      {
+        "name": "topics-entry.json",
+        "kind": "config",
+        "path": "evidence/doc-alignment/topics-entry.json",
+        "source": "derived"
+      },
+      {
+        "name": "report.md",
+        "kind": "doc",
+        "path": "evidence/skilled-alignment/report.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Only",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The lane is off but could not be turned back on honestly: only a manual scan refreshes vectors, partial coverage still scores, an Ollama outage leaves the lane's weight in the total, and the daemon ignores `OLLAMA` settings",
+    "created_at": "2026-11-19T17:05:15Z",
+    "last_save_at": "2026-11-20T00:02:36.284Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:73a36e42a5e7b0bb6394969005d4738571e4494e0b3d019fb7b7402af50bf5d1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "903ae04f9df1b2ff56ad0d5ec0bf3430651be3e6a2643d41983a3a6fcaf35b12",
+      "plan.md": "15273a9b40649aa0851458e66dc450e492089f2a42e84b66bd5097307fc0fbdd",
+      "tasks.md": "7179d1e3a5e8f400dbe039f0e19c338b5c2091169601a5c5b3d21ddf71abf973",
+      "implementation-summary.md": "79c673d7e8e41a91ca5386b5797d075776cef8b1534f6927e6d5074d0eb51082"
+    },
+    "last_active_at": null
+  }
+}

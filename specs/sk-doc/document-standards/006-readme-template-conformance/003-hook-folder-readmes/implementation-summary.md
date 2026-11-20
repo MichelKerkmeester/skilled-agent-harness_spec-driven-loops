@@ -19,7 +19,7 @@ _memory:
       - "specs/sk-doc/document-standards/006-readme-template-conformance/decision-record.md"
       - "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/plan.md"
     session_dedup:
-      fingerprint: "sha256:aecf89b3fe84ae4e8cd49e45bdde5e3eae9c7f55e3c3e72d0965d7918079dfe5"
+      fingerprint: "sha256:e9b8635fd70cd70262d0783d54389b229f0bed20d56757af933ba6031f350dc4"
       session_id: "scaffold-003-hook-folder-readmes"
       parent_session_id: null
     session_ref:

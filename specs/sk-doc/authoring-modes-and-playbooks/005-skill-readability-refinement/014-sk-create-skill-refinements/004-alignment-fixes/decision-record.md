@@ -73,6 +73,8 @@ _memory:
 | Q037 | Fold the frontend work into the v4.0.1.0 notes and widen the alignment check so a missed entry is caught. | Not stated. Evidence: open_value, option not_applicable, overlap 1, imperative False, shift False. | None | .skilled/changelog/skilled/v4.0.1.0.md |
 | Q038 | Fix every upheld alignment finding, using DeepSeek Flash on LLM Gateway where an executor is needed. | Not stated. Evidence: yes_no, option True, overlap 1, imperative False, shift False. | None | specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes |
 | Q039 | Fix the items first left unfixed, including the alignment command's repo-root resolution. | Not stated. Evidence: yes_no, option False, overlap 0, imperative True, shift False. | None | specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes REQ-007 to REQ-009 |
+| Q040 | The commit adds the 36 generated .hermes router copies beyond the 39 paths the Barter handover listed. | Not stated. | none | specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes/spec.md |
+| Q041 | The 9 routers not on the handover list that still carry the old sentence are fixed in the same commit. | Not stated. | none | specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -829,6 +831,44 @@ Options: none
 Answer:
 ```text
 fix not fixed
+```
+
+### Q040
+<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78:toolu_01GPZ1PTzuwapWQQnEokTsju:0 -->
+
+Question:
+```text
+The Barter handover says to commit exactly 39 paths, and also to follow Skilled's commit rules. The two conflict. `.hermes/skills/<skill>/ROUTER.md` is a tracked generated copy of each router, and `sync-skills-hermes.cjs --check` reports all 36 changed routers as drifted. Running the full sync would also write the other session's uncommitted work into `.hermes` (cli-deepseek-harness, agent-orchestrate, agent-prompt-improver). What should go in the commit?
+```
+
+Options:
+```text
+Add 36 router copies (Recommended)
+Exactly 39 paths
+```
+
+Answer:
+```text
+Add 36 router copies (Recommended)
+```
+
+### Q041
+<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78:toolu_01GPZ1PTzuwapWQQnEokTsju:1 -->
+
+Question:
+```text
+The handover says 36 routers carried the old sentence. 9 more still have it and aren't on the list: the 8 mcp-tooling routers (chrome-devtools, figma, mobbin, refero, aside-devtools, notion, obsidian, click-up) and system-skill-advisor/ROUTER.md. What should happen with those?
+```
+
+Options:
+```text
+Leave for now (Recommended)
+Fix them in this commit
+```
+
+Answer:
+```text
+Fix them in this commit
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

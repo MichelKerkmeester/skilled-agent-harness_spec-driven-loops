@@ -142,6 +142,8 @@ The phase that owns the reader now scans the earlier bytes in fixed chunks when 
 
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
+| Q001 | When the sender set no goal, the new session takes the handoff note's packet goal. | Not stated. | none | 002-packet-goal-fallback/spec.md REQ-001 |
+| Q002 | The goal fallback skips goal documents that are already finished. | Not stated. | none | 002-packet-goal-fallback/spec.md REQ-004 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -150,6 +152,48 @@ The phase that owns the reader now scans the earlier bytes in fixed chunks when 
 ## Appendix: Verbatim Operator Answers
 
 Each appendix item uses the same id as its operator decision. The options are included so the record preserves the full offered choice set.
+
+### Q001
+<!-- source: claude:53e771b8-c072-45b2-b8e1-c6a16e34711f:toolu_01HbwVVyrEiJJjKCtcxgcLo1:1 -->
+
+Question:
+```text
+For the goal fix: Claude Code lets no hook set a goal, but the loop can start the new session on the /goal command, which it already does when the sender's goal is proven. When the sender set no goal, which goal should the new session start on?
+```
+
+Options:
+```text
+The note's packet goal (Recommended)
+Only unfinished goals
+Leave as is
+```
+
+Answer:
+```text
+The note's packet goal (Recommended)
+```
+
+### Q002
+<!-- source: claude:53e771b8-c072-45b2-b8e1-c6a16e34711f:toolu_018gqaSzxz6KS6vcGnE4o1KL:0 -->
+
+Question:
+```text
+Fable 5.2 reviewed the goal plan (child 019) and found one real hole, which I checked in the code. The goal log is per session. If your goal is met or you run /goal clear in session 1, session 2 starts with no goal, and its log then looks the same as a session where no goal was ever set. So session 3 would be started on the goal you finished or cleared. A fresh session cannot see that the goal was already met, so it would rerun the criteria. How should child 019 handle a goal that ended earlier in the chain?
+```
+
+Options:
+```text
+Skip finished goal docs (Recommended)
+Carry the ending through the chain
+Keep the plain rule
+Both safeguards
+```
+
+Answer:
+```text
+Skip finished goal docs (Recommended)
+```
+
 <!-- /ANCHOR:operator-answers-verbatim -->
 
 ---

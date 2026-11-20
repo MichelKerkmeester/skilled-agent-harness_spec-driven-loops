@@ -18,15 +18,16 @@
     "version",
     "managers"
   ],
-  "lastUpdated": "2026-11-13T10:05:16.736Z",
+  "lastUpdated": "2026-11-19T17:48:54.544Z",
   "specId": "004",
   "folderSlug": "node-security-patch-update",
   "parentChain": [
     "system-speckit",
     "repo-operations"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "10-11-26_12-45__operator-decisions-on-2026-11-10-pin-to-the.md"
+    "10-11-26_12-45__operator-decisions-on-2026-11-10-pin-to-the.md",
+    "19-11-26_18-48__manual-context-save.md"
   ]
 }

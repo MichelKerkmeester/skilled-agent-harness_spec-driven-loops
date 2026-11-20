@@ -18,7 +18,7 @@ _memory:
       - "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/acceptance-criteria.md"
       - "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/decision-record.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:cc29edd476bb7c57fe9c802fdab5d641237529e7102cc91137ffee3024e2dfcf"
       session_id: "scaffold-005-tests-and-closeout"
       parent_session_id: null
     session_ref:

@@ -17,6 +17,7 @@
       "voice rule tooling and pilot plan",
       "voice rule tooling and pilot tasks",
       "voice rule tooling and pilot acceptance criteria",
+      "001-voice-rule-tooling-and-pilot operator decisions",
       "voice rule tooling and pilot implementation summary"
     ],
     "key_topics": [
@@ -40,6 +41,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md",
       ".skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md",
@@ -70,6 +72,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -185,17 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The voice rules forbid editing a released changelog, so a voice pass cannot touch any of the 1,571 files",
     "created_at": "2026-11-15T06:37:26Z",
-    "last_save_at": "2026-11-15T11:28:14.638Z",
+    "last_save_at": "2026-11-19T17:48:16.559Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +205,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cdb2209568104c0cc8bbcd58494606023c04fc1b6bf366691a88e02df2eaba66",
+    "source_fingerprint": "sha256:90f1abdd4e71166545ce955b065297104d7507c9ca880edf903731e832fcdb99",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d69d54604b1214171cbd7e25cecea7794a897d6813d156d82ae8ee8c0fdc1c53",
       "plan.md": "a89aaca37b237f68a9d618679003215f1be778090ad818988a52e8303eae1b3c",
       "tasks.md": "8f1d93748bdc8e4ff71f4e9748cdff85aef6bf00fc50ae7bf8bd2c08a2ed22b5",
+      "decision-record.md": "b3df7724ae55b52ce6ff35e86a3cc185f43ac7ffeb7eeb3f1c05f123cb7c37ef",
       "implementation-summary.md": "ef8bb2616a35469ed0bd3bbad555afb708e01e1c42fc6b6a12669c79f9f309aa"
     },
     "last_active_at": null

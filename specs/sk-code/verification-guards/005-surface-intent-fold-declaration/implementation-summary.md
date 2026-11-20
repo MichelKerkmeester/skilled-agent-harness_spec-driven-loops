@@ -18,7 +18,7 @@ _memory:
       - ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs"
       - ".skilled/skills/sk-code/README.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:8d2b313ff70479fe5d676642d4cce9687e4fcff5437387ce2f812d922998e48c"
       session_id: "scaffold-005-surface-intent-fold-declaration"
       parent_session_id: null
     completion_pct: 100

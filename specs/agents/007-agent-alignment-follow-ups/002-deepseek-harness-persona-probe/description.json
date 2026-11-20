@@ -6,15 +6,17 @@
     "phase",
     "deepseek-harness-persona-probe"
   ],
-  "lastUpdated": "2026-11-14T16:33:11.475Z",
+  "lastUpdated": "2026-11-19T17:46:41.662Z",
   "specId": "002",
   "folderSlug": "deepseek-harness-persona-probe",
   "parentChain": [
     "agents",
     "007-agent-alignment-follow-ups"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "14-11-26_17-33__a-deepseek-harness-child-given-the-read-only.md"
+    "14-11-26_17-33__a-deepseek-harness-child-given-the-read-only.md",
+    "19-11-26_18-35__manual-context-save.md",
+    "19-11-26_18-46__manual-context-save.md"
   ]
 }

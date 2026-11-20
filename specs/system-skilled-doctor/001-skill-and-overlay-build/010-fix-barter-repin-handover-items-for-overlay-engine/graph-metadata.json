@@ -19,6 +19,7 @@
       "fix barter repin handover items for overlay engine plan",
       "fix barter repin handover items for overlay engine tasks",
       "fix barter repin handover items for overlay engine goal",
+      "010-fix-barter-repin-handover-items-for-overlay-engine operator decisions",
       "fix barter repin handover items for overlay engine implementation summary"
     ],
     "key_topics": [
@@ -42,6 +43,7 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/commands/doctor/scripts/overlay-engine.cjs",
       ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs",
@@ -75,6 +77,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -190,33 +198,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern In",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A project that vendors Skilled re-pins to take a new upstream commit",
     "created_at": "2026-11-16T07:11:40Z",
-    "last_save_at": "2026-11-16T08:18:24.557Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:37:30.469Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0291acf8e2285ff112675ba067cf4a60a19b10d95295750f10e8e7a7f5a3a5b4",
+    "source_fingerprint": "sha256:8f234654adda056919937dda8e6aa6ed66ce33d7ee78af7876df561b65d39387",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "567e9769df825d31371558cc2f8d4092946dbe2dc17e72ca452d8f23cd6763a6",
       "plan.md": "87e8a4af0d750d6d9a8991cb45be6bfc984db1edb8b28d7d4176f6d8e257d3e6",
       "tasks.md": "80e5a5054991136815b14355f7083a4683809af0049f5eb0eb8d446b1c472d21",
-      "implementation-summary.md": "36e832d468f27c6a6f5d76a661826562c0e0bd4aef38740c6edc8318110ed4d9"
+      "decision-record.md": "72eded878b5c743f2f4da913f47fd2523a1b696d8d666eed17aca1515a22c891",
+      "implementation-summary.md": "972b291f7f3b7cbfbaf14a73222f341a352d7f36dbe401048ad488b31c518f94"
     },
     "last_active_at": null
   }

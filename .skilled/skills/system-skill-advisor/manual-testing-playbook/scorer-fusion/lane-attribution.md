@@ -7,7 +7,7 @@ trigger_phrases:
   - "includeAttribution"
   - "laneBreakdown"
   - "why_recommended"
-version: 0.8.3.0
+version: 0.8.4.0
 id: SC-004
 category: scorer_fusion
 stage: routing
@@ -56,6 +56,7 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "review this pull
 - With `includeAttribution: true`, each lane entry carries exactly the documented fields: `lane`, `rawScore`, `weight`, `weightedScore`, `shadowOnly`.
 - With `includeAttribution: true`, the recommendation includes `why_recommended` as a short prompt-safe explanation that names contribution categories, not raw prompt phrases or tokens.
 - `semantic_shadow` reports `shadowOnly: false` because it remains registered as a live lane, even though its default live weight is 0.
+- When enabled, the lane requires current vectors for every embeddable skill and command. If prompt embedding fails, confirm the response marks `semantic_shadow` runtime-degraded and omits it from the live confidence total for that call.
 - With `includeAttribution: false`, `laneBreakdown` and `why_recommended` are absent or empty.
 - No raw prompt substring appears in attribution.
 

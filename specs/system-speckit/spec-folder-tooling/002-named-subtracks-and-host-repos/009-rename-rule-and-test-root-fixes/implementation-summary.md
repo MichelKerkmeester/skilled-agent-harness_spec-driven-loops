@@ -20,7 +20,7 @@ _memory:
       - ".skilled/skills/system-spec-kit/changelog/v2.12.45.0.md"
       - ".skilled/skills/system-spec-kit/SKILL.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:0be2f6d4649719bdaa49eb8a777a6b2f3c30c6d1c147ea2ae9496c60728869d8"
       session_id: "scaffold-009-rename-rule-and-test-root-fixes"
       parent_session_id: null
     completion_pct: 100

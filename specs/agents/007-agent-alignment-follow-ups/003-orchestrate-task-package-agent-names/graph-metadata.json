@@ -15,6 +15,7 @@
       "phase 3 orchestrate task package agent names",
       "orchestrate task package agent names plan",
       "orchestrate task package agent names tasks",
+      "003-orchestrate-task-package-agent-names operator decisions",
       "orchestrate task package agent names implementation summary"
     ],
     "key_topics": [
@@ -26,10 +27,10 @@
       "phase",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
-      "line",
-      "skilled"
+      "003-orchestrate-task-package-agent-names",
+      "operator",
+      "decisions",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -37,6 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/agents/orchestrate.md",
       ".claude/agents/orchestrate.md",
@@ -66,6 +68,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -187,31 +195,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Line 211 of `.skilled/agents/orchestrate.md` is the `Agent:` line of the template the orchestrator fills for every task it delegates",
     "created_at": "2026-11-14T15:48:59Z",
-    "last_save_at": "2026-11-14T16:32:47.318Z",
+    "last_save_at": "2026-11-19T17:35:10.823Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0104b1b97f12753b215b3687b92c3210af40df65de586c7b201c2368802dbfd0",
+    "source_fingerprint": "sha256:581c83489cf0690530ebba7187112a8e39b0a130e66cde24d70968c7c516d681",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5abfa5be5e902839f63855e0bf68bd4a7c09ad93d37c2c127216d2ccc2e0fda0",
       "plan.md": "b00a14a1e006a1e10c277cd56e30901f3936040067e905a79f7061d730f7ed65",
       "tasks.md": "059534da5c12bba818d45e26852d85ff5367d8fd20a45c3a97e3ad97168ebc80",
+      "decision-record.md": "8d32bdbe07f8f25e564839845e96795505e38ccddd90359e4b0ebf128d713244",
       "implementation-summary.md": "fbbb362d4bcaeb6438905ca933404d8789ba062bb069c48cf29dd65235a93f98"
     },
     "last_active_at": null

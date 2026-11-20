@@ -6,7 +6,7 @@
     "phase",
     "resume-contract-owned-assets"
   ],
-  "lastUpdated": "2026-11-14T18:05:06.759Z",
+  "lastUpdated": "2026-11-19T17:49:13.265Z",
   "specId": "009",
   "folderSlug": "resume-contract-owned-assets",
   "parentChain": [
@@ -14,8 +14,10 @@
     "spec-authoring-and-continuity",
     "007-speckit-command-gates-step-order-drift"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "14-11-26_19-05__removed-the-two-stale-speckit-resume-owned-asset.md"
+    "14-11-26_19-05__removed-the-two-stale-speckit-resume-owned-asset.md",
+    "19-11-26_18-38__manual-context-save.md",
+    "19-11-26_18-49__manual-context-save.md"
   ]
 }

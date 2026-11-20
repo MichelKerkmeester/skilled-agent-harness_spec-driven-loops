@@ -19,7 +19,7 @@ _memory:
       - ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts"
       - ".skilled/skills/system-spec-kit/runtime/cli/tests/symlinked-project-root.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:939a09aa447ec18d1d43610ebee2fd85f388202c15037ea0ea70822c6d0e0680"
       session_id: "2026-10-12-symlinked-runtime-root-plan"
       parent_session_id: null
     completion_pct: 100

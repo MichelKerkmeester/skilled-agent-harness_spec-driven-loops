@@ -152,6 +152,7 @@ Phase 1 writes research artifacts only. Phases 002 to 004 list their exact files
 | 16 | 016-doc-alignment-check/ | `/local-doc-alignment` on a new `advisor-pasted-reply` topic in `topics.json`, report only: the findings report kept in `evidence/` and triaged: 20 open findings, 5 P1 and 15 P2 | Complete |
 | 17 | 017-ollama-advisor-analysis/ | A fresh Fable 5.2 medium read of the advisor's Ollama and embedder path through the `claude2` account, report only: bugs, effectiveness, overengineering, load and daemon build-up | Complete |
 | 18 | 018-ollama-lane-off-and-daemon-liveness/ | Build of four of 017's ranked changes: the semantic lane off the prompt path at weight 0 with a zero-weight guard, the cascade and legacy embedding path out of the advisor, the hf model server off by default, and a parent-pid check plus heartbeat watchdog against orphaned or wedged daemons | Complete |
+| 19 | 019-ollama-lane-honest-and-closeout/ | Close everything 018 left open: the lane made correct (refresh, coverage gate, outage as degraded, `OLLAMA_*` forwarding) and its weight set by a real-embedding ablation, the watchdog startup gap, the one-off test failures and other sessions' unrecorded operator answers | In Progress |
 
 **Build order.** Folder numbers stay as they are. The build order is 001, then 005, then 002, then 004, then 003. Phase 004 builds before 003 because both edit `hooks/claude/user-prompt-submit.ts` and its hook test, and 003's guard would shift every line 004 pins.
 
@@ -189,6 +190,7 @@ Phases 015 and 016 are report-only alignment runs the operator asked for on 2026
 | 015-skilled-alignment-check | 016-doc-alignment-check | None: the two runs are independent and may run side by side | `015-skilled-alignment-check/evidence/report.md` and `016-doc-alignment-check/evidence/report.md` exist |
 | 016-doc-alignment-check | 017-ollama-advisor-analysis | None: 017 reads the merged code and does not wait on 016 | `evidence/report.md` exists with file:line sources |
 | 017-ollama-advisor-analysis | 018-ollama-lane-off-and-daemon-liveness | The operator picks which ranked changes to build | 018's `acceptance-criteria.md` is all `Met` |
+| 018-ollama-lane-off-and-daemon-liveness | 019-ollama-lane-honest-and-closeout | The operator asks to leave nothing open | 019's `acceptance-criteria.md` is all `Met` |
 <!-- /ANCHOR:phase-map -->
 
 ---

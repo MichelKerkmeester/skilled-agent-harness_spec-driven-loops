@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The deep review left seven P2 advisories",
     "created_at": "2026-11-15T19:48:11Z",
-    "last_save_at": "2026-11-15T20:05:23.750Z",
+    "last_save_at": "2026-11-19T17:36:05.326Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f2e87eb2798cbad413e2d1d3222bb827745e7b57d32a1f99ddc8235b669b2e9e",
+    "source_fingerprint": "sha256:8a1114e9c68de955954dcdc9b87caa40213ec23414617efb4f0556aa02e433be",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8e30d9e06e60501f3ea6d9e6b3c21105e995988bc19fd41998d7320737c68156",
       "plan.md": "3fc520e609a947eca5a47494e62c08c9efbd572471ab706233adfa6deeaeffd8",
       "tasks.md": "7a3c784b703ab36e124628b567833e991988ba2368cdcf99af03bd485bdf96e2",
-      "decision-record.md": "3c913b30546bc6367a00d1f254d83888b7176f07c5bf43be1990528fe2dc4cb2",
+      "decision-record.md": "61b489ba897a06d436d5dc1819dced094d98e1ac650b8e01c80a65d60760bad6",
       "implementation-summary.md": "416bdf46e3afd7a1ae6411294481f73a4e17f77a87da1bf98ec70e4d21850f71"
     },
     "last_active_at": null

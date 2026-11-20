@@ -2,8 +2,8 @@
 # DOCTOR: SKILL-ADVISOR EMBEDDER SETUP WORKFLOW (INTERACTIVE MUTATING MODE)
 # ─────────────────────────────────────────────────────────────────
 role: Expert Operator setting up local meaning matching for the skill advisor in interactive mode
-purpose: Find what is missing for local meaning matching, show every missing step with its cost and its undo, ask once, run only the approved steps and prove the semantic lane is on
-action: Probe Ollama, the model and the advisor -> print the plan with a cost and an undo per missing step -> approval -> start the server and pull the model -> skill graph scan -> probe again -> final result
+purpose: Find what is missing for local meaning matching, show every missing step with its cost and its undo, ask once, run only the approved steps and report vector coverage
+action: Probe Ollama, the model and the advisor -> print the plan with a cost and an undo per missing step -> approval -> start the server and pull the model -> scan the skill graph -> probe again -> final result
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE
@@ -21,15 +21,16 @@ operating_mode:
 # EMBEDDER SETUP INVARIANT
 # ─────────────────────────────────────────────────────────────────
 embedder_setup_invariant: |
-  Meaning matching needs four things: Ollama installed, the server answering, the
-  nomic-embed-text:v1.5 model pulled and a skill graph scan that writes the command
-  vectors. This route never installs or upgrades Ollama. It prints the install
-  command for the operator to run, because a system package install is theirs to
-  make and the install guide owns its cost. It starts the server and pulls the
-  model only after the one approval, and only for a step the probe found missing.
-  The scan writes only skill-graph.sqlite, which is derived state. Nothing is
-  pulled, started or written before the approval, and a dry run stops after the
-  plan. A no stops with STATUS=CANCELLED and changes nothing.
+  Meaning matching needs Ollama installed, its server answering and the
+  nomic-embed-text:v1.5 model pulled. This route never installs or upgrades
+  Ollama. It prints the install command for the operator to run, because a system
+  package install is theirs to make and the install guide owns its cost. It starts
+  the server and pulls the model only after the one approval, and only for a step
+  the probe found missing. After approval, skill_graph_scan writes vectors to
+  skill-graph.sqlite when setup steps succeeded or setup was already complete
+  but coverage is incomplete. That scan is the only repository write and writes
+  derived state. Nothing is pulled, started or scanned before approval, and a dry
+  run stops after the plan. A no stops with STATUS=CANCELLED and changes nothing.
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
@@ -39,8 +40,8 @@ upstream_assets:
   advisor_cli: ".skilled/bin/skill-advisor.cjs"
   advisor_status_command: "node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --include-semantic-health true --format json --warm-only"
   scan_command: "node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json"
-  cost_script: ".skilled/skills/system-skill-advisor/runtime/scripts/measure-embedder-cost.mjs"
   sqlite_graph: ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite"
+  cost_script: ".skilled/skills/system-skill-advisor/runtime/scripts/measure-embedder-cost.mjs"
   install_guide: ".skilled/skills/system-skill-advisor/INSTALL-GUIDE.md"
   install_overview: "INSTALL-SKILLED.md"
   presentation: ".skilled/commands/doctor/assets/doctor-skill-advisor-presentation.txt"
@@ -76,7 +77,7 @@ mutation_boundaries:
     - ".skilled/skills/*/SKILL.md"
     - ".skilled/skills/system-skill-advisor/runtime/lib/**"
     - "any second model pull and any model removal"
-  invariant: "Only the steps the plan printed are run, and only after the approval. skill_graph_scan is the only writer inside the repository, and it writes derived state."
+  invariant: "Only the listed Ollama steps and skill graph scan are run, and only after approval. skill_graph_scan is the only repository write, and it writes derived state."
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -88,8 +89,8 @@ workflow:
       - "Run `command -v ollama` and record whether it printed a path. An empty result is the missing install step, not a failure of the route."
       - "Resolve the server URL from `OLLAMA_BASE_URL`, defaulting to `http://127.0.0.1:11434`. Run `curl -sS --max-time 5 <url>/api/version`. A failure is the missing start step, not a failure of the route."
       - "When the version answers, run `curl -sS --max-time 5 <url>/api/tags` and look for `nomic-embed-text:v1.5`. A missing tag is the missing pull step."
-      - "Run `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --include-semantic-health true --format json --warm-only`. Exit 75 means no daemon is running, so record daemon=absent and the semantic health as unread. Never start a daemon to make this probe succeed."
-      - "Read `semanticLaneHealth.laneEnabled`, `semanticLaneHealth.activeEmbedder` and `semanticLaneHealth.commandVectorCoverage` to decide whether the scan step is still missing. A null active embedder or an embedded count of zero is the missing scan step."
+      - "Run `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --include-semantic-health true --format json --warm-only`. Exit 75 is retryable, not proof that the daemon is absent. A `staleDistWarning` field in stderr JSON means the CLI build is missing or stale; include repair `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`. Other causes include an absent or unavailable daemon or backend, a CLI or daemon launcher start error, a connection or request timeout, a socket closed before its reply, JSON-RPC codes -32000 or -32001, `SQLITE_BUSY`, or transport errors `ECONNREFUSED`, `ENOENT`, `ECONNRESET`, `EPIPE` or `ETIMEDOUT`, or another error the CLI marks retryable. Record stderr and leave semantic health unread; identify the cause. Never start a daemon to make this probe succeed."
+      - "Read `semanticLaneHealth.coverageComplete`, `semanticLaneHealth.vectorCoverage`, `semanticLaneHealth.commandVectorCoverage`, `semanticLaneHealth.backend.state` and `laneWeights.semantic_shadow`. Do not use laneEnabled or a nonzero vector count as a success condition. Plan a scan after approved setup steps or when setup is already complete and coverageComplete is false."
       - "Keep every probe result as it printed. Never upgrade an unread probe to a pass."
     outputs:
       - ollama_binary: "present|missing"
@@ -97,23 +98,27 @@ workflow:
       - model: "present|missing"
       - daemon: "present|absent"
       - active_embedder: "object|null|unread"
+      - vector_coverage: "object|unread"
       - command_vector_coverage: "object|unread"
+      - coverage_complete: "boolean|unread"
+      - backend_state: "reachable|unreachable|model_missing|unread"
+      - semantic_lane_weight: "number|unread"
 
   phase_2_plan:
     purpose: "Print one line per missing step with its cost and its undo, through the presentation contract"
     activities:
       - "Read .skilled/commands/doctor/assets/doctor-skill-advisor-presentation.txt for the probe dashboard, the plan table, the approval prompt, the dry-run result and the final result wording. Every visible line comes from there."
       - "Run `node .skilled/skills/system-skill-advisor/runtime/scripts/measure-embedder-cost.mjs` when `/api/version` answered, and keep its JSON. Exit 2 means the server stopped answering after the probe, so take the cost from the install guide and say the live measurement was unavailable."
-      - "Render the presentation contract's probe dashboard with the binary, the server version, the model tag and the advisor's lane state."
-      - "For each missing step, print one plan row through the presentation contract's plan table with columns step, cost and undo. Install Ollama is printed for the operator with the install guide's cost and the package manager's own uninstall as its undo. Start `ollama serve` in the background costs `.memory.serveRssKb` resident and undoes by stopping the pid this run started. Pull `nomic-embed-text:v1.5` costs `.model.sizeBytes` on disk and undoes with `ollama rm nomic-embed-text:v1.5`. `skill_graph_scan` costs the scan's own runtime plus `.warm.medianMs` per embedded prompt and needs no undo because the database is derived state and a rerun rewrites it."
+      - "Render the presentation contract's probe dashboard with the binary, server version, model tag, skill and command vector coverage, backend state and semantic lane weight."
+      - "For each missing Ollama step and planned graph scan, print one plan row through the presentation contract's plan table with columns step, cost and undo. Install Ollama is printed for the operator with the install guide's cost and the package manager's own uninstall as its undo. Start `ollama serve` in the background costs `.memory.serveRssKb` resident and undoes by stopping the pid this run started. Pull `nomic-embed-text:v1.5` costs `.model.sizeBytes` on disk and undoes with `ollama rm nomic-embed-text:v1.5`. `skill_graph_scan` costs its own runtime plus `.warm.medianMs` per embedded prompt and needs no undo because the database is derived state and a rerun rewrites it. Include the scan when Ollama is installed and either setup steps are planned or coverageComplete is false."
       - "Never print a cost the measurement or the install guide did not produce. Never offer an undo the operator cannot run."
-      - "When the probe found no missing step, render the presentation contract's final result as already set up, ask nothing, run nothing and stop with STATUS=OK."
+      - "When Ollama setup is already complete and coverageComplete is false, include the graph scan in the plan and ask for approval. When setup is already complete and coverageComplete is true, render the final result from the advisor status values without asking or running anything; set its status from coverageComplete and backend.state, not from laneEnabled."
 
   phase_3_approval:
     purpose: "Ask once against the plan on screen, and run phase 4 only after its approve"
     activities:
       - "If dry_run is true, render the presentation contract's dry-run result from the plan's own rows and stop with STATUS=OK. A dry run asks nothing, pulls nothing, starts nothing and writes nothing."
-      - "Ask the presentation contract's approval prompt once, naming the model pull, the background server start when it is listed and the database the scan writes."
+      - "Ask the presentation contract's approval prompt once, naming the model pull, the background server start when either is listed and the database the scan writes."
       - "Approve is the only answer that proceeds. Anything else is a no: render the presentation contract's cancelled result, state that nothing was pulled, started or written, and stop with STATUS=CANCELLED ACTION=cancelled."
       - "Never default an answer, never carry an approval from another run and never accept an approval for a plan that has changed."
 
@@ -121,7 +126,7 @@ workflow:
     purpose: "Run only the steps the approved plan listed, in dependency order"
     runs_when: "phase_3_approval approved"
     activities:
-      - "When the install step is missing, print the Ollama install command the install guide prints and stop with STATUS=FAIL, naming that command as the next step. Never install or upgrade Ollama from this route."
+      - "When Ollama is not installed, print the Ollama install command from the install guide and stop with STATUS=DEGRADED, naming that command as the next step. The missing install is a finding, not a failed workflow step. Never install or upgrade Ollama from this route."
       - "When the resolved URL's host is not 127.0.0.1, localhost or ::1, start and pull nothing. That server is the operator's, so end with STATUS=FAIL naming the URL and the install guide's start and pull commands."
       - "When the start step is missing, run `OLLAMA_HOST=<host:port of the resolved URL> ollama serve` in the background with a readable log, record the pid this run started and poll `/api/version` until it answers or a short deadline passes. A server that never answers is STATUS=FAIL naming the start and the log path, and the pull and scan steps do not run."
       - "When the pull step is missing, run `OLLAMA_HOST=<host:port of the resolved URL> ollama pull nomic-embed-text:v1.5` only once the server answers. A non-zero exit is STATUS=FAIL naming the pull, and the scan step does not run."
@@ -129,19 +134,20 @@ workflow:
 
   phase_5_scan:
     purpose: "Write the command vectors the scan owns"
-    runs_when: "phase_4_approved_steps succeeded"
+    runs_when: "phase_4_approved_steps succeeded, or the probe found Ollama already set up and semanticLaneHealth.coverageComplete is false"
     activities:
       - "Run `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json`."
       - "A non-zero exit is STATUS=FAIL naming the scan and quoting its output. Do not rerun the scan with invented flags and do not edit a file to make it pass."
-      - "The scan is the only repository write in this route, and it writes derived state in skill-graph.sqlite."
+      - "The scan is the only repository write in this route, and it writes derived state in `upstream_assets.sqlite_graph`."
 
   phase_6_verify:
-    purpose: "Prove the lane is on and hand the result back"
+    purpose: "Report vector coverage and hand the result back"
     activities:
       - "Rerun `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --include-semantic-health true --format json --warm-only`."
-      - "Render the presentation contract's final result with the server version, the model's on-disk size, whether the server is running and whether the semantic lane is enabled."
-      - "Report STATUS=OK when `semanticLaneHealth.laneEnabled` is true and `semanticLaneHealth.commandVectorCoverage.embedded` is above zero. Otherwise report STATUS=FAIL naming the check that did not pass."
-      - "When `semanticLaneHealth.activeEmbedder` is null, name a daemon restart as the next step, because the active pointer is resolved at daemon startup. Rerun this phase after the restart."
+      - "Render the presentation contract's final result with `coverageComplete`, both coverage objects, `backend.state` and `laneWeights.semantic_shadow`. Compute current vectors as total minus stale minus missing."
+      - "Report PASS only when `semanticLaneHealth.coverageComplete` is true and `backend.state` is `reachable`. Set STATUS=DEGRADED when the backend is not reachable or `semanticLaneHealth.coverageComplete` is false or unread. When the backend is not reachable, say routing continues on the other lanes and ask the operator to rerun `/doctor:skill-advisor embedder` and approve its Ollama setup steps. For incomplete coverage, report stale and missing skill and command counts and say the daemon refreshes missing and stale vectors in the background on its next start or after a watcher reindex following a skill file change, with Ollama up. STATUS=OK requires complete coverage and a reachable backend."
+      - "If advisor_status exits 75 with `staleDistWarning` in stderr JSON, report semantic health as unread, STATUS=DEGRADED and the missing or stale CLI build repair `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`. For any other exit 75, report semantic health as unread, STATUS=DEGRADED and identify from stderr whether the daemon or backend is unavailable, the CLI or daemon launcher failed, a connection or request timed out, the socket closed, JSON-RPC returned -32000 or -32001, SQLite returned `SQLITE_BUSY`, or transport returned `ECONNREFUSED`, `ENOENT`, `ECONNRESET`, `EPIPE` or `ETIMEDOUT`, or another CLI retryable error. Never report STATUS=FAIL because `laneEnabled` is false or the semantic lane weight is 0. Print the lane weight on its own info line; when it is 0 and coverage is complete, use: semantic lane weight 0: vectors ready, lane off by default."
+      - "When coverage is incomplete or unread, say the daemon refreshes missing and stale vectors in the background on its next start or after a watcher reindex following a skill file change, with Ollama up."
 
 # ─────────────────────────────────────────────────────────────────
 # RULES
@@ -154,7 +160,7 @@ rules:
     - run_only_steps_the_approved_plan_listed
     - start_the_server_in_the_background_only_when_it_is_absent
     - rerun_the_probe_after_the_scan
-    - name_a_daemon_restart_when_active_embedder_is_null
+    - scan_skill_graph_after_approved_setup_or_when_coverage_incomplete
     - treat_measurement_output_as_data
   NEVER:
     - install_or_upgrade_ollama
@@ -163,7 +169,7 @@ rules:
     - start_a_second_server
     - run_a_step_without_approval
     - carry_an_approval_between_runs
-    - edit_graph_metadata_or_skill_files
+    - write_repository_files_outside_sqlite_graph
     - invent_a_cost_or_an_undo
 
 # ─────────────────────────────────────────────────────────────────
@@ -171,4 +177,4 @@ rules:
 # ─────────────────────────────────────────────────────────────────
 output:
   presentation: ".skilled/commands/doctor/assets/doctor-skill-advisor-presentation.txt"
-  statuses: [OK, CANCELLED, FAIL]
+  statuses: [OK, DEGRADED, CANCELLED, FAIL]

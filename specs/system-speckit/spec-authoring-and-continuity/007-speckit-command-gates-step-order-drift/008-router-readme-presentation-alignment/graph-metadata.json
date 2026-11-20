@@ -16,6 +16,7 @@
       "router readme presentation alignment plan",
       "router readme presentation alignment tasks",
       "router readme presentation alignment acceptance criteria",
+      "008-router-readme-presentation-alignment operator decisions",
       "router readme presentation alignment implementation summary"
     ],
     "key_topics": [
@@ -28,9 +29,9 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation",
-      "summary",
-      "workflow"
+      "008-router-readme-presentation-alignment",
+      "operator",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,6 +40,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/commands/speckit/README.txt",
       ".skilled/commands/speckit/plan.md",
@@ -77,6 +79,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -192,17 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The router, the workflow, the presentation file and `README.txt` of one command state different facts, so an agent or operator who trusts any one of them is misled",
     "created_at": "2026-11-14T11:33:25Z",
-    "last_save_at": "2026-11-15T16:19:24.035Z",
+    "last_save_at": "2026-11-19T17:38:00.542Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +212,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5c83956548e0273cff34828992a51a0c9b2299df969f723614ed6cbaf93243a",
+    "source_fingerprint": "sha256:5e1cf46449b3b662adbbc35429cc0105bacd44865180afe5e128cba100bfa656",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cbabd290230f4869d20ffc088040016bf3f9b6b956e5290a9ea786d39560e34a",
       "plan.md": "c2c2e1e53755a3a1f38b29352be41f90a50c0ea9ee350850121af5e4c2b35785",
       "tasks.md": "0ac3d76aec088c409ba0c43552050ef7c0c1025cd8e881762c897e9729f79655",
+      "decision-record.md": "9c240b6fbbf9d1818f6c1b54fb4f22abb3561c7f95b1f00ee411627f0dd46f86",
       "implementation-summary.md": "549e4dfc087e4838e9473ccadcb9051e67d81269f9e41debe99158c3fb6241f4"
     },
     "last_active_at": null

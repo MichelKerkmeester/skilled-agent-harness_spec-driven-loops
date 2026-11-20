@@ -16,6 +16,7 @@
       "repin dsh to rc.3",
       "dsh rc3 repin plan",
       "dsh rc3 repin tasks",
+      "017-dsh-rc3-repin operator decisions",
       "dsh rc3 repin implementation summary"
     ],
     "key_topics": [
@@ -25,12 +26,12 @@
       "phase",
       "plan",
       "tasks",
+      "017-dsh-rc3-repin",
+      "operator",
+      "decisions",
       "implementation",
       "summary",
-      "pinned-version-required",
-      "rule",
-      "refuses",
-      "2-rc"
+      "pinned-version-required"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -38,13 +39,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
-      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       "manual-testing-playbook/manual-testing-playbook.md",
       "scratch/measured-before.txt",
-      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
-      ".skilled/hooks/dispatch/README.md",
       ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json",
       ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md",
       ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/README.md",
@@ -54,7 +53,8 @@
       ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/providers-and-models.md",
       ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/shims/dsh-shim.cjs",
       ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/live-contracts.json",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts"
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
     ],
     "entities": [
       {
@@ -76,15 +76,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "dispatch-rule-checks.mjs",
-        "kind": "file",
-        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -106,18 +106,6 @@
         "source": "derived"
       },
       {
-        "name": "dispatch-rule-checks.test.mjs",
-        "kind": "file",
-        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/hooks/dispatch/README.md",
-        "source": "derived"
-      },
-      {
         "name": "hard-rules.json",
         "kind": "config",
         "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json",
@@ -127,6 +115,12 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/README.md",
         "source": "derived"
       },
       {
@@ -163,6 +157,12 @@
         "name": "combo-matrix.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
         "source": "derived"
       },
       {
@@ -204,22 +204,24 @@
     ],
     "causal_summary": "The `pinned-version-required` rule refuses any dsh but 0.2.2-rc.1, and the dsh on PATH is now 0.2.2-rc.3",
     "created_at": "2026-11-14T17:00:47Z",
-    "last_save_at": "2026-11-14T17:22:04.283Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:46:57.137Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8f103875e0df844504ffbfdf5a7f9e6dde512448c51242f9cc1631df4ceb9249",
+    "source_fingerprint": "sha256:fc4bf27188bc25f66b24f5a823e8f2dd02a3fc5555525bd4a374437c26bdeb20",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "674aee30e37b9f86457f6f13ad65e11f89ca1e2bb8692ec4447feef2dce958cd",
       "plan.md": "dd28c534177ccad295caa2ce767eb017d28a7a50fae1b7b91e971b4d315de040",
       "tasks.md": "4c9a52ac80d61ccc3c876049eb28b861eaaec00d0c4098aba1825cc5291588d4",
-      "implementation-summary.md": "c774397febcf60ace39f440f96d4684be54b37b9eb694d39b46dc14d7f393336"
+      "decision-record.md": "1df8b83f397f5ec8ef2442633145dd73fc87a403c9daf97e3954b80f9ba592fd",
+      "implementation-summary.md": "e4e3fd0dbab5d40f456cb542615e5df09fa3c6a788348b45814dc3921fd652b2"
     },
     "last_active_at": null
   }

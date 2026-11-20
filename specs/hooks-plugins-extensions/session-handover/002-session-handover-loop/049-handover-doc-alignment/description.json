@@ -13,7 +13,7 @@
     "shell",
     "shim"
   ],
-  "lastUpdated": "2026-11-16T09:23:10.352Z",
+  "lastUpdated": "2026-11-19T17:47:55.337Z",
   "specId": "049",
   "folderSlug": "handover-doc-alignment",
   "parentChain": [
@@ -21,8 +21,9 @@
     "session-handover",
     "002-session-handover-loop"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "16-11-26_10-23__fixed-the-hand-over-doc-findings-of-the-doc.md"
+    "16-11-26_10-23__fixed-the-hand-over-doc-findings-of-the-doc.md",
+    "19-11-26_18-47__manual-context-save.md"
   ]
 }

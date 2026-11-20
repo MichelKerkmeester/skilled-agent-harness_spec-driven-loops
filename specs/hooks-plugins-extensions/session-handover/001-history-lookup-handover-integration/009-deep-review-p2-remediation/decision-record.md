@@ -37,6 +37,9 @@ _memory:
 | Q001 | The operator asked whether the predecessor hard block should be removed rather than waived for this phase. | Not stated. | None | the follow-up block-rule decision and .skilled/commands/speckit/assets/speckit-complete.yaml |
 | Q002 | Record I1-P2-004 as already held, with no new export or test, because drifting either bound copy already fails two existing tests. | The negative control showed the existing sweep test fails on drift from either side. | None | spec.md Measured Behavior and REQ-006 |
 | Q003 | Remove phase_predecessor_validation from /speckit:complete entirely inside this phase, and check every other speckit workflow for it. | Not stated. | the recommended waive-and-narrow option | REQ-005 and .skilled/commands/speckit/assets/speckit-complete.yaml |
+| Q004 | 'Fix all' includes the SL-510 memory measurement of the eager search index. | Not stated. | none | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/spec.md |
+| Q005 | /speckit:complete for child 009 runs in autonomous mode. | Not stated. | none | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/spec.md |
+| Q006 | No session goal is set for the child 009 workflow. | Not stated. | none | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -102,6 +105,64 @@ Remove it entirely
 Answer:
 ```text
 Remove entirely and also check other spec commands for it
+```
+
+### Q004
+<!-- source: claude:ec7bcf4f-ca57-4cbf-b19d-78481950d73d:toolu_01PGVYyCTQ9UoTef3ZF4r4bT:2 -->
+
+Question:
+```text
+Should 'fix all' include the memory measurement of the eager search index in navigator.ts (search-debt item SL-510)? It's a measurement, not a known bug.
+```
+
+Options:
+```text
+Measure it (Recommended)
+Leave deferred
+```
+
+Answer:
+```text
+Measure it (Recommended)
+```
+
+### Q005
+<!-- source: claude:ec7bcf4f-ca57-4cbf-b19d-78481950d73d:toolu_01KhCa8yLq74az8ZoJ54GRxb:0 -->
+
+Question:
+```text
+/speckit:complete needs an execution mode for building child 009 (the 7 P2 fixes plus the SL-510 memory measurement) in the new worktree. Already bound: folder 009 under the history-lookup parent, intent fix_bug, no phase decomposition, no prior-context load. Which mode?
+```
+
+Options:
+```text
+Autonomous (Recommended)
+Interactive
+Autopilot
+```
+
+Answer:
+```text
+Autonomous (Recommended)
+```
+
+### Q006
+<!-- source: claude:ec7bcf4f-ca57-4cbf-b19d-78481950d73d:toolu_01KhCa8yLq74az8ZoJ54GRxb:1 -->
+
+Question:
+```text
+Should this workflow set a session goal?
+```
+
+Options:
+```text
+Skip (Recommended)
+Set a goal
+```
+
+Answer:
+```text
+Skip (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

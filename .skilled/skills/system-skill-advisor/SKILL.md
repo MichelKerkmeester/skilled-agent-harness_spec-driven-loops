@@ -2,7 +2,7 @@
 name: system-skill-advisor
 description: Routes non-trivial requests to matching skills through the daemon-backed advisor CLI and stable advisor command ids.
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.2.0.0
+version: 1.3.0.0
 trigger_phrases:
   - "skill advisor"
   - "gate 2 routing"
@@ -108,7 +108,7 @@ Exit codes:
 - Reference and asset doc frontmatter `trigger_phrases` feed routing only when `SPECKIT_ADVISOR_DOC_TRIGGERS=true`.
 - Skill authors change routing vocabulary in `graph-metadata.json`.
 
-`advisor_status` reports `indexStaleness` on every successful call and, with `includeEmbeddingsHealth`, an opt-in `embeddingsHealth` covering provider resolution and the local model server. It adds `hookHealth` once a prompt hook has written a health record for the workspace.
+`advisor_status` reports `indexStaleness` on every successful call. With `includeEmbeddingsHealth`, it adds opt-in `embeddingsHealth` for provider resolution and the local model server. With `includeSemanticHealth`, it adds opt-in `semanticLaneHealth` for semantic lane status and skill and command vector coverage. It adds `hookHealth` once a prompt hook has written a health record for the workspace.
 
 The advisor implementation, skill-graph library and package-local database live under this skill package, while memory remains focused on memory tools.
 

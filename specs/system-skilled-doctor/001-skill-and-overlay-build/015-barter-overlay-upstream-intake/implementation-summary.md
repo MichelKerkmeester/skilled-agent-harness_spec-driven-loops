@@ -17,7 +17,7 @@ _memory:
       - ".skilled/skills/mcp-tooling/hub-router.json"
       - ".skilled/skills/mcp-tooling/mode-registry.json"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:77e12bbae767aebed05bfcaad3d1acb94b5e146412a0c5413b724f17b752a26e"
       session_id: "barter-overlay-upstream-intake"
       parent_session_id: null
     completion_pct: 100

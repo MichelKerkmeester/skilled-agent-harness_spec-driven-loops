@@ -6,7 +6,7 @@
     "phase",
     "history-secret-redaction"
   ],
-  "lastUpdated": "2026-11-15T20:47:50.561Z",
+  "lastUpdated": "2026-11-19T17:47:29.082Z",
   "specId": "010",
   "folderSlug": "history-secret-redaction",
   "parentChain": [
@@ -14,10 +14,12 @@
     "session-handover",
     "001-history-lookup-handover-integration"
   ],
-  "memorySequence": 3,
+  "memorySequence": 5,
   "memoryNameHistory": [
     "15-11-26_21-40__built-intake-secret-redaction-for-the-history.md",
     "15-11-26_21-46__closed-out-history-lookup-intake-secret-redaction.md",
-    "15-11-26_21-47__recorded-the-close-out-checks-for-history-lookup.md"
+    "15-11-26_21-47__recorded-the-close-out-checks-for-history-lookup.md",
+    "19-11-26_18-36__manual-context-save.md",
+    "19-11-26_18-47__manual-context-save.md"
   ]
 }

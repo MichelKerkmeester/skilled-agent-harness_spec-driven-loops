@@ -17,6 +17,7 @@
       "router sync fold",
       "surface intent fold declaration plan",
       "surface intent fold declaration tasks",
+      "005-surface-intent-fold-declaration operator decisions",
       "surface intent fold declaration implementation summary"
     ],
     "key_topics": [
@@ -39,6 +40,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
       ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs",
@@ -62,6 +64,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -183,32 +191,28 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`legSurfaceMap` in `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` builds one intent set from the parent `RESOURCEMAP` and every surface child, then requires each child intent's paths under the same intent name in the parent map",
     "created_at": "2026-11-13T18:46:09Z",
-    "last_save_at": "2026-11-13T19:06:41.618Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:36:46.061Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:005f88f9638a6d7e9f03b2bf5afa2cdf9bb8d480bef34b0ceeff4d2b769535bb",
+    "source_fingerprint": "sha256:b6d7eec3863a1b48000ad10c79536cecf54947262298136c920cbb1fa25d28eb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a1025c3def9fb21e750c2fc7e5f4c08fe0258511305a9b3244161492c7cfcaff",
       "plan.md": "7861bff1a8ca94369e14f8e27197c6c86e587f75f55488c2f87e38083f7551e2",
       "tasks.md": "69d688b4a140636b27325d4a982f7ca1aabf70462ef53cd2636bbb4ac97fc8b5",
-      "implementation-summary.md": "8d2b313ff70479fe5d676642d4cce9687e4fcff5437387ce2f812d922998e48c"
+      "decision-record.md": "ad80e691c7fa41e6fa51d3faf50fb5f95e327c80bd96351dc7b894257d46dc2b",
+      "implementation-summary.md": "23250a59c517eb5b4281d6a73b353d47e65dbcdc0db03d84e531e0a2131d96fd"
     },
     "last_active_at": null
   }

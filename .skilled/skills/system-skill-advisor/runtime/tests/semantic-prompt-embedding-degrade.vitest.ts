@@ -22,6 +22,7 @@ const mocks = vi.hoisted(() => {
     embed: vi.fn(),
     getAdapter: vi.fn(),
     getActiveEmbedder: vi.fn(),
+    embeddingCoverage: vi.fn(),
     getDbReadOnly: vi.fn(),
     loadSkillEmbeddings: vi.fn(),
   };
@@ -47,6 +48,7 @@ vi.mock('../lib/skill-graph/skill-graph-db.js', async (importOriginal) => {
   const actual = await importOriginal<typeof import('../lib/skill-graph/skill-graph-db.js')>();
   return {
     ...actual,
+    embeddingCoverage: mocks.embeddingCoverage,
     getDbReadOnly: mocks.getDbReadOnly,
     loadSkillEmbeddings: mocks.loadSkillEmbeddings,
   };
@@ -138,6 +140,12 @@ describe('semantic prompt embedding degrade matrix', () => {
     }
 
     mocks.getDbReadOnly.mockReturnValue({ name: 'mocked-read-only-database' });
+    mocks.embeddingCoverage.mockReturnValue({
+      skills: { total: 2, current: 2, stale: 0, missing: 0 },
+      commands: { total: 0, current: 0, stale: 0, missing: 0 },
+      incompleteIds: [],
+      complete: true,
+    });
     mocks.getActiveEmbedder.mockReturnValue({ name: 'nomic-embed-text:v1.5', dim: 2 });
     mocks.getAdapter.mockReturnValue({
       name: 'nomic-embed-text:v1.5',

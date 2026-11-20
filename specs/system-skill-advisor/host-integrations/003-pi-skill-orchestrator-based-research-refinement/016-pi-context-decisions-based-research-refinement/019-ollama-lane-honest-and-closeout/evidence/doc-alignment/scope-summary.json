@@ -1,0 +1,25 @@
+{
+  "target": "topic advisor-vector-refresh",
+  "head": "aaaff7dd9dfdef7289b08109f1948cecea899a94",
+  "files": 43,
+  "owners": [
+    {
+      "id": "docs:.skilled/commands",
+      "kind": "docs",
+      "root": ".skilled/commands",
+      "files": 13
+    },
+    {
+      "id": "docs:.skilled/skills",
+      "kind": "docs",
+      "root": ".skilled/skills",
+      "files": 29
+    },
+    {
+      "id": "docs:INSTALL-SKILLED.md",
+      "kind": "docs",
+      "root": "INSTALL-SKILLED.md",
+      "files": 1
+    }
+  ]
+}

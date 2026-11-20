@@ -16,7 +16,7 @@
     "locator",
     "paths"
   ],
-  "lastUpdated": "2026-11-13T10:05:32.342Z",
+  "lastUpdated": "2026-11-19T17:49:20.069Z",
   "specId": "009",
   "folderSlug": "rename-rule-and-test-root-fixes",
   "parentChain": [
@@ -24,6 +24,9 @@
     "spec-folder-tooling",
     "002-named-subtracks-and-host-repos"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "19-11-26_18-38__manual-context-save.md",
+    "19-11-26_18-49__manual-context-save.md"
+  ]
 }

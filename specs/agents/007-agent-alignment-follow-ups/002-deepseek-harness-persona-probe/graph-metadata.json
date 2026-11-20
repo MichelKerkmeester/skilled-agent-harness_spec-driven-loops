@@ -15,6 +15,7 @@
       "phase 2 deepseek harness persona probe",
       "deepseek harness persona probe plan",
       "deepseek harness persona probe tasks",
+      "002-deepseek-harness-persona-probe operator decisions",
       "deepseek harness persona probe implementation summary"
     ],
     "key_topics": [
@@ -25,11 +26,11 @@
       "phase",
       "plan",
       "tasks",
+      "002-deepseek-harness-persona-probe",
+      "operator",
+      "decisions",
       "implementation",
-      "summary",
-      "rule",
-      "cli-deepseek-harness",
-      "skill"
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -37,6 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       "scratch/baseline.txt",
       "scratch/dsh-control-prompt.txt",
@@ -67,6 +69,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -188,31 +196,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Control",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Rule 7 of `cli-deepseek-harness/SKILL.md` requires every dispatch to inline the agent persona, and the personas name Read, Grep and Glob",
     "created_at": "2026-11-14T15:48:57Z",
-    "last_save_at": "2026-11-14T16:33:11.475Z",
+    "last_save_at": "2026-11-19T17:35:08.485Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b4914a59031410c51a687e0ba253f7b461c4d28ccd055dfc4f051ba39f1d137",
+    "source_fingerprint": "sha256:c28c66166ab3b489f51c06556eb39d03e6f04c26832e913342d2b5cc0ae701c0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f4c50145059d385ad513e3171e8b824344492e2c2bb6bb62fb2bf8232cb0ca5d",
       "plan.md": "88cbc3c747a090712e98e2e9de4b4e75270cda2afd9b75d22a71537d61a21d8f",
       "tasks.md": "36b3b299386cd4432015db0a868398dfd54c3cf86a66702e78fd6a69d26b9fd3",
+      "decision-record.md": "a1e9f88a87b7b04e1c46b297e5e0a0d60e6ddb72aba58780e6e47427a7db051e",
       "implementation-summary.md": "680e73510f13fc72f842f5952fca361b96dcd604f5b70be68893f18fb4ec22ce"
     },
     "last_active_at": null

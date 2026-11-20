@@ -17,7 +17,7 @@ _memory:
       - "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping/implementation-summary.md"
       - "specs/system-speckit/graph-metadata.json"
     session_dedup:
-      fingerprint: "sha256:9154ee77e2c9e5094dc92869850babb5880f6e9faaeb3b584f4472eaf12beb09"
+      fingerprint: "sha256:9c97618a19afa29b5df34d3c615ac2062a3ee0ed1c4e64728a693cfad36bb992"
       session_id: "scaffold-008-track-subtrack-regrouping"
       parent_session_id: null
     session_ref:

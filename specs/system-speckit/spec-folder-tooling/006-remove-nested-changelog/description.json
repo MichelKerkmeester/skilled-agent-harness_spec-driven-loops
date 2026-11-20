@@ -12,17 +12,19 @@
     "templates",
     "docs"
   ],
-  "lastUpdated": "2026-11-15T10:06:01.414Z",
+  "lastUpdated": "2026-11-19T17:49:29.285Z",
   "specId": "006",
   "folderSlug": "remove-nested-changelog",
   "parentChain": [
     "system-speckit",
     "spec-folder-tooling"
   ],
-  "memorySequence": 3,
+  "memorySequence": 5,
   "memoryNameHistory": [
     "15-11-26_10-02__planned-the-removal-of-the-deprecated-nested-spec.md",
     "15-11-26_10-55__removed-the-deprecated-nested-changelog-generator.md",
-    "15-11-26_11-05__removed-the-nested-changelog-generator-second.md"
+    "15-11-26_11-05__removed-the-nested-changelog-generator-second.md",
+    "19-11-26_18-38__manual-context-save.md",
+    "19-11-26_18-49__manual-context-save.md"
   ]
 }

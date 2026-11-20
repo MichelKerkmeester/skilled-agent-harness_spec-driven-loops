@@ -17,6 +17,7 @@
       "skilled.omitHook",
       "doctor host hook acceptance plan",
       "doctor host hook acceptance tasks",
+      "008-doctor-host-hook-acceptance operator decisions",
       "doctor host hook acceptance implementation summary"
     ],
     "key_topics": [
@@ -39,6 +40,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/commands/doctor/scripts/git-setup-check.cjs",
       ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
@@ -61,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -182,32 +190,28 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`checkHooks` in `.skilled/commands/doctor/scripts/git-setup-check.cjs` accepts an installed hook only when its real path equals a hook source file, and it reports `<name>: not installed` for every hook source name missing from the hooks folder",
     "created_at": "2026-11-13T18:46:09Z",
-    "last_save_at": "2026-11-13T19:06:43.984Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:37:13.575Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8f024f2a4b91b790f0662145a341a6d6d3fadbe424abc67fe352423d9915b24",
+    "source_fingerprint": "sha256:ed585f62530e62868718a4cfc2343ff463e845339f85b56967060bd7807ea5f9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bf59caf46c2303f6167bb697151520dc16d64a42f5df40067e1b46ef990182c8",
       "plan.md": "a42f590e9e072fa307e453be0f145d49b6f0cc7aeab1391559fc82c91a6f2780",
       "tasks.md": "7e6167b46aad07a2750f7625ceefeb4d64799a73b60015656c3afedbdebb0f98",
-      "implementation-summary.md": "a34cddd71db954fed685222d6d32d5671b9aef6c7fc4f7283fa0cc7e854b8d00"
+      "decision-record.md": "13c53ffeec436e2580ddb0dbd168163563106731168dc4cb4d0c399fb01f8bc8",
+      "implementation-summary.md": "c04a3651827943fb3bda40c843f66e84f54da915f2307faf9f7efc63931227f4"
     },
     "last_active_at": null
   }

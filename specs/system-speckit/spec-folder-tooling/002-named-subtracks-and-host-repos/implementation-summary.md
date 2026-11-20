@@ -20,7 +20,7 @@ _memory:
       - ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts"
       - ".skilled/commands/doctor/scripts/symlink-engine.cjs"
     session_dedup:
-      fingerprint: "sha256:bb5db22ec6a183584eec3729bbe64e3ca9fd4bec53dc5dcc66a3244962a7593b"
+      fingerprint: "sha256:6f2d52877c0a427e001314b58f1df8e144129a98498223c23355bfe219e05367"
       session_id: "scaffold-044-named-subtracks-and-host-repos"
       parent_session_id: null
     completion_pct: 90

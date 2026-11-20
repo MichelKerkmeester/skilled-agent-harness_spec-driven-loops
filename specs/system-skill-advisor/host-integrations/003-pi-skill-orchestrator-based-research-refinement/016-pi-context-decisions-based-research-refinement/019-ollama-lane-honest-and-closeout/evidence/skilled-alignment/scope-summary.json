@@ -1,0 +1,603 @@
+{
+  "target": "worktrees/480-ollama-lane-honest-and-closeout",
+  "head": "aaaff7dd9dfdef7289b08109f1948cecea899a94",
+  "files": 340,
+  "owners": [
+    {
+      "id": "spec:specs/hooks-plugins-extensions/session-handover",
+      "kind": "spec",
+      "root": "specs/hooks-plugins-extensions/session-handover",
+      "files": 64,
+      "sample": [
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/decision-record.md",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/description.json",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/graph-metadata.json",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/002-history-core-relocation/decision-record.md",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/002-history-core-relocation/description.json",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/002-history-core-relocation/graph-metadata.json",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/002-history-core-relocation/implementation-summary.md",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation/decision-record.md",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation/description.json",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation/graph-metadata.json",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/decision-record.md",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/description.json",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/graph-metadata.json",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/decision-record.md",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/description.json",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/graph-metadata.json",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/decision-record.md",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/description.json",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/graph-metadata.json",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/decision-record.md",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/description.json",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/graph-metadata.json",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/010-fanout-orphan-liveness/decision-record.md",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/010-fanout-orphan-liveness/description.json",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/010-fanout-orphan-liveness/graph-metadata.json",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/010-fanout-orphan-liveness/implementation-summary.md",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/011-permission-mode-carry/decision-record.md",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/011-permission-mode-carry/description.json",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/011-permission-mode-carry/graph-metadata.json",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/011-permission-mode-carry/implementation-summary.md",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/013-opencode-child-and-title/decision-record.md",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/013-opencode-child-and-title/description.json",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/013-opencode-child-and-title/graph-metadata.json",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/013-opencode-child-and-title/implementation-summary.md",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons/decision-record.md",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons/description.json",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons/graph-metadata.json",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons/implementation-summary.md",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/decision-record.md",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/description.json",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/graph-metadata.json",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/decision-record.md",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/description.json",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/graph-metadata.json",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/implementation-summary.md",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/decision-record.md",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/description.json",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/graph-metadata.json",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/implementation-summary.md",
+        "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/decision-record.md"
+      ],
+      "truncated": true
+    },
+    {
+      "id": "skill:.skilled/skills/system-skill-advisor",
+      "kind": "skill",
+      "root": ".skilled/skills/system-skill-advisor",
+      "files": 38,
+      "sample": [
+        ".skilled/skills/system-skill-advisor/INSTALL-GUIDE.md",
+        ".skilled/skills/system-skill-advisor/README.md",
+        ".skilled/skills/system-skill-advisor/SKILL.md",
+        ".skilled/skills/system-skill-advisor/changelog/v1.3.0.0.md",
+        ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-status.md",
+        ".skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/lifecycle.md",
+        ".skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/watcher.md",
+        ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/ablation.md",
+        ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/attribution.md",
+        ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md",
+        ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/five-lane-fusion.md",
+        ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/weights-config.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/daemon-lifecycle-shutdown.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/watcher-narrow-scope.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/native-status-transitions.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/ablation.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/five-lane-fusion.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/lane-attribution.md",
+        ".skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md",
+        ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/embedders/README.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/handlers/semantic-outage-degraded.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-ablation.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-cosine.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-test-utils.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/skill-graph-embedding-outage.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/skill-graph/embedding-coverage.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/skill-graph/refresh-in-background.vitest.ts"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/system-speckit/spec-folder-tooling",
+      "kind": "spec",
+      "root": "specs/system-speckit/spec-folder-tooling",
+      "files": 26,
+      "sample": [
+        "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping/decision-record.md",
+        "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping/description.json",
+        "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping/graph-metadata.json",
+        "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping/implementation-summary.md",
+        "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/decision-record.md",
+        "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/description.json",
+        "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/graph-metadata.json",
+        "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/implementation-summary.md",
+        "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard/decision-record.md",
+        "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard/description.json",
+        "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard/graph-metadata.json",
+        "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard/implementation-summary.md",
+        "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/decision-record.md",
+        "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/description.json",
+        "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/graph-metadata.json",
+        "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/implementation-summary.md",
+        "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/decision-record.md",
+        "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/description.json",
+        "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/graph-metadata.json",
+        "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/implementation-summary.md",
+        "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/decision-record.md",
+        "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/description.json",
+        "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/graph-metadata.json",
+        "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/decision-record.md",
+        "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/description.json",
+        "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/graph-metadata.json"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/system-skill-advisor/host-integrations",
+      "kind": "spec",
+      "root": "specs/system-skill-advisor/host-integrations",
+      "files": 22,
+      "sample": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping/decision-record.md",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping/description.json",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping/graph-metadata.json",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping/implementation-summary.md",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/decision-record.md",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/description.json",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/graph-metadata.json",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/implementation-summary.md",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/acceptance-criteria.md",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/description.json",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/goal.md",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/graph-metadata.json",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/implementation-summary.md",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/plan.md",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/scratch/.gitkeep",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/spec.md",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/tasks.md",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/decision-record.md",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/description.json",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/graph-metadata.json",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/agents/007-agent-alignment-follow-ups",
+      "kind": "spec",
+      "root": "specs/agents/007-agent-alignment-follow-ups",
+      "files": 18,
+      "sample": [
+        "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/decision-record.md",
+        "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/description.json",
+        "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/graph-metadata.json",
+        "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/decision-record.md",
+        "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/description.json",
+        "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/graph-metadata.json",
+        "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/decision-record.md",
+        "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/description.json",
+        "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/graph-metadata.json",
+        "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/decision-record.md",
+        "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/description.json",
+        "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/graph-metadata.json",
+        "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/decision-record.md",
+        "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/description.json",
+        "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/graph-metadata.json",
+        "specs/agents/007-agent-alignment-follow-ups/decision-record.md",
+        "specs/agents/007-agent-alignment-follow-ups/description.json",
+        "specs/agents/007-agent-alignment-follow-ups/graph-metadata.json"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/system-skilled-doctor/001-skill-and-overlay-build",
+      "kind": "spec",
+      "root": "specs/system-skilled-doctor/001-skill-and-overlay-build",
+      "files": 16,
+      "sample": [
+        "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/decision-record.md",
+        "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/description.json",
+        "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/graph-metadata.json",
+        "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/implementation-summary.md",
+        "specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/decision-record.md",
+        "specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/description.json",
+        "specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/graph-metadata.json",
+        "specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/implementation-summary.md",
+        "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/decision-record.md",
+        "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/description.json",
+        "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/graph-metadata.json",
+        "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/decision-record.md",
+        "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/description.json",
+        "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/graph-metadata.json",
+        "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/implementation-summary.md",
+        "specs/system-skilled-doctor/001-skill-and-overlay-build/graph-metadata.json"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/system-speckit/runtime-and-release",
+      "kind": "spec",
+      "root": "specs/system-speckit/runtime-and-release",
+      "files": 16,
+      "sample": [
+        "specs/system-speckit/runtime-and-release/003-symlinked-runtime-root/decision-record.md",
+        "specs/system-speckit/runtime-and-release/003-symlinked-runtime-root/description.json",
+        "specs/system-speckit/runtime-and-release/003-symlinked-runtime-root/graph-metadata.json",
+        "specs/system-speckit/runtime-and-release/003-symlinked-runtime-root/implementation-summary.md",
+        "specs/system-speckit/runtime-and-release/004-v4-release-line-research/023-configurable-host-index-folder/decision-record.md",
+        "specs/system-speckit/runtime-and-release/004-v4-release-line-research/023-configurable-host-index-folder/description.json",
+        "specs/system-speckit/runtime-and-release/004-v4-release-line-research/023-configurable-host-index-folder/graph-metadata.json",
+        "specs/system-speckit/runtime-and-release/004-v4-release-line-research/023-configurable-host-index-folder/implementation-summary.md",
+        "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/decision-record.md",
+        "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/description.json",
+        "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/graph-metadata.json",
+        "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/implementation-summary.md",
+        "specs/system-speckit/runtime-and-release/004-v4-release-line-research/graph-metadata.json",
+        "specs/system-speckit/runtime-and-release/006-test-cycle-speed/decision-record.md",
+        "specs/system-speckit/runtime-and-release/006-test-cycle-speed/description.json",
+        "specs/system-speckit/runtime-and-release/006-test-cycle-speed/graph-metadata.json"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/sk-code/hub-architecture",
+      "kind": "spec",
+      "root": "specs/sk-code/hub-architecture",
+      "files": 15,
+      "sample": [
+        "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/decision-record.md",
+        "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/description.json",
+        "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/graph-metadata.json",
+        "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/implementation-summary.md",
+        "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/decision-record.md",
+        "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/description.json",
+        "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/graph-metadata.json",
+        "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/implementation-summary.md",
+        "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/decision-record.md",
+        "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/description.json",
+        "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/graph-metadata.json",
+        "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/decision-record.md",
+        "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/description.json",
+        "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/graph-metadata.json",
+        "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/implementation-summary.md"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/hooks-plugins-extensions/hook-platform",
+      "kind": "spec",
+      "root": "specs/hooks-plugins-extensions/hook-platform",
+      "files": 14,
+      "sample": [
+        "specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/decision-record.md",
+        "specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/description.json",
+        "specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/graph-metadata.json",
+        "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/decision-record.md",
+        "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/description.json",
+        "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/graph-metadata.json",
+        "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/implementation-summary.md",
+        "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/decision-record.md",
+        "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/description.json",
+        "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/graph-metadata.json",
+        "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/implementation-summary.md",
+        "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/decision-record.md",
+        "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/description.json",
+        "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/graph-metadata.json"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/sk-doc/document-standards",
+      "kind": "spec",
+      "root": "specs/sk-doc/document-standards",
+      "files": 14,
+      "sample": [
+        "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/decision-record.md",
+        "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/description.json",
+        "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/graph-metadata.json",
+        "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/decision-record.md",
+        "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/description.json",
+        "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/graph-metadata.json",
+        "specs/sk-doc/document-standards/003-changelog-system/graph-metadata.json",
+        "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/decision-record.md",
+        "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/description.json",
+        "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/graph-metadata.json",
+        "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/implementation-summary.md",
+        "specs/sk-doc/document-standards/006-readme-template-conformance/decision-record.md",
+        "specs/sk-doc/document-standards/006-readme-template-conformance/description.json",
+        "specs/sk-doc/document-standards/006-readme-template-conformance/graph-metadata.json"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/system-speckit/spec-authoring-and-continuity",
+      "kind": "spec",
+      "root": "specs/system-speckit/spec-authoring-and-continuity",
+      "files": 12,
+      "sample": [
+        "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/decision-record.md",
+        "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/description.json",
+        "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/graph-metadata.json",
+        "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/decision-record.md",
+        "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/description.json",
+        "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/graph-metadata.json",
+        "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/decision-record.md",
+        "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/description.json",
+        "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/graph-metadata.json",
+        "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/decision-record.md",
+        "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/description.json",
+        "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/graph-metadata.json"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "command:doctor",
+      "kind": "command",
+      "root": ".skilled/commands/doctor",
+      "files": 11,
+      "sample": [
+        ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml",
+        ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-setup.yaml",
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml",
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-symlink-link.yaml",
+        ".skilled/commands/doctor/assets/doctor-symlink-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/cli-external-orchestration/runtime-lifecycle",
+      "kind": "spec",
+      "root": "specs/cli-external-orchestration/runtime-lifecycle",
+      "files": 10,
+      "sample": [
+        "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/decision-record.md",
+        "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/description.json",
+        "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/graph-metadata.json",
+        "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/implementation-summary.md",
+        "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/decision-record.md",
+        "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/description.json",
+        "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/graph-metadata.json",
+        "specs/cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/decision-record.md",
+        "specs/cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/description.json",
+        "specs/cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/graph-metadata.json"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/sk-doc/hub-routing-and-surfaces",
+      "kind": "spec",
+      "root": "specs/sk-doc/hub-routing-and-surfaces",
+      "files": 8,
+      "sample": [
+        "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/decision-record.md",
+        "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/description.json",
+        "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/graph-metadata.json",
+        "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/implementation-summary.md",
+        "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/decision-record.md",
+        "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/description.json",
+        "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/graph-metadata.json",
+        "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/implementation-summary.md"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/system-skill-advisor/routing-and-scoring",
+      "kind": "spec",
+      "root": "specs/system-skill-advisor/routing-and-scoring",
+      "files": 7,
+      "sample": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/decision-record.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/description.json",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/graph-metadata.json",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/implementation-summary.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/description.json",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/graph-metadata.json"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/sk-doc/authoring-modes-and-playbooks",
+      "kind": "spec",
+      "root": "specs/sk-doc/authoring-modes-and-playbooks",
+      "files": 6,
+      "sample": [
+        "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes/decision-record.md",
+        "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes/description.json",
+        "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes/graph-metadata.json",
+        "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes/implementation-summary.md",
+        "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements/graph-metadata.json",
+        "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/graph-metadata.json"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/agents-md/repo-rule-operations",
+      "kind": "spec",
+      "root": "specs/agents-md/repo-rule-operations",
+      "files": 5,
+      "sample": [
+        "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/011-decisions-rule-delivery/decision-record.md",
+        "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/011-decisions-rule-delivery/description.json",
+        "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/011-decisions-rule-delivery/graph-metadata.json",
+        "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/011-decisions-rule-delivery/implementation-summary.md",
+        "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/graph-metadata.json"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/cli-external-orchestration/model-rosters",
+      "kind": "spec",
+      "root": "specs/cli-external-orchestration/model-rosters",
+      "files": 4,
+      "sample": [
+        "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/decision-record.md",
+        "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/description.json",
+        "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/graph-metadata.json",
+        "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/implementation-summary.md"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/hooks-plugins-extensions/decision-capture",
+      "kind": "spec",
+      "root": "specs/hooks-plugins-extensions/decision-capture",
+      "files": 4,
+      "sample": [
+        "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/decision-record.md",
+        "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/description.json",
+        "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/graph-metadata.json",
+        "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/graph-metadata.json"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/hooks-plugins-extensions/env-secret-guard",
+      "kind": "spec",
+      "root": "specs/hooks-plugins-extensions/env-secret-guard",
+      "files": 4,
+      "sample": [
+        "specs/hooks-plugins-extensions/env-secret-guard/001-env-secret-guard/decision-record.md",
+        "specs/hooks-plugins-extensions/env-secret-guard/001-env-secret-guard/description.json",
+        "specs/hooks-plugins-extensions/env-secret-guard/001-env-secret-guard/graph-metadata.json",
+        "specs/hooks-plugins-extensions/env-secret-guard/001-env-secret-guard/implementation-summary.md"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/sk-code/verification-guards",
+      "kind": "spec",
+      "root": "specs/sk-code/verification-guards",
+      "files": 4,
+      "sample": [
+        "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/decision-record.md",
+        "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/description.json",
+        "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/graph-metadata.json",
+        "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/implementation-summary.md"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/sk-git/commit-standards",
+      "kind": "spec",
+      "root": "specs/sk-git/commit-standards",
+      "files": 4,
+      "sample": [
+        "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/decision-record.md",
+        "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/description.json",
+        "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/graph-metadata.json",
+        "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/implementation-summary.md"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "command:create",
+      "kind": "command",
+      "root": ".skilled/commands/create",
+      "files": 3,
+      "sample": [
+        ".skilled/commands/create/assets/create-command-auto.yaml",
+        ".skilled/commands/create/assets/create-command-confirm.yaml",
+        ".skilled/commands/create/assets/create-command-presentation.txt"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "framework:.skilled/bin",
+      "kind": "framework",
+      "root": ".skilled/bin",
+      "files": 3,
+      "sample": [
+        ".skilled/bin/launcher-heartbeat-watchdog.vitest.ts",
+        ".skilled/bin/launcher-threshold-env.vitest.ts",
+        ".skilled/bin/system-skill-advisor-launcher.cjs"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/agents/006-agent-contract-and-registry-alignment",
+      "kind": "spec",
+      "root": "specs/agents/006-agent-contract-and-registry-alignment",
+      "files": 3,
+      "sample": [
+        "specs/agents/006-agent-contract-and-registry-alignment/decision-record.md",
+        "specs/agents/006-agent-contract-and-registry-alignment/description.json",
+        "specs/agents/006-agent-contract-and-registry-alignment/graph-metadata.json"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/system-skilled-doctor/005-barter-upstream-fixes",
+      "kind": "spec",
+      "root": "specs/system-skilled-doctor/005-barter-upstream-fixes",
+      "files": 3,
+      "sample": [
+        "specs/system-skilled-doctor/005-barter-upstream-fixes/decision-record.md",
+        "specs/system-skilled-doctor/005-barter-upstream-fixes/description.json",
+        "specs/system-skilled-doctor/005-barter-upstream-fixes/graph-metadata.json"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "spec:specs/system-speckit/repo-operations",
+      "kind": "spec",
+      "root": "specs/system-speckit/repo-operations",
+      "files": 3,
+      "sample": [
+        "specs/system-speckit/repo-operations/004-node-security-patch-update/decision-record.md",
+        "specs/system-speckit/repo-operations/004-node-security-patch-update/description.json",
+        "specs/system-speckit/repo-operations/004-node-security-patch-update/graph-metadata.json"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "ci:workflows",
+      "kind": "ci",
+      "root": ".github/workflows",
+      "files": 1,
+      "sample": [
+        ".github/workflows/skill-advisor-stress.yml"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "env-doc:.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      "kind": "env-doc",
+      "root": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      "files": 1,
+      "sample": [
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
+      ],
+      "truncated": false
+    },
+    {
+      "id": "framework:.skilled/changelog",
+      "kind": "framework",
+      "root": ".skilled/changelog",
+      "files": 1,
+      "sample": [
+        ".skilled/changelog/skilled/v4.1.0.0.md"
+      ],
+      "truncated": false
+    }
+  ]
+}

@@ -18,6 +18,7 @@
       "barter overlay upstream intake plan",
       "barter overlay upstream intake tasks",
       "barter overlay upstream intake goal",
+      "015-barter-overlay-upstream-intake operator decisions",
       "barter overlay upstream intake implementation summary"
     ],
     "key_topics": [
@@ -41,6 +42,7 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/system-spec-kit/feature-catalog/governance/feature-flag-governance.md",
       ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md",
@@ -55,8 +57,7 @@
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
       ".skilled/bin/compiled-route.cjs",
       ".skilled/bin/compiled-route-admission.cjs",
-      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
-      ".skilled/skills/sk-doc/shared/scripts/validate_document.py"
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs"
     ],
     "entities": [
       {
@@ -81,6 +82,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -174,12 +181,6 @@
         "source": "derived"
       },
       {
-        "name": "validate_document.py",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,23 +207,25 @@
     ],
     "causal_summary": "The vendoring project keeps overlays for Skilled files that are wrong upstream: a stale hub list, two template sentences, an example script that misses the env names `.env.example` declares, and a bare `health` keyword that routes backend health checks to Obsidian",
     "created_at": "2026-11-17T08:23:07Z",
-    "last_save_at": "2026-11-17T12:09:23.140Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:37:38.682Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:856d7bea48369ae0aacf4596780aeac00150a780251ab92b40684287fad10d3b",
+    "source_fingerprint": "sha256:4351fc49eb37e658647ba2649c62e0af2e2415650eacdd191035dda5fc53747c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4b54dc6bd5f83166f5a80e1558f0d8d9dad9e05d61ca390287e9c4d8b31f75a1",
       "plan.md": "dfff9c90dcdb85ae56fb22470394a35f46d8f1ba9ac06f6d3bee9955666693d4",
       "tasks.md": "0ed0f76c9c9d9b817aa530e44bc19fbdf8278ab8dba398e4a4423b6afd9e8622",
-      "implementation-summary.md": "77e12bbae767aebed05bfcaad3d1acb94b5e146412a0c5413b724f17b752a26e"
+      "decision-record.md": "c21950cad884d1e946efd20496c752731a4d66b971a512e7171e99e8b6cae438",
+      "implementation-summary.md": "0051c078e1f16a486856d2fc587888e1000ccf165117ecf7e913d38d9b763f29"
     },
     "last_active_at": null
   }

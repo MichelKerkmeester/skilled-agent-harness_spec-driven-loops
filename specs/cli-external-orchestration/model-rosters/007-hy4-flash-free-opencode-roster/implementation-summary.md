@@ -16,7 +16,7 @@ _memory:
     key_files:
       - ".skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:ab7e245ae15043f0b1080fe60aef60a08b30987317a7a4c0a6b315ae3bb030b7"
       session_id: "scaffold-007-hy4-flash-free-opencode-roster"
       parent_session_id: null
     completion_pct: 100

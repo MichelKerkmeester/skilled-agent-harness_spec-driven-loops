@@ -44,12 +44,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Order: 001, 005, 002, 004, 003, 006-011, 013, 012, 014-018; each validates strict first |
+| D1 | Order: 001, 005, 002, 004, 003, 006-011, 013, 012, 014-019; each validates strict first |
 | D2 | Code: GPT-6 Luna `xhigh` `fast`, cli-codex |
 | D3 | Fallback: Vibe DeepSeek V4.1 Flash `max` only |
 | D4 | The conductor runs every check |
 | D5 | A phase changes only files its `spec.md` lists; cut items stay cut |
-| D6 | Approved: commit, merge, push for 474, 014 and 018 |
+| D6 | Approved: commit, merge, push for 474, 014, 018 and 019 |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -80,6 +80,7 @@ phase and binds as if written here.
 | 016 | `016-doc-alignment-check/goal.md` |
 | 017 | `017-ollama-advisor-analysis/goal.md` |
 | 018 | `018-ollama-lane-off-and-daemon-liveness/goal.md` |
+| 019 | `019-ollama-lane-honest-and-closeout/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -134,6 +135,7 @@ and findings belong here.
 | D6 amended 2026-11-19 | The operator reopened 014 for every follow-up and approved its merge and push |
 | D1 amended 2026-11-19 | The operator added phase 017, a report-only Ollama analysis. D1 now orders 014-017, and D2, D3 and D6 were reworded with no change in meaning to keep the slice under 4000 characters |
 | D1 and D6 amended 2026-11-19 | The operator added phase 018, the build of four of 017's five ranked changes, and approved its commit, merge and push. The binding table names each phase by its id alone to keep the slice under 4000 characters |
+| D1 and D6 amended again 2026-11-19 | The operator asked to leave nothing open after 018 and approved phase 019 in a worktree, with commit, merge and push |
 | Folder numbers differ from build order | 004 builds before 003 because both edit the same hook file; folder names were kept |
 | Amendment 2026-11-19, D6 for 014 | Operator approved commits and a merge to main for 014's worktree build, no push (014 decision record Q004) |
 | Amendment 2026-11-19, phases 015 and 016 | Report-only alignment runs added by operator request ("Also run /local-skilled-alignment and /local-doc-alignment make that phases"). D1 ends with 014 to 016, two binding rows added, criterion 5 counts seventeen folders and criterion 7 covers the tasks of 014, 015 and 016. To fit 4,000 characters: D7 dropped because it governed only the finished phase 011, D6 kept only its live choice, and `host-integrations` in two criterion globs became `*`, each glob checked to match one path |

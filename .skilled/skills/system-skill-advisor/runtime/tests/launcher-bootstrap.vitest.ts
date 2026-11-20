@@ -136,6 +136,9 @@ describe('system-skill-advisor launcher bootstrap', () => {
     // would abstain for every later caller in the checkout, so it stays out.
     expect(launcher.createChildEnv(sourceEnv)).toEqual({
       PATH: '/bin',
+      // The server must use the launcher's database directory, so the child env
+      // always carries it even when the parent did not set one.
+      SYSTEM_SKILL_ADVISOR_DB_DIR: dirname(memoryDbPath),
       MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
       HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
@@ -156,6 +159,9 @@ describe('system-skill-advisor launcher bootstrap', () => {
     expect(sourceText('../advisor-server.ts')).toContain('process.env.SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT');
     expect(launcher.createChildEnv(sourceEnv)).toEqual({
       SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT: 'trusted',
+      // The server must use the launcher's database directory, so the child env
+      // always carries it even when the parent did not set one.
+      SYSTEM_SKILL_ADVISOR_DB_DIR: dirname(memoryDbPath),
       MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
       HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
@@ -174,6 +180,9 @@ describe('system-skill-advisor launcher bootstrap', () => {
     expect(launcher.createChildEnv(sourceEnv)).toEqual({
       SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW: 'true',
       SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW: 'true',
+      // The server must use the launcher's database directory, so the child env
+      // always carries it even when the parent did not set one.
+      SYSTEM_SKILL_ADVISOR_DB_DIR: dirname(memoryDbPath),
       MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
       HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
@@ -594,9 +603,28 @@ describe('lease-held single-writer enforcement', () => {
 
   it('005-REQ-009 static: watcher refresh path uses the shared DB opener', () => {
     const dbSource = sourceText('../lib/skill-graph/skill-graph-db.ts');
+    const serverSource = sourceText('../advisor-server.ts');
     const watcherSource = sourceText('../lib/daemon/watcher.ts');
 
     expect(dbSource).toMatch(/export function getDb\(\): Database\.Database \{\s*if \(!db\) initDb\(resolveSkillGraphDbDir\(\)\)/);
-    expect(watcherSource).toContain('const defaultReindex = async (): Promise<ReindexResult> => indexSkillMetadata(skillsRoot);');
+    expect(watcherSource).toMatch(/const defaultReindex = async \(\): Promise<ReindexResult> => \{\s*const result = indexSkillMetadata\(skillsRoot\);/);
+
+    const initDbIndex = serverSource.indexOf('initSkillGraphDb(');
+    const heartbeatIndex = serverSource.indexOf('startHeartbeat(');
+    const ensureEmbedderIndex = serverSource.indexOf('ensureActiveEmbedder(');
+    const ipcServerIndex = serverSource.indexOf('startIpcSocketServer(');
+    const backgroundRefreshIndex = serverSource.indexOf('refreshEmbeddingsInBackground(');
+    expect(initDbIndex).toBeGreaterThanOrEqual(0);
+    expect(heartbeatIndex).toBeGreaterThan(initDbIndex);
+    expect(heartbeatIndex).toBeLessThan(ensureEmbedderIndex);
+    expect(ipcServerIndex).toBeGreaterThanOrEqual(0);
+    expect(backgroundRefreshIndex).toBeGreaterThan(ipcServerIndex);
+
+    const defaultReindexIndex = watcherSource.indexOf('const defaultReindex = async');
+    const metadataIndex = watcherSource.indexOf('indexSkillMetadata(', defaultReindexIndex);
+    const refreshIndex = watcherSource.indexOf('refreshEmbeddingsInBackground(', defaultReindexIndex);
+    expect(defaultReindexIndex).toBeGreaterThanOrEqual(0);
+    expect(metadataIndex).toBeGreaterThan(defaultReindexIndex);
+    expect(refreshIndex).toBeGreaterThan(metadataIndex);
   });
 });

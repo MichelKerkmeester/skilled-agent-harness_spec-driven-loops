@@ -36,6 +36,8 @@ _memory:
 |----|---------|-----|------------|------------|
 | Q001 | Fix the second-pass findings in a new child packet 050 with the same DeepSeek fix and Opus review pipeline as 049. | Not stated. | None | spec.md, plan.md |
 | Q002 | Raise the opencode-go lane and critic timeout in the shared executors.json from 30 to 60 minutes. | Five of six DeepSeek Flash max lanes needed 22 to 37 minutes, so a 30-minute limit stopped lanes that were still reading. | None | implementation-summary.md |
+| Q003 | The worktree 431 merge conflict takes main's generated files and regenerates them. | Not stated. | none | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/spec.md |
+| Q004 | Worktree 431 (packet 050) merges to main and is pushed once the gates pass. | Not stated. | none | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -82,6 +84,45 @@ Keep 30 min
 Answer:
 ```text
 Raise to 60 min (Recommended)
+```
+
+### Q003
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_01GZ1RiXYYh15GCXDxpN52iE:0 -->
+
+Question:
+```text
+Merging origin/main into worktree 431 conflicted only in four generated files: trigger-index.json and the three retrieval fixtures (corpus-manifest, generation-diagnostics, phrase-variants). Both sides rebuilt them. How should I resolve it?
+```
+
+Options:
+```text
+Take main, regenerate (Recommended)
+Abort the merge
+```
+
+Answer:
+```text
+Take main, regenerate (Recommended)
+```
+
+### Q004
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_01GZ1RiXYYh15GCXDxpN52iE:1 -->
+
+Question:
+```text
+Once the conflict is resolved and the suites, drift guards and strict validation pass again on the merged tree, should worktree 431 (packet 050, 24 docs, no code) go to origin/main?
+```
+
+Options:
+```text
+Merge to main and push (Recommended)
+Merge locally only
+Not yet
+```
+
+Answer:
+```text
+Merge to main and push (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

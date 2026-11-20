@@ -99,6 +99,7 @@ execution:
   phase_5_report:
     purpose: "Report what changed and where the engine recorded it"
     activities:
+      - "After a successful link or unchanged result, make one read-only `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"{root}\" --include-semantic-health true --format json --timeout-ms 1500 --warm-only` call. Report skills and command vectors as current/total, using total minus stale minus missing for current. If the daemon is absent or the status cannot be read, report coverage as unavailable; include an unreachable or missing-model backend state when returned. This line is informational and never changes the link result, so missing Ollama is not a failed step."
       - "Render the result through .skilled/commands/doctor/assets/doctor-symlink-presentation.txt with the plan, digest, apply output, run record and undo command."
       - "A no answered the question: render the cancelled result and state Changed: none."
       - "NOTHING TO DO: render the unchanged result and the engine's digest."

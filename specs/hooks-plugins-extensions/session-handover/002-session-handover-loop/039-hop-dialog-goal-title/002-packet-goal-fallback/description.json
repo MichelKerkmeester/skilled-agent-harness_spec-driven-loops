@@ -13,7 +13,7 @@
     "one",
     "itself"
   ],
-  "lastUpdated": "2026-11-15T14:28:41.016Z",
+  "lastUpdated": "2026-11-19T17:47:50.690Z",
   "specId": "002",
   "folderSlug": "packet-goal-fallback",
   "parentChain": [
@@ -22,6 +22,8 @@
     "002-session-handover-loop",
     "039-hop-dialog-goal-title"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "19-11-26_18-47__manual-context-save.md"
+  ]
 }

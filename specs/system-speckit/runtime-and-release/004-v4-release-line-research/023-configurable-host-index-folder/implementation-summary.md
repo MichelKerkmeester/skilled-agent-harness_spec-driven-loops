@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:6d5ffccb11ed6270a6d417bafbf0fd8738ec30474a22621929a521d761e6e179"
       session_id: "scaffold-023-configurable-host-index-folder"
       parent_session_id: null
     completion_pct: 100

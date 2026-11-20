@@ -6,7 +6,7 @@
     "phase",
     "review-remediation"
   ],
-  "lastUpdated": "2026-11-15T15:09:27.909Z",
+  "lastUpdated": "2026-11-19T17:47:22.346Z",
   "specId": "007",
   "folderSlug": "review-remediation",
   "parentChain": [
@@ -14,10 +14,12 @@
     "session-handover",
     "001-history-lookup-handover-integration"
   ],
-  "memorySequence": 3,
+  "memorySequence": 5,
   "memoryNameHistory": [
     "15-11-26_15-38__fixed-all-twelve-p2-deep-review-findings-claim.md",
     "15-11-26_15-50__phase-007-landed-on-main-twelve-review-fixes.md",
-    "15-11-26_16-09__recorded-the-operator-s-choice-to-rebuild-the.md"
+    "15-11-26_16-09__recorded-the-operator-s-choice-to-rebuild-the.md",
+    "19-11-26_18-36__manual-context-save.md",
+    "19-11-26_18-47__manual-context-save.md"
   ]
 }

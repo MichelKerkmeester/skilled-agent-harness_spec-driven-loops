@@ -14,7 +14,7 @@
     "context",
     "limit"
   ],
-  "lastUpdated": "2026-11-15T14:28:41.117Z",
+  "lastUpdated": "2026-11-19T17:47:45.649Z",
   "specId": "039",
   "folderSlug": "hop-dialog-goal-title",
   "parentChain": [
@@ -22,11 +22,13 @@
     "session-handover",
     "002-session-handover-loop"
   ],
-  "memorySequence": 4,
+  "memorySequence": 6,
   "memoryNameHistory": [
     "13-11-26_23-58__deep-research-completed-on-2026-11-13-ten.md",
     "14-11-26_19-50__packet-039-gained-children-020-to-023-from-a.md",
     "14-11-26_19-50__packet-039-gained-children-020-to-023-from-a.md",
-    "14-11-26_19-51__packet-039-gained-children-020-to-023-from-a.md"
+    "14-11-26_19-51__packet-039-gained-children-020-to-023-from-a.md",
+    "19-11-26_18-36__manual-context-save.md",
+    "19-11-26_18-47__manual-context-save.md"
   ]
 }

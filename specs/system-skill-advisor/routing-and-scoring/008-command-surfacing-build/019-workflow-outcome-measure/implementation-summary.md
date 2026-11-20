@@ -18,7 +18,7 @@ _memory:
       - ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
       - ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a5aef06f2c01a15a99f748e81c3b685f81f0f3696ca32281c32bdea24cb8ef9b"
       session_id: "902263b7-69bf-49b1-b7a2-3a705ce392a2"
       parent_session_id: null
     completion_pct: 100

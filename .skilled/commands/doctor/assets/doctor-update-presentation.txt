@@ -426,6 +426,8 @@ Run /doctor:skill-advisor rebuild when you are ready.
 
 If rebuild fails, record `reindex=failed`, show the observed error and the same stale-index warning. Never present skipped or failed reindexing as full success.
 
+After the rebuild outcome on an applied run, make one read-only `advisor_status` call with semantic health and report skills and command vectors as current/total. If the daemon is absent or the status cannot be read, report coverage as unavailable. Report an unreachable or missing-model Ollama backend as information; it does not fail an update step. Name a restart of the advisor daemon to load updated command bridges and lane weights, which are read once at startup. Skip this call on dry-run.
+
 ## 9. Result Templates
 
 ### Check
@@ -462,9 +464,11 @@ Added: [count]  Deleted: [count]
 Skipped units: [list or none]
 Post-apply checks: [pass count] passed, [fail count] failed
 Database reindex: [rebuilt|skipped|failed|not applicable]
+Vector coverage: skills [current]/[total] current or unavailable, commands [current]/[total] current or unavailable; backend [reachable|unreachable|model_missing|unavailable]
+Advisor daemon: restart to load updated command bridges and lane weights; both are read once at startup
 Rollback: [not needed|completed|partial|failed]
 State log: .skilled/skills/.state/doctor-update/runs/.doctor-update.last-run.json, or none for a dry run
-Before the next /doctor:update apply, commit or restore changed framework files. Updater records remain local and ignored.
+Before the next /doctor:update apply, commit or restore changed framework files. Updater records remain local and ignored. On a dry-run, omit the vector coverage and advisor daemon lines because the rebuild prompt did not run.
 STATUS=[APPLIED|PARTIAL|ROLLED_BACK|DECLINED|CANCELLED|DRY_RUN|FAILED]
 ```
 

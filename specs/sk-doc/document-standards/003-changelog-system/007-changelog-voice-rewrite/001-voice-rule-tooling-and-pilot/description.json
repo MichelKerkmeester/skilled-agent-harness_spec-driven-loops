@@ -6,7 +6,7 @@
     "phase",
     "voice-rule-tooling-and-pilot"
   ],
-  "lastUpdated": "2026-11-15T08:28:10.537Z",
+  "lastUpdated": "2026-11-19T17:48:16.559Z",
   "specId": "001",
   "folderSlug": "voice-rule-tooling-and-pilot",
   "parentChain": [
@@ -15,10 +15,12 @@
     "003-changelog-system",
     "007-changelog-voice-rewrite"
   ],
-  "memorySequence": 3,
+  "memorySequence": 5,
   "memoryNameHistory": [
     "15-11-26_07-49__scope-rule-and-release-decisions.md",
     "15-11-26_09-04__child-001-built-voice-rule-carve-out-sk-create.md",
-    "15-11-26_09-28__child-001-complete-rule-carve-out-structure.md"
+    "15-11-26_09-28__child-001-complete-rule-carve-out-structure.md",
+    "19-11-26_18-36__manual-context-save.md",
+    "19-11-26_18-48__manual-context-save.md"
   ]
 }

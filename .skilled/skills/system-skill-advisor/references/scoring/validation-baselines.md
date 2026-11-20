@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_validate troubleshooting"
 importance_tier: "normal"
 contextType: "research"
-version: 0.8.3.0
+version: 0.8.4.0
 ---
 
 # Validation Baselines + Troubleshooting
@@ -144,7 +144,7 @@ Drift signal: cache-hit > 15 ms or uncached > 25 ms. Likely causes are SQLite co
 | Parity slice fails on specific skill | Python shim missing recent token boost added to native scorer | Re-sync `scripts/skill_advisor.py` against `runtime/lib/scorer/lanes/` |
 | Safety violations > 0 | Attribution leaks prompt content | Inspect `slices.safety.violations[]` for the leaking field. Patch handler to redact |
 | Cache-hit p95 > 15 ms | SQLite contention | Check `advisor_status.daemon.leaseHolder`. If contested, kill stale processes. Verify `runtime/database/skill-graph.sqlite` integrity |
-| Uncached p95 > 25 ms | Scoring algorithm changed OR semantic_shadow lane embedding lookup slow | Profile via `runtime/bench/`. If semantic_shadow is the culprit, verify embeddings index freshness |
+| Uncached p95 > 25 ms | Scoring algorithm changed OR slow semantic lookup with a positive live weight. At weight 0, the prompt is not embedded | Profile via `runtime/bench/`. If semantic_shadow is the culprit, verify embeddings index freshness |
 | `advisor_validate` errors with `confirmHeavyRun is required` | Caller did not opt in | Pass `confirmHeavyRun: true` |
 | `advisor_validate` hangs > 5 min | Daemon lock OR test-corpus growth | Check the process via `ps`. If hung, stop the daemon and let the next CLI call cold-start it. If completion exceeds 5 min routinely, trim the test corpus or split into incremental runs |
 

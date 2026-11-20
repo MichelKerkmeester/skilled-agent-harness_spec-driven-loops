@@ -13,13 +13,16 @@
     "shared",
     "repository"
   ],
-  "lastUpdated": "2026-11-13T10:05:22.632Z",
+  "lastUpdated": "2026-11-19T17:48:56.848Z",
   "specId": "003",
   "folderSlug": "symlinked-runtime-root",
   "parentChain": [
     "system-speckit",
     "runtime-and-release"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "19-11-26_18-37__manual-context-save.md",
+    "19-11-26_18-48__manual-context-save.md"
+  ]
 }

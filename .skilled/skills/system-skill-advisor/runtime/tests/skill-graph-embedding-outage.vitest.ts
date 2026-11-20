@@ -11,6 +11,23 @@ const mockedProvider = vi.hoisted(() => ({
   embedDocument: vi.fn(),
   adapterEmbed: vi.fn(),
 }));
+const mockedCommandProjection = vi.hoisted(() => ({ contents: null as string | null }));
+
+vi.mock('node:fs', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('node:fs')>();
+  return {
+    ...actual,
+    readFileSync: (...args: Parameters<typeof actual.readFileSync>) => {
+      if (
+        mockedCommandProjection.contents !== null
+        && String(args[0]).endsWith('/scripts/command-bridges/command-bridges.generated.json')
+      ) {
+        return mockedCommandProjection.contents;
+      }
+      return actual.readFileSync(...args);
+    },
+  };
+});
 
 vi.mock('@spec-kit/shared/embeddings/factory.js', () => ({
   createEmbeddingsProvider: async () => ({
@@ -47,6 +64,7 @@ import {
 import { writeGraphMetadata } from './fixtures/skill-graph-db.js';
 
 const SKILL_IDS = ['alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta'] as const;
+const COMMAND_IDS = ['command-alpha', 'command-beta', 'command-delta', 'command-zeta'] as const;
 
 describe('skill graph embedding refresh', () => {
   let root = '';
@@ -73,6 +91,7 @@ describe('skill graph embedding refresh', () => {
     rmSync(root, { recursive: true, force: true });
     mockedProvider.embedDocument.mockReset();
     mockedProvider.adapterEmbed.mockReset();
+    mockedCommandProjection.contents = null;
     vi.restoreAllMocks();
   });
 
@@ -119,7 +138,7 @@ describe('skill graph embedding refresh', () => {
     expect(loadSkillEmbeddings()).toEqual([]);
   });
 
-  it('keeps the stored vector of a current row after the outage trips (adapter table)', async () => {
+  it('keeps stored vectors after the outage trips (adapter table)', async () => {
     setActiveEmbedder(getDb(), 'mock-3', 3);
     mockedProvider.adapterEmbed.mockResolvedValue([new Float32Array([1, 2, 3])]);
     await refreshSkillEmbeddings(skillRoot);
@@ -131,9 +150,57 @@ describe('skill graph embedding refresh', () => {
 
     expect(mockedProvider.adapterEmbed).toHaveBeenCalledTimes(3);
     expect(result).toEqual(expect.objectContaining({ embedded: 0, skipped: CURRENT_IDS.length, failed: STALE_IDS.length }));
-    const stored = (getDb().prepare('SELECT skill_id FROM vec_3').all() as Array<{ skill_id: string }>)
-      .map((row) => row.skill_id)
-      .sort();
-    expect(stored).toEqual([...CURRENT_IDS].sort());
+    const stored = getDb().prepare('SELECT skill_id, embedding FROM vec_3').all() as Array<{
+      skill_id: string;
+      embedding: Buffer;
+    }>;
+    expect(stored.map((row) => row.skill_id).sort()).toEqual([...SKILL_IDS].sort());
+    const previousEmbedding = Buffer.from(new Float32Array([1, 2, 3]).buffer);
+    for (const id of STALE_IDS) {
+      expect(stored.find((row) => row.skill_id === id)?.embedding).toEqual(previousEmbedding);
+    }
+  });
+
+  it('keeps stored command vectors when changed text cannot be re-embedded during an outage', async () => {
+    const makeCommandProjection = (suffix: string): string => JSON.stringify({
+      entries: COMMAND_IDS.map((commandId) => ({
+        embeddingText: `Fixture command ${commandId}${suffix}`,
+        runtime: { typescript: { id: commandId, enabled: true } },
+      })),
+    });
+
+    mockedCommandProjection.contents = makeCommandProjection('');
+    setActiveEmbedder(getDb(), 'mock-3', 3);
+    mockedProvider.adapterEmbed.mockResolvedValue([new Float32Array([1, 2, 3])]);
+    await refreshSkillEmbeddings(skillRoot);
+
+    const previousEmbedding = Buffer.from(new Float32Array([1, 2, 3]).buffer);
+    const storedBefore = getDb().prepare('SELECT command_id, embedding FROM vec_cmd_3').all() as Array<{
+      command_id: string;
+      embedding: Buffer;
+    }>;
+    expect(storedBefore.map((row) => row.command_id).sort()).toEqual([...COMMAND_IDS].sort());
+    for (const commandId of COMMAND_IDS) {
+      expect(storedBefore.find((row) => row.command_id === commandId)?.embedding).toEqual(previousEmbedding);
+    }
+
+    mockedCommandProjection.contents = makeCommandProjection(' rewritten');
+    mockedProvider.adapterEmbed.mockReset();
+    mockedProvider.adapterEmbed.mockRejectedValue(new Error('model server unreachable'));
+
+    const result = await refreshSkillEmbeddings(skillRoot);
+
+    expect(mockedProvider.adapterEmbed).toHaveBeenCalledTimes(3);
+    expect(console.warn).toHaveBeenCalledWith(expect.stringContaining(
+      'COMMAND-EMBEDDING-BACKEND-OUTAGE: stopped after 3 consecutive failures',
+    ));
+    expect(result).toEqual(expect.objectContaining({ embedded: 0, skipped: SKILL_IDS.length, failed: 0 }));
+    const storedAfter = getDb().prepare('SELECT command_id, embedding FROM vec_cmd_3').all() as Array<{
+      command_id: string;
+      embedding: Buffer;
+    }>;
+    for (const commandId of COMMAND_IDS) {
+      expect(storedAfter.find((row) => row.command_id === commandId)?.embedding).toEqual(previousEmbedding);
+    }
   });
 });

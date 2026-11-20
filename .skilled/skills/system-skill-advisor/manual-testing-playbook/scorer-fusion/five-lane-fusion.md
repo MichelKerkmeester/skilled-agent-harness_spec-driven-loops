@@ -6,7 +6,7 @@ trigger_phrases:
   - "five lane fusion"
   - "lane weights canonical"
   - "advisor fusion"
-version: 0.8.1.0
+version: 0.8.3.0
 id: SC-001
 category: scorer_fusion
 stage: routing
@@ -41,10 +41,10 @@ Validate that `lib/scorer/fusion.ts` combines the five lanes with the canonical 
 
 > **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred-decisions.md` §F34 for rationale.
 
-1. Call status and capture `laneWeights`:
+1. Call status with semantic health enabled and capture `laneWeights`:
 
 ```text
-node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --include-semantic-health true --format json
 ```
 
 2. Call `advisor_recommend` with a prompt that hits multiple lanes and `includeAttribution: true`:
@@ -62,7 +62,9 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conver
 - `advisor_status.laneWeights` equals the canonical configuration above.
 - `advisor_status` reports `semantic_shadow` with `disabledReason: "lane_weight_zero"` and `laneEnabled: false`.
 - `semantic_shadow.weight == 0` in envelopes that expose current lane weights.
-- The prompt makes no Ollama embed call, and `advisor_recommend` adds no `semantic_lane_off` warning.
+- At weight 0, the semantic lane skips prompt embeddings. `advisor_recommend` adds no `semantic_lane_off` warning. The shared index refresh still runs independently of lane weight. An opt-in semantic-health status call can also run an Ollama readiness probe.
+- At a non-zero weight, the semantic lane scores only when every embeddable skill and command has a current vector. Incomplete coverage reports `incomplete_skill_vectors`.
+- A failed prompt embed marks the semantic lane degraded and removes it from that call's live confidence total.
 - For every lane, `weightedScore` matches `rawScore * weight` within `1e-9` tolerance.
 - Aggregate score equals the sum of lane `weightedScore` values (or matches the documented fusion formula).
 

@@ -250,7 +250,10 @@ const semanticLaneHealthSchema = z.object({
     embedded: z.number().int().nonnegative(),
     total: z.number().int().nonnegative(),
     ratio: z.number().min(0).max(1),
+    stale: z.number().int().nonnegative().optional(),
+    missing: z.number().int().nonnegative().optional(),
   }).strict(),
+  coverageComplete: z.boolean().optional(),
   dimMismatch: z.boolean(),
   lastRefresh: z.string().nullable(),
   disabledReason: z.string().nullable(),
@@ -262,6 +265,8 @@ const semanticLaneHealthSchema = z.object({
   commandVectorCoverage: z.object({
     embedded: z.number().int().nonnegative(),
     total: z.number().int().nonnegative(),
+    stale: z.number().int().nonnegative().optional(),
+    missing: z.number().int().nonnegative().optional(),
   }).strict().optional(),
   checkedAt: z.string().datetime(),
 }).strict();

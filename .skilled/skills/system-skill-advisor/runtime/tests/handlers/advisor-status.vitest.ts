@@ -2,6 +2,7 @@
 // MODULE: Advisor Status Tests
 // ───────────────────────────────────────────────────────────────
 
+import { createHash } from 'node:crypto';
 import { mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, utimesSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
@@ -137,6 +138,100 @@ function writeHealthDb(root: string): void {
     database.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)').run('active_embedder_dim', '768');
     database.prepare('INSERT INTO vec_768 (skill_id, embedding, model_id, content_hash, updated_at) VALUES (?, ?, ?, ?, ?)')
       .run('alpha', Buffer.from([1, 2, 3]), 'nomic-embed-text-v1.5', 'hash-alpha', '2026-04-20T00:00:00.000Z');
+  } finally {
+    database.close();
+  }
+}
+
+function hashEmbeddingContent(content: string): string {
+  return createHash('sha256').update(content).digest('hex');
+}
+
+function writeCoverageHealthDb(root: string, includeEverySkillVector: boolean): void {
+  const skills = ['alpha', 'beta'].map((skillId) => {
+    const skillDir = join(root, '.skilled', 'skills', skillId);
+    mkdirSync(skillDir, { recursive: true });
+    const metadata = `${JSON.stringify({ skill_id: skillId })}\n`;
+    const description = `${skillId} vector coverage fixture`;
+    const sourcePath = join(skillDir, 'graph-metadata.json');
+    writeFileSync(sourcePath, metadata, 'utf8');
+    writeFileSync(
+      join(skillDir, 'SKILL.md'),
+      `---\ntitle: "${skillId}"\ndescription: "${description}"\n---\n\n# ${skillId}\n`,
+      'utf8',
+    );
+    return { skillId, sourcePath, metadata, description };
+  });
+  const commandSources = readCommandEmbeddingSources() ?? [];
+  const database = new Database(join(root, ADVISOR_DB_RELATIVE_PATH));
+  try {
+    database.exec(`
+      CREATE TABLE skill_nodes (
+        id TEXT PRIMARY KEY,
+        source_path TEXT NOT NULL,
+        content_hash TEXT NOT NULL,
+        embedding BLOB,
+        embedding_model_id TEXT,
+        embedding_content_hash TEXT
+      );
+      CREATE TABLE vec_metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);
+      CREATE TABLE vec_768 (
+        skill_id TEXT PRIMARY KEY,
+        embedding BLOB NOT NULL,
+        model_id TEXT NOT NULL,
+        content_hash TEXT NOT NULL,
+        updated_at TEXT DEFAULT (datetime('now'))
+      );
+      CREATE TABLE vec_cmd_768 (
+        command_id TEXT PRIMARY KEY,
+        embedding BLOB NOT NULL,
+        model_id TEXT NOT NULL,
+        content_hash TEXT NOT NULL,
+        updated_at TEXT DEFAULT (datetime('now'))
+      );
+    `);
+    const insertSkill = database.prepare(`
+      INSERT INTO skill_nodes (
+        id, source_path, content_hash, embedding, embedding_model_id, embedding_content_hash
+      ) VALUES (?, ?, ?, ?, ?, ?)
+    `);
+    const insertSkillVector = database.prepare(`
+      INSERT INTO vec_768 (skill_id, embedding, model_id, content_hash, updated_at)
+      VALUES (?, ?, ?, ?, ?)
+    `);
+    for (const skill of skills) {
+      insertSkill.run(
+        skill.skillId,
+        skill.sourcePath,
+        computeSkillMetadataContentHash(skill.metadata),
+        null,
+        null,
+        null,
+      );
+      if (skill.skillId === 'alpha' || includeEverySkillVector) {
+        insertSkillVector.run(
+          skill.skillId,
+          Buffer.from([1, 2, 3]),
+          'nomic-embed-text-v1.5',
+          hashEmbeddingContent(skill.description),
+          '2026-04-20T00:00:00.000Z',
+        );
+      }
+    }
+    const insertCommandVector = database.prepare(`
+      INSERT INTO vec_cmd_768 (command_id, embedding, model_id, content_hash)
+      VALUES (?, ?, ?, ?)
+    `);
+    for (const source of commandSources) {
+      insertCommandVector.run(
+        source.commandId,
+        Buffer.from([1, 2, 3]),
+        'nomic-embed-text-v1.5',
+        hashEmbeddingContent(source.embeddingText),
+      );
+    }
+    database.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)').run('active_embedder_name', 'nomic-embed-text-v1.5');
+    database.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)').run('active_embedder_dim', '768');
   } finally {
     database.close();
   }
@@ -319,11 +414,12 @@ describe('advisor_status handler', () => {
     vi.resetModules();
     const { readAdvisorStatus } = await import('../../handlers/advisor-status.js');
     const root = workspace('semantic-health');
-    writeHealthDb(root);
+    writeCoverageHealthDb(root, false);
     writeGeneration(root, 'live', 8);
 
     const compact = readAdvisorStatus({ workspaceRoot: root });
     const detailed = readAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
+    const sourceTotal = readCommandEmbeddingSources()?.length ?? 0;
 
     expect(compact.semanticLaneHealth).toBeUndefined();
     expect(detailed.semanticLaneHealth).toEqual(expect.objectContaining({
@@ -336,11 +432,49 @@ describe('advisor_status handler', () => {
         embedded: 1,
         total: 2,
         ratio: 0.5,
+        stale: 0,
+        missing: 1,
       },
+      commandVectorCoverage: {
+        embedded: sourceTotal,
+        total: sourceTotal,
+        stale: 0,
+        missing: 0,
+      },
+      coverageComplete: false,
       dimMismatch: false,
       lastRefresh: '2026-04-20T00:00:00.000Z',
       disabledReason: null,
       laneEnabled: true,
+    }));
+  });
+
+  it('reports complete vector coverage when every embeddable row is current', async () => {
+    vi.stubEnv('SPECKIT_ADVISOR_LANE_WEIGHTS_JSON', '{"semantic_shadow":0.05}');
+    vi.resetModules();
+    const { readAdvisorStatus } = await import('../../handlers/advisor-status.js');
+    const root = workspace('semantic-coverage-complete');
+    writeCoverageHealthDb(root, true);
+    writeGeneration(root, 'live', 8);
+
+    const status = readAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
+    const sourceTotal = readCommandEmbeddingSources()?.length ?? 0;
+
+    expect(status.semanticLaneHealth).toEqual(expect.objectContaining({
+      vectorCoverage: {
+        embedded: 2,
+        total: 2,
+        ratio: 1,
+        stale: 0,
+        missing: 0,
+      },
+      commandVectorCoverage: {
+        embedded: sourceTotal,
+        total: sourceTotal,
+        stale: 0,
+        missing: 0,
+      },
+      coverageComplete: true,
     }));
   });
 

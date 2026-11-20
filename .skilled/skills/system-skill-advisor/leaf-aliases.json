@@ -91,6 +91,11 @@
   },
   {
     "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/daemon-and-freshness/background-vector-refresh.md",
+    "diskPath": "feature-catalog/daemon-and-freshness/background-vector-refresh.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
     "leafResourceId": "feature-catalog/daemon-and-freshness/cache-invalidation.md",
     "diskPath": "feature-catalog/daemon-and-freshness/cache-invalidation.md"
   },
@@ -143,6 +148,11 @@
     "workflowMode": "system-skill-advisor",
     "leafResourceId": "feature-catalog/hooks-and-plugin/pi-prompt-advisor.md",
     "diskPath": "feature-catalog/hooks-and-plugin/pi-prompt-advisor.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/hooks-and-plugin/weak-follow-up-route-receipt-guard.md",
+    "diskPath": "feature-catalog/hooks-and-plugin/weak-follow-up-route-receipt-guard.md"
   },
   {
     "workflowMode": "system-skill-advisor",
@@ -218,6 +228,11 @@
     "workflowMode": "system-skill-advisor",
     "leafResourceId": "feature-catalog/scorer-fusion/five-lane-fusion.md",
     "diskPath": "feature-catalog/scorer-fusion/five-lane-fusion.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/scorer-fusion/pasted-reply-stripping.md",
+    "diskPath": "feature-catalog/scorer-fusion/pasted-reply-stripping.md"
   },
   {
     "workflowMode": "system-skill-advisor",
@@ -353,6 +368,11 @@
     "workflowMode": "system-skill-advisor",
     "leafResourceId": "manual-testing-playbook/cli-hooks-and-plugin/vibe-command-documents.md",
     "diskPath": "manual-testing-playbook/cli-hooks-and-plugin/vibe-command-documents.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/cli-hooks-and-plugin/weak-follow-up-route-receipt-guard.md",
+    "diskPath": "manual-testing-playbook/cli-hooks-and-plugin/weak-follow-up-route-receipt-guard.md"
   },
   {
     "workflowMode": "system-skill-advisor",
@@ -518,6 +538,11 @@
     "workflowMode": "system-skill-advisor",
     "leafResourceId": "manual-testing-playbook/scorer-fusion/lane-attribution.md",
     "diskPath": "manual-testing-playbook/scorer-fusion/lane-attribution.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/scorer-fusion/pasted-reply-stripping.md",
+    "diskPath": "manual-testing-playbook/scorer-fusion/pasted-reply-stripping.md"
   },
   {
     "workflowMode": "system-skill-advisor",

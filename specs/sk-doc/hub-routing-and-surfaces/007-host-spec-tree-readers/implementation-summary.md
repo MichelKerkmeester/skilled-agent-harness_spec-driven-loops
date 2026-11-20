@@ -18,7 +18,7 @@ _memory:
       - ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs"
       - ".skilled/bin/tests/compiled-route-sync-host.test.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:fa99e78b708dd36f77d041fab1ebf108d57c21df099a4924bbd861f2a281306d"
       session_id: "scaffold-007-host-spec-tree-readers"
       parent_session_id: null
     completion_pct: 100

@@ -6,7 +6,7 @@
     "phase",
     "deep-review-p2-remediation"
   ],
-  "lastUpdated": "2026-11-15T20:04:12.897Z",
+  "lastUpdated": "2026-11-19T17:47:26.833Z",
   "specId": "009",
   "folderSlug": "deep-review-p2-remediation",
   "parentChain": [
@@ -14,8 +14,10 @@
     "session-handover",
     "001-history-lookup-handover-integration"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "15-11-26_21-04__closed-all-seven-p2-findings-from-the-history.md"
+    "15-11-26_21-04__closed-all-seven-p2-findings-from-the-history.md",
+    "19-11-26_18-36__manual-context-save.md",
+    "19-11-26_18-47__manual-context-save.md"
   ]
 }

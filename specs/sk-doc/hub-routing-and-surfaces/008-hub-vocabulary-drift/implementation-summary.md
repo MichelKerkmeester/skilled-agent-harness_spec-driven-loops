@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:07094f46304449b05c9ca0e5130309e6daa442d438b46ed7cb63a14acfaf3aa5"
       session_id: "scaffold-008-hub-vocabulary-drift"
       parent_session_id: null
     completion_pct: 100

@@ -181,6 +181,11 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN',
   'HF_EMBEDDINGS_MODEL',
   'HF_EMBED_SERVER_URL',
+  // The daemon's embedding adapter reads both settings.
+  'OLLAMA_BASE_URL',
+  'OLLAMA_REQUEST_TIMEOUT_MS',
+  // The daemon uses this setting to control its background vector refresh.
+  'SYSTEM_SKILL_ADVISOR_EMBED_REFRESH',
   'SPECKIT_LAUNCHER_BRIDGE_DISABLED',
   'SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN',
   'SPECKIT_MAX_SECONDARY_CLIENTS',
@@ -317,6 +322,10 @@ function createChildEnv(sourceEnv = process.env) {
   const filtered = Object.fromEntries(
     Object.entries(sourceEnv).filter(([key, value]) => CHILD_ENV_ALLOWLIST.has(key) && typeof value === 'string'),
   );
+  // The server must use the launcher's database directory so its heartbeat matches the watchdog's file.
+  if (filtered.SYSTEM_SKILL_ADVISOR_DB_DIR === undefined) {
+    filtered.SYSTEM_SKILL_ADVISOR_DB_DIR = resolvedAdvisorDbDir();
+  }
   // Without an explicit MEMORY_DB_PATH, shared/embeddings/factory.ts's
   // resolveConfiguredDatabaseCandidates() falls back to walking up from its own
   // on-disk realpath, which resolves through the @spec-kit/shared symlink to that
@@ -1545,6 +1554,7 @@ async function acquireBootstrapLock(options = {}) {
 
 const HEARTBEAT_FILE_NAME = 'advisor-server.heartbeat';
 const HEARTBEAT_CHECK_INTERVAL_MS = 60_000;
+const HEARTBEAT_STARTUP_GRACE_MS = 300_000;
 const HEARTBEAT_STALE_MS = 180_000;
 const HEARTBEAT_KILL_GRACE_MS = 5_000;
 let childHeartbeatWatchdog = null;
@@ -1560,7 +1570,9 @@ let childHeartbeatWatchdog = null;
  */
 function heartbeatVerdict(heartbeat) {
   const { mtimeMs, spawnedAtMs, nowMs } = heartbeat;
-  if (mtimeMs === null || mtimeMs < spawnedAtMs) return 'not-armed';
+  if (mtimeMs === null || mtimeMs < spawnedAtMs) {
+    return nowMs - spawnedAtMs > HEARTBEAT_STARTUP_GRACE_MS ? 'stale' : 'not-armed';
+  }
   if (nowMs - mtimeMs > HEARTBEAT_STALE_MS) return 'stale';
   return 'fresh';
 }
@@ -1851,6 +1863,7 @@ module.exports = {
   HEARTBEAT_CHECK_INTERVAL_MS,
   HEARTBEAT_FILE_NAME,
   HEARTBEAT_KILL_GRACE_MS,
+  HEARTBEAT_STARTUP_GRACE_MS,
   HEARTBEAT_STALE_MS,
   installedTreeMatchesLockfile,
   isModelServerEnabled,

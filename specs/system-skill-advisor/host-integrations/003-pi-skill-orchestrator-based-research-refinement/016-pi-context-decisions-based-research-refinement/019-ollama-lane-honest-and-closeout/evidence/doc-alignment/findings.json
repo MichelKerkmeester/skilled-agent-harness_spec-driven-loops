@@ -1,0 +1,632 @@
+[
+  {
+    "id": "L2-1",
+    "source_id": "L2-1",
+    "lane": "L2",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+    "line": "130",
+    "issue": "The daemon/freshness paragraph says the watcher only 'triggers an incremental rebuild', and the RUNTIME SUBSYSTEMS list never mentions the background vector refresh. The code runs refreshEmbeddingsInBackground after startup (advisor-server.ts:439) and after every watcher reindex (watcher.ts:496), at any lane weight, so the doc's account of the daemon's freshness loop omits the skill and command vector refresh it claims to describe.",
+    "evidence": {
+      "cmd": "grep -n refreshEmbeddingsInBackground .skilled/skills/system-skill-advisor/runtime/advisor-server.ts .skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts",
+      "exit": 0,
+      "out": ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts:439:    void refreshEmbeddingsInBackground(startupSkillsRoot ?? undefined)\n.skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts:496:    void refreshEmbeddingsInBackground(skillsRoot)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L3-1",
+    "source_id": "L3-1",
+    "lane": "L3",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/references/scoring/lane-weight-tuning.md",
+    "line": "58",
+    "issue": "The doc says the semantic_shadow lane 'carries the lowest fusion weight (0.05)'. The registry gives the lane defaultWeight: 0 on the live channel and 0.05 only on the shadow channel (lane-registry.ts:13), so its live contribution is zero, not 'small by design'. 0.05 is the shadow weight, which the same sentence then tells the reader to adjust separately, so the sentence contradicts itself and understates the default.",
+    "evidence": {
+      "cmd": "grep -n \"semantic_shadow\" .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts",
+      "exit": 0,
+      "out": "13:  { id: 'semantic_shadow', defaultWeight: 0, defaultShadowWeight: 0.05, live: true },"
+    },
+    "fix": {
+      "old": "- \"The semantic lane scored higher than expected.\" The semantic_shadow lane is live in the registry but carries the lowest fusion weight (0.05), so its live contribution is small by design. Re-weight it only with measured evidence; adjust the shadow_weight separately if you are tuning shadow mode rather than the live ranking.",
+      "new": "- \"The semantic lane scored higher than expected.\" The semantic_shadow lane is live in the registry but its default live weight is 0, so it adds nothing to the live ranking until an operator raises it; its shadow weight is 0.05. Re-weight it only with measured evidence; adjust the shadow weight separately if you are tuning shadow mode rather than the live ranking."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L2-2",
+    "source_id": "L2-2",
+    "lane": "L2",
+    "surface": "D2",
+    "standard": "Every deterministic check listed for the topic in topics.json exits 0",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+    "line": "126",
+    "issue": "The scorer paragraph presents the semantic lane's cosine as 'the second way a command row can pass' without stating the lane's default weight of 0. lane-registry.ts:13 sets defaultWeight 0, and semantic-shadow.ts:151 returns before embedding when the live weight is <= 0, so at the shipped default no prompt embedding exists and the command meaning pass can never fire. The doc describes a behavior that is off unless the operator sets SPECKIT_ADVISOR_LANE_WEIGHTS_JSON.",
+    "evidence": {
+      "cmd": "grep -n semantic_shadow .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts && grep -n DEFAULT_SCORER_LANE_WEIGHTS.semantic_shadow .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+      "exit": 0,
+      "out": "13:  { id: 'semantic_shadow', defaultWeight: 0, defaultShadowWeight: 0.05, live: true },\n151:  if ((DEFAULT_SCORER_LANE_WEIGHTS.semantic_shadow ?? 0) <= 0) {"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L2-3",
+    "source_id": "L2-3",
+    "lane": "L2",
+    "surface": "D3",
+    "standard": null,
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-status.md",
+    "line": "23",
+    "issue": "The doc says status is fail-open 'even when the daemon is absent' and returns a well-formed envelope. With --warm-only and no daemon the CLI throws CliRetryableError (skill-advisor-cli.ts:1352-1353) and exits 75 with an error payload on stderr, no envelope; the doctor docs in this same lane rely on that 75. The handler is fail-open, the CLI call is not.",
+    "evidence": {
+      "cmd": "grep -n 'if (warmOnly)' -A 2 .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+      "exit": 0,
+      "out": "1352:  if (warmOnly) {\n1353-    throw new CliRetryableError(`backend unavailable: ${initialProbe.reason ?? initialProbe.status}`);\n1354-  }"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L3-3",
+    "source_id": "L3-3",
+    "lane": "L3",
+    "surface": "D3",
+    "standard": null,
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/ablation.md",
+    "line": "22",
+    "issue": "runLaneAblation never reads the lane weight configuration and does not skip zero-weight lanes: it scores a baseline, then disables each of the five registered lanes in turn (ablation.ts:115-121), so the zero-weight semantic_shadow lane gets a slice too. advisor_validate also has no ablation slice: its output carries corpus, holdout, parity, safety and latency only (advisor-validate.ts:722-760), and runLaneAblation has no handler caller, only test and stress-test callers.",
+    "evidence": {
+      "cmd": "grep -n \"lanes: SCORER_LANES.map\" -A 8 .skilled/skills/system-skill-advisor/runtime/lib/scorer/ablation.ts",
+      "exit": 0,
+      "out": "115:    lanes: SCORER_LANES.map((lane) => evaluate({\n116-      cases: args.cases,\n117-      workspaceRoot: args.workspaceRoot,\n118-      projection: args.projection,\n119-      disabledLanes: [lane],\n120-      label: lane,\n121-    })),"
+    },
+    "fix": {
+      "old": "`lib/scorer/ablation.ts` drives the ablation protocol: it reads the active lane weight configuration, runs the corpus with each non-zero lane set to zero in turn and emits per-lane accuracy deltas. The live `laneWeights` (exposed via `advisor_status`) are unchanged after ablation. Results feed into `advisor_validate` ablation slices.",
+      "new": "`lib/scorer/ablation.ts` drives the ablation protocol: it scores a baseline, then runs the corpus once per registered lane with that lane disabled and emits per-lane accuracy deltas. Every registered lane is ablated, including one whose weight is already 0. The live `laneWeights` (exposed via `advisor_status`) are unchanged after ablation. `advisor_validate` returns no ablation slice; the harness is reached through the internal test entry points."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L4-1",
+    "source_id": "L4-1",
+    "lane": "L4",
+    "surface": "D3",
+    "standard": null,
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": "INSTALL-SKILLED.md",
+    "line": "88",
+    "issue": "The doc says a local embedding model is enough for the advisor to match a command by meaning. The semantic lane's live default weight is 0 (lane-registry.ts:13), and withSemanticShadowPromptEmbedding returns before any prompt embed when that weight is <= 0 (semantic-shadow.ts:151-154), so no meaning match is possible until SPECKIT_ADVISOR_LANE_WEIGHTS_JSON raises semantic_shadow above 0. The doctor route's own final result prints `semantic lane weight 0: vectors ready, lane off by default` (doctor-skill-advisor-presentation.txt:305).",
+    "evidence": {
+      "cmd": "rg -n \"semantic_shadow', defaultWeight\" .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts",
+      "exit": 0,
+      "out": "13:  { id: 'semantic_shadow', defaultWeight: 0, defaultShadowWeight: 0.05, live: true },"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L3-5",
+    "source_id": "L3-5",
+    "lane": "L3",
+    "surface": "D5",
+    "standard": null,
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/five-lane-fusion.md",
+    "line": "63",
+    "issue": "semanticLaneHealth is only added to the status envelope when includeSemanticHealth or debug is set (advisor-status.ts:534). The scenario's step-1 command at line 47 passes neither, so the response carries no semantic_shadow entry and the expected signal cannot be observed as written.",
+    "evidence": {
+      "cmd": "grep -n \"includeSemanticHealth || args.debug\" .skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts",
+      "exit": 0,
+      "out": "534:      ...((args.includeSemanticHealth || args.debug) ? { semanticLaneHealth: readSemanticLaneHealth(dbPath) } : {}),\n558:      ...((args.includeSemanticHealth || args.debug) ? { semanticLaneHealth: readSemanticLaneHealth(dbPath) } : {}),"
+    },
+    "fix": {
+      "old": "- `advisor_status` reports `semantic_shadow` with `disabledReason: \"lane_weight_zero\"` and `laneEnabled: false`.",
+      "new": "- With `--include-semantic-health true`, `advisor_status` reports `semantic_shadow` with `disabledReason: \"lane_weight_zero\"` and `laneEnabled: false`."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C1",
+    "source_id": "C1",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/doctor/assets/doctor-skill-advisor-presentation.txt",
+    "line": "229",
+    "issue": "The probe rule says an exit 75 from advisor_status means the daemon is absent. The CLI shim exits 75 with a staleDistWarning field in stderr JSON when the dist is missing or stale and --warm-only is set (skill-advisor.cjs:80), so a stale build is misread as an absent daemon and the route reports coverage unread instead of naming the build repair. The setup presentation already distinguishes the two cases at lines 105-106.",
+    "evidence": {
+      "cmd": "rg -n \"staleDistWarning\" .skilled/bin/skill-advisor.cjs",
+      "exit": 0,
+      "out": "80:    fail(result.message, warmOnly ? EXIT_RETRYABLE : EXIT_PROTOCOL, warmOnly ? { staleDistWarning: result.message } : {});"
+    },
+    "fix": {
+      "old": "An exit 75 from `advisor_status` means the daemon is absent, so the active embedder, both coverage objects, coverage state, backend state and lane weight stay `unread`.",
+      "new": "An exit 75 from `advisor_status` with a `staleDistWarning` field in stderr JSON is a stale build, so report STATUS=FAIL with the build repair; exit 75 without that field means the daemon is absent, so the active embedder, both coverage objects, coverage state, backend state and lane weight stay `unread`."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C2",
+    "source_id": "C2",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/doctor/assets/doctor-skill-advisor-presentation.txt",
+    "line": "202",
+    "issue": "The troubleshooting row says an advisor CLI exit 75 means the daemon is not running. The shim also exits 75 with a staleDistWarning field when the dist is missing or stale under --warm-only (skill-advisor.cjs:80), so the row sends an operator with a stale build to the wrong cause.",
+    "evidence": {
+      "cmd": "rg -n \"staleDistWarning\" .skilled/bin/skill-advisor.cjs",
+      "exit": 0,
+      "out": "80:    fail(result.message, warmOnly ? EXIT_RETRYABLE : EXIT_PROTOCOL, warmOnly ? { staleDistWarning: result.message } : {});"
+    },
+    "fix": {
+      "old": "| Advisor CLI exits 75 | The daemon is not running; a warm-only probe never starts it. `rebuild` does not need it |",
+      "new": "| Advisor CLI exits 75 | The daemon is not running, or the build is stale when stderr JSON carries `staleDistWarning`; a warm-only probe never starts it. `rebuild` does not need it |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C3",
+    "source_id": "C3",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml",
+    "line": "150",
+    "issue": "The verify step names only the next daemon start as the refresh point for incomplete or unread coverage. The daemon also starts the shared refresh after each watcher reindex (watcher.ts:496), so a running daemon recovers on the next skill change without a restart. Line 148 has the same defect, which L2-5 records; this line is a second occurrence that L2-5's fix does not cover.",
+    "evidence": {
+      "cmd": "rg -n \"refreshEmbeddingsInBackground\" .skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts",
+      "exit": 0,
+      "out": "496:    void refreshEmbeddingsInBackground(skillsRoot)"
+    },
+    "fix": {
+      "old": "When coverage is incomplete or unread, name the next daemon start with Ollama up as the refresh point.",
+      "new": "When coverage is incomplete or unread, name the next daemon start or watcher reindex with Ollama up as the refresh point."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C4",
+    "source_id": "C4",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/references/scoring/lane-weight-tuning.md",
+    "line": "162",
+    "issue": "The related-reference line cites lane-registry.ts:7-19,32-38 as the live and shadow weight source. Lines 32-38 hold the two env-key constants, not weights; the per-lane values are the defaultWeight and defaultShadowWeight fields at 9-13, and DEFAULT_SHADOW_WEIGHTS is at 44-46. L3-2 fixes the same stale range at line 86 but leaves this line wrong.",
+    "evidence": {
+      "cmd": "grep -n \"LIVE_LANE_WEIGHTS_ENV_KEY\\|SHADOW_LANE_WEIGHTS_ENV_KEY\\|const DEFAULT_SHADOW_WEIGHTS\" .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts",
+      "exit": 0,
+      "out": "37:export const LIVE_LANE_WEIGHTS_ENV_KEY = 'SPECKIT_ADVISOR_LANE_WEIGHTS_JSON';\n38:export const SHADOW_LANE_WEIGHTS_ENV_KEY = 'SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON';\n44:const DEFAULT_SHADOW_WEIGHTS = Object.fromEntries("
+    },
+    "fix": {
+      "old": "- `runtime/lib/scorer/lane-registry.ts:7-19,32-38`, live + shadow weight source-of-truth.",
+      "new": "- `runtime/lib/scorer/lane-registry.ts:8-19,44-46`, live + shadow weight source-of-truth."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C5",
+    "source_id": "C5",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md",
+    "line": "18",
+    "issue": "The overview says meaning matching works whenever the local embedder runs. The semantic lane's live default weight is 0 (lane-registry.ts:13), and withSemanticShadowPromptEmbedding returns before any prompt embed when that weight is <= 0 (semantic-shadow.ts:151-154), so no meaning pass is possible until SPECKIT_ADVISOR_LANE_WEIGHTS_JSON raises semantic_shadow above 0. The doc's own Command Vectors section notes the background refresh runs regardless of lane weight, which makes the missing gate easy to miss.",
+    "evidence": {
+      "cmd": "grep -n \"semantic_shadow', defaultWeight\" .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts && grep -n \"DEFAULT_SCORER_LANE_WEIGHTS.semantic_shadow\" .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+      "exit": 0,
+      "out": "13:  { id: 'semantic_shadow', defaultWeight: 0, defaultShadowWeight: 0.05, live: true },\n151:  if ((DEFAULT_SCORER_LANE_WEIGHTS.semantic_shadow ?? 0) <= 0) {"
+    },
+    "fix": {
+      "old": "It works only when the local embedder runs. Without it the advisor returns the phrase-only result.",
+      "new": "It works only when the local embedder runs and the semantic lane weight is above 0. Without either the advisor returns the phrase-only result."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C6",
+    "source_id": "C6",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/doctor/assets/doctor-setup.yaml",
+    "line": "60",
+    "issue": "The embedder leg's status rules conflict. The first rule makes a reachable backend sufficient for PASS, and the next sentence makes incomplete coverage with a reachable backend DEGRADED. The same line therefore yields two different leg results for the same probe. The embedder route's own rule is coherent: STATUS=OK requires complete coverage and a reachable backend (doctor-skill-advisor-embedder.yaml:148).",
+    "evidence": {
+      "cmd": "sed -n \"60p\" .skilled/commands/doctor/assets/doctor-setup.yaml",
+      "exit": 0,
+      "out": "Report the leg PASS when data.semanticLaneHealth.backend.state is reachable; if that state is not reachable, report DEGRADED ... When coverage is incomplete and the backend is reachable, report DEGRADED with stale and missing counts"
+    },
+    "fix": {
+      "old": "Report the leg PASS when data.semanticLaneHealth.backend.state is reachable; if that state is not reachable, report DEGRADED",
+      "new": "Report the leg PASS when data.semanticLaneHealth.backend.state is reachable and coverageComplete is true; if that state is not reachable, report DEGRADED"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C7",
+    "source_id": "C7",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
+    "line": "55",
+    "issue": "The presentation repeats the workflow's conflicting leg rule: it marks the leg PASS when the backend is reachable, then marks incomplete coverage with a reachable backend DEGRADED. The visible result table therefore has no single rule for that probe.",
+    "evidence": {
+      "cmd": "sed -n \"55p\" .skilled/commands/doctor/assets/doctor-setup-presentation.txt",
+      "exit": 0,
+      "out": "Mark the leg PASS when the backend is reachable; an unreachable or missing-model backend is DEGRADED ... Incomplete coverage with a reachable backend is DEGRADED"
+    },
+    "fix": {
+      "old": "Mark the leg PASS when the backend is reachable; an unreachable or missing-model backend is DEGRADED",
+      "new": "Mark the leg PASS when the backend is reachable and coverage is complete; an unreachable or missing-model backend is DEGRADED"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C8",
+    "source_id": "C8",
+    "lane": "critic",
+    "surface": "D1",
+    "standard": "Every claim a doc makes about the topic (command, flag, environment variable, path, runtime, behavior, default) holds in the code under the topic's code roots",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md",
+    "line": "147",
+    "issue": "The latency troubleshooting row names a slow semantic_shadow embedding lookup as a cause of uncached p95 > 25 ms without the lane-enabled condition. At the default live weight of 0 the lane returns before any prompt embed (semantic-shadow.ts:151-154), so it adds no lookup cost and cannot be the cause. The row sends an operator at the default configuration after a non-cause.",
+    "evidence": {
+      "cmd": "grep -n \"DEFAULT_SCORER_LANE_WEIGHTS.semantic_shadow\" .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+      "exit": 0,
+      "out": "151:  if ((DEFAULT_SCORER_LANE_WEIGHTS.semantic_shadow ?? 0) <= 0) {"
+    },
+    "fix": {
+      "old": "| Uncached p95 > 25 ms | Scoring algorithm changed OR semantic_shadow lane embedding lookup slow | Profile via `runtime/bench/`. If semantic_shadow is the culprit, verify embeddings index freshness |",
+      "new": "| Uncached p95 > 25 ms | Scoring algorithm changed OR, with the semantic lane enabled, its embedding lookup slow | Profile via `runtime/bench/`. If semantic_shadow is the culprit, verify embeddings index freshness |"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L3-2",
+    "source_id": "L3-2",
+    "lane": "L3",
+    "surface": "D2",
+    "standard": "Every deterministic check listed for the topic in topics.json exits 0",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/references/scoring/lane-weight-tuning.md",
+    "line": "86",
+    "issue": "The shadow-weight edit target is wrong. lane-registry.ts:32-38 holds the two env-key constants (LIVE_LANE_WEIGHTS_ENV_KEY at 37, SHADOW_LANE_WEIGHTS_ENV_KEY at 38), not weights. The shadow weight map is DEFAULT_SHADOW_WEIGHTS at 44-46 and the per-lane values are the defaultShadowWeight fields at 9-13. The same stale range is repeated at line 162 ('lane-registry.ts:7-19,32-38').",
+    "evidence": {
+      "cmd": "grep -n \"LIVE_LANE_WEIGHTS_ENV_KEY\\|SHADOW_LANE_WEIGHTS_ENV_KEY\\|const DEFAULT_SHADOW_WEIGHTS\" .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts",
+      "exit": 0,
+      "out": "37:export const LIVE_LANE_WEIGHTS_ENV_KEY = 'SPECKIT_ADVISOR_LANE_WEIGHTS_JSON';\n38:export const SHADOW_LANE_WEIGHTS_ENV_KEY = 'SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON';\n44:const DEFAULT_SHADOW_WEIGHTS = Object.fromEntries("
+    },
+    "fix": {
+      "old": "Edit `runtime/lib/scorer/lane-registry.ts:7-19` (live weights) or `lane-registry.ts:32-38` (shadow weights).",
+      "new": "Edit `runtime/lib/scorer/lane-registry.ts:8-19` (live and shadow weights, per lane) or `lane-registry.ts:44-46` (`DEFAULT_SHADOW_WEIGHTS`)."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L4-2",
+    "source_id": "L4-2",
+    "lane": "L4",
+    "surface": "D3",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": "INSTALL-SKILLED.md",
+    "line": "96",
+    "issue": "The doc gives the embedder route's post-approval order as pull, start, scan. The route starts `ollama serve` first and runs `ollama pull` only once the server answers, then scans (doctor-skill-advisor-embedder.yaml:131-132); the plan table lists the same dependency order (doctor-skill-advisor-presentation.txt:242-244).",
+    "evidence": {
+      "cmd": "rg -n \"start step is missing|pull step is missing\" .skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml",
+      "exit": 0,
+      "out": "131:      - \"When the start step is missing, run `OLLAMA_HOST=<host:port of the resolved URL> ollama serve` in the background ... and the pull and scan steps do not run.\"\n132:      - \"When the pull step is missing, run `OLLAMA_HOST=<host:port of the resolved URL> ollama pull nomic-embed-text:v1.5` only once the server answers. A non-zero exit is STATUS=FAIL naming the pull, and the scan step does not run.\""
+    },
+    "fix": {
+      "old": "After your yes it pulls the model, starts the server and indexes every command.",
+      "new": "After your yes it starts the server, pulls the model and indexes every command."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L2-4",
+    "source_id": "L2-4",
+    "lane": "L2",
+    "surface": "D4",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml",
+    "line": "92",
+    "issue": "'Exit 75 means no daemon is running' is narrower than the code. 75 is EXIT_RETRYABLE, also returned for a stale dist with a staleDistWarning field (skill-advisor.cjs:80) and for timeouts or backend-unavailable errors (skill-advisor-cli.ts:1023). doctor-setup.yaml's advisor leg distinguishes the stale-dist case; this probe would record daemon=absent for it.",
+    "evidence": {
+      "cmd": "grep -n staleDistWarning .skilled/bin/skill-advisor.cjs",
+      "exit": 0,
+      "out": "80:    fail(result.message, warmOnly ? EXIT_RETRYABLE : EXIT_PROTOCOL, warmOnly ? { staleDistWarning: result.message } : {});"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L3-4",
+    "source_id": "L3-4",
+    "lane": "L3",
+    "surface": "D4",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/ablation.md",
+    "line": "50",
+    "issue": "advisor_validate returns no ablation slice, so step 2 cannot be done from the response. Its slices are corpus, holdout, parity, safety and latency (advisor-validate.ts:722-760) and the output schema has no ablation key; the ablation harness is only reachable through the internal test entry points.",
+    "evidence": {
+      "cmd": "grep -n \"slices: {\" -A 4 .skilled/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts",
+      "exit": 0,
+      "out": "722:    slices: {\n723-      corpus: {\n724-        full_corpus_top1: fullSlice,\n725-        unknown_count: {"
+    },
+    "fix": {
+      "old": "2. Inspect the ablation slice in the response (or run ablation harness).",
+      "new": "2. Run the ablation harness; `advisor_validate` returns no ablation slice."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-3",
+    "source_id": "L1-3",
+    "lane": "L1",
+    "surface": "D5",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
+    "line": "55",
+    "issue": "The presentation contract repeats the workflow's single refresh point. The daemon refreshes missing and stale skill and command vectors after startup and after each watcher reindex, so the next start is not the only point where incomplete coverage heals.",
+    "evidence": {
+      "cmd": "rg -n \"refreshEmbeddingsInBackground\" .skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts .skilled/skills/system-skill-advisor/runtime/advisor-server.ts",
+      "exit": 0,
+      "out": ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts:23:  refreshEmbeddingsInBackground,\n.skilled/skills/system-skill-advisor/runtime/advisor-server.ts:439:    void refreshEmbeddingsInBackground(startupSkillsRoot ?? undefined)\n.skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts:15:  refreshEmbeddingsInBackground,\n.skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts:496:    void refreshEmbeddingsInBackground(skillsRoot)"
+    },
+    "fix": {
+      "old": "say the daemon refreshes them on its next start with Ollama up.",
+      "new": "say the daemon refreshes them on its next start or its next watcher reindex, with Ollama up."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L2-5",
+    "source_id": "L2-5",
+    "lane": "L2",
+    "surface": "D5",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml",
+    "line": "148",
+    "issue": "The doc names only 'its next start with Ollama up' as the refresh point. The daemon also refreshes after each watcher reindex (watcher.ts:496), and the presentation's own section 8 intro says 'on start and after skill changes'. A running daemon therefore recovers on the next skill change, not only on restart.",
+    "evidence": {
+      "cmd": "grep -n refreshEmbeddingsInBackground .skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts",
+      "exit": 0,
+      "out": "496:    void refreshEmbeddingsInBackground(skillsRoot)"
+    },
+    "fix": {
+      "old": "say the daemon refreshes them on its next start with Ollama up",
+      "new": "say the daemon refreshes them on its next start or watcher event with Ollama up"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-1",
+    "source_id": "L1-1",
+    "lane": "L1",
+    "surface": "D6",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/doctor/assets/doctor-setup.yaml",
+    "line": "60",
+    "issue": "The embedder leg gives a single cause for exit 75 and drops the stale-build branch that the advisor leg in the same file defines. The CLI shim exits 75 with a staleDistWarning field in stderr JSON whenever the dist is missing or stale and --warm-only is set, so a stale build reads SKIP (\"daemon not running\") on this leg while the advisor leg reads FAIL with the build repair.",
+    "evidence": {
+      "cmd": "rg -n \"EXIT_RETRYABLE|staleDistWarning\" .skilled/bin/skill-advisor.cjs",
+      "exit": 0,
+      "out": "30:const EXIT_RETRYABLE = 75;\n80:    fail(result.message, warmOnly ? EXIT_RETRYABLE : EXIT_PROTOCOL, warmOnly ? { staleDistWarning: result.message } : {});\n141:    process.exit(EXIT_RETRYABLE);"
+    },
+    "fix": {
+      "old": "Exit 75 is SKIP, as for the advisor leg, because the daemon is not running.",
+      "new": "Exit 75 with a staleDistWarning field in stderr JSON is FAIL, with repair npm --prefix .skilled/skills/system-skill-advisor/runtime run build. Exit 75 without that field is SKIP because the daemon is not running."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L1-2",
+    "source_id": "L1-2",
+    "lane": "L1",
+    "surface": "D6",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/doctor/assets/doctor-setup.yaml",
+    "line": "60",
+    "issue": "The doc names only the next daemon start as the refresh point for incomplete coverage. The daemon also calls refreshEmbeddingsInBackground after every watcher reindex, so missing and stale skill and command vectors heal on a watcher event without a restart.",
+    "evidence": {
+      "cmd": "rg -n \"refreshEmbeddingsInBackground\" .skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts .skilled/skills/system-skill-advisor/runtime/advisor-server.ts",
+      "exit": 0,
+      "out": ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts:23:  refreshEmbeddingsInBackground,\n.skilled/skills/system-skill-advisor/runtime/advisor-server.ts:439:    void refreshEmbeddingsInBackground(startupSkillsRoot ?? undefined)\n.skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts:15:  refreshEmbeddingsInBackground,\n.skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts:496:    void refreshEmbeddingsInBackground(skillsRoot)"
+    },
+    "fix": {
+      "old": "and say the daemon refreshes them on its next start with Ollama up.",
+      "new": "and say the daemon refreshes them on its next start or its next watcher reindex, with Ollama up."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L2-6",
+    "source_id": "L2-6",
+    "lane": "L2",
+    "surface": "D6",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/doctor/assets/doctor-skill-advisor-presentation.txt",
+    "line": "304",
+    "issue": "The final-result rule names only 'its next start with Ollama up' as the refresh point, while the same file's section 8 intro says the daemon refreshes 'on start and after skill changes'. The code refreshes after each watcher reindex (watcher.ts:496), so the final-result wording understates the recovery path.",
+    "evidence": {
+      "cmd": "grep -n refreshEmbeddingsInBackground .skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts",
+      "exit": 0,
+      "out": "496:    void refreshEmbeddingsInBackground(skillsRoot)"
+    },
+    "fix": {
+      "old": "say the daemon refreshes them on its next start with Ollama up",
+      "new": "say the daemon refreshes them on its next start or watcher event with Ollama up"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L3-6",
+    "source_id": "L3-6",
+    "lane": "L3",
+    "surface": "D6",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md",
+    "line": "79",
+    "issue": "The sentence reads as if a plain advisor_status call carries the semantic lane fields. semanticLaneHealth, and with it disabledReason and laneEnabled, is only added when includeSemanticHealth or debug is set (advisor-status.ts:534); the opt-in flag is named only in the following sentence, for the Ollama probe.",
+    "evidence": {
+      "cmd": "grep -n \"includeSemanticHealth || args.debug\" .skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts",
+      "exit": 0,
+      "out": "534:      ...((args.includeSemanticHealth || args.debug) ? { semanticLaneHealth: readSemanticLaneHealth(dbPath) } : {}),\n558:      ...((args.includeSemanticHealth || args.debug) ? { semanticLaneHealth: readSemanticLaneHealth(dbPath) } : {}),"
+    },
+    "fix": {
+      "old": "`advisor_status` reports `disabledReason: \"lane_weight_zero\"` and `laneEnabled: false`.",
+      "new": "`advisor_status --include-semantic-health true` reports `disabledReason: \"lane_weight_zero\"` and `laneEnabled: false`."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L3-7",
+    "source_id": "L3-7",
+    "lane": "L3",
+    "surface": "D7",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md",
+    "line": "62",
+    "issue": "The lane's coverage gate checks presence only: it fails when a required row has no vector at all (semantic-shadow.ts:383), and loadSkillEmbeddings returns every stored row without filtering model_id or content_hash (skill-graph-db.ts:1786-1815). A stale vector therefore still scores. Only the projection-level embeddingStaleness.stale flag disables the lane. The status current count does exclude stale rows, but that count is not what the lane gates on.",
+    "evidence": {
+      "cmd": "grep -n \"requiredVectorRows.some\" -A 3 .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+      "exit": 0,
+      "out": "383:      if (requiredVectorRows.some((skill) => !cachedVectors.has(skill.id))) {\n384-        setRuntimeHealth({ disabledReason: 'incomplete_skill_vectors' });\n385-        return [];\n386-      }"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "L3-8",
+    "source_id": "L3-8",
+    "lane": "L3",
+    "surface": "D8",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md",
+    "line": "83",
+    "issue": "Both citations are stale. COSINE_THRESHOLD is declared at semantic-shadow.ts:27 and applied at 397; lines 10 and 147-150 are an import and the zero-weight guard. The VITEST token-overlap fallback is at 321-334, not 91-108, which sits inside cosineSimilarity and fixtureVector.",
+    "evidence": {
+      "cmd": "grep -n \"COSINE_THRESHOLD\" .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+      "exit": 0,
+      "out": "27:const COSINE_THRESHOLD = 0.2;\n397:      if (score <= COSINE_THRESHOLD) {"
+    },
+    "fix": {
+      "old": "Cosine similarity below 0.2 is treated as no signal (`runtime/lib/scorer/lanes/semantic-shadow.ts:10, 147-150`). When the lane is enabled and embeddings are unavailable under `VITEST=true`, it falls back to token-overlap scoring so tests stay deterministic (`runtime/lib/scorer/lanes/semantic-shadow.ts:91-108`).",
+      "new": "Cosine similarity below 0.2 is treated as no signal (`runtime/lib/scorer/lanes/semantic-shadow.ts:27, 397`). When the lane is enabled and embeddings are unavailable under `VITEST=true`, it falls back to token-overlap scoring so tests stay deterministic (`runtime/lib/scorer/lanes/semantic-shadow.ts:321-334`)."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  }
+]

@@ -12,6 +12,7 @@ import { describe, expect, it } from 'vitest';
 import { parse as parseYaml } from 'yaml';
 
 import { COMMAND_BRIDGES, GENERATED_COMMAND_BRIDGES } from '../lib/scorer/projection.js';
+import { parseSkillFrontmatter } from '../lib/utils/skill-markdown.js';
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 
 interface CommandBridgeEntry {
@@ -20,6 +21,7 @@ interface CommandBridgeEntry {
   readonly skillId: string;
   readonly ownerMode: string;
   readonly description?: string;
+  readonly embeddingText?: string;
   readonly ownedSignals?: readonly string[];
   readonly standalone?: boolean;
   readonly mutating?: string;
@@ -385,6 +387,32 @@ describe('command-bridges drift guard', () => {
       extra: [],
     });
     expect(sorted(generatedInventory)).toEqual(expected);
+  });
+
+  it('keeps TypeScript bridge embeddings and skill descriptions non-empty', () => {
+    const generated = JSON.parse(readFileSync(GENERATED_PATH, 'utf8')) as CommandBridgeDump;
+    const missingEmbeddingIds = generated.entries
+      .filter(
+        (entry) => entry.runtime?.typescript.enabled === true
+          && (typeof entry.embeddingText !== 'string' || entry.embeddingText.trim().length === 0),
+      )
+      .map((entry) => entry.id)
+      .sort();
+    const missingSkillDescriptions = readdirSync(SKILLS_ROOT, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory() && !entry.name.startsWith('.'))
+      .map((skillFolder) => {
+        const skillMdPath = join(SKILLS_ROOT, skillFolder.name, 'SKILL.md');
+        if (!existsSync(skillMdPath)) return skillFolder.name;
+        const { frontmatter } = parseSkillFrontmatter(readFileSync(skillMdPath, 'utf8'));
+        return frontmatter.description?.trim() ? null : skillFolder.name;
+      })
+      .filter((skillId): skillId is string => skillId !== null)
+      .sort();
+
+    expect({ missingEmbeddingIds, missingSkillDescriptions }).toEqual({
+      missingEmbeddingIds: [],
+      missingSkillDescriptions: [],
+    });
   });
 
   it('generates all inventory ids for both runtimes and scores exactly the compatibility rows plus the standalone commands', () => {
