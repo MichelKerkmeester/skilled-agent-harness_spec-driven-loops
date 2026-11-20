@@ -2879,20 +2879,78 @@ function isUnderRootSkilled(value) {
   return normalized === 'root/skilled' || normalized.startsWith('root/skilled/');
 }
 
+const caseInsensitiveDirs = new Map();
+
+/**
+ * Tell whether the filesystem holding a folder ignores letter case in names.
+ * The answer comes from the disk, never from the platform, since one platform
+ * can mount both kinds: the nearest name on the folder's real path that has a
+ * letter is spelled with its case flipped, and the filesystem ignores case when
+ * that spelling opens the same folder. A path with no letter in any name cannot
+ * be probed, and is taken as case-sensitive. The answer is kept per folder, so
+ * a run probes each folder once.
+ * @param {string} dir Existing folder.
+ * @returns {boolean} Whether two names differing only in case name one entry there.
+ */
+function isCaseInsensitiveDir(dir) {
+  if (caseInsensitiveDirs.has(dir)) return caseInsensitiveDirs.get(dir);
+  let answer = false;
+  try {
+    const real = fs.realpathSync.native(dir);
+    const flip = (name) => [...name].map((ch) => {
+      const lower = ch.toLowerCase();
+      return ch === lower ? ch.toUpperCase() : lower;
+    }).join('');
+    let current = real;
+    let suffix = [];
+    while (path.dirname(current) !== current) {
+      const name = path.basename(current);
+      const flipped = flip(name);
+      if (flipped !== name) {
+        const probe = path.join(path.dirname(current), flipped, ...suffix);
+        const original = fs.statSync(real);
+        let other = null;
+        try {
+          other = fs.statSync(probe);
+        } catch {
+          other = null;
+        }
+        answer = other !== null && other.dev === original.dev && other.ino === original.ino;
+        break;
+      }
+      suffix = [name, ...suffix];
+      current = path.dirname(current);
+    }
+  } catch {
+    answer = false;
+  }
+  caseInsensitiveDirs.set(dir, answer);
+  return answer;
+}
+
 /**
  * Find the first layout link path the manifest lists more than once. Two
  * spellings name one path when they normalize to the same path without
  * trailing slashes, the way the plan resolves them, so `./a`, `a/`, `a/.` and
- * `x/../a` are the same link, and so are `a//b` and `a/b`.
+ * `x/../a` are the same link, and so are `a//b` and `a/b`. Where the tree root
+ * sits on a filesystem that ignores case, `ext` and `EXT` are one entry on
+ * disk, so they are compared with case folded too.
+ * Two spellings that reach one place through a folder link, like `alias/a` and
+ * `a` beside `alias -> .`, are not compared here: the plan joins each path onto
+ * the root without resolving its folders, and the escape check below judges
+ * where each parent resolves.
  * @param {object} manifest Loaded overlay manifest.
- * @returns {string|null} The duplicated path, normalized and without trailing slashes, or null.
+ * @param {string} [root] Destination tree root, probed for case handling.
+ * @returns {string|null} The later copy's path, normalized and without trailing slashes, or null.
  */
-function duplicateLayoutLinkPath(manifest) {
+function duplicateLayoutLinkPath(manifest, root) {
+  const foldCase = typeof root === 'string' && isCaseInsensitiveDir(root);
   const seen = new Set();
   for (const link of manifest.layoutLinks || []) {
     if (!link || typeof link.path !== 'string') continue;
-    const key = path.posix.normalize(link.path).replace(/\/+$/, '');
-    if (seen.has(key)) return key;
+    const normalized = path.posix.normalize(link.path).replace(/\/+$/, '');
+    const key = foldCase ? normalized.toLowerCase() : normalized;
+    if (seen.has(key)) return normalized;
     seen.add(key);
   }
   return null;
@@ -2919,7 +2977,7 @@ function rootSkilledProblem(field, value) {
  * @returns {string|null} The refusal, or null when every path is listed once and stays inside.
  */
 function layoutLinkEscape(root, manifest) {
-  const duplicated = duplicateLayoutLinkPath(manifest);
+  const duplicated = duplicateLayoutLinkPath(manifest, root);
   if (duplicated !== null) return `layout link path is listed twice: ${duplicated}`;
   // A parent link that dangles or loops cannot be resolved, so where it lands
   // is unknown and the path is refused until it can be. The one exception is the

@@ -34,6 +34,23 @@ function seed(fixture) {
   return result;
 }
 
+// Whether the filesystem holding a folder ignores case, read from the disk the
+// way the engine reads it: a case-flipped spelling of the folder's real path
+// opens the same folder.
+function ignoresCase(dir) {
+  const real = fs.realpathSync.native(dir);
+  const name = path.basename(real);
+  const flipped = [...name].map((ch) => (ch === ch.toLowerCase() ? ch.toUpperCase() : ch.toLowerCase())).join('');
+  if (flipped === name) return false;
+  try {
+    const original = fs.statSync(real);
+    const other = fs.statSync(path.join(path.dirname(real), flipped));
+    return other.dev === original.dev && other.ino === original.ino;
+  } catch {
+    return false;
+  }
+}
+
 function treeDigest(root) {
   const rows = [];
   const walk = (dir) => {
@@ -861,11 +878,21 @@ test('layout link paths are compared as the plan resolves them, and distinct pat
     { links: [{ path: 'ext', target: '../outside' }, { path: 'x/../ext', target: 'real-dir' }], duplicated: 'ext' },
     { links: [{ path: 'a/b', target: '../real-dir' }, { path: 'a//b', target: '../real-dir' }], duplicated: 'a/b' },
     { links: [{ path: 'a', target: 'real-dir' }, { path: 'ab', target: 'real-dir' }, { path: 'a/b', target: '../guarded.txt' }] },
+    {
+      links: [{ path: 'EXT', target: '../outside' }, { path: 'ext/planted', target: 'anything' }, { path: 'ext', target: 'real-dir' }],
+      duplicated: 'ext',
+      needsCaseInsensitive: true,
+    },
+    { links: [{ path: 'ext', target: 'real-dir' }, { path: 'Ext', target: 'real-dir' }], duplicated: 'Ext', needsCaseInsensitive: true },
   ];
-  for (const { links, duplicated } of cases) {
+  for (const { links, duplicated, needsCaseInsensitive } of cases) {
     const label = links.map((link) => link.path).join(', ');
     await t.test(label, (st) => {
       const fixture = createSyncFixture(st);
+      if (needsCaseInsensitive && !ignoresCase(fixture.tree)) {
+        st.skip('the tree sits on a case-sensitive filesystem, where these spellings name two paths');
+        return;
+      }
       fs.mkdirSync(path.join(fixture.tree, 'real-dir'));
       fs.mkdirSync(path.resolve(fixture.tree, '../outside'));
       fixture.manifest.layoutLinks = links;
