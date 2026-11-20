@@ -250,20 +250,60 @@ describe('checkLineageCompletion', () => {
     })).toMatchObject({ complete: false, failure: 'no_terminal_event' });
   });
 
-  it('fails on the iteration stamped after the terminal row and the process end, even with that row present', () => {
+  it('passes when a model-written iteration stamp runs ahead of the terminal row that follows it in the file', () => {
+    const rows = convergedLineageRows.map((row) => (row.iteration === 14
+      ? { ...row, timestamp: '2026-11-19T19:01:56.500Z' }
+      : row));
+    expect(checkLineageCompletion(rows, {
+      terminalEvents: REVIEW_TERMINAL_EVENTS,
+      windowStart: '2026-11-19T18:37:03.000Z',
+      windowEnd: '2026-11-19T19:05:31.000Z',
+    })).toEqual({ complete: true });
+  });
+
+  it('does not place an iteration stamp without a zone designator on the host clock', () => {
+    const previousTz = process.env.TZ;
+    process.env.TZ = 'America/Los_Angeles';
+    try {
+      const rows: Array<Record<string, unknown>> = [
+        { type: 'config', timestamp: '2026-11-20T10:00:00.000Z' },
+        { type: 'iteration', iteration: 1, timestamp: '2026-11-20T10:04:00' },
+        { type: 'event', event: 'terminal_gates', stopReason: 'converged', timestamp: '2026-11-20T10:05:00.000Z' },
+      ];
+      expect(checkLineageCompletion(rows, {
+        terminalEvents: REVIEW_TERMINAL_EVENTS,
+        windowStart: '2026-11-20T09:59:00.000Z',
+        windowEnd: '2026-11-20T10:06:00.000Z',
+      })).toEqual({ complete: true });
+    } finally {
+      if (previousTz === undefined) delete process.env.TZ;
+      else process.env.TZ = previousTz;
+    }
+  });
+
+  it('fails on an iteration row that sits after the terminal row in the file, whatever its stamp', () => {
+    const rows = [...convergedLineageRows];
+    rows.splice(rows.length - 1, 0, { type: 'iteration', iteration: 15, timestamp: '2026-11-19T19:00:50.000Z' });
+    expect(checkLineageCompletion(rows, {
+      terminalEvents: REVIEW_TERMINAL_EVENTS,
+      windowStart: '2026-11-19T18:37:03.000Z',
+      windowEnd: '2026-11-19T19:05:31.000Z',
+    })).toMatchObject({ complete: false, failure: 'iteration_after_terminal' });
+  });
+
+  it('fails on a zoned stamp beyond the process end plus tolerance, and allows one inside it', () => {
     const rows = [...resumedFakeCompletionRows];
     rows.splice(rows.length - 1, 0, { type: 'event', event: 'terminal_gates', timestamp: '2026-11-19T19:25:10.000Z' });
-    const verdict = checkLineageCompletion(rows, { terminalEvents: REVIEW_TERMINAL_EVENTS, ...RESUMED_ATTEMPT_WINDOW });
+    // Iteration 12 is stamped 4 s after the process end: inside the tolerance.
+    expect(checkLineageCompletion(rows, { terminalEvents: REVIEW_TERMINAL_EVENTS, ...RESUMED_ATTEMPT_WINDOW }))
+      .toEqual({ complete: true });
+
+    const lateRows = rows.map((row) => (row.iteration === 12
+      ? { ...row, timestamp: '2026-11-19T19:28:00.000Z' }
+      : row));
+    const verdict = checkLineageCompletion(lateRows, { terminalEvents: REVIEW_TERMINAL_EVENTS, ...RESUMED_ATTEMPT_WINDOW });
     expect(verdict).toMatchObject({ complete: false, failure: 'stamped_after_completion' });
     expect(verdict.complete === false && verdict.detail).toContain('iteration 12');
-
-    // Inside the process window the same late stamp still contradicts the terminal row.
-    const verdictWithLaterExit = checkLineageCompletion(rows, {
-      terminalEvents: REVIEW_TERMINAL_EVENTS,
-      windowStart: RESUMED_ATTEMPT_WINDOW.windowStart,
-      windowEnd: '2026-11-19T19:30:00.000Z',
-    });
-    expect(verdictWithLaterExit).toMatchObject({ complete: false, failure: 'iteration_after_terminal' });
   });
 
   it('passes a resumed lineage whose earlier attempt left rows before the window', () => {

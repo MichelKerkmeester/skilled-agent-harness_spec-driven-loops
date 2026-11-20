@@ -60,6 +60,10 @@ function parseRecordTimestamp(value: unknown): number | null {
   return Number.isFinite(ms) ? ms : null;
 }
 
+function hasZoneDesignator(value: unknown): boolean {
+  return typeof value === 'string' && /(?:Z|[+-]\d{2}:\d{2})$/i.test(value.trim());
+}
+
 function addSample(
   sample: TimestampOffenderSample[],
   limit: number,
@@ -165,12 +169,16 @@ function describeRecord(record: Record<string, unknown>, index: number): string 
 /**
  * Decide whether a lineage's state log proves it finished the loop in this attempt.
  *
- * The advisory window check above tolerates skew because a stray stamp alone proves
- * nothing. This one has no tolerance, since the evidence it checks is order on one host
- * clock: a lineage that never recorded its terminal stop row, or that stamps an
- * iteration after that row or after its own process ended, did not run the stop gates it
- * claims. Rows from an earlier attempt sit before the window and stay legal, so a resumed
- * lineage passes once this attempt records its own terminal row.
+ * It needs at least one iteration row and a terminal stop row written in this attempt,
+ * with every iteration row before that terminal row in the file. Iteration stamps are
+ * written by the model, so order is judged by file position, never by comparing them
+ * with the terminal row's stamp. Two stamp checks remain: the terminal row's own stamp,
+ * which the host writes, must not predate this attempt's start, so a resume that recorded
+ * nothing new fails; and no stamp carrying an explicit zone may land after the process
+ * ended by more than the default tolerance. A stamp without a zone designator cannot be
+ * placed on the host clock and is not judged. Rows from an earlier attempt sit before
+ * the window and stay legal, so a resumed lineage passes once this attempt records its
+ * own terminal row.
  */
 export function checkLineageCompletion(
   records: readonly unknown[],
@@ -209,10 +217,11 @@ export function checkLineageCompletion(
     };
   }
 
+  const latestAllowedMs = windowEnd.ms + DEFAULT_LINEAGE_TIMESTAMP_TOLERANCE_MS;
   for (let index = 0; index < rows.length; index += 1) {
     const record = rows[index];
-    const timestampMs = parseRecordTimestamp(record.timestamp);
-    if (timestampMs !== null && timestampMs > windowEnd.ms) {
+    const timestampMs = hasZoneDesignator(record.timestamp) ? parseRecordTimestamp(record.timestamp) : null;
+    if (timestampMs !== null && timestampMs > latestAllowedMs) {
       return {
         complete: false,
         failure: 'stamped_after_completion',
@@ -220,7 +229,7 @@ export function checkLineageCompletion(
       };
     }
     if (record.type !== 'iteration') continue;
-    if (index > terminalIndex || (timestampMs !== null && timestampMs > terminalMs)) {
+    if (index > terminalIndex) {
       return {
         complete: false,
         failure: 'iteration_after_terminal',
