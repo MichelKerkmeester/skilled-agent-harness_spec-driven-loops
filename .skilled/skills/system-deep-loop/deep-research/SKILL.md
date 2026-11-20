@@ -81,7 +81,7 @@ Carrying threshold expectations across siblings will cause unexpected iteration 
 ### Stop Decision And Counters
 
 - The stop decision is computed once per loop pass by `runtime/scripts/convergence.cjs` from the packet files. A missing graph decision blocks every non-terminal STOP.
-- The stuck count and the consecutive failure count are derived from the state log on every pass, so a resumed run counts the same as one that never paused. Failed iterations stay out of the ratio signals.
+- The stuck count and the consecutive failure count are derived from the state log on every pass, so a resumed run counts the same as one that never paused. Under expansive depth with an active frontier node, the stuck count reads only that node's bound passes. Failed iterations stay out of the ratio signals.
 - Three trailing failed iterations stop the loop with stop reason `error`. In confirm mode the workflow first asks Retry, Skip or Cancel. Auto mode has no such question.
 - Each pass compares `maxDurationMinutes` with the config `createdAt`. At the limit the loop skips the dispatch and goes to synthesis with stop reason `maxDurationReached`.
 - `deep-research/scripts/reduce-state.cjs` is the research reducer and the only writer of the dashboard.
@@ -94,6 +94,7 @@ Carrying threshold expectations across siblings will cause unexpected iteration 
 - `step_frontier_admit` runs before `step_reduce_state` and prunes a `frontier_proposal` on the first failed check among relevance, dedupe, depth, fan-out, the run-wide node cap, budget and cycle. Node status lives in `research/frontier-nodes.jsonl`. Admitted nodes also land in `research/inbox.jsonl` with `origin: "frontier"`.
 - Next Focus reads the shallowest open node first, then the least visited, then the oldest, and writes `Frontier node <id> (depth N, scope S): <question>`.
 - After the `minIterations` floor an open or active node turns a soft stop into CONTINUE with reasonDetail `frontierOpen`. It never creates a stop and never outranks the iteration cap, consecutive failures, stuck recovery, pause, the max-duration stop, `--convergence-mode=off` or `--stop-policy=max-iterations`.
+- A fan-out lineage whose frontier share holds at least one answered node and none open or active forms the hard stop candidate `frontier_drained`, so it stops instead of working topic questions other lineages own. A single-executor run never forms it.
 - A fan-out run deals the seeded depth-1 nodes round-robin across lineages and merges them back under a partition guard, so no dealt node goes unreported.
 
 ### Invocation Contract

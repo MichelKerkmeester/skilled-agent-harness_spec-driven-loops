@@ -7,7 +7,7 @@ trigger_phrases:
   - "check convergence decision"
   - "stop allowed stop blocked"
   - "graph-aware loop convergence"
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # convergence.cjs
@@ -32,11 +32,17 @@ Direct replacement for `deep_loop_graph_convergence`; emits graph decision bindi
 
 ### Frontier Facts
 
-When the registry carries `frontier.nodes`, the research facts gain `frontierOpen`, the count of `open` or `active` nodes. The review facts gain `frontierOpen`, `frontierTotal` and `frontierAnswered`.
+When the registry carries `frontier.nodes`, the research and review facts gain `frontierOpen`, the count of `open` or `active` nodes, `frontierTotal` and `frontierAnswered`. The research facts also gain `fanoutLineage: true` when the config carries `fanout_lineage_artifact_dir`, which only the fan-out runner writes.
+
+Under expansive depth with a non-empty `registry.frontier.activeNodeId`, the stuck count passed to the decision counts only that node's passes, for research and review alike.
 
 ### Review frontier_drained Candidate
 
 An expansive review forms the hard stop candidate `frontier_drained` when its frontier holds at least one node, none is open or active, and at least one is answered. It is the last check in the review candidate chain, after `all_dimensions_clean` and `composite_converged`. A frontier that closed with nothing answered forms no candidate. Every other legal-stop gate still applies, so a failed gate still turns it into BLOCKED.
+
+### Research frontier_drained Candidate
+
+An expansive research fan-out lineage (`fanoutLineage`) forms the same hard candidate `frontier_drained` when its frontier share holds at least one node, none is open or active, and at least one is answered. It comes after `all_questions_answered` and `composite_converged`. A single-executor expansive run and a default run never form it. The `minIterations` floor still applies, a failed quality guard still turns it into CONTINUE, and the graph decision still settles it.
 
 ### Minimum Iterations Floor
 

@@ -7,7 +7,7 @@ trigger_phrases:
   - "merge fanout lineages"
   - "strongest-restriction review merge"
   - "cross-model finding attribution"
-version: 1.4.5.0
+version: 1.4.6.0
 ---
 
 # Fan-out cross-lineage merge
@@ -68,7 +68,10 @@ reports as a `lineageNodeId`. When the guard fails, the script writes a
 summary carries `frontier_partition_guard` for both loop types, and the exit code stays 0.
 
 Both modes write `{artifact_dir}/fanout-attribution.md`: a per-lineage Markdown table with
-label, kind, model, iterations, convergence score, salvaged event count, and verdict.
+label, kind, model, iterations, convergence score, salvaged event count, and verdict, followed
+by a provider cost table (USD per lineage, `unknown` for a missing log or one with no cost
+record, so a native lineage reads `unknown`) and a run total that reads `unknown` while any
+lineage is unknown.
 
 ### Why This Matters
 

@@ -5,7 +5,7 @@ trigger_phrases:
   - "runtime/ feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
-version: 1.4.14.0
+version: 1.4.15.0
 ---
 
 # runtime/: Feature Catalog
@@ -601,7 +601,7 @@ Computes graph-aware CONTINUE, STOP_ALLOWED, or STOP_BLOCKED decisions for a ses
 
 #### How It Works
 
-Direct replacement for `deep_loop_graph_convergence`; emits graph decision bindings. `depthMode` comes from `--depth-mode expansive` (or `--depth_mode`; the script does not split a `--flag=value` form) or `antiConvergence.depthMode`. Under expansive depth, an open or active frontier node turns a stop candidate into CONTINUE with `frontierOpen`, and an expansive review whose frontier is drained with at least one node answered forms the hard candidate `frontier_drained`. The `minIterations` floor (`minIterationsNotReached`) applies to review as well as research.
+Direct replacement for `deep_loop_graph_convergence`; emits graph decision bindings. `depthMode` comes from `--depth-mode expansive` (or `--depth_mode`; the script does not split a `--flag=value` form) or `antiConvergence.depthMode`. Under expansive depth, an open or active frontier node turns a stop candidate into CONTINUE with `frontierOpen`, and an expansive review, or an expansive research fan-out lineage, whose frontier is drained with at least one node answered forms the hard candidate `frontier_drained`. Under expansive depth with an active frontier node, the stuck count reads only that node's passes for both loop types. The `minIterations` floor (`minIterationsNotReached`) applies to review as well as research.
 
 #### Source Files
 
@@ -617,7 +617,7 @@ Stores coverage graph nodes and edges from JSON arrays or iteration graph event 
 
 #### How It Works
 
-Direct replacement for `deep_loop_graph_upsert`; validates kinds, relations, and self-loops. On the review loop only, `--state-log`, `--delta-dir` and `--iteration` derive one FINDING node per iteration finding and an EVIDENCE_FOR edge to the FILE node of its `path:line` ref (`deriveReviewFindingEvidence`, `parseFindingRef`). A reused finding id that names a different finding is keyed per iteration, and `resolveReviewFindingId` folds a leaf-sent finding id onto the stored node. On every upsert, an edge to an undeclared node is skipped and listed in `rejectedOrphanEdges`. The input guards exit 3 with INPUT_VALIDATION.
+Direct replacement for `deep_loop_graph_upsert`; validates kinds, relations, and self-loops. On the review loop, `--state-log`, `--delta-dir` and `--iteration` derive one FINDING node per iteration finding and an EVIDENCE_FOR edge to the FILE node of its `path:line` ref (`deriveReviewFindingEvidence`, `parseFindingRef`). On the research loop the same flags derive FINDING, SOURCE, CITES and ANSWERS evidence from the finding rows and `answeredQuestions` when an answered question matches a QUESTION node (`deriveResearchFindingEvidence`). A reused finding id that names a different finding is keyed per iteration, and `resolveReviewFindingId` folds a leaf-sent finding id onto the stored node. On every upsert, an edge to an undeclared node is skipped and listed in `rejectedOrphanEdges`. The input guards exit 3 with INPUT_VALIDATION.
 
 #### Source Files
 
@@ -799,7 +799,7 @@ See [`fanout/fanout-salvage.md`](../feature-catalog/fanout/fanout-salvage.md) fo
 Cross-lineage merge: research (dedup by `findingId` + cross-model attribution) or review
 (strongest-restriction: any active P0 or failed required gate → merged FAIL, plus the six coverage surfaces).
 Merges lineage frontiers under a partition guard. Writes consolidated registry and
-`fanout-attribution.md`.
+`fanout-attribution.md`, with a per-lineage provider cost table and run total.
 
 #### How It Works
 

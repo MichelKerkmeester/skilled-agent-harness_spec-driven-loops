@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-research autonomous research loop."
-version: 1.14.13.0
+version: 1.14.14.0
 ---
 
 # deep-research: Feature Catalog
@@ -420,7 +420,7 @@ Detects consecutive no-progress runs and switches the loop into recovery mode.
 
 #### How It Works
 
-The loop increments `stuckCount` when an evidence iteration's ratio falls below the configured threshold, while `insight` resets the counter, `thought` is ignored as non-evidence and a self-reported `stuck` status is evidence-bearing but does not increment by itself. Once the threshold is reached, the recovery protocol classifies the failure mode, injects a targeted recovery prompt, and either resets the loop on renewed progress or exits to synthesis with gaps documented.
+The loop increments `stuckCount` when an evidence iteration's ratio falls below the configured threshold, while `insight` resets the counter, `thought` is ignored as non-evidence and a self-reported `stuck` status is evidence-bearing but does not increment by itself. Under expansive depth with an active frontier node, the count reads only that node's passes. Once the threshold is reached, the recovery protocol classifies the failure mode, injects a targeted recovery prompt, and either resets the loop on renewed progress or exits to synthesis with gaps documented.
 
 #### Source Files
 
@@ -452,7 +452,7 @@ Adds coverage-graph evidence to the stop decision when iterations emit graph eve
 
 #### How It Works
 
-When `graphEvents` are present, the workflow runs convergence.cjs, appends a `graph_convergence` event, and folds graph score and blockers into the legal-stop gate path. The reducer surfaces the latest graph decision and blockers in `findings-registry.json` and `deep-research-dashboard.md`. Without a graph decision, a non-terminal STOP candidate continues with the reason detail `graphDecisionMissing`.
+When `graphEvents` are present, or finding rows answer a stored QUESTION node so the iteration graph upsert derives FINDING, SOURCE, CITES and ANSWERS evidence from them, the workflow runs convergence.cjs, appends a `graph_convergence` event, and folds graph score and blockers into the legal-stop gate path. The reducer surfaces the latest graph decision and blockers in `findings-registry.json` and `deep-research-dashboard.md`. Without a graph decision, a non-terminal STOP candidate continues with the reason detail `graphDecisionMissing`.
 
 #### Source Files
 
@@ -484,7 +484,7 @@ Opt-in --depth-mode=expansive on deep-research seeds depth-one frontier nodes fr
 
 #### How It Works
 
-`default` is the value when the flag is absent and runs unchanged. `frontier-admit.cjs` admits proposals into the node store, and the iteration cap, consecutive failures, the floor, stuck recovery, pause, the max-duration stop, convergence off and the max-iterations policy decide before the frontier veto.
+`default` is the value when the flag is absent and runs unchanged. `frontier-admit.cjs` admits proposals into the node store, and the iteration cap, consecutive failures, the floor, stuck recovery, pause, the max-duration stop, convergence off and the max-iterations policy decide before the frontier veto. A fan-out lineage whose frontier share has drained, with at least one node answered and none open or active, forms the hard stop candidate `frontier_drained`.
 
 #### Source Files
 

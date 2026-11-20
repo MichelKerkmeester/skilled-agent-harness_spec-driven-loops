@@ -7,7 +7,7 @@ trigger_phrases:
   - "salvage fanout lineage"
   - "recover iteration from stdout"
   - "salvaged_from_stdout event"
-version: 1.4.0.3
+version: 1.4.1.0
 ---
 
 # Fan-out write-failure salvage
@@ -35,8 +35,11 @@ write output files. Without salvage, those lineages contribute nothing to the fi
 ## 2. HOW IT WORKS
 
 Fully shipped in `fanout-salvage.cjs`. Pure CJS (no TSX bootstrap), exports only —
-`runSalvageSweep` and `extractTextFromOpencodeJson` — making it fully testable via
-`require()`. `STATE_LOG_BY_LOOP_TYPE` maps `research` → `deep-research-state.jsonl` and
+`runSalvageSweep`, `extractTextFromOpencodeJson` and the provider cost readers
+`sumProviderCostFromLog`, `readLineageProviderCostUsd` and `summarizeProviderCost` — making it
+fully testable via `require()`. The cost readers sum `step_finish` cost across a lineage's live
+and rotated logs, read a log with no cost record as null, and keep the run total null while any
+lineage is null. `STATE_LOG_BY_LOOP_TYPE` maps `research` → `deep-research-state.jsonl` and
 `review` → `deep-review-state.jsonl`.
 
 ---
@@ -47,7 +50,7 @@ Fully shipped in `fanout-salvage.cjs`. Pure CJS (no TSX bootstrap), exports only
 
 | File | Role |
 |---|---|
-| `scripts/fanout-salvage.cjs` | `extractTextFromOpencodeJson`, `runSalvageSweep`, `STATE_LOG_BY_LOOP_TYPE` |
+| `scripts/fanout-salvage.cjs` | `extractTextFromOpencodeJson`, `runSalvageSweep`, `STATE_LOG_BY_LOOP_TYPE`, `sumProviderCostFromLog`, `readLineageProviderCostUsd`, `summarizeProviderCost` |
 
 ### Validation
 

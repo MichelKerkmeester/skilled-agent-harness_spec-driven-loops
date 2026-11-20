@@ -9,7 +9,7 @@ trigger_phrases:
   - "research escalation conditions"
 importance_tier: normal
 contextType: implementation
-version: 1.14.1.0
+version: 1.14.2.0
 ---
 
 # Convergence Recovery Reference
@@ -36,7 +36,7 @@ Recovery must be visible in packet state. The workflow records pivots and failur
 
 ## 2. STUCK RECOVERY TRIGGER
 
-Stuck recovery starts when `stuckCount >= config.stuckThreshold`. `stuckCount` excludes `thought` iterations and stops counting when an `insight` iteration appears.
+Stuck recovery starts when `stuckCount >= config.stuckThreshold`. `stuckCount` excludes `thought` iterations and stops counting when an `insight` iteration appears. Under expansive depth with an active frontier node it counts only that node's own passes, and recovery closes that node as `exhausted`.
 
 The workflow emits or records recovery state rather than silently changing focus. Recovery attempts should be visible in the JSONL event stream, strategy file, registry, and dashboard.
 

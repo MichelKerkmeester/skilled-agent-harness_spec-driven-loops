@@ -9,7 +9,7 @@ trigger_phrases:
   - "research packet location"
 importance_tier: important
 contextType: implementation
-version: 1.14.9.0
+version: 1.14.10.0
 ---
 
 # State Format Reference
@@ -82,7 +82,7 @@ This avoids an unnecessary `pt-01` wrapper on first runs.
 
 Statuses are `open`, `active`, `answered`, `blocked`, `exhausted`, `abstained` and `pruned`. A frontier question resolves when its node reaches a terminal status. The reducer mirrors that resolution into `findings-registry.json`, where the question carries a `frontierStatus` field holding one of `answered`, `blocked`, `exhausted`, `abstained` or `pruned`. It derives `resolvedAtIteration` from the node's `closedAtIteration` when no iteration evidence names one.
 
-The reducer projects the store as `registry.frontier {nodes, stats, budget}`, applies the depth budget so an unspent share rolls down to the next depth only, closes a spent band's open nodes as `exhausted` with reason `budget`, and adds a `## 6B. FRONTIER` dashboard section. Budget closes stay in the projection and are recomputed on every reduce, because an extension or a band roll-down can reopen them, so the store never carries them.
+The reducer projects the store as `registry.frontier {nodes, stats, budget, activeNodeId}` (`activeNodeId` is the open or active node the next focus picks, or null), applies the depth budget so an unspent share rolls down to the next depth only, closes a spent band's open nodes as `exhausted` with reason `budget`, and adds a `## 6B. FRONTIER` dashboard section. Budget closes stay in the projection and are recomputed on every reduce, because an extension or a band roll-down can reopen them, so the store never carries them.
 
 ---
 

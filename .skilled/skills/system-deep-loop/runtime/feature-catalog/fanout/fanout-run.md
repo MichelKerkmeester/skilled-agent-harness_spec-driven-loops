@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.14.0
+version: 1.4.15.0
 ---
 
 # Fan-out CLI lineage driver
@@ -125,7 +125,7 @@ warning when there are more lineages than open seed nodes.
 
 ### Completion, Preview and Diagnostics
 
-`--preview` builds every lineage command without writing: it prints the redacted argv (each prompt replaced by its digest), cwd, session id, iterations, frontier scope, the Claude config dir when set and the model, reasoning effort, sandbox and permission mode, then exits before any directory, ledger or store exists. A `cli-mistral-vibe` lineage prints no command, and a matrix the real run would refuse prints that refusal.
+`--preview` builds every lineage command without writing: it prints the redacted argv (each prompt replaced by its digest), cwd, session id, iterations, frontier scope, the Claude config dir when set and the model, reasoning effort and sandbox mode, then exits before any directory, ledger or store exists. In `effective_config`, `permissionMode` is the value the command passes after `--permission-mode`, or null for a kind that passes none (cli-codex, cli-cursor, cli-opencode, cli-pi), `sandboxEnforcement` is `preventive` when the executor's own confinement is on, `compensating` when the builder emits a non-OS restriction and otherwise `none`, and `effortApplied` is `flag`, `baked` (dsh, whose route patch sets the effort) or `none`. The preview JSON also carries `dry_run_halt`, the `child-spawn` halt event for `step_fanout_spawn` that the workflow prints when a dry run halts there, and `topic_digest`, the SHA-256 of the collapsed research topic, null for review. A `cli-mistral-vibe` lineage prints no command, and a matrix the real run would refuse prints that refusal.
 
 The preview's `aggregate_budget` carries a `units` legend for its cost numbers. `upper_bound.estimated_cost_units` is the sum of every lineage's `base_cost_units`, one attempt each, and it is the spend the aggregate cap gates on. A lineage's `base_cost_units` is its iterations times the cost units per iteration for one attempt, and its own `estimated_cost_units` is `base_cost_units x (retries + 1)`, the worst case if every retry runs, which is reported and never gated.
 
@@ -134,6 +134,8 @@ A lineage counts as fulfilled only when its state log holds at least one iterati
 A fatally failed lineage prints one stderr line at once with its label and failure class. Provider ids, URLs and emails are masked in the ledger, stderr, a rotated log and a fatally failed lineage's raw log. A rerun rotates the previous raw log to `logs/fanout-lineage.N.out` instead of overwriting it. The runner has no settle-time metadata refresh, so a research or review fan-out never rewrites the packet's `description.json` or `graph-metadata.json`, and `--no-metadata-refresh` is refused as an unknown option.
 
 The stdout summary and `orchestration-summary.json` carry `lineages`, one `{label, status, failure_class, exit_code, rerun_command}` row per lineage. `status` is `succeeded`, `skipped_complete` or `failed`. A failed lineage's `failure_class` is its class, or `exit` when the failure names none, and its `rerun_command` is the run's own argv, with any earlier `--only-lineage` pair dropped, plus `--only-lineage LABEL`, so the lineage keeps its share of the matrix. The runner path in it is absolute and the other arguments stay as given, so run it from the original working directory. A succeeded or `skipped_complete` lineage has a null `failure_class` and no rerun command, because a rerun would skip it as finished.
+
+`orchestration-summary.json` carries `provider_cost_usd: {total, by_lineage}`, each CLI lineage's provider cost in USD summed from the `step_finish` records of its live and rotated logs. A log with no cost record, such as a cli-claude-code lineage's text log, makes that lineage's cost null (unknown), and the total stays null while any lineage is unknown.
 
 ---
 

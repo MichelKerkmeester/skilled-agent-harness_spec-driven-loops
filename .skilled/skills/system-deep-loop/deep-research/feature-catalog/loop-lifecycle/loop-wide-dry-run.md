@@ -7,7 +7,7 @@ trigger_phrases:
   - "dry_run_halt"
   - "dry-run mutation boundary"
   - "confirm dry-run preview"
-version: 1.14.1.0
+version: 1.14.2.0
 ---
 
 # Loop-wide dry-run
@@ -24,7 +24,7 @@ Dry-run is a flag in both execution modes, not a third execution mode. It lets o
 
 `/deep:research` normalizes `--dry-run` into a boolean workflow input. When enabled, the workflow keeps non-mutating setup and read work live, then emits terminal JSONL preview events instead of appending to the state log or touching persistent artifacts.
 
-The dry-run control layer defines halt hooks for dispatch, state mutation, reducer refresh, and child-spawn boundaries. Each halted boundary emits a `dry_run_halt` event with the boundary label and step name, then stops before executor dispatch, reducer refresh, state or queue mutation, child-lineage spawn, or memory writes.
+The dry-run control layer defines halt hooks for dispatch, state mutation, reducer refresh, and child-spawn boundaries. Each halted boundary emits a `dry_run_halt` event with the boundary label and step name, then stops before executor dispatch, reducer refresh, state or queue mutation, child-lineage spawn, or memory writes. With fan-out executors the halt at `step_fanout_spawn` prints the `dry_run_halt` line `fanout-run.cjs --preview` returned instead of composing one; a halt at an earlier boundary step prints the workflow's own.
 
 ---
 

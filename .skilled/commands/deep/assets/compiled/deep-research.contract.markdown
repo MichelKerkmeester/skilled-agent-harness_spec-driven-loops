@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "749e2d973c36144f10b48e272b160a82e34c1acf6f1875f89bd46ada82963b9b",
+      "sha256": "d3bd39a49afcbe9bb8b0781e8d631a6f42eeb60e096b667b663ec36f2a807663",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "757a2b1d7e9e7387905d9fb53c335aa26e9a031fd2e2800ddceb47a3dd86ddb6",
+      "sha256": "dcc9c4af4c80702679d00c3019e2e5cde4f3371e1454aa2263ecc5b2fe63a42f",
       "section": "full"
     },
     {
@@ -37,12 +37,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "c4496bdd70a09bfbbf0af8fd7144c4e7005d30b9fd0a19d9f75c1dec5cc77a3c",
+      "sha256": "9b4b30635d6aa6376dfd1651fa6aeb078734fe50aa71f4baedf6b364ee33e287",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "2da0a9c3a228c5783b6a117c87abfca37f999a83488ac61ac585634eb9dcdb11",
+      "sha256": "6f84ed8ffda7e587594e2edb4223a6700b0bf60aa5077bdc4c8dde302bcb98ba",
       "section": "full"
     },
     {
@@ -52,12 +52,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
-      "sha256": "123097d366db6fe00089eeccabdca58c3318d5a74c08c538c5c28047f55fb2f2",
+      "sha256": "cbf779d7527d0b179d14146bb34e7f589d262a939ead5f2d32f64add4059d910",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
-      "sha256": "173751c7878ea49d4c2a395974a7ff0fdd1c6e7c0840cdb4b5a4b13ed9e6d1aa",
+      "sha256": "bdf00f0e6e20696c08c677948910a987537c3657c29193af908dbf806b546a60",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "d7da4f1a3fe5ab854e0e263fedf4e5e96c9cf014d2436f749d8c2faabd63676e"
+  "compiledBodyDigest": "2bce63ba91c7d87cc2577f142c79f5ab0fac0ad7271a2db4c0b42d7f3fe034a6"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -170,7 +170,7 @@ Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-
 ### Dry-Run Halt
 
 `--dry-run` binds `dry_run=true` in both execution modes.
-With fan-out executors, `--dry-run` first runs `fanout-run.cjs --preview`. For each lineage it prints the command a real run would start: the argv with every prompt replaced by its digest, plus cwd, session id, iterations, frontier scope, the Claude config dir when set, and the model, reasoning effort, sandbox and permission mode. Runner warnings are printed too. Nothing is written to the packet. The run then halts at the first side-effect step as before.
+With fan-out executors, `--dry-run` first runs `fanout-run.cjs --preview`. For each lineage it prints the command a real run would start: the argv with every prompt replaced by its digest, plus cwd, session id, iterations, frontier scope, the Claude config dir when set, and the model, reasoning effort and sandbox mode. Its `permissionMode` is the value the command passes after `--permission-mode` (a Claude mode, Devin's `auto` or `dangerous`, dsh's `read-only` or `workspace-write`), or null for a kind that passes none, `sandboxEnforcement` is `preventive`, `compensating` or `none`, and `effortApplied` is `flag`, `baked` or `none`. Runner warnings are printed too. Nothing is written to the packet. The run then halts at the first side-effect step as before. The preview JSON carries `dry_run_halt`, the runner's halt event for `step_fanout_spawn` (boundary `child-spawn`): when the halt lands there the workflow prints that line, and a halt at an earlier boundary step prints the workflow's own. Its `topic_digest` is the SHA-256 of the research topic with whitespace collapsed and trimmed, the form the prompts embed.
 Under `--restart`, session ids come from the packet about to be archived. With `--depth-mode=expansive`, frontier scopes are empty and iterations show the unseeded default because seeding happens after the preview. A `cli-mistral-vibe` lineage shows no command. A matrix the real run would refuse prints that refusal instead. Single-executor runs and runs without `--dry-run` are unchanged.
 Setup then binds its values in memory and skips the Tier 1 config persist, so no `deep-research-config.json` is written.
 The workflow then prints `dry_run_halt` preview lines and stops before any dispatch or state write.

@@ -9,12 +9,12 @@ trigger_phrases:
   - "graph convergence graceful degradation"
 importance_tier: normal
 contextType: implementation
-version: 1.14.1.0
+version: 1.14.2.0
 ---
 
 # Graph-Aware Convergence Reference
 
-Graph-aware convergence adds structural STOP evidence when iterations emit `graphEvents`. It complements the three statistical signals; it does not replace them.
+Graph-aware convergence adds structural STOP evidence when iterations emit `graphEvents` or record finding rows that answer a stored question. It complements the three statistical signals; it does not replace them.
 
 ---
 
@@ -37,6 +37,8 @@ Graph gates add structural evidence to legal-stop checks. They never replace the
 ## 2. WHEN GRAPH GATES APPLY
 
 A graph decision is required for every non-terminal STOP. Without a graph decision, every non-terminal STOP is blocked and the loop continues.
+
+The iteration graph upsert does not depend on `graphEvents` alone. When an iteration's delta holds `finding` rows and its `answeredQuestions` match the text of a QUESTION node, from the stored graph, the batch or the frontier node store, `upsert.cjs` derives one FINDING node per finding row, a SOURCE node with a CITES edge per cited file (line ref dropped, quality class derived from the path), and an ANSWERS edge to each matched question. This holds on a default run too, where no matching QUESTION node means nothing is derived. An iteration whose `graphEvents` declare FINDING nodes derives nothing, and a derived edge that repeats a stored or leaf link is dropped, so `source_diversity_guard`, `evidence_depth_guard` and `uncovered_questions` never count one finding twice.
 
 `graphEvents` are documented in `../state/state-jsonl.md`. Reducer-owned graph summaries are documented in `../state/state-reducer-registry.md`.
 
@@ -106,7 +108,7 @@ Event fields and namespace rules live in `../state/state-jsonl.md`.
 
 | Condition | Behavior |
 |-----------|----------|
-| No `graphEvents` in any iteration | Block every non-terminal STOP until a graph decision exists |
+| No `graphEvents` and no finding row matching a stored question in any iteration | Block every non-terminal STOP until a graph decision exists |
 | MCP unavailable | Rebuild graph-derived state from JSONL when possible |
 | Fewer than 2 graph iterations | Mark graph signals `insufficient_data` |
 | Graph has zero edges | Use `graphEdgeDensity = 0.0`; skip unsupported graph checks |

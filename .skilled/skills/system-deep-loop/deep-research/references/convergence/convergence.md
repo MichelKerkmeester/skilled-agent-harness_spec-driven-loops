@@ -9,7 +9,7 @@ trigger_phrases:
   - "research convergence decision order"
 importance_tier: important
 contextType: implementation
-version: 1.14.14.0
+version: 1.14.15.0
 ---
 
 # Convergence Detection Reference
@@ -127,7 +127,7 @@ Legacy labels are normalized before persistence:
 2. After 3 consecutive failed iterations, STOP with stop reason error.
 3. If stuckCount >= stuckThreshold, enter stuck recovery.
 4. If convergenceMode is off or stopPolicy is max-iterations, CONTINUE.
-5. If all key questions have evidence-backed answers, nominate STOP. Otherwise compute composite convergence signals and nominate STOP when the weighted stop score > 0.60. With no candidate, CONTINUE.
+5. If all key questions have evidence-backed answers, nominate STOP. Otherwise compute composite convergence signals and nominate STOP when the weighted stop score > 0.60. Failing both, an expansive fan-out lineage whose frontier share holds at least one answered node and none open or active nominates the hard candidate `frontier_drained`; a single-executor or default run never forms it. With no candidate, CONTINUE.
 6. If iteration count < minIterations, CONTINUE with minIterationsNotReached.
 7. If depthMode is expansive and a frontier node is open or active, CONTINUE with frontierOpen.
 8. Evaluate the quality guards for every STOP candidate except hard max-iteration stop. A failed guard returns CONTINUE with qualityGuardFailed and emits no blocked_stop event.

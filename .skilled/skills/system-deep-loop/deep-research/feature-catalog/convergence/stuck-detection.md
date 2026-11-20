@@ -7,7 +7,7 @@ trigger_phrases:
   - "no-progress recovery"
   - "stuckCount threshold"
   - "research circling recovery"
-version: 1.14.2.0
+version: 1.14.3.0
 ---
 
 # Stuck detection
@@ -22,7 +22,7 @@ Stuck detection is the loop's way of noticing that research is circling. It prev
 
 ## 2. HOW IT WORKS
 
-convergence.cjs computes `stuckCount` from the JSONL history. It increments the counter when an evidence iteration's ratio falls below the configured convergence threshold. A self-reported `stuck` status is evidence-bearing but does not increment by itself. `insight` resets the counter because a conceptual breakthrough still counts as progress, while `thought` is skipped because it is not evidence gathering.
+convergence.cjs computes `stuckCount` from the JSONL history. It increments the counter when an evidence iteration's ratio falls below the configured convergence threshold. A self-reported `stuck` status is evidence-bearing but does not increment by itself. `insight` resets the counter because a conceptual breakthrough still counts as progress, while `thought` is skipped because it is not evidence gathering. Under expansive depth with an active frontier node, the count reads only the passes bound to the node the reducer publishes as `registry.frontier.activeNodeId`; a default run keeps the run-wide count.
 
 When the counter reaches the configured threshold, the recovery protocol classifies the failure mode before changing direction. It can label the problem as shallow sources, contradictory evidence, topic too broad, repetitive findings, or source exhaustion. That classification then feeds one of the targeted recovery strategies such as trying opposites, combining prior findings, or auditing low-value iterations. If the recovery pass still fails to beat the threshold, the loop exits to synthesis with the remaining gaps documented.
 

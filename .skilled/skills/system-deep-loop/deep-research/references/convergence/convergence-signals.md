@@ -11,7 +11,7 @@ trigger_phrases:
   - "convergence threshold tuning"
 importance_tier: normal
 contextType: implementation
-version: 1.14.1.0
+version: 1.14.2.0
 ---
 
 # Convergence Signals Reference
@@ -85,6 +85,8 @@ for each iteration from newest to oldest:
   count if status == "stuck" or newInfoRatio <= noProgressThreshold
   stop counting on any productive evidence iteration
 ```
+
+Under expansive depth with an active frontier node (`registry.frontier.activeNodeId`), the count reads only the iterations bound to that node, by `frontierNodeId`, the `Frontier node <id>` focus marker or the store's `active` row. With no active node, and on a default run, the count is run-wide.
 
 Default threshold behavior:
 

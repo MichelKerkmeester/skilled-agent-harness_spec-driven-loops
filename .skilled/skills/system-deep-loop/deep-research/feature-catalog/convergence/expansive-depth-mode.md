@@ -6,7 +6,7 @@ trigger_phrases:
   - "expansive depth research"
   - "research frontier mode"
   - "frontier admission research"
-version: 1.0.16.0
+version: 1.0.17.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
@@ -35,7 +35,9 @@ After the iteration graph upsert, the workflow step `step_frontier_graph_upsert`
 
 ### Stop And Next Focus
 
-While a frontier node is open, a stop candidate, whether `all_questions_answered` or a composite convergence stop, becomes another iteration. Next Focus steers to the shallowest open node. A tie goes to the node with the fewest visits, then to the oldest, then to the lower node id, and the focus reads `Frontier node <id> (depth N, scope S): <question>`. The iteration cap, consecutive failures, the anti-convergence floor, stuck recovery, pause, the max-duration stop, `--convergence-mode=off` and the max-iterations policy decide before the frontier veto, so the frontier never extends a run past them.
+While a frontier node is open, a stop candidate, whether `all_questions_answered` or a composite convergence stop, becomes another iteration. Next Focus steers to the shallowest open node. A tie goes to the node with the fewest visits, then to the oldest, then to the lower node id, and the focus reads `Frontier node <id> (depth N, scope S): <question>`. The iteration cap, consecutive failures, the anti-convergence floor, stuck recovery, pause, the max-duration stop, `--convergence-mode=off` and the max-iterations policy decide before the frontier veto, so the frontier never extends a run past them. Stuck recovery closes the node the reducer publishes as `registry.frontier.activeNodeId`, and the stuck count reads only that node's passes.
+
+A fan-out lineage owns only its share of the frontier, so its topic questions never all close inside it. Once its share holds at least one answered node and none open or active, it forms the hard stop candidate `frontier_drained` instead of working nodes other lineages own. A single-executor expansive run forms no such candidate. The floor, the quality guards and the graph decision still settle it.
 
 ### Budget And Dashboard
 

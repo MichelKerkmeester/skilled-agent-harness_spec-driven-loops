@@ -10,7 +10,7 @@ trigger_phrases:
   - "research synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.14.27.0
+version: 1.14.28.0
 ---
 
 # Loop Protocol Reference
@@ -179,7 +179,7 @@ Run the convergence algorithm (see convergence.md):
 - Max iterations reached? STOP
 - Three consecutive failed iterations? STOP with stop reason `error`
 - Stuck count >= threshold? STUCK_RECOVERY
-- All questions answered, or average newInfoRatio < threshold? STOP candidate. Below the `minIterations` floor it becomes CONTINUE, and so does a `--depth-mode=expansive` run while a frontier node is open or active. Otherwise it stops the loop only when the stop policy allows a convergence stop and the quality gates pass
+- All questions answered, or average newInfoRatio < threshold? STOP candidate. An expansive fan-out lineage whose frontier share has drained, with at least one node answered and none open or active, forms the `frontier_drained` candidate. Below the `minIterations` floor it becomes CONTINUE, and so does a `--depth-mode=expansive` run while a frontier node is open or active. Otherwise it stops the loop only when the stop policy allows a convergence stop and the quality gates pass
 - Otherwise: CONTINUE
 
 #### Step 2a: Check Pause Sentinel
@@ -414,7 +414,7 @@ A leaf may append `frontier_proposal` rows to its delta only when its prompt car
 
 Next Focus picks the shallowest open node first, then the least visited, then the oldest, and writes `Frontier node <id> (depth N, scope S): <question>` so a visit does not read as an answer.
 
-Under stuck recovery the handler takes the node id from `registry.frontier.nodes`, not from the focus text, closes that node as `exhausted` with reason `stuck` through `frontier-admit.cjs close`, keeps the `stuckRecovery` event, and moves to the next open node. When the latest iteration's focus names no open or active frontier node, as after a blocked-stop recovery or a pivot focus, global recovery runs even while other nodes stay open.
+The reducer publishes `registry.frontier.activeNodeId`, the node the next focus picks by the same breadth-first choice. Under expansive depth with an active node, the stuck count reads only the passes bound to that node, by `frontierNodeId`, the `Frontier node <id>` focus marker or the store's `active` row, so low passes on its siblings cannot close it. Under stuck recovery the handler takes that published `activeNodeId`, not the focus text, closes the node as `exhausted` with reason `stuck` through `frontier-admit.cjs close`, keeps the `stuckRecovery` event, and moves to the next open node. Global recovery runs only when no node is open or active. A default run keeps the run-wide count.
 
 On a fan-out run, `fanout-run.cjs --depth-mode expansive` deals the seeded open depth-1 nodes round-robin in node-id order, by UTF-16 code unit rather than locale collation, across lineages, writes the `frontier-nodes.jsonl` and inbox rows of each lineage dealt at least one node that has no store yet before it spawns (a lineage dealt no node gets neither and runs at its loop default), binds `frontier_scope:` in the lineage prompt and records `frontier_partition` in `orchestration-summary.json`. `fanout-merge.cjs` merges the lineage frontiers, each node keeping its lineage label, and records a partition guard that names any dealt node no lineage reports.
 
