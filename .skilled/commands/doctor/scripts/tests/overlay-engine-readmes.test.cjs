@@ -3,10 +3,11 @@
 // ───────────────────────────────────────────────────────────────────
 'use strict';
 
-// A README.md in the overlay folder either ships, because the manifest reaches
-// it, or only documents the folder. These tests pin both roles: the docs leg of
-// `status --audit` that reports missing and rejected READMEs without changing the
-// result, and every engine command leaving a documentation-only README alone.
+// A README.md or README.markdown in the overlay folder either ships, because the
+// manifest reaches it, or only documents the folder. These tests pin both roles:
+// the docs leg of `status --audit` that reports missing and rejected READMEs
+// without changing the result, and every engine command leaving a
+// documentation-only README alone.
 // Each scenario runs with the overlay folder inside the tree and beside it.
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -487,10 +488,76 @@ for (const placement of PLACEMENTS) {
     assert.equal(entry.scope, 'file');
     assert.equal(fs.existsSync(path.join(fixture.tree, '.skilled/skills/new/README.md')), false);
   });
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 5. README.MARKDOWN
+  // ───────────────────────────────────────────────────────────────────────────
+
+  test(`a README.markdown is the folder's README, counted by the docs leg and shipped only when an entry reaches it, with ${placement.name}`, (t) => {
+    const fixture = createReadmeFixture(t, placement.options);
+    writeFile(fixture.overlayDir, 'empty/README.markdown', docOnlyBytes('empty/README.markdown'));
+    writeFile(fixture.overlayDir, 'files/README.markdown', docOnlyBytes('files/README.markdown'));
+    writeFile(fixture.overlayDir, 'bundle/README.markdown', 'bundle markdown readme\n');
+    const { report } = auditJson(fixture);
+    assert.equal(report.docs.folders, FOLDERS.length);
+    assert.equal(report.docs.readmes, DOC_ONLY.length + SHIPPING.length + 3);
+    assert.equal(report.docs.shipping, SHIPPING.length + 1);
+    assert.equal(report.docs.docOnly, DOC_ONLY.length + 2);
+    assert.deepEqual(report.docs.findings.filter((finding) => finding.kind === 'missing-readme'), []);
+
+    const overlayBefore = overlayDigest(fixture);
+    const applied = fixture.run(['apply']);
+    assert.equal(applied.code, 0, applied.output);
+    assert.equal(fs.readFileSync(path.join(fixture.tree, 'bundle-live/README.markdown'), 'utf8'), 'bundle markdown readme\n');
+    const docOnlyHashes = new Set(['empty/README.markdown', 'files/README.markdown']
+      .map((relativePath) => sha256(Buffer.from(docOnlyBytes(relativePath)))));
+    assert.deepEqual([...treeDigest(fixture).values()].filter((hash) => docOnlyHashes.has(hash)), []);
+    assert.deepEqual(overlayDigest(fixture), overlayBefore);
+  });
+
+  test(`the real sk-doc validator passes a README.markdown in a commands folder and validates a README.md beside it, with ${placement.name}`, (t) => {
+    const fixture = createReadmeFixture(t, placement.options);
+    linkRealValidator(fixture);
+    writeFile(fixture.overlayDir, 'framework/commands/only/README.markdown', VALID_README);
+    writeFile(fixture.overlayDir, 'framework/commands/both/README.markdown', VALID_README);
+    // sk-doc reads a README.md under a commands folder as a command document.
+    writeFile(fixture.overlayDir, 'framework/commands/both/README.md', VALID_README);
+    const { report } = auditJson(fixture);
+    assert.equal(report.docs.isValidated, true);
+    const at = (relative) => report.docs.findings.filter((finding) => finding.path === `${placement.label}/${relative}`);
+    for (const folder of ['framework/commands/only', 'framework/commands/both']) assert.deepEqual(at(folder), [], folder);
+    assert.deepEqual(at('framework/commands/only/README.markdown'), []);
+    assert.deepEqual(at('framework/commands/both/README.markdown'), []);
+    assert.equal(at('framework/commands/both/README.md').length, 1);
+    assert.equal(at('framework/commands/both/README.md')[0].kind, 'invalid-readme');
+    const result = fixture.run(['status', '--audit']);
+    assert.match(result.stdout, new RegExp('^DOCS     invalid-readme ' + placement.label.replace(/\./g, '\\.') +
+      '/framework/commands/both/README\\.md: \\S', 'm'));
+    assert.doesNotMatch(result.stdout, /README\.markdown/);
+  });
+
+  test(`adopt refuses a documentation-only README.markdown as a file source or inside a folder, and writes nothing, with ${placement.name}`, (t) => {
+    const fixture = createReadmeFixture(t, placement.options);
+    writeFile(fixture.overlayDir, 'framework/skills/new/SKILL.md', 'new skill\n');
+    writeFile(fixture.overlayDir, 'framework/skills/new/README.markdown', 'documents the new skill folder\n');
+    const manifestBefore = fs.readFileSync(fixture.manifestPath);
+    const overlayBefore = overlayDigest(fixture);
+    const treeBefore = treeDigest(fixture);
+    const asFile = fixture.run(['apply', '--adopt', '.skilled/skills/new/README.markdown'], fixture.tree);
+    assert.equal(asFile.code, 2, asFile.output);
+    assert.match(asFile.stdout, new RegExp('^refuse: ' + placement.label.replace(/\./g, '\\.') +
+      '/framework/skills/new/README\\.markdown is a documentation-only README', 'm'));
+    const asFolder = fixture.run(['apply', '--adopt', '.skilled/skills/new'], fixture.tree);
+    assert.equal(asFolder.code, 2, asFolder.output);
+    assert.match(asFolder.stdout, /directory entry and ship the documentation-only README .*framework\/skills\/new\/README\.markdown;/);
+    assert.deepEqual(fs.readFileSync(fixture.manifestPath), manifestBefore);
+    assert.deepEqual(overlayDigest(fixture), overlayBefore);
+    assert.deepEqual(treeDigest(fixture), treeBefore);
+  });
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 5. REPIN --STAGE
+// 6. REPIN --STAGE
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**

@@ -819,6 +819,60 @@ test('a layout link below a link the same run writes out of the tree is refused 
   assert.equal(treeDigest(fixture.tree), before);
 });
 
+// The plan judges a nested path by the last copy of a path listed twice, while
+// the run writes every copy in order, so an earlier copy pointing out of the tree
+// would stand before the writer refused the nested entry. The manifest is
+// refused instead, on every command that plans the links, before any write.
+test('a layout link path listed twice is refused before any write, even when only an earlier copy points out', (t) => {
+  const fixture = createSyncFixture(t);
+  const outside = path.resolve(fixture.tree, '../outside');
+  fs.mkdirSync(outside);
+  fs.mkdirSync(path.join(fixture.tree, 'real-dir'));
+  fixture.manifest.layoutLinks = [
+    { path: 'ext', target: '../outside' },
+    { path: 'ext/planted', target: 'anything' },
+    { path: 'ext', target: 'real-dir' },
+  ];
+  writeManifest(fixture);
+  const before = treeDigest(fixture.tree);
+
+  for (const command of [['status'], ['apply'], ['apply', '--relayout']]) {
+    const result = fixture.run(command);
+    assert.equal(result.code, 2, command.join(' ') + ': ' + result.output);
+    assert.ok(result.output.includes('layout link path is listed twice: ext'), command.join(' ') + ': ' + result.output);
+    assert.equal(treeDigest(fixture.tree), before, command.join(' '));
+  }
+  assert.throws(() => fs.lstatSync(path.join(fixture.tree, 'ext')), { code: 'ENOENT' });
+  assert.deepEqual(fs.readdirSync(outside), []);
+});
+
+test('layout link paths are compared without a leading ./ or trailing slashes, and distinct paths still apply', (t) => {
+  const cases = [
+    { links: [{ path: './a', target: 'real-dir' }, { path: 'a/', target: 'real-dir' }], duplicated: 'a' },
+    { links: [{ path: 'a', target: 'real-dir' }, { path: './a//', target: 'real-dir' }], duplicated: 'a' },
+    { links: [{ path: 'deep/a', target: '../real-dir' }, { path: './deep/a/', target: '../real-dir' }], duplicated: 'deep/a' },
+    { links: [{ path: 'a', target: 'real-dir' }, { path: 'ab', target: 'real-dir' }, { path: 'a/b', target: '../guarded.txt' }] },
+  ];
+  for (const { links, duplicated } of cases) {
+    const fixture = createSyncFixture(t);
+    fs.mkdirSync(path.join(fixture.tree, 'real-dir'));
+    fixture.manifest.layoutLinks = links;
+    writeManifest(fixture);
+    const before = treeDigest(fixture.tree);
+    const applied = fixture.run(['apply']);
+    const label = links.map((link) => link.path).join(', ');
+    if (duplicated) {
+      assert.equal(applied.code, 2, label + ': ' + applied.output);
+      assert.ok(applied.output.includes('layout link path is listed twice: ' + duplicated), label + ': ' + applied.output);
+      assert.equal(treeDigest(fixture.tree), before, label);
+    } else {
+      assert.equal(applied.code, 0, label + ': ' + applied.output);
+      assert.equal(fs.readlinkSync(path.join(fixture.tree, 'ab')), 'real-dir');
+      assert.equal(fs.readlinkSync(path.join(fixture.tree, 'real-dir', 'b')), '../guarded.txt');
+    }
+  }
+});
+
 // A looping upstream link resolves nowhere, so the writer removes it before it
 // judges the folder below it. A looping parent that is not replaced is still
 // refused at plan time by the dangling-or-looping test above.

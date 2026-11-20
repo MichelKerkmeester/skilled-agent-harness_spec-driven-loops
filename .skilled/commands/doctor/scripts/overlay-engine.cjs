@@ -2879,6 +2879,24 @@ function isUnderRootSkilled(value) {
   return normalized === 'root/skilled' || normalized.startsWith('root/skilled/');
 }
 
+/**
+ * Find the first layout link path the manifest lists more than once. Two
+ * spellings name one path when they match after a leading `./` and trailing
+ * slashes are removed, so `./a` and `a/` are the same link.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {string|null} The duplicated path without `./` or trailing slashes, or null.
+ */
+function duplicateLayoutLinkPath(manifest) {
+  const seen = new Set();
+  for (const link of manifest.layoutLinks || []) {
+    if (!link || typeof link.path !== 'string') continue;
+    const key = link.path.replace(/^(?:\.\/+)+/, '').replace(/\/+$/, '');
+    if (seen.has(key)) return key;
+    seen.add(key);
+  }
+  return null;
+}
+
 function rootSkilledProblem(field, value) {
   return `${field} ${value} sits under root/skilled, which holds no copy; the framework's copies live under framework/`;
 }
@@ -2891,11 +2909,17 @@ function rootSkilledProblem(field, value) {
  * still leaves it when a folder on its way is a link pointing out, so the
  * parent is judged by where it resolves. The leaf is left unresolved: it is
  * the link the write replaces, never a folder written through.
+ * A path listed twice is refused first. The run writes both copies in order,
+ * while the plan judges a nested path by the last copy only, so an earlier copy
+ * pointing out of the tree would be written before the writer refused the
+ * nested entry, and the run would stop half applied.
  * @param {string} root Destination tree root.
  * @param {object} manifest Loaded overlay manifest.
- * @returns {string|null} The refusal, or null when every path stays inside.
+ * @returns {string|null} The refusal, or null when every path is listed once and stays inside.
  */
 function layoutLinkEscape(root, manifest) {
+  const duplicated = duplicateLayoutLinkPath(manifest);
+  if (duplicated !== null) return `layout link path is listed twice: ${duplicated}`;
   // A parent link that dangles or loops cannot be resolved, so where it lands
   // is unknown and the path is refused until it can be. The one exception is the
   // upstream link the entry replaces: apply unlinks it before the write and
@@ -6350,7 +6374,10 @@ function auditVendoredTree(ctx, manifest) {
 // ─────────────────────────────────────────────────────────────────────────────
 // 18. OVERLAY FOLDER READMES
 //
-// Every folder of the overlay folder may carry a README.md that explains it.
+// Every folder of the overlay folder may carry a README.md or a README.markdown
+// that explains it; either name is the folder's README, and a folder may hold
+// both. sk-doc reads a README.md under a commands folder as a command document,
+// so a commands folder takes the README.markdown name.
 // Only a README the manifest reaches is overlay content; every other one is
 // documentation for whoever reads the overlay folder, and no command applies,
 // adopts or reports it. The docs leg of `status --audit` is the one place such
@@ -6358,7 +6385,7 @@ function auditVendoredTree(ctx, manifest) {
 // changes the status result, so an adopter with no READMEs keeps its exit.
 // ─────────────────────────────────────────────────────────────────────────────
 
-const README_NAME = 'README.md';
+const README_NAMES = ['README.md', 'README.markdown'];
 const SK_DOC_VALIDATOR = '.skilled/skills/sk-doc/scripts/validate_document.py';
 const VALIDATOR_MAX_BUFFER = 16 * 1024 * 1024;
 const DOCS_UNREADABLE_CODES = new Set(['ENOENT', 'ENOTDIR', 'EACCES', 'EPERM']);
@@ -6401,7 +6428,8 @@ function readmeShipTest(manifest) {
  * folders, dot folders and node_modules hold no overlay content, and a link is
  * never followed, so a loop or a link out of the folder cannot widen the walk.
  * @param {string} overlayRoot The overlay folder.
- * @returns {{relative: string, hasReadme: boolean}[]} `relative` is '' for the overlay folder itself.
+ * @returns {{relative: string, readmeNames: string[]}[]} `relative` is '' for the overlay folder
+ *   itself; `readmeNames` lists the README names present as regular files, in README_NAMES order.
  */
 function overlayDocFolders(overlayRoot) {
   const folders = [];
@@ -6419,7 +6447,8 @@ function overlayDocFolders(overlayRoot) {
       throw error;
     }
     // The name is compared exactly: a case-insensitive disk would also find readme.md.
-    folders.push({ relative, hasReadme: dirents.some((dirent) => dirent.name === README_NAME && dirent.isFile()) });
+    const readmeNames = README_NAMES.filter((name) => dirents.some((dirent) => dirent.name === name && dirent.isFile()));
+    folders.push({ relative, readmeNames });
     for (const dirent of dirents) {
       if (!dirent.isDirectory() || dirent.name.startsWith('.') || dirent.name === 'node_modules') continue;
       if (relative === '' && (dirent.name === RUNS_FOLDER || dirent.name === RELAYOUT_RUNS_FOLDER)) continue;
@@ -6482,11 +6511,10 @@ function auditOverlayDocs(ctx, manifest) {
   let findings = [];
   const readmes = [];
   for (const folder of folders) {
-    if (folder.hasReadme) {
-      readmes.push(folder.relative ? folder.relative + '/' + README_NAME : README_NAME);
-    } else {
+    if (folder.readmeNames.length === 0) {
       findings.push({ kind: 'missing-readme', path: shown(folder.relative) });
     }
+    for (const name of folder.readmeNames) readmes.push(folder.relative ? folder.relative + '/' + name : name);
   }
   const shipping = readmes.filter(ships).length;
 
@@ -6542,11 +6570,11 @@ function docsFindingLine(finding) {
 function documentationOnlyReadmesAt(manifest, source, sourcePath) {
   const ships = readmeShipTest(manifest);
   if (isFile(sourcePath)) {
-    return path.posix.basename(source) === README_NAME && !ships(source) ? [source] : [];
+    return README_NAMES.includes(path.posix.basename(source)) && !ships(source) ? [source] : [];
   }
   if (!isDirectory(sourcePath)) return [];
   return listTreePaths(sourcePath)
-    .filter((filePath) => path.basename(filePath) === README_NAME && isFile(filePath))
+    .filter((filePath) => README_NAMES.includes(path.basename(filePath)) && isFile(filePath))
     .map((filePath) => path.posix.join(source, toPosix(path.relative(sourcePath, filePath))))
     .filter((relative) => !ships(relative))
     .sort();
