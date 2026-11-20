@@ -76,7 +76,7 @@ test('the overlay folder defaults to skilled-overlays when the tree has no setti
 });
 
 test('the setting file names the overlay folder, and manifest, sources and state resolve inside it', (t) => {
-  const fixture = createWorkspace(t, 'overlay-engine-setting-', { overlayFolder: 'barter-overlays' });
+  const fixture = createWorkspace(t, 'overlay-engine-setting-', { overlayFolder: 'custom-overlays' });
   writeFile(fixture.overlayDir, 'files/own.txt', 'own copy\n');
   writeFile(fixture.tree, 'own.txt', 'upstream copy\n');
   fixture.manifest = {
@@ -88,15 +88,15 @@ test('the setting file names the overlay folder, and manifest, sources and state
     verifyGenerated: [],
   };
   writeManifest(fixture);
-  assert.equal(engine.resolveOverlayDir(fixture.tree), 'barter-overlays');
+  assert.equal(engine.resolveOverlayDir(fixture.tree), 'custom-overlays');
 
   const applied = runEngine(['apply', '--root', fixture.tree], fixture.workspace);
   assert.equal(applied.code, 0, applied.output);
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'own.txt'), 'utf8'), 'own copy\n');
-  assert.ok(fs.existsSync(path.join(fixture.tree, 'barter-overlays', 'sync-state.json')));
+  assert.ok(fs.existsSync(path.join(fixture.tree, 'custom-overlays', 'sync-state.json')));
   assert.equal(fs.existsSync(path.join(fixture.tree, 'skilled-overlays')), false);
   const guarded = runEngine(['--guard', 'own.txt', '--root', fixture.tree], fixture.tree);
-  assert.match(guarded.output, /owned by barter-overlays\/files\/own\.txt/);
+  assert.match(guarded.output, /owned by custom-overlays\/files\/own\.txt/);
 });
 
 // A folder directly beside the tree, written `../<name>`, is accepted and
@@ -145,10 +145,55 @@ test('the setting file refuses a sibling link that points back at the tree root'
   const fixture = createSyncFixture(t);
   fs.symlinkSync(fixture.tree, path.join(path.dirname(fixture.tree), 'alias'));
   writeFile(fixture.tree, '.skilled-overlays.json', JSON.stringify({ overlayDir: '../alias' }));
-  assert.throws(() => engine.resolveOverlayDir(fixture.tree), /names a folder outside the tree root/);
+  assert.throws(() => engine.resolveOverlayDir(fixture.tree),
+    /\.skilled-overlays\.json names a sibling that resolves into the tree root: \.\.\/alias/);
   const status = fixture.run(['status']);
   assert.equal(status.code, 2, status.output);
-  assert.match(status.output, /\.skilled-overlays\.json/);
+  assert.ok(status.output.includes('.skilled-overlays.json names a sibling that resolves into the tree root: ../alias'),
+    status.output);
+});
+
+test('the setting file refuses a sibling link that points at a folder holding the tree root', (t) => {
+  const fixture = createSyncFixture(t);
+  fs.symlinkSync(fixture.workspace, path.join(fixture.workspace, 'holder'));
+  writeFile(fixture.tree, '.skilled-overlays.json', JSON.stringify({ overlayDir: '../holder' }));
+  assert.throws(() => engine.resolveOverlayDir(fixture.tree),
+    /\.skilled-overlays\.json names a sibling that resolves to a folder holding the tree root: \.\.\/holder/);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 2, status.output);
+  assert.ok(status.output.includes(
+    '.skilled-overlays.json names a sibling that resolves to a folder holding the tree root: ../holder'), status.output);
+});
+
+// A folder inside the tree is read through any link on its path, so the
+// setting is judged by where that path lands, not by how it is spelled.
+test('the setting file refuses an in-tree link to a folder outside the tree', (t) => {
+  const fixture = createSyncFixture(t);
+  const outside = path.join(fixture.workspace, 'outside-overlays');
+  fs.cpSync(fixture.overlayDir, outside, { recursive: true });
+  fs.symlinkSync(outside, path.join(fixture.tree, 'linked-overlays'));
+  writeFile(fixture.tree, '.skilled-overlays.json', JSON.stringify({ overlayDir: 'linked-overlays' }));
+  assert.throws(() => engine.resolveOverlayDir(fixture.tree),
+    /\.skilled-overlays\.json names a folder inside the tree that resolves outside it: linked-overlays/);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 2, status.output);
+  assert.ok(status.output.includes(
+    '.skilled-overlays.json names a folder inside the tree that resolves outside it: linked-overlays'), status.output);
+});
+
+test('the setting file refuses an in-tree link whose target does not exist yet', (t) => {
+  const fixture = createSyncFixture(t);
+  fs.symlinkSync(path.join(fixture.workspace, 'not-yet'), path.join(fixture.tree, 'pending-overlays'));
+  writeFile(fixture.tree, '.skilled-overlays.json', JSON.stringify({ overlayDir: 'pending-overlays/inner' }));
+  assert.throws(() => engine.resolveOverlayDir(fixture.tree),
+    /\.skilled-overlays\.json names a folder inside the tree that resolves outside it: pending-overlays\/inner/);
+});
+
+test('the setting file keeps an in-tree link to a folder inside the tree', (t) => {
+  const fixture = createSyncFixture(t);
+  fs.symlinkSync(fixture.overlayDir, path.join(fixture.tree, 'aliased-overlays'));
+  writeFile(fixture.tree, '.skilled-overlays.json', JSON.stringify({ overlayDir: 'aliased-overlays' }));
+  assert.equal(engine.resolveOverlayDir(fixture.tree), 'aliased-overlays');
 });
 
 // A link whose target does not exist yet cannot be told apart from one into the
@@ -185,7 +230,7 @@ test('the setting file refuses a sibling spelled as a case variant of the tree f
     return;
   }
   writeFile(fixture.tree, '.skilled-overlays.json', JSON.stringify({ overlayDir: '../' + variant }));
-  assert.throws(() => engine.resolveOverlayDir(fixture.tree), /names a folder outside the tree root/);
+  assert.throws(() => engine.resolveOverlayDir(fixture.tree), /names a sibling that resolves into the tree root/);
   const status = fixture.run(['status']);
   assert.equal(status.code, 2, status.output);
 });
@@ -541,4 +586,63 @@ test('the guard answers on an out-of-sync tree without applying anything', (t) =
   }
   assert.equal(treeDigest(fixture.tree), before);
   assert.match(fixture.run(['status']).output, /overlay-edited guarded\.txt/);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LAYOUT LINK PATHS AND PINNED REVISIONS
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('apply refuses a layout link whose path leaves the tree and creates nothing outside it', (t) => {
+  const fixture = createSyncFixture(t);
+  fixture.manifest.layoutLinks = [{ path: '../outside/link', target: 'guarded.txt' }];
+  writeManifest(fixture);
+  const before = treeDigest(fixture.tree);
+
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 2, applied.output);
+  assert.ok(applied.output.includes('layout link path escapes the tree root: ../outside/link'), applied.output);
+  assert.equal(fs.existsSync(path.join(fixture.workspace, 'outside')), false);
+  assert.equal(treeDigest(fixture.tree), before);
+});
+
+// A pin read from the manifest is data, so git must never be able to read it
+// as an option, whatever it starts with.
+test('a pinned commit is passed to git after --end-of-options', (t) => {
+  const fixture = createSyncFixture(t);
+  seed(fixture);
+  pinCheckout(fixture);
+  writeFile(fixture.tree, 'guarded.txt', 'live edit\n');
+  const commit = '-not-a-commit';
+  fixture.manifest.pin.commit = commit;
+  // An overlay rebased onto the pin is compared with the pinned bytes, which is
+  // the read that puts the pin in a revision argument.
+  fixture.manifest.overlays[0].rebasedOnto = commit;
+  writeManifest(fixture);
+
+  const realGit = spawnSync('sh', ['-c', 'command -v git'], { encoding: 'utf8' }).stdout.trim();
+  assert.ok(realGit, 'git is on PATH');
+  const shimDir = path.join(fixture.workspace, 'git-shim');
+  const logPath = path.join(fixture.workspace, 'git-argv.log');
+  fs.mkdirSync(shimDir);
+  fs.writeFileSync(path.join(shimDir, 'git'),
+    '#!/bin/sh\n' +
+    `for arg in "$@"; do printf '%s\\037' "$arg"; done >> '${logPath}'\n` +
+    `printf '\\n' >> '${logPath}'\n` +
+    `exec '${realGit}' "$@"\n`, { mode: 0o755 });
+  const originalPath = process.env.PATH;
+  process.env.PATH = shimDir + path.delimiter + originalPath;
+  t.after(() => { process.env.PATH = originalPath; });
+
+  fixture.run(['status']);
+
+  const calls = fs.existsSync(logPath)
+    ? fs.readFileSync(logPath, 'utf8').split('\n').filter(Boolean).map((line) => line.split('\x1f').slice(0, -1))
+    : [];
+  const pinned = calls.filter((argv) => argv.some((arg) => arg === commit || arg.startsWith(commit + ':')));
+  assert.ok(pinned.length > 0, 'no git call read the pinned commit:\n' + calls.map((argv) => argv.join(' ')).join('\n'));
+  for (const argv of pinned) {
+    const at = argv.findIndex((arg) => arg === commit || arg.startsWith(commit + ':'));
+    assert.equal(argv[at - 1], '--end-of-options', argv.join(' '));
+  }
 });

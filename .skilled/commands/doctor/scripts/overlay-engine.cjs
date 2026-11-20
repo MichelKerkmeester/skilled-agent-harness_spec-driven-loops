@@ -476,10 +476,37 @@ function resolveOverlayDir(root) {
         }
         return normalized;
       }
+      // A sibling that lands on the tree, or on a folder around it, is not beside
+      // the tree at all, so the refusal says where it really points.
+      if (isWithin(treeRoot, target)) {
+        throw new Error(`${SETTING_FILE} names a sibling that resolves into the tree root: ${value}`);
+      }
+      throw new Error(`${SETTING_FILE} names a sibling that resolves to a folder holding the tree root: ${value}`);
     }
   }
   if (normalized === '.' || normalized === '' || normalized === '..' || normalized.startsWith('../')) {
     throw new Error(`${SETTING_FILE} names a folder outside the tree root: ${value}`);
+  }
+  // A folder inside the tree is still read through any link on its path, so it is
+  // judged by where that path lands. A link whose target is missing, or that
+  // loops, cannot be resolved, so it is refused until it can.
+  const inside = path.resolve(root, normalized);
+  let current = path.resolve(root);
+  for (const part of normalized.split('/')) {
+    current = path.join(current, part);
+    let stats;
+    try {
+      stats = fs.lstatSync(current);
+    } catch (error) {
+      if (!error || (error.code !== 'ENOENT' && error.code !== 'ENOTDIR')) throw error;
+      break;
+    }
+    if (stats.isSymbolicLink() && !fs.existsSync(current)) {
+      throw new Error(`${SETTING_FILE} names a folder inside the tree that resolves outside it: ${value}`);
+    }
+  }
+  if (!isWithin(canonicalPath(root), canonicalPath(inside))) {
+    throw new Error(`${SETTING_FILE} names a folder inside the tree that resolves outside it: ${value}`);
   }
   return normalized;
 }
@@ -2831,6 +2858,30 @@ function rootSkilledProblem(field, value) {
 }
 
 /**
+ * Find the first layout link path that would land outside the tree. Every link
+ * write and its rollback joins these paths onto the root, and a link write
+ * unlinks whatever stands there, so a path that leaves the root is refused
+ * before anything reads or writes through it.
+ * @param {string} root Destination tree root.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {string|null} The refusal, or null when every path stays inside.
+ */
+function layoutLinkEscape(root, manifest) {
+  for (const link of manifest.layoutLinks || []) {
+    if (!link) continue;
+    const paths = [link.path];
+    if (link.replaces && typeof link.replaces.path === 'string') paths.push(link.replaces.path);
+    for (const p of paths) {
+      if (typeof p !== 'string') continue;
+      if (path.isAbsolute(p) || path.win32.isAbsolute(p) || !isWithin(root, path.resolve(root, p))) {
+        return `layout link path escapes the tree root: ${p}`;
+      }
+    }
+  }
+  return null;
+}
+
+/**
  * Refuse a manifest whose paths escape their roots, and find every entry that
  * would read a secret. A path escape means the manifest itself is wrong, so it
  * stops the run. A protected path blocks only its own entry: the report still
@@ -2842,6 +2893,8 @@ function rootSkilledProblem(field, value) {
  */
 function assertSafeToPlan(ctx, manifest) {
   const root = ctx.root;
+  const linkEscape = layoutLinkEscape(root, manifest);
+  if (linkEscape) throw new Error(linkEscape);
   const exact = exactManifestPaths(ctx, manifest);
   const refused = new Map();
   for (const entry of manifest.overlays) {
@@ -4246,7 +4299,7 @@ function runGit(upstream, args, env) {
  */
 function commitBytesReader(upstream, commit) {
   return (key) => {
-    const result = runGit(upstream, ['cat-file', 'blob', `${commit}:${key}`]);
+    const result = runGit(upstream, ['cat-file', 'blob', '--end-of-options', `${commit}:${key}`]);
     return result.status === 0 ? result.stdout : null;
   };
 }
@@ -5910,7 +5963,7 @@ function stagedUnownedChanges(ctx, manifest) {
   return changes.filter((change) => {
     if (isManaged(change.key) || settings.isGenerated(change.key)) return false;
     if (!hasCheckout) return true;
-    const upstreamBlob = gitTextOrNull(pin.checkout, ['rev-parse', '--verify', '--quiet', `${pin.commit}:${change.key}`], upstreamEnv);
+    const upstreamBlob = gitTextOrNull(pin.checkout, ['rev-parse', '--verify', '--quiet', '--end-of-options', `${pin.commit}:${change.key}`], upstreamEnv);
     // Deleting a file upstream never shipped removes the project's own stray file.
     if (change.status === 'D') return upstreamBlob !== null;
     const stagedBlob = gitTextOrNull(topLevel, ['rev-parse', '--verify', '--quiet', ':' + change.file]);
@@ -5919,7 +5972,7 @@ function stagedUnownedChanges(ctx, manifest) {
     // A project may normalise line endings on commit, so the same text can reach
     // the index as different bytes than upstream stored. Compare the contents
     // before calling a staged copy a change.
-    const upstreamBytes = gitBytesOrNull(pin.checkout, ['cat-file', 'blob', `${pin.commit}:${change.key}`], upstreamEnv);
+    const upstreamBytes = gitBytesOrNull(pin.checkout, ['cat-file', 'blob', '--end-of-options', `${pin.commit}:${change.key}`], upstreamEnv);
     const stagedBytes = gitBytesOrNull(topLevel, ['cat-file', 'blob', ':' + change.file]);
     return !(upstreamBytes !== null && stagedBytes !== null && isSameText(upstreamBytes, stagedBytes));
   }).map(({ status, key }) => ({ status, key }));
@@ -5937,7 +5990,7 @@ function stagedUnownedChanges(ctx, manifest) {
  */
 function lsTreeBlobs(upstream, commit, pathspecs) {
   const blobs = new Map();
-  for (const record of gitText(upstream, ['ls-tree', '-r', '-z', commit, '--', ...pathspecs]).split('\0')) {
+  for (const record of gitText(upstream, ['ls-tree', '-r', '-z', '--end-of-options', commit, '--', ...pathspecs]).split('\0')) {
     const tab = record.indexOf('\t');
     if (tab < 0) continue;
     const [mode, type, object] = record.slice(0, tab).split(' ');
@@ -6479,6 +6532,11 @@ function removeRelayoutBackup(runDir, runsDir, isRunsDirNew) {
  *   a failed run.
  */
 function relayoutUnderLock(ctx, manifest) {
+  const linkEscape = layoutLinkEscape(ctx.root, manifest);
+  if (linkEscape) {
+    console.log('refuse: ' + linkEscape);
+    return EXIT_ERROR;
+  }
   const groups = groupLayoutMoves(layoutMoves(manifest));
   if (groups.length === 0) {
     console.log('0 moved');

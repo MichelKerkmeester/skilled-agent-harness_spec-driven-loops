@@ -1332,6 +1332,55 @@ test('relayout that fails writing its backup moves nothing and keeps no partial 
   assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'relayout-runs')), false);
 });
 
+// A backup that half wrote and then could not be removed is left beside the
+// folder, so the error has to name where it is.
+test('relayout that fails writing its backup and cannot remove it names the partial backup', (t) => {
+  const fixture = createRelayoutFixture(t);
+  let backupWrites = 0;
+  const rm = fs.rmSync;
+  t.mock.method(fs, 'rmSync', (target, ...rest) => {
+    if (String(target).includes(path.sep + 'relayout-runs' + path.sep)) throw new Error('injected remove failure');
+    return rm(target, ...rest);
+  });
+
+  const { code, lines } = relayoutWithMockedFs(t, fixture, 'writeFileSync', (write, filePath, ...rest) => {
+    if (String(filePath).includes(path.sep + 'relayout-runs' + path.sep)) {
+      backupWrites += 1;
+      if (backupWrites === 2) throw new Error('injected backup failure');
+    }
+    return write(filePath, ...rest);
+  });
+
+  assert.equal(code, 2, lines.join('\n'));
+  const errors = lines.filter((line) => line.startsWith('error: '));
+  assert.equal(errors.length, 1, lines.join('\n'));
+  const match = /^error: relayout failed while writing the backup: injected backup failure; nothing was moved, but the partial backup at (\S+) could not be removed: injected remove failure$/.exec(errors[0]);
+  assert.ok(match, errors[0]);
+  assert.ok(match[1].startsWith('skilled-overlays/relayout-runs/'), errors[0]);
+  assert.equal(movedLines(lines.join('\n')).length, 0, lines.join('\n'));
+  assert.equal(fs.existsSync(path.join(fixture.tree, match[1])), true);
+});
+
+test('relayout refuses a layout link whose path leaves the tree and moves nothing', (t) => {
+  const fixture = createRelayoutFixture(t);
+  fixture.manifest.layoutLinks = [{ path: '../outside/link', target: '../tree/skilled-overlays/custom/place.md' }];
+  writeManifest(fixture);
+  fs.mkdirSync(path.join(fixture.workspace, 'outside'));
+  fs.symlinkSync('../tree/skilled-overlays/custom/place.md', path.join(fixture.workspace, 'outside', 'link'));
+  const before = snapshotFolder(fixture.overlayDir);
+
+  const lines = [];
+  t.mock.method(console, 'log', (line) => lines.push(String(line)));
+  const code = engine.commandRelayout(engine.createContext(fixture.tree));
+  t.mock.restoreAll();
+
+  assert.equal(code, 2, lines.join('\n'));
+  assert.deepEqual(lines, ['refuse: layout link path escapes the tree root: ../outside/link']);
+  assert.deepEqual(snapshotFolder(fixture.overlayDir), before);
+  assert.deepEqual(fs.readdirSync(path.join(fixture.workspace, 'outside')), ['link']);
+  assert.equal(fs.readlinkSync(path.join(fixture.workspace, 'outside', 'link')), '../tree/skilled-overlays/custom/place.md');
+});
+
 // Pruning runs after every copy has moved and the manifest names the new paths,
 // so a folder left behind is untidy but the relayout itself is done.
 test('relayout that cannot prune an emptied folder still reports the move', (t) => {

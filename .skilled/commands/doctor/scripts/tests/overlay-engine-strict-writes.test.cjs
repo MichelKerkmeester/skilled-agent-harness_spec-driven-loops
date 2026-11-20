@@ -792,7 +792,8 @@ test('pre-commit refuses to judge a tree whose sibling overlay folder is outside
   const result = fixture.run(['pre-commit']);
 
   assert.equal(result.code, 2, result.output);
-  assert.ok(result.output.split('\n').some((line) => /outside the git repository/.test(line)), result.output);
+  assert.ok(result.output.split('\n').some((line) =>
+    line.includes('.skilled-overlays.json names a folder outside the git repository at')), result.output);
 });
 
 // A sibling overlay folder has to sit in the tree's own git repository, so every
