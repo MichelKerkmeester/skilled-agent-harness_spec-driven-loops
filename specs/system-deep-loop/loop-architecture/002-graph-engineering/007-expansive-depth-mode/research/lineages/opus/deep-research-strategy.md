@@ -54,40 +54,58 @@ When an inbox row targets an existing registry question but carries different te
 ---
 
 ## 2. TOPIC
-What changes would make the expansive-depth deep-loop modes (research and review), and the deep-loop runtime behind them, simpler, cheaper, easier to operate and identical across CLI runtimes, ranked by value over effort?
+What changes would make the deep-loop fan-out orchestration trustworthy and identical across CLI runtimes, ranked by value over effort, given what the last two expansive dogfood runs taught?
 
-Fan-out lineage opus (session fanout-opus-1795137583671-xybhyk) works frontier_scope F-1-001, F-1-003, F-1-005. Full topic text is in deep-research-config.json.
+Read the code at HEAD b8003a7df42. The spec folder is specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode (SPEC below). Inputs: SPEC/scratch/dogfood-review-gen2.md and SPEC/scratch/dogfood-research-gen3.md (the conductor logs of the previous fan-out review and research), and the previous research with its improvement-backlog.md, now the newest folder under SPEC/research_archive/. Commits adade6c293e..07cf5f92b61 built backlog rows 1-11, 14, 16b, 18a and 19-26: build on them and do not re-report them. Every recommendation names one concrete change, cites file:line (or a source URL for prior art), and states value, effort (S/M/L) and risk.
+
+Q1 Lineage honesty: one lineage wrote 9 of 12 review passes 20-60 s apart, most with zero findings, and reported newInfoRatio 1.0 on all 10 research passes; model-written timestamps were placeholders, whole minutes or future-dated. Which runner-side signals (pass duration, cited locations, tool calls, repeated sources, gateway receipt time) would detect an unexamined pass or a false stamp without trusting the model, and how should convergence and fanout-merge.cjs weigh such a pass?
+
+Q2 Cross-CLI execution contract: across native, cli-claude-code, cli-opencode, cli-codex, cli-pi, cli-devin, cli-cursor, cli-deepseek-harness and cli-mistral-vibe, where do permission and sandbox, effort, output format (cli-claude-code still uses --output-format text, so it reports no tokens or cost), session resume, failure classes, log shape and prompt channel still differ in fanout-run.cjs LINEAGE_COMMAND_ADAPTERS, runtime/lib/deep-loop/executor-config.ts and dispatch-iteration.cjs (runClaude, runCodex)? What single adapter contract and conformance test would remove the differences, including the agent and command mirrors (.claude .codex .pi .dsh .vibe .opencode against .skilled)?
+
+Q3 Orchestration robustness: process tree and kill semantics (the runner re-executes itself, so killing the runner pid misses the lineage CLIs), mid-run provider quota and --only-lineage reruns, re-entrancy, the ledger as the only live view, capability-aware dealing of frontier nodes (a web question to a lineage with web tools) and a root dashboard for a fan-out.
+
+Q4 Frontier economics: the node cap and growth slots (5 of 7 proposals pruned at iteration 1 last run), the depth-band split, duplicate work, and whether and in which order to build the held backlog rows 12 (one projectFrontier), 13 (one executor path), 29 (alias and dead-probe deletion) and 30 (per-node research dashboard).
+
+Q5 Prior art: how multi-agent orchestrators and eval harnesses (for example Inspect eval sets, OpenHands, LangGraph, the Claude Agent SDK, AutoGen) verify worker honesty, normalize heterogeneous executors and rerun partial failures. This is the only question that needs the web; cite source URLs, and never put personal data such as an email address in a search query or request.
+
+Q6 Bookkeeping that fires on a healthy run: the synthesis_incomplete alarm when a finding is refined into an earlier id (runtime/scripts/synthesis-closeout.cjs:373), the research commit step that fails on an ignored pathspec exclude (deep-research.yaml:2158), the closeout lineageId taken from the parent session, and any other invariant or warning this run shows firing without a real fault.
+
+Report only: change no code or doc outside your own lineage directory.
 
 ---
 
 <!-- ANCHOR:key-questions -->
 ## 3. KEY QUESTIONS (remaining)
-- [x] Restraint: what can be deleted, merged or collapsed across frontier-admit.cjs, the deep-research and deep-review reduce-state.cjs reducers, convergence.cjs, fanout-run.cjs and the two deep workflow YAMLs while every promise of the expansive-depth modes stays kept? Name concrete deletions with file:line.
-- [x] Open design questions: should research count stuck passes per frontier node as review now does (deep-research.yaml:1488)? Does the lineage completion check break resume and extend for older committed research lineages that predate the closeout row, and what is the right rule? Is there a cheap design that makes pivot admission into the frontier work despite D-011-10?
-- [x] Prior art: how do other agentic research and code-review systems handle frontier growth, stuck detection, stop rules and multi-executor fan-out, and which of their ideas would simplify or harden this program? Cite source URLs.
+- [x] Lineage honesty: which runner-side signals (pass duration, cited file:line count, tool calls, repeated sources, gateway receipt time against the model-written timestamp) would flag an unexamined pass or a false stamp without trusting the model, and how should convergence.cjs and fanout-merge.cjs weigh such a pass?
+- [x] Orchestration robustness: what changes fix the process tree and kill semantics (the runner re-executes itself), mid-run provider quota and --only-lineage reruns, re-entrancy, the ledger as the only live view, capability-aware dealing of frontier nodes and a root dashboard for a fan-out?
+- [x] Prior art: how do multi-agent orchestrators and eval harnesses (Inspect eval sets, OpenHands, LangGraph, the Claude Agent SDK, AutoGen) verify worker honesty, normalize heterogeneous executors and rerun partial failures, and which idea fits this runner? Cite source URLs; no personal data in any query.
+- [x] Which per-runtime JSON log shapes (claude stream-json, codex --json, opencode, pi, devin, cursor, vibe) expose timestamped tool-call events that one passEvidence extractor could bucket by gateway commit time?
+- [x] What unexamined-pass thresholds flag the gen2 review deepseek stamps without flagging the gen3 research deepseek passes or any opus pass, and does the observed ratio change any committed lineage stop iteration?
 
 <!-- /ANCHOR:key-questions -->
 
 ---
 
 ## 4. NON-GOALS
-- Re-reporting findings of SPEC/review/review-report.md that fix commits a424fb6cd8a..d4420e9510d closed.
-- Changing any code or doc outside this lineage directory.
-- Operator UX (F-1-002), cross-CLI parity (F-1-004) and cost/latency (F-1-006) are dealt to another lineage; touch them only where they bear on this lineage nodes.
+- Changing any code or doc outside this lineage directory (report only).
+- Re-reporting backlog rows already built in adade6c293e..07cf5f92b61 (rows 1-11, 14, 16b, 18a, 19-26).
+- The frontier nodes dealt to the deepseek lineage (F-1-002, F-1-004, F-1-006), except where they bear on this lineage nodes.
 
 ---
 
 ## 5. STOP CONDITIONS
-- All three frontier nodes answered or closed, and convergence allows a stop.
+- Every frontier node in this lineage share (F-1-001, F-1-003, F-1-005) answered with ranked, cited recommendations.
 - maxIterations (10) reached.
 
 ---
 
 <!-- ANCHOR:answered-questions -->
 ## 6. ANSWERED QUESTIONS
-- Restraint: what can be deleted, merged or collapsed across frontier-admit.cjs, the deep-research and deep-review reduce-state.cjs reducers, convergence.cjs, fanout-run.cjs and the two deep workflow YAMLs while every promise of the expansive-depth modes stays kept? Name concrete deletions with file:line.
-- Open design questions: should research count stuck passes per frontier node as review now does (deep-research.yaml:1488)? Does the lineage completion check break resume and extend for older committed research lineages that predate the closeout row, and what is the right rule? Is there a cheap design that makes pivot admission into the frontier work despite D-011-10?
-- Prior art: how do other agentic research and code-review systems handle frontier growth, stuck detection, stop rules and multi-executor fan-out, and which of their ideas would simplify or harden this program? Cite source URLs.
+- Lineage honesty: which runner-side signals (pass duration, cited file:line count, tool calls, repeated sources, gateway receipt time against the model-written timestamp) would flag an unexamined pass or a false stamp without trusting the model, and how should convergence.cjs and fanout-merge.cjs weigh such a pass?
+- Orchestration robustness: what changes fix the process tree and kill semantics (the runner re-executes itself), mid-run provider quota and --only-lineage reruns, re-entrancy, the ledger as the only live view, capability-aware dealing of frontier nodes and a root dashboard for a fan-out?
+- Prior art: how do multi-agent orchestrators and eval harnesses (Inspect eval sets, OpenHands, LangGraph, the Claude Agent SDK, AutoGen) verify worker honesty, normalize heterogeneous executors and rerun partial failures, and which idea fits this runner? Cite source URLs; no personal data in any query.
+- Which per-runtime JSON log shapes (claude stream-json, codex --json, opencode, pi, devin, cursor, vibe) expose timestamped tool-call events that one passEvidence extractor could bucket by gateway commit time?
+- What unexamined-pass thresholds flag the gen2 review deepseek stamps without flagging the gen3 research deepseek passes or any opus pass, and does the observed ratio change any committed lineage stop iteration?
 
 <!-- /ANCHOR:answered-questions -->
 
@@ -96,11 +114,7 @@ Fan-out lineage opus (session fanout-opus-1795137583671-xybhyk) works frontier_s
 <!-- MACHINE-OWNED: START -->
 <!-- ANCHOR:what-worked -->
 ## 7. WHAT WORKED
-- grepping shared identifiers (the marker phrase, `applyBandBudget`, `NODE_STATUSES`) across all four scripts surfaced the duplicated rules faster than reading any file top to bottom. (iteration 1)
-- measuring the completion rule over every committed lineage replaced an argument with a number, and showed the topic's sample understated the rate. (iteration 2)
-- searching for named systems rather than generic terms returned primary docs (OpenHands, Inspect, Anthropic). (iteration 3)
-- tracing one event name across workflow, schema and reducer found a real audit gap that a pure size or duplication scan would miss. (iteration 4)
-- reading the blocker text and then the upsert's input filter turned a process obstacle into the lineage's highest-value-per-effort finding. (iteration 5)
+[None yet]
 
 <!-- /ANCHOR:what-worked -->
 
@@ -108,11 +122,7 @@ Fan-out lineage opus (session fanout-opus-1795137583671-xybhyk) works frontier_s
 
 <!-- ANCHOR:what-failed -->
 ## 8. WHAT FAILED
-- `git log -S` gives only a lower bound on the migration window's age. The YAML moved and was reformatted, so the original commit is not visible this way. (iteration 1)
-- the cited YAML line number had drifted, so grepping for the branch name was the reliable anchor. (iteration 2)
-- the generic limits search for mini-swe-agent drifted to unrelated crates. (iteration 3)
-- convergence.cjs section headers showed size but not seams. The import graph showed the seams. (iteration 4)
-- iterations 1-4 relied on the contract's mandatory fields and skipped the optional graph events, which the guards actually read. (iteration 5)
+[None yet]
 
 <!-- /ANCHOR:what-failed -->
 
@@ -120,40 +130,60 @@ Fan-out lineage opus (session fanout-opus-1795137583671-xybhyk) works frontier_s
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
-### Co-STORM as a source of stop rules (user-terminated). -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: Co-STORM as a source of stop rules (user-terminated).
+### **A minimum-reads threshold:** it flags real context-carried passes (finding 5). -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: **A minimum-reads threshold:** it flags real context-carried passes (finding 5).
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Co-STORM as a source of stop rules (user-terminated).
+- Do NOT retry: **A minimum-reads threshold:** it flags real context-carried passes (finding 5).
 
-### Emitting `graphEvents` retroactively for iterations 1-4. Iteration records are write-once. This iteration's record carries the coverage for all three questions instead. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: Emitting `graphEvents` retroactively for iterations 1-4. Iteration records are write-once. This iteration's record carries the coverage for all three questions instead.
+### **A run-level lock through `loop-lock.cjs`.** That lock is per-loop and per-artifact-dir, and the lineages already hold their own. A runner lock at the base directory is simpler (finding 4). -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **A run-level lock through `loop-lock.cjs`.** That lock is per-loop and per-artifact-dir, and the lineages already hold their own. A runner lock at the base directory is simpler (finding 4).
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Emitting `graphEvents` retroactively for iterations 1-4. Iteration records are write-once. This iteration's record carries the coverage for all three questions instead.
+- Do NOT retry: **A run-level lock through `loop-lock.cjs`.** That lock is per-loop and per-artifact-dir, and the lineages already hold their own. A runner lock at the base directory is simpler (finding 4).
 
-### Extracting the eight adapter builders (33-106 lines each, fanout-run.cjs:2533-3555) as a restraint move. Their divergence is the cross-CLI parity question (F-1-004), dealt to the other lineage, so it is only noted here. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Extracting the eight adapter builders (33-106 lines each, fanout-run.cjs:2533-3555) as a restraint move. Their divergence is the cross-CLI parity question (F-1-004), dealt to the other lineage, so it is only noted here.
+### **AutoGen's text-mention termination as a model:** a stop the model announces itself is exactly the self-report this work is trying to avoid. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **AutoGen's text-mention termination as a model:** a stop the model announces itself is exactly the self-report this work is trying to avoid.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Extracting the eight adapter builders (33-106 lines each, fanout-run.cjs:2533-3555) as a restraint move. Their divergence is the cross-CLI parity question (F-1-004), dealt to the other lineage, so it is only noted here.
+- Do NOT retry: **AutoGen's text-mention termination as a model:** a stop the model announces itself is exactly the self-report this work is trying to avoid.
 
-### Merging the two reducers wholesale. Their registries, dashboards and answered predicates differ (question resolution versus dimension coverage), so only the frontier projection is shared code. [INFERENCE: based on the reducer comparison above] -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: Merging the two reducers wholesale. Their registries, dashboards and answered predicates differ (question resolution versus dimension coverage), so only the frontier projection is shared code. [INFERENCE: based on the reducer comparison above]
+### **Finding-id novelty as an observed ratio:** ids are minted fresh on every pass. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: **Finding-id novelty as an observed ratio:** ids are minted fresh on every pass.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Merging the two reducers wholesale. Their registries, dashboards and answered predicates differ (question resolution versus dimension coverage), so only the frontier projection is shared code. [INFERENCE: based on the reducer comparison above]
+- Do NOT retry: **Finding-id novelty as an observed ratio:** ids are minted fresh on every pass.
 
-### mini-swe-agent limits: the search returned no primary source. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: mini-swe-agent limits: the search returned no primary source.
+### **Inspect `working_time` as a pass-duration signal:** its own docs say it can undercount overlapped work, and iteration 1 already found duration alone weak. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **Inspect `working_time` as a pass-duration signal:** its own docs say it can undercount overlapped work, and iteration 1 already found duration alone weak.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: mini-swe-agent limits: the search returned no primary source.
+- Do NOT retry: **Inspect `working_time` as a pass-duration signal:** its own docs say it can undercount overlapped work, and iteration 1 already found duration alone weak.
 
-### The mini-swe-agent `step_limit` and `cost_limit` search returned no mini-swe-agent docs. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: The mini-swe-agent `step_limit` and `cost_limit` search returned no mini-swe-agent docs.
+### **Mirrors as a source of fan-out divergence:** the persona is inlined from `.skilled` (finding 7). -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: **Mirrors as a source of fan-out divergence:** the persona is inlined from `.skilled` (finding 7).
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The mini-swe-agent `step_limit` and `cost_limit` search returned no mini-swe-agent docs.
+- Do NOT retry: **Mirrors as a source of fan-out divergence:** the persona is inlined from `.skilled` (finding 7).
 
-### Widening `TERMINAL_STOP_EVENTS_BY_LOOP_TYPE.research` to legacy names such as `phase_synthesis` and `maxIterationsReached`. That would loosen the strict post-attempt check for every new run to fix a classification problem that belongs before spawn. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Widening `TERMINAL_STOP_EVENTS_BY_LOOP_TYPE.research` to legacy names such as `phase_synthesis` and `maxIterationsReached`. That would loosen the strict post-attempt check for every new run to fix a classification problem that belongs before spawn.
+### **Pass duration as a standalone signal:** real deepseek passes run as short as 33 s (finding 5). -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **Pass duration as a standalone signal:** real deepseek passes run as short as 33 s (finding 5).
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Widening `TERMINAL_STOP_EVENTS_BY_LOOP_TYPE.research` to legacy names such as `phase_synthesis` and `maxIterationsReached`. That would loosen the strict post-attempt check for every new run to fix a classification problem that belongs before spawn.
+- Do NOT retry: **Pass duration as a standalone signal:** real deepseek passes run as short as 33 s (finding 5).
+
+### **The record's `toolsUsed` and `sourcesQueried`:** both are model-authored (finding 6). -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **The record's `toolsUsed` and `sourcesQueried`:** both are model-authored (finding 6).
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **The record's `toolsUsed` and `sourcesQueried`:** both are model-authored (finding 6).
+
+### **Treating a quota hit as retryable.** That would burn the same allowance again. The current non-retryable class is right; only the rerun path is missing. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **Treating a quota hit as retryable.** That would burn the same allowance again. The current non-retryable class is right; only the rerun path is missing.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **Treating a quota hit as retryable.** That would burn the same allowance again. The current non-retryable class is right; only the rerun path is missing.
+
+### Claude Agent SDK hooks: a `PostToolUse` hook could keep an audit trail [SOURCE: https://code.claude.com/docs/en/agent-sdk/hooks]. Installing one means writing into the operator's Claude config dir, though, and stream-json gives the same events without that write. Dropped in favour of finding 2. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: Claude Agent SDK hooks: a `PostToolUse` hook could keep an audit trail [SOURCE: https://code.claude.com/docs/en/agent-sdk/hooks]. Installing one means writing into the operator's Claude config dir, though, and stream-json gives the same events without that write. Dropped in favour of finding 2.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Claude Agent SDK hooks: a `PostToolUse` hook could keep an audit trail [SOURCE: https://code.claude.com/docs/en/agent-sdk/hooks]. Installing one means writing into the operator's Claude config dir, though, and stream-json gives the same events without that write. Dropped in favour of finding 2.
+
+### None. -- BLOCKED (iteration 5, 4 attempts)
+- What was tried: None.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: None.
 
 <!-- /ANCHOR:exhausted-approaches -->
 
@@ -161,13 +191,17 @@ Fan-out lineage opus (session fanout-opus-1795137583671-xybhyk) works frontier_s
 
 <!-- ANCHOR:ruled-out-directions -->
 ## 10. RULED OUT DIRECTIONS
-- Merging the two reducers wholesale. Their registries, dashboards and answered predicates differ (question resolution versus dimension coverage), so only the frontier projection is shared code. [INFERENCE: based on the reducer comparison above] (iteration 1)
-- Widening `TERMINAL_STOP_EVENTS_BY_LOOP_TYPE.research` to legacy names such as `phase_synthesis` and `maxIterationsReached`. That would loosen the strict post-attempt check for every new run to fix a classification problem that belongs before spawn. (iteration 2)
-- Co-STORM as a source of stop rules (user-terminated). (iteration 3)
-- mini-swe-agent limits: the search returned no primary source. (iteration 3)
-- The mini-swe-agent `step_limit` and `cost_limit` search returned no mini-swe-agent docs. (iteration 3)
-- Extracting the eight adapter builders (33-106 lines each, fanout-run.cjs:2533-3555) as a restraint move. Their divergence is the cross-CLI parity question (F-1-004), dealt to the other lineage, so it is only noted here. (iteration 4)
-- Emitting `graphEvents` retroactively for iterations 1-4. Iteration records are write-once. This iteration's record carries the coverage for all three questions instead. (iteration 5)
+- **Pass duration as a standalone signal:** real deepseek passes run as short as 33 s (finding 5). (iteration 1)
+- **The record's `toolsUsed` and `sourcesQueried`:** both are model-authored (finding 6). (iteration 1)
+- None. (iteration 1)
+- **A run-level lock through `loop-lock.cjs`.** That lock is per-loop and per-artifact-dir, and the lineages already hold their own. A runner lock at the base directory is simpler (finding 4). (iteration 2)
+- **Treating a quota hit as retryable.** That would burn the same allowance again. The current non-retryable class is right; only the rerun path is missing. (iteration 2)
+- **AutoGen's text-mention termination as a model:** a stop the model announces itself is exactly the self-report this work is trying to avoid. (iteration 3)
+- **Inspect `working_time` as a pass-duration signal:** its own docs say it can undercount overlapped work, and iteration 1 already found duration alone weak. (iteration 3)
+- Claude Agent SDK hooks: a `PostToolUse` hook could keep an audit trail [SOURCE: https://code.claude.com/docs/en/agent-sdk/hooks]. Installing one means writing into the operator's Claude config dir, though, and stream-json gives the same events without that write. Dropped in favour of finding 2. (iteration 3)
+- **A minimum-reads threshold:** it flags real context-carried passes (finding 5). (iteration 4)
+- **Finding-id novelty as an observed ratio:** ids are minted fresh on every pass. (iteration 4)
+- **Mirrors as a source of fan-out divergence:** the persona is inlined from `.skilled` (finding 7). (iteration 5)
 
 <!-- /ANCHOR:ruled-out-directions -->
 
@@ -204,7 +238,7 @@ Fan-out lineage opus (session fanout-opus-1795137583671-xybhyk) works frontier_s
 
 <!-- MACHINE-OWNED: END -->
 ## 12. KNOWN CONTEXT
-Prior fan-out review: SPEC/review/review-report.md; fix commits a424fb6cd8a..d4420e9510d (HEAD d4420e9510d). resource-map.md not present; skipping coverage gate.
+Prior research: research_archive/20261120T125555Z (research.md, improvement-backlog.md). Conductor logs: scratch/dogfood-review-gen2.md, scratch/dogfood-research-gen3.md. Built rows: adade6c293e..07cf5f92b61. resource-map.md not present; skipping coverage gate.
 
 ### Bounded Context Snapshot
 
@@ -235,4 +269,4 @@ Do not inline full source bodies. Do not dispatch the retired standalone context
 - Capability matrix doc: `.skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md`
 - Capability resolver: `.skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs`
 - Current generation: 1
-- Started: 2026-11-20T01:20:59.380Z
+- Started: 2026-11-20T12:59:05.039Z

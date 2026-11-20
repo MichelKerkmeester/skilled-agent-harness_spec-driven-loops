@@ -15,27 +15,28 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Topic: What changes would make the expansive-depth deep-loop modes (research and review), and the deep-loop runtime behind them, simpler, cheaper, easier to operate and identical across CLI runtimes, ranked by value over effort?
+- Topic: What changes would make the deep-loop fan-out orchestration trustworthy and identical across CLI runtimes, ranked by value over effort, given what the last two expansive dogfood runs taught?
 
-Read the code at HEAD d4420e9510d. The spec folder is specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode (SPEC below). Its fan-out review (SPEC/review/review-report.md) and the fix commits a424fb6cd8a..d4420e9510d already closed that review's findings: build on them and do not re-report them. Every recommendation names one concrete change, cites file:line (or a source URL for prior art), and states value, effort (S/M/L) and risk.
+Read the code at HEAD b8003a7df42. The spec folder is specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode (SPEC below). Inputs: SPEC/scratch/dogfood-review-gen2.md and SPEC/scratch/dogfood-research-gen3.md (the conductor logs of the previous fan-out review and research), and the previous research with its improvement-backlog.md, now the newest folder under SPEC/research_archive/. Commits adade6c293e..07cf5f92b61 built backlog rows 1-11, 14, 16b, 18a and 19-26: build on them and do not re-report them. Every recommendation names one concrete change, cites file:line (or a source URL for prior art), and states value, effort (S/M/L) and risk.
 
-Q1 Restraint: what can be deleted, merged or collapsed across runtime/scripts/frontier-admit.cjs, both reduce-state.cjs reducers, runtime/scripts/convergence.cjs, runtime/scripts/fanout-run.cjs and the two workflow YAMLs (.skilled/commands/deep/assets/deep-research.yaml and deep-review.yaml) while every promise stays kept? Name concrete deletions.
+Q1 Lineage honesty: one lineage wrote 9 of 12 review passes 20-60 s apart, most with zero findings, and reported newInfoRatio 1.0 on all 10 research passes; model-written timestamps were placeholders, whole minutes or future-dated. Which runner-side signals (pass duration, cited locations, tool calls, repeated sources, gateway receipt time) would detect an unexamined pass or a false stamp without trusting the model, and how should convergence and fanout-merge.cjs weigh such a pass?
 
-Q2 Operator UX: flag discoverability, defaults, budget sizing, warnings, dashboards, reports, the dry-run preview, and recovery mid-run (provider quota, resume, extend, rerunning one failed lineage).
+Q2 Cross-CLI execution contract: across native, cli-claude-code, cli-opencode, cli-codex, cli-pi, cli-devin, cli-cursor, cli-deepseek-harness and cli-mistral-vibe, where do permission and sandbox, effort, output format (cli-claude-code still uses --output-format text, so it reports no tokens or cost), session resume, failure classes, log shape and prompt channel still differ in fanout-run.cjs LINEAGE_COMMAND_ADAPTERS, runtime/lib/deep-loop/executor-config.ts and dispatch-iteration.cjs (runClaude, runCodex)? What single adapter contract and conformance test would remove the differences, including the agent and command mirrors (.claude .codex .pi .dsh .vibe .opencode against .skilled)?
 
-Q3 Cross-CLI parity: where cli-claude-code, cli-opencode, cli-codex, cli-pi, cli-devin, cli-cursor, cli-deepseek-harness and cli-mistral-vibe still differ in permissions, effort flags, failure classes, resume and log shape (fanout-run.cjs LINEAGE_COMMAND_ADAPTERS, runtime/lib/deep-loop/executor-config.ts). What single contract would remove the differences?
+Q3 Orchestration robustness: process tree and kill semantics (the runner re-executes itself, so killing the runner pid misses the lineage CLIs), mid-run provider quota and --only-lineage reruns, re-entrancy, the ledger as the only live view, capability-aware dealing of frontier nodes (a web question to a lineage with web tools) and a root dashboard for a fan-out.
 
-Q4 Cost and latency: the 8-11 minute setup, the cost per iteration, the 24-iteration ceiling and the 50/35/15 depth-band split, each checked against the measured runs in SPEC/review/, SPEC/review-archive/ and the live playbook logs.
+Q4 Frontier economics: the node cap and growth slots (5 of 7 proposals pruned at iteration 1 last run), the depth-band split, duplicate work, and whether and in which order to build the held backlog rows 12 (one projectFrontier), 13 (one executor path), 29 (alias and dead-probe deletion) and 30 (per-node research dashboard).
 
-Q5 Open design questions. (a) Should research count stuck passes per frontier node, as review now does? Research still counts lineage-wide at deep-research.yaml:1488 and keeps its own node-marker regex. (b) The lineage completion check (fanout-run.cjs TERMINAL_STOP_EVENTS_BY_LOOP_TYPE and checkLineageCompletion) marks 3 of 12 older committed research lineages as failed, because they predate the closeout row. Is that a backward-compatibility break for resume and extend, and what is the right rule? (c) Pivot admission into the frontier was dropped for structural reasons (D-011-10 in SPEC/011-review-frontier-mode/decision-record.md). Is there a cheap design that makes it work?
+Q5 Prior art: how multi-agent orchestrators and eval harnesses (for example Inspect eval sets, OpenHands, LangGraph, the Claude Agent SDK, AutoGen) verify worker honesty, normalize heterogeneous executors and rerun partial failures. This is the only question that needs the web; cite source URLs, and never put personal data such as an email address in a search query or request.
 
-Q6 Prior art: how other agentic research and code-review systems handle frontier growth, stuck detection, stop rules and multi-executor fan-out. This is the only question that needs the web; cite source URLs, and never put personal data such as an email address in a search query or request.
+Q6 Bookkeeping that fires on a healthy run: the synthesis_incomplete alarm when a finding is refined into an earlier id (runtime/scripts/synthesis-closeout.cjs:373), the research commit step that fails on an ignored pathspec exclude (deep-research.yaml:2158), the closeout lineageId taken from the parent session, and any other invariant or warning this run shows firing without a real fault.
 
 Report only: change no code or doc outside your own lineage directory.
-- Started: 2026-11-20T01:20:59.380Z
+
+- Started: 2026-11-20T12:59:05.039Z
 - Status: COMPLETE
 - Iteration: 5 of 10
-- Session ID: fanout-opus-1795137583671-xybhyk
+- Session ID: fanout-opus-1795179440509-6d2wms
 - Parent Session: none
 - Lifecycle Mode: new
 - Generation: 1
@@ -48,24 +49,26 @@ Report only: change no code or doc outside your own lineage directory.
 
 | # | Focus | Track | Ratio | Findings | Status |
 |---|-------|-------|-------|----------|--------|
-| 1 | Frontier node F-1-001 (depth 1, scope .skilled/skills/system-deep-loop/runtime/scripts, .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs, .skilled/commands/deep/assets): Restraint: what can be deleted, merged or collapsed across frontier-admit.cjs, the deep-research and deep-review reduce-state.cjs reducers, convergence.cjs, fanout-run.cjs and the two deep workflow YAMLs while every promise of the expansive-depth modes stays kept? Name concrete deletions with file:line. | restraint | 0.93 | 7 | complete |
-| 2 | Frontier node F-1-003 (depth 1, scope .skilled/commands/deep/assets/deep-research.yaml, .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs, specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode): Open design questions: should research count stuck passes per frontier node as review now does (deep-research.yaml:1488)? Does the lineage completion check break resume and extend for older committed research lineages that predate the closeout row, and what is the right rule? Is there a cheap design that makes pivot admission into the frontier work despite D-011-10? | design | 0.88 | 4 | complete |
-| 3 | Frontier node F-1-005 (depth 1, scope web sources on agentic deep-research and code-review systems, compared against .skilled/skills/system-deep-loop): Prior art: how do other agentic research and code-review systems handle frontier growth, stuck detection, stop rules and multi-executor fan-out, and which of their ideas would simplify or harden this program? Cite source URLs. | prior-art | 0.75 | 6 | complete |
-| 4 | Frontier node F-1-001 (depth 1, scope .skilled/skills/system-deep-loop/runtime/scripts, .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs, .skilled/commands/deep/assets): Restraint: what can be deleted, merged or collapsed across frontier-admit.cjs, the deep-research and deep-review reduce-state.cjs reducers, convergence.cjs, fanout-run.cjs and the two deep workflow YAMLs while every promise of the expansive-depth modes stays kept? Name concrete deletions with file:line. | restraint | 0.83 | 6 | complete |
-| 5 | BLOCKED on: source_diversity_guard, evidence_depth_guard, uncovered_questions. Recovery: give the answered questions second sources and record question-to-finding-to-source coverage in the graph. | recovery | 0.55 | 4 | insight |
+| 1 | Frontier node F-1-001 (depth 1, scope .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs, convergence.cjs, fanout-merge.cjs, append-mode-event.cjs, the dogfood logs under SPEC/scratch): Lineage honesty: which runner-side signals (pass duration, cited file:line count, tool calls, repeated sources, gateway receipt time against the model-written timestamp) would flag an unexamined pass or a false stamp without trusting the model, and how should convergence.cjs and fanout-merge.cjs weigh such a pass? | lineage-honesty | 0.89 | 9 | complete |
+| 2 | Frontier node F-1-003 (depth 1, scope .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs, frontier dealing, .skilled/commands/deep/assets/deep-research.yaml fan-out steps): Orchestration robustness: what changes fix the process tree and kill semantics (the runner re-executes itself), mid-run provider quota and --only-lineage reruns, re-entrancy, the ledger as the only live view, capability-aware dealing of frontier nodes and a root dashboard for a fan-out? | orchestration-robustness | 0.81 | 8 | complete |
+| 3 | Frontier node F-1-005 (depth 1, scope web sources on multi-agent orchestration and eval harnesses, compared against .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs): Prior art: how do multi-agent orchestrators and eval harnesses (Inspect eval sets, OpenHands, LangGraph, the Claude Agent SDK, AutoGen) verify worker honesty, normalize heterogeneous executors and rerun partial failures, and which idea fits this runner? Cite source URLs; no personal data in any query. | prior-art | 0.71 | 7 | complete |
+| 4 | Frontier node F-1-001 (depth 1, scope .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs, convergence.cjs, fanout-merge.cjs, append-mode-event.cjs, the dogfood logs under SPEC/scratch): Lineage honesty: which runner-side signals (pass duration, cited file:line count, tool calls, repeated sources, gateway receipt time against the model-written timestamp) would flag an unexamined pass or a false stamp without trusting the model, and how should convergence.cjs and fanout-merge.cjs weigh such a pass? | lineage-honesty | 0.75 | 8 | complete |
+| 5 | Frontier node F-2-006 (depth 2, scope .skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs, fanout-run.cjs LINEAGE_COMMAND_ADAPTERS): Which per-runtime JSON log shapes (claude stream-json, codex --json, opencode, pi, devin, cursor, vibe) expose timestamped tool-call events that one passEvidence extractor could bucket by gateway commit time? | cross-cli-contract | 0.79 | 7 | complete |
 
 - iterationsCompleted: 5
-- keyFindings: 148
+- keyFindings: 238
 - openQuestions: 0
-- resolvedQuestions: 3
+- resolvedQuestions: 5
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:questions -->
 ## 4. QUESTIONS
-- Answered: 3/3
-- [x] Restraint: what can be deleted, merged or collapsed across frontier-admit.cjs, the deep-research and deep-review reduce-state.cjs reducers, convergence.cjs, fanout-run.cjs and the two deep workflow YAMLs while every promise of the expansive-depth modes stays kept? Name concrete deletions with file:line.
-- [x] Open design questions: should research count stuck passes per frontier node as review now does (deep-research.yaml:1488)? Does the lineage completion check break resume and extend for older committed research lineages that predate the closeout row, and what is the right rule? Is there a cheap design that makes pivot admission into the frontier work despite D-011-10?
-- [x] Prior art: how do other agentic research and code-review systems handle frontier growth, stuck detection, stop rules and multi-executor fan-out, and which of their ideas would simplify or harden this program? Cite source URLs.
+- Answered: 5/5
+- [x] Lineage honesty: which runner-side signals (pass duration, cited file:line count, tool calls, repeated sources, gateway receipt time against the model-written timestamp) would flag an unexamined pass or a false stamp without trusting the model, and how should convergence.cjs and fanout-merge.cjs weigh such a pass?
+- [x] Orchestration robustness: what changes fix the process tree and kill semantics (the runner re-executes itself), mid-run provider quota and --only-lineage reruns, re-entrancy, the ledger as the only live view, capability-aware dealing of frontier nodes and a root dashboard for a fan-out?
+- [x] Prior art: how do multi-agent orchestrators and eval harnesses (Inspect eval sets, OpenHands, LangGraph, the Claude Agent SDK, AutoGen) verify worker honesty, normalize heterogeneous executors and rerun partial failures, and which idea fits this runner? Cite source URLs; no personal data in any query.
+- [x] Which per-runtime JSON log shapes (claude stream-json, codex --json, opencode, pi, devin, cursor, vibe) expose timestamped tool-call events that one passEvidence extractor could bucket by gateway commit time?
+- [x] What unexamined-pass thresholds flag the gen2 review deepseek stamps without flagging the gen3 research deepseek passes or any opus pass, and does the observed ratio change any committed lineage stop iteration?
 
 <!-- /ANCHOR:questions -->
 <!-- ANCHOR:uncovered-questions -->
@@ -76,25 +79,29 @@ Report only: change no code or doc outside your own lineage directory.
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->
 ## 5. TREND
-- newInfoRatio sparkline: ███▇▇▇▆▆▅▅▅▅▅▆▆▅▄▃▂▁
-- score sparkline: ███▇▇▇▆▆▅▅▅▅▅▆▆▅▄▃▂▁
-- Last 3 ratios: 0.75 -> 0.83 -> 0.55
+- newInfoRatio sparkline: █▇▇▆▅▅▄▃▂▁▁▁▂▂▂▃▃▃▄▄
+- score sparkline: █▇▇▆▅▅▄▃▂▁▁▁▂▂▂▃▃▃▄▄
+- Last 3 ratios: 0.71 -> 0.75 -> 0.79
 - Stuck count: 0
 - Guard violations: none recorded by the reducer pass
-- convergenceScore: 0.55
-- coverageBySources: {"arxiv.org":2,"code":64,"docs.gptr.dev":2,"docs.openhands.dev":1,"docsearch.algolia.com":1,"github.com":2,"hawk.metr.org":1,"inspect.aisi.org.uk":2,"langchain-ai.github.io":1,"other":6,"python.langchain.com":1,"raw.githubusercontent.com":1,"www.anthropic.com":1}
+- convergenceScore: 0.79
+- coverageBySources: {"code":49,"code.claude.com":2,"docs.langchain.com":2,"docs.openhands.dev":2,"github.com":1,"inspect.aisi.org.uk":4,"microsoft.github.io":2,"other":11}
 - Advisory events: none
 
 <!-- /ANCHOR:trend -->
 <!-- ANCHOR:dead-ends -->
 ## 6. DEAD ENDS
-- Merging the two reducers wholesale. Their registries, dashboards and answered predicates differ (question resolution versus dimension coverage), so only the frontier projection is shared code. [INFERENCE: based on the reducer comparison above] (iteration 1)
-- Widening `TERMINAL_STOP_EVENTS_BY_LOOP_TYPE.research` to legacy names such as `phase_synthesis` and `maxIterationsReached`. That would loosen the strict post-attempt check for every new run to fix a classification problem that belongs before spawn. (iteration 2)
-- Co-STORM as a source of stop rules (user-terminated). (iteration 3)
-- mini-swe-agent limits: the search returned no primary source. (iteration 3)
-- The mini-swe-agent `step_limit` and `cost_limit` search returned no mini-swe-agent docs. (iteration 3)
-- Extracting the eight adapter builders (33-106 lines each, fanout-run.cjs:2533-3555) as a restraint move. Their divergence is the cross-CLI parity question (F-1-004), dealt to the other lineage, so it is only noted here. (iteration 4)
-- Emitting `graphEvents` retroactively for iterations 1-4. Iteration records are write-once. This iteration's record carries the coverage for all three questions instead. (iteration 5)
+- **Pass duration as a standalone signal:** real deepseek passes run as short as 33 s (finding 5). (iteration 1)
+- **The record's `toolsUsed` and `sourcesQueried`:** both are model-authored (finding 6). (iteration 1)
+- None. (iteration 1)
+- **A run-level lock through `loop-lock.cjs`.** That lock is per-loop and per-artifact-dir, and the lineages already hold their own. A runner lock at the base directory is simpler (finding 4). (iteration 2)
+- **Treating a quota hit as retryable.** That would burn the same allowance again. The current non-retryable class is right; only the rerun path is missing. (iteration 2)
+- **AutoGen's text-mention termination as a model:** a stop the model announces itself is exactly the self-report this work is trying to avoid. (iteration 3)
+- **Inspect `working_time` as a pass-duration signal:** its own docs say it can undercount overlapped work, and iteration 1 already found duration alone weak. (iteration 3)
+- Claude Agent SDK hooks: a `PostToolUse` hook could keep an audit trail [SOURCE: https://code.claude.com/docs/en/agent-sdk/hooks]. Installing one means writing into the operator's Claude config dir, though, and stream-json gives the same events without that write. Dropped in favour of finding 2. (iteration 3)
+- **A minimum-reads threshold:** it flags real context-carried passes (finding 5). (iteration 4)
+- **Finding-id novelty as an observed ratio:** ids are minted fresh on every pass. (iteration 4)
+- **Mirrors as a source of fan-out divergence:** the persona is inlined from `.skilled` (finding 7). (iteration 5)
 
 <!-- /ANCHOR:dead-ends -->
 <!-- ANCHOR:divergent-pivots -->
@@ -109,12 +116,12 @@ Report only: change no code or doc outside your own lineage directory.
 <!-- /ANCHOR:divergent-pivots -->
 <!-- ANCHOR:frontier -->
 ## 6B. FRONTIER
-- Frontier size: 3 nodes (0 open, 0 active, 3 answered, 0 exhausted, 0 blocked, 0 abstained)
+- Frontier size: 5 nodes (0 open, 0 active, 5 answered, 0 exhausted, 0 blocked, 0 abstained)
 - Pruned nodes: 0
 - Revisits: 1
 - Budget depth1: 4 of 5 iterations spent
-- Budget depth2: 0 of 4.5 iterations spent
-- Budget depth3: 0 of 6 iterations spent
+- Budget depth2: 1 of 4.5 iterations spent
+- Budget depth3: 0 of 5 iterations spent
 
 <!-- /ANCHOR:frontier -->
 <!-- ANCHOR:next-focus -->
@@ -129,10 +136,7 @@ Report only: change no code or doc outside your own lineage directory.
 <!-- /ANCHOR:active-risks -->
 <!-- ANCHOR:blocked-stops -->
 ## 9. BLOCKED STOPS
-### Iteration 5 — blocked by [source_diversity_guard, evidence_depth_guard, uncovered_questions]
-- Recovery: Source diversity (0.00) is below the blocking threshold (1.5). STOP is blocked until diverse sources cover key questions.
-- Gate results: none recorded
-- Timestamp: 2026-11-20T01:34:29.000Z
+No blocked-stop events recorded.
 
 <!-- /ANCHOR:blocked-stops -->
 <!-- ANCHOR:graph-convergence -->

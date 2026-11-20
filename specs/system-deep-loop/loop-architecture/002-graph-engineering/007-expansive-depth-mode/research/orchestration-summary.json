@@ -1,5 +1,5 @@
 {
-  "run_id": "1795137583671-xybhyk",
+  "run_id": "1795179440509-6d2wms",
   "loop_type": "research",
   "spec_folder": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode",
   "base_artifact_dir": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research",
@@ -36,5 +36,28 @@
     "unattributed_state_log": 0,
     "needs_input": 0,
     "quota": 0
+  },
+  "lineages": [
+    {
+      "label": "opus",
+      "status": "succeeded",
+      "failure_class": null,
+      "exit_code": 0,
+      "rerun_command": null
+    },
+    {
+      "label": "deepseek",
+      "status": "succeeded",
+      "failure_class": null,
+      "exit_code": 0,
+      "rerun_command": null
+    }
+  ],
+  "provider_cost_usd": {
+    "total": null,
+    "by_lineage": {
+      "opus": null,
+      "deepseek": 0.342242
+    }
   }
 }
