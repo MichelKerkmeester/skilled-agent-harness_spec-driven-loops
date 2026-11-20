@@ -42,7 +42,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "65754da0fa8ae826b825bf94e844c08691f7427bbec4107ad3ff3e1d8c3ecd86",
+      "sha256": "dfcb223c4f04911ea7d9d46cf314c98c8787feb9e4bc41989941d64b961b8249",
       "section": "full"
     },
     {
