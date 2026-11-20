@@ -46,6 +46,8 @@ const LINEAGE_RETRY_VERDICTS = Object.freeze({
 // its transcript ends on a decision the operator still owes, so the lineage
 // must be surfaced rather than salvaged or retried.
 const PENDING_QUESTION_PATTERN = /LOGIC-SYNC REQUIRED|Which truth prevails\?|\bReply\s+\*{0,2}[A-D]\*{0,2}(?=\s|[,.:)]|$)|\bneed your (?:choice|approval|confirmation|decision)\b|\b(?:Shall|Should|May) I (?:proceed|continue)\b/;
+// The event types a cli-claude-code stream-json log carries at the top level.
+const CLAUDE_STREAM_EVENT_TYPES = new Set(['system', 'assistant', 'user', 'result']);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -175,15 +177,57 @@ function normalizeSalvageSummary(value) {
 }
 
 /**
+ * Read the final answer from a cli-claude-code `--output-format stream-json` log.
+ *
+ * Tool results in that log carry whole file bodies, so a check that scans the raw
+ * lines would read a quoted completion marker or quota phrase as the lineage's own.
+ * The last result event holds the answer the CLI ended on; a stream cut off before
+ * any result falls back to the top-level assistant text it had written so far.
+ *
+ * @param {string} text - Captured lineage stdout.
+ * @returns {string|null} The final answer, or null when the text is not a claude stream.
+ */
+function readClaudeStreamFinalText(text) {
+  if (typeof text !== 'string') return null;
+  let isStream = false;
+  let resultText = null;
+  const assistantText = [];
+  for (const line of text.split('\n')) {
+    const trimmed = line.trim();
+    if (!trimmed.startsWith('{')) continue;
+    let event;
+    try {
+      event = JSON.parse(trimmed);
+    } catch {
+      continue;
+    }
+    if (!event || typeof event.session_id !== 'string' || !CLAUDE_STREAM_EVENT_TYPES.has(event.type)) continue;
+    isStream = true;
+    if (event.type === 'result' && typeof event.result === 'string') {
+      resultText = event.result;
+    } else if (event.type === 'assistant' && !event.parent_tool_use_id && event.message
+      && Array.isArray(event.message.content)) {
+      for (const block of event.message.content) {
+        if (block && block.type === 'text' && typeof block.text === 'string') assistantText.push(block.text);
+      }
+    }
+  }
+  if (!isStream) return null;
+  return resultText !== null ? resultText : assistantText.join('\n');
+}
+
+/**
  * Detect a pending operator question at the tail of a worker transcript. A
  * lineage can exit cleanly on a question (logic-sync halt, reply menu), which
  * the classifier must surface instead of salvaging or retrying.
  *
- * @param {string} text - Captured worker transcript.
+ * @param {string} rawText - Captured worker transcript.
  * @returns {{question:string}|null} The pending question (last non-empty line,
  *   cut to 300 characters), or null when no question is pending.
  */
-function detectPendingQuestion(text) {
+function detectPendingQuestion(rawText) {
+  const streamText = readClaudeStreamFinalText(rawText);
+  const text = streamText !== null ? streamText : rawText;
   if (typeof text !== 'string' || text.trim() === '') return null;
   // The completion marker is authoritative: a finished lineage never owes the
   // dispatcher an answer, whatever an earlier iteration asked.
@@ -228,8 +272,10 @@ const QUOTA_STDOUT_TAIL_LINES = 40;
  */
 function detectQuotaExhaustion(stderr, stdout) {
   const stderrLines = typeof stderr === 'string' ? stderr.split(/\r?\n/) : [];
-  const stdoutLines = typeof stdout === 'string'
-    ? stdout.split(/\r?\n/).slice(-QUOTA_STDOUT_TAIL_LINES)
+  const streamText = readClaudeStreamFinalText(stdout);
+  const stdoutText = streamText !== null ? streamText : stdout;
+  const stdoutLines = typeof stdoutText === 'string'
+    ? stdoutText.split(/\r?\n/).slice(-QUOTA_STDOUT_TAIL_LINES)
     : [];
   for (const rawLine of [...stderrLines, ...stdoutLines]) {
     const line = rawLine.trim();
@@ -699,6 +745,7 @@ module.exports = {
   installSignalHandlers,
   maybeThrowTestFault,
   PENDING_QUESTION_PATTERN,
+  readClaudeStreamFinalText,
   readStdinSync,
   sleepSync,
   validateNamespaceValue,

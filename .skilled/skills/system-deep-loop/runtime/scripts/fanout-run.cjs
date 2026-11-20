@@ -34,7 +34,7 @@ const FANOUT_FLAGS = [
   'convergenceThreshold', 'lineageTimeoutHours', 'stopPolicy', 'convergenceMode', 'depthMode', 'containmentMode',
   'preDispatchWaitMs', 'stallWatchdogMs', 'maxCostUnitsPerLineage',
   'maxAggregateCostUnits', 'maxTokensPerLineage', 'maxTokenBudget', 'maxTokenBudgetPerLineage',
-  'costUnitsPerIteration', 'estimatedTokensPerIteration', 'onlyLineage', 'preview',
+  'costUnitsPerIteration', 'estimatedTokensPerIteration', 'onlyLineage', 'preview', 'status',
 ];
 
 const {
@@ -53,6 +53,7 @@ const {
   runSalvageSweep,
   extractTextFromOpencodeJson,
   readLineageProviderCostUsd,
+  readLineagePassSummary,
   summarizeProviderCost,
 } = require('./fanout-salvage.cjs');
 
@@ -544,6 +545,46 @@ function summarizeSnapshots(lineages, snapshots) {
       all_failed: lineages.length > 0 && failed === lineages.length,
     },
   };
+}
+
+/**
+ * Render the fan-out's per-lineage table from its status ledger: each lineage's
+ * latest status and the fields its latest progress row carries.
+ *
+ * @param {Object[]} records - The status ledger's rows in append order.
+ * @returns {string} A fixed-width table, one line per lineage.
+ */
+function formatFanoutStatusTable(records) {
+  const rows = new Map();
+  for (const record of records) {
+    if (!record || typeof record.label !== 'string') continue;
+    const row = rows.get(record.label) || { label: record.label, status: 'unknown', progress: null };
+    // A warning row such as a containment notice names no lifecycle state, and a beat
+    // whose fields could not be read carries none, so neither replaces the last known one.
+    const status = statusForLedgerEvent(record);
+    if (status !== 'unknown') row.status = status;
+    if (record.event === 'progress' && (record.iterations !== undefined || !row.progress)) row.progress = record;
+    rows.set(record.label, row);
+  }
+  const show = (value) => (value === null ? 'unknown' : String(value));
+  const header = ['lineage', 'status', 'iterations', 'last commit', 'nodes answered/open/total', 'flagged passes', 'updated'];
+  const lines = [...rows.values()].map(({ label, status, progress }) => {
+    if (!progress || progress.iterations === undefined) return [label, status, '-', '-', '-', '-', progress ? progress.at : '-'];
+    const nodes = progress.nodes || {};
+    return [
+      label,
+      status,
+      show(progress.iterations),
+      show(progress.lastCommitAt),
+      `${show(nodes.answered)}/${show(nodes.open)}/${show(nodes.total)}`,
+      show(progress.flaggedPasses),
+      progress.at,
+    ];
+  });
+  const widths = header.map((title, column) => Math.max(title.length, ...lines.map((line) => String(line[column]).length)));
+  return [header, ...lines]
+    .map((line) => line.map((cell, column) => String(cell).padEnd(widths[column])).join('  ').trimEnd())
+    .join('\n');
 }
 
 function observabilityPathForLedger(ledgerPath) {
@@ -2203,17 +2244,46 @@ function decorateSlotAccountingEvent(event, accountingByLabel) {
   };
 }
 
-function startLineageProgressHeartbeat({ cadenceMs, label, ledgerPath, getGauges, onProgress }) {
+/**
+ * The fields a lineage's progress row carries: committed passes, the last commit,
+ * its frontier nodes and the passes its own log flags as unexamined.
+ *
+ * @param {string} lineageDir - The lineage's artifact directory.
+ * @param {string} [liveStdout] - The running attempt's stdout so far.
+ * @returns {{iterations:number, lastCommitAt:string|null,
+ *   nodes:{answered:number, open:number, total:number}, flaggedPasses:number|null}}
+ */
+function readLineageProgressFields(lineageDir, liveStdout = '') {
+  const { readNodeStore } = require('./frontier-admit.cjs');
+  const { iterations, lastCommitAt, flaggedPasses } = readLineagePassSummary(lineageDir, liveStdout);
+  const nodes = { answered: 0, open: 0, total: 0 };
+  for (const node of readNodeStore(path.join(lineageDir, 'frontier-nodes.jsonl'), { warnings: [] }).values()) {
+    nodes.total += 1;
+    if (node.status === 'answered') nodes.answered += 1;
+    else if (node.status === 'open' || node.status === 'active') nodes.open += 1;
+  }
+  return { iterations, lastCommitAt, nodes, flaggedPasses };
+}
+
+function startLineageProgressHeartbeat({ cadenceMs, label, ledgerPath, getGauges, onProgress, getProgress }) {
   if (!Number.isFinite(cadenceMs) || cadenceMs <= 0) {
     return () => {};
   }
   const startedAtMs = Date.now();
   const timer = setInterval(() => {
+    let progress = {};
+    try {
+      if (typeof getProgress === 'function') progress = getProgress();
+    } catch {
+      // The fields are a view of the lineage's own files; a torn read skips them for
+      // this beat rather than throwing out of the timer and killing the run.
+    }
     appendFanoutStatusLedger(ledgerPath, {
       event: 'progress',
       label,
       at: new Date().toISOString(),
       duration_ms: Math.max(0, Date.now() - startedAtMs),
+      ...progress,
         gauges: getGauges(),
       });
       if (typeof onProgress === 'function') onProgress();
@@ -2468,7 +2538,7 @@ function runLineageProcess(command, cmdArgs, opts) {
 
     child.stdout?.setEncoding('utf8');
     child.stdout?.on('data', (chunk) => {
-      if (typeof opts.onOutput === 'function') opts.onOutput();
+      if (typeof opts.onOutput === 'function') opts.onOutput(chunk);
       if (truncated) return;
       stdoutBytes += Buffer.byteLength(chunk, 'utf8');
       if (stdoutBytes > maxBuffer) {
@@ -2706,8 +2776,11 @@ function buildClaudeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
     model,
     '--permission-mode',
     resolvedPermission,
+    // One JSON event per line gives the log its tool calls, their timestamps and the
+    // session cost; print mode refuses stream-json without --verbose.
     '--output-format',
-    'text',
+    'stream-json',
+    '--verbose',
   ];
   if (lineage.reasoningEffort) {
     args.push('--effort', lineage.reasoningEffort);
@@ -3706,6 +3779,14 @@ function isDshBinaryAvailable(env = process.env) {
 
 async function main() {
   const args = readTextFileFlags(parseArgs());
+  // A read-only view of a run in flight or settled: it reads the ledger and exits
+  // before any config, lineage or ledger write is touched.
+  if (args.status === true || args.status === 'true') {
+    const statusLedgerPath = path.join(ensureString(args, 'baseArtifactDir'), 'orchestration-status.log');
+    if (!fs.existsSync(statusLedgerPath)) throw inputError(`no fan-out status ledger at ${statusLedgerPath}`);
+    process.stdout.write(`${formatFanoutStatusTable(readLedgerRecords(statusLedgerPath))}\n`);
+    return;
+  }
   const specFolder = validateNamespaceValue(ensureString(args, 'specFolder'), 'specFolder', inputError);
   const loopType = ensureString(args, 'loopType');
   assertActiveFanoutLoopType(loopType);
@@ -4502,6 +4583,9 @@ async function main() {
         },
       });
 
+      // The attempt's stdout reaches its log file only on exit, so the progress row
+      // judges the passes of the attempt in flight from the copy kept here.
+      let liveStdout = '';
       // Started here so the sampler exists for every heartbeat it takes; the first
       // sample is the baseline, so no detection can fire before dispatch.
       const stopProgressHeartbeat = startLineageProgressHeartbeat({
@@ -4513,6 +4597,7 @@ async function main() {
           sampleSharedCheckoutChurn();
 
         },
+        getProgress: () => readLineageProgressFields(lineageDir, liveStdout),
       });
 
       let result;
@@ -4528,7 +4613,10 @@ async function main() {
           env: dispatchEnv,
           maxBuffer: 20 * 1024 * 1024,
           abortSignal: context.signal,
-          onOutput: markLineageEvent,
+          onOutput: (chunk) => {
+            markLineageEvent();
+            if (typeof chunk === 'string') liveStdout += chunk;
+          },
           onSpawn: ({ pid }) => {
             lineageProcessLiveness.set(livenessKey, { alive: true, pid });
             // The in-memory map dies with this runner, so the pid a later run needs
@@ -5071,6 +5159,8 @@ module.exports = {
   TERMINAL_STOP_EVENTS_BY_LOOP_TYPE,
   lineageCompletionPolicy,
   startLineageProgressHeartbeat,
+  readLineageProgressFields,
+  formatFanoutStatusTable,
   startLineageStallWatchdog,
   statusForLedgerEvent,
   updateLineageSnapshot,
