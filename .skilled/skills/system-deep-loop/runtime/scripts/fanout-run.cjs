@@ -35,7 +35,7 @@ const FANOUT_FLAGS = [
   'preDispatchWaitMs', 'stallWatchdogMs', 'maxCostUnitsPerLineage',
   'maxAggregateCostUnits', 'maxTokensPerLineage', 'maxTokenBudget', 'maxTokenBudgetPerLineage',
   'costUnitsPerIteration', 'estimatedTokensPerIteration', 'onlyLineage', 'preview', 'status',
-  'stop',
+  'stop', 'maxIterations',
 ];
 
 const {
@@ -378,6 +378,35 @@ function partitionFrontierNodes(baseArtifactDir, labels) {
 function resolveFrontierPartition({ depthMode, budgetPartition, baseArtifactDir, labels }) {
   if (depthMode !== 'expansive') return null;
   return budgetPartition || partitionFrontierNodes(baseArtifactDir, labels);
+}
+
+// The root config cannot tell an operator's explicit iteration count from the workflow
+// default, so an explicit count arrives as --max-iterations. It binds every lineage the
+// matrix gave no iterations, in either depth mode, ahead of any seed-share derivation.
+// A matrix iterations value is still kept as given.
+function parseMaxIterationsFlag(args) {
+  const raw = args.maxIterations;
+  if (raw === undefined) return null;
+  const value = typeof raw === 'string' && /^\d+$/.test(raw) ? Number(raw) : NaN;
+  if (!Number.isSafeInteger(value) || value <= 0) {
+    throw inputError('maxIterations must be a positive integer');
+  }
+  return value;
+}
+
+function flagLineageBudgets(lineages, maxIterations) {
+  if (maxIterations === null) return lineages;
+  return lineages.map((lineage) => (
+    Number.isInteger(lineage.iterations) && lineage.iterations > 0
+      ? lineage
+      : { ...lineage, iterations: maxIterations }
+  ));
+}
+
+function flagLineageBudgetNotes(expanded, budgeted) {
+  return budgeted.flatMap((lineage, index) => (lineage === expanded[index]
+    ? []
+    : [`[fanout-run] lineage ${lineage.label} budget ${lineage.iterations} iterations, from --max-iterations`]));
 }
 
 // Under expansive depth a lineage the matrix gave no iterations is sized from its own
@@ -1141,9 +1170,11 @@ function writeRedactedLineageLog(fromPath, toPath) {
   fs.writeFileSync(toPath, redactProviderText(fs.readFileSync(fromPath, 'utf8')), 'utf8');
 }
 
-// A lineage that failed with no retry left keeps its last raw log in the committed
-// artifact directory, so that log is masked once its process has exited. A lineage that
-// succeeds keeps its log byte for byte.
+// Every lineage keeps its last log in the committed artifact directory, whether it
+// succeeded, failed with no retry left or was stopped, and a provider echoes account
+// ids and the repository author's email into that log. So the log is masked once the
+// lineage has settled, after the worker's own reads of the raw text. Masking is
+// idempotent, so a log masked by an earlier run is left as it is.
 function redactTerminalLineageLogs(lineageDir) {
   for (const name of ['fanout-lineage.out', 'fanout-lineage.err']) {
     const logPath = path.join(lineageDir, 'logs', name);
@@ -4053,6 +4084,7 @@ async function main() {
   const baseArtifactDir = validateBaseArtifactDir(ensureString(args, 'baseArtifactDir'), specFolder, loopType);
   const convergenceThreshold = parseOptionalNumber(args, 'convergenceThreshold');
   const lineageTimeoutHoursOverride = parseOptionalNumber(args, 'lineageTimeoutHours');
+  const maxIterationsFlag = parseMaxIterationsFlag(args);
   assertLineageTimeoutHoursOverrideWithinCeiling(lineageTimeoutHoursOverride);
   const stopPolicy = normalizeStopPolicy(args.stopPolicy);
   const convergenceMode = normalizeConvergenceMode(args.convergenceMode);
@@ -4134,7 +4166,11 @@ async function main() {
   const lineageBudgetGuards = normalizeLineageBudgetGuards(rawGuardConfig);
   const guardedAssignment = applyFlatPoolAssignmentGuard(parsedFanoutConfig);
   const fanoutConfig = guardedAssignment.config;
-  const expandedLineages = expandLineages(fanoutConfig);
+  const matrixExpandedLineages = expandLineages(fanoutConfig);
+  const expandedLineages = flagLineageBudgets(matrixExpandedLineages, maxIterationsFlag);
+  for (const note of flagLineageBudgetNotes(matrixExpandedLineages, expandedLineages)) {
+    process.stderr.write(`${note}\n`);
+  }
   const nativeLineages = expandedLineages.filter((lineage) => lineage.kind === 'native');
   if (nativeLineages.length > 0) {
     const labels = nativeLineages.map((lineage) => lineage.label).join(', ');
@@ -4492,6 +4528,7 @@ async function main() {
         pid: spawnedRow ? Number(spawnedRow.pid) : null,
         signal,
       }));
+      redactTerminalLineageLogs(path.join(lineagesDir, lineage.label));
       lineageSnapshots.set(lineage.label, { ...snapshot, status: 'stopped', stopped_at_iso: stoppedAtIso });
     }
     const partial = summarizeSnapshots(cliLineages, lineageSnapshots);
@@ -4540,6 +4577,9 @@ async function main() {
       updateLineageSnapshot(lineageSnapshots, enrichedEvent);
       if (enrichedEvent.gauges) latestGauges = enrichedEvent.gauges;
       appendFanoutStatusLedger(ledgerPath, enrichedEvent);
+      if (enrichedEvent.event === 'completed' && enrichedEvent.label) {
+        redactTerminalLineageLogs(path.join(lineagesDir, enrichedEvent.label));
+      }
       // Only the pool knows when a failure has no retry left. Said the moment it settles,
       // so an operator watching the run learns a lineage is gone before the run ends.
       if (enrichedEvent.event === 'failed' && enrichedEvent.terminal === true) {
@@ -5365,6 +5405,9 @@ if (require.main === module && isTsxLoaded) {
 
 module.exports = {
   expansiveLineageBudgets,
+  flagLineageBudgets,
+  redactProviderText,
+  rerunCommandFor,
   expansiveLineageBudgetNotes,
   runLineageProcess,
   forcedDepthIterationViolation,

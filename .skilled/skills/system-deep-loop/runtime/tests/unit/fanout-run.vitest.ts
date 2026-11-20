@@ -7455,19 +7455,25 @@ describe('fanout-run.cjs — a fatal provider refusal is announced and redacted'
     expect(readFileSync(join(logsDir, 'fanout-lineage.out'), 'utf8')).toContain('attempt-two');
   });
 
-  it('leaves the log of a lineage that succeeds byte for byte', async () => {
+  // A succeeded lineage's log is committed beside a failed one's, so it is masked the same way.
+  it('masks the account and the author email in the log of a lineage that succeeds', async () => {
     const binDir = makeTempDir('fanout-run-success-log-bin-');
     const baseDir = makeTempDir('fanout-run-success-log-base-');
+    const authorLine = 'Author: Jane Doe <jane.doe@example.com>';
     writeFileSync(
       join(binDir, 'opencode'),
-      `#!/bin/sh\n${OPENCODE_VERSION_PROBE}\necho ${shellQuote(refusalBody)}\n${writeFanoutArtifactsShell()}\nexit 0\n`,
+      `#!/bin/sh\n${OPENCODE_VERSION_PROBE}\necho ${shellQuote(refusalBody)}\necho ${shellQuote(authorLine)}\n${writeFanoutArtifactsShell()}\nexit 0\n`,
       { mode: 0o755 },
     );
     const hermetic = useHermeticEnv('success-log');
     const result = await runRefusal(hermetic, binDir, baseDir);
     expect(result.stdout).toContain('"status":"fulfilled"');
-    expect(readFileSync(join(baseDir, 'lineages', 'quota', 'logs', 'fanout-lineage.out'), 'utf8'))
-      .toContain(refusalBody);
+    const log = readFileSync(join(baseDir, 'lineages', 'quota', 'logs', 'fanout-lineage.out'), 'utf8');
+    expect(log).not.toContain(workspaceId);
+    expect(log).not.toContain('ses_e0aeFAKESESSION');
+    expect(log).not.toContain('jane.doe@example.com');
+    expect(log).toContain('provider.go-limit');
+    expect(log).toContain('Author: Jane Doe <<email>>');
   });
 });
 
