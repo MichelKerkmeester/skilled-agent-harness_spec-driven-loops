@@ -28,6 +28,7 @@ const {
   isEvidenceBearingIteration,
   readNodeStore,
   applyBandBudget,
+  closeNode,
 } = require('../../runtime/scripts/frontier-admit.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -2449,7 +2450,8 @@ function readFrontierNodeStore(storePath, warnings = []) {
 }
 
 // A node the store still holds open is answered once its question resolves in
-// the registry, so the status is derived here instead of written back.
+// the registry. The status is derived here, and a writing reduce then records
+// that answer in the store.
 function buildFrontierProjection(frontierInput, keyedQuestions) {
   const resolvedByNode = new Map();
   for (const question of keyedQuestions) {
@@ -2477,6 +2479,28 @@ function buildFrontierProjection(frontierInput, keyedQuestions) {
     ...(frontierInput.budget ? { budget: frontierInput.budget } : {}),
     ...(Array.isArray(frontierInput.warnings) && frontierInput.warnings.length > 0 ? { warnings: frontierInput.warnings } : {}),
   };
+}
+
+// The graph projection and the frontier block read node status from the store, so
+// an answer derived above is written back as a close. Only answers are: a budget
+// close is recomputed every reduce, and an extension or a band roll-down reopens it.
+// A node the store already settled is skipped, so a repeat reduce appends nothing.
+function writeAnsweredFrontierCloses(researchDir, frontier, keyQuestions) {
+  const storeById = readNodeStore(path.join(researchDir, 'frontier-nodes.jsonl'));
+  const resolvedAtByNode = new Map(keyQuestions
+    .filter((question) => question.inboxId)
+    .map((question) => [question.inboxId, question.resolvedAtIteration]));
+  for (const node of frontier.nodes) {
+    const stored = storeById.get(node.nodeId);
+    if (node.status !== 'answered' || !stored) continue;
+    if (stored.status !== 'open' && stored.status !== 'active') continue;
+    closeNode({
+      artifactDir: researchDir,
+      nodeId: node.nodeId,
+      status: 'answered',
+      iteration: resolvedAtByNode.get(node.nodeId) ?? node.iteration,
+    });
+  }
 }
 
 // The frontier focus leads with a `Frontier node <id>` marker before the question
@@ -3467,6 +3491,9 @@ function reduceResearchState(specFolder, options = {}) {
       sessionId: registry.sessionId || null,
       generation: registry.generation ?? null,
     });
+    if (registry.frontier) {
+      writeAnsweredFrontierCloses(researchDir, registry.frontier, registry.keyQuestions);
+    }
     writeUtf8(registryPath, `${JSON.stringify(registry, null, 2)}\n`);
     if (strategyWarnings.length === 0) {
       writeUtf8(strategyPath, strategy.endsWith('\n') ? strategy : `${strategy}\n`);

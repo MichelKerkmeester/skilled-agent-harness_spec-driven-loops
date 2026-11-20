@@ -2296,6 +2296,42 @@ describe('deep-research reduce-state expansive frontier', () => {
     expect(registry.openQuestions?.some((question) => question.text === limits)).toBe(true);
   });
 
+  // The graph projection and the frontier block read node status from the store,
+  // so an answer the reducer derived is written there. A budget close is not: an
+  // extension or a band roll-down can still reopen it.
+  it('writes answered closes into the node store once, and leaves budget closes in the projection', () => {
+    const { specFolder } = overspentDepthTwo();
+    const storePath = join(specFolder, 'research', 'frontier-nodes.jsonl');
+    const lastRows = () => {
+      const byId = new Map<string, Record<string, unknown>>();
+      for (const line of readFileSync(storePath, 'utf8').split('\n').filter(Boolean)) {
+        const row = JSON.parse(line);
+        byId.set(row.nodeId, row);
+      }
+      return [...byId.values()].map((row) => `${row.nodeId}:${row.status}:${row.iteration}`);
+    };
+
+    reduceResearchState(specFolder, { write: true });
+    expect(lastRows()).toEqual(['F-1-001:answered:5', 'F-2-002:answered:9', 'F-2-003:open:1']);
+
+    const afterFirst = readFileSync(storePath, 'utf8');
+    reduceResearchState(specFolder, { write: true });
+    expect(readFileSync(storePath, 'utf8')).toBe(afterFirst);
+
+    const { registry } = reduceResearchState(specFolder, { write: false });
+    expect(frontierOf(registry).nodes.map((entry) => `${entry.nodeId}:${entry.status}:${entry.reason}`))
+      .toEqual(['F-1-001:answered:null', 'F-2-002:answered:null', 'F-2-003:exhausted:budget']);
+  });
+
+  it('leaves the node store untouched on a reduce that does not write', () => {
+    const { specFolder } = overspentDepthTwo();
+    const storePath = join(specFolder, 'research', 'frontier-nodes.jsonl');
+    const before = readFileSync(storePath, 'utf8');
+
+    reduceResearchState(specFolder, { write: false });
+    expect(readFileSync(storePath, 'utf8')).toBe(before);
+  });
+
   it('renders the frontier metrics on an expansive dashboard only', () => {
     const expansiveFolder = expansiveSpec();
     writeNodes(expansiveFolder, twoOpen());
