@@ -50,7 +50,7 @@ const DSH_PATCH_LITERAL_MESSAGE = 'Pass a literal `.dsh/patches/...` path to `--
 // version the engine holds it to every rule at its declared severity.
 const QUOTED_OPENCODE_RUN_BINARY = /(?:^|[\s;&|])["']((?:[^"']*[\\/])?opencode)["']\s+run\b/;
 const OPENCODE_RUN_BINARY = /(?:^|[\s;&|'" ])((?:[^\s"';&|]*[\\/])?opencode|\$OPENCODE_BIN|\$\{OPENCODE_BIN\})["']?\s+run\b/;
-const UNRESOLVED_FAMILIES = Object.freeze(['unknown', 'unsupported']);
+const UNRESOLVED_FAMILIES = Object.freeze(['unknown']);
 
 /** Read the sibling sidecar beside a SKILL.md; [] on any read, parse or shape error (fail-open). */
 export function readHardRules(skillMdPath) {
@@ -1092,7 +1092,7 @@ export const KNOWN_CHECKS = Object.keys(CHECKS);
  * @param {Object} [options]
  * @param {object} [options.checks] - Check registry override.
  * @param {object} [options.context] - State available to checks.
- * @param {'v2' | 'unsupported' | 'unknown'} [options.version] - Resolved OpenCode version.
+ * @param {'v2' | 'unknown'} [options.version] - Resolved OpenCode version.
  * @returns {Array<{id,severity,message,check,passed:boolean}>} only the VIOLATED rules.
  */
 export function evaluate(command, rules, options = {}) {

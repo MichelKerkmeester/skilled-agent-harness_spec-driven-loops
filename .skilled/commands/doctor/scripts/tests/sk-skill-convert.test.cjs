@@ -392,6 +392,22 @@ function gitShow(reference, repositoryPath) {
   ], { cwd: REPO_ROOT, env: environment(), encoding: 'utf8' });
 }
 
+// The fixture drops one sentence the pre-move tree carried about a runtime version the
+// repository no longer supports, so the comparison makes the same edit to the Git copy.
+const FIXTURE_EDITS = {
+  'references/worktree-workflows.md': [[
+    /\. OpenCode \d stops at the worktree root and is not affected \(observed on 2\.0\.32 and [\d.]+, 2026-10-20\)\./,
+    ' (observed on 2.0.32, 2026-10-20).',
+  ]],
+};
+
+function withFixtureEdits(resource, text) {
+  return (FIXTURE_EDITS[resource] || []).reduce((edited, [pattern, replacement]) => {
+    assert.match(edited, pattern, `${resource}: the fixture edit no longer applies`);
+    return edited.replace(pattern, replacement);
+  }, text);
+}
+
 function hasGitObject(reference) {
   const result = spawnSync('git', [
     '-c', 'core.fsmonitor=false', 'cat-file', '-e', reference,
@@ -576,7 +592,7 @@ test('fixture source matches the available pre-move Git tree and expected router
   for (const resource of ROUTED_RESOURCES) {
     assert.equal(
       fs.readFileSync(path.join(fixtureSkillRoot, resource), 'utf8'),
-      gitShow(PRE_MOVE_REF, `.skilled/skills/sk-git/${resource}`),
+      withFixtureEdits(resource, gitShow(PRE_MOVE_REF, `.skilled/skills/sk-git/${resource}`)),
       resource,
     );
   }

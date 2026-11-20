@@ -623,7 +623,7 @@ git worktree prune
 
 **Symptom**: In a worktree under `.worktrees/`, OpenCode 2 lists each repository plugin twice: the main checkout's copy active, the worktree's copy failed with `Duplicate plugin ID`.
 
-**Cause**: OpenCode 2 merges the `.opencode` folder of every ancestor directory, and `.worktrees/` sits inside the main checkout. The session runs the main checkout's plugin code, so a plugin change made in the worktree has no effect there. OpenCode 1 stops at the worktree root and is not affected (observed on 2.0.32 and 1.19.3, 2026-10-20).
+**Cause**: OpenCode 2 merges the `.opencode` folder of every ancestor directory, and `.worktrees/` sits inside the main checkout. The session runs the main checkout's plugin code, so a plugin change made in the worktree has no effect there (observed on 2.0.32, 2026-10-20).
 
 **Solution**:
 ```bash

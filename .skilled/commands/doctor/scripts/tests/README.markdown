@@ -62,7 +62,7 @@ Current state:
 | `ci-toggle.test.cjs` | `ci-toggle.cjs` with a gh stub: a foreign switch is accepted, the variable behind a required check is refused, `neverOff` and README refusals, the no-op refusal and, here, the second confirmation for the freshness and reports switches |
 | `doctor-ci-contract.test.cjs` | Checks the `/doctor:ci` router, workflows, presentation and command contract against each other: the route manifest, the toggle's allowed names, the scaffold's refusals and templates |
 | `doctor-setup-orphan-line.test.cjs` | The orphan-process line in `/doctor:setup`: informational output that never changes the doctor status |
-| `opencode-version-battery.test.cjs` | `opencode-version-battery.cjs`: the plugin, skill and command legs on v2, the MCP-prompt cases, the family skips, a major-1 binary read as unsupported, nested roots, the argument errors and the probe count |
+| `opencode-version-battery.test.cjs` | `opencode-version-battery.cjs`: the plugin, skill and command legs on v2, the MCP-prompt cases, the family skips, a binary on another major read as unknown, nested roots, the argument errors and the probe count |
 | `orphan-process-check.test.cjs` | `orphan-process-check.cjs`: elapsed-time and ps parsing, orphan classification, the `--json`, `--summary` and `--min-age-min` options, the exit codes for a scan that cannot run, and the guarded `--reap --yes` |
 | `test_audit_descriptions.py` | `audit_descriptions.py` |
 

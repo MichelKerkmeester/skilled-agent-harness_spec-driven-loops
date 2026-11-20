@@ -281,14 +281,8 @@ function installRuntimeStub(sandbox, { markers = '', exitCodes = '0', ...overrid
   fs.mkdirSync(path.dirname(handoffPath), { recursive: true });
   fs.writeFileSync(markerPath, markers);
   fs.writeFileSync(handoffPath, OPEN_NOTE);
-  // The wrapper asks OpenCode for its version before the first launch. That probe is not a
-  // launch, so the stub answers it without recording an invocation or arming a record.
   const shellProgram = `#!/usr/bin/env bash
 set -euo pipefail
-if [[ $# -eq 1 && "$1" == --version ]]; then
-  printf '%s\\n' "\${OPENCODE_STUB_VERSION:-}"
-  exit 0
-fi
 export SESSION_HANDOVER_TEST_RUNTIME="$SKILLED_LOOP_RUNTIME"
 export SESSION_HANDOVER_TEST_COMMAND="\${0##*/}"
 node -e '${RUNTIME_SOURCE}' -- "$@"
