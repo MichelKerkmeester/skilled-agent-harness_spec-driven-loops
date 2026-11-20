@@ -856,7 +856,7 @@ describe('gateway-recorded rows survive a later projection refresh', () => {
     expect(rows.some((row) => row.event === 'question_registered')).toBe(true);
   });
 
-  it('records a bare review iteration record and projects it back unchanged', () => {
+  it('records a bare review iteration record and projects it back timed by the gateway clock', () => {
     const runDir = createTempDir('review-iteration-record');
     const reviewStatePath = join(runDir, 'review', 'deep-review-state.jsonl');
     const record = {
@@ -884,7 +884,9 @@ describe('gateway-recorded rows survive a later projection refresh', () => {
       durationMs: 120000,
     };
 
+    const before = Date.now();
     const first = appendReviewEvent(runDir, 'iteration-1.json', record);
+    const after = Date.now();
     expect(first.exitCode, first.stderr).toBe(0);
     expect(first.json.ok).toBe(true);
     expect(first.json.projectionRefreshed).toBe(true);
@@ -896,8 +898,39 @@ describe('gateway-recorded rows survive a later projection refresh', () => {
 
     const rows = readProjectedRows(reviewStatePath);
     expect(rows).toHaveLength(2);
-    expect(rows[0]).toEqual(record);
+    // Every field the worker wrote survives; only the row time moves to the
+    // gateway clock, and the worker's stamp rides beside it as a claim.
+    const { timestamp: rowTime, claimedTimestamp, ...rest } = rows[0] as Record<string, unknown>;
+    const { timestamp: _recordTime, ...recordRest } = record;
+    expect(rest).toEqual(recordRest);
+    expect(claimedTimestamp).toBe(record.timestamp);
+    expect(Date.parse(String(rowTime))).toBeGreaterThanOrEqual(before);
+    expect(Date.parse(String(rowTime))).toBeLessThanOrEqual(after);
     expect(rows[1]).toMatchObject({ type: 'iteration', iteration: 2, run: 2 });
+  });
+
+  // A model can also write an occurrence time; that must not reach the event time
+  // either, and a record with no stamp makes no claim.
+  it('ignores a review iteration record\'s own occurrence time and claims nothing without a stamp', () => {
+    const runDir = createTempDir('review-iteration-clock');
+    const reviewStatePath = join(runDir, 'review', 'deep-review-state.jsonl');
+    const before = Date.now();
+    const result = appendReviewEvent(runDir, 'iteration-clock.json', {
+      type: 'iteration',
+      iteration: 1,
+      mode: 'review',
+      status: 'complete',
+      sessionId: 'session-review-clock',
+      occurredAt: '2099-01-01T00:00:00Z',
+      occurred_at: '2098-01-01T00:00:00Z',
+    });
+    const after = Date.now();
+    expect(result.exitCode, result.stderr).toBe(0);
+
+    const row = readProjectedRows(reviewStatePath)[0] as Record<string, unknown>;
+    expect(Date.parse(String(row.timestamp))).toBeGreaterThanOrEqual(before);
+    expect(Date.parse(String(row.timestamp))).toBeLessThanOrEqual(after);
+    expect(Object.hasOwn(row, 'claimedTimestamp')).toBe(false);
   });
 
   it('records a review iteration record larger than ten kilobytes', () => {
@@ -920,7 +953,10 @@ describe('gateway-recorded rows survive a later projection refresh', () => {
     const result = appendReviewEvent(runDir, 'iteration-large.json', record);
     expect(result.exitCode, result.stderr).toBe(0);
     expect(result.json.projectionRefreshed).toBe(true);
-    expect(readProjectedRows(reviewStatePath)[0]).toEqual(record);
+    expect(readProjectedRows(reviewStatePath)[0]).toMatchObject({
+      findingDetails: record.findingDetails,
+      claimedTimestamp: record.timestamp,
+    });
   });
 
   it('still refuses a review row that is not an iteration record', () => {

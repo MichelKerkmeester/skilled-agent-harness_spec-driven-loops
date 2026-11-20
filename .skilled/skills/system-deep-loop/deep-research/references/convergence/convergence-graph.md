@@ -9,7 +9,7 @@ trigger_phrases:
   - "graph convergence graceful degradation"
 importance_tier: normal
 contextType: implementation
-version: 1.14.2.0
+version: 1.14.3.0
 ---
 
 # Graph-Aware Convergence Reference
@@ -38,7 +38,7 @@ Graph gates add structural evidence to legal-stop checks. They never replace the
 
 A graph decision is required for every non-terminal STOP. Without a graph decision, every non-terminal STOP is blocked and the loop continues.
 
-The iteration graph upsert does not depend on `graphEvents` alone. When an iteration's delta holds `finding` rows and its `answeredQuestions` match the text of a QUESTION node, from the stored graph, the batch or the frontier node store, `upsert.cjs` derives one FINDING node per finding row, a SOURCE node with a CITES edge per cited file (line ref dropped, quality class derived from the path), and an ANSWERS edge to each matched question. This holds on a default run too, where no matching QUESTION node means nothing is derived. An iteration whose `graphEvents` declare FINDING nodes derives nothing, and a derived edge that repeats a stored or leaf link is dropped, so `source_diversity_guard`, `evidence_depth_guard` and `uncovered_questions` never count one finding twice.
+The iteration graph upsert does not depend on `graphEvents` alone. When an iteration's delta holds `finding` rows and the run has a question graph, a QUESTION node in the stored graph, the batch or the frontier node store, `upsert.cjs` derives one FINDING node per finding row and a SOURCE node with a CITES edge per cited file (line ref dropped, quality class derived from the path). Each `answeredQuestions` entry that matches a QUESTION node's text also gets an ANSWERS edge. A pass that answered nothing still derives its FINDING, SOURCE and CITES evidence with no ANSWERS edge, so a later answer has evidence to stand on. Nothing is derived when the run has no question graph, because the stop decision reads a graph with no question as empty and findings alone would turn that into a blocked stop. Nothing is derived either when the iteration lists answered questions and none of them matches a QUESTION node. An iteration whose `graphEvents` declare FINDING nodes derives nothing, and a derived edge that repeats a stored or leaf link is dropped, so `source_diversity_guard`, `evidence_depth_guard` and `uncovered_questions` never count one finding twice.
 
 `graphEvents` are documented in `../state/state-jsonl.md`. Reducer-owned graph summaries are documented in `../state/state-reducer-registry.md`.
 

@@ -476,19 +476,22 @@ async function main() {
       // under ids the rows do not share, so deriving them again would count one
       // finding twice against the question it answers.
       const leafDeclaredFindings = rawNodes.some((n) => String(n?.kind || n?.nodeKind || '').toUpperCase() === 'FINDING');
-      if (!leafDeclaredFindings && evidence.findings.length > 0 && evidence.answeredQuestions.length > 0) {
+      if (!leafDeclaredFindings && evidence.findings.length > 0) {
         const questionIdByText = new Map();
         const researchNs = { specFolder, loopType, sessionId };
-        for (const stored of db.getNodesByKind(researchNs, 'QUESTION')) {
+        const storedQuestions = db.getNodesByKind(researchNs, 'QUESTION');
+        for (const stored of storedQuestions) {
           if (typeof stored.name === 'string') questionIdByText.set(stored.name.trim(), stored.id);
         }
-        for (const n of rawNodes) {
-          if (String(n?.kind || n?.nodeKind || '').toUpperCase() !== 'QUESTION' || typeof n.id !== 'string') continue;
+        const batchQuestions = rawNodes.filter((n) => String(n?.kind || n?.nodeKind || '').toUpperCase() === 'QUESTION');
+        for (const n of batchQuestions) {
+          if (typeof n.id !== 'string') continue;
           const text = n.name || n.label;
           if (typeof text === 'string') questionIdByText.set(text.trim(), n.id);
         }
+        const frontierQuestions = frontierQuestionNodes(args.stateLog);
         const pendingQuestions = [];
-        for (const node of frontierQuestionNodes(args.stateLog)) {
+        for (const node of frontierQuestions) {
           const text = node.name.trim();
           if (questionIdByText.has(text) || !evidence.answeredQuestions.some((answered) => answered.trim() === text)) continue;
           questionIdByText.set(text, node.id);
@@ -497,9 +500,14 @@ async function main() {
         const questionIds = [...new Set(evidence.answeredQuestions
           .map((text) => questionIdByText.get(text.trim()))
           .filter((id) => typeof id === 'string'))];
-        // A finding attaches to the guards only through a question, so with no
-        // question to answer nothing is derived and the graph stays as it was.
-        if (questionIds.length > 0) {
+        // A pass that answered nothing still found and cited something, so its
+        // FINDING nodes and CITES edges are derived, with no ANSWERS edge, and a
+        // later answer has evidence to stand on. That holds only once the run
+        // has questions: a graph with no question is read as empty by the stop
+        // decision, and findings alone would turn that into a blocked stop.
+        const hasQuestionGraph = storedQuestions.length > 0 || batchQuestions.length > 0 || frontierQuestions.length > 0;
+        const answeredUnmatched = evidence.answeredQuestions.length > 0 && questionIds.length === 0;
+        if (hasQuestionGraph && !answeredUnmatched) {
           derived = deriveResearchFindingEvidence(evidence.findings, questionIds, iteration, SOURCE_QUALITY_CLASS);
           derived.nodes.unshift(...pendingQuestions);
         }
@@ -528,7 +536,7 @@ async function main() {
     }
     if (rawNodes.length === 0 && rawEdges.length === 0 && derived.nodes.length === 0) {
       if (canonicalFindings && loopType === 'research') {
-        jsonOut({ status: 'ok', data: { insertedNodes: 0, insertedEdges: 0, skipped: 'no graph events and no finding attached to a stored question' } });
+        jsonOut({ status: 'ok', data: { insertedNodes: 0, insertedEdges: 0, skipped: 'no graph events and no finding derived: no finding row, no question in the graph, or no answer matched one' } });
         return;
       }
       if (!seedOptions) throw inputError('At least one node or edge must be provided');

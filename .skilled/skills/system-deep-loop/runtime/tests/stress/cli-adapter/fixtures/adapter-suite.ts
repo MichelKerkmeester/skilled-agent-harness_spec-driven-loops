@@ -107,7 +107,7 @@ function expectSuccessArgs(kind: AdapterKind, args: readonly string[]): void {
     case 'cli-claude-code':
       expect(args).toEqual(expect.arrayContaining([
         '-p', '--model', MODEL_BY_KIND[kind], '--permission-mode', 'acceptEdits',
-        '--output-format', 'text', '--effort', 'high',
+        '--output-format', 'stream-json', '--verbose', '--effort', 'high',
       ]));
       break;
     case 'cli-devin':

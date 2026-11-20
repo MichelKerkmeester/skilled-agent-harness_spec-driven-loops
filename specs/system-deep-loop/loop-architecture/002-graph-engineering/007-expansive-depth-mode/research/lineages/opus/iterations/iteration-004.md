@@ -1,108 +1,119 @@
-# Iteration 4: Restraint, part B (fanout-run probes and completion names, convergence.cjs layering, YAML bookkeeping)
+# Iteration 4: Honesty thresholds calibrated on 678 committed lineages (F-1-001, with F-2-007)
 
 ## Focus
-Frontier node F-1-001 (depth 1, scope .skilled/skills/system-deep-loop/runtime/scripts, .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs, .skilled/commands/deep/assets): Restraint: what can be deleted, merged or collapsed across frontier-admit.cjs, the deep-research and deep-review reduce-state.cjs reducers, convergence.cjs, fanout-run.cjs and the two deep workflow YAMLs while every promise of the expansive-depth modes stays kept? Name concrete deletions with file:line.
+This pass revisits F-1-001 so that it closes with evidence. It also answers its child F-2-007, which asks two things:
+- Which unexamined-pass thresholds flag the gen2 review stamps without flagging real passes?
+- Does an observed ratio change any stop?
+
+It also settles the correction recorded in `research.md`: does the review gateway path keep the model's stamp too?
 
 ## Actions Taken
-1. Read the `LINEAGE_COMMAND_ADAPTERS` table and the per-kind binary probes (fanout-run.cjs:3379, 3557-3647), and measured each adapter builder's length.
-2. Mapped the convergence.cjs sections. The stop decision runs 720-1827, about 1100 lines.
-3. Counted `bookkeeping_log`, `append_jsonl` and approval gates in both YAMLs, and traced `pivot_override_accepted` through both workflows, both reducers and the research ledger schema.
-4. Confirmed the event names `synthesis-closeout.cjs` emits (synthesis-closeout.cjs:412, 439, 459, 483).
+1. Read the deep-review branch of `append-mode-event.cjs`.
+2. Wrote `.executor-state/calibrate.cjs`, a read-only script. It applies the composite rule from iteration 1 to any lineage directory:
+   - `future`: the projected stamp is more than 1 s after its own ledger commit;
+   - `noReads+noFindings`: zero source reads and zero findings in the pass;
+   - `batched`: a commit gap under 15 s with zero tool calls.
+   It takes the last commit per iteration, so a re-recorded iteration is never matched to an older commit.
+3. Ran it over **every committed fan-out lineage in `specs/`** that has a runner log: 701 directories, 678 with a state log, and 3,588 iteration passes. The live run's own lineages were left out.
+4. Looked up the executor kind of each flagged lineage from its config.
+5. Computed an observed ratio for the gen3 research lineages: the share of each pass's cited `file:line` locations that no earlier pass cited.
 
 ## Findings
-1. **Eight copy-pasted binary probes.**
-   - `isCodexBinaryAvailable`, `isClaudeBinaryAvailable`, `isOpencodeBinaryAvailable`, `isCursorBinaryAvailable`, `isDevinBinaryAvailable`, `isPiBinaryAvailable`, `isDshBinaryAvailable` and `isVibeBinaryAvailable` each `spawnSync` the same `command -v <name>` (fanout-run.cjs:3379, 3582-3647). There are 15 `command -v` sites in the file.
-   - The comment at 3590-3591 records that two kinds once lacked the check and failed mid-lineage. That is the drift a table prevents.
-   - **Change:** one `BINARY_BY_KIND` map beside `LINEAGE_COMMAND_ADAPTERS` (3557) and one `isExecutorBinaryAvailable(kind, env)`; delete the eight functions.
-   - Value low-M, effort S, risk low.
-   [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3582] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3590]
-2. **The strict completion set still carries tolerance for spellings that scripted closeout no longer produces.**
-   - `SYNTHESIS_EVENT_NAMES` accepts `synthesis_complete`, `phase_synthesis_complete` and `synthesis` (fanout-run.cjs:1241). The research terminal set adds `synthesis_incomplete` (1248-1251). `completionFromArtifacts` rescues a lineage only on the max-iterations path (1282-1312, 1334-1342).
-   - `synthesis-closeout.cjs`, called by step_convergence_report (deep-research.yaml:2195-2216), emits only `synthesis_complete` or `synthesis_incomplete` (synthesis-closeout.cjs:412, 439, 459, 483).
-   - **Change:** once the pre-spawn classifier from iteration 2 (Finding 3) owns legacy logs:
-     - drop `phase_synthesis_complete` and `synthesis` from the strict set
-     - move the artifact fallback into that classifier
-   - Then one rule judges new attempts, and one tolerant rule judges prior ones.
-   - Value M, effort S, risk low-medium. A lineage whose closeout step fails is no longer rescued by its artifacts, which is the intended strictness.
-   [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1241] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:439]
-3. **The review audit drops the override it claims to keep, and the review reducer reads it anyway.**
-   - Review pins `pivot_override_accepted` as print-only bookkeeping (deep-review.yaml:167, 1627).
-   - Research records the same event through a ledger stem (deep-research.yaml:1501; deep-research-ledger-schema.ts:622).
-   - The review reducer still filters `pivot_override_accepted` rows (runtime/scripts/reduce-state.cjs:1414), and so does divergent-review-pivot.ts:421. From a current run they find nothing.
-   - So review's "audited override" leaves no durable audit row, and two readers are dead.
-   - **Change:** add a `deep_review.pivot_override_accepted` stem mirroring research's, and route the review row through the gateway. Alternatively, delete both readers and the "audited" wording.
-   - Value M (an audit-trail correctness gap), effort S-M, risk low.
-   [SOURCE: .skilled/commands/deep/assets/deep-review.yaml:167] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1414] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:622]
-4. **Print-only bookkeeping is spelled as fully templated JSON rows.**
-   - Research has 12 `bookkeeping_log` directives and review has 7. None is persisted: the research and review `pinned_bookkeeping` blocks say the step "prints the row in its log line" (deep-research.yaml:175-180; deep-review.yaml:166-169).
-   - Each still carries a full event template with `sessionId`, `generation` and timestamp placeholders that the model must substitute, for example `graph_convergence` with three embedded JSON blobs.
-   - **Change:** shrink each `bookkeeping_log` to a one-line `log:` message with only the fields an operator reads, and delete the JSON templates. Where a fact matters later, `maxDurationReached` for example, it already reaches the ledger through closeout's `--stop-reason`.
-   - Value M (less model transcription per iteration, so less cross-runtime variance), effort S, risk low.
-   [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:176] [SOURCE: .skilled/commands/deep/assets/deep-review.yaml:166]
-5. **The node-binding rule lives in convergence.cjs, but the node store's owner is frontier-admit.cjs.**
-   - `frontierMarkerPattern`, `ANY_FRONTIER_MARKER`, `activeNodeByIteration` and `iterationBoundToNode` sit at convergence.cjs:1359-1395. So the review reducer imports node binding from the stop-decision module (runtime/scripts/reduce-state.cjs:18-23), while the research reducer keeps its own copy.
-   - **Change:** move the four into frontier-admit.cjs next to `readNodeStore`, and have convergence.cjs and both reducers import them. This completes iteration 1's Findings 1 and 2.
-   - convergence.cjs then keeps only the stop decision and counters, and the circular-looking reducer to convergence to frontier-admit chain becomes reducer to frontier-admit.
-   - Value M, effort S, risk low.
-   [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1359] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:18]
-6. **Correction to iteration 1, Finding 6.** The single gateway command those steps should reference is `state_write_protocol.command` at deep-research.yaml:172, not 157. [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:172]
-
-## F-1-001 consolidated answer (both parts), ranked by value over effort
-
-| Change | Value | Effort | Risk |
-|--------|-------|--------|------|
-| Move inline YAML programs into a lifecycle script | H | M | low |
-| One `projectFrontier` | H | M | med |
-| Shrink print-only bookkeeping | M | S | low |
-| Delete 24 config aliases | M | S | low |
-| Move the binding rule into frontier-admit.cjs; delete the regex copies | M | S | low |
-| Research `block --node-id` | M | S | low |
-| Fix the review override audit | M | S-M | low |
-| Single strict completion set | M | S | low-med |
-| Delete the expired migration | S-M | S | low |
-| One binary-probe table | low-M | S | low |
-| Delete the gateway fallbacks | low-M | S | low |
-
-Every promise stays kept:
-- No change removes an admission check, the frontierOpen veto, the band budget, the terminal-cap bypass or ledger authority.
+1. **The review gateway path also lets the model choose the projected stamp, through a different mechanism. The fix must cover both modes.**
+   - A review `iteration` or `iteration_start` row travels whole as `data.record` under `deep_review.iteration_recorded`. The projection writes the record back unchanged, so its model-written `timestamp` is what readers see. The envelope's `occurredAt` and `recordedAt` take the gateway clock. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:432-458]
+   - The research upcaster instead promotes the stamp into `occurredAt`. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:908-916]
+   - **Change:** stamp the projected `timestamp` of `iteration` rows from the gateway clock in both paths, and keep the model's value as `claimedTimestamp`. This corrects iteration 1 finding 1, which named only the research path.
+   - Value H, effort S, risk L.
+2. **The composite rule flags 85 of 3,588 passes (2.4%) in 27 of 678 lineages.**
+   - **0 of 328 research lineages are flagged.** That includes gen3 deepseek, whose real passes ran 33-98 s.
+   - The flagged lineages are 19 `cli-opencode`, 6 `cli-pi`, 1 `cli-devin` and 1 `cli-mistral-vibe`.
+   - **No `cli-claude-code` or native lineage is flagged.**
+   - [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/opus/.executor-state/calibrate.cjs]
+3. **A future stamp is common, grows run over run, and is safe to flag with zero tolerance.**
+   - 17 lineages carry stamps later than their own commit, and the skew grows within each run. Examples:
+     - `pi-deepseek-1`: +463 s at iteration 1, rising to +3,218 s at iteration 10;
+     - `vibe-1`: +549 s rising to +7,852 s;
+     - gen2 `deepseek`: +8 s rising to +126 s.
+   - In each case the model is inventing a clock that runs ahead of the real one.
+   - No Claude or research lineage had any skew above 1 s, so a 1 s bound produces no false positives in this corpus.
+   - [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/lineages/deepseek/deep-review-state.jsonl] [INFERENCE: based on calibrate.cjs output over the 678 lineages]
+4. **Zero reads plus zero findings is the coverage-faking shape, and it is mostly review dimension passes.**
+   - 11 lineages hit it. In `mention-14`, passes 4-8 each read no source and reported nothing, yet each is a dimension pass that counts toward coverage.
+   - The batched rule fired in only 2 lineages. One was gen2 deepseek iteration 12: 0.9 s after the previous commit, with zero calls.
+   - [INFERENCE: based on calibrate.cjs output]
+5. **The rule is deliberately conservative.**
+   - It flags gen2 deepseek passes 8-12 but not passes 4-7, which the conductor also called stamped.
+   - Passes 4-7 made 12-33 calls with 4-22 source reads and 0-1 findings, so they do show real reading.
+   - Tightening the rule further, for example to "reads < 5", would start flagging real gen3 passes 4 and 7-9, which had 0-2 in-pass reads because their context carried over from earlier passes.
+   - **Recommendation:** ship the three rules as calibrated here. Do not add a reads threshold without labelled data.
+   - [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/scratch/dogfood-review-gen2.md:297-312] [INFERENCE: based on toolcalls-probe.cjs per-pass counts in iteration 1]
+6. **An observed ratio would not have changed any stop in gen3, so it is a guard rather than a stop driver.**
+   - Cited-location novelty per pass:
+     - gen3 deepseek: 1.00, 0.94, 1.00, 0.80, 1.00, 0.86, 0.83, 0.59, 1.00;
+     - gen3 opus: 1.00, 1.00, 0.60, 0.90, 0.89.
+   - All of these sit far above the 0.05 threshold.
+   - Deepseek's self-reported 1.0 was inflated, but not enough to matter. Its cap stop was legitimate for a lineage whose passes kept citing new code.
+   - This downgrades iteration 1 finding 7's observed-ratio half to value M, consistent with keeping held row 28 deferred.
+   - Finding ids are useless for this measure, because every pass mints new ones.
+   - [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261120T125555Z/lineages/deepseek/iterations/iteration-001.md] [INFERENCE: based on the novelty computation over both gen3 lineages]
+7. **How convergence should weigh a flagged pass: treat it like `thought`.**
+   - Extend `isEvidenceBearingIteration` to drop rows carrying `passEvidence.unexamined === true`. A flagged pass then:
+     - does not reset or advance the stuck count;
+     - does not vote for a stop;
+     - does not count as a frontier node visit;
+     - cannot answer a node on its own.
+   - [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:96-100] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1464] [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2513-2520]
+   - **Producer:** the runner cannot write a lineage's state log. The verdict must therefore come from a runner-side `pass_evidence` row on the root ledger, or from the post-attempt check that already runs at `fanout-run.cjs:4898-4923`.
+   - The lineage's own convergence call still trusts its own rows. The in-lineage effect therefore needs the gateway to attach `passEvidence` when it records the row, using the commit gap it can see. It cannot see tool calls.
+   - Value H, effort M, risk M.
+8. **How the merge and the completion check should weigh a flagged pass: keep the evidence, discount the claims.**
+   - In `fanout-merge.cjs`, keep the findings of a flagged pass, since they carry citations. Do not count its dimension coverage or node answers unless a second pass corroborates them.
+   - Print `flagged passes` beside `Iterations` in the attribution table, in place of the "Convergence" column that today shows a self-reported ratio. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1216-1222]
+   - In the completion check, a lineage with more than half its passes flagged settles as `fulfilled_unverified`, a new outcome. That keeps its work, and the operator gets a named rerun. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1283-1310]
+   - Value H, effort M, risk M.
 
 ## Questions Answered
-- F-1-001 (with iteration 1).
+- **F-1-001 (lineage honesty):**
+  - The signals are named and calibrated: future stamp, zero reads with zero findings, and a batched commit.
+  - The weighing for convergence, the merge and the completion check is set out in findings 7-8.
+- **F-2-007 (thresholds):**
+  - The calibrated rule separates the stamps from every research lineage and every Claude or native lineage.
+  - The observed ratio changes no gen3 stop.
 
 ## Questions Remaining
-None in this lineage's frontier scope.
+- F-2-006: the log shape of each runtime, which decides where tool calls can be counted.
 
 ## Ruled Out
-- Extracting the eight adapter builders (33-106 lines each, fanout-run.cjs:2533-3555) as a restraint move. Their divergence is the cross-CLI parity question (F-1-004), dealt to the other lineage, so it is only noted here.
+- **A minimum-reads threshold:** it flags real context-carried passes (finding 5).
+- **Finding-id novelty as an observed ratio:** ids are minted fresh on every pass.
 
 ## Dead Ends
-None.
+- None.
 
 ## Edge Cases
 - Ambiguous input: none.
-- Contradictory evidence: research persists `pivot_override_accepted` while review pins it as print-only. Both are cited; neither is better supported, because the two workflows disagree.
-- Missing dependencies: none.
+- Contradictory evidence:
+  - The conductor called all 9 of gen2 deepseek's late passes stamps, but the log shows real reads in passes 4-7. Both are recorded, and the rule sides with the log.
+  - "3 of 12" in other briefs is a sample, while this calibration covers the whole committed corpus.
+- Missing dependencies: 446 of the 678 lineages have text logs (`toolLog=none`), so only the skew rule applies to them.
 - Partial success: none.
 
 ## Sources Consulted
-- .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1241-1342, 2533-3555, 3379, 3557-3647
-- .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:3-150, 720-1827, 1359-1395
-- .skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:412-483
-- .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:18-23, 1408-1418
-- .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:622
-- .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts:421
-- .skilled/commands/deep/assets/deep-research.yaml:172-180, 1460, 1501, 2195-2216
-- .skilled/commands/deep/assets/deep-review.yaml:165-169, 1627
+- `runtime/scripts/append-mode-event.cjs`: 432-458; `runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts`: 908-916
+- `runtime/scripts/frontier-admit.cjs`: 96-100; `runtime/scripts/convergence.cjs`: 1464; `deep-research/scripts/reduce-state.cjs`: 2513-2520
+- `runtime/scripts/fanout-merge.cjs`: 1216-1222; `runtime/scripts/fanout-run.cjs`: 1283-1310, 4898-4923
+- the ledger frames, state logs and `logs/fanout-lineage.out` of 678 committed lineages under `specs/` (list in `/tmp`, not kept)
+- `scratch/dogfood-review-gen2.md`: 297-312; gen3 lineage iterations
 
 ## Assessment
-- New information ratio: 0.83
-- Questions addressed: F-1-001
-- Questions answered: F-1-001
+- New information ratio: 0.75
+- Questions addressed: F-1-001, F-2-007
+- Questions answered: F-1-001, F-2-007
 
 ## Reflection
-- What worked and why: tracing one event name across workflow, schema and reducer found a real audit gap that a pure size or duplication scan would miss.
-- What did not work and why: convergence.cjs section headers showed size but not seams. The import graph showed the seams.
-- What I would do differently: check the review ledger schema directly for a missing stem before concluding. Here the conclusion rests on the YAML's own pinned list.
+- **What worked:** running the rule on the whole corpus. It turned a two-lineage anecdote into a measured false-positive rate of zero on Claude, native and research lineages.
+- **What did not work:** my first matcher, which took the first commit per iteration. I switched it to the last commit, so a resumed lineage cannot fake skew. The counts did not change.
+- **What I would do differently:** hand-label 20 passes to test the conservative rule's recall beyond gen2.
 
 ## Recommended Next Focus
-All three frontier nodes in this lineage's scope are answered. Recommend synthesis.
+F-2-006: per-runtime log shapes and the single adapter contract (Q2).

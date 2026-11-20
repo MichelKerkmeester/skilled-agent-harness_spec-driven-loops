@@ -288,7 +288,8 @@ describe('deep-research reducer', () => {
     expect(firstStrategy).toContain('## 11A. CARRIED-FORWARD OPEN QUESTIONS');
     expect(firstStrategy).toContain('- Which runtime prompt seam carries self-owned open questions? (iteration 2)');
     expect(firstStrategy).not.toContain('- Question C (iteration 2)');
-    expect(firstStrategy).toContain('## 11. NEXT FOCUS\nWhich runtime prompt seam carries self-owned open questions?');
+    // The leaf's own open recommendation outranks the carried-forward thread.
+    expect(firstStrategy).toContain('## 11. NEXT FOCUS\nQuestion C');
 
     expect(firstDashboard).toContain('Session ID: session-001');
     expect(firstDashboard).toContain('convergenceScore: 0.61');
@@ -387,7 +388,7 @@ Refine the remaining uncertainty.
 - What I would do differently: Move directly to the unresolved question once the registry is stable.
 
 ## Recommended Next Focus
-Question C
+Question B
 `,
     );
 
@@ -419,7 +420,7 @@ Refine the remaining uncertainty.
 - Questions answered: Question B
 
 ## Recommended Next Focus
-Hand-written fallback text
+Question B
 `,
     );
 

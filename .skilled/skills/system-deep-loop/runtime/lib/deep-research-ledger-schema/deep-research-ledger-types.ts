@@ -233,6 +233,7 @@ interface IterationCompletedLeafFields {
   readonly edgeCase?: string;
   readonly toolsUsed?: string[];
   readonly sourcesQueried?: string[];
+  readonly claimedTimestamp?: string;
 }
 
 export type IterationCompletedData = IterationCompletedShape & IterationCompletedLeafFields;

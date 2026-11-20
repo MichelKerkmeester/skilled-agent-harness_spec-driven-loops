@@ -1,0 +1,40 @@
+{
+  "run_id": "1795137583671-xybhyk",
+  "loop_type": "research",
+  "spec_folder": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode",
+  "base_artifact_dir": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research",
+  "total_cli_lineages": 2,
+  "frontier_partition": {
+    "opus": [
+      "F-1-001",
+      "F-1-003",
+      "F-1-005"
+    ],
+    "deepseek": [
+      "F-1-002",
+      "F-1-004",
+      "F-1-006"
+    ]
+  },
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0,
+    "quota": 0
+  }
+}

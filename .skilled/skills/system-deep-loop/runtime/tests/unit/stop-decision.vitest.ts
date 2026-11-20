@@ -104,7 +104,7 @@ interface StopSignalsResult {
 }
 
 interface GuardResult {
-  status: 'passed' | 'failed' | 'notEvaluated';
+  status: 'passed' | 'failed' | 'notEvaluated' | 'insufficient';
   passed: boolean;
   violations: string[];
 }
@@ -486,6 +486,29 @@ describe('quality guards', () => {
       violations: [],
     });
     expect(result.passed).toBe(true);
+  });
+
+  it('reports source diversity as insufficient when the graph answers no question', () => {
+    const result = guardsFor({ answeredQuestionSourceCounts: {} });
+
+    expect(result.guards.sourceDiversity).toMatchObject({
+      status: 'insufficient',
+      passed: false,
+      violations: [],
+    });
+    expect(result.passed).toBe(false);
+  });
+
+  it('still stops when source diversity is insufficient rather than failed', () => {
+    const decision = buildStopDecision(
+      researchInput({ research: { answeredQuestionSourceCounts: {} } }),
+    );
+
+    expect(decision.decision).toBe('STOP');
+    expect(decision.stopReason).toBe('converged');
+    expect(decision.blockedBy).toEqual([]);
+    const gates = decision.gates as { qualityGuards: QualityGuardsResult };
+    expect(gates.qualityGuards.guards.sourceDiversity.status).toBe('insufficient');
   });
 
   it('fails focus alignment when an answered question is not a key question', () => {

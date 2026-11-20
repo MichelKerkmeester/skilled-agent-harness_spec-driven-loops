@@ -300,6 +300,8 @@ sweep-reports/
 # ═══════════════════════════════════════════════════════════════════════════════
 *.log
 *.log.*
+# A deep-loop fan-out's status ledger is the run's spawn, progress and completion record.
+!specs/**/orchestration-status.log
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Python

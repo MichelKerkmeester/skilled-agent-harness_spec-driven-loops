@@ -1,56 +1,96 @@
-# Iteration 2: Frontier node F-1-004 — cross-CLI parity
+# Iteration 2: F-1-004 frontier economics
 
 ## Focus
 
-Frontier node F-1-004 (depth 1, scope `runtime/scripts/fanout-run.cjs`, `runtime/lib/deep-loop/executor-config.ts`): where do the eight CLI lineages still differ in permissions, effort flags, failure classes, resume and log shape, and what single executor contract would remove the differences?
+Frontier node F-1-004 (depth 1, scope frontier-admit.cjs, convergence.cjs, deep-research reduce-state.cjs, the newest SPEC/research_archive improvement-backlog.md): Frontier economics: how should the node cap, growth slots, depth-band split and duplicate work change (5 of 7 proposals pruned at iteration 1 last run), and should held backlog rows 12 (one projectFrontier), 13 (one executor path), 29 (alias and dead-probe deletion) and 30 (per-node dashboard) be built, in which order?
+
+The node was read as: name the arithmetic that produced "5 of 7 pruned", the duplicate-work path that survives the drained-frontier stop, and a build order for the four held rows that respects their dependencies.
+
+## Actions Taken
+
+1. Read `readCaps`, `seedBudget`, `expansiveBudget`, `applyBandBudget`, `checkProposal`, `admitProposals` and `block` in `frontier-admit.cjs`.
+2. Read `applyFrontierBudget` and `resolveNextFocus`/`pickFrontierFocus` in the research reducer.
+3. Read the `frontier_drained` and `frontierOpen` branches in `convergence.cjs`.
+4. Read `writeLineageFrontierStore` in `fanout-run.cjs` to see what each lineage is dealt.
+5. Re-read the held rows 12, 13, 29 and 30 in the archived `improvement-backlog.md`, then ran the FRONTIER block for this node.
 
 ## Findings
 
-1. **The "single executor contract" already exists as data — but only half of it is printed.** `EXECUTOR_KIND_FLAG_SUPPORT` (`executor-config.ts:112-142`) declares which config fields each kind accepts, and `EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY` (`:159-169`) declares whether the kind's sandbox is a real OS boundary, a compensating control, or nothing. `finalizeLineageCommand` then emits `sandboxMode` and `permissionMode` in `effectiveConfig` (`fanout-run.cjs:2507-2516`) and the preview prints exactly those two, so a `cli-pi` or `cli-devin` lineage shows `sandboxMode: workspace-write` even though the matrix says `false` (no preventive boundary). One concrete change: add `sandboxEnforcement: "preventive" | "compensating" | "none"` to `effectiveConfig` from the capability matrix and print it beside `sandbox` in the preview and `invocation-metadata.json`. Value: ends the "which CLI actually confines" question with one field. Effort S. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:159] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2507]
+1. **A depth band's spend is summed across all its nodes, so one node's revisits can close its siblings.** `applyBandBudget` accumulates `spent[band] += visits[index].spent` and, once that sum reaches `cap * share`, closes every open node in the band as `exhausted/budget`. There is no per-node floor, so a three-node depth-1 band with a 5-visit allotment closes all three as soon as the run has made five visits across them, even if one node got four of those visits and another got one. In the previous run this is how F-1-006 closed after a single pass on it. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:360] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:386] [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2556]
 
-2. **`reasoningEffort` is a per-kind lottery in an otherwise shared matrix.** The Zod schema accepts it for every kind (`executor-config.ts:91`), but the supported-field table rejects it for `cli-cursor`, `cli-devin` and `cli-mistral-vibe` because those ids bake the tier into the model name (`:117-141`), so one `--executors` matrix that sets effort for all lineages fails on the three that cannot honor it. One concrete change: keep the field accepted for every kind, map it in the adapter (`--effort`, `--variant`, `--thinking`, or a `#effort` model suffix), and report `effortApplied: "flag" | "baked" | "none"` in `effectiveConfig`, with a loud warning when a requested tier cannot be honored. Value: one matrix works across all eight kinds. Effort M. Risk medium (a silent downgrade would be worse than the current hard failure; the warning is the contract). [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:91] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:117] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2659]
+2. **Growth slots are one run-wide number, filled in delta order, so the first node worked can spend the whole frontier's growth.** `seedBudget` computes `growthSlots = nodeCap - seeded` (2 for a 3-seed, 10-iteration lineage), and `checkProposal` prunes on `countLiveNodes >= maxFrontierNodes` regardless of which parent is asking. `admitProposals` then walks the delta's rows in order. This run shows it live: F-1-002's two proposals filled the cap at iteration 1, and this node's FRONTIER block now prints "This node has no child slots left, so do not propose children" while F-1-004 and F-1-006 have never been worked. A deterministic spread — sort proposals by parent depth, then by fewest live children, before admission — would stop one node from taking the run's whole growth budget. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:515] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:778] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:828]
 
-3. **Failure classification keeps kind-specific branches in the shared worker instead of in the adapter table.** `fanout-run.cjs:4695` ignores a non-zero exit for `cli-pi` only, `:4664-4667` runs extra completion validators for `cli-deepseek-harness` and `cli-mistral-vibe`, and `:4714` maps quota exhaustion to its own reason across all kinds. The worker therefore knows four kinds by name, and a new kind must edit it. One concrete change: let each entry in `LINEAGE_COMMAND_ADAPTERS` (`:3557-3567`) carry `exitPolicy` and `completionValidator`, and have the worker classify from those fields only. Value: one failure model; new kinds add data, not branches. Effort M. Risk medium (the pi tolerance and the vibe partial verdict must move without behavior change). [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3557] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4695] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4664]
+3. **Cross-lineage duplicate questions are invisible to admission and to the merge guard.** Each lineage receives only its own share of the node store, and `step_frontier_admit` builds `known-texts` from that lineage's registry, rejected patterns and exhausted list. `checkProposal` therefore compares a proposal with its own store and its own known texts, never with a sibling lineage's questions; the merge guard checks node ids, not question text. A re-worded version of another lineage's question passes both, which is the mechanism behind the previous run's unbudgeted duplicate work after a frontier drained. Passing a root-level question-digest file (dedupe keys for every dealt node and every answered question) into each lineage's admission closes it without a new service. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:423] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:755] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:763]
 
-4. **The six per-kind single-executor branches in each YAML are the same command with a different `--executor` argument.** `deep-research.yaml:1762-1837` has eight `if_cli_*` branches; six of them (claude-code, cursor, devin, pi, opencode, codex) run `dispatch-iteration.cjs --executor <kind>` with identical arguments, and only `cli-deepseek-harness` (extra `--spec-folder`) and `cli-mistral-vibe` (fail closed) differ. `deep-review.yaml` carries the same duplication. One concrete change: collapse the six into one `if_cli` branch whose `--executor` is `{config.executor.kind}`, keep the two special branches, in both YAMLs. Value: roughly 60 lines removed per YAML and one place to add the next kind. Effort S. Risk low (`dispatch-iteration.cjs` already accepts the kind as a value). [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1762] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1812] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1738] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1752]
+4. **Depth bands are enforced only in the reducer projection, never at admission.** The node cap is band-blind: `maxFrontierNodes` counts live nodes at every depth, and `maxChildrenPerNode` bounds one parent, but nothing stops all growth slots from landing at depth 2. A depth-2 band of 3.5 visits then has to cover every depth-2 node the run admitted, while depth-1 nodes are still open and will later demand their own band. Reserving a band's growth slots at admission (`floor(bandShare / minimumPassesPerNode)`, minus the nodes already at that depth) would make the split an admission rule instead of a post-hoc close. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:438] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:771] [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2673]
 
-5. **Log shape and resume are already at parity; the remaining asymmetry is `native`.** Every kind writes the same `logs/fanout-lineage.out` and `.err` with rotation (`fanout-run.cjs:4640-4645`), and every kind resumes through `readStoredLineageSessionId` (`:772`), so those two axes need no contract. But `native` is listed in `EXECUTOR_KINDS` and in `LINEAGE_COMMAND_ADAPTERS`, yet `buildNativeLineageCommand` throws on OpenCode v2 by construction (`:2640-2645`), so a matrix that names `native` works or fails on the host's OpenCode major version. One concrete change: remove `native` from the fan-out adapter table and reject it in `preflightFanoutCapabilities` with the same message, or gate it behind an explicit `native-command-surface` kind. Value: removes a version-dependent trap from the matrix. Effort S. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4640] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2640] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:11]
+5. **The four held rows have a dependency order: 30 + 12 as one change, then 13 with the adapter capability test, then 29 last.** Row 12 (one `projectFrontier`) is the shared parser and projection; row 30 (per-node research dashboard) is the renderer that consumes it, and the backlog already pairs them. Row 13 (one executor path) is independent of the frontier work but needs row 2's permission fix (delivered) and the capability manifest from F-1-002 to keep the merged path honest; doing it before 29 also removes the hand-built branches that make some aliases look live. Row 29 deletes config-key aliases, legacy migration and binary probes; it is safest after 12 and 13, because those two changes decide which keys and probes have no caller. Building 29 first would delete aliases whose only remaining reader is a branch that 13 has not yet collapsed. [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261120T125555Z/improvement-backlog.md:43] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261120T125555Z/improvement-backlog.md:44] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261120T125555Z/improvement-backlog.md:60] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261120T125555Z/improvement-backlog.md:61]
 
-## Ruled Out
+## Questions Answered
 
-- Treating log shape as a parity gap: all kinds already write the same rotated `fanout-lineage.out/.err` pair, so no change is needed there.
-- Proposing a new config schema: `executor-config.ts` is already the single schema; the gap is that two derived facts (enforcement class, effort application) are not carried into the output.
+- How should the node cap and growth slots change? Answered by Findings 2 and 4: spread growth deterministically across parents and bands instead of filling a run-wide cap in delta order.
+- How should the depth-band split change? Answered by Findings 1 and 4: add a per-node floor to a band close, and enforce band growth at admission.
+- How should duplicate work change? Answered by Finding 3: carry a cross-lineage question digest into admission.
+- Should rows 12, 13, 29 and 30 be built, and in what order? Answered by Finding 5: 30+12, then 13, then 29.
 
-## Dead Ends
+## Questions Remaining
 
-- Searching for per-kind resume flags: resume is config-driven for every kind through `readStoredLineageSessionId`, so there is nothing to unify.
-
-## Edge Cases
-
-- Ambiguous input: "log shape" could mean the file pair or the JSON event shape. Read as the file pair; the event shape is already uniform through the append gateway.
-- Contradictory evidence: none.
-- Missing dependencies: no live CLI binaries were invoked; the flag matrices and builders are the evidence.
-- Partial success: none.
-
-## Sources Consulted
-
-- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:11,91,112,117,159`
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:772,2494,2507,2533,2640,2659,3557,4640,4664,4695,4714`
-- `.skilled/commands/deep/assets/deep-research.yaml:1738,1752,1762,1812,1825`
-- `.skilled/commands/deep/assets/deep-review.yaml` (same branch shape)
-
-## Assessment
-
-- New information ratio: 1.0
-- Questions addressed: cross-CLI parity (frontier node F-1-004)
-- Questions answered: none yet; the node stays open for the failure-class pass
-
-## Reflection
-
-- What worked and why: reading the capability matrices before the workers showed that parity is mostly encoded already, which turned the question from "invent a contract" into "publish the contract you have".
-- What did not work and why: looking for per-kind resume or log differences found none; the asymmetry is concentrated in the YAML branches and the worker's kind checks.
-- What I would do differently: diff the two YAML executor sections line by line next time, since that is where the duplication is measurable.
+- Whether a per-node floor would starve a genuinely small band, or whether the floor should be expressed as "at least one pass per live node before any band close".
+- Whether the root digest should be computed by `frontier-admit.cjs` or by `fanout-run.cjs` at deal time.
 
 ## Recommended Next Focus
 
-Keep F-1-004 open for a short pass on the failure-class table and the `native` removal, then move to F-1-006 (cost and latency) and back to F-1-002 for the partial-run summary.
+Frontier node F-1-006: bookkeeping that fires on a healthy run. This iteration already produced two live specimens for it — the gateway's "Trusted evidence yield was absent" warning and `iteration-graph-upsert` skipping every finding row until a question is marked answered — so the node has fresh evidence to read.
+
+## Ruled Out
+
+- **A larger run-wide node cap as the fix for "5 of 7 pruned".** Raising the cap spends more iterations on the same first-worked branch; the pruned questions were good, but the run had no budget to work them. The defect is allocation, not the number.
+- **Ranking proposals by model-written value or confidence.** The runner cannot audit a self-asserted score, which is the honesty problem this packet is about. Sorting by parent depth and live-child count is deterministic and checkable.
+- **Building row 12 alone and leaving the dashboard for later.** The dashboard is the surface that would have shown the band closes and the partition drift; splitting it from the shared projection leaves the operator with the same blind spot.
+
+## Dead Ends
+
+- Looking for a per-band cap in `readCaps`: only `maxDepth`, `maxChildrenPerNode`, `maxRootChildren` and `maxFrontierNodes` exist. Band shares are consumed by the reducer, never by admission.
+- Looking for a cross-lineage question comparison in `fanout-merge.cjs`: the partition guard compares node ids only, so question overlap has no check anywhere.
+
+## Edge Cases
+
+- Ambiguous input: none. The node named four surfaces; all four were read.
+- Contradictory evidence: the topic says growth slots were "5 of 7 proposals pruned at iteration 1"; the mechanism is the node cap, but the previous run's slots were 2 per lineage, not 7. The difference is the seed share, not a contradiction. Recorded for the reducer.
+- Missing dependencies: none.
+- Partial success: none. The FRONTIER block itself confirmed the no-slots condition, which is direct evidence for Finding 2.
+
+## Sources Consulted
+
+- `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:360`
+- `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:386`
+- `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:438`
+- `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:515`
+- `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:755`
+- `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:763`
+- `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:771`
+- `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:778`
+- `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:828`
+- `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2556`
+- `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2673`
+- `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1200`
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:423`
+- `specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261120T125555Z/improvement-backlog.md:43`
+- `specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261120T125555Z/improvement-backlog.md:60`
+
+## Assessment
+
+- New information ratio: 0.70
+- Questions addressed: node cap, growth slots, depth-band split, duplicate work, held-row order.
+- Questions answered: all four parts of the node question.
+- Finding mix: 2 fully new mechanisms (band-summed closes, cross-lineage dedupe gap), 3 partially new refinements of delivered rows 14/16b and the held-row analysis.
+
+## Reflection
+
+- What worked and why: reading `seedBudget` and `checkProposal` together made the arithmetic exact; the FRONTIER block then confirmed the prediction in the same iteration, which is stronger than a code-only inference.
+- What did not work and why: I first expected a per-band cap in `readCaps`; there is none, and the time spent there showed the band split is a reducer-only concept.
+- What I would do differently: compute the previous run's actual growth slots from its config before describing "5 of 7", so the comparison is arithmetic rather than prose.
+
+## SCOPE VIOLATIONS
+
+None. No file outside the lineage directory was written.

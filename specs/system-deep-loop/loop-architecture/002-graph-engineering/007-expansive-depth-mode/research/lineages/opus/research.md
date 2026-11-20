@@ -1,120 +1,168 @@
-# Research: making expansive-depth deep loops simpler, cheaper and parity-safe (lineage opus)
+# Research: trustworthy, runtime-identical fan-out orchestration (lineage opus)
 
-Fan-out lineage `opus` (session `fanout-opus-1795137583671-xybhyk`, executor cli-claude-code claude-opus-5-5). It covers frontier nodes F-1-001 (restraint), F-1-003 (open design questions) and F-1-005 (prior art). Code was read at HEAD d4420e9510d. Findings already closed by SPEC/review/review-report.md and commits a424fb6cd8a..d4420e9510d are not re-reported. Operator UX, cross-CLI parity and cost/latency (F-1-002, F-1-004, F-1-006) were dealt to the other lineage.
+Lineage `opus` (cli-claude-code, claude-opus-5-5, effort medium), session `fanout-opus-1795179440509-6d2wms`, code at HEAD `b8003a7df42`.
+Frontier share: F-1-001 (lineage honesty), F-1-003 (orchestration robustness), F-1-005 (prior art), plus the two depth-2 children this lineage proposed and admitted: F-2-006 (log shapes per runtime) and F-2-007 (honesty thresholds).
+The run stopped **converged** after 5 iterations with all 5 nodes answered (`all_questions_answered`, graph `STOP_ALLOWED`).
+
+Paths are shortened: `runtime/` is `.skilled/skills/system-deep-loop/runtime/`, `SPEC/` is the spec folder. Built rows (1-11, 14, 16b, 18a, 19-26) are not re-reported. Where a row extends a held backlog row, it says so.
 
 ## 1. Summary
 
-The run took 5 iterations. Each one wrote its findings and recorded them through the gateway. It stopped on `all_questions_answered`, with 3 of 3 frontier nodes answered.
-
-The highest value-over-effort changes:
-1. **Feed the graph stop guards from the mandatory `finding` rows.** Today they read only the optional `graphEvents`. This lineage was blocked from a legal stop with every node answered until it emitted graph events by hand. H value, S-M effort.
-2. **Make fan-out re-entrant: classify each lineage before spawn and skip complete ones.** Re-dispatching a completed lineage today halts at `completed-session` and is reported as failed. H, S-M.
-3. **Count research stuck passes per frontier node.** The lineage-wide count closes the wrong node under breadth-first rotation. M-H, S.
-4. **Move the 15 inline `node -e` programs out of the YAMLs into a runtime script.** They are the largest per-lineage transcription cost and the main source of cross-runtime variance. H, M.
-5. **Collapse the two frontier projections and three node-marker parsers into frontier-admit.cjs.** H, M.
+- **The model still chooses the timestamp readers see, in both modes.** The gateway clock exists in every ledger frame (`receipt.committed_at`) and no check reads it.
+- Over **678 committed lineages and 3,588 passes**, three runner-side rules flag **85 passes (2.4%) in 27 lineages**:
+  - a future stamp;
+  - zero source reads together with zero findings;
+  - a batched commit with no tool calls.
+- None of the flagged passes is in a research lineage, a `cli-claude-code` lineage or a native one. The flagged lineages are opencode (19), pi (6), devin (1) and vibe (1).
+- **How far that result reaches:**
+  - The skew rule ran on all 678 lineages. The reads and batched rules ran only on the 232 lineages with JSON logs: 174 opencode, 14 pi, 9 codex, 1 devin, 1 native and 33 of unknown kind. Of those 232, 69 are research lineages, and none was flagged.
+  - No `cli-claude-code` lineage has a JSON log, so those two rules' false-positive rate on Claude is **unmeasured**.
+  - Recent research rows carry no model stamp at all. Their zero skew therefore shows how the gateway stamps rows, not that the passes were honest.
+- Five of the eight CLI kinds write text logs (Claude, Cursor, Codex, Devin, Pi; Vibe writes an export directory), so the tool-call signals and cost reach only OpenCode and dsh today. One adapter contract (Inspect `ModelAPI`-shaped) plus a conformance test is the fix.
+- Orchestration still has four gaps:
+  - SIGKILL, SIGHUP and group kills orphan lineage CLIs, and there is no `--stop`.
+  - A quota rerun points at the same exhausted provider.
+  - Two runners can race before the first spawn.
+  - The ledger says a lineage is alive but not how far along it is.
 
 ## 2. Ranked recommendations (value over effort)
 
-| # | Change | Where | Value | Effort | Risk | Node |
-|---|--------|-------|-------|--------|------|------|
-| 1 | Derive FINDING/SOURCE nodes and CITES/ANSWERS edges from delta `finding` rows plus `answeredQuestions` in the graph upsert | iteration-graph-upsert.cjs:122 | H | S-M | low | F-1-001 |
-| 2 | Classify lineages before spawn: config `complete` plus a terminal row or `completionFromArtifacts` means skip and report `complete (prior attempt)`; merge the union | fanout-run.cjs:763-778, 1282-1312, 4829-4852 | H | S-M | low | F-1-003 |
-| 3 | Drop `loopType === 'review'` from `nodeScoped`; bind the research nodeId to the latest focus marker; pass the same nodeId to the dashboard count; add research cases to the per-node suite | convergence.cjs:1774-1778; deep-research/scripts/reduce-state.cjs:3048; loop-counters-derivation.vitest.ts:679 | M-H | S | low | F-1-003 |
-| 4 | Move the 15 inline `node -e`/`node -p` programs (7 research, 8 review) into `runtime/scripts/lifecycle.cjs` | deep-research.yaml:534-630, 858-905; deep-review.yaml | H | M | low | F-1-001 |
-| 5 | One `projectFrontier({nodes, history, iterationRecords, isAnswered, maxIterations, budgetSplit})` in frontier-admit.cjs, replacing both reducer projections | deep-research/scripts/reduce-state.cjs:2453-2534; runtime/scripts/reduce-state.cjs:1960-2030 | H | M | med (63+96+47 frontier test assertions) | F-1-001 |
-| 6 | Move `frontierMarkerPattern`, `ANY_FRONTIER_MARKER`, `activeNodeByIteration` and `iterationBoundToNode` into frontier-admit.cjs; delete the research reducer's regex copy and the anchored block parser | convergence.cjs:1359-1395; deep-research/scripts/reduce-state.cjs:2491-2501; frontier-admit.cjs:1014 | M | S | low | F-1-001 |
-| 7 | Research calls `block --node-id`, as review does; delete `focus-file`, `readFocusFile` and the per-iteration `frontier-focus.txt` write | frontier-admit.cjs:1007-1018, 1153, 1221; fanout-run.cjs:1847 | M | S (after #5) | low | F-1-001 |
-| 8 | Reduce the 19 print-only `bookkeeping_log` JSON templates to one-line log messages | deep-research.yaml:175-180; deep-review.yaml:166-169 | M | S | low | F-1-001 |
-| 9 | Delete 24 config-key aliases; the token-named ones mislabel an iteration-count cost unit | fanout-run.cjs:35-36, 315-319, 1374-1407, 1458-1463, 2052-2059 | M | S | low | F-1-001 |
-| 10 | Persist review `pivot_override_accepted` through a ledger stem, as research does, or delete its two dead readers | deep-review.yaml:167, 1627; runtime/scripts/reduce-state.cjs:1414; divergent-review-pivot.ts:421; deep-research-ledger-schema.ts:622 | M | S-M | low | F-1-001 |
-| 11 | Narrow the strict terminal set to the names scripted closeout emits; move the artifact fallback into the pre-spawn classifier (#2) | fanout-run.cjs:1241-1251, 1334-1342; synthesis-closeout.cjs:439, 459 | M | S | low-med | F-1-001 |
-| 12 | Repetition-based stuck signal: a node-bound pass that repeats the prior pass's `sourcesQueried` and finding ids is no-progress, whatever ratio it reports | convergence.cjs:1460-1465 | M | S | low | F-1-005 |
-| 13 | Admit an accepted pivot as a synthetic depth-2 `frontier_proposal` under the last worked node, inheriting its scope; fall back to D-011-10 when pruned | deep-research.yaml:1358; deep-review.yaml:1483; frontier-admit.cjs:383-394 | M | S-M | med | F-1-003 |
-| 14 | Delete the expired 4-week legacy artifact-name migration and the unread `migrationWindowDays` | deep-research.yaml:489-504, 1118-1123; deep-research-config.json:73 | S-M | S | low | F-1-001 |
-| 15 | One `BINARY_BY_KIND` table and one probe, replacing 8 `is*BinaryAvailable` functions | fanout-run.cjs:3379, 3582-3647 | low-M | S | low | F-1-001 |
-| 16 | Pin `working_directory: {repo_root}` on gateway steps, then delete the 11 `scripts/append-mode-event.cjs` fallbacks | deep-research.yaml:536, 866, 2202; deep-review.yaml:567, 800, 1041 and 5 more | low-M | S | low-med | F-1-001 |
-| 17 | Evaluate a geometric child cap (breadth halving per depth, floor 2) in place of band-budget projection closes | frontier-admit.cjs:360-396 | M | M | med | F-1-005 |
+| # | Change | Evidence | Value | Effort | Risk |
+|---|--------|----------|-------|--------|------|
+| 1 | Project the `timestamp` of `iteration` rows from the gateway clock in **both** append paths, and keep the model's value as `claimedTimestamp` | Research upcaster keeps the model stamp as `occurredAt` (`runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:908-916`, `runtime/scripts/append-mode-event.cjs:417-425`). Review projects `data.record` whole, stamp included (`append-mode-event.cjs:432-458`). Iterations 1 and 4. | H | S | L |
+| 2 | Per-row skew check in the post-attempt step: read `receipt.committed_at` from the lineage ledger, flag `claim > commit + 1 s` as `future_stamp` and whole-minute stamps as `coarse_stamp` | The window check compares stamps with the slot window using a 120 s symmetric tolerance (`runtime/lib/deep-loop/lineage-timestamp-window.ts:32`, `:83-92`; `runtime/scripts/fanout-run.cjs:4898-4923`). It missed gen2's +126 s row. 17 corpus lineages are future-stamped and 0 Claude or research ones (iteration 4). | H | S | L |
+| 3 | Enrich ledger `progress` rows with `{iterations, lastCommitAt, stopRows, nodes:{answered,open,total}, flaggedPasses}` | Progress rows carry `duration_ms` and gauges only (`fanout-run.cjs:2206-2223`). This run's root ledger shows exactly that. | H | S | L |
+| 4 | Kill semantics: add SIGHUP to both handler lists, a parent-death watch in the TSX child, and `fanout-run.cjs --stop --base-artifact-dir` that sends SIGTERM to the ledger's live `spawned` groups. Write a `stopped` outcome per lineage with its rerun command (AutoGen's `ExternalTermination`), and print the stop command in the live-lineage refusal | Only SIGINT and SIGTERM are forwarded (`fanout-run.cjs:70-100`). The child kills the detached groups (`:474-487`, `:723-727`, `:848-869`, `:2432`). The refusal offers no command (`:4089-4102`). Reuse `collectOpenLineages` and `isLineageAlive` (`fanout-pool.cjs:284-321`). | H | S | L |
+| 5 | `passEvidence(log, commits)` beside `sumProviderCostFromLog`: tool calls, source reads and commit gap per pass, plus the calibrated `unexamined` rule: (reads == 0 ∧ findings == 0) ∨ (gap < 15 s ∧ calls == 0) ∨ future stamp. Ship no reads threshold beyond that | `runtime/scripts/fanout-salvage.cjs:76-96` already parses the same log. Gen2 stamped passes made 3-14 calls with 0-7 reads, real passes 33-112. On the 232 JSON-log lineages it flagged no research pass (69 research lineages). Its false-positive rate on Claude is unmeasured, because no Claude lineage has a JSON log yet (iterations 1 and 4; see #7). | H | S-M | L |
+| 6 | Route `runClaude` and `runCodex` through `runLineageBuiltin`, and delete the hand-built twins. This is the rest of held row 13 | Cursor, Devin and Pi already go through `buildLineageCommand` (`runtime/scripts/dispatch-iteration.cjs:414-478`). The twins (`:368-382`, `:921-930`) drift: single-executor Codex never gets `--search` (`fanout-run.cjs:2666-2668`). | H | S-M | M |
+| 7 | Switch cli-claude-code to `--output-format stream-json --verbose` and read the **last** `result.total_cost_usd`, `tool_use` blocks and the final text. Codex `exec --json` and Cursor `stream-json` follow the same path. This extends held row 18 | Text output at `fanout-run.cjs:2702-2711` and `:2930`. Headless result message: https://code.claude.com/docs/en/headless. Cost may be cumulative per session: https://claudeissues.com/issue/83239-docs-total-cost-usd-is-cumulative-per-session-under-output-format-stream-json-bu | H | S-M | M |
+| 8 | Convergence: treat a flagged pass like `thought` by extending `isEvidenceBearingIteration`. It then does not move stuck, vote to stop, count a node visit, or answer a node alone | `runtime/scripts/frontier-admit.cjs:96-100`; `runtime/scripts/convergence.cjs:1464`, `:1472-1478`, `:1785-1788`; `deep-research/scripts/reduce-state.cjs:2513-2520` | H | M | M |
+| 9 | Merge and completion: keep flagged-pass findings but drop their coverage and node answers unless another pass corroborates them. Show `flagged passes` in place of the "Convergence" column, which prints a self-reported ratio. Settle a lineage with more than half its passes flagged as `fulfilled_unverified` | `runtime/scripts/fanout-merge.cjs:883-886`, `:1216-1222`, `:1430-1433`; `fanout-run.cjs:1283-1310` | H | M | M |
+| 10 | One adapter contract: each `LINEAGE_COMMAND_ADAPTERS` entry returns `{command, args, promptChannel, logFormat, effective:{permission, sandboxEnforcement, effortApplied, webSearch}, parseLog, classifyFailure}`, with one table-driven conformance test over fixture logs per kind | Adapter table `fanout-run.cjs:3610-3619`. Prior art: Inspect `ModelAPI` (https://inspect.aisi.org.uk/extensions-model-api.html) and harness-recorded `ToolEvent` (https://inspect.aisi.org.uk/reference/inspect_ai.event.html) | H | M | M |
+| 11 | `--lineage-override '<label>={...}'`, valid only with `--only-lineage`. A quota outcome's rerun command carries a placeholder override | Quota is named and non-retryable (`fanout-run.cjs:4735-4750`, `runtime/lib/result-envelopes/legacy-shadow.ts:96-108`), but `rerunCommandFor` reuses the same argv (`fanout-run.cjs:1267-1277`). Gen2 needed a hand-written `SPEC/review/fanout-config-recovery.json`. No prior art found (Inspect eval-retry has none). | M-H | S | L |
+| 12 | `O_EXCL` runner lock at `<base>/.fanout-run.lock`, holding the outer and inner pids and the run id, taken over when the holder is dead | Today only `spawned` ledger rows guard re-entrancy (`fanout-run.cjs:4089-4102`, `:4532-4544`) | M | S | L |
+| 13 | Never invent an unset effort: drop Codex's `'medium'` default and report `effortApplied: flag\|baked\|pinned\|none` | `fanout-run.cjs:2664` against Claude `:2712-2714`, OpenCode and Pi pins `:2766` and `:3175-3183`, Cursor baked `:2906-2911`, Devin none `:3043-3046` | M | S | L |
+| 14 | An explicit `promptChannel` per adapter, printed by the preview. Prefer stdin | argv for 5 kinds, stdin for Codex and dsh, a file for Vibe. The gen3 preview showed `stdin: "<input>"` beside an argv digest (`SPEC/scratch/dogfood-research-gen3.md:56-57`). | M | S | L |
+| 15 | `fanout-run.cjs --status`: a read-only per-lineage table built from the enriched ledger (#3), as the root dashboard | The root keeps no dashboard (`.skilled/commands/deep/assets/deep-research.yaml:2135-2143`). `status.cjs` takes no fan-out input (`runtime/scripts/status.cjs:37`). | M-H | S-M | L |
+| 16 | Capability-aware dealing: seed `needs:["web"]` nodes are dealt first among lineages whose `webSearch` is not `disabled`, and refused before spawn when none can take them | Round-robin by id (`fanout-run.cjs:354-364`). The gen3 conductor hand-ordered the seeds (`dogfood-research-gen3.md:94-99`). | M | S-M | L |
+| 17 | The mirror check compares bodies, ignoring the Path Convention line and frontmatter | The roster check passes (`.skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs`, STATUS=OK). The `.claude` body differs only at `.claude/agents/deep-research.md:11`. A fan-out inlines the `.skilled` persona (`fanout-run.cjs:175-196`), so only native runs are exposed. | M | S | L |
+| 18 | An event-shape repetition flag (OpenHands-style) feeding `unexamined`: configurable, a flag only, never a stop. This sharpens held row 28 | https://docs.openhands.dev/sdk/guides/agent-stuck-detector ; a false-positive report: https://github.com/OpenHands/software-agent-sdk/issues/762 | M | S | M |
+| 19 | On resume, archive orphan `iteration-NNN.md` or delta files that have no gateway record (LangGraph clears a timed-out attempt's writes). The resume path is unverified | https://docs.langchain.com/oss/python/langgraph/durable-execution ; https://docs.langchain.com/oss/python/langgraph/fault-tolerance.md | M | S | L |
+| 20 | Contract clause plus test: no adapter passes a CLI resume or session flag, and resume is state-file only | No `--resume`, `--session` or `--continue` in any builder (`fanout-run.cjs:2658-3600`) | L-M | S | L |
+| 21 | An observed ratio (cited-location novelty) as a cross-check on `newInfoRatio`, used as a guard only | Gen3 novelty was 0.59-1.00 for deepseek and 0.60-1.00 for opus. It would have changed no stop (iteration 4). It stays deferred with row 28. | M | S-M | M |
 
-All changes keep every promise of the expansive-depth modes. No change removes an admission check (relevance, dedupe, depth, fan-out, budget, cycle), the `frontierOpen` veto, the terminal-cap bypass or ledger authority. #17 replaces one budget mechanism with another and is the only item to evaluate before adopting.
+**Order for the held rows (part of Q4, from this lineage's evidence):**
+1. **Row 13 first**, as #6 above. It is half built and still drifting live.
+2. **Then row 29**, the restraint pass.
+3. **Row 12 and row 30 after that.** This lineage found no new evidence that moves them.
 
-## 3. F-1-001: Restraint
-Iterations 1 and 4 plus the iteration 5 correction. Concrete deletions with file:line are in rows 4-11 and 14-16 above. Supporting detail:
-- Three node-marker parsers. The anchored `/^Frontier node (\S+) /` at frontier-admit.cjs:1014 renders no block for a reworded focus that the reducer (2493) and convergence (1362) still count as a visit.
-- The review reducer is `runtime/scripts/reduce-state.cjs`; there is no `deep-review/scripts/reduce-state.cjs`. The research reducer imports `compareCodeUnit` from it and `deriveLoopCounters` from convergence.cjs.
-- The cost unit behind `maxTokensPerLineage` and its siblings is iterations: default 72, 1 per iteration (fanout-run.cjs:1386, 1402-1407). No live `.skilled` doc or test uses the token-named aliases.
-- The gateway fallback is reachable only from a `runtime/` cwd that no step supports end to end. This corrects iteration 1, which called it dead.
+## 3. Findings by question
 
-## 4. F-1-003: Open design questions
-- **(a) Per-node stuck for research: yes.**
-  - `nodeScoped` is review-only (convergence.cjs:1774-1778).
-  - The research stuck branch closes the node named in the latest focus (deep-research.yaml:1523-1532), while research rotates breadth-first by visits (deep-research/scripts/reduce-state.cjs:2507-2512). So three low passes on three different nodes close the third after one visit.
-  - Research rows carry no `findingsNew`, so the ratio alone decides. That is sound, because research `newInfoRatio` is per-iteration.
-  - The topic's `deep-research.yaml:1488` is stale at HEAD; the branch is at 1520-1536.
-- **(b) The completion check.**
-  - Measured over all 343 committed research lineage state logs: 78 (23%) fail the research rule retroactively. 72 have no terminal row, 6 have no iteration row, and 26 of the 78 have config `status: complete`.
-  - Terminal-looking names those logs used instead: `phase_synthesis` (8), `synthesized` (3), `maxIterationsReached` (3), `stopped` (2), others (1 each), none (52).
-  - It is **not** a resume or extend break. The only caller is the post-attempt check, which is window-scoped (lineage-timestamp-window.ts:170-181, fanout-run.cjs:4831-4840), and `--extend` is refused with fan-out (deep-research.yaml:372-382).
-  - It **is** a re-dispatch break. A complete config gets a new session id (fanout-run.cjs:772). The workflow halts at `completed-session` with no terminal row (deep-research.yaml:748-752), and the check reports `stale_terminal_event`.
-  - Right rule: recommendation #2. Classify before spawn with a tolerant rule, and keep the post-attempt check strict.
-  - This is traced through code, not reproduced live.
-- **(c) Pivot admission: recommendation #13.** Each of D-011-10's three reasons is answered by an existing mechanism:
-  - Band carry: depth 1 is drained at pivot time, so its remainder rolls to depth 2.
-  - Inherited scope satisfies relevance.
-  - The `frontierOpen` veto restores the intended order.
+### Q1 / F-1-001 + F-2-007: lineage honesty (iterations 1 and 4)
+- **Stamp skew is decisive.**
+  - Gen2 review deepseek ran from -36 s to +126 s, and iterations 8-12 were stamped after their own commit.
+  - The corpus holds 17 future-stamped lineages, with skew that grows during each run (`pi-deepseek-1` +463 s to +3,218 s, `vibe-1` +549 s to +7,852 s).
+  - No Claude or research lineage skews by more than 1 s. For recent research rows that is guaranteed, because they carry no model stamp of their own.
+  - The reads and batched rules were checked only on the 232 JSON-log lineages. Their behaviour on Claude awaits #7.
+- **Calls and reads per pass come from the runner's own JSON log, sorted by commit time.**
+  - Gen2 iteration 12 committed 0.9 s after iteration 11, with zero calls in between.
+  - Duration alone misclassifies: real deepseek passes took 33-98 s, and passes 7-9 cited 14-29 locations from context carried over from earlier passes.
+- **The record's own fields are claims.** `toolsUsed` and `sourcesQueried` list 2-3 tool names per pass, against 8-69 logged calls.
+- **The calibrated rule is conservative.** It flags gen2 passes 8-12 but not 4-7, which made 12-33 calls with 4-22 reads.
+- **The self-reported ratio misleads, but only mildly here.** The observed ratio would not have changed gen3's stops, and deepseek's cap stop was legitimate.
+- **Weighing:** covered by recommendations #8 and #9.
 
-## 5. F-1-005: Prior art
-- **Frontier growth.** dzhng/deep-research, GPT Researcher and Static-DRA grow trees with breadth and depth scalars. GPT Researcher halves breadth per level with a floor of 2. None has per-proposal admission checks. Sources: https://github.com/jamisonl/deep-research, https://docs.gptr.dev/docs/gpt-researcher/gptr/deep_research, https://docs.gptr.dev/blog/2025/02/26/deep-research, https://arxiv.org/html/2512.03887v2. Leads to #17.
-- **Stuck detection.** OpenHands detects observable repetition: the same action and observation 4+ times, a ping-pong over 6+ cycles, repeated errors, monologues. It is on by default with hard-coded thresholds. Sources: https://docs.openhands.dev/sdk/guides/agent-stuck-detector, https://github.com/OpenHands/software-agent-sdk/issues/762. Leads to #12.
-- **Stop rules.** The LangGraph `recursion_limit` (default 25) is a safety cap, and termination belongs in routing. That matches the existing terminal-cap-first order (deep-research.yaml:1264). Anthropic embeds effort-scaling rules in its prompts, which supports a deterministic seed-sized budget. Sources: https://langchain-ai.github.io/langgraph/how-tos/recursion-limit, https://www.anthropic.com/engineering/multi-agent-research-system.
-- **Multi-executor fan-out.** Inspect `eval_set` is a no-op on a complete log directory, and `eval_retry` resumes only interrupted tasks. Sources: https://inspect.aisi.org.uk/eval-sets.html, https://inspect.aisi.org.uk/reference/inspect_eval-retry.html, https://hawk.metr.org/user-guide/eval-set-config-reference/. Leads to #2.
-  - Anthropic reports multi-agent runs cost about 15× the tokens of chat. It resumes from the failure point, and finds that vague briefs duplicate work. This confirms disjoint `frontier_scope` and session resume, and points at #4 as the cost lever.
-- **Ruled out.** Co-STORM has no automatic stop rule; its sessions end on user request (https://raw.githubusercontent.com/stanford-oval/storm/HEAD/README.md, https://arxiv.org/pdf/2408.15232v1.pdf).
+### Q3 / F-1-003: orchestration robustness (iteration 2)
+- **Kill:** see #4. A plain SIGTERM to the outer pid *does* reach the lineages, which narrows the gen3 claim. SIGKILL, SIGHUP and a group kill do not.
+- **Quota:** #11. **Re-entrancy:** #12. **Live view:** #3. **Root dashboard:** #15. **Dealing:** #16.
+- **Partition guard:** it still sees only node ids. Built row 7 (drain stop) should prevent the topic drift, so this is watch-only.
 
-## 6. Eliminated Alternatives
-- Merging the two reducers wholesale. Their registries, dashboards and answered predicates differ, so only the frontier projection is shared.
-- Widening the strict research terminal set to legacy names. That loosens new-run checking to fix a pre-spawn classification problem.
-- Extracting the eight adapter builders (fanout-run.cjs:2533-3555) as restraint. That is the F-1-004 parity question, owned by the other lineage.
-- Retroactive `graphEvents` for write-once iterations 1-4.
+### Q5 / F-1-005: prior art (iteration 3)
+- **Inspect:** the harness records the events, which is the model for #5 and #10. Its eval-set and eval-retry match the rerun behaviour already built.
+- **Claude headless stream-json:** #7.
+- **OpenHands:** #18.
+- **LangGraph pending writes:** #19.
+- **AutoGen `ExternalTermination`:** folded into #4.
+- Claude Agent SDK hooks were dropped, because they would write into the operator's config dir.
+
+### Q2 / F-2-006: cross-CLI contract (iteration 5)
+- **Log shapes:** #7 and #10.
+- **Prompt channel:** #14.
+- **Effort:** #13.
+- **Resume:** #20.
+- **Single-executor twins:** #6.
+- **Mirrors:** #17.
+- **Permission and sandbox truth:** built as row 9, so not re-reported.
+
+## 4. Observations for nodes this lineage does not own (Q4, Q6)
+
+These go to the lineage that owns those nodes. They are observations, not proposals.
+- **Node cap filled at iteration 1 again:** 3 seeds plus this lineage's 2 proposals made 5 of 5, and every later FRONTIER block offered no slots. This is the same economics as gen3 P3.
+- **Graph upsert skipped on a healthy iteration 1:** `iteration-graph-upsert.cjs` printed `skipped: no graph events and no finding attached to a stored question`. It runs before `frontier-admit graph` upserts the QUESTION nodes, and iteration 1 answered nothing. This is a bookkeeping message on a healthy run, not a fault.
+- **The registry inflates `keyFindings`:** this lineage's registry reports **238** key findings, while its deltas hold **39** `finding` rows.
+  - The reducer builds `keyFindings` from the parsed iteration narratives, not from the delta rows. [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2722-2730]
+  - That its parser counts nested sub-bullets is [INFERENCE: based on 238 entries against 39 numbered findings].
+  - Either way, the merge's "key findings" totals (gen3: 192) overstate the evidence count.
+
+## 5. Eliminated Alternatives
+
+- **Pass duration as a standalone honesty signal:** real passes run in as little as 33 s.
+- **A minimum-reads threshold:** it would flag real passes that rely on carried context.
+- **Finding-id novelty as an observed ratio:** ids are minted fresh on every pass.
+- **Treating a quota hit as retryable:** it would burn the same allowance again.
+- **A run-level lock through `loop-lock.cjs`:** the lineages already hold per-dir locks, and a base-dir runner lock is simpler.
+- **An Agent SDK `PostToolUse` audit hook:** it would write into the operator's Claude config dir, and stream-json gives the same events.
+- **AutoGen text-mention termination:** it is a stop the model announces itself.
+- **Mirrors as a fan-out divergence source:** the persona is inlined from `.skilled`.
 
 ## Divergence Map
-- Saturated directions: none recorded.
-- Pivots taken: none (convergence mode default).
-- Pivot failures and overrides: none.
-- Remaining frontier: none. F-1-001, F-1-003 and F-1-005 are answered; no child node was proposed or admitted.
 
-## 12. Open Questions
-- Does a vendored layout run the gateway steps from `runtime/`? This gates #16.
-- Recommendation #2's break path is traced but not reproduced. A two-lineage fixture with one complete lineage would confirm it.
-- Is the review ledger schema missing a `pivot_override_accepted` stem, or does it pin the event deliberately? Recommendation #10 rests on the YAML's pinned list.
+- Convergence mode was `default`, so no divergent pivots ran: 0 completed, 0 failed, 0 audited overrides.
+- **Saturated:** none.
+- **Frontier at stop:** 5 nodes, all answered (F-1-001, F-1-003, F-1-005, F-2-006, F-2-007). No node was pruned, and no node is still open.
+- **Breadth:** 5 nodes across 2 depths. Iteration 4 covered two nodes in one pass (F-1-001 and F-2-007).
 
-## Workflow deviations in this lineage
-This lineage skipped these YAML steps because they write outside the lineage directory or run forbidden tooling:
-- `step_detect_spec_present` and `step_preinit_spec_branch`, which edit spec.md
-- `step_validate_*`, which run validate.sh
-- `step_writeback_spec_findings`
-- `step_stage_artifact_dir` (git add)
-- `phase_save` (generate-context.js)
-- the single-loop heartbeats
+## 6. Open Questions
 
-`step_emit_resource_map` ran with `--artifact-dir` added, because its `if_absent` command carries no `--artifact-dir` and would otherwise write `resource-map.md` at the packet root. That omission is itself a small fix candidate: append `{reducer_artifact_arg}` to that command, deep-research.yaml:2155. The map is at `resource-map.md` in this lineage.
+- **Do Pi and Devin have a JSON event mode?** Not verified, because running those CLIs is out of this lineage's remit.
+- **How well does the conservative rule catch stamped passes beyond gen2?** Its recall is untested beyond gen2, and 20 hand-labelled passes would settle it.
+- **Does resume leave orphan iteration files after a killed attempt?** The LangGraph analogy predicts a gap, but this lineage never read the runner's resume path.
+- **What do Codex `exec --json` and Cursor `stream-json` actually emit?** Fixture logs would confirm the exact flags and shapes.
 
-Process notes for the lead:
-- One in-place `sed -i ''` edit fixed a line number in this file. The prompt pack bans `sed -i`, even though this file is an allowed write target.
-- Iteration 2's `frontier-focus.txt` was written by a shell redirect instead of the file-write tool.
-- The per-iteration helper scripts and event files live under `.executor-state/` in this lineage.
-- An untracked `.skilled/skills/system-skill-advisor/runtime/database/.skill-advisor-owner.json.tmp.*` file appeared during the run. No command this lineage ran writes there, so it was left untouched.
-- The parent `research/inbox.jsonl` matches the containment baseline. `research/observability-events.jsonl` is written by the fan-out runner.
-- No overlap with SPEC/review/review-report.md: none of this lineage's key terms appear in it. F-1-003(a) builds on commits b13df59792a and a65c81b19b3, which made the review stuck count per node.
+## 7. Process deviations (recorded honestly)
 
-## Convergence Report
-- Stop reason: converged (all_questions_answered; graph decision STOP_ALLOWED at iteration 6's check)
-- Total iterations: 5
-- Questions answered: 3 / 3
-- Remaining questions: 0
-- Last 3 iteration summaries:
-  - run 3: F-1-005 prior art (0.75)
-  - run 4: F-1-001 restraint part B (0.83)
-  - run 5: blocked-stop recovery (0.55)
-- Convergence threshold: 0.05
-- Divergence summary: no divergent pivots recorded
-- Blocked stops: 1, at the iteration 5 check (source_diversity_guard, evidence_depth_guard, uncovered_questions). It cleared after graph coverage was recorded.
+- **Writes:**
+  - At init, `frontier-focus.txt` was written by a shell redirect. From iteration 2 on it was written with the file-write tool.
+  - The helper and probe scripts under `.executor-state/` were first written by a heredoc and patched by `node -e` rewrites, all inside the lineage directory.
+  - Iteration narratives 1, 2 and 5 had cited line numbers corrected by a `node -e` rewrite, before each record went to the gateway.
+- **Steps not run:**
+  - No lock was taken (`step_acquire_lock`).
+  - `step_fanout_merge` was skipped, because the lineage config has no `fanout` key.
+  - `step_writeback_spec_findings`, its validation, `step_stage_artifact_dir` and `phase_save` were not run: they write outside the lineage or run forbidden tooling.
+  - `step_telemetry_heartbeat_terminal` was not run, because the runner owns the fan-out ledger.
+- **Step run differently:** `step_emit_resource_map` ran its `if_absent` command with `--artifact-dir` (built row 1), and wrote `resource-map.md` inside the lineage.
+- **Writes outside the lineage:** the iteration-4 corpus calibration wrote three scratch files to the system temp directory, outside the repository: `/tmp/opus-lineage-dirs.txt`, `/tmp/opus-calib.txt` and `/tmp/opus-calib2.txt`. They hold only lineage paths and probe output. They were left in place, because the prompt pack bans `rm`, and they touch nothing in the repository.
+- **Edit after closeout:** this section, §1 and §4 were edited after `synthesis-closeout.cjs` ran. The closeout records no hash or digest of `--output` (grep of `runtime/scripts/synthesis-closeout.cjs` finds none), so the terminal row still holds.
+- **Steer file:** `steer.md` was checked at init and again before closeout, and it never existed.
+- **Correction to iteration 1:** finding 1 named only the research append path. Iteration 4 finding 1 adds the review path.
+
+## 8. Convergence Report
+
+- **Stop reason:** converged (`all_questions_answered`; graph decision `STOP_ALLOWED`; no blockers)
+- **Total iterations:** 5 of 10
+- **Questions answered:** 5 / 5
+- **Remaining questions:** none
+- **newInfoRatio by iteration:** 0.89, 0.81, 0.71, 0.75, 0.79
+- **Last 3 iteration summaries:**
+  - 3: prior art mapped to runner changes;
+  - 4: honesty thresholds calibrated on 678 lineages;
+  - 5: adapter walk across eight kinds, and the single contract.
+- **Convergence threshold:** 0.05
+- **Divergence summary:** default mode, with no pivots.
+
+## References
+
+- Iterations: `iterations/iteration-001.md` … `iteration-005.md`; deltas `deltas/iter-001.jsonl` … `iter-005.jsonl`
+- Probes (read-only): `.executor-state/honesty-probe.cjs`, `.executor-state/toolcalls-probe.cjs`, `.executor-state/calibrate.cjs`
+- Lineage resource map: `resource-map.md`
+- Inputs: `SPEC/scratch/dogfood-review-gen2.md`, `SPEC/scratch/dogfood-research-gen3.md`, `SPEC/research_archive/20261120T125555Z/improvement-backlog.md`

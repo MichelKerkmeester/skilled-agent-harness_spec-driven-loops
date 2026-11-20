@@ -10,7 +10,7 @@ trigger_phrases:
   - "research synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.14.29.0
+version: 1.14.31.0
 ---
 
 # Loop Protocol Reference
@@ -229,7 +229,7 @@ When the convergence script forms a STOP candidate, it evaluates the quality gua
 4. The loop continues until BOTH convergence AND quality guards pass simultaneously
 5. Guard checks apply to every STOP candidate except the hard max-iteration stop - CONTINUE and STUCK_RECOVERY bypass this step
 
-If the legal-stop decision tree returns `blocked`, the workflow MUST append the `blocked_stop` JSONL event before continuing. Reducers and dashboards consume the persisted event; they must not infer blocked-stop state solely from prose logs.
+If the legal-stop decision tree returns `blocked`, the `blocked_stop` JSONL event MUST be in the state log before the loop continues. `convergence.cjs` records it: the workflow runs it with `--record-blocked-stop`, and on a `BLOCKED` decision the script appends the row through the append gateway, once per run and blocker set, and reports it as `blocked_stop_record` with status `recorded`, `already_recorded` or `failed`. A `failed` record makes the script exit with the gateway's status after printing the decision, and the workflow treats that as a gateway refusal and halts rather than writing the row by hand. `step_emit_blocked_stop` logs the block and appends nothing, so the row is never written twice. Reducers and dashboards consume the persisted event; they must not infer blocked-stop state solely from prose logs.
 
 #### Step 2d: Rejected Pattern Cache Check
 
@@ -293,6 +293,7 @@ Before dispatching, the YAML resolves the executor via `parseExecutorConfig` fro
 - `native`: dispatch `@deep-research` agent with model Opus.
 - `cli-opencode`: pass the rendered prompt as the last argument of the command `buildLineageCommand` in `fanout-run.cjs` builds, `opencode run --standalone -m X[#Y] --format json [--auto] "PROMPT"`, started in `{repo_root}` with stdin closed. `reasoningEffort` Y rides as the `#Y` suffix on the model. `--auto` is added under `danger-full-access`, which `dispatch-iteration.cjs` uses when no sandbox mode is set. **This grants full OS-level workspace write access.** OpenCode exposes no confinement flag, so any `sandboxMode` other than `danger-full-access` fails closed before dispatch. The only real containment is (a) the prompt-level "ALLOWED WRITE PATHS" / "BANNED OPERATIONS" contract rendered into the iteration prompt, which relies on the model obeying instructions rather than an OS-level sandbox, and (b) post-dispatch validation catching some violations after the fact. Fetched/reviewed content must be treated as potentially adversarial (untrusted) for prompt-injection purposes.
 - `cli-claude-code`: `claude -p "$(cat prompt)" --model X --permission-mode <mode> --output-format text` with optional `--effort Y`. The permission mode resolves from `--sandbox-mode`: unset or `workspace-write` runs `acceptEdits` so iteration writes succeed, `read-only` runs `plan` and `danger-full-access` runs `bypassPermissions`. The inline workflow branches are not the complete schema: `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness` (experimental) also have inline branches that run `dispatch-iteration.cjs`, and `cli-mistral-vibe` runs only as a fan-out lineage. The executor-kind authority is `runtime/lib/deep-loop/executor-config.ts` (`EXECUTOR_KINDS`).
+- Sandbox on those `dispatch-iteration.cjs` branches: `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness` resolve the requested `--sandbox-mode` and map it to the kind's own read-only or write surface, which is an OS sandbox only on codex, cursor and the deepseek harness. An unset mode resolves to `workspace-write`, so the iteration can write its iteration file, delta and state record. A requested `read-only` is passed through, never widened, and the iteration then fails at the post-dispatch artifact gate rather than gaining write access. The deepseek harness narrows `danger-full-access` to `workspace-write`, and pi builds the same command for both write modes.
 
 All branches share:
 1. Pre-dispatch prompt rendering via `renderPromptPack` (writes to `{artifact_dir}/prompts/iteration-{n}.md`).

@@ -129,17 +129,154 @@ export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof Ex
   // configDir contract the way CLAUDE_CONFIG_DIR does.
   'cli-devin': ['model', 'sandboxMode', 'timeoutSeconds', 'liveTools'],
   // Pi exposes reasoning as a first-class `--thinking` flag (off..max), independent
-  // of the model id, so reasoningEffort is forwarded; it has no OS sandbox or
-  // service-tier surface, so neither sandboxMode nor serviceTier is supported.
-  'cli-pi': ['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools'],
+  // of the model id, so reasoningEffort is forwarded. It has no OS sandbox, but read-only
+  // narrows its tools to a read allowlist, so sandboxMode is accepted. No service-tier surface.
+  'cli-pi': ['model', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds', 'liveTools'],
   // dsh selects a route through its model patch and a persona through a separate patch.
   // The route patch pins the supported DeepSeek Flash models to max reasoning.
-  'cli-deepseek-harness': ['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools', 'agentPersona'],
+  // sandboxMode selects the harness's own read-only or workspace-write permission mode.
+  'cli-deepseek-harness': ['model', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds', 'liveTools', 'agentPersona'],
   // Vibe has no reasoning flag — thinking is pinned per roster row in `.vibe/config.toml` —
   // and no OS sandbox or persona surface, so the config carries only the model alias, the
   // per-iteration timeout, and the live-tool policy.
   'cli-mistral-vibe': ['model', 'timeoutSeconds', 'liveTools'],
 };
+
+/** How a kind's command receives the iteration prompt. */
+export type ExecutorPromptChannel = 'argv' | 'stdin' | 'file';
+
+/** The shape of the stdout a fan-out lineage log captures for a kind. */
+export type ExecutorLogFormat = 'text' | 'opencode-json' | 'claude-stream-json' | 'dsh-json';
+
+/** Where a run's provider cost comes from: the lineage log, or nowhere (reads as unknown). */
+export type ExecutorCostSource = 'log' | 'none';
+
+/**
+ * How a requested reasoning effort reaches the executor: a CLI flag, a suffix on the model
+ * argument, a tier baked into the model id, a pinned config or patch, or not at all.
+ */
+export type ExecutorEffortSurface = 'flag' | 'model-suffix' | 'model-id' | 'config' | 'none';
+
+/**
+ * What a requested sandbox mode changes in the command: a sandbox flag, a permission or
+ * approval mode, a restricted tool allowlist, an auto-approve flag that only the
+ * unconfined mode turns on, or nothing.
+ */
+export type ExecutorSandboxSurface =
+  | 'sandbox-flag'
+  | 'permission-mode'
+  | 'tool-allowlist'
+  | 'auto-approve-flag'
+  | 'none';
+
+/**
+ * What a rerun resumes. `artifact` means the loop continues from the state, delta and
+ * iteration files on disk; no command carries a provider session to resume a model session.
+ */
+export type ExecutorResumeMode = 'artifact';
+
+/** One executor kind's command surface, as its command builders emit it. */
+export interface ExecutorAdapterCapability {
+  /** Executable the command runs, or null for a kind that spawns no subprocess. */
+  readonly binary: string | null;
+  readonly promptChannel: ExecutorPromptChannel | null;
+  /** Format of the fan-out lineage log; null for a kind with no lineage command. */
+  readonly logFormat: ExecutorLogFormat | null;
+  readonly costSource: ExecutorCostSource;
+  readonly effortSurface: ExecutorEffortSurface;
+  readonly sandboxSurface: ExecutorSandboxSurface;
+  readonly resume: ExecutorResumeMode;
+}
+
+/**
+ * The per-kind command surface, kept beside the field-support table so a reader can see
+ * what each kind does with a prompt, an effort and a sandbox without reading its builder.
+ * The builders do not read this record; a conformance test checks it against them, so a
+ * builder change that drifts from it fails that test.
+ */
+export const EXECUTOR_ADAPTER_CAPABILITIES = Object.freeze({
+  native: Object.freeze({
+    binary: null,
+    promptChannel: null,
+    logFormat: null,
+    costSource: 'none',
+    effortSurface: 'none',
+    sandboxSurface: 'none',
+    resume: 'artifact',
+  }),
+  'cli-codex': Object.freeze({
+    binary: 'codex',
+    promptChannel: 'stdin',
+    logFormat: 'text',
+    costSource: 'none',
+    effortSurface: 'flag',
+    sandboxSurface: 'sandbox-flag',
+    resume: 'artifact',
+  }),
+  'cli-claude-code': Object.freeze({
+    binary: 'claude',
+    promptChannel: 'argv',
+    logFormat: 'claude-stream-json',
+    costSource: 'log',
+    effortSurface: 'flag',
+    sandboxSurface: 'permission-mode',
+    resume: 'artifact',
+  }),
+  'cli-opencode': Object.freeze({
+    binary: 'opencode',
+    promptChannel: 'argv',
+    logFormat: 'opencode-json',
+    costSource: 'log',
+    effortSurface: 'model-suffix',
+    sandboxSurface: 'auto-approve-flag',
+    resume: 'artifact',
+  }),
+  'cli-cursor': Object.freeze({
+    binary: 'cursor-agent',
+    promptChannel: 'argv',
+    logFormat: 'text',
+    costSource: 'none',
+    effortSurface: 'model-id',
+    sandboxSurface: 'sandbox-flag',
+    resume: 'artifact',
+  }),
+  'cli-devin': Object.freeze({
+    binary: 'devin',
+    promptChannel: 'argv',
+    logFormat: 'text',
+    costSource: 'none',
+    effortSurface: 'model-id',
+    sandboxSurface: 'permission-mode',
+    resume: 'artifact',
+  }),
+  'cli-pi': Object.freeze({
+    binary: 'pi',
+    promptChannel: 'argv',
+    logFormat: 'text',
+    costSource: 'none',
+    effortSurface: 'flag',
+    sandboxSurface: 'tool-allowlist',
+    resume: 'artifact',
+  }),
+  'cli-deepseek-harness': Object.freeze({
+    binary: 'dsh',
+    promptChannel: 'stdin',
+    logFormat: 'dsh-json',
+    costSource: 'none',
+    effortSurface: 'config',
+    sandboxSurface: 'permission-mode',
+    resume: 'artifact',
+  }),
+  'cli-mistral-vibe': Object.freeze({
+    binary: 'vibe',
+    promptChannel: 'file',
+    logFormat: 'text',
+    costSource: 'none',
+    effortSurface: 'config',
+    sandboxSurface: 'none',
+    resume: 'artifact',
+  }),
+} as const satisfies Record<ExecutorKind, ExecutorAdapterCapability>);
 
 /**
  * Whether an executor kind's `sandboxMode` maps to a real PREVENTIVE OS-level
@@ -163,7 +300,7 @@ export const EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY: Record<ExecutorKind, boolea
   'cli-opencode': false, // no confinement flag exists; the builder fails loud for anything but danger-full-access
   'cli-cursor': true, // --sandbox enabled/disabled is a real OS confinement flag, independent of the approval mode
   'cli-devin': false, // --sandbox is deliberately never passed (conflicts with non-interactive auto-approval); confinement is the fan-out's post-hoc write-containment guard, not an OS boundary
-  'cli-pi': false, // sandboxMode is not in EXECUTOR_KIND_FLAG_SUPPORT for this kind; read-only is a tool-allowlist restriction only
+  'cli-pi': false, // read-only is a tool-allowlist restriction only, not an OS boundary
   'cli-deepseek-harness': true, // Workspace-write blocks home writes; OS temp remains writable.
   'cli-mistral-vibe': false, // sandboxMode is not in EXECUTOR_KIND_FLAG_SUPPORT for this kind; the roster row decides what the model may reach
 };

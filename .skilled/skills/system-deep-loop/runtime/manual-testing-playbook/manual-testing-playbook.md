@@ -1,7 +1,7 @@
 ---
 title: "runtime/: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the runtime/ skill."
-version: 1.4.10.0
+version: 1.4.11.0
 ---
 
 # runtime/: Manual Testing Playbook
@@ -706,12 +706,12 @@ Expected signals: 10/10 pool tests pass; gated-worker confirms max N in flight; 
 ### DLR-025 | Fan-out CLI lineage driver spawn and isolation
 
 #### Description
-Validates `fanout-run.cjs` creates distinct per-lineage dirs and `.executor-state` paths, saves stdout, and writes orchestration artifacts.
+Validates `fanout-run.cjs` creates distinct per-lineage dirs and `.executor-state` paths, saves stdout, and writes orchestration artifacts, and that the read-only `--status` table and the `--stop` control behave as documented.
 
 #### Scenario Contract
 Prompt: `Validate the fan-out CLI lineage driver and confirm the selected lineage-isolation and orchestration cases pass, verifying lineage isolation and orchestration artifact creation.`
 
-Expected signals: every selected case passes; lineage dirs distinct; orchestration summary present.
+Expected signals: every selected case passes; lineage dirs distinct; orchestration summary present; `--status` prints one row per lineage and leaves the ledger unchanged; `--stop` records a `stopped` row with a rerun command and exits 0.
 
 #### Test Execution
 > **Feature File:** [DLR-025](../manual-testing-playbook/fanout/fanout-run-cli-lineage-spawn.md)
@@ -956,7 +956,7 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 | Coverage graph scripts | `tests/integration/{convergence,query,status,upsert}-script.vitest.ts`, `tests/lifecycle/db-open-close.vitest.ts` | Direct script behavior and DB lifecycle. |
 | Review-depth integration | `tests/integration/review-depth-*.vitest.ts` | Review graph, convergence, and validator fixtures. |
 | Council | `tests/council/multi-seat-dispatch.vitest.ts` | Seat dispatch: parallel execution, order-preserving results and per-seat outcome aggregation. |
-| Fan-Out | `tests/unit/executor-config.vitest.ts`, `tests/unit/fanout-pool.vitest.ts`, `tests/unit/fanout-run.vitest.ts`, `tests/unit/fanout-salvage.vitest.ts`, `tests/unit/fanout-merge.vitest.ts` | Fan-out config schema, pool concurrency, CLI lineage dispatch, write-failure salvage, research/review merge, stall watchdog, fixed-rate overrun, and persisted wait resume. |
+| Fan-Out | `tests/unit/executor-config.vitest.ts`, `tests/unit/fanout-pool.vitest.ts`, `tests/unit/fanout-run.vitest.ts`, `tests/unit/fanout-salvage.vitest.ts`, `tests/unit/fanout-merge.vitest.ts`, `tests/unit/fanout-status.vitest.ts`, `tests/unit/fanout-stop.vitest.ts`, `tests/unit/fanout-pass-evidence.vitest.ts` | Fan-out config schema, pool concurrency, CLI lineage dispatch, write-failure salvage, research/review merge, stall watchdog, fixed-rate overrun, persisted wait resume, the status table, the stop control and pass evidence. |
 | Lifecycle | `tests/unit/sleep.vitest.ts`, `tests/unit/lifecycle-taxonomy-guards.vitest.ts` | Abortable waits and lifecycle taxonomy guards. |
 | Observability | `tests/unit/observability-events.vitest.ts`, `tests/unit/post-dispatch-validate.vitest.ts`, `tests/unit/deep-research-reduce-state.vitest.ts`, `tests/integration/status-script.vitest.ts` | Event envelopes, telemetry heartbeat wiring, and seekable log-region metadata. |
 | Testing harness | `tests/helpers/spawn-cjs.ts`, `tests/integration/convergence-script.vitest.ts`, `tests/unit/fanout-run.vitest.ts` | Hermetic environments and record/replay cassettes for script regressions. |

@@ -285,10 +285,21 @@ export function createDeepReviewStateProjectionContract(
         const record = (data.record && typeof data.record === 'object' && !Array.isArray(data.record))
           ? (data.record as JsonObject)
           : {};
-        row = {
-          ...record,
-          timestamp: typeof record.timestamp === 'string' ? record.timestamp : occurredAt,
-        };
+        if (record.type === 'iteration') {
+          // The model writes the iteration record, so its stamp is only a claim: the
+          // gateway clock times the row and the stamp rides beside it.
+          row = {
+            ...record,
+            timestamp: occurredAt,
+            ...(typeof record.timestamp === 'string' ? { claimedTimestamp: record.timestamp } : {}),
+          };
+        } else {
+          // The workflow's own rows keep the time their writer gave them.
+          row = {
+            ...record,
+            timestamp: typeof record.timestamp === 'string' ? record.timestamp : occurredAt,
+          };
+        }
       } else if (stem) {
         row = {
           type: 'event',

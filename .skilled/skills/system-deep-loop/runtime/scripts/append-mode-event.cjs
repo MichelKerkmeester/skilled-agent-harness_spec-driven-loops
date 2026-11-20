@@ -415,14 +415,21 @@ async function main() {
       );
     }
     // A row the projection writes back with its own timestamp hands that time
-    // over as the event's occurrence time, so the row keeps it.
+    // over as the event's occurrence time, so the row keeps it. A completed
+    // iteration is written by the model, so only the gateway clock times it:
+    // any time field on the row is ignored, and the upcaster keeps its stamp
+    // as a claim in the event data.
+    let legacyMeta = upcast.occurredAt ? { occurredAt: upcast.occurredAt, ...rawEvent } : rawEvent;
+    if (upcast.targetStem === 'deep_research.iteration_completed') {
+      legacyMeta = { ...rawEvent, occurredAt: nowIso, recordedAt: nowIso };
+    }
     const preparedInput = buildPreparedInput({
       stem: upcast.targetStem,
       scope: upcast.scope,
       data: upcast.data,
       prevEventHash: upcast.prevEventHash,
       replay: upcast.replay,
-    }, upcast.occurredAt ? { occurredAt: upcast.occurredAt, ...rawEvent } : rawEvent);
+    }, legacyMeta);
     eventRecord = adapter.prepareEvent(preparedInput, registry);
     legacyWarnings = upcast.warnings;
   } else if (
@@ -449,13 +456,19 @@ async function main() {
     const sessionId = typeof rawEvent.sessionId === 'string' && rawEvent.sessionId
       ? rawEvent.sessionId
       : 'run-cli';
+    // The model writes the iteration record, so only the gateway clock times it:
+    // a time field on the record never sets the event time, and the projection
+    // keeps the record's own stamp as a claim.
+    const reviewMeta = rawEvent.type === 'iteration'
+      ? { ...rawEvent, occurredAt: nowIso, recordedAt: nowIso }
+      : rawEvent;
     const preparedInput = buildPreparedInput({
       stem: 'deep_review.iteration_recorded',
       scope: { runId: sessionId, sessionId },
       data: { record: rawEvent },
       prevEventHash: currentHead.recordHash,
       replay: defaultReplay,
-    }, rawEvent);
+    }, reviewMeta);
     eventRecord = adapter.prepareEvent(preparedInput, registry);
   } else {
     throw new Error('Unrecognized event format: expected object with stem or event_type');

@@ -353,6 +353,9 @@ export function createDeepResearchProjectionContract(
           ...(Array.isArray(data.toolsUsed) ? { toolsUsed: data.toolsUsed } : {}),
           ...(Array.isArray(data.sourcesQueried) ? { sourcesQueried: data.sourcesQueried } : {}),
           timestamp: occurredAt,
+          // The gateway clock times the row; a stamp the model wrote rides beside it
+          // as a claim, so a fabricated time stays visible without setting the row time.
+          ...(typeof data.claimedTimestamp === 'string' ? { claimedTimestamp: data.claimedTimestamp } : {}),
         };
       } else if (stem === 'deep_research.convergence_blocked') {
         const iter = typeof scope.iteration === 'number' ? scope.iteration : 0;

@@ -1,1 +1,1 @@
-Frontier node F-2-008 (depth 2, scope .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs, .skilled/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs): Do the research and review dashboards expose per-frontier-node budget spend and visit counts, or only lineage-wide iteration totals?
+Frontier node F-2-008 (depth 2, scope runtime/lib/deep-loop/executor-audit.ts, runtime/scripts/fanout-run.cjs): Does any runner path read EXECUTOR_SESSION_ENV_BY_KIND and persist a provider session id for a --only-lineage rerun, or is it detection-only?

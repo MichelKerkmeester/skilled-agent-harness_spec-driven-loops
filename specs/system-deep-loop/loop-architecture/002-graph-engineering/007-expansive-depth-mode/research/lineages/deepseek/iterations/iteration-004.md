@@ -1,60 +1,82 @@
-# Iteration 4: Frontier node F-1-002 (second pass) — partial-run reporting and budget sizing
+# Iteration 4: F-1-002 adapter contract and conformance test (synthesis)
 
 ## Focus
 
-Frontier node F-1-002, second pass: what a partially complete fan-out tells the operator (failed label, failure class, rerun command), whether the dashboard exposes per-node progress, and whether the lineage budget actually funds the nodes it is dealt.
+Frontier node F-1-002 (depth 1, scope fanout-run.cjs LINEAGE_COMMAND_ADAPTERS, runtime/lib/deep-loop/executor-config.ts, runtime/scripts/dispatch-iteration.cjs, .claude .codex .pi .dsh .vibe .opencode mirrors against .skilled): Cross-CLI execution contract: where do permission and sandbox, effort, output format, session resume, failure classes, log shape and prompt channel still differ across LINEAGE_COMMAND_ADAPTERS, executor-config.ts and dispatch-iteration.cjs, and what single adapter contract and conformance test (agent and command mirrors included) would remove the differences?
+
+This pass is analytical: iteration 1 gathered the differences, so the remaining work is the contract shape and the test that would hold it. No new external source is introduced, which is why the status is `insight` rather than `complete`.
+
+## Actions Taken
+
+1. Re-read iteration 1's findings and the builders they cite, plus `EXECUTOR_KIND_FLAG_SUPPORT` and `effective_config`.
+2. Checked that `buildLineageCommand` is the shared entrypoint the single-executor cursor/devin/pi branch already calls, so a table-driven test can target one function rather than eight.
+3. Checked the stress matrix's fourteen rows and the `expectSuccessArgs` switch that duplicates the builders.
+4. Composed the contract fields so each one maps to a difference that iteration 1 confirmed, and wrote the four fixture assertions.
 
 ## Findings
 
-1. **The partial-run summary reports only aggregate failure classes, never which lineage failed or how to rerun it.** `orchestration-summary.json` carries `total/succeeded/failed/all_failed`, a `failure_classes` count map and `timestamp_anomalies`; it has no per-lineage `{label, status, reason, rerun_command}` array. An operator whose deepseek lineage died on a 429 sees `failed: 1` and `quota: 1`, then has to open `orchestration-status.log` and the lineage logs to learn which one and what to run next. One concrete change: add a `lineages: [{label, status, reason, failure_class, rerun_command}]` array to the summary, with `rerun_command` the original argv narrowed to that label (`--only-lineage` from the iteration-1 finding, or the documented current workaround). Value: one file answers "what failed and what do I type". Effort S. Risk low. [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/orchestration-summary.json:1] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4714] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-config-recovery.json:1]
+1. **The contract is one record per `ExecutorKind` with seven capability fields, and every field answers a difference this run found.** The fields are `binary`, `promptChannel` (`argv`/`stdin`/`file`), `outputFormat` (`text`/`json`/`export`/`none`), `costSource` (`step_finish`/`export`/null), `effortSurface` (`flag`/`model-suffix`/`model-id`/`config`/`none`), `sandboxSurface` (`os-flag`/`approval-flag`/`tool-allowlist`/`none`) and `resume` (`session-flag`/`artifact-only`/`none`). It belongs beside `EXECUTOR_KIND_FLAG_SUPPORT`, which already declares what each kind accepts but not how it is carried. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:112] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/iterations/iteration-001.md:19]
 
-2. **The dashboard shows band spend but not per-node visits or status, so three single-node passes and three passes on one node look identical.** This lineage's dashboard after three iterations reports `Frontier size: 3 nodes (3 open…)`, `Revisits: 0` and `Budget depth1: 3 of 5 iterations spent`; nothing says each node was visited exactly once, and the registry already holds the data (`frontierNodeVisitRecords` in `reduce-state.cjs:2491`). One concrete change: add a per-node table to the dashboard frontier section (`nodeId, depth, visits, status, band, lastIteration`). Value: an operator can see a starved or a monopolised node before the band closes it. Effort S. Risk low. [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:108] [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2491]
+2. **The conformance test is four fixture assertions over `buildLineageCommand`, one per divergence that is currently undetected.** (a) Given a fixed lineage and a prompt, exactly one channel carries it: one `promptArgIndexes` entry, or `input === prompt` with a trailing `-`, or a `--prompt-file` path; `redactedArgs` must show one digest. (b) A requested `--sandbox-mode` round-trips into `effectiveConfig.sandboxEnforcement`, or the adapter refuses it; today five single-executor branches silently substitute `workspace-write`. (c) A synthetic log fixture per `costSource` must make `sumProviderCostFromLog` return the declared shape or null, so a null is labelled rather than anonymous. (d) A synthetic transcript per pending-question source must yield the expected `detectPendingQuestion` result, which today can never be true for a JSON log. [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/iterations/iteration-001.md:21] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:538] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:76]
 
-3. **Every `observability-events.jsonl` row carries `subject.run_id: null`, so the event stream cannot be joined to a run or a lineage.** The payload names the label but not the run, and `run_id` is a first-class field on the envelope that is simply left empty. One concrete change: set `subject.run_id` (and `subject.label`) on every emitted event. Value: partial-run forensics and any external dashboard can correlate without parsing free text. Effort S. Risk low. [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/observability-events.jsonl:1] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4801]
+3. **The test should iterate `EXECUTOR_KINDS` and fail on an unlisted kind, which retires the `expectSuccessArgs` switch instead of extending it.** The stress suite's per-kind switch is a second copy of each builder's decisions; a table-driven test reads the same contract the builder reads, so a new kind cannot be added with a builder and no assertions, or with assertions and no builder. The fourteen existing edge-case rows stay as they are; four adapter-contract rows are added to the matrix so the bijection validator covers them. [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/adapter-suite.ts:92] [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/matrix-manifest.ts:18]
 
-4. **The quota failure is detected but not turned into an instruction.** `fanout-run.cjs:4714-4717` produces `lineage <label> ...: provider quota exhausted (<cause>)`, while the single-executor workflow already carries the actionable sentence "Switch executor or wait, then resume this run" (`deep-research.yaml:1898`). The fan-out summary and the error line do not carry that clause or any resume step. One concrete change: append the same recovery clause plus the lineage-specific resume step to the quota failure message and to the summary's `rerun_command`. Value: the failure names the action, not just the cause. Effort S. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4714] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1898]
+4. **The build order is: contract table and test first (S), then the held rows in F-1-004's order (30+12, then 13, then 29).** The contract is the cheap artifact that makes row 13's collapse safe: row 13 removes the hand-built `runClaude`/`runCodex` branches, and without the four assertions the collapse can re-introduce the sandbox substitution or the text-format cost gap silently. The mirror half needs no work: both gates pass, and the missing command trees in `.codex`, `.pi`, `.dsh` and `.vibe` are the crosswalk's sanctioned shape. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:961] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/iterations/iteration-002.md:27] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/iterations/iteration-001.md:67]
 
-5. **This lineage is a live instance of the budget split under-funding its nodes: 10 iterations give the depth-1 band 5 visits for 3 nodes, but each node needs a first pass and a verification pass.** The dashboard itself reports `Budget depth1: 3 of 5 iterations spent` after three single-node passes, which leaves two visits for the remaining second passes on all three nodes. The fan-out floor for a CLI lineage is 10 (`research.md:107`), independent of how many nodes it is dealt, so a 3-node share is funded as if it were a 1-node share. One concrete change: raise the CLI lineage floor to `max(10, 2 × dealtNodes + 2)` (research) so every dealt node is funded for a first and a verification pass. Value: removes the starvation this run has to work around by closing nodes early. Effort S. Risk low (the cap is still bounded by the explicit `iterations` value). [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:113] [SOURCE: .skilled/commands/deep/research.md:107] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:844]
+## Questions Answered
 
-## Ruled Out
+- Where do the eight kinds still differ? Iteration 1, Findings 1-5.
+- What single adapter contract and conformance test would remove the differences, including the mirrors? Findings 1-4: a seven-field capability record and four fixture assertions over `buildLineageCommand`, with no new mirror gate.
 
-- Claiming the dashboard hides band spend: it prints all three bands and their allotments; the missing dimension is per-node detail, not the band budget.
-- Proposing a new summary file: `orchestration-summary.json` is already the operator's terminal artifact; it only needs the per-lineage array.
+## Questions Remaining
 
-## Dead Ends
-
-- Searching for a documented fan-out resume procedure in `research.md`: the command doc covers `--lineage-mode=resume` and `--extend` for a single run, but has no fan-out recovery section; the only evidence of the real procedure is the committed recovery config.
-
-## Edge Cases
-
-- Ambiguous input: "rerun one failed lineage" could mean re-dispatch only the failed label or resume its half-finished loop. Both are served by the same `--only-lineage` filter plus the existing config-driven resume; the finding names both.
-- Contradictory evidence: none.
-- Missing dependencies: the failed 429 attempt's summary was not preserved; the quota text is read from the current code and the successful rerun's artifacts.
-- Partial success: the node's first question (recovery) is answered; the dashboard and budget halves are answered by findings 2 and 5.
-
-## Sources Consulted
-
-- `specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/orchestration-summary.json:1`
-- `specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/observability-events.jsonl:1`
-- `specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-config-recovery.json:1`
-- `specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:108`
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4714,4801`
-- `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2491`
-- `.skilled/commands/deep/assets/deep-research.yaml:844,1898`
-- `.skilled/commands/deep/research.md:107`
-
-## Assessment
-
-- New information ratio: 1.0
-- Questions addressed: operator UX (frontier node F-1-002), second pass
-- Questions answered: the operator-UX node question is answered: flags are documented but duplicated, budget sizing is under-funded for 3+ nodes, dashboards omit per-node detail, the dry run cannot show scopes before seeding, and recovery has no first-class path.
-
-## Reflection
-
-- What worked and why: using this lineage's own dashboard as evidence turned the budget-split arithmetic into an observed fact rather than a projection.
-- What did not work and why: looking for a fan-out recovery section in the command docs found none, which confirms the gap rather than disproving it.
-- What I would do differently: read the summary and observability files before the second pass, since they answer the "partial run" half directly.
+- None for this node. The contract shape is decided; implementation, value/effort/risk and the row-13 sequencing are recorded in the ledger for F-1-004's order.
 
 ## Recommended Next Focus
 
-Close F-1-002 as answered. Next: F-1-004 failure-class pass, then F-1-006 receipt verification, then the design questions.
+Frontier node F-2-007: whether the cli-adapter stress suite is part of a default gate and which matrix cells remain pending.
+
+## Ruled Out
+
+- **Deriving the contract from the CLI help text at test time.** The adapters are pinned to live-verified flags, and a help probe cannot prove the runner reads the log shape the flag produces.
+- **One test per adapter kind written by hand.** That is the current `expectSuccessArgs` shape; it duplicates the builder and drifts with it.
+- **Treating the contract as documentation only.** The point is that the builder and the test read one table; a prose table with no consumer is another document to rot.
+
+## Dead Ends
+
+- Looking for a capability record already shipped under another name: `EXECUTOR_KIND_FLAG_SUPPORT` is the closest, and it answers "is the field accepted", not "how is it carried".
+
+## Edge Cases
+
+- Ambiguous input: none. The node's two questions were answered in iteration 1 and this pass.
+- Contradictory evidence: none.
+- Missing dependencies: none.
+- Partial success: this is a synthesis pass; newInfoRatio is reported as `insight` because no new external evidence was gathered.
+
+## Sources Consulted
+
+- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:112`
+- `.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:538`
+- `.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:961`
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:76`
+- `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/matrix-manifest.ts:18`
+- `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/adapter-suite.ts:92`
+- `specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/iterations/iteration-001.md:19`
+- `specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/iterations/iteration-002.md:27`
+
+## Assessment
+
+- New information ratio: 0.60
+- Questions addressed: the adapter contract shape and the conformance test.
+- Questions answered: the F-1-002 question in full.
+- Finding mix: four partially new synthesis findings, plus the +0.10 simplicity bonus for collapsing six builder-level differences into one seven-field record and four assertions.
+
+## Reflection
+
+- What worked and why: mapping every contract field to a difference found in iteration 1 kept the design from becoming an aspiration; each field has a failure it prevents and a file:line that shows the failure today.
+- What did not work and why: I considered a per-kind test list first, which would have recreated the duplication the test exists to remove; the table-driven shape only emerged after reading `expectSuccessArgs`.
+- What I would do differently: write the four assertions in the same pass as the contract, because an assertion that cannot be written is a field that does not describe observable behaviour.
+
+## SCOPE VIOLATIONS
+
+None. No file outside the lineage directory was written.

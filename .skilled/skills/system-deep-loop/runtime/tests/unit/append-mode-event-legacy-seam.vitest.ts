@@ -389,4 +389,77 @@ describe('append-mode-event legacy deep-research upcast seam', () => {
       sourcesQueried: ['src/file.ts:42'],
     });
   });
+
+  // The model writes the iteration row, so a stamp it wrote must not set the row
+  // time: the gateway clock does, and the stamp survives as a claim in the event.
+  it('times a legacy iteration row by the gateway clock and keeps the model stamp as a claim', () => {
+    const runDir = createTempDir('iteration-clock');
+    const authorityRoot = createTempDir('iteration-clock-auth');
+    const env = { DEEP_LOOP_AUTHORITY_ROOT: authorityRoot };
+
+    expect(runCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, legacyConfigRow())],
+      env,
+    ).exitCode).toBe(0);
+
+    const before = Date.now();
+    const appended = runCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, {
+        type: 'iteration', iteration: 1, sessionId: 's1', lineageId: 'l1', run: 1, status: 'complete',
+        newInfoRatio: 0.5, ruledOut: [],
+        timestamp: '2099-01-01T00:00:00Z',
+        occurredAt: '2098-01-01T00:00:00Z',
+        occurred_at: '2097-01-01T00:00:00Z',
+      })],
+      env,
+    );
+    const after = Date.now();
+    expect(appended.exitCode, appended.stderr + appended.rawStdout).toBe(0);
+    // An ordinary iteration migrates without loss, so the output carries no warnings.
+    expect(appended.json.warnings).toBeUndefined();
+
+    const frameNames = readdirSync(framesDirectory(runDir)).sort();
+    const frame = JSON.parse(readFileSync(join(framesDirectory(runDir), frameNames.at(-1) as string), 'utf8'));
+    const event = JSON.parse(Buffer.from(frame.canonical_event_bytes, 'base64').toString('utf8'));
+    const occurredAt = Date.parse(event.occurred_at);
+    expect(occurredAt).toBeGreaterThanOrEqual(before);
+    expect(occurredAt).toBeLessThanOrEqual(after);
+    expect(event.payload.data.claimedTimestamp).toBe('2099-01-01T00:00:00Z');
+
+    const stateLog = readFileSync(join(runDir, 'research', 'deep-research-state.jsonl'), 'utf8')
+      .split('\n')
+      .filter(Boolean)
+      .map((line) => JSON.parse(line));
+    const row = stateLog.find((entry) => entry.type === 'iteration');
+    expect(row.timestamp).toBe(event.occurred_at);
+    expect(row.claimedTimestamp).toBe('2099-01-01T00:00:00Z');
+  });
+
+  // The completed-iteration override must not reach the rows that keep their own
+  // time: a lifecycle row written by the workflow still keeps its timestamp.
+  it('still keeps a legacy reducer-read row\'s own timestamp as the event time', () => {
+    const runDir = createTempDir('row-clock');
+    const authorityRoot = createTempDir('row-clock-auth');
+    const env = { DEEP_LOOP_AUTHORITY_ROOT: authorityRoot };
+
+    expect(runCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, legacyConfigRow())],
+      env,
+    ).exitCode).toBe(0);
+
+    const appended = runCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, {
+        type: 'event', event: 'userPaused', mode: 'research', run: 1, stopReason: 'userPaused',
+        sentinelPath: 'research/.deep-research-pause',
+        sessionId: 's1', generation: 1, timestamp: '2026-05-24T03:04:05Z',
+      })],
+      env,
+    );
+    expect(appended.exitCode, appended.stderr + appended.rawStdout).toBe(0);
+    const stateLog = readFileSync(join(runDir, 'research', 'deep-research-state.jsonl'), 'utf8')
+      .split('\n')
+      .filter(Boolean)
+      .map((line) => JSON.parse(line));
+    expect(stateLog.at(-1).timestamp).toBe('2026-05-24T03:04:05Z');
+  });
 });

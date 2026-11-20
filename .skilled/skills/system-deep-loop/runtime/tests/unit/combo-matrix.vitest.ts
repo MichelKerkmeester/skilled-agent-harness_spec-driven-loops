@@ -132,7 +132,7 @@ function expectedRepresentativeArgs(kind: ExecutorKind, model: string | undefine
     case 'cli-codex':
       return ['exec', '--model', model ?? '', '-c', 'model_reasoning_effort=medium', '-c', 'approval_policy=never', '--sandbox', 'read-only', '-'];
     case 'cli-claude-code':
-      return ['-p', MATRIX_PROMPT, '--model', model ?? '', '--permission-mode', 'plan', '--output-format', 'text'];
+      return ['-p', MATRIX_PROMPT, '--model', model ?? '', '--permission-mode', 'plan', '--output-format', 'stream-json', '--verbose'];
     case 'cli-opencode':
       return ['run', '--standalone', '-m', model ?? '', '--format', 'json', '--auto', MATRIX_PROMPT];
     case 'cli-cursor':

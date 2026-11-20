@@ -60,7 +60,7 @@ describe('executor-config', () => {
 
   it('allows only the configured cli-deepseek-harness fields', () => {
     expect(EXECUTOR_KIND_FLAG_SUPPORT['cli-deepseek-harness']).toEqual([
-      'model', 'reasoningEffort', 'timeoutSeconds', 'liveTools', 'agentPersona',
+      'model', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds', 'liveTools', 'agentPersona',
     ]);
     expect(parseExecutorConfig({
       kind: 'cli-deepseek-harness',
@@ -75,14 +75,14 @@ describe('executor-config', () => {
       timeoutSeconds: 120,
       agentPersona: 'researcher',
     });
-    expect(() => parseExecutorConfig({ kind: 'cli-deepseek-harness', sandboxMode: 'read-only' }))
-      .toThrow(/not supported by executor kind 'cli-deepseek-harness'/);
+    expect(parseExecutorConfig({ kind: 'cli-deepseek-harness', sandboxMode: 'read-only' }).sandboxMode)
+      .toBe('read-only');
     expect(() => parseExecutorConfig({ kind: 'cli-deepseek-harness', configDir: '/tmp/dsh-home' }))
       .toThrow(/not supported by executor kind 'cli-deepseek-harness'/);
   });
 
   it('allows only confirmed-safe cli-pi fields', () => {
-    expect(EXECUTOR_KIND_FLAG_SUPPORT['cli-pi']).toEqual(['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools']);
+    expect(EXECUTOR_KIND_FLAG_SUPPORT['cli-pi']).toEqual(['model', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds', 'liveTools']);
     expect(parseExecutorConfig({
       kind: 'cli-pi',
       model: 'candidate-model',
@@ -90,7 +90,8 @@ describe('executor-config', () => {
       timeoutSeconds: 120,
       liveTools: { webSearch: 'inherit' },
     })).toMatchObject({ kind: 'cli-pi', model: 'candidate-model', reasoningEffort: 'xhigh', timeoutSeconds: 120 });
-    expect(() => parseExecutorConfig({ kind: 'cli-pi', sandboxMode: 'read-only' })).toThrow(/not supported by executor kind 'cli-pi'/);
+    expect(parseExecutorConfig({ kind: 'cli-pi', sandboxMode: 'read-only' }).sandboxMode).toBe('read-only');
+    expect(() => parseExecutorConfig({ kind: 'cli-pi', serviceTier: 'priority' })).toThrow(/not supported by executor kind 'cli-pi'/);
   });
 
   it('allows only the confirmed cli-mistral-vibe fields', () => {

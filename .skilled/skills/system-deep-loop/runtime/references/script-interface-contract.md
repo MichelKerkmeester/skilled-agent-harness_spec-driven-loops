@@ -8,7 +8,7 @@ trigger_phrases:
   - "coverage graph script exit codes"
 importance_tier: important
 contextType: implementation
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # Deep Loop Runtime Script Interface Contract
@@ -91,11 +91,13 @@ Every script follows the same lifecycle: parse CLI args, re-exec through the TSX
 
 Source: `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs`
 
-Additional args: `--iteration`, `--persist-snapshot`, `--read-only`.
+Additional args: `--iteration`, `--persist-snapshot`, `--read-only`, `--record-blocked-stop`.
 
 Workflow-facing fields: `graph_decision`, `graph_signals_json`, `graph_blockers_json`, `graph_stop_blocked`, `graph_convergence_score`.
 
 Behavior: Returns `CONTINUE` for empty graphs, `STOP_BLOCKED` when blocking guards fail, and `STOP_ALLOWED` when all convergence signals pass.
+
+`--record-blocked-stop` needs `--stop-decision`, loop type `research` and a positive `--iteration`, and is refused with `--read-only`. On a BLOCKED stop decision it appends a `blocked_stop` row through `append-mode-event.cjs` once per run and blocker set, and reports the outcome as `blocked_stop_record.status`: `recorded`, `already_recorded` or `failed`. A failed record exits with the gateway's exit code after the decision is printed.
 
 ### upsert.cjs
 

@@ -193,6 +193,22 @@ describe('checkLineageTimestampWindow', () => {
     expect(result.sample).toEqual([]);
   });
 
+  it('judges the stamp a gateway-timed row claims, not the gateway time', () => {
+    const result = checkLineageTimestampWindow([
+      { type: 'iteration', iteration: 1, timestamp: '2026-07-02T13:20:00Z', claimedTimestamp: '2026-07-02T12:01:00Z' },
+      { type: 'iteration', iteration: 2, timestamp: '2026-07-02T13:25:00Z' },
+    ], {
+      windowStart: '2026-07-02T13:15:00Z',
+      windowEnd: '2026-07-02T13:49:00Z',
+      toleranceMs: 0,
+    });
+
+    expect(result).toMatchObject({ anomalous: 1, untimestamped: 0, unparseable: 0, total: 2 });
+    expect(result.sample).toEqual([
+      expect.objectContaining({ index: 0, reason: 'before_window', timestamp: '2026-07-02T12:01:00Z' }),
+    ]);
+  });
+
   it('classifies unparseable timestamps as anomalous and missing timestamps as untimestamped', () => {
     const result = checkLineageTimestampWindow([
       { type: 'iteration', timestamp: 'not-a-date' },
@@ -308,6 +324,15 @@ describe('checkLineageCompletion', () => {
     const verdict = checkLineageCompletion(lateRows, { terminalEvents: REVIEW_TERMINAL_EVENTS, ...RESUMED_ATTEMPT_WINDOW });
     expect(verdict).toMatchObject({ complete: false, failure: 'stamped_after_completion' });
     expect(verdict.complete === false && verdict.detail).toContain('iteration 12');
+  });
+
+  it('fails on a claimed stamp beyond the process end even when the gateway timed the row inside it', () => {
+    const rows = [...resumedFakeCompletionRows].map((row) => (row.iteration === 12
+      ? { ...row, timestamp: '2026-11-19T19:25:00.000Z', claimedTimestamp: '2026-11-19T19:28:00.000Z' }
+      : row));
+    rows.splice(rows.length - 1, 0, { type: 'event', event: 'terminal_gates', timestamp: '2026-11-19T19:25:10.000Z' });
+    const verdict = checkLineageCompletion(rows, { terminalEvents: REVIEW_TERMINAL_EVENTS, ...RESUMED_ATTEMPT_WINDOW });
+    expect(verdict).toMatchObject({ complete: false, failure: 'stamped_after_completion' });
   });
 
   it('passes a resumed lineage whose earlier attempt left rows before the window', () => {

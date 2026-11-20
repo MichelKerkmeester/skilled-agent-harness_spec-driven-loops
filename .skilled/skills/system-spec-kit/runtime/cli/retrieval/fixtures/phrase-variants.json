@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e05a08bb0bb142f7a0e978391fc7c924f33c9cc7f03bd97d4ef4344d1ce1544f",
+  "manifestHash": "22bf5ce53e2c79e402b896101562b4fd2eaf1e368137427f7161c9f0aa49ba17",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14767,9 +14767,6 @@
     "barter move overlays out of tree tasks": [
       "barter move overlays out of tree tasks"
     ],
-    "barter move overlays summary": [
-      "barter move overlays summary"
-    ],
     "barter overlay mechanics research": [
       "barter overlay mechanics research"
     ],
@@ -14806,14 +14803,8 @@
     "barter overlays move task list": [
       "barter overlays move task list"
     ],
-    "barter overlays moved to ai speckit overlays": [
-      "barter overlays moved to ai-speckit/overlays"
-    ],
     "barter overlays out of the vendored tree": [
       "barter overlays out of the vendored tree"
-    ],
-    "barter overlays relayout evidence": [
-      "barter overlays relayout evidence"
     ],
     "barter parity": [
       "barter parity"
@@ -14836,12 +14827,6 @@
     "barter re pin after rebasedonto": [
       "barter re-pin after rebasedOnto"
     ],
-    "barter re pin onto 063daae": [
-      "barter re-pin onto 063daae"
-    ],
-    "barter record base open item": [
-      "barter record-base open item"
-    ],
     "barter remove set operations after sets record": [
       "barter remove set operations after sets record"
     ],
@@ -14850,9 +14835,6 @@
     ],
     "barter repin and relayout plan": [
       "barter repin and relayout plan"
-    ],
-    "barter repin and relayout summary": [
-      "barter repin and relayout summary"
     ],
     "barter repin and relayout tasks": [
       "barter repin and relayout tasks"
@@ -38631,6 +38613,9 @@
     ],
     "deep research reducer implementation": [
       "deep research reducer implementation"
+    ],
+    "deep research reducer test next focus": [
+      "deep-research reducer test next focus"
     ],
     "deep research reducers": [
       "deep research reducers",
@@ -81447,9 +81432,6 @@
     "overlaydir overlays barter hooks": [
       "overlayDir ../overlays barter hooks"
     ],
-    "overlaydir overlays evidence": [
-      "overlayDir ../overlays evidence"
-    ],
     "overlays folder beside the vendored tree": [
       "overlays folder beside the vendored tree"
     ],
@@ -84604,6 +84586,9 @@
     ],
     "phase 15 plan": [
       "phase 15 plan"
+    ],
+    "phase 15 reducer test focus contract": [
+      "phase 15 reducer test focus contract"
     ],
     "phase 15 results": [
       "phase 15 results"
@@ -95075,6 +95060,18 @@
     ],
     "reducer records terminal stop metadata": [
       "reducer records terminal stop metadata"
+    ],
+    "reducer test focus contract": [
+      "reducer test focus contract"
+    ],
+    "reducer test focus contract implementation summary": [
+      "reducer test focus contract implementation summary"
+    ],
+    "reducer test focus contract plan": [
+      "reducer test focus contract plan"
+    ],
+    "reducer test focus contract tasks": [
+      "reducer test focus contract tasks"
     ],
     "reducer traceability and refines": [
       "reducer traceability and refines"

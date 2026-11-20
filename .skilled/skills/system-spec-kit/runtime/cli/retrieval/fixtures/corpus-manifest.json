@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e7f6d1ec81745fcb13d1454d03396d37f79717680109be9ffdc11eabefcfce0c",
+  "corpusHash": "95ebdeda68404e966d9a50070276bead3f4745e24ed3480bb781f120461d8608",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28861,
+  "includedPathCount": 28867,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -18797,6 +18797,10 @@
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract/implementation-summary.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract/plan.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract/spec.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract/tasks.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/decision-record.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/goal.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/implementation-summary.md",
@@ -18834,6 +18838,10 @@
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261120T011847Z/prompts/iteration-5.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261120T011847Z/research.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261120T011847Z/resource-map.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261120T125555Z/fanout-attribution.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261120T125555Z/improvement-backlog.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261120T125555Z/research.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261120T125555Z/resource-map.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T153733Z/deep-review-dashboard.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T153733Z/deep-review-strategy.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T153733Z/iterations/iteration-001.md",
@@ -20261,13 +20269,11 @@
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/tasks.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/goal.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/implementation-summary.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/plan.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/tasks.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/acceptance-criteria.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/goal.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/implementation-summary.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/plan.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/tasks.md",
@@ -28893,7 +28899,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e05a08bb0bb142f7a0e978391fc7c924f33c9cc7f03bd97d4ef4344d1ce1544f",
+  "manifestHash": "22bf5ce53e2c79e402b896101562b4fd2eaf1e368137427f7161c9f0aa49ba17",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36956,6 +36962,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-audit-ledger",
       "reason": "excluded directory"
     },
@@ -36969,6 +36979,10 @@
     },
     {
       "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261120T125555Z/lineages",
       "reason": "excluded directory"
     },
     {
@@ -38009,10 +38023,6 @@
     },
     {
       "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages",
       "reason": "excluded directory"
     },
     {

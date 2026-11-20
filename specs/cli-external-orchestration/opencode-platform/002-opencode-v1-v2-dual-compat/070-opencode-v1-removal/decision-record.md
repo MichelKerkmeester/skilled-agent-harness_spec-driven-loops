@@ -46,6 +46,11 @@ _memory:
 | Q010 | Run the five-iteration deep review through cli-pi with deepseek-v4.1-flash-1017 at max, because cli-opencode refuses dispatch from the primary checkout. | Not stated. | None | review/deep-review-config.json, review/review-report.md |
 | Q011 | Fix all eight P2 advisories from the third review in a new phase 004, worked in a worktree and merged to main. | Not stated. | None | 004-v2-review-p2-fixes, merge afb63707a44 |
 | Q012 | Delete the merged remote branch worktrees/477-opencode-v1-removal. | Not stated. | None | origin branch list |
+| Q013 | Add an opencode-v2-only topic and a hy4 lane preset to the local alignment configs and run the doc alignment on hy4. | Not stated. | None | 004 implementation-summary.md (How It Was Delivered) |
+| Q014 | Write the cli-opencode v2.0.1.0 changelog for the loopback battery server and push it to main. | Not stated. | None | cli-opencode changelog v2.0.1.0, commit ce9b6f25b92 |
+| Q015 | Fix the five doc lines the doc alignment found, without rerunning its critic, and push to main. | Not stated. | None | 004 implementation-summary.md (How It Was Delivered) |
+| Q016 | Leave the duplicate changelog commit on the primary checkout's local main and hand over a rebase recipe. | Not stated. | None | primary checkout local main |
+| Q017 | Fix all four open items: rename nativeDual, rerun the doc critic, fix the reducer tests in their own spec folder, and refresh the session-handover build. | Not stated. | None | 004 implementation-summary.md; commits 686de1cb4ea, 9cd204a87b0, af471c253e2; 007-expansive-depth-mode/015-reducer-test-focus-contract |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -287,6 +292,106 @@ Keep it
 Answer:
 ```text
 Delete it (Recommended)
+```
+
+### Q013
+<!-- source: claude:df9261d4-6090-4b52-892b-db52ff291ccd:toolu_01GE2GmHkMVPauriw6vdSKEz:0 -->
+
+Question:
+```text
+/local-doc-alignment couldn't run: the opencode-v2-only topic isn't in your local topics.json (it existed only in the removed 477 worktree's copy), and its lanes can't use a custom config. Both files are gitignored private copies under .skilled/commands/assets/local-*. What should I do?
+```
+
+Options:
+```text
+Add topic + hy4 preset, run (Recommended)
+Add topic, default lanes
+Skip doc alignment
+```
+
+Answer:
+```text
+Add topic + hy4 preset, run (Recommended)
+```
+
+### Q014
+<!-- source: claude:df9261d4-6090-4b52-892b-db52ff291ccd:toolu_01GE2GmHkMVPauriw6vdSKEz:1 -->
+
+Question:
+```text
+A cli-opencode changelog entry is due: v2.0.0.0 predates phase 004. The proposed v2.0.1.0 patch would cover only the reader-visible fix, the doctor battery's private server now bound to 127.0.0.1 (the plugin-builder rename and test/CI changes are housekeeping). Write it?
+```
+
+Options:
+```text
+Write v2.0.1.0, push (Recommended)
+Write, include rename
+No changelog
+```
+
+Answer:
+```text
+Write v2.0.1.0, push (Recommended)
+```
+
+### Q015
+<!-- source: claude:df9261d4-6090-4b52-892b-db52ff291ccd:toolu_0164yx1kABZ42gN8PFkg9q9d:0 -->
+
+Question:
+```text
+/local-doc-alignment (hy4 lanes) found 5 P1 doc mismatches, which I verified against the code: goal-plugin.md:52 and goal-carry-over.md:181 say skilled-loop adds --standalone 'when opencode --help lists it' (it always adds it after the version check); a cli-opencode playbook (base-non-interactive-invocation.md:53) says 'brew install opencode' (v2 installs only via opencode-setup.sh v2); dist-freshness-enforcement.md:36,40 says the OpenCode plugin uses console.warn (it logs and injects a system message). Its critic didn't run: OpenCode Go hit its monthly limit. What next?
+```
+
+Options:
+```text
+Fix all 5, push (Recommended)
+Rerun critic first
+Leave for later
+```
+
+Answer:
+```text
+Fix all 5, push (Recommended)
+```
+
+### Q016
+<!-- source: claude:df9261d4-6090-4b52-892b-db52ff291ccd:toolu_0164yx1kABZ42gN8PFkg9q9d:1 -->
+
+Question:
+```text
+My original changelog commit 7ee80c87364 is still on the primary checkout's local main (its content landed on origin as ce9b6f25b92), next to another session's unpushed 10c36989450; local main is ahead 2, behind 4. sk-git forbids me resetting a dirty, shared primary. How should it be handled?
+```
+
+Options:
+```text
+Leave it, give recipe (Recommended)
+Revert locally
+```
+
+Answer:
+```text
+Leave it, give recipe (Recommended)
+```
+
+### Q017
+<!-- source: claude:df9261d4-6090-4b52-892b-db52ff291ccd:toolu_014qiLxCB2oNdcAyRq7KCEbA:0 -->
+
+Question:
+```text
+Which open items should I fix now? The Spec-Kit Check failure (3 deep-research-reducer tests expect a '## 11. NEXT FOCUS' section) sits in code another session is actively changing for the expansive-depth packet, whose files are uncommitted in your primary checkout.
+```
+
+Options:
+```text
+Rename nativeDual
+Rerun doc critic
+Fix reducer tests
+Session-handover dist
+```
+
+Answer:
+```text
+Rename nativeDual, Rerun doc critic, Fix reducer tests, Session-handover dist
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

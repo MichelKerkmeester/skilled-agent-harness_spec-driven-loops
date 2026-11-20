@@ -1,78 +1,112 @@
-# Iteration 5: Blocked-stop recovery (second sources for the answered nodes, and graph evidence)
+# Iteration 5: Per-runtime log shapes and the single adapter contract (F-2-006, Q2)
 
 ## Focus
-BLOCKED on: source_diversity_guard, evidence_depth_guard, uncovered_questions. Recovery: give the answered questions second sources, and record question-to-finding-to-source coverage in the graph.
+Frontier node F-2-006 asks which runtimes' logs expose timestamped tool events that one `passEvidence` extractor could use. Answering it means walking every `LINEAGE_COMMAND_ADAPTERS` entry. That walk also covers the brief's Q2 dimensions: output format, prompt channel, effort, permission and sandbox, session resume, the two single-executor builders, and the runtime agent mirrors.
 
-The convergence script blocked the stop at the start of this iteration (`STOP_BLOCKED`), although all three frontier nodes were answered. The coverage graph held only the three frontier QUESTION nodes, because iterations 1-4 emitted no `graphEvents`. A `blocked_stop` event was recorded through the gateway (ledger sequence 6).
+Q2 sits outside this lineage's frontier share as a topic question, so it is answered here only as far as F-2-006 reaches it.
 
 ## Actions Taken
-1. Ran the stop decision and read its blockers: source diversity 0.00 and evidence depth 0.00 against a threshold of 1.5, with 3 uncovered questions.
-2. Read iteration-graph-upsert.cjs to see what it reads.
-3. Looked for a second source behind the F-1-003(a) claim in the loop-counter tests (loop-counters-derivation.vitest.ts:679ff).
-4. Counted the frontier assertions in both reducer suites, to back the risk rating on the F-1-001 projection merge.
-5. Re-checked iteration 1's Finding 6 (the dead gateway fallback) against runtime-relative references.
+1. Read all eight adapter builders in `fanout-run.cjs` and the adapter table itself.
+2. Read `buildClaudeInvocation`, `runClaude`, `runLineageBuiltin` and `runCodex` in `dispatch-iteration.cjs`.
+3. Read the persona inlining in `fanout-run.cjs` (`agentPersonaBlock`).
+4. Diffed the `deep-research` agent mirrors against `.skilled`, and ran the read-only `agent-roster-mirror-check.cjs`.
 
 ## Findings
-1. **The graph stop guards ignore the mandatory finding rows and read only the optional `graphEvents`.**
-   - `iteration-graph-upsert.cjs` extracts only `record.graphEvents` (iteration-graph-upsert.cjs:122).
-   - The prompt pack calls that field optional (prompt-pack-iteration.md.tmpl, CONSTRAINTS, "include an optional `graphEvents` array"). Yet it makes `finding` rows with `sources` mandatory in the delta (OUTPUT CONTRACT item 3).
-   - The frontier mirror writes only QUESTION nodes (`frontier-admit.cjs graph`; 3 nodes and 0 edges in this lineage).
-   - Result in this lineage: 23 cited findings and 3 answered nodes, and still `source_diversity_guard`, `evidence_depth_guard` and `uncovered_questions` block the stop. This costs at least one recovery iteration per lineage that relies on the contract's mandatory fields.
-   - **Change:** have `iteration-graph-upsert.cjs` also derive one FINDING node per delta `finding` row, one SOURCE node per entry in `sources`, a CITES edge for each, and an ANSWERS edge to the QUESTION node of each `answeredQuestions` entry. Then the guards read what the contract already requires, and `graphEvents` becomes a pure extra.
-   - Value H (removes a systematic extra iteration and makes the guards runtime-independent), effort S-M, risk low.
-   [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/iteration-graph-upsert.cjs:122] [SOURCE: .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:54] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/opus/deep-research-state.jsonl (blocked_stop at run 5)]
-2. **Second source for F-1-003(a): the per-node stuck tests cover review only.**
-   - The `per-node stuck accounting under expansive depth` suite (loop-counters-derivation.vitest.ts:679ff) builds review rows (`dimensions`, `frontierNodeId`, P2 counts) and has no `loopType: 'research'` case after line 679. The research cases (104, 127) are lineage-wide.
-   - Together with the `loopType === 'review'` gate at convergence.cjs:1774-1778, this confirms research is counted lineage-wide.
-   - The change needs research cases in that suite.
-   [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts:679] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1774]
-3. **Second source for the F-1-001 projection-merge risk.** The research reducer suite mentions `frontier` 63 times (deep-research-reduce-state.vitest.ts), the review state-reducer suite 96 times (deep-review-state-reducer.vitest.ts) and frontier-admit.vitest.ts 47 times. A shared `projectFrontier` must keep all three green, so the medium risk rating stands. [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts] [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts]
-4. **Correction to iteration 1, Finding 6: the gateway fallback is not dead. It serves a cwd of `runtime/`.**
-   - `scripts/append-mode-event.cjs` resolves when the working directory is `.skilled/skills/system-deep-loop/runtime/`. The runtime README and the playbook name the script that way (runtime/lib/mode-append-gateway/README.md:98; runtime/manual-testing-playbook/script-entry-points/append-mode-event-script.md:48).
-   - The same YAML steps pass repo-root-relative paths for everything else, such as `.skilled/...` scripts and `{state_paths.*}` under `specs/`, so no step works end to end from that cwd.
-   - **Revised change:** declare `working_directory: "{repo_root}"` on every gateway step, as the frontier steps already do (deep-research.yaml:375), then delete the 11 fallback lines.
-   - Value low-M, effort S, risk low-medium. A vendored layout that runs from `runtime/` would need checking.
-   [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/README.md:98] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:375] [INFERENCE: based on the mixed relative paths inside the same step commands]
+1. **Only 2 of 8 kinds write an event log the runner can read today. The other six write text, so honesty and cost signals are blind for them.** [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3610-3619]
+
+   | Kind | Log shape today | Source |
+   |---|---|---|
+   | `cli-claude-code` | `--output-format text` | [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2702-2711] |
+   | `cli-cursor` | `--output-format text` | [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2930] |
+   | `cli-codex` | `exec` with no `--json` | [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2665-2680] |
+   | `cli-devin` | no format flag | [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3066] |
+   | `cli-pi` | `-p` | [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3166] |
+   | `cli-opencode` | `--format json`, with timestamped `tool_use` rows | [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2775-2784] |
+   | `cli-deepseek-harness` | `--json` | [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3360] |
+   | `cli-mistral-vibe` | writes an export directory | [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3575-3582] |
+
+   - **Change:** give each adapter a `logFormat` and switch the flag where the CLI has one:
+     - Claude `--output-format stream-json --verbose` (iteration 3 finding 2);
+     - Codex `exec --json`;
+     - Cursor `--output-format stream-json`.
+   - The Codex and Cursor flag names come from those CLIs' public docs and are not verified in this repository. Pi and Devin stay `text` until a JSON mode is confirmed. [INFERENCE: based on the adapter args read here and iteration 3's Claude headless sources]
+   - Value H, effort M, risk M: salvage and the final-answer read change per kind.
+2. **The prompt travels through three channels, and the builder never states which.**
+   - **argv:** Claude, Cursor, Devin, Pi and OpenCode. OpenCode also passes `input: ''`, which is why the gen3 preview showed `stdin: "<input>"` beside an argv digest.
+   - **stdin:** Codex and dsh (`-`).
+   - **a file:** Vibe (`--prompt-file`).
+   - A 46 KB prompt in argv is visible to `ps`.
+   - [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2703-2704] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2784-2790] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3360] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/scratch/dogfood-research-gen3.md:56-57]
+   - **Change:** each adapter returns `promptChannel: 'argv'|'stdin'|'file'`, and the preview prints it. Prefer stdin wherever the CLI accepts it.
+   - Value M, effort S, risk L.
+3. **An unset effort means three different things.**
+   - **Codex** fills in `medium` when none was asked for. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2664]
+   - **Claude** omits the flag. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2712-2714]
+   - **OpenCode and Pi** pin Flash models to `max`, and Pi throws on a value it has no `--thinking` mapping for. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2766] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3175-3183]
+   - **Cursor** bakes effort into the model id. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2906-2911]
+   - **Devin** has no effort at all. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3043-3046]
+   - **Change:** the contract says that an unset effort is never invented. Drop Codex's `'medium'` default, and report `effortApplied: flag|baked|pinned|none` per lineage. The `effortApplied` field already exists in `effective_config` (row 9 built).
+   - Value M, effort S, risk L.
+4. **Session resume is uniform, because no adapter resumes a CLI session.**
+   - No builder passes `--resume`, `--session` or `--continue`. Every attempt is a fresh CLI session, and resume happens through the workflow's state files.
+   - That uniformity should become a contract clause and a test, so that no future adapter adds a CLI-level resume that would carry over a stamped context.
+   - [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2658-3600] [INFERENCE: based on a grep for resume, session and continue flags with no adapter hit]
+   - Value L-M, effort S, risk L.
+5. **Row 13 (one executor path) is half built already, and the unbuilt half still drifts.**
+   - `runLineageBuiltin` already routes Cursor, Devin and Pi through `buildLineageCommand`. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:414-478]
+   - Claude and Codex keep hand-built twins: `buildClaudeInvocation`, and `runCodex`'s own `exec` args. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:368-382] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:921-930]
+   - Live drift: the fan-out Codex builder adds `--search` when `webSearch` is `live`, while `runCodex` never does. A single-executor Codex run therefore cannot search the web under the same config. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2666-2668]
+   - **Change:** route `runClaude` and `runCodex` through `runLineageBuiltin`. Keep Claude's config-dir env, and delete the two twins.
+   - Value H, effort S-M, risk M.
+6. **The single adapter contract, with one conformance test.**
+   - Each `LINEAGE_COMMAND_ADAPTERS` entry returns:
+     - `{command, args, promptChannel, logFormat}`;
+     - `effective: {permission, sandboxEnforcement, effortApplied, webSearch}`;
+     - `parseLog(stdout) → {events:[{t, tool, target}], costUsd, finalText}`;
+     - `classifyFailure(stderr, stdout) → {failure_class, retryable}`.
+   - **Test:** one table-driven conformance test iterates the keys of `LINEAGE_COMMAND_ADAPTERS`. It fails when a kind lacks a field or a fixture log, and checks that each fixture parses to non-empty `finalText` and, for event logs, to timestamped events.
+   - This is the Inspect `ModelAPI` shape from iteration 3, finding 6, applied to this runner. `fanout-salvage.cjs`'s `extractTextFromOpencodeJson` and `sumProviderCostFromLog` would become OpenCode's `parseLog`. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:41-96] [SOURCE: https://inspect.aisi.org.uk/extensions-model-api.html]
+   - Value H, effort M, risk M.
+7. **Agent mirrors cannot affect a fan-out lineage. Only the roster is checked, not the bodies.**
+   - The roster check reports every runtime complete: OK across claude, codex, opencode, pi, dsh and vibe, with cursor and devin as symlinks. [SOURCE: .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs]
+   - The `.claude` `deep-research` body differs from `.skilled` only in the Path Convention line. [SOURCE: .claude/agents/deep-research.md:11]
+   - The fan-out inlines the canonical `.skilled/agents/<name>.md` persona into every lineage prompt, whatever the runtime, so mirror drift reaches only native single-executor runs. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:175-196]
+   - **Change:** extend the mirror check to compare bodies, ignoring the Path Convention line and format-specific frontmatter. Body drift would then fail instead of passing as "present".
+   - Value M, effort S, risk L.
 
 ## Questions Answered
-None new. This pass strengthens the evidence behind the three answered nodes and records graph coverage for them.
+- **F-2-006:** today only OpenCode (and dsh's `--json`) expose timestamped tool events. Claude, Codex and Cursor have JSON stream modes to switch to. Pi and Devin need confirmation.
 
 ## Questions Remaining
-None in scope.
+- None in this lineage's frontier share. Every node is now addressed.
 
 ## Ruled Out
-- Emitting `graphEvents` retroactively for iterations 1-4. Iteration records are write-once. This iteration's record carries the coverage for all three questions instead.
+- **Mirrors as a source of fan-out divergence:** the persona is inlined from `.skilled` (finding 7).
 
 ## Dead Ends
-None.
+- None.
 
 ## Edge Cases
-- Ambiguous input: none.
-- Contradictory evidence: iteration 1's "dead fallback" against runtime-relative docs. Resolved in Finding 4, which narrows the claim.
-- Missing dependencies: none.
+- Ambiguous input: Q2 is a topic question. I answered it through F-2-006's adapter walk, not as a separate node.
+- Contradictory evidence: none.
+- Missing dependencies: the Codex, Cursor, Pi and Devin JSON flags are not verified locally, because running those CLIs is out of this lineage's remit. They are marked as inference.
 - Partial success: none.
 
 ## Sources Consulted
-- .skilled/skills/system-deep-loop/runtime/scripts/iteration-graph-upsert.cjs:9, 122
-- .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl
-- .skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts:104, 127, 679-700
-- .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts
-- .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts
-- .skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts
-- .skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/README.md:98
-- .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:1128
-- .skilled/commands/deep/assets/deep-research.yaml:375
-- this lineage's convergence.cjs output at iteration 5 (blockers)
+- `runtime/scripts/fanout-run.cjs`: 175-196, 2658-2725, 2757-2790, 2895-2935, 3032-3070, 3146-3190, 3286-3360, 3495-3600, 3610-3633
+- `runtime/scripts/dispatch-iteration.cjs`: 360-480, 881-1000
+- `runtime/scripts/fanout-salvage.cjs`: 41-96
+- `.claude/agents/deep-research.md` against `.skilled/agents/deep-research.md`; `.skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` (run read-only, STATUS=OK)
 
 ## Assessment
-- New information ratio: 0.55
-- Questions addressed: F-1-001, F-1-003, F-1-005, by corroboration
-- Questions answered: none new
+- New information ratio: 0.79
+- Questions addressed: F-2-006 (and Q2 by extension)
+- Questions answered: F-2-006
 
 ## Reflection
-- What worked and why: reading the blocker text and then the upsert's input filter turned a process obstacle into the lineage's highest-value-per-effort finding.
-- What did not work and why: iterations 1-4 relied on the contract's mandatory fields and skipped the optional graph events, which the guards actually read.
-- What I would do differently: emit `graphEvents` from iteration 1 in any run that must stop on convergence.
+- **What worked:** walking the adapter table one row at a time. The differences came out as a table, not as anecdotes.
+- **What did not work:** none of the five text-log kinds could be confirmed to have a JSON mode without running their CLIs.
+- **What I would do differently:** first write fixture logs from one real run per kind. The conformance test needs them anyway.
 
 ## Recommended Next Focus
-Re-run the stop decision. If it allows the stop, synthesize.
+Every node in this lineage's share is answered. The next step is synthesis: rank all the recommendations by value over effort.

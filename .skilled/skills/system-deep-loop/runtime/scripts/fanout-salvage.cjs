@@ -16,6 +16,7 @@ if (process.env.DEEP_LOOP_TSX_LOADED !== '1') {
 }
 
 const { mergeJsonlUnderLock } = require('../lib/deep-loop/jsonl-repair.ts');
+const { readClaudeStreamFinalText } = require('./lib/cli-guards.cjs');
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -25,6 +26,21 @@ const STATE_LOG_BY_LOOP_TYPE = {
   research: 'deep-research-state.jsonl',
   review: 'deep-review-state.jsonl',
 };
+
+// The append gateway's ledgers; a lineage holds the one its loop type writes.
+const LEDGER_DIR_NAMES = ['deep-research-ledger', 'deep-review-ledger'];
+const LINEAGE_LOG_PATTERN = /^fanout-lineage(\.\d+)?\.out$/;
+// A pass ends at the gateway commit of its iteration row; the run's first commit
+// opens the first pass.
+const PASS_COMMIT_STEM_PATTERN = /\.iteration_(?:completed|recorded|error)$/;
+const RUN_START_STEM_PATTERN = /\.run_initialized$/;
+// A pass committed this soon after the previous one, with no tool call between them,
+// is a batched record rather than a pass. Real passes ran no shorter than 33 s.
+const BATCHED_COMMIT_GAP_MS = 15_000;
+const READ_TOOL_NAMES = new Set(['read', 'grep', 'glob', 'list', 'ls', 'webfetch', 'websearch', 'codesearch']);
+const SHELL_TOOL_NAMES = new Set(['bash', 'shell']);
+// A shell call counts as a source read when one of its commands prints or searches files.
+const SHELL_READ_COMMAND_PATTERN = /(?:^|[;&|(]\s*)(?:cat|sed|head|tail|rg|grep|nl|awk|less|find|ls|wc|jq|git\s+(?:show|log|diff|grep|blame))\b/;
 
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -62,12 +78,21 @@ function extractTextFromOpencodeJson(stdout) {
 
   if (textParts.length > 0) return textParts.join('').slice(0, 50_000);
 
+  const claudeText = readClaudeStreamFinalText(stdout);
+  if (claudeText !== null) {
+    const answer = claudeText.trim();
+    return answer.length > 50 ? answer.slice(0, 50_000) : null;
+  }
+
   const raw = stdout.trim();
   return raw.length > 50 ? raw.slice(0, 50_000) : null;
 }
 
 /**
- * Sum the provider cost an opencode JSON log reports on its step_finish rows.
+ * Read the provider cost one attempt's log reports: the sum of an opencode JSON log's
+ * step_finish costs, or the last result event's total of a claude stream-json log.
+ * Claude's total is cumulative over its session and one attempt is one session, so
+ * the last result is the attempt's whole spend and summing them would count it twice.
  *
  * @param {string} stdout - One attempt's captured stdout.
  * @returns {number|null} USD total, or null when the log carries no cost record, so a
@@ -77,6 +102,7 @@ function sumProviderCostFromLog(stdout) {
   if (typeof stdout !== 'string') return null;
   let total = 0;
   let seen = false;
+  let lastResultCost = null;
   for (const line of stdout.split('\n')) {
     const trimmed = line.trim();
     if (!trimmed.startsWith('{')) continue;
@@ -86,13 +112,19 @@ function sumProviderCostFromLog(stdout) {
     } catch {
       continue;
     }
+    if (parsed && parsed.type === 'result' && typeof parsed.total_cost_usd === 'number'
+      && Number.isFinite(parsed.total_cost_usd)) {
+      lastResultCost = parsed.total_cost_usd;
+      continue;
+    }
     const cost = parsed && parsed.type === 'step_finish' && parsed.part ? parsed.part.cost : undefined;
     if (typeof cost === 'number' && Number.isFinite(cost)) {
       total += cost;
       seen = true;
     }
   }
-  return seen ? total : null;
+  if (seen) return total;
+  return lastResultCost;
 }
 
 /**
@@ -128,6 +160,238 @@ function readLineageProviderCostUsd(lineageDir) {
     counted += 1;
   }
   return counted > 0 ? Math.round(total * 1e6) / 1e6 : null;
+}
+
+function toEpochMs(value) {
+  if (typeof value === 'number' && Number.isFinite(value)) return value;
+  if (typeof value !== 'string') return null;
+  const parsed = Date.parse(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+/**
+ * Read the timed tool calls a lineage log records.
+ *
+ * Opencode JSON events carry an epoch-ms timestamp, and claude stream-json assistant
+ * events carry an ISO one. A log with neither, such as plain text, cannot place a
+ * call in a pass, so it yields null rather than an empty list that would read as zero.
+ *
+ * @param {string} log - One or more attempts' captured stdout.
+ * @returns {Array<{atMs:number, tool:string, input:Object}>|null} Calls, or null when
+ *   the log holds no timed event.
+ */
+function readTimedToolEvents(log) {
+  if (typeof log !== 'string') return null;
+  let timed = false;
+  const events = [];
+  for (const line of log.split('\n')) {
+    const trimmed = line.trim();
+    if (!trimmed.startsWith('{')) continue;
+    let parsed;
+    try {
+      parsed = JSON.parse(trimmed);
+    } catch {
+      continue;
+    }
+    if (!parsed || typeof parsed !== 'object') continue;
+    if (typeof parsed.timestamp === 'number' && parsed.part && typeof parsed.part === 'object') {
+      timed = true;
+      if (parsed.type !== 'tool_use') continue;
+      const state = parsed.part.state || {};
+      // The start time places the call in the pass it served; the event itself is
+      // emitted once the call returns, which can fall after that pass's commit.
+      const startMs = state.time && typeof state.time.start === 'number' ? state.time.start : parsed.timestamp;
+      events.push({ atMs: startMs, tool: String(parsed.part.tool || ''), input: state.input || {} });
+      continue;
+    }
+    if (typeof parsed.session_id !== 'string' || (parsed.type !== 'assistant' && parsed.type !== 'user')) continue;
+    const atMs = toEpochMs(parsed.timestamp);
+    if (atMs === null) continue;
+    timed = true;
+    if (parsed.type !== 'assistant' || !parsed.message || !Array.isArray(parsed.message.content)) continue;
+    for (const block of parsed.message.content) {
+      if (block && block.type === 'tool_use') {
+        events.push({ atMs, tool: String(block.name || ''), input: block.input || {} });
+      }
+    }
+  }
+  return timed ? events : null;
+}
+
+function isSourceRead(event) {
+  const tool = event.tool.toLowerCase();
+  if (READ_TOOL_NAMES.has(tool)) return true;
+  if (!SHELL_TOOL_NAMES.has(tool)) return false;
+  const command = event.input && typeof event.input.command === 'string' ? event.input.command : '';
+  return SHELL_READ_COMMAND_PATTERN.test(command.trim());
+}
+
+/**
+ * Judge each committed pass from the runner's own log instead of the model's record.
+ *
+ * A pass is the tool calls between the previous gateway commit and its own. It is
+ * `unexamined` when it read no source and recorded no finding, when it committed under
+ * 15 s after the previous commit with no call between, or when its model stamp is later
+ * than the gateway commit, which no honest writer can produce. Counts the log cannot
+ * give stay null, and a pass no rule flags reads as unknown, not clean, while they do.
+ *
+ * @param {string} log - The lineage's captured stdout across attempts.
+ * @param {Array<{iteration:number|null, committedAt:string|number, stampedAt?:string|number|null,
+ *   findings?:number|null}>} commits - Gateway commits; a null iteration only opens a window.
+ * @returns {Array<{iteration:number, toolCalls:number|null, sourceReads:number|null,
+ *   commitGapMs:number|null, skewMs:number|null, findings:number|null,
+ *   unexamined:boolean|null, reasons:string[]}>} One row per committed pass.
+ */
+function passEvidence(log, commits) {
+  const events = readTimedToolEvents(log);
+  const ordered = (Array.isArray(commits) ? commits : [])
+    .map((commit) => ({
+      ...commit,
+      committedMs: toEpochMs(commit.committedAt),
+      stampedMs: toEpochMs(commit.stampedAt),
+    }))
+    .filter((commit) => commit.committedMs !== null)
+    .sort((left, right) => left.committedMs - right.committedMs);
+
+  const passes = [];
+  let windowStartMs = null;
+  for (const commit of ordered) {
+    const startMs = windowStartMs;
+    windowStartMs = commit.committedMs;
+    if (!Number.isInteger(commit.iteration)) continue;
+
+    let toolCalls = null;
+    let sourceReads = null;
+    if (events !== null) {
+      const inPass = events.filter((event) => (startMs === null || event.atMs > startMs)
+        && event.atMs <= commit.committedMs);
+      toolCalls = inPass.length;
+      sourceReads = inPass.filter(isSourceRead).length;
+    }
+    const commitGapMs = startMs === null ? null : commit.committedMs - startMs;
+    const skewMs = commit.stampedMs === null ? null : commit.stampedMs - commit.committedMs;
+    const findings = Number.isInteger(commit.findings) ? commit.findings : null;
+
+    const reasons = [];
+    if (skewMs !== null && skewMs > 0) reasons.push('future_stamp');
+    if (sourceReads === 0 && findings === 0) reasons.push('no_reads_no_findings');
+    if (commitGapMs !== null && commitGapMs < BATCHED_COMMIT_GAP_MS && toolCalls === 0) reasons.push('batched_commit');
+    const undecided = toolCalls === null || (sourceReads === 0 && findings === null);
+    let unexamined = false;
+    if (reasons.length > 0) unexamined = true;
+    else if (undecided) unexamined = null;
+
+    passes.push({
+      iteration: commit.iteration,
+      toolCalls,
+      sourceReads,
+      commitGapMs,
+      skewMs,
+      findings,
+      unexamined,
+      reasons,
+    });
+  }
+  return passes;
+}
+
+/**
+ * Read a lineage's gateway commits from its ledger frames: the run start, and each
+ * iteration row with its model stamp and findings count.
+ *
+ * @param {string} lineageDir - The lineage's artifact directory.
+ * @returns {Array<{iteration:number|null, committedAt:string, stampedAt:string|null,
+ *   findings:number|null}>} Commits in ledger order, empty when no ledger exists.
+ */
+function readLineageCommits(lineageDir) {
+  for (const ledgerName of LEDGER_DIR_NAMES) {
+    const framesDir = path.join(lineageDir, ledgerName, 'frames');
+    let names;
+    try {
+      names = fs.readdirSync(framesDir);
+    } catch {
+      continue;
+    }
+    const commits = [];
+    for (const name of names.filter((entry) => entry.endsWith('.frame')).sort()) {
+      let frame;
+      let event;
+      try {
+        frame = JSON.parse(fs.readFileSync(path.join(framesDir, name), 'utf8'));
+        event = JSON.parse(Buffer.from(frame.canonical_event_bytes, 'base64').toString('utf8'));
+      } catch {
+        // A torn frame is the gateway's to repair; the pass it held is simply not judged.
+        continue;
+      }
+      const committedAt = frame && frame.receipt ? frame.receipt.committed_at : undefined;
+      const payload = event && event.payload ? event.payload : {};
+      const stem = typeof payload.stem === 'string' ? payload.stem : '';
+      if (typeof committedAt !== 'string') continue;
+      if (RUN_START_STEM_PATTERN.test(stem)) {
+        commits.push({ iteration: null, committedAt, stampedAt: null, findings: null });
+        continue;
+      }
+      if (!PASS_COMMIT_STEM_PATTERN.test(stem)) continue;
+      // A review frame wraps the model's row in `record`; a research frame is the row.
+      const data = payload.data || {};
+      const row = data.record && typeof data.record === 'object' ? data.record : data;
+      const iteration = payload.scope && Number.isInteger(payload.scope.iteration)
+        ? payload.scope.iteration
+        : (Number.isInteger(row.iteration) ? row.iteration : null);
+      if (iteration === null) continue;
+      // The model's claim is what skew judges. The gateway keeps a research row's stamp as
+      // claimedTimestamp and times the event itself; a review record keeps its own stamp.
+      // A frame written before the gateway timed rows held the model's stamp as event time.
+      let stampedAt = null;
+      if (typeof row.claimedTimestamp === 'string') stampedAt = row.claimedTimestamp;
+      else if (typeof row.timestamp === 'string') stampedAt = row.timestamp;
+      else if (typeof event.occurred_at === 'string') stampedAt = event.occurred_at;
+      commits.push({
+        iteration,
+        committedAt,
+        stampedAt,
+        findings: Number.isInteger(row.findingsCount) ? row.findingsCount : null,
+      });
+    }
+    return commits;
+  }
+  return [];
+}
+
+/**
+ * Summarize a lineage's committed passes for its progress row.
+ *
+ * @param {string} lineageDir - The lineage's artifact directory.
+ * @param {string} [liveLog] - The running attempt's stdout so far, which reaches
+ *   disk only once the attempt exits.
+ * @returns {{iterations:number, lastCommitAt:string|null, flaggedPasses:number|null}}
+ *   `flaggedPasses` is null while any pass cannot be judged.
+ */
+function readLineagePassSummary(lineageDir, liveLog = '') {
+  const logs = [];
+  try {
+    const logsDir = path.join(lineageDir, 'logs');
+    for (const name of fs.readdirSync(logsDir).filter((entry) => LINEAGE_LOG_PATTERN.test(entry))) {
+      logs.push(fs.readFileSync(path.join(logsDir, name), 'utf8'));
+    }
+  } catch {
+    // No log on disk yet: the live stdout, if any, is all there is to judge.
+  }
+  if (typeof liveLog === 'string' && liveLog !== '') logs.push(liveLog);
+
+  // One untimed attempt, such as a plain-text log from before the switch to stream-json,
+  // leaves its passes with no calls to count; judging the joined logs would read them as zero.
+  const untimed = logs.some((text) => text.trim() !== '' && readTimedToolEvents(text) === null);
+  const commits = readLineageCommits(lineageDir);
+  const passes = passEvidence(untimed ? '' : logs.join('\n'), commits);
+  const passCommits = commits.filter((commit) => commit.iteration !== null);
+  return {
+    iterations: new Set(passCommits.map((commit) => commit.iteration)).size,
+    lastCommitAt: passCommits.length > 0 ? passCommits[passCommits.length - 1].committedAt : null,
+    flaggedPasses: passes.some((pass) => pass.unexamined === null)
+      ? null
+      : passes.filter((pass) => pass.unexamined === true).length,
+  };
 }
 
 /**
@@ -273,4 +537,7 @@ module.exports = {
   sumProviderCostFromLog,
   readLineageProviderCostUsd,
   summarizeProviderCost,
+  passEvidence,
+  readLineageCommits,
+  readLineagePassSummary,
 };

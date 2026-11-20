@@ -360,6 +360,73 @@ describe.each(WORKFLOW_PATHS)('step_graph_upsert in %s', (workflowPath) => {
     }
   });
 
+  // A first pass often answers nothing yet still finds and cites; its findings
+  // must reach the graph so the run's evidence is not lost before an answer.
+  it('derives findings and citations from a pass that answered no question', () => {
+    const fixture = createFixture('finding-rows-no-answer');
+    writeFileSync(join(fixture.artifactDir, 'frontier-nodes.jsonl'), `${JSON.stringify({
+      nodeId: 'F-1-001', parentId: 'root', depth: 1, question: FRONTIER_QUESTION, status: 'open', iteration: 0,
+    })}\n`, 'utf8');
+    writeDeltaIteration(fixture, undefined, { answeredQuestions: [], rows: FINDING_ROWS });
+
+    const result = runStepCommand(renderStepCommand(command, fixture), fixture);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    expect(existsSync(fixture.dbPath)).toBe(true);
+    const db = openDatabase(fixture.dbPath);
+    try {
+      const findings = db
+        .prepare("SELECT COUNT(*) AS count FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND kind = 'FINDING'")
+        .get(SPEC_FOLDER, LOOP_TYPE, SESSION_ID) as { count: number };
+      expect(findings.count).toBe(2);
+      expect(countEdges(db, 'CITES')).toBe(4);
+      expect(countEdges(db, 'ANSWERS')).toBe(0);
+    } finally {
+      db.close();
+    }
+  });
+
+  // A finding with no answered question is evidence, not an answer, so it must
+  // not lift the guards that measure how well each question is answered.
+  it('keeps the evidence guards blocking when the findings answer no question', () => {
+    const fixture = createFixture('finding-rows-no-answer-guards');
+    seedQuestionNode(fixture);
+    writeDeltaIteration(fixture, undefined, { answeredQuestions: [], rows: FINDING_ROWS });
+
+    const result = runStepCommand(renderStepCommand(command, fixture), fixture);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    const db = openDatabase(fixture.dbPath);
+    try {
+      expect(countEdges(db, 'CITES')).toBe(4);
+      expect(countEdges(db, 'ANSWERS')).toBe(0);
+    } finally {
+      db.close();
+    }
+    expect(graphBlockers(fixture)).toEqual(
+      expect.arrayContaining(['source_diversity_guard', 'evidence_depth_guard', 'uncovered_questions']),
+    );
+  });
+
+  // The stop decision reads a graph with no node as not yet assessed; findings
+  // alone, with no question beside them, would turn that into a blocked stop.
+  it('adds nothing from an unanswered pass when the run has no question', () => {
+    const fixture = createFixture('finding-rows-no-answer-no-question');
+    writeDeltaIteration(fixture, undefined, { answeredQuestions: [], rows: FINDING_ROWS });
+
+    const result = runStepCommand(renderStepCommand(command, fixture), fixture);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    if (existsSync(fixture.dbPath)) {
+      const db = openDatabase(fixture.dbPath);
+      try {
+        expect(countRows(db, 'coverage_nodes')).toBe(0);
+      } finally {
+        db.close();
+      }
+    }
+  });
+
   // A default run whose leaf declared no QUESTION node has nothing to answer:
   // the graph stays empty, so the stop decision reads it exactly as before.
   it('adds nothing when no QUESTION node matches an answered question', () => {

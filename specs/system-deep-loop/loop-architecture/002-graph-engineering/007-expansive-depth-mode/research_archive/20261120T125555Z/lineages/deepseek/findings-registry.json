@@ -1,0 +1,1284 @@
+{
+  "sessionId": "fanout-deepseek-1795137583671-xybhyk",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 8,
+    "totalQuestions": 11,
+    "timestamp": "2026-11-20T01:32:00.471Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-can-be-deleted-merged-or-collapsed-across-runtime-scripts-frontier-admit-cj",
+      "inboxId": null,
+      "text": "What can be deleted, merged or collapsed across runtime/scripts/frontier-admit.cjs, both reduce-state.cjs reducers, runtime/scripts/convergence.cjs, runtime/scripts/fanout-run.cjs and the two workflow YAMLs while every promise stays kept?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8,
+      "resolved": true
+    },
+    {
+      "id": "question-2-how-discoverable-are-the-expansive-depth-flags-and-defaults-how-is-the-budget-si",
+      "inboxId": null,
+      "text": "How discoverable are the expansive-depth flags and defaults, how is the budget sized, and how clear are the warnings, dashboards, reports and the fan-out dry-run preview, and how does an operator recover mid-run from a provider quota failure, resume, extend, or rerun one failed lineage?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-where-do-the-cli-claude-code-cli-opencode-cli-codex-cli-pi-cli-devin-cli-cursor-",
+      "inboxId": null,
+      "text": "Where do the cli-claude-code, cli-opencode, cli-codex, cli-pi, cli-devin, cli-cursor, cli-deepseek-harness and cli-mistral-vibe lineages still differ in permissions, effort flags, failure classes, resume and log shape, and what single executor contract would remove the differences?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-what-do-the-8-11-minute-setup-the-cost-per-iteration-the-24-iteration-ceiling-an",
+      "inboxId": null,
+      "text": "What do the 8-11 minute setup, the cost per iteration, the 24-iteration ceiling and the 50/35/15 depth-band split cost in the measured runs under the spec folder's review/ and review-archive/ and the live playbook logs, and which change cuts the most time or money?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-should-research-count-stuck-passes-per-frontier-node-as-review-now-does-does-the",
+      "inboxId": null,
+      "text": "Should research count stuck passes per frontier node as review now does, does the lineage completion check break resume and extend for older committed research lineages, and is there a cheap design that makes pivot admission into the frontier work?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "resolved": true
+    },
+    {
+      "id": "question-6-how-do-other-agentic-research-and-code-review-systems-handle-frontier-growth-stu",
+      "inboxId": null,
+      "text": "How do other agentic research and code-review systems handle frontier growth, stuck detection, stop rules and multi-executor fan-out?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    },
+    {
+      "id": "question-7-operator-ux-how-discoverable-are-the-expansive-depth-flags-and-defaults-how-is-t",
+      "inboxId": "F-1-002",
+      "text": "Operator UX: how discoverable are the expansive-depth flags and defaults, how is the budget sized, and how clear are the warnings, dashboards, reports and the fan-out dry-run preview? How does an operator recover mid-run from a provider quota failure, resume, extend, or rerun one failed lineage?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-8-cross-cli-parity-where-do-cli-claude-code-cli-opencode-cli-codex-cli-pi-cli-devi",
+      "inboxId": "F-1-004",
+      "text": "Cross-CLI parity: where do cli-claude-code, cli-opencode, cli-codex, cli-pi, cli-devin, cli-cursor, cli-deepseek-harness and cli-mistral-vibe lineages still differ in permissions, effort flags, failure classes, resume and log shape, and what single executor contract would remove the differences?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-9-cost-and-latency-what-do-the-8-11-minute-setup-the-cost-per-iteration-the-24-ite",
+      "inboxId": "F-1-006",
+      "text": "Cost and latency: what do the 8-11 minute setup, the cost per iteration, the 24-iteration ceiling and the 50/35/15 depth-band split cost in the measured runs under the spec folder's review/ and review-archive/ and the live playbook logs, and which change cuts the most time or money?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "frontierStatus": "exhausted",
+      "resolved": true
+    },
+    {
+      "id": "question-10-what-does-a-partially-complete-fan-out-run-tell-the-operator-does-the-summary-na",
+      "inboxId": "F-2-007",
+      "text": "What does a partially complete fan-out run tell the operator: does the summary name the failed lineage, its failure class and the exact command to rerun just that lineage?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 6,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-11-do-the-research-and-review-dashboards-expose-per-frontier-node-budget-spend-and-",
+      "inboxId": "F-2-008",
+      "text": "Do the research and review dashboards expose per-frontier-node budget spend and visit counts, or only lineage-wide iteration totals?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 7,
+      "frontierStatus": "answered",
+      "resolved": true
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-2-how-discoverable-are-the-expansive-depth-flags-and-defaults-how-is-the-budget-si",
+      "inboxId": null,
+      "text": "How discoverable are the expansive-depth flags and defaults, how is the budget sized, and how clear are the warnings, dashboards, reports and the fan-out dry-run preview, and how does an operator recover mid-run from a provider quota failure, resume, extend, or rerun one failed lineage?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-where-do-the-cli-claude-code-cli-opencode-cli-codex-cli-pi-cli-devin-cli-cursor-",
+      "inboxId": null,
+      "text": "Where do the cli-claude-code, cli-opencode, cli-codex, cli-pi, cli-devin, cli-cursor, cli-deepseek-harness and cli-mistral-vibe lineages still differ in permissions, effort flags, failure classes, resume and log shape, and what single executor contract would remove the differences?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-what-do-the-8-11-minute-setup-the-cost-per-iteration-the-24-iteration-ceiling-an",
+      "inboxId": null,
+      "text": "What do the 8-11 minute setup, the cost per iteration, the 24-iteration ceiling and the 50/35/15 depth-band split cost in the measured runs under the spec folder's review/ and review-archive/ and the live playbook logs, and which change cuts the most time or money?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-can-be-deleted-merged-or-collapsed-across-runtime-scripts-frontier-admit-cj",
+      "inboxId": null,
+      "text": "What can be deleted, merged or collapsed across runtime/scripts/frontier-admit.cjs, both reduce-state.cjs reducers, runtime/scripts/convergence.cjs, runtime/scripts/fanout-run.cjs and the two workflow YAMLs while every promise stays kept?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8
+    },
+    {
+      "id": "question-5-should-research-count-stuck-passes-per-frontier-node-as-review-now-does-does-the",
+      "inboxId": null,
+      "text": "Should research count stuck passes per frontier node as review now does, does the lineage completion check break resume and extend for older committed research lineages, and is there a cheap design that makes pivot admission into the frontier work?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9
+    },
+    {
+      "id": "question-6-how-do-other-agentic-research-and-code-review-systems-handle-frontier-growth-stu",
+      "inboxId": null,
+      "text": "How do other agentic research and code-review systems handle frontier growth, stuck detection, stop rules and multi-executor fan-out?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10
+    },
+    {
+      "id": "question-7-operator-ux-how-discoverable-are-the-expansive-depth-flags-and-defaults-how-is-t",
+      "inboxId": "F-1-002",
+      "text": "Operator UX: how discoverable are the expansive-depth flags and defaults, how is the budget sized, and how clear are the warnings, dashboards, reports and the fan-out dry-run preview? How does an operator recover mid-run from a provider quota failure, resume, extend, or rerun one failed lineage?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-8-cross-cli-parity-where-do-cli-claude-code-cli-opencode-cli-codex-cli-pi-cli-devi",
+      "inboxId": "F-1-004",
+      "text": "Cross-CLI parity: where do cli-claude-code, cli-opencode, cli-codex, cli-pi, cli-devin, cli-cursor, cli-deepseek-harness and cli-mistral-vibe lineages still differ in permissions, effort flags, failure classes, resume and log shape, and what single executor contract would remove the differences?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-9-cost-and-latency-what-do-the-8-11-minute-setup-the-cost-per-iteration-the-24-ite",
+      "inboxId": "F-1-006",
+      "text": "Cost and latency: what do the 8-11 minute setup, the cost per iteration, the 24-iteration ceiling and the 50/35/15 depth-band split cost in the measured runs under the spec folder's review/ and review-archive/ and the live playbook logs, and which change cuts the most time or money?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "frontierStatus": "exhausted"
+    },
+    {
+      "id": "question-10-what-does-a-partially-complete-fan-out-run-tell-the-operator-does-the-summary-na",
+      "inboxId": "F-2-007",
+      "text": "What does a partially complete fan-out run tell the operator: does the summary name the failed lineage, its failure class and the exact command to rerun just that lineage?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 6,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-11-do-the-research-and-review-dashboards-expose-per-frontier-node-budget-spend-and-",
+      "inboxId": "F-2-008",
+      "text": "Do the research and review dashboards expose per-frontier-node budget spend and visit counts, or only lineage-wide iteration totals?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 7,
+      "frontierStatus": "answered"
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [
+    "How discoverable are the expansive-depth flags and defaults, how is the budget sized, and how clear are the warnings, dashboards, reports and the fan-out dry-run preview, and how does an operator recover mid-run from a provider quota failure, resume, extend, or rerun one failed lineage?",
+    "Where do the cli-claude-code, cli-opencode, cli-codex, cli-pi, cli-devin, cli-cursor, cli-deepseek-harness and cli-mistral-vibe lineages still differ in permissions, effort flags, failure classes, resume and log shape, and what single executor contract would remove the differences?",
+    "What do the 8-11 minute setup, the cost per iteration, the 24-iteration ceiling and the 50/35/15 depth-band split cost in the measured runs under the spec folder's review/ and review-archive/ and the live playbook logs, and which change cuts the most time or money?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-research-md-still-carries-the-486-word-depth-mode-table-cell-that-the-review-alr",
+      "text": "**`research.md` still carries the 486-word `--depth-mode` table cell that the review already collapsed in `review.md`.** The research cell restates seeding, all six admission checks, the cap arithmetic, the 50/35/15 split, the derived-budget formula, the fan-out floors and the stop-veto list in one row, while the review surface now says four lines and links to its protocol. That is the same discoverability defect the fan-out review found in `review.md` (OPUS-F004-P2-004), fixed only on one side. One concrete change: replace `.skilled/commands/deep/research.md:107` with the `review.md` pointer shape and move the long form to `.skilled/commands/deep/assets/deep-research-presentation.txt` under one \"Expansive depth\" heading. Value: an operator scanning flags sees the flag, not the design. Effort S. Risk low (docs only). [SOURCE: .skilled/commands/deep/research.md:107] [SOURCE: .skilled/commands/deep/review.md:100] [SOURCE: .skilled/commands/deep/assets/deep-research-presentation.txt:74]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/commands/deep/research.md:107,145`",
+        "`.skilled/commands/deep/review.md:100`",
+        "`.skilled/commands/deep/assets/deep-research-presentation.txt:31,74`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:772,3935,4007,4714,4837`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:521`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:839,928`",
+        "`.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md:61`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-config-recovery.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:34`"
+      ]
+    },
+    {
+      "id": "finding-1-4-question-intake-has-two-paths-and-this-lineage-s-own-dashboard-shows-the-duplica",
+      "text": "**Question intake has two paths, and this lineage's own dashboard shows the duplicate state it produces.** Init wrote six questions into strategy Section 3; the fan-out root had already written three frontier rows to `inbox.jsonl`; the reducer imported both sets as `legacy-import` and `frontier`, so the dashboard reports 9 open questions that are really 6 topics with 3 near-duplicates. The strategy template still tells the operator that direct Section 3 edits work as a compatibility path (`.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md:61-68`). One concrete change: have `step_create_strategy` write key questions to `inbox.jsonl` with `origin: \"analyst-strategy\"` and leave Section 3 empty; the reducer then owns the only intake. Value: one question list, no `question_conflict` noise, honest 6/6 progress. Effort M. Risk medium (older packets depend on legacy import; keep the import read-only for them). [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:34] [SOURCE: .skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md:61] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:928]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/commands/deep/research.md:107,145`",
+        "`.skilled/commands/deep/review.md:100`",
+        "`.skilled/commands/deep/assets/deep-research-presentation.txt:31,74`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:772,3935,4007,4714,4837`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:521`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:839,928`",
+        "`.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md:61`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-config-recovery.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:34`"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-budget-warning-never-reaches-a-fan-out-operator-seedbudget-is-the-only-place",
+      "text": "**The budget warning never reaches a fan-out operator.** `seedBudget` is the only place that says \"no growth slot past depth 1\" (`.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:521`), and its CLI entry is skipped on a lineage (`deep-research.yaml:839`); the fan-out root's `step_frontier_seed` prints admitted/pruned nodes but no per-lineage budget, and `fanout-run.cjs` knows the partition and every lineage's `iterations` value at spawn time. One concrete change: have `fanout-run.cjs` print, per lineage, `<label>: <iterations> iterations, <growth slots> growth slots past depth 1`, and raise the same warning when the count is zero. Value: budget sizing becomes visible where the money is spent. Effort S. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:521] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:839] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4007]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/commands/deep/research.md:107,145`",
+        "`.skilled/commands/deep/review.md:100`",
+        "`.skilled/commands/deep/assets/deep-research-presentation.txt:31,74`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:772,3935,4007,4714,4837`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:521`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:839,928`",
+        "`.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md:61`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-config-recovery.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:34`"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-fan-out-dry-run-prints-frontier-scope-for-an-unseeded-expansive-run-which-is",
+      "text": "**The fan-out dry-run prints `frontier_scope: []` for an unseeded expansive run, which is indistinguishable from \"this lineage was dealt no nodes\".** The preview path builds `frontier_scope` from `resolveFrontierPartition` over the on-disk store, and on a first run the store does not exist yet because seeding happens after the preview; the docs explain the empty value in prose instead of encoding it. One concrete change: emit `frontier_scope: null` plus `frontier_scope_status: \"pending-seed\"` when `depthMode === 'expansive'` and no store exists, and print a one-line runner warning that scopes appear only after the seed. Value: removes a false-negative read of the most important preview field. Effort S. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4007] [SOURCE: .skilled/commands/deep/research.md:145] [SOURCE: .skilled/commands/deep/assets/deep-research-presentation.txt:31]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/commands/deep/research.md:107,145`",
+        "`.skilled/commands/deep/review.md:100`",
+        "`.skilled/commands/deep/assets/deep-research-presentation.txt:31,74`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:772,3935,4007,4714,4837`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:521`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:839,928`",
+        "`.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md:61`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-config-recovery.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:34`"
+      ]
+    },
+    {
+      "id": "finding-1-2-there-is-no-first-class-way-to-rerun-one-failed-lineage-recovery-today-is-hand-e",
+      "text": "**There is no first-class way to rerun one failed lineage; recovery today is hand-editing the fan-out config.** `fanout-run.cjs` exposes no `--lineage`/`--only`/`--retry-failed` filter, and `readStoredLineageSessionId` deliberately returns `null` when a lineage config is `complete`, so a second invocation mints a fresh `fanout-<label>-<runId>` session for *every* lineage in the matrix and re-enters the same directory. A completed lineage then trips the `on_completed_session` halt, writes no new iteration, and fails `checkLineageCompletion` on the stale terminal row. The committed packet shows the workaround: `review/fanout-config-recovery.json` is a hand-rewritten one-executor matrix that re-runs only `deepseek`. One concrete change: add a repeatable `--only-lineage=LABEL` to `fanout-run.cjs`, filter `allLineages` before the frontier partition, and report filtered-out lineages as `skipped_complete` in the summary. Value: turns a config edit plus full re-spend into one flag. Effort M. Risk medium (partition and summary arithmetic must exclude skipped lineages). [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:772] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3935] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4837] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-config-recovery.json:1]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/commands/deep/research.md:107,145`",
+        "`.skilled/commands/deep/review.md:100`",
+        "`.skilled/commands/deep/assets/deep-research-presentation.txt:31,74`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:772,3935,4007,4714,4837`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:521`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:839,928`",
+        "`.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md:61`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-config-recovery.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:34`"
+      ]
+    },
+    {
+      "id": "finding-2-2-reasoningeffort-is-a-per-kind-lottery-in-an-otherwise-shared-matrix-the-zod-sche",
+      "text": "**`reasoningEffort` is a per-kind lottery in an otherwise shared matrix.** The Zod schema accepts it for every kind (`executor-config.ts:91`), but the supported-field table rejects it for `cli-cursor`, `cli-devin` and `cli-mistral-vibe` because those ids bake the tier into the model name (`:117-141`), so one `--executors` matrix that sets effort for all lineages fails on the three that cannot honor it. One concrete change: keep the field accepted for every kind, map it in the adapter (`--effort`, `--variant`, `--thinking`, or a `#effort` model suffix), and report `effortApplied: \"flag\" | \"baked\" | \"none\"` in `effectiveConfig`, with a loud warning when a requested tier cannot be honored. Value: one matrix works across all eight kinds. Effort M. Risk medium (a silent downgrade would be worse than the current hard failure; the warning is the contract). [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:91] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:117] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2659]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:11,91,112,117,159`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:772,2494,2507,2533,2640,2659,3557,4640,4664,4695,4714`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1738,1752,1762,1812,1825`",
+        "`.skilled/commands/deep/assets/deep-review.yaml` (same branch shape)"
+      ]
+    },
+    {
+      "id": "finding-2-3-failure-classification-keeps-kind-specific-branches-in-the-shared-worker-instead",
+      "text": "**Failure classification keeps kind-specific branches in the shared worker instead of in the adapter table.** `fanout-run.cjs:4695` ignores a non-zero exit for `cli-pi` only, `:4664-4667` runs extra completion validators for `cli-deepseek-harness` and `cli-mistral-vibe`, and `:4714` maps quota exhaustion to its own reason across all kinds. The worker therefore knows four kinds by name, and a new kind must edit it. One concrete change: let each entry in `LINEAGE_COMMAND_ADAPTERS` (`:3557-3567`) carry `exitPolicy` and `completionValidator`, and have the worker classify from those fields only. Value: one failure model; new kinds add data, not branches. Effort M. Risk medium (the pi tolerance and the vibe partial verdict must move without behavior change). [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3557] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4695] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4664]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:11,91,112,117,159`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:772,2494,2507,2533,2640,2659,3557,4640,4664,4695,4714`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1738,1752,1762,1812,1825`",
+        "`.skilled/commands/deep/assets/deep-review.yaml` (same branch shape)"
+      ]
+    },
+    {
+      "id": "finding-2-5-log-shape-and-resume-are-already-at-parity-the-remaining-asymmetry-is-native-eve",
+      "text": "**Log shape and resume are already at parity; the remaining asymmetry is `native`.** Every kind writes the same `logs/fanout-lineage.out` and `.err` with rotation (`fanout-run.cjs:4640-4645`), and every kind resumes through `readStoredLineageSessionId` (`:772`), so those two axes need no contract. But `native` is listed in `EXECUTOR_KINDS` and in `LINEAGE_COMMAND_ADAPTERS`, yet `buildNativeLineageCommand` throws on OpenCode v2 by construction (`:2640-2645`), so a matrix that names `native` works or fails on the host's OpenCode major version. One concrete change: remove `native` from the fan-out adapter table and reject it in `preflightFanoutCapabilities` with the same message, or gate it behind an explicit `native-command-surface` kind. Value: removes a version-dependent trap from the matrix. Effort S. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4640] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2640] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:11]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:11,91,112,117,159`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:772,2494,2507,2533,2640,2659,3557,4640,4664,4695,4714`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1738,1752,1762,1812,1825`",
+        "`.skilled/commands/deep/assets/deep-review.yaml` (same branch shape)"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-single-executor-contract-already-exists-as-data-but-only-half-of-it-is-print",
+      "text": "**The \"single executor contract\" already exists as data — but only half of it is printed.** `EXECUTOR_KIND_FLAG_SUPPORT` (`executor-config.ts:112-142`) declares which config fields each kind accepts, and `EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY` (`:159-169`) declares whether the kind's sandbox is a real OS boundary, a compensating control, or nothing. `finalizeLineageCommand` then emits `sandboxMode` and `permissionMode` in `effectiveConfig` (`fanout-run.cjs:2507-2516`) and the preview prints exactly those two, so a `cli-pi` or `cli-devin` lineage shows `sandboxMode: workspace-write` even though the matrix says `false` (no preventive boundary). One concrete change: add `sandboxEnforcement: \"preventive\" | \"compensating\" | \"none\"` to `effectiveConfig` from the capability matrix and print it beside `sandbox` in the preview and `invocation-metadata.json`. Value: ends the \"which CLI actually confines\" question with one field. Effort S. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:159] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2507]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:11,91,112,117,159`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:772,2494,2507,2533,2640,2659,3557,4640,4664,4695,4714`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1738,1752,1762,1812,1825`",
+        "`.skilled/commands/deep/assets/deep-review.yaml` (same branch shape)"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-six-per-kind-single-executor-branches-in-each-yaml-are-the-same-command-with",
+      "text": "**The six per-kind single-executor branches in each YAML are the same command with a different `--executor` argument.** `deep-research.yaml:1762-1837` has eight `if_cli_*` branches; six of them (claude-code, cursor, devin, pi, opencode, codex) run `dispatch-iteration.cjs --executor <kind>` with identical arguments, and only `cli-deepseek-harness` (extra `--spec-folder`) and `cli-mistral-vibe` (fail closed) differ. `deep-review.yaml` carries the same duplication. One concrete change: collapse the six into one `if_cli` branch whose `--executor` is `{config.executor.kind}`, keep the two special branches, in both YAMLs. Value: roughly 60 lines removed per YAML and one place to add the next kind. Effort S. Risk low (`dispatch-iteration.cjs` already accepts the kind as a value). [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1762] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1812] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1738] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1752]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:11,91,112,117,159`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:772,2494,2507,2533,2640,2659,3557,4640,4664,4695,4714`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1738,1752,1762,1812,1825`",
+        "`.skilled/commands/deep/assets/deep-review.yaml` (same branch shape)"
+      ]
+    },
+    {
+      "id": "finding-3-5-no-host-measured-duration-reaches-the-iteration-record-so-every-latency-claim-re",
+      "text": "**No host-measured duration reaches the iteration record, so every latency claim rests on model-written timestamps that mix queue, model and idle time.** The fan-out runner already computes `slotDurationMs` and the dispatch receipt carries it (`fanout-run.cjs:4058`), but the iteration row has no `durationMs`; this lineage's own rows have none, and the archive spans (10 iterations in 31 min, 3 in 36 min) cannot be separated into model time and queue time. One concrete change: stamp the host-measured `durationMs` (and `slotDurationMs` when present) onto the iteration row before the gateway append, or require it in the prompt pack's OUTPUT CONTRACT. Value: makes the cost question answerable per iteration instead of per run. Effort S. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4058] [SOURCE: .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:67] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T183614Z/deep-review-state.jsonl:1]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:464`",
+        "`.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/live-extend-expansive-research-run.md:34`",
+        "`.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/live-expansive-research-two-node-frontier.md:34`",
+        "`.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/live-expansive-review-two-node-frontier.md:34`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:360`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4058`",
+        "`.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:12,67`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/lineages/opus/deep-review-config.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T153733Z/deep-review-config.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T183614Z/deep-review-state.jsonl:1`"
+      ]
+    },
+    {
+      "id": "finding-3-4-per-iteration-cost-is-dominated-by-cache-re-read-of-the-same-context-not-by-outp",
+      "text": "**Per-iteration cost is dominated by cache re-read of the same context, not by output.** The live playbooks measure 0.33M input, 0.03M output and 6.2M cache-read tokens for one added iteration, and 0.57M-0.75M input with 11.9M-13.7M cache-read over three iterations; at 24 iterations that is roughly 8M input and 150M cache-read. The prompt pack restates the full research topic and the whole state summary every iteration (`prompt-pack-iteration.md.tmpl:12-19`), which is exactly the re-read. One concrete change: render the topic as a path plus a one-line digest in the per-iteration pack (the leaf already reads `deep-research-config.json`), and keep only the delta summary for the last three iterations. Value: the cheapest cut in the whole budget, because it removes repeated input on every iteration. Effort S. Risk low (the leaf reads the config anyway). [SOURCE: .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/live-extend-expansive-research-run.md:34] [SOURCE: .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/live-expansive-research-two-node-frontier.md:34] [SOURCE: .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:12]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:464`",
+        "`.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/live-extend-expansive-research-run.md:34`",
+        "`.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/live-expansive-research-two-node-frontier.md:34`",
+        "`.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/live-expansive-review-two-node-frontier.md:34`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:360`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4058`",
+        "`.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:12,67`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/lineages/opus/deep-review-config.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T153733Z/deep-review-config.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T183614Z/deep-review-state.jsonl:1`"
+      ]
+    },
+    {
+      "id": "finding-3-2-setup-costs-3-10-minutes-per-lineage-before-iteration-1-and-a-fan-out-pays-it-on",
+      "text": "**Setup costs 3-10 minutes per lineage before iteration 1, and a fan-out pays it once per lineage.** Measured from config `createdAt` to the first iteration timestamp: opus 3 min, deepseek 4 min, the 10-iteration archive run 10 min, the 3-iteration archive run 6 min. The root has already resolved the topic, seeded the frontier and partitioned it before spawning, so most of that work is repeated inside each child. One concrete change: when `fanout_lineage_artifact_dir` is bound, skip the context-ladder ripgrep and the resource-map scan in the child and read the root's prepared `prior_context`/seed files instead; keep the config, strategy and registry creation because those are lineage-owned. Value: 3-9 minutes saved per lineage on a 3-lineage fan-out. Effort M. Risk medium (a lineage that starts without its own context summary must still render a valid prompt). [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/lineages/opus/deep-review-config.json:1] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T153733Z/deep-review-state.jsonl:1] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:117]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:464`",
+        "`.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/live-extend-expansive-research-run.md:34`",
+        "`.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/live-expansive-research-two-node-frontier.md:34`",
+        "`.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/live-expansive-review-two-node-frontier.md:34`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:360`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4058`",
+        "`.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:12,67`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/lineages/opus/deep-review-config.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T153733Z/deep-review-config.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T183614Z/deep-review-state.jsonl:1`"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-24-iteration-ceiling-is-unreachable-at-the-measured-8-11-minutes-per-iterati",
+      "text": "**The 24-iteration ceiling is unreachable at the measured 8-11 minutes per iteration under the default 120-minute duration budget; the duration stop binds first.** The review protocol already admits it (\"At about seven to eight minutes an iteration, a 24-iteration review can reach `maxDurationMinutes` (120) before its iteration cap\"), and one committed archive run shows the operator's workaround: `review-archive/20261119T153733Z` raised `maxDurationMinutes` to 360 for 10 iterations. At 8-11 min/iteration, 120 minutes funds 11-15 iterations, not 24, so the advertised cap is not the effective one. One concrete change: at config creation, derive the default duration budget from the iteration cap (`max(120, 10 × maxIterations)` for review, `max(120, 12 × maxIterations)` for research) or print a one-line warning that names the iteration at which the duration stop will bind. Value: the cap an operator reads is the cap the run can reach. Effort S. Risk low (an explicit `--max-duration`/config value still wins). [SOURCE: .skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:464] [SOURCE: .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/live-expansive-research-two-node-frontier.md:34] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T153733Z/deep-review-config.json:1]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:464`",
+        "`.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/live-extend-expansive-research-run.md:34`",
+        "`.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/live-expansive-research-two-node-frontier.md:34`",
+        "`.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/live-expansive-review-two-node-frontier.md:34`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:360`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4058`",
+        "`.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:12,67`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/lineages/opus/deep-review-config.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T153733Z/deep-review-config.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T183614Z/deep-review-state.jsonl:1`"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-50-35-15-split-starves-the-depth-1-band-on-a-review-with-three-nodes-per-lin",
+      "text": "**The 50/35/15 split starves the depth-1 band on a review: with three nodes per lineage and four dimensions each, depth 1 needs 12 of 24 iterations, exactly its 50% share, leaving no room for growth.** `applyBandBudget` closes every open node in a band once `spent >= cap × share` (`frontier-admit.cjs:360-395`), and the review protocol tells the operator to set `--max-iterations` to at least `2 × ceil(nodes/lineages) × dimensions` — i.e. to double the budget so the fixed 50% happens to cover depth 1. One concrete change: size `budgetSplit.depth1` from the seed (`nodesPerLineage × dimensions / maxIterations`, capped at 0.7) and give the remainder to depth 2 and 3, instead of a fixed 0.5. Value: a wide review funds its seeds before it funds growth, without operator arithmetic. Effort M. Risk medium-high (it changes when budget closes fire; the existing split must remain the default for default-mode runs). [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:360] [SOURCE: .skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:464]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:464`",
+        "`.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/live-extend-expansive-research-run.md:34`",
+        "`.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/live-expansive-research-two-node-frontier.md:34`",
+        "`.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/live-expansive-review-two-node-frontier.md:34`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:360`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4058`",
+        "`.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:12,67`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/lineages/opus/deep-review-config.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T153733Z/deep-review-config.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T183614Z/deep-review-state.jsonl:1`"
+      ]
+    },
+    {
+      "id": "finding-4-3-every-observability-events-jsonl-row-carries-subject-run-id-null-so-the-event-st",
+      "text": "**Every `observability-events.jsonl` row carries `subject.run_id: null`, so the event stream cannot be joined to a run or a lineage.** The payload names the label but not the run, and `run_id` is a first-class field on the envelope that is simply left empty. One concrete change: set `subject.run_id` (and `subject.label`) on every emitted event. Value: partial-run forensics and any external dashboard can correlate without parsing free text. Effort S. Risk low. [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/observability-events.jsonl:1] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4801]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/orchestration-summary.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/observability-events.jsonl:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-config-recovery.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:108`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4714,4801`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2491`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:844,1898`",
+        "`.skilled/commands/deep/research.md:107`"
+      ]
+    },
+    {
+      "id": "finding-4-2-the-dashboard-shows-band-spend-but-not-per-node-visits-or-status-so-three-single",
+      "text": "**The dashboard shows band spend but not per-node visits or status, so three single-node passes and three passes on one node look identical.** This lineage's dashboard after three iterations reports `Frontier size: 3 nodes (3 open…)`, `Revisits: 0` and `Budget depth1: 3 of 5 iterations spent`; nothing says each node was visited exactly once, and the registry already holds the data (`frontierNodeVisitRecords` in `reduce-state.cjs:2491`). One concrete change: add a per-node table to the dashboard frontier section (`nodeId, depth, visits, status, band, lastIteration`). Value: an operator can see a starved or a monopolised node before the band closes it. Effort S. Risk low. [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:108] [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2491]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/orchestration-summary.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/observability-events.jsonl:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-config-recovery.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:108`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4714,4801`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2491`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:844,1898`",
+        "`.skilled/commands/deep/research.md:107`"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-partial-run-summary-reports-only-aggregate-failure-classes-never-which-linea",
+      "text": "**The partial-run summary reports only aggregate failure classes, never which lineage failed or how to rerun it.** `orchestration-summary.json` carries `total/succeeded/failed/all_failed`, a `failure_classes` count map and `timestamp_anomalies`; it has no per-lineage `{label, status, reason, rerun_command}` array. An operator whose deepseek lineage died on a 429 sees `failed: 1` and `quota: 1`, then has to open `orchestration-status.log` and the lineage logs to learn which one and what to run next. One concrete change: add a `lineages: [{label, status, reason, failure_class, rerun_command}]` array to the summary, with `rerun_command` the original argv narrowed to that label (`--only-lineage` from the iteration-1 finding, or the documented current workaround). Value: one file answers \"what failed and what do I type\". Effort S. Risk low. [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/orchestration-summary.json:1] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4714] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-config-recovery.json:1]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/orchestration-summary.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/observability-events.jsonl:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-config-recovery.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:108`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4714,4801`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2491`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:844,1898`",
+        "`.skilled/commands/deep/research.md:107`"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-quota-failure-is-detected-but-not-turned-into-an-instruction-fanout-run-cjs-",
+      "text": "**The quota failure is detected but not turned into an instruction.** `fanout-run.cjs:4714-4717` produces `lineage <label> ...: provider quota exhausted (<cause>)`, while the single-executor workflow already carries the actionable sentence \"Switch executor or wait, then resume this run\" (`deep-research.yaml:1898`). The fan-out summary and the error line do not carry that clause or any resume step. One concrete change: append the same recovery clause plus the lineage-specific resume step to the quota failure message and to the summary's `rerun_command`. Value: the failure names the action, not just the cause. Effort S. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4714] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1898]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/orchestration-summary.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/observability-events.jsonl:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-config-recovery.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:108`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4714,4801`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2491`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:844,1898`",
+        "`.skilled/commands/deep/research.md:107`"
+      ]
+    },
+    {
+      "id": "finding-4-5-this-lineage-is-a-live-instance-of-the-budget-split-under-funding-its-nodes-10-i",
+      "text": "**This lineage is a live instance of the budget split under-funding its nodes: 10 iterations give the depth-1 band 5 visits for 3 nodes, but each node needs a first pass and a verification pass.** The dashboard itself reports `Budget depth1: 3 of 5 iterations spent` after three single-node passes, which leaves two visits for the remaining second passes on all three nodes. The fan-out floor for a CLI lineage is 10 (`research.md:107`), independent of how many nodes it is dealt, so a 3-node share is funded as if it were a 1-node share. One concrete change: raise the CLI lineage floor to `max(10, 2 × dealtNodes + 2)` (research) so every dealt node is funded for a first and a verification pass. Value: removes the starvation this run has to work around by closing nodes early. Effort S. Risk low (the cap is still bounded by the explicit `iterations` value). [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:113] [SOURCE: .skilled/commands/deep/research.md:107] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:844]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/orchestration-summary.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/observability-events.jsonl:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-config-recovery.json:1`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:108`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4714,4801`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2491`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:844,1898`",
+        "`.skilled/commands/deep/research.md:107`"
+      ]
+    },
+    {
+      "id": "finding-5-4-runlineagebuiltin-forces-workspace-write-for-cursor-devin-and-pi-so-a-configured",
+      "text": "**`runLineageBuiltin` forces `workspace-write` for cursor, devin and pi, so a configured `read-only` request is silently upgraded to a writable run.** `dispatch-iteration.cjs:459-468` sets `const sandboxMode = 'workspace-write'` and passes it to `buildLineageCommand` for all three kinds, discarding `context.sandboxMode`. The fan-out path resolves the requested sandbox and fails closed when a kind cannot honor it (`fanout-run.cjs:3963-3966`, `:2501-2506`). One concrete change: pass the configured sandbox and let `buildLineageCommand` refuse an unhonorable request, as it already does for `cli-opencode`. Value: a confinement request is never silently widened. Effort S. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:459] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2501]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:55,214,373,423,459`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1255,2501,2650,3963`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:328`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1772,1819`"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-claude-single-executor-path-disagrees-with-itself-by-loop-type-a-review-hard",
+      "text": "**The claude single-executor path disagrees with itself by loop type: a review hardcodes `--permission-mode acceptEdits`, a research run resolves the mode from `sandboxMode`.** `dispatch-iteration.cjs:373` passes the literal `acceptEdits` in the review branch, while the research branch at `:423` calls `resolveClaudePermissionMode(executor.sandboxMode)`. The fan-out adapter maps `danger-full-access` to `bypassPermissions` for both loops, and `fanout-run.cjs:1255` already warns that acceptEdits cannot run Bash non-interactively, so a `--sandbox-mode=danger-full-access` claude review silently cannot run the append gateway. One concrete change: replace the literal with `resolveClaudePermissionMode(executor.sandboxMode)` in the review branch. Value: the same flag behaves the same way in both loops. Effort S. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:373] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:423] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1255]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:55,214,373,423,459`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1255,2501,2650,3963`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:328`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1772,1819`"
+      ]
+    },
+    {
+      "id": "finding-5-3-the-flash-top-tier-effort-pin-is-implemented-twice-verbatim-executor-config-ts-3",
+      "text": "**The Flash top-tier effort pin is implemented twice, verbatim.** `executor-config.ts:328-337` exports `isFlashMaxPinnedModel` and `pinReasoningEffortForModel`, and `fanout-run.cjs:2650-2668` re-implements both with a \"Mirrors …\" comment so the synchronous builders do not wait on the TS loader. `fanout-run.cjs` already imports several helpers from `executor-config.ts` at load time, so the copy can be replaced by the import. One concrete change: import the two functions and delete the local pair. Value: one rule for which models are pinned to `max`. Effort S. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:328] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2650]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:55,214,373,423,459`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1255,2501,2650,3963`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:328`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1772,1819`"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-six-branch-collapse-is-verified-dispatch-iteration-cjs-already-reads-executo",
+      "text": "**The six-branch collapse is verified: `dispatch-iteration.cjs` already reads `--executor` as a value and validates it against `EXECUTOR_KINDS`.** `:55-61` parses the raw flag and refuses an unknown kind before any module loads; `:214-229` adds only the claude `--claude-config-dir` and dsh `--spec-folder` constraints. So one `if_cli` branch with `--executor \"{config.executor.kind}\"` covers claude-code, cursor, devin, pi, opencode and codex in both YAMLs; the per-kind notes (`deep-research.yaml:1772-1776`, `:1819-1824`) restate the `EXECUTOR_KIND_FLAG_SUPPORT` matrix and can be deleted with them. Value: roughly 60 lines plus 40 lines of notes removed per YAML, one place to add the next kind. Effort S. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:55] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:214] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1772] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1819]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:55,214,373,423,459`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1255,2501,2650,3963`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:328`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1772,1819`"
+      ]
+    },
+    {
+      "id": "finding-6-1-a-partial-fan-out-never-reaches-synthesis-so-the-successful-lineages-are-never-m",
+      "text": "**A partial fan-out never reaches synthesis, so the successful lineages are never merged into a report.** `fanout-run.cjs:4969` exits `3` when every lineage failed and `2` when some failed; `deep-research.yaml`'s `step_fanout_spawn` has no `on_failure` branch and its next instruction is \"After all lineages complete, jump directly to phase_synthesis\" (`:432`). One failed lane therefore stops the parent before `step_fanout_merge`, and the operator gets complete per-lineage artifacts but no consolidated `research.md` or registry. One concrete change: exit `0` with `status: \"partial\"` (or add `--allow-partial`) when at least one lineage succeeded, and let `phase_synthesis` merge what exists with a banner naming the failed labels. Value: a 2-of-3 fan-out still produces the deliverable it already paid for. Effort M. Risk medium (a partial merge must never read as complete coverage; the banner and summary counters are the guard). [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4969] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:432] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:2073]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4253,4969`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:977,998,1001`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:432,2073`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/orchestration-summary.json:1`"
+      ]
+    },
+    {
+      "id": "finding-6-3-the-failure-class-rollup-counts-classes-but-cannot-name-a-command-and-the-rerun-",
+      "text": "**The failure-class rollup counts classes but cannot name a command, and the rerun command is not derivable from the summary alone.** The rollup (`buildFailureClassRollup`, `fanout-pool.cjs:998`) counts `quota`, `timeout` and the rest; the exact argv lives in `fanout-config.json`, which the summary does not copy. One concrete change: include `rerun_command` per failed lineage, built from the same `buildLineageDispatch` argv the run used (already available at `:4253`), with prompts replaced by their digest. Value: \"what do I type\" is answered without reconstructing flags. Effort S. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:998] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4253]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4253,4969`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:977,998,1001`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:432,2073`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/orchestration-summary.json:1`"
+      ]
+    },
+    {
+      "id": "finding-6-2-the-per-lineage-result-already-exists-and-is-thrown-away-when-the-summary-is-wri",
+      "text": "**The per-lineage result already exists and is thrown away when the summary is written.** `buildPoolSummary` returns `{results, summary}` (`fanout-pool.cjs:977-1001`), and each result carries the lane output and its failure object; `writeOrchestrationSummary` serializes only the aggregate summary plus the fanout-specific fields, which is why the committed `orchestration-summary.json` has counts but no labels. One concrete change: write a reduced `lineages: [{label, status, reason, failure_class, exit_code}]` array from `results` into the summary. Value: the operator's first file answers \"which one\", with data the process already holds. Effort S. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:977] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/orchestration-summary.json:1]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4253,4969`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:977,998,1001`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:432,2073`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/orchestration-summary.json:1`"
+      ]
+    },
+    {
+      "id": "finding-7-2-the-frontier-dashboard-section-has-already-drifted-between-the-two-reducers-revi",
+      "text": "**The frontier dashboard section has already drifted between the two reducers.** Review renders `## 10B. FRONTIER` with size, pruned, revisits, every band budget and an active-node line (`runtime/scripts/reduce-state.cjs:2520-2545`); research renders `## 6B. FRONTIER` with size, pruned, revisits and band budgets but no active node (`deep-research/scripts/reduce-state.cjs` section 6B). One concrete change: extract one `renderFrontierDashboardSection(frontier, iterationRecords)` helper and call it from both reducers. Value: one dashboard contract, and a new field lands in both places at once. Effort M. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2520] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:108]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1972,2520`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2453,2499,3108`",
+        "`.skilled/commands/deep/assets/deep-review.yaml:1149`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:108`"
+      ]
+    },
+    {
+      "id": "finding-7-1-the-review-reducer-already-computes-a-per-node-visits-count-the-research-reducer",
+      "text": "**The review reducer already computes a per-node `visits` count; the research reducer drops it from its projection.** `runtime/scripts/reduce-state.cjs:1972-2008` builds a visit array and puts `visits: records.length` on each projected node, while `deep-research/scripts/reduce-state.cjs:2453-2475` projects only `nodeId, parentId, depth, scope, question, status, reason, iteration`. The research dashboard can therefore report a total (`Revisits` at `:3108`) but cannot print per-node detail, even though `frontierNodeVisits(nodeId, iterationRecords)` is already defined beside the projection (`:2499`). One concrete change: add `visits` (and `coveredDimensions` where the review reducer has it) to the research projection and print a per-node table. Value: three single-node passes stop looking like three passes on one node. Effort S. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1972] [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2453] [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2499]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1972,2520`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2453,2499,3108`",
+        "`.skilled/commands/deep/assets/deep-review.yaml:1149`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:108`"
+      ]
+    },
+    {
+      "id": "finding-7-3-the-split-has-confused-even-this-study-s-own-scope-line-it-names-deep-review-scr",
+      "text": "**The split has confused even this study's own scope line: it names `deep-review/scripts/reduce-state.cjs`, a path that does not exist.** The review reducer lives at `runtime/scripts/reduce-state.cjs`; the research reducer lives at `deep-research/scripts/reduce-state.cjs`; there is no `deep-review/scripts/reduce-state.cjs` (`deep-review/scripts/` holds only the pivot, a README, a contract renderer, capabilities and tests). One concrete change: move the research reducer to `runtime/scripts/reduce-state.cjs` (or a shared `runtime/lib/deep-loop/frontier-projection` module) so the two loops name one path. Value: removes a wrong path from the operating model and makes the shared helper above natural. Effort M. Risk medium (workflow paths and tests must move together). [SOURCE: .skilled/commands/deep/assets/deep-review.yaml:1149] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2520]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1972,2520`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2453,2499,3108`",
+        "`.skilled/commands/deep/assets/deep-review.yaml:1149`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-dashboard.md:108`"
+      ]
+    },
+    {
+      "id": "finding-8-1-dispatch-iteration-cjs-builds-half-its-executors-by-hand-and-half-through-buildl",
+      "text": "**`dispatch-iteration.cjs` builds half its executors by hand and half through `buildLineageCommand`, and the hand-built half is where the parity bugs live.** `runClaude` (`:354-453`) and `runCodex` (`:919-995`) construct argv inline, while `runLineageBuiltin`, `runResearchOpencode`, `runDeepseekHarness` and the review opencode handler call the shared builder (`:478, :540, :599, :793`). One concrete change: route claude and codex through `buildLineageCommand` plus the existing audit wrapper and delete the two inline builders, which removes roughly 300 lines and the `acceptEdits` drift found in iteration 5 in the same edit. Value: the largest single deletion in the runtime, and it closes a live permission defect. Effort M. Risk medium (the claude `--claude-config-dir` and codex stdin paths must be preserved in the adapter). [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:354] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:919] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:478]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:354,478,919`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2640,2650,3558`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1360`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2520`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2485`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:112,328`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:300,372,395,816,1762,1819`"
+      ]
+    },
+    {
+      "id": "finding-8-2-six-of-the-eight-executor-branches-in-each-yaml-are-the-same-command-and-their-n",
+      "text": "**Six of the eight executor branches in each YAML are the same command, and their notes restate the capability matrix.** `deep-research.yaml:1762-1837` and the review YAML carry eight `if_cli_*` blocks; six differ only in `--executor <kind>`, and the notes under them repeat `EXECUTOR_KIND_FLAG_SUPPORT`. One concrete change: one `if_cli` branch with `--executor \"{config.executor.kind}\"`, keep the claude config-dir and dsh spec-folder special cases, delete the notes. Value: about 100 lines per YAML, and the matrix stays the only place capabilities are stated. Effort S. Risk low. [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1762] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1819] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:112]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:354,478,919`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2640,2650,3558`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1360`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2520`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2485`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:112,328`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:300,372,395,816,1762,1819`"
+      ]
+    },
+    {
+      "id": "finding-8-4-the-frontier-marker-grammar-and-the-frontier-dashboard-renderer-are-implemented-",
+      "text": "**The frontier marker grammar and the frontier dashboard renderer are implemented twice, in different trees.** `convergence.cjs:1360-1364` builds `frontierMarkerPattern`, and `deep-research/scripts/reduce-state.cjs:2485-2496` re-implements the same regex in `frontierNodeVisitRecords`; the review reducer renders `10B. FRONTIER` with an active-node line while the research reducer renders `6B. FRONTIER` without it. One concrete change: one shared `runtime/lib/deep-loop/frontier-projection` module exporting the marker, `visits`, `pickFocus` and `renderDashboardSection`, imported by both reducers and convergence. Value: one grammar and one dashboard, and the review reducer's visit logic becomes the research reducer's for free. Effort M. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1360] [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2485] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2520]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:354,478,919`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2640,2650,3558`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1360`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2520`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2485`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:112,328`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:300,372,395,816,1762,1819`"
+      ]
+    },
+    {
+      "id": "finding-8-3-the-research-yaml-writes-the-same-frontier-seed-step-twice-and-the-same-fan-out-",
+      "text": "**The research YAML writes the same frontier seed step twice and the same fan-out command twice.** `step_frontier_seed` appears at `:395-415` (fan-out) and `:816-834` (phase_init) with the same command and different `skip_when`; `step_fanout_dry_run_preview` (`:300-313`) repeats `step_fanout_spawn_cli`'s command (`:439-452`) verbatim apart from `--preview`; and `step_reject_extend_with_fanout` (`:372-382`) plus `step_reject_frontier_caps_with_fanout` (`:384-393`) are two copies of one guard shape. One concrete change: one seed step with a branch on `config.fanout`, one spawn command with a `--preview` modifier, and one \"usage errors refused before spawn\" step. Value: about 50 lines removed and one place to edit each rule. Effort S. Risk low. [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:395] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:816] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:300] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:372]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:354,478,919`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2640,2650,3558`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1360`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2520`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2485`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:112,328`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:300,372,395,816,1762,1819`"
+      ]
+    },
+    {
+      "id": "finding-8-5-two-small-copies-remain-the-flash-effort-pin-and-the-native-fan-out-adapter-fano",
+      "text": "**Two small copies remain: the Flash effort pin and the `native` fan-out adapter.** `fanout-run.cjs:2650-2668` mirrors `executor-config.ts:328-337` (`isFlashMaxPinnedModel`, `pinReasoningEffortForModel`), and `native` is a fan-out adapter (`:3558`) that cannot start on OpenCode v2 (`:2640-2645`) while `dispatch-iteration.cjs` already rejects it (`:64`). One concrete change: import the pin, delete the mirror, and remove `native` from the adapter table in favour of the command host. Value: about 45 lines removed and one less version-dependent path. Effort S. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2650] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:328] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3558] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2640]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:354,478,919`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2640,2650,3558`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1360`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2520`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2485`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:112,328`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:300,372,395,816,1762,1819`"
+      ]
+    },
+    {
+      "id": "finding-9-4-pivot-admission-has-a-cheap-design-carry-the-saturated-focus-s-scope-admit-pivot",
+      "text": "**Pivot admission has a cheap design: carry the saturated focus's scope, admit pivots without the relevance check, reserve one depth-1 slot, and order `frontier_drained` before `all_dimensions_clean`.** D-011-10 rejected admission for three structural reasons: a minimum seed spends the whole depth-1 band so a new depth-1 node closes `exhausted:budget` on the next reduce; pivot candidates carry no scope for the relevance check; and `all_dimensions_clean` forms before `frontier_drained`. Each has a small answer: copy the previous focus's `scope` onto the pivot node (the saturated direction already has one) and tag it `origin: pivot` so admission skips only the relevance check; reserve one depth-1 slot by subtracting `1 / maxIterations` from `budgetSplit.depth1` when the pivot branch is enabled; and evaluate the frontier-terminal gate before the clean-stop candidate in `convergence.cjs`. Value: REQ-007's promise can be kept without a reworked pivot transaction. Effort M. Risk medium (the reservation changes band arithmetic and needs a test). [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/decision-record.md:68] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:613] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1158]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1158,1406,1775`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1248,1282`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:169,202`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:613`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2574`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:2199`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/decision-record.md:68`",
+        "Scan of `specs/system-deep-loop/**/deep-research-state.jsonl` (104 logs)"
+      ]
+    },
+    {
+      "id": "finding-9-1-research-still-counts-stuck-passes-lineage-wide-nodescoped-is-gated-on-looptype-",
+      "text": "**Research still counts stuck passes lineage-wide: `nodeScoped` is gated on `loopType === 'review'`.** `convergence.cjs:1775-1778` sets `nodeScoped` only for review, so a research run with an active node counts every low-novelty pass in the lineage, and the workflow then closes the active node as `exhausted/stuck`. The review decision record already settled the principle (D-011-11: a node-bound pass that recorded a new finding is progress, and clean sibling passes must not close a node). One concrete change: drop the loop-type gate and add `frontier.activeNodeId` (and `activeNextDimension`) to the research projection via the shared frontier module from iteration 8. Value: research nodes close on their own evidence, not their siblings'. Effort S/M. Risk low. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1775] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1406] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/decision-record.md:69]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1158,1406,1775`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1248,1282`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:169,202`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:613`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2574`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:2199`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/decision-record.md:68`",
+        "Scan of `specs/system-deep-loop/**/deep-research-state.jsonl` (104 logs)"
+      ]
+    },
+    {
+      "id": "finding-9-3-resume-and-extend-are-not-broken-only-the-audit-of-a-historical-run-is-a-resume-",
+      "text": "**Resume and extend are not broken; only the audit of a *historical* run is.** A resume or extend re-runs `phase_synthesis`, whose `step_convergence_report` always hands a fresh closeout row to the gateway (`deep-research.yaml:2199-2225`), so the current attempt satisfies the terminal check. The break is confined to code paths that judge a completed run without re-running it, which is exactly the fallback in finding 2. One concrete change: name the two rules in the completion helper's contract (\"current attempt: terminal row required; historical completed run: report artifact accepted\"). Value: stops a future reader from weakening the live check to fix the audit. Effort S. Risk low. [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:2199] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:169]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1158,1406,1775`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1248,1282`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:169,202`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:613`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2574`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:2199`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/decision-record.md:68`",
+        "Scan of `specs/system-deep-loop/**/deep-research-state.jsonl` (104 logs)"
+      ]
+    },
+    {
+      "id": "finding-9-2-the-completion-check-fails-31-committed-research-lineages-that-have-a-research-m",
+      "text": "**The completion check fails 31 committed research lineages that have a `research.md` but no terminal closeout row.** A scan of `specs/system-deep-loop/**/deep-research-state.jsonl` finds 104 state logs, 42 with no terminal synthesis event, and 31 of those 42 have `research.md` on disk. `TERMINAL_STOP_EVENTS_BY_LOOP_TYPE.research` requires one of `synthesis_complete`, `phase_synthesis_complete`, `synthesis` or `synthesis_incomplete` (`fanout-run.cjs:1248-1251`), and `checkLineageCompletion` fails `no_terminal_event` when none is present (`lineage-timestamp-window.ts:202-208`). The prompt's \"3 of 12\" understates the break; the measured population is 31 with a report. One concrete change: keep the terminal-row requirement for a live attempt, and fall back to `completionFromArtifacts` (already implemented at `fanout-run.cjs:1282`) when the lineage config is `status: complete` and the log holds no terminal row at all. Value: historical audit and re-run stop mislabelling finished work. Effort S. Risk low (the live path is untouched). [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1248] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:202] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1282]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1158,1406,1775`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1248,1282`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:169,202`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:613`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2574`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:2199`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/decision-record.md:68`",
+        "Scan of `specs/system-deep-loop/**/deep-research-state.jsonl` (104 logs)"
+      ]
+    },
+    {
+      "id": "finding-9-5-the-reducer-copies-a-leaf-s-recommended-next-focus-narrative-into-next-focus-ver",
+      "text": "**The reducer copies a leaf's `Recommended Next Focus` narrative into Next Focus verbatim, even when it is an instruction rather than a question.** With the frontier terminal, `deriveNextFocusFromContinuity` takes `latestLeafNextFocus` (`reduce-state.cjs:2574-2588`); this run's Next Focus became \"Close F-2-008 as answered…\", so the next iteration would have chased a closing instruction had this pass not overridden it. One concrete change: when the frontier has no open node, prefer the first unchecked key question over the leaf recommendation, and reject a recommendation that does not end in a question mark or name a scope. Value: the loop always works a question. Effort S. Risk low. [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2574] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/deep-research-strategy.md:151]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1158,1406,1775`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1248,1282`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:169,202`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:613`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2574`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:2199`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/decision-record.md:68`",
+        "Scan of `specs/system-deep-loop/**/deep-research-state.jsonl` (104 logs)"
+      ]
+    },
+    {
+      "id": "finding-10-1-anthropic-s-production-research-system-is-the-same-orchestrator-worker-shape-wit",
+      "text": "**Anthropic's production research system is the same orchestrator-worker shape, with explicit effort-scaling rules and checkpointed resume.** The lead agent spawns 3-5 subagents in parallel, each with an objective, an output format, tool guidance and task boundaries; effort is scaled by query complexity (simple fact-finding: 1 agent, 3-10 tool calls; direct comparison: 2-4 subagents, 10-15 calls each; complex research: more than 10 subagents). It reports multi-agent runs at about 15× the tokens of a chat, and names synchronous subagent execution as a bottleneck. The concrete transfer: add an effort-scaling table to `research.md` and `review.md` (simple / comparison / complex → lineages × iterations × tool calls), which this runtime lacks; its floors are per-kind, not per-complexity. Value: an operator sizes a run without arithmetic. Effort S. Risk low. [SOURCE: https://www.anthropic.com/engineering/multi-agent-research-system]",
+      "addedAtIteration": 10,
+      "sources": [
+        "https://www.anthropic.com/engineering/multi-agent-research-system",
+        "https://github.com/langchain-ai/open_deep_research",
+        "https://arxiv.org/abs/2305.10601",
+        "https://arxiv.org/abs/2402.14207"
+      ]
+    },
+    {
+      "id": "finding-10-2-langchain-s-open-deep-research-exposes-per-researcher-limits-and-a-published-cos",
+      "text": "**LangChain's Open Deep Research exposes per-researcher limits and a published cost table.** Its supervisor-researcher graph caps researcher iterations, runs researchers in parallel, and its README reports total cost and tokens per benchmark run ($45.98 / 58.0M tokens for the default, $187.09 / 138.9M for Claude Sonnet 4). The concrete transfer: put a `budget` block on each lineage (`maxIterations`, `maxToolCalls`, estimated cost) and print it before spawn, so the operator sees the price the way LangChain's table shows it. Value: makes cost a first-class parameter instead of a post-hoc surprise. Effort S/M. Risk low. [SOURCE: https://github.com/langchain-ai/open_deep_research]",
+      "addedAtIteration": 10,
+      "sources": [
+        "https://www.anthropic.com/engineering/multi-agent-research-system",
+        "https://github.com/langchain-ai/open_deep_research",
+        "https://arxiv.org/abs/2305.10601",
+        "https://arxiv.org/abs/2402.14207"
+      ]
+    },
+    {
+      "id": "finding-10-4-storm-gets-breadth-from-distinct-perspectives-not-from-more-questions-in-one-voi",
+      "text": "**STORM gets breadth from distinct perspectives, not from more questions in one voice.** STORM discovers diverse perspectives and simulates writers who pose questions from each, then curates an outline; its evaluation attributes coverage gains to that multi-perspective asking. This runtime's seed asks for 3-6 sub-questions that \"together cover the topic\", with no perspective requirement and a text-based dedupe key. The concrete transfer: require each seed question to name a distinct perspective or role and dedupe on that perspective, which also gives the proposal admission a semantic axis that plain text comparison lacks. Value: less near-duplicate seeding, broader first-pass coverage. Effort S. Risk low. [SOURCE: https://arxiv.org/abs/2402.14207]",
+      "addedAtIteration": 10,
+      "sources": [
+        "https://www.anthropic.com/engineering/multi-agent-research-system",
+        "https://github.com/langchain-ai/open_deep_research",
+        "https://arxiv.org/abs/2305.10601",
+        "https://arxiv.org/abs/2402.14207"
+      ]
+    },
+    {
+      "id": "finding-10-3-tree-of-thoughts-makes-search-explicit-generate-candidates-self-evaluate-then-ex",
+      "text": "**Tree of Thoughts makes search explicit: generate candidates, self-evaluate, then expand or backtrack.** ToT's contribution is deliberate search over coherent thoughts with evaluation and backtracking, not a fixed left-to-right chain. This runtime's frontier grows by structural admission only (relevance, dedupe, depth, fan-out, budget, cycle) and its focus order is shallowest → least visited → oldest; neither step scores expected value. The concrete transfer: add an optional `priority` (or `expectedValue`) field to `frontier_proposal` and rank focus by it after depth, so a high-value child is not queued behind an older low-value one. Value: growth follows value, not arrival order. Effort M. Risk medium (a model-authored priority must not be trusted over the caps). [SOURCE: https://arxiv.org/abs/2305.10601]",
+      "addedAtIteration": 10,
+      "sources": [
+        "https://www.anthropic.com/engineering/multi-agent-research-system",
+        "https://github.com/langchain-ai/open_deep_research",
+        "https://arxiv.org/abs/2305.10601",
+        "https://arxiv.org/abs/2402.14207"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-b1a5124cc11d",
+      "text": "Reading the presentation assets as an independent intake surface: they restate the same long-form budget prose as `research.md`, so collapsing `research.md:107` to a pointer does not remove the last copy, it moves the copy to the asset that already owns setup detail.",
+      "contentHash": "b1a5124cc11d",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-009e9bcf811f",
+      "text": "Searching for a literal \"8-11 minute setup\" string: the only match is a retired tool-call budget in a changelog; the setup-time reading has no textual anchor. The cost node must measure per-iteration wall clock instead.",
+      "contentHash": "009e9bcf811f",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-8121701a3121",
+      "text": "Treating `--frontier-max-depth`/`--frontier-max-nodes` refusal as an undocumented trap: both command docs and both presentation assets state the fan-out refusal at the flag row, so the surface is documented even though the refusal is only visible by running a dry run.",
+      "contentHash": "8121701a3121",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-f64554edcb1b",
+      "text": "Proposing a new config schema: `executor-config.ts` is already the single schema; the gap is that two derived facts (enforcement class, effort application) are not carried into the output.",
+      "contentHash": "f64554edcb1b",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-542cb3e22890",
+      "text": "Searching for per-kind resume flags: resume is config-driven for every kind through `readStoredLineageSessionId`, so there is nothing to unify.",
+      "contentHash": "542cb3e22890",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-ae7d7af89e8a",
+      "text": "Treating log shape as a parity gap: all kinds already write the same rotated `fanout-lineage.out/.err` pair, so no change is needed there.",
+      "contentHash": "ae7d7af89e8a",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-bce8150db035",
+      "text": "Blaming fan-out concurrency for the 429: the review run used concurrency 2 and the quota failure hit one lineage; the recovery gap is the real defect, and iteration 1 already records it.",
+      "contentHash": "bce8150db035",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-8d6d8572209b",
+      "text": "Searching for a measured setup time in the playbooks: the only figure recorded is per-iteration cost, so setup had to be measured from the committed `createdAt` and first-iteration timestamps.",
+      "contentHash": "8d6d8572209b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-80d0241b602f",
+      "text": "Treating model price as the main lever: the measured cost is dominated by cache-read of unchanged context and by wall-clock latency, not by output tokens, so a cheaper model changes the multiplier, not the shape.",
+      "contentHash": "80d0241b602f",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-06c3bfed9a30",
+      "text": "Claiming the dashboard hides band spend: it prints all three bands and their allotments; the missing dimension is per-node detail, not the band budget.",
+      "contentHash": "06c3bfed9a30",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-cb0f0f2287fe",
+      "text": "Proposing a new summary file: `orchestration-summary.json` is already the operator's terminal artifact; it only needs the per-lineage array.",
+      "contentHash": "cb0f0f2287fe",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-9c8d323f9a92",
+      "text": "Searching for a documented fan-out resume procedure in `research.md`: the command doc covers `--lineage-mode=resume` and `--extend` for a single run, but has no fan-out recovery section; the only evidence of the real procedure is the committed recovery config.",
+      "contentHash": "9c8d323f9a92",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-7b70c53fe861",
+      "text": "Claiming the six YAML branches need different arguments: only claude (config dir) and dsh (spec folder) add a flag, and both are already optional in the shared script.",
+      "contentHash": "7b70c53fe861",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-2a05efa876e3",
+      "text": "Looking for a review-specific claude builder in the fan-out path: there is one builder for both loops, which is exactly why the single-executor branch diverged unnoticed.",
+      "contentHash": "2a05efa876e3",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-ad32132fef23",
+      "text": "Treating the forced `workspace-write` as a bug in the builder: the builder honors what it is given; the silent narrowing happens in the caller.",
+      "contentHash": "ad32132fef23",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-9db0c393b770",
+      "text": "Looking for an `on_failure` branch in `step_fanout_spawn`: there is none, so the parent has no partial path to take.",
+      "contentHash": "9db0c393b770",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-fe0eac4242c4",
+      "text": "Requiring a new recovery command: the runner already holds every input a rerun needs, so the fix is serialization, not a new workflow.",
+      "contentHash": "fe0eac4242c4",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-fb2f5f0f2a50",
+      "text": "Treating exit 2 as a deliberate safety stop: it protects the merge from partial input but gives the operator no merge at all, which is the opposite of the failure's cost.",
+      "contentHash": "fb2f5f0f2a50",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-cc2572576693",
+      "text": "Adding a new registry file: the projection is the right carrier; it already has the visit function.",
+      "contentHash": "cc2572576693",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-f0e0f3095c55",
+      "text": "Claiming both dashboards hide band spend: both print the three bands and their allotments; the missing piece is per-node detail and the active-node line.",
+      "contentHash": "f0e0f3095c55",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-4519a68020dd",
+      "text": "Searching for a review-side per-node table in the committed review dashboard: it reports the same aggregate size and revisits, so the per-node table is absent on both sides, not only in research.",
+      "contentHash": "4519a68020dd",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-a0e808aa1147",
+      "text": "Collapsing the two reducers into one file: the review reducer carries dimension coverage and the research reducer carries novelty questions; the shared part is the frontier projection, not the whole reducer.",
+      "contentHash": "a0e808aa1147",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-69c78a8beea0",
+      "text": "Deleting `frontier-admit.cjs` as a whole: it is shared by both reducers and both loops, so it is the one place the frontier rules already live; the duplication is around it, not inside it.",
+      "contentHash": "69c78a8beea0",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-5a886b799e2e",
+      "text": "Looking for a shared YAML macro system: the workflow format has no include mechanism, so duplication must be collapsed at the step level, not by templating.",
+      "contentHash": "5a886b799e2e",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-b2766549d21b",
+      "text": "Searching for dead `if_cli_*` branches: all eight are reachable, so the deletion is a merge, not a dead-code removal.",
+      "contentHash": "b2766549d21b",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-94ec852b6e64",
+      "text": "Admitting pivot candidates with a full reworked transaction: the three D-011-10 blockers each have a one-line answer; a transaction rewrite is not needed.",
+      "contentHash": "94ec852b6e64",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-b4284f18a924",
+      "text": "Looking for a research `activeNodeId` in the registry: the research projection does not emit one, which is why the node-scoped counter cannot be enabled by a flag alone.",
+      "contentHash": "b4284f18a924",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-fd71b616adb5",
+      "text": "Weakening the live completion check to fix the audit: a live attempt that writes nothing must still fail, so the fallback has to be scoped to a completed historical config.",
+      "contentHash": "fd71b616adb5",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-46994212da10",
+      "text": "Adopting a full MCTS search (LATS-style) for the frontier: the measured runs are 10-24 iterations, too shallow for tree search to pay for its branching overhead; a priority field is the cheap 80%.",
+      "contentHash": "46994212da10",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-9bda61415f49",
+      "text": "Copying Anthropic's synchronous lead-agent loop: this runtime already has the fan-out pool and per-lineage state, so the transferable part is the effort-scaling table and the checkpoint/resume discipline, not the topology.",
+      "contentHash": "9bda61415f49",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-6faa0b0559f2",
+      "text": "Looking for a published stuck-detection rule in these systems: Anthropic handles failure with retries and checkpoints, LangChain with iteration caps, ToT with evaluation; none publishes a per-node stuck counter, so this runtime's per-node counter is ahead of the public prior art and should be kept.",
+      "contentHash": "6faa0b0559f2",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 3,
+    "resolvedQuestions": 8,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 44,
+    "sourceFindings": 44,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 1,
+    "coverageBySources": {
+      "arxiv.org": 2,
+      "code": 92,
+      "github.com": 1,
+      "other": 2,
+      "www.anthropic.com": 1
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "frontier": {
+    "nodes": [
+      {
+        "nodeId": "F-1-002",
+        "parentId": "root",
+        "depth": 1,
+        "scope": ".skilled/commands/deep/research.md, .skilled/commands/deep/review.md, .skilled/commands/deep/assets/deep-research-presentation.txt, .skilled/commands/deep/assets/deep-review-presentation.txt",
+        "question": "Operator UX: how discoverable are the expansive-depth flags and defaults, how is the budget sized, and how clear are the warnings, dashboards, reports and the fan-out dry-run preview? How does an operator recover mid-run from a provider quota failure, resume, extend, or rerun one failed lineage?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 0
+      },
+      {
+        "nodeId": "F-1-004",
+        "parentId": "root",
+        "depth": 1,
+        "scope": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs, .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "question": "Cross-CLI parity: where do cli-claude-code, cli-opencode, cli-codex, cli-pi, cli-devin, cli-cursor, cli-deepseek-harness and cli-mistral-vibe lineages still differ in permissions, effort flags, failure classes, resume and log shape, and what single executor contract would remove the differences?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 0
+      },
+      {
+        "nodeId": "F-1-006",
+        "parentId": "root",
+        "depth": 1,
+        "scope": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review, specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive",
+        "question": "Cost and latency: what do the 8-11 minute setup, the cost per iteration, the 24-iteration ceiling and the 50/35/15 depth-band split cost in the measured runs under the spec folder's review/ and review-archive/ and the live playbook logs, and which change cuts the most time or money?",
+        "status": "exhausted",
+        "reason": "budget",
+        "iteration": 0
+      },
+      {
+        "nodeId": "F-2-007",
+        "parentId": "F-1-002",
+        "depth": 2,
+        "scope": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs, .skilled/commands/deep/assets/deep-research.yaml",
+        "question": "What does a partially complete fan-out run tell the operator: does the summary name the failed lineage, its failure class and the exact command to rerun just that lineage?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 1
+      },
+      {
+        "nodeId": "F-2-008",
+        "parentId": "F-1-002",
+        "depth": 2,
+        "scope": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs, .skilled/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs",
+        "question": "Do the research and review dashboards expose per-frontier-node budget spend and visit counts, or only lineage-wide iteration totals?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 1
+      },
+      {
+        "nodeId": "F-2-009",
+        "parentId": "F-1-004",
+        "depth": 2,
+        "scope": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts, .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "question": "Can the effective-config envelope become the single preflight contract that fails a matrix before spawn when a requested effort, sandbox or web-search policy cannot be honored?",
+        "status": "pruned",
+        "reason": "fanout",
+        "iteration": 2
+      },
+      {
+        "nodeId": "F-2-010",
+        "parentId": "F-1-004",
+        "depth": 2,
+        "scope": ".skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs, .skilled/commands/deep/assets/deep-research.yaml, .skilled/commands/deep/assets/deep-review.yaml",
+        "question": "Does dispatch-iteration.cjs already accept every executor kind as a value, so the six duplicated YAML branches can collapse into one without losing the per-kind notes?",
+        "status": "pruned",
+        "reason": "fanout",
+        "iteration": 2
+      },
+      {
+        "nodeId": "F-2-011",
+        "parentId": "F-1-006",
+        "depth": 2,
+        "scope": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review, .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "question": "Do the dispatch receipts under each lineage carry slotDurationMs, and can that field be joined to the iteration row to separate model time from queue time in the archive runs?",
+        "status": "pruned",
+        "reason": "fanout",
+        "iteration": 3
+      },
+      {
+        "nodeId": "F-2-012",
+        "parentId": "F-1-006",
+        "depth": 2,
+        "scope": ".skilled/commands/deep/assets/deep-research.yaml, .skilled/commands/deep/assets/deep-review.yaml, review/lineages",
+        "question": "What is the measured setup time per executor kind, and does skipping the context ladder in a fan-out child actually remove it?",
+        "status": "pruned",
+        "reason": "fanout",
+        "iteration": 3
+      },
+      {
+        "nodeId": "F-2-013",
+        "parentId": "F-1-004",
+        "depth": 2,
+        "scope": ".skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs, .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "question": "Does the single-executor builder drift from the fan-out adapter for codex, cursor, devin or pi the way the claude review branch does, and can one shared argument builder remove the drift for every kind?",
+        "status": "pruned",
+        "reason": "fanout",
+        "iteration": 5
+      }
+    ],
+    "stats": {
+      "total": 10,
+      "open": 0,
+      "active": 0,
+      "answered": 4,
+      "blocked": 0,
+      "exhausted": 1,
+      "abstained": 0,
+      "pruned": 5
+    },
+    "budget": {
+      "depth1": {
+        "allotted": 5,
+        "spent": 5
+      },
+      "depth2": {
+        "allotted": 3.5,
+        "spent": 2
+      },
+      "depth3": {
+        "allotted": 3,
+        "spent": 0
+      }
+    }
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration/specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/lineages/deepseek/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [
+    {
+      "type": "event",
+      "event": "novelty_signal_inert",
+      "mode": "research",
+      "severity": "warning",
+      "metric": "newInfoRatio",
+      "run": 10,
+      "window": 3,
+      "value": 1,
+      "sparkline": "▄▄▄",
+      "note": "newInfoRatio held flat at 1 across 3 iterations — the novelty signal is uninformative, so convergence and \"not exhausted\" claims derived from it are untrustworthy.",
+      "timestamp": "2026-11-20T01:31:04.017Z"
+    },
+    {
+      "type": "event",
+      "event": "trend_flatline",
+      "mode": "research",
+      "severity": "advisory",
+      "metric": "score",
+      "run": 10,
+      "window": 3,
+      "value": 1,
+      "sparkline": "▄▄▄",
+      "timestamp": "2026-11-20T01:31:04.017Z"
+    }
+  ],
+  "strategyWarnings": []
+}

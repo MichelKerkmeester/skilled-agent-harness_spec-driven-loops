@@ -7,7 +7,7 @@ trigger_phrases:
   - "configure executor"
   - "permission-mode normalization"
   - "deep-loop dispatch configuration"
-version: 1.4.0.4
+version: 1.4.1.0
 ---
 
 # Executor config
@@ -26,6 +26,8 @@ This feature belongs to the executor group and is catalogued as F001 in the `run
 
 Schema, parsing, defaults, supported flags, sandbox and permission-mode normalization.
 
+`EXECUTOR_ADAPTER_CAPABILITIES` sits beside `EXECUTOR_KIND_FLAG_SUPPORT` and records, for each executor kind, its binary, prompt channel (argv, stdin or a prompt file), log format, cost source, effort surface, sandbox surface and resume. Resume is artifact resume for every kind: no builder passes a model-session resume flag. A table-driven conformance test checks every record against the fan-out command builders, the single-iteration dispatcher and the provider-cost reader, so a builder that drifts from its record fails the test. The cost reader returns a cost only for opencode and claude; every other kind reads unknown, never zero.
+
 The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
@@ -43,6 +45,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 | File | Type | Role |
 |---|---|---|
 | `tests/unit/executor-config.vitest.ts` | Automated test | Primary regression coverage for Executor config. |
+| `tests/unit/executor-adapter-capabilities.vitest.ts` | Automated test | Conformance of each kind's capability record to the builders and the cost reader. |
 
 ---
 

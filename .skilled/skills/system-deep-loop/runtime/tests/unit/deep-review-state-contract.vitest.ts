@@ -131,10 +131,33 @@ describe('deep-review-state projection contract', () => {
       .split('\n')
       .map((line) => JSON.parse(line));
 
-    // One row, and it is the record whole: all seven fields survive, with the
-    // record's own timestamp rather than the envelope's occurred_at.
+    // One row, and it is the record whole, except the time: the envelope's
+    // occurred_at times the row and the record's own stamp is kept as a claim.
     expect(lines).toHaveLength(1);
-    expect(lines[0]).toEqual(record);
+    expect(lines[0]).toEqual({ ...record, timestamp: FIXED_TS, claimedTimestamp: record.timestamp });
+  });
+
+  it('claims no stamp for an unstamped iteration and keeps a workflow row\'s own time', () => {
+    const contract = createDeepReviewStateProjectionContract();
+    const unstamped = { type: 'iteration', iteration: 1, mode: 'review', status: 'complete' };
+    const opening = { type: 'iteration_start', iteration: 2, timestamp: '2026-10-02T00:00:00Z' };
+    let state = contract.base.state;
+    for (const record of [unstamped, opening]) {
+      state = contract.reduce(state, reviewEvent(
+        'deep_review.iteration_recorded',
+        { runId: 'rev-1', sessionId: 's-1' },
+        { record },
+        FIXED_TS,
+      ));
+    }
+    const lines = new TextDecoder()
+      .decode(contract.serialize(state))
+      .trimEnd()
+      .split('\n')
+      .map((line) => JSON.parse(line));
+
+    expect(lines[0]).toEqual({ ...unstamped, timestamp: FIXED_TS });
+    expect(lines[1]).toEqual(opening);
   });
 
   it('produces a file the real deep-review reducer reads without corruption and with the folded iterations', () => {

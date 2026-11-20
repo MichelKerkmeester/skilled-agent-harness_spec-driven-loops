@@ -31,7 +31,7 @@ const { parseAst } = createRequire(path.join(REPO_ROOT, '.skilled', 'package.jso
  *
  * @param {string} [pluginDir] - Folder holding the plugins and their
  *   `tests/plugin-inventory.json`; defaults to this helper's plugin folder.
- * @returns {object} The parsed manifest, with `nativeDual`, `skippedHooks`,
+ * @returns {object} The parsed manifest, with `selfRegistered`, `skippedHooks`,
  *   `unscannedEventChecks` and `events`.
  * @throws {Error} When the manifest file cannot be read.
  * @throws {SyntaxError} When the manifest is not valid JSON.
@@ -56,18 +56,18 @@ function listPluginFiles(pluginDir) {
  *   defaults to this helper's plugin folder.
  * @param {object} [manifest] - Manifest to compare against; defaults to
  *   `readManifest(pluginDir)`.
- * @returns {{ bridged: string[], nativeDual: string[], problems: string[] }}
+ * @returns {{ bridged: string[], selfRegistered: string[], problems: string[] }}
  *   Sorted stems (file names without `.js`) of the bridged plugins, sorted stems of
- *   the native-dual exceptions, and one message per mismatch found.
+ *   the self-registered exceptions, and one message per mismatch found.
  * @throws {Error} When the manifest or a plugin file cannot be read.
  * @throws {SyntaxError} When the manifest is not valid JSON.
  */
 function readInventory(pluginDir = PLUGIN_DIR, manifest = readManifest(pluginDir)) {
   const files = listPluginFiles(pluginDir);
   const existingFiles = new Set(files);
-  const nativeDualFiles = new Set(manifest.nativeDual.map((entry) => entry.file));
+  const selfRegisteredFiles = new Set(manifest.selfRegistered.map((entry) => entry.file));
   const bridged = [];
-  const nativeDual = [];
+  const selfRegistered = [];
   const problems = [];
 
   for (const file of files) {
@@ -82,24 +82,24 @@ function readInventory(pluginDir = PLUGIN_DIR, manifest = readManifest(pluginDir
     const isBridged = source.includes(`definePlugin('${stem}'`);
 
     if (isBridged) bridged.push(stem);
-    if (nativeDualFiles.has(file)) nativeDual.push(stem);
-    if (!isBridged && !nativeDualFiles.has(file)) {
-      problems.push(`${file} is not bridged and not listed as a native-dual exception`);
+    if (selfRegisteredFiles.has(file)) selfRegistered.push(stem);
+    if (!isBridged && !selfRegisteredFiles.has(file)) {
+      problems.push(`${file} is not bridged and not listed as a self-registered exception`);
     }
-    if (isBridged && nativeDualFiles.has(file)) {
-      problems.push(`${file} is bridged and also listed as native-dual`);
+    if (isBridged && selfRegisteredFiles.has(file)) {
+      problems.push(`${file} is bridged and also listed as self-registered`);
     }
   }
 
-  for (const file of nativeDualFiles) {
+  for (const file of selfRegisteredFiles) {
     if (!existingFiles.has(file)) {
-      problems.push(`${file} is listed as native-dual but has no file`);
+      problems.push(`${file} is listed as self-registered but has no file`);
     }
   }
 
   return {
     bridged: bridged.sort(),
-    nativeDual: nativeDual.sort(),
+    selfRegistered: selfRegistered.sort(),
     problems,
   };
 }

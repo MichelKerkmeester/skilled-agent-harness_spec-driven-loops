@@ -9,7 +9,7 @@ trigger_phrases:
   - "review graph events"
 importance_tier: important
 contextType: implementation
-version: 1.11.5.0
+version: 1.11.6.0
 ---
 
 # Deep Review State Log Records
@@ -94,9 +94,11 @@ The projected variant of this row is thin: only `type`, `topic`, `maxIterations`
 
 **Required fields:** `type`, `mode`, `iteration`, `status`, `focus`, `dimensions`, `filesReviewed`, `findingsCount`, `findingsSummary`, `findingsNew`, `findingDetails`, `newFindingsRatio`, `sessionId`, `generation`, `lineageMode`, `timestamp`, `durationMs`
 
+**Row time:** the review agent writes `timestamp`, but the append gateway times an iteration record by its own clock. Any time field on the record, `occurredAt` included, never sets the ledger event time. The ledger projection writes the event time as `timestamp` and keeps the record's own stamp as `claimedTimestamp`, so a wrong or future stamp stays visible without timing the row. Only `type: "iteration"` records are timed this way. The workflow's own rows, such as `iteration_start` and the dispatch and containment event rows, keep the `timestamp` their writer gave them.
+
 **Legacy field:** `run`, the older name for `iteration`. Readers still accept it and the fan-out stop-policy validator does not; new records write `iteration`. Event records keep their own `run` field.
 
-**Optional fields:** `parentSessionId`, `continuedFromRun`, `findingsRefined`, `findingRefs`, `traceabilityChecks`, `coverage`, `noveltyJustification`, `ruledOut`, `focusTrack`, `scoreEstimate`, `segment`, `convergenceSignals`, `graphEvents`
+**Optional fields:** `parentSessionId`, `continuedFromRun`, `findingsRefined`, `findingRefs`, `traceabilityChecks`, `coverage`, `noveltyJustification`, `ruledOut`, `focusTrack`, `scoreEstimate`, `segment`, `convergenceSignals`, `graphEvents`, `claimedTimestamp` (written by the ledger projection, never by the agent)
 
 | Required Field | Type | Description |
 |---------------|------|-------------|

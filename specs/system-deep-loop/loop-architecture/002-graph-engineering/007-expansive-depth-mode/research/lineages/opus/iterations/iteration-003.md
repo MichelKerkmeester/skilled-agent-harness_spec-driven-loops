@@ -1,125 +1,109 @@
-# Iteration 3: Prior art on frontier growth, stuck detection, stop rules and multi-executor fan-out
+# Iteration 3: Prior art on worker honesty, heterogeneous executors and partial reruns (F-1-005)
 
 ## Focus
-Frontier node F-1-005 (depth 1, scope web sources on agentic deep-research and code-review systems, compared against .skilled/skills/system-deep-loop): Prior art: how do other agentic research and code-review systems handle frontier growth, stuck detection, stop rules and multi-executor fan-out, and which of their ideas would simplify or harden this program? Cite source URLs.
+Frontier node F-1-005 asks two things. How do Inspect, OpenHands, LangGraph, the Claude Agent SDK and Claude Code headless, and AutoGen verify worker honesty, normalize heterogeneous executors and rerun partial failures? And which of their ideas fits `fanout-run.cjs`?
+
+The web queries named only products and features, with no personal data. The previous run already cited Inspect `eval_set` (backlog row 10, built) and the OpenHands stuck detector (row 28, held). This pass reports only what those rows did not take from them.
 
 ## Actions Taken
-1. Seven web searches covering:
-   - recursive deep-research trees (dzhng/deep-research, GPT Researcher, Static-DRA)
-   - STORM/Co-STORM
-   - Anthropic's multi-agent research system
-   - the LangGraph recursion limit
-   - the OpenHands stuck detector
-   - mini-swe-agent limits (no usable result)
-   - Inspect AI eval sets
-2. Fetched the Anthropic engineering post with `curl` and extracted the passages on synchronous execution and resume.
-3. No personal data went into any query.
+Eight WebSearch queries, each mapped onto the runner code read in iterations 1 and 2:
+- Inspect eval sets and eval-retry
+- the OpenHands stuck detector
+- LangGraph durable execution
+- Agent SDK hooks
+- Claude Code headless stream-json
+- AutoGen termination and state
+- the Inspect ModelAPI
+- Inspect transcript events
 
 ## Findings
-1. **Frontier growth elsewhere is two scalars, not admission checks.**
-   - **dzhng/deep-research:** the reference implementation, under 500 lines, recurses on `breadth` and `depth` with no per-proposal admission [SOURCE: https://github.com/jamisonl/deep-research] [SOURCE: https://docsearch.algolia.com/mcp/docs/repo/dzhng/deep-research].
-   - **GPT Researcher:** halves breadth per level with a floor of 2 and decrements depth, at defaults breadth 4, depth 2, concurrency 4 [SOURCE: https://docs.gptr.dev/docs/gpt-researcher/gptr/deep_research] [SOURCE: https://docs.gptr.dev/blog/2025/02/26/deep-research].
-   - **Static-DRA:** a node at the depth limit is researched directly rather than split [SOURCE: https://arxiv.org/html/2512.03887v2].
-   - **This program, by contrast:**
-     - six ordered checks (`frontier-admit.cjs:732-804`)
-     - per-node and run-wide caps
-     - a 50/35/15 band split whose projection closes nodes `exhausted:budget` (`frontier-admit.cjs:360-396`)
-   - That projection-time close is the mechanism D-011-10 had to work around.
-   - **Change to evaluate, not adopt blindly:** replace the band split with a geometric child cap, `maxChildren(depth) = max(2, ceil(maxChildrenPerNode / 2^(depth-1)))`, enforced at admission. Then the tree is shaped before growth, and no node is closed retroactively for budget.
-   - Keep relevance, dedupe and cycle, which the scalar systems lack and which matter for a model-proposed tree.
-   - Value M, effort M, risk medium: the band budget is wired into both reducers and the stop veto.
-   [INFERENCE: based on the cited breadth-halving designs and frontier-admit.cjs:360-396]
-2. **Stuck detection elsewhere keys on observable repetition, not a self-reported ratio.**
-   - **OpenHands:** its stuck detector is on by default. It fires on:
-     - the same action producing the same observation 4+ times
-     - an action-observation ping-pong over 6+ cycles
-     - repeated errors
-     - agent monologues
-   - Its thresholds are hard-coded, which an open issue asks to make configurable [SOURCE: https://docs.openhands.dev/sdk/guides/agent-stuck-detector] [SOURCE: https://github.com/OpenHands/software-agent-sdk/issues/762].
-   - **This program:** research stuck counting uses the leaf's own `newInfoRatio < convergenceThreshold` (`convergence.cjs:1460-1465`). A model that inflates its ratio is therefore never stuck.
-   - **Change:** in `deriveLoopCounters`, treat a node-bound pass as no-progress also when its `sourcesQueried` set and its finding ids repeat the previous pass on that node, whatever ratio it reported.
-   - Value M (hardening against ratio inflation), effort S, risk low.
-   [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1460] [SOURCE: https://docs.openhands.dev/sdk/guides/agent-stuck-detector]
-3. **Prior art confirms the hard cap as a pure safety cap, separate from the real exit.**
-   - **LangGraph:** `recursion_limit` (default 25) raises `GraphRecursionError` and is documented as a guard against non-terminating loops. Termination belongs in the routing logic [SOURCE: https://langchain-ai.github.io/langgraph/how-tos/recursion-limit] [SOURCE: https://python.langchain.com/docs/troubleshooting/errors/GRAPH_RECURSION_LIMIT].
-   - **This program:** it already orders `maxIterationsReached` first and lets it bypass every veto (deep-research.yaml:1264, convergence order step 1). That matches the prior art, so no change is needed.
-   - **Anthropic:** it embeds effort-scaling rules in the prompt, because agents misjudge effort [SOURCE: https://www.anthropic.com/engineering/multi-agent-research-system]. The rules: 1 agent and 3-10 calls for fact-finding, 2-4 subagents and 10-15 calls each for comparisons, 10+ for complex research.
-   - That supports keeping the expansive budget a deterministic function of the seed, as `frontier-admit.cjs budget` does, rather than a model choice.
-   [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1264]
-4. **Multi-executor reruns elsewhere are idempotent per output directory.**
-   - **Inspect AI:** re-running `eval_set` on the same log directory is a no-op once every task is done. `eval_retry` resumes interrupted tasks and keeps completed samples. Retries are automatic with a configurable count [SOURCE: https://inspect.aisi.org.uk/eval-sets.html] [SOURCE: https://inspect.aisi.org.uk/reference/inspect_eval-retry.html] [SOURCE: https://hawk.metr.org/user-guide/eval-set-config-reference/].
-   - This is the design iteration 2 derived for fan-out: classify each lineage directory before spawn and skip the complete ones.
-   - **Change:** make `fanout-run.cjs` re-entrant on the same `lineages/` directory:
-     - complete lineages are skipped
-     - failed or partial ones resume under their stored session id (`fanout-run.cjs:763-778` already keeps it for non-complete configs)
-     - merge runs over the union
-   - Value H, effort S-M, risk low.
-   [SOURCE: https://inspect.aisi.org.uk/eval-sets.html] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:763]
-5. **Anthropic's lessons on cost and failure map onto three existing choices: two are confirmed and one is open.** The post reports:
-   - multi-agent runs cost about 15× the tokens of chat
-   - a synchronous lead waiting on each subagent wave is a bottleneck
-   - restarting from the beginning after an error is "expensive and frustrating", so they resume from the failure point
-   - vague subagent briefs cause duplicated searches [SOURCE: https://www.anthropic.com/engineering/multi-agent-research-system]
-
-   How each lands here:
-   - Disjoint depth-1 nodes dealt per lineage (`frontier_scope`) are the right division of labor. Confirmed.
-   - Resume from the stored session is right. Confirmed.
-   - The open gap is that each lineage re-reads and re-executes the 2.4k-line workflow YAML at init, transcribing inline programs. This lineage spent its first several turns on that. Moving those programs into scripts (iteration 1, Finding 7) is the cost lever this prior art points at.
-   - Value H, effort M.
-   [INFERENCE: based on the Anthropic post and this lineage's own init transcript]
-6. **Co-STORM offers no automatic stop rule to borrow.** Its session ends when the user asks for the report, and its dynamic hierarchical mind map is shared state comparable to the frontier node store [SOURCE: https://raw.githubusercontent.com/stanford-oval/storm/HEAD/README.md] [SOURCE: https://arxiv.org/pdf/2408.15232v1.pdf]. Recorded as ruled out for stop-rule prior art.
+1. **Inspect: the harness, not the model, records every tool call and its timing.**
+   - Inspect eval logs hold `ModelEvent` and `ToolEvent` rows with a `completed` time and a `working_time`. Inspect writes these itself, without asking the model. [SOURCE: https://inspect.aisi.org.uk/reference/inspect_ai.event.html] [SOURCE: https://inspect.aisi.org.uk/eval-logs.html]
+   - That is the principle behind iteration 1's `passEvidence`. Honesty signals come from events the harness observed, never from fields the worker wrote.
+   - **Fit:** make the runner's per-lineage log the transcript. Store a normalized `tool_event` stream (`{t, tool, target}`) per lineage beside `fanout-lineage.out`, whatever the CLI.
+   - Value H, effort M, risk L.
+2. **Claude Code headless already emits the events the runner needs.**
+   - `--output-format stream-json` ends with a `result` message carrying the cost and session metadata, and `json` carries `total_cost_usd`. [SOURCE: https://code.claude.com/docs/en/headless]
+   - Third-party references list `num_turns`, `duration_ms` and `is_error` on that result, and say intermediate assistant and tool events appear only with `--verbose`. [SOURCE: https://pivanov.github.io/claude-wire/protocol/output-events.html] [SOURCE: https://0xranx.github.io/golembot/reference/coding-cli-claude-code.html]
+   - An unconfirmed user issue reports that `total_cost_usd` is cumulative per stream-json session, so the runner should take the *last* result rather than summing. [SOURCE: https://claudeissues.com/issue/83239-docs-total-cost-usd-is-cumulative-per-session-under-output-format-stream-json-bu]
+   - **Fit:** change cli-claude-code from `--output-format text` to `--output-format stream-json --verbose`. Teach `fanout-salvage.cjs` to read the last `result.total_cost_usd`, the `tool_use` blocks inside assistant messages, and the final `result` text, which salvage needs in place of today's text log. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:41-96]
+   - This extends held row 18's second half with the exact message shape.
+   - Value H, effort S-M, risk M: salvage of the final answer changes.
+3. **OpenHands: detect repetition from observed events, keep the thresholds configurable, and expect false positives.**
+   - The detector flags an action-and-observation pair that repeats 4 or more times, and two pairs alternating for 6 or more cycles. It reads only events after the last user message. [SOURCE: https://docs.openhands.dev/sdk/guides/agent-stuck-detector]
+   - A user issue shows it halting an agent that was told to poll on purpose. The fix there was a configurable threshold, raised from 4 to 10. [SOURCE: https://github.com/OpenHands/software-agent-sdk/issues/762]
+   - **Fit:** gen2's stamped review passes had the same per-pass shape: a few shell calls and two writes, repeated pass after pass (iteration 1, finding 4).
+     - Add an event-shape signal: N consecutive passes with the same tool-kind histogram and zero source reads.
+     - Use it only as a *flag* feeding `unexamined`, never as a hard stop.
+     - Put the threshold in config.
+   - This sharpens held row 28 with the false-positive lesson.
+   - Value M, effort S, risk M.
+4. **LangGraph: keep the successful work of a failed step, and throw away the writes of a timed-out attempt.**
+   - When one node in a super-step fails, the pending writes of the nodes that succeeded are stored, and a resume does not re-run them. [SOURCE: https://docs.langchain.com/oss/python/langgraph/durable-execution]
+   - On a timeout, the writes from the failed attempt are cleared. [SOURCE: https://docs.langchain.com/oss/python/langgraph/fault-tolerance.md]
+   - **Fit:** the runner already keeps landed iterations on resume (packet 013, no-redispatch of a landed iteration). The missing half is clearing the half-written iteration of a killed attempt: an `iteration-NNN.md` or delta with no gateway record.
+     - On resume, move such orphans to `_archive/` before the lineage restarts. Otherwise the leaf's write-once rule makes it pick N+1 and leave a gap.
+     - The runner's resume path was not read this pass, so this is a follow-up to verify.
+   - [INFERENCE: based on the LangGraph timeout rule and the write-once iteration contract in .skilled/agents/deep-research.md]
+   - Value M, effort S, risk L.
+5. **AutoGen: termination is a composable value, and external stop is one condition among others.**
+   - AgentChat termination conditions combine with `&` and `|`. The built-ins include token-usage, timeout and `ExternalTermination`, for a UI stop button. [SOURCE: https://microsoft.github.io/autogen/0.4.7/user-guide/agentchat-user-guide/tutorial/termination.html]
+   - Team state saves and loads for resume. [SOURCE: https://mintlify.com/microsoft/autogen/guides/multi-agent-workflows]
+   - **Fit:** iteration 2's `--stop` is the runner's `ExternalTermination`. It should end lineages through the same terminal path as a cap stop, writing a `stopped` outcome per lineage with a rerun command, rather than a bare signal kill.
+   - The convergence side already composes its stop rules in `convergence.cjs`, so nothing new is needed there.
+   - Value M, effort S, risk L.
+6. **Inspect ModelAPI: one adapter interface per provider, with generation settings kept apart.**
+   - A provider subclasses `ModelAPI` and implements `generate()`. That method converts Inspect's messages, tools and `GenerateConfig` into the provider's native form. [SOURCE: https://inspect.aisi.org.uk/extensions-model-api.html] [SOURCE: https://inspect.aisi.org.uk/reference/inspect_ai.model.html]
+   - **Fit:** this is the single adapter contract Q2 asks about. Each `LINEAGE_COMMAND_ADAPTERS` entry would return one object:
+     - `argv`;
+     - `promptChannel` (`stdin` or `argv` or `file`);
+     - `effective` (`{permission, sandboxEnforcement, effortApplied}`);
+     - `parseLog(stdout)` returning `{events, costUsd, finalText}`;
+     - `classifyFailure(stderr, stdout)`.
+   - One conformance test would run every kind against a fixture log per kind.
+   - Value H, effort M, risk M.
+7. **Inspect eval sets: completion lives in the log directory, so a rerun on a finished set is a no-op. That part is built.**
+   - `eval-retry` resumes one interrupted task from its log file. [SOURCE: https://inspect.aisi.org.uk/eval-sets.html] [SOURCE: https://inspect.aisi.org.uk/reference/inspect_eval-retry.html]
+   - The runner already has both: the finished-lineage skip and `--only-lineage`.
+   - What Inspect does not cover is the provider swap on a retry. Iteration 2's `--lineage-override` stays this runner's own gap, and I found no prior art for it. [INFERENCE: based on iteration 2 finding 3 and the eval-retry reference]
 
 ## Questions Answered
-- F-1-005: prior art on all four axes, with three adoptable changes (Findings 2, 4 and 5) and one candidate to evaluate (Finding 1).
+- F-1-005 (prior art): every named system was mapped, and findings 1, 2 and 6 are the ideas that fit best.
 
 ## Questions Remaining
-- F-1-001 part B.
+- F-2-006: the log shape for each runtime. Finding 2 settles Claude, and the rest remain.
+- F-2-007: honesty thresholds.
 
 ## Ruled Out
-- Co-STORM as a source of stop rules (user-terminated).
-- mini-swe-agent limits: the search returned no primary source.
+- **AutoGen's text-mention termination as a model:** a stop the model announces itself is exactly the self-report this work is trying to avoid.
+- **Inspect `working_time` as a pass-duration signal:** its own docs say it can undercount overlapped work, and iteration 1 already found duration alone weak.
 
 ## Dead Ends
-- The mini-swe-agent `step_limit` and `cost_limit` search returned no mini-swe-agent docs.
+- Claude Agent SDK hooks: a `PostToolUse` hook could keep an audit trail [SOURCE: https://code.claude.com/docs/en/agent-sdk/hooks]. Installing one means writing into the operator's Claude config dir, though, and stream-json gives the same events without that write. Dropped in favour of finding 2.
 
 ## Edge Cases
 - Ambiguous input: none.
-- Contradictory evidence: GPT Researcher's docs disagree on the breadth default (4 versus 3). Not load-bearing here.
-- Missing dependencies: none.
-- Partial success: the mini-swe-agent search failed. Other sources covered the same axis.
+- Contradictory evidence: Anthropic's SDK cost docs say each result reflects that one call, while a user issue reports cumulative cost under stream-json. Both are cited, and taking the last result is safe under either reading.
+- Missing dependencies: no WebFetch tool. Search summaries stand in for full pages, and the field names from third-party pages are marked as such.
+- Partial success: none.
 
 ## Sources Consulted
-- https://github.com/jamisonl/deep-research
-- https://docsearch.algolia.com/mcp/docs/repo/dzhng/deep-research
-- https://docs.gptr.dev/docs/gpt-researcher/gptr/deep_research
-- https://docs.gptr.dev/blog/2025/02/26/deep-research
-- https://arxiv.org/html/2512.03887v2
-- https://docs.openhands.dev/sdk/guides/agent-stuck-detector
-- https://github.com/OpenHands/software-agent-sdk/issues/762
-- https://langchain-ai.github.io/langgraph/how-tos/recursion-limit
-- https://python.langchain.com/docs/troubleshooting/errors/GRAPH_RECURSION_LIMIT
-- https://www.anthropic.com/engineering/multi-agent-research-system
-- https://inspect.aisi.org.uk/eval-sets.html
-- https://inspect.aisi.org.uk/reference/inspect_eval-retry.html
-- https://hawk.metr.org/user-guide/eval-set-config-reference/
-- https://raw.githubusercontent.com/stanford-oval/storm/HEAD/README.md
-- https://arxiv.org/pdf/2408.15232v1.pdf
-- .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:360-396, 732-804
-- .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1460-1465
-- .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:763-778
+- https://inspect.aisi.org.uk/eval-sets.html ; https://inspect.aisi.org.uk/reference/inspect_eval-retry.html ; https://inspect.aisi.org.uk/reference/inspect_ai.event.html ; https://inspect.aisi.org.uk/eval-logs.html ; https://inspect.aisi.org.uk/extensions-model-api.html ; https://inspect.aisi.org.uk/reference/inspect_ai.model.html
+- https://docs.openhands.dev/sdk/guides/agent-stuck-detector ; https://github.com/OpenHands/software-agent-sdk/issues/762
+- https://docs.langchain.com/oss/python/langgraph/durable-execution ; https://docs.langchain.com/oss/python/langgraph/fault-tolerance.md
+- https://code.claude.com/docs/en/headless ; https://code.claude.com/docs/en/agent-sdk/hooks ; https://pivanov.github.io/claude-wire/protocol/output-events.html ; https://0xranx.github.io/golembot/reference/coding-cli-claude-code.html ; https://claudeissues.com/issue/83239-docs-total-cost-usd-is-cumulative-per-session-under-output-format-stream-json-bu
+- https://microsoft.github.io/autogen/0.4.7/user-guide/agentchat-user-guide/tutorial/termination.html ; https://mintlify.com/microsoft/autogen/guides/multi-agent-workflows
+- .skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:41-96
 
 ## Assessment
-- New information ratio: 0.75
+- New information ratio: 0.71
 - Questions addressed: F-1-005
 - Questions answered: F-1-005
 
 ## Reflection
-- What worked and why: searching for named systems rather than generic terms returned primary docs (OpenHands, Inspect, Anthropic).
-- What did not work and why: the generic limits search for mini-swe-agent drifted to unrelated crates.
-- What I would do differently: fetch the OpenHands `stuck_detector.py` source to cite exact thresholds rather than the docs page.
+- **What worked:** reading each system for one mechanism and then naming the runner line it maps to. Pure surveys add nothing here.
+- **What did not work:** none of the searches gave Claude's stream-json tool event schema from an official source.
+- **What I would do differently:** pull a live `claude -p --output-format stream-json --verbose` sample. That would spawn a CLI, though, which this lineage must not do.
 
 ## Recommended Next Focus
-F-1-001 part B:
-- the fanout-run.cjs adapter table and synthesis-name tolerance
-- the size of convergence.cjs
-- the YAML confirm and dry-run scaffolding
+F-2-006: map the log shape of every runtime against the adapter contract in finding 6.

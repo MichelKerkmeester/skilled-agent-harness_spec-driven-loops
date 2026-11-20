@@ -1451,6 +1451,30 @@ describe('convergence.cjs research focus alignment guard', () => {
     expect(focusAlignment.status).toBe('failed');
   });
 
+  it('reports sourceDiversity as insufficient when the graph holds no answered question', () => {
+    const namespace = uniqueNamespace('convergence', 'research');
+    namespaces.push(namespace);
+    const fixture = fixtureFromGatewayRun(researchRunWithIterations([
+      {
+        keyQuestions: ['Which file owns the stop?'],
+        answeredQuestions: ['Which file owns the stop?'],
+      },
+    ]));
+
+    const result = runScript('convergence', stopDecisionArgs(namespace, fixture));
+    expect(result.exitCode, result.stderr).toBe(0);
+    const stopDecision = result.json.stop_decision as {
+      gates: { qualityGuards: { guards: { sourceDiversity: { status: string; passed: boolean } } } };
+      inputs: { research: { answeredQuestionSourceCounts: unknown } };
+    };
+
+    expect(stopDecision.inputs.research.answeredQuestionSourceCounts).toEqual({});
+    expect(stopDecision.gates.qualityGuards.guards.sourceDiversity).toMatchObject({
+      status: 'insufficient',
+      passed: false,
+    });
+  });
+
   it('recovers focusAlignment after a later aligned iteration', () => {
     const fixture = fixtureFromGatewayRun(researchRunWithIterations([
       {
