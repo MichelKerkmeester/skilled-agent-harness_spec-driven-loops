@@ -59,7 +59,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `npx vitest run tests/skill-graph/refresh-in-background.vitest.ts tests/scorer/semantic-shadow-cosine.vitest.ts tests/handlers/advisor-status.vitest.ts` exits 0 from `.skilled/skills/system-skill-advisor/runtime`
 - [x] `npx vitest run` exits 0 from `.skilled/skills/system-skill-advisor/runtime` after `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted`
 - [x] `rg -n 'embeddingCoverage\(\)' .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts` prints nothing
-- [ ] `git merge-base --is-ancestor worktrees/480-ollama-lane-honest-and-closeout origin/main` exits 0
+- [x] `git merge-base --is-ancestor worktrees/480-ollama-lane-honest-and-closeout origin/main` exits 0
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/*/003-pi-*/016-pi-*/020-* --strict` prints `RESULT: PASSED`, and `acceptance-criteria.md` there has no `Unmet` row
 <!-- /ANCHOR:completion -->
 
@@ -79,6 +79,7 @@ and findings belong here.
 |------|-------|----------|
 | Plan | Done | spec, plan, tasks and acceptance criteria written by `/speckit:plan`; strict `RESULT: PASSED` |
 | Fixes and tests | Done | c411bcc842c; three suites 50 passed (46 before), each new test failed on the old source; full suite 2559 passed 8 skipped; typecheck 0; @review APPROVED, P2-1 and P2-3 applied, P2-2 deferred |
+| Merge and push | Done | merged as 1bb38778a03, pushed to origin/main; merge-base check exits 0; full suite on main 2559 passed |
 
 ### Deviations and findings
 

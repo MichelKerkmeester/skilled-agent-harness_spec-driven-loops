@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/020-review-p1-fixes"
-    last_updated_at: "2026-11-20T12:36:19Z"
+    last_updated_at: "2026-11-20T12:43:28Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed three P1s; c411bcc842c, 2559 tests pass"
-    next_safe_action: "Run the merge of worktree 480 into main, then push"
+    recent_action: "Merged 1bb38778a03 and pushed to origin/main"
+    next_safe_action: "None; phase 020 is complete"
     packet_purpose: "Purpose: A running daemon reaches full vector coverage after every reindex, the recommend path never opens the database read-write, and status reports the lane the way the scorer treats it."
     blockers: []
     key_files:
@@ -19,17 +19,17 @@ _memory:
       - ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts"
       - ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts"
     session_dedup:
-      fingerprint: "sha256:057942606f333a0fc1a56dc79bfd69b959c1598b140d975c0c06c101214705c5"
+      fingerprint: "sha256:8f2246ae5659b79933b9de2db052ac41de6cd2e4fafd28e6c2029a00e795d514"
       session_id: "scaffold-020-review-p1-fixes"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
       workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-20T12:36:19Z"
+      savedAt: "2026-11-20T12:43:28Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -112,6 +112,8 @@ Each test was written first and run against the old source, where it failed: the
 | `quality-gate.cjs --files` on the 8 changed files | Exit 0; P0 0, P1 0, P2 0, nothing unverified |
 | @review gate validation | APPROVED, advisory 96/100; P2-1 and P2-3 applied, P2-2 deferred |
 | `rg -n 'embeddingCoverage\(\)' .../lanes/semantic-shadow.ts` | No output |
+| Merge and push | Fix `c411bcc842c` and docs `fe3b7664e94` merged as `1bb38778a03`, pushed; `git merge-base --is-ancestor worktrees/480-ollama-lane-honest-and-closeout origin/main` exits 0 |
+| Live status on main after the build | `freshness` live, `coverageComplete` true, skills 15/15, commands 47/47, `disabledReason` `lane_weight_zero` at the default weight |
 <!-- /ANCHOR:verification -->
 
 ---
