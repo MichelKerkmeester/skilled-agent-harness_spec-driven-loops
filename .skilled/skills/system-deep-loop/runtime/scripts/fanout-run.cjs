@@ -1117,9 +1117,12 @@ async function stopLiveFanoutRun(ledgerPath, argv = process.argv.slice(2)) {
     .map((lineage) => lineage.label));
   const runArgv = argv.filter((token) => token !== '--stop');
   const stopped = live.filter((lineage) => !survivors.includes(lineage));
+  // The ledger sits in the base artifact directory, beside the lineages directory.
+  const lineagesDir = path.join(path.dirname(ledgerPath), 'lineages');
   for (const lineage of stopped) {
     if (!stillOpen.has(lineage.label)) continue;
     appendFanoutStatusLedger(ledgerPath, stoppedLineageRow({ label: lineage.label, pid: lineage.pid, argv: runArgv }));
+    redactTerminalLineageLogs(path.join(lineagesDir, lineage.label));
   }
   const brief = ({ label, pid }) => ({ label, pid });
   return { stopped: stopped.map(brief), survivors: survivors.map(brief), refused };

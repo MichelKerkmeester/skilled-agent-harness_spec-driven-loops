@@ -101,9 +101,17 @@ describe('fanout-run.cjs — a signal stop closes its lineages in the ledger', (
       const failedLabel = await waitFor(() => readLedger(baseDir).find((row) => row.event === 'failed' && row.label)?.label);
       const running = await waitFor(() => readLedger(baseDir).find((row) => row.event === 'spawned' && row.label !== failedLabel));
       ownedGroups.push(running.pid as number);
+      // A log kept from an earlier attempt, carrying what a provider echoes back.
+      const runningLog = join(baseDir, 'lineages', running.label as string, 'logs', 'fanout-lineage.out');
+      mkdirSync(join(baseDir, 'lineages', running.label as string, 'logs'), { recursive: true });
+      writeFileSync(runningLog, 'refused for dev@example.com in workspace wrk_AbCdEf123456\n');
 
       child.kill(signal);
       await closed;
+
+      const keptLog = readFileSync(runningLog, 'utf8');
+      expect(keptLog).not.toContain('dev@example.com');
+      expect(keptLog).not.toContain('wrk_AbCdEf123456');
 
       const ledger = readLedger(baseDir);
       const stoppedRows = ledger.filter((row) => row.event === 'stopped' && row.label);

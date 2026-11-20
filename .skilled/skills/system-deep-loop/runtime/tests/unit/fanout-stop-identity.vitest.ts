@@ -165,6 +165,38 @@ describe('fanout-run.cjs --stop — lineage identity', () => {
     expect(groupAlive(lineagePid)).toBe(false);
   }, 40_000);
 
+  it('masks the kept log of each lineage it stops, and leaves a refused lineage\'s log alone', async () => {
+    const fixture = makeSleepingRun('fanout-stop-identity-redact');
+    // No runner owns these pids, so --stop itself is the one that settles the lineage.
+    const stoppedPid = ownedSleeper();
+    const refusedPid = ownedSleeper();
+    const at = new Date().toISOString();
+    const rows = [
+      { event: 'started', label: 'kept', index: 0, at },
+      { event: 'spawned', label: 'kept', attempt: 1, pid: stoppedPid, at, status: 'running', process_start: processStart(stoppedPid) },
+      { event: 'started', label: 'refused', index: 1, at },
+      { event: 'spawned', label: 'refused', attempt: 1, pid: refusedPid, at, status: 'running' },
+    ];
+    writeFileSync(join(fixture.baseDir, 'orchestration-status.log'), rows.map((row) => `${JSON.stringify(row)}\n`).join(''));
+    const rawLog = 'refused for dev@example.com in workspace wrk_AbCdEf123456\n';
+    const logPathOf = (label: string) => join(fixture.baseDir, 'lineages', label, 'logs', 'fanout-lineage.out');
+    for (const label of ['kept', 'refused']) {
+      mkdirSync(join(fixture.baseDir, 'lineages', label, 'logs'), { recursive: true });
+      writeFileSync(logPathOf(label), rawLog);
+    }
+
+    const stop = await runStop(fixture);
+
+    expect(lastJson(stop.stdout)).toMatchObject({ stopped: [{ label: 'kept', pid: stoppedPid }] });
+    expect(readLedger(fixture.baseDir).filter((row) => row.event === 'stopped').map((row) => row.label)).toEqual(['kept']);
+    const masked = readFileSync(logPathOf('kept'), 'utf8');
+    expect(masked).not.toContain('dev@example.com');
+    expect(masked).not.toContain('wrk_AbCdEf123456');
+    expect(masked).toContain('<email>');
+    expect(masked).toContain('<id>');
+    expect(readFileSync(logPathOf('refused'), 'utf8')).toBe(rawLog);
+  }, 40_000);
+
   it('refuses a pid whose process is not the recorded lineage, or that has no recorded identity', async () => {
     const fixture = makeSleepingRun('fanout-stop-identity-refuse');
     const reusedPid = ownedSleeper();
