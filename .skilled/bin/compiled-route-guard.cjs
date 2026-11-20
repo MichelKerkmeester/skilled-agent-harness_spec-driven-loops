@@ -163,7 +163,7 @@ function loadExemptions() {
 /**
  * Inspect one hub: manifest validity, freshness against its inputs, then authored drift.
  * @param {string} hubId - The hub to inspect.
- * @returns {{hubId: string, ok: boolean, reason: string, fix?: string, detail?: string}} The hub's verdict.
+ * @returns {{hubId: string, ok: boolean, reason: string, fix?: string|null, detail?: string}} The hub's verdict.
  */
 function inspect(hubId) {
   const skillRoot = path.join(SKILLS_ROOT, hubId);

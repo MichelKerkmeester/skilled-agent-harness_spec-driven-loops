@@ -49,6 +49,7 @@
 # Exit Codes:
 #   0 - every gate passed, or the ones that would block were skipped or bypassed
 #   1 - a gate blocked the push; its message on stderr names the gate
+#   other - an unexpected command failure aborted the hook under set -e; its status passes through
 
 set -euo pipefail
 

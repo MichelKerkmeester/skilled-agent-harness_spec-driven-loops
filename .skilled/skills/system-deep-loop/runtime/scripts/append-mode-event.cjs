@@ -174,7 +174,9 @@ async function resolveModeAdapter(mode) {
  * Append one event to a mode's authorized ledger through the mode append gateway.
  *
  * Reads the flags from argv, writes one JSON result line to stdout and exits the
- * process: 0 on success, 1 on an input error, 2 on an authority, binding or append refusal.
+ * process: 0 on success, 1 on an unreadable event file, 2 on an authority, binding or append
+ * refusal. A thrown error rejects instead, and the caller exits 3 for an unknown flag
+ * (INPUT_VALIDATION) and 1 for any other.
  *
  * @returns {Promise<void>} Rejects on a thrown error; otherwise the process exits before it settles
  */
