@@ -103,6 +103,51 @@ describe('thin continuity record', () => {
     );
   });
 
+  it('accepts a one-line recent_action whose dots sit inside versions and dotted tokens', () => {
+    for (const recentAction of [
+      'Released sk-code v2.1.3.0',
+      'Patched fanout-run.cjs args, e.g. the lane flag.',
+    ]) {
+      const result = validateThinContinuityRecord({
+        packet_pointer: '026-graph-and-context-optimization/006-canonical-continuity-refactor',
+        last_updated_at: '2026-04-11T16:48:00Z',
+        last_updated_by: 'gate-c-worker',
+        recent_action: recentAction,
+        next_safe_action: 'Review parity fixtures',
+        blockers: [],
+        key_files: [],
+        completion_pct: 10,
+        open_questions: [],
+        answered_questions: [],
+      });
+
+      expect(result.errors).toEqual([]);
+      expect(result.ok).toBe(true);
+    }
+  });
+
+  it('still rejects a two-sentence recent_action with no discourse marker', () => {
+    const result = validateThinContinuityRecord({
+      packet_pointer: '026-graph-and-context-optimization/006-canonical-continuity-refactor',
+      last_updated_at: '2026-04-11T16:48:00Z',
+      last_updated_by: 'gate-c-worker',
+      recent_action: 'Bumped v2.1.3.0. Tests pass.',
+      next_safe_action: 'Review parity fixtures',
+      blockers: [],
+      key_files: [],
+      completion_pct: 10,
+      open_questions: [],
+      answered_questions: [],
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.errors).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ code: 'MEMORY_006', field: 'recent_action' }),
+      ]),
+    );
+  });
+
   it('fails budget enforcement after normalization when the fragment remains oversized', () => {
     const packetPointer = Array.from({ length: 60 }, (_, index) => `segment-${index.toString().padStart(2, '0')}-canonical-continuity`)
       .join('/');
