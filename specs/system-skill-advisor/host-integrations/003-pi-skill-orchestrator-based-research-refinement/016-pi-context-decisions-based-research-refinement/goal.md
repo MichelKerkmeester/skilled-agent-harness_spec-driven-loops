@@ -127,6 +127,7 @@ and findings belong here.
 | 014 review fixes | Done | Worktree 475, seven commits `5f1bfa57c2d` to `a7964556816`: eight P2 findings fixed, R1-P2-004 accepted. `VT` 500 passed, `PY` pass=120, @review APPROVED, Luna refutation 5 of 6 hold. 014 strict `RESULT: PASSED` |
 | 014 merged and saved | Done | Merge c8404904544 on main, no push; main build exit 0, vitest 523 passed, Python 120/0, 17 of 17 strict PASSED, criterion 1 sk-code first after daemon restart; worktree 475 removed |
 | Phase 018 | Done | merged 62d69f4bb7d, pushed; runtime 2537, bin 86, Python 122; live orphan exit 6 s, watchdog reap 245 s |
+| Phase 019 | Done | merged 519b2b1ef8e, pushed; main 15/15 skills and 47/47 commands current at weight 0; ablation 156 vs 161 on four matching runs keeps weight 0; both alignment runs closed; runtime 2556, bin 94, Python 122 |
 
 ### Deviations and findings
 

@@ -64,7 +64,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/match-decision-table.js --scan-orphans` lists no ended session that was not skipped with a reason
 - [ ] `ls specs/system-skill-advisor/*/003-pi-*/016-pi-*/019-*/evidence/{skilled,doc}-alignment/report.md` lists two files, and `implementation-summary.md` names each finding in both reports as fixed or accepted with a reason
 - [ ] `git merge-base --is-ancestor worktrees/480-ollama-lane-honest-and-closeout origin/main` exits 0
-- [ ] On main, `node .skilled/bin/skill-advisor.cjs advisor_status --include-semantic-health true --format json` shows `coverageComplete: true`, with `embedded` equal to `total` for skills and for commands
+- [ ] On main, `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --include-semantic-health true --format json` shows `coverageComplete: true`, with `embedded` equal to `total` for skills and for commands
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/*/003-pi-*/016-pi-*/019-* --strict` prints `RESULT: PASSED`, and `acceptance-criteria.md` there has no `Unmet` row
 <!-- /ANCHOR:completion -->
 
@@ -84,10 +84,12 @@ and findings belong here.
 |------|-------|----------|
 | Spec docs | Done | written 2026-11-19 |
 | Build, ablation, docs, orphan answers | Done | All five suites green on the final tree: runtime 2553 passed 6 skipped, Python 122, bin 94, spec-kit 202, DSH 18 |
+| Finalization | Done | merged 519b2b1ef8e and 71acd3069ef, pushed; main 15/15 and 47/47 current; both alignment runs closed; suites green with and without Ollama |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Amended 2026-11-19 | Operator: "Create goal for all open work / Also add /local-doc-alignment and /local-skilled-alignment to goal for finalization". Added D6, D7 and criteria 4, 6 and 7 |
+| Amended 2026-11-20 | Criterion 6's command lacked `--workspace-root`, which `advisor_status` requires (exit 64); the argument is added and the check is unchanged |
 <!-- /ANCHOR:log -->

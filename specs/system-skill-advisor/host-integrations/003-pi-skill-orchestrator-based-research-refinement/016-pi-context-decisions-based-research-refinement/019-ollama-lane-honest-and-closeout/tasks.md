@@ -64,8 +64,8 @@ contextType: "implementation"
 - [x] T012 Docs, `SKILL.md` and changelogs. Verify: the docs state the shipped weight and the new behavior. Evidence: 22 doc files, ENV-REFERENCE, SKILL.md 1.3.0.0 and both changelogs state weight 0 and the background refresh.
 - [x] T014 Commit the change and one commit per spec track, then run `/local-skilled-alignment` over the branch and `/local-doc-alignment` over a new advisor topic (`evidence/`). Verify: both `report.md` files exist. Evidence: both runs on vibe-deepseek, :auto; reports in `evidence/`.
 - [x] T015 Fix or accept each alignment finding, test first for a code fix. Verify: `implementation-summary.md` names every finding id with its outcome. Evidence: every finding fixed or accepted with a reason in implementation-summary.md; code fixes failed before and pass after.
-- [ ] T016 Stop only the `ollama serve` this phase started and rerun the suites. Verify: port 11434 refuses and each suite matches its no-Ollama baseline.
-- [ ] T013 Merge to main, push, restart the daemon and check the status block. Verify: `includeSemanticHealth` shows the decided lane state.
+- [x] T016 Stop only the `ollama serve` this phase started and rerun the suites. Verify: port 11434 refuses and each suite matches its no-Ollama baseline. Evidence: stopped only pid 85898, curl to 11434 exit 7; on main with Ollama down runtime 2554 passed 8 skipped (baseline 2537 and 8), Python 122, bin 94, spec-kit 202, DSH 18; after the generation fix 2555 and 8.
+- [x] T013 Merge to main, push, restart the daemon and check the status block. Verify: `includeSemanticHealth` shows the decided lane state. Evidence: merged as `519b2b1ef8e`, pushed `a2dc927a8a3..519b2b1ef8e`; main daemon recycled onto the new build and reported 15/15 and 47/47 current, weight 0.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -74,7 +74,7 @@ contextType: "implementation"
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]` (T013 to T016 wait on finalization)
+- [x] All tasks marked `[x]` 
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 <!-- /ANCHOR:completion -->
@@ -134,7 +134,7 @@ contextType: "implementation"
 ## Testing Checklist
 <!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--keep 3` leaves 3 archives. WEAK: Tests pass. -->
 
-- [ ] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-020 [P0] All acceptance criteria met Evidence: every AC row is Met.
 - [x] CHK-021 [P0] Manual testing complete Evidence: Live isolated daemon and watcher checks recorded in implementation-summary.md.
 - [x] CHK-022 [P1] Edge cases tested Evidence: Opt-out env, complete coverage and an empty description are tested.
 - [x] CHK-023 [P1] Error scenarios validated Evidence: Outage keeps vectors; prompt-embed failure degrades the lane.
@@ -195,7 +195,7 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 11/12 |
+| P0 Items | 12 | 12/12 |
 | P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 

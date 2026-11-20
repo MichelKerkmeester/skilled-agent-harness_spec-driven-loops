@@ -8,17 +8,30 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout"
-    last_updated_at: "2026-11-19T17:05:15Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-20T00:15:52Z"
+    last_updated_by: "generate-context"
+    recent_action: "Closed 019 on main: full vector coverage, alignment fixed, lane at 0"
+    next_safe_action: "Verify scan-orphans and recursive strict validation stay clean"
+    packet_purpose: "Purpose: Nothing from phases 014 to 018 is left open: the lane is correct and its weight rests on a fresh measurement, and every recorded gap is fixed or explained, and both alignment checks clear the change before it lands."
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts"
+      - ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts"
+      - ".skilled/bin/system-skill-advisor-launcher.cjs"
+      - ".skilled/commands/doctor/assets/doctor-setup.yaml"
+      - ".skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-ablation.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:8178270e1349f9c2debebdac8aa53ab73eaf5ac84da2d706d1049747d8beacd1"
       session_id: "scaffold-019-ollama-lane-honest-and-closeout"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-20T00:15:52Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -107,6 +120,9 @@ For the ablation, `ollama serve` (pid 85898) was started and warmed: a cold embe
 | Orphan scan after the writes | Only a still-running session (17), this session, and 2 answers no packet records |
 | Ablation after the alignment fixes (runs 6 to 9, runs 8 and 9 on the shipped code) | 156 with the lane, 161 without, 7 flips, no new none-gold fire, flip lists identical to runs 3 and 4; default stays 0 |
 | Suites after the alignment fixes (Ollama up) | Runtime 2556 passed, 6 skipped; Python 122/0; bin 94/94; spec-kit launchers 202 passed, 2 skipped; DSH 18/0 |
+| Main after merge `519b2b1ef8e` and push, Ollama up | The daemon recycled onto the new build; 8/15 and 0/47 at start, then 15/15 skills and 47/47 commands current, `coverageComplete: true`, within 5 s, at weight 0 |
+| Outage on main | Stopped only `ollama serve` pid 85898; port 11434 refused. A changed `sk-prompt` description read stale 1, missing 0 (vector kept), backend `unreachable`; restoring the text read 15/15 current again |
+| Generation counter after the database-directory pin | Found on main after the merge: the pinned daemon wrote `skill-graph-generation.json` into `runtime/database/` instead of the shared `.state/advisor/` file. `generation.ts` now treats an override naming the default database directory as no sandbox. The new containment test failed before and passes after |
 
 ### Alignment findings
 
@@ -161,4 +177,5 @@ For the ablation, `ollama serve` (pid 85898) was started and warmed: a cold embe
 - **Stale until Ollama returns.** A description changed while Ollama is down keeps its old vector, marked stale, until the next daemon start or watcher event with Ollama up.
 - **Two answers held.** One is a CLI update question asked before any spec folder was bound. The other is a routing-label rename with no packet of its own. No packet records either, so both stay pending for the operator.
 - **Writer defect.** A decisions-only `--full-auto` save with `--session-id` mints a `session_ref` into the target packet. The proposed fix is in `system-spec-kit/runtime/cli/core/workflow.ts` near line 2010: mint the pointer only when the payload carries continuity fields.
+- **Generation counter for a shared checkout.** When a daemon's database directory is not its workspace's default, as when one Skilled checkout serves another repository, the counter stays beside that database, as it did for any sandboxed daemon before.
 <!-- /ANCHOR:limitations -->

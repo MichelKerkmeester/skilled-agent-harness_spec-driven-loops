@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** `019-ollama-lane-honest-and-closeout`
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-11-19
 <!-- /ANCHOR:metadata -->
 
@@ -62,7 +62,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-007 | REQ-007 | Given OLLAMA_BASE_URL and OLLAMA_REQUEST_TIMEOUT_MS in the launcher env, When createChildEnv runs, Then both reach the child | `launcher-threshold-env.vitest.ts` OLLAMA forwarding case | Met | - |
 | AC-008 | REQ-008 | Given repeated runs on quiet main, When they finish, Then each one-off failure is reproduced and fixed or shown not to repeat | Python 10/10 and runtime 4/4 clean; the six daemon-start failures reproduced as a stale dist under vitest | Met | - |
 | AC-009 | REQ-009 | Given the orphan scan, When the writes finish, Then it lists only live or skipped sessions, each skip with its reason | `--scan-orphans` lists only the running session, this session and 2 held answers; skip reasons in implementation-summary.md | Met | - |
-| AC-011 | REQ-011 | Given the daemon on main with Ollama up, When status runs with `includeSemanticHealth`, Then skills and commands both read current equal to total | The live status block | Unmet | - |
+| AC-011 | REQ-011 | Given the daemon on main with Ollama up, When status runs with `includeSemanticHealth`, Then skills and commands both read current equal to total | Main daemon pid 11503 after merge `519b2b1ef8e`: skills 15/15 and commands 47/47 current, `coverageComplete: true`, within 5 s of start | Met | - |
 | AC-012 | REQ-012 | Given the doctor checks, When coverage is full at weight 0, Then they pass; without Ollama they read DEGRADED | Setup and embedder YAML and presentations share one rule: PASS on `coverageComplete` with a reachable backend, DEGRADED otherwise, never FAIL on weight 0 | Met | - |
 | AC-013 | REQ-013 | Given the committed branch, When both alignment commands run, Then their reports are in `evidence/` and each finding is fixed or accepted with a reason before the merge | `evidence/skilled-alignment/report.md` and `evidence/doc-alignment/report.md`; every finding id named in implementation-summary.md (`check-finding-ids.cjs` prints ALL_IDS_PRESENT) | Met | - |
 | AC-010 | REQ-010 | Given the docs, When they are searched, Then they state the shipped weight and behavior | Both alignment runs' doc findings fixed, listed in implementation-summary.md; `rg semantic_shadow` over the advisor docs shows weight 0 and the background refresh | Met | - |
@@ -91,7 +91,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-No. AC-011 waits on the merge and the live status check on main.
+Yes. Every criterion is met.
 <!-- /ANCHOR:closure -->
