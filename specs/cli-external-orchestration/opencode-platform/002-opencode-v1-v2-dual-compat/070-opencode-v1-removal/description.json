@@ -8,7 +8,7 @@
     "support",
     "repository"
   ],
-  "lastUpdated": "2026-11-20T15:52:36.935Z",
+  "lastUpdated": "2026-11-20T16:26:13.059Z",
   "specId": "070",
   "folderSlug": "opencode-v1-removal",
   "parentChain": [
@@ -16,7 +16,7 @@
     "opencode-platform",
     "002-opencode-v1-v2-dual-compat"
   ],
-  "memorySequence": 12,
+  "memorySequence": 13,
   "memoryNameHistory": [
     "19-11-26_18-44__removed-opencode-v1-from-the-repo-and-the-mac.md",
     "20-11-26_00-02__merged-the-opencode-v1-removal-into-main-without.md",
@@ -29,6 +29,7 @@
     "20-11-26_15-28__five-doc-lines-the-opencode-v2-doc-alignment-found.md",
     "20-11-26_15-52__renamed-the-plugin-inventory-key-nativedual-to.md",
     "20-11-26_16-09__record-the-operator-s-choice-of-which-open-items.md",
-    "20-11-26_16-52__follow-up-the-loop-shell-shim-s-opencode.md"
+    "20-11-26_16-52__follow-up-the-loop-shell-shim-s-opencode.md",
+    "20-11-26_17-26__shell-shim-follow-up-the-passthrough-comment-and.md"
   ]
 }

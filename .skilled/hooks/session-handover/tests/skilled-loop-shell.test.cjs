@@ -35,11 +35,16 @@ const INTERACTIVE = {
 };
 
 const PASSTHROUGH = {
-  claude: [['-p', 'hi'], ['--print'], ['--version'], ['-h'], ['doctor'], ['mcp', 'list'], ['--bg']],
+  // Claude's attach and OpenCode's mini open a session, but a hop cannot rebuild either.
+  claude: [
+    ['-p', 'hi'], ['--print'], ['--version'], ['-h'], ['doctor'], ['mcp', 'list'], ['--bg'],
+    ['attach', 'some-name'],
+  ],
   pi: [['-p', 'hi'], ['--version'], ['install', 'npm:x'], ['config'], ['--mode', 'rpc'], ['--list-models']],
   opencode: [
     ['run', 'hi'], ['serve'], ['--version'], ['-h'], ['models'],
     ['api'], ['service'], ['reload'], ['pair'], ['mini'],
+    ['--completions', 'zsh'], ['--completions=zsh'],
   ],
   codex: [
     ['exec', 'hi'], ['e', 'hi'], ['review'], ['login'], ['--version'], ['-V'], ['--help'],
