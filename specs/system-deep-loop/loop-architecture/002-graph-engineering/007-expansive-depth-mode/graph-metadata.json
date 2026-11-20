@@ -28,6 +28,8 @@
     "trigger_phrases": [
       "expansive depth mode",
       "expansive depth sub mode for deep research",
+      "depth-mode expansive",
+      "frontier veto",
       "expansive depth mode plan",
       "expansive depth mode tasks",
       "packet goal",
@@ -44,12 +46,12 @@
       "sub",
       "deep",
       "research",
+      "depth-mode",
+      "frontier",
+      "veto",
       "plan",
       "tasks",
-      "packet",
-      "goal",
-      "durable",
-      "directive"
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -223,7 +225,7 @@
     ],
     "causal_summary": "The deep-research and deep-review loops converge on the three to five questions seeded at init and stop once novelty drops, so a broad target such as \"research the last 100 commits for bugs, drift and improvements\" or \"analyze system-skill-advisor for chat-time auto-utilization\" gets a narrow, shallow answer",
     "created_at": "2026-11-17T07:53:58Z",
-    "last_save_at": "2026-11-20T01:50:34.548Z",
+    "last_save_at": "2026-11-20T06:01:11.682Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -235,10 +237,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d540f51896aa5657d76d1744133a625ab49e93543eb71a7b4acc2a1ab7d6f736",
+    "source_fingerprint": "sha256:34d97c080a703a6c0f156e709ee0e6db9dc59e93e916efcf184f3eada2d09e97",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4f02d128953c00d63273ea03b0d08713d3928a61a4ff65dba73200127526a09a",
+      "spec.md": "65536f6e4ebbc7af63012b667ebadd33b80a71ec98fd35bed16055ac968d2368",
       "plan.md": "6a56a3aaa01f0331b6c583bb878c61d031938abfeddad6ebb39c9e3ea0cac9fd",
       "tasks.md": "2bd96d25454ae3e7bf9fea94cadc73dac0e5379c35aaeb83792afd7a17257727",
       "decision-record.md": "3412a35e38ba63aa2749a328052d083fadecbdffa74aa4aa6c0977af62beb05a",

@@ -4,6 +4,8 @@ description: "Deep-research and deep-review runs stop early and stay on the ques
 trigger_phrases:
   - "expansive depth mode"
   - "expansive depth sub mode for deep research"
+  - "depth-mode expansive"
+  - "frontier veto"
 importance_tier: "normal"
 contextType: "general"
 ---
