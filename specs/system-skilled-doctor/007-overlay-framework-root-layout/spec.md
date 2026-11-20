@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-20 |
 | **Branch** | `main` |
 | **Parent Spec** | None, the packet sits at the `system-skilled-doctor` track root |
@@ -115,11 +115,11 @@ This table is an audit summary only. Each child's `plan.md` holds the per-phase 
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-engine-out-of-tree-overlay-folder/ | Runs in Skilled. The engine accepts `overlayDir: "../<name>"`, and every status, apply, guard, pre-commit, adopt, relayout and re-pin path works with the folder beside the tree | Planned |
-| 2 | 002-engine-framework-root-source-layout/ | Runs in Skilled. The `framework/` + `root/` rule becomes the default for every consumer. Old-layout trees keep applying and see a capped LAYOUT notice, and `apply --relayout` is the one migration step | Planned |
-| 3 | 003-engine-docs-and-release/ | Runs in Skilled. Docs, workflows, playbook and release note describe the default change and its migration step | Planned |
-| 4 | 004-barter-repin-and-relayout/ | Runs in ai-speckit, in one session. Barter re-pins onto the commit phase 3 produces, then relays every source with no adopt in between | Planned |
-| 5 | 005-barter-move-overlays-out-of-tree/ | Runs in ai-speckit. The three hooks first learn both locations, in their own commit. Then the folder moves to `ai-speckit/overlays/`, the setting names `../overlays`, and the checks, tests, scripts and docs follow | Planned |
+| 1 | 001-engine-out-of-tree-overlay-folder/ | Runs in Skilled. The engine accepts `overlayDir: "../<name>"`, and every status, apply, guard, pre-commit, adopt, relayout and re-pin path works with the folder beside the tree | Complete |
+| 2 | 002-engine-framework-root-source-layout/ | Runs in Skilled. The `framework/` + `root/` rule becomes the default for every consumer. Old-layout trees keep applying and see a capped LAYOUT notice, and `apply --relayout` is the one migration step | Complete |
+| 3 | 003-engine-docs-and-release/ | Runs in Skilled. Docs, workflows, playbook and release note describe the default change and its migration step | Complete |
+| 4 | 004-barter-repin-and-relayout/ | Runs in ai-speckit, in one session. Barter re-pins onto the commit phase 3 produces, then relays every source with no adopt in between | Complete |
+| 5 | 005-barter-move-overlays-out-of-tree/ | Runs in ai-speckit. The three hooks first learn both locations, in their own commit. Then the folder moves to `ai-speckit/overlays/`, the setting names `../overlays`, and the checks, tests, scripts and docs follow | Complete |
 
 ### Phase Transition Rules
 

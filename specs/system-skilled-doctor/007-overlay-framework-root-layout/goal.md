@@ -107,6 +107,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Parent goal authored | Done | `/create:goal ... phase-parent :auto`, five binding rows matched the five phase folders by name |
+| Phase 004 complete | Done | ai-speckit commits `c8cd005b173` (re-pin), `fd6dd18b66d` (changelog), `51e218edf2e` (relayout) |
+| Phase 005 complete | Done | 2026-11-20: ai-speckit commits `a954fc956ce` (hooks) and `2a8f454c8d1` (move); `.skilled-overlays.json` names `../overlays`, status PASSED with offLayout=0 |
 
 ### Deviations and findings
 

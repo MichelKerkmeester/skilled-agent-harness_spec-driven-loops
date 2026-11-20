@@ -161,17 +161,17 @@
     ],
     "causal_summary": "The doctor overlay engine refuses an overlay folder outside the vendored tree",
     "created_at": "2026-11-20T09:31:32Z",
-    "last_save_at": "2026-11-20T12:32:08.715Z",
+    "last_save_at": "2026-11-20T13:41:21.155Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d181ccef24ea79bbae466b8e9ae903fefa9a75fdd6b51e1b829fb8411972e18f",
+    "source_fingerprint": "sha256:c141bae2eca50e342edd5ef733d2560233f3be8bd67432dcb934c4fbe1edf95c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0126a14d8feb204a4d98567a41aeba72520cd1b119433bc031a17b1728fc355f"
+      "spec.md": "ce38d673a618654cfeb26b9d7c7524cc65e29532300f523580dfd90fe5d7a4cf"
     },
     "last_active_child_id": "system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release",
     "last_active_at": "2026-11-20T12:32:08.715Z"

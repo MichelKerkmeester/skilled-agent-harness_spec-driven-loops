@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree"
-    last_updated_at: "2026-11-20T10:38:03Z"
+    last_updated_at: "2026-11-20T17:30:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Recorded the phase as complete"
+    next_safe_action: "None; phase 5 is complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-005-barter-move-overlays-out-of-tree"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -84,11 +84,15 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase goal authored | Done | `/create:goal ... child :auto`, criteria taken from AC-001 to AC-008 and AC-010 |
-| Baselines before the move: in-sync count, git-write gate answers, `core.hooksPath` | Pending | |
+| Baselines before the move: in-sync count, git-write gate answers, `core.hooksPath` | Done | in-sync=487; `--session-kind` `ai-speckit`, `--check` `allow`; `core.hooksPath` `skilled/.opencode/scripts/git-hooks` (T003) |
+| Repin-runs hashes before the stage | Done | manifest and sync-state hashes and the 1516-file `repin-runs` list unchanged by the T050 stage |
+| Phase complete | Done | 2026-11-20: commits `a954fc956ce` (hooks accept both places) and `2a8f454c8d1` (move to `overlays/`) in ai-speckit; every acceptance row Met, see `implementation-summary.md` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| Test gate | `node --test` exits 1 with the 11 failures that failed at baseline before any change; judged as no failure beyond the baseline set |
+| `sh -n` vs `bash -n` | pre-commit is bash, so `sh -n` exits 2; `bash -n` exits 0 |
 | AC-009 not a goal criterion | Its allowed matches are listed in another file, so it cannot be checked from this goal alone. It stays a closure row in the phase's acceptance criteria |
 <!-- /ANCHOR:log -->
