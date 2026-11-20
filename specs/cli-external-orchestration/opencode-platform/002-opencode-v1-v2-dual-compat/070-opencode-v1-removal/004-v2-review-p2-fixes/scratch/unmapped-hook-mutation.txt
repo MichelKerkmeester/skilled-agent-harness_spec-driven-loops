@@ -1,0 +1,34 @@
+# Mutation checks on the renamed tree. Each mutation was applied to a working file, the suite run, and the file restored from a backup.
+== clean run
+✔ the plugin folder matches the inventory manifest (5.409667ms)
+✔ every bridged plugin maps all of its hooks (132.503958ms)
+ℹ pass 54
+ℹ fail 0
+== mutation A: 'dispose' removed from MAPPED_HOOKS, so a plugin that registers dispose holds an unmapped key
+0
+✔ the plugin folder matches the inventory manifest (2.182209ms)
+✖ every bridged plugin maps all of its hooks (65.780959ms)
+ℹ pass 53
+ℹ fail 1
+✖ every bridged plugin maps all of its hooks (65.780959ms)
+  AssertionError [ERR_ASSERTION]: session-cleanup.js unmapped hooks
+== mutation B: classifier looks for a name no plugin calls
+✖ the plugin folder matches the inventory manifest (2.656292ms)
+✔ every bridged plugin maps all of its hooks (1.021209ms)
+ℹ pass 51
+ℹ fail 3
+✖ the plugin folder matches the inventory manifest (2.656292ms)
+== restored
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+ℹ pass 54
+ℹ fail 0
+== after the non-empty assertion was added to the hook case: mutation B again
+✖ the plugin folder matches the inventory manifest (4.859208ms)
+✖ every bridged plugin maps all of its hooks (0.845708ms)
+ℹ pass 50
+ℹ fail 4
+✖ the plugin folder matches the inventory manifest (4.859208ms)
+✖ every bridged plugin maps all of its hooks (0.845708ms)
+== restored
+ℹ pass 54
+ℹ fail 0

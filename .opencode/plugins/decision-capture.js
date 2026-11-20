@@ -17,7 +17,7 @@ import {
   takeNudge,
 } from '../../.skilled/hooks/decision-capture/lib/capture-core.mjs';
 import { openCodeAnswerRecords } from '../../.skilled/hooks/decision-capture/bin/sweep-opencode.mjs';
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
@@ -101,4 +101,4 @@ async function decisionCapturePlugin(context) {
   };
 }
 
-export default dualPlugin('decision-capture', decisionCapturePlugin);
+export default definePlugin('decision-capture', decisionCapturePlugin);

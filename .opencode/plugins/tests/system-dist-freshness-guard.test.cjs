@@ -193,19 +193,21 @@ test('injects stale and check-error diagnostics without terminal output', async 
   assert.ok(output.system[0].split('\n').length <= 10, 'system brief must remain bounded');
 });
 
-test('treats an opencode2 run as a risky bash dispatch and opencode2 serve as safe', async (t) => {
-  const tmpDir = temporaryDirectory(t, 'system-dist-freshness-guard-opencode2-');
+// The guard matches any `opencode<digits>` launcher, so a renamed binary still refreshes before
+// it dispatches instead of running against stale dist output.
+test('treats a numbered opencode launcher run as a risky bash dispatch and its serve as safe', async (t) => {
+  const tmpDir = temporaryDirectory(t, 'system-dist-freshness-guard-numbered-launcher-');
   writeCodeModeFixture(tmpDir, true);
   const pluginModule = await loadPlugin();
   const hooks = await pluginModule.default.factory({ directory: tmpDir });
   const beforeHook = hooks['tool.execute.before'];
   const before = guardLogLineCount(tmpDir);
 
-  await beforeHook({ tool: 'bash' }, { args: { command: 'opencode2 serve' } });
-  assert.equal(guardLogLineCount(tmpDir), before, 'opencode2 serve must not refresh');
+  await beforeHook({ tool: 'bash' }, { args: { command: 'opencode9 serve' } });
+  assert.equal(guardLogLineCount(tmpDir), before, 'opencode9 serve must not refresh');
 
-  await beforeHook({ tool: 'bash' }, { args: { command: 'opencode2 run -m p/m "x"' } });
-  assert.equal(guardLogLineCount(tmpDir), before + 1, 'opencode2 run must refresh like validate.sh');
+  await beforeHook({ tool: 'bash' }, { args: { command: 'opencode9 run -m p/m "x"' } });
+  assert.equal(guardLogLineCount(tmpDir), before + 1, 'opencode9 run must refresh like validate.sh');
 });
 
 test('invalidates a warm cache for watched source mutations', async (t) => {

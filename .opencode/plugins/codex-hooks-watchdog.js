@@ -17,7 +17,7 @@ import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
 import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
@@ -100,4 +100,4 @@ async function MkCodexHooksWatchdogPlugin(ctx) {
   };
 }
 
-export default dualPlugin('codex-hooks-watchdog', MkCodexHooksWatchdogPlugin);
+export default definePlugin('codex-hooks-watchdog', MkCodexHooksWatchdogPlugin);

@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.31.0
+version: 1.4.32.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -337,7 +337,7 @@ This reference is pinned to OpenCode 2 at 2.3.2, the only supported version. If 
 | Symptom | Likely cause |
 |---------|--------------|
 | `unknown option --format json` | A release where the JSON event stream was the default and the flag did not exist |
-| `MODULE_NOT_FOUND` | Plugin loader crash. Check the plugin's `setup` export and the `dualPlugin()` bridge in `.opencode/plugins/lib/v2-bridge.js` |
+| `MODULE_NOT_FOUND` | Plugin loader crash. Check the plugin's `setup` export and the `definePlugin()` bridge in `.opencode/plugins/lib/v2-bridge.js` |
 
 ---
 
@@ -350,7 +350,7 @@ This reference is pinned to OpenCode 2 at 2.3.2, the only supported version. If 
 | `provider/model not found` | Provider not configured | Run `opencode auth list` to enumerate, then `opencode auth login <provider>` |
 | Empty output stream | `--format default` with non-TTY parent | Pass `--format json` and parse the event stream |
 | Session never finishes | Tool call hung | Run `opencode session export <sessionID>` and inspect the message log it returns |
-| Plugin load crash | Misconfigured plugin | Check the plugin's `setup` export and the `dualPlugin()` bridge in `.opencode/plugins/lib/v2-bridge.js` |
+| Plugin load crash | Misconfigured plugin | Check the plugin's `setup` export and the `definePlugin()` bridge in `.opencode/plugins/lib/v2-bridge.js` |
 | Self-invocation refused | cli-opencode detected an in-OpenCode runtime | Use a sibling cli-* skill or a fresh shell session. See ADR-001 |
 | `--share` passed | Nothing is published, the flag is not a `run` flag | Drop the flag |
 

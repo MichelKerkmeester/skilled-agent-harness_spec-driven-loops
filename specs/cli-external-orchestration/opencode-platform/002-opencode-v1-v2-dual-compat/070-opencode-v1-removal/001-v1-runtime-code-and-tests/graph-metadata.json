@@ -206,8 +206,8 @@
     ],
     "causal_summary": "The runtime still resolves OpenCode 1.x as a supported family",
     "created_at": "2026-11-19T09:04:20Z",
-    "last_save_at": "2026-11-19T17:43:17.016Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-20T11:53:33.584Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -217,14 +217,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d11582f04cc39ae7478bc32d7850dca2a67c39bde78550c2f1dfdedef3a2c970",
+    "source_fingerprint": "sha256:5a1191df7aa9bec674a0188ea11db9f0c11fe271fdbb580574404045e160a7e4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8e1a453909229f1ee90d841d240ed0dd4d91a115cfd67a87bc56fea35428fe96",
       "plan.md": "ee37e54333ebdec785fd7a183c2130fea4b4d5277761e5bf42e89f4e0fee77a3",
-      "tasks.md": "d6a377037bb38f6c8996590f5c3c189bc5a5f87e7665e3715375363babedafe3",
+      "tasks.md": "7533e45ddbcf8629f14425afaf4d5a2b2fce006277e548fe4270ae4f76d9ef6b",
       "decision-record.md": "fdd8e1f61b7821a4a619a3c90e96396fcab4aea2a485c7c77be0924cdd32d5e3",
-      "implementation-summary.md": "8c0fbe6024d84016f959e6a1aecdbfc726b1324d74a8658a5eb63b1e17265851"
+      "implementation-summary.md": "0ec51dfd1981715f123b0a8f926e32c8895d7e01c4eff2b9a5546806637494e3"
     },
     "last_active_at": null
   }

@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-handover-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.30.0
+version: 1.0.31.0
 id: session-handover-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -71,7 +71,7 @@ Evidence: exit code 0 confirms Pi loads the extension in this smoke mode. It doe
 node -e "import('./.opencode/plugins/session-handover.js').then(m=>console.log(typeof m.default))"
 ~~~
 
-Evidence: stdout is `object` and the command exits 0. The module's default export is the object that `dualPlugin` returns, with the enumerable keys `id` and `setup` and the hook factory on a non-enumerable `factory` property, so `typeof m.default` is `object`. It printed `function` only while the export was still the bare plugin function.
+Evidence: stdout is `object` and the command exits 0. The module's default export is the object that `definePlugin` returns, with the enumerable keys `id` and `setup` and the hook factory on a non-enumerable `factory` property, so `typeof m.default` is `object`. It printed `function` only while the export was still the bare plugin function.
 
 #### Pi adapter suite (Automatable)
 

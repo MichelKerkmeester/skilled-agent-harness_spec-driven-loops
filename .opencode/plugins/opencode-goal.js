@@ -17,7 +17,7 @@ import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
 import { tool } from './lib/tool-identity.js';
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 import { registerGoalCore } from './lib/opencode-goal-core.js';
 
 const require = createRequire(import.meta.url);
@@ -3761,4 +3761,4 @@ registerGoalCore(MkGoalPlugin, {
   writeGoalAtomic,
 });
 
-export default dualPlugin('opencode-goal', MkGoalPlugin);
+export default definePlugin('opencode-goal', MkGoalPlugin);

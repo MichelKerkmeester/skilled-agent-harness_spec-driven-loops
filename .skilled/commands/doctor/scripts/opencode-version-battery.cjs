@@ -973,7 +973,9 @@ async function readV2(bin, root, env = process.env) {
     const port = await findFreePort();
     const serverUrl = `http://127.0.0.1:${port}`;
 
-    child = spawn(bin, ['serve', '--port', String(port)], {
+    // The server inherits the caller's credentials, so it is pinned to loopback rather than
+    // left to whatever interface `serve` binds by default.
+    child = spawn(bin, ['serve', '--port', String(port), '--hostname', '127.0.0.1'], {
       cwd: root,
       env: childEnv,
       stdio: ['ignore', 'pipe', 'pipe'],

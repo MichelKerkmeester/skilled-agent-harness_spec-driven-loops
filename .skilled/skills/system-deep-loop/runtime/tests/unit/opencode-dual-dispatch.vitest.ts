@@ -524,8 +524,15 @@ describe('OpenCode resolver adversarial cases', () => {
       resolve(projectRoot, '.skilled/hooks/cli-dispatch/lib/opencode-version.mjs'),
     ).href) as { parseOpencodeVersion: (text: string) => OpencodeVersion };
 
-    for (const output of VERSION_OUTPUTS) {
-      expect(resolver.parseOpencodeVersion(output)).toBe(esmParser.parseOpencodeVersion(output));
+    // The shared corpus is the cross-parser contract, and the hand-written outputs add the
+    // whitespace and prerelease shapes it does not carry, so parity is checked over both.
+    const outputs = [...VERSION_CORPUS.map(({ output }) => output), ...VERSION_OUTPUTS];
+    expect(outputs.length).toBeGreaterThan(VERSION_OUTPUTS.length);
+    for (const output of outputs) {
+      expect(
+        resolver.parseOpencodeVersion(output),
+        JSON.stringify(output),
+      ).toBe(esmParser.parseOpencodeVersion(output));
     }
   });
 });

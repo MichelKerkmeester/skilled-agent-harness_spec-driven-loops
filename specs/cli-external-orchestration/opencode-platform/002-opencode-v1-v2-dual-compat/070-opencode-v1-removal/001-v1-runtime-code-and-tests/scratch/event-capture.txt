@@ -1,4 +1,6 @@
-# Event capture for OpenCode 2.3.2 (static, no live session was launched)
+# Event capture for OpenCode 2.3.2, in two parts.
+# Part 1, the table below, is static: it reads the shipped binary, and no session ran for it.
+# Part 2, under "== live capture", is one live standalone session on 2.3.2 (2026-11-19, exit 0) recorded by a temporary logger plugin.
 # Binary: ~/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe (package.json "version": "2.3.2", read-only)
 # Method: count the bus definition literal type:"<name>" and every quoted "<name>" literal in the binary (LC_ALL=C grep -a -F).
 # The v2 bridge forwards every bus type it receives verbatim (.opencode/plugins/lib/v2-bridge.js:464), so a name with no literal in the binary cannot reach a plugin.

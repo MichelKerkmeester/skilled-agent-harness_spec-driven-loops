@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v2 review p2 fixes",
+      "phase 4 v2 review p2 fixes",
+      "definePlugin rename",
+      "opencode2 retired",
+      "v2 review p2 fixes plan",
+      "v2 review p2 fixes tasks",
+      "v2 review p2 fixes acceptance criteria",
+      "v2 review p2 fixes decision record",
+      "v2 review p2 fixes implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "phase",
+      "defineplugin",
+      "rename",
+      "opencode2",
+      "retired",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decision",
+      "record"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/plugins/lib/v2-bridge.js",
+      ".opencode/plugins/ARCHITECTURE.md",
+      ".opencode/plugins/README.md",
+      ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md",
+      ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+      ".github/workflows/opencode-v2-battery.yml",
+      ".github/workflows/README.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-models-form.test.cjs",
+      ".opencode/plugins/tests/system-dist-freshness-guard.test.cjs",
+      ".skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs",
+      ".skilled/hooks/cli-dispatch/pi/dispatch-preflight-lint.ts",
+      "scratch/gate.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2-bridge.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/v2-bridge.js",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "agent-delegation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version-battery.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-v2-battery.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-v2-battery.yml",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-dual-dispatch.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-models-form.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-models-form.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-dist-freshness-guard.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/system-dist-freshness-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/cli-dispatch/pi/dispatch-preflight-lint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "gate.sh",
+        "kind": "script",
+        "path": "scratch/gate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The review left eight P2 advisories open on the merged removal",
+    "created_at": "2026-11-20T11:31:33Z",
+    "last_save_at": "2026-11-20T12:03:58.839Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f362319fb0fc8ac2ec3b854d94f7ddb779968170548539a374207b128ae35af2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "06bfda474ebaf4c06591a7195eeeecb55f1b0152cb469a8a9668ee24f1d417f6",
+      "plan.md": "59f776e1eb21d2e91dba5f66be760c67bf2e92b1ac4869889ecfc57eab304810",
+      "tasks.md": "816a4091b217ea87e37066f1a803f9e01df2083b81eda6b710c997b0cba39e12",
+      "decision-record.md": "bbdf1a0c579ca68d5cfb1ab6ecff4d1ecc740c61d8507d2bedeaafe1193c1e12",
+      "implementation-summary.md": "4cf604c86d5733f85ae3f06366c193404961fda2565b87a1dd262112b60a5d91"
+    },
+    "last_active_at": null
+  }
+}

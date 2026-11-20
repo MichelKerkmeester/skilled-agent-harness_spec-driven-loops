@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes",
+  "description": "Phase 4: v2-review-p2-fixes",
+  "keywords": [
+    "phase",
+    "v2-review-p2-fixes"
+  ],
+  "lastUpdated": "2026-11-20T12:03:58.839Z",
+  "specId": "004",
+  "folderSlug": "v2-review-p2-fixes",
+  "parentChain": [
+    "cli-external-orchestration",
+    "opencode-platform",
+    "002-opencode-v1-v2-dual-compat",
+    "070-opencode-v1-removal"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "20-11-26_12-58__fixed-the-eight-p2-advisories-of-the-third.md",
+    "20-11-26_12-59__ticked-the-recursive-validation-task-after-every.md",
+    "20-11-26_13-03__stated-plainly-that-the-models-form-scan-coverage.md"
+  ]
+}

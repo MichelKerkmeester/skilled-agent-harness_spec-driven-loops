@@ -20,7 +20,7 @@ import {
 import { createGitContext } from '../skills/sk-git/scripts/lib/git-context.mjs';
 import { GIT_CHECKS, GIT_SHAPE } from '../skills/sk-git/scripts/lib/git-rule-checks.mjs';
 import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
@@ -140,4 +140,4 @@ async function MkGitPreflightAdvisoryPlugin(ctx) {
   };
 }
 
-export default dualPlugin('sk-git-preflight-advisory', MkGitPreflightAdvisoryPlugin);
+export default definePlugin('sk-git-preflight-advisory', MkGitPreflightAdvisoryPlugin);

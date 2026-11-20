@@ -8,7 +8,7 @@ trigger_phrases:
   - "javascript exemption tiers"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Security, Testing, Async & Exemption Tiers
@@ -259,7 +259,7 @@ This exemption applies to:
 
 | Standard                           | Reason for Exemption                                                               |
 |------------------------------------|------------------------------------------------------------------------------------|
-| `module.exports` requirement       | OpenCode 2 loads each plugin as an ES module whose default export is the `dualPlugin()` result from `.opencode/plugins/lib/v2-bridge.js` |
+| `module.exports` requirement       | OpenCode 2 loads each plugin as an ES module whose default export is the `definePlugin()` result from `.opencode/plugins/lib/v2-bridge.js` |
 
 ### What Still Applies
 
@@ -298,7 +298,7 @@ OpenCode's TUI paints plugin `stdout`/`stderr` onto the prompt input line, where
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { tool } from './lib/tool-identity.js';
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -331,7 +331,7 @@ async function ExamplePlugin(ctx, options = {}) {
   };
 }
 
-export default dualPlugin(PLUGIN_ID, ExamplePlugin);
+export default definePlugin(PLUGIN_ID, ExamplePlugin);
 ```
 
 ---

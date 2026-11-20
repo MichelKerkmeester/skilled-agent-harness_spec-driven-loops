@@ -324,7 +324,7 @@ function toV1ToolContext(context, directory) {
  * @param {Function} factory - Builds the plugin hooks from a PluginInput and optional options.
  * @returns {{ id: string, setup: Function }} The plugin, with a non-enumerable `factory`.
  */
-export function dualPlugin(id, factory) {
+export function definePlugin(id, factory) {
   /**
    * Register the factory's hooks on the v2 context.
    *

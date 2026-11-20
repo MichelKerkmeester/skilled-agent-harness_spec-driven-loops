@@ -21,7 +21,7 @@ import {
   sessionIdOf,
   UNKNOWN_SESSION,
 } from './lib/classifier-injection-screen-core.js';
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
@@ -95,4 +95,4 @@ async function injectionScreenPlugin(_ctx, options = {}) {
   };
 }
 
-export default dualPlugin('classifier-injection-screen', injectionScreenPlugin);
+export default definePlugin('classifier-injection-screen', injectionScreenPlugin);

@@ -1,0 +1,19 @@
+# /doctor:runtime-mirrors, every checker in its check-only form, run in the worktree after the last code edit
+runtime_mirrors        exit=0  [runtime-mirror-sync] PASS: 260 mirrors across 10 trees are in sync.
+codex_agents           exit=0  [codex-agent-sync] PASS: 11 agents are in sync.
+codex_prompts          exit=0  [codex-prompt-sync] PASS: 46 prompts are in sync.
+agent_roster           exit=0  STATUS=OK agent-roster-mirror: every runtime covers the canonical roster
+agent_body_parity      exit=0  agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+command_catalog        exit=0  STATUS=OK command-catalog-mirror: every catalog and hub metadata covers the command tree
+codex_hooks_installer  exit=0  install-codex-hooks: OK /Users/michelkerkmeester/.codex/hooks.json
+codex_hook_approval    exit=1  repair: open /hooks in a Codex session at /Users/michelkerkmeester/worktrees/public/482-opencode-v2-p2-fixes and approve each entry
+pi_agents              exit=0  [pi-agent-sync] PASS: 11 agents are in sync.
+pi_prompts             exit=0  [pi-prompt-sync] PASS: 46 prompts are in sync.
+dsh_skills             exit=0  [dsh-skill-sync] PASS: 55 skill links are in sync.
+dsh_prompts            exit=0  [dsh-prompt-sync] PASS: 46 prompt stubs are in sync.
+dsh_agents             exit=0  [dsh-agent-sync] PASS: 11 agent patches are in sync.
+vibe_skills            exit=0  [vibe-skill-sync] PASS: 55 skill links are in sync.
+vibe_prompts           exit=0  [vibe-prompt-sync] PASS: 46 prompt stubs are in sync.
+vibe_agents            exit=0  [vibe-agent-sync] PASS: 11 agent profiles are in sync.
+# codex_hook_approval printed "WARN codex-hooks-unapproved <worktree path>": Codex approves hooks per checkout path and this worktree is new.
+# The workflow counts WARN as STATUS=WARN, not drift. Result: 15 in sync, 1 WARN (environment), 0 drift.

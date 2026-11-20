@@ -16,7 +16,7 @@
 
 import { evaluateCommand } from '../skills/sk-git/scripts/hooks/git-message-gate.mjs';
 import { ContractError } from '../skills/sk-git/scripts/lib/message-contract.mjs';
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -68,4 +68,4 @@ async function SkGitMessageGatePlugin(ctx) {
   };
 }
 
-export default dualPlugin('sk-git-message-gate', SkGitMessageGatePlugin);
+export default definePlugin('sk-git-message-gate', SkGitMessageGatePlugin);

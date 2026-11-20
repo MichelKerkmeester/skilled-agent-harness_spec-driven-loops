@@ -1,0 +1,15 @@
+# The battery workflow's unit step command (five files) run in a stripped environment, by:
+# env -i PATH=<temp dir holding only a node symlink>:/usr/bin:/bin HOME=<fresh mktemp dir> npm_config_registry=http://127.0.0.1:9/ /bin/bash --norc --noprofile -c '<step>'
+# npm is not on the child PATH at all (see below), so the registry setting is a second guard, not the one relied on.
+child PATH: <node-only dir>:/usr/bin:/bin
+opencode: not-found
+npm: not-found
+✔ remove-v1 refuses a launcher that is not the file the helper wrote and runs nothing (15.276583ms)
+✔ remove-v1 keeps an opencode link that points into a separate v2 prefix (79.202208ms)
+✔ remove-v1 lets an opencode link into opencode-ai go with the package (57.865416ms)
+ℹ tests 79
+ℹ pass 79
+ℹ fail 0
+ℹ skipped 0
+exit=0
+files left in the temp HOME: 0

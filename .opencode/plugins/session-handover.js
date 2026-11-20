@@ -8,7 +8,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { createRequire } from 'node:module';
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const childProcess = require('node:child_process');
@@ -645,4 +645,4 @@ function sessionHandoverPlugin(ctx = {}) {
   };
 }
 
-export default dualPlugin('session-handover', sessionHandoverPlugin);
+export default definePlugin('session-handover', sessionHandoverPlugin);

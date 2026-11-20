@@ -163,7 +163,7 @@ function pluginData() {
 }
 
 if (args[0] === 'serve') {
-  fs.writeFileSync(record, JSON.stringify({ pid: process.pid, dir: path.dirname(process.env.OPENCODE_DB), projectDisable: process.env.OPENCODE_CONFIG_PROJECT_DISABLE ?? null, configDir: process.env.OPENCODE_CONFIG_DIR ?? null }));
+  fs.writeFileSync(record, JSON.stringify({ pid: process.pid, dir: path.dirname(process.env.OPENCODE_DB), projectDisable: process.env.OPENCODE_CONFIG_PROJECT_DISABLE ?? null, configDir: process.env.OPENCODE_CONFIG_DIR ?? null, args }));
   console.log('server listening on http://127.0.0.1:' + args[2]);
   console.log('server password FAKE-SECRET-123');
   setInterval(() => {}, 1000);
@@ -963,6 +963,10 @@ test('real readV2: the password reaches no result, stream or leftover file and t
   assert.ok(!calls.stderr.join('').includes(secret));
 
   const record = JSON.parse(fs.readFileSync(server.record, 'utf8'));
+  // The private server holds the caller's credentials, so it must listen on loopback only.
+  const hostIndex = record.args.indexOf('--hostname');
+  assert.notEqual(hostIndex, -1, JSON.stringify(record.args));
+  assert.equal(record.args[hostIndex + 1], '127.0.0.1');
   // A plain root keeps OpenCode 2's own project discovery.
   assert.equal(record.projectDisable, null);
   assert.equal(record.configDir, null);

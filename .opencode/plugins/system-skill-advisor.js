@@ -22,7 +22,7 @@ import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
 import { tool } from './lib/tool-identity.js';
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 
 import * as messageIdentity from './lib/opencode-message-identity.js';
 import {
@@ -1712,7 +1712,7 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
 // The host reads the plugin from the module's default export and a loader guard holds
 // the module to that one key, so the signature reaches the parity suite as a hidden
 // property of the plugin object instead of a second named export.
-const skillAdvisorPlugin = dualPlugin('system-skill-advisor', MkSkillAdvisorPlugin);
+const skillAdvisorPlugin = definePlugin('system-skill-advisor', MkSkillAdvisorPlugin);
 Object.defineProperty(skillAdvisorPlugin, 'advisorSourceSignature', {
   value: advisorSourceSignature,
   enumerable: false,

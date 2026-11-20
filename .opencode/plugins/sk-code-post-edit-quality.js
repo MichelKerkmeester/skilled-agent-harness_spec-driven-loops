@@ -26,7 +26,7 @@ import {
   filePathFromArgs,
   formatFinding,
 } from './lib/sk-code-post-edit-quality-core.js';
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const router = require('../hooks/post-edit-quality/lib/post-edit-router.cjs');
@@ -157,4 +157,4 @@ async function MkPostEditQualityPlugin(ctx) {
   };
 }
 
-export default dualPlugin('sk-code-post-edit-quality', MkPostEditQualityPlugin);
+export default definePlugin('sk-code-post-edit-quality', MkPostEditQualityPlugin);

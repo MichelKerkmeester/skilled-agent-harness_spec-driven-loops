@@ -1765,7 +1765,7 @@ test('OpenCode resolves an exported top-level object literal', (t) => {
   );
 });
 
-test('OpenCode judges a dualPlugin-wrapped export by the function it wraps', (t) => {
+test('OpenCode judges a definePlugin-wrapped export by the function it wraps', (t) => {
   const importLine = "import { GIT_CHECKS } from '../lib/git-rule-checks.mjs';\n";
   assertAdapterBindingResult(
     t,
@@ -1773,7 +1773,7 @@ test('OpenCode judges a dualPlugin-wrapped export by the function it wraps', (t)
     '.opencode/plugins/sk-git-preflight-advisory.js',
     importLine
       + 'async function Fn(ctx) { return {}; }\n'
-      + "export default dualPlugin('x', Fn);\n",
+      + "export default definePlugin('x', Fn);\n",
     'FAIL',
   );
   assertAdapterBindingResult(
@@ -1782,7 +1782,7 @@ test('OpenCode judges a dualPlugin-wrapped export by the function it wraps', (t)
     '.opencode/plugins/sk-git-preflight-advisory.js',
     importLine
       + "async function Fn(ctx) { return { async 'tool.execute.before'(input) {} }; }\n"
-      + "export default dualPlugin('x', Fn);\n",
+      + "export default definePlugin('x', Fn);\n",
     'PASS',
   );
 });

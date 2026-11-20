@@ -154,7 +154,7 @@ Shell variables used below: `RT` is `.skilled/skills/system-deep-loop/runtime` a
 ## Documentation
 
 - [x] CHK-040 [P1] spec.md, plan.md and tasks.md agree on the REQ ids and the file list. Verify: `rg -o 'REQ-00[0-9]' spec.md plan.md tasks.md | cut -d: -f2 | sort -u | wc -l` prints 9.
-- [x] CHK-041 [P1] Changed code carries no phase, packet or REQ id in a comment. Verify: `rg -n -e '070-' -e 'REQ-0' <changed files> | wc -l` prints 0.
+- [x] CHK-041 [P1] Changed code carries no phase, packet or REQ id in a comment. Verify: `git diff --name-only 06d02096e90^1 06d02096e90 -- '*.js' '*.cjs' '*.mjs' '*.ts' '*.sh' ':!specs' | xargs git grep -n -E '^[[:space:]]*(//|#|\*|/\*).*(070-|REQ-0)' 06d02096e90 -- | wc -l` prints 0. Narrowed after closure to comment lines in the merge's code files, read at the merge commit: the first form, `rg -n -e '070-' -e 'REQ-0' <changed files>`, also counted generated trigger-index and fixture data and two REQ labels in test titles, so it never printed 0.
 - [x] CHK-042 [P2] N/A: READMEs and docs belong to phase 003.
 <!-- /ANCHOR:docs -->
 

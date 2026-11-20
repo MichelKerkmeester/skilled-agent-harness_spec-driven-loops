@@ -1464,7 +1464,7 @@ function adapterExportsBinding(tool, source) {
   // one that registers the handler. The scanner blanks the id literal, leaving
   // its opening quote as the \u0001 marker.
   const wrappedExport = tool === 'opencode'
-    ? code.match(/\bexport\s+default\s+dualPlugin\s*\(\s*(?:\u0001|['"])[^,]*,\s*([A-Za-z_$][\w$]*)\s*\)[ \t]*(?=;|\r?$)/m)
+    ? code.match(/\bexport\s+default\s+definePlugin\s*\(\s*(?:\u0001|['"])[^,]*,\s*([A-Za-z_$][\w$]*)\s*\)[ \t]*(?=;|\r?$)/m)
     : null;
   const bindingExport = wrappedExport
     || code.match(/\bexport\s+default\s+([A-Za-z_$][\w$]*)[ \t]*(?=;|\r?$)/m);

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "bd67690ff3be89535fe18e420a0d98dd90ce6a3fcefb576bc954a357c0c345e9",
+  "manifestHash": "249a73ccb6534ec097d18cceed6bd2a5f0b19b695f5f23ca9a0b40433acd2042",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -40285,6 +40285,9 @@
     "define a new notion data source schema": [
       "define a new Notion data source schema"
     ],
+    "defineplugin rename": [
+      "definePlugin rename"
+    ],
     "deflake fixture lib copy plan": [
       "deflake fixture lib copy plan"
     ],
@@ -79824,6 +79827,9 @@
     "opencode2 models standalone": [
       "opencode2 models standalone"
     ],
+    "opencode2 retired": [
+      "opencode2 retired"
+    ],
     "opencode2 standalone replay": [
       "opencode2 standalone replay"
     ],
@@ -85783,6 +85789,9 @@
     ],
     "phase 4 trigger index rebuild hardening": [
       "phase 4 trigger index rebuild hardening"
+    ],
+    "phase 4 v2 review p2 fixes": [
+      "phase 4 v2 review p2 fixes"
     ],
     "phase 4 vibe contract pin": [
       "phase 4 vibe contract pin"
@@ -132896,6 +132905,24 @@
     ],
     "v2 default model and follow ups tasks": [
       "v2 default model and follow ups tasks"
+    ],
+    "v2 review p2 fixes": [
+      "v2 review p2 fixes"
+    ],
+    "v2 review p2 fixes acceptance criteria": [
+      "v2 review p2 fixes acceptance criteria"
+    ],
+    "v2 review p2 fixes decision record": [
+      "v2 review p2 fixes decision record"
+    ],
+    "v2 review p2 fixes implementation summary": [
+      "v2 review p2 fixes implementation summary"
+    ],
+    "v2 review p2 fixes plan": [
+      "v2 review p2 fixes plan"
+    ],
+    "v2 review p2 fixes tasks": [
+      "v2 review p2 fixes tasks"
     ],
     "v3 0 0 0 release notes": [
       "v3.0.0.0 release notes"
