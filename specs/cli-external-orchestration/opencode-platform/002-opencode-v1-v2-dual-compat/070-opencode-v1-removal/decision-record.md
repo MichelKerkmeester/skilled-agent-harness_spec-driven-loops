@@ -51,7 +51,7 @@ _memory:
 | Q015 | Fix the five doc lines the doc alignment found, without rerunning its critic, and push to main. | Not stated. | None | 004 implementation-summary.md (How It Was Delivered) |
 | Q016 | Leave the duplicate changelog commit on the primary checkout's local main and hand over a rebase recipe. | Not stated. | None | primary checkout local main |
 | Q017 | Fix all four open items: rename nativeDual, rerun the doc critic, fix the reducer tests in their own spec folder, and refresh the session-handover build. | Not stated. | None | 004 implementation-summary.md; commits 686de1cb4ea, 9cd204a87b0, af471c253e2; 007-expansive-depth-mode/015-reducer-test-focus-contract |
-| Q018 | Purge every OpenCode 1 reference outside history, including the refusal, the remove-v1 helper and their tests, superseding phase 003 ADR-001 and its justified-list approach. | Also delete the OpenCode 1 refusal and the remove-v1 helper and their tests, so no file outside history names OpenCode 1. A leftover v1 binary would then launch and fail without a clear message. | 003-v1-docs-and-playbooks-sweep ADR-001 | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/decision-record.md ADR-001 |
+| Q018 | Purge every OpenCode 1 reference outside history, including the refusal, the remove-v1 helper and their tests, superseding phase 003 ADR-001 and its justified-list approach. | Not stated. | 003-v1-docs-and-playbooks-sweep ADR-001 | 005-v1-reference-purge/decision-record.md ADR-001 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -396,16 +396,18 @@ Rename nativeDual, Rerun doc critic, Fix reducer tests, Session-handover dist
 ```
 
 ### Q018
-<!-- source: claude:df9261d4-6090-4b52-892b-db52ff291ccd:purge-everything -->
+<!-- source: claude:df9261d4-6090-4b52-892b-db52ff291ccd:toolu_01LEuBJv6XJoYzCSwUdue9EZ:0 -->
 
 Question:
 ```text
-On current main, 36 files outside specs/, changelogs and benchmarks still mention OpenCode 1. None runs it. ... How far should the purge go?
+On current main, 36 files outside specs/, changelogs and benchmarks still mention OpenCode 1. None runs it. 32 are on the justified list: refusal code and tests that stop an OpenCode 1 binary from launching (~8 files), the remove-v1 cleanup helper with its tests and docs (~3), dated observations measured on OpenCode 1 (~10), the version-parser test corpus, a frozen test fixture, the root README and the generated trigger index. Four more, added this session, describe the refusal. How far should the purge go?
 ```
 
 Options:
 ```text
+Keep guards, drop rest (Recommended)
 Purge everything
+Keep as is
 ```
 
 Answer:

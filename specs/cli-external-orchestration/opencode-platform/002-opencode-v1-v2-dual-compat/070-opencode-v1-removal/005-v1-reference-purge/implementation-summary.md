@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge"
-    last_updated_at: "2026-11-20T17:12:33Z"
+    last_updated_at: "2026-11-20T17:34:06Z"
     last_updated_by: "generate-context"
     recent_action: "Purged every OpenCode 1 reference outside history; gate and live battery green"
     next_safe_action: "None for this phase; it closes the v1 removal"
@@ -19,14 +19,14 @@ _memory:
       - "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/decision-record.md"
       - "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/acceptance-criteria.md"
     session_dedup:
-      fingerprint: "sha256:968e0319be974adf3965e0fd453282e2b1327f13641d81731328b241c0ca61ea"
+      fingerprint: "sha256:45d1a76ae1b04e69ca9c8f7961cbce762587b42cddf5138dba8e99d4ba68cdbe"
       session_id: "scaffold-005-v1-reference-purge"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "df9261d4-6090-4b52-892b-db52ff291ccd"
-      workspace: "/Users/michelkerkmeester/worktrees/public/493-v1-reference-purge"
-      savedAt: "2026-11-20T17:12:33Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/494-opencode-q018-record-fix"
+      savedAt: "2026-11-20T17:34:06Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
