@@ -8,27 +8,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes"
-    last_updated_at: "2026-11-20T14:28:56Z"
+    last_updated_at: "2026-11-20T14:52:00Z"
     last_updated_by: "generate-context"
-    recent_action: "Closed all eight review advisories with the gate unchanged against its baseline"
-    next_safe_action: "Review and merge branch worktrees/482-opencode-v2-p2-fixes into main"
+    recent_action: "Renamed nativeDual to selfRegistered and fixed two critic-verified doc lines"
+    next_safe_action: "Review the follow-up commits on main"
     packet_purpose: "Purpose: Each advisory is fixed or shown already covered, with a command that proves it, and the gate shows no regression against the baseline taken before the first edit."
     blockers: []
     key_files:
       - "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes/implementation-summary.md"
-      - "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes/acceptance-criteria.md"
-      - "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes/decision-record.md"
-      - "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes/scratch/gate-after.txt"
-      - ".opencode/plugins/lib/v2-bridge.js"
+      - ".opencode/plugins/tests/helpers/plugin-inventory.cjs"
+      - ".opencode/plugins/tests/plugin-inventory.json"
+      - ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-handover-loop.md"
     session_dedup:
-      fingerprint: "sha256:653e7e231fc046422d1cb5800d31bd54a72af366b720cef4da62d846d13a3aaf"
+      fingerprint: "sha256:c5133c57c5b11a04a2ff877a1bf3c9a97a0728fa4a20c5d74d339b6149b77149"
       session_id: "scaffold-004-v2-review-p2-fixes"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "df9261d4-6090-4b52-892b-db52ff291ccd"
-      workspace: "/Users/michelkerkmeester/worktrees/public/485-opencode-v2-doc-alignment-fixes"
-      savedAt: "2026-11-20T14:28:56Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/487-native-dual-rename"
+      savedAt: "2026-11-20T14:52:00Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -90,6 +89,8 @@ Each advisory got the smallest change that removes it, plus a proof that fails w
 The gate in `scratch/gate.sh` ran before the first edit, with the output in `scratch/gate-baseline.txt`. Each fix was then proved on its own. The two mutation checks in `scratch/unmapped-hook-mutation.txt` showed what the inventory test catches. Removing `--hostname` failed the battery test, and the real `--family=v2` battery leg passed on 2.3.2. The workflow's unit step command ran with no `opencode` or `npm` on PATH. The gate then reran from the final tree into `scratch/gate-after.txt`, and the runtime-mirror checks ran in check-only form.
 
 After merge, `/local-doc-alignment` on an `opencode-v2-only` topic (four lanes on `opencode-go/hy4-flash-free#high`) found five doc lines that disagreed with the code. Its critic did not run, because OpenCode Go reported its monthly usage limit, so each line was checked by hand against the code before the fix. `goal-plugin.md` and `goal-carry-over.md` said the wrapper adds `--standalone` when `opencode --help` lists it; `skilled-loop` adds it unless the launch already carries `--standalone` or `--server`, after refusing OpenCode 1. The CO-001 playbook triage named `brew install opencode`; it now names `opencode-setup.sh v2`. The dist-freshness feature-catalog entry said the OpenCode plugin warns through `console.warn`; the plugin has no console call and logs to `dist-freshness-guard.log` and injects a system-context note.
+
+A follow-up closed three loose ends. The plugin inventory key `nativeDual` became `selfRegistered`. It lists the plugins that make no `definePlugin` call and default-export their own OpenCode 2 `{ id, setup }`, so the new name says what they do on the v2-only contract instead of naming the dual-compat era. The JSON key, the helper's return field, its problem messages, two test files, `tests/README.md` and `ARCHITECTURE.md` changed together, with no alias, because every reader is in `.opencode/plugins`. `node --test .opencode/plugins/tests/*.test.cjs` gave 595 of 595 before and after. The doc-alignment critic was rerun on the same run folder with the `deepseek-high` preset (`llmgateway/deepseek-v4.1-flash-1017`, thinking high). `run-lanes.cjs --critic` reads only the config's top-level `critic`, so it ran from a scratch copy of `executors.json` whose `critic` is that preset. It raised four lines. Two were checked and confirmed in `session-handover-loop.md`, and both are fixed: the shell-shim paragraph said every subcommand list comes from `--help`, though the OpenCode list is hand-kept and names subcommands 2.3.2 lacks, and the adapter paragraph did not say the wrapper refuses an OpenCode 1 binary. Two were refuted: `brew install opencode` resolves to the `homebrew/core` formula at 2.3.2, so those lines do not install OpenCode 1. The `session-handover/history` dist in the primary checkout was stale by mtime. It is gitignored, so it was rebuilt in place with `tsc --build --force`, and all seven dist packages then read fresh.
 <!-- /ANCHOR:how-delivered -->
 
 ---
