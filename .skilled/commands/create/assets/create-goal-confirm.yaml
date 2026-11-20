@@ -92,7 +92,7 @@ request_analysis_framework:
   pre_change_validation:
     items:
       - "Packet exists and its role is known (top-level, phase parent, nested child)?"
-      - "The packet's own spec.md and acceptance-criteria.md were read?"
+      - "The packet's own spec.md and acceptance-criteria.md were read (a Level 1 nested child: its spec.md requirements and success criteria)?"
       - "The operation is recorded from a token or the packet's own files?"
       - "A session-objective request was redirected instead of authored?"
       - "Confidence >=80%? (if not: ask)"
@@ -146,8 +146,12 @@ context_loading:
     default: >-
       Read the packet's spec.md and acceptance-criteria.md. For a phase parent, also read the
       Phase Documentation Map and list every direct phase-child directory on disk. For a nested
-      child, use only that child's own specification and acceptance criteria.
-    on_absent: Stop and name the missing source before anything is written.
+      child, use only that child's own specification and acceptance criteria. A Level 1 nested
+      child with no acceptance-criteria.md takes its completion criteria from its own spec.md
+      requirements and success criteria.
+    on_absent: >-
+      Stop and name the missing source before anything is written. A missing
+      acceptance-criteria.md stops a nested child at Level 2 or higher, never a Level 1 nested child.
 
 workflow_overview:
   steps:
@@ -181,7 +185,7 @@ workflow:
           spec.md means nested child, direct phase-child directories mean phase parent, otherwise
           top-level. A missing packet routes packet creation to system-spec-kit first.
       step_read_sources:
-        action: "Read the packet's own spec.md and acceptance-criteria.md, plus the phase map and every direct phase-child directory for a phase parent."
+        action: "Read the packet's own spec.md and acceptance-criteria.md, plus the phase map and every direct phase-child directory for a phase parent. A Level 1 nested child with no acceptance-criteria.md takes its criteria from its own spec.md requirements and success criteria; a nested child at Level 2 or higher still needs acceptance-criteria.md."
         on_fail:
           action: "HALT and name the missing or conflicting source. Never choose a truth silently."
       step_pick_operation:

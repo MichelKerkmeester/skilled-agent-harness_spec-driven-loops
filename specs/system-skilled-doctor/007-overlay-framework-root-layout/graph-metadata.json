@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/007-overlay-framework-root-layout",
+  "spec_folder": "system-skilled-doctor/007-overlay-framework-root-layout",
+  "parent_id": null,
+  "children_ids": [
+    "system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder",
+    "system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout",
+    "system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release",
+    "system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout",
+    "system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "overlay framework root layout phase parent spec",
+      "overlays folder beside the vendored tree",
+      "framework and root overlay sources default",
+      "barter overlays out of the vendored tree",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "overlay",
+      "framework",
+      "root",
+      "layout",
+      "phase",
+      "parent",
+      "spec",
+      "overlays",
+      "folder",
+      "beside",
+      "vendored",
+      "tree"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/commands/doctor/overlay.md",
+      "004-barter-repin-and-relayout/spec.md",
+      "scratch/design-notes.md",
+      "001-engine-out-of-tree-overlay-folder/goal.md",
+      "002-engine-framework-root-source-layout/goal.md",
+      "003-engine-docs-and-release/goal.md",
+      "004-barter-repin-and-relayout/goal.md",
+      "005-barter-move-overlays-out-of-tree/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/overlay.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-notes.md",
+        "kind": "doc",
+        "path": "scratch/design-notes.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "So Barter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Skilled",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "framework",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The doctor overlay engine refuses an overlay folder outside the vendored tree",
+    "created_at": "2026-11-20T09:31:32Z",
+    "last_save_at": "2026-11-20T12:28:10.041Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:d181ccef24ea79bbae466b8e9ae903fefa9a75fdd6b51e1b829fb8411972e18f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0126a14d8feb204a4d98567a41aeba72520cd1b119433bc031a17b1728fc355f"
+    },
+    "last_active_child_id": "system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release",
+    "last_active_at": "2026-11-20T12:28:10.041Z"
+  }
+}

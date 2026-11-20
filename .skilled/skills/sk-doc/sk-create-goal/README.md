@@ -8,7 +8,7 @@ trigger_phrases:
   - "goal chat slice"
 importance_tier: normal
 contextType: general
-version: 1.2.5.0
+version: 1.2.6.0
 ---
 
 # sk-create-goal
@@ -81,7 +81,7 @@ Expected output starts with `STATUS=OK ACTION=packet`, shows `packet_budget=ok` 
 
 ## 3. HOW IT WORKS
 
-The workflow reads first and writes second. It opens the packet's `spec.md` and `acceptance-criteria.md`. For a phase parent it also reads the Phase Documentation Map and lists every direct phase-child folder on disk. For a nested child it reads only that child's sources.
+The workflow reads first and writes second. It opens the packet's `spec.md` and `acceptance-criteria.md`. For a phase parent it also reads the Phase Documentation Map and lists every direct phase-child folder on disk. For a nested child it reads only that child's sources. A Level 1 nested child carries no `acceptance-criteria.md`, so it takes its criteria from its own `spec.md` REQUIREMENTS and SUCCESS CRITERIA sections.
 
 Four pre-write decisions come next. The packet router holds them in full.
 

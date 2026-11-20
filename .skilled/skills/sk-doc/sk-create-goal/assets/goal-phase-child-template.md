@@ -8,7 +8,7 @@ trigger_phrases:
   - "phase-add child goal"
 importance_tier: important
 contextType: general
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # Phase-Child Goal Template
@@ -29,7 +29,7 @@ Use this blank for a direct phase child of a phase parent. It is the system-spec
 - **Parent first.** Parent decisions bind this phase and are not restated. A change that alters a parent decision or criterion is a parent amendment: make it in the parent first, then resend the parent.
 - **Budget.** A child goal that is not itself a phase parent is exempt from the 4,000-character limit, but keep it short. A child with phase children of its own is a phase parent and carries the cap, as section 2 of [`../references/budget-and-handoff.md`](../references/budget-and-handoff.md) says. The parent's binding row is what points a session here.
 - **Parents** use [`goal-phase-parent-template.md`](goal-phase-parent-template.md).
-- **How to fill it.** Copy the block between the markers to `<packet>/goal.md`. Replace every bracketed placeholder with text from the packet's own `spec.md` and acceptance criteria, following [`../references/authoring-standards.md`](../references/authoring-standards.md). Remove unused placeholder rows.
+- **How to fill it.** Copy the block between the markers to `<packet>/goal.md`. Replace every bracketed placeholder with text from the packet's own `spec.md` and acceptance criteria, or for a Level 1 nested child with no `acceptance-criteria.md` from its `spec.md` REQUIREMENTS and SUCCESS CRITERIA sections, following [`../references/authoring-standards.md`](../references/authoring-standards.md). Remove unused placeholder rows.
 - **Where it comes from.** The block is a checked copy of system-spec-kit's [`goal.md.tmpl`](../../../system-spec-kit/templates/addons/goal.md.tmpl). Only the placeholder wording differs. `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/` fails when the fixed text of the two drifts apart. When `goal.md.tmpl` changes, re-render it and carry the new fixed text into all three templates.
 
 ---

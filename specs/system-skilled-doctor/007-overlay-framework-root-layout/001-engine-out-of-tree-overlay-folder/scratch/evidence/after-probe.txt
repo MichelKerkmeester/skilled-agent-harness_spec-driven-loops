@@ -1,0 +1,2 @@
+[overlay-engine] no overlay manifest at ../overlays/overlay-manifest.json
+probe exit=2

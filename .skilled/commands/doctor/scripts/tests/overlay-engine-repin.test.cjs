@@ -153,11 +153,15 @@ function skipRunState(rel) {
 /**
  * Build an upstream repository with two commits and a vendored tree at the first.
  * @param {object} t The node:test context.
- * @param {{movesOwned?: boolean}} [options] Whether upstream also changes owned files.
+ * @param {{movesOwned?: boolean, overlayFolder?: string, siblingOverlayFolder?: string}} [options]
+ *   Whether upstream also changes owned files, and where the overlay folder sits.
  * @returns {object} Fixture paths, commits and a `run` helper.
  */
 function createRepinFixture(t, options = {}) {
-  const fixture = createWorkspace(t, 'overlay-engine-repin-', { overlayFolder: options.overlayFolder });
+  const fixture = createWorkspace(t, 'overlay-engine-repin-', {
+    overlayFolder: options.overlayFolder,
+    siblingOverlayFolder: options.siblingOverlayFolder,
+  });
   const { workspace, tree, overlayDir } = fixture;
   const upstream = path.join(workspace, 'upstream');
   fs.mkdirSync(upstream);
@@ -1103,4 +1107,238 @@ test('a re-pin names each upstream file a skill-root overlay removes from a fold
     'upstream-lost sr-root: the skill-root overlay removes .skilled/skills/sr/docs/new.md, which upstream added; add it to skilled-overlays/sr/docs if it applies',
   ]);
   assert.equal(stageReport(stageDir).upstreamLost.length, 2);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. AN OVERLAY FOLDER BESIDE THE TREE
+// ─────────────────────────────────────────────────────────────────────────────
+
+// The setting file can name a folder beside the tree as `../<name>`. Its files
+// are outside the tree, so the backup records them against the overlay root, a
+// rollback restores them there, and a stage copies the folder beside the copy.
+
+const SIBLING = { siblingOverlayFolder: 'overlays' };
+const OVERLAY_STATE_FILES = ['overlay-manifest.json', 'sync-state.json'];
+
+// The overlay folder as the setting file names it, relative to the tree.
+function overlayLabel(fixture) {
+  return path.relative(fixture.tree, fixture.overlayDir).split(path.sep).join('/');
+}
+
+// Where a stage puts the tree copy and the overlay folder copy.
+function stagedRoots(fixture, stageDir) {
+  const label = overlayLabel(fixture);
+  if (label.startsWith('../')) {
+    return {
+      tree: path.join(stageDir, path.basename(fixture.tree)),
+      overlay: path.join(stageDir, path.basename(fixture.overlayDir)),
+    };
+  }
+  return { tree: stageDir, overlay: path.join(stageDir, ...label.split('/')) };
+}
+
+function readBytes(root, relativePath) {
+  const filePath = path.join(root, relativePath);
+  return fs.existsSync(filePath) ? fs.readFileSync(filePath) : null;
+}
+
+function onlyRunDir(fixture) {
+  const runs = fs.readdirSync(fixture.runsDir);
+  assert.equal(runs.length, 1, runs.join('\n'));
+  return path.join(fixture.runsDir, runs[0]);
+}
+
+test('a live repin with a sibling overlay folder backs up its files against the overlay root', (t) => {
+  const fixture = createRepinFixture(t, SIBLING);
+  const before = new Map(OVERLAY_STATE_FILES.map((name) => [name, sha256(fs.readFileSync(path.join(fixture.overlayDir, name)))]));
+
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  assert.match(result.output, /^RESULT: PASSED$/m);
+
+  const runDir = onlyRunDir(fixture);
+  const backup = readJson(path.join(runDir, 'backup.json'));
+  const overlayEntries = backup.entries.filter((entry) => entry.area === 'overlay');
+  for (const name of OVERLAY_STATE_FILES) {
+    const entry = overlayEntries.find((candidate) => candidate.path === name);
+    assert.ok(entry, name + ' is not an overlay entry: ' + JSON.stringify(backup.entries));
+    assert.equal(entry.existed, true, name);
+    assert.equal(entry.sha256, before.get(name), name);
+    assert.equal(sha256(fs.readFileSync(path.join(runDir, 'overlay-backup', name))), entry.sha256, name);
+  }
+  for (const entry of overlayEntries) {
+    assert.equal(path.posix.isAbsolute(entry.path) || entry.path.split('/').includes('..'), false, entry.path);
+  }
+  for (const entry of backup.entries.filter((candidate) => candidate.area === undefined)) {
+    assert.equal(entry.path.startsWith('../'), false, entry.path);
+  }
+  assert.equal(readJson(fixture.manifestPath).pin.commit, fixture.newCommit.slice(0, 10));
+  assert.equal(readJson(fixture.statePath).pin, fixture.newCommit.slice(0, 10));
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+test('an in-tree backup records no area, so every entry is a tree path', (t) => {
+  const fixture = createRepinFixture(t);
+  const before = fixture.digest();
+
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  const runDir = onlyRunDir(fixture);
+  const backup = readJson(path.join(runDir, 'backup.json'));
+  assert.ok(backup.entries.length > 0);
+  for (const entry of backup.entries) assert.equal(Object.hasOwn(entry, 'area'), false, JSON.stringify(entry));
+  assert.ok(backup.entries.some((entry) => entry.path === 'skilled-overlays/overlay-manifest.json'));
+  assert.equal(fs.existsSync(path.join(runDir, 'overlay-backup')), false);
+
+  const rolledBack = fixture.run(['repin', '--rollback', path.basename(runDir)]);
+  assert.equal(rolledBack.code, 0, rolledBack.output);
+  assert.equal(fixture.digest(), before);
+});
+
+test('--rollback of a sibling-folder run restores the manifest pin and sync-state.json in the overlay folder', (t) => {
+  const fixture = createRepinFixture(t, SIBLING);
+  const treeBefore = fixture.digest();
+  const bytesBefore = new Map(OVERLAY_STATE_FILES.map((name) => [name, readBytes(fixture.overlayDir, name)]));
+
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  const runId = path.basename(onlyRunDir(fixture));
+  assert.notEqual(readJson(fixture.manifestPath).pin.commit, fixture.oldCommit.slice(0, 10));
+
+  const rolledBack = fixture.run(['repin', '--rollback', runId]);
+  assert.equal(rolledBack.code, 0, rolledBack.output);
+  assert.match(rolledBack.output, /^RESULT: PASSED$/m);
+  assert.equal(fixture.digest(), treeBefore);
+  for (const name of OVERLAY_STATE_FILES) {
+    assert.deepEqual(readBytes(fixture.overlayDir, name), bytesBefore.get(name), name);
+  }
+  assert.equal(readJson(fixture.manifestPath).pin.commit, fixture.oldCommit.slice(0, 10));
+  assert.equal(fs.existsSync(fixture.lockPath), false);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+});
+
+test('repin --stage with a sibling overlay folder stages both folders and writes nothing in the live overlay folder', (t) => {
+  const fixture = createRepinFixture(t, SIBLING);
+  const stageDir = path.join(fixture.workspace, 'stage');
+  const treeBefore = treeDigest(fixture.tree);
+  const overlayBefore = treeDigest(fixture.overlayDir);
+  const bytesBefore = new Map(OVERLAY_STATE_FILES.map((name) => [name, readBytes(fixture.overlayDir, name)]));
+  assert.equal(fs.existsSync(fixture.runsDir), false);
+
+  const staged = fixture.repin(['--stage', stageDir]);
+  assert.equal(staged.code, 0, staged.output);
+  assert.match(staged.output, /^RESULT: STAGED$/m);
+
+  const roots = stagedRoots(fixture, stageDir);
+  assert.equal(read(roots.tree, '.skilled/skills/hub/ROUTER.md'), 'router v2\n');
+  assert.equal(readJson(path.join(roots.overlay, 'overlay-manifest.json')).pin.commit, fixture.newCommit.slice(0, 10));
+
+  assert.equal(treeDigest(fixture.tree), treeBefore);
+  for (const name of OVERLAY_STATE_FILES) {
+    assert.deepEqual(readBytes(fixture.overlayDir, name), bytesBefore.get(name), name);
+  }
+  assert.equal(fs.existsSync(fixture.runsDir), false);
+  assert.equal(treeDigest(fixture.overlayDir), overlayBefore);
+});
+
+test('repin --stage refuses a stage folder inside the live sibling overlay folder', (t) => {
+  const fixture = createRepinFixture(t, SIBLING);
+  const stageDir = path.join(fixture.overlayDir, 'stage');
+  const treeBefore = treeDigest(fixture.tree);
+  const overlayBefore = treeDigest(fixture.overlayDir);
+
+  const refused = fixture.repin(['--stage', stageDir]);
+  assert.equal(refused.code, 2, refused.output);
+  assert.match(refused.output, /^refuse:/m);
+  assert.equal(fs.existsSync(stageDir), false);
+  assert.equal(treeDigest(fixture.overlayDir), overlayBefore);
+  assert.equal(treeDigest(fixture.tree), treeBefore);
+});
+
+test('a layout link reaching into the sibling overlay folder passes live, and its staged copy resolves into the staged overlay folder', (t) => {
+  const fixture = createRepinFixture(t, SIBLING);
+  const linkPath = '.skilled/changelog/x';
+  writeFile(fixture.overlayDir, 'changelog/v1.md', 'overlay changelog\n');
+  const target = path.relative(
+    path.dirname(path.join(fixture.tree, linkPath)),
+    path.join(fixture.overlayDir, 'changelog'),
+  ).split(path.sep).join('/');
+  fixture.manifest.layoutLinks.push({ path: linkPath, target });
+  writeManifest(fixture);
+
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, linkPath)), target);
+  assert.equal(read(fixture.tree, linkPath + '/v1.md'), 'overlay changelog\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+
+  const stageDir = path.join(fixture.workspace, 'stage');
+  const staged = fixture.repin(['--stage', stageDir]);
+  assert.equal(staged.code, 0, staged.output);
+  const roots = stagedRoots(fixture, stageDir);
+  const resolved = fs.realpathSync(path.join(roots.tree, linkPath));
+  const stagedOverlay = fs.realpathSync(roots.overlay);
+  const liveOverlay = fs.realpathSync(fixture.overlayDir);
+  assert.ok(resolved.startsWith(stagedOverlay + path.sep), resolved);
+  assert.equal(resolved === liveOverlay || resolved.startsWith(liveOverlay + path.sep), false, resolved);
+});
+
+test('a re-pin line names a sibling overlay folder as the setting file gives it', (t) => {
+  const fixture = createRepinFixture(t, SIBLING);
+  fixture.manifest.regenerate.push({
+    id: 'rewrites-owned',
+    argv: ['node', '-e', "const fs = require('fs'); if (fs.existsSync('.skilled/skills/hub/added.md')) " +
+      "fs.writeFileSync('.skilled/skills/hub/SKILL.md', 'regenerated skill\\n')"],
+  });
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+
+  const failed = fixture.repin();
+  assert.equal(failed.code, 1, failed.output);
+  const label = overlayLabel(fixture);
+  assert.ok(failed.output.includes(`(overlay: ${label}/files/SKILL.md)`), failed.output);
+});
+
+// A backup.json edited after a sibling run must not steer a rollback out of the
+// overlay folder or into an area the engine never wrote.
+const SIBLING_TAMPERED_ENTRIES = [
+  ['an overlay entry reaching into the tree', (entry) => ({ ...entry, path: '../tree/x' })],
+  ['an overlay entry climbing out through a folder', (entry) => ({ ...entry, path: 'a/../../x' })],
+  ['an entry naming an unknown area', (entry) => ({ ...entry, area: 'elsewhere' })],
+];
+
+for (const [label, tamper] of SIBLING_TAMPERED_ENTRIES) {
+  test(`--rollback of a sibling-folder run refuses ${label} and changes nothing`, (t) => {
+    const fixture = createRepinFixture(t, SIBLING);
+    const result = fixture.repin();
+    assert.equal(result.code, 0, result.output);
+    const runDir = onlyRunDir(fixture);
+    const backupPath = path.join(runDir, 'backup.json');
+    const backup = readJson(backupPath);
+    const index = backup.entries.findIndex((entry) => entry.area === 'overlay');
+    assert.ok(index >= 0, JSON.stringify(backup.entries));
+    backup.entries[index] = tamper(backup.entries[index]);
+    fs.writeFileSync(backupPath, JSON.stringify(backup, null, 2) + '\n');
+    const treeBefore = treeDigest(fixture.tree);
+    const overlayBefore = treeDigest(fixture.overlayDir);
+
+    const rolledBack = fixture.run(['repin', '--rollback', path.basename(runDir)]);
+    assert.equal(rolledBack.code, 2, rolledBack.output);
+    assert.equal(treeDigest(fixture.tree), treeBefore);
+    assert.equal(treeDigest(fixture.overlayDir), overlayBefore);
+  });
+}
+
+test('repin --stage with a sibling overlay folder refuses the workspace holding both folders', (t) => {
+  const fixture = createRepinFixture(t, SIBLING);
+  const treeBefore = treeDigest(fixture.tree);
+  const overlayBefore = treeDigest(fixture.overlayDir);
+
+  const refused = fixture.repin(['--stage', fixture.workspace]);
+  assert.equal(refused.code, 2, refused.output);
+  assert.match(refused.output, /^refuse:/m);
+  assert.equal(treeDigest(fixture.tree), treeBefore);
+  assert.equal(treeDigest(fixture.overlayDir), overlayBefore);
 });

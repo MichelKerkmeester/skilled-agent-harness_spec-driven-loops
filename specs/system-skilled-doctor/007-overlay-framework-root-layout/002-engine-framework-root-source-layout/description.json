@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout",
+  "description": "Phase 2: engine-framework-root-source-layout",
+  "keywords": [
+    "phase",
+    "engine-framework-root-source-layout"
+  ],
+  "lastUpdated": "2026-11-20T12:19:40.727Z",
+  "specId": "002",
+  "folderSlug": "engine-framework-root-source-layout",
+  "parentChain": [
+    "system-skilled-doctor",
+    "007-overlay-framework-root-layout"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "20-11-26_13-19__built-phase-2-adoptsource-now-maps-skilled-x-to.md"
+  ]
+}

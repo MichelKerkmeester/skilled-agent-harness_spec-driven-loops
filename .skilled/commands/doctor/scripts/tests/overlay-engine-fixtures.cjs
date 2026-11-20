@@ -3,9 +3,12 @@
 // ───────────────────────────────────────────────────────────────────
 'use strict';
 
-// Builds throwaway vendored trees for the overlay engine suites. Each tree keeps
-// its overlay folder inside the tree root, the way a project vendors Skilled, and
-// the engine is run from its real location with --root pointing at the tree.
+// Builds throwaway vendored trees for the overlay engine suites. By default each
+// tree keeps its overlay folder inside the tree root, the way a project vendors
+// Skilled. A fixture can instead place the overlay folder beside the tree, so the
+// overlays live outside the framework root and the tree's setting file reaches
+// them through a relative path. The engine is run from its real location with
+// --root pointing at the tree.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -46,19 +49,33 @@ function readJson(filePath) {
  * Create an empty workspace holding a tree and that tree's overlay folder.
  * @param {object} t The node:test context, used to remove the workspace.
  * @param {string} prefix Temporary folder prefix.
- * @param {{overlayFolder?: string}} [options] A folder named by the setting file.
+ * @param {{overlayFolder?: string, siblingOverlayFolder?: string}} [options]
+ *   `overlayFolder` names a folder inside the tree. `siblingOverlayFolder` names a
+ *   folder beside the tree, in the workspace, reached from the tree's setting file
+ *   as `../<name>`. Either option writes the setting file; the two cannot be combined.
  * @returns {{workspace: string, tree: string, overlayDir: string, statePath: string,
  *   lockPath: string}}
  */
 function createWorkspace(t, prefix, options = {}) {
+  if (options.overlayFolder && options.siblingOverlayFolder) {
+    throw new Error('createWorkspace: set overlayFolder or siblingOverlayFolder, not both');
+  }
   const workspace = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
   t.after(() => fs.rmSync(workspace, { recursive: true, force: true }));
   const tree = path.join(workspace, 'tree');
-  const folder = options.overlayFolder || DEFAULT_OVERLAY_FOLDER;
-  const overlayDir = path.join(tree, folder);
-  fs.mkdirSync(overlayDir, { recursive: true });
-  if (options.overlayFolder) {
-    writeFile(tree, '.skilled-overlays.json', JSON.stringify({ overlayDir: folder }) + '\n');
+  let overlayDir;
+  if (options.siblingOverlayFolder) {
+    const sibling = options.siblingOverlayFolder;
+    overlayDir = path.join(workspace, sibling);
+    fs.mkdirSync(overlayDir, { recursive: true });
+    writeFile(tree, '.skilled-overlays.json', JSON.stringify({ overlayDir: `../${sibling}` }) + '\n');
+  } else {
+    const folder = options.overlayFolder || DEFAULT_OVERLAY_FOLDER;
+    overlayDir = path.join(tree, folder);
+    fs.mkdirSync(overlayDir, { recursive: true });
+    if (options.overlayFolder) {
+      writeFile(tree, '.skilled-overlays.json', JSON.stringify({ overlayDir: folder }) + '\n');
+    }
   }
   return {
     workspace,
@@ -92,10 +109,11 @@ function runEngine(args, cwd) {
 /**
  * Build the shared fixture with one overlay of each destination-writing scope.
  * @param {object} t The node:test context.
+ * @param {object} [options] Workspace options passed to `createWorkspace`.
  * @returns {object} Fixture paths, its manifest and a `run` helper.
  */
-function createSyncFixture(t) {
-  const fixture = createWorkspace(t, 'overlay-engine-sync-');
+function createSyncFixture(t, options = {}) {
+  const fixture = createWorkspace(t, 'overlay-engine-sync-', options);
   const { overlayDir, tree } = fixture;
 
   const pinnedFile = Buffer.from('pinned file\n');

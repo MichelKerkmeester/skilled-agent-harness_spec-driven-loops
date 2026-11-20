@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release",
+  "description": "Phase 3: engine-docs-and-release",
+  "keywords": [
+    "phase",
+    "engine-docs-and-release"
+  ],
+  "lastUpdated": "2026-11-20T12:28:10.010Z",
+  "specId": "003",
+  "folderSlug": "engine-docs-and-release",
+  "parentChain": [
+    "system-skilled-doctor",
+    "007-overlay-framework-root-layout"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "20-11-26_13-28__built-phase-3-doctor-docs-workflow-yaml-playbook.md"
+  ]
+}

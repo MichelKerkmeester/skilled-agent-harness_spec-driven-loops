@@ -188,6 +188,30 @@ test('the overlay folder comes from the engine, so a custom overlayDir is honour
   assert.match(result.reason, /owned by custom-overlays\/files\/owned\.txt/);
 });
 
+test('a sibling overlay folder beside the tree guards owned files and leaves its own files writable', () => {
+  const root = makeTree({ overlays: false });
+  // Named after the tree so parallel runs never share the sibling folder.
+  const siblingName = path.basename(root) + '-overlays';
+  const siblingDir = path.join(path.dirname(root), siblingName);
+  fixtures.push(siblingDir);
+  writeFile(root, '.skilled-overlays.json', JSON.stringify({ overlayDir: '../' + siblingName }) + '\n');
+  writeFile(siblingDir, OVERLAY_SOURCE, 'overlay version\n');
+  writeFile(siblingDir, 'overlay-manifest.json', JSON.stringify({
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', commit: 'pin-one' },
+    overlays: [{ id: 'owned', scope: 'file', source: OVERLAY_SOURCE, destination: OWNED.split(path.sep).join('/') }],
+  }, null, 2) + '\n');
+
+  const owned = evaluate(root, [OWNED]);
+  assert.equal(owned.decision, 'deny');
+  const label = ('../' + siblingName + '/' + OVERLAY_SOURCE).replace(/[.*+?^${}()|[\]\\/-]/g, '\\$&');
+  assert.match(owned.reason, new RegExp('owned by ' + label));
+
+  const overlayWrite = evaluate(root, [path.join(siblingDir, OVERLAY_SOURCE)]);
+  assert.equal(overlayWrite.decision, 'allow');
+  assert.deepEqual(overlayWrite.notes, []);
+});
+
 test('an unowned path in a tree with a manifest is allowed', () => {
   const root = makeTree();
   const { spawn, calls } = countingSpawn();

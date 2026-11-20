@@ -9,7 +9,7 @@ trigger_phrases:
   - "parent goal amendment"
 importance_tier: important
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.3.0
 ---
 # Parent and Nested Goal Authoring
 
@@ -33,7 +33,7 @@ Read [`authoring-standards.md`](authoring-standards.md) and [`goal-exemplars.md`
 
 Classify the target before writing. A top-level packet has its own specification and no parent packet spec. A phase parent has direct numbered phase-child folders. A nested child has a parent folder that contains `spec.md`.
 
-Read the target's own `spec.md` and `acceptance-criteria.md`. For a phase parent, also read its Phase Documentation Map. For a nested child, use only that child's specification and acceptance criteria for its phase goal. Stop if a required source is missing or if the sources conflict. Name the conflict instead of choosing a truth silently.
+Read the target's own `spec.md` and `acceptance-criteria.md`. For a phase parent, also read its Phase Documentation Map. For a nested child, use only that child's specification and acceptance criteria for its phase goal. A Level 1 nested child, whose `spec.md` carries `<!-- SPECKIT_LEVEL: 1 -->`, with no `acceptance-criteria.md` takes its completion criteria from its own `spec.md` REQUIREMENTS and SUCCESS CRITERIA sections. A nested child at Level 2 or higher still needs `acceptance-criteria.md`. Stop if a required source is missing or if the sources conflict. Name the conflict instead of choosing a truth silently.
 
 Use [`create.sh`](../../../system-spec-kit/runtime/cli/spec/create.sh) when scaffolding a packet with its other documents, and fill the `goal.md` it writes. For an existing packet or a missing goal, copy the block between the markers of the matching asset template. Never create or edit `goal.md.tmpl` in this mode.
 
@@ -64,7 +64,7 @@ A phase-parent binding is complete only when the map and direct child folders ag
 1. Read the phase parent's `spec.md`, its `acceptance-criteria.md` when present and the complete Phase Documentation Map. Record each direct phase folder named by the map.
 2. List every direct child directory whose name matches `NNN-slug/`. Compare the exact folder-name set with the map's folder set before writing the goal. Do not compare only the counts.
 3. **STOP** if a map row has no matching directory, a directory has no map row or a folder name is ambiguous. Report the exact map and disk entries that differ. Reconcile the Phase Documentation Map first, then restart this workflow. Never infer a folder name or guess a missing binding row.
-4. Check that each child folder has its own `spec.md` and `acceptance-criteria.md`. Stop if either source is missing. Derive the parent's objective and criteria from the parent-level sources. Do not copy phase-local detail into the parent as a substitute for parent criteria.
+4. Check that each child folder has its own `spec.md`, and its own `acceptance-criteria.md` unless the child is Level 1. A Level 1 child with no `acceptance-criteria.md` takes its criteria from its `spec.md` requirements and success criteria. Stop if a required source is missing, including `acceptance-criteria.md` for a child at Level 2 or higher. Derive the parent's objective and criteria from the parent-level sources. Do not copy phase-local detail into the parent as a substitute for parent criteria.
 5. If the parent has no `goal.md`, copy the template block from [`goal-phase-parent-template.md`](../assets/goal-phase-parent-template.md). If it already has a goal, revise it through its existing structure. Preserve the template's binding and precedence text.
 6. Write exactly one table row for each direct phase-child directory. The target cell must be a backticked path in the form `NNN-slug/goal.md`, relative to the phase parent. For example:
 
@@ -88,7 +88,7 @@ The strict validator checks each listed target but does not prove row completene
 
 ## 4. NESTED CHILD GOAL
 
-1. Read the child's own `spec.md` and `acceptance-criteria.md`. Use its phase objective, frozen choices and phase-local criteria. Do not derive the child goal from a parent summary or another phase's criteria.
+1. Read the child's own `spec.md` and `acceptance-criteria.md`. A Level 1 child with no `acceptance-criteria.md` takes its phase-local criteria from its `spec.md` REQUIREMENTS and SUCCESS CRITERIA sections instead. A child at Level 2 or higher stops when `acceptance-criteria.md` is missing. Use its phase objective, frozen choices and phase-local criteria. Do not derive the child goal from a parent summary or another phase's criteria.
 2. Fill the child's scaffolded `goal.md`, or copy the template block from [`goal-phase-child-template.md`](../assets/goal-phase-child-template.md) when it has none. Fill the objective, decisions and three to seven checkable criteria. Repeat those criteria verbatim in the evaluator-facing objective text required by the goal contract.
 3. Keep the criteria phase-local. A nested child goal has no binding section. The parent goal binds the child.
 
@@ -99,7 +99,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <child> --stri
 ! grep -q '<!-- ANCHOR:binding -->' <child>/goal.md
 ```
 
-Require `RESULT: PASSED`. Confirm every child criterion traces to that child's own acceptance criteria and that the goal has no binding block.
+Require `RESULT: PASSED`. Confirm every child criterion traces to that child's own acceptance criteria, or for a Level 1 child its `spec.md` requirements and success criteria, and that the goal has no binding block.
 
 ---
 
@@ -117,7 +117,7 @@ Verify with strict validation. For a phase parent, validate recursively, compare
 
 ### Add a phase binding
 
-Use phase-add only after the new phase appears in both the parent's Phase Documentation Map and the direct child directories on disk. Read the new child's own specification and acceptance criteria before writing its goal. If the map and disk do not agree, stop and reconcile the map first.
+Use phase-add only after the new phase appears in both the parent's Phase Documentation Map and the direct child directories on disk. Read the new child's own specification and acceptance criteria before writing its goal. A Level 1 nested child carries no `acceptance-criteria.md`, so it takes its criteria from its own `spec.md` REQUIREMENTS and SUCCESS CRITERIA sections. If the map and disk do not agree, stop and reconcile the map first.
 
 Add exactly one parent binding row with the new directory's backticked `NNN-slug/goal.md` target. Author the child's goal from its phase-local sources. Do not rewrite unrelated rows. Because the parent goal changed, print its updated chat slice for the operator to resend.
 

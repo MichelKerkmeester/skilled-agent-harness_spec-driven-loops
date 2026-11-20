@@ -1,0 +1,475 @@
+✔ the overlay folder defaults to skilled-overlays when the tree has no setting file (51.612125ms)
+✔ the setting file names the overlay folder, and manifest, sources and state resolve inside it (71.442625ms)
+✔ the setting file accepts a sibling folder "../overlays" as ../overlays (5.976167ms)
+✔ the setting file accepts a sibling folder "../overlays/" as ../overlays (5.782667ms)
+✔ the setting file accepts a sibling folder "a/../../overlays" as ../overlays (8.212458ms)
+✔ the setting file accepts a sibling folder "../outside" as ../outside (5.925958ms)
+✔ the setting file accepts a sibling folder "a/../../outside" as ../outside (5.043ms)
+✔ the setting file refuses "..", which is neither inside the tree nor a direct sibling folder (38.617875ms)
+✔ the setting file refuses "../", which is neither inside the tree nor a direct sibling folder (38.433584ms)
+✔ the setting file refuses ".", which is neither inside the tree nor a direct sibling folder (38.449417ms)
+✔ the setting file refuses "/etc", which is neither inside the tree nor a direct sibling folder (39.324ms)
+✔ the setting file refuses "C:\\overlays", which is neither inside the tree nor a direct sibling folder (39.7525ms)
+✔ the setting file refuses "over\u0000lays", which is neither inside the tree nor a direct sibling folder (37.164ms)
+✔ the setting file refuses "../../x", which is neither inside the tree nor a direct sibling folder (37.346334ms)
+✔ the setting file refuses "../a/b", which is neither inside the tree nor a direct sibling folder (38.412291ms)
+✔ the setting file refuses a sibling folder carrying the tree folder's own name, which is the tree root (40.004125ms)
+✔ the setting file refuses a sibling link that points back at the tree root (38.3695ms)
+✔ the setting file refuses a sibling spelled as a case variant of the tree folder on a case-insensitive disk (41.2265ms)
+✔ only the setting reader in the engine mentions the overlayDir key (1.166958ms)
+✔ a re-pinned overlay whose source changed applies over its last applied copy with no restore step (169.438ms)
+✔ a retained path that the overlay also replaces is reported, guarded and capturable (324.143125ms)
+✔ a file under a replaced folder holding the recorded pin bytes is overlay-edited, and a hand-added file stays live-edited (395.392792ms)
+✔ apply refuses while the lock is held, naming the owner line and the lock file, and writes nothing (82.58825ms)
+✔ capture refuses while the lock is held (82.408375ms)
+✔ apply holds the lock while it runs and removes it when done, also after a failed step (148.954917ms)
+✔ a caller that already holds the lock can run apply inside it without releasing it (37.326709ms)
+✔ a setKeyOnItem on an item the same entry set inserts applies in order (167.632083ms)
+✔ an exact file entry for a token-named destination applies (135.471458ms)
+✔ a token-named file met while walking a directory or skill-root entry blocks only its own entry (371.641916ms)
+✔ a walked token-named file passes only when its entry lists the exact path in protectedPaths (164.389542ms)
+✔ a protectedPaths value that escapes its entry or names a .env file is refused (110.599583ms)
+✔ a .env file is refused even when a manifest entry names it exactly (78.087834ms)
+✔ the guard answers on an out-of-sync tree without applying anything (238.734208ms)
+✔ apply takes over a lock naming a dead pid on this host and clears the file (72.760375ms)
+✔ apply takes over a lock line written before the engine recorded the host (69.058875ms)
+✔ apply refuses while another run is taking the lock over, and clears a marker a killed run left (103.622542ms)
+✔ a takeover refuses when another run replaces the stale lock in the gap before the removal (32.144917ms)
+✔ a takeover puts back a marker another run wrote after the old one was judged stale (32.029042ms)
+✔ a takeover puts back a lock another run wrote after the old one was read again (32.946875ms)
+✔ a takeover leaves exactly the new owner line and no marker behind (28.79875ms)
+✔ apply refuses a lock naming a live pid on this host and leaves the file alone (36.917792ms)
+✔ apply refuses a host-less lock line naming a live pid here (36.388292ms)
+✔ apply refuses a lock with no pid in it and leaves the file alone (38.945916ms)
+✔ apply refuses a lock naming a dead pid on another host and leaves the file alone (66.56075ms)
+✔ repin --stage stages over a lock whose writer has ended here and leaves the file alone (534.899125ms)
+✔ repin --stage refuses a lock naming a live pid on this host and stages nothing (202.981125ms)
+✔ apply retargets a layout link the engine made when the manifest target changes (76.643375ms)
+✔ apply refuses a layout link the state does not record and leaves it alone (75.59825ms)
+✔ a state file without link records still loads and reports an in-sync tree (71.5255ms)
+✔ apply removes an appended item the entry set drops (77.494792ms)
+✔ apply refuses to remove a dropped item that was edited after it was applied (78.162083ms)
+✔ apply keeps a listed item recorded and reports nothing to change (78.295333ms)
+✔ apply leaves an upstream item alone when the entry set stops listing it (105.278459ms)
+✔ apply keeps a dropped item that upstream ships at the pin (275.85225ms)
+✔ apply removes a dropped item that sits at the head of the live array (81.772291ms)
+✔ status passes while an owned root file matches the pinned upstream copy (220.67875ms)
+✔ status reports an owned root file whose pinned copy upstream has moved on from (270.485875ms)
+✔ status passes while a marked-section overlay root file matches the pinned upstream copy (189.741917ms)
+✔ status reports a marked-section overlay root file whose pinned copy upstream has moved on from (296.296375ms)
+✔ status names a source kept off the layout without failing the run (157.683459ms)
+✔ relayout moves every off-layout source onto its layout path (147.444959ms)
+✔ relayout backs up no file its read rule refuses to open (37.0465ms)
+✔ relayout refuses to move a source whose layout path is already taken (32.151167ms)
+✔ relayout reports nothing to move on a tree already on the layout (31.8435ms)
+✔ relayout moves a source in a sibling overlay folder and backs it up inside that folder (132.196958ms)
+✔ relayout retargets a live layout link whose target it moved (149.512916ms)
+✔ relayout leaves a live link that points somewhere of its own unchanged (78.563959ms)
+✔ relayout is a flag of apply, so a bare command word and a rival flag are refused (64.8245ms)
+✔ relayout refuses a manifest that names one id twice before it moves anything (35.984875ms)
+✔ relayout refuses a copy two entries would move to different paths (37.72675ms)
+✔ relayout refuses two copies whose destinations land on one layout path (44.203542ms)
+✔ relayout refuses two copies that sit one inside the other (35.480875ms)
+✖ layout cap: status names twenty off-layout entries and counts the rest in one line (142.201583ms)
+✖ layout cap: status prints twenty off-layout entries with no overflow line (88.962708ms)
+✖ old layout: a tree with dot-dropped sources passes status and relayout moves it onto framework and root (69.362ms)
+✖ relayout refuses an entry whose layout path lands under root/skilled and moves nothing (42.303584ms)
+✔ status --audit names the vendored drift no overlay owns and plain status stays quiet (400.825708ms)
+✔ status --audit lists an unowned vendored file whose line endings differ from the pin (319.76675ms)
+✔ status --audit skips the audit when the pinned checkout is no repository (61.705792ms)
+✔ status --audit skips the audit when the checkout lacks the pinned commit (140.024625ms)
+✔ plain status notes an unowned upstream path the tree lacks and still passes (326.590167ms)
+✔ status --audit lists the missing path once, as an AUDIT line and not as a note (370.563708ms)
+✔ plain status prints no missing-path note when the pinned checkout cannot be read (173.333209ms)
+✔ after a moved pin, a destination holding its pinned upstream bytes is overlay-edited, not upstream-moved (598.361666ms)
+✔ a live repin backs up every touched path before its first write, then copies, applies and passes (719.493041ms)
+✔ a failure after the backup names the run, and --rollback restores the tree byte for byte so status passes (827.630625ms)
+✔ --rollback refuses a backed-up file whose bytes no longer match the recorded hash (682.478041ms)
+✔ an unowned file edited in place refuses the repin, names the path and writes nothing (497.351542ms)
+✔ a project file at a path upstream ships for the first time refuses the repin (729.100125ms)
+✔ a .env path upstream ships refuses the repin before any read or write (492.35375ms)
+✔ a repin to the commit already pinned reports nothing to copy and writes nothing (440.440333ms)
+✔ a commit missing from the upstream exits 2 before any write (435.500292ms)
+✔ repin refuses while another run holds the lock, and while status shows a live edit (476.876708ms)
+✔ repin.exclude keeps a real folder where upstream ships a link (729.484458ms)
+✔ repin --stage builds the re-pinned tree in a copy, reports both groups and leaves the live tree untouched (481.575542ms)
+✔ repin --stage treats an upstream addition inside a removed folder as removed (580.56825ms)
+✔ repin --stage treats an upstream addition inside a replaced folder as overlay-owned, and a hand-added file as live-edited (765.460291ms)
+✔ repin --stage treats an upstream change inside a replaced folder as overlay-owned (525.384ms)
+✔ repin --stage refuses a folder that is not empty or that sits inside the live tree (423.55975ms)
+✔ a misused repin command line prints the usage and exits 2 (488.250709ms)
+✔ a re-pin copies .dsh with the other runtime folders when the manifest names none (622.12825ms)
+✔ a re-pin copies .vibe with the other runtime folders when the manifest names none (542.662958ms)
+✔ a re-pin lists upstream changes it does not copy and skips a top-level link (553.487208ms)
+✔ a nested overlay folder hides only its own paths from the not-copied list (616.421292ms)
+✔ a re-pin over a refused overlay stops before the backup and writes nothing (369.624833ms)
+✔ a re-pin replaces an unowned link with the folder the new pin ships there (545.523209ms)
+✔ a re-pin still refuses a new upstream file that a project link already reaches (456.006208ms)
+✔ repin --stage treats an upstream addition inside a directory overlay as overlay-owned, and a hand-added file as live-edited (743.404625ms)
+✔ a folder overlay rebased onto the new pin applies after the copy, and one that is not stays upstream-moved (1046.726ms)
+✔ a live repin names the regenerate step that rewrote a file an overlay owns, not upstream-moved (562.475209ms)
+✔ a live repin returns a dropped set to the value the new pin holds and keeps the set that stays (791.664708ms)
+✔ a live repin restores a dropped set in a json-entry file at the tree root from the new commit (711.706542ms)
+✔ a re-pin stops before the backup when a json-entry file it leaves in place cannot be restored at the new pin (561.969667ms)
+✔ a re-pin names each upstream change a json-entry set or setKeyOnItem writes over (611.70075ms)
+✔ a re-pin names each upstream file a directory overlay removes after the copy (606.278041ms)
+✔ a re-pin notes an insert whose before anchor upstream removed (564.031416ms)
+✔ a re-pin names each upstream file a skill-root overlay removes from a folder it replaces (636.309083ms)
+✔ a live repin with a sibling overlay folder backs up its files against the overlay root (580.38875ms)
+✔ an in-tree backup records no area, so every entry is a tree path (559.04975ms)
+✔ --rollback of a sibling-folder run restores the manifest pin and sync-state.json in the overlay folder (656.23075ms)
+✔ repin --stage with a sibling overlay folder stages both folders and writes nothing in the live overlay folder (466.771333ms)
+✔ repin --stage refuses a stage folder inside the live sibling overlay folder (517.215875ms)
+✔ a layout link reaching into the sibling overlay folder passes live, and its staged copy resolves into the staged overlay folder (563.132875ms)
+✔ a re-pin line names a sibling overlay folder as the setting file gives it (622.114792ms)
+✔ --rollback of a sibling-folder run refuses an overlay entry reaching into the tree and changes nothing (563.703875ms)
+✔ --rollback of a sibling-folder run refuses an overlay entry climbing out through a folder and changes nothing (548.7765ms)
+✔ --rollback of a sibling-folder run refuses an entry naming an unknown area and changes nothing (592.603208ms)
+✔ repin --stage with a sibling overlay folder refuses the workspace holding both folders (359.008625ms)
+✔ a layout link replaces the named upstream link while it holds the pinned target (145.987583ms)
+✔ an upstream link whose target differs from the pinned value is refused and left alone (75.645708ms)
+✔ remove-root checks each present path, removes directories, files and symlinks, then becomes a no-op (150.297625ms)
+✔ remove-root treats absent paths as a no-op (74.744666ms)
+✔ remove-root rejects parent traversal and absolute paths without deleting any target (77.983667ms)
+✔ remove-root follows only symlinked parents that stay inside the tree (79.784209ms)
+✔ the guard refuses a new file under a vendored root and names where to create it (420.037458ms)
+✔ the guard refuses an edit to a vendored file no overlay owns, and leaves the rest of the tree alone (519.679333ms)
+✔ the guard allows a generated path and a path git ignores (485.354417ms)
+✔ a generated glob with ** matches whole folders, not a longer name beside them (497.443ms)
+✔ with the setting off the guard allows every path no overlay owns, and the commit check checks nothing (537.908625ms)
+✔ adopt turns a new folder into a directory entry, lists its token-named source file and applies (480.420458ms)
+✔ adopt pins an upstream file to the upstream bytes, not to the edited live copy (521.451417ms)
+✔ adopt refuses what it cannot own and writes nothing (555.551125ms)
+✔ the flow the guard names for a new file adopts it from the overlay folder and applies it (460.308291ms)
+✔ adopt refuses a taken source, a source clash, a non-file and a missing checkout, and writes nothing (395.939333ms)
+✔ a manifest write that fails at the rename keeps the old manifest and leaves no temporary file (298.941291ms)
+✔ pre-commit refuses a staged vendored change no overlay owns, and passes owned, generated and upstream-equal ones (915.096834ms)
+✔ pre-commit treats a staged file as upstream's own when only its line endings differ (714.840459ms)
+✔ a path under repin.exclude needs no overlay, so the guard and the commit check leave it alone (400.789458ms)
+✔ adopt takes a path under repin.exclude when the overlay folder holds its copy (355.039208ms)
+✔ adopt still refuses a path under repin.exclude with no copy in the overlay folder (282.762834ms)
+✔ the commit check reports a staged change under a vendored tree that sits below the git top level (178.699292ms)
+✔ the commit check names an unowned vendored change when the checkout its pin names is gone (468.702042ms)
+✔ a staged re-pin names each listed root file upstream changed, owned or not (451.532333ms)
+✔ --adopt and pre-commit reject a misused command line (422.039875ms)
+✔ the guard names a sibling overlay folder for an owned path and allows a path inside that folder (394.4025ms)
+✔ the guard run from the workspace resolves paths there with a sibling overlay folder (380.503292ms)
+✔ adopt writes the copy and its entry into a sibling overlay folder and names it (429.740084ms)
+✔ pre-commit checks a tree whose sibling overlay folder sits in the same git repository (555.264917ms)
+✔ pre-commit refuses to judge a tree whose sibling overlay folder is outside its git repository (301.607125ms)
+✖ a manifest source under root/skilled is a blocked overlay for its entry (315.572458ms)
+✖ adopt refuses a destination under skilled/ because its source would sit under root/skilled (305.771666ms)
+✖ adopt of an excluded path prefers the framework copy when an excluded copy sits at both paths (317.950125ms)
+✔ clean apply records every managed file and a second apply is a no-op (136.086666ms)
+✔ overlay edits apply through file, directory, marked-section, and json-entry plans (179.980292ms)
+✔ live edits stop apply and status, then capture updates directory and marked-section sources (302.3685ms)
+✔ capture is a no-op for an in-sync destination (91.252042ms)
+✔ capture refuses a both-changed destination without writing (119.021875ms)
+✔ capture refuses an upstream-moved destination without writing (115.997084ms)
+✔ both-sides changes stop apply without changing live, overlay, or sync state (120.81275ms)
+✔ a moved pin marks a changed live destination upstream-moved and blocks writes (121.833209ms)
+✔ a missing applied file is overlay-edited and restored (129.323417ms)
+✔ remove-root reports pending paths, blocks guard and capture, and drops retired state after apply (350.425417ms)
+✔ an upstream file added inside a removed folder is overlay-edited and apply deletes it (217.533042ms)
+✔ a replace-listed file inside a removed folder stays overlay-owned (213.027958ms)
+✔ capture refuses a path under a removed folder without writing into the overlay (88.285209ms)
+✔ guard resolves cwd-relative paths and capture refuses unknown, protected, and json-entry destinations (273.87175ms)
+✔ a missing layout link is reported as overlay-edited and created by apply (159.649792ms)
+✔ an edited json-entry item re-applies over the applied bytes and refuses once the live file moved (237.772917ms)
+✔ an edited json-entry object key re-applies over the applied bytes and refuses once the live file moved (269.083375ms)
+✔ token-named paths pass only when a manifest entry names them exactly, and .env never does (5.917833ms)
+✔ status --json reports each out-of-sync destination with its fix, and an error as JSON (140.65675ms)
+✔ a misused command line prints the usage and exits 2 (155.11675ms)
+✔ a json-entry set adds a key the document does not hold yet, and still refuses a missing parent (121.138458ms)
+✔ apply returns a value to the pin once its set leaves the entry set (221.623042ms)
+✔ apply deletes a key its set added once the set leaves the entry set (216.896291ms)
+✔ apply refuses to restore a set value that was edited after it was applied (270.233042ms)
+✔ apply refuses to restore a dropped set when the pinned copy cannot be read (145.728208ms)
+✔ a set whose value changes in the source is rewritten and recorded, not restored (147.993375ms)
+✔ a state file without set records loads, restores nothing and keeps its bytes (80.782542ms)
+✔ a set applied before sets were recorded is recorded by the next apply and then restored (187.956083ms)
+✔ a dropped set is restored from the pinned copy the run was given (0.683083ms)
+✔ apply restores a dropped set through an array index while the arrays line up (161.926833ms)
+✔ apply refuses a dropped set through an array the overlay added an item to (207.879875ms)
+✔ two sets on one path keep one record and both leave together (163.01525ms)
+✔ a key the pin does not hold is refused, not deleted, when its record never marked it as added (230.569667ms)
+✔ a key added through an index keeps its added mark when the entry set respells the index (197.882792ms)
+✔ apply refuses to delete a key the pin does not hold once its value was edited (181.665875ms)
+✔ a dropped set is restored while the operations that stay are still applied (174.849125ms)
+✔ apply refuses a dropped set whose array index is written as a string (163.162917ms)
+✔ a dropped set whose index fell off the array is refused until the array matches the pin (269.134708ms)
+✔ two records for one path in an older state file restore from the last one (153.69625ms)
+✔ a dropped set leaves in the same apply that adds an item to its array, and the run ends clean (247.686666ms)
+✔ a dropped set whose key was deleted by hand leaves quietly while the arrays line up (228.077458ms)
+✔ a dropped set leaves in the same apply whose kept set shortens its array (257.532041ms)
+✔ a dropped set through an array index is refused when the pin holds another item at that index (0.640208ms)
+✔ a dropped set through an array index is restored beside a set the entry set keeps in the same item (0.493125ms)
+✔ two nested sets dropped together both leave, in either order they were written (290.451958ms)
+✔ two nested sets dropped together are refused once the inner value was edited by hand (174.517125ms)
+✔ sets spelled with 1 and with "1" keep one record, and both leave together (175.291125ms)
+✔ a kept set respelled from "1" to 1 is the same set, so nothing is restored (148.870667ms)
+✔ with no pinned copy to read, the refusal names pin.checkout and clears once the file holds the pinned bytes (197.84925ms)
+✔ an entry set refused over an untouched file is cannot-apply, and putting the named array back clears it (298.117458ms)
+✔ a dropped set that wrote a whole array item restores only while every other item is the pin's (0.228959ms)
+✔ a dropped set is restored beside other operations the entry set keeps in the same item (0.448708ms)
+✔ records an older engine kept in first-write order still restore nested sets dropped together (0.103208ms)
+✔ a dropped set inside an item is restored while a kept set rewrites the whole array (0.124542ms)
+✔ sets that together wrote every key of an item restore only while every other item is the pin's (0.174542ms)
+✔ records an older engine kept with the inner set first still restore when it was written last (0.056916ms)
+✔ a rerun of apply after a failed regenerate step runs the step again, and the item it added still leaves later (377.757667ms)
+✔ a state file of schema version 1 loads, is named in status and is rewritten as version 2 (148.040458ms)
+✔ a state record without a path is refused and named (133.17825ms)
+✔ the state file is replaced through a rename, so a failed write keeps the old bytes and leaves no temporary file (41.513583ms)
+✔ status notes a skipped stale root-file check when no upstream checkout can be read (96.405208ms)
+✔ status names both skipped checks when the checkout lacks the pinned commit (168.011166ms)
+✔ a relative pin.checkout is read from the tree root, not from the shell's folder (196.953ms)
+✔ a malformed entry set blocks only its own overlay and names its file (87.369709ms)
+✔ status notes a set through an array index and no longer notes a recorded setKeyOnItem (214.650292ms)
+✔ status reports a json-entry result that differs from the entry set applied to the pinned copy (289.687958ms)
+✔ status prints no note for recorded setKeyOnItem and insertObjectKeys operations (171.931667ms)
+✔ status skips the cross-check on a json-entry destination a regenerate step lists as an output (157.11325ms)
+✔ status notes an appendItems or insertItems whose path goes through an array index (175.195291ms)
+✔ status notes a before anchor the file no longer holds, and apply still adds the items at the end (245.466584ms)
+✔ status notes a before anchor that has no identityKey to match it by (168.551542ms)
+✔ apply takes back a dropped insertObjectKeys key and keeps a record of it while it is listed (153.41725ms)
+✔ apply takes back a dropped setKeyOnItem: a key it added leaves and a key upstream ships returns to the pin (277.401458ms)
+✔ a dropped setKeyOnItem on an item the same entry set inserts leaves while the item stays (275.093709ms)
+✔ a dropped setKeyOnItem whose value was edited by hand is refused, not removed (161.474ms)
+✔ insertBefore places the block before its anchor line and a second apply changes nothing (115.824667ms)
+✔ an edited placed block is rewritten in place and the anchored tail is kept (113.903292ms)
+✔ capture of a placed block takes the span apply writes, up to the anchor line (110.942667ms)
+✔ a missing insertBefore line refuses the block instead of appending it (39.471291ms)
+✔ naming an anchor moves a block that an earlier apply appended at the end (106.68325ms)
+✔ a sibling overlay folder applies every destination and status then passes in sync (71.4565ms)
+✔ status and status --json show a sibling overlay folder by its ../overlays label (112.272417ms)
+✔ capture writes a live edit back into the sibling overlay folder (108.999875ms)
+ℹ tests 245
+ℹ suites 0
+ℹ pass 238
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 26518.727166
+
+✖ failing tests:
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs:1541:1
+✖ layout cap: status names twenty off-layout entries and counts the rest in one line (142.201583ms)
+  AssertionError [ERR_ASSERTION]: in-sync=25 overlay-edited=0 live-edited=0 both-changed=0 upstream-moved=0 cannot-apply=0
+  checked=26 ok=26 miss=0
+  RESULT: PASSED
+  
+  + actual - expected
+  
+  + []
+  - [
+  -   'LAYOUT   s01: source skilled/skills/s01/SKILL.md belongs at framework/skills/s01/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s02: source skilled/skills/s02/SKILL.md belongs at framework/skills/s02/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s03: source skilled/skills/s03/SKILL.md belongs at framework/skills/s03/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s04: source skilled/skills/s04/SKILL.md belongs at framework/skills/s04/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s05: source skilled/skills/s05/SKILL.md belongs at framework/skills/s05/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s06: source skilled/skills/s06/SKILL.md belongs at framework/skills/s06/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s07: source skilled/skills/s07/SKILL.md belongs at framework/skills/s07/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s08: source skilled/skills/s08/SKILL.md belongs at framework/skills/s08/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s09: source skilled/skills/s09/SKILL.md belongs at framework/skills/s09/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s10: source skilled/skills/s10/SKILL.md belongs at framework/skills/s10/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s11: source skilled/skills/s11/SKILL.md belongs at framework/skills/s11/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s12: source skilled/skills/s12/SKILL.md belongs at framework/skills/s12/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s13: source skilled/skills/s13/SKILL.md belongs at framework/skills/s13/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s14: source skilled/skills/s14/SKILL.md belongs at framework/skills/s14/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s15: source skilled/skills/s15/SKILL.md belongs at framework/skills/s15/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s16: source skilled/skills/s16/SKILL.md belongs at framework/skills/s16/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s17: source skilled/skills/s17/SKILL.md belongs at framework/skills/s17/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s18: source skilled/skills/s18/SKILL.md belongs at framework/skills/s18/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s19: source skilled/skills/s19/SKILL.md belongs at framework/skills/s19/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s20: source skilled/skills/s20/SKILL.md belongs at framework/skills/s20/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   … 5 more; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout'
+  - ]
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs:1552:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ 'LAYOUT   s01: source skilled/skills/s01/SKILL.md belongs at framework/skills/s01/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s02: source skilled/skills/s02/SKILL.md belongs at framework/skills/s02/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s03: source skilled/skills/s03/SKILL.md belongs at framework/skills/s03/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s04: source skilled/skills/s04/SKILL.md belongs at framework/skills/s04/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s05: source skilled/skills/s05/SKILL.md belongs at framework/skills/s05/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s06: source skilled/skills/s06/SKILL.md belongs at framework/skills/s06/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s07: source skilled/skills/s07/SKILL.md belongs at framework/skills/s07/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s08: source skilled/skills/s08/SKILL.md belongs at framework/skills/s08/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s09: source skilled/skills/s09/SKILL.md belongs at framework/skills/s09/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s10: source skilled/skills/s10/SKILL.md belongs at framework/skills/s10/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s11: source skilled/skills/s11/SKILL.md belongs at framework/skills/s11/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s12: source skilled/skills/s12/SKILL.md belongs at framework/skills/s12/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s13: source skilled/skills/s13/SKILL.md belongs at framework/skills/s13/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s14: source skilled/skills/s14/SKILL.md belongs at framework/skills/s14/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s15: source skilled/skills/s15/SKILL.md belongs at framework/skills/s15/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s16: source skilled/skills/s16/SKILL.md belongs at framework/skills/s16/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s17: source skilled/skills/s17/SKILL.md belongs at framework/skills/s17/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s18: source skilled/skills/s18/SKILL.md belongs at framework/skills/s18/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s19: source skilled/skills/s19/SKILL.md belongs at framework/skills/s19/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s20: source skilled/skills/s20/SKILL.md belongs at framework/skills/s20/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   … 5 more; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs:1559:1
+✖ layout cap: status prints twenty off-layout entries with no overflow line (88.962708ms)
+  AssertionError [ERR_ASSERTION]: in-sync=20 overlay-edited=0 live-edited=0 both-changed=0 upstream-moved=0 cannot-apply=0
+  checked=21 ok=21 miss=0
+  RESULT: PASSED
+  
+  + actual - expected
+  
+  + []
+  - [
+  -   'LAYOUT   s01: source skilled/skills/s01/SKILL.md belongs at framework/skills/s01/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s02: source skilled/skills/s02/SKILL.md belongs at framework/skills/s02/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s03: source skilled/skills/s03/SKILL.md belongs at framework/skills/s03/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s04: source skilled/skills/s04/SKILL.md belongs at framework/skills/s04/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s05: source skilled/skills/s05/SKILL.md belongs at framework/skills/s05/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s06: source skilled/skills/s06/SKILL.md belongs at framework/skills/s06/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s07: source skilled/skills/s07/SKILL.md belongs at framework/skills/s07/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s08: source skilled/skills/s08/SKILL.md belongs at framework/skills/s08/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s09: source skilled/skills/s09/SKILL.md belongs at framework/skills/s09/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s10: source skilled/skills/s10/SKILL.md belongs at framework/skills/s10/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s11: source skilled/skills/s11/SKILL.md belongs at framework/skills/s11/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s12: source skilled/skills/s12/SKILL.md belongs at framework/skills/s12/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s13: source skilled/skills/s13/SKILL.md belongs at framework/skills/s13/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s14: source skilled/skills/s14/SKILL.md belongs at framework/skills/s14/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s15: source skilled/skills/s15/SKILL.md belongs at framework/skills/s15/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s16: source skilled/skills/s16/SKILL.md belongs at framework/skills/s16/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s17: source skilled/skills/s17/SKILL.md belongs at framework/skills/s17/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s18: source skilled/skills/s18/SKILL.md belongs at framework/skills/s18/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s19: source skilled/skills/s19/SKILL.md belongs at framework/skills/s19/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   s20: source skilled/skills/s20/SKILL.md belongs at framework/skills/s20/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout'
+  - ]
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs:1568:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ 'LAYOUT   s01: source skilled/skills/s01/SKILL.md belongs at framework/skills/s01/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s02: source skilled/skills/s02/SKILL.md belongs at framework/skills/s02/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s03: source skilled/skills/s03/SKILL.md belongs at framework/skills/s03/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s04: source skilled/skills/s04/SKILL.md belongs at framework/skills/s04/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s05: source skilled/skills/s05/SKILL.md belongs at framework/skills/s05/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s06: source skilled/skills/s06/SKILL.md belongs at framework/skills/s06/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s07: source skilled/skills/s07/SKILL.md belongs at framework/skills/s07/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s08: source skilled/skills/s08/SKILL.md belongs at framework/skills/s08/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s09: source skilled/skills/s09/SKILL.md belongs at framework/skills/s09/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s10: source skilled/skills/s10/SKILL.md belongs at framework/skills/s10/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s11: source skilled/skills/s11/SKILL.md belongs at framework/skills/s11/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s12: source skilled/skills/s12/SKILL.md belongs at framework/skills/s12/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s13: source skilled/skills/s13/SKILL.md belongs at framework/skills/s13/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s14: source skilled/skills/s14/SKILL.md belongs at framework/skills/s14/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s15: source skilled/skills/s15/SKILL.md belongs at framework/skills/s15/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s16: source skilled/skills/s16/SKILL.md belongs at framework/skills/s16/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s17: source skilled/skills/s17/SKILL.md belongs at framework/skills/s17/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s18: source skilled/skills/s18/SKILL.md belongs at framework/skills/s18/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s19: source skilled/skills/s19/SKILL.md belongs at framework/skills/s19/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   s20: source skilled/skills/s20/SKILL.md belongs at framework/skills/s20/SKILL.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs:1571:1
+✖ old layout: a tree with dot-dropped sources passes status and relayout moves it onto framework and root (69.362ms)
+  AssertionError [ERR_ASSERTION]: in-sync=2 overlay-edited=0 live-edited=0 both-changed=0 upstream-moved=0 cannot-apply=0
+  checked=3 ok=3 miss=0
+  RESULT: PASSED
+  
+  + actual - expected
+  
+  + []
+  - [
+  -   'LAYOUT   hub-place: source skilled/skills/hub/place.md belongs at framework/skills/hub/place.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout',
+  -   'LAYOUT   claude-notes: source claude/notes.md belongs at root/claude/notes.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout'
+  - ]
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs:1611:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ 'LAYOUT   hub-place: source skilled/skills/hub/place.md belongs at framework/skills/hub/place.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout', 'LAYOUT   claude-notes: source claude/notes.md belongs at root/claude/notes.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs:1653:1
+✖ relayout refuses an entry whose layout path lands under root/skilled and moves nothing (42.303584ms)
+  AssertionError [ERR_ASSERTION]: backup skilled-overlays/relayout-runs/2026-11-20T12-02-16.343Z
+  moved custom/notes.md -> skilled/notes.md
+  moved custom/place.md -> skilled/skills/hub/place.md
+  2 moved
+  run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+  
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs:1684:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:765:1
+✖ a manifest source under root/skilled is a blocked overlay for its entry (315.572458ms)
+  AssertionError [ERR_ASSERTION]: overlay-edited notes.md  (overlay: skilled-overlays/root/skilled/notes.md)  fix: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+  in-sync=2 overlay-edited=1 live-edited=0 both-changed=0 upstream-moved=0 cannot-apply=0
+  MISS     under-root-skilled: 1 path(s) out of sync (notes.md)
+  LAYOUT   own-skill: source skills/own belongs at skilled/skills/own; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout
+  LAYOUT   agents-file: source files/AGENTS.md belongs at AGENTS.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout
+  LAYOUT   under-root-skilled: source root/skilled/notes.md belongs at notes.md; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout
+  NOTE     1 unowned upstream path at the pin is missing from the tree: .skilled/skills/hub/stable.md; restore it from the pinned commit, and run status --audit for the full drift report
+  checked=4 ok=3 miss=1
+  RESULT: FAILED
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:783:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:786:1
+✖ adopt refuses a destination under skilled/ because its source would sit under root/skilled (305.771666ms)
+  AssertionError [ERR_ASSERTION]: refuse: skilled/notes.md is not under a vendored root (.skilled, .claude) and is not a file named in repin.rootFiles
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:794:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:800:1
+✖ adopt of an excluded path prefers the framework copy when an excluded copy sits at both paths (317.950125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'skilled/local/hook.sh'
+  - 'framework/local/hook.sh'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:811:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'skilled/local/hook.sh',
+    expected: 'framework/local/hook.sh',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+exit=1
