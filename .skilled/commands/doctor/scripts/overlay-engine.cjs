@@ -2900,9 +2900,9 @@ function layoutLinkEscape(root, manifest) {
   // makes the folders below it fresh, and nothing else can reach through a link
   // that resolves nowhere. A replaced link that does resolve is judged like any
   // other, since a command that does not replace it would write through it.
-  // A dangling link an earlier entry rewrites is also let through here, since
-  // that entry replaces it before this one is written, and the planned links
-  // judge where the path then lands.
+  // A dangling link that an earlier entry names is also let through here, since
+  // the planned links still judge where the path lands, and the writer checks
+  // each parent again before it writes below it.
   //
   // A path is judged twice, once by the disk as it stands and once by the links
   // the run will write, and refused when either judgement refuses. The run
