@@ -24,9 +24,9 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-20 |
-| **Branch** | `main` |
+| **Branch** | `worktrees/481-overlay-framework-root-layout` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 1 of 5 |
 | **Predecessor** | None |

@@ -99,15 +99,69 @@ test('the setting file names the overlay folder, and manifest, sources and state
   assert.match(guarded.output, /owned by barter-overlays\/files\/own\.txt/);
 });
 
-test('the setting file is refused when it names an absolute path or a folder outside the tree', (t) => {
-  const fixture = createSyncFixture(t);
-  for (const value of ['/etc', '../outside', 'a/../../outside', '.', 'C:\\overlays']) {
+// A folder directly beside the tree, written `../<name>`, is accepted and
+// resolves to its normalized label. Every other value that leaves the tree, or
+// names the tree root itself, is refused. One test per row, so a failing row
+// never hides the rows after it.
+const SIBLING_ACCEPTED = [
+  ['../overlays', '../overlays'],
+  ['../overlays/', '../overlays'],
+  ['a/../../overlays', '../overlays'],
+  ['../outside', '../outside'],
+  ['a/../../outside', '../outside'],
+];
+const SIBLING_REFUSED = ['..', '../', '.', '/etc', 'C:\\overlays', 'over\0lays', '../../x', '../a/b'];
+
+for (const [value, label] of SIBLING_ACCEPTED) {
+  test(`the setting file accepts a sibling folder ${JSON.stringify(value)} as ${label}`, (t) => {
+    const fixture = createSyncFixture(t);
+    writeFile(fixture.tree, '.skilled-overlays.json', JSON.stringify({ overlayDir: value }));
+    assert.equal(engine.resolveOverlayDir(fixture.tree), label);
+  });
+}
+
+for (const value of SIBLING_REFUSED) {
+  test(`the setting file refuses ${JSON.stringify(value)}, which is neither inside the tree nor a direct sibling folder`, (t) => {
+    const fixture = createSyncFixture(t);
     writeFile(fixture.tree, '.skilled-overlays.json', JSON.stringify({ overlayDir: value }));
     assert.throws(() => engine.resolveOverlayDir(fixture.tree), /\.skilled-overlays\.json/, value);
     const status = fixture.run(['status']);
     assert.equal(status.code, 2, value + ': ' + status.output);
     assert.match(status.output, /\.skilled-overlays\.json/);
+  });
+}
+
+test('the setting file refuses a sibling folder carrying the tree folder\'s own name, which is the tree root', (t) => {
+  const fixture = createSyncFixture(t);
+  const value = '../' + path.basename(fixture.tree);
+  writeFile(fixture.tree, '.skilled-overlays.json', JSON.stringify({ overlayDir: value }));
+  assert.throws(() => engine.resolveOverlayDir(fixture.tree), /names a folder outside the tree root/, value);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 2, value + ': ' + status.output);
+  assert.match(status.output, /\.skilled-overlays\.json/);
+});
+
+test('the setting file refuses a sibling link that points back at the tree root', (t) => {
+  const fixture = createSyncFixture(t);
+  fs.symlinkSync(fixture.tree, path.join(path.dirname(fixture.tree), 'alias'));
+  writeFile(fixture.tree, '.skilled-overlays.json', JSON.stringify({ overlayDir: '../alias' }));
+  assert.throws(() => engine.resolveOverlayDir(fixture.tree), /names a folder outside the tree root/);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 2, status.output);
+  assert.match(status.output, /\.skilled-overlays\.json/);
+});
+
+test('the setting file refuses a sibling spelled as a case variant of the tree folder on a case-insensitive disk', (t) => {
+  const fixture = createSyncFixture(t);
+  const variant = path.basename(fixture.tree).toUpperCase();
+  if (variant === path.basename(fixture.tree) || !fs.existsSync(path.join(path.dirname(fixture.tree), variant))) {
+    t.skip('the filesystem is case-sensitive');
+    return;
   }
+  writeFile(fixture.tree, '.skilled-overlays.json', JSON.stringify({ overlayDir: '../' + variant }));
+  assert.throws(() => engine.resolveOverlayDir(fixture.tree), /names a folder outside the tree root/);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 2, status.output);
 });
 
 test('only the setting reader in the engine mentions the overlayDir key', () => {

@@ -1,18 +1,20 @@
 {
+  "level": "2",
   "specFolder": "system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder",
   "description": "Phase 1: engine-out-of-tree-overlay-folder",
   "keywords": [
     "phase",
     "engine-out-of-tree-overlay-folder"
   ],
-  "lastUpdated": "2026-11-20T09:31:33.508Z",
+  "lastUpdated": "2026-11-20T11:35:02.303Z",
   "specId": "001",
   "folderSlug": "engine-out-of-tree-overlay-folder",
   "parentChain": [
     "system-skilled-doctor",
     "007-overlay-framework-root-layout"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "20-11-26_12-35__built-phase-1-the-overlay-engine-now-accepts-a.md"
+  ]
 }

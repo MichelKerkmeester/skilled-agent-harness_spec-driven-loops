@@ -1,0 +1,29 @@
+✔ no manifest allows at once and starts no process (2.946042ms)
+✔ a setting that names a folder with no manifest allows without spawning (3.713667ms)
+✔ an owned path is refused with the overlay file to edit (37.548333ms)
+✔ the overlay folder comes from the engine, so a custom overlayDir is honoured (38.330208ms)
+✔ a sibling overlay folder beside the tree guards owned files and leaves its own files writable (65.956625ms)
+✔ an unowned path in a tree with a manifest is allowed (34.974667ms)
+✔ with strictWrites on, an unowned vendored path and a new file are refused with the adopt command (154.161875ms)
+✔ a call naming several paths is refused when any one is owned (60.089875ms)
+✔ no path allows without spawning (1.144208ms)
+✔ a refused write to an owned path leaves the tree byte-identical (34.307292ms)
+✔ an engine error fails open with a one-line note (33.427042ms)
+✔ an engine timeout fails open with a note (2.778292ms)
+✔ an unreadable overlay setting fails open with a note (2.611292ms)
+✔ claude: Edit, Write and MultiEdit map file_path, and an unowned path passes silently (308.048125ms)
+✔ claude: a tree with no manifest passes silently (42.857042ms)
+✔ codex: apply_patch file headers and Move to targets map to paths (394.267958ms)
+✔ cursor: Write maps file_path and answers with its own permission envelope (137.336917ms)
+✔ cursor: the registered command delivers the deny intact (84.812333ms)
+✔ devin: edit and write map file_path (207.446458ms)
+✔ pi: edit and write map input.path to a block (125.555333ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1898.928791
+exit=0

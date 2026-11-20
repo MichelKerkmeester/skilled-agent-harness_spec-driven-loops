@@ -912,10 +912,11 @@ const OVERLAY_PLACE = 'overlay place\n';
  * Build a tree whose one file overlay keeps its copy where `source` names.
  * @param {object} t The node:test context.
  * @param {string} source Where the overlay's copy sits, relative to its folder.
+ * @param {object} [options] Workspace options passed to `createWorkspace`.
  * @returns {object} Fixture paths, its manifest and a `run` helper.
  */
-function createLayoutSourceFixture(t, source) {
-  const fixture = createWorkspace(t, 'overlay-engine-off-layout-');
+function createLayoutSourceFixture(t, source, options = {}) {
+  const fixture = createWorkspace(t, 'overlay-engine-off-layout-', options);
   writeFile(fixture.overlayDir, source, OVERLAY_PLACE);
   writeFile(fixture.tree, PLACE_DESTINATION, UPSTREAM_PLACE);
   fixture.manifest = {
@@ -1198,6 +1199,41 @@ test('relayout reports nothing to move on a tree already on the layout', (t) => 
   assert.equal(relayout.code, 0, relayout.output);
   assert.equal(relayout.output.trim(), '0 moved');
   assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'relayout-runs')), false);
+});
+
+// An overlay folder beside the tree is named `../<name>` by the setting file.
+// Its backup keeps each moved copy at its path inside that folder, since the
+// folder's label climbs out of the tree and cannot be a folder in the run.
+test('relayout moves a source in a sibling overlay folder and backs it up inside that folder', (t) => {
+  const fixture = createLayoutSourceFixture(t, 'custom/place.md', { siblingOverlayFolder: 'overlays' });
+  const manifestPath = path.join(fixture.overlayDir, 'overlay-manifest.json');
+  const runsFolder = path.join(fixture.overlayDir, 'relayout-runs');
+
+  const relayout = fixture.run(['apply', '--relayout']);
+
+  assert.equal(relayout.code, 0, relayout.output);
+  assert.deepEqual(movedLines(relayout.output), [`moved custom/place.md -> ${PLACE_LAYOUT}`]);
+  const backupLines = relayout.output.split('\n').filter((line) => line.startsWith('backup '));
+  assert.equal(backupLines.length, 1, relayout.output);
+  assert.match(backupLines[0], /^backup \.\.\/overlays\/relayout-runs\/[^/\s]+$/);
+  assert.equal(fs.readFileSync(path.join(fixture.overlayDir, PLACE_LAYOUT), 'utf8'), OVERLAY_PLACE);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'custom')), false);
+  assert.equal(readJson(manifestPath).overlays[0].source, PLACE_LAYOUT);
+
+  const backup = backupFolder(fixture, relayout.output);
+  assert.equal(path.dirname(backup), runsFolder);
+  assert.equal(fs.readFileSync(path.join(backup, 'custom/place.md'), 'utf8'), OVERLAY_PLACE);
+  assert.equal(readJson(path.join(backup, 'overlay-manifest.json')).overlays[0].source, 'custom/place.md');
+  assert.equal(fs.existsSync(path.join(backup, 'skilled-overlays')), false);
+  assert.equal(fs.existsSync(path.join(runsFolder, 'overlays')), false);
+  assert.equal(fs.existsSync(path.join(fixture.tree, 'skilled-overlays')), false);
+
+  const reapplied = fixture.run(['apply']);
+  const status = fixture.run(['status']);
+
+  assert.equal(reapplied.code, 0, reapplied.output);
+  assert.equal(status.code, 0, status.output);
+  assert.deepEqual(layoutLines(status.output), [], status.output);
 });
 
 // A tree upgraded from a release that kept no link records in its state has

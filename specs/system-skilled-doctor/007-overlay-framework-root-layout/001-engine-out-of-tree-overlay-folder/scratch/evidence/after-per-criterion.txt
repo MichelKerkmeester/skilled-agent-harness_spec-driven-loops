@@ -1,0 +1,7 @@
+node --test .skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs :: ℹ tests 33 ℹ pass 33 ℹ fail 0 exit=0
+node --test --test-name-pattern sibling .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs :: ℹ tests 3 ℹ pass 3 ℹ fail 0  exit=0
+node --test --test-name-pattern sibling .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs :: ℹ tests 10 ℹ pass 10 ℹ fail 0  exit=0
+node --test --test-name-pattern sibling .skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs :: ℹ tests 5 ℹ pass 5 ℹ fail 0  exit=0
+node --test .skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs :: ℹ tests 46 ℹ pass 46 ℹ fail 0  exit=0
+node --test --test-name-pattern in-tree.backup .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs :: ℹ tests 1 ℹ pass 1 ℹ fail 0  exit=0
+node --test .skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs :: ℹ tests 20 ℹ pass 20 ℹ fail 0  exit=0

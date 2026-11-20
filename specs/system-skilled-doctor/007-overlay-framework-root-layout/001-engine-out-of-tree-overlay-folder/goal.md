@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder"
     last_updated_at: "2026-11-20T10:35:16Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "orchestrator"
+    recent_action: "Met every completion criterion"
+    next_safe_action: "Start phase 002"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-001-engine-out-of-tree-overlay-folder"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -58,11 +58,11 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs` exits 0.
-- [ ] `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs` exits 0 and asserts that `resolveOverlayDir` returns `../overlays` for `../overlays`, `../overlays/` and `a/../../overlays` and throws for `..`, `../`, `.`, `/etc`, `../../x` and `../a/b`.
-- [ ] `node --test --test-name-pattern sibling` on each of `overlay-engine-sync.test.cjs`, `overlay-engine-repin.test.cjs` and `overlay-engine-strict-writes.test.cjs` in `.skilled/commands/doctor/scripts/tests/` exits 0 with a pass count above 0.
-- [ ] `git diff -U0 -- .skilled/commands/doctor/scripts/tests/overlay-engine-{sync,strict-writes,repin,follow-up}.test.cjs | rg '^-\s*(assert|test\()'` prints nothing.
-- [ ] `node --test .skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs` exits 0 with a sibling-folder case, and `git diff --quiet -- .skilled/hooks/overlay-guard/lib/overlay-guard.cjs` exits 0.
+- [x] `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs` exits 0.
+- [x] `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs` exits 0 and asserts that `resolveOverlayDir` returns `../overlays` for `../overlays`, `../overlays/` and `a/../../overlays` and throws for `..`, `../`, `.`, `/etc`, `../../x` and `../a/b`.
+- [x] `node --test --test-name-pattern sibling` on each of `overlay-engine-sync.test.cjs`, `overlay-engine-repin.test.cjs` and `overlay-engine-strict-writes.test.cjs` in `.skilled/commands/doctor/scripts/tests/` exits 0 with a pass count above 0.
+- [x] `git diff -U0 -- .skilled/commands/doctor/scripts/tests/overlay-engine-{sync,strict-writes,repin,follow-up}.test.cjs | rg '^-\s*(assert|test\()'` prints nothing.
+- [x] `node --test .skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs` exits 0 with a sibling-folder case, and `git diff --quiet -- .skilled/hooks/overlay-guard/lib/overlay-guard.cjs` exits 0.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,10 +80,18 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Child goal authored | Done | `/create:goal ... child :auto`, criteria drawn from AC-001 to AC-012 in `acceptance-criteria.md` |
+| Engine suite | Done | 238/238, exit 0 (`scratch/evidence/after-engine-suite.txt`) |
+| Accept and refuse table | Done | fixes test 33/33, exit 0, with rows for `../overlays`, `../overlays/` and `a/../../overlays` |
+| Sibling patterns | Done | sync 3/3, repin 10/10, strict-writes 5/5, each exit 0 |
+| No assertion removed | Done | the `rg` printed nothing |
+| Guard core | Done | 20/20, exit 0; `overlay-guard.cjs` has no diff |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None | No deviation from the directive yet |
+| Negative-control message | The tasks expected `destination escapes the sync root`; the new tests failed earlier, at `names a folder outside the tree root`, because `resolveOverlayDir` throws first |
+| Engine work split | Two sequential engine lanes instead of one, to stay inside one worker's tool budget |
+| Review fix | A tree-self refusal that compared spelling only was hardened to compare resolved paths, with two negative tests |
+| Open P2 | A dangling sibling link into the tree is accepted until its target exists (`implementation-summary.md` Known Limitations) |
 <!-- /ANCHOR:log -->

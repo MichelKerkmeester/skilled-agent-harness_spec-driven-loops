@@ -1731,3 +1731,54 @@ test('naming an anchor moves a block that an earlier apply appended at the end',
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'marked.md'), 'utf8'), placed(PLACED_BLOCK));
   assert.equal(fixture.run(['status']).code, 0);
 });
+
+// An overlay folder beside the tree, named `../overlays` by the setting file,
+// works for every command, and each report shows its label as given.
+
+test('a sibling overlay folder applies every destination and status then passes in sync', (t) => {
+  const fixture = createFixture(t, { siblingOverlayFolder: 'overlays' });
+  const first = seedState(fixture);
+  assert.equal(first.output.trim(), '5 changed');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'guarded.txt'), 'utf8'), 'overlay one\n');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'skill/SKILL.md'), 'utf8'), 'overlay skill\n');
+  assert.deepEqual(readJson(path.join(fixture.tree, 'settings.json')), { name: 'widget', enabled: true });
+  assert.ok(fs.existsSync(path.join(fixture.workspace, 'overlays', 'sync-state.json')));
+  assert.equal(fs.existsSync(path.join(fixture.tree, 'skilled-overlays')), false);
+
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  assert.match(status.output, /in-sync=6 overlay-edited=0 live-edited=0 both-changed=0 upstream-moved=0/);
+  assert.match(status.output, /RESULT: PASSED/);
+});
+
+test('status and status --json show a sibling overlay folder by its ../overlays label', (t) => {
+  const fixture = createFixture(t, { siblingOverlayFolder: 'overlays' });
+  seedState(fixture);
+  writeFile(fixture.overlayDir, 'files/guarded.txt', 'overlay two\n');
+
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /overlay-edited guarded\.txt {2}\(overlay: \.\.\/overlays\/files\/guarded\.txt\)/);
+
+  const report = fixture.run(['status', '--json']);
+  assert.equal(report.code, 1, report.output);
+  const parsed = JSON.parse(report.stdout);
+  assert.equal(parsed.overlayFolder, '../overlays');
+  assert.deepEqual(parsed.destinations.map((row) => row.source), ['../overlays/files/guarded.txt']);
+});
+
+test('capture writes a live edit back into the sibling overlay folder', (t) => {
+  const fixture = createFixture(t, { siblingOverlayFolder: 'overlays' });
+  seedState(fixture);
+
+  writeFile(fixture.tree, 'directory-live/readme.md', 'hand edit\n');
+  const captured = fixture.run(['apply', '--capture', 'directory-live/readme.md']);
+  assert.equal(captured.code, 0, captured.output);
+  assert.equal(
+    fs.readFileSync(path.join(fixture.workspace, 'overlays', 'directory-source/readme.md'), 'utf8'),
+    'hand edit\n',
+  );
+  assert.equal(fs.existsSync(path.join(fixture.tree, 'overlays')), false);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+});

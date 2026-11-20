@@ -439,6 +439,18 @@ function resolveOverlayDir(root) {
     throw new Error(`${SETTING_FILE} must name a relative folder with forward slashes: ${value}`);
   }
   const normalized = path.posix.normalize(value).replace(/\/+$/, '');
+  // A folder beside the tree is allowed so the overlays can live outside a framework checkout;
+  // anything deeper or further out stays refused. A sibling carrying the tree's own
+  // name is the tree root itself, so it is refused with the rest. The spelling check
+  // misses a case variant on a case-insensitive disk and a link back to the tree, so an
+  // existing folder is also compared by where it resolves; a missing one resolves beside it.
+  const sibling = normalized.startsWith('../') ? normalized.slice(3) : null;
+  if (sibling !== null && sibling !== '' && sibling !== '.' && sibling !== '..' && !sibling.includes('/') &&
+    sibling !== path.basename(path.resolve(root))) {
+    const treeRoot = canonicalPath(root);
+    const target = canonicalPath(path.resolve(root, normalized));
+    if (!isWithin(treeRoot, target) && !isWithin(target, treeRoot)) return normalized;
+  }
   if (normalized === '.' || normalized === '' || normalized === '..' || normalized.startsWith('../')) {
     throw new Error(`${SETTING_FILE} names a folder outside the tree root: ${value}`);
   }
@@ -4525,9 +4537,15 @@ function writeBackup(ctx, manifest, analysis, touched, runDir, meta) {
   const groups = new Map();
   for (const relativePath of touched.copy) groups.set(relativePath, 'copy');
   for (const relativePath of touched.delete) if (!groups.has(relativePath)) groups.set(relativePath, 'delete');
+  // A folder beside the tree keeps its own files under their own area, so no tree
+  // path can collide with them and a rollback restores them against that folder.
+  const overlayOutside = !isWithin(root, ctx.overlayRoot);
+  const overlayGroups = new Map();
+  if (overlayOutside) {
+    for (const filePath of [ctx.manifestPath, ctx.statePath]) overlayGroups.set(relativeKey(ctx.overlayRoot, filePath), 'engine');
+  }
   const enginePaths = [
-    relativeKey(root, ctx.manifestPath),
-    relativeKey(root, ctx.statePath),
+    ...(overlayOutside ? [] : [relativeKey(root, ctx.manifestPath), relativeKey(root, ctx.statePath)]),
     ...analysis.records.map((record) => record.key),
     ...(manifest.layoutLinks || []).flatMap((link) => [link.path, link.replaces && link.replaces.path]),
     ...(manifest.regenerate || []).flatMap((step) => step.outputs || []),
@@ -4536,23 +4554,28 @@ function writeBackup(ctx, manifest, analysis, touched, runDir, meta) {
     for (const leaf of backupLeaves(root, relativePath)) if (!groups.has(leaf)) groups.set(leaf, 'engine');
   }
 
-  const backupDir = path.join(runDir, 'backup');
   const entries = [];
   const createdDirs = new Set();
-  for (const relativePath of [...groups.keys()].sort()) {
-    const filePath = path.join(root, relativePath);
-    relativeKey(root, filePath);
+  const areas = [{ base: root, groups, backupDir: path.join(runDir, 'backup'), area: null }];
+  if (overlayOutside) {
+    areas.push({ base: ctx.overlayRoot, groups: overlayGroups, backupDir: path.join(runDir, 'overlay-backup'), area: 'overlay' });
+  }
+  for (const { base, groups: areaGroups, backupDir, area } of areas) for (const relativePath of [...areaGroups.keys()].sort()) {
+    const filePath = path.join(base, relativePath);
+    relativeKey(base, filePath);
+    const tag = area ? { area } : {};
     let stats = null;
-    if (!hasLinkedAncestor(root, relativePath)) {
+    if (!hasLinkedAncestor(base, relativePath)) {
       try {
         stats = fs.lstatSync(filePath);
       } catch (error) {
         if (!error || (error.code !== 'ENOENT' && error.code !== 'ENOTDIR')) throw error;
       }
     }
-    const group = groups.get(relativePath);
+    const group = areaGroups.get(relativePath);
     if (!stats) {
-      entries.push({ path: relativePath, group, existed: false });
+      entries.push({ path: relativePath, ...tag, group, existed: false });
+      if (area) continue;
       for (let dir = path.dirname(filePath); dir !== root && isWithin(root, dir); dir = path.dirname(dir)) {
         if (pathExists(dir)) break;
         createdDirs.add(relativeKey(root, dir));
@@ -4561,7 +4584,7 @@ function writeBackup(ctx, manifest, analysis, touched, runDir, meta) {
     }
     if (stats.isSymbolicLink()) {
       const target = fs.readlinkSync(filePath);
-      entries.push({ path: relativePath, group, existed: true, kind: 'symlink', target, sha256: sha256(Buffer.from(target)) });
+      entries.push({ path: relativePath, ...tag, group, existed: true, kind: 'symlink', target, sha256: sha256(Buffer.from(target)) });
       continue;
     }
     if (isEnvName(relativePath) || !stats.isFile()) {
@@ -4569,7 +4592,7 @@ function writeBackup(ctx, manifest, analysis, touched, runDir, meta) {
     }
     const buffer = fs.readFileSync(filePath);
     writeFile(path.join(backupDir, relativePath), buffer, 0o600);
-    entries.push({ path: relativePath, group, existed: true, kind: 'file', mode: stats.mode & 0o777, sha256: sha256(buffer) });
+    entries.push({ path: relativePath, ...tag, group, existed: true, kind: 'file', mode: stats.mode & 0o777, sha256: sha256(buffer) });
   }
   const backup = {
     schemaVersion: 1,
@@ -5073,9 +5096,14 @@ function repinUnderLock(ctx, job, report) {
  * @param {string} stageDir Requested stage folder.
  * @returns {string|null}
  */
-function stageFolderProblem(root, stageDir) {
+function stageFolderProblem(root, stageDir, overlayRoot) {
   if (isWithin(root, stageDir) || isWithin(canonicalPath(root), canonicalPath(stageDir))) {
     return 'refuse: the stage folder sits inside the tree: ' + stageDir;
+  }
+  // An overlay folder beside the tree is live state too, so a stage inside it
+  // would write into the folder the stage promises to leave alone.
+  if (overlayRoot && (isWithin(overlayRoot, stageDir) || isWithin(canonicalPath(overlayRoot), canonicalPath(stageDir)))) {
+    return 'refuse: the stage folder sits inside the overlay folder: ' + stageDir;
   }
   if (!pathExists(stageDir)) return null;
   if (!isDirectory(stageDir)) return 'refuse: the stage folder is not a folder: ' + stageDir;
@@ -5155,7 +5183,10 @@ function repinRun(liveCtx, options, report) {
   let ctx = liveCtx;
   if (job.isStage) {
     const stageDir = path.resolve(options.stage);
-    const problem = stageFolderProblem(liveCtx.root, stageDir);
+    // A folder beside the tree is copied beside the tree copy, each under its own
+    // name, so the staged setting file reaches the staged overlay folder.
+    const overlayOutside = !isWithin(liveCtx.root, liveCtx.overlayRoot);
+    const problem = stageFolderProblem(liveCtx.root, stageDir, overlayOutside ? liveCtx.overlayRoot : null);
     if (problem) return refuseRepin([problem]);
     // Reading the tree while another run writes it would stage a torn copy, so a
     // lock that may still have a live owner is refused here as every other mode
@@ -5170,9 +5201,13 @@ function repinRun(liveCtx, options, report) {
       }
       console.log('note: the overlay lock belongs to a run that has ended: ' + owner);
     }
-    const skipped = copyTreeForStage(liveCtx.root, stageDir, liveCtx.lockPath);
+    const stagedRoot = overlayOutside ? path.join(stageDir, path.basename(liveCtx.root)) : stageDir;
+    let skipped = copyTreeForStage(liveCtx.root, stagedRoot, liveCtx.lockPath);
+    if (overlayOutside) {
+      skipped += copyTreeForStage(liveCtx.overlayRoot, path.join(stageDir, path.basename(liveCtx.overlayRoot)), liveCtx.lockPath);
+    }
     console.log('staged a copy of the tree in ' + stageDir + (skipped > 0 ? ` (${skipped} .env file(s) left out)` : ''));
-    ctx = createContext(stageDir);
+    ctx = createContext(stagedRoot);
     report.stage = stageDir;
   }
   return withLock(ctx, 'overlay-engine repin', () => repinUnderLock(ctx, job, report));
@@ -5191,33 +5226,42 @@ function rollbackUnderLock(ctx, runDir, backup) {
   const root = ctx.root;
   const restored = [];
   const problems = [];
+  // An entry without an area is a tree path; an overlay entry belongs to the overlay
+  // folder and was stored apart from the tree copies.
+  const areaOf = (entry) => {
+    if (entry.area === undefined) return { base: root, backupDir: path.join(runDir, 'backup') };
+    if (entry.area === 'overlay') return { base: ctx.overlayRoot, backupDir: path.join(runDir, 'overlay-backup') };
+    throw new Error('backup entry names an unknown area: ' + String(entry.area));
+  };
   for (const entry of backup.entries) {
     const relativePath = normalizedRelative(entry.path, 'backup entry');
-    relativeKey(root, path.join(root, relativePath));
+    const { base, backupDir } = areaOf(entry);
+    relativeKey(base, path.join(base, relativePath));
     if (!entry.existed) continue;
     if (entry.kind === 'symlink') {
       if (typeof entry.target !== 'string' || sha256(Buffer.from(entry.target)) !== entry.sha256) {
         problems.push(`refuse: the backed-up link ${relativePath} does not match its recorded sha256`);
       }
-      restored.push({ entry, relativePath });
+      restored.push({ entry, relativePath, base });
       continue;
     }
-    const buffer = readBufferOrNull(path.join(runDir, 'backup', relativePath));
+    const buffer = readBufferOrNull(path.join(backupDir, relativePath));
     if (!buffer || sha256(buffer) !== entry.sha256) {
       problems.push(`refuse: the backup of ${relativePath} does not match its recorded sha256`);
       continue;
     }
-    restored.push({ entry, relativePath, buffer });
+    restored.push({ entry, relativePath, base, buffer });
   }
   if (problems.length > 0) return refuseRepin(problems);
 
   let removed = 0;
   const created = backup.entries.filter((entry) => !entry.existed)
-    .map((entry) => normalizedRelative(entry.path, 'backup entry'))
-    .sort((left, right) => right.split('/').length - left.split('/').length || right.localeCompare(left));
-  for (const relativePath of created) {
-    if (hasLinkedAncestor(root, relativePath)) continue;
-    if (removePath(path.join(root, relativePath))) removed += 1;
+    .map((entry) => ({ relativePath: normalizedRelative(entry.path, 'backup entry'), base: areaOf(entry).base }))
+    .sort((left, right) => right.relativePath.split('/').length - left.relativePath.split('/').length ||
+      right.relativePath.localeCompare(left.relativePath));
+  for (const { relativePath, base } of created) {
+    if (hasLinkedAncestor(base, relativePath)) continue;
+    if (removePath(path.join(base, relativePath))) removed += 1;
   }
   for (const relativePath of backup.createdDirs || []) {
     const dir = path.join(root, normalizedRelative(relativePath, 'backup folder'));
@@ -5225,12 +5269,12 @@ function rollbackUnderLock(ctx, runDir, backup) {
   }
 
   restored.sort((left, right) => left.relativePath.split('/').length - right.relativePath.split('/').length);
-  for (const { entry, relativePath, buffer } of restored) {
-    const filePath = path.join(root, relativePath);
+  for (const { entry, relativePath, base, buffer } of restored) {
+    const filePath = path.join(base, relativePath);
     // A parent the run turned into a file or link is cleared, never written through.
     const parts = relativePath.split('/');
     for (let depth = 1; depth < parts.length; depth += 1) {
-      const ancestor = path.join(root, ...parts.slice(0, depth));
+      const ancestor = path.join(base, ...parts.slice(0, depth));
       if (pathExists(ancestor) && !isDirectory(ancestor)) fs.unlinkSync(ancestor);
     }
     if (isDirectory(filePath)) fs.rmSync(filePath, { recursive: true, force: true });
@@ -5704,7 +5748,16 @@ function stagedUnownedChanges(ctx, manifest) {
   }
   if (changes.length === 0) return [];
 
-  const manifestFile = path.posix.join(prefix, toPosix(path.relative(ctx.root, ctx.manifestPath)));
+  // A manifest beside the tree has no path under the tree's prefix, so its git path
+  // comes from where it is. One outside the repository has no staged or HEAD pin.
+  let manifestFile = path.posix.join(prefix, toPosix(path.relative(ctx.root, ctx.manifestPath)));
+  if (!isWithin(ctx.root, ctx.overlayRoot)) {
+    manifestFile = toPosix(path.relative(topLevel, canonicalPath(ctx.manifestPath)));
+    if (manifestFile === '' || manifestFile === '..' || manifestFile.startsWith('../') || path.isAbsolute(manifestFile)) {
+      throw new Error('the overlay folder must sit inside the same git repository as the tree; ' +
+        ctx.overlayLabel + ' is outside the git repository at ' + topLevel);
+    }
+  }
   const stagedPin = pinCommitOf(gitTextOrNull(topLevel, ['show', ':' + manifestFile]));
   const headPin = pinCommitOf(gitTextOrNull(topLevel, ['show', 'HEAD:' + manifestFile]));
   if (stagedPin !== undefined && headPin !== undefined && stagedPin !== headPin) return [];
@@ -6250,11 +6303,17 @@ function relayoutUnderLock(ctx, manifest) {
   const stamp = new Date().toISOString().replace(/:/g, '-');
   const runDir = path.join(ctx.overlayRoot, RELAYOUT_RUNS_FOLDER, stamp);
   const exact = exactManifestPaths(ctx, manifest);
+  // A folder beside the tree has no tree path, so its backup is keyed from the
+  // overlay root and the printed path uses the label the setting file gives.
+  const overlayOutside = !isWithin(ctx.root, ctx.overlayRoot);
+  const backupBase = overlayOutside ? ctx.overlayRoot : ctx.root;
   for (const move of plan.moves) {
-    copyForBackup(move.from.absolute, path.join(runDir, relativeKey(ctx.root, move.from.absolute)), move.from.relative, exact);
+    copyForBackup(move.from.absolute, path.join(runDir, relativeKey(backupBase, move.from.absolute)), move.from.relative, exact);
   }
-  copyForBackup(ctx.manifestPath, path.join(runDir, relativeKey(ctx.root, ctx.manifestPath)), relativeKey(ctx.root, ctx.manifestPath), exact);
-  console.log('backup ' + relativeKey(ctx.root, runDir));
+  copyForBackup(ctx.manifestPath, path.join(runDir, relativeKey(backupBase, ctx.manifestPath)), relativeKey(backupBase, ctx.manifestPath), exact);
+  console.log('backup ' + (overlayOutside
+    ? ctx.overlayLabel + '/' + relativeKey(ctx.overlayRoot, runDir)
+    : relativeKey(ctx.root, runDir)));
 
   for (const move of plan.moves) {
     fs.mkdirSync(path.dirname(move.to.absolute), { recursive: true });

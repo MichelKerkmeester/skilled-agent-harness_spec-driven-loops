@@ -1,0 +1,597 @@
+✔ the overlay folder defaults to skilled-overlays when the tree has no setting file (50.476666ms)
+✔ the setting file names the overlay folder, and manifest, sources and state resolve inside it (73.49975ms)
+✖ the setting file accepts a sibling folder "../overlays/" as ../overlays (6.530583ms)
+✖ the setting file accepts a sibling folder "../outside" as ../outside (7.275834ms)
+✖ the setting file accepts a sibling folder "a/../../outside" as ../outside (7.643542ms)
+✔ the setting file refuses "..", which is neither inside the tree nor a direct sibling folder (40.590458ms)
+✔ the setting file refuses "../", which is neither inside the tree nor a direct sibling folder (39.07125ms)
+✔ the setting file refuses ".", which is neither inside the tree nor a direct sibling folder (37.121917ms)
+✔ the setting file refuses "/etc", which is neither inside the tree nor a direct sibling folder (39.952625ms)
+✔ the setting file refuses "C:\\overlays", which is neither inside the tree nor a direct sibling folder (37.580292ms)
+✔ the setting file refuses "over\u0000lays", which is neither inside the tree nor a direct sibling folder (38.794958ms)
+✔ the setting file refuses "../../x", which is neither inside the tree nor a direct sibling folder (36.996125ms)
+✔ the setting file refuses "../a/b", which is neither inside the tree nor a direct sibling folder (39.712083ms)
+✔ only the setting reader in the engine mentions the overlayDir key (1.459708ms)
+✔ a re-pinned overlay whose source changed applies over its last applied copy with no restore step (173.652167ms)
+✔ a retained path that the overlay also replaces is reported, guarded and capturable (341.148916ms)
+✔ a file under a replaced folder holding the recorded pin bytes is overlay-edited, and a hand-added file stays live-edited (376.880709ms)
+✔ apply refuses while the lock is held, naming the owner line and the lock file, and writes nothing (88.311416ms)
+✔ capture refuses while the lock is held (87.627333ms)
+✔ apply holds the lock while it runs and removes it when done, also after a failed step (148.480708ms)
+✔ a caller that already holds the lock can run apply inside it without releasing it (15.082209ms)
+✔ a setKeyOnItem on an item the same entry set inserts applies in order (135.553708ms)
+✔ an exact file entry for a token-named destination applies (140.71525ms)
+✔ a token-named file met while walking a directory or skill-root entry blocks only its own entry (363.786083ms)
+✔ a walked token-named file passes only when its entry lists the exact path in protectedPaths (168.714583ms)
+✔ a protectedPaths value that escapes its entry or names a .env file is refused (108.095166ms)
+✔ a .env file is refused even when a manifest entry names it exactly (78.89525ms)
+✔ the guard answers on an out-of-sync tree without applying anything (237.211333ms)
+✔ apply takes over a lock naming a dead pid on this host and clears the file (69.626416ms)
+✔ apply takes over a lock line written before the engine recorded the host (69.627709ms)
+✔ apply refuses while another run is taking the lock over, and clears a marker a killed run left (102.395084ms)
+✔ a takeover refuses when another run replaces the stale lock in the gap before the removal (32.072959ms)
+✔ a takeover puts back a marker another run wrote after the old one was judged stale (29.760834ms)
+✔ a takeover puts back a lock another run wrote after the old one was read again (29.993583ms)
+✔ a takeover leaves exactly the new owner line and no marker behind (28.880125ms)
+✔ apply refuses a lock naming a live pid on this host and leaves the file alone (32.372583ms)
+✔ apply refuses a host-less lock line naming a live pid here (33.860875ms)
+✔ apply refuses a lock with no pid in it and leaves the file alone (35.193083ms)
+✔ apply refuses a lock naming a dead pid on another host and leaves the file alone (66.770084ms)
+✔ repin --stage stages over a lock whose writer has ended here and leaves the file alone (536.229041ms)
+✔ repin --stage refuses a lock naming a live pid on this host and stages nothing (206.852375ms)
+✔ apply retargets a layout link the engine made when the manifest target changes (68.956958ms)
+✔ apply refuses a layout link the state does not record and leaves it alone (75.457ms)
+✔ a state file without link records still loads and reports an in-sync tree (77.286458ms)
+✔ apply removes an appended item the entry set drops (82.332042ms)
+✔ apply refuses to remove a dropped item that was edited after it was applied (79.865792ms)
+✔ apply keeps a listed item recorded and reports nothing to change (81.059958ms)
+✔ apply leaves an upstream item alone when the entry set stops listing it (79.599875ms)
+✔ apply keeps a dropped item that upstream ships at the pin (263.950333ms)
+✔ apply removes a dropped item that sits at the head of the live array (85.154333ms)
+✔ status passes while an owned root file matches the pinned upstream copy (219.0135ms)
+✔ status reports an owned root file whose pinned copy upstream has moved on from (268.411833ms)
+✔ status passes while a marked-section overlay root file matches the pinned upstream copy (205.131459ms)
+✔ status reports a marked-section overlay root file whose pinned copy upstream has moved on from (306.633833ms)
+✔ status names a source kept off the layout without failing the run (184.383417ms)
+✔ relayout moves every off-layout source onto its layout path (174.624458ms)
+✔ relayout backs up no file its read rule refuses to open (41.237584ms)
+✔ relayout refuses to move a source whose layout path is already taken (37.258ms)
+✔ relayout reports nothing to move on a tree already on the layout (36.651ms)
+✖ relayout moves a source in a sibling overlay folder and backs it up inside that folder (34.039791ms)
+✔ relayout retargets a live layout link whose target it moved (139.590833ms)
+✔ relayout leaves a live link that points somewhere of its own unchanged (78.668125ms)
+✔ relayout is a flag of apply, so a bare command word and a rival flag are refused (64.0655ms)
+✔ relayout refuses a manifest that names one id twice before it moves anything (34.721958ms)
+✔ relayout refuses a copy two entries would move to different paths (33.553792ms)
+✔ relayout refuses two copies whose destinations land on one layout path (33.288542ms)
+✔ relayout refuses two copies that sit one inside the other (42.659084ms)
+✔ status --audit names the vendored drift no overlay owns and plain status stays quiet (449.352917ms)
+✔ status --audit lists an unowned vendored file whose line endings differ from the pin (406.515167ms)
+✔ status --audit skips the audit when the pinned checkout is no repository (63.272125ms)
+✔ status --audit skips the audit when the checkout lacks the pinned commit (139.563084ms)
+✔ plain status notes an unowned upstream path the tree lacks and still passes (323.490792ms)
+✔ status --audit lists the missing path once, as an AUDIT line and not as a note (334.207875ms)
+✔ plain status prints no missing-path note when the pinned checkout cannot be read (164.884292ms)
+✔ after a moved pin, a destination holding its pinned upstream bytes is overlay-edited, not upstream-moved (593.735417ms)
+✔ a live repin backs up every touched path before its first write, then copies, applies and passes (706.479ms)
+✔ a failure after the backup names the run, and --rollback restores the tree byte for byte so status passes (795.634667ms)
+✔ --rollback refuses a backed-up file whose bytes no longer match the recorded hash (678.555542ms)
+✔ an unowned file edited in place refuses the repin, names the path and writes nothing (523.995125ms)
+✔ a project file at a path upstream ships for the first time refuses the repin (774.983583ms)
+✔ a .env path upstream ships refuses the repin before any read or write (513.549583ms)
+✔ a repin to the commit already pinned reports nothing to copy and writes nothing (528.564875ms)
+✔ a commit missing from the upstream exits 2 before any write (441.129875ms)
+✔ repin refuses while another run holds the lock, and while status shows a live edit (437.811958ms)
+✔ repin.exclude keeps a real folder where upstream ships a link (639.135791ms)
+✔ repin --stage builds the re-pinned tree in a copy, reports both groups and leaves the live tree untouched (472.816125ms)
+✔ repin --stage treats an upstream addition inside a removed folder as removed (545.804583ms)
+✔ repin --stage treats an upstream addition inside a replaced folder as overlay-owned, and a hand-added file as live-edited (740.774083ms)
+✔ repin --stage treats an upstream change inside a replaced folder as overlay-owned (784.984125ms)
+✔ repin --stage refuses a folder that is not empty or that sits inside the live tree (451.749292ms)
+✔ a misused repin command line prints the usage and exits 2 (450.359083ms)
+✔ a re-pin copies .dsh with the other runtime folders when the manifest names none (558.765417ms)
+✔ a re-pin copies .vibe with the other runtime folders when the manifest names none (565.400792ms)
+✔ a re-pin lists upstream changes it does not copy and skips a top-level link (646.436833ms)
+✔ a nested overlay folder hides only its own paths from the not-copied list (558.128125ms)
+✔ a re-pin over a refused overlay stops before the backup and writes nothing (326.791667ms)
+✔ a re-pin replaces an unowned link with the folder the new pin ships there (525.328459ms)
+✔ a re-pin still refuses a new upstream file that a project link already reaches (393.654834ms)
+✔ repin --stage treats an upstream addition inside a directory overlay as overlay-owned, and a hand-added file as live-edited (798.845084ms)
+✔ a folder overlay rebased onto the new pin applies after the copy, and one that is not stays upstream-moved (1043.69025ms)
+✔ a live repin names the regenerate step that rewrote a file an overlay owns, not upstream-moved (559.285042ms)
+✔ a live repin returns a dropped set to the value the new pin holds and keeps the set that stays (696.825833ms)
+✔ a live repin restores a dropped set in a json-entry file at the tree root from the new commit (723.307583ms)
+✔ a re-pin stops before the backup when a json-entry file it leaves in place cannot be restored at the new pin (582.258458ms)
+✔ a re-pin names each upstream change a json-entry set or setKeyOnItem writes over (596.809375ms)
+✔ a re-pin names each upstream file a directory overlay removes after the copy (716.791833ms)
+✔ a re-pin notes an insert whose before anchor upstream removed (644.584958ms)
+✔ a re-pin names each upstream file a skill-root overlay removes from a folder it replaces (704.848292ms)
+✖ a live repin with a sibling overlay folder backs up its files against the overlay root (190.083334ms)
+✔ an in-tree backup records no area, so every entry is a tree path (602.214792ms)
+✖ --rollback of a sibling-folder run restores the manifest pin and sync-state.json in the overlay folder (210.372458ms)
+✖ repin --stage with a sibling overlay folder stages both folders and writes nothing in the live overlay folder (175.028292ms)
+✖ repin --stage refuses a stage folder inside the live sibling overlay folder (191.954375ms)
+✖ a layout link reaching into the sibling overlay folder passes live, and its staged copy resolves into the staged overlay folder (210.330292ms)
+✖ a re-pin line names a sibling overlay folder as the setting file gives it (217.216167ms)
+✔ a layout link replaces the named upstream link while it holds the pinned target (151.164416ms)
+✔ an upstream link whose target differs from the pinned value is refused and left alone (69.886292ms)
+✔ remove-root checks each present path, removes directories, files and symlinks, then becomes a no-op (149.868375ms)
+✔ remove-root treats absent paths as a no-op (67.7775ms)
+✔ remove-root rejects parent traversal and absolute paths without deleting any target (72.68975ms)
+✔ remove-root follows only symlinked parents that stay inside the tree (74.872166ms)
+✔ the guard refuses a new file under a vendored root and names where to create it (419.144375ms)
+✔ the guard refuses an edit to a vendored file no overlay owns, and leaves the rest of the tree alone (512.218625ms)
+✔ the guard allows a generated path and a path git ignores (479.239333ms)
+✔ a generated glob with ** matches whole folders, not a longer name beside them (476.474417ms)
+✔ with the setting off the guard allows every path no overlay owns, and the commit check checks nothing (540.575958ms)
+✔ adopt turns a new folder into a directory entry, lists its token-named source file and applies (488.938667ms)
+✔ adopt pins an upstream file to the upstream bytes, not to the edited live copy (568.190625ms)
+✔ adopt refuses what it cannot own and writes nothing (566.511083ms)
+✔ the flow the guard names for a new file adopts it from the overlay folder and applies it (475.015583ms)
+✔ adopt refuses a taken source, a source clash, a non-file and a missing checkout, and writes nothing (488.535166ms)
+✔ a manifest write that fails at the rename keeps the old manifest and leaves no temporary file (303.686542ms)
+✔ pre-commit refuses a staged vendored change no overlay owns, and passes owned, generated and upstream-equal ones (852.566667ms)
+✔ pre-commit treats a staged file as upstream's own when only its line endings differ (623.064292ms)
+✔ a path under repin.exclude needs no overlay, so the guard and the commit check leave it alone (375.117458ms)
+✔ adopt takes a path under repin.exclude when the overlay folder holds its copy (317.825875ms)
+✔ adopt still refuses a path under repin.exclude with no copy in the overlay folder (273.341125ms)
+✔ the commit check reports a staged change under a vendored tree that sits below the git top level (183.807625ms)
+✔ the commit check names an unowned vendored change when the checkout its pin names is gone (439.084292ms)
+✔ a staged re-pin names each listed root file upstream changed, owned or not (741.188167ms)
+✔ --adopt and pre-commit reject a misused command line (464.203125ms)
+✖ the guard names a sibling overlay folder for an owned path and allows a path inside that folder (167.496458ms)
+✖ adopt writes the copy and its entry into a sibling overlay folder and names it (161.433583ms)
+✖ pre-commit checks a tree whose sibling overlay folder sits in the same git repository (164.41375ms)
+✖ pre-commit refuses to judge a tree whose sibling overlay folder is outside its git repository (153.972917ms)
+✔ clean apply records every managed file and a second apply is a no-op (134.479583ms)
+✔ overlay edits apply through file, directory, marked-section, and json-entry plans (177.614042ms)
+✔ live edits stop apply and status, then capture updates directory and marked-section sources (290.308833ms)
+✔ capture is a no-op for an in-sync destination (85.654125ms)
+✔ capture refuses a both-changed destination without writing (119.6085ms)
+✔ capture refuses an upstream-moved destination without writing (121.581541ms)
+✔ both-sides changes stop apply without changing live, overlay, or sync state (124.888708ms)
+✔ a moved pin marks a changed live destination upstream-moved and blocks writes (120.138292ms)
+✔ a missing applied file is overlay-edited and restored (135.720333ms)
+✔ remove-root reports pending paths, blocks guard and capture, and drops retired state after apply (364.476667ms)
+✔ an upstream file added inside a removed folder is overlay-edited and apply deletes it (178.931917ms)
+✔ a replace-listed file inside a removed folder stays overlay-owned (226.100625ms)
+✔ capture refuses a path under a removed folder without writing into the overlay (91.419875ms)
+✔ guard resolves cwd-relative paths and capture refuses unknown, protected, and json-entry destinations (269.557541ms)
+✔ a missing layout link is reported as overlay-edited and created by apply (154.681209ms)
+✔ an edited json-entry item re-applies over the applied bytes and refuses once the live file moved (257.416542ms)
+✔ an edited json-entry object key re-applies over the applied bytes and refuses once the live file moved (273.18375ms)
+✔ token-named paths pass only when a manifest entry names them exactly, and .env never does (6.058583ms)
+✔ status --json reports each out-of-sync destination with its fix, and an error as JSON (149.385042ms)
+✔ a misused command line prints the usage and exits 2 (177.040333ms)
+✔ a json-entry set adds a key the document does not hold yet, and still refuses a missing parent (134.285375ms)
+✔ apply returns a value to the pin once its set leaves the entry set (246.330583ms)
+✔ apply deletes a key its set added once the set leaves the entry set (207.548542ms)
+✔ apply refuses to restore a set value that was edited after it was applied (265.227959ms)
+✔ apply refuses to restore a dropped set when the pinned copy cannot be read (156.449083ms)
+✔ a set whose value changes in the source is rewritten and recorded, not restored (167.39325ms)
+✔ a state file without set records loads, restores nothing and keeps its bytes (112.500584ms)
+✔ a set applied before sets were recorded is recorded by the next apply and then restored (230.423708ms)
+✔ a dropped set is restored from the pinned copy the run was given (0.62375ms)
+✔ apply restores a dropped set through an array index while the arrays line up (165.589292ms)
+✔ apply refuses a dropped set through an array the overlay added an item to (210.023083ms)
+✔ two sets on one path keep one record and both leave together (160.5695ms)
+✔ a key the pin does not hold is refused, not deleted, when its record never marked it as added (226.959584ms)
+✔ a key added through an index keeps its added mark when the entry set respells the index (185.630542ms)
+✔ apply refuses to delete a key the pin does not hold once its value was edited (152.182042ms)
+✔ a dropped set is restored while the operations that stay are still applied (150.88725ms)
+✔ apply refuses a dropped set whose array index is written as a string (135.184416ms)
+✔ a dropped set whose index fell off the array is refused until the array matches the pin (250.787083ms)
+✔ two records for one path in an older state file restore from the last one (140.748416ms)
+✔ a dropped set leaves in the same apply that adds an item to its array, and the run ends clean (254.249917ms)
+✔ a dropped set whose key was deleted by hand leaves quietly while the arrays line up (203.100959ms)
+✔ a dropped set leaves in the same apply whose kept set shortens its array (230.49425ms)
+✔ a dropped set through an array index is refused when the pin holds another item at that index (0.705583ms)
+✔ a dropped set through an array index is restored beside a set the entry set keeps in the same item (0.517916ms)
+✔ two nested sets dropped together both leave, in either order they were written (305.852042ms)
+✔ two nested sets dropped together are refused once the inner value was edited by hand (161.649459ms)
+✔ sets spelled with 1 and with "1" keep one record, and both leave together (158.545125ms)
+✔ a kept set respelled from "1" to 1 is the same set, so nothing is restored (128.591541ms)
+✔ with no pinned copy to read, the refusal names pin.checkout and clears once the file holds the pinned bytes (192.659291ms)
+✔ an entry set refused over an untouched file is cannot-apply, and putting the named array back clears it (487.653167ms)
+✔ a dropped set that wrote a whole array item restores only while every other item is the pin's (0.352666ms)
+✔ a dropped set is restored beside other operations the entry set keeps in the same item (0.347834ms)
+✔ records an older engine kept in first-write order still restore nested sets dropped together (0.5065ms)
+✔ a dropped set inside an item is restored while a kept set rewrites the whole array (0.272833ms)
+✔ sets that together wrote every key of an item restore only while every other item is the pin's (0.314ms)
+✔ records an older engine kept with the inner set first still restore when it was written last (0.211708ms)
+✔ a rerun of apply after a failed regenerate step runs the step again, and the item it added still leaves later (436.816667ms)
+✔ a state file of schema version 1 loads, is named in status and is rewritten as version 2 (149.793958ms)
+✔ a state record without a path is refused and named (138.698417ms)
+✔ the state file is replaced through a rename, so a failed write keeps the old bytes and leaves no temporary file (43.400791ms)
+✔ status notes a skipped stale root-file check when no upstream checkout can be read (93.600625ms)
+✔ status names both skipped checks when the checkout lacks the pinned commit (166.719042ms)
+✔ a relative pin.checkout is read from the tree root, not from the shell's folder (151.504291ms)
+✔ a malformed entry set blocks only its own overlay and names its file (76.13525ms)
+✔ status notes a set through an array index and no longer notes a recorded setKeyOnItem (157.919ms)
+✔ status reports a json-entry result that differs from the entry set applied to the pinned copy (288.878417ms)
+✔ status prints no note for recorded setKeyOnItem and insertObjectKeys operations (195.946208ms)
+✔ status skips the cross-check on a json-entry destination a regenerate step lists as an output (160.496125ms)
+✔ status notes an appendItems or insertItems whose path goes through an array index (171.548625ms)
+✔ status notes a before anchor the file no longer holds, and apply still adds the items at the end (269.8585ms)
+✔ status notes a before anchor that has no identityKey to match it by (193.98ms)
+✔ apply takes back a dropped insertObjectKeys key and keeps a record of it while it is listed (191.094ms)
+✔ apply takes back a dropped setKeyOnItem: a key it added leaves and a key upstream ships returns to the pin (291.005917ms)
+✔ a dropped setKeyOnItem on an item the same entry set inserts leaves while the item stays (254.417042ms)
+✔ a dropped setKeyOnItem whose value was edited by hand is refused, not removed (134.37325ms)
+✔ insertBefore places the block before its anchor line and a second apply changes nothing (104.991417ms)
+✔ an edited placed block is rewritten in place and the anchored tail is kept (103.495833ms)
+✔ capture of a placed block takes the span apply writes, up to the anchor line (105.775125ms)
+✔ a missing insertBefore line refuses the block instead of appending it (39.294458ms)
+✔ naming an anchor moves a block that an earlier apply appended at the end (110.201041ms)
+✖ a sibling overlay folder applies every destination and status then passes in sync (31.649ms)
+✖ status and status --json show a sibling overlay folder by its ../overlays label (32.597834ms)
+✖ capture writes a live edit back into the sibling overlay folder (33.974292ms)
+ℹ tests 228
+ℹ suites 0
+ℹ pass 211
+ℹ fail 17
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22573.3495
+
+✖ failing tests:
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs:114:3
+✖ the setting file accepts a sibling folder "../overlays/" as ../overlays (6.530583ms)
+  Error: .skilled-overlays.json names a folder outside the tree root: ../overlays/
+      at Object.resolveOverlayDir (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/overlay-engine.cjs:443:11)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs:117:25)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs:114:3
+✖ the setting file accepts a sibling folder "../outside" as ../outside (7.275834ms)
+  Error: .skilled-overlays.json names a folder outside the tree root: ../outside
+      at Object.resolveOverlayDir (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/overlay-engine.cjs:443:11)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs:117:25)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs:114:3
+✖ the setting file accepts a sibling folder "a/../../outside" as ../outside (7.643542ms)
+  Error: .skilled-overlays.json names a folder outside the tree root: a/../../outside
+      at Object.resolveOverlayDir (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/overlay-engine.cjs:443:11)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs:117:25)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs:1207:1
+✖ relayout moves a source in a sibling overlay folder and backs it up inside that folder (34.039791ms)
+  AssertionError [ERR_ASSERTION]: [overlay-engine] .skilled-overlays.json names a folder outside the tree root: ../overlays
+  
+  
+  2 !== 0
+  
+      at createLayoutSourceFixture (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs:939:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs:1208:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:1151:1
+✖ a live repin with a sibling overlay folder backs up its files against the overlay root (190.083334ms)
+  AssertionError [ERR_ASSERTION]: [overlay-engine] .skilled-overlays.json names a folder outside the tree root: ../overlays
+  
+  
+  2 !== 0
+  
+      at createRepinFixture (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:226:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:1152:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:1198:1
+✖ --rollback of a sibling-folder run restores the manifest pin and sync-state.json in the overlay folder (210.372458ms)
+  AssertionError [ERR_ASSERTION]: [overlay-engine] .skilled-overlays.json names a folder outside the tree root: ../overlays
+  
+  
+  2 !== 0
+  
+      at createRepinFixture (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:226:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:1199:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:1221:1
+✖ repin --stage with a sibling overlay folder stages both folders and writes nothing in the live overlay folder (175.028292ms)
+  AssertionError [ERR_ASSERTION]: [overlay-engine] .skilled-overlays.json names a folder outside the tree root: ../overlays
+  
+  
+  2 !== 0
+  
+      at createRepinFixture (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:226:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:1222:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:1245:1
+✖ repin --stage refuses a stage folder inside the live sibling overlay folder (191.954375ms)
+  AssertionError [ERR_ASSERTION]: [overlay-engine] .skilled-overlays.json names a folder outside the tree root: ../overlays
+  
+  
+  2 !== 0
+  
+      at createRepinFixture (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:226:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:1246:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:1259:1
+✖ a layout link reaching into the sibling overlay folder passes live, and its staged copy resolves into the staged overlay folder (210.330292ms)
+  AssertionError [ERR_ASSERTION]: [overlay-engine] .skilled-overlays.json names a folder outside the tree root: ../overlays
+  
+  
+  2 !== 0
+  
+      at createRepinFixture (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:226:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:1260:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:1288:1
+✖ a re-pin line names a sibling overlay folder as the setting file gives it (217.216167ms)
+  AssertionError [ERR_ASSERTION]: [overlay-engine] .skilled-overlays.json names a folder outside the tree root: ../overlays
+  
+  
+  2 !== 0
+  
+      at createRepinFixture (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:226:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:1289:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:677:1
+✖ the guard names a sibling overlay folder for an owned path and allows a path inside that folder (167.496458ms)
+  AssertionError [ERR_ASSERTION]: [overlay-engine] .skilled-overlays.json names a folder outside the tree root: ../overlays
+  
+  
+  2 !== 0
+  
+      at createStrictFixture (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:123:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:678:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:695:1
+✖ adopt writes the copy and its entry into a sibling overlay folder and names it (161.433583ms)
+  AssertionError [ERR_ASSERTION]: [overlay-engine] .skilled-overlays.json names a folder outside the tree root: ../overlays
+  
+  
+  2 !== 0
+  
+      at createStrictFixture (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:123:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:696:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:717:1
+✖ pre-commit checks a tree whose sibling overlay folder sits in the same git repository (164.41375ms)
+  AssertionError [ERR_ASSERTION]: [overlay-engine] .skilled-overlays.json names a folder outside the tree root: ../overlays
+  
+  
+  2 !== 0
+  
+      at createStrictFixture (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:123:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:718:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:740:1
+✖ pre-commit refuses to judge a tree whose sibling overlay folder is outside its git repository (153.972917ms)
+  AssertionError [ERR_ASSERTION]: [overlay-engine] .skilled-overlays.json names a folder outside the tree root: ../overlays
+  
+  
+  2 !== 0
+  
+      at createStrictFixture (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:123:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:741:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:1738:1
+✖ a sibling overlay folder applies every destination and status then passes in sync (31.649ms)
+  AssertionError [ERR_ASSERTION]: [overlay-engine] .skilled-overlays.json names a folder outside the tree root: ../overlays
+  
+  
+  2 !== 0
+  
+      at seedState (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:30:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:1740:17)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:1754:1
+✖ status and status --json show a sibling overlay folder by its ../overlays label (32.597834ms)
+  AssertionError [ERR_ASSERTION]: [overlay-engine] .skilled-overlays.json names a folder outside the tree root: ../overlays
+  
+  
+  2 !== 0
+  
+      at seedState (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:30:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:1756:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:1770:1
+✖ capture writes a live edit back into the sibling overlay folder (33.974292ms)
+  AssertionError [ERR_ASSERTION]: [overlay-engine] .skilled-overlays.json names a folder outside the tree root: ../overlays
+  
+  
+  2 !== 0
+  
+      at seedState (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:30:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:1772:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+exit=1

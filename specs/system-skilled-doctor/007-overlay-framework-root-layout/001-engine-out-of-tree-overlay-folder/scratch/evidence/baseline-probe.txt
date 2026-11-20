@@ -1,0 +1,2 @@
+[overlay-engine] .skilled-overlays.json names a folder outside the tree root: ../overlays
+probe exit=2
