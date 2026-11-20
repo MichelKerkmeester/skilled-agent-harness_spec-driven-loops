@@ -3191,6 +3191,11 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
       expect(result.exitCode, result.stdout).toBe(0);
       const ledger = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8');
       expect(ledger).toMatch(/"event":"skipped_complete"[^\n]*"label":"done-seat"|"label":"done-seat"[^\n]*"event":"skipped_complete"/);
+      const outcomes = (payload as { summary?: { lineages?: Array<Record<string, unknown>> } }).summary?.lineages;
+      expect(outcomes).toEqual([
+        { label: 'done-seat', status: 'skipped_complete', failure_class: null, exit_code: 0, rerun_command: null },
+        { label: 'new-seat', status: 'succeeded', failure_class: null, exit_code: 0, rerun_command: null },
+      ]);
     }
   });
 
@@ -7651,6 +7656,19 @@ describe('fanout-run.cjs — a terminal stop row does not prove completion on it
     expect(payload.results?.[0]?.status).toBe('rejected');
     expect(payload.results?.[0]?.error?.message).toContain('comes after the terminal stop row');
     expect(result.exitCode).toBe(3);
+
+    // The failed lineage is named with a command that reruns it alone against the same matrix.
+    type LineageOutcome = { label: string; status: string; failure_class: string | null; exit_code: number | null; rerun_command: string | null };
+    const stdoutOutcomes = (payload as { summary?: { lineages?: LineageOutcome[] } }).summary?.lineages;
+    const fileOutcomes = (JSON.parse(readFileSync(join(baseDir, 'orchestration-summary.json'), 'utf8')) as { lineages?: LineageOutcome[] }).lineages;
+    expect(fileOutcomes).toEqual(stdoutOutcomes);
+    expect(stdoutOutcomes).toHaveLength(1);
+    const [late] = stdoutOutcomes ?? [];
+    expect(late).toMatchObject({ label: 'late', status: 'failed', failure_class: 'exit', exit_code: 0 });
+    expect(late.rerun_command).toContain(fanoutRunScript);
+    expect(late.rerun_command).toContain("--loop-type research");
+    expect(late.rerun_command?.match(/--only-lineage/g)).toHaveLength(1);
+    expect(late.rerun_command?.endsWith('--only-lineage late')).toBe(true);
   });
 });
 

@@ -1258,6 +1258,50 @@ const TERMINAL_STOP_EVENTS_BY_LOOP_TYPE = {
 // to the cap in the lineage's own config. A review stop is proved by its gate row instead.
 const RESEARCH_STOP_REASONS = Object.freeze(Object.values(STOP_REASONS));
 
+function shellQuoteArg(value) {
+  const text = String(value);
+  return /^[A-Za-z0-9_/.,:=@%+-]+$/.test(text) ? text : `'${text.replace(/'/g, `'\\''`)}'`;
+}
+
+// The command that reruns one lineage of this run against the same matrix: the run's own
+// argv with any earlier --only-lineage pair replaced, so the lineage keeps its budget share.
+function rerunCommandFor(label, argv = process.argv.slice(2)) {
+  const kept = [];
+  for (let index = 0; index < argv.length; index += 1) {
+    if (argv[index] === '--only-lineage') {
+      if (argv[index + 1] !== undefined && !argv[index + 1].startsWith('--')) index += 1;
+      continue;
+    }
+    kept.push(argv[index]);
+  }
+  return [process.execPath, __filename, ...kept, '--only-lineage', label].map(shellQuoteArg).join(' ');
+}
+
+// One row per lineage so a reader sees which lineage failed and how to rerun it alone. A
+// succeeded or skipped lineage gets no rerun command: a rerun would skip it as finished.
+function buildLineageOutcomes(results, argv) {
+  return results.filter(Boolean).map((result) => {
+    if (result.status === 'fulfilled') {
+      const output = result.output || {};
+      return {
+        label: result.label,
+        status: output.skipped === true ? 'skipped_complete' : 'succeeded',
+        failure_class: null,
+        exit_code: Number.isInteger(output.exitCode) ? output.exitCode : null,
+        rerun_command: null,
+      };
+    }
+    const error = result.error || {};
+    return {
+      label: result.label,
+      status: 'failed',
+      failure_class: typeof error.failure_class === 'string' ? error.failure_class : 'exit',
+      exit_code: Number.isInteger(error.exit_code) ? error.exit_code : null,
+      rerun_command: rerunCommandFor(result.label, argv),
+    };
+  });
+}
+
 function lineageCompletionPolicy(loopType, lineageDir) {
   const terminalEvents = TERMINAL_STOP_EVENTS_BY_LOOP_TYPE[loopType];
   if (loopType !== 'research') return { terminalEvents };
@@ -4924,6 +4968,7 @@ async function main() {
   const timestampAnomalies = collectTimestampAnomalies(results);
   const finalSummary = {
     ...summary,
+    lineages: buildLineageOutcomes(results),
     ...(timestampAnomalies.length > 0 ? { timestamp_anomalies: timestampAnomalies } : {}),
   };
 
