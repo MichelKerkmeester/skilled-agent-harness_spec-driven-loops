@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7086,
+    "missing-frontmatter": 7088,
     "ok": 20195,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28909,
+  "documentsScanned": 28911,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a219a0387dc07d4fc9ff08147c47d85ae8437e5772f8249cfd21eb0df4c98eee",
+  "manifestHash": "5ea70fa71db4df4e13ac28d485b649deafe1778741865c757b2b861529f0d307",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -41086,6 +41086,18 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261120T190404Z/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261120T190404Z/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -62045,6 +62057,10 @@
     },
     {
       "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261120T125555Z/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261120T190404Z/lineages",
       "reason": "excluded directory"
     },
     {
