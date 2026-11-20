@@ -2598,16 +2598,25 @@ function planLayoutLinks(manifest, root, state) {
  */
 function applyLayoutLink(root, link, isRetarget) {
   // The plan judges the tree as it stood, so each write is judged again where
-  // its parent resolves now: every unlink and link below acts through it.
-  for (const linkPath of [link.path, link.replaces && link.replaces.path]) {
-    if (typeof linkPath !== 'string') continue;
-    if (!isWithin(canonicalPath(root), canonicalPath(path.dirname(path.resolve(root, linkPath))))) {
-      throw new Error('layout link path escapes the tree root: ' + linkPath);
+  // its parent resolves now: every unlink and link below acts through it. The
+  // link path is judged after the replaced link is gone, since that link may be
+  // its parent and may resolve nowhere until it is removed. A parent that cannot
+  // be resolved at all is refused like one that leaves the tree.
+  const assertParentInTree = (linkPath) => {
+    if (typeof linkPath !== 'string') return;
+    let inside = false;
+    try {
+      inside = isWithin(canonicalPath(root), canonicalPath(path.dirname(path.resolve(root, linkPath))));
+    } catch {
+      inside = false;
     }
-  }
+    if (!inside) throw new Error('layout link path escapes the tree root: ' + linkPath);
+  };
+  assertParentInTree(link.replaces && link.replaces.path);
   const replacement = replacedLinkState(root, link);
   if (replacement.state === 'refused') throw new Error(replacement.reason);
   if (replacement.state === 'pinned') fs.unlinkSync(replacement.replacedPath);
+  assertParentInTree(link.path);
   if (isRetarget === true) {
     // The link is removed only while it is still a link: a path that became a
     // real file or folder since planning is someone else's work, and unlinking
@@ -2892,19 +2901,57 @@ function layoutLinkEscape(root, manifest) {
   // that resolves nowhere. A replaced link that does resolve is judged like any
   // other, since a command that does not replace it would write through it.
   //
+  // A path is judged twice, once by the disk as it stands and once by the links
+  // the run will write, and refused when either judgement refuses. The run
+  // writes the entries in manifest order, so a nested entry may be written
+  // while its parent is still the link on disk, or after an earlier entry has
+  // made it a planned link. Neither judgement alone can know which.
+  const parentStaysOnDisk = (treeRoot, linkPath, replacedPath) => {
+    const absolute = path.resolve(treeRoot, linkPath);
+    const replaced = typeof replacedPath === 'string' ? path.resolve(treeRoot, replacedPath) : null;
+    const parts = path.relative(path.resolve(treeRoot), absolute).split(path.sep).slice(0, -1);
+    let current = path.resolve(treeRoot);
+    for (const part of parts) {
+      current = path.join(current, part);
+      let stats;
+      try {
+        stats = fs.lstatSync(current);
+      } catch (error) {
+        if (!error || (error.code !== 'ENOENT' && error.code !== 'ENOTDIR')) throw error;
+        break;
+      }
+      if (stats.isSymbolicLink() && !fs.existsSync(current)) {
+        if (current !== replaced) return false;
+        const landed = path.join(canonicalPathWithoutLeaf(current), path.relative(current, absolute));
+        return isWithin(canonicalPath(treeRoot), landed);
+      }
+    }
+    return isWithin(canonicalPath(treeRoot), canonicalPathWithoutLeaf(absolute));
+  };
   // A parent folder another entry turns into a link is judged as that link,
-  // because the run writes the entries in turn and a later one is written
-  // through the link an earlier one made. The disk before the run cannot show
-  // it. A planned link is matched by where it will physically sit, so one
-  // written below an earlier planned link is found inside that link's target,
-  // and its own target resolves from there. Following the planned links ends
-  // at the first one met twice, since a cycle among them resolves nowhere and
-  // is refused.
+  // because a later entry is written through the link an earlier one made. A
+  // planned link is matched by where it will physically sit, so one written
+  // below an earlier planned link is found inside that link's target, and its
+  // own target resolves from there. Following the planned links ends at the
+  // first one met twice, since a cycle among them resolves nowhere and is
+  // refused. The walk runs on canonical paths, so a planned link reached through
+  // an on-disk link or spelled through another name of the tree is still found.
+  // A path that cannot be resolved adds no spelling: the disk judgement refuses
+  // it unless it is the replaced link.
+  const canonicalOrNull = (resolve, filePath) => {
+    try {
+      return resolve(filePath);
+    } catch {
+      return null;
+    }
+  };
+  const canonicalRoot = canonicalPath(root);
   const planned = new Map();
   for (const link of manifest.layoutLinks || []) {
     if (!link || typeof link.path !== 'string' || typeof link.target !== 'string') continue;
-    const linkAt = path.resolve(root, link.path);
-    planned.set(linkAt, link.target);
+    planned.set(path.resolve(canonicalRoot, link.path), link.target);
+    const onDiskAt = canonicalOrNull(canonicalPathWithoutLeaf, path.resolve(root, link.path));
+    if (onDiskAt !== null) planned.set(onDiskAt, link.target);
   }
   const parentStaysInTree = (treeRoot, linkPath, replacedPath, followed = new Set(), followedInto = []) => {
     const top = path.resolve(treeRoot);
@@ -2919,11 +2966,15 @@ function layoutLinkEscape(root, manifest) {
       for (const [into, linkAt] of followedInto) {
         if (current !== into && isWithin(into, current)) spelled.push(path.join(linkAt, path.relative(into, current)));
       }
+      const onDiskAt = canonicalOrNull(canonicalPath, current);
+      if (onDiskAt !== null) spelled.push(onDiskAt);
       const plannedAt = spelled.find((candidate) => planned.has(candidate));
       if (plannedAt !== undefined) {
         if (followed.has(plannedAt)) return false;
         followed.add(plannedAt);
-        const into = path.resolve(path.dirname(current), planned.get(plannedAt));
+        // A relative target resolves from the folder the link physically sits in.
+        const from = canonicalOrNull(canonicalPath, path.dirname(current)) || path.dirname(current);
+        const into = path.resolve(from, planned.get(plannedAt));
         const landed = path.join(into, ...parts.slice(index + 1), path.basename(absolute));
         if (!isWithin(top, landed)) return isWithin(canonicalPath(treeRoot), canonicalPathWithoutLeaf(landed));
         return parentStaysInTree(treeRoot, path.relative(top, landed), null, followed, [...followedInto, [into, plannedAt]]);
@@ -2954,7 +3005,7 @@ function layoutLinkEscape(root, manifest) {
     for (const [p, replaced] of paths) {
       if (typeof p !== 'string') continue;
       if (path.isAbsolute(p) || path.win32.isAbsolute(p) || !isWithin(root, path.resolve(root, p)) ||
-        !parentStaysInTree(root, p, replaced)) {
+        !parentStaysOnDisk(root, p, replaced) || !parentStaysInTree(canonicalRoot, p, replaced)) {
         return `layout link path escapes the tree root: ${p}`;
       }
     }

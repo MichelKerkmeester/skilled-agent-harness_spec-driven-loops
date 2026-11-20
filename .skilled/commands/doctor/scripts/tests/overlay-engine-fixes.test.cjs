@@ -774,6 +774,113 @@ test('apply writes a layout link below a link the same run points at an in-tree 
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'a', 'b'), 'utf8'), fs.readFileSync(path.join(fixture.tree, 'guarded.txt'), 'utf8'));
 });
 
+// The run writes entries in manifest order, so an entry listed before the one
+// that replaces its parent link is written while that link still points out.
+// The plan refuses it in either order, before any overlay file is written.
+test('a layout link below a replaced upstream link that points out is refused in either entry order', (t) => {
+  const inner = { path: 'up/planted', target: 'x' };
+  const outer = { path: 'up', target: 'real-dir', replaces: { path: 'up', target: '../outside' } };
+  for (const links of [[inner, outer], [outer, inner]]) {
+    const fixture = createSyncFixture(t);
+    const outside = path.resolve(fixture.tree, '../outside');
+    fs.mkdirSync(outside);
+    fs.mkdirSync(path.join(fixture.tree, 'real-dir'));
+    fs.symlinkSync('../outside', path.join(fixture.tree, 'up'));
+    fixture.manifest.layoutLinks = links;
+    writeManifest(fixture);
+    const before = treeDigest(fixture.tree);
+
+    for (const command of ['status', 'apply']) {
+      const result = fixture.run([command]);
+      assert.equal(result.code, 2, command + ': ' + result.output);
+      assert.ok(result.output.includes('layout link path escapes the tree root: up/planted'), command + ': ' + result.output);
+    }
+    assert.deepEqual(fs.readdirSync(outside), []);
+    assert.equal(fs.readlinkSync(path.join(fixture.tree, 'up')), '../outside');
+    assert.equal(treeDigest(fixture.tree), before);
+  }
+});
+
+test('a layout link below a link the same run writes out of the tree is refused with the nested entry listed first', (t) => {
+  const fixture = createSyncFixture(t);
+  const outside = path.resolve(fixture.tree, '../outside');
+  fs.mkdirSync(outside);
+  fs.writeFileSync(path.join(outside, 'planted'), 'not the engine\'s file\n');
+  fixture.manifest.layoutLinks = [{ path: 'ext/planted', target: 'anything' }, { path: 'ext', target: '../outside' }];
+  writeManifest(fixture);
+  const before = treeDigest(fixture.tree);
+
+  for (const command of ['status', 'apply']) {
+    const result = fixture.run([command]);
+    assert.equal(result.code, 2, command + ': ' + result.output);
+    assert.ok(result.output.includes('layout link path escapes the tree root: ext/planted'), command + ': ' + result.output);
+  }
+  assert.equal(fs.readFileSync(path.join(outside, 'planted'), 'utf8'), 'not the engine\'s file\n');
+  assert.equal(treeDigest(fixture.tree), before);
+});
+
+// A looping upstream link resolves nowhere, so the writer removes it before it
+// judges the folder below it. A looping parent that is not replaced is still
+// refused at plan time by the dangling-or-looping test above.
+test('a layout link below a looping upstream link it replaces applies', (t) => {
+  const fixture = createSyncFixture(t);
+  fs.mkdirSync(path.join(fixture.tree, 'real-dir'));
+  fs.symlinkSync('up', path.join(fixture.tree, 'up'));
+  fixture.manifest.layoutLinks = [{ path: 'up/inner', target: '../real-dir', replaces: { path: 'up', target: 'up' } }];
+  writeManifest(fixture);
+
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fs.lstatSync(path.join(fixture.tree, 'up')).isDirectory(), true);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'up', 'inner')), '../real-dir');
+  const status = fixture.run(['status']);
+  assert.notEqual(status.code, 2, status.output);
+  assert.ok(!status.output.includes('escapes the tree root'), status.output);
+});
+
+// The plan matches planned links by where they physically sit, so a link
+// reached through an on-disk link, or a target spelled through the tree's
+// canonical path, is still judged as the link the run writes.
+test('a layout link below a planned link reached through another spelling of the tree is refused', (t) => {
+  const cases = [
+    {
+      setup: (fixture) => fs.symlinkSync('real-dir', path.join(fixture.tree, 'via')),
+      links: () => [{ path: 'real-dir/ext', target: '../../outside' }, { path: 'via/ext/planted', target: 'anything' }],
+      refused: 'via/ext/planted',
+    },
+    {
+      setup: () => {},
+      links: (fixture) => [
+        { path: 'b', target: '../outside' },
+        { path: 'a', target: path.join(fs.realpathSync(fixture.tree), 'b') },
+        { path: 'a/planted', target: 'anything' },
+      ],
+      refused: 'a/planted',
+    },
+  ];
+  for (const { setup, links, refused } of cases) {
+    const fixture = createSyncFixture(t);
+    const outside = path.resolve(fixture.tree, '../outside');
+    fs.mkdirSync(outside);
+    fs.writeFileSync(path.join(outside, 'planted'), 'not the engine\'s file\n');
+    fs.mkdirSync(path.join(fixture.tree, 'real-dir'));
+    setup(fixture);
+    fixture.manifest.layoutLinks = links(fixture);
+    writeManifest(fixture);
+    const before = treeDigest(fixture.tree);
+
+    for (const command of ['status', 'apply']) {
+      const result = fixture.run([command]);
+      assert.equal(result.code, 2, command + ': ' + result.output);
+      assert.ok(result.output.includes('layout link path escapes the tree root: ' + refused), command + ': ' + result.output);
+    }
+    assert.equal(fs.lstatSync(path.join(outside, 'planted')).isFile(), true);
+    assert.deepEqual(fs.readdirSync(outside), ['planted']);
+    assert.equal(treeDigest(fixture.tree), before);
+  }
+});
+
 // A pin read from the manifest is data, so git must never be able to read it
 // as an option, whatever it starts with.
 test('a pinned commit is passed to git after --end-of-options', (t) => {
