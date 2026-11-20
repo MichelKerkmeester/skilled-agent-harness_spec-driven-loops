@@ -51,6 +51,7 @@ _memory:
 | Q015 | Fix the five doc lines the doc alignment found, without rerunning its critic, and push to main. | Not stated. | None | 004 implementation-summary.md (How It Was Delivered) |
 | Q016 | Leave the duplicate changelog commit on the primary checkout's local main and hand over a rebase recipe. | Not stated. | None | primary checkout local main |
 | Q017 | Fix all four open items: rename nativeDual, rerun the doc critic, fix the reducer tests in their own spec folder, and refresh the session-handover build. | Not stated. | None | 004 implementation-summary.md; commits 686de1cb4ea, 9cd204a87b0, af471c253e2; 007-expansive-depth-mode/015-reducer-test-focus-contract |
+| Q018 | Purge every OpenCode 1 reference outside history, including the refusal, the remove-v1 helper and their tests, superseding phase 003 ADR-001 and its justified-list approach. | Also delete the OpenCode 1 refusal and the remove-v1 helper and their tests, so no file outside history names OpenCode 1. A leftover v1 binary would then launch and fail without a clear message. | 003-v1-docs-and-playbooks-sweep ADR-001 | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/decision-record.md ADR-001 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -392,6 +393,24 @@ Session-handover dist
 Answer:
 ```text
 Rename nativeDual, Rerun doc critic, Fix reducer tests, Session-handover dist
+```
+
+### Q018
+<!-- source: claude:df9261d4-6090-4b52-892b-db52ff291ccd:purge-everything -->
+
+Question:
+```text
+On current main, 36 files outside specs/, changelogs and benchmarks still mention OpenCode 1. None runs it. ... How far should the purge go?
+```
+
+Options:
+```text
+Purge everything
+```
+
+Answer:
+```text
+Purge everything
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

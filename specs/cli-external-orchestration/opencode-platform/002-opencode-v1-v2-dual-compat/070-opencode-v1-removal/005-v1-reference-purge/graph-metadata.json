@@ -51,7 +51,8 @@
       ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh",
       ".skilled/hooks/cli-dispatch/lib/opencode-version-corpus.json",
       ".github/workflows/opencode-v2-battery.yml",
-      ".github/workflows/README.md"
+      ".github/workflows/README.md",
+      ".opencode/plugins/tests/plugin-inventory.json"
     ],
     "entities": [
       {
@@ -139,6 +140,12 @@
         "source": "derived"
       },
       {
+        "name": "plugin-inventory.json",
+        "kind": "config",
+        "path": ".opencode/plugins/tests/plugin-inventory.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -191,18 +198,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Other",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Nothing in the repository runs OpenCode 1, yet 39 files outside history still named it",
     "created_at": "2026-11-20T16:32:13Z",
-    "last_save_at": "2026-11-20T17:09:35.886Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-20T17:14:09.524Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -212,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7744d8f502a211ddb2a319f9e954403a62a0f6d513a8d4670eba9ab2f23dd02d",
+    "source_fingerprint": "sha256:c078c591b2b4e38bf6316e25c2975f89c19faa5acb98204f6822775936377abc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5c1df64544c68b7b7c7c335bcac107de3febe267e3cfd62fd0d5b6faf5ef0db8",
+      "spec.md": "2bc353a28df0d69a095c6392422b86fc9ecc89c9706db2343548f5af14c7c370",
       "plan.md": "349c014285e09c0a2b0a6153da0e3a1331f5c766587b55610ad259495af815b6",
       "tasks.md": "85129c69b420c0816dcc387affa36b6ebc5e9b38cc15f6c5bc84d9df25ef5548",
-      "decision-record.md": "5af34c127c1695632654cbb92c2fe3efc3c5e10cd99f191392ed93a4b7811fd5",
-      "implementation-summary.md": "684643ca12bcd52d43ea4a09ef2348a7d78fa0d74dd77afd231ca27f773ac536"
+      "decision-record.md": "3bdd0f1ff689671a7eb1b5643b30377f13f8b311dd3fc9cacda4dfa977590b73",
+      "implementation-summary.md": "8135a924b217a788a14a276795c202b2e872b32311c942f038976cf3469854df"
     },
     "last_active_at": null
   }

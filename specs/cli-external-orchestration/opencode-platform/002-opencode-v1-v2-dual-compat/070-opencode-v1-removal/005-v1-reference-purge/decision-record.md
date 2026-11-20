@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-11-20 |
-| **Deciders** | Operator |
+| **Deciders** | Operator (Q018 in `../decision-record.md`) |
 
 ---
 
@@ -166,7 +166,7 @@ The sweep excludes `specs/`, changelogs and benchmarks, but not the generated `t
 <!-- ANCHOR:operator-answers-verbatim -->
 ## Appendix: Verbatim Operator Answers
 
-Each appendix item uses the same id as its operator decision. The options are included so the record preserves the full offered choice set. The purge decision is cross-phase, so the continuity writer records it in the phase parent's `decision-record.md`.
+Each appendix item uses the same id as its operator decision. The options are included so the record preserves the full offered choice set. The purge decision is cross-phase, so the continuity writer records it as Q018 in the phase parent's `decision-record.md`.
 <!-- /ANCHOR:operator-answers-verbatim -->
 
 ---

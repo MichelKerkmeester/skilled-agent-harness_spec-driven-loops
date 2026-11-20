@@ -107,7 +107,7 @@ HEAD:.skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs:3
 | `.skilled/hooks/cli-dispatch/lib/opencode-version-corpus.json` | Modify | Replace the v1 rows with the same shapes on v2 or another major |
 | Tests under `cli-dispatch/lib`, `doctor/scripts/tests`, `session-handover/tests`, `cli-opencode/scripts/tests`, deep-loop `tests/unit` | Modify | Keep v2 and unknown coverage with no v1 sample |
 | `.github/workflows/opencode-v2-battery.yml`, `.github/workflows/README.md` | Modify | Drop the `remove-v1` description |
-| 25 docs and the sk-git fixture | Modify | Delete or rewrite every OpenCode 1 observation |
+| 27 docs and the sk-git fixture | Modify | Delete or rewrite every OpenCode 1 observation |
 | Trigger index and retrieval fixtures | Regenerate | Rebuilt by `generate-trigger-index.mjs` |
 <!-- /ANCHOR:scope -->
 
