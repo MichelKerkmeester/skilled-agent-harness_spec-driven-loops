@@ -998,6 +998,18 @@ describe('runCappedPool', () => {
     expect(markOrphanedLineages(ledger)).toEqual([]);
   });
 
+  it('treats a lineage stopped by the operator as closed, not orphaned', () => {
+    expect(detectOrphanedLineages([
+      { event: 'started', label: 'halted', at: '2026-06-19T00:00:00.000Z' },
+      { event: 'spawned', label: 'halted', pid: 999999, at: '2026-06-19T00:00:00.500Z' },
+      { event: 'stopped', label: 'halted', status: 'stopped', at: '2026-06-19T00:00:01.000Z' },
+      { event: 'started', label: 'open', at: '2026-06-19T00:00:02.000Z' },
+      { event: 'stopped', signal: 'SIGTERM', at: '2026-06-19T00:00:03.000Z' },
+    ], { isAlive: () => false })).toEqual([
+      { label: 'open', index: null, started_at_iso: '2026-06-19T00:00:02.000Z' },
+    ]);
+  });
+
   it('throws on invalid items or worker', () => {
     expect(() => runCappedPool({ items: 'nope' as unknown as [], concurrency: 1, worker: async () => ({}) })).toThrow(
       TypeError,

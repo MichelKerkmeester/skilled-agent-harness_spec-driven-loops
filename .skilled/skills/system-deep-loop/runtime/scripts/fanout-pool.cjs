@@ -337,6 +337,9 @@ function collectOpenLineages(records) {
       record.event === 'completed'
       || record.event === 'failed'
       || record.event === 'orphan_requeued'
+      // An operator stop closes the lineage on purpose; requeuing it as an
+      // orphan would charge its rerun a retry it never failed.
+      || record.event === 'stopped'
     ) {
       open.delete(record.label);
       spawnedPids.delete(record.label);
