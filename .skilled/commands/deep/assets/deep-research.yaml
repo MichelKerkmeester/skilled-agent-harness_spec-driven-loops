@@ -455,6 +455,7 @@ workflow:
             --depth-mode {depth_mode}
         working_directory: "{repo_root}"
         wait_for_completion: true
+        on_fail: "When the runner exits 3 with status error (it refused the run before start and spawned nothing, for example a finished lineage that differs from this run), halt and print its error; do not continue to phase_synthesis, because the lineage folders still hold the earlier run. Rerun with --restart to start fresh. Any other exit keeps the path below."
         optional_flags: "When lineage_timeout_hours is bound, append `--lineage-timeout-hours {lineage_timeout_hours}` to the command. When it is unset, append nothing, which keeps the 4 hour ceiling."
 
   # ════════

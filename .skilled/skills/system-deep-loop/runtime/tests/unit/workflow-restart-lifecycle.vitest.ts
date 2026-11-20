@@ -1548,5 +1548,13 @@ describe('fan-out root config', () => {
         expect(step).toContain(line);
       }
     });
+
+    it(`${entry.label} halts instead of merging when the runner refuses the run before start`, () => {
+      // A refusal spawns nothing, so the lineage folders still hold a finished run's results;
+      // continuing to the merge would synthesize them under this run.
+      const spawnCli = phaseStep(keyBlock(topLevelStep(fileText(entry.file), 'step_fanout_spawn'), 'sub_steps'), 'step_fanout_spawn_cli');
+      expect(spawnCli).toContain('        on_fail: "When the runner exits 3 with status error');
+      expect(spawnCli).toContain('do not continue to phase_synthesis');
+    });
   }
 });
