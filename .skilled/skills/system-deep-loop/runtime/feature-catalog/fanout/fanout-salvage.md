@@ -7,7 +7,7 @@ trigger_phrases:
   - "salvage fanout lineage"
   - "recover iteration from stdout"
   - "salvaged_from_stdout event"
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # Fan-out write-failure salvage
@@ -80,11 +80,11 @@ clean, while a count it needs is unknown.
 
 `readLineageCommits(lineageDir)` reads the lineage's gateway frames from
 `deep-research-ledger/frames` or `deep-review-ledger/frames`: the run start, and each iteration
-row with its commit time, its stamp and its findings count. The stamp is the row's own
-`timestamp`, else the event's `occurred_at`. A review frame keeps the model's record whole, so
-its stamp is the model's. A research frame carries no `timestamp` in its data, since the gateway
-moves the model's stamp to `claimedTimestamp`, so its stamp is the event time, which the gateway
-clock sets. A torn frame is skipped.
+row with its commit time, its stamp and its findings count. The stamp is the model's claim: the
+row's `claimedTimestamp`, else its own `timestamp`, else the event's `occurred_at`. The gateway
+keeps a research row's stamp as `claimedTimestamp`, and a review frame keeps the model's record
+whole, so both are judged by the stamp the model wrote. A frame with neither falls back to the
+event time. A torn frame is skipped.
 `readLineagePassSummary` feeds the fan-out progress row. It judges every lineage log on disk
 plus the running attempt's stdout, and returns `iterations` (distinct committed iterations),
 `lastCommitAt` and `flaggedPasses`. `flaggedPasses` is null while any pass cannot be judged, and

@@ -339,10 +339,12 @@ function readLineageCommits(lineageDir) {
         ? payload.scope.iteration
         : (Number.isInteger(row.iteration) ? row.iteration : null);
       if (iteration === null) continue;
-      // The row's own stamp is the model's claim. A research row without one takes the
-      // event time, which then holds the model's stamp or, absent one, the gateway's.
+      // The model's claim is what skew judges. The gateway keeps a research row's stamp as
+      // claimedTimestamp and times the event itself; a review record keeps its own stamp.
+      // A frame written before the gateway timed rows held the model's stamp as event time.
       let stampedAt = null;
-      if (typeof row.timestamp === 'string') stampedAt = row.timestamp;
+      if (typeof row.claimedTimestamp === 'string') stampedAt = row.claimedTimestamp;
+      else if (typeof row.timestamp === 'string') stampedAt = row.timestamp;
       else if (typeof event.occurred_at === 'string') stampedAt = event.occurred_at;
       commits.push({
         iteration,

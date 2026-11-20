@@ -195,6 +195,20 @@ describe('readLineageCommits and readLineagePassSummary', () => {
     expect(readLineagePassSummary(lineageDir)).toEqual({ iterations: 1, lastCommitAt: at(40), flaggedPasses: 0 });
   });
 
+  it('judges a gateway-timed research pass by the stamp the model claimed', () => {
+    const { lineageDir, framesDir } = lineageWithLedger('deep-research-ledger');
+    writeFrame(framesDir, 1, { occurred_at: at(0), payload: { stem: 'deep_research.run_initialized', scope: {}, data: {} } }, at(0));
+    writeFrame(framesDir, 2, {
+      occurred_at: at(40),
+      payload: { stem: 'deep_research.iteration_completed', scope: { iteration: 1 }, data: { findingsCount: 3, claimedTimestamp: at(90) } },
+    }, at(40));
+
+    expect(readLineageCommits(lineageDir)).toEqual([
+      { iteration: null, committedAt: at(0), stampedAt: null, findings: null },
+      { iteration: 1, committedAt: at(40), stampedAt: at(90), findings: 3 },
+    ]);
+  });
+
   it('takes the stamp from a review record and leaves flaggedPasses unknown while a pass cannot be judged', () => {
     const { lineageDir, framesDir } = lineageWithLedger('deep-review-ledger');
     writeFrame(framesDir, 1, { occurred_at: at(0), payload: { stem: 'deep_review.run_initialized', scope: {}, data: {} } }, at(0));
