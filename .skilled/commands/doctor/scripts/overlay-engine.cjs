@@ -2900,13 +2900,19 @@ function layoutLinkEscape(root, manifest) {
   // makes the folders below it fresh, and nothing else can reach through a link
   // that resolves nowhere. A replaced link that does resolve is judged like any
   // other, since a command that does not replace it would write through it.
+  // A dangling link an earlier entry rewrites is also let through here, since
+  // that entry replaces it before this one is written, and the planned links
+  // judge where the path then lands.
   //
   // A path is judged twice, once by the disk as it stands and once by the links
   // the run will write, and refused when either judgement refuses. The run
   // writes the entries in manifest order, so a nested entry may be written
   // while its parent is still the link on disk, or after an earlier entry has
   // made it a planned link. Neither judgement alone can know which.
-  const parentStaysOnDisk = (treeRoot, linkPath, replacedPath) => {
+  const layoutLinks = manifest.layoutLinks || [];
+  const writtenBefore = (treeRoot, at, entryIndex) => layoutLinks.slice(0, entryIndex)
+    .some((link) => link && typeof link.path === 'string' && path.resolve(treeRoot, link.path) === at);
+  const parentStaysOnDisk = (treeRoot, linkPath, replacedPath, entryIndex) => {
     const absolute = path.resolve(treeRoot, linkPath);
     const replaced = typeof replacedPath === 'string' ? path.resolve(treeRoot, replacedPath) : null;
     const parts = path.relative(path.resolve(treeRoot), absolute).split(path.sep).slice(0, -1);
@@ -2921,7 +2927,7 @@ function layoutLinkEscape(root, manifest) {
         break;
       }
       if (stats.isSymbolicLink() && !fs.existsSync(current)) {
-        if (current !== replaced) return false;
+        if (current !== replaced) return writtenBefore(treeRoot, current, entryIndex);
         const landed = path.join(canonicalPathWithoutLeaf(current), path.relative(current, absolute));
         return isWithin(canonicalPath(treeRoot), landed);
       }
@@ -2976,7 +2982,11 @@ function layoutLinkEscape(root, manifest) {
         const from = canonicalOrNull(canonicalPath, path.dirname(current)) || path.dirname(current);
         const into = path.resolve(from, planned.get(plannedAt));
         const landed = path.join(into, ...parts.slice(index + 1), path.basename(absolute));
-        if (!isWithin(top, landed)) return isWithin(canonicalPath(treeRoot), canonicalPathWithoutLeaf(landed));
+        if (!isWithin(top, landed)) {
+          // Outside the tree a looping link resolves nowhere, so it is refused.
+          const outside = canonicalOrNull(canonicalPathWithoutLeaf, landed);
+          return outside !== null && isWithin(canonicalPath(treeRoot), outside);
+        }
         return parentStaysInTree(treeRoot, path.relative(top, landed), null, followed, [...followedInto, [into, plannedAt]]);
       }
       // A missing folder is made fresh, but a planned link may still sit below it.
@@ -2997,7 +3007,7 @@ function layoutLinkEscape(root, manifest) {
     }
     return isWithin(canonicalPath(treeRoot), canonicalPathWithoutLeaf(absolute));
   };
-  for (const link of manifest.layoutLinks || []) {
+  for (const [entryIndex, link] of layoutLinks.entries()) {
     if (!link) continue;
     const replacedPath = link.replaces && typeof link.replaces.path === 'string' ? link.replaces.path : null;
     const paths = [[link.path, replacedPath]];
@@ -3005,7 +3015,7 @@ function layoutLinkEscape(root, manifest) {
     for (const [p, replaced] of paths) {
       if (typeof p !== 'string') continue;
       if (path.isAbsolute(p) || path.win32.isAbsolute(p) || !isWithin(root, path.resolve(root, p)) ||
-        !parentStaysOnDisk(root, p, replaced) || !parentStaysInTree(canonicalRoot, p, replaced)) {
+        !parentStaysOnDisk(root, p, replaced, entryIndex) || !parentStaysInTree(canonicalRoot, p, replaced)) {
         return `layout link path escapes the tree root: ${p}`;
       }
     }
