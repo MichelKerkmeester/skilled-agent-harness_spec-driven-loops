@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v1 reference purge",
+      "phase 5 v1 reference purge",
+      "purge opencode 1 references",
+      "opencode version families v2 unknown",
+      "v1 reference purge plan",
+      "v1 reference purge tasks",
+      "v1 reference purge acceptance criteria",
+      "v1 reference purge decision record",
+      "v1 reference purge implementation summary"
+    ],
+    "key_topics": [
+      "reference",
+      "purge",
+      "phase",
+      "opencode",
+      "references",
+      "version",
+      "families",
+      "unknown",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/cli-dispatch/lib/opencode-version.mjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs",
+      ".skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh",
+      ".skilled/hooks/cli-dispatch/lib/opencode-version-corpus.json",
+      ".github/workflows/opencode-v2-battery.yml",
+      ".github/workflows/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/cli-dispatch/lib/opencode-version.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version-battery.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-setup.sh",
+        "kind": "script",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version-corpus.json",
+        "kind": "config",
+        "path": ".skilled/hooks/cli-dispatch/lib/opencode-version-corpus.json",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-v2-battery.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-v2-battery.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Nothing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nothing in the repository runs OpenCode 1, yet 39 files outside history still named it",
+    "created_at": "2026-11-20T16:32:13Z",
+    "last_save_at": "2026-11-20T17:09:35.886Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7744d8f502a211ddb2a319f9e954403a62a0f6d513a8d4670eba9ab2f23dd02d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5c1df64544c68b7b7c7c335bcac107de3febe267e3cfd62fd0d5b6faf5ef0db8",
+      "plan.md": "349c014285e09c0a2b0a6153da0e3a1331f5c766587b55610ad259495af815b6",
+      "tasks.md": "85129c69b420c0816dcc387affa36b6ebc5e9b38cc15f6c5bc84d9df25ef5548",
+      "decision-record.md": "5af34c127c1695632654cbb92c2fe3efc3c5e10cd99f191392ed93a4b7811fd5",
+      "implementation-summary.md": "684643ca12bcd52d43ea4a09ef2348a7d78fa0d74dd77afd231ca27f773ac536"
+    },
+    "last_active_at": null
+  }
+}

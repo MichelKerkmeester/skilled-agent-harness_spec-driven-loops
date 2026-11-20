@@ -143,6 +143,7 @@ The table is an audit summary. Each child's `plan.md` and `tasks.md` hold the pe
 | 2 | 002-v1-ci-and-package-pins/ | v1 CI matrix leg and `both` job, workflow name, `@opencode-ai/plugin` pins, v2 pin bump to 2.3.2 | Complete (v2 battery green on the merge commit) |
 | 3 | 003-v1-docs-and-playbooks-sweep/ | cli-opencode and plugin docs, playbooks, `--pure` text, feature catalog, generated artifacts, changelog entry | Complete (AC-004 met live; ADR-001 and ADR-002) |
 | 4 | 004-v2-review-p2-fixes/ | The eight P2 advisories of the third deep review: `opencode2` vocabulary, battery server bind, unmapped hook signal, `remove-v1` test in CI, parser parity breadth, the `dualPlugin` rename, two phase 001 evidence lines | Complete (gate unchanged against its baseline; ADR-001 and ADR-002) |
+| 5 | 005-v1-reference-purge/ | [Phase 5 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -159,6 +160,7 @@ The table is an audit summary. Each child's `plan.md` and `tasks.md` hold the pe
 | 001-v1-runtime-code-and-tests | 002-v1-ci-and-package-pins | Phase 001 passes strict validation. The suites named in its REQ-004, REQ-005, REQ-006 and REQ-008 pass on OpenCode 2.3.2. | `validate.sh` on phase 001 prints `RESULT: PASSED`; `node --test` on each named suite prints `# fail 0` |
 | 002-v1-ci-and-package-pins | 003-v1-docs-and-playbooks-sweep | The workflow has no v1 entry and no `both` job, the v2 pin is 2.3.2 in both the setup helper and the workflow, and the package pins are decided. | `rg -l -F '2.3.0' .github/workflows/opencode-v2-battery.yml .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh \| wc -l` prints 0 |
 | 003-v1-docs-and-playbooks-sweep | 004-v2-review-p2-fixes | Phase 003 is complete and the third deep review returned PASS with eight P2 advisories. | `review/review-report.md` §1 reads `Verdict: PASS` and §3 lists the eight advisories |
+| 004-v2-review-p2-fixes | 005-v1-reference-purge | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---
