@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.27.0
+version: 1.0.28.0
 ---
 
 # Vendored Skilled Overlays
@@ -125,7 +125,7 @@ The fragment then goes in exactly as written just before the last line that equa
 
 The cross-check skips every destination a `regenerate` step lists in its `outputs`, because the step rewrites that file after the entry sets apply. A step that writes a `json-entry` destination without listing it gets a cross-check line on every run until the path joins its `outputs`.
 
-A relative `pin.checkout` is read from the root of the tree the engine runs on, not from the folder the shell is in. `repin --stage` reads only the `--upstream` checkout it is given, but a later `status --root <stage>` reads a relative checkout beside the staged copy.
+A relative `pin.checkout` is read from the root of the tree the engine runs on, not from the folder the shell is in. `repin --stage` reads only the `--upstream` checkout it is given, but a later `status --root <staged tree root>` reads a relative checkout beside the staged copy. The staged tree root is the stage folder itself, unless the overlay folder sits beside the tree; the stage then prints it on a `staged tree root:` line, and the JSON report carries it as `stagedRoot` in both cases.
 
 ---
 
@@ -256,7 +256,7 @@ node .skilled/commands/doctor/scripts/overlay-engine.cjs repin --rollback <run-i
 
 Rollback restores each backed-up file byte for byte and removes the files the run created. Run `/doctor:overlay status` afterwards to confirm the tree is back in sync.
 
-With a sibling overlay folder, the backup also keeps the overlay folder's own files, as `area: "overlay"` entries under `<run>/overlay-backup/`, and rollback restores each file against its own root. `repin --stage <dir>` copies the tree to `<dir>/<tree name>` and the overlay folder to `<dir>/<overlay name>`, and it writes nothing live. It refuses a stage folder inside the overlay folder.
+With a sibling overlay folder, the backup also keeps the overlay folder's own files, as `area: "overlay"` entries under `<run>/overlay-backup/`, and rollback restores each file against its own root. `repin --stage <dir>` copies the tree to `<dir>/<tree name>` and the overlay folder to `<dir>/<overlay name>`, and it writes nothing live. It prints `staged tree root: <dir>/<tree name>`, the folder to pass as `--root` to a later `status`, because `<dir>` itself holds no setting file. It refuses a stage folder inside the overlay folder.
 
 ### Moving an existing tree onto the new layout
 

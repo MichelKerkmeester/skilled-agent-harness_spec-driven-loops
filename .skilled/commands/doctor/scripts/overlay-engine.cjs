@@ -5406,8 +5406,12 @@ function repinRun(liveCtx, options, report) {
       skipped += copyTreeForStage(liveCtx.overlayRoot, path.join(stageDir, path.basename(liveCtx.overlayRoot)), liveCtx.lockPath);
     }
     console.log('staged a copy of the tree in ' + stageDir + (skipped > 0 ? ` (${skipped} .env file(s) left out)` : ''));
+    // The stage folder then holds two copies and no setting file, so a later
+    // --root has to name the tree copy, where the staged setting file sits.
+    if (overlayOutside) console.log('staged tree root: ' + stagedRoot);
     ctx = createContext(stagedRoot);
     report.stage = stageDir;
+    report.stagedRoot = stagedRoot;
   }
   return withLock(ctx, 'overlay-engine repin', () => repinUnderLock(ctx, job, report));
 }
