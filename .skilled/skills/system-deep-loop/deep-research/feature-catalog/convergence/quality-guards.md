@@ -7,7 +7,7 @@ trigger_phrases:
   - "legal-stop bundle"
   - "source diversity check"
   - "blocked-stop event"
-version: 1.14.4.0
+version: 1.14.5.0
 ---
 
 # Quality guards
@@ -22,7 +22,7 @@ Quality guards sit after the convergence vote and before synthesis. They make su
 
 ## 2. HOW IT WORKS
 
-The legal-stop bundle is explicit. convergence.cjs checks that each key question has evidence-backed coverage and that research stayed aligned with the key question list in the latest iteration record. The bundle also carries a reserved single-weak-source entry that reports `notEvaluated`. A stop is legal only when both the convergence gate and these guard checks pass together.
+The legal-stop bundle is explicit. convergence.cjs checks that each key question has evidence-backed coverage and that research stayed aligned with the key question list in the latest iteration record. The bundle also carries a reserved single-weak-source entry that reports `notEvaluated`. When the graph reads cleanly but holds no answered question, source diversity reports `insufficient` with `passed: false` instead of a pass, and `notEvaluated` there means the graph read failed. Only a guard whose status is `failed` blocks a stop, so `insufficient` reports missing evidence without changing the decision. A stop is legal only when both the convergence gate and these guard checks pass together.
 
 Guard failures are visible in the stop decision, not quiet side effects. convergence.cjs reports the failed guard as `qualityGuardFailed` and names it in `stop_decision.blockedBy`, and the workflow logs the failed guard names when it continues. A failed guard writes no event, neither `guard_violation` nor `blocked_stop`. Only a graph `STOP_BLOCKED` records `blocked_stop`, which convergence.cjs appends itself through the append gateway, and that event carries gate results, blockers, recovery guidance, session identifier, and generation so the reducer and dashboard can show why the loop had to continue.
 
