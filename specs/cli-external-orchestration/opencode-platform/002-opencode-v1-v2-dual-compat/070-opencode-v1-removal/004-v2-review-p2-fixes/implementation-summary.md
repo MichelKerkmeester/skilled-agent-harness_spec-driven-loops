@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes"
-    last_updated_at: "2026-11-20T15:09:25Z"
+    last_updated_at: "2026-11-20T15:52:36Z"
     last_updated_by: "generate-context"
     recent_action: "Renamed nativeDual to selfRegistered and fixed two critic-verified doc lines"
     next_safe_action: "Review the follow-up commits on main"
@@ -20,14 +20,14 @@ _memory:
       - ".opencode/plugins/tests/plugin-inventory.json"
       - ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-handover-loop.md"
     session_dedup:
-      fingerprint: "sha256:ba0692c495ef93d0745b1842ec58dcea002c8815cf827ed8c210ea3d53abcaee"
+      fingerprint: "sha256:58bcfe6be82e877443083ac5c94a300679492a70ec65b4925a483f359cb89d69"
       session_id: "scaffold-004-v2-review-p2-fixes"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "df9261d4-6090-4b52-892b-db52ff291ccd"
-      workspace: "/Users/michelkerkmeester/worktrees/public/488-detached-decision-save"
-      savedAt: "2026-11-20T15:09:25Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/490-opencode-subcommand-list"
+      savedAt: "2026-11-20T15:52:36Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -91,6 +91,8 @@ The gate in `scratch/gate.sh` ran before the first edit, with the output in `scr
 After merge, `/local-doc-alignment` on an `opencode-v2-only` topic (four lanes on `opencode-go/hy4-flash-free#high`) found five doc lines that disagreed with the code. Its critic did not run, because OpenCode Go reported its monthly usage limit, so each line was checked by hand against the code before the fix. `goal-plugin.md` and `goal-carry-over.md` said the wrapper adds `--standalone` when `opencode --help` lists it; `skilled-loop` adds it unless the launch already carries `--standalone` or `--server`, after refusing OpenCode 1. The CO-001 playbook triage named `brew install opencode`; it now names `opencode-setup.sh v2`. The dist-freshness feature-catalog entry said the OpenCode plugin warns through `console.warn`; the plugin has no console call and logs to `dist-freshness-guard.log` and injects a system-context note.
 
 A follow-up closed three loose ends. The plugin inventory key `nativeDual` became `selfRegistered`. It lists the plugins that make no `definePlugin` call and default-export their own OpenCode 2 `{ id, setup }`, so the new name says what they do on the v2-only contract instead of naming the dual-compat era. The JSON key, the helper's return field, its problem messages, two test files, `tests/README.md` and `ARCHITECTURE.md` changed together, with no alias, because every reader is in `.opencode/plugins`. `node --test .opencode/plugins/tests/*.test.cjs` gave 595 of 595 before and after. The doc-alignment critic was rerun on the same run folder with the `deepseek-high` preset (`llmgateway/deepseek-v4.1-flash-1017`, thinking high). `run-lanes.cjs --critic` reads only the config's top-level `critic`, so it ran from a scratch copy of `executors.json` whose `critic` is that preset. It raised four lines. Two were checked and confirmed in `session-handover-loop.md`, and both are fixed: the shell-shim paragraph said every subcommand list comes from `--help`, though the OpenCode list is hand-kept and names subcommands 2.3.2 lacks, and the adapter paragraph did not say the wrapper refuses an OpenCode 1 binary. Two were refuted: `brew install opencode` resolves to the `homebrew/core` formula at 2.3.2, so those lines do not install OpenCode 1. The `session-handover/history` dist in the primary checkout was stale by mtime. It is gitignored, so it was rebuilt in place with `tsc --build --force`, and all seven dist packages then read fresh.
+
+A second follow-up fixed the shell shim itself instead of describing its drift. `.skilled/bin/skilled-loop-shell.sh` said each subcommand list comes from the runtime's `--help`, but its OpenCode arm still named eleven OpenCode 1 words. `scratch/opencode-2.3.2-subcommands.txt` holds `opencode --help </dev/null` from 2.3.2, which lists 18 subcommands, and a per-name probe. Each listed name, plus the `update` alias, prints its own help. `completion`, `attach`, `providers`, `agent`, `web`, `export`, `import`, `github`, `pr`, `plug` and `db` print the top-level help, the same as a made-up word, because 2.3.2 takes an unknown first word as its `[<directory>]` argument. Those words had been opening a session without the loop wrapper. The OpenCode arm is now exactly the 2.3.2 list. Checked against each runtime's live `--help`, the Codex arm lacked `migrate-nfs-db`, new in codex-cli 0.170.0, which is added. Claude 2.1.329, Pi 1.5.2, Cursor and Vibe 3.1.2 matched; Vibe lists `update` in a second Commands block of its help. The comment now says the lists are copied by hand and that Devin needs none, and `runtime-behavior.md` and `session-handover-loop.md` say the same. `skilled-loop-shell.test.cjs` gained one case that passes all 18 names and sends eight retired words to the wrapper, and a Codex passthrough form. The suite went from 41 of 41 (`scratch/loop-shell-tests-before.txt`) to 43 of 43 (`scratch/loop-shell-tests-after.txt`). Against the old shim the new case and the Codex form fail.
 <!-- /ANCHOR:how-delivered -->
 
 ---
