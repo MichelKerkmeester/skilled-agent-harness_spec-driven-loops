@@ -518,14 +518,18 @@ function tagCommit(repo, tag, remote, allowFetch, cache) {
     return null;
   }
   // A pinned framework commit has no tag, so it is fetched by its full object id.
-  const ref = COMMIT_RE.test(tag) ? tag : 'refs/tags/' + tag;
+  const pinned = COMMIT_RE.test(tag);
+  const ref = pinned ? tag : 'refs/tags/' + tag;
   const fetched = gitTry(repo, ['fetch', '--no-tags', remote, ref]);
   if (!fetched.ok) {
     cache.set(tag, null);
     return null;
   }
-  const head = gitTry(repo, ['rev-parse', '--verify', 'FETCH_HEAD^{commit}']);
-  const commit = head.ok ? head.value.trim() : null;
+  // A fetch can exit 0 without rewriting FETCH_HEAD, so a pin resolves its own
+  // object id and must come back as exactly that commit.
+  const head = gitTry(repo, ['rev-parse', '--verify', (pinned ? tag : 'FETCH_HEAD') + '^{commit}']);
+  const resolved = head.ok ? head.value.trim() : null;
+  const commit = pinned && resolved !== tag ? null : resolved;
   cache.set(tag, commit);
   return commit;
 }
@@ -2422,8 +2426,19 @@ function recordBase(repo, options) {
   const commit = tagCommit(repo, pinned || release, options.remote, !options.offline, new Map());
   if (!commit) {
     throw new Error(pinned
-      ? 'commit could not be resolved locally or fetched from ' + options.remote + ': ' + pinned
+      ? (options.offline
+        ? 'commit ' + pinned + ' was not found in this repository (' + repo + ');'
+          + ' --offline searched no remote'
+        : 'commit ' + pinned + ' was found in neither this repository (' + repo + ')'
+          + ' nor remote ' + options.remote)
       : 'release tag could not be resolved: ' + release);
+  }
+  // A commit of the project itself resolves locally too, but only a framework
+  // commit carries .skilled as a directory at its top level.
+  const skilledType = pinned ? gitTry(repo, ['cat-file', '-t', commit + ':.skilled']) : null;
+  if (pinned && !(skilledType.ok && skilledType.value.trim() === 'tree')) {
+    throw new Error('commit ' + commit + ' is not a framework commit: it has no top-level'
+      + ' .skilled directory. Pin the framework repository commit this tree was copied from');
   }
   const label = pinned ? 'commit ' + commit : 'release ' + release;
   const releaseFiles = commitFiles(repo, commit);
