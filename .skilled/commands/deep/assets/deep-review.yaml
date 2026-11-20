@@ -1147,8 +1147,8 @@ workflow:
           3. Preserve raw graph signals and blockers for reducer rollup and blocked-stop evidence.
           4. Normalize blockers to both JSON array and CSV forms for downstream stop handling.
           5. Set graph_stop_blocked = true only when graph_decision == "STOP_BLOCKED".
-        bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --convergence-mode "{convergence_mode}" --depth-mode "{depth_mode}" --stop-decision --config-path "{state_paths.config}" --state-log "{state_paths.state_log}" --registry-path "{state_paths.findings_registry}" --iteration-count "{iteration_count}" --security-sensitive-fix-scope "{security_sensitive_fix_scope}" --fix-replay-required-rows "{fix_completeness_replay_required_rows}" --fix-replay-passing-rows "{fix_completeness_replay_passing_rows}"'
-        note: "The script is the only place the stop decision is computed. step_check_convergence branches on its stop_decision output."
+        bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --convergence-mode "{convergence_mode}" --depth-mode "{depth_mode}" --stop-decision --config-path "{state_paths.config}" --state-log "{state_paths.state_log}" --registry-path "{state_paths.findings_registry}" --iteration-count "{iteration_count}" --security-sensitive-fix-scope "{security_sensitive_fix_scope}" --fix-replay-required-rows "{fix_completeness_replay_required_rows}" --fix-replay-passing-rows "{fix_completeness_replay_passing_rows}" --iteration "{current_iteration}" --record-blocked-stop'
+        note: "The script is the only place the stop decision is computed. step_check_convergence branches on its stop_decision output. On a BLOCKED decision, --record-blocked-stop makes the script append the deep_review.blocked_stop_recorded event for this iteration through the append gateway itself, once per iteration and blocker set, so a leaf that never reaches step_emit_blocked_stop still leaves the block in the ledger. It records on an empty graph and on a graph that cannot be read as well. The event names graph-{session_id}-g{generation}-i{current_iteration}, the graph_convergence_evaluated event this step appends after the script returns."
         append_jsonl: '{"stem":"deep_review.graph_convergence_evaluated","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}"},"data":{"rawSignals":{graph_raw_signals_json},"weightedSignals":{graph_raw_signals_json},"dimensionCoverageDigest":"{dimension_coverage_digest}","protocolCoverageDigest":"{protocol_coverage_digest}","findingStability":"{finding_stability}","p0p1ResolutionState":"{p0p1_resolution_state}","evidenceDensity":{evidence_density},"hotspotSaturation":{hotspot_saturation},"decision":"{graph_decision_code}","policyFingerprint":"{policy_fingerprint}","blockerIds":{graph_blocker_ids_json},"stopCandidate":{stop_candidate},"graphDecision":"{graph_decision_code}","graphDigest":"{graph_digest}","signals":{graph_signals_json},"blockers":{graph_blockers_json}},"eventId":"graph-{session_id}-g{generation}-i{current_iteration}"}'
         dry_run_event_policy: preview-only
         on_missing_counters: "If loop_counters_json is missing from the output, halt with stop reason error. Never bind a default counter. Run step_release_lock before the halt returns control."
@@ -1174,6 +1174,8 @@ workflow:
           - policy_fingerprint: "sha256 (64 lowercase hex) of the canonical JSON {convergenceThreshold, stopPolicy, convergenceMode} from the review config"
           - stop_candidate: "true when graph_decision == STOP_ALLOWED, else false"
           - graph_digest: "sha256 (64 lowercase hex) of graph_signals_json"
+          - blocked_stop_record: "Present only when stop_decision.decision == BLOCKED: status recorded, already_recorded or failed, the run, the recoveryStrategy code, the recoveryHint and the gateResults rows the event carries."
+        on_blocked_stop_record_failed: "When blocked_stop_record.status == failed the script exits with the gateway status after printing the decision. Treat it as a gateway refusal under state_write_protocol.refusal_handling: halt, and never write the event by hand."
 
       step_check_convergence:
         action: "Branch on the stop decision that convergence.cjs computed in step_graph_convergence"
@@ -1224,7 +1226,7 @@ workflow:
             graphless_fallback_missing_json = the I.requiredBugClasses entries that are not in I.fallbackCoveredBugClasses
             graphless_fallback_unavailability_reason = the explicit reason when I.graphCoverageMode == "unavailable_blocked", else empty string
             graph_blocker_detail_json = graph_blockers_json
-            recovery_strategy = one line naming the next review action for the gates in stop_decision.blockedBy. When claimAdjudicationGate is listed: "Reviewer must add typed claim-adjudication packets (claim, evidenceRefs, counterevidenceSought, alternativeExplanation, finalSeverity, confidence, downgradeTrigger) for every active P0/P1 finding before STOP is allowed." When stop_decision.reasonDetail == "graphStopBlocked": "Resolve review coverage-graph blockers before stopping." When candidateCoverageGate and graphlessFallbackGate both fail, combine their guidance. When I.unfinishedCoreProtocols is non-empty, name them. When I.unfinishedCoreProtocols is non-empty and traceability_in_run is true, also say the last iteration under the cap is reserved for them, each needing file:line evidence.
+            recovery_strategy = one line naming the next review action for the gates in stop_decision.blockedBy: blocked_stop_record.recoveryHint when present, else built as follows. When claimAdjudicationGate is listed: "Reviewer must add typed claim-adjudication packets (claim, evidenceRefs, counterevidenceSought, alternativeExplanation, finalSeverity, confidence, downgradeTrigger) for every active P0/P1 finding before STOP is allowed." When stop_decision.reasonDetail == "graphStopBlocked": "Resolve review coverage-graph blockers before stopping." When candidateCoverageGate and graphlessFallbackGate both fail, combine their guidance. When I.unfinishedCoreProtocols is non-empty, name them. When I.unfinishedCoreProtocols is non-empty and traceability_in_run is true, also say the last iteration under the cap is reserved for them, each needing file:line evidence.
           If stop_decision is missing from the step_graph_convergence output, do not decide by hand: halt and report the script output.
         outputs:
           - decision: "STOP | BLOCKED | STUCK_RECOVERY | CONTINUE"
@@ -1262,16 +1264,15 @@ workflow:
           - graph_blockers_json: "JSON array of graph blockers"
           - graph_blockers_csv: "Comma-separated graph blocker summary"
           - recovery_strategy: "One-line hint describing the next review action when decision == BLOCKED or STUCK_RECOVERY"
-          - recovery_strategy_code: "Slug form of recovery_strategy for the ledger code fields"
-          - gate_results_array_json: "One {gateId,status,reasonCode,evidenceDigest} row per legal-stop gate (convergenceGate, dimensionCoverageGate, p0ResolutionGate, evidenceDensityGate, hotspotSaturationGate, claimAdjudicationGate, fixCompletenessReplayGate, candidateCoverageGate, graphlessFallbackGate), with at least one fail row when decision == BLOCKED"
+          - recovery_strategy_code: "blocked_stop_record.recoveryStrategy when present, else the slug form of recovery_strategy for the ledger code fields"
+          - gate_results_array_json: "One {gateId,status,reasonCode,evidenceDigest} row per legal-stop gate (convergenceGate, dimensionCoverageGate, p0ResolutionGate, evidenceDensityGate, hotspotSaturationGate, claimAdjudicationGate, fixCompletenessReplayGate, candidateCoverageGate, graphlessFallbackGate), then one fail row per graph blocker when only the graph blocks the stop, read from blocked_stop_record.gateResults"
           - active_total_count: "p0_count + p1_count + p2_count, the active findings total"
 
       step_emit_blocked_stop:
-        action: "Persist blocked-stop evidence whenever the review legal-stop decision tree vetoes STOP"
+        action: "Report the blocked stop that step_graph_convergence already recorded"
         if_blocked:
-          append_jsonl: '{"stem":"deep_review.blocked_stop_recorded","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}"},"data":{"blockedGateIds":{blocked_by_json},"gateResults":{gate_results_array_json},"activeFindingCounts":{"candidates":{active_total_count},"adjudicated":{active_total_count},"p0":{p0_count},"p1":{p1_count},"p2":{p2_count}},"recoveryStrategy":"{recovery_strategy_code}","targetDimensionId":"{next_dimension}","originatingConvergenceEventId":"graph-{session_id}-g{generation}-i{current_iteration}","appendPosition":{current_iteration},"gateDetail":{gate_results_array_json},"graphBlockerDetail":{graph_blockers_json},"recoveryHint":"{recovery_strategy}"}}'
-          dry_run_event_policy: preview-only
-          log: "Blocked STOP persisted for review loop. Failed gates: {blocked_by_csv}. Recovery strategy: {recovery_strategy}"
+          note: "convergence.cjs appended the deep_review.blocked_stop_recorded event for this iteration through the append gateway (blocked_stop_record). This step appends nothing, so the event is never written twice."
+          log: "Blocked STOP recorded for review loop. Failed gates: {blocked_by_csv}. Recovery strategy: {recovery_strategy}"
         if_not_blocked:
           proceed: true
 

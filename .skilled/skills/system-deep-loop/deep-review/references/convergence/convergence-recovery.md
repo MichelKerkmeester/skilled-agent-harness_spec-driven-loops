@@ -8,7 +8,7 @@ trigger_phrases:
   - "graph aware review convergence"
 importance_tier: normal
 contextType: implementation
-version: 1.11.2.0
+version: 1.11.3.0
 ---
 
 # Deep Review Convergence Recovery and Reporting
@@ -187,7 +187,7 @@ Stuck recovery attempts: N (recovered: N, failed: N)
 }
 ```
 
-When STOP is vetoed instead of finalized, the workflow emits the separate `blocked_stop` event from Section 3 rather than nesting a `legalStop` object inside `synthesis`.
+When STOP is vetoed instead of finalized, `convergence.cjs` records the separate `blocked_stop` event from Section 3 rather than nesting a `legalStop` object inside `synthesis`.
 
 ---
 

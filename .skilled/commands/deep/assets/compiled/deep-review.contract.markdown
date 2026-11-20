@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "aeeb15f4cf2aa9555f7b9c7f46b0d3322b465b9219c198b795cc602731989aeb",
+      "sha256": "1bb2f9c10c8ea39895e17338f2caaf1d242b3c8ff9c82f4211c508af4f734c28",
       "section": "full"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "cce24cf3e1536e5b4cf71cc62b897423c0ebad2bda2a691749827e1626e1e996",
+      "sha256": "2bb95dc147958ff9cc1c5384b8e1fa63b3845734e3b96227105297e809146ce2",
       "section": "full"
     },
     {

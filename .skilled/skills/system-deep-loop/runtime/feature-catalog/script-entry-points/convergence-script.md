@@ -7,7 +7,7 @@ trigger_phrases:
   - "check convergence decision"
   - "stop allowed stop blocked"
   - "graph-aware loop convergence"
-version: 1.4.6.0
+version: 1.4.7.0
 ---
 
 # convergence.cjs
@@ -58,7 +58,7 @@ The research quality guard `sourceDiversity` reports `insufficient` with `passed
 
 ### Recording a Blocked Stop
 
-`--record-blocked-stop` makes the command record a blocked research stop itself, so a leaf that reads a BLOCKED decision and skips the recording step still leaves a state row. It needs `--stop-decision`, loop type `research` and `--iteration` as a positive integer, and it is refused with `--read-only`; each refusal is an input error. When the decision is BLOCKED, the command builds the `blocked_stop` event row the research workflow sends and appends it through `append-mode-event.cjs`. The row's `recoveryStrategy` names, when it applies, the iterations that recorded findings but left no FINDING node in the graph, the usual sign of a graph upsert that never ran. The payload gains `blocked_stop_record` with `status` `recorded` (plus `eventId` when the gateway returns a receipt), `already_recorded` when the state log already holds a row for this run with the same blocker set, or `failed` with the gateway's `exitCode` and `reason`. A changed blocker set is a new attempt and gets its own row. A failed record exits with the gateway's code, after the decision is printed.
+`--record-blocked-stop` makes the command record a blocked research or review stop itself, so a leaf that reads a BLOCKED decision and skips the recording step still leaves a state row. It needs `--stop-decision` and `--iteration` as a positive integer, and it is refused with `--read-only`; each refusal is an input error. When the decision is BLOCKED, the command appends the record through `append-mode-event.cjs`, whether the graph has nodes, is empty or cannot be read. For research it builds the `blocked_stop` event row the research workflow sends, and the row's `recoveryStrategy` names, when it applies, the iterations that recorded findings but left no FINDING node in the graph, the usual sign of a graph upsert that never ran. For review it builds the `deep_review.blocked_stop_recorded` event: scope from the config `sessionId` and `generation`, one gate row per legal-stop gate plus one fail row per graph blocker, finding counts from the registry, `recoveryStrategy` as the first blocked gate in kebab form, and `targetDimensionId` as the dimension the next iteration is steered to, or `all-dimensions-covered` when none is left. The payload gains `blocked_stop_record` with `status` `recorded` (plus `eventId` when the gateway returns a receipt), `already_recorded` when the state log already holds a row for this run with the same blocker set, or `failed` with the gateway's `exitCode` and `reason`; a review record also carries `recoveryHint` and `gateResults`. A changed blocker set is a new attempt and gets its own row. A failed record exits with the gateway's code, after the decision is printed.
 
 The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
@@ -79,6 +79,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 | `tests/integration/convergence-script.vitest.ts` | Automated test | Primary regression coverage for convergence.cjs. |
 | `tests/integration/review-depth-convergence.vitest.ts` | Integration | Review convergence fixture coverage. |
 | `tests/integration/convergence-blocked-stop.vitest.ts` | Integration | `--record-blocked-stop`: one row per run and blocker set, a new row for a changed blocker set, a failed command when the gateway refuses, nothing without the flag, the `--read-only` refusal, and the iterations named for a missing graph upsert. |
+| `tests/integration/convergence-review-blocked-stop.vitest.ts` | Integration | `--record-blocked-stop` for review: one `deep_review.blocked_stop_recorded` event the gateway accepts, no second event for the same run, a block only the graph raises with a fail row for its blocker, a block on an unreadable graph, nothing without the flag, and the target dimension order. |
 | `tests/unit/stop-decision.vitest.ts` | Automated test | Source diversity reported as `insufficient` on a graph with no answered question, without blocking the stop. |
 
 ---

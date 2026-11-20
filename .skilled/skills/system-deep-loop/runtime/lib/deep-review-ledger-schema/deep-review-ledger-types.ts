@@ -656,7 +656,7 @@ export const DEEP_REVIEW_STEM_PRODUCERS = Object.freeze({
   'deep_review.review_depth_recorded': { status: 'reserved', reason: 'No writer emits it today: depth accounting is derived from the report. A depth step would speak it once coverage and ruled-out classes are appended as proof.' },
   'deep_review.convergence_evaluated': { status: 'reserved', reason: 'No writer emits it today: convergence is recomputed by the reducer from flat rows. A convergence step would speak it once the decision is appended rather than inferred.' },
   'deep_review.graph_convergence_evaluated': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
-  'deep_review.blocked_stop_recorded': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
+  'deep_review.blocked_stop_recorded': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs'] },
   'deep_review.terminal_gates_recorded': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
   'deep_review.pause_recorded': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
   'deep_review.recovery_started': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },

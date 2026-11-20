@@ -8,7 +8,7 @@ trigger_phrases:
   - "review iteration status enum"
 importance_tier: normal
 contextType: implementation
-version: 1.11.3.0
+version: 1.11.4.0
 ---
 
 # Deep Review State Transitions and Quality Gates
@@ -113,7 +113,7 @@ Five escalating tiers, attempted in order:
 
 ## 4. REVIEW QUALITY GATES
 
-Evidence, Scope, and Coverage are the contract-level binary gates defined in `review-mode-contract.yaml` under `qualityGates`, evaluated after the composite convergence score exceeds the `compositeStopScore` threshold. They are necessary but not sufficient on their own: the review-specific legal-stop decision expands them into a **9-gate bundle** (`convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, `graphlessFallbackGate`) emitted by `step_emit_blocked_stop` in `deep-review.yaml`. STOP is legal only when the full 9-gate bundle passes together. The authoritative gate model, event shape, and evaluation pseudocode live in `references/convergence/convergence.md` §6 "Legal-Stop Gate Bundle"; the 3-gate table and pseudocode below illustrate the contract-level layer only, not the complete STOP-legality check.
+Evidence, Scope, and Coverage are the contract-level binary gates defined in `review-mode-contract.yaml` under `qualityGates`, evaluated after the composite convergence score exceeds the `compositeStopScore` threshold. They are necessary but not sufficient on their own: the review-specific legal-stop decision expands them into a **9-gate bundle** (`convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, `graphlessFallbackGate`) that `convergence.cjs` evaluates and records. STOP is legal only when the full 9-gate bundle passes together. The authoritative gate model, event shape, and evaluation pseudocode live in `references/convergence/convergence.md` §6 "Legal-Stop Gate Bundle"; the 3-gate table and pseudocode below illustrate the contract-level layer only, not the complete STOP-legality check.
 
 ### Gate Definitions
 
@@ -155,7 +155,7 @@ function checkReviewQualityGates(state, config, coverage):
   return { passed: true }
 ```
 
-The contract-level check above is illustrative; it is the review-specific 9-gate bundle that actually gates STOP. When that bundle fails, the workflow does not silently override STOP to CONTINUE -- it persists a first-class `blocked_stop` event with the failing gate names and the full `gateResults` bundle:
+The contract-level check above is illustrative; it is the review-specific 9-gate bundle that actually gates STOP. When that bundle fails, the workflow does not silently override STOP to CONTINUE -- `convergence.cjs`, run with `--record-blocked-stop`, persists a first-class `blocked_stop` event through the append gateway with the failing gate names and the full `gateResults` bundle:
 
 ```json
 {"type":"event","event":"blocked_stop","mode":"review","run":N,"blockedBy":["<gate-name>", "..."],"gateResults":{"...":"..."},"recoveryStrategy":"<reason>","timestamp":"<ISO-8601>","sessionId":"<session-id>","generation":N}

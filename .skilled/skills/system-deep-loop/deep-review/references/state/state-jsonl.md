@@ -9,7 +9,7 @@ trigger_phrases:
   - "review graph events"
 importance_tier: important
 contextType: implementation
-version: 1.11.6.0
+version: 1.11.7.0
 ---
 
 # Deep Review State Log Records
@@ -195,7 +195,7 @@ The composite key `(spec_folder, loop_type, session_id, id)` in `runtime/lib/cov
 
 ### Blocked-Stop Event
 
-When the review legal-stop decision tree returns `blocked`, append a first-class `blocked_stop` event instead of silently overriding STOP to CONTINUE.
+When the review legal-stop decision tree returns `blocked`, `convergence.cjs` records a first-class `blocked_stop` event instead of silently overriding STOP to CONTINUE. The workflow runs it with `--record-blocked-stop`, and it appends a `deep_review.blocked_stop_recorded` event through the append gateway, once per run and blocker set, which projects to the row below.
 
 ```json
 {
@@ -226,7 +226,7 @@ When the review legal-stop decision tree returns `blocked`, append a first-class
 }
 ```
 
-`gateResults` carries the full 9-gate set emitted by `step_emit_blocked_stop` in `deep-review.yaml`: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. The last two are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. See `../convergence/convergence.md` §1 for the authoritative shape.
+`gateResults` carries the full 9-gate set `convergence.cjs` records: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. The last two are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. See `../convergence/convergence.md` §1 for the authoritative shape.
 
 **Required:** `type`, `event`, `mode`, `run`, `blockedBy`, `gateResults`, `recoveryStrategy`, `timestamp`, `sessionId`, `generation`
 

@@ -41,7 +41,7 @@ The `lib/` child contains CLI-only guards and writer-lock helpers.
 | `check-protocol-append-sites.cjs` | Fails a workflow asset that records canonical state without declaring the append gateway, or that appends directly without declaring the exception. |
 | `codex-dispatch.cjs` | Runs the Codex executor dispatch boundary and records its result. |
 | `compile-command-contracts.cjs` | Compiles command contract inputs into the runtime validation surface. |
-| `convergence.cjs` | Computes typed convergence decisions from graph state. Under `--record-blocked-stop` it also records a blocked research stop through the append gateway. |
+| `convergence.cjs` | Computes typed convergence decisions from graph state. Under `--record-blocked-stop` it also records a blocked research or review stop through the append gateway. |
 | `dispatch-iteration.cjs` | Dispatches one research or review iteration to a CLI executor and refuses the `native` kind, which runs through the orchestrator instead. A Claude Code dispatch validates the configured config directory before reading the prompt and passes it as `CLAUDE_CONFIG_DIR`. Every kind passes a requested sandbox mode through, so a requested `read-only` stays read-only. For codex, cursor, devin, pi and deepseek-harness an unset mode resolves to `workspace-write`. |
 | `divergent-pivot.cjs` | Runs one divergent pivot transaction across process boundaries: `prepare` derives the mode's input and the missing Council seats, `record-seat` records one seat result, and `finalize` completes the pivot from disk. A first-attempt quorum failure is retryable once through a second `prepare`. |
 | `fanout-merge.cjs` | Merges fan-out lineage outputs into deterministic consolidated artifacts. |
