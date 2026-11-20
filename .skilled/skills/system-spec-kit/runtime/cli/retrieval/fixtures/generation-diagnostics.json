@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7083,
-    "ok": 20152,
+    "ok": 20156,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28863,
+  "documentsScanned": 28867,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "34a99f9cddcc6069cd822999e8468fdaca6f273b79dcbbf4254d1d59f7eb312d",
+  "manifestHash": "5449b83bd03234e5fe06d0d5171386f9ef9240d970818cbf0945486d72d4c150",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45661,
+      "ok": 45667,
       "prose-sentence": 23,
       "single-token": 154,
       "stop-word-only": 1,
@@ -61999,6 +61999,10 @@
     },
     {
       "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "34a99f9cddcc6069cd822999e8468fdaca6f273b79dcbbf4254d1d59f7eb312d",
+  "manifestHash": "5449b83bd03234e5fe06d0d5171386f9ef9240d970818cbf0945486d72d4c150",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -38613,6 +38613,9 @@
     ],
     "deep research reducer implementation": [
       "deep research reducer implementation"
+    ],
+    "deep research reducer test next focus": [
+      "deep-research reducer test next focus"
     ],
     "deep research reducers": [
       "deep research reducers",
@@ -84584,6 +84587,9 @@
     "phase 15 plan": [
       "phase 15 plan"
     ],
+    "phase 15 reducer test focus contract": [
+      "phase 15 reducer test focus contract"
+    ],
     "phase 15 results": [
       "phase 15 results"
     ],
@@ -95054,6 +95060,18 @@
     ],
     "reducer records terminal stop metadata": [
       "reducer records terminal stop metadata"
+    ],
+    "reducer test focus contract": [
+      "reducer test focus contract"
+    ],
+    "reducer test focus contract implementation summary": [
+      "reducer test focus contract implementation summary"
+    ],
+    "reducer test focus contract plan": [
+      "reducer test focus contract plan"
+    ],
+    "reducer test focus contract tasks": [
+      "reducer test focus contract tasks"
     ],
     "reducer traceability and refines": [
       "reducer traceability and refines"
