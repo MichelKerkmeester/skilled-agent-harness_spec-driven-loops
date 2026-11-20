@@ -164,5 +164,6 @@ None open. The operator answered every question on 2026-11-20.
 ## RELATED DOCUMENTS
 
 - **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
+- **Related fix, goal authoring for Level 1 children**: phases 002 to 004 are Level 1 and have no `acceptance-criteria.md`, so sk-create-goal's nested-child and phase-parent stop blocked their goals. `sk-create-goal/references/parent-and-nested-goals.md` and both `create-goal-*.yaml` assets now let a Level 1 nested child take its criteria from its `spec.md` requirements and success criteria; a child at Level 2 or higher still stops without `acceptance-criteria.md`. Committed on this packet's branch apart from the phase work.
 - **Design notes**: `scratch/design-notes.md` holds the verified engine facts, the migration decision and the Barter sequencing
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer
