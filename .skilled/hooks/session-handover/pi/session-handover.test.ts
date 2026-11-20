@@ -43,8 +43,12 @@ const envKeys = [
   'SESSION_HANDOVER_REPO_ROOT',
 ];
 const SPEC_FOLDER = 'specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters';
-const CONTINUITY_WRITER = 'node .skilled/skills/system-spec-kit/runtime/cli/'
-  + 'dist/continuity/generate-context.js';
+// The nudge names the writer by its quoted absolute path, so the save step still runs
+// from a subdirectory.
+const CONTINUITY_WRITER = `node '${fileURLToPath(new URL(
+  '../../../skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js',
+  import.meta.url,
+))}'`;
 const originalEnv = new Map(envKeys.map((key) => [key, process.env[key]]));
 const roots: string[] = [];
 
