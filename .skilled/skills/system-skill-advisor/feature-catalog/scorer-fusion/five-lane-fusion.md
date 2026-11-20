@@ -6,7 +6,7 @@ trigger_phrases:
   - "lane weights canonical"
   - "fusion scorer"
   - "advisor analytical fusion"
-version: 0.8.2.0
+version: 0.8.3.0
 ---
 
 # Five-Lane Analytical Fusion
@@ -29,7 +29,7 @@ Combine evidence from five registered lanes into a single routing score with doc
 | `derived_generated` | 0.12 | Auto-extracted derived entries under trust-lane control. |
 | `semantic_shadow` | 0 | Semantic similarity evidence from the current lane registry, disabled at the default zero weight. |
 
-The lane remains registered as live, but its default weight of 0 disables prompt embedding. The background index refresh still runs at any lane weight. Set `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'` to enable semantic scoring. At a non-zero weight, the lane scores only when every embeddable skill and command has a current vector. Incomplete coverage reports `incomplete_skill_vectors`. A failed prompt embed degrades the lane and removes it from the live confidence total for that call. Optional semantic health in `advisor_status` separately probes Ollama readiness.
+The lane remains registered as live, but its default weight of 0 disables prompt embedding. The background index refresh still runs at any lane weight. Set `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'` to enable semantic scoring. At a non-zero weight, the lane scores only when every embeddable skill and command has a current vector. Coverage is checked before the prompt embed. Incomplete coverage skips the embed, reports `incomplete_skill_vectors` and removes the lane from the live confidence total for that call, as a failed prompt embed does. A dimension mismatch, an unavailable adapter or an absent database does the same. The exact rerank path applies the same coverage check. At weight 0 a stale index leaves the lane reported as switched off, not degraded. Optional semantic health in `advisor_status` separately probes Ollama readiness.
 
 Weight configuration is exposed via `advisor_status.laneWeights`.
 

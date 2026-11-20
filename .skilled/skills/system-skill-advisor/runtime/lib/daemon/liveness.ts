@@ -32,6 +32,8 @@ interface LivenessHandle {
 
 interface ParentWatchOptions {
   readonly onOrphaned: () => void | Promise<void>;
+  /** The launcher pid read before any startup work; defaults to the pid at arming. */
+  readonly parentPid?: number;
   readonly getParentPid?: () => number;
   readonly intervalMs?: number;
   readonly setIntervalFn?: SetIntervalFn;
@@ -62,10 +64,23 @@ function unrefInterval(timer: IntervalHandle): void {
 // 5. LIVENESS WATCHERS
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * The launcher pid the parent watch compares against. The launcher passes its own
+ * pid at spawn, because a launcher that dies while the server still loads its
+ * modules leaves the server adopted before it can read `process.ppid`.
+ */
+export function resolveLauncherPid(
+  env: NodeJS.ProcessEnv = process.env,
+  parentPid: number = process.ppid,
+): number {
+  const passed = Number(env.SYSTEM_SKILL_ADVISOR_LAUNCHER_PID);
+  return Number.isInteger(passed) && passed > 0 ? passed : parentPid;
+}
+
 /** Watch for the launcher process change without keeping the server alive. */
 export function startParentWatch(options: ParentWatchOptions): LivenessHandle {
   const getParentPid = options.getParentPid ?? (() => process.ppid);
-  const parentPid = getParentPid();
+  const parentPid = options.parentPid ?? getParentPid();
   const intervalMs = options.intervalMs ?? PARENT_CHECK_INTERVAL_MS;
   const setIntervalFn = options.setIntervalFn
     ?? ((callback: () => void, ms: number) => setInterval(callback, ms));

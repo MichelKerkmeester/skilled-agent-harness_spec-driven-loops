@@ -13,6 +13,7 @@ import {
   HEARTBEAT_INTERVAL_MS,
   PARENT_CHECK_INTERVAL_MS,
   startHeartbeat,
+  resolveLauncherPid,
   startParentWatch,
 } from '../../lib/daemon/liveness.js';
 
@@ -101,6 +102,34 @@ describe('daemon liveness', () => {
     expect(timers.clearIntervalFn).toHaveBeenCalledTimes(1);
     watch.stop();
     expect(timers.clearIntervalFn).toHaveBeenCalledTimes(1);
+  });
+
+  it('compares against the launcher pid captured before startup work', () => {
+    const timers = createTimerHarness();
+    const onOrphaned = vi.fn();
+    // The launcher died during startup, so the server was already adopted by the
+    // time the watch was armed.
+    const watch = startParentWatch({
+      onOrphaned,
+      parentPid: 4242,
+      getParentPid: () => 1,
+      setIntervalFn: timers.setIntervalFn,
+      clearIntervalFn: timers.clearIntervalFn,
+    });
+
+    timers.tick();
+
+    expect(onOrphaned).toHaveBeenCalledTimes(1);
+    watch.stop();
+  });
+
+  it('takes the launcher pid from the spawn environment before the parent pid', () => {
+    // A launcher that dies while the server still loads its modules has already
+    // left the server adopted, so only the pid the launcher passed is reliable.
+    expect(resolveLauncherPid({ SYSTEM_SKILL_ADVISOR_LAUNCHER_PID: '4242' }, 1)).toBe(4242);
+    expect(resolveLauncherPid({}, 4242)).toBe(4242);
+    expect(resolveLauncherPid({ SYSTEM_SKILL_ADVISOR_LAUNCHER_PID: 'not-a-pid' }, 4242)).toBe(4242);
+    expect(resolveLauncherPid({ SYSTEM_SKILL_ADVISOR_LAUNCHER_PID: '0' }, 4242)).toBe(4242);
   });
 
   it('writes on start and ticks, retries after a write error, and removes the file on stop', () => {

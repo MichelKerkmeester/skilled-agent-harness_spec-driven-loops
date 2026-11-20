@@ -14,7 +14,7 @@ vi.hoisted(() => {
 
 import { readAdvisorStatus } from '../../handlers/advisor-status.js';
 import { scoreAdvisorPrompt } from '../../lib/scorer/fusion.js';
-import { scoreSemanticShadowLane } from '../../lib/scorer/lanes/semantic-shadow.js';
+import { getSemanticShadowRuntimeHealth, scoreSemanticShadowLane } from '../../lib/scorer/lanes/semantic-shadow.js';
 import { createFixtureProjection, loadAdvisorProjection } from '../../lib/scorer/projection.js';
 import type { AdvisorProjection, SkillProjection } from '../../lib/scorer/types.js';
 
@@ -259,6 +259,7 @@ describe('advisor projection embedding staleness', () => {
     };
 
     expect(scoreSemanticShadowLane('semantic token overlap only', projection)).toEqual([]);
+    expect(getSemanticShadowRuntimeHealth().disabledReason).toBe('projection_embedding_stale');
 
     const result = scoreAdvisorPrompt('semantic token overlap only', {
       workspaceRoot: process.cwd(),

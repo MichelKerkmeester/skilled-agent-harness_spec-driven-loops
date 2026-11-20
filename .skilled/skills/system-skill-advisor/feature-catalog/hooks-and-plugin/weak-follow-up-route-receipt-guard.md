@@ -6,7 +6,7 @@ trigger_phrases:
   - "weak follow-up route receipt"
   - "session route receipt"
   - "confidence-floored follow-up"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Weak Follow-Up Route-Receipt Guard
@@ -21,7 +21,7 @@ The Claude hook holds back a confidence-floored route when a weak follow-up poin
 
 When receipt tracking is enabled and the session clock is available, the hook records a receipt for a brief with a recommendation not marked confidence-floored and a non-degraded result. The receipt stores the routed skill and the session lifecycle clock. It also stores the transcript size.
 
-On a later turn, the hook suppresses a recommendation only when it is a floored work-intent route to a different skill and the prompt points back to earlier work. The saved receipt must still match the session clock, and a transcript smaller than the recorded size leaves the turn to deliver normally. A missing receipt or storage error also leaves the turn to deliver.
+On a later turn, the hook suppresses a recommendation only when it is a floored work-intent route to a different skill and the prompt points back to earlier work. The saved receipt must still match the session clock, and a transcript smaller than the recorded size leaves the turn to deliver normally. A missing receipt or storage error also leaves the turn to deliver. DSH sends no transcript path, so its adapter drops the session's receipt directly at a session start or a clean compaction. It holds that session's next turn until the drop and the clock rotation finish.
 
 ---
 

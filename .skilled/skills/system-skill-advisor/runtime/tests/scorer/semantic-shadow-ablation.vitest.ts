@@ -402,8 +402,9 @@ describe('semantic-shadow runtime degradation detector', () => {
 
   // A silent degradation (stale projection embeddings, absent database, embed
   // failure) must be readable as telemetry, not swallowed into a console.warn.
-  // This exercises the stale path and asserts the health struct names it.
-  it('surfaces a silent lane degradation through getSemanticShadowRuntimeHealth', () => {
+  // At the default weight of 0 the lane is off, so a stale index is not a
+  // degradation of it; the live-weight case is in projection-embedding-staleness.
+  it('leaves a switched-off lane undegraded by a stale projection', () => {
     const staleProjection: AdvisorProjection = {
       skills: [fixtureSkill({ id: 'alpha', description: 'stale projection probe' })],
       edges: [],
@@ -423,8 +424,9 @@ describe('semantic-shadow runtime degradation detector', () => {
     clearSemanticShadowPromptEmbedding();
 
     const health = getSemanticShadowRuntimeHealth();
+    expect(DEFAULT_SCORER_LANE_WEIGHTS.semantic_shadow).toBe(0);
     expect(matches).toEqual([]);
-    expect(health.disabledReason).toBe('projection_embedding_stale');
+    expect(health.disabledReason).not.toBe('projection_embedding_stale');
     expect(typeof health.checkedAt).toBe('string');
     expect(Number.isNaN(Date.parse(health.checkedAt))).toBe(false);
   });

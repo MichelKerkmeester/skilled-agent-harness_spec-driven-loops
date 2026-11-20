@@ -22,6 +22,10 @@ const LIFECYCLE_MODULE_URL = new URL(
   '../../runtime/dist/hooks/lib/directive-lifecycle.js',
   import.meta.url,
 ).href;
+const ROUTE_RECEIPT_MODULE_URL = new URL(
+  '../../runtime/dist/hooks/lib/route-receipt.js',
+  import.meta.url,
+).href;
 
 // Mirrors the advisor renderer's directive label. A brief that drifts past it is
 // never split, so it is always delivered whole.
@@ -94,8 +98,9 @@ function deliveredContext(context, sessionId, dedupEnabled) {
   };
 }
 
-// A clock rotation is advisory: when it fails, a stored route still expires on
-// its own transcript check, so the failure is logged and never reaches the host.
+// A clock rotation is advisory: the boundary has already dropped the session's
+// route receipt, so a failure is logged and never reaches the host. DSH sends no
+// transcript path, so a receipt here never expires on a shrinking transcript.
 // A session with no id has no clock to move, so only a named session whose clock
 // did not move counts as a failure.
 async function rotateSessionClock(ctx, core, sessionId) {
@@ -167,6 +172,22 @@ export async function runAdvisor(input, load = () => import(ADVISOR_MODULE_URL))
 }
 
 /**
+ * Drop one session's stored route receipt at a DSH boundary.
+ *
+ * DSH sends no transcript path, so the receipt's transcript expiry never fires and
+ * the clock rotation alone would leave it current if the rotation failed.
+ *
+ * @param {string|undefined} sessionId - The DSH session id.
+ * @param {Function} [load] - Loads the route-receipt module, injectable for tests.
+ * @returns {Promise<boolean>} Whether a stored receipt was removed.
+ */
+export async function dropRouteReceipt(sessionId, load = () => import(ROUTE_RECEIPT_MODULE_URL)) {
+  if (typeof sessionId !== 'string' || !sessionId.trim()) return false;
+  const receipts = await load();
+  return receipts.defaultRouteReceiptStore().remove(sessionId);
+}
+
+/**
  * Commit the receipts the handler held for one delivered output.
  *
  * @param {Object} output - The advisor hook output the notice was built from.
@@ -207,24 +228,42 @@ export async function advanceBoundary(sessionId, load = () => import(LIFECYCLE_M
  */
 export function registerPromptAdvisor(ctx, {
   enabled = false,
-  core = { runAdvisor, advanceBoundary, commitDelivery },
+  core = { runAdvisor, advanceBoundary, commitDelivery, dropRouteReceipt },
   createNotice = makeNotice,
   isLeaf = isLineageLeaf,
   isEnabled = isHookEnabled,
 } = {}) {
   if (enabled !== true) return;
 
+  // The compaction handler is synchronous and cannot await its boundary work, so
+  // the next turn of that session waits for it before it is scored.
+  const pendingBoundaries = new Map();
+  const closeBoundary = async (sessionId) => {
+    try {
+      await core.dropRouteReceipt?.(sessionId);
+    } catch (error) {
+      logFailure(ctx, error);
+    }
+    await rotateSessionClock(ctx, core, sessionId);
+  };
+
   ctx.on('agent/created', async ({ agent }) => {
     forgetReceipt(agent?.session?.id);
-    await rotateSessionClock(ctx, core, agent?.session?.id);
+    await closeBoundary(agent?.session?.id);
     return undefined;
   });
 
   ctx.on('session/event', (session, event) => {
     if (event?.type === 'compaction/end' && !event.data?.error) {
-      forgetReceipt(session?.id);
-      // This handler is synchronous, so the rotation runs detached.
-      void rotateSessionClock(ctx, core, session?.id);
+      const sessionId = session?.id;
+      forgetReceipt(sessionId);
+      const work = closeBoundary(sessionId);
+      if (typeof sessionId === 'string' && sessionId) {
+        pendingBoundaries.set(sessionId, work);
+        void work.finally(() => {
+          if (pendingBoundaries.get(sessionId) === work) pendingBoundaries.delete(sessionId);
+        });
+      }
     }
   });
 
@@ -237,6 +276,7 @@ export function registerPromptAdvisor(ctx, {
       if (!prompt.trim()) return downstream;
 
       const agent = payload.agent;
+      await pendingBoundaries.get(agent?.session?.id);
       const projectDir = agent?.session?.header?.cwd ?? process.cwd();
       const output = await core.runAdvisor({
         prompt,

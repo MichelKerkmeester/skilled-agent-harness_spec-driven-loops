@@ -30,6 +30,7 @@ import { publishSkillGraphGeneration } from './lib/freshness/generation.js';
 import { startSkillGraphDaemon, type SkillGraphDaemon } from './lib/daemon/lifecycle.js';
 import {
   HEARTBEAT_FILE_NAME,
+  resolveLauncherPid,
   startHeartbeat,
   startParentWatch,
 } from './lib/daemon/liveness.js';
@@ -385,14 +386,18 @@ async function handleAdvisorFrame(frame: unknown): Promise<Record<string, unknow
 // ───────────────────────────────────────────────────────────────────
 
 export async function main(): Promise<void> {
+  // Read before the startup work below: a launcher that dies during it gets this
+  // process adopted, and a pid read afterwards would look like a live parent.
+  const launcherPid = resolveLauncherPid();
   console.error(`[system-skill-advisor-launcher] DB: ${resolveSkillGraphDbPath()}`);
   initSkillGraphDb(resolveSkillGraphDbDir());
   heartbeatHandle = startHeartbeat({
     filePath: join(resolveSkillGraphDbDir(), HEARTBEAT_FILE_NAME),
   });
 
-  // An unset or unknown pointer resolves to the one registered manifest;
-  // skill vectors are written only by a trusted skill_graph_scan.
+  // An unset or unknown pointer resolves to the one registered manifest. Skill and
+  // command vectors are written by a trusted skill_graph_scan and by the background
+  // refresh this daemon starts after startup and after each watcher reindex.
   try {
     const resolved = await ensureActiveEmbedder(getSkillGraphDb(), { contentType: 'text' });
     console.error(
@@ -430,6 +435,7 @@ export async function main(): Promise<void> {
     onActivity: () => launcherIdleMonitor?.markActivity(),
   });
   parentWatchHandle = startParentWatch({
+    parentPid: launcherPid,
     onOrphaned: async () => {
       await shutdownAdvisor('launcher exited');
       process.exit(0);
