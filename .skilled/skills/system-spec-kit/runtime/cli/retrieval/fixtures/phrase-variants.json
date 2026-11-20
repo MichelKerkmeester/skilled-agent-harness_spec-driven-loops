@@ -1,5 +1,5 @@
 {
-  "manifestHash": "dff204504d443ddc9e0b00cbaad8f9d7a65e71157406af0018fb86037b83e046",
+  "manifestHash": "5c4570f135d14320c16e79cb70a679d410919950e8a9ab1fd7834a6ba3e44776",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -2929,6 +2929,9 @@
     ],
     "011 restore pinned value when json entry set leaves overlay operator decisions": [
       "011-restore-pinned-value-when-json-entry-set-leaves-overlay operator decisions"
+    ],
+    "011 review frontier mode operator decisions": [
+      "011-review-frontier-mode operator decisions"
     ],
     "011 review p2 advisory closure": [
       "011 review P2 advisory closure"
@@ -12449,6 +12452,9 @@
     "answered question recovery": [
       "answered question recovery"
     ],
+    "answered questions next focus": [
+      "answered questions next focus"
+    ],
     "anthropic": [
       "anthropic"
     ],
@@ -12482,6 +12488,9 @@
     ],
     "anticonvergence": [
       "antiConvergence"
+    ],
+    "anticonvergence miniterations review": [
+      "antiConvergence minIterations review"
     ],
     "any embedder works": [
       "any embedder works"
@@ -16996,6 +17005,9 @@
     "candidate coverage zero pre rerank 011 004": [
       "candidate coverage zero pre-rerank 011-004"
     ],
+    "candidate dimension search coverage merge": [
+      "candidate dimension search coverage merge"
+    ],
     "candidate filter stale snapshot": [
       "candidate filter stale snapshot"
     ],
@@ -17423,6 +17435,12 @@
     ],
     "cargo verification baseline": [
       "cargo verification baseline"
+    ],
+    "carried forward open questions": [
+      "carried-forward open questions"
+    ],
+    "carried forward question filter": [
+      "carried forward question filter"
     ],
     "cartesian plots use a taller frame": [
       "cartesian plots use a taller frame"
@@ -21190,6 +21208,12 @@
     ],
     "claude completion evidence": [
       "claude completion evidence"
+    ],
+    "claude config dir": [
+      "--claude-config-dir"
+    ],
+    "claude config dir research": [
+      "claude-config-dir research"
     ],
     "claude context nudge": [
       "Claude context nudge",
@@ -29906,6 +29930,9 @@
     "completed run extension acceptance criteria": [
       "completed run extension acceptance criteria"
     ],
+    "completed run extension flag": [
+      "completed run extension flag"
+    ],
     "completed run extension goal": [
       "completed run extension goal"
     ],
@@ -30514,6 +30541,9 @@
     ],
     "configured quality checks": [
       "configured quality checks"
+    ],
+    "configured review dimension": [
+      "configured review dimension"
     ],
     "configured specs root membership": [
       "configured specs root membership"
@@ -32340,6 +32370,9 @@
     ],
     "council playbook coverage": [
       "council playbook coverage"
+    ],
+    "council quorum retry": [
+      "council quorum retry"
     ],
     "council r1 r2 handover": [
       "council R1 R2 handover"
@@ -34274,11 +34307,17 @@
     "cursor worktree guard": [
       "cursor worktree guard"
     ],
+    "custom dimension review": [
+      "custom dimension review"
+    ],
     "custom fields": [
       "custom fields"
     ],
     "custom footer fast indicator": [
       "custom footer fast indicator"
+    ],
+    "custom review dimension": [
+      "custom review dimension"
     ],
     "custom review dimensions": [
       "custom review dimensions"
@@ -36971,6 +37010,9 @@
     "deep loop dark ledger tasks": [
       "deep-loop dark ledger tasks"
     ],
+    "deep loop depth mode": [
+      "deep loop depth mode"
+    ],
     "deep loop deterministic replay digest": [
       "deep-loop deterministic replay digest"
     ],
@@ -37508,6 +37550,9 @@
     "deep loop runtime 1 1 0 0": [
       "deep-loop-runtime 1.1.0.0"
     ],
+    "deep loop runtime 1 10 0 0": [
+      "deep-loop-runtime 1.10.0.0"
+    ],
     "deep loop runtime 1 2 0 0": [
       "deep-loop-runtime 1.2.0.0"
     ],
@@ -37627,6 +37672,9 @@
     ],
     "deep loop runtime v1 1 0 0": [
       "deep-loop-runtime v1.1.0.0"
+    ],
+    "deep loop runtime v1 10 0 0": [
+      "deep-loop-runtime v1.10.0.0"
     ],
     "deep loop runtime v1 2 0 0": [
       "deep-loop-runtime v1.2.0.0"
@@ -38076,6 +38124,12 @@
     "deep research 1 15 15 0": [
       "deep-research 1.15.15.0"
     ],
+    "deep research 1 15 16 0": [
+      "deep-research 1.15.16.0"
+    ],
+    "deep research 1 15 17 0": [
+      "deep-research 1.15.17.0"
+    ],
     "deep research 1 15 2 0": [
       "deep-research 1.15.2.0"
     ],
@@ -38099,6 +38153,9 @@
     ],
     "deep research 1 15 9 0": [
       "deep-research 1.15.9.0"
+    ],
+    "deep research 1 16 0 0": [
+      "deep-research 1.16.0.0"
     ],
     "deep research 1 2 0 0": [
       "deep-research 1.2.0.0"
@@ -38774,6 +38831,12 @@
     "deep research v1 15 15 0": [
       "deep-research v1.15.15.0"
     ],
+    "deep research v1 15 16 0": [
+      "deep-research v1.15.16.0"
+    ],
+    "deep research v1 15 17 0": [
+      "deep-research v1.15.17.0"
+    ],
     "deep research v1 15 2 0": [
       "deep-research v1.15.2.0"
     ],
@@ -38797,6 +38860,9 @@
     ],
     "deep research v1 15 9 0": [
       "deep-research v1.15.9.0"
+    ],
+    "deep research v1 16 0 0": [
+      "deep-research v1.16.0.0"
     ],
     "deep research v1 2 0 0": [
       "deep-research v1.2.0.0"
@@ -38904,6 +38970,9 @@
     "deep review 1 11 17 0": [
       "deep-review 1.11.17.0"
     ],
+    "deep review 1 11 18 0": [
+      "deep-review 1.11.18.0"
+    ],
     "deep review 1 11 3 0": [
       "deep-review 1.11.3.0"
     ],
@@ -38924,6 +38993,12 @@
     ],
     "deep review 1 11 9 0": [
       "deep-review 1.11.9.0"
+    ],
+    "deep review 1 12 0 0": [
+      "deep-review 1.12.0.0"
+    ],
+    "deep review 1 13 0 0": [
+      "deep-review 1.13.0.0"
     ],
     "deep review 1 2 0 0": [
       "deep-review 1.2.0.0"
@@ -39721,6 +39796,9 @@
     "deep review v1 11 17 0": [
       "deep-review v1.11.17.0"
     ],
+    "deep review v1 11 18 0": [
+      "deep-review v1.11.18.0"
+    ],
     "deep review v1 11 2 0": [
       "deep-review v1.11.2.0"
     ],
@@ -39744,6 +39822,12 @@
     ],
     "deep review v1 11 9 0": [
       "deep-review v1.11.9.0"
+    ],
+    "deep review v1 12 0 0": [
+      "deep-review v1.12.0.0"
+    ],
+    "deep review v1 13 0 0": [
+      "deep-review v1.13.0.0"
     ],
     "deep review v1 2 0 0": [
       "deep-review v1.2.0.0"
@@ -40696,17 +40780,28 @@
     "deprecation tasks list": [
       "deprecation tasks list"
     ],
+    "depth mode": [
+      "--depth-mode"
+    ],
     "depth mode expansive": [
+      "--depth-mode=expansive",
       "depth-mode expansive"
     ],
     "depth mode expansive research": [
       "depth-mode expansive research"
     ],
     "depth mode expansive review": [
+      "--depth-mode=expansive review",
       "depth-mode expansive review"
+    ],
+    "depth mode flag": [
+      "depth mode flag"
     ],
     "depth thinking framework removed": [
       "depth thinking framework removed"
+    ],
+    "depthmode optimizer lock": [
+      "depthMode optimizer lock"
     ],
     "derive addendum fragment": [
       "derive addendum fragment"
@@ -40797,6 +40892,9 @@
     ],
     "derived provenance": [
       "derived provenance"
+    ],
+    "derived quality class": [
+      "derived quality_class"
     ],
     "derived readme count checker": [
       "derived readme count checker"
@@ -42922,6 +43020,9 @@
     "diverged warning spam": [
       "diverged warning spam"
     ],
+    "divergence by lineage merge": [
+      "divergence by lineage merge"
+    ],
     "divergence classification": [
       "divergence classification"
     ],
@@ -42943,6 +43044,9 @@
     "divergence table confirmed": [
       "divergence table confirmed"
     ],
+    "divergencebylineage": [
+      "divergenceByLineage"
+    ],
     "divergent duplicate resolution": [
       "divergent duplicate resolution"
     ],
@@ -42951,6 +43055,12 @@
     ],
     "divergent mode decision": [
       "divergent mode decision"
+    ],
+    "divergent pivot quorum retry": [
+      "divergent pivot quorum retry"
+    ],
+    "divergent pivot seat cap": [
+      "divergent pivot seat cap"
     ],
     "divergent skill root predicate": [
       "divergent skill root predicate"
@@ -43440,6 +43550,9 @@
     ],
     "docs playbooks alignment plan": [
       "docs playbooks alignment plan"
+    ],
+    "docs playbooks alignment summary": [
+      "docs playbooks alignment summary"
     ],
     "docs playbooks alignment tasks": [
       "docs playbooks alignment tasks"
@@ -49250,6 +49363,9 @@
     "executor missing failure mode docs": [
       "executor_missing failure mode docs"
     ],
+    "executor missing redispatch": [
+      "executor_missing redispatch"
+    ],
     "executor override approach": [
       "executor override approach"
     ],
@@ -49388,6 +49504,9 @@
     "expanded retrieval fixture": [
       "expanded retrieval fixture"
     ],
+    "expansive depth flag": [
+      "expansive depth flag"
+    ],
     "expansive depth mode": [
       "expansive depth mode"
     ],
@@ -49400,11 +49519,29 @@
     "expansive depth mode tasks": [
       "expansive depth mode tasks"
     ],
+    "expansive depth playbook coverage": [
+      "expansive depth playbook coverage"
+    ],
     "expansive depth playbooks and catalogs": [
       "expansive depth playbooks and catalogs"
     ],
+    "expansive depth research": [
+      "expansive depth research"
+    ],
+    "expansive depth review": [
+      "expansive depth review"
+    ],
+    "expansive depth routing": [
+      "expansive depth routing"
+    ],
     "expansive depth sub mode for deep research": [
       "expansive depth sub mode for deep research"
+    ],
+    "expansive frontier seed budget": [
+      "expansive frontier seed budget"
+    ],
+    "expansive runtime": [
+      "expansive runtime"
     ],
     "expected 6a handoff": [
       "expected 6a handoff"
@@ -49487,8 +49624,20 @@
     "export network trace": [
       "export network trace"
     ],
+    "extend": [
+      "--extend"
+    ],
+    "extend a completed deep loop run": [
+      "extend a completed deep loop run"
+    ],
     "extend completed deep research run": [
       "extend completed deep research run"
+    ],
+    "extend completed research run": [
+      "extend completed research run"
+    ],
+    "extend completed review run": [
+      "extend completed review run"
     ],
     "extend dispatch coverage": [
       "extend dispatch coverage"
@@ -49505,8 +49654,20 @@
     "extend dispatch coverage tasks": [
       "extend dispatch coverage tasks"
     ],
+    "extend minutes": [
+      "--extend-minutes"
+    ],
+    "extend minutes review": [
+      "--extend-minutes review"
+    ],
+    "extend n": [
+      "--extend=N"
+    ],
     "extend n implementation plan": [
       "extend=N implementation plan"
+    ],
+    "extend n review": [
+      "--extend=N review"
     ],
     "extend the existing citation scanner to spec": [
       "extend the existing citation scanner to spec"
@@ -50670,6 +50831,9 @@
     "fan out review closes complete": [
       "fan-out review closes complete"
     ],
+    "fan out review coverage merge": [
+      "fan-out review coverage merge"
+    ],
     "fan out review focus input for deep review": [
       "fan out review focus input for deep review"
     ],
@@ -51272,6 +51436,9 @@
     ],
     "feature catalog examples and pitfalls": [
       "feature catalog examples and pitfalls"
+    ],
+    "feature catalog expansive depth": [
+      "feature catalog expansive depth"
     ],
     "feature catalog findings": [
       "feature catalog findings"
@@ -52269,14 +52436,21 @@
     "findings first severity ordering": [
       "findings first severity ordering"
     ],
+    "findings gate leaf fields": [
+      "findings gate leaf fields"
+    ],
     "findings ledger": [
       "findings ledger"
     ],
     "findings not enumerated": [
-      "findings not enumerated"
+      "findings not enumerated",
+      "findings_not_enumerated"
     ],
     "findings not enumerated gate": [
       "findings not enumerated gate"
+    ],
+    "findings not enumerated redispatch": [
+      "findings_not_enumerated redispatch"
     ],
     "findings not enumerated shipped": [
       "findings not enumerated shipped"
@@ -52469,6 +52643,9 @@
     ],
     "first time auto scan code graph": [
       "first-time auto scan code graph"
+    ],
+    "first uncovered dimension next focus": [
+      "first uncovered dimension next focus"
     ],
     "fitts s law": [
       "Fitts's law"
@@ -53246,6 +53423,12 @@
     ],
     "focus ring and keyboard behavior": [
       "focus ring and keyboard behavior"
+    ],
+    "focusalignment guard": [
+      "focusAlignment guard"
+    ],
+    "focusalignment live": [
+      "focusAlignment live"
     ],
     "focuses on git workflows": [
       "focuses on git workflows"
@@ -54311,8 +54494,29 @@
     "frontend web surface routing": [
       "frontend web surface routing"
     ],
+    "frontier admission": [
+      "frontier admission"
+    ],
+    "frontier admission checks": [
+      "frontier admission checks"
+    ],
+    "frontier admission research": [
+      "frontier admission research"
+    ],
+    "frontier admit cjs": [
+      "frontier-admit.cjs"
+    ],
+    "frontier admit runtime": [
+      "frontier-admit runtime"
+    ],
     "frontier admit step": [
       "frontier admit step"
+    ],
+    "frontier node store": [
+      "frontier node store"
+    ],
+    "frontier nodes jsonl": [
+      "frontier-nodes.jsonl"
     ],
     "frontier veto": [
       "frontier veto"
@@ -64755,6 +64959,12 @@
     "lag ceiling gauge stall detector": [
       "lag-ceiling gauge stall detector"
     ],
+    "landed iteration redispatch": [
+      "landed iteration redispatch"
+    ],
+    "landed iteration still fails": [
+      "landed iteration still fails"
+    ],
     "landing verification loop": [
       "landing verification loop"
     ],
@@ -68796,6 +69006,9 @@
     ],
     "max secondary clients 64": [
       "max secondary clients 64"
+    ],
+    "maxcouncilseatoutputs": [
+      "maxCouncilSeatOutputs"
     ],
     "maxcouncilseatoutputs per pivot": [
       "maxCouncilSeatOutputs per pivot"
@@ -73729,11 +73942,17 @@
     "merged compat lacks thinkingformat": [
       "merged compat lacks thinkingFormat"
     ],
+    "merged review registry coverage": [
+      "merged review registry coverage"
+    ],
     "merged tree re verification": [
       "merged-tree re-verification"
     ],
     "merged workflow shape adr": [
       "merged workflow shape adr"
+    ],
+    "mergereviewregistries coverage": [
+      "mergeReviewRegistries coverage"
     ],
     "mermaid extract": [
       "mermaid_extract"
@@ -74169,6 +74388,12 @@
     ],
     "miniterations convergence": [
       "minIterations convergence"
+    ],
+    "miniterationsnotreached": [
+      "minIterationsNotReached"
+    ],
+    "miniterationsnotreached review": [
+      "minIterationsNotReached review"
     ],
     "minstate inversion": [
       "minstate inversion"
@@ -76563,6 +76788,9 @@
     ],
     "next focus architecture": [
       "next-focus architecture"
+    ],
+    "next focus free text": [
+      "next focus free text"
     ],
     "next focus hijack": [
       "next focus hijack"
@@ -88448,6 +88676,9 @@
     "pipx editable repair plan": [
       "pipx editable repair plan"
     ],
+    "pivot attempt 2": [
+      "pivot attempt 2"
+    ],
     "pivot hygiene": [
       "pivot hygiene"
     ],
@@ -90989,6 +91220,9 @@
     "progressive synthesis write conflict": [
       "progressive synthesis write conflict"
     ],
+    "progressive synthesis write rule": [
+      "progressive synthesis write rule"
+    ],
     "progressive tool loading": [
       "progressive tool loading"
     ],
@@ -91048,6 +91282,9 @@
     ],
     "project scoped state tasks": [
       "project scoped state tasks"
+    ],
+    "projected iteration row": [
+      "projected iteration row"
     ],
     "projection contract build": [
       "projection contract build"
@@ -92170,6 +92407,9 @@
     ],
     "quality checklist map": [
       "quality checklist map"
+    ],
+    "quality class": [
+      "quality_class"
     ],
     "quality class upsert derivation": [
       "quality_class upsert derivation"
@@ -94283,7 +94523,11 @@
     "recommendations in chat": [
       "recommendations in chat"
     ],
+    "recommended next focus": [
+      "Recommended Next Focus"
+    ],
     "recommended next focus heading": [
+      "Recommended Next Focus heading",
       "recommended next focus heading"
     ],
     "reconcile codex hooks": [
@@ -94564,6 +94808,9 @@
     ],
     "redirect to": [
       "redirect_to"
+    ],
+    "redispatch once": [
+      "redispatch once"
     ],
     "redraw existing diagram": [
       "redraw existing diagram"
@@ -98784,11 +99031,17 @@
     "research claude config dir goal": [
       "research claude config dir goal"
     ],
+    "research claude config dir implementation summary": [
+      "research claude config dir implementation summary"
+    ],
     "research claude config dir plan": [
       "research claude config dir plan"
     ],
     "research claude config dir tasks": [
       "research claude config dir tasks"
+    ],
+    "research cli claude code config dir": [
+      "research cli-claude-code config dir"
     ],
     "research codebase pointers": [
       "research codebase pointers"
@@ -99084,6 +99337,9 @@
     "research loop troubleshooting": [
       "research loop troubleshooting"
     ],
+    "research md allowed write": [
+      "research.md allowed write"
+    ],
     "research md live update": [
       "research.md live update"
     ],
@@ -99134,6 +99390,12 @@
     ],
     "research progress visualization": [
       "research progress visualization"
+    ],
+    "research prompt pack": [
+      "research prompt pack"
+    ],
+    "research prompt pack contract": [
+      "research prompt pack contract"
     ],
     "research r10 test goal": [
       "research r10 test goal"
@@ -100972,6 +101234,9 @@
     "review dimension coverage": [
       "review dimension coverage"
     ],
+    "review dimension coverage custom": [
+      "review dimension coverage custom"
+    ],
     "review dimension coverage decision record": [
       "review dimension coverage decision record"
     ],
@@ -101037,6 +101302,9 @@
     ],
     "review extension floors": [
       "review extension floors"
+    ],
+    "review fan out merged coverage": [
+      "review fan-out merged coverage"
     ],
     "review finding case": [
       "review finding case"
@@ -101122,6 +101390,9 @@
     "review follow ups tasks": [
       "review follow ups tasks"
     ],
+    "review frontier": [
+      "review frontier"
+    ],
     "review frontier admission": [
       "review frontier admission"
     ],
@@ -101142,6 +101413,9 @@
     ],
     "review frontier mode tasks": [
       "review frontier mode tasks"
+    ],
+    "review frontier nodes": [
+      "review frontier-nodes"
     ],
     "review gate follows severity": [
       "review gate follows severity"
@@ -101184,6 +101458,9 @@
     ],
     "review iteration file structure": [
       "review iteration file structure"
+    ],
+    "review iteration floor": [
+      "review iteration floor"
     ],
     "review iteration lifecycle": [
       "review iteration lifecycle"
@@ -101254,6 +101531,12 @@
     "review min iterations floor tasks": [
       "review min iterations floor tasks"
     ],
+    "review miniterations": [
+      "review minIterations"
+    ],
+    "review miniterations floor": [
+      "review minIterations floor"
+    ],
     "review mode": [
       "review mode"
     ],
@@ -101307,6 +101590,15 @@
     ],
     "review mode tasks": [
       "review mode tasks"
+    ],
+    "review next focus": [
+      "review Next Focus"
+    ],
+    "review next focus free text": [
+      "review next focus free text"
+    ],
+    "review next focus hijack": [
+      "review next focus hijack"
     ],
     "review output additions": [
       "review output additions"
@@ -101656,6 +101948,9 @@
     ],
     "review rule sources line": [
       "review rule sources line"
+    ],
+    "review run extended": [
+      "review run_extended"
     ],
     "review run open plan": [
       "review run open plan"
@@ -103677,6 +103972,9 @@
     ],
     "run doctor subsystem diagnostic": [
       "run doctor subsystem diagnostic"
+    ],
+    "run extended": [
+      "run_extended"
     ],
     "run extended ledger event": [
       "run_extended ledger event"
@@ -119008,6 +119306,9 @@
     "skip re embedding unchanged chunks": [
       "skip re-embedding unchanged chunks"
     ],
+    "skip redispatch executor missing": [
+      "skip redispatch executor missing"
+    ],
     "skip spec validation": [
       "skip spec validation"
     ],
@@ -119361,6 +119662,12 @@
     "source diversity check": [
       "source diversity check"
     ],
+    "source diversity guard": [
+      "source_diversity_guard"
+    ],
+    "source diversity quality": [
+      "source diversity quality"
+    ],
     "source diversity quality class": [
       "source diversity quality class"
     ],
@@ -119415,6 +119722,9 @@
     "source kind schema v35 migration changelog": [
       "source_kind schema v35 migration changelog"
     ],
+    "source node quality class": [
+      "source node quality class"
+    ],
     "source of truth labels": [
       "source of truth labels"
     ],
@@ -119423,6 +119733,9 @@
     ],
     "source parent migration": [
       "source parent migration"
+    ],
+    "source quality class": [
+      "source quality class"
     ],
     "source resolver": [
       "source resolver"
@@ -125362,6 +125675,30 @@
     "system deep loop 2 0 2 0": [
       "system-deep-loop 2.0.2.0"
     ],
+    "system deep loop 2 1 0 0": [
+      "system-deep-loop 2.1.0.0"
+    ],
+    "system deep loop 2 1 1 0": [
+      "system-deep-loop 2.1.1.0"
+    ],
+    "system deep loop 2 1 2 0": [
+      "system-deep-loop 2.1.2.0"
+    ],
+    "system deep loop 2 1 3 0": [
+      "system-deep-loop 2.1.3.0"
+    ],
+    "system deep loop 2 1 4 0": [
+      "system-deep-loop 2.1.4.0"
+    ],
+    "system deep loop 2 1 5 0": [
+      "system-deep-loop 2.1.5.0"
+    ],
+    "system deep loop 2 1 6 0": [
+      "system-deep-loop 2.1.6.0"
+    ],
+    "system deep loop 2 1 7 0": [
+      "system-deep-loop 2.1.7.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -125601,6 +125938,30 @@
     ],
     "system deep loop v2 0 2 0": [
       "system-deep-loop v2.0.2.0"
+    ],
+    "system deep loop v2 1 0 0": [
+      "system-deep-loop v2.1.0.0"
+    ],
+    "system deep loop v2 1 1 0": [
+      "system-deep-loop v2.1.1.0"
+    ],
+    "system deep loop v2 1 2 0": [
+      "system-deep-loop v2.1.2.0"
+    ],
+    "system deep loop v2 1 3 0": [
+      "system-deep-loop v2.1.3.0"
+    ],
+    "system deep loop v2 1 4 0": [
+      "system-deep-loop v2.1.4.0"
+    ],
+    "system deep loop v2 1 5 0": [
+      "system-deep-loop v2.1.5.0"
+    ],
+    "system deep loop v2 1 6 0": [
+      "system-deep-loop v2.1.6.0"
+    ],
+    "system deep loop v2 1 7 0": [
+      "system-deep-loop v2.1.7.0"
     ],
     "system deep research bugs": [
       "system deep research bugs"
@@ -126736,6 +127097,9 @@
     "system spec kit 2 13 4 0": [
       "system-spec-kit 2.13.4.0"
     ],
+    "system spec kit 2 13 5 0": [
+      "system-spec-kit 2.13.5.0"
+    ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
     ],
@@ -127395,6 +127759,9 @@
     ],
     "system spec kit v2 13 4 0": [
       "system-spec-kit v2.13.4.0"
+    ],
+    "system spec kit v2 13 5 0": [
+      "system-spec-kit v2.13.5.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"
@@ -131494,6 +131861,9 @@
     ],
     "unclosed details fold check": [
       "unclosed details fold check"
+    ],
+    "uncovered dimension next focus": [
+      "uncovered dimension next focus"
     ],
     "under preserve an out of scope untracked path": [
       "under preserve an out of scope untracked path"
