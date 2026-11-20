@@ -18,7 +18,7 @@ _memory:
       - "scratch/live.txt"
       - "scratch/doc-inventory.txt"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:2d790e096cacdfde69a0e640918dbaef0a00e6070ec380181bc0f997684e10eb"
       session_id: "closure-003-v1-docs-and-playbooks-sweep"
       parent_session_id: null
     completion_pct: 100
@@ -118,7 +118,7 @@ AC-004 was closed live on 2026-11-19. One `/deep:research` iteration ran on the 
 | `generate-trigger-index.mjs --check` | Exit 0; 0 obsolete paths, 0 untrusted docs |
 | Determinism (two generator runs) | Same `indexSha256` (0096cddc9e93eed7) both times |
 | `compile-command-contracts.cjs --command deep/review` and `deep/research` (dry run) | Exit 0; output byte-identical to the two compiled contracts on disk |
-| Repo-wide v1 sweep | 30 files, equal to `scratch/justified.txt` (30 lines, each with a reason) |
+| Repo-wide v1 sweep | 32 files, equal to `scratch/justified.txt` (32 lines, each with a reason), counting the wrapper refusal and its test added after closure |
 | Runtime-mirror checkers (check-only) | 15 of 16 exit 0 with no drift; the one WARN is the Codex hooks approval for this worktree |
 | `run-plugin-scenario.sh` | `bash -n` exit 0; live CO-056 run exit 0, PASS (see `scratch/live.txt`) |
 | Changelog `v2.0.0.0` | Shape gate PASS; `validate_document` 0 issues; DQI 89; 49 entries against 48 at HEAD |

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c5c28a2670ed28602f32ef8381ac28253424f1ed76f09964b2d3e78a984c2ae4",
+  "manifestHash": "218543419d56ca71580767faa6363ecfb6bd0ab9a7bf320398be7b5438fa04fb",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8750,6 +8750,9 @@
     "adoption sequencing": [
       "adoption sequencing"
     ],
+    "adoptsource framework root naming rule": [
+      "adoptSource framework root naming rule"
+    ],
     "adr 001 cocoindex embedder choice": [
       "ADR-001 cocoindex embedder choice"
     ],
@@ -11464,6 +11467,9 @@
     "ai session child cli rule summary": [
       "AI_SESSION_CHILD cli rule summary"
     ],
+    "ai speckit re pin task list": [
+      "ai-speckit re-pin task list"
+    ],
     "ai systems battery rerun": [
       "ai systems battery rerun"
     ],
@@ -12735,6 +12741,9 @@
     ],
     "apply path enable decision": [
       "apply path enable decision"
+    ],
+    "apply relayout barter overlays": [
+      "apply --relayout barter overlays"
     ],
     "apply style reference to chart": [
       "apply style reference to chart"
@@ -14656,6 +14665,9 @@
     "backticked playbook path check": [
       "backticked playbook path check"
     ],
+    "backup area overlay entries": [
+      "backup area overlay entries"
+    ],
     "backup file removal audit": [
       "backup file removal audit"
     ],
@@ -14728,6 +14740,9 @@
     "barter cannot apply state": [
       "barter cannot-apply state"
     ],
+    "barter framework root relayout steps": [
+      "barter framework-root relayout steps"
+    ],
     "barter frontend proposals for skilled": [
       "barter frontend proposals for skilled"
     ],
@@ -14736,6 +14751,18 @@
     ],
     "barter host capture file command routing baseline": [
       "barter host capture file command routing baseline"
+    ],
+    "barter move overlays out of tree": [
+      "barter move overlays out of tree"
+    ],
+    "barter move overlays out of tree acceptance criteria": [
+      "barter move overlays out of tree acceptance criteria"
+    ],
+    "barter move overlays out of tree plan": [
+      "barter move overlays out of tree plan"
+    ],
+    "barter move overlays out of tree tasks": [
+      "barter move overlays out of tree tasks"
     ],
     "barter overlay mechanics research": [
       "barter overlay mechanics research"
@@ -14758,6 +14785,21 @@
     "barter overlay upstream intake tasks": [
       "barter overlay upstream intake tasks"
     ],
+    "barter overlays folder ai speckit overlays": [
+      "barter overlays folder ai-speckit/overlays"
+    ],
+    "barter overlays move closure gate": [
+      "barter overlays move closure gate"
+    ],
+    "barter overlays move hook ordering": [
+      "barter overlays move hook ordering"
+    ],
+    "barter overlays move task list": [
+      "barter overlays move task list"
+    ],
+    "barter overlays out of the vendored tree": [
+      "barter overlays out of the vendored tree"
+    ],
     "barter parity": [
       "barter parity"
     ],
@@ -14779,8 +14821,32 @@
     "barter re pin after rebasedonto": [
       "barter re-pin after rebasedOnto"
     ],
+    "barter re pin onto the new overlay engine": [
+      "barter re-pin onto the new overlay engine"
+    ],
+    "barter relayout in tree": [
+      "barter relayout in tree"
+    ],
+    "barter relayout in tree plan": [
+      "barter relayout in tree plan"
+    ],
+    "barter relayout in tree tasks": [
+      "barter relayout in tree tasks"
+    ],
+    "barter relayout task list": [
+      "barter relayout task list"
+    ],
     "barter remove set operations after sets record": [
       "barter remove set operations after sets record"
+    ],
+    "barter repin onto new engine plan": [
+      "barter repin onto new engine plan"
+    ],
+    "barter repin onto new engine tasks": [
+      "barter repin onto new engine tasks"
+    ],
+    "barter sourcelayout framework root": [
+      "barter sourceLayout framework-root"
     ],
     "barter state schema version 2": [
       "barter state schema version 2"
@@ -44324,8 +44390,23 @@
     "doctor overlay build": [
       "doctor overlay build"
     ],
+    "doctor overlay docs rewrite plan": [
+      "doctor overlay docs rewrite plan"
+    ],
+    "doctor overlay docs sibling folder framework root": [
+      "doctor overlay docs sibling folder framework-root"
+    ],
+    "doctor overlay docs task list": [
+      "doctor overlay docs task list"
+    ],
+    "doctor overlay repin barter phase 4": [
+      "doctor overlay repin barter phase 4"
+    ],
     "doctor overlay repin rollback": [
       "doctor overlay repin rollback"
+    ],
+    "doctor overlay repin staged then live": [
+      "doctor overlay repin staged then live"
     ],
     "doctor overlay status": [
       "doctor overlay status"
@@ -47972,8 +48053,35 @@
     "enforcerelationwindowcap": [
       "enforceRelationWindowCap"
     ],
+    "engine docs and release plan": [
+      "engine docs and release plan"
+    ],
+    "engine docs and release tasks": [
+      "engine docs and release tasks"
+    ],
+    "engine framework root source layout": [
+      "engine framework root source layout"
+    ],
+    "engine framework root source layout plan": [
+      "engine framework root source layout plan"
+    ],
+    "engine framework root source layout tasks": [
+      "engine framework root source layout tasks"
+    ],
     "engine named in output": [
       "engine named in output"
+    ],
+    "engine out of tree overlay folder": [
+      "engine out of tree overlay folder"
+    ],
+    "engine out of tree overlay folder acceptance criteria": [
+      "engine out of tree overlay folder acceptance criteria"
+    ],
+    "engine out of tree overlay folder plan": [
+      "engine out of tree overlay folder plan"
+    ],
+    "engine out of tree overlay folder tasks": [
+      "engine out of tree overlay folder tasks"
     ],
     "engine selection verdict identical": [
       "engine selection verdict identical"
@@ -54106,6 +54214,9 @@
     ],
     "framework": [
       "framework"
+    ],
+    "framework and root overlay sources": [
+      "framework and root overlay sources"
     ],
     "framework capability layer": [
       "framework capability layer"
@@ -81195,6 +81306,9 @@
     "overlay follow up review synthesis": [
       "overlay follow up review synthesis"
     ],
+    "overlay framework root layout phase parent spec": [
+      "overlay framework root layout phase parent spec"
+    ],
     "overlay guard": [
       "overlay guard"
     ],
@@ -81252,6 +81366,9 @@
     "overlay replaced subtree repin tasks": [
       "overlay replaced subtree repin tasks"
     ],
+    "overlay setting refused inside the tree wording": [
+      "overlay setting refused inside the tree wording"
+    ],
     "overlay status audit and relayout": [
       "overlay status audit and relayout"
     ],
@@ -81278,6 +81395,12 @@
     ],
     "overlay write checks follow up tasks": [
       "overlay write checks follow up tasks"
+    ],
+    "overlaydir overlays barter hooks": [
+      "overlayDir ../overlays barter hooks"
+    ],
+    "overlays folder beside the vendored tree": [
+      "overlays folder beside the vendored tree"
     ],
     "overlays for vendored copies": [
       "overlays for vendored copies"
@@ -83741,6 +83864,9 @@
     "phase 1 doc version contract": [
       "phase 1 doc version contract"
     ],
+    "phase 1 engine out of tree overlay folder": [
+      "phase 1 engine out of tree overlay folder"
+    ],
     "phase 1 fanout persona tool mapping": [
       "phase 1 fanout persona tool mapping"
     ],
@@ -84751,6 +84877,9 @@
     ],
     "phase 2 dsh offline contract pin": [
       "phase 2 dsh offline contract pin"
+    ],
+    "phase 2 engine framework root source layout": [
+      "phase 2 engine framework root source layout"
     ],
     "phase 2 exempt and rewrite guard": [
       "phase 2 exempt and rewrite guard"
@@ -93200,6 +93329,9 @@
     "re pin after frontmatter move": [
       "re-pin after frontmatter move"
     ],
+    "re pin ai speckit skilled from b0a3b9f": [
+      "re-pin ai-speckit skilled from b0a3b9f"
+    ],
     "re pin not copied list": [
       "re-pin not-copied list"
     ],
@@ -98049,6 +98181,12 @@
     ],
     "repin stage report": [
       "repin stage report"
+    ],
+    "repin stage with a sibling overlay folder": [
+      "repin stage with a sibling overlay folder"
+    ],
+    "repin stage writes nothing live acceptance": [
+      "repin stage writes nothing live acceptance"
     ],
     "repin tasks": [
       "repin tasks"
@@ -109234,6 +109372,18 @@
     "sibling listing tasks": [
       "sibling listing tasks"
     ],
+    "sibling overlay folder acceptance rows": [
+      "sibling overlay folder acceptance rows"
+    ],
+    "sibling overlay folder backup area plan": [
+      "sibling overlay folder backup area plan"
+    ],
+    "sibling overlay folder overlaydir overlays": [
+      "sibling overlay folder overlayDir ../overlays"
+    ],
+    "sibling overlay folder task list": [
+      "sibling overlay folder task list"
+    ],
     "sibling relative path rewrite": [
       "sibling relative path rewrite"
     ],
@@ -119867,6 +120017,15 @@
     "sourcediversity cannot pass": [
       "sourcediversity cannot pass"
     ],
+    "sourcelayout adoptsource layout argument plan": [
+      "sourceLayout adoptSource layout argument plan"
+    ],
+    "sourcelayout framework root manifest field": [
+      "sourceLayout framework-root manifest field"
+    ],
+    "sourcelayout framework root task list": [
+      "sourceLayout framework-root task list"
+    ],
     "sourcesignature null": [
       "sourceSignature null",
       "sourcesignature null"
@@ -126682,6 +126841,9 @@
     ],
     "system skilled doctor v1 1 8 0": [
       "system-skilled-doctor v1.1.8.0"
+    ],
+    "system skilled doctor v1 2 0 0 release": [
+      "system-skilled-doctor v1.2.0.0 release"
     ],
     "system spec gate": [
       "system-spec-gate"

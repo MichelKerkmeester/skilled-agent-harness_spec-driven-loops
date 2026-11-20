@@ -1,4 +1,5 @@
 .opencode/plugins/tests/plugin-inventory.json	Event inventory whose observations are dated to OpenCode 1.19.3, kept with their version tags.
+.skilled/bin/skilled-loop	Refusal code: the wrapper refuses an OpenCode 1 binary with a removal hint and never launches it (intended survivor).
 .skilled/commands/doctor/scripts/README.markdown	Dated observation: the 65,536-byte stdout cap was measured on OpenCode 1.19.3 (line 206). The 2.3.2 pass result is recorded beside it.
 .skilled/commands/doctor/scripts/opencode-version-battery.cjs	Refusal code: an OpenCode 1 binary is reported as unsupported (intended survivor).
 .skilled/commands/doctor/scripts/tests/fixtures/sk-skill-convert/source/sk-git/references/worktree-workflows.md	Test fixture, unchanged from HEAD: a frozen copy of an older sk-git document that names OpenCode 1.
@@ -6,9 +7,11 @@
 .skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs	Refusal test: resolves the opencode1 launcher as unsupported (intended survivor).
 .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs	Refusal test: an OpenCode 1 binary is unsupported and still meets the blocking rules (intended survivor).
 .skilled/hooks/cli-dispatch/lib/opencode-version-corpus.json	Corpus of version outputs: the OpenCode 1 output maps to unsupported (intended survivor).
+.skilled/hooks/session-handover/tests/skilled-loop-wrapper-model-effort.test.cjs	Refusal test: checks that the wrapper refuses an OpenCode 1 binary and never launches it (intended survivor).
+.skilled/skills/cli-external-orchestration/cli-opencode/README.md	Dated observation (v1.14.39) on the stdin rule.
+.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md	Dated observation (v1.14.39) on the stdin rule.
 .skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md	Dated observation: the stdin hang was recorded on OpenCode 1 (v1.14.39).
 .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/multi-provider/variant-levels-comparison.md	Dated observation: the variant range was observed on OpenCode 1 and is marked unverified on 2.3.2.
-.skilled/skills/cli-external-orchestration/cli-opencode/README.md	Dated observation (v1.14.39) on the stdin rule.
 .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md	Dated observation: the stdin hang was recorded on OpenCode 1 (v1.14.39).
 .skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md	Dated incident: the OpenCode 1 command of the 2026-05-04 incident, labelled as OpenCode 1 (line 44) and kept as the record.
 .skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md	remove-v1 documentation: section 8 describes removing an old OpenCode 1 install (intended survivor).
@@ -17,7 +20,6 @@
 .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh	remove-v1 helper: the launcher and package names it removes (intended survivor).
 .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs	Comment only: contrasts the v2 #max form with the removed OpenCode 1 --variant form. Borderline, and no code path depends on it.
 .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-setup-classify.test.cjs	remove-v1 tests: the launcher, the package and the foreign-link cases (intended survivor).
-.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md	Dated observation (v1.14.39) on the stdin rule.
 .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md	Dated observation: a GLM ladder was re-verified on OpenCode 1 on 2026-09-04. Outside cli-opencode, left as written.
 .skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md	Describes the refusal of an OpenCode 1 binary (intended survivor, T012).
 .skilled/skills/cli-external-orchestration/feature-catalog/opencode-version-dispatch/opencode-version-dispatch.md	Refusal entry: the feature runs OpenCode 2 and refuses OpenCode 1 (intended survivor, T012).

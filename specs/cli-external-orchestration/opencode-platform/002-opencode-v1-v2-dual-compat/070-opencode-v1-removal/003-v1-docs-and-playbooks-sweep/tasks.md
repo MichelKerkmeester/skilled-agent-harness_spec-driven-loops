@@ -122,7 +122,7 @@ Shell variables used below: `CLI` is `.skilled/skills/cli-external-orchestration
 
 - [x] CHK-010 [P0] The compiled contracts come from the generator, not from hand edits. Verify: the generator run in T010 exits 0, and the contracts contain no `--pure`.
 - [x] CHK-011 [P0] `run-plugin-scenario.sh` passes the bash syntax check. Verify: `bash -n $CLI/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh` exits 0.
-- [x] CHK-012 [P1] Each doc that names v1 is either rewritten or listed in `scratch/justified.txt` with a reason. Verify: `wc -l < scratch/justified.txt` prints a number equal to the justified hits from T021. Closure note: the count is 30, and the T021 sweep gives 30 hits.
+- [x] CHK-012 [P1] Each doc that names v1 is either rewritten or listed in `scratch/justified.txt` with a reason. Verify: `wc -l < scratch/justified.txt` prints a number equal to the justified hits from T021. Closure note: the count is 32, and the T021 sweep gives 32 hits. The wrapper refusal and its test were added after closure and listed then.
 - [x] CHK-013 [P1] The diff touches only the files in the spec's Files table, plus the generated files named there. Verify: `git diff --stat` lists no path outside that table. Closure note: not met as written. The branch diff covers files outside the table, including the workflow README, the lockfiles and the changelog. Met 2026-11-19 after the table gained a row for `scratch/files-outside-table.txt`: the docs commit af87a2aa13a lists 133 files, the table globs cover 88, and the other 45 are exactly that list.
 <!-- /ANCHOR:code-quality -->
 
@@ -134,7 +134,7 @@ Shell variables used below: `CLI` is `.skilled/skills/cli-external-orchestration
 - [x] CHK-020 [P0] The widened branch-contract test reports 0 failed tests. Verify: `npx vitest run tests/unit/executor-branch-contract.vitest.ts` in `RT` reports 0 failed tests.
 - [x] CHK-021 [P0] The four live parts in `scratch/live.txt` show a success status. Verify: `rg -c 'success' scratch/live.txt` prints 2 or more, and the doctor battery exits 0 in T017. Closure note: met. `rg -c success scratch/live.txt` counts the dispatch, deep-loop and plugin lines, and the battery exited 0.
 - [x] CHK-022 [P1] The models-form suite passes. Verify: `node --test $CLI/scripts/tests/opencode-models-form.test.cjs` prints `# fail 0`.
-- [x] CHK-023 [P1] The final grep matches `scratch/justified.txt`. Verify: the T021 command lists exactly the files in `scratch/justified.txt`. Closure note: the sweep equals the 30 files in scratch/justified.txt.
+- [x] CHK-023 [P1] The final grep matches `scratch/justified.txt`. Verify: the T021 command lists exactly the files in `scratch/justified.txt`. Closure note: the sweep equals the 32 files in scratch/justified.txt.
 <!-- /ANCHOR:testing -->
 
 ---
