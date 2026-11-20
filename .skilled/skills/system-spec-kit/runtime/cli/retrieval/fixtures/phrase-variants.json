@@ -1,5 +1,5 @@
 {
-  "manifestHash": "19bfb57eaf9f7c14b481f5a0445ead12ced27365e09efb0404ac4a2e0dcba8f6",
+  "manifestHash": "e05a08bb0bb142f7a0e978391fc7c924f33c9cc7f03bd97d4ef4344d1ce1544f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14767,6 +14767,9 @@
     "barter move overlays out of tree tasks": [
       "barter move overlays out of tree tasks"
     ],
+    "barter move overlays summary": [
+      "barter move overlays summary"
+    ],
     "barter overlay mechanics research": [
       "barter overlay mechanics research"
     ],
@@ -14803,8 +14806,14 @@
     "barter overlays move task list": [
       "barter overlays move task list"
     ],
+    "barter overlays moved to ai speckit overlays": [
+      "barter overlays moved to ai-speckit/overlays"
+    ],
     "barter overlays out of the vendored tree": [
       "barter overlays out of the vendored tree"
+    ],
+    "barter overlays relayout evidence": [
+      "barter overlays relayout evidence"
     ],
     "barter parity": [
       "barter parity"
@@ -14827,6 +14836,12 @@
     "barter re pin after rebasedonto": [
       "barter re-pin after rebasedOnto"
     ],
+    "barter re pin onto 063daae": [
+      "barter re-pin onto 063daae"
+    ],
+    "barter record base open item": [
+      "barter record-base open item"
+    ],
     "barter remove set operations after sets record": [
       "barter remove set operations after sets record"
     ],
@@ -14835,6 +14850,9 @@
     ],
     "barter repin and relayout plan": [
       "barter repin and relayout plan"
+    ],
+    "barter repin and relayout summary": [
+      "barter repin and relayout summary"
     ],
     "barter repin and relayout tasks": [
       "barter repin and relayout tasks"
@@ -15105,6 +15123,9 @@
     ],
     "battery misses tasks": [
       "battery misses tasks"
+    ],
+    "battery private server loopback": [
+      "battery private server loopback"
     ],
     "bayesian scorer": [
       "bayesian scorer"
@@ -24223,6 +24244,9 @@
     "cli opencode 2 0 0 0": [
       "cli-opencode 2.0.0.0"
     ],
+    "cli opencode 2 0 1 0": [
+      "cli-opencode 2.0.1.0"
+    ],
     "cli opencode authoring complete": [
       "cli-opencode authoring complete"
     ],
@@ -24492,6 +24516,9 @@
     ],
     "cli opencode v2 0 0 0": [
       "cli-opencode v2.0.0.0"
+    ],
+    "cli opencode v2 0 1 0": [
+      "cli-opencode v2.0.1.0"
     ],
     "cli opencode version detection": [
       "cli-opencode version detection"
@@ -81419,6 +81446,9 @@
     ],
     "overlaydir overlays barter hooks": [
       "overlayDir ../overlays barter hooks"
+    ],
+    "overlaydir overlays evidence": [
+      "overlayDir ../overlays evidence"
     ],
     "overlays folder beside the vendored tree": [
       "overlays folder beside the vendored tree"
