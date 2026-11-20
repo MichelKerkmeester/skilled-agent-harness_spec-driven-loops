@@ -7258,7 +7258,8 @@ describe('fanout-run.cjs — per-lineage expansive budget', () => {
     expect(result.exitCode).toBe(3);
     const output = `${result.stdout}${result.stderr}`;
     expect(output).toContain('fan-out refused for lineage(s) native-a: native fan-out lineages are not supported');
-    expect(output).not.toContain('budget');
+    // The budget step announces every lineage's seed share; the refusal comes first.
+    expect(output).not.toContain('seed share');
     expect(existsSync(join(baseDir, 'lineages'))).toBe(false);
   });
 });

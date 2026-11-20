@@ -38,7 +38,7 @@ function makeTempDir(prefix: string): string {
 
 function stubEnv(): NodeJS.ProcessEnv {
   const binDir = makeTempDir('fanout-effective-config-bin-');
-  const versions: Record<string, string> = { opencode: '1.19.3', dsh: '0.2.2-rc.3' };
+  const versions: Record<string, string> = { opencode: '2.3.2', dsh: '0.2.2-rc.3' };
   for (const name of ['codex', 'claude', 'opencode', 'cursor-agent', 'devin', 'pi', 'dsh']) {
     const probe = versions[name]
       ? `if [ "$1" = "--version" ]; then echo ${versions[name]}; exit 0; fi\n`
@@ -86,11 +86,6 @@ describe('fanout-run.cjs — effective_config reports what each command enforces
       ['opencode', { kind: 'cli-opencode', model: 'llmgateway/deepseek-v4.1-flash-1017' },
         'danger-full-access', 'acceptEdits', opts,
         { permissionMode: null, sandboxEnforcement: 'none', effortApplied: 'flag' }],
-      // The repo's opencode config allows every tool, so leaving out the skip flag restricts nothing.
-      ['native read-only', { kind: 'native' }, 'read-only', 'plan', opts,
-        { permissionMode: null, sandboxEnforcement: 'none', effortApplied: 'none' }],
-      ['native write', { kind: 'native' }, 'workspace-write', 'acceptEdits', opts,
-        { permissionMode: null, sandboxEnforcement: 'none', effortApplied: 'none' }],
       ['cursor confined', { kind: 'cli-cursor' }, 'workspace-write', 'acceptEdits', opts,
         { permissionMode: null, sandboxEnforcement: 'preventive', effortApplied: 'none' }],
       // Plan mode is an approval mode; the OS sandbox flag is not passed on this branch.
@@ -119,6 +114,16 @@ describe('fanout-run.cjs — effective_config reports what each command enforces
     for (const [name, lineage, sandbox, permission, options, expected] of cases) {
       const built = buildLineageCommand(lineage, 'prompt text', sandbox, permission, options);
       expect({ name, ...truth(built) }).toEqual({ name, ...expected });
+    }
+  });
+
+  // A native lineage has no command to report: OpenCode 2 run cannot start the
+  // registered command its adapter needed, so the builder refuses it.
+  it('builds no command and reports no effective config for a native lineage', () => {
+    const opts = { env: stubEnv(), executableVersion: 'stub 1.0.0', directoryRoot: process.cwd() };
+    for (const [sandbox, permission] of [['read-only', 'plan'], ['workspace-write', 'acceptEdits']]) {
+      expect(() => buildLineageCommand({ kind: 'native' }, 'prompt text', sandbox, permission, opts))
+        .toThrow(/native fan-out lineages are not supported/);
     }
   });
 
