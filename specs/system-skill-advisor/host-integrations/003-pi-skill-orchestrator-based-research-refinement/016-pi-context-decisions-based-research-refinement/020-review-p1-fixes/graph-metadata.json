@@ -205,7 +205,7 @@
     ],
     "causal_summary": "`refreshEmbeddingsInBackground` hands a caller that arrives during a run the running promise and never reruns, so a skill a mid-refresh reindex adds keeps no vector until the next reindex or restart",
     "created_at": "2026-11-20T11:52:42Z",
-    "last_save_at": "2026-11-20T12:43:28.130Z",
+    "last_save_at": "2026-11-20T12:47:27.451Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +217,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e8f49225af21ed2ee776a9eca619d973949a0be540658fdf52b330cbf964117b",
+    "source_fingerprint": "sha256:afd60e58cbbc17293f4aab285ab602b247bdf79fd4b0170ab3eaa057379d37a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "efaf998e85a81fabfe65f507193145abe464d572f73592bd9898e108e394e192",
       "plan.md": "1ba6ed4e67a990cf969f802f0913a7878b249b2793d26abcb5e37dd5eae049d2",
-      "tasks.md": "053415d265ac07db3bffe6d207b01543ce94b6463b68b52008bc018532dedf49",
+      "tasks.md": "dd1de0d9c46c699b7549db05042f1ac0ad6137f561c4979031bdd9fa93ea085e",
       "decision-record.md": "0658c232a825bbeec51699d14d437dbfb14eda4c35699cb51e2791c36ebcd0b0",
-      "implementation-summary.md": "7b50a5e868efda9a40a50d69eb00c52d13d1b67a60d3016f3a0b1c58342850d8"
+      "implementation-summary.md": "617233e189222241924cc119181910144dc93788b1dc1db9945fcfe4e3983a3e"
     },
     "last_active_at": null
   }
