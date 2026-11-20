@@ -8,7 +8,7 @@
 
 import { createRequire } from 'node:module';
 
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const core = require('../hooks/ask-surface-guard/lib/ask-surface-core.cjs');
@@ -127,4 +127,4 @@ export async function AskSurfaceGuardPlugin(ctx, options = {}) {
   };
 }
 
-export default dualPlugin('ask-surface-guard', AskSurfaceGuardPlugin);
+export default definePlugin('ask-surface-guard', AskSurfaceGuardPlugin);

@@ -15,7 +15,7 @@ trigger_phrases:
 
 `.opencode/plugins/` holds the local plugins an OpenCode session loads. Each `.js` file at the top of the folder is one plugin. `opencode.json` names no plugin path, so the folder itself is the registration, and the subfolders hold no entries.
 
-Every entry default-exports the object that `dualPlugin(id, factory)` builds in `lib/v2-bridge.js`. `setup` is the OpenCode 2 entry, and the hook factory rides along as a non-enumerable `factory` property. The folder is an ES module package, because `.opencode/package.json` sets `"type": "module"`.
+Every entry default-exports the object that `definePlugin(id, factory)` builds in `lib/v2-bridge.js`. `setup` is the OpenCode 2 entry, and the hook factory rides along as a non-enumerable `factory` property. The folder is an ES module package, because `.opencode/package.json` sets `"type": "module"`.
 
 An entry is a thin adapter that translates one OpenCode event into a call on a core outside this folder, with one exception. `opencode-goal.js` is a full plugin. It holds the goal state machine and its tools, and calls the goal helpers under `.opencode/hooks/goal/`.
 

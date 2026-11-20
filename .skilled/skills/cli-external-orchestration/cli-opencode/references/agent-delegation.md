@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode multi-agent workflow"
 importance_tier: normal
 contextType: implementation
-version: 1.4.16.0
+version: 1.4.17.0
 ---
 
 # OpenCode CLI - Agent Delegation
@@ -384,7 +384,7 @@ jq -r 'select(.type == "text") | .part.text' /tmp/review-events.jsonl
 | Agent loaded but writes refused | LEAF agent constraint or read-only sandbox | Re-route to `general` / `orchestrate` for write operations |
 | Session never finishes | Tool call hung or infinite loop | Inspect `~/.opencode/state/<sessionID>/messages.jsonl`, abort the session, retry with refined scope |
 | Empty output stream | `--format default` with non-TTY parent | Pass `--format json` and parse the event stream |
-| Plugin load crash | Misconfigured plugin in agent context | Check the plugin's `setup` export and the `dualPlugin()` bridge in `.opencode/plugins/lib/v2-bridge.js` |
+| Plugin load crash | Misconfigured plugin in agent context | Check the plugin's `setup` export and the `definePlugin()` bridge in `.opencode/plugins/lib/v2-bridge.js` |
 | `provider/model not found` | Model not configured for the agent's chosen provider | Run `opencode auth list` to enumerate, then `opencode auth login <provider>` |
 | Self-invocation refused | cli-opencode detected an in-OpenCode runtime | Use a sibling cli-* skill or restate the request with parallel-session keywords (see ADR-001) |
 | Low-quality agent output | Wrong agent for the task or under-specified prompt | Re-route per the routing matrix, refine the prompt with more context |

@@ -54,11 +54,11 @@ The diagram shows the bridged plugins. Every entry file in the folder is one.
 
 ## 2. PACKAGE TOPOLOGY
 
-`lib/` holds the modules the entry files import and `tests/` holds the regression suites. Every entry file builds its export with `dualPlugin(id, factory)` from `lib/v2-bridge.js`, which puts `lib/` on its load path.
+`lib/` holds the modules the entry files import and `tests/` holds the regression suites. Every entry file builds its export with `definePlugin(id, factory)` from `lib/v2-bridge.js`, which puts `lib/` on its load path.
 
 ```text
 .opencode/plugins/
-├── ask-surface-guard.js             # every entry from here to system-speckit-completion.js is built with dualPlugin, each default-exporting { id, setup }
+├── ask-surface-guard.js             # every entry from here to system-speckit-completion.js is built with definePlugin, each default-exporting { id, setup }
 ├── classifier-injection-screen.js
 ├── cli-dispatch-audit.js
 ├── codex-hooks-watchdog.js
@@ -109,28 +109,28 @@ Allowed dependency direction:
 
 ## 3. CANONICAL FLOWS
 
-**OpenCode 2 load path.** The OpenCode 2 host calls `setup(ctx)` in `lib/v2-bridge.js`. The bridge builds the factory input, with `client` from `createV1Client(ctx)`, `worktree` and `directory` from `ctx.location.directory`; `project`, `experimental_workspace`, `serverUrl` and `$` set to `undefined` (`lib/v2-bridge.js` (`dualPlugin`, `setup`)), then calls `factory(input)` once, registers each mapped hook and returns the cleanup function. A failed registration runs that cleanup and rethrows the original error (`lib/v2-bridge.js` (`dualPlugin`, `setup`)).
+**OpenCode 2 load path.** The OpenCode 2 host calls `setup(ctx)` in `lib/v2-bridge.js`. The bridge builds the factory input, with `client` from `createV1Client(ctx)`, `worktree` and `directory` from `ctx.location.directory`; `project`, `experimental_workspace`, `serverUrl` and `$` set to `undefined` (`lib/v2-bridge.js` (`definePlugin`, `setup`)), then calls `factory(input)` once, registers each mapped hook and returns the cleanup function. A failed registration runs that cleanup and rethrows the original error (`lib/v2-bridge.js` (`definePlugin`, `setup`)).
 
 **Key modules:**
 
-- `lib/v2-bridge.js` owns the export builder (`dualPlugin`), the v1 client adapter (`createV1Client`), the tool-context adapter (`toV1ToolContext`) and the tool result converter (`toV1ToolOutput`), all in `lib/v2-bridge.js`.
+- `lib/v2-bridge.js` owns the export builder (`definePlugin`), the v1 client adapter (`createV1Client`), the tool-context adapter (`toV1ToolContext`) and the tool result converter (`toV1ToolOutput`), all in `lib/v2-bridge.js`.
 - `lib/tool-identity.js`, the identity helper for tool definitions.
 
 ---
 
 ## 4. RUNTIME SUBSYSTEMS
 
-**Export shape.** `dualPlugin(id, factory)` returns `{ id, setup }` (`lib/v2-bridge.js` (`dualPlugin`)) and keeps `factory`, the hook factory, on a non-enumerable `factory` property. Every entry file builds its export with it. Every default export therefore carries exactly the enumerable keys `id` and `setup`, and the host calls only `setup`.
+**Export shape.** `definePlugin(id, factory)` returns `{ id, setup }` (`lib/v2-bridge.js` (`definePlugin`)) and keeps `factory`, the hook factory, on a non-enumerable `factory` property. Every entry file builds its export with it. Every default export therefore carries exactly the enumerable keys `id` and `setup`, and the host calls only `setup`.
 
 **Hook mapping.** The bridge maps the hook keys a factory returns onto OpenCode 2 registrations, driven by the `MAPPED_HOOKS` set (`lib/v2-bridge.js` (`MAPPED_HOOKS`)). The table is the full mapping.
 
 | Factory hook | OpenCode 2 registration | Notes |
 |---|---|---|
-| `event` | `ctx.event.subscribe` | replays each v2 event to the v1 handler, adds `info: { id: sessionID }` to session events and announces each session once with a synthesized `session.created` (`lib/v2-bridge.js` (`dualPlugin`, `setup` event stream), `lib/v2-bridge.js` (`announceSession`)) |
-| `tool.execute.before` | `ctx.tool.hook('execute.before')` | passes `{ tool, sessionID, callID }` and `{ args }`, reports v2 `shell` and `subagent` as `bash` and `task` with `subagent_type` added beside `agent`, writes changed args back under the v2 names and denies the call on a throw (`lib/v2-bridge.js` (`dualPlugin`, `tool.execute.before`), `lib/v2-bridge.js` (`toV1ToolName`, `toV1ToolArgs`, `toV2ToolArgs`)) |
-| `tool.execute.after` | `ctx.tool.hook('execute.after')` | reports the same v1 tool names, converts the v2 result to `{ title, output, metadata }` with `toV1ToolOutput` and gives a `shell` result a string `output` (`lib/v2-bridge.js` (`dualPlugin`, `tool.execute.after`), `lib/v2-bridge.js` (`toV1ToolHookOutput`, `toV1ToolOutput`)) |
-| `experimental.chat.system.transform` | `ctx.session.hook('context')` | announces the session before the transform runs, calls the v1 transform with `{ sessionID, model? }` and `{ system: [] }` and pushes each returned string to `event.system` as a text item (`lib/v2-bridge.js` (`dualPlugin`, `experimental.chat.system.transform`)) |
-| `tool` | `ctx.tool.transform` | adds each v1 definition with its zod `args` converted by `z.toJSONSchema`, a string result becomes `{ content }` and an object result `{ content: output, metadata }` with `title` copied into metadata (`lib/v2-bridge.js` (`dualPlugin`, `tool` transform)) |
+| `event` | `ctx.event.subscribe` | replays each v2 event to the v1 handler, adds `info: { id: sessionID }` to session events and announces each session once with a synthesized `session.created` (`lib/v2-bridge.js` (`definePlugin`, `setup` event stream), `lib/v2-bridge.js` (`announceSession`)) |
+| `tool.execute.before` | `ctx.tool.hook('execute.before')` | passes `{ tool, sessionID, callID }` and `{ args }`, reports v2 `shell` and `subagent` as `bash` and `task` with `subagent_type` added beside `agent`, writes changed args back under the v2 names and denies the call on a throw (`lib/v2-bridge.js` (`definePlugin`, `tool.execute.before`), `lib/v2-bridge.js` (`toV1ToolName`, `toV1ToolArgs`, `toV2ToolArgs`)) |
+| `tool.execute.after` | `ctx.tool.hook('execute.after')` | reports the same v1 tool names, converts the v2 result to `{ title, output, metadata }` with `toV1ToolOutput` and gives a `shell` result a string `output` (`lib/v2-bridge.js` (`definePlugin`, `tool.execute.after`), `lib/v2-bridge.js` (`toV1ToolHookOutput`, `toV1ToolOutput`)) |
+| `experimental.chat.system.transform` | `ctx.session.hook('context')` | announces the session before the transform runs, calls the v1 transform with `{ sessionID, model? }` and `{ system: [] }` and pushes each returned string to `event.system` as a text item (`lib/v2-bridge.js` (`definePlugin`, `experimental.chat.system.transform`)) |
+| `tool` | `ctx.tool.transform` | adds each v1 definition with its zod `args` converted by `z.toJSONSchema`, a string result becomes `{ content }` and an object result `{ content: output, metadata }` with `title` copied into metadata (`lib/v2-bridge.js` (`definePlugin`, `tool` transform)) |
 | `dispose` | the cleanup function `setup` returns | aborts the event stream, disposes every registration and then calls the v1 `dispose`, collecting errors and rethrowing them as an `AggregateError` when there are several (`lib/v2-bridge.js` (`cleanup`)) |
 | any other key | not registered | does nothing on OpenCode 2 and shows up in `cleanup.skippedKeys` (`lib/v2-bridge.js` (`cleanup.skippedKeys`)) |
 
@@ -144,7 +144,7 @@ Allowed dependency direction:
 | `session.step.ended` | the original is delivered and `message.updated` is also delivered | cost, tokens, a top-level `sessionID` and `info.time.completed` from the event's `created` time (`lib/v2-bridge.js` (`EVENT_MAPPINGS`, `session.step.ended`)) |
 | `session.inbox.enqueued` | the original is delivered and `message.updated` and `message.part.updated` are also delivered | a user item becomes a user `message.updated` and its text `message.part.updated`, sharing the inbox id (`lib/v2-bridge.js` (`EVENT_MAPPINGS`, `session.inbox.enqueued`)) |
 
-The bridge also announces each session once. `opencode run` sends no `session.created` for its own session, so before that session's first other `session.*` event or its first system transform, whichever comes first, the bridge delivers `session.created` with `{ sessionID, info: { id } }` (`lib/v2-bridge.js` (`announceSession`), `lib/v2-bridge.js` (`dualPlugin`, `setup` event stream), `lib/v2-bridge.js` (`dualPlugin`, `experimental.chat.system.transform`)). A real `session.created` that arrives later for an announced session is dropped, and `session.deleted` waits for any in-flight announcement before it clears the record (`lib/v2-bridge.js` (`dualPlugin`, `setup` event stream), `lib/v2-bridge.js` (`announceSession`)).
+The bridge also announces each session once. `opencode run` sends no `session.created` for its own session, so before that session's first other `session.*` event or its first system transform, whichever comes first, the bridge delivers `session.created` with `{ sessionID, info: { id } }` (`lib/v2-bridge.js` (`announceSession`), `lib/v2-bridge.js` (`definePlugin`, `setup` event stream), `lib/v2-bridge.js` (`definePlugin`, `experimental.chat.system.transform`)). A real `session.created` that arrives later for an announced session is dropped, and `session.deleted` waits for any in-flight announcement before it clears the record (`lib/v2-bridge.js` (`definePlugin`, `setup` event stream), `lib/v2-bridge.js` (`announceSession`)).
 
 The once-per-session events are `session.idle` and `session.compacted` (`lib/v2-bridge.js` (`DEDUPED_SESSION_EVENTS`)). Their delivery latches reset when the session sees `session.execution.started`, `session.compaction.started` or `session.deleted` (`lib/v2-bridge.js` (`SESSION_EVENT_RESET_TYPES`), cleared in the `setup` event stream).
 
@@ -181,7 +181,7 @@ Four capabilities the bridge cannot carry:
 ### Adding a plugin
 
 1. Write the hook factory.
-2. Default-export `dualPlugin('<id>', factory)`.
+2. Default-export `definePlugin('<id>', factory)`.
 3. Use only the mapped hook keys or accept that the others do nothing on OpenCode 2.
 4. Run `tests/plugin-inventory.test.cjs`. The v2 suites find the new file on their own; add a case to `PLUGINS` in `tests/v2-hard-plugins.test.cjs` only when the plugin needs behavior checks.
 5. Gate it with `isHookEnabled('<concern>')`.
@@ -205,7 +205,7 @@ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 
 **Doctor battery.** The second command checks OpenCode 2, and the run starts a private server on its own port. On 2026-10-19, after main added `session-handover.js`, the battery reported all 17 plugin files then in the folder active on OpenCode 2.0.32. That count is dated history: the folder holds 20 plugin files today. In a worktree nested inside another checkout, OpenCode 2 also loads the outer checkout's plugin folder, so the battery's read turns that walk off with `OPENCODE_CONFIG_PROJECT_DISABLE=1`, sets `OPENCODE_CONFIG_DIR` to the root's own `.opencode`, and names each outer folder in an `isolated:` line of the plugin-active result. A plain checkout and CI keep OpenCode 2's normal discovery.
 
-**CI workflow.** `.github/workflows/opencode-v2-battery.yml` runs one job: it provisions every dependency tree the plugins import, runs the config-shape, battery, default-model-id and models-form unit tests, installs `@opencode/cli@2.3.2` into its own prefix and runs the battery with `--family=v2`. It runs on pushes and pull requests to `main` and `skilled/**` that touch the plugin, agent or dispatch-hook trees, the cli-opencode skill (`.skilled/skills/cli-external-orchestration/cli-opencode/**` and `.opencode/skills/cli-external-orchestration/cli-opencode/**`), the setup action (`.github/actions/**`), the package manifests and lockfiles, the battery script and its test, the config-shape test, `opencode.json` or the workflow itself.
+**CI workflow.** `.github/workflows/opencode-v2-battery.yml` runs one job: it provisions every dependency tree the plugins import, runs the config-shape, battery, default-model-id, models-form and setup-helper classify unit tests, installs `@opencode/cli@2.3.2` into its own prefix and runs the battery with `--family=v2`. It runs on pushes and pull requests to `main` and `skilled/**` that touch the plugin, agent or dispatch-hook trees, the cli-opencode skill (`.skilled/skills/cli-external-orchestration/cli-opencode/**` and `.opencode/skills/cli-external-orchestration/cli-opencode/**`), the setup action (`.github/actions/**`), the package manifests and lockfiles, the battery script and its test, the config-shape test, `opencode.json` or the workflow itself.
 
 ---
 

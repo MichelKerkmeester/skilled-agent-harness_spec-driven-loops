@@ -112,7 +112,7 @@ test('readInventory reports an unlisted file, a missing manifest file and a brid
     fs.writeFileSync(path.join(tempDir, 'probe.js'), 'export default {};\n', 'utf8');
     fs.writeFileSync(
       path.join(tempDir, 'both.js'),
-      "export default dualPlugin('both', f);\n",
+      "export default definePlugin('both', f);\n",
       'utf8',
     );
 
@@ -143,6 +143,9 @@ test('readInventory reports an unlisted file, a missing manifest file and a brid
 test('every bridged plugin maps all of its hooks', async () => {
   const manifest = readManifest();
   const inventory = readInventory();
+  // The bridged list comes from a source match on the builder's name, so a miss there would
+  // leave this loop empty and the case passing on nothing.
+  assert.ok(inventory.bridged.length > 0, 'no plugin is classified as bridged');
 
   for (const stem of inventory.bridged) {
     const pluginUrl = pathToFileURL(path.join(PLUGIN_DIR, `${stem}.js`)).href;

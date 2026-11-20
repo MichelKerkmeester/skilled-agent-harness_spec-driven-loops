@@ -30,7 +30,7 @@ import * as dispatchAuditCore from '../hooks/cli-dispatch/lib/dispatch-audit.mjs
 // The same engine the Claude PreToolUse adapter runs, so a rule enforced there is enforced
 // here without a second copy of the severity model or the rule parser.
 import { evaluateDispatch } from '../hooks/cli-dispatch/lib/dispatch-rule-checks.mjs';
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
@@ -128,4 +128,4 @@ async function MkCliDispatchAuditPlugin(ctx) {
   };
 }
 
-export default dualPlugin('cli-dispatch-audit', MkCliDispatchAuditPlugin);
+export default definePlugin('cli-dispatch-audit', MkCliDispatchAuditPlugin);

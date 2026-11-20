@@ -22,7 +22,7 @@ import {
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -372,4 +372,4 @@ async function sessionCleanupPlugin(input = {}, overrides = {}) {
   };
 }
 
-export default dualPlugin('session-cleanup', sessionCleanupPlugin);
+export default definePlugin('session-cleanup', sessionCleanupPlugin);

@@ -19,7 +19,7 @@ import { dirname, join } from 'node:path';
 import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
 import { isHookEnabled } from '../hooks/shared/hook-flags.mjs';
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 // The policy is a .cjs core so the command hooks, Pi, DSH and this plugin run
@@ -120,4 +120,4 @@ async function OverlayGuardPlugin(ctx) {
   };
 }
 
-export default dualPlugin('overlay-guard', OverlayGuardPlugin);
+export default definePlugin('overlay-guard', OverlayGuardPlugin);

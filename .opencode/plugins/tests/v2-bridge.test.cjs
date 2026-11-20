@@ -58,7 +58,7 @@ function createV2Context() {
 }
 
 async function forwardEventsToV1(events) {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context } = createV2Context();
   const receivedEvents = [];
   let finishStream;
@@ -74,7 +74,7 @@ async function forwardEventsToV1(events) {
     }
   })();
 
-  const plugin = dualPlugin('event-payload-test', async () => ({
+  const plugin = definePlugin('event-payload-test', async () => ({
     event: async ({ event: v1Event }) => receivedEvents.push(v1Event),
   }));
   const cleanup = await plugin.setup(context);
@@ -125,7 +125,7 @@ test('message events do not gain session info', async () => {
 });
 
 test('session.messages adapts v2 context entries to the v1 data envelope', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context } = createV2Context();
   const v2Messages = [
     { type: 'assistant', id: 'message_old', content: [{ type: 'text', text: 'Old answer' }] },
@@ -148,7 +148,7 @@ test('session.messages adapts v2 context entries to the v1 data envelope', async
     receivedInput = input;
     return v2Messages;
   };
-  const plugin = dualPlugin('messages-client-test', async (input) => {
+  const plugin = definePlugin('messages-client-test', async (input) => {
     client = input.client;
     return {};
   });
@@ -184,7 +184,7 @@ test('session.messages adapts v2 context entries to the v1 data envelope', async
 });
 
 test('session.promptAsync queues v1 text through v2 session.prompt', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context } = createV2Context();
   let receivedInput;
   let client;
@@ -192,7 +192,7 @@ test('session.promptAsync queues v1 text through v2 session.prompt', async () =>
     receivedInput = input;
     return { id: 'inbox_1' };
   };
-  const plugin = dualPlugin('prompt-async-client-test', async (input) => {
+  const plugin = definePlugin('prompt-async-client-test', async (input) => {
     client = input.client;
     return {};
   });
@@ -221,7 +221,7 @@ test('session.promptAsync queues v1 text through v2 session.prompt', async () =>
 });
 
 test('session create, prompt, and delete map to v2 session methods', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context } = createV2Context();
   let createInput;
   let generateInput;
@@ -238,7 +238,7 @@ test('session create, prompt, and delete map to v2 session methods', async () =>
   context.session.remove = async (input) => {
     removeInput = input;
   };
-  const plugin = dualPlugin('session-methods-client-test', async (input) => {
+  const plugin = definePlugin('session-methods-client-test', async (input) => {
     client = input.client;
     return {};
   });
@@ -275,14 +275,14 @@ test('session create, prompt, and delete map to v2 session methods', async () =>
 });
 
 test('client session update passes the title to the native session update', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context } = createV2Context();
   let receivedInput;
   let client;
   context.session.update = async (input) => {
     receivedInput = input;
   };
-  const plugin = dualPlugin('session-update-client-test', async (input) => {
+  const plugin = definePlugin('session-update-client-test', async (input) => {
     client = input.client;
     return {};
   });
@@ -299,10 +299,10 @@ test('client session update passes the title to the native session update', asyn
 });
 
 test('session client methods reject when their v2 session member is missing', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context } = createV2Context();
   let client;
-  const plugin = dualPlugin('missing-session-method-test', async (input) => {
+  const plugin = definePlugin('missing-session-method-test', async (input) => {
     client = input.client;
     return {};
   });
@@ -334,7 +334,7 @@ test('session client methods reject when their v2 session member is missing', as
 });
 
 test('execution and compaction events emit their v1 aliases once', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context } = createV2Context();
   const receivedEvents = [];
   const events = [
@@ -357,7 +357,7 @@ test('execution and compaction events emit their v1 aliases once', async () => {
       finishStream();
     }
   })();
-  const plugin = dualPlugin('event-alias-test', async () => ({
+  const plugin = definePlugin('event-alias-test', async () => ({
     event: async ({ event }) => {
       receivedEvents.push(event);
     },
@@ -517,7 +517,7 @@ test('a leading session.created is delivered once without a synthesized duplicat
 });
 
 test('a system transform before the stream announces its session once', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, sessionHooks } = createV2Context();
   const receivedEvents = [];
   const order = [];
@@ -537,7 +537,7 @@ test('a system transform before the stream announces its session once', { timeou
       finishStream();
     }
   })();
-  const plugin = dualPlugin('context-announce-test', async () => ({
+  const plugin = definePlugin('context-announce-test', async () => ({
     event: async ({ event }) => {
       receivedEvents.push(event);
       order.push(`event:${event.type}`);
@@ -569,7 +569,7 @@ test('a system transform before the stream announces its session once', { timeou
 });
 
 test('a system transform waits for an announcement the stream already started', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, sessionHooks } = createV2Context();
   const order = [];
   let releaseCreated;
@@ -591,7 +591,7 @@ test('a system transform waits for an announcement the stream already started', 
       finishStream();
     }
   })();
-  const plugin = dualPlugin('context-wait-test', async () => ({
+  const plugin = definePlugin('context-wait-test', async () => ({
     event: async ({ event }) => {
       if (event.type === 'session.created') {
         createdStarted();
@@ -623,7 +623,7 @@ test('a system transform waits for an announcement the stream already started', 
 });
 
 test('a system transform waits for a real session.created already being delivered', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, sessionHooks } = createV2Context();
   const receivedEvents = [];
   const order = [];
@@ -646,7 +646,7 @@ test('a system transform waits for a real session.created already being delivere
       finishStream();
     }
   })();
-  const plugin = dualPlugin('context-wait-real-created-test', async () => ({
+  const plugin = definePlugin('context-wait-real-created-test', async () => ({
     event: async ({ event }) => {
       receivedEvents.push(event);
       if (event.type === 'session.created') {
@@ -685,7 +685,7 @@ test('a system transform waits for a real session.created already being delivere
 });
 
 test('session.deleted waits for an in-flight announcement of the same session', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, sessionHooks } = createV2Context();
   const receivedEvents = [];
   const order = [];
@@ -713,7 +713,7 @@ test('session.deleted waits for an in-flight announcement of the same session', 
       finishStream();
     }
   })();
-  const plugin = dualPlugin('deleted-waits-announce-test', async () => ({
+  const plugin = definePlugin('deleted-waits-announce-test', async () => ({
     event: async ({ event }) => {
       if (event.type === 'session.created') {
         createdStarted();
@@ -750,12 +750,12 @@ test('session.deleted waits for an in-flight announcement of the same session', 
 });
 
 test('an event failure during context announcement is reported at cleanup', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, sessionHooks } = createV2Context();
   const eventError = new Error('event hook failed');
   let transformed = false;
   context.event.subscribe = () => (async function* () {})();
-  const plugin = dualPlugin('event-failure-cleanup-test', async () => ({
+  const plugin = definePlugin('event-failure-cleanup-test', async () => ({
     event: async ({ event }) => {
       if (event.type === 'session.created') throw eventError;
     },
@@ -775,10 +775,10 @@ test('an event failure during context announcement is reported at cleanup', { ti
 });
 
 test('a tool named constructor reaches the plugin as a plain string', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, toolHooks } = createV2Context();
   let receivedPair;
-  const plugin = dualPlugin('constructor-name-test', async () => ({
+  const plugin = definePlugin('constructor-name-test', async () => ({
     'tool.execute.before': async (input, output) => {
       receivedPair = { input, args: output.args };
     },
@@ -800,10 +800,10 @@ test('a tool named constructor reaches the plugin as a plain string', { timeout:
 });
 
 test('a transform without an event hook does not synthesize an event', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, sessionHooks } = createV2Context();
   let transformed = false;
-  const plugin = dualPlugin('no-event-hook-transform-test', async () => ({
+  const plugin = definePlugin('no-event-hook-transform-test', async () => ({
     'experimental.chat.system.transform': async () => {
       transformed = true;
     },
@@ -999,7 +999,7 @@ test('a non-user inbox item maps to nothing beyond the original event', async ()
 });
 
 test('setup bridges mapped hooks, counts skipped keys, and cleans up registrations and events', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { z } = await import('zod');
   const { context, registrations, toolHooks, sessionHooks } = createV2Context();
   const event = {
@@ -1033,7 +1033,7 @@ test('setup bridges mapped hooks, counts skipped keys, and cleans up registratio
     })();
   };
 
-  const plugin = dualPlugin('bridge-test', async (input) => {
+  const plugin = definePlugin('bridge-test', async (input) => {
     const { client, ...legacyInput } = input;
     assert.deepEqual(legacyInput, {
       project: undefined,
@@ -1163,9 +1163,9 @@ test('setup bridges mapped hooks, counts skipped keys, and cleans up registratio
 });
 
 test('the v2 handler rejects when the v1 hook throws so the host denies the tool call', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, toolHooks } = createV2Context();
-  const plugin = dualPlugin('deny-test', async () => ({
+  const plugin = definePlugin('deny-test', async () => ({
     'tool.execute.before': async () => {
       throw new Error('Denied by v1 hook');
     },
@@ -1180,10 +1180,10 @@ test('the v2 handler rejects when the v1 hook throws so the host denies the tool
 });
 
 test('execute.after maps a v2 error result to v1 output', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, toolHooks } = createV2Context();
   let receivedOutput;
-  const plugin = dualPlugin('error-result-test', async () => ({
+  const plugin = definePlugin('error-result-test', async () => ({
     'tool.execute.after': async (_input, output) => {
       receivedOutput = output;
     },
@@ -1207,10 +1207,10 @@ test('execute.after maps a v2 error result to v1 output', async () => {
 });
 
 test('execute.after maps title, output, and metadata from a v2 result', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, toolHooks } = createV2Context();
   let receivedOutput;
-  const plugin = dualPlugin('titled-result-test', async () => ({
+  const plugin = definePlugin('titled-result-test', async () => ({
     'tool.execute.after': async (_input, output) => {
       receivedOutput = output;
     },
@@ -1235,10 +1235,10 @@ test('execute.after maps title, output, and metadata from a v2 result', async ()
 });
 
 test('execute.after defaults output fields when the v2 result is absent', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, toolHooks } = createV2Context();
   let receivedOutput;
-  const plugin = dualPlugin('absent-result-test', async () => ({
+  const plugin = definePlugin('absent-result-test', async () => ({
     'tool.execute.after': async (_input, output) => {
       receivedOutput = output;
     },
@@ -1258,9 +1258,9 @@ test('execute.after defaults output fields when the v2 result is absent', async 
 });
 
 test('v1 tool string results convert to v2 content results', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context } = createV2Context();
-  const plugin = dualPlugin('string-tool-result-test', async () => ({
+  const plugin = definePlugin('string-tool-result-test', async () => ({
     tool: {
       example: {
         description: 'Example tool',
@@ -1284,10 +1284,10 @@ test('v1 tool string results convert to v2 content results', async () => {
 });
 
 test('v1 tool object results convert output and title metadata to v2 results', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { z } = await import('zod');
   const { context } = createV2Context();
-  const plugin = dualPlugin('object-tool-result-test', async () => ({
+  const plugin = definePlugin('object-tool-result-test', async () => ({
     tool: {
       example: {
         description: 'Example tool',
@@ -1317,7 +1317,7 @@ test('v1 tool object results convert output and title metadata to v2 results', a
 });
 
 test('v1 tool execute receives adapted context fields and preserved v2 fields', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { z } = await import('zod');
   const { context } = createV2Context();
   const abortController = new AbortController();
@@ -1326,7 +1326,7 @@ test('v1 tool execute receives adapted context fields and preserved v2 fields', 
     progressUpdates.push(update);
   };
   let receivedContext;
-  const plugin = dualPlugin('tool-context-test', async () => ({
+  const plugin = definePlugin('tool-context-test', async () => ({
     tool: {
       example: {
         description: 'Example tool',
@@ -1375,10 +1375,10 @@ test('v1 tool execute receives adapted context fields and preserved v2 fields', 
 });
 
 test('system transform receives the model when the v2 context event includes one', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, sessionHooks } = createV2Context();
   let receivedInput;
-  const plugin = dualPlugin('context-model-test', async () => ({
+  const plugin = definePlugin('context-model-test', async () => ({
     'experimental.chat.system.transform': async (input) => {
       receivedInput = input;
     },
@@ -1393,9 +1393,9 @@ test('system transform receives the model when the v2 context event includes one
 });
 
 test('cleanup returns the same promise when called more than once', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context } = createV2Context();
-  const plugin = dualPlugin('cleanup-promise-test', async () => ({}));
+  const plugin = definePlugin('cleanup-promise-test', async () => ({}));
   const cleanup = await plugin.setup(context);
 
   const firstCleanup = cleanup();
@@ -1404,9 +1404,9 @@ test('cleanup returns the same promise when called more than once', async () => 
 });
 
 test('cleanup rejects when a registered dispose rejects', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, registrations } = createV2Context();
-  const plugin = dualPlugin('cleanup-dispose-test', async () => ({
+  const plugin = definePlugin('cleanup-dispose-test', async () => ({
     'tool.execute.before': async () => {},
   }));
   const cleanup = await plugin.setup(context);
@@ -1419,13 +1419,13 @@ test('cleanup rejects when a registered dispose rejects', async () => {
 });
 
 test('setup failure cleans registered hooks and rethrows the original error', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, registrations } = createV2Context();
   const setupError = new Error('Context hook registration failed');
   context.session.hook = () => {
     throw setupError;
   };
-  const plugin = dualPlugin('setup-failure-test', async () => ({
+  const plugin = definePlugin('setup-failure-test', async () => ({
     'tool.execute.before': async () => {},
     'experimental.chat.system.transform': async () => {},
   }));
@@ -1436,11 +1436,11 @@ test('setup failure cleans registered hooks and rethrows the original error', as
 });
 
 test('execute.before leaves the original args untouched when the v1 hook does not change them', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, toolHooks } = createV2Context();
   const args = { path: 'original.txt' };
   let receivedArgs;
-  const plugin = dualPlugin('unchanged-args-test', async () => ({
+  const plugin = definePlugin('unchanged-args-test', async () => ({
     'tool.execute.before': async (_input, output) => {
       receivedArgs = output.args;
     },
@@ -1470,10 +1470,10 @@ test('tool identity preserves the v1 helper contract', async () => {
 });
 
 test('execute.before presents a v2 shell call to the plugin as bash', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, toolHooks } = createV2Context();
   let receivedPair;
-  const plugin = dualPlugin('shell-name-test', async () => ({
+  const plugin = definePlugin('shell-name-test', async () => ({
     'tool.execute.before': async (input, output) => {
       receivedPair = { input, args: output.args };
     },
@@ -1495,11 +1495,11 @@ test('execute.before presents a v2 shell call to the plugin as bash', async () =
 });
 
 test('execute.before leaves a non-aliased tool and its args unchanged', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, toolHooks } = createV2Context();
   const args = { path: 'result.txt' };
   let receivedPair;
-  const plugin = dualPlugin('read-name-test', async () => ({
+  const plugin = definePlugin('read-name-test', async () => ({
     'tool.execute.before': async (input, output) => {
       receivedPair = { input, args: output.args };
     },
@@ -1523,10 +1523,10 @@ test('execute.before leaves a non-aliased tool and its args unchanged', async ()
 });
 
 test('execute.before presents a v2 subagent call as task with subagent_type', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, toolHooks } = createV2Context();
   let receivedPair;
-  const plugin = dualPlugin('subagent-name-test', async () => ({
+  const plugin = definePlugin('subagent-name-test', async () => ({
     'tool.execute.before': async (input, output) => {
       receivedPair = { input, args: output.args };
     },
@@ -1553,9 +1553,9 @@ test('execute.before presents a v2 subagent call as task with subagent_type', as
 });
 
 test('execute.before writes a changed subagent_type back to agent', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, toolHooks } = createV2Context();
-  const plugin = dualPlugin('subagent-override-test', async () => ({
+  const plugin = definePlugin('subagent-override-test', async () => ({
     'tool.execute.before': async (_input, output) => {
       output.args = { ...output.args, subagent_type: 'review' };
     },
@@ -1579,11 +1579,11 @@ test('execute.before writes a changed subagent_type back to agent', async () => 
 });
 
 test('execute.after gives a v2 shell call the v1 string output', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, toolHooks } = createV2Context();
   let receivedInput;
   let receivedOutput;
-  const plugin = dualPlugin('shell-output-test', async () => ({
+  const plugin = definePlugin('shell-output-test', async () => ({
     'tool.execute.after': async (input, output) => {
       receivedInput = input;
       receivedOutput = output;
@@ -1615,10 +1615,10 @@ test('execute.after gives a v2 shell call the v1 string output', async () => {
 });
 
 test('execute.after presents a v2 subagent call as task with subagent_type', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, toolHooks } = createV2Context();
   let receivedInput;
-  const plugin = dualPlugin('subagent-after-name-test', async () => ({
+  const plugin = definePlugin('subagent-after-name-test', async () => ({
     'tool.execute.after': async (input) => {
       receivedInput = input;
     },
@@ -1640,10 +1640,10 @@ test('execute.after presents a v2 subagent call as task with subagent_type', asy
 });
 
 test('a v1 hook refusal for bash reaches the host for a v2 shell call', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context, toolHooks } = createV2Context();
   let receivedTool;
-  const plugin = dualPlugin('shell-deny-test', async () => ({
+  const plugin = definePlugin('shell-deny-test', async () => ({
     'tool.execute.before': async (input) => {
       receivedTool = input.tool;
       throw new Error('Denied by v1 hook');
@@ -1667,14 +1667,14 @@ test('a v1 hook refusal for bash reaches the host for a v2 shell call', async ()
 });
 
 test('setup forwards its options to the factory, which stays a hidden property', async () => {
-  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { definePlugin } = await import('../lib/v2-bridge.js');
   const { context } = createV2Context();
   const calls = [];
   const factory = async (input, options) => {
     calls.push({ directory: input.directory, options });
     return {};
   };
-  const plugin = dualPlugin('options-test', factory);
+  const plugin = definePlugin('options-test', factory);
 
   assert.deepEqual(Object.keys(plugin), ['id', 'setup']);
   assert.equal(Object.hasOwn(plugin, 'server'), false);

@@ -28,7 +28,7 @@ import { createRequire } from 'node:module';
 // same core. Unlike the deep-loop guard's .cjs core, this core is real ESM
 // (it statically imports the ESM Gate-3 classifier), so it is imported directly.
 import * as guardCore from '../skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs';
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
@@ -300,4 +300,4 @@ async function MkSpecGatePlugin(ctx) {
   };
 }
 
-export default dualPlugin('system-spec-gate', MkSpecGatePlugin);
+export default definePlugin('system-spec-gate', MkSpecGatePlugin);

@@ -17,7 +17,7 @@ import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 import { tool } from './lib/tool-identity.js';
 
 const require = createRequire(import.meta.url);
@@ -148,4 +148,4 @@ async function EnvSecretGuardPlugin(ctx) {
   };
 }
 
-export default dualPlugin('env-secret-guard', EnvSecretGuardPlugin);
+export default definePlugin('env-secret-guard', EnvSecretGuardPlugin);

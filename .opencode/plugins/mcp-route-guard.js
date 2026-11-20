@@ -20,7 +20,7 @@ import { appendFileSync, copyFileSync, mkdirSync, statSync, truncateSync } from 
 import { dirname, join } from 'node:path';
 import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 // A .cjs core is imported here as the ESM default export so this file can stay
@@ -101,4 +101,4 @@ async function MkMcpRouteGuardPlugin(ctx) {
   };
 }
 
-export default dualPlugin('mcp-route-guard', MkMcpRouteGuardPlugin);
+export default definePlugin('mcp-route-guard', MkMcpRouteGuardPlugin);

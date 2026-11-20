@@ -79,7 +79,7 @@ function readInventory(pluginDir = PLUGIN_DIR, manifest = readManifest(pluginDir
       // A symlink whose build target is missing reads as absent; any other failure is a real error.
       if (error.code !== 'ENOENT') throw error;
     }
-    const isBridged = source.includes(`dualPlugin('${stem}'`);
+    const isBridged = source.includes(`definePlugin('${stem}'`);
 
     if (isBridged) bridged.push(stem);
     if (nativeDualFiles.has(file)) nativeDual.push(stem);

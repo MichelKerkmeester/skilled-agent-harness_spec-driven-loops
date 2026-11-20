@@ -18,7 +18,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 import { MUTATING_TOOLS } from './lib/sk-code-post-edit-quality-core.js';
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
@@ -246,4 +246,4 @@ async function MkDistFreshnessGuardPlugin(ctx) {
   };
 }
 
-export default dualPlugin('system-dist-freshness-guard', MkDistFreshnessGuardPlugin);
+export default definePlugin('system-dist-freshness-guard', MkDistFreshnessGuardPlugin);

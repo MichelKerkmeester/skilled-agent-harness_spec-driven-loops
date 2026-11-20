@@ -27,7 +27,7 @@
 import { createRequire } from 'node:module';
 import core from '../skills/system-spec-kit/runtime/cli/lib/completion-state.cjs';
 import { tool } from './lib/tool-identity.js';
-import { dualPlugin } from './lib/v2-bridge.js';
+import { definePlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
@@ -88,4 +88,4 @@ async function MkSpeckitCompletionPlugin(ctx) {
   };
 }
 
-export default dualPlugin('system-speckit-completion', MkSpeckitCompletionPlugin);
+export default definePlugin('system-speckit-completion', MkSpeckitCompletionPlugin);
