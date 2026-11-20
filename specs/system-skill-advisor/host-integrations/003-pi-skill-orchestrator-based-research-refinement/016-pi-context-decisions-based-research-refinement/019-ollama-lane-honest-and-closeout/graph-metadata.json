@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The lane is off but could not be turned back on honestly: only a manual scan refreshes vectors, partial coverage still scores, an Ollama outage leaves the lane's weight in the total, and the daemon ignores `OLLAMA` settings",
     "created_at": "2026-11-19T17:05:15Z",
-    "last_save_at": "2026-11-20T07:53:48.702Z",
+    "last_save_at": "2026-11-20T09:30:28.618Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d7ddbb923350454f9c35caf9431d7aa7a02528cee0820ad888eac74299801d6c",
+    "source_fingerprint": "sha256:978bcad2a4fe03d8fc821649d86a13a2b6cf44a2e4b7c07dd8afe7195dd893c7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d28906535201597ee1d97819ac708b68fc5538111c08b25de7253c3a61ca078f",
       "plan.md": "15273a9b40649aa0851458e66dc450e492089f2a42e84b66bd5097307fc0fbdd",
       "tasks.md": "4a9d1fdf3f3d3be5f74233208850fe695186c92bf1d103f72d573117cb9a0084",
       "decision-record.md": "57635c9d39b8d4004fb18298a2b742f5f4df20a1fde287b06d320c8d20eb2f73",
-      "implementation-summary.md": "211e44a76022a29477046fb5855935623527cf496db8d9af92c14d5e325bb7f5"
+      "implementation-summary.md": "4edb624c4dac3193d4383b95e5484e0e1e92e67c5a60db3776fdc69aa6be3fde"
     },
     "last_active_at": null
   }
