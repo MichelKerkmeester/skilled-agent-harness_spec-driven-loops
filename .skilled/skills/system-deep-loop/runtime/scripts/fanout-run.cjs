@@ -1304,7 +1304,11 @@ function buildLineageOutcomes(results, { loopType, lineagesDir, argv } = {}) {
       rerun_command: rerunCommandFor(result.label, argv),
     };
     const lineageDir = lineagesDir ? path.join(lineagesDir, result.label) : null;
-    if (lineageDir && lineageConfigStatus(loopType, lineageDir) === 'complete') {
+    if (error.reason === FINISHED_LINEAGE_MISMATCH_REASON) {
+      outcome.rerun_note = 'this lineage finished for a different topic, target or executor; rerun the '
+        + 'whole fan-out with --restart, which archives this packet and starts a fresh session';
+      outcome.rerun_command = null;
+    } else if (lineageDir && lineageConfigStatus(loopType, lineageDir) === 'complete') {
       outcome.rerun_note = `archive ${lineageDir} first: its config is complete, so a rerun in place `
         + `cannot run it again; then rerun it with ${outcome.rerun_command}`;
       outcome.rerun_command = null;
@@ -1427,6 +1431,59 @@ function finishedLineageSkipReason({ loopType, lineageDir, lineage, stopPolicy }
   const stop = checkLineageStopEvidence(stateRead.records, lineageCompletionPolicy(loopType, lineageDir));
   if (!stop.complete && stop.failure !== 'no_terminal_event') return null;
   return `${LINEAGE_CONFIG_BY_LOOP_TYPE[loopType]} is complete and its artifacts are on disk`;
+}
+
+const FINISHED_LINEAGE_MISMATCH_REASON = 'finished_lineage_mismatch';
+// Said before the recorded values, so a long topic cannot push the remedy out of a clipped line.
+const FINISHED_LINEAGE_REFUSAL_GUIDANCE = ', so it is refused rather than respawned into its finished '
+  + 'folder; rerun the fan-out with --restart, which archives this packet and starts a fresh session';
+
+// The recorded executor fields a finished lineage must share with this run's build of it. The
+// executable path and version are left out: a CLI upgrade changes them without changing the
+// executor, and refusing on that would force a restart that archives the whole packet.
+const FINISHED_LINEAGE_EXECUTOR_FIELDS = Object.freeze([
+  'kind', 'model', 'reasoningEffort', 'serviceTier', 'sandboxMode', 'permissionMode', 'webSearch',
+]);
+
+function readJsonRecord(filePath) {
+  try {
+    const parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    return isRecord(parsed) ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+function collapseBindingText(value) {
+  return typeof value === 'string' ? value.replace(REVIEW_FOCUS_CONTROL_PATTERN, ' ').replace(/\s+/g, ' ').trim() : '';
+}
+
+/**
+ * The refusal for a finished lineage that belongs to a different run than this one, or null.
+ *
+ * A skipped lineage hands its old results to this run's synthesis, so it may be skipped only
+ * when it finished on this run's topic (research) or review target (review) and under the same
+ * executor. A side with no recorded value is an older lineage and is not judged on it.
+ */
+function finishedLineageMismatch({ loopType, lineageDir, label, binding, effectiveConfig }) {
+  const field = loopType === 'review' ? 'reviewTarget' : 'topic';
+  const config = readJsonRecord(path.join(lineageDir, LINEAGE_CONFIG_BY_LOOP_TYPE[loopType]));
+  const recorded = collapseBindingText(config && config[field]);
+  const current = collapseBindingText(binding);
+  if (recorded && current && recorded !== current) {
+    return `lineage ${label} finished on a different ${field}${FINISHED_LINEAGE_REFUSAL_GUIDANCE}`
+      + `: recorded ${JSON.stringify(recorded)}, this run ${JSON.stringify(current)}`;
+  }
+  const metadata = readJsonRecord(path.join(lineageDir, 'invocation-metadata.json'));
+  const prior = metadata && isRecord(metadata.effectiveConfig) ? metadata.effectiveConfig : null;
+  if (!prior || !isRecord(effectiveConfig)) return null;
+  const changed = FINISHED_LINEAGE_EXECUTOR_FIELDS.filter((name) => (
+    Object.prototype.hasOwnProperty.call(effectiveConfig, name)
+    && (prior[name] ?? null) !== (effectiveConfig[name] ?? null)
+  ));
+  if (changed.length === 0) return null;
+  return `lineage ${label} finished under a different executor${FINISHED_LINEAGE_REFUSAL_GUIDANCE}: `
+    + changed.map((name) => `${name} ${JSON.stringify(prior[name] ?? null)} -> ${JSON.stringify(effectiveConfig[name] ?? null)}`).join(', ');
 }
 
 function findMaxIterationsPolicyViolation({ loopType, stateRead, lineage, stopPolicy, lineageDir }) {
@@ -4240,14 +4297,31 @@ async function main() {
   // Judged once, before any attempt: a retry of a lineage that failed after writing its
   // completed config must meet the strict check again, not be waved through as finished.
   const finishedLineageSkipReasons = new Map();
+  const finishedLineageRefusals = new Map();
+  // A vibe command writes its home and prompt file into the lineage folder while it is built,
+  // so a finished vibe lineage is matched on its kind alone instead of being built in place.
+  const currentEffectiveConfig = (lineage, lineageDir) => {
+    if (lineage.kind === 'cli-mistral-vibe') return { kind: lineage.kind };
+    const frontierScope = frontierPartition ? (frontierPartition[lineage.label] || []).map((node) => node.nodeId) : [];
+    try {
+      return buildLineageDispatch(lineage, lineageDir, frontierScope).effectiveConfig;
+    } catch {
+      return null;
+    }
+  };
   for (const lineage of cliLineages) {
-    const skipReason = finishedLineageSkipReason({
+    const lineageDir = path.join(lineagesDir, lineage.label);
+    const skipReason = finishedLineageSkipReason({ loopType, lineageDir, lineage, stopPolicy });
+    if (!skipReason) continue;
+    const mismatch = finishedLineageMismatch({
       loopType,
-      lineageDir: path.join(lineagesDir, lineage.label),
-      lineage,
-      stopPolicy,
+      lineageDir,
+      label: lineage.label,
+      binding: loopType === 'review' ? reviewTargetBinding.target : researchTopic,
+      effectiveConfig: currentEffectiveConfig(lineage, lineageDir),
     });
-    if (skipReason) finishedLineageSkipReasons.set(lineage.label, skipReason);
+    if (mismatch) finishedLineageRefusals.set(lineage.label, mismatch);
+    else finishedLineageSkipReasons.set(lineage.label, skipReason);
   }
   const { results, summary } = await runCappedPool({
     items: cliLineages,
@@ -4292,6 +4366,15 @@ async function main() {
         });
         process.stderr.write(`[fanout-run] lineage ${lineage.label} skipped: ${skipReason}\n`);
         return { label: lineage.label, exitCode: 0, timedOut: false, skipped: true, skipReason };
+      }
+      const refusal = finishedLineageRefusals.get(lineage.label);
+      if (refusal) {
+        const failure = new Error(refusal);
+        failure.label = lineage.label;
+        failure.exitCode = null;
+        failure.timedOut = false;
+        failure.reason = FINISHED_LINEAGE_MISMATCH_REASON;
+        throw failure;
       }
       if (frontierPartition) writeLineageFrontierStore(lineageDir, frontierPartition[lineage.label] || [], { inbox: loopType !== 'review' });
       const frontierScope = frontierPartition ? (frontierPartition[lineage.label] || []).map((node) => node.nodeId) : [];
@@ -5136,6 +5219,7 @@ module.exports = {
   discoverForeignLiveRunDirs,
   readStoredLineageSessionId,
   finishedLineageSkipReason,
+  finishedLineageMismatch,
   TERMINAL_STOP_EVENTS_BY_LOOP_TYPE,
   lineageCompletionPolicy,
   startLineageProgressHeartbeat,

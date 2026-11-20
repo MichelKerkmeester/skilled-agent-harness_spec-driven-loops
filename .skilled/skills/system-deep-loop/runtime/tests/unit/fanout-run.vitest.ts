@@ -3247,6 +3247,58 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
     expect(result.exitCode).not.toBe(0);
   });
 
+  it('skips a finished lineage only for the topic and executor it finished under, and refuses it otherwise', async () => {
+    const binDir = makeTempDir('fanout-run-finished-identity-bin-');
+    const hermetic = useHermeticEnv('finished-identity');
+    const specFolder = 'specs/test-fanout-finished-identity';
+    const baseDir = makeBaseArtifactDir(hermetic, specFolder, 'research');
+    writeReentrantStubBinary(binDir);
+    const labels = ['seat-a', 'seat-b'];
+    const matrix = (modelB: string) => JSON.stringify({
+      executors: [
+        { label: 'seat-a', kind: 'cli-opencode', model: 'opencode-go/glm-5.1' },
+        { label: 'seat-b', kind: 'cli-opencode', model: modelB },
+      ],
+      concurrency: 1,
+      maxRetries: 0,
+    });
+    const run = (topic: string, modelB = 'opencode-go/glm-5.1') => rawSpawnCjs(fanoutRunScript, [
+      '--spec-folder', specFolder, '--loop-type', 'research', '--research-topic', topic,
+      '--fanout-config-json', matrix(modelB), '--base-artifact-dir', baseDir,
+    ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 60_000 });
+    const outcomes = (stdout: string) => (JSON.parse(stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      summary?: { lineages?: Array<Record<string, unknown>> };
+    }).summary?.lineages ?? [];
+    const spawned = () => labels.filter((label) => existsSync(join(baseDir, 'lineages', label, 'spawned.marker')));
+
+    const first = await run('OLD  topic');
+    expect(first.exitCode, first.stdout).toBe(0);
+    for (const label of labels) {
+      const dir = join(baseDir, 'lineages', label);
+      writeFileSync(join(dir, 'deep-research-config.json'), JSON.stringify({ status: 'complete', topic: 'OLD topic' }), 'utf8');
+      rmSync(join(dir, 'spawned.marker'));
+    }
+
+    const same = await run('OLD topic');
+    expect(outcomes(same.stdout).map((row) => row.status), same.stdout).toEqual(['skipped_complete', 'skipped_complete']);
+    expect(same.exitCode).toBe(0);
+
+    const newTopic = await run('NEW topic');
+    expect(spawned()).toEqual([]);
+    expect(outcomes(newTopic.stdout).map((row) => row.status), newTopic.stdout).toEqual(['failed', 'failed']);
+    for (const row of outcomes(newTopic.stdout)) {
+      expect(row.rerun_command).toBeNull();
+      expect(String(row.rerun_note)).toContain('--restart');
+    }
+    expect(newTopic.stderr).toMatch(/seat-a[^\n]*topic[^\n]*--restart/);
+    expect(newTopic.exitCode).toBe(3);
+
+    const newModel = await run('OLD topic', 'opencode-go/kimi-k2.5');
+    expect(spawned()).toEqual([]);
+    expect(outcomes(newModel.stdout).map((row) => row.status), newModel.stdout).toEqual(['skipped_complete', 'failed']);
+    expect(newModel.stderr).toMatch(/seat-b[^\n]*executor[^\n]*--restart[^\n]*model "opencode-go\/glm-5.1" -> "opencode-go\/kimi-k2.5"/);
+  });
+
   it('retries a lineage that wrote its completed config and then timed out, rather than skipping it', async () => {
     const binDir = makeTempDir('fanout-run-reentrant-retry-bin-');
     const hermetic = useHermeticEnv('reentrant-retry');
