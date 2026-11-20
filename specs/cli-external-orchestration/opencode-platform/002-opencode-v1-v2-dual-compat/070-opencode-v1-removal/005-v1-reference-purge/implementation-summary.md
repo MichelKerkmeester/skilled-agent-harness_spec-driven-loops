@@ -103,6 +103,7 @@ The five removed tests are the three `remove-v1` end-to-end cases (one usage tes
 | Accept history-fed residue in the two generated retrieval files (ADR-002) | Their v1 phrases come only from changelogs, spec docs and the cli-opencode 1.x skill versions, which stay as written |
 | Teach the sk-git fixture parity test the fixture's one edit | The test compares the fixture with a frozen Git commit, so the edit has to be stated, and it is stated as a pattern so the test file names no old version |
 | Keep the battery's flat `info.mcp` reader | It is not shown to be OpenCode 1 only, so the code stays and only the test variable was renamed |
+| Delete the model-catalog ladders measured only on OpenCode 1 | No test reads them, and OpenCode 2.3.2's `opencode models` (778 ids on 2026-11-20) shows no levels to re-read them from |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -132,7 +133,7 @@ The five removed tests are the three `remove-v1` end-to-end cases (one usage tes
 
 1. **A leftover OpenCode 1 binary fails with OpenCode's own usage error.** The wrapper launches it with `--standalone`, which it does not accept. Remove it by hand with `npm uninstall -g opencode-ai`.
 2. **The literal sweep is not empty.** The two generated retrieval files keep phrases fed by history and by the cli-opencode skill's 1.x version numbers (ADR-002).
-3. **The effort-ladder rows in the cli-opencode model catalog stay unverified on 2.3.2.** They no longer say where they were observed, and no OpenCode 2 reading of them is recorded.
+3. **No effort ladder is recorded on OpenCode 2 except Mistral's.** The ladders observed only on OpenCode 1 were deleted from the model catalog, and OpenCode 2.3.2's `opencode models` lists ids only, so a level is confirmed with a one-turn run before it is relied on. Two llmgateway rows keep ladder notes dated September 2026 that name no version; they were left as written.
 <!-- /ANCHOR:limitations -->
 
 ---

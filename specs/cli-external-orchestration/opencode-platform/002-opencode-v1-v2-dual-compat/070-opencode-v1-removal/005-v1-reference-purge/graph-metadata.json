@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Nothing in the repository runs OpenCode 1, yet 39 files outside history still named it",
     "created_at": "2026-11-20T16:32:13Z",
-    "last_save_at": "2026-11-20T17:14:09.524Z",
+    "last_save_at": "2026-11-20T17:25:56.693Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c078c591b2b4e38bf6316e25c2975f89c19faa5acb98204f6822775936377abc",
+    "source_fingerprint": "sha256:66575c2dbe0ffd3c2c1b8c54964729c9beffd9797fbe1530a34a4ec57e225f48",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2bc353a28df0d69a095c6392422b86fc9ecc89c9706db2343548f5af14c7c370",
       "plan.md": "349c014285e09c0a2b0a6153da0e3a1331f5c766587b55610ad259495af815b6",
       "tasks.md": "85129c69b420c0816dcc387affa36b6ebc5e9b38cc15f6c5bc84d9df25ef5548",
       "decision-record.md": "3bdd0f1ff689671a7eb1b5643b30377f13f8b311dd3fc9cacda4dfa977590b73",
-      "implementation-summary.md": "8135a924b217a788a14a276795c202b2e872b32311c942f038976cf3469854df"
+      "implementation-summary.md": "b3679e1747d0fec2fcd2b778809f53e30433ddc524825b8cad76cfad69a00ddd"
     },
     "last_active_at": null
   }

@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode mistral deepseek glm route"
 importance_tier: normal
 contextType: implementation
-version: 1.4.24.0
+version: 1.4.25.0
 ---
 
 # cli-opencode Providers, Models & Invocation
@@ -76,10 +76,10 @@ opencode-go gateway (subsidized "2x usage" rate). It fronts the DeepSeek, GLM, Q
 | Model id | Default? | Notes |
 |----------|----------|-------|
 | `opencode-go/deepseek-v4.1-flash` | no | DeepSeek V4.1 Flash via the Go gateway. Takes images as well as text, so a dispatch that needs a screenshot or diagram does not have to leave this route. Reasoning model: dispatch it as `-m opencode-go/deepseek-v4.1-flash#max`, which needs its own opencode-go login (`opencode auth login opencode-go`) because OpenCode 2.0.32 listed no `opencode-go` provider otherwise. On 2026-11-19 `opencode models --standalone` on OpenCode 2.3.2 listed this id. List-verified and **dispatch-verified 2026-09-11** (a live `opencode run` turn returned its token for $0.0012). It superseded `deepseek-v4-flash-vision-exp` on this route at an identical catalog cost ($0.15 in / $0.60 out per 1M, cached reads $0.003) and the same 1M context and 384K output ceiling, so the move trades no capability and no price |
-| `opencode-go/glm-5.3` | no | Z.AI GLM-5.3, the full model rather than the flash one, via the Go gateway. Reasoning, text only, context 1M, output 131K, catalog price $1.40 in / $4.40 out per 1M (cached reads $0.26). Its effort ladder has not been read on OpenCode 2, so read `opencode models opencode-go --verbose` before choosing a level for `-m opencode-go/glm-5.3#<level>`. Not listed by `opencode models --standalone` on OpenCode 2.3.2 on 2026-11-19, so confirm the listing shows it under the `opencode-go/` prefix before dispatching it. **Not dispatch-verified:** a live turn at each level on 2026-11-19 was refused with `Model access is disabled`, because the Go plan's usage was exhausted. The roster carries GLM-5.3 on opencode-go only, so do not route it through `opencode/glm-5.3` or `mistral/zai-glm-5-3`. opencode-go also fronts `glm-5.1`/`glm-5.2`, out of this catalog's curated scope |
-| `opencode-go/glm-5.3-flash` | no | Z.AI GLM-5.3-Flash via the Go gateway, a reasoning model dispatched as `-m opencode-go/glm-5.3-flash#<level>`. Its effort ladder has not been read on OpenCode 2, so read `opencode models opencode-go --verbose` before choosing a level. On 2026-11-19 `opencode models --standalone` on OpenCode 2.3.2 listed this id |
+| `opencode-go/glm-5.3` | no | Z.AI GLM-5.3, the full model rather than the flash one, via the Go gateway. Reasoning, text only, context 1M, output 131K, catalog price $1.40 in / $4.40 out per 1M (cached reads $0.26). Its effort ladder is not recorded on OpenCode 2, so confirm a level with a one-turn run before dispatching `-m opencode-go/glm-5.3#<level>`. Not listed by `opencode models --standalone` on OpenCode 2.3.2 on 2026-11-19, so confirm the listing shows it under the `opencode-go/` prefix before dispatching it. **Not dispatch-verified:** a live turn at each level on 2026-11-19 was refused with `Model access is disabled`, because the Go plan's usage was exhausted. The roster carries GLM-5.3 on opencode-go only, so do not route it through `opencode/glm-5.3` or `mistral/zai-glm-5-3`. opencode-go also fronts `glm-5.1`/`glm-5.2`, out of this catalog's curated scope |
+| `opencode-go/glm-5.3-flash` | no | Z.AI GLM-5.3-Flash via the Go gateway, a reasoning model dispatched as `-m opencode-go/glm-5.3-flash#<level>`. Its effort ladder is not recorded on OpenCode 2, so confirm a level with a one-turn run before relying on it. On 2026-11-19 `opencode models --standalone` on OpenCode 2.3.2 listed this id |
 | `opencode-go/qwen3.8-max` | no | Qwen 3.8 Max via the Go gateway. No dispatch on OpenCode 2 is recorded. Not listed by `opencode models --standalone` on OpenCode 2.3.2 on 2026-11-19, so confirm the listing shows it under the `opencode-go/` prefix before dispatching it |
-| `opencode-go/hy4-flash-free` | no | Hy4 Flash Free via the Go gateway. It is a reasoning model that takes images as well as text, with a 1M context and 65K output, and the catalog prices it at $0 per token. It has two thinking levels and no others: **`none`** (thinking off) and **`high`**. Dispatch it as `-m opencode-go/hy4-flash-free#high`, which needs its own opencode-go login (`opencode auth login opencode-go`). Pi does not list this id, so it is an OpenCode route only. The gateway also lists `hy4`, `hy4-preview` and `hy3`, which are outside this roster. OpenCode 2.3.2 listed the id on 2026-11-19. No dispatch on OpenCode 2 is recorded |
+| `opencode-go/hy4-flash-free` | no | Hy4 Flash Free via the Go gateway. It is a reasoning model that takes images as well as text, with a 1M context and 65K output, and the catalog prices it at $0 per token. Its thinking levels are not recorded on OpenCode 2, so confirm a level with a one-turn run before dispatching `-m opencode-go/hy4-flash-free#<level>`, which needs its own opencode-go login (`opencode auth login opencode-go`). Pi does not list this id, so it is an OpenCode route only. The gateway also lists `hy4`, `hy4-preview` and `hy3`, which are outside this roster. OpenCode 2.3.2 listed the id on 2026-11-19. No dispatch on OpenCode 2 is recorded |
 
 ### llmgateway
 
@@ -139,14 +139,14 @@ If the default provider is not configured, the mode ASKS the operator before sub
 
 ## 4. REASONING-EFFORT / THINKING LEVER
 
-cli-opencode expresses reasoning effort through the model id (`-m provider/model#<level>`), which maps to a provider-specific effort scale. Default skill behavior is `#high` for non-pinned models, and the default model is pinned to its max tier by policy: `llmgateway/deepseek-v4.1-flash-1017` at `#max`. The ladders below are unverified on OpenCode 2.3.2, except the `mistral` row, which was observed on OpenCode 2.3.0.
+cli-opencode expresses reasoning effort through the model id (`-m provider/model#<level>`), which maps to a provider-specific effort scale. Default skill behavior is `#high` for non-pinned models, and the default model is pinned to its max tier by policy: `llmgateway/deepseek-v4.1-flash-1017` at `#max`. No effort ladder is recorded on OpenCode 2 except the `mistral` row, observed on OpenCode 2.3.0, so pass the level explicitly and confirm it with a one-turn run before relying on it.
 
 | Provider | Effort ladder |
 |----------|----------------------|
 | `opencode-go` (`deepseek-v4.1-flash`) | dispatch it as `-m opencode-go/deepseek-v4.1-flash#max`, which needs its own opencode-go login (`opencode auth login opencode-go`). It is a reasoning model pinned to the max thinking tier by policy. The fan-out builder upgrades a lower requested effort automatically |
 | `minimax` (MiniMax-M3) | behavior unverified, omitted by default. Confirm before relying |
-| `openai` GPT-6 (sol/luna) | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**, with Pro tiers at `medium`/`high`/`xhigh`. The `-fast` slugs are the low-latency Fast tier with the same range. GPT-6.1 Terra's variant range on OpenCode is not yet measured, and the Codex catalog lists its efforts as `low` through `ultra` |
-| `llmgateway` (DevPass) | per-model, not per-provider. `deepseek-v4.1-flash-1017` carries three efforts plus off, `low`/**`high`**/**`max`**, with `minimal` folding into `low` and `medium`/`xhigh` folding into `high`, and the older `deepseek-v4.1-flash` release carries the same ladder. `glm-5.3-flash` carries the full ladder to `max`. Always pass the level explicitly here |
+| `openai` GPT-6 | not recorded on OpenCode 2. The `-fast` slugs are the low-latency Fast tier. The Codex catalog lists GPT-6.1 Terra's efforts as `low` through `ultra` |
+| `llmgateway` (DevPass) | per-model, not per-provider, and not recorded on OpenCode 2. The default `deepseek-v4.1-flash-1017` is pinned to `#max` by policy. Always pass the level explicitly here |
 | `mistral` | Both roster ids accept `#max`, and the DeepSeek id refuses `#ultra`. The rest of either ladder is not measured, so pass `#max` explicitly |
 
 ---
