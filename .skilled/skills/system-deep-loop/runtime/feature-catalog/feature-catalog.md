@@ -5,7 +5,7 @@ trigger_phrases:
   - "runtime/ feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
-version: 1.4.16.0
+version: 1.4.17.0
 ---
 
 # runtime/: Feature Catalog
@@ -665,7 +665,7 @@ Authorizes a mode event against the mode's durable authority record, appends it 
 
 #### How It Works
 
-The sanctioned way every canonical record reaches a mode's state log; it authorizes against the authority record, appends to the typed ledger behind a fence, returns a receipt, and refreshes the legacy projection so existing consumers keep reading the same file. A research or review iteration row is timed by the gateway clock, and a stamp the model wrote is kept beside it as `claimedTimestamp`.
+The sanctioned way every canonical record reaches a mode's state log; it authorizes against the authority record, appends to the typed ledger behind a fence, returns a receipt, and refreshes the legacy projection so existing consumers keep reading the same file. A research or review iteration row is timed by the gateway clock, and a stamp the model wrote is kept beside it as `claimedTimestamp`. A legacy research row, the shape a model writes, gets a gateway-minted event id, idempotency key, producer and epoch, so an identical re-append is still stored once; a row with a `stem` or an `event_type`, a canonical envelope and every review record keep the identity the caller names.
 
 #### Source Files
 

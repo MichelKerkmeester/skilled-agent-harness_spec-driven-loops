@@ -33,7 +33,7 @@ The `lib/` child contains CLI-only guards and writer-lock helpers.
 
 | File | Responsibility |
 |---|---|
-| `append-mode-event.cjs` | Appends a validated mode event through the authorized gateway and refreshes the mode's state projection. In review mode it also records a bare `type:"iteration"` record and projects it back. A research or review iteration row is timed by the gateway clock, and a stamp the model wrote rides beside it as `claimedTimestamp`. |
+| `append-mode-event.cjs` | Appends a validated mode event through the authorized gateway and refreshes the mode's state projection. In review mode it also records a bare `type:"iteration"` record and projects it back. A research or review iteration row is timed by the gateway clock, and a stamp the model wrote rides beside it as `claimedTimestamp`. A legacy research row's event id, idempotency key, producer and epoch are minted by the gateway, never taken from the row. |
 | `append-state-record.cjs` | Appends a validated state record to the durable state stream. |
 | `check-contract-drift.cjs` | Checks command and runtime contract surfaces for drift. |
 | `check-documentation-drift.cjs` | Checks the hub README, mode READMEs and the benchmark report index against the mode registry for stale links and counts. |
