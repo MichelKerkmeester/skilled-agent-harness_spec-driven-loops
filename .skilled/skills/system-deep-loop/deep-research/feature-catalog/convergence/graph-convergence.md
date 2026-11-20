@@ -7,7 +7,7 @@ trigger_phrases:
   - "graph_convergence event"
   - "graph-aware legal stop"
   - "edge density answer coverage"
-version: 1.14.2.0
+version: 1.14.3.0
 ---
 
 # Graph convergence
@@ -22,7 +22,7 @@ Graph convergence extends the default stop logic with structural evidence from c
 
 ## 2. HOW IT WORKS
 
-When iteration records carry `graphEvents`, or finding rows whose `answeredQuestions` match a stored QUESTION node, from which the iteration graph upsert derives FINDING, SOURCE, CITES and ANSWERS evidence, the workflow runs convergence.cjs, which evaluates the coverage graph and computes the stop decision, then writes a `graph_convergence` event into the JSONL log. The live graph signals include component count, isolated nodes, edge density, and answer coverage. Those signals become part of the legal-stop evaluation instead of living only in notes.
+When iteration records carry `graphEvents`, or finding rows in a run that has a question graph, from which the iteration graph upsert derives FINDING, SOURCE and CITES evidence plus an ANSWERS edge for each answered question that matches a QUESTION node, the workflow runs convergence.cjs, which evaluates the coverage graph and computes the stop decision, then writes a `graph_convergence` event into the JSONL log. The live graph signals include component count, isolated nodes, edge density, and answer coverage. Those signals become part of the legal-stop evaluation instead of living only in notes.
 
 The reducer consumes the newest `graph_convergence` event and surfaces its verdict in the synchronized packet outputs. `findings-registry.json` stores graph score, decision, and blockers, and `deep-research-dashboard.md` renders those values for operators. If no graph decision exists, convergence.cjs answers a non-terminal STOP candidate with CONTINUE and the reason detail `graphDecisionMissing`, and the reducer defaults those fields.
 

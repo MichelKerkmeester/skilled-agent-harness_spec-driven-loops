@@ -10,7 +10,7 @@ trigger_phrases:
   - "research event records"
 importance_tier: normal
 contextType: implementation
-version: 1.14.2.0
+version: 1.14.3.0
 ---
 
 # Deep Research JSONL State Reference
@@ -120,6 +120,10 @@ A legacy config row sent through the gateway must carry `generation` and `maxIte
 | `answeredQuestions` | Recommended | Questions answered by evidence |
 | `ruledOut` | Optional | Negative knowledge entries |
 | `graphEvents` | Optional | Coverage graph mutations |
+| `timestamp` | Yes | The row time. The iteration writes it, but a row recorded through the append gateway is timed by the gateway clock: the ledger event and the projected row take the append time, and a time field on the row, including `occurredAt` or `occurred_at`, never sets it |
+| `claimedTimestamp` | Projected | The `timestamp` the iteration wrote, kept beside the gateway time as a claim in the ledger event data and on the projected row, so a wrong or future stamp stays visible without timing the row. A stamp that is not a UTC instant is not kept, and the gateway reports a warning |
+
+Only the iteration row is timed this way. Other rows that carry their own UTC `timestamp` keep it.
 
 Event records in §7 keep their own `run` field, which names the iteration the event occurred in.
 
@@ -219,7 +223,7 @@ Lifecycle event:
 }
 ```
 
-Blocked stop event:
+Blocked stop event, as `convergence.cjs` sends it to the append gateway:
 
 ```json
 {
@@ -227,12 +231,36 @@ Blocked stop event:
   "event": "blocked_stop",
   "mode": "research",
   "run": 7,
-  "stopReason": "blockedStop",
-  "blockedBy": ["keyQuestionCoverage", "sourceDiversity"],
-  "recoveryStrategy": "focus_pivot",
+  "blockedBy": ["source_diversity_guard"],
+  "gateResults": {
+    "convergence": { "pass": false, "score": 0.42 },
+    "keyQuestionCoverage": { "pass": true, "answered": 4, "total": 4 },
+    "evidenceDensity": { "pass": false, "sources": 1.00 },
+    "hotspotSaturation": { "pass": true }
+  },
+  "recoveryStrategy": "Source diversity (1.00) is below the blocking threshold (1.5). STOP is blocked until diverse sources cover key questions.",
+  "timestamp": "2026-05-24T00:00:00Z",
+  "sessionId": "dr-2026-05-24T00-00-00Z",
+  "generation": 1
+}
+```
+
+The gateway keeps the blocker ids and the recovery strategy, so the row the state log holds after projection is thinner:
+
+```json
+{
+  "type": "event",
+  "event": "blocked_stop",
+  "run": 7,
+  "iteration": 7,
+  "blockedBy": ["source_diversity_guard"],
+  "stopReason": "legacy-blocked-stop",
+  "recoveryStrategy": "Source diversity (1.00) is below the blocking threshold (1.5). STOP is blocked until diverse sources cover key questions.",
   "timestamp": "2026-05-24T00:00:00Z"
 }
 ```
+
+`convergence.cjs` writes this row itself. The workflow's convergence step passes `--record-blocked-stop` with `--stop-decision`, and on a `BLOCKED` decision the script appends the row through the append gateway. It writes once per run and blocker set: a recomputed decision for a run whose state log already holds a row with the same `run` and `blockedBy` writes nothing, and a changed blocker set writes a new row. `recoveryStrategy` is the first blocker's description, or "Collect deeper graph evidence before stopping." when that blocker has none. When iterations recorded findings but left no FINDING node in the graph, it also names them, which points at a graph upsert that did not run for them. `generation` is omitted when the config lineage has none. The flag needs loop type `research`, `--stop-decision` and a positive `--iteration`, and it is refused with `--read-only`.
 
 Pause event:
 

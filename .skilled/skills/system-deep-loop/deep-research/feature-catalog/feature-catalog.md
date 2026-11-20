@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-research autonomous research loop."
-version: 1.14.15.0
+version: 1.14.16.0
 ---
 
 # deep-research: Feature Catalog
@@ -67,7 +67,7 @@ Chooses whether the loop continues, enters stuck recovery, or reaches a legal st
 
 #### How It Works
 
-The loop first applies hard stops and the three-signal `shouldContinue()` vote, then runs the legal-stop gate bundle and optional graph convergence check before accepting STOP. When a gate other than the quality guard blocks a stop, the workflow records a first-class `blocked_stop` event and keeps the loop running with an explicit recovery hint. A failed quality guard instead returns CONTINUE with `qualityGuardFailed` and writes no event.
+The loop first applies hard stops and the three-signal `shouldContinue()` vote, then runs the legal-stop gate bundle and optional graph convergence check before accepting STOP. When a gate other than the quality guard blocks a stop, convergence.cjs records a first-class `blocked_stop` event through the append gateway and the loop keeps running with an explicit recovery hint. A failed quality guard instead returns CONTINUE with `qualityGuardFailed` and writes no event.
 
 #### Source Files
 
@@ -454,7 +454,7 @@ Adds coverage-graph evidence to the stop decision when iterations emit graph eve
 
 #### How It Works
 
-When `graphEvents` are present, or finding rows answer a stored QUESTION node so the iteration graph upsert derives FINDING, SOURCE, CITES and ANSWERS evidence from them, the workflow runs convergence.cjs, appends a `graph_convergence` event, and folds graph score and blockers into the legal-stop gate path. The reducer surfaces the latest graph decision and blockers in `findings-registry.json` and `deep-research-dashboard.md`. Without a graph decision, a non-terminal STOP candidate continues with the reason detail `graphDecisionMissing`.
+When `graphEvents` are present, or finding rows reach a run that has a question graph so the iteration graph upsert derives FINDING, SOURCE and CITES evidence from them, plus an ANSWERS edge for each answered question that matches a QUESTION node, the workflow runs convergence.cjs, appends a `graph_convergence` event, and folds graph score and blockers into the legal-stop gate path. The reducer surfaces the latest graph decision and blockers in `findings-registry.json` and `deep-research-dashboard.md`. Without a graph decision, a non-terminal STOP candidate continues with the reason detail `graphDecisionMissing`.
 
 #### Source Files
 
