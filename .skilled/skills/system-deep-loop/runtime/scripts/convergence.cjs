@@ -971,6 +971,9 @@ function evaluateReviewLegalStopGates(review, options = {}) {
         && facts.coverageAge >= 1,
       skipped: false,
       missing: missingDimensions,
+      // The gate's other two inputs, so a block with nothing missing still names its cause.
+      traceabilityCovered: facts.traceabilityCovered === true,
+      coverageAge: typeof facts.coverageAge === 'number' ? facts.coverageAge : null,
     },
     p0ResolutionGate: {
       pass: activeP0 === 0,

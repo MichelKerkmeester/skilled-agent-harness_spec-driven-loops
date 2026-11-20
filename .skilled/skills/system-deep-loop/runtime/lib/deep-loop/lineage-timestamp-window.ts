@@ -261,9 +261,13 @@ export function checkLineageStopEvidence(
   return stopReasonFailure(rows[terminalIndex], iterations, policy) ?? { complete: true };
 }
 
-function describeRecord(record: Record<string, unknown>, index: number): string {
+function describeRecord(
+  record: Record<string, unknown>,
+  index: number,
+  stampText: string = String(record.timestamp),
+): string {
   const name = record.type === 'iteration' ? `iteration ${String(record.iteration)}` : `${String(record.event ?? record.type)} row`;
-  return `${name} (line ${index + 1}, ${String(record.timestamp)})`;
+  return `${name} (line ${index + 1}, ${stampText})`;
 }
 
 /**
@@ -313,10 +317,14 @@ export function checkLineageCompletion(
     const stamp = typeof record.claimedTimestamp === 'string' ? record.claimedTimestamp : record.timestamp;
     const timestampMs = hasZoneDesignator(stamp) ? parseRecordTimestamp(stamp) : null;
     if (timestampMs !== null && timestampMs > latestAllowedMs) {
+      // Name the stamp that was judged; a claim the gateway moved also shows the commit time.
+      const judged = stamp !== record.timestamp
+        ? `claims ${String(stamp)}, committed ${String(record.timestamp)}`
+        : String(stamp);
       return {
         complete: false,
         failure: 'stamped_after_completion',
-        detail: `${describeRecord(record, index)} is stamped after the lineage process ended at ${windowEnd.iso}`,
+        detail: `${describeRecord(record, index, judged)} is stamped after the lineage process ended at ${windowEnd.iso}`,
       };
     }
     if (record.type !== 'iteration') continue;
