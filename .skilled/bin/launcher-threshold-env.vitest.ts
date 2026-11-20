@@ -39,6 +39,15 @@ describe('routing thresholds through the launcher child-env allowlist', () => {
     expect(childEnv.SYSTEM_SKILL_ADVISOR_EMBED_REFRESH).toBe('off');
   });
 
+  it('tells the daemon child its launcher pid, ignoring an inherited value', () => {
+    const childEnv = launcher.createChildEnv({
+      SYSTEM_SKILL_ADVISOR_LAUNCHER_PID: '1',
+      PATH: '/usr/bin',
+    });
+
+    expect(childEnv.SYSTEM_SKILL_ADVISOR_LAUNCHER_PID).toBe(String(process.pid));
+  });
+
   it('sets the advisor database directory when the source environment has none', () => {
     const expectedDbDir = dirname(launcher.ownerLeasePath());
     const childEnv = launcher.createChildEnv({ PATH: '/usr/bin' });

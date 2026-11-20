@@ -322,6 +322,9 @@ function createChildEnv(sourceEnv = process.env) {
   const filtered = Object.fromEntries(
     Object.entries(sourceEnv).filter(([key, value]) => CHILD_ENV_ALLOWLIST.has(key) && typeof value === 'string'),
   );
+  // The server compares its parent against this pid. If the launcher dies while the
+  // server still loads, the server is already adopted, so it cannot learn the pid itself.
+  filtered.SYSTEM_SKILL_ADVISOR_LAUNCHER_PID = String(process.pid);
   // The server must use the launcher's database directory so its heartbeat matches the watchdog's file.
   if (filtered.SYSTEM_SKILL_ADVISOR_DB_DIR === undefined) {
     filtered.SYSTEM_SKILL_ADVISOR_DB_DIR = resolvedAdvisorDbDir();
@@ -1611,12 +1614,20 @@ function startHeartbeatWatchdog(child, options) {
     if (interval !== null) clearIntervalFn(interval);
   };
 
+  let lastTickMs = now();
   interval = setIntervalFn(() => {
     if (stopped) return;
+    const nowMs = now();
+    const sinceLastTickMs = nowMs - lastTickMs;
+    lastTickMs = nowMs;
+    // A long gap between ticks means this process was suspended too, as when the
+    // machine sleeps, so the child's old heartbeat says nothing yet. One more
+    // round gives it time to write before the file is judged.
+    if (sinceLastTickMs > 2 * HEARTBEAT_CHECK_INTERVAL_MS) return;
     const verdict = heartbeatVerdict({
       mtimeMs: statMtimeMs(heartbeatPath),
       spawnedAtMs,
-      nowMs: now(),
+      nowMs,
     });
     if (verdict !== 'stale') return;
 

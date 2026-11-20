@@ -395,3 +395,58 @@ test('route receipts: a host reply that cannot take the notice commits nothing',
   }, async () => ({ kind: 'enter', messages: {} }));
   assert.deepEqual(commits, []);
 });
+
+test('route receipts: a boundary drops the session route receipt before the next turn is scored', async () => {
+  const order = [];
+  let finishRotate;
+  const { ctx, fire, handlers } = pluginHarness();
+  registerPromptAdvisor(ctx, {
+    enabled: true,
+    isLeaf: interactive,
+    isEnabled: enabled,
+    core: {
+      runAdvisor: async () => {
+        order.push('advisor');
+        return { hookSpecificOutput: { additionalContext: 'Advisor: fixture' } };
+      },
+      advanceBoundary: () => new Promise((resolve) => {
+        finishRotate = () => {
+          order.push('rotated');
+          resolve(true);
+        };
+      }),
+      dropRouteReceipt: async (sessionId) => {
+        order.push(`dropped:${sessionId}`);
+        return true;
+      },
+    },
+    createNotice: plainNotice,
+  });
+  const { agent } = fakeAgent({ id: 'session-compacted' });
+
+  // The compaction handler cannot await, so the next turn waits for its work.
+  handlers.get('session/event')[0](agent.session, { type: 'compaction/end', data: { compactionId: 'c1', turn: 2 } });
+  const turn = step(fire, agent, [humanMessage('Continue.')]);
+  await new Promise((resolve) => setImmediate(resolve));
+  finishRotate();
+  await turn;
+
+  assert.deepEqual(order, ['dropped:session-compacted', 'rotated', 'advisor']);
+});
+
+test('route receipts: dropRouteReceipt removes only a named session receipt', async () => {
+  const { dropRouteReceipt } = await import('../dsh/prompt-advisor.mjs');
+  const removed = [];
+  const load = async () => ({
+    defaultRouteReceiptStore: () => ({
+      remove: (sessionId) => {
+        removed.push(sessionId);
+        return true;
+      },
+    }),
+  });
+  assert.equal(await dropRouteReceipt(undefined, load), false);
+  assert.equal(await dropRouteReceipt('  ', load), false);
+  assert.equal(await dropRouteReceipt('session-1', load), true);
+  assert.deepEqual(removed, ['session-1']);
+});

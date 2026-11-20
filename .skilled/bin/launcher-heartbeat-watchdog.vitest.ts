@@ -208,4 +208,53 @@ describe('launcher heartbeat watchdog', () => {
     expect(timers.intervalCleared).toBe(true);
     watchdog.stop();
   });
+
+  it('waits one round after the watchdog itself was suspended, as on a machine wake', () => {
+    const fakeChild = createFakeChild();
+    const timers = createFakeTimers();
+    let nowMs = 1_000;
+    let mtimeMs = 1_000;
+    const watchdog = launcher.startHeartbeatWatchdog(fakeChild.child, {
+      heartbeatPath: join(HERE, launcher.HEARTBEAT_FILE_NAME),
+      spawnedAtMs: 1_000,
+      statMtimeMs: () => mtimeMs,
+      now: () => nowMs,
+      ...timers.options,
+    });
+
+    // The machine sleeps for ten minutes; on wake the watchdog ticks before the
+    // child has written its next heartbeat.
+    nowMs += 10 * 60_000;
+    timers.runInterval();
+    expect(fakeChild.signals).toEqual([]);
+
+    // A child that writes again within the next round stays up.
+    mtimeMs = nowMs + 15_000;
+    nowMs += launcher.HEARTBEAT_CHECK_INTERVAL_MS;
+    timers.runInterval();
+    expect(fakeChild.signals).toEqual([]);
+    watchdog.stop();
+  });
+
+  it('still reaps a child that stays silent through the round after a suspension', () => {
+    const fakeChild = createFakeChild();
+    const timers = createFakeTimers();
+    let nowMs = 1_000;
+    const watchdog = launcher.startHeartbeatWatchdog(fakeChild.child, {
+      heartbeatPath: join(HERE, launcher.HEARTBEAT_FILE_NAME),
+      spawnedAtMs: 1_000,
+      statMtimeMs: () => 1_000,
+      now: () => nowMs,
+      ...timers.options,
+    });
+
+    nowMs += 10 * 60_000;
+    timers.runInterval();
+    expect(fakeChild.signals).toEqual([]);
+
+    nowMs += launcher.HEARTBEAT_CHECK_INTERVAL_MS;
+    timers.runInterval();
+    expect(fakeChild.signals).toEqual(['SIGTERM']);
+    watchdog.stop();
+  });
 });

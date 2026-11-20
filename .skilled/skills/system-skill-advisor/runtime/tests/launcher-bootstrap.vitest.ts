@@ -116,6 +116,7 @@ describe('system-skill-advisor launcher bootstrap', () => {
       PATH: '/bin',
       HOME: '/tmp/home',
       SYSTEM_SKILL_ADVISOR_DB_DIR: '/tmp/db',
+      SYSTEM_SKILL_ADVISOR_LAUNCHER_PID: String(process.pid),
       MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
       HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
@@ -139,6 +140,7 @@ describe('system-skill-advisor launcher bootstrap', () => {
       // The server must use the launcher's database directory, so the child env
       // always carries it even when the parent did not set one.
       SYSTEM_SKILL_ADVISOR_DB_DIR: dirname(memoryDbPath),
+      SYSTEM_SKILL_ADVISOR_LAUNCHER_PID: String(process.pid),
       MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
       HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
@@ -162,6 +164,7 @@ describe('system-skill-advisor launcher bootstrap', () => {
       // The server must use the launcher's database directory, so the child env
       // always carries it even when the parent did not set one.
       SYSTEM_SKILL_ADVISOR_DB_DIR: dirname(memoryDbPath),
+      SYSTEM_SKILL_ADVISOR_LAUNCHER_PID: String(process.pid),
       MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
       HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
@@ -183,6 +186,7 @@ describe('system-skill-advisor launcher bootstrap', () => {
       // The server must use the launcher's database directory, so the child env
       // always carries it even when the parent did not set one.
       SYSTEM_SKILL_ADVISOR_DB_DIR: dirname(memoryDbPath),
+      SYSTEM_SKILL_ADVISOR_LAUNCHER_PID: String(process.pid),
       MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
       HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),

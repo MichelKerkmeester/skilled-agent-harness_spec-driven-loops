@@ -299,8 +299,10 @@ function buildLaneRuntimeHealth(
 function projectionRuntimeLaneHealth(
   projection: AdvisorProjection,
   runtimeLaneHealth: AdvisorScoringOptions['runtimeLaneHealth'] | undefined,
+  semanticWeight: number,
 ): AdvisorScoringOptions['runtimeLaneHealth'] | undefined {
-  if (!projection.embeddingStaleness?.stale) {
+  // A zero-weight lane is off, not degraded, so a stale index leaves it alone.
+  if (!projection.embeddingStaleness?.stale || semanticWeight <= 0) {
     return runtimeLaneHealth;
   }
   return {
@@ -1295,7 +1297,11 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
     affordances,
     useRrfFusion,
   );
-  const runtimeLaneHealth = projectionRuntimeLaneHealth(projection, options.runtimeLaneHealth);
+  const runtimeLaneHealth = projectionRuntimeLaneHealth(
+    projection,
+    options.runtimeLaneHealth,
+    weights.semantic_shadow,
+  );
   const laneHealth = buildLaneRuntimeHealth(laneScores, disabled, runtimeLaneHealth);
   const degradedLanes = laneHealth
     .filter((lane) => lane.status === 'runtime_degraded')

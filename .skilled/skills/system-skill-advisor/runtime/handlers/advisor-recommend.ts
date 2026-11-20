@@ -100,12 +100,21 @@ function runtimeLaneHealthForStatus(status: AdvisorStatus): AdvisorScoringOption
   };
 }
 
+const PRE_SCORE_REFUSALS = new Set([
+  'incomplete_skill_vectors',
+  'dim_mismatch',
+  'adapter_unavailable',
+  'database_absent',
+]);
+
 // Exported so prompt embedding degradation can be tested without invoking the handler.
 export function mergeSemanticShadowRuntimeLaneHealth(
   runtimeLaneHealth: AdvisorScoringOptions['runtimeLaneHealth'],
   disabledReason: string | null,
 ): AdvisorScoringOptions['runtimeLaneHealth'] {
-  if (!disabledReason?.startsWith('prompt_embedding_')) {
+  // Every refusal set before scoring leaves the lane unable to score, so its weight
+  // leaves the live total the same way a failed prompt embed does.
+  if (!disabledReason || (!disabledReason.startsWith('prompt_embedding_') && !PRE_SCORE_REFUSALS.has(disabledReason))) {
     return runtimeLaneHealth;
   }
   return {

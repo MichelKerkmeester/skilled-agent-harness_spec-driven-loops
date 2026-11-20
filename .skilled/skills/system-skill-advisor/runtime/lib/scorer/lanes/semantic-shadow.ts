@@ -151,9 +151,22 @@ export function clearSemanticShadowPromptEmbedding(): void {
   activePromptEmbedding = null;
 }
 
+function laneWeightIsZero(): boolean {
+  return (DEFAULT_SCORER_LANE_WEIGHTS.semantic_shadow ?? 0) <= 0;
+}
+
+// One gate for the pre-embed check and both scoring paths, so no path scores a
+// vector the others would refuse. A changed description keeps its old vector
+// until it is re-embedded, and only this gate stops that vector from scoring.
+function skillVectorCoverageRefusal(): 'database_absent' | 'incomplete_skill_vectors' | null {
+  const database = getDbReadOnly();
+  if (!database) return 'database_absent';
+  return embeddingCoverage(database).complete ? null : 'incomplete_skill_vectors';
+}
+
 export async function withSemanticShadowPromptEmbedding<T>(prompt: string, run: () => T): Promise<T> {
   // A zero-weight lane cannot change a score, so it must not cost an embed call.
-  if ((DEFAULT_SCORER_LANE_WEIGHTS.semantic_shadow ?? 0) <= 0) {
+  if (laneWeightIsZero()) {
     setSemanticShadowPromptEmbedding(prompt, null);
     setRuntimeHealth({ disabledReason: 'lane_weight_zero' });
     return run();
@@ -198,6 +211,17 @@ export async function withSemanticShadowPromptEmbedding<T>(prompt: string, run: 
       });
       preEmbedFailure = true;
       throw new Error(`active embedder dimension mismatch: ${active.name} reports ${adapter.dim}, pointer expects ${active.dim}`);
+    }
+    // The lane refuses to score on incomplete coverage, so an embed then would
+    // only add its wait to the prompt.
+    if (skillVectorCoverageRefusal() !== null) {
+      setRuntimeHealth({
+        activeEmbedder: { name: active.name, dim: active.dim, adapterDim: adapter.dim },
+        dimMismatch: false,
+        disabledReason: 'incomplete_skill_vectors',
+      });
+      preEmbedFailure = true;
+      throw new Error('skill vector coverage is incomplete; prompt embed skipped');
     }
 
     const embedding = adapter.embed([prompt], { inputType: 'query' });
@@ -256,7 +280,9 @@ export function scoreSemanticShadowExactSubset(
   skillIds: readonly string[],
 ): LaneMatch[] {
   if (projection.embeddingStaleness?.stale) {
-    setRuntimeHealth({ disabledReason: 'projection_embedding_stale' });
+    // A switched-off lane keeps its own reason, since a stale index cannot
+    // degrade a lane that never scores.
+    if (!laneWeightIsZero()) setRuntimeHealth({ disabledReason: 'projection_embedding_stale' });
     return [];
   }
 
@@ -291,6 +317,11 @@ export function scoreSemanticShadowExactSubset(
   let cachedVectors = new Map<string, Float32Array>();
   if (projection.source !== 'fixture' && process.env.VITEST !== 'true') {
     try {
+      const refusal = skillVectorCoverageRefusal();
+      if (refusal !== null) {
+        setRuntimeHealth({ disabledReason: refusal });
+        return [];
+      }
       cachedVectors = new Map(
         loadSkillEmbeddings(orderedSkillIds)
           .map((row) => [row.skillId, row.embedding]),
@@ -324,7 +355,7 @@ export function scoreSemanticShadowExactSubset(
 
 export function scoreSemanticShadowLane(prompt: string, projection: AdvisorProjection): LaneMatch[] {
   if (projection.embeddingStaleness?.stale) {
-    setRuntimeHealth({ disabledReason: 'projection_embedding_stale' });
+    if (!laneWeightIsZero()) setRuntimeHealth({ disabledReason: 'projection_embedding_stale' });
     return [];
   }
 
@@ -391,13 +422,9 @@ export function scoreSemanticShadowLane(prompt: string, projection: AdvisorProje
       try {
         // The recommend path must never become a second writer on the
         // daemon-owned database, so coverage is read through the read-only handle.
-        const coverageDatabase = getDbReadOnly();
-        if (!coverageDatabase) {
-          setRuntimeHealth({ disabledReason: 'database_absent' });
-          return [];
-        }
-        if (!embeddingCoverage(coverageDatabase).complete) {
-          setRuntimeHealth({ disabledReason: 'incomplete_skill_vectors' });
+        const refusal = skillVectorCoverageRefusal();
+        if (refusal !== null) {
+          setRuntimeHealth({ disabledReason: refusal });
           return [];
         }
       } catch (error: unknown) {

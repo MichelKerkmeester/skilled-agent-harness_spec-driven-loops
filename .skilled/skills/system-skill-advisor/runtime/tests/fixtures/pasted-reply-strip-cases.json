@@ -79,6 +79,12 @@
       "ideal": "Refactor the session store module. Now: also update its tests."
     },
     {
+      "id": "user-task-before-follow-up-marker",
+      "input": "You said: use sk-git.\nTask: refactor the hook.\nDetails.\nNow: the tests fail",
+      "expected": "the tests fail",
+      "ideal": "refactor the hook.\nDetails.\nNow: the tests fail"
+    },
+    {
       "id": "quote-led-straight",
       "input": "\"I updated the README with sk-doc conventions.\"\nNow: Refactor the session store module to remove duplicated locking code",
       "expected": "\"I updated the README with sk-doc conventions.\"\nNow: Refactor the session store module to remove duplicated locking code"
