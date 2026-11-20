@@ -53,9 +53,9 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] Every suite covering a changed file exits 0 with its baseline count.
-- [ ] Each of the 24 counterparts is recorded as fixed, aligned, or skipped with a reason in `implementation-summary.md`.
-- [ ] Every handoff item read before close has a row in `implementation-summary.md`.
+- [x] Every suite covering a changed file exits 0 with its baseline count.
+- [x] Each of the 24 counterparts is recorded as fixed, aligned, or skipped with a reason in `implementation-summary.md`.
+- [x] Every handoff item read before close has a row in `implementation-summary.md`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -72,11 +72,14 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Counterpart list | Done | `/tmp/ovl-gates/016-up-files.txt`: 24 files, 0 dirty on main |
-| Audits | In Progress | g1 to g3 and the `fanout-run.cjs` audit done; g4 running |
+| Audits | Done | cli-pi g1 to g4 and one @review pass for `fanout-run.cjs` |
+| Fixes | Done | `286359e2239`, `e17872485b6`, `ff969f029fb`; every covering suite at its baseline count |
+| Review | Done | PASS in round 1, with three P2 doc-comment fixes applied after |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | - |
+| `canary-router.cjs` skipped | Its authored twin under `specs/` must change with it, or the compiled-route sync check fails |
+| `verify-router-sync.cjs` handoff item not applied | It changes what the drift guard reports, and this phase changes no behavior |
 <!-- /ANCHOR:log -->

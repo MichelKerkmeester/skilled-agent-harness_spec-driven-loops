@@ -32,7 +32,7 @@ contextType: "general"
 ## Phase 1: Setup
 
 - [x] T001 Back up both private commands before any edit (`/tmp/ovl-gates/private-backup/`). Verify: `diff -rq /tmp/ovl-gates/private-backup/local-doc-alignment .skilled/commands/assets/local-doc-alignment` printed nothing at the start.
-- [ ] T002 Read both commands, their assets and `tests/resolve-scope.test.cjs` (`.skilled/commands/assets/`). Verify: the overlay folder key of `.skilled-overlays.json` is named in `implementation-summary.md`.
+- [x] T002 Read both commands, their assets and `tests/resolve-scope.test.cjs` (`.skilled/commands/assets/`). Verify: `implementation-summary.md` names the setting and the engine's `resolveOverlayDir` that resolves it.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -40,10 +40,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Add the `overlay-layout` topic (`.skilled/commands/assets/local-doc-alignment/topics.json`). Verify: the new ldoc test lists the overlay READMEs.
-- [ ] T004 Resolve the folder named by `.skilled-overlays.json` if the script cannot yet (`.skilled/commands/assets/local-doc-alignment/doc-alignment.cjs`). Verify: the no-config fixture yields the engine docs and no error.
-- [ ] T005 Add the `overlays` target (`.skilled/commands/assets/local-skilled-alignment/resolve-scope.cjs`, `surface-map.yaml`). Verify: the new `resolve-scope.test.cjs` cases pass.
-- [ ] T006 [P] List the topic and target in the command docs (`.skilled/commands/local-doc-alignment.md`, `local-skilled-alignment.md`, their assets). Verify: `rg -n 'overlay-layout|overlays' .skilled/commands/local-*-alignment.md` prints a line for each.
+- [x] T003 Add the `overlay-layout` topic (`.skilled/commands/assets/local-doc-alignment/topics.json`). Verify: the new ldoc test lists the overlay READMEs.
+- [x] T004 Resolve the folder named by `.skilled-overlays.json` if the script cannot yet (`.skilled/commands/assets/local-doc-alignment/doc-alignment.cjs`). Verify: the no-config fixture yields the engine docs and no error.
+- [x] T005 Add the `overlays` target (`.skilled/commands/assets/local-skilled-alignment/resolve-scope.cjs`, `surface-map.yaml`). Verify: the new `resolve-scope.test.cjs` cases pass.
+- [x] T006 [P] List the topic and target in the command docs (`.skilled/commands/local-doc-alignment.md`, `local-skilled-alignment.md`, their assets). Verify: `rg -n 'overlay-layout|overlays' .skilled/commands/local-*-alignment.md` prints a line for each.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -51,9 +51,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 Run both suites (`.skilled/commands/assets/*/tests/`). Verify: each exits 0 and the lsa count is above 68.
-- [ ] T008 Run `bash .skilled/commands/doctor/scripts/route-validate.sh`. Verify: prints `OK` and exits 0.
-- [ ] T009 Copy the edited command docs from the worktree into the Skilled checkout's private copy. Verify: `diff` of each pair prints nothing.
+- [x] T007 Run both suites (`.skilled/commands/assets/*/tests/`). Verify: each exits 0 and the lsa count is above 68.
+- [x] T008 Run `bash .skilled/commands/doctor/scripts/route-validate.sh`. Verify: prints `OK` and exits 0.
+- [x] T009 Copy the edited command docs from the worktree into the Skilled checkout's private copy. Verify: `diff` of each pair prints nothing.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -61,10 +61,10 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
-- [ ] The Barter mirror change is listed in `implementation-summary.md`
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
+- [x] The Barter mirror change is listed in `implementation-summary.md`
 <!-- /ANCHOR:completion -->
 
 ---

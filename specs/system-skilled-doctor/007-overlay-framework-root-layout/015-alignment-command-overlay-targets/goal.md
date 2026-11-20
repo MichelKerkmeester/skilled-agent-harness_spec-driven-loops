@@ -53,9 +53,9 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node --test .skilled/commands/assets/local-skilled-alignment/tests/*.test.cjs` exits 0 with more than 68 tests.
-- [ ] `node --test .skilled/commands/assets/local-doc-alignment/tests/*.test.cjs` exits 0.
-- [ ] `bash .skilled/commands/doctor/scripts/route-validate.sh` prints `OK` and exits 0.
+- [x] `node --test .skilled/commands/assets/local-skilled-alignment/tests/*.test.cjs` exits 0 with more than 68 tests.
+- [x] `node --test .skilled/commands/assets/local-doc-alignment/tests/*.test.cjs` exits 0.
+- [x] `bash .skilled/commands/doctor/scripts/route-validate.sh` prints `OK` and exits 0.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -72,11 +72,13 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Private asset backup | Done | `/tmp/ovl-gates/private-backup/` |
-| Topic and target | In Progress | Worker running |
+| Topic and target | Done | lsa 76 of 76, ldoc 10 of 10, route-validate OK, in the worktree and in the Skilled checkout |
+| Review | Done | Round 1 FAIL (linked folder), round 2 FAIL (case-variant setting), round 3 PASS |
+| Landing | Done | `diff -r` of the worktree copies against the Skilled checkout prints nothing |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | - |
+| Not committed | Both commands are gitignored private files, so the change landed by copy into the Skilled checkout, not by commit |
 <!-- /ANCHOR:log -->

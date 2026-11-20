@@ -35,16 +35,28 @@
       "goal"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/scripts/git-hooks/tests/pre-push.test.sh",
       ".skilled/bin/compiled-route-guard.cjs",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs",
+      ".skilled/bin/tests/compiled-route-fold-dedupe.test.cjs",
+      ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+      ".skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
-      ".skilled/skills/system-spec-kit/shared/review-research-paths.cjs"
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+      ".skilled/skills/system-spec-kit/shared/review-research-paths.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-cli.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/review-research-paths.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs"
     ],
     "entities": [
       {
@@ -78,9 +90,39 @@
         "source": "derived"
       },
       {
+        "name": "pre-push.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/pre-push.test.sh",
+        "source": "derived"
+      },
+      {
         "name": "compiled-route-guard.cjs",
         "kind": "file",
         "path": ".skilled/bin/compiled-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "canary-router.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-fold-dedupe.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-fold-dedupe.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "symlink-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "symlink-engine.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs",
         "source": "derived"
       },
       {
@@ -90,19 +132,55 @@
         "source": "derived"
       },
       {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "append-mode-event.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        "source": "derived"
+      },
+      {
         "name": "review-research-paths.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-spec-kit/shared/review-research-paths.cjs",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "append-mode-event-cli.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-cli.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "relocate.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-research-paths.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/review-research-paths.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "relocate.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -124,77 +202,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Audits",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Other",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Audit",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "a Skilled",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "When a Barter overlay copy breaks sk-code's Skilled standard because the Skilled file it copies does, fixing only the copy leaves the source wrong",
     "created_at": "2026-11-20T22:06:36Z",
-    "last_save_at": "2026-11-20T22:26:54.819Z",
+    "last_save_at": "2026-11-20T23:53:09.109Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:252c0f0478e91f8f97b10052b40c702231f9f9f55f5c367ea298df14a4f17697",
+    "source_fingerprint": "sha256:c97bedf8f4c45b1a22577951abe649b1750260611da1d74990d6d382e6780507",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "662447a28b146bf6cd2a7902d36ef9e70108f971090021177ed064bd56900768",
+      "spec.md": "6d01b4976628fcc6e98a6683f1c9cc35ec89b17964c4f88962a9a2de0bc3cde8",
       "plan.md": "52ff4c525435ebce8bce34addda3f67b158a6a06f395ded8ce93316ba1ea3404",
-      "tasks.md": "467f3004d4f7812cda05587bef7016f94bd0f90777e8e6bde515f13d66458ea5",
-      "implementation-summary.md": "6c19765cd53c7a1458b7159cc46538cc5c7178d62ef52013117b04e1903c1186"
+      "tasks.md": "acb882999bae3091c0d64e8c006e5215d5bd62176d3dfb43bda3dbf7a8df40a2",
+      "implementation-summary.md": "482e272007f9e64bb5c434633d0a27dd74073a97f4d589377e529dd55da944f1"
     },
     "last_active_at": null
   }

@@ -35,19 +35,24 @@
       "target"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/commands/assets/local-skilled-alignment/alignment-lib.cjs",
+      ".skilled/commands/assets/local-skilled-alignment/resolve-scope.cjs",
+      ".skilled/commands/assets/local-skilled-alignment/surface-map.yaml",
+      ".skilled/commands/assets/local-skilled-alignment/tests/resolve-scope.test.cjs",
+      ".skilled/commands/assets/local-skilled-alignment/local-skilled-alignment-presentation.txt",
       ".skilled/commands/assets/local-doc-alignment/topics.json",
       ".skilled/commands/assets/local-doc-alignment/doc-alignment.cjs",
       ".skilled/commands/assets/local-doc-alignment/tests/doc-alignment-overlay-topic.test.cjs",
-      ".skilled/commands/assets/local-skilled-alignment/resolve-scope.cjs",
-      ".skilled/commands/assets/local-skilled-alignment/tests/resolve-scope.test.cjs",
-      ".skilled/commands/local-doc-alignment.md"
+      ".skilled/commands/assets/local-doc-alignment/local-doc-alignment-presentation.txt",
+      ".skilled/commands/local-doc-alignment.md",
+      ".skilled/commands/local-skilled-alignment.md"
     ],
     "entities": [
       {
@@ -81,6 +86,36 @@
         "source": "derived"
       },
       {
+        "name": "alignment-lib.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/assets/local-skilled-alignment/alignment-lib.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "resolve-scope.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/assets/local-skilled-alignment/resolve-scope.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "surface-map.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/assets/local-skilled-alignment/surface-map.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "resolve-scope.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/assets/local-skilled-alignment/tests/resolve-scope.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "local-skilled-alignment-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/assets/local-skilled-alignment/local-skilled-alignment-presentation.txt",
+        "source": "derived"
+      },
+      {
         "name": "topics.json",
         "kind": "config",
         "path": ".skilled/commands/assets/local-doc-alignment/topics.json",
@@ -99,15 +134,9 @@
         "source": "derived"
       },
       {
-        "name": "resolve-scope.cjs",
+        "name": "local-doc-alignment-presentation.txt",
         "kind": "file",
-        "path": ".skilled/commands/assets/local-skilled-alignment/resolve-scope.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "resolve-scope.test.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/assets/local-skilled-alignment/tests/resolve-scope.test.cjs",
+        "path": ".skilled/commands/assets/local-doc-alignment/local-doc-alignment-presentation.txt",
         "source": "derived"
       },
       {
@@ -117,13 +146,13 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "local-skilled-alignment.md",
+        "kind": "doc",
+        "path": ".skilled/commands/local-skilled-alignment.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -153,6 +182,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -163,41 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Adds",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Other",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Each",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The operator wants every overlay folder to carry a README and both alignment commands able to audit and fix one",
     "created_at": "2026-11-20T22:06:35Z",
-    "last_save_at": "2026-11-20T22:26:52.523Z",
+    "last_save_at": "2026-11-20T23:53:20.448Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40d77abe0443cc5ddfc37183d2d9955eed529c9900a5102050ff443dcf510d0c",
+    "source_fingerprint": "sha256:4e43f2926e6507294f89acebe771c34629012ff6fbbc5923d1b985504e8e5c41",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "318d722d30bbac0d7aa5c694927b7963b220dcd418ccff6458239fbcef63efaf",
+      "spec.md": "7ebbdd0331ed7a56f20fa047f94032c83c149427cd38b7b47a526693706f89f3",
       "plan.md": "810857b5b348b9f0c4613ed2ffd5a8e26848bcb47f06c31ab8cdf9990cd9f597",
-      "tasks.md": "a5e86280bc774b6f40578a9f4648d204c46d1c5a4040b2ee6e73822aefffb705",
-      "implementation-summary.md": "f6e5b0559e21a38c75f75ce320143c5f93a6054a2eea36503aa40405fe5c9587"
+      "tasks.md": "02c4c00e6d9f18ba77ed57830a5aa1ee1c4d31b59847d4dc020596bf6980aeae",
+      "implementation-summary.md": "47ba009655a92edb4fed05df68d1d4476e7aaeb1e952a38a237778ef92e46d4c"
     },
     "last_active_at": null
   }
