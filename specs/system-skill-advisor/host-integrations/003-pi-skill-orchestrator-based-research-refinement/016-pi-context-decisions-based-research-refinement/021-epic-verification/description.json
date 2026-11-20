@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification",
+  "description": "Phase 21: epic-verification",
+  "keywords": [
+    "phase",
+    "epic-verification"
+  ],
+  "lastUpdated": "2026-11-20T14:59:24.377Z",
+  "specId": "021",
+  "folderSlug": "epic-verification",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "20-11-26_15-59__a-read-only-fable-5-2-high-dispatch-on-claude2.md"
+  ]
+}

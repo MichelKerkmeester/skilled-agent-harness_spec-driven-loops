@@ -62,7 +62,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress. Phases 001 to 013 are done and merged to main as `57d3f5d9159`, then pushed; phase 003 closed with the guard not built (over-suppresses), and phases 010 and 011 built the route receipts instead. Phase 014 fixed the review findings in worktree 475, then closed every follow-up in worktree 478, with P04 accepted on the CLI hub by the operator. Phases 015 and 016, the two alignment runs, are complete with their findings triaged and not fixed |
+| **Status** | In Progress. Phases 001 to 013 are done and merged to main as `57d3f5d9159`, then pushed; phase 003 closed with the guard not built (over-suppresses), and phases 010 and 011 built the route receipts instead. Phase 014 fixed the review findings in worktree 475, then closed every follow-up in worktree 478, with P04 accepted on the CLI hub by the operator. Phases 015 and 016, the two alignment runs, are complete with their findings triaged and not fixed. Phases 017 to 020 analysed the Ollama path, took it off the prompt path, made the lane correct and fixed the three confirmed review P1s, all merged and pushed. Phase 021, an independent Fable 5.2 high verification, confirmed 6 of 10 claims and found 4 partial, with 1 P1 and 10 P2 defects reported and not fixed |
 | **Created** | 2026-11-18 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -153,7 +153,8 @@ Phase 1 writes research artifacts only. Phases 002 to 004 list their exact files
 | 17 | 017-ollama-advisor-analysis/ | A fresh Fable 5.2 medium read of the advisor's Ollama and embedder path through the `claude2` account, report only: bugs, effectiveness, overengineering, load and daemon build-up | Complete |
 | 18 | 018-ollama-lane-off-and-daemon-liveness/ | Build of four of 017's ranked changes: the semantic lane off the prompt path at weight 0 with a zero-weight guard, the cascade and legacy embedding path out of the advisor, the hf model server off by default, and a parent-pid check plus heartbeat watchdog against orphaned or wedged daemons | Complete |
 | 19 | 019-ollama-lane-honest-and-closeout/ | Close everything 018 left open: the lane made correct (refresh, coverage gate, outage as degraded, `OLLAMA_*` forwarding) and its weight set by a real-embedding ablation, the watchdog startup gap, the one-off test failures and other sessions' unrecorded operator answers | Complete |
-| 20 | 020-review-p1-fixes/ | Fix the three P1 defects the 019 deep review confirmed: the refresh dropping a mid-refresh request, the read-write coverage read on the recommend path and `advisor_status` reporting the lane enabled on incomplete coverage | Pending |
+| 20 | 020-review-p1-fixes/ | Fix the three P1 defects the 019 deep review confirmed: the refresh dropping a mid-refresh request, the read-write coverage read on the recommend path and `advisor_status` reporting the lane enabled on incomplete coverage | Complete |
+| 21 | 021-epic-verification/ | A fresh Fable 5.2 high read through `claude2`, report only: checks the Ollama claims and the other main claims since v4.1.0.0 against the code at HEAD, one verdict each, plus any defects | Complete |
 
 **Build order.** Folder numbers stay as they are. The build order is 001, then 005, then 002, then 004, then 003. Phase 004 builds before 003 because both edit `hooks/claude/user-prompt-submit.ts` and its hook test, and 003's guard would shift every line 004 pins.
 
@@ -193,6 +194,7 @@ Phases 015 and 016 are report-only alignment runs the operator asked for on 2026
 | 017-ollama-advisor-analysis | 018-ollama-lane-off-and-daemon-liveness | The operator picks which ranked changes to build | 018's `acceptance-criteria.md` is all `Met` |
 | 018-ollama-lane-off-and-daemon-liveness | 019-ollama-lane-honest-and-closeout | The operator asks to leave nothing open | 019's `acceptance-criteria.md` is all `Met` |
 | 019-ollama-lane-honest-and-closeout | 020-review-p1-fixes | The 019 deep review returns CONDITIONAL with three confirmed P1 defects | 020's `acceptance-criteria.md` is all `Met` |
+| 020-review-p1-fixes | 021-epic-verification | The operator asks for an independent check of the epic | 021's `evidence/report.md` has a verdict for every claim |
 <!-- /ANCHOR:phase-map -->
 
 ---
