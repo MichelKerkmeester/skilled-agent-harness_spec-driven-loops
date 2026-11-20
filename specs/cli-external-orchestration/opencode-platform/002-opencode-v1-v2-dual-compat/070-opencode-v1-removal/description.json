@@ -8,7 +8,7 @@
     "support",
     "repository"
   ],
-  "lastUpdated": "2026-11-19T23:02:51.450Z",
+  "lastUpdated": "2026-11-20T07:40:31.168Z",
   "specId": "070",
   "folderSlug": "opencode-v1-removal",
   "parentChain": [
@@ -16,9 +16,10 @@
     "opencode-platform",
     "002-opencode-v1-v2-dual-compat"
   ],
-  "memorySequence": 2,
+  "memorySequence": 3,
   "memoryNameHistory": [
     "19-11-26_18-44__removed-opencode-v1-from-the-repo-and-the-mac.md",
-    "20-11-26_00-02__merged-the-opencode-v1-removal-into-main-without.md"
+    "20-11-26_00-02__merged-the-opencode-v1-removal-into-main-without.md",
+    "20-11-26_08-40__refresh-parent-metadata-after-closing-the-parent.md"
   ]
 }
