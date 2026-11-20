@@ -178,7 +178,7 @@ On Claude the receiver's log shows a goal of 3,990 characters and a start claim.
 
 The OpenCode receiver also binds a packet it is given and stays empty under the switch and with no packet. On its default background service the loop does not run at all. The plugin runs in a service no wrapper started. That service holds no `SKILLED_LOOP_ID`, so nothing arms.
 
-The wrapper adds `--standalone` to the first launch and to every relaunch when `opencode --help` lists the flag, so the operator does not pass it. A launch that carries `--server` stays on that server, prints a warning and never arms. Running `opencode mini` or another subcommand skips the wrapper.
+The wrapper adds `--standalone` to the first launch and to every relaunch unless the launch already carries `--standalone` or `--server`, so the operator does not pass it. It refuses an OpenCode 1 binary before launching. A launch that carries `--server` stays on that server, prints a warning and never arms. Running `opencode mini` or another subcommand skips the wrapper.
 
 A manual start by the printed command goes through the first-launch path. That path exports the packet of the note its seed names as `SESSION_HANDOVER_GOAL_PACKET`. No hop ever hands Devin or Cursor a packet. The Devin receiver half bound a packet in a headless session with the variable set by hand. The Cursor receiver has no live result, because the test machine had no Cursor login.
 

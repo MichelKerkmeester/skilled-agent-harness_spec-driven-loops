@@ -7,7 +7,7 @@ trigger_phrases:
   - "checkPackageFreshness"
   - "compiled validation orchestrator is stale"
   - "STALE DIST WARNING"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Dist-freshness enforcement
@@ -33,11 +33,11 @@ The module has four independent classes of caller, one of which fans out to the 
 
 2. **`validate.sh`'s compiled-orchestrator backstop**: `resolve_orchestrator()` in `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` calls the module scoped to `system-spec-kit/runtime`'s `validation-orchestrator` entry before delegating a validation run to the compiled Node orchestrator. A stale result prints `ERROR: validate.sh compiled validation orchestrator is stale.` plus the rebuild command and exits **3** — a hard, fail-closed backstop with no auto-rebuild.
 3. **Claude Code PostToolUse hook**: `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` (a Python script despite the `.sh` extension) is wired into `.skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh`, which fires on every `Write`/`Edit`. It calls the module's `check-file` command against the edited file and, if the file falls under a watched source tree and that package is stale, prints a `STALE DIST WARNING: <package> -- run: <rebuild command>` banner. It always exits 0 — warn-only, never blocking the edit.
-4. **OpenCode plugin**: `.opencode/plugins/system-dist-freshness-guard.js` hooks `tool.execute.before` and warns via `console.warn` (never throws) before a Bash call matching `opencode run` or `validate\.sh` when any of the 7 watched packages is stale, and warns once per session on the `session.created` event (deduped by session ID).
+4. **OpenCode plugin**: `.opencode/plugins/system-dist-freshness-guard.js` hooks `tool.execute.before` and warns by appending to its `dist-freshness-guard.log` and injecting a bounded system-context note (never throws, and never writes to stdout or stderr) before a Bash call matching `opencode run` or `validate\.sh` when any of the 7 watched packages is stale, and warns once per session on the `session.created` event (deduped by session ID).
 
 ### Fail-Closed Vs Warn-Only Asymmetry
 
-The four consumer classes deliberately split into two response tiers. `validate.sh`'s backstop is the one hard, fail-closed consumer (exit 3, no fallback to the possibly-stale compiled orchestrator) because a stale validation orchestrator could silently grade a spec folder with outdated rules. The CLI shim is similarly fail-closed because it is the sole entrypoint to a daemon call and there is no safe degraded path. The hook and the plugin are deliberately warn-only (exit 0 / `console.warn`, never blocking) because they observe general editing activity across the whole repo, not a single validation gate — blocking every edit under a watched source tree on staleness would be far too disruptive for routine iterative development.
+The four consumer classes deliberately split into two response tiers. `validate.sh`'s backstop is the one hard, fail-closed consumer (exit 3, no fallback to the possibly-stale compiled orchestrator) because a stale validation orchestrator could silently grade a spec folder with outdated rules. The CLI shim is similarly fail-closed because it is the sole entrypoint to a daemon call and there is no safe degraded path. The hook and the plugin are deliberately warn-only (the hook exits 0 and the plugin only logs and injects context, never blocking) because they observe general editing activity across the whole repo, not a single validation gate — blocking every edit under a watched source tree on staleness would be far too disruptive for routine iterative development.
 
 None of the four consumer classes auto-rebuilds on detecting staleness. This was a deliberate design decision, not an oversight: a `validate.sh` call (or a hook firing on an edit) is frequently running concurrently with other active editing sessions writing into the same shared, gitignored `dist/` output. An automatic rebuild triggered by one session's freshness check risks compiling in another concurrent session's unrelated, uncommitted source changes into that shared dist artifact — contaminating one session's build with another's in-flight edits. This exact failure mode occurred once already in this repository's history, which is why every consumer fails closed or warns instead of rebuilding, and always asks the operator to run the rebuild command explicitly.
 
