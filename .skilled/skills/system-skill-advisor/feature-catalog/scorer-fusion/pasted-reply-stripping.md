@@ -6,7 +6,7 @@ trigger_phrases:
   - "pasted reply strip"
   - "pasted assistant response"
   - "task marker stripping"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Pasted Reply Stripping
@@ -46,7 +46,6 @@ When a prompt starts with a recognized attribution header and includes a `Task:`
 - Group: Scorer fusion
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `scorer-fusion/pasted-reply-stripping.md`
-- Feature ID: SC-006
 
 Related references:
 

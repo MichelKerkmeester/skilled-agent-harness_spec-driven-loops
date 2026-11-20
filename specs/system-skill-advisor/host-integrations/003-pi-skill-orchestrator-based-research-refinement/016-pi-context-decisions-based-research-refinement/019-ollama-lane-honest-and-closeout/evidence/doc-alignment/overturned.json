@@ -1,0 +1,31 @@
+[
+  {
+    "id": "L2-7",
+    "source_id": "L2-7",
+    "lane": "L2",
+    "surface": "D7",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml",
+    "line": "148",
+    "issue": "The embedder route tells the operator to repair an unreachable backend by running /doctor:skill-advisor embedder, the route they are already in; the presentation's Next line (line 300) repeats the same pointer. The repair should name a route that adds information, such as /doctor:setup, whose embedder leg reports the same coverage and backend state.",
+    "evidence": {
+      "cmd": "grep -n 'point to /doctor:skill-advisor embedder' .skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml",
+      "exit": 0,
+      "out": "148:      - \"Report the coverage check as PASS when `semanticLaneHealth.coverageComplete` is true. Set STATUS=DEGRADED when `backend.state` is not `reachable`, even if coverage is complete; say routing continues on the other lanes and point to /doctor:skill-advisor embedder. When the backend is reachable but coverage is incomplete, report the stale and missing counts for skills and commands and say the daemon refreshes them on its next start with Ollama up. STATUS=OK requires complete coverage and a reachable backend.\""
+    },
+    "fix": {
+      "old": "say routing continues on the other lanes and point to /doctor:skill-advisor embedder.",
+      "new": "say routing continues on the other lanes and point to /doctor:setup, whose embedder leg reports the same coverage and backend state."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "The embedder route is the only route that starts the server and pulls the model (doctor-skill-advisor-embedder.yaml phase_4_approved_steps), so pointing back to it is the retry path for an unreachable backend. The proposed replacement, /doctor:setup, is read-only: doctor/setup.md says it \"writes nothing in the repository and never starts the advisor daemon\", so it cannot repair an unreachable backend. The lane's fix would also make the YAML disagree with the presentation's Next line (doctor-skill-advisor-presentation.txt:300), which the lane itself cites.",
+      "lane_severity": "P2"
+    }
+  }
+]

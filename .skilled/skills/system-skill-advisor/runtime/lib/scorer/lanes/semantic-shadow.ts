@@ -13,9 +13,9 @@ import {
 import { getAdapter } from '../../embedders/registry.js';
 import { getActiveEmbedder } from '../../embedders/schema.js';
 import {
+  embeddingCoverage,
   getDbReadOnly,
   loadSkillEmbeddings,
-  readCommandEmbeddingSources,
 } from '../../skill-graph/skill-graph-db.js';
 import { DEFAULT_SCORER_LANE_WEIGHTS } from '../lane-registry.js';
 import { scoreTokenOverlap, tokenizePrompt } from '../text.js';
@@ -98,9 +98,14 @@ function cosineSimilarity(left: Float32Array, right: Float32Array): number {
   return dot / (Math.sqrt(leftNorm) * Math.sqrt(rightNorm));
 }
 
+// Fixture vectors stand in for real embeddings in tests. A fixture skill vector is
+// only comparable with a prompt vector of the same size, because cosine similarity
+// over mismatched sizes would read just the shared prefix.
+const FIXTURE_VECTOR_DIM = 32;
+
 function fixtureVector(text: string): Float32Array {
   const normalized = text.toLowerCase().split(/\W+/).filter(Boolean);
-  const vector = new Float32Array(32);
+  const vector = new Float32Array(FIXTURE_VECTOR_DIM);
   for (const token of normalized) {
     let hash = 0;
     for (let index = 0; index < token.length; index++) {
@@ -258,15 +263,20 @@ export function scoreSemanticShadowExactSubset(
   const orderedSkillIds = [...new Set(skillIds)];
   if (orderedSkillIds.length === 0) return [];
 
-  const promptVector = activePromptEmbedding?.prompt === prompt
+  const activePromptVector = activePromptEmbedding?.prompt === prompt
     ? activePromptEmbedding.vector
+    : null;
+  const fixturePromptVector = activePromptVector
+    ? null
     : (projection.source === 'fixture' || process.env.VITEST === 'true' ? fixtureVector(prompt) : null);
+  const promptVector = activePromptVector ?? fixturePromptVector;
   if (!promptVector) {
     return [];
   }
 
   const requested = new Set(orderedSkillIds);
-  const fixtureVectors = projection.source === 'fixture' || process.env.VITEST === 'true'
+  const fixtureVectors = (projection.source === 'fixture' || process.env.VITEST === 'true')
+    && promptVector.length === FIXTURE_VECTOR_DIM
     ? new Map(projection.skills
         .filter((skill) => requested.has(skill.id))
         .map((skill) => [skill.id, fixtureVector([
@@ -337,14 +347,19 @@ export function scoreSemanticShadowLane(prompt: string, projection: AdvisorProje
       .filter((match) => match.score > 0.08);
   }
 
-  const promptVector = activePromptEmbedding?.prompt === prompt
+  const activePromptVector = activePromptEmbedding?.prompt === prompt
     ? activePromptEmbedding.vector
+    : null;
+  const fixturePromptVector = activePromptVector
+    ? null
     : (projection.source === 'fixture' || process.env.VITEST === 'true' ? fixtureVector(prompt) : null);
+  const promptVector = activePromptVector ?? fixturePromptVector;
   if (!promptVector) {
     return [];
   }
 
-  const fixtureVectors = projection.source === 'fixture' || process.env.VITEST === 'true'
+  const fixtureVectors = (projection.source === 'fixture' || process.env.VITEST === 'true')
+    && promptVector.length === FIXTURE_VECTOR_DIM
     ? new Map(projection.skills.map((skill) => [skill.id, fixtureVector([
         skill.name,
         skill.description,
@@ -373,15 +388,15 @@ export function scoreSemanticShadowLane(prompt: string, projection: AdvisorProje
     if (projection.skills.length > 0 && cachedVectors.size === 0) {
       setRuntimeHealth({ disabledReason: 'no_skill_vectors' });
     } else {
-      const commandEmbeddingIds = new Set(
-        readCommandEmbeddingSources()?.map((source) => source.commandId) ?? [],
-      );
-      const requiredVectorRows = projection.skills.filter((skill) => (
-        (skill.kind === 'skill' && skill.description.trim().length > 0)
-        || commandEmbeddingIds.has(skill.id)
-      ));
-      if (requiredVectorRows.some((skill) => !cachedVectors.has(skill.id))) {
-        setRuntimeHealth({ disabledReason: 'incomplete_skill_vectors' });
+      try {
+        if (!embeddingCoverage().complete) {
+          setRuntimeHealth({ disabledReason: 'incomplete_skill_vectors' });
+          return [];
+        }
+      } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
+        setRuntimeHealth({ disabledReason: 'skill_embedding_load_failed' });
+        console.warn(`[semantic-shadow] Skill embedding coverage check failed; cosine lane disabled (${message})`);
         return [];
       }
     }
@@ -399,7 +414,7 @@ export function scoreSemanticShadowLane(prompt: string, projection: AdvisorProje
       }
 
       // The cutoff suppresses random near-zero vector noise. The semantic lane is
-      // LIVE in the registry (weight 0.05, live=true), so the raw match tags
+      // LIVE in the registry (live=true), so the raw match tags
       // shadowOnly:false to match lane liveness. Fusion independently derives the
       // effective shadowOnly from isLiveScorerLane, so the two values now agree and
       // any direct reader of the raw LaneMatch sees the same answer as attribution.

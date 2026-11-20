@@ -51,7 +51,10 @@
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
       ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-ablation.vitest.ts",
-      ".skilled/commands/assets/local-doc-alignment/topics.json"
+      ".skilled/commands/assets/local-doc-alignment/topics.json",
+      "evidence/doc-alignment/topics-entry.json",
+      "evidence/skilled-alignment/report.md",
+      "evidence/doc-alignment/report.md"
     ],
     "entities": [
       {
@@ -133,6 +136,18 @@
         "source": "derived"
       },
       {
+        "name": "topics-entry.json",
+        "kind": "config",
+        "path": "evidence/doc-alignment/topics-entry.json",
+        "source": "derived"
+      },
+      {
+        "name": "report.md",
+        "kind": "doc",
+        "path": "evidence/skilled-alignment/report.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -181,19 +196,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview Each",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Guard",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
+        "name": "Overview Only",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -201,7 +204,7 @@
     ],
     "causal_summary": "The lane is off but could not be turned back on honestly: only a manual scan refreshes vectors, partial coverage still scores, an Ollama outage leaves the lane's weight in the total, and the daemon ignores `OLLAMA` settings",
     "created_at": "2026-11-19T17:05:15Z",
-    "last_save_at": "2026-11-19T22:33:29.955Z",
+    "last_save_at": "2026-11-20T00:02:36.284Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1bb1119fe7830674b7ec355bfaf41ad5b172af2ccb3a4df8000a1dc44a39eadd",
+    "source_fingerprint": "sha256:73a36e42a5e7b0bb6394969005d4738571e4494e0b3d019fb7b7402af50bf5d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9b14ece1a0614167a1bfcbe6c06e2b75c9791874445f04e1d448b8f106282e1b",
-      "plan.md": "a6e44db6c39bef41431b40dbbd32cb53944c03f986783d32b7a5bece003aa131",
-      "tasks.md": "42999451ecbe682f47c4c4e74e91541227527a53ea79746ba0fb8dd4ce938584",
-      "implementation-summary.md": "c163edbe7393024ffa8dced140fb4cb5510a600607b12f81c301456f62401ea4"
+      "spec.md": "903ae04f9df1b2ff56ad0d5ec0bf3430651be3e6a2643d41983a3a6fcaf35b12",
+      "plan.md": "15273a9b40649aa0851458e66dc450e492089f2a42e84b66bd5097307fc0fbdd",
+      "tasks.md": "7179d1e3a5e8f400dbe039f0e19c338b5c2091169601a5c5b3d21ddf71abf973",
+      "implementation-summary.md": "79c673d7e8e41a91ca5386b5797d075776cef8b1534f6927e6d5074d0eb51082"
     },
     "last_active_at": null
   }

@@ -6,7 +6,7 @@ trigger_phrases:
   - "weak follow-up route receipt"
   - "session route receipt"
   - "confidence-floored follow-up"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Weak Follow-Up Route-Receipt Guard
@@ -47,7 +47,6 @@ On a later turn, the hook suppresses a recommendation only when it is a floored 
 - Group: Hooks and plugin
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `hooks-and-plugin/weak-follow-up-route-receipt-guard.md`
-- Feature ID: CL-011
 
 Related references:
 

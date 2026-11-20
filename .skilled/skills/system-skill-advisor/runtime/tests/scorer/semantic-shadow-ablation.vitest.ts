@@ -176,7 +176,8 @@ describe('semantic-shadow paired ablation (opt-in, seeded)', () => {
       id: commandId,
       description: embeddingText,
     }));
-    // Keep every projection row as a candidate; unseeded rows receive no cosine match.
+    // Keep every projection row in the ablation projection. The lane returns
+    // cosine matches only for rows with seeded stored vectors.
     ablationProjection = createFixtureProjection(fullProjection.skills);
 
     const seededSkills = describedSkills.map((projectionSkill) => ({

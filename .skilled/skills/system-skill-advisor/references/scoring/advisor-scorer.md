@@ -9,7 +9,7 @@ trigger_phrases:
   - "prompt isolation safety"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.5.0
+version: 0.8.6.0
 ---
 
 # Advisor Scorer: Lane Attribution and Confidence Calibration
@@ -76,11 +76,11 @@ Category hints route well-known phrases. The phrase `deep research` maps to the 
 
 ## 4. SEMANTIC SHADOW LANE
 
-The semantic shadow lane computes cosine similarity between a prompt embedding and pre-computed skill and command embeddings when enabled. It remains live in the registry, but its default live weight is 0, so recommendation prompts are not embedded. The background index refresh still runs at any lane weight. `advisor_status` reports `disabledReason: "lane_weight_zero"` and `laneEnabled: false`. An opt-in `advisor_status --include-semantic-health true` also probes Ollama readiness. `advisor_recommend` adds no `semantic_lane_off` warning at weight 0. Set `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'` to enable the lane. The lane scores only when all embeddable skill and command rows have current vectors. Missing or stale coverage reports `incomplete_skill_vectors`. If prompt embedding fails, the lane is marked degraded and omitted from that call's live confidence total.
+The semantic shadow lane computes cosine similarity between a prompt embedding and pre-computed skill and command embeddings when enabled. It remains live in the registry, but its default live weight is 0, so recommendation prompts are not embedded. The background index refresh still runs at any lane weight. `advisor_status` adds `semanticLaneHealth`, including `disabledReason: "lane_weight_zero"` and `laneEnabled: false`, only when you set `includeSemanticHealth` or `debug`. An opt-in `advisor_status --include-semantic-health true` also probes Ollama readiness. `advisor_recommend` adds no `semantic_lane_off` warning at weight 0. Set `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'` to enable the lane. The lane scores only when all embeddable skill and command rows have current vectors. Missing or stale coverage reports `incomplete_skill_vectors`. If prompt embedding fails, the lane is marked degraded and omitted from that call's live confidence total.
 
 When the lane is enabled, its raw matches carry `shadowOnly:false` because fusion derives the effective value from registry liveness (`isLiveScorerLane`), not the configured weight (`runtime/lib/scorer/lanes/semantic-shadow.ts`).
 
-Cosine similarity below 0.2 is treated as no signal (`runtime/lib/scorer/lanes/semantic-shadow.ts:10, 147-150`). When the lane is enabled and embeddings are unavailable under `VITEST=true`, it falls back to token-overlap scoring so tests stay deterministic (`runtime/lib/scorer/lanes/semantic-shadow.ts:91-108`).
+Cosine similarity below 0.2 is treated as no signal (`runtime/lib/scorer/lanes/semantic-shadow.ts:27, 405`). When the lane is enabled and embeddings are unavailable under `VITEST=true`, it falls back to token-overlap scoring so tests stay deterministic (`runtime/lib/scorer/lanes/semantic-shadow.ts:325-338`).
 
 ---
 

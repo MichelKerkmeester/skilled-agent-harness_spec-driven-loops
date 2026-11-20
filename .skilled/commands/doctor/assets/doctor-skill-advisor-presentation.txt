@@ -199,14 +199,14 @@ STATUS=FAIL ERROR="[message]"
 
 | Situation | Suggested Action |
 |-----------|------------------|
-| Advisor CLI exits 75 | The daemon is not running; a warm-only probe never starts it. `rebuild` does not need it |
+| Advisor CLI exits 75 | Exit 75 means a retryable failure. `staleDistWarning` in stderr JSON means the CLI build is missing or stale. Other causes include a CLI or daemon launcher start error, an unavailable daemon or backend, a connection or request timeout, a socket closed before its reply, JSON-RPC codes -32000 or -32001, `SQLITE_BUSY`, or transport errors `ECONNREFUSED`, `ENOENT`, `ECONNRESET`, `EPIPE` or `ETIMEDOUT`, or another error the CLI marks retryable. Read stderr to identify the cause; `--warm-only` never starts a daemon |
 | Rebuild failed and was rolled back | Read the failing command's output, fix the named graph-metadata.json, rerun `/doctor:skill-advisor rebuild` |
 | Cross-target flag rejected | Use the suggested target from the error |
 | Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
 
 ## 8. Embedder Setup Presentation
 
-Render these blocks for `/doctor:skill-advisor embedder`. The probe runs first and changes nothing. Every value is printed as the probe or the cost script returned it, and an unread value stays unread. The advisor daemon refreshes missing vectors on start and after skill changes when Ollama is reachable. This workflow scans the skill graph after approved setup steps or when Ollama is already set up and coverage is incomplete.
+Render these blocks for `/doctor:skill-advisor embedder`. The probe runs first and changes nothing. Every value is printed as the probe or the cost script returned it, and an unread value stays unread. The advisor daemon refreshes missing and stale vectors in the background on its next start or after a watcher reindex following a skill file change, with Ollama up. This workflow scans the skill graph after approved setup steps or when Ollama is already set up and coverage is incomplete.
 
 ### Probe Dashboard
 
@@ -217,16 +217,16 @@ EMBEDDER SETUP PROBE
 Ollama binary: [present at <path>|missing]
 Server: [answering at <url>, version <version>|absent at <url>]
 Model: [nomic-embed-text:v1.5 present, <size> on disk|missing]
-Advisor daemon: [present|absent]
-Active embedder: [<backend> <model>|none|unread, the daemon is absent]
-Skills: [<current> of <total> current (<stale> stale, <missing> missing)|unread, the daemon is absent]
-Commands: [<current> of <total> current (<stale> stale, <missing> missing)|unread, the daemon is absent]
-Coverage complete: [true|false|unread, the daemon is absent]
-Ollama backend: [reachable|unreachable|model_missing|unread, the daemon is absent]
+Advisor daemon: [present|absent|unavailable]
+Active embedder: [<backend> <model>|none|unread, advisor status unavailable]
+Skills: [<current> of <total> current (<stale> stale, <missing> missing)|unread, advisor status unavailable]
+Commands: [<current> of <total> current (<stale> stale, <missing> missing)|unread, advisor status unavailable]
+Coverage complete: [true|false|unread, advisor status unavailable]
+Ollama backend: [reachable|unreachable|model_missing|unread, advisor status unavailable]
 semantic lane weight [<laneWeights.semantic_shadow>]
 ```
 
-A missing binary, an absent server and a missing model are findings, not failures of the route. An exit 75 from `advisor_status` means the daemon is absent, so the active embedder, both coverage objects, coverage state, backend state and lane weight stay `unread`. Print the lane-weight line on its own; at weight 0 with complete coverage, use `semantic lane weight 0: vectors ready, lane off by default`. With incomplete coverage, say the lane is off by default and vector coverage is incomplete.
+A missing binary, an absent server and a missing model are findings, not failures of the route. Exit 75 leaves advisor status and semantic health unread; it does not by itself prove the daemon is absent. `staleDistWarning` in stderr JSON means the CLI build is missing or stale. Other causes include a CLI or daemon launcher start error, an unavailable daemon or backend, a connection or request timeout, a socket closed before its reply, JSON-RPC codes -32000 or -32001, `SQLITE_BUSY`, or transport errors `ECONNREFUSED`, `ENOENT`, `ECONNRESET`, `EPIPE` or `ETIMEDOUT`, or another error the CLI marks retryable. Read stderr to identify the cause; for a stale build, report repair `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`. Print the lane-weight line on its own; at weight 0 with complete coverage, use `semantic lane weight 0: vectors ready, lane off by default`. With incomplete coverage, say the lane is off by default and vector coverage is incomplete.
 
 ### Plan Table
 
@@ -297,10 +297,10 @@ Commands: [<current>/<total> current (<stale> stale, <missing> missing)]
 Coverage complete: [true|false|unread]
 Ollama backend: [reachable|unreachable|model_missing|unread]
 semantic lane weight [<laneWeights.semantic_shadow>]
-Next: [none|start the advisor daemon with Ollama up so it refreshes missing vectors|/doctor:skill-advisor embedder]
+Next: [none|start the advisor daemon with Ollama up to refresh missing or stale vectors|rerun /doctor:skill-advisor embedder and approve its Ollama setup steps]
 STATUS=[OK|DEGRADED|FAIL]
 ```
 
-Report `STATUS=OK` when coverage is complete and the backend is reachable. Report `STATUS=DEGRADED` when the backend is not reachable, even if coverage is complete; say routing continues on the other lanes and point to `/doctor:skill-advisor embedder`. When the backend is reachable but coverage is incomplete, report the stale and missing counts and say the daemon refreshes them on its next start with Ollama up. An absent daemon leaves coverage unread and is DEGRADED. Never fail because `laneEnabled` is false or the semantic lane weight is 0. Print the weight on its own info line; when it is 0 and coverage is complete, use `semantic lane weight 0: vectors ready, lane off by default`. When it is 0 and coverage is incomplete, say the lane is off by default and vector coverage is incomplete.
+Report `STATUS=OK` only when `coverageComplete` is true and the backend is reachable. Report `STATUS=DEGRADED` when the backend is not reachable or `coverageComplete` is false or unread. When the backend is not reachable, say routing continues on the other lanes and ask the operator to rerun `/doctor:skill-advisor embedder` and approve its Ollama setup steps. For incomplete coverage, show stale and missing counts and say the daemon refreshes missing and stale vectors in the background on its next start or after a watcher reindex following a skill file change, with Ollama up. If status is unread after exit 75, keep coverage and backend unread, report DEGRADED and identify the staleDistWarning build case or the other retryable cause from stderr. Never fail because `laneEnabled` is false or the semantic lane weight is 0. Print the weight on its own info line; when it is 0 and coverage is complete, use `semantic lane weight 0: vectors ready, lane off by default`. When it is 0 and coverage is incomplete, say the lane is off by default and vector coverage is incomplete.
 
 End interactive presentations with: `What would you like to do next?`

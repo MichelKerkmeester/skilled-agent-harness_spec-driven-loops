@@ -54,18 +54,18 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given missing rows and a reachable backend, When the daemon refresh runs, Then it embeds them at weight 0; given full coverage it makes no probe and no embed call; given the opt-out env it does nothing | `refresh-in-background.vitest.ts` (embed, complete no-op, opt-out); live daemon 14/14 and 47/47 at weight 0 | Met | - |
-| AC-002 | REQ-002 | Given a stored vector, When its refresh fails on an outage, Then the vector is still stored | `skill-graph-embedding-outage.vitest.ts` keeps skill vectors through a tripped outage; the two command-loop deletes are removed in the diff, with no test of their own | Met | - |
-| AC-003 | REQ-003 | Given an embeddable skill or command with no vector, When the lane scores, Then it returns [] and reports incomplete_skill_vectors | `semantic-shadow-cosine.vitest.ts` incomplete-coverage cases | Met | - |
+| AC-002 | REQ-002 | Given a stored vector, When its refresh fails on an outage, Then the vector is still stored | `skill-graph-embedding-outage.vitest.ts` keeps skill vectors and, in its command case, command vectors through an outage; both cases fail against the old delete-on-failure code | Met | - |
+| AC-003 | REQ-003 | Given an embeddable skill or command with no vector, When the lane scores, Then it returns [] and reports incomplete_skill_vectors | `semantic-shadow-cosine.vitest.ts` stale-hash case: fails on the presence-only gate, passes on the coverage gate | Met | - |
 | AC-004 | REQ-004 | Given a failed prompt embed, When the closure scores, Then semantic_shadow is runtime_degraded | `semantic-outage-degraded.vitest.ts` | Met | - |
-| AC-005 | REQ-005 | Given a local Ollama and full seeded coverage, When the harness runs twice, Then both runs match and the default weight follows the pass bar | Runs 3 and 4 match (156 vs 161, 7 flips); default 0 asserted by the pass bar | Met | - |
+| AC-005 | REQ-005 | Given a local Ollama and full seeded coverage, When the harness runs twice, Then both runs match and the default weight follows the pass bar | Runs 8 and 9 on the shipped code match runs 3 to 7: 156 vs 161, 7 identical flips, no new none-gold fire; default 0 asserted by the pass bar | Met | - |
 | AC-006 | REQ-006 | Given no heartbeat newer than spawn, When 5 minutes pass, Then the watchdog stops the child; and createChildEnv always sets the database directory | `launcher-heartbeat-watchdog.vitest.ts` grace cases and `launcher-threshold-env.vitest.ts` DB dir case | Met | - |
 | AC-007 | REQ-007 | Given OLLAMA_BASE_URL and OLLAMA_REQUEST_TIMEOUT_MS in the launcher env, When createChildEnv runs, Then both reach the child | `launcher-threshold-env.vitest.ts` OLLAMA forwarding case | Met | - |
 | AC-008 | REQ-008 | Given repeated runs on quiet main, When they finish, Then each one-off failure is reproduced and fixed or shown not to repeat | Python 10/10 and runtime 4/4 clean; the six daemon-start failures reproduced as a stale dist under vitest | Met | - |
 | AC-009 | REQ-009 | Given the orphan scan, When the writes finish, Then it lists only live or skipped sessions, each skip with its reason | `--scan-orphans` lists only the running session, this session and 2 held answers; skip reasons in implementation-summary.md | Met | - |
 | AC-011 | REQ-011 | Given the daemon on main with Ollama up, When status runs with `includeSemanticHealth`, Then skills and commands both read current equal to total | The live status block | Unmet | - |
-| AC-012 | REQ-012 | Given the doctor checks, When coverage is full at weight 0, Then they pass; without Ollama they read DEGRADED | Setup and embedder YAML pass on `coverageComplete`, DEGRADED without Ollama, weight 0 not a fail | Met | - |
-| AC-013 | REQ-013 | Given the committed branch, When both alignment commands run, Then their reports are in `evidence/` and each finding is fixed or accepted with a reason before the merge | The two reports and the finding list in implementation-summary.md | Unmet | - |
-| AC-010 | REQ-010 | Given the docs, When they are searched, Then they state the shipped weight and behavior | `rg semantic_shadow` over the advisor docs shows weight 0 and the background refresh | Met | - |
+| AC-012 | REQ-012 | Given the doctor checks, When coverage is full at weight 0, Then they pass; without Ollama they read DEGRADED | Setup and embedder YAML and presentations share one rule: PASS on `coverageComplete` with a reachable backend, DEGRADED otherwise, never FAIL on weight 0 | Met | - |
+| AC-013 | REQ-013 | Given the committed branch, When both alignment commands run, Then their reports are in `evidence/` and each finding is fixed or accepted with a reason before the merge | `evidence/skilled-alignment/report.md` and `evidence/doc-alignment/report.md`; every finding id named in implementation-summary.md (`check-finding-ids.cjs` prints ALL_IDS_PRESENT) | Met | - |
+| AC-010 | REQ-010 | Given the docs, When they are searched, Then they state the shipped weight and behavior | Both alignment runs' doc findings fixed, listed in implementation-summary.md; `rg semantic_shadow` over the advisor docs shows weight 0 and the background refresh | Met | - |
 
 ### Status values
 
@@ -93,5 +93,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-No. AC-013 and AC-011 wait on the alignment runs, the merge and the live status check on main.
+No. AC-011 waits on the merge and the live status check on main.
 <!-- /ANCHOR:closure -->

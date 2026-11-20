@@ -130,7 +130,7 @@ Live coverage is 8 of 15 skills and 0 of 47 commands, only the manual scan refre
 | `.skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-ablation.vitest.ts` | Modify | Candidate weight, live corpus size, none-gold counts |
 | Tests for each change, advisor docs, ENV-REFERENCE, `SKILL.md`, changelogs | Create/Modify | Coverage and the shipped facts |
 | Other packets' `decision-record.md` | Create/Modify | Orphan operator answers, decisions only |
-| `.skilled/commands/assets/local-doc-alignment/topics.json` | Modify | A topic for the advisor's vector refresh |
+| `.skilled/commands/assets/local-doc-alignment/topics.json` | Modify (local) | A topic for the advisor's vector refresh. The file is gitignored and symlinked to the main checkout, so the topic lives there; a copy is kept in `evidence/doc-alignment/topics-entry.json` |
 | Files named by an alignment finding | Modify | The fix for that finding |
 <!-- /ANCHOR:scope -->
 
@@ -212,7 +212,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## L2: EDGE CASES
 
 - Empty input: a skill with an empty description is not embeddable and does not count against coverage.
-- Maximum input: a startup scan that blocks for more than 3 minutes now gets the server reaped, which is the intended behavior for a wedged start.
+- Maximum input: a startup that writes no heartbeat within 5 minutes of spawn now gets the server reaped, which is the intended behavior for a wedged start.
 - Failure path: Ollama down during a daemon refresh keeps every old vector and logs the outage.
 <!-- /ANCHOR:edge-cases -->
 

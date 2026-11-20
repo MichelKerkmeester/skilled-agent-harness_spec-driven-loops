@@ -1,0 +1,40 @@
+{
+  "title": "Skill advisor background vector refresh and semantic lane: the daemon keeps every embeddable skill and command vector current after startup and each watcher reindex at any lane weight, coverage counts and coverageComplete in status, the lane's default weight of 0 and its ablation, the full-coverage gate and outage degrade, Ollama settings forwarded by the launcher with the heartbeat startup grace, and the doctor coverage checks",
+  "terms": [
+    "background (vector |embedding )?refresh",
+    "vector coverage",
+    "coverageComplete",
+    "(command)?VectorCoverage",
+    "SYSTEM_SKILL_ADVISOR_EMBED_REFRESH",
+    "incomplete_skill_vectors",
+    "semantic[_ -](shadow|lane)",
+    "OLLAMA_BASE_URL",
+    "OLLAMA_REQUEST_TIMEOUT_MS",
+    "startup grace",
+    "advisor-server\\.heartbeat"
+  ],
+  "codeRoots": [
+    ".skilled/bin/system-skill-advisor-launcher.cjs",
+    ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml",
+    ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml",
+    ".skilled/commands/doctor/assets/doctor-setup.yaml",
+    ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml",
+    ".skilled/commands/doctor/assets/doctor-symlink-link.yaml",
+    ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+    ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts",
+    ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+    ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+    ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts"
+  ],
+  "lanes": 4,
+  "checks": [
+    {
+      "id": "advisor-runtime-tests",
+      "cmd": "cd .skilled/skills/system-skill-advisor/runtime && npx vitest run",
+      "severity": "P1"
+    }
+  ]
+}

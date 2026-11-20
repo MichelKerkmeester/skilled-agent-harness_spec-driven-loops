@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.28.0
+version: 0.12.29.0
 ---
 
 # system-skill-advisor
@@ -45,7 +45,7 @@ Five lanes are registered for scoring. `runtime/lib/scorer/lane-registry.ts` hol
 | `derived_generated` | 0.12 | Derived trigger metadata from prior extraction runs |
 | `semantic_shadow` | 0 | Embedding cosine similarity, disabled by the default zero weight |
 
-The semantic lane remains registered, but its default live weight is 0. A recommendation at that weight does not embed the prompt. Set `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'` to enable its live scoring. The background index refresh still runs at any lane weight. An opt-in `advisor_status --include-semantic-health true` call also probes Ollama readiness.
+The semantic lane remains registered, but its default live weight is 0. A recommendation at that weight does not embed the prompt. Before setting `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'`, check `advisor_status --include-semantic-health true`. In `semanticLaneHealth`, `coverageComplete` must be `true`, with current vectors for every embeddable skill and command. If coverage is incomplete, an enabled lane returns no semantic matches and sets `incomplete_skill_vectors`. The background index refresh still runs at any lane weight. The status call also probes Ollama readiness.
 
 Attribution names the lane that dominated each result, so a surprising score can be traced without printing the prompt.
 

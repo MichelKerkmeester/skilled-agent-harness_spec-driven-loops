@@ -1,0 +1,28 @@
+[
+  {
+    "id": "A1",
+    "source_id": "A1",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+    "line": "383",
+    "issue": "The new incomplete_skill_vectors gate tests vector presence, not currency. requiredVectorRows.some((skill) => !cachedVectors.has(skill.id)) accepts any stored row, and loadSkillEmbeddings returns rows without filtering on content_hash or model_id. So a skill whose SKILL.md description changed while its re-embed failed keeps its old vector, passes the gate, and is scored against the previous description while the lane reports no incomplete_skill_vectors. The changelog (changelog/v1.3.0.0.md:24) and references/scoring/advisor-scorer.md:79 both claim the lane \"scores only with current vectors for every embeddable skill and command\", which the code does not do. The new test proves the gap: semantic-shadow-cosine.vitest.ts:222 inserts content_hash \"hash-alpha\", which is not the description hash, and the lane still scores that row. advisor_status meanwhile reports coverageComplete:false and stale:1 for the same row, so the two surfaces disagree. Reach: a skill description edit plus an embedding backend failure, both explicitly handled paths (backendOutage at skill-graph-db.ts:1592, probeOllamaModel early return at skill-graph-db.ts:1462). Impact is bounded because the lane default weight is 0 (lane-registry.ts:13) and the score shift is one row at weight 0.05.",
+    "evidence": {
+      "cmd": "cd .skilled/skills/system-skill-advisor/runtime && ./node_modules/.bin/vitest run tests/scorer/semantic-shadow-cosine.vitest.ts tests/skill-graph-embedding-outage.vitest.ts",
+      "exit": 0,
+      "out": "Test Files 6 passed (6) | Tests 73 passed (73) - the suite passes with a non-matching content_hash, confirming the gate ignores currency"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "duplicate",
+      "note": "D-02 records the same gate defect at the same line (semantic-shadow.ts:383) with the same reach and the same changelog contradiction; keep D-02, which grades it P1.",
+      "lane_severity": "P2"
+    }
+  }
+]

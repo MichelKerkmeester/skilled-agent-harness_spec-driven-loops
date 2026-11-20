@@ -52,7 +52,7 @@ Render one row per leg, in the workflow's order.
 |-----|---------|--------|--------|
 | [leg] | [check-only command] | [PASS|FAIL|SKIP|DEGRADED|ERROR] | [the doctor command that repairs it or shows why, or none] |
 
-Under the embedder row, show skill and command vector coverage and the backend state. Mark the coverage check PASS when `coverageComplete` is true. Mark the leg PASS when the backend is reachable; an unreachable or missing-model backend is DEGRADED, so say routing continues on the other lanes and point to `/doctor:skill-advisor embedder`. Incomplete coverage with a reachable backend is DEGRADED with the stale and missing counts; say the daemon refreshes them on its next start with Ollama up. Never use `laneEnabled` as the success condition. Print the semantic lane weight on its own info line; with weight 0 and complete coverage, use `semantic lane weight 0: vectors ready, lane off by default`.
+Under the embedder row, show skill and command vector coverage and the backend state. Mark the leg PASS only when `coverageComplete` is true and the backend is reachable. Mark it DEGRADED when the backend is not reachable or `coverageComplete` is false or unread. For incomplete coverage, show stale and missing skill and command counts and say the daemon refreshes missing and stale vectors in the background on its next start or after a watcher reindex following a skill file change, with Ollama up. When the backend is not reachable, say routing continues on the other lanes and point to `/doctor:skill-advisor embedder`. Never fail because `laneEnabled` is false or the semantic lane weight is 0. Print the semantic lane weight on its own info line; with weight 0 and complete coverage, use `semantic lane weight 0: vectors ready, lane off by default`.
 
 | Leg | Repair when it fails |
 |-----|----------------------|
@@ -102,7 +102,7 @@ STATUS=ERROR ERROR="[message]"
 | Situation | Suggested Action |
 |-----------|------------------|
 | A leg reports FAIL | Run the doctor command in that leg's Repair cell, then rerun `/doctor:setup` |
-| The advisor leg reports SKIP | Exit 75 has no `staleDistWarning` in stderr JSON. The advisor daemon is stopped because `--warm-only` does not start it |
+| The advisor leg reports SKIP | Exit 75 has no `staleDistWarning` in stderr JSON. It is another retryable failure: the daemon or backend may be absent or unavailable, the CLI or daemon launcher may fail to start, a connection or request may time out, the socket may close, JSON-RPC may return -32000 or -32001, SQLite may return SQLITE_BUSY, or transport may return ECONNREFUSED, ENOENT, ECONNRESET, EPIPE or ETIMEDOUT, or another error the CLI marks retryable. Read stderr for the cause; `--warm-only` never starts a daemon |
 | The advisor leg reports FAIL for a stale build | Exit 75 includes `staleDistWarning` in stderr JSON. Run `npm --prefix .skilled/skills/system-skill-advisor/runtime run build` |
 | The advisor leg reports DEGRADED | Exit 0 has `data.freshness` other than `live`. The skill graph is not live. Run `/doctor:skill-advisor rebuild` |
 | The embedder leg reports DEGRADED | The backend is unreachable or vectors are incomplete. Routing still works on the other lanes; run `/doctor:skill-advisor embedder` to inspect it. A false `laneEnabled` alone is not a failure |

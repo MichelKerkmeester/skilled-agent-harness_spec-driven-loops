@@ -20,6 +20,7 @@
         "feature-catalog/cli-surface/skill-graph-scan.md",
         "feature-catalog/cli-surface/skill-graph-status.md",
         "feature-catalog/cli-surface/skill-graph-validate.md",
+        "feature-catalog/daemon-and-freshness/background-vector-refresh.md",
         "feature-catalog/daemon-and-freshness/cache-invalidation.md",
         "feature-catalog/daemon-and-freshness/generation.md",
         "feature-catalog/daemon-and-freshness/lease.md",

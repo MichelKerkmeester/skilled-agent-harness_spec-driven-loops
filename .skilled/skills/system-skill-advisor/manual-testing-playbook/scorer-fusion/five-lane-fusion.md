@@ -6,7 +6,7 @@ trigger_phrases:
   - "five lane fusion"
   - "lane weights canonical"
   - "advisor fusion"
-version: 0.8.2.0
+version: 0.8.3.0
 id: SC-001
 category: scorer_fusion
 stage: routing
@@ -41,10 +41,10 @@ Validate that `lib/scorer/fusion.ts` combines the five lanes with the canonical 
 
 > **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred-decisions.md` §F34 for rationale.
 
-1. Call status and capture `laneWeights`:
+1. Call status with semantic health enabled and capture `laneWeights`:
 
 ```text
-node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --include-semantic-health true --format json
 ```
 
 2. Call `advisor_recommend` with a prompt that hits multiple lanes and `includeAttribution: true`:

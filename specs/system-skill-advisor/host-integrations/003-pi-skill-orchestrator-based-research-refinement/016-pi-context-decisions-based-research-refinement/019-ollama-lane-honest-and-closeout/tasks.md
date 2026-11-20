@@ -62,8 +62,8 @@ contextType: "implementation"
 - [x] T010 Rerun every baseline suite on the final tree. Verify: each passes, with deltas named. Evidence: Runtime 2553/6 skipped (baseline 2537/8), Python 122/0, bin 94 (86), spec-kit 202/2, DSH 18/0.
 - [x] T011 Write each ended session's pending answers into its packet. Verify: `match-decision-table --scan-orphans` lists only live or skipped sessions. Evidence: Scan lists only the running session, this session and 2 held answers.
 - [x] T012 Docs, `SKILL.md` and changelogs. Verify: the docs state the shipped weight and the new behavior. Evidence: 22 doc files, ENV-REFERENCE, SKILL.md 1.3.0.0 and both changelogs state weight 0 and the background refresh.
-- [ ] T014 Commit the change and one commit per spec track, then run `/local-skilled-alignment` over the branch and `/local-doc-alignment` over a new advisor topic (`evidence/`). Verify: both `report.md` files exist.
-- [ ] T015 Fix or accept each alignment finding, test first for a code fix. Verify: `implementation-summary.md` names every finding id with its outcome.
+- [x] T014 Commit the change and one commit per spec track, then run `/local-skilled-alignment` over the branch and `/local-doc-alignment` over a new advisor topic (`evidence/`). Verify: both `report.md` files exist. Evidence: both runs on vibe-deepseek, :auto; reports in `evidence/`.
+- [x] T015 Fix or accept each alignment finding, test first for a code fix. Verify: `implementation-summary.md` names every finding id with its outcome. Evidence: every finding fixed or accepted with a reason in implementation-summary.md; code fixes failed before and pass after.
 - [ ] T016 Stop only the `ollama serve` this phase started and rerun the suites. Verify: port 11434 refuses and each suite matches its no-Ollama baseline.
 - [ ] T013 Merge to main, push, restart the daemon and check the status block. Verify: `includeSemanticHealth` shows the decided lane state.
 <!-- /ANCHOR:phase-3 -->
@@ -123,7 +123,7 @@ contextType: "implementation"
 <!-- FILL: Write one check per file rule. A command must answer it. GOOD: CHK-010 [P0] `bash -n scripts/rotate-logs.sh` exits 0. WEAK: Code is clean. -->
 
 - [x] CHK-010 [P0] Code passes lint/format checks Evidence: `npm run build` exits 0 with no TS errors.
-- [x] CHK-011 [P0] No console errors or warnings Evidence: No new warnings in the suite logs.
+- [x] CHK-011 [P0] No console errors or warnings Evidence: `grep -ci warn` over the final runtime suite log prints 0.
 - [x] CHK-012 [P1] Error handling implemented Evidence: Refresh failures keep vectors and log; probe failure returns a warning.
 - [x] CHK-013 [P1] Code follows project patterns Evidence: Follows the existing refresh and handler patterns.
 <!-- /ANCHOR:code-quality -->
@@ -134,7 +134,7 @@ contextType: "implementation"
 ## Testing Checklist
 <!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--keep 3` leaves 3 archives. WEAK: Tests pass. -->
 
-- [x] CHK-020 [P0] All acceptance criteria met Evidence: Every AC row is Met except AC-011 and AC-013, which wait on finalization.
+- [ ] CHK-020 [P0] All acceptance criteria met
 - [x] CHK-021 [P0] Manual testing complete Evidence: Live isolated daemon and watcher checks recorded in implementation-summary.md.
 - [x] CHK-022 [P1] Edge cases tested Evidence: Opt-out env, complete coverage and an empty description are tested.
 - [x] CHK-023 [P1] Error scenarios validated Evidence: Outage keeps vectors; prompt-embed failure degrades the lane.
@@ -195,7 +195,7 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 12/12 |
+| P0 Items | 12 | 11/12 |
 | P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 

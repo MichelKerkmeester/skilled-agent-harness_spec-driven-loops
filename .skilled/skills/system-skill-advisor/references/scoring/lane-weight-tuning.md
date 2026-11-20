@@ -8,7 +8,7 @@ trigger_phrases:
   - "lane weight sweep"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.2.0
+version: 0.8.3.0
 ---
 
 # Lane Weight Tuning Guide
@@ -55,7 +55,7 @@ Do not tune weights for these reasons:
 
 - "It feels low for lane X." Without measured evidence, intuition mispredicts the cross-skill impact.
 - "We just added this skill." Single-skill tuning belongs in the explicit_author lane's curated boosts (`runtime/lib/scorer/lanes/explicit.ts`), not in global lane weights.
-- "The semantic lane scored higher than expected." The semantic_shadow lane is live in the registry but carries the lowest fusion weight (0.05), so its live contribution is small by design. Re-weight it only with measured evidence; adjust the shadow_weight separately if you are tuning shadow mode rather than the live ranking.
+- "The semantic lane scored higher than expected." The semantic_shadow lane is live in the registry but its default live weight is 0. It adds nothing to the live ranking until an operator raises the weight, while its shadow weight remains 0.05. Re-weight it only with measured evidence. Adjust the shadow weight separately when tuning shadow mode rather than the live ranking.
 
 ---
 
@@ -83,7 +83,7 @@ This harness exercises each lane weight individually across a small grid plus re
 
 **Step 3: Make the change.**
 
-Edit `runtime/lib/scorer/lane-registry.ts:7-19` (live weights) or `lane-registry.ts:32-38` (shadow weights). Keep both sums close to 1.0 to preserve the calibration assumptions in `scoring-constants.ts`.
+Edit `runtime/lib/scorer/lane-registry.ts:8-19` (live and shadow weights per lane) or `lane-registry.ts:44-46` (`DEFAULT_SHADOW_WEIGHTS`). Keep both sums close to 1.0 to preserve the calibration assumptions in `scoring-constants.ts`.
 
 For experiments:
 
@@ -159,5 +159,5 @@ Confirm the baseline numbers return. Document the rollback rationale in the orig
 - [`feature-catalog/scorer-fusion/weights-config.md`](../../feature-catalog/scorer-fusion/weights-config.md), canonical current weights.
 - [`manual-testing-playbook/scorer-fusion/ablation.md`](../../manual-testing-playbook/scorer-fusion/ablation.md), ablation scenario for measuring lane contributions.
 - `runtime/tests/scorer/lane-weight-sweep.vitest.ts`, sweep harness.
-- `runtime/lib/scorer/lane-registry.ts:7-19,32-38`, live + shadow weight source-of-truth.
+- `runtime/lib/scorer/lane-registry.ts:8-19,44-46`, live + shadow weight source-of-truth.
 - `runtime/lib/scorer/scoring-constants.ts:141-170`, confidence calibration constants.

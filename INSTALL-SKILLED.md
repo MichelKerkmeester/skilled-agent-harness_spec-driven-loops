@@ -85,7 +85,7 @@ It prints one skill id, such as `sk-doc`. When it prints nothing or `null`, run 
 
 ### Meaning Matching For Commands
 
-Out of the box, the advisor matches a request to a command by its phrases. With a local embedding model running, it can also match by meaning, even when your request uses none of the command's words. The model runs on your own machine through Ollama.
+Out of the box, the advisor matches a request to a command by its phrases. A local embedding model alone does not turn on meaning matching: the `semantic_shadow` lane ships at weight `0`, because a measured run routed fewer prompts correctly with it on. The daemon still keeps the vectors current, so you can try it with `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'`. The model runs on your own machine through Ollama.
 
 Run the setup from the repository you are setting up:
 
@@ -93,7 +93,7 @@ Run the setup from the repository you are setting up:
 /doctor:skill-advisor embedder
 ```
 
-It first checks Ollama, its server and the model without changing anything. It then lists each missing step with its cost and its undo, and asks once before it acts. After your yes it pulls the model, starts the server and indexes every command. It never installs Ollama itself. When Ollama is missing, the plan prints the install command for you to run.
+It first checks Ollama, its server and the model without changing anything. It then lists each missing step with its cost and its undo, and asks once before it acts. After your yes it starts the server, pulls the model and indexes every command. It never installs Ollama itself. When Ollama is missing, the plan prints the install command for you to run.
 
 The model takes about 262 MB on disk and unloads after five idle minutes. The Skill Advisor install guide lists the [measured costs](.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md#127-setup-route-and-cost). Meaning matching is optional. Without it, everything still works on phrases alone.
 

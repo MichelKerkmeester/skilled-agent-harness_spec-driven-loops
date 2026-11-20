@@ -6,7 +6,7 @@ trigger_phrases:
   - "command row embedding"
   - "vec_cmd table"
   - "command meaning anchor"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Command Meaning Matching
@@ -15,7 +15,7 @@ version: 1.0.5.0
 
 A command row can pass on meaning when the prompt's real embedding sits close to the row's own vector, so a paraphrase that shares no words with a command can still reach it.
 
-A command row used to pass only on one of its own phrases or its slash string. A paraphrase shares none of those words, so it reached nothing. Meaning matching adds a second way in. It works only when the local embedder runs. Without it the advisor returns the phrase-only result.
+A command row used to pass only on one of its own phrases or its slash string. A paraphrase shares none of those words, so it reached nothing. Meaning matching adds a second way in, but it is off by default because the semantic lane's live weight is `0`. It works only when the local embedder runs and `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` raises `semantic_shadow` above `0`. Without both conditions, the advisor returns the phrase-only result.
 
 ---
 

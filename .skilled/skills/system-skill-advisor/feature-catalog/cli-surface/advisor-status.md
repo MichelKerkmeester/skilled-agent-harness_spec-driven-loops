@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor freshness status"
   - "trust state status"
   - "semanticLaneHealth"
-version: 0.8.2.0
+version: 0.8.3.0
 ---
 
 # advisor_status Command
@@ -20,7 +20,7 @@ Give operators and runtimes a single diagnostic read that summarizes whether adv
 
 ## 2. HOW IT WORKS
 
-`handlers/advisor-status.ts` returns `freshness`, `generation`, `trustState` (with `state` and optional `reason`), `skillCount`, `lastScanAt` and `laneWeights` (the canonical 5-lane configuration). Freshness vocabulary is `live / stale / absent / unavailable`. The call is fail-open: even when the daemon is absent, status returns a well-formed envelope describing the shortfall.
+`handlers/advisor-status.ts` returns `freshness`, `generation`, `trustState` (with `state` and optional `reason`), `skillCount`, `lastScanAt` and `laneWeights` (the canonical 5-lane configuration). Freshness vocabulary is `live / stale / absent / unavailable`. The status handler is fail-open: even when the daemon is absent, it returns a well-formed envelope describing the shortfall. The CLI's `--warm-only` mode is attach-or-refuse. If no daemon is already running, the CLI writes an error payload to stderr and exits with code `75`.
 
 Every successful read also carries `indexStaleness`, the content-hash comparison that `skill_graph_status` reports as `staleness`. Its shape is `{ state, reason, trackedSkills, freshSourceFiles, changedSourceFiles, missingSourceFiles, staleSkillIds }`, where `state` is `fresh`, `stale` or `unavailable` and `staleSkillIds` is capped at 25 ids. The check opens the SQLite `skill_nodes` rows read-only and compares each stored `content_hash` with the indexer's sanitizer-versioned hash recipe applied to the file on disk, so a source edited after the last indexing pass counts as a changed source file. When `state` is `stale`, a `live` freshness is downgraded to `stale`, `trustState` stops being live, and `errors` gains an entry that names the skill count and points at `advisor_rebuild`. When `state` is `unavailable`, freshness keeps the generation verdict; the reasons are `database_absent`, `index_rows_absent` and `index_read_failed`. The read never creates, migrates or writes the database.
 
@@ -43,6 +43,7 @@ When callers pass `includeSemanticHealth` or `debug`, the status envelope also i
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts` | Handler | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts` | CLI | Warm-only error and retryable exit handling |
 | `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` | Schema | Source reference |
 | `.skilled/skills/system-skill-advisor/runtime/lib/freshness/trust-state.ts` | Library | Source reference |
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts` | Library | semantic-lane disabled-reason source |
@@ -54,6 +55,7 @@ When callers pass `includeSemanticHealth` or `debug`, the status envelope also i
 | File | Type | Role |
 |---|---|---|
 | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts` | Automated test | compact status, semantic health fields and degraded-vector reason coverage |
+| `.skilled/skills/system-skill-advisor/runtime/tests/cli-exit-taxonomy.vitest.ts` | Automated test | retryable daemon exit code |
 | `.skilled/skills/system-skill-advisor/runtime/tests/embedders/embeddings-health.vitest.ts` | Automated test | provider resolution and model-server probe coverage |
 | `Playbook scenario [NC-002](../../manual-testing-playbook/native-cli-tools/native-status-transitions.md).` | Manual playbook | Source reference |
 

@@ -6,7 +6,7 @@ trigger_phrases:
   - "advisor feature catalog"
   - "native advisor features"
   - "skill advisor inventory"
-version: 0.8.5.0
+version: 0.8.6.0
 ---
 
 # Skill Advisor: Feature Catalog
@@ -17,13 +17,13 @@ This catalog is the current inventory for the skill advisor. The package source 
 
 ## 1. OVERVIEW
 
-The catalog covers 48 features across 7 groups. Group 01 owns daemon correctness. Groups 02-03 own the index and lifecycle surface that feeds the scorer. Group 04 owns scoring. Group 06 owns the command surface: the nine CLI commands plus the stable compat entrypoint. Groups 07-08 cover runtime integrations, OpenCode plugins and Python compatibility.
+The catalog covers 49 features across 7 groups. Group 01 owns daemon correctness. Groups 02-03 own the index and lifecycle surface that feeds the scorer. Group 04 owns scoring. Group 06 owns the command surface: the nine CLI commands plus the stable compat entrypoint. Groups 07-08 cover runtime integrations, OpenCode plugins and Python compatibility.
 
 > **Numbering note (gap-05).** The directory layout skips slot `05--*` between `scorer-fusion` and `cli-surface`. This is an intentional historical reservation from initial scaffold design that marked the boundary between the core scoring pipeline (groups 01-04) and the integration layer (groups 06-08). The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
 | Group | Count | Scope |
 | --- | --- | --- |
-| [daemon-and-freshness](../feature-catalog/daemon-and-freshness) | 7 | Watcher, lease, lifecycle, generation, trust state, rebuild-from-source, cache invalidation |
+| [daemon-and-freshness](../feature-catalog/daemon-and-freshness) | 8 | Watcher, lease, lifecycle, generation, trust state, rebuild-from-source, cache invalidation, background vector refresh |
 | [auto-indexing](../feature-catalog/auto-indexing) | 8 | Derived extraction, sanitizer, provenance, sync, anti-stuffing, DF/IDF corpus, doc-frontmatter harvest, private skill containment |
 | [lifecycle-routing](../feature-catalog/lifecycle-routing) | 5 | Age haircut, supersession, archive handling, schema migration, rollback |
 | [scorer-fusion](../feature-catalog/scorer-fusion) | 10 | 5-lane fusion, projection, ambiguity, attribution, ablation, weights config, doctor command routing, command meaning matching, executor delegation, pasted-reply stripping |
@@ -51,6 +51,7 @@ Baseline numbers (remediation SHA `97a318d83`):
 | Feature | File |
 | --- | --- |
 | Chokidar narrow-scope watcher | [daemon-and-freshness/watcher.md](./daemon-and-freshness/watcher.md) |
+| Background vector refresh | [daemon-and-freshness/background-vector-refresh.md](./daemon-and-freshness/background-vector-refresh.md) |
 | Workspace single-writer lease | [daemon-and-freshness/lease.md](./daemon-and-freshness/lease.md) |
 | Daemon lifecycle and health | [daemon-and-freshness/lifecycle.md](./daemon-and-freshness/lifecycle.md) |
 | Generation-tagged snapshot publication | [daemon-and-freshness/generation.md](./daemon-and-freshness/generation.md) |

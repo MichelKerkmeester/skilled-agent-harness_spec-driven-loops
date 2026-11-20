@@ -603,9 +603,28 @@ describe('lease-held single-writer enforcement', () => {
 
   it('005-REQ-009 static: watcher refresh path uses the shared DB opener', () => {
     const dbSource = sourceText('../lib/skill-graph/skill-graph-db.ts');
+    const serverSource = sourceText('../advisor-server.ts');
     const watcherSource = sourceText('../lib/daemon/watcher.ts');
 
     expect(dbSource).toMatch(/export function getDb\(\): Database\.Database \{\s*if \(!db\) initDb\(resolveSkillGraphDbDir\(\)\)/);
     expect(watcherSource).toMatch(/const defaultReindex = async \(\): Promise<ReindexResult> => \{\s*const result = indexSkillMetadata\(skillsRoot\);/);
+
+    const initDbIndex = serverSource.indexOf('initSkillGraphDb(');
+    const heartbeatIndex = serverSource.indexOf('startHeartbeat(');
+    const ensureEmbedderIndex = serverSource.indexOf('ensureActiveEmbedder(');
+    const ipcServerIndex = serverSource.indexOf('startIpcSocketServer(');
+    const backgroundRefreshIndex = serverSource.indexOf('refreshEmbeddingsInBackground(');
+    expect(initDbIndex).toBeGreaterThanOrEqual(0);
+    expect(heartbeatIndex).toBeGreaterThan(initDbIndex);
+    expect(heartbeatIndex).toBeLessThan(ensureEmbedderIndex);
+    expect(ipcServerIndex).toBeGreaterThanOrEqual(0);
+    expect(backgroundRefreshIndex).toBeGreaterThan(ipcServerIndex);
+
+    const defaultReindexIndex = watcherSource.indexOf('const defaultReindex = async');
+    const metadataIndex = watcherSource.indexOf('indexSkillMetadata(', defaultReindexIndex);
+    const refreshIndex = watcherSource.indexOf('refreshEmbeddingsInBackground(', defaultReindexIndex);
+    expect(defaultReindexIndex).toBeGreaterThanOrEqual(0);
+    expect(metadataIndex).toBeGreaterThan(defaultReindexIndex);
+    expect(refreshIndex).toBeGreaterThan(metadataIndex);
   });
 });

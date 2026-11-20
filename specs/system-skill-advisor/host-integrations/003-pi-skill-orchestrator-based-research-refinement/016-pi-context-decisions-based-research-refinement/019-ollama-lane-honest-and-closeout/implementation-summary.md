@@ -49,14 +49,15 @@ A fresh advisor daemon now fills every embeddable vector on its own: on an empty
 
 - `runtime/lib/skill-graph/skill-graph-db.ts`: `embeddingCoverage` counts current, stale and missing skill and command rows with no network call. `refreshEmbeddingsInBackground` is single-flight, does nothing when coverage is complete, probes Ollama once for 500 ms, and honors `SYSTEM_SKILL_ADVISOR_EMBED_REFRESH=off`. A failed embed keeps the old vector at all four sites that used to delete it.
 - `runtime/advisor-server.ts`, `runtime/lib/daemon/watcher.ts`: run that refresh after startup and after each reindex. The heartbeat now starts right after the database opens.
-- `runtime/lib/scorer/lanes/semantic-shadow.ts`: when the lane is live, it scores only with every embeddable skill and command vector present.
+- `runtime/lib/scorer/lanes/semantic-shadow.ts`: when the lane is live, it scores only when `embeddingCoverage()` reports every embeddable skill and command vector current. A fixture skill vector is used only with a prompt vector of the same size.
 - `runtime/handlers/advisor-recommend.ts`: a failed prompt embed marks the lane degraded, so it leaves the live total.
 - `runtime/handlers/advisor-status.ts`, `runtime/schemas/advisor-tool-schemas.ts`: report current, stale and missing counts, plus `coverageComplete`.
 - `.skilled/bin/system-skill-advisor-launcher.cjs`: forwards `OLLAMA_BASE_URL`, `OLLAMA_REQUEST_TIMEOUT_MS` and `SYSTEM_SKILL_ADVISOR_EMBED_REFRESH`. It always sets the child's database directory, and reaps a server with no heartbeat 5 minutes after spawn.
 - Doctor: the setup leg and the embedder route pass on full coverage and report DEGRADED without Ollama. The embedder route keeps its approved scan. Update apply, overlay apply and repin, and symlink link report coverage, and update apply names a daemon restart. `/create:command` regenerates the command bridges.
 - Ablation harness: seeds skills and commands as production embeds them, scores the lane at a candidate 0.05, counts none-gold fires and asserts the registry default follows the pass bar.
 - Tests: refresh, coverage, gate, outage-degraded, status, launcher grace and env, and a static embeddability guard. The test daemons and the stress workflow set the opt-out.
-- Docs, ENV-REFERENCE, `SKILL.md` 1.3.0.0 and the changelogs.
+- Docs, ENV-REFERENCE, `.env.example`, `SKILL.md` 1.3.0.0, the changelogs and a new catalog leaf for the background refresh.
+- Routing: ten intent signals in the skill's `graph-metadata.json` so prompts about vector coverage, the semantic lane, the advisor daemon, the watcher, command bridges and the refresh reach this skill. The compiled graph export and leaf metadata are regenerated.
 - Operator answers from ended sessions:
   - 232 new decision-record entries across 76 packets, from 228 answers. Two answers name three packets each and get one entry in each.
   - 246 consumed rows for answers already recorded.
@@ -104,6 +105,52 @@ For the ablation, `ollama serve` (pid 85898) was started and warmed: a cold embe
 | Python on quiet main, 10 runs; runtime, 4 runs | 122/0 every run; no failure in any runtime run |
 | Daemon-start failures seen once (six tests) | Reproduced by touching one source: under vitest the launcher refuses to build a stale `dist` and exits 1, by design. Rebuild after a revert-and-apply step. |
 | Orphan scan after the writes | Only a still-running session (17), this session, and 2 answers no packet records |
+| Ablation after the alignment fixes (runs 6 to 9, runs 8 and 9 on the shipped code) | 156 with the lane, 161 without, 7 flips, no new none-gold fire, flip lists identical to runs 3 and 4; default stays 0 |
+| Suites after the alignment fixes (Ollama up) | Runtime 2556 passed, 6 skipped; Python 122/0; bin 94/94; spec-kit launchers 202 passed, 2 skipped; DSH 18/0 |
+
+### Alignment findings
+
+`/local-skilled-alignment` (SK) ran over the branch against `f2f03c90fb6`, and `/local-doc-alignment` (DOC) ran over a local `advisor-vector-refresh` topic. Both used Vibe DeepSeek Flash lanes and critic, in `:auto` report-only mode. Reports: `evidence/skilled-alignment/` and `evidence/doc-alignment/`.
+
+| Finding | Outcome |
+|---------|---------|
+| SK BAT-01, SK B-08 | Fixed: `leaf-aliases.json` regenerated with `ci-skill-root-metadata.cjs --fix`; the check exits 0. It failed on main too |
+| SK BAT-02, SK B-09 | Fixed: the two `Feature ID:` lines the catalog validator rejects are gone; the validator exits 0. It failed on main too |
+| SK BAT-03, SK D-05 | Fixed: the compiled `skill-graph.json` re-exported; `skill-graph-freshness.cjs --strict` exits 0. Runtime routing reads SQLite, so the export changes no route |
+| SK D-02, SK A1 (overturned as its duplicate), DOC L3-7 | Fixed: the lane gate now reads `embeddingCoverage()`, so a stale or missing vector disables it. The new stale-hash test failed before and passes after |
+| SK A2 | Fixed: a fixture skill vector is used only with a prompt vector of the fixture size, so a real 768-dim prompt never meets a 32-dim fixture vector. The new test failed before and passes after. Four reruns gave the same result as before, so the fixture rows had not changed the outcome |
+| SK A3 | Fixed: source-order checks for the early heartbeat, the startup refresh after IPC and the watcher refresh after reindex |
+| SK D-01, SK PRB-01, SK PRB-02, SK PRB-03, SK PRB-04, SK PRB-06, SK PRB-07, SK PRB-09, SK PRB-11 | Fixed for P01, P02, P03, P04, P06, P07, P09 and P12: ten intent signals added to the skill's `graph-metadata.json`; each now routes `system-skill-advisor` first after a reindex, and the six control probes are unchanged |
+| SK PRB-05 | Accepted: "explain which lane contributed" still returns no recommendation even with the new signal. It asks about one recommendation's attribution, which `advisor_recommend` returns as an option, not a skill to route to |
+| SK PRB-08, SK PRB-10 | Accepted: P08 and P11 route to `/doctor:helper`, which names `/doctor:skill-advisor` for status and Ollama diagnosis, a correct path for an operator |
+| SK C-01, SK ENV-01 | Fixed: `.env.example` lists `SYSTEM_SKILL_ADVISOR_EMBED_REFRESH` |
+| SK ENV-02 | Accepted: `VITEST` is set by the test runner, not by an operator |
+| SK B-01 | Fixed: the freshness contract says the daemon writes vectors itself |
+| SK B-02, DOC L3-1, DOC C4, DOC L3-2 | Fixed: lane-weight tuning names the live default 0 and cites where the weights live |
+| SK B-03, DOC L3-3 | Fixed: the ablation catalog leaf lists its test and says `runLaneAblation` ignores weights |
+| SK B-04 | Fixed: new catalog leaf `daemon-and-freshness/background-vector-refresh.md`, indexed, leaf manifest regenerated |
+| SK B-05, DOC L3-4 | Fixed: the ablation playbook keeps only the 196-row record and drops the `advisor_validate` slice claim |
+| SK B-06 | Fixed: the degraded-daemon playbook uses `backend.state` values |
+| SK B-07 | Fixed: `SKILL.md` names `includeSemanticHealth` |
+| SK X-01 | Fixed: CHK-020 unticked until every row is Met |
+| SK X-02 | Fixed: the plan describes the any-weight refresh |
+| SK X-03 | Fixed: the edge case says 5 minutes |
+| SK X-04 | Fixed by the closing save, which refreshes this packet's metadata and continuity |
+| SK X-05, DOC L3-5 | Fixed: the playbooks pass `--include-semantic-health true` and check both coverage objects |
+| SK C-02 | Fixed: the root README names the background refresh |
+| SK C-03 | Fixed: the skill README says enabling needs full coverage and how to check it |
+| SK C-04 | Fixed: the release note limits "no probe" to pointer resolution |
+| SK D-03, DOC L2-7 (overturned) | Fixed: the embedder route says to rerun it and approve its Ollama steps. The skilled critic was right; the doc critic's rebuttal missed that the pointer named the route itself |
+| SK D-04 | Fixed: both `/create:command` workflows gate on `derive-command-bridges.cjs --check` |
+| DOC L2-1, DOC L2-2 | Fixed: ARCHITECTURE names the reindex refresh and the default-off lane |
+| DOC L2-3 | Fixed: the status catalog leaf says `--warm-only` with no warm daemon exits 75 |
+| DOC L4-1, DOC L4-2 | Fixed: INSTALL-SKILLED says the lane ships at 0 on a measured result and gives the route's real step order |
+| DOC C1, DOC C2, DOC L2-4, DOC L1-1 | Fixed: the doctor assets name every cause of exit 75 |
+| DOC C3, DOC L1-2, DOC L1-3, DOC L2-5, DOC L2-6 | Fixed: the doctor assets name both refresh points, the next start and a watcher reindex |
+| DOC C6, DOC C7 | Fixed: one rule in every doctor file: PASS needs complete coverage and a reachable backend |
+| DOC C5 | Fixed: meaning-matching is off at the default weight 0 |
+| DOC C8 | Fixed: no prompt embed at weight 0 |
+| DOC L3-6, DOC L3-8 | Fixed: semantic fields come only with `includeSemanticHealth`; line citations updated |
 <!-- /ANCHOR:verification -->
 
 ---

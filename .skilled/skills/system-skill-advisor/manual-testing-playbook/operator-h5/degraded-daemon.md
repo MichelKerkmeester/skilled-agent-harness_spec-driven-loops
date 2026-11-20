@@ -5,7 +5,7 @@ trigger_phrases:
   - "op-001"
   - "degraded daemon"
   - "degraded"
-version: 0.8.3.0
+version: 0.8.4.0
 id: OP-001
 category: operator_h5
 stage: routing
@@ -41,7 +41,7 @@ Validate the operator path for a degraded advisor daemon, usually caused by stal
 1. Detect:
 
 ```bash
-node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --include-semantic-health true --format json
 ```
 
 2. Confirm stale/degraded signals: `freshness: "stale"` or trust reason such as `SOURCE_NEWER_THAN_SKILL_GRAPH`.
@@ -50,7 +50,7 @@ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/pa
 
 ```bash
 node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json
-node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --include-semantic-health true --format json
 ```
 
 ### Expected Signals
@@ -58,8 +58,8 @@ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/pa
 - Degraded/stale state is visible without prompt text.
 - Logs identify graph generation or source freshness, not raw prompts.
 - After scan, `freshness` returns to `live` or the remaining reason is explicit.
-- With `includeSemanticHealth` enabled and Ollama unavailable, semantic health reports `DEGRADED` and includes skill and command vector coverage. A lane weight of 0 passes this setup check. Recommendation prompts are not embedded at that weight.
-- If Ollama is unavailable during a background refresh, failed embeds keep the old vectors. Stale vectors are excluded from the current count for semantic scoring.
+- With `includeSemanticHealth` enabled, read `semanticLaneHealth.backend.state`. It reports `reachable`, `unreachable`, `model_missing` or `probe_not_implemented`. An unavailable Ollama server reports `unreachable`. The response includes skill and command vector coverage. A lane weight of 0 passes this setup check. Recommendation prompts are not embedded at that weight.
+- If Ollama is unavailable during a background refresh, the refresh keeps old vectors. `coverageComplete` remains false while an eligible skill or command vector is stale or missing, and the `embedded` counts include current vectors only. With the lane enabled, the scorer reads the same coverage check, so a stale or missing vector reports `incomplete_skill_vectors` and the lane does not score.
 
 ### Failure Modes
 

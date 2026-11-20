@@ -2,6 +2,7 @@
 // MODULE: Semantic Shadow Cosine Lane Tests
 // ───────────────────────────────────────────────────────────────
 
+import { createHash } from 'node:crypto';
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -63,7 +64,11 @@ import {
   refreshSkillEmbeddings,
 } from '../../lib/skill-graph/skill-graph-db.js';
 import * as skillGraphDb from '../../lib/skill-graph/skill-graph-db.js';
-import { setActiveEmbedder } from '../../lib/embedders/schema.js';
+import {
+  commandVecTableNameForDim,
+  ensureCommandVecTableForDim,
+  setActiveEmbedder,
+} from '../../lib/embedders/schema.js';
 import {
   _semanticShadowTest,
   clearSemanticShadowPromptEmbedding,
@@ -79,6 +84,10 @@ import { writeGraphMetadata } from '../fixtures/skill-graph-db.js';
 function buffer(values: readonly number[]): Buffer {
   const vector = Float32Array.from(values);
   return Buffer.from(vector.buffer, vector.byteOffset, vector.byteLength);
+}
+
+function computeContentHash(content: string): string {
+  return createHash('sha256').update(content).digest('hex');
 }
 
 function skill(overrides: Partial<SkillProjection> & Pick<SkillProjection, 'id'>): SkillProjection {
@@ -109,6 +118,23 @@ function writeSkill(skillRoot: string, skillId: string, description: string): vo
     '---',
     '',
   ].join('\n'), 'utf8');
+}
+
+function seedCurrentCommandVectors(): void {
+  const commandSources = skillGraphDb.readCommandEmbeddingSources() ?? [];
+  ensureCommandVecTableForDim(getDb(), 2);
+  const insertVector = getDb().prepare(`
+    INSERT INTO ${commandVecTableNameForDim(2)} (command_id, embedding, model_id, content_hash)
+    VALUES (?, ?, ?, ?)
+  `);
+  for (const source of commandSources) {
+    insertVector.run(
+      source.commandId,
+      buffer([1, 0]),
+      'mock-fixture-2',
+      computeContentHash(source.embeddingText),
+    );
+  }
 }
 
 describe('semantic shadow cosine lane', () => {
@@ -180,11 +206,11 @@ describe('semantic shadow cosine lane', () => {
     getDb().prepare(`
       INSERT INTO vec_2 (skill_id, embedding, model_id, content_hash)
       VALUES (?, ?, ?, ?)
-    `).run('alpha', buffer([1, 0]), 'mock-fixture-2', 'hash-alpha');
+    `).run('alpha', buffer([1, 0]), 'mock-fixture-2', computeContentHash('north vector'));
     getDb().prepare(`
       INSERT INTO vec_2 (skill_id, embedding, model_id, content_hash)
       VALUES (?, ?, ?, ?)
-    `).run('beta', buffer([0, 1]), 'mock-fixture-2', 'hash-beta');
+    `).run('beta', buffer([0, 1]), 'mock-fixture-2', computeContentHash('east vector'));
 
     const projection: AdvisorProjection = {
       skills: [skill({ id: 'alpha' }), skill({ id: 'beta' })],
@@ -207,10 +233,10 @@ describe('semantic shadow cosine lane', () => {
     ]);
   });
 
-  it('requires cached vectors for described skills and embeddable commands', () => {
+  it('requires current vectors for every described skill', () => {
     vi.stubEnv('VITEST', 'false');
     try {
-      const commandSources = vi.spyOn(skillGraphDb, 'readCommandEmbeddingSources').mockReturnValue([]);
+      seedCurrentCommandVectors();
       writeSkill(skillRoot, 'alpha', 'north vector');
       writeSkill(skillRoot, 'beta', 'north vector');
       indexSkillMetadata(skillRoot);
@@ -219,7 +245,7 @@ describe('semantic shadow cosine lane', () => {
         INSERT INTO vec_2 (skill_id, embedding, model_id, content_hash)
         VALUES (?, ?, ?, ?)
       `);
-      insertVector.run('alpha', buffer([1, 0]), 'mock-fixture-2', 'hash-alpha');
+      insertVector.run('alpha', buffer([1, 0]), 'mock-fixture-2', computeContentHash('north vector'));
 
       const projection: AdvisorProjection = {
         skills: [
@@ -232,34 +258,10 @@ describe('semantic shadow cosine lane', () => {
       };
       setSemanticShadowPromptEmbedding('north', new Float32Array([1, 0]));
 
-      const alphaProjection: AdvisorProjection = {
-        ...projection,
-        skills: projection.skills.filter((skill) => skill.id === 'alpha'),
-      };
-      const embeddableCommandId = 'command:embeddable';
-      commandSources.mockReturnValue([{
-        commandId: embeddableCommandId,
-        embeddingText: 'embeddable command source',
-      }]);
-      const embeddableCommandProjection: AdvisorProjection = {
-        ...alphaProjection,
-        skills: [...alphaProjection.skills, skill({ id: embeddableCommandId, kind: 'command' })],
-      };
-      expect(scoreSemanticShadowLane('north', embeddableCommandProjection)).toEqual([]);
-      expect(getSemanticShadowRuntimeHealth().disabledReason).toBe('incomplete_skill_vectors');
-
-      commandSources.mockReturnValue([]);
-      const unembeddableCommandProjection: AdvisorProjection = {
-        ...alphaProjection,
-        skills: [...alphaProjection.skills, skill({ id: 'command:not-embeddable', kind: 'command' })],
-      };
-      expect(scoreSemanticShadowLane('north', unembeddableCommandProjection).map((match) => match.skillId))
-        .toEqual(['alpha']);
-
       expect(scoreSemanticShadowLane('north', projection)).toEqual([]);
       expect(getSemanticShadowRuntimeHealth().disabledReason).toBe('incomplete_skill_vectors');
 
-      insertVector.run('beta', buffer([1, 0]), 'mock-fixture-2', 'hash-beta');
+      insertVector.run('beta', buffer([1, 0]), 'mock-fixture-2', computeContentHash('north vector'));
       expect(scoreSemanticShadowLane('north', projection)).toEqual([
         {
           skillId: 'alpha',
@@ -276,6 +278,50 @@ describe('semantic shadow cosine lane', () => {
           shadowOnly: false,
         },
       ]);
+    } finally {
+      vi.unstubAllEnvs();
+    }
+  });
+
+  it('disables scoring when a stored vector hash does not match its description', () => {
+    vi.stubEnv('VITEST', 'false');
+    try {
+      seedCurrentCommandVectors();
+      writeSkill(skillRoot, 'alpha', 'north vector');
+      indexSkillMetadata(skillRoot);
+      getDb().prepare(`
+        INSERT INTO vec_2 (skill_id, embedding, model_id, content_hash)
+        VALUES (?, ?, ?, ?)
+      `).run('alpha', buffer([1, 0]), 'mock-fixture-2', computeContentHash('outdated north vector'));
+
+      const projection: AdvisorProjection = {
+        skills: [skill({ id: 'alpha', description: 'north vector' })],
+        edges: [],
+        generatedAt: '2026-05-13T00:00:00.000Z',
+        source: 'sqlite',
+      };
+      setSemanticShadowPromptEmbedding('north', new Float32Array([1, 0]));
+
+      expect(scoreSemanticShadowLane('north', projection)).toEqual([]);
+      expect(getSemanticShadowRuntimeHealth().disabledReason).toBe('incomplete_skill_vectors');
+    } finally {
+      vi.unstubAllEnvs();
+    }
+  });
+
+  it('does not use fixture skill vectors with a real prompt embedding', () => {
+    vi.stubEnv('VITEST', 'false');
+    try {
+      const prompt = 'shared vector words';
+      const projection = createFixtureProjection([
+        skill({ id: 'alpha', description: prompt }),
+      ]);
+      const promptVector = new Float32Array(768);
+      promptVector.set(_semanticShadowTest.fixtureVector(prompt));
+      setSemanticShadowPromptEmbedding(prompt, promptVector);
+
+      expect(skillGraphDb.loadSkillEmbeddings(['alpha'])).toEqual([]);
+      expect(scoreSemanticShadowLane(prompt, projection)).toEqual([]);
     } finally {
       vi.unstubAllEnvs();
     }

@@ -165,7 +165,7 @@ Validation:
 - YAML workflows: PASSED
 - Resource paths: PASSED
 - Source leftovers: PASSED
-- Advisor command bridges: regenerated. The daemon picks up the new command and embeds it when Ollama is reachable on its next start.
+- Advisor command bridges: [PASS|FAIL] (`command_bridge_check`) from `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check`; a non-zero exit fails validation. The daemon picks up the new command and embeds it when Ollama is reachable on its next start.
 
 Invocation:
 - Type [command-invocation] [arguments]

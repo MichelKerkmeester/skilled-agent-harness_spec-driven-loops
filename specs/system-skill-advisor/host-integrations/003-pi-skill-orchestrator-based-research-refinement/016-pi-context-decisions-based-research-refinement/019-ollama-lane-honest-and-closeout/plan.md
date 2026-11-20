@@ -26,7 +26,7 @@ contextType: "implementation"
 | **Testing** | Vitest, the Python scorer suite, the opt-in ablation harness with a local Ollama |
 
 ### Overview
-Each lane fix keys off the resolved lane weight, so at the default weight 0 the daemon still makes no Ollama call. The refresh helper returns at once at weight 0. The coverage gate and the outage-degraded mark only matter while the lane scores. The ablation runs once, with the harness scoring its full arm at a candidate 0.05, and its outcome sets the default weight.
+Only the prompt path keys off the resolved lane weight, so at the default weight 0 no prompt is embedded. The background refresh runs at any weight, embeds only missing or stale rows, and makes no call when coverage is complete. The coverage gate and the outage-degraded mark only matter while the lane scores. The ablation runs once, with the harness scoring its full arm at a candidate 0.05, and its outcome sets the default weight.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -54,13 +54,13 @@ Each lane fix keys off the resolved lane weight, so at the default weight 0 the 
 Guard clauses keyed on the resolved lane weight, inside the existing daemon, scorer and launcher.
 
 ### Key Components
-- **`refreshSkillEmbeddingsWhenLaneLive`**: the one refresh entry point for the daemon. It does nothing at weight 0.
+- **`refreshEmbeddingsInBackground`**: the one refresh entry point for the daemon. It is single-flight, returns at once when coverage is complete and honors `SYSTEM_SKILL_ADVISOR_EMBED_REFRESH=off`.
 - **Coverage gate**: the lane scores only when every described skill has a vector.
 - **Outage mark**: a failed prompt embed adds `semantic_shadow` to the call's runtime lane health.
 - **Watchdog grace**: no heartbeat 5 minutes after spawn counts as stale, and the child always gets the launcher's database directory.
 
 ### Data Flow
-Startup scan or watcher reindex, then the refresh helper, which refreshes only above weight 0, then the vectors. A prompt then goes through the embed wrapper, then the scored closure, which reads the lane health and marks it degraded on failure, then fusion, which leaves the degraded lane out of the live total.
+Startup scan or watcher reindex, then the background refresh, which embeds missing or stale rows at any weight, then the vectors. A prompt then goes through the embed wrapper, then the scored closure, which reads the lane health and marks it degraded on failure, then fusion, which leaves the degraded lane out of the live total.
 <!-- /ANCHOR:architecture -->
 
 ---
