@@ -3950,7 +3950,21 @@ async function main() {
         invocation_fingerprint: built.invocationFingerprint,
       };
     });
-    jsonOut({ status: 'preview', lineages, aggregate_budget: aggregateBudgetDecision });
+    // The aggregate sums one attempt per lineage, which is what its cap gates on, while each
+    // lineage's estimated_cost_units also counts every retry. The two keys share a name, so
+    // the preview says what each one counts.
+    const aggregateBudget = {
+      ...aggregateBudgetDecision,
+      units: {
+        'upper_bound.estimated_cost_units':
+          'sum of every lineage\'s base_cost_units: one attempt each, the spend the aggregate cap gates on',
+        'upper_bound.per_lineage[].base_cost_units':
+          'iterations x cost units per iteration for one attempt of this lineage',
+        'upper_bound.per_lineage[].estimated_cost_units':
+          'base_cost_units x (retries + 1): the worst case if every retry runs; reported, never gated',
+      },
+    };
+    jsonOut({ status: 'preview', lineages, aggregate_budget: aggregateBudget });
     return;
   }
   if (!aggregateBudgetDecision.continue_allowed) {

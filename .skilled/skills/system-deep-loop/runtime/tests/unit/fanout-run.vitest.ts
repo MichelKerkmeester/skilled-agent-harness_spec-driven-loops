@@ -7532,6 +7532,24 @@ describe('fanout-run.cjs — --preview builds every lineage command without writ
     expect(result.stdout).not.toContain('GATE 3 IS PRE-RESOLVED');
     expect(result.stderr).toContain('--sandbox-mode=danger-full-access');
     expect(treeDigest(baseDir)).toEqual(before);
+
+    // The aggregate and per-lineage estimated_cost_units count different things; the preview
+    // labels each so a reader does not take 20 against 60 for an arithmetic slip.
+    const budget = (payload as { aggregate_budget?: {
+      units?: Record<string, string>;
+      upper_bound: { estimated_cost_units: number; per_lineage: Array<{ base_cost_units: number; estimated_cost_units: number }> };
+    } }).aggregate_budget;
+    const perLineage = budget?.upper_bound.per_lineage ?? [];
+    expect(budget?.upper_bound.estimated_cost_units)
+      .toBe(perLineage.reduce((sum, entry) => sum + entry.base_cost_units, 0));
+    expect(perLineage.every((entry) => entry.estimated_cost_units > entry.base_cost_units)).toBe(true);
+    expect(Object.keys(budget?.units ?? {})).toEqual([
+      'upper_bound.estimated_cost_units',
+      'upper_bound.per_lineage[].base_cost_units',
+      'upper_bound.per_lineage[].estimated_cost_units',
+    ]);
+    expect(budget?.units?.['upper_bound.estimated_cost_units']).toContain('one attempt');
+    expect(budget?.units?.['upper_bound.per_lineage[].estimated_cost_units']).toContain('every retry');
   });
 
   // The Claude config dir travels in the environment, not the argv, so the preview names it
