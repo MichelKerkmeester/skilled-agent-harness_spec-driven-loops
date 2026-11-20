@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout",
+  "spec_folder": "system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout",
+  "parent_id": "system-skilled-doctor/007-overlay-framework-root-layout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "engine framework root source layout",
+      "phase 2 engine framework root source layout",
+      "framework root naming rule default",
+      "adoptSource framework root naming rule",
+      "old layout overlay migration relayout",
+      "engine framework root source layout plan",
+      "adoptSource default rule change plan",
+      "layout notice cap relayout migration plan",
+      "engine framework root source layout tasks",
+      "framework root default rule task list",
+      "packet goal",
+      "durable directive"
+    ],
+    "key_topics": [
+      "engine",
+      "framework",
+      "root",
+      "source",
+      "layout",
+      "phase",
+      "naming",
+      "rule",
+      "default",
+      "adoptsource",
+      "old",
+      "overlay"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-follow-up.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-strict-writes.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The engine has one source naming rule",
+    "created_at": "2026-11-20T09:32:54Z",
+    "last_save_at": "2026-11-20T10:39:10.162Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:4524b2aba21d2344bb94e99c867e6e0899ea7d76e1510f3d1ed99a840558ca76",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b8696e0672fef229cbed9ab8ddc0e9e530e41ff9a5dc6cd02d07405a6827ea81",
+      "plan.md": "a0437620d432afe146d5ecebf2db83d8868d9d905b6d3eea164ba08d99202e29",
+      "tasks.md": "4ff6667d3d47822916b1f49953bc90db87e1dedc7bf6efaf46243c5f2776e407"
+    },
+    "last_active_at": null
+  }
+}

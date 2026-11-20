@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release",
+  "spec_folder": "system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release",
+  "parent_id": "system-skilled-doctor/007-overlay-framework-root-layout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor overlay docs framework root default",
+      "system-skilled-doctor v1.2.0.0 release",
+      "overlay relayout migration step consumers",
+      "engine docs and release plan",
+      "doctor overlay docs rewrite plan",
+      "engine docs and release tasks",
+      "doctor overlay docs task list",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "doctor",
+      "overlay",
+      "docs",
+      "framework",
+      "root",
+      "default",
+      "system-skilled-doctor",
+      "release",
+      "relayout",
+      "migration",
+      "step",
+      "consumers"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      ".skilled/commands/doctor/scripts/README.markdown",
+      ".codex/prompts/doctor-overlay.md",
+      ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+      ".skilled/skills/system-skilled-doctor/references/overlays.md",
+      ".skilled/commands/doctor/overlay.md",
+      ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+      ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-an-unowned-file.md",
+      ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/pre-commit-refuses-unowned-change.md",
+      ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/relayout-moves-sources.md",
+      ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/status-audit-lists-unowned-drift.md",
+      ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/strict-guard-refuses-unowned-write.md",
+      ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-skilled-doctor/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/README.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay.md",
+        "kind": "doc",
+        "path": ".codex/prompts/doctor-overlay.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "overlays.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/references/overlays.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/overlay.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-apply.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-repin.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-apply.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "adopt-an-unowned-file.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-an-unowned-file.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit-refuses-unowned-change.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/pre-commit-refuses-unowned-change.md",
+        "source": "derived"
+      },
+      {
+        "name": "relayout-moves-sources.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/relayout-moves-sources.md",
+        "source": "derived"
+      },
+      {
+        "name": "status-audit-lists-unowned-drift.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/status-audit-lists-unowned-drift.md",
+        "source": "derived"
+      },
+      {
+        "name": "strict-guard-refuses-unowned-write.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/strict-guard-refuses-unowned-write.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phases 001 and 002 every engine consumer gets a new default naming rule on its next re-pin, but no doc tells them, and the operator-facing text still states the old rule and still refuses a folder beside the tree",
+    "created_at": "2026-11-20T09:32:56Z",
+    "last_save_at": "2026-11-20T10:39:10.163Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:d0c71c1f4baf7bd71dea3e2523143cf9a0050ca14a664b4e8e1eb9d2e1853166",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5ba3372107d88d912a405e8a39c18cd28468cb64aad7ec1651928ef6a20048e4",
+      "plan.md": "5528c97deec628e5ab6b04af84bb3cc77b98b2316cef92031bb71367caf2a1da",
+      "tasks.md": "f43d4299e86732bfa17956e611eb5b47ddf869c5d4a7ec24387eb6960ea2d54f"
+    },
+    "last_active_at": null
+  }
+}

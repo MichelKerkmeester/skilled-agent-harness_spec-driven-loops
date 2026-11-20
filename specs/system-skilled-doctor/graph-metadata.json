@@ -9,7 +9,8 @@
     "system-skilled-doctor/003-removed-folder-classification",
     "system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes",
     "system-skilled-doctor/005-barter-upstream-fixes",
-    "system-skilled-doctor/006-parent-skill-check-target-root"
+    "system-skilled-doctor/006-parent-skill-check-target-root",
+    "system-skilled-doctor/007-overlay-framework-root-layout"
   ],
   "manual": {
     "depends_on": [],

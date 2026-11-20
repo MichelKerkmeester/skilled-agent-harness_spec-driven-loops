@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout",
+  "spec_folder": "system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout",
+  "parent_id": "system-skilled-doctor/007-overlay-framework-root-layout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "barter repin and relayout",
+      "re-pin ai-speckit skilled and apply --relayout",
+      "barter overlays framework root relayout",
+      "barter repin and relayout plan",
+      "doctor overlay repin then apply relayout",
+      "barter repin and relayout tasks",
+      "ai-speckit re-pin and relayout task list",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "barter",
+      "repin",
+      "relayout",
+      "re-pin",
+      "ai-speckit",
+      "skilled",
+      "apply",
+      "overlays",
+      "framework",
+      "root",
+      "plan",
+      "doctor"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/overlay.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "overlay.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/overlay.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Skilled",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Stage",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Barter's vendored tree is pinned to Skilled `b0a3b9f2edbf0dde902929b69c6db5afd051f418` (`BO/overlay-manifest.json:6`), whose engine refuses any `overlayDir` that climbs out of the tree (`names a folder outside the tree root`, vendored `overlay-engine.cjs:443`)",
+    "created_at": "2026-11-20T10:11:41Z",
+    "last_save_at": "2026-11-20T10:39:10.163Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:28fc082e29bebcce8b09d739292091974aef5a7a7b6edcbb0140e519c654673e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e81efaedb00200565fb723cd1baf930fee67438c32b1c02a7d82c0bf8dc0f0a9",
+      "plan.md": "bb1a6f950cddfac8ff19a790cc635a6087973ab12b242a09bbd5dcd6fd420ac8",
+      "tasks.md": "2797eb1bfa6ce7bd10ba14bfd5a1ef25d1c50386d91695c3bfb58466af2f1167"
+    },
+    "last_active_at": null
+  }
+}

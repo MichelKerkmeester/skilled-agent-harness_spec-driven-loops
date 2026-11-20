@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder",
+  "spec_folder": "system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder",
+  "parent_id": "system-skilled-doctor/007-overlay-framework-root-layout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "engine out of tree overlay folder",
+      "phase 1 engine out of tree overlay folder",
+      "sibling overlay folder overlayDir ../overlays",
+      "repin stage with a sibling overlay folder",
+      "backup area overlay entries",
+      "engine out of tree overlay folder plan",
+      "sibling overlay folder backup area plan",
+      "engine out of tree overlay folder tasks",
+      "sibling overlay folder task list",
+      "engine out of tree overlay folder acceptance criteria",
+      "sibling overlay folder acceptance rows",
+      "repin stage writes nothing live acceptance"
+    ],
+    "key_topics": [
+      "engine",
+      "tree",
+      "overlay",
+      "folder",
+      "phase",
+      "sibling",
+      "overlaydir",
+      "overlays",
+      "repin",
+      "stage",
+      "backup",
+      "area"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-fixtures.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-guard.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-fixtures.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-fixtures.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-fixes.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-sync.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-strict-writes.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-repin.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-follow-up.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Widened",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`resolveOverlayDir` refuses any `overlayDir` that normalizes to `..` or starts with `../` (`overlay-engine.cjs:442-444`), so a consumer cannot keep its overlays beside the vendored tree, and every command exits 2 before it reads the manifest",
+    "created_at": "2026-11-20T09:31:32Z",
+    "last_save_at": "2026-11-20T10:39:10.165Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:cb333a2c861b7a7cb975a509250b361bf078527dde5084e248e7b1992190c360",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a60ee490650a59336ffbdf0184257c68022c5f5daa0cc097237831102b26166a",
+      "plan.md": "35b2b2119dd200b22378fa5aacf3f0891e2c619929b157587e6de97863ea2ebe",
+      "tasks.md": "844637769495966a64cc6025539b97f125e44aaa8d0eb4ad0443917624682614"
+    },
+    "last_active_at": null
+  }
+}
