@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items",
+  "description": "Phase 11: push-and-repin-open-items",
+  "keywords": [
+    "phase",
+    "push-and-repin-open-items"
+  ],
+  "lastUpdated": "2026-11-20T16:56:51.112Z",
+  "specId": "011",
+  "folderSlug": "push-and-repin-open-items",
+  "parentChain": [
+    "system-skilled-doctor",
+    "007-overlay-framework-root-layout"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "20-11-26_17-56__planned-phase-011-push-and-repin-open-items-with.md"
+  ]
+}

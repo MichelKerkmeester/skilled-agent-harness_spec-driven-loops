@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "system-skilled-doctor/007-overlay-framework-root-layout/010-barter-open-items",
+  "description": "Phase 10: barter-open-items",
+  "keywords": [
+    "phase",
+    "barter-open-items"
+  ],
+  "lastUpdated": "2026-11-20T16:56:45.997Z",
+  "specId": "010",
+  "folderSlug": "barter-open-items",
+  "parentChain": [
+    "system-skilled-doctor",
+    "007-overlay-framework-root-layout"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "20-11-26_17-56__planned-phase-010-barter-open-items-with-its-spec.md"
+  ]
+}

@@ -123,6 +123,9 @@ This table is an audit summary only. Each child's `plan.md` holds the per-phase 
 | 6 | 006-review-remediation/ | Runs in Skilled. Fixes the Skilled findings of the extended deep review in `review/review-report.md`: relayout rollback on a mid-run failure, the outside-repository refusal at resolution, two remedies, three engine readability items, and the phase 002, 004 and 005 records | Complete |
 | 7 | 007-barter-review-fixes/ | Ran in ai-speckit, recorded here. Fixes the review's six Barter findings: the commit gate fails closed without a manifest, a hook test covers it, the three hooks read `overlayDir`, one plugin test loads the real bridge, and three hygiene items. ai-speckit commit `5dd004f3faa` | Complete |
 | 8 | 008-push-and-repin/ | Runs in Skilled, then ai-speckit. Merges origin into Skilled main, pushes it with every fix after the gates pass and records the pushed id; an ai-speckit session then re-pins Barter onto that id | In Progress |
+| 9 | 009-skilled-open-items/ | Runs in Skilled, on the worktree branch, then merges into local main. Fixes four Skilled-side open items: `record-base` taking a stale `FETCH_HEAD` for a pin, the fan-out review scope left empty, the pre-commit probe misreading a hook-exported `GIT_DIR`, and the playbook's `generate-context.js` line. Merged on local main as `1ac1fba6a25` | Complete |
+| 10 | 010-barter-open-items/ | Runs in ai-speckit from a parallel session and is recorded here. Fixes the Barter-side open items listed in ai-speckit's record 039 | Planned |
+| 11 | 011-push-and-repin-open-items/ | The operator pushes Skilled main with phase 009's merge, then an ai-speckit session re-pins Barter onto the pushed commit and records its base | Planned |
 
 ### Phase Transition Rules
 
@@ -133,6 +136,7 @@ This table is an audit summary only. Each child's `plan.md` holds the per-phase 
 - Phases 4 and 5 run from an ai-speckit session. They read this packet from the Skilled checkout and write nothing in Skilled except their own phase docs.
 - Phase 6 runs in Skilled, on the worktree branch the earlier engine phases used, and fixes only the Skilled findings of the review. The review's ai-speckit findings belong to an ai-speckit session.
 - Phase 7 ran in ai-speckit and is recorded here from its commit. Phase 8 pushes Skilled main from a Skilled session, and its re-pin belongs to a later ai-speckit session, which writes nothing in Skilled except phase 8's docs.
+- Phase 9 runs in Skilled on the worktree branch and merges into local main without a push. Phase 10 runs in ai-speckit and is recorded here. Phase 11's push is the operator's, and its re-pin belongs to a later ai-speckit session.
 
 ### Phase Handoff Criteria
 
@@ -145,6 +149,9 @@ This table is an audit summary only. Each child's `plan.md` holds the per-phase 
 | 005-barter-move-overlays-out-of-tree | 006-review-remediation | The extended deep review has run over phases 1-5 and its report names the findings this phase fixes | `review/review-report.md` exists and lists the active findings in §3 |
 | 006-review-remediation | 007-barter-review-fixes | Phase 006's Skilled fixes are merged on Skilled main, leaving only the review's ai-speckit findings | `git merge-base --is-ancestor 468f1bb4762 main` exits 0 in Skilled |
 | 007-barter-review-fixes | 008-push-and-repin | The six Barter findings are fixed in one ai-speckit commit with Barter's gates green | `git -C <ai-speckit> show --stat 5dd004f3faa` lists the hook, test and doc files named in phase 007's spec |
+| 008-push-and-repin | 009-skilled-open-items | Barter is re-pinned onto phase 008's pushed commit, and its record names the open items left | `rg -n 'record-base' 008-push-and-repin/implementation-summary.md` prints the Known Limitations line |
+| 009-skilled-open-items | 010-barter-open-items | Phase 009's fixes are merged on local Skilled main with every gate in its plan green | `git merge-base --is-ancestor <phase 009 merge> main` exits 0 in Skilled |
+| 010-barter-open-items | 011-push-and-repin-open-items | ai-speckit's record 039 names a commit or a deferral for each Barter-side item | `git -C <ai-speckit> show --stat <id>` exits 0 for each commit phase 010 lists |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-skilled-doctor/007-overlay-framework-root-layout/009-skilled-open-items",
+  "description": "Phase 9: skilled-open-items",
+  "keywords": [
+    "phase",
+    "skilled-open-items"
+  ],
+  "lastUpdated": "2026-11-20T17:30:08.553Z",
+  "specId": "009",
+  "folderSlug": "skilled-open-items",
+  "parentChain": [
+    "system-skilled-doctor",
+    "007-overlay-framework-root-layout"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "20-11-26_17-51__scaffolded-phase-009-and-wrote-its-spec-plan-and.md",
+    "20-11-26_18-29__fixed-the-four-skilled-side-open-items-of-the.md",
+    "20-11-26_18-30__closed-phase-009-four-skilled-open-items-fixed.md"
+  ]
+}
