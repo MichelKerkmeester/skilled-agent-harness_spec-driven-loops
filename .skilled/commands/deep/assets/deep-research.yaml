@@ -295,7 +295,7 @@ workflow:
       effort, sandbox and permission mode, sandbox enforcement and effort applied. Print its
       JSON line and any stderr warnings, remove {preview_input_dir} and continue; the dry-run
       halt at the next boundary step stops the run as before. The JSON line's dry_run_halt
-      is the runner's halt event for step_fanout_spawn: when the halt lands there, print that
+      is the runner's halt event for step_fanout_spawn, and when the halt lands there, print that
       object verbatim as the halt line instead of composing event_policy.default_halt_event.
       A halt at an earlier boundary step still prints default_halt_event.
       topic_digest is the SHA-256 of {research_topic} as the prompts embed it, whitespace
