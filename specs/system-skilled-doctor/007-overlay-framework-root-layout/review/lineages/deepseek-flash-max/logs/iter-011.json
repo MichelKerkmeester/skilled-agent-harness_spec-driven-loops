@@ -1,0 +1,63 @@
+{
+  "iteration": 11,
+  "focus": "Recovery pass: completion-criteria verification (cross-reference)",
+  "dimensions": ["traceability"],
+  "filesReviewed": [
+    "barter/ai-speckit/skilled/.skilled-overlays.json",
+    "barter/ai-speckit/skilled/barter-overlays",
+    "barter/ai-speckit/skilled/.skilled/skills/sk-git/sk-git-skilled/SKILL.md",
+    "barter/ai-speckit/overlays/overlay-manifest.json",
+    ".skilled/commands/doctor/scripts/overlay-engine.cjs:4372-4405",
+    ".skilled/commands/doctor/scripts/overlay-engine.cjs:5510-5518",
+    ".skilled/commands/doctor/scripts/overlay-engine.cjs:5528-5570",
+    ".skilled/skills/system-skilled-doctor/SKILL.md:5",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md"
+  ],
+  "findingDetails": [
+    {
+      "id": "R11-P2-001",
+      "severity": "P2",
+      "title": "The strict-write refusal tells an operator to create a copy for a path the overlay removes, and apply never installs it",
+      "dimension": "traceability",
+      "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs:5552-5556",
+      "findingClass": "misleading-remedy",
+      "scopeProof": "inside the declared review target engine; names the exact branch, the exact manifest entry and the exact completion criterion that reaches it",
+      "affectedSurfaceHints": [
+        "overlay-engine.cjs:4385-4388,5552-5556",
+        "overlay-manifest.json sk-git-root entry",
+        "references/overlays.md:51",
+        "packet completion criterion for --guard"
+      ]
+    }
+  ],
+  "traceabilityChecks": [
+    { "protocolId": "spec_code", "status": "pass", "gateClass": "hard", "applicable": true, "evidence": ["barter/ai-speckit/skilled/.skilled-overlays.json", "barter/ai-speckit/skilled/barter-overlays", ".skilled/skills/system-skilled-doctor/SKILL.md:5", ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md"], "summary": "Four of the six completion criteria were verified read-only and all four hold." },
+    { "protocolId": "checklist_evidence", "status": "partial", "gateClass": "hard", "applicable": true, "evidence": ["barter/ai-speckit/overlays/overlay-manifest.json", ".skilled/commands/doctor/scripts/overlay-engine.cjs:5552-5556"], "summary": "The --guard criterion is satisfied in form but the line it prints gives a remedy that cannot work, which is R11-P2-001." }
+  ],
+  "newFindingsRatio": 1.0,
+  "noveltyJustification": "One new P2. The recovery pass changed approach from per-node dimension review to verifying the packet's own completion criteria, and that different evidence source surfaced a defect ten dimension iterations missed. weightedNew equals weightedTotal, so the ratio is 1.0.",
+  "durationMs": 187000,
+  "reviewDepthApplicability": { "scopeClass": "complex", "enforcement": "strict", "reason": "Six completion criteria traced to the artifacts that satisfy them, with the guard criterion traced through three engine functions to the manifest entry that reaches it.", "evidenceRefs": [".skilled/commands/doctor/scripts/overlay-engine.cjs:4385-4388", ".skilled/commands/doctor/scripts/overlay-engine.cjs:5552-5556"] },
+  "targetSelection": { "selectedTargets": ["barter/ai-speckit/skilled/.skilled-overlays.json", "barter/ai-speckit/overlays/overlay-manifest.json", ".skilled/commands/doctor/scripts/overlay-engine.cjs", ".skilled/skills/system-skilled-doctor/SKILL.md"], "selectionReason": "The recovery pass verifies the six completion criteria the durable directive states, so the targets are the artifacts each criterion names.", "discoveryMethods": ["direct_read", "exact_search", "filesystem_probe"], "omittedHighRiskTargets": ["the engine test suite (writes to OS temp, outside the lineage)", "validate.sh --recursive --strict (forbidden by the dispatch)"], "graphStatus": "unavailable", "semanticSearchStatus": "unavailable", "evidenceRefs": ["barter/ai-speckit/overlays/overlay-manifest.json"] },
+  "searchCoverage": { "requiredBugClasses": ["misleading_remedy", "criterion_failure", "stale_setting_file"], "covered": ["misleading_remedy", "criterion_failure", "stale_setting_file"], "ruledOut": ["criterion_failure", "stale_setting_file"], "deferred": ["engine suite exit code", "status --json offLayout", "validate.sh --recursive --strict"], "blocked": [], "graphCoverageMode": "graphless_fallback" },
+  "searchLedger": [
+    { "id": "SL-040", "dimension": "traceability", "targetRefs": [".skilled/commands/doctor/scripts/overlay-engine.cjs"], "bugClass": "misleading_remedy", "hypothesis": "The strict-write refusal offers a remedy that cannot work for a path on a skill-root entry's remove list", "searchActions": [{ "method": "direct_read", "queryOrPath": "managedPathTest:4385-4388, folderEntryHolding:5510-5518, strictWriteRefusal:5552-5556, manifest sk-git-root remove list", "result": "remove paths are managed, so the managed branch prints create-it-as for a path apply will never install", "evidenceRefs": [".skilled/commands/doctor/scripts/overlay-engine.cjs:5552-5556", "barter/ai-speckit/overlays/overlay-manifest.json"] }], "disposition": "finding", "linkedFindingId": "R11-P2-001", "rationale": "The packet's own --guard criterion reaches this branch, so the wrong remedy is on the documented path." },
+    { "id": "SL-041", "dimension": "traceability", "targetRefs": ["barter/ai-speckit/skilled/.skilled-overlays.json"], "bugClass": "stale_setting_file", "hypothesis": "The setting file names a folder other than ../overlays", "searchActions": [{ "method": "filesystem_probe", "queryOrPath": "cat barter/ai-speckit/skilled/.skilled-overlays.json", "result": "{ \"overlayDir\": \"../overlays\" }", "evidenceRefs": ["barter/ai-speckit/skilled/.skilled-overlays.json"] }], "disposition": "ruled_out", "ruledOutReason": "The file holds exactly the value decision D4 requires.", "rationale": "Criterion 3 holds." },
+    { "id": "SL-042", "dimension": "traceability", "targetRefs": ["barter/ai-speckit/skilled/barter-overlays"], "bugClass": "criterion_failure", "hypothesis": "The old barter-overlays folder survives in the vendored tree", "searchActions": [{ "method": "filesystem_probe", "queryOrPath": "ls -d barter/ai-speckit/skilled/barter-overlays", "result": "exit 1, No such file or directory", "evidenceRefs": ["barter/ai-speckit/skilled/barter-overlays"] }], "disposition": "ruled_out", "ruledOutReason": "The folder does not exist.", "rationale": "Criterion 3's second half holds." },
+    { "id": "SL-043", "dimension": "traceability", "targetRefs": [".skilled/commands/doctor/scripts/overlay-engine.cjs"], "bugClass": "criterion_failure", "hypothesis": "The --guard criterion fails to exit 1 or fails to name a source under ../overlays/framework/", "searchActions": [{ "method": "direct_read", "queryOrPath": "trace the guard target through strictWriteRefusal", "result": "the managed branch returns a line naming ../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md and EXIT_CONFLICT", "evidenceRefs": [".skilled/commands/doctor/scripts/overlay-engine.cjs:5552-5556"] }], "disposition": "ruled_out", "ruledOutReason": "The criterion is satisfied in form; only the remedy is wrong.", "rationale": "The guard fails closed and names the right source." }
+  ],
+  "graphEvents": [
+    { "type": "node", "id": "N-CRITERIA", "kind": "SLICE", "label": "packet completion criteria" },
+    { "type": "node", "id": "N-STRICTWRITE", "kind": "FILE", "label": "strictWriteRefusal managed branch" },
+    { "type": "node", "id": "N-R11-P2-001", "kind": "FINDING", "label": "remove-list path gets a replace-list remedy" },
+    { "type": "edge", "id": "E-27", "source": "N-CRITERIA", "target": "N-STRICTWRITE", "relation": "COVERS" },
+    { "type": "edge", "id": "E-28", "source": "N-STRICTWRITE", "target": "N-R11-P2-001", "relation": "EVIDENCE_FOR" }
+  ],
+  "classification": "R11-P2-001 misleading-remedy P2 confidence high; recovery pass changed approach to completion-criteria verification and found it",
+  "ruledOut": [
+    { "direction": "the setting file names a folder other than ../overlays", "reason": "it prints { \"overlayDir\": \"../overlays\" }" },
+    { "direction": "the old barter-overlays folder survives in the vendored tree", "reason": "ls -d exits 1" },
+    { "direction": "the --guard criterion fails", "reason": "the guard exits 1 and names ../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md" },
+    { "direction": "the doctor skill version and its changelog disagree", "reason": "both are 1.2.0.0" }
+  ]
+}

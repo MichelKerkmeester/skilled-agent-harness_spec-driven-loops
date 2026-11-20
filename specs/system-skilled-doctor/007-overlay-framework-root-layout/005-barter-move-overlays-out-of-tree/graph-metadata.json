@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Barter's own files live inside the copy it vendors from Skilled, at `skilled/barter-overlays/`, and 52 non-hidden files outside spec history and changelogs name the folder there",
     "created_at": "2026-11-20T10:11:42Z",
-    "last_save_at": "2026-11-20T13:41:55.794Z",
+    "last_save_at": "2026-11-20T15:28:02.716Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d426a839caf5906fe25da6c423b45fb529df7e8c08c464464210b612fb243714",
+    "source_fingerprint": "sha256:4a766e3055491278f62fe7253fc84012539575b1d60e5ace34fef82fe602c7d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "87057992e9764bf613db662f5628cfab6f03b22640f91004033fea237393d6fa",

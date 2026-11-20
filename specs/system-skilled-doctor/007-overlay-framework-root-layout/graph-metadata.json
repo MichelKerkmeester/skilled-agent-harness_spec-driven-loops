@@ -8,7 +8,8 @@
     "system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout",
     "system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release",
     "system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout",
-    "system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree"
+    "system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree",
+    "system-skilled-doctor/007-overlay-framework-root-layout/006-review-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -47,13 +48,15 @@
       "goal.md",
       ".skilled/commands/doctor/scripts/overlay-engine.cjs",
       ".skilled/commands/doctor/overlay.md",
+      "review/review-report.md",
       "004-barter-repin-and-relayout/spec.md",
       "scratch/design-notes.md",
       "001-engine-out-of-tree-overlay-folder/goal.md",
       "002-engine-framework-root-source-layout/goal.md",
       "003-engine-docs-and-release/goal.md",
       "004-barter-repin-and-relayout/goal.md",
-      "005-barter-move-overlays-out-of-tree/goal.md"
+      "005-barter-move-overlays-out-of-tree/goal.md",
+      "006-review-remediation/goal.md"
     ],
     "entities": [
       {
@@ -78,6 +81,12 @@
         "name": "overlay.md",
         "kind": "doc",
         "path": ".skilled/commands/doctor/overlay.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -161,17 +170,17 @@
     ],
     "causal_summary": "The doctor overlay engine refuses an overlay folder outside the vendored tree",
     "created_at": "2026-11-20T09:31:32Z",
-    "last_save_at": "2026-11-20T13:41:21.155Z",
+    "last_save_at": "2026-11-20T15:29:57.574Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:c141bae2eca50e342edd5ef733d2560233f3be8bd67432dcb934c4fbe1edf95c",
+    "source_fingerprint": "sha256:bb1fa523135849609951bd56ebd53bcc094492a8cd71e362bbb2b796bfc2bb42",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ce38d673a618654cfeb26b9d7c7524cc65e29532300f523580dfd90fe5d7a4cf"
+      "spec.md": "f4bbdc9154e3bade029526cf22ba1fd32b0de03d7200bbcf08ec744867139430"
     },
     "last_active_child_id": "system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release",
     "last_active_at": "2026-11-20T12:32:08.715Z"

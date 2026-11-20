@@ -1,0 +1,73 @@
+const fs = require('fs');
+const L = 'specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/deepseek-flash-max';
+const ts = new Date().toISOString();
+const rec = {
+  type: 'iteration', iteration: 3, mode: 'review', target_agent: 'deep-review',
+  agent_definition_loaded: true,
+  resolved_route: 'Resolved route: mode=review target_agent=deep-review',
+  run: 'fanout-deepseek-flash-max-1795182837437-sws2tv',
+  status: 'complete',
+  focus: 'Frontier node F-1-007: correctness',
+  frontierNodeId: 'F-1-007',
+  dimensions: ['correctness'],
+  filesReviewed: [
+    'barter/ai-speckit/overlays/overlay-manifest.json',
+    'barter/ai-speckit/overlays/sync-state.json',
+    'barter/ai-speckit/overlays/framework/changelog/skilled-coder/v4.1.0.0.md:310',
+    'barter/ai-speckit/skilled/.skilled/changelog/sk-git-skilled',
+    'barter/ai-speckit/skilled/.skilled/changelog/skilled-coder',
+    'barter/ai-speckit/overlays/framework/skills/sk-git/sk-git-skilled/changelog',
+    'barter/ai-speckit/overlays/framework/changelog/skilled-coder',
+    'barter/ai-speckit/overlays/README.md:60-75,440-460',
+    'barter/ai-speckit/skilled/.skilled/commands/doctor/**',
+    'barter/ai-speckit/skilled/.skilled/skills/system-skilled-doctor/**',
+    'barter/ai-speckit/skilled/.skilled/hooks/overlay-guard/**',
+    'barter/ai-speckit/skilled/.skilled/hooks/barter-overlay-guard/**',
+    '.skilled/commands/doctor/scripts/overlay-engine.cjs'
+  ],
+  findingsCount: 0,
+  findingsSummary: { P0: 0, P1: 0, P2: 0 },
+  findingsNew: [],
+  findingDetails: [],
+  traceabilityChecks: { results: [
+    { protocolId: 'spec_code', status: 'pass', gateClass: 'hard', applicable: true, evidence: ['barter/ai-speckit/overlays/overlay-manifest.json', 'barter/ai-speckit/overlays/sync-state.json', 'barter/ai-speckit/overlays/framework/changelog/skilled-coder/v4.1.0.0.md:310'], summary: 'The manifest pin, the sync-state pin and the changelog all name Skilled 063daaee2c19a7a8c9a0fb67f84903894bc08043.' },
+    { protocolId: 'checklist_evidence', status: 'pass', gateClass: 'hard', applicable: true, evidence: ['barter/ai-speckit/overlays/sync-state.json', 'barter/ai-speckit/overlays/overlay-manifest.json'], summary: 'sync-state.files holds 485 destination hashes, all overlay destinations; no engine file appears in it.' }
+  ] },
+  newFindingsRatio: 0.0,
+  noveltyJustification: 'No new findings. The parity comparison, the pin record and the two overlay-owned changelog links all held, so weightedNew is 0 and the ratio is 0.0. The iteration is recorded clean rather than padded with a finding.',
+  sessionId: 'fanout-deepseek-flash-max-1795182837437-sws2tv',
+  generation: 1,
+  lineageMode: 'new',
+  timestamp: ts,
+  durationMs: 168000,
+  reviewDepthSchemaVersion: 2,
+  reviewDepthApplicability: { scopeClass: 'complex', enforcement: 'strict', reason: 'A 317-file parity comparison against a pinned commit plus two independent pin records and two cross-tree symlinks.', evidenceRefs: ['barter/ai-speckit/overlays/overlay-manifest.json', 'barter/ai-speckit/overlays/sync-state.json'] },
+  targetSelection: { selectedTargets: ['barter/ai-speckit/skilled/.skilled/commands/doctor', 'barter/ai-speckit/skilled/.skilled/skills/system-skilled-doctor', 'barter/ai-speckit/skilled/.skilled/hooks/overlay-guard', 'barter/ai-speckit/skilled/.skilled/hooks/barter-overlay-guard', 'barter/ai-speckit/overlays/overlay-manifest.json', 'barter/ai-speckit/overlays/sync-state.json', 'barter/ai-speckit/overlays/framework/changelog'], selectionReason: 'The frontier node F-1-007 scope names the vendored doctor tree, the sync-state record and the framework changelog folder; the three other vendored subtrees were added because the pin covers them and a partial parity check would not prove fidelity.', discoveryMethods: ['direct_read', 'byte_diff', 'symlink_aware_walk', 'exact_search'], omittedHighRiskTargets: ['barter/ai-speckit/overlays/repin-runs (40 MB of run backups, not source)'], graphStatus: 'unavailable', semanticSearchStatus: 'unavailable', evidenceRefs: ['barter/ai-speckit/overlays/overlay-manifest.json'] },
+  searchCoverage: { requiredBugClasses: ['copy_drift', 'pin_record_disagreement', 'dangling_symlink', 'stale_old_layout_path'], covered: ['copy_drift', 'pin_record_disagreement', 'dangling_symlink', 'stale_old_layout_path'], ruledOut: ['copy_drift', 'pin_record_disagreement', 'dangling_symlink', 'stale_old_layout_path'], deferred: [], blocked: [], graphCoverageMode: 'graphless_fallback' },
+  searchLedger: [
+    { id: 'SL-009', dimension: 'correctness', targetRefs: ['barter/ai-speckit/skilled/.skilled/commands/doctor', 'barter/ai-speckit/skilled/.skilled/skills/system-skilled-doctor', 'barter/ai-speckit/skilled/.skilled/hooks/overlay-guard', 'barter/ai-speckit/skilled/.skilled/hooks/barter-overlay-guard'], bugClass: 'copy_drift', hypothesis: 'The vendored tree differs from Skilled 063daaee2c1 in a file no overlay declares', searchActions: [{ method: 'symlink_aware_walk', queryOrPath: 'git ls-tree 063daaee2c1 over four subtrees vs on-disk, symlink-aware', result: 'same=317 diff=6 missing=0; all 6 declared in overlay-manifest.json', evidenceRefs: ['barter/ai-speckit/overlays/overlay-manifest.json'] }], disposition: 'ruled_out', ruledOutReason: 'Every difference is an overlay-owned entry the manifest declares.', rationale: 'The vendored tree is the pin plus the declared overlay set.' },
+    { id: 'SL-010', dimension: 'correctness', targetRefs: ['barter/ai-speckit/overlays/overlay-manifest.json', 'barter/ai-speckit/overlays/sync-state.json'], bugClass: 'pin_record_disagreement', hypothesis: 'The manifest pin and the sync-state pin name different commits', searchActions: [{ method: 'direct_read', queryOrPath: 'overlay-manifest.json pin vs sync-state.json pin', result: 'both 063daaee2c19a7a8c9a0fb67f84903894bc08043', evidenceRefs: ['barter/ai-speckit/overlays/overlay-manifest.json', 'barter/ai-speckit/overlays/sync-state.json'] }], disposition: 'ruled_out', ruledOutReason: 'The two pin strings are identical and the changelog names the same short commit.', rationale: 'Two independent records agree.' },
+    { id: 'SL-011', dimension: 'correctness', targetRefs: ['barter/ai-speckit/skilled/.skilled/changelog/sk-git-skilled', 'barter/ai-speckit/skilled/.skilled/changelog/skilled-coder'], bugClass: 'dangling_symlink', hypothesis: 'The two overlay-owned changelog links no longer resolve after the move to overlays/', searchActions: [{ method: 'direct_read', queryOrPath: 'readlink plus cd into each target', result: 'both resolve into barter/ai-speckit/overlays/framework/...', evidenceRefs: ['barter/ai-speckit/skilled/.skilled/changelog/sk-git-skilled', 'barter/ai-speckit/skilled/.skilled/changelog/skilled-coder'] }], disposition: 'ruled_out', ruledOutReason: 'Both links resolve and their targets hold the expected changelog files.', rationale: 'The ../../../ hop lands on ai-speckit/ from ai-speckit/skilled/.skilled/changelog/.' },
+    { id: 'SL-012', dimension: 'correctness', targetRefs: ['barter/ai-speckit/overlays'], bugClass: 'stale_old_layout_path', hypothesis: 'A consumer still reads the pre-move overlays/skilled path', searchActions: [{ method: 'exact_search', queryOrPath: 'ls barter/ai-speckit/overlays', result: 'framework, root, checks, tests, README.md, overlay-manifest.json, sync-state.json, repin-runs; no skilled', evidenceRefs: ['barter/ai-speckit/overlays/README.md:440-460'] }], disposition: 'ruled_out', ruledOutReason: 'The old dot-dropped folder does not exist.', rationale: 'The move left no compatibility shim behind.' }
+  ],
+  graphEvents: [
+    { type: 'node', id: 'N-F1-007', kind: 'SLICE', label: 'Frontier node F-1-007 Barter re-pin parity' },
+    { type: 'node', id: 'N-PINREC', kind: 'FILE', label: 'overlay-manifest.json pin block' },
+    { type: 'node', id: 'N-SYNCSTATE', kind: 'FILE', label: 'sync-state.json' },
+    { type: 'node', id: 'N-CHANGELOGLINKS', kind: 'FILE', label: 'overlay-owned changelog symlinks' },
+    { type: 'edge', id: 'E-9', source: 'N-F1-007', target: 'N-PINREC', relation: 'COVERS' },
+    { type: 'edge', id: 'E-10', source: 'N-F1-007', target: 'N-SYNCSTATE', relation: 'COVERS' },
+    { type: 'edge', id: 'E-11', source: 'N-F1-007', target: 'N-CHANGELOGLINKS', relation: 'COVERS' }
+  ]
+};
+fs.writeFileSync('/tmp/iter-003-event.json', JSON.stringify(rec));
+const lines = [JSON.stringify(rec)];
+lines.push(JSON.stringify({ type: 'classification', detail: 'no new findings; parity, pin record and changelog links all clean', iteration: 3 }));
+lines.push(JSON.stringify({ type: 'traceability_check', protocolId: 'spec_code', status: 'pass', iteration: 3 }));
+lines.push(JSON.stringify({ type: 'traceability_check', protocolId: 'checklist_evidence', status: 'pass', iteration: 3 }));
+lines.push(JSON.stringify({ type: 'ruled_out', direction: 'the vendored tree has drifted from Skilled 063daaee2c1', reason: 'same=317 diff=6 missing=0 and all 6 differences are declared overlay entries', iteration: 3 }));
+lines.push(JSON.stringify({ type: 'ruled_out', direction: 'the overlay-guard opencode and vibe files differ from the pin', reason: 'both are symlinks at the pin (mode 120000) and on disk; diff followed them; targets match exactly', iteration: 3 }));
+lines.push(JSON.stringify({ type: 'ruled_out', direction: 'the changelog split leaves the sk-git changelogs unreachable', reason: 'they live under framework/skills/sk-git/sk-git-skilled/changelog, carried by the sk-git-root entry, and .skilled/changelog/sk-git-skilled resolves there', iteration: 3 }));
+lines.push(JSON.stringify({ type: 'ruled_out', direction: 'a stale overlays/skilled path survives the move', reason: 'the directory does not exist', iteration: 3 }));
+fs.writeFileSync(L + '/deltas/iter-003.jsonl', lines.join('\n') + '\n');
+console.log('wrote event + delta, lines=' + lines.length + ' ts=' + ts);

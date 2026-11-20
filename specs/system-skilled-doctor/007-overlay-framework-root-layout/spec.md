@@ -120,6 +120,7 @@ This table is an audit summary only. Each child's `plan.md` holds the per-phase 
 | 3 | 003-engine-docs-and-release/ | Runs in Skilled. Docs, workflows, playbook and release note describe the default change and its migration step | Complete |
 | 4 | 004-barter-repin-and-relayout/ | Runs in ai-speckit, in one session. Barter re-pins onto the commit phase 3 produces, then relays every source with no adopt in between | Complete |
 | 5 | 005-barter-move-overlays-out-of-tree/ | Runs in ai-speckit. The three hooks first learn both locations, in their own commit. Then the folder moves to `ai-speckit/overlays/`, the setting names `../overlays`, and the checks, tests, scripts and docs follow | Complete |
+| 6 | 006-review-remediation/ | Runs in Skilled. Fixes the Skilled findings of the extended deep review in `review/review-report.md`: relayout rollback on a mid-run failure, the outside-repository refusal at resolution, two remedies, three engine readability items, and the phase 002, 004 and 005 records | Complete |
 
 ### Phase Transition Rules
 
@@ -128,6 +129,7 @@ This table is an audit summary only. Each child's `plan.md` holds the per-phase 
 - Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
 - Phases 4 and 5 run from an ai-speckit session. They read this packet from the Skilled checkout and write nothing in Skilled except their own phase docs.
+- Phase 6 runs in Skilled, on the worktree branch the earlier engine phases used, and fixes only the Skilled findings of the review. The review's ai-speckit findings belong to an ai-speckit session.
 
 ### Phase Handoff Criteria
 
@@ -137,6 +139,7 @@ This table is an audit summary only. Each child's `plan.md` holds the per-phase 
 | 002-engine-framework-root-source-layout | 003-engine-docs-and-release | New-default fixtures pass, and an old-layout fixture still applies, with status `RESULT: PASSED` and capped LAYOUT notes | the same `node --test` command exits 0 |
 | 003-engine-docs-and-release | 004-barter-repin-and-relayout | Phases 1-3 are committed in Skilled, and the commit id is on phase 4's `Target Skilled commit:` line | `git -C <Skilled> log -1 --format=%H` matches that line in `004-barter-repin-and-relayout/spec.md` |
 | 004-barter-repin-and-relayout | 005-barter-move-overlays-out-of-tree | Barter is on the new pin, every source sits under `framework/` or `root/`, and status passes with no off-layout source | `node .skilled/commands/doctor/scripts/overlay-engine.cjs status --json` in `ai-speckit/skilled` reports `PASSED` and an empty `offLayout` |
+| 005-barter-move-overlays-out-of-tree | 006-review-remediation | The extended deep review has run over phases 1-5 and its report names the findings this phase fixes | `review/review-report.md` exists and lists the active findings in §3 |
 <!-- /ANCHOR:phase-map -->
 
 ---

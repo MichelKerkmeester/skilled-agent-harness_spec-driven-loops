@@ -1,0 +1,11 @@
+{"record":{"focus":"maintainability recovery pass","dimensions":["maintainability"],
+"filesReviewed":[".skilled/commands/doctor/scripts/tests/overlay-engine-fixtures.cjs:1",".skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs:191"],
+"traceabilityChecks":{"results":[{"protocolId":"spec_code","status":"pass","gateClass":"hard","applicable":true,"evidence":[".skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs:194"],"summary":"fixture option present as planned"}]},
+"newFindingsRatio":0.0,"noveltyJustification":"Recovery pass at line level; no new findings.","durationMs":120000,
+"reviewDepthSchemaVersion":2,
+"reviewDepthApplicability":{"scopeClass":"standard","enforcement":"strict","reason":"fixture shape","evidenceRefs":[".skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs:191"]},
+"targetSelection":{"selectedTargets":[".skilled/commands/doctor/scripts/tests/overlay-engine-fixtures.cjs",".skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs"],"selectionReason":"least-covered dimension, finer granularity","discoveryMethods":["git_diff","direct_read"],"omittedHighRiskTargets":[],"graphStatus":"available","semanticSearchStatus":"unavailable","evidenceRefs":[".skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs:194"]},
+"searchCoverage":{"requiredBugClasses":["readability"],"covered":["readability"],"ruledOut":["readability"],"deferred":[],"blocked":[],"graphCoverageMode":"graph"},
+"searchLedger":[{"id":"SL-017-1","dimension":"maintainability","targetRefs":[".skilled/commands/doctor/scripts/tests/overlay-engine-fixtures.cjs"],"bugClass":"readability","hypothesis":"sibling fixtures duplicate tree-building or leak folders","searchActions":[{"method":"git_diff","queryOrPath":"overlay-engine-fixtures.cjs diff","result":"single option, refuses conflicting options","evidenceRefs":[".skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs:196"]}],"disposition":"ruled_out","rationale":"one entry point, cleanup registered","ruledOutReason":"verified"}]},
+"findings":[],
+"extra":[{"type":"ruled_out","direction":"fixture leakage in sibling tests","reason":"cleanup registered; unique names"}]}

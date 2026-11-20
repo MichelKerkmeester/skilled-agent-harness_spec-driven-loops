@@ -1,0 +1,157 @@
+{
+  "iteration": 12,
+  "focus": "Consolidation pass: executed completion criteria and closed the traceability protocol set",
+  "dimensions": ["traceability"],
+  "filesReviewed": [
+    "barter/ai-speckit/skilled/.skilled-overlays.json",
+    "barter/ai-speckit/skilled/barter-overlays",
+    "barter/ai-speckit/skilled/.skilled/skills/sk-git/sk-git-skilled/SKILL.md",
+    "barter/ai-speckit/overlays/overlay-manifest.json",
+    ".skilled/commands/doctor/scripts/overlay-engine.cjs:4385-4388",
+    ".skilled/commands/doctor/scripts/overlay-engine.cjs:5552-5556",
+    ".skilled/skills/system-skilled-doctor/SKILL.md:5",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md"
+  ],
+  "findingDetails": [],
+  "traceabilityChecks": [
+    {
+      "protocolId": "spec_code",
+      "status": "pass",
+      "gateClass": "hard",
+      "applicable": true,
+      "evidence": [
+        "barter/ai-speckit/skilled/.skilled-overlays.json",
+        "barter/ai-speckit/skilled/barter-overlays",
+        ".skilled/skills/system-skilled-doctor/SKILL.md:5",
+        ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md"
+      ],
+      "summary": "Criteria 2, 3 and 5 hold on the tree as it stands; criterion 5 was executed this iteration rather than inferred."
+    },
+    {
+      "protocolId": "checklist_evidence",
+      "status": "pass",
+      "gateClass": "hard",
+      "applicable": true,
+      "evidence": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:5552-5556",
+        "barter/ai-speckit/overlays/overlay-manifest.json",
+        "barter/ai-speckit/skilled/.skilled-overlays.json"
+      ],
+      "summary": "Criterion 5 was executed: --guard exits 1 and names ../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md. Criterion 4 was executed: status --json reports PASSED with an empty offLayout. The remedy wording on that line is still wrong and is carried as the open P2 R11-P2-001, not as a gap in this protocol's evidence."
+    }
+  ],
+  "newFindingsRatio": 0,
+  "noveltyJustification": "No new finding. The pass executed the two completion criteria iteration 11 could only read about and closed the checklist_evidence protocol on executed evidence; the one defect it re-observed, the unusable remedy on the guard line, is the already-open R11-P2-001 and is not re-raised.",
+  "durationMs": 240000,
+  "reviewDepthApplicability": {
+    "scopeClass": "complex",
+    "enforcement": "strict",
+    "reason": "Two completion criteria executed against the live tree, each traced to the engine branch and manifest entry that produce its output.",
+    "evidenceRefs": [
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs:5552-5556",
+      "barter/ai-speckit/overlays/overlay-manifest.json"
+    ]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      "barter/ai-speckit/skilled/.skilled-overlays.json",
+      "barter/ai-speckit/overlays/overlay-manifest.json",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/skills/system-skilled-doctor/SKILL.md"
+    ],
+    "selectionReason": "The consolidation pass executes the completion criteria the durable directive states, so the targets are the artifacts each criterion names.",
+    "discoveryMethods": ["direct_read", "exact_search", "filesystem_probe"],
+    "omittedHighRiskTargets": [
+      "the engine test suite (writes to OS temp, outside the lineage)",
+      "validate.sh --recursive --strict (forbidden by the dispatch)"
+    ],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "unavailable",
+    "evidenceRefs": ["barter/ai-speckit/overlays/overlay-manifest.json"]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": ["misleading_remedy", "criterion_failure", "stale_setting_file"],
+    "covered": ["misleading_remedy", "criterion_failure", "stale_setting_file"],
+    "ruledOut": ["criterion_failure", "stale_setting_file"],
+    "deferred": ["engine suite exit code", "validate.sh --recursive --strict"],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-042",
+      "bugClass": "stale_setting_file",
+      "dimension": "traceability",
+      "disposition": "ruled_out",
+      "hypothesis": "The vendored setting file names a folder other than ../overlays, so the engine reads the wrong overlay root",
+      "rationale": "Criterion 3 is the setting-file criterion and it holds on the live tree.",
+      "ruledOutReason": "The file holds exactly { \"overlayDir\": \"../overlays\" } with no extra keys, and status --json reports overlayFolder ../overlays.",
+      "targetRefs": ["barter/ai-speckit/skilled/.skilled-overlays.json"],
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "barter/ai-speckit/skilled/.skilled-overlays.json",
+          "result": "{ \"overlayDir\": \"../overlays\" }",
+          "evidenceRefs": ["barter/ai-speckit/skilled/.skilled-overlays.json"]
+        }
+      ]
+    },
+    {
+      "id": "SL-043",
+      "bugClass": "criterion_failure",
+      "dimension": "traceability",
+      "disposition": "ruled_out",
+      "hypothesis": "The status and guard completion criteria fail on the tree as it stands",
+      "rationale": "Both criteria were executed this iteration instead of being inferred from the engine source.",
+      "ruledOutReason": "status --json reports PASSED with offLayout [] and check 135/135; --guard exits 1 and names ../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md.",
+      "targetRefs": ["barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs"],
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "node .skilled/commands/doctor/scripts/overlay-engine.cjs status --json; node .skilled/commands/doctor/scripts/overlay-engine.cjs --guard .skilled/skills/sk-git/sk-git-skilled/SKILL.md",
+          "result": "status exit 0 with result PASSED and offLayout []; guard exit 1 naming a source under ../overlays/framework/",
+          "evidenceRefs": [
+            "barter/ai-speckit/skilled/.skilled-overlays.json",
+            ".skilled/commands/doctor/scripts/overlay-engine.cjs:5552-5556"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SL-044",
+      "bugClass": "misleading_remedy",
+      "dimension": "traceability",
+      "disposition": "finding",
+      "linkedFindingId": "R11-P2-001",
+      "hypothesis": "The guard line's remedy names a copy that apply will never install, because the path is on the entry's remove list",
+      "rationale": "Re-observed while executing criterion 5; already open as R11-P2-001, so it is carried rather than re-raised.",
+      "targetRefs": [".skilled/commands/doctor/scripts/overlay-engine.cjs"],
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "overlay-manifest.json sk-git-root entry; overlay-engine.cjs:4385-4388,5552-5556",
+          "result": "sk-git-skilled is listed under remove and not under replace, so the create-it-as remedy cannot be satisfied by apply",
+          "evidenceRefs": [
+            "barter/ai-speckit/overlays/overlay-manifest.json",
+            ".skilled/commands/doctor/scripts/overlay-engine.cjs:5552-5556"
+          ]
+        }
+      ]
+    }
+  ],
+  "graphEvents": [
+    { "type": "node", "id": "N-CRITERIA-EXEC", "kind": "SLICE", "label": "executed completion criteria" },
+    { "type": "node", "id": "N-STATUS-JSON", "kind": "FILE", "label": "status --json PASSED with empty offLayout" },
+    { "type": "node", "id": "N-GUARD-LINE", "kind": "FILE", "label": "guard refusal naming a framework source" },
+    { "type": "edge", "id": "E-29", "source": "N-CRITERIA-EXEC", "target": "N-STATUS-JSON", "relation": "COVERS" },
+    { "type": "edge", "id": "E-30", "source": "N-CRITERIA-EXEC", "target": "N-GUARD-LINE", "relation": "COVERS" }
+  ],
+  "classification": "no new findings; checklist_evidence closed on executed evidence; R11-P2-001 carried, not re-raised",
+  "ruledOut": [
+    { "direction": "criterion 4 fails on the tree as it stands", "reason": "status --json reports PASSED with offLayout []" },
+    { "direction": "criterion 5 fails", "reason": "the guard exits 1 and names ../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md" },
+    { "direction": "the setting file names a folder other than ../overlays", "reason": "it prints { \"overlayDir\": \"../overlays\" }" },
+    { "direction": "the old barter-overlays folder survives in the vendored tree", "reason": "the path does not exist" },
+    { "direction": "the doctor skill version and its changelog disagree", "reason": "both are 1.2.0.0" }
+  ]
+}

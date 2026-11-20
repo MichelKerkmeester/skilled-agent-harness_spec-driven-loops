@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The engine has one source naming rule",
     "created_at": "2026-11-20T09:32:54Z",
-    "last_save_at": "2026-11-20T12:19:40.727Z",
+    "last_save_at": "2026-11-20T15:27:59.313Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ae049137343f806767e9938f458b16fce0f60cb62efda2176c4972ddf217d682",
+    "source_fingerprint": "sha256:e2920c32c0ef867e6b1931781f5b0d1b164c9236012854e849f23234610f30d5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "45c342a83e548a7e79f2f53d663852427cbd2d74006d6856a8f0ab9569241570",
+      "spec.md": "e53959132efe037b8106f9b88c75f24e9a02a0d348d977e3b81ab25ece15db0b",
       "plan.md": "a0437620d432afe146d5ecebf2db83d8868d9d905b6d3eea164ba08d99202e29",
       "tasks.md": "258e1f2e9f368d687281b74dc247b887c948ca506519f6c72f73e4e4632853a0",
       "implementation-summary.md": "b5229bd0104ad3df72fb156fe9a2b7b62fbd4cfb3d76ae4ed7bd965c07442dbe"

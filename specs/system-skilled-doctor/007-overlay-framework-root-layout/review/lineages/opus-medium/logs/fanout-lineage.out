@@ -1,0 +1,33 @@
+The opus-medium review lineage finished. It converged after 17 iterations with no P0 or P1 findings and 9 P2 advisories, but the workflow's verdict script returns **FAIL**. The FAIL comes from the scope gate, not from any finding, and I partly caused it.
+
+**Why the scope gate fails.** The gate counts only the spec folder as in scope, and 8 of the 9 findings sit in the engine and Barter code that your review focus pointed at. I built this lineage's config by copying the root config, which has an empty scope-file list, instead of running the workflow's scope-discovery step. That step would have added the engine and test files the packet docs name, so the Skilled-side findings would likely have counted as in scope. Whether the ai-speckit paths would have counted is unknown. I didn't rewrite the config afterwards, so the FAIL stands as computed. Rerunning this lineage's setup with scope discovery would settle it.
+
+**The change itself held up.**
+- Every engine path that assumed the overlay folder sits inside the tree now handles a folder beside it, and each has a test.
+- The edit guards fail open (they allow the edit when they can't decide), and the git-write gate fails closed for writes.
+- Old-layout consumers keep working until they run `apply --relayout` once.
+- Barter is on pin `063daaee`, and every overlay source sits under `framework/` or `root/`.
+
+**The nine P2 advisories:**
+- **Sibling setting accepts too much:** the setting file can name a link to any folder outside the tree, or `../.git`. Only pre-commit checks that the folder is inside the git repository.
+- **Relayout backups not ignored:** Barter's `.gitignore` covers `overlays/repin-runs/` but not `overlays/relayout-runs/`, where the documented upgrade step writes its backup.
+- **Plugin tests can't see the rename that broke them:** both Barter OpenCode plugin tests supply their own copy of the upstream bridge file. That is why the re-pin's `dualPlugin` → `definePlugin` rename disabled both plugins without any test failing.
+- **Folder name hard-coded in hooks:** Barter's three hooks each name `overlays` themselves instead of reading `.skilled-overlays.json`, so the next rename or move needs four matching edits.
+- **Leftover old name:** one test fixture still names its folder `barter-overlays`.
+- **Phase 005 acceptance rows:** AC-008 and AC-009 are marked Met although their own cells record that the stated bar wasn't met.
+- **Engine maintainability (three items):** the "folder is outside the tree" check is repeated in four places, `writeBackup` packs two loops onto one line, and the `layoutMoves` comment still describes the old layout.
+
+**Process deviations.** The full list is in the report. The ones that matter:
+- I printed the setup bindings late.
+- Iterations 1–6 needed a coverage-graph backfill.
+- I skipped one per-iteration bookkeeping event; convergence was still computed after every iteration.
+- The close-out logged a "synthesis incomplete" warning because one finding refines another, giving 10 findings in iterations against 9 in the registry. None is missing.
+
+I ran nothing outside the lineage directory, and the ai-speckit worktree is unchanged (79 status lines, same as before).
+
+Files are in `specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/`:
+- review-report.md
+- iterations/iteration-001.md … iteration-017.md
+- deltas/iter-001.jsonl … iter-017.jsonl
+
+FANOUT_LINEAGE_COMPLETE:opus-medium

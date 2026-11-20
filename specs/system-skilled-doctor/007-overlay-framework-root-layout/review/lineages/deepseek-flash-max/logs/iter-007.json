@@ -1,0 +1,50 @@
+{
+  "iteration": 7,
+  "focus": "Frontier node F-1-007: traceability",
+  "frontierNodeId": "F-1-007",
+  "dimensions": ["traceability"],
+  "filesReviewed": [
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/spec.md:133-146",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/spec.md:163-180",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/tasks.md:34,47,48,50,64,66,68,72,73,75,111",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/goal.md:90",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/implementation-summary.md:8,17,19,108,109,118,126",
+    "barter/ai-speckit/overlays/framework/changelog/skilled-coder/v4.1.0.0.md:1-60,310",
+    "barter/ai-speckit/overlays/sync-state.json",
+    ".skilled/changelog/skilled/v4.1.0.0.md",
+    "barter/ai-speckit/**"
+  ],
+  "findingDetails": [],
+  "traceabilityChecks": [
+    { "protocolId": "spec_code", "status": "pass", "gateClass": "hard", "applicable": true, "evidence": ["specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/spec.md:145", "barter/ai-speckit/overlays/overlay-manifest.json", "barter/ai-speckit/overlays/sync-state.json"], "summary": "REQ-008's old-path claim holds exactly, and the pin records agree with the changelog." },
+    { "protocolId": "checklist_evidence", "status": "pass", "gateClass": "hard", "applicable": true, "evidence": ["specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/tasks.md:64,72,73,75", "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/implementation-summary.md:108,109,118,126"], "summary": "Every re-pin task line carries an observed result with a commit id or run id, and the one blocked task is recorded in five places." },
+    { "protocolId": "skill_agent", "status": "pass", "gateClass": "soft", "applicable": true, "evidence": ["barter/ai-speckit/skilled/.skilled/skills/system-skilled-doctor/SKILL.md"], "summary": "The vendored doctor skill file is byte-identical to Skilled at the pin, so the skill surface traces to the commit it claims." }
+  ],
+  "newFindingsRatio": 0.0,
+  "noveltyJustification": "No new findings. The old-path grep returns zero lines, the pin records agree in three places, the changelog's release claim traces, and the one blocked task is recorded in five places. weightedNew is 0, so the ratio is 0.0.",
+  "durationMs": 198000,
+  "reviewDepthApplicability": { "scopeClass": "complex", "enforcement": "strict", "reason": "Two phase packets, a release changelog, two state records and a repository-wide old-path grep, each claim traced to the artifact that proves it.", "evidenceRefs": ["specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/spec.md:145"] },
+  "targetSelection": { "selectedTargets": ["specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout", "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree", "barter/ai-speckit/overlays/framework/changelog/skilled-coder/v4.1.0.0.md", "barter/ai-speckit/overlays/sync-state.json"], "selectionReason": "The frontier node F-1-007 scope names the vendored doctor tree, sync-state and the framework changelog; the phase 004 and 005 packets are the requirement sources those records must trace to.", "discoveryMethods": ["direct_read", "exact_search", "regex_negative_lookbehind"], "omittedHighRiskTargets": ["barter/ai-speckit/overlays/repin-runs (40 MB of run backups, not source)"], "graphStatus": "unavailable", "semanticSearchStatus": "unavailable", "evidenceRefs": ["specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/spec.md:145"] },
+  "searchCoverage": { "requiredBugClasses": ["stale_old_layout_path", "pin_record_disagreement", "unrecorded_blocker", "unsupported_release_claim"], "covered": ["stale_old_layout_path", "pin_record_disagreement", "unrecorded_blocker", "unsupported_release_claim"], "ruledOut": ["stale_old_layout_path", "pin_record_disagreement", "unrecorded_blocker", "unsupported_release_claim"], "deferred": [], "blocked": [], "graphCoverageMode": "graphless_fallback" },
+  "searchLedger": [
+    { "id": "SL-024", "dimension": "traceability", "targetRefs": ["barter/ai-speckit"], "bugClass": "stale_old_layout_path", "hypothesis": "An old barter-overlays path survives in a doc, test or script", "searchActions": [{ "method": "regex_negative_lookbehind", "queryOrPath": "grep -rnP '(?<!-)barter-overlays' over barter/ai-speckit excluding specs, .index, node_modules, dist, repin-runs, .git and changelogs", "result": "zero lines", "evidenceRefs": ["specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/spec.md:145"] }], "disposition": "ruled_out", "ruledOutReason": "The grep returns zero lines, stronger than the two exceptions REQ-008 allows.", "rationale": "Every surviving hit is the skilled-barter-overlays track name." },
+    { "id": "SL-025", "dimension": "traceability", "targetRefs": ["barter/ai-speckit/overlays/sync-state.json"], "bugClass": "pin_record_disagreement", "hypothesis": "sync-state still records a pre-move link target", "searchActions": [{ "method": "direct_read", "queryOrPath": "scan every files value for barter-overlays", "result": "count 0", "evidenceRefs": ["barter/ai-speckit/overlays/sync-state.json"] }], "disposition": "ruled_out", "ruledOutReason": "No value in the files map contains barter-overlays.", "rationale": "The state record carries no stale link target." },
+    { "id": "SL-026", "dimension": "traceability", "targetRefs": ["barter/ai-speckit/overlays/framework/changelog/skilled-coder/v4.1.0.0.md"], "bugClass": "unsupported_release_claim", "hypothesis": "The changelog claims a Skilled release the pin does not carry", "searchActions": [{ "method": "direct_read", "queryOrPath": "ls .skilled/changelog/skilled/ and the pin block", "result": "v4.1.0.0.md exists and the pin is 063daaee2c1, the commit the changelog names", "evidenceRefs": ["barter/ai-speckit/overlays/framework/changelog/skilled-coder/v4.1.0.0.md:310"] }], "disposition": "ruled_out", "ruledOutReason": "The release the notes claim is the release the pin carries.", "rationale": "Three independent records name the same commit." },
+    { "id": "SL-027", "dimension": "traceability", "targetRefs": ["specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/tasks.md"], "bugClass": "unrecorded_blocker", "hypothesis": "The phase closed over a blocker with no recorded disposition", "searchActions": [{ "method": "direct_read", "queryOrPath": "grep T014 and record-base across the phase 004 packet", "result": "recorded in goal.md:90, implementation-summary.md:17,19,118,126 and tasks.md:68, with the operator named as next safe action", "evidenceRefs": ["specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/tasks.md:68"] }], "disposition": "ruled_out", "ruledOutReason": "The blocker is recorded in five places and escalated rather than dropped.", "rationale": "An honest open item is not a traceability defect." }
+  ],
+  "graphEvents": [
+    { "type": "node", "id": "N-F1-007", "kind": "SLICE", "label": "Frontier node F-1-007 Barter re-pin parity" },
+    { "type": "node", "id": "N-REQ008", "kind": "FILE", "label": "phase 005 REQ-008 old-path rule" },
+    { "type": "node", "id": "N-T014", "kind": "FILE", "label": "phase 004 T014 blocked record-base" },
+    { "type": "edge", "id": "E-20", "source": "N-F1-007", "target": "N-REQ008", "relation": "COVERS" },
+    { "type": "edge", "id": "E-21", "source": "N-F1-007", "target": "N-T014", "relation": "COVERS" }
+  ],
+  "classification": "no new findings; old-path grep zero, pin records agree, release claim traces, blocker recorded in five places",
+  "ruledOut": [
+    { "direction": "an old barter-overlays path survives in a doc, test or script", "reason": "the REQ-008 grep returns zero lines outside the exempt areas" },
+    { "direction": "sync-state.json still records a pre-move link target", "reason": "no value in the files map contains barter-overlays" },
+    { "direction": "the changelog claims a Skilled release the pin does not carry", "reason": ".skilled/changelog/skilled/v4.1.0.0.md exists and the pin is the commit the changelog names" },
+    { "direction": "the phase closed over an unrecorded blocker", "reason": "T014 is recorded in five places with the operator named as the next safe action" },
+    { "direction": "the re-pin task lines claim results without naming the artifact", "reason": "each names a run id, a commit id, or a printed count" }
+  ]
+}
