@@ -1,5 +1,5 @@
 {
-  "corpusHash": "95ebdeda68404e966d9a50070276bead3f4745e24ed3480bb781f120461d8608",
+  "corpusHash": "e66fc2e501f17332a30fd5c701da2297d3cd8d5f739c4508c9b4cbfa70a22cdd",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28867,
+  "includedPathCount": 28871,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -28747,6 +28747,10 @@
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination/tasks.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/spec.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/timeline.md",
+    "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/005-phase-map-unanchored-append/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/005-phase-map-unanchored-append/plan.md",
+    "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/005-phase-map-unanchored-append/spec.md",
+    "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/005-phase-map-unanchored-append/tasks.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/spec.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/timeline.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/001-create-track-fixes/implementation-summary.md",
@@ -28899,7 +28903,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "22bf5ce53e2c79e402b896101562b4fd2eaf1e368137427f7161c9f0aa49ba17",
+  "manifestHash": "7d74a2db0aed3bb6c190361a7484f72edbf66e74fa85141c6d41523a4bc712e9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -41991,6 +41995,10 @@
     },
     {
       "path": "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/005-phase-map-unanchored-append/scratch",
       "reason": "excluded directory"
     },
     {

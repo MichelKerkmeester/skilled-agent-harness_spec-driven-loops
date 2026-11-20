@@ -1,5 +1,5 @@
 {
-  "manifestHash": "22bf5ce53e2c79e402b896101562b4fd2eaf1e368137427f7161c9f0aa49ba17",
+  "manifestHash": "7d74a2db0aed3bb6c190361a7484f72edbf66e74fa85141c6d41523a4bc712e9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -33151,6 +33151,9 @@
     "create sh parent packet corruption review": [
       "create.sh parent packet corruption review"
     ],
+    "create sh parent phase map anchor": [
+      "create sh parent phase map anchor"
+    ],
     "create sh path refreshes the track root": [
       "create sh path refreshes the track root"
     ],
@@ -46677,6 +46680,9 @@
     ],
     "duplicate packet number 001": [
       "duplicate packet number 001"
+    ],
+    "duplicate phase documentation map": [
+      "duplicate phase documentation map"
     ],
     "duplicate plugin id worktree": [
       "duplicate plugin id worktree"
@@ -87224,6 +87230,18 @@
     ],
     "phase map sync tasks": [
       "phase map sync tasks"
+    ],
+    "phase map unanchored append": [
+      "phase map unanchored append"
+    ],
+    "phase map unanchored append implementation summary": [
+      "phase map unanchored append implementation summary"
+    ],
+    "phase map unanchored append plan": [
+      "phase map unanchored append plan"
+    ],
+    "phase map unanchored append tasks": [
+      "phase map unanchored append tasks"
     ],
     "phase name placeholder": [
       "phase name placeholder"

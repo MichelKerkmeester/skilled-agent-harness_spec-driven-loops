@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7083,
-    "ok": 20156,
+    "ok": 20160,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28867,
+  "documentsScanned": 28871,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "22bf5ce53e2c79e402b896101562b4fd2eaf1e368137427f7161c9f0aa49ba17",
+  "manifestHash": "7d74a2db0aed3bb6c190361a7484f72edbf66e74fa85141c6d41523a4bc712e9",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45667,
+      "ok": 45673,
       "prose-sentence": 23,
       "single-token": 154,
       "stop-word-only": 1,
@@ -67031,6 +67031,10 @@
     },
     {
       "path": "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/005-phase-map-unanchored-append/scratch",
       "reason": "excluded directory"
     },
     {
