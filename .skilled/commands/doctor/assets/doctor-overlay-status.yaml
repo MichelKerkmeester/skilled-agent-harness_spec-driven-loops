@@ -43,7 +43,7 @@ inputs:
   target: "status is the route's default target: /doctor:overlay and /doctor:overlay status both run it. Any other positional fails before this YAML loads."
   root: "The vendored tree to read when --root <dir> is passed (default none, so the engine reads the tree it is vendored in)."
   json_output: "true when --json is passed: the route prints the engine's JSON and nothing else (default false)."
-  audit_output: "true when --audit is passed: the route also prints one AUDIT line per unowned vendored path that differs from upstream at the pin, is missing from the tree, or is tracked there and never upstream, plus the audit count (default false)."
+  audit_output: "true when --audit is passed: the route also prints one AUDIT line per unowned vendored path that differs from upstream at the pin, is missing from the tree, or is tracked there and never upstream, plus the audit count, then the advisory DOCS lines for the overlay folder's READMEs and the docs count (default false)."
   execution_mode: "INTERACTIVE"
 
 # ─────────────────────────────────────────────────────────────────
@@ -55,15 +55,16 @@ execution:
     - "The engine prints one line per destination that is not in sync, in the form <state> <key>  (<origin>)  fix: <fix>. The state is overlay-edited, live-edited, both-changed, upstream-moved or cannot-apply, and an in-sync destination prints no line."
     - "After those lines the engine prints its state counts, one MISS line per failed check, one STALE line per root file upstream changed under a repin.rootFiles overlay, one LAYOUT line per overlay source kept off its layout path, one NOTE line per note, its checked line and RESULT: PASSED or RESULT: FAILED. Keep every line as printed, because the counts and the fix text are the engine's answer and not this workflow's."
     - "With --audit the engine also prints one AUDIT line per unowned vendored path that drifted from the pin, in the form AUDIT <kind> <path>, where the kind is differs, missing or extra, then the audit count. A finding fails the status, and AUDIT skipped means the manifest names no upstream checkout that holds the pin."
+    - "With --audit the engine then checks the overlay folder's READMEs and prints, after the AUDIT lines and before the checked line, one DOCS missing-readme <overlay label>/<folder> line per walked folder with neither a README.md nor a README.markdown as a regular file, one DOCS invalid-readme <overlay label>/<folder>/<README.md or README.markdown>: <first blocking error> line per README sk-doc's validator rejects, naming the file it read, with (+N more) when it found more, and docs=<n>. DOCS skipped: <reason> means python3 or the validator is missing, so no README was validated: it is not a finding, docs= does not count it, and the missing-readme lines still print. This leg reads only the overlay folder, so it runs even when AUDIT skipped printed. The DOCS lines are advisory: they never change RESULT:, the result field of --json or the exit, so show each one as printed with the README to add or fix, and never report it as a failure."
     - "A STALE line fails the status and a LAYOUT line does not: a stale root file is outstanding work, while an off-layout source still applies. Show both with the engine's own fix, and name /doctor:overlay apply --relayout beside each LAYOUT line, except a line that ends change the destination or remove the entry: that destination sits under root/skilled and relayout refuses the move, so show that remedy instead of relayout. A NOTE line never fails the status: it names a check the run skipped, a value no record covers, an operation whose path names an array item by position or an insert anchor that matched nothing, with its own fix. Show each one as printed."
     - "Render the output through .skilled/commands/doctor/assets/doctor-overlay-presentation.txt: the lines as printed, the meaning and fix of each state from the state table, then the DOCTOR DIAGNOSTIC RESULT summary. Name the /doctor:overlay form beside each fix the engine printed."
     - "With --json, print the engine's JSON exactly and nothing around it."
-    - "Map the engine's exit to the route status: exit 0 is in sync, exit 1 is a finding, and exit 2 is a precondition that failed, such as a missing overlay manifest, an invalid .skilled-overlays.json, or a manifest layout link whose path escapes the tree root."
+    - "Map the engine's exit to the route status: exit 0 is in sync, exit 1 is a finding, and exit 2 is a precondition that failed, such as a missing overlay manifest, an invalid .skilled-overlays.json, or a manifest layout link whose path escapes the tree root or is listed twice."
 
 # ─────────────────────────────────────────────────────────────────
 # OUTPUT
 # ─────────────────────────────────────────────────────────────────
 output: |
-  STATUS=OK when the engine exits 0 and prints RESULT: PASSED; show the counts and the checked line.
-  STATUS=FINDINGS when the engine exits 1. Show each line not in sync first with its fix, then each MISS line, then each STALE, LAYOUT, NOTE and AUDIT line, then the DOCTOR DIAGNOSTIC RESULT summary.
+  STATUS=OK when the engine exits 0 and prints RESULT: PASSED; show the counts and the checked line, and with --audit every DOCS line and the docs count, because a DOCS finding never fails the status.
+  STATUS=FINDINGS when the engine exits 1. Show each line not in sync first with its fix, then each MISS line, then each STALE, LAYOUT, NOTE and AUDIT line, then each DOCS line, then the DOCTOR DIAGNOSTIC RESULT summary. Exit 1 never comes from a DOCS line.
   STATUS=ERROR when the engine exits 2 or crashes. Quote its message and name the accepted invocation (/doctor:overlay status [--json] [--audit] [--root <dir>]).
