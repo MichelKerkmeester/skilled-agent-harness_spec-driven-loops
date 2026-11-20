@@ -86,6 +86,7 @@ and findings belong here.
 | Criteria evidence | Done | 1: runtime 2555 passed 8 skipped, bin 94, on main; 2: runs 8 and 9 match runs 3 to 7, weight 0; 3: only held answers and live session 91021a9f; 4: two reports, ALL_IDS_PRESENT; 5: exit 0 at 63b338c07ff; 6: 15/15 and 47/47, coverageComplete true; 7: RESULT PASSED, no Unmet row |
 | Build, ablation, docs, orphan answers | Done | All five suites green on the final tree: runtime 2553 passed 6 skipped, Python 122, bin 94, spec-kit 202, DSH 18 |
 | Finalization | Done | merged 519b2b1ef8e and 71acd3069ef, pushed; main 15/15 and 47/47 current; both alignment runs closed; suites green with and without Ollama |
+| Expansive deep review of 019 and follow-ups | CONDITIONAL | review/review-report.md: P0 0, P1 7 (3 distinct confirmed), P2 25, 23 iterations |
 
 ### Deviations and findings
 

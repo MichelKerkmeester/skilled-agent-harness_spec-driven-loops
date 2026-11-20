@@ -153,6 +153,7 @@ Phase 1 writes research artifacts only. Phases 002 to 004 list their exact files
 | 17 | 017-ollama-advisor-analysis/ | A fresh Fable 5.2 medium read of the advisor's Ollama and embedder path through the `claude2` account, report only: bugs, effectiveness, overengineering, load and daemon build-up | Complete |
 | 18 | 018-ollama-lane-off-and-daemon-liveness/ | Build of four of 017's ranked changes: the semantic lane off the prompt path at weight 0 with a zero-weight guard, the cascade and legacy embedding path out of the advisor, the hf model server off by default, and a parent-pid check plus heartbeat watchdog against orphaned or wedged daemons | Complete |
 | 19 | 019-ollama-lane-honest-and-closeout/ | Close everything 018 left open: the lane made correct (refresh, coverage gate, outage as degraded, `OLLAMA_*` forwarding) and its weight set by a real-embedding ablation, the watchdog startup gap, the one-off test failures and other sessions' unrecorded operator answers | Complete |
+| 20 | 020-review-p1-fixes/ | Fix the three P1 defects the 019 deep review confirmed: the refresh dropping a mid-refresh request, the read-write coverage read on the recommend path and `advisor_status` reporting the lane enabled on incomplete coverage | Pending |
 
 **Build order.** Folder numbers stay as they are. The build order is 001, then 005, then 002, then 004, then 003. Phase 004 builds before 003 because both edit `hooks/claude/user-prompt-submit.ts` and its hook test, and 003's guard would shift every line 004 pins.
 
@@ -191,6 +192,7 @@ Phases 015 and 016 are report-only alignment runs the operator asked for on 2026
 | 016-doc-alignment-check | 017-ollama-advisor-analysis | None: 017 reads the merged code and does not wait on 016 | `evidence/report.md` exists with file:line sources |
 | 017-ollama-advisor-analysis | 018-ollama-lane-off-and-daemon-liveness | The operator picks which ranked changes to build | 018's `acceptance-criteria.md` is all `Met` |
 | 018-ollama-lane-off-and-daemon-liveness | 019-ollama-lane-honest-and-closeout | The operator asks to leave nothing open | 019's `acceptance-criteria.md` is all `Met` |
+| 019-ollama-lane-honest-and-closeout | 020-review-p1-fixes | The 019 deep review returns CONDITIONAL with three confirmed P1 defects | 020's `acceptance-criteria.md` is all `Met` |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -22,7 +22,8 @@
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check",
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis",
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness",
-    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout"
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout",
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/020-review-p1-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -203,7 +204,7 @@
     ],
     "causal_summary": "The skill advisor picks skills with a local five-lane scorer and pushes a brief into every prompt",
     "created_at": "2026-11-18T06:49:25Z",
-    "last_save_at": "2026-11-20T00:19:56.308Z",
+    "last_save_at": "2026-11-20T12:36:19.775Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +212,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:ae547f6aa40cfb2af027c16c57a0a29664777cfd0091bb89ff8b7f7fbd3e6811",
+    "source_fingerprint": "sha256:df7607f77db65c90423dc2e6c1963a24899e604ab9e70529095dfc8aa52fc29a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eee2a9a5f4c6d0a7047792f6b674a27fb212ac4a109c9a2d40fff03240dfcb0f",
+      "spec.md": "c200ae5168021e2b3ac00c2ee4d93bd7c2dddc2aa27cada599db67ac8c0e6bac",
       "decision-record.md": "9efcaf1024dee7424460dd801bed42db50bebcdfaf89f1514231d5e91922ba16"
     },
-    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout",
-    "last_active_at": "2026-11-20T00:15:52.989Z"
+    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/020-review-p1-fixes",
+    "last_active_at": "2026-11-20T12:36:19.775Z"
   }
 }

@@ -1,0 +1,1524 @@
+{
+  "sessionId": "fanout-vibe-2-1795172940208-84a42n",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "convergence",
+    "totalIterations": 8,
+    "timestamp": "2026-11-20T11:24:11.832Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "The semantic coverage gate opens the daemon-owned skill-graph database read-write on the recommend path",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+      "line": 404,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "The incomplete_skill_vectors reason also fires for a missing command vector",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+      "line": 405,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "The fixture-dimension guard is one-directional",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+      "line": 352,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "The exact-subset rerank has no coverage gate",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+      "line": 288,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "The changelog says the launcher always sets SYSTEM_SKILL_ADVISOR_DB_DIR, but the code only fills it when the operator has not set it",
+      "file": ".skilled/changelog/skilled/v4.1.0.0.md",
+      "line": 229,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "One changelog section cites two different corpus sizes for one measurement",
+      "file": ".skilled/changelog/skilled/v4.1.0.0.md",
+      "line": 222,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "The lane logs the adapter raw error message, which embeds the configured base URL verbatim",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+      "line": 245,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "The docs define three of the eight disabledReason tokens the code can emit",
+      "file": ".skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md",
+      "line": 80,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "AC-005 claims the shipped runs match five earlier runs while the recorded evidence covers two",
+      "file": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/acceptance-criteria.md",
+      "line": 60,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R6-P2-001",
+      "severity": "P2",
+      "title": "The changelog records two different ablation score pairs for the same lane, and the first appears nowhere in the packet ablation table",
+      "file": ".skilled/changelog/skilled/v4.1.0.0.md",
+      "line": 222,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P2-001",
+      "severity": "P2",
+      "title": "The lane weight guard reads a constant named DEFAULT_SCORER_LANE_WEIGHTS that actually holds the resolved live weights",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+      "line": 156,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P2-001",
+      "severity": "P2",
+      "title": "Two claims already recorded as wrong are stated again in the older changelog, so fixing one file leaves the other",
+      "file": ".skilled/skills/system-skill-advisor/changelog/v1.3.0.0.md",
+      "line": 26,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 11
+  },
+  "openFindingsCount": 12,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "config_claim",
+      "contradictory_doc",
+      "diagnostic_accuracy",
+      "diagnostic_misdescription",
+      "doc_code_drift",
+      "duplicated_claim",
+      "frontier:F-1-002",
+      "frontier:F-1-005",
+      "information_disclosure",
+      "measurement_attribution",
+      "misleading_name",
+      "missing_supersession",
+      "overstated_evidence",
+      "partial_coverage",
+      "prompt_injection",
+      "secret_exposure",
+      "stale_measurement",
+      "trust_boundary",
+      "unchecked_test",
+      "untested_identity"
+    ],
+    "ruledOut": [
+      "broken_reference",
+      "contradictory_doc",
+      "dead_code",
+      "doc_code_drift",
+      "env_leak",
+      "implicit_invariant",
+      "index_drift",
+      "information_disclosure",
+      "prompt_injection",
+      "protocol_gap",
+      "race_condition",
+      "resource_exhaustion",
+      "stale_citation",
+      "stale_measurement",
+      "state_transition",
+      "unchecked_test",
+      "unsupported_claim",
+      "untrusted_input"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "trust_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "partial_coverage": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "diagnostic_accuracy": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "doc_code_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "measurement_attribution": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "config_claim": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_exposure": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "resource_exhaustion": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "race_condition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "env_leak": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "prompt_injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "information_disclosure": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "diagnostic_misdescription": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "untrusted_input": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "unchecked_test": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "overstated_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "stale_citation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "protocol_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "stale_measurement": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6,
+          8
+        ]
+      },
+      "contradictory_doc": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "missing_supersession": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "unsupported_claim": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "misleading_name": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "untested_identity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "implicit_invariant": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "dead_code": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "duplicated_claim": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "index_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "broken_reference": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "frontier:F-1-002": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          0
+        ]
+      },
+      "frontier:F-1-005": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          0
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "Both skips are proven by call order.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:157"
+      ],
+      "reason": "Early returns precede the embed and the coverage read."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-ablation.vitest.ts"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "The arms differ in the lane weight and the override is honored.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-ablation.vitest.ts:331"
+      ],
+      "reason": "fusion.ts:1284 honors laneWeightsOverride."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "The asset forbids the failure explicitly.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml:149"
+      ],
+      "reason": "Line 149 forbids STATUS=FAIL on a zero lane weight."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs"
+      ],
+      "bugClass": "env_leak",
+      "disposition": "ruled_out",
+      "rationale": "Closed allowlist with no credential-shaped key.",
+      "evidenceRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs:120"
+      ],
+      "reason": "No secret key appears in the allowlist."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts"
+      ],
+      "bugClass": "resource_exhaustion",
+      "disposition": "ruled_out",
+      "rationale": "The adapter bounds and aborts its own request.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts:142"
+      ],
+      "reason": "AbortController signal passed to fetch."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-013",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts"
+      ],
+      "bugClass": "race_condition",
+      "disposition": "ruled_out",
+      "rationale": "No await between set and clear.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:236"
+      ],
+      "reason": "The window is synchronous."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-014",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts"
+      ],
+      "bugClass": "prompt_injection",
+      "disposition": "ruled_out",
+      "rationale": "Every evidence entry is reduced to a fixed token before it reaches the response.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:168",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:225"
+      ],
+      "reason": "No raw prompt text survives the mapping."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-015",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts"
+      ],
+      "bugClass": "information_disclosure",
+      "disposition": "ruled_out",
+      "rationale": "The health block is opt-in exactly as the reference states.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:534"
+      ],
+      "reason": "Both emission sites are gated."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md"
+      ],
+      "bugClass": "untrusted_input",
+      "disposition": "ruled_out",
+      "rationale": "All three cited ranges resolve to the code they describe.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:27"
+      ],
+      "reason": "Citations are accurate."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-018",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/plugins/tests/system-skill-advisor.test.cjs"
+      ],
+      "bugClass": "unchecked_test",
+      "disposition": "ruled_out",
+      "rationale": "additionalContext is the parameter holding the emitted text.",
+      "evidenceRefs": [
+        ".opencode/plugins/tests/system-skill-advisor.test.cjs:1071",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:535"
+      ],
+      "reason": "The argument is the emitted text under its new local name."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-019",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/pi/session-handover.test.ts"
+      ],
+      "bugClass": "unchecked_test",
+      "disposition": "ruled_out",
+      "rationale": "The assertion still compares against the nudge text, so nudge-side drift fails.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/pi/session-handover.test.ts:46"
+      ],
+      "reason": "The expected value is derived from the test file, not from the nudge."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-021",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/acceptance-criteria.md"
+      ],
+      "bugClass": "stale_citation",
+      "disposition": "ruled_out",
+      "rationale": "Both criteria are backed by direct assertions.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-cosine.vitest.ts:305",
+        ".skilled/skills/system-skill-advisor/runtime/tests/handlers/semantic-outage-degraded.vitest.ts:11"
+      ],
+      "reason": "The cited tests assert the claimed behavior."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-023",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/ablation.md"
+      ],
+      "bugClass": "unsupported_claim",
+      "disposition": "ruled_out",
+      "rationale": "Both statements are the corrected negative claims.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/ablation.md:22"
+      ],
+      "reason": "The leaf states the shipped behavior."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-024",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/ablation.md"
+      ],
+      "bugClass": "contradictory_doc",
+      "disposition": "ruled_out",
+      "rationale": "That is D2 fail branch, which is what ran.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/ablation.md:60"
+      ],
+      "reason": "The playbook matches the decision."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-025",
+      "dimension": "traceability",
+      "targetRefs": [
+        "INSTALL-SKILLED.md"
+      ],
+      "bugClass": "unsupported_claim",
+      "disposition": "ruled_out",
+      "rationale": "The guide states the shipped weight and the reason without a score pair.",
+      "evidenceRefs": [
+        "INSTALL-SKILLED.md:88"
+      ],
+      "reason": "No number to drift."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-027",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts"
+      ],
+      "bugClass": "implicit_invariant",
+      "disposition": "ruled_out",
+      "rationale": "No await between set and clear.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:236"
+      ],
+      "reason": "The window is synchronous."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-028",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts"
+      ],
+      "bugClass": "dead_code",
+      "disposition": "ruled_out",
+      "rationale": "It is a named test hook with live consumers.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:245"
+      ],
+      "reason": "Consumed by the cosine test."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-030",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md"
+      ],
+      "bugClass": "index_drift",
+      "disposition": "ruled_out",
+      "rationale": "Count and topic list both match.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md:29"
+      ],
+      "reason": "No drift."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-031",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "broken_reference",
+      "disposition": "ruled_out",
+      "rationale": "The target file exists.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:281"
+      ],
+      "reason": "Reference resolves."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-032",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v1.3.0.0.md"
+      ],
+      "bugClass": "stale_measurement",
+      "disposition": "ruled_out",
+      "rationale": "Matches the packet table.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v1.3.0.0.md:33"
+      ],
+      "reason": "Numbers are current."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "Both skips are proven by call order.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:157"
+      ],
+      "proof": "Early returns precede the embed and the coverage read."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-ablation.vitest.ts"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "The arms differ in the lane weight and the override is honored.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-ablation.vitest.ts:331"
+      ],
+      "proof": "fusion.ts:1284 honors laneWeightsOverride."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "The asset forbids the failure explicitly.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml:149"
+      ],
+      "proof": "Line 149 forbids STATUS=FAIL on a zero lane weight."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs"
+      ],
+      "bugClass": "env_leak",
+      "disposition": "ruled_out",
+      "rationale": "Closed allowlist with no credential-shaped key.",
+      "evidenceRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs:120"
+      ],
+      "proof": "No secret key appears in the allowlist."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts"
+      ],
+      "bugClass": "resource_exhaustion",
+      "disposition": "ruled_out",
+      "rationale": "The adapter bounds and aborts its own request.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts:142"
+      ],
+      "proof": "AbortController signal passed to fetch."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-013",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts"
+      ],
+      "bugClass": "race_condition",
+      "disposition": "ruled_out",
+      "rationale": "No await between set and clear.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:236"
+      ],
+      "proof": "The window is synchronous."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-014",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts"
+      ],
+      "bugClass": "prompt_injection",
+      "disposition": "ruled_out",
+      "rationale": "Every evidence entry is reduced to a fixed token before it reaches the response.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:168",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:225"
+      ],
+      "proof": "No raw prompt text survives the mapping."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-015",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts"
+      ],
+      "bugClass": "information_disclosure",
+      "disposition": "ruled_out",
+      "rationale": "The health block is opt-in exactly as the reference states.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:534"
+      ],
+      "proof": "Both emission sites are gated."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md"
+      ],
+      "bugClass": "untrusted_input",
+      "disposition": "ruled_out",
+      "rationale": "All three cited ranges resolve to the code they describe.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:27"
+      ],
+      "proof": "Citations are accurate."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-018",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/plugins/tests/system-skill-advisor.test.cjs"
+      ],
+      "bugClass": "unchecked_test",
+      "disposition": "ruled_out",
+      "rationale": "additionalContext is the parameter holding the emitted text.",
+      "evidenceRefs": [
+        ".opencode/plugins/tests/system-skill-advisor.test.cjs:1071",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:535"
+      ],
+      "proof": "The argument is the emitted text under its new local name."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-019",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/pi/session-handover.test.ts"
+      ],
+      "bugClass": "unchecked_test",
+      "disposition": "ruled_out",
+      "rationale": "The assertion still compares against the nudge text, so nudge-side drift fails.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/pi/session-handover.test.ts:46"
+      ],
+      "proof": "The expected value is derived from the test file, not from the nudge."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-021",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/acceptance-criteria.md"
+      ],
+      "bugClass": "stale_citation",
+      "disposition": "ruled_out",
+      "rationale": "Both criteria are backed by direct assertions.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-cosine.vitest.ts:305",
+        ".skilled/skills/system-skill-advisor/runtime/tests/handlers/semantic-outage-degraded.vitest.ts:11"
+      ],
+      "proof": "The cited tests assert the claimed behavior."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-023",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/ablation.md"
+      ],
+      "bugClass": "unsupported_claim",
+      "disposition": "ruled_out",
+      "rationale": "Both statements are the corrected negative claims.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/ablation.md:22"
+      ],
+      "proof": "The leaf states the shipped behavior."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-024",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/ablation.md"
+      ],
+      "bugClass": "contradictory_doc",
+      "disposition": "ruled_out",
+      "rationale": "That is D2 fail branch, which is what ran.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/ablation.md:60"
+      ],
+      "proof": "The playbook matches the decision."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-025",
+      "dimension": "traceability",
+      "targetRefs": [
+        "INSTALL-SKILLED.md"
+      ],
+      "bugClass": "unsupported_claim",
+      "disposition": "ruled_out",
+      "rationale": "The guide states the shipped weight and the reason without a score pair.",
+      "evidenceRefs": [
+        "INSTALL-SKILLED.md:88"
+      ],
+      "proof": "No number to drift."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-027",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts"
+      ],
+      "bugClass": "implicit_invariant",
+      "disposition": "ruled_out",
+      "rationale": "No await between set and clear.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:236"
+      ],
+      "proof": "The window is synchronous."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-028",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts"
+      ],
+      "bugClass": "dead_code",
+      "disposition": "ruled_out",
+      "rationale": "It is a named test hook with live consumers.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:245"
+      ],
+      "proof": "Consumed by the cosine test."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-030",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md"
+      ],
+      "bugClass": "index_drift",
+      "disposition": "ruled_out",
+      "rationale": "Count and topic list both match.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md:29"
+      ],
+      "proof": "No drift."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-031",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "broken_reference",
+      "disposition": "ruled_out",
+      "rationale": "The target file exists.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:281"
+      ],
+      "proof": "Reference resolves."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-032",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v1.3.0.0.md"
+      ],
+      "bugClass": "stale_measurement",
+      "disposition": "ruled_out",
+      "rationale": "Matches the packet table.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v1.3.0.0.md:33"
+      ],
+      "proof": "Numbers are current."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "duplicated_claim",
+      "index_drift",
+      "stale_measurement",
+      "broken_reference"
+    ],
+    "covered": [
+      "duplicated_claim"
+    ],
+    "ruledOut": [
+      "index_drift",
+      "stale_measurement",
+      "broken_reference"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "frontier": {
+    "nodes": [
+      {
+        "nodeId": "F-1-002",
+        "parentId": "root",
+        "depth": 1,
+        "scope": [
+          ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+          ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+          ".skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-cosine.vitest.ts",
+          ".skilled/skills/system-skill-advisor/runtime/tests/handlers/semantic-outage-degraded.vitest.ts"
+        ],
+        "question": "Semantic lane honesty: with a missing or stale vector does the lane return no match and report incomplete_skill_vectors, does a failed prompt embed leave the live total, is the fixture-dimension guard sound for a real 768-dim prompt, and does weight 0 skip every embed and coverage read?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 0,
+        "coveredDimensions": [
+          "correctness",
+          "security",
+          "traceability",
+          "maintainability"
+        ],
+        "nextDimension": null,
+        "visits": 4
+      },
+      {
+        "nodeId": "F-1-005",
+        "parentId": "root",
+        "depth": 1,
+        "scope": [
+          ".skilled/skills/system-skill-advisor/changelog/v1.3.0.0.md",
+          ".skilled/changelog/skilled/v4.1.0.0.md",
+          ".skilled/skills/system-skill-advisor/feature-catalog",
+          ".skilled/skills/system-skill-advisor/manual-testing-playbook",
+          ".skilled/skills/system-skill-advisor/references",
+          "INSTALL-SKILLED.md"
+        ],
+        "question": "Claims against code: does every statement in the changelogs, feature catalog, playbooks, references and install docs match shipped behavior, including the ablation result of 156 against 161 correct that set the lane weight to 0?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 0,
+        "coveredDimensions": [
+          "correctness",
+          "security",
+          "traceability",
+          "maintainability"
+        ],
+        "nextDimension": null,
+        "visits": 4
+      }
+    ],
+    "stats": {
+      "total": 2,
+      "open": 0,
+      "active": 0,
+      "answered": 2,
+      "blocked": 0,
+      "exhausted": 0,
+      "abstained": 0,
+      "pruned": 0
+    },
+    "budget": {
+      "depth1": {
+        "allotted": 8,
+        "spent": 8
+      },
+      "depth2": {
+        "allotted": 5.6,
+        "spent": 0
+      },
+      "depth3": {
+        "allotted": 8,
+        "spent": 0
+      }
+    },
+    "activeNodeId": null,
+    "activeNextDimension": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 4,
+      "executed": 4,
+      "pass": 3,
+      "partial": 1,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 1,
+      "gatingFailures": 1
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/changelog/v1.3.0.0.md:26",
+          ".skilled/changelog/skilled/v4.1.0.0.md:229",
+          ".skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:80"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "partial",
+        "summary": "Two claims are duplicated across files; both copies are wrong in the same way."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/acceptance-criteria.md:56"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "summary": "No Unmet row."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/ablation.md:30",
+          ".skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-ablation.vitest.ts:389"
+        ],
+        "gateClass": "soft",
+        "protocolId": "feature_catalog_code",
+        "status": "pass",
+        "summary": "The ablation catalog paragraph matches the test pass bar and the registry default of 0."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/SKILL.md",
+          ".skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:76"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "summary": "The skill scoring reference matches the lane shipped weight, gating and degradation behavior."
+      },
+      {
+        "applicable": false,
+        "evidence": [],
+        "gateClass": "overlay",
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "summary": "No agent definition integrates the advisor surface."
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "spec_code"
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

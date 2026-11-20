@@ -44,12 +44,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Order: 001, 005, 002, 004, 003, 006-011, 013, 012, 014-019; each validates strict first |
+| D1 | Order: 001, 005, 002, 004, 003, 006-011, 013, 012, 014-020; each validates strict first |
 | D2 | Code: GPT-6 Luna `xhigh` `fast`, cli-codex |
 | D3 | Fallback: Vibe DeepSeek V4.1 Flash `max` only |
 | D4 | The conductor runs every check |
 | D5 | A phase changes only files its `spec.md` lists; cut items stay cut |
-| D6 | Approved: commit, merge, push for 474, 014, 018 and 019 |
+| D6 | Approved: commit, merge, push for 474, 014, 018, 019 and 020 |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -81,6 +81,7 @@ phase and binds as if written here.
 | 017 | `017-ollama-advisor-analysis/goal.md` |
 | 018 | `018-ollama-lane-off-and-daemon-liveness/goal.md` |
 | 019 | `019-ollama-lane-honest-and-closeout/goal.md` |
+| 020 | `020-review-p1-fixes/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.

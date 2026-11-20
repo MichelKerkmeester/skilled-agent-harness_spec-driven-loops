@@ -1,0 +1,143 @@
+{
+  "topic": "Review: .skilled/skills/system-skill-advisor .skilled/bin/system-skill-advisor-launcher.cjs .skilled/bin/launcher-heartbeat-watchdog.vitest.ts .skilled/bin/launcher-threshold-env.vitest.ts .skilled/commands/doctor/assets .skilled/commands/create/assets .skilled/changelog/skilled/v4.1.0.0.md .skilled/skills/sk-doc/hub-router.json .skilled/skills/sk-doc/sk-create-readme/SKILL.md .skilled/hooks/session-handover/pi/session-handover.test.ts .opencode/plugins/tests/system-skill-advisor.test.cjs .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md .github/workflows/skill-advisor-stress.yml .env.example INSTALL-SKILLED.md README.md specs/**/decision-record.md",
+  "sessionId": "2026-11-20T11:08:53.000Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 16,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "depthMode": "expansive",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "expansiveDepth": {
+    "maxDepth": 3,
+    "maxChildrenPerNode": 6,
+    "budgetSplit": {
+      "depth1": 0.5,
+      "depth2": 0.35,
+      "depth3": 0.15
+    },
+    "maxFrontierNodes": null
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout",
+  "createdAt": "2026-11-20T11:08:53.000Z",
+  "status": "complete",
+  "releaseReadinessState": "converged",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "native",
+    "model": null,
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": ".skilled/skills/system-skill-advisor .skilled/bin/system-skill-advisor-launcher.cjs .skilled/bin/launcher-heartbeat-watchdog.vitest.ts .skilled/bin/launcher-threshold-env.vitest.ts .skilled/commands/doctor/assets .skilled/commands/create/assets .skilled/changelog/skilled/v4.1.0.0.md .skilled/skills/sk-doc/hub-router.json .skilled/skills/sk-doc/sk-create-readme/SKILL.md .skilled/hooks/session-handover/pi/session-handover.test.ts .opencode/plugins/tests/system-skill-advisor.test.cjs .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md .github/workflows/skill-advisor-stress.yml .env.example INSTALL-SKILLED.md README.md specs/**/decision-record.md",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewFocus": "Review only what these commits changed, read at HEAD with git show: 31ffd18beab, 1ccbb3283c6 and dc3979eb451 (background vector refresh, semantic lane coverage gate, launcher liveness, OLLAMA_* passthrough, generation counter, status and doctor coverage); 86038dfba80, c74042fd559, 571575632a4, 5c91b2f3f5d and 0390556ee2b (test and routing follow-ups); and the ten docs(specs) commits 2f5fe41bb9e to aaaff7dd9df that wrote 231 ended-session answers into decision-record.md files. Report defects in shipped behavior, not style. P0 is wrong routing, a crash, lost data, or a doc claim that misleads an operator. A test change that matches new text while leaving the behavior unchecked is a finding. Owning packet: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout.",
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.depthMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "resource_map_present": false,
+  "reviewScopeFiles": [],
+  "stopPolicy": "convergence",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-mistral-vibe",
+        "model": "deepseek-flash",
+        "label": "vibe",
+        "count": 3,
+        "iterations": 16,
+        "timeoutSeconds": 900
+      }
+    ],
+    "concurrency": 3
+  }
+}

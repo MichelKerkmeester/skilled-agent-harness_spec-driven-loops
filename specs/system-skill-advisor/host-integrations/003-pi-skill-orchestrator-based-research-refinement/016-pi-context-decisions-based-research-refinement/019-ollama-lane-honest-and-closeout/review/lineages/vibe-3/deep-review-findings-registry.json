@@ -1,0 +1,1426 @@
+{
+  "sessionId": "fanout-vibe-3-1795172940208-84a42n",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 10,
+    "timestamp": "2026-11-20T11:25:11.390Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "The semantic coverage gate opens the read-write database on the recommend path",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+      "line": 392,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R6-P1-001",
+      "severity": "P1",
+      "title": "The packet summary claims 581 recorded answers while the decision and the commits say 231 and 227",
+      "file": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/implementation-summary.md",
+      "line": 3,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R9-P1-001",
+      "severity": "P1",
+      "title": "The changelog states the archived 149/193 ablation as the reason for the shipped default weight",
+      "file": ".skilled/changelog/skilled/v4.1.0.0.md",
+      "line": 222,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "The coverage gate re-scans every vector blob and the command-bridges file on each scoring call",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+      "line": 1406,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "The widened hook assertion accepts variable names the hook does not use",
+      "file": ".opencode/plugins/tests/system-skill-advisor.test.cjs",
+      "line": 1078,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P2-001",
+      "severity": "P2",
+      "title": "The coverage reader re-implements the vector-table read the embedding loader already owns",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+      "line": 1325,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P2-002",
+      "severity": "P2",
+      "title": "incompleteIds is exported but has no production consumer and mixes two id spaces",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+      "line": 124,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P2-001",
+      "severity": "P2",
+      "title": "The hand-over test hand-copies the writer path from a constant the module keeps private",
+      "file": ".skilled/hooks/session-handover/pi/session-handover.test.ts",
+      "line": 48,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 5
+  },
+  "openFindingsCount": 8,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "count_mismatch",
+      "dead_surface",
+      "dedup_collision",
+      "doc_code_drift",
+      "documented_default_drift",
+      "duplicate_write",
+      "duplication_drift",
+      "frontier:F-1-003",
+      "frontier:F-1-006",
+      "hand_copied_constant",
+      "invariant_violation",
+      "naming_collision",
+      "passthrough_gap",
+      "path_traversal",
+      "pii_leak",
+      "privilege_escalation",
+      "resource_leak",
+      "secret_exposure",
+      "stale_measurement",
+      "state_transition",
+      "template_default",
+      "undocumented_variable",
+      "unguarded_duplication",
+      "unmet_criterion",
+      "wrong_routing"
+    ],
+    "ruledOut": [
+      "dedup_collision",
+      "doc_code_drift",
+      "documented_default_drift",
+      "duplicate_write",
+      "naming_collision",
+      "passthrough_gap",
+      "path_traversal",
+      "pii_leak",
+      "privilege_escalation",
+      "secret_exposure",
+      "state_transition",
+      "template_default",
+      "undocumented_variable",
+      "unguarded_duplication",
+      "unmet_criterion",
+      "wrong_routing"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "state_transition": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "resource_leak": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "invariant_violation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "wrong_routing": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          4
+        ]
+      },
+      "duplicate_write": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "pii_leak": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          4
+        ]
+      },
+      "secret_exposure": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          4
+        ]
+      },
+      "path_traversal": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "privilege_escalation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "doc_code_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5,
+          6,
+          9
+        ]
+      },
+      "unmet_criterion": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "count_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6,
+          9
+        ]
+      },
+      "dedup_collision": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "duplication_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "dead_surface": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "naming_collision": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "hand_copied_constant": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "unguarded_duplication": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "template_default": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "stale_measurement": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "undocumented_variable": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "documented_default_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "passthrough_gap": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "frontier:F-1-003": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          0
+        ]
+      },
+      "frontier:F-1-006": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          0
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "a healthy child refreshes twelve times inside one stale window",
+      "evidenceRefs": [
+        "system-skill-advisor-launcher.cjs:1558",
+        "liveness.ts:18"
+      ],
+      "reason": "verified by direct read of both intervals"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "the pinned default directory keeps the shared counter",
+      "evidenceRefs": [
+        "generation.ts:55",
+        "system-skill-advisor-launcher.cjs:24"
+      ],
+      "reason": "verified by direct read of both resolvers"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/hub-router.json"
+      ],
+      "bugClass": "wrong_routing",
+      "disposition": "ruled_out",
+      "rationale": "the phrase was an over-match and security.md still routes",
+      "evidenceRefs": [
+        "hub-router.json:254"
+      ],
+      "reason": "verified by exact search of the router vocabulary"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/**/decision-record.md"
+      ],
+      "bugClass": "duplicate_write",
+      "disposition": "ruled_out",
+      "rationale": "the shared decision is documented in the Carried by column",
+      "evidenceRefs": [
+        "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/decision-record.md:37"
+      ],
+      "reason": "verified by reading the Q rows of all three records"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/**/decision-record.md"
+      ],
+      "bugClass": "pii_leak",
+      "disposition": "ruled_out",
+      "rationale": "no personal data in the added rows",
+      "evidenceRefs": [
+        "specs/hooks-plugins-extensions/env-secret-guard/001-env-secret-guard/decision-record.md:1032"
+      ],
+      "reason": "verified by pattern scan of every added line"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "the env files cannot ship with a clone",
+      "evidenceRefs": [
+        ".gitignore:25"
+      ],
+      "reason": "verified with git check-ignore"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts"
+      ],
+      "bugClass": "privilege_escalation",
+      "disposition": "ruled_out",
+      "rationale": "a bad value falls back to the split defaults",
+      "evidenceRefs": [
+        "ollama.ts:125"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "the status handle is read-only",
+      "evidenceRefs": [
+        "advisor-status.ts:177"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-012",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/hub-router.json"
+      ],
+      "bugClass": "wrong_routing",
+      "disposition": "ruled_out",
+      "rationale": "an unmatched request produces no mode",
+      "evidenceRefs": [
+        "hub-router.json"
+      ],
+      "reason": "verified by reading the router policy"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-013",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/**/decision-record.md"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "the only secret-shaped string is a constant placeholder",
+      "evidenceRefs": [
+        "decision-record-writer.js:401"
+      ],
+      "reason": "verified by pattern scan and by reading the writer"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-014",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/**/decision-record.md"
+      ],
+      "bugClass": "pii_leak",
+      "disposition": "ruled_out",
+      "rationale": "no home path appears",
+      "evidenceRefs": [
+        "specs/**/decision-record.md"
+      ],
+      "reason": "verified by pattern scan"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/background-vector-refresh.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "the doc matches the code",
+      "evidenceRefs": [
+        "advisor-server.ts:439"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-016",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/.../019-ollama-lane-honest-and-closeout/acceptance-criteria.md"
+      ],
+      "bugClass": "unmet_criterion",
+      "disposition": "ruled_out",
+      "rationale": "no row is unmet",
+      "evidenceRefs": [
+        "acceptance-criteria.md:75"
+      ],
+      "reason": "verified by exact search"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-018",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/dist/lib/resume/resume-ladder.js"
+      ],
+      "bugClass": "dedup_collision",
+      "disposition": "ruled_out",
+      "rationale": "a zero fingerprint can never match a content hash",
+      "evidenceRefs": [
+        "resume-ladder.js:508"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-019",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/**/decision-record.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "the commit subjects map one-to-one onto the tracks",
+      "evidenceRefs": [
+        "git log 2f5fe41bb9e~1..aaaff7dd9df"
+      ],
+      "reason": "verified by git log"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-022",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs"
+      ],
+      "bugClass": "naming_collision",
+      "disposition": "ruled_out",
+      "rationale": "the two watches sit on opposite ends of the same pipe",
+      "evidenceRefs": [
+        "system-skill-advisor-launcher.cjs:1554"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-024",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/hub-router.json"
+      ],
+      "bugClass": "unguarded_duplication",
+      "disposition": "ruled_out",
+      "rationale": "the pair is guarded and the guard resolves through the symlink",
+      "evidenceRefs": [
+        ".github/workflows/routing-registry-drift.yml:243"
+      ],
+      "reason": "verified by direct read of the workflow and the symlink target"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-025",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/**/decision-record.md"
+      ],
+      "bugClass": "template_default",
+      "disposition": "ruled_out",
+      "rationale": "the value is the writer's template default, not something these ten commits introduced",
+      "evidenceRefs": [
+        "specs/agents/006-agent-contract-and-registry-alignment/decision-record.md:20"
+      ],
+      "reason": "verified by counting the same value across the pre-existing records"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-027",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/acceptance-criteria.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "no row reads Unmet and each names an artifact",
+      "evidenceRefs": [
+        "acceptance-criteria.md:56",
+        "acceptance-criteria.md:68"
+      ],
+      "reason": "verified by reading every row"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-028",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
+      ],
+      "bugClass": "documented_default_drift",
+      "disposition": "ruled_out",
+      "rationale": "every documented default matches the code",
+      "evidenceRefs": [
+        "ENV-REFERENCE.md:394",
+        "ollama.ts:99"
+      ],
+      "reason": "verified by direct read of both sides"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-029",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs"
+      ],
+      "bugClass": "passthrough_gap",
+      "disposition": "ruled_out",
+      "rationale": "all three are forwarded",
+      "evidenceRefs": [
+        "system-skill-advisor-launcher.cjs:171",
+        "system-skill-advisor-launcher.cjs:185"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-030",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/acceptance-criteria.md"
+      ],
+      "bugClass": "undocumented_variable",
+      "disposition": "ruled_out",
+      "rationale": "no row is unmet and no named artifact is missing",
+      "evidenceRefs": [
+        "acceptance-criteria.md:56",
+        "acceptance-criteria.md:68"
+      ],
+      "reason": "verified by reading every row"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "a healthy child refreshes twelve times inside one stale window",
+      "evidenceRefs": [
+        "system-skill-advisor-launcher.cjs:1558",
+        "liveness.ts:18"
+      ],
+      "proof": "verified by direct read of both intervals"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "the pinned default directory keeps the shared counter",
+      "evidenceRefs": [
+        "generation.ts:55",
+        "system-skill-advisor-launcher.cjs:24"
+      ],
+      "proof": "verified by direct read of both resolvers"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/hub-router.json"
+      ],
+      "bugClass": "wrong_routing",
+      "disposition": "ruled_out",
+      "rationale": "the phrase was an over-match and security.md still routes",
+      "evidenceRefs": [
+        "hub-router.json:254"
+      ],
+      "proof": "verified by exact search of the router vocabulary"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/**/decision-record.md"
+      ],
+      "bugClass": "duplicate_write",
+      "disposition": "ruled_out",
+      "rationale": "the shared decision is documented in the Carried by column",
+      "evidenceRefs": [
+        "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/decision-record.md:37"
+      ],
+      "proof": "verified by reading the Q rows of all three records"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/**/decision-record.md"
+      ],
+      "bugClass": "pii_leak",
+      "disposition": "ruled_out",
+      "rationale": "no personal data in the added rows",
+      "evidenceRefs": [
+        "specs/hooks-plugins-extensions/env-secret-guard/001-env-secret-guard/decision-record.md:1032"
+      ],
+      "proof": "verified by pattern scan of every added line"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "the env files cannot ship with a clone",
+      "evidenceRefs": [
+        ".gitignore:25"
+      ],
+      "proof": "verified with git check-ignore"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts"
+      ],
+      "bugClass": "privilege_escalation",
+      "disposition": "ruled_out",
+      "rationale": "a bad value falls back to the split defaults",
+      "evidenceRefs": [
+        "ollama.ts:125"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "the status handle is read-only",
+      "evidenceRefs": [
+        "advisor-status.ts:177"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-012",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/hub-router.json"
+      ],
+      "bugClass": "wrong_routing",
+      "disposition": "ruled_out",
+      "rationale": "an unmatched request produces no mode",
+      "evidenceRefs": [
+        "hub-router.json"
+      ],
+      "proof": "verified by reading the router policy"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-013",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/**/decision-record.md"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "the only secret-shaped string is a constant placeholder",
+      "evidenceRefs": [
+        "decision-record-writer.js:401"
+      ],
+      "proof": "verified by pattern scan and by reading the writer"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-014",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/**/decision-record.md"
+      ],
+      "bugClass": "pii_leak",
+      "disposition": "ruled_out",
+      "rationale": "no home path appears",
+      "evidenceRefs": [
+        "specs/**/decision-record.md"
+      ],
+      "proof": "verified by pattern scan"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/background-vector-refresh.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "the doc matches the code",
+      "evidenceRefs": [
+        "advisor-server.ts:439"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-016",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/.../019-ollama-lane-honest-and-closeout/acceptance-criteria.md"
+      ],
+      "bugClass": "unmet_criterion",
+      "disposition": "ruled_out",
+      "rationale": "no row is unmet",
+      "evidenceRefs": [
+        "acceptance-criteria.md:75"
+      ],
+      "proof": "verified by exact search"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-018",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/dist/lib/resume/resume-ladder.js"
+      ],
+      "bugClass": "dedup_collision",
+      "disposition": "ruled_out",
+      "rationale": "a zero fingerprint can never match a content hash",
+      "evidenceRefs": [
+        "resume-ladder.js:508"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-019",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/**/decision-record.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "the commit subjects map one-to-one onto the tracks",
+      "evidenceRefs": [
+        "git log 2f5fe41bb9e~1..aaaff7dd9df"
+      ],
+      "proof": "verified by git log"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-022",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs"
+      ],
+      "bugClass": "naming_collision",
+      "disposition": "ruled_out",
+      "rationale": "the two watches sit on opposite ends of the same pipe",
+      "evidenceRefs": [
+        "system-skill-advisor-launcher.cjs:1554"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-024",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/hub-router.json"
+      ],
+      "bugClass": "unguarded_duplication",
+      "disposition": "ruled_out",
+      "rationale": "the pair is guarded and the guard resolves through the symlink",
+      "evidenceRefs": [
+        ".github/workflows/routing-registry-drift.yml:243"
+      ],
+      "proof": "verified by direct read of the workflow and the symlink target"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-025",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/**/decision-record.md"
+      ],
+      "bugClass": "template_default",
+      "disposition": "ruled_out",
+      "rationale": "the value is the writer's template default, not something these ten commits introduced",
+      "evidenceRefs": [
+        "specs/agents/006-agent-contract-and-registry-alignment/decision-record.md:20"
+      ],
+      "proof": "verified by counting the same value across the pre-existing records"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-027",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/acceptance-criteria.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "no row reads Unmet and each names an artifact",
+      "evidenceRefs": [
+        "acceptance-criteria.md:56",
+        "acceptance-criteria.md:68"
+      ],
+      "proof": "verified by reading every row"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-028",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
+      ],
+      "bugClass": "documented_default_drift",
+      "disposition": "ruled_out",
+      "rationale": "every documented default matches the code",
+      "evidenceRefs": [
+        "ENV-REFERENCE.md:394",
+        "ollama.ts:99"
+      ],
+      "proof": "verified by direct read of both sides"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-029",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs"
+      ],
+      "bugClass": "passthrough_gap",
+      "disposition": "ruled_out",
+      "rationale": "all three are forwarded",
+      "evidenceRefs": [
+        "system-skill-advisor-launcher.cjs:171",
+        "system-skill-advisor-launcher.cjs:185"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-030",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/acceptance-criteria.md"
+      ],
+      "bugClass": "undocumented_variable",
+      "disposition": "ruled_out",
+      "rationale": "no row is unmet and no named artifact is missing",
+      "evidenceRefs": [
+        "acceptance-criteria.md:56",
+        "acceptance-criteria.md:68"
+      ],
+      "proof": "verified by reading every row"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "undocumented_variable",
+      "documented_default_drift",
+      "passthrough_gap"
+    ],
+    "covered": [
+      "undocumented_variable",
+      "documented_default_drift",
+      "passthrough_gap"
+    ],
+    "ruledOut": [
+      "undocumented_variable",
+      "documented_default_drift",
+      "passthrough_gap"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graph"
+  },
+  "frontier": {
+    "nodes": [
+      {
+        "nodeId": "F-1-003",
+        "parentId": "root",
+        "depth": 1,
+        "scope": [
+          ".skilled/bin/system-skill-advisor-launcher.cjs",
+          ".skilled/bin/launcher-heartbeat-watchdog.vitest.ts",
+          ".skilled/bin/launcher-threshold-env.vitest.ts",
+          ".skilled/skills/system-skill-advisor/runtime/lib"
+        ],
+        "question": "Daemon and launcher liveness: can the 5-minute heartbeat reaper stop a healthy server, does the child always get the launcher's database directory, are OLLAMA_BASE_URL and OLLAMA_REQUEST_TIMEOUT_MS passed safely, and can the generation counter land beside the wrong database?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 0,
+        "coveredDimensions": [
+          "correctness",
+          "security",
+          "traceability",
+          "maintainability"
+        ],
+        "nextDimension": null,
+        "visits": 4
+      },
+      {
+        "nodeId": "F-1-006",
+        "parentId": "root",
+        "depth": 1,
+        "scope": [
+          ".skilled/skills/sk-doc/hub-router.json",
+          ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
+          ".skilled/hooks/session-handover/pi/session-handover.test.ts",
+          ".opencode/plugins/tests/system-skill-advisor.test.cjs",
+          "specs/**/decision-record.md"
+        ],
+        "question": "Follow-up fixes and answer routing: did any of the five test or routing fixes weaken coverage or hide a real bug, did removing the bare security policy phrase break a route that should still reach sk-doc, and did each of the 231 ended-session answers land once in the right packet's decision record with no personal data?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 0,
+        "coveredDimensions": [
+          "correctness",
+          "security",
+          "traceability",
+          "maintainability"
+        ],
+        "nextDimension": null,
+        "visits": 4
+      }
+    ],
+    "stats": {
+      "total": 2,
+      "open": 0,
+      "active": 0,
+      "answered": 2,
+      "blocked": 0,
+      "exhausted": 0,
+      "abstained": 0,
+      "pruned": 0
+    },
+    "budget": {
+      "depth1": {
+        "allotted": 8,
+        "spent": 8
+      },
+      "depth2": {
+        "allotted": 5.6,
+        "spent": 0
+      },
+      "depth3": {
+        "allotted": 8,
+        "spent": 0
+      }
+    },
+    "activeNodeId": null,
+    "activeNextDimension": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 2,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:394",
+          ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:396",
+          ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:1445",
+          ".skilled/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts:99"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "the three documented variables each resolve to a reader at HEAD and the documented defaults match the code"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/acceptance-criteria.md:56",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/acceptance-criteria.md:68"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "summary": "thirteen rows read row by row, every one Met with a verification artifact that exists at HEAD"
+      }
+    ],
+    "unfinishedCoreProtocols": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [
+    {
+      "index": 7,
+      "rule": "findingsSummary-severity-keys",
+      "detail": "findingsSummary must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 7,
+      "rule": "findingsNew-shape",
+      "detail": "findingsNew must be an array of findings or an object with P0, P1, P2 keys"
+    },
+    {
+      "index": 8,
+      "rule": "findingsSummary-severity-keys",
+      "detail": "findingsSummary must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 8,
+      "rule": "findingsNew-shape",
+      "detail": "findingsNew must be an array of findings or an object with P0, P1, P2 keys"
+    },
+    {
+      "index": 9,
+      "rule": "findingsSummary-severity-keys",
+      "detail": "findingsSummary must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 9,
+      "rule": "findingsNew-shape",
+      "detail": "findingsNew must be an array of findings or an object with P0, P1, P2 keys"
+    },
+    {
+      "index": 10,
+      "rule": "findingsSummary-severity-keys",
+      "detail": "findingsSummary must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 10,
+      "rule": "findingsNew-shape",
+      "detail": "findingsNew must be an array of findings or an object with P0, P1, P2 keys"
+    }
+  ],
+  "corruptionWarnings": []
+}
