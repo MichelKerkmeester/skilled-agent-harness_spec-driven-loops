@@ -210,7 +210,7 @@
     ],
     "causal_summary": "After phases 001 and 002 every engine consumer gets a new default naming rule on its next re-pin, but no doc tells them, and the operator-facing text still states the old rule and still refuses a folder beside the tree",
     "created_at": "2026-11-20T09:32:56Z",
-    "last_save_at": "2026-11-20T12:32:08.691Z",
+    "last_save_at": "2026-11-20T18:04:23.619Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2402cf035eefe6c89d4214f75792132ce0b987749045562bf63078f3e0f38a1e",
+    "source_fingerprint": "sha256:6277ca7a0abd40d2bbd3142947813f8a6abd36b65f51a8a3da27058c6bc06c8c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cba7993665c1841f493d184f016876ca2cdeee9f35870667b94cb427f9ab3e44",

@@ -88,7 +88,7 @@ From `git -C <ai-speckit> show --stat 5dd004f3faa`: 26 files, 705 insertions, 10
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The ai-speckit session changed each overlay source, applied it onto the vendored tree, ran the new tests, then ran Barter's full gate set and committed once. The commit is local in ai-speckit and on no remote branch; it reaches origin with phase 008's re-pin session.
+The ai-speckit session changed each overlay source, applied it onto the vendored tree, ran the new tests, then ran Barter's full gate set and committed once. The commit is local in ai-speckit and on no remote branch. Phase 008 pushed only Skilled, so this commit reaches origin when the operator pushes ai-speckit.
 <!-- /ANCHOR:how-delivered -->
 
 ---

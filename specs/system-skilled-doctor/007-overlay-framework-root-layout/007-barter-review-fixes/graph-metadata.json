@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Barter's commit gate exited 0 with no output when it could not find `../overlays/overlay-manifest.json`, so a moved or missing manifest switched every overlay check off silently, and no test covered that branch",
     "created_at": "2026-11-20T15:37:52Z",
-    "last_save_at": "2026-11-20T15:44:27.287Z",
+    "last_save_at": "2026-11-20T18:04:26.743Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bbd3e433def5cd18bf409d8403352c50916c3b421e6654828c05bf3d63f5a561",
+    "source_fingerprint": "sha256:91bea76a167d3ee6e23b0f4e826aa604e9cf303b534cdd4220de435a2fed5240",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e4a8dfbc8a94e73981fee0e802ec63984a88842d1c0eb7bf621632f0e0cce4d5",
       "plan.md": "e711414b593dff4a53ac90f485b83c0849b4a20e8ada21a8a3c0e846b6a2f34a",
       "tasks.md": "9680685d33f787ef035da75edfe977f64ab9fb65c228d664efb8f333c7ba208c",
-      "implementation-summary.md": "c11d13b7283d538641d8cd6fc36dd457364a1da3ea1a62bc86bb091a99c7bd66"
+      "implementation-summary.md": "c8edbb1e014e970cf7f809da0b43e9a78b78cc835a862dd60bece3c0d59614ac"
     },
     "last_active_at": null
   }

@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-11-20T19:00:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Re-pinned ai-speckit onto b5a630c6efa and reran every Barter gate"
-    next_safe_action: "Commit this folder in a Skilled session"
+    next_safe_action: "None: this folder was committed in Skilled as b4799f7d547"
     blockers: []
     key_files:
       - "spec.md"
@@ -112,7 +112,7 @@ The baseline gates ran on local main at `0557b1b8b43` before the merge. The merg
 
 1. **The push used the owner account through a per-command credential override.** The active gh account, `michelkerkmeester-barter`, has no push access to this repository. GitHub reported that the push bypassed the rules on `main`.
 2. **Nothing in ai-speckit is pushed.** Its two commits are local, and the push is the operator's.
-3. **This folder is uncommitted.** The ai-speckit session's git-write gate refuses a Skilled commit, so a Skilled session commits these files.
+3. **This folder was committed from a Skilled session.** The ai-speckit session's git-write gate refuses a Skilled commit, so the folder was committed in Skilled as `b4799f7d547`.
 4. **Left open by the re-pin.** These are recorded in ai-speckit's layout record, under known limitations:
    - Upstream's root `.gitignore` line for `orchestration-status.log` was not carried into ai-speckit.
    - The vibe mirror drift predates the re-pin.
